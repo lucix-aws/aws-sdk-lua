@@ -1975,6 +1975,17 @@ local record M
         MediaLiveInput: MediaLiveInputRouterOutputConfiguration
     end
 
+    enum FabricLatencyMode
+        "BALANCED"
+        "LOW_LATENCY"
+    end
+
+    -- The fabric configuration settings for the router output.
+    record FabricConfiguration
+        -- The recovery latency mode for the router fabric connection. Valid values include the following: BALANCED (default) – Optimizes for stream quality. LOW_LATENCY – Reduces latency at the potential cost of stream quality under adverse network conditions.
+        RecoveryLatencyMode: string
+    end
+
     -- A message associated with a router output.
     record RouterOutputMessage
         -- The code associated with the router output message.
@@ -2081,6 +2092,8 @@ local record M
         MaintenanceScheduleType: string
         -- The current maintenance schedule details for this router output.
         MaintenanceSchedule: MaintenanceSchedule
+        -- The fabric configuration settings for the router output.
+        FabricConfiguration: FabricConfiguration
     end
 
     record BatchGetRouterOutputOutput
@@ -2635,6 +2648,8 @@ local record M
         MaintenanceConfiguration: MaintenanceConfiguration
         -- Key-value pairs that can be used to tag this router output.
         Tags: {string : string}
+        -- The fabric configuration settings for the router output.
+        FabricConfiguration: FabricConfiguration
         -- A unique identifier for the request to ensure idempotency.
         ClientToken: string
     end
@@ -3776,6 +3791,8 @@ local record M
         Tier: string
         -- The updated maintenance configuration settings for the router output, including any changes to preferred maintenance windows and schedules.
         MaintenanceConfiguration: MaintenanceConfiguration
+        -- The updated fabric configuration settings for the router output. You cannot update the fabric configuration while the output has an active route. You must unroute the output before updating the fabric configuration.
+        FabricConfiguration: FabricConfiguration
     end
 
     record UpdateRouterOutputOutput

@@ -6736,6 +6736,23 @@ M.RouterOutputConfiguration = schema.new({
     },
 })
 
+M.FabricConfiguration = schema.new({
+    id = id.from(_N, "FabricConfiguration"),
+    type = "structure",
+    members = {
+        RecoveryLatencyMode = schema.new({
+            id = id.from(_N, "FabricConfiguration", "RecoveryLatencyMode"),
+            type = "string",
+            name = "RecoveryLatencyMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "recoveryLatencyMode" },
+            },
+        }),
+    },
+})
+
 M.RouterOutputMessage = schema.new({
     id = id.from(_N, "RouterOutputMessage"),
     type = "structure",
@@ -7063,6 +7080,17 @@ M.RouterOutput = schema.new({
             target = M.MaintenanceSchedule,
             traits = {
                 [traits.JSON_NAME] = { name = "maintenanceSchedule" },
+            },
+        }),
+        FabricConfiguration = schema.new({
+            id = id.from(_N, "RouterOutput", "FabricConfiguration"),
+            type = "structure",
+            name = "FabricConfiguration",
+            target_id = id.from(_N, "FabricConfiguration"),
+            target = M.FabricConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "fabricConfiguration" },
             },
         }),
     },
@@ -9122,6 +9150,16 @@ M.CreateRouterOutputInput = schema.new({
             map_value = prelude.String,
             traits = {
                 [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        FabricConfiguration = schema.new({
+            id = id.from(_N, "CreateRouterOutputInput", "FabricConfiguration"),
+            type = "structure",
+            name = "FabricConfiguration",
+            target_id = id.from(_N, "FabricConfiguration"),
+            target = M.FabricConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "fabricConfiguration" },
             },
         }),
         ClientToken = schema.new({
@@ -13636,6 +13674,16 @@ M.UpdateRouterOutputInput = schema.new({
             target = M.MaintenanceConfiguration,
             traits = {
                 [traits.JSON_NAME] = { name = "maintenanceConfiguration" },
+            },
+        }),
+        FabricConfiguration = schema.new({
+            id = id.from(_N, "UpdateRouterOutputInput", "FabricConfiguration"),
+            type = "structure",
+            name = "FabricConfiguration",
+            target_id = id.from(_N, "FabricConfiguration"),
+            target = M.FabricConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "fabricConfiguration" },
             },
         }),
     },

@@ -23,6 +23,14 @@ M.BatchDeleteKnowledgeBaseFailureList = schema.new({ type = "list", list_member 
 
 M.AnswerIds = schema.new({ type = "list", list_member = prelude.String })
 
+M.BatchDescribeUserLimitsRequestUsersList = schema.new({ type = "list", list_member = M.UserLimitsEntry })
+
+M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UserLimitsList = schema.new({ type = "list", list_member = M.UserLimits })
+
+M.BatchDescribeUserLimitsErrorList = schema.new({ type = "list", list_member = M.BatchDescribeUserLimitsError })
+
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.GroupsList = schema.new({ type = "list", list_member = prelude.String })
@@ -36,6 +44,12 @@ M.CreateAgentRequestActionConnectorsList = schema.new({ type = "list", list_memb
 M.StarterPromptList = schema.new({ type = "list", list_member = prelude.String })
 
 M.FolderArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GovernedActionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApprovalGroupList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LinkEntityArnList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -54,6 +68,8 @@ M.DatasetParameterList = schema.new({ type = "list", list_member = M.DatasetPara
 M.PermissionsList = schema.new({ type = "list", list_member = M.Permission })
 
 M.IdentityMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IdentityNameList })
+
+M.CreateLimitsProfileRequestResourceLimitsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProfileLimitValue })
 
 M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -103,6 +119,8 @@ M.AgentSummaries = schema.new({ type = "list", list_member = M.AgentSummary })
 
 M.AnalysisSummaryList = schema.new({ type = "list", list_member = M.AnalysisSummary })
 
+M.ApprovalPolicyList = schema.new({ type = "list", list_member = M.ApprovalPolicy })
+
 M.AssetBundleExportJobSummaryList = schema.new({ type = "list", list_member = M.AssetBundleExportJobSummary })
 
 M.AssetBundleImportJobSummaryList = schema.new({ type = "list", list_member = M.AssetBundleImportJobSummary })
@@ -118,6 +136,8 @@ M.DashboardVersionSummaryList = schema.new({ type = "list", list_member = M.Dash
 M.DataSetSummaryList = schema.new({ type = "list", list_member = M.DataSetSummary })
 
 M.DataSourceList = schema.new({ type = "list", list_member = M.DataSource })
+
+M.DlpSettingSummaryList = schema.new({ type = "list", list_member = M.DlpSettingSummary })
 
 M.FlowSummaryList = schema.new({ type = "list", list_member = M.FlowSummary })
 
@@ -140,6 +160,8 @@ M.AuthorizedTargetsByServices = schema.new({ type = "list", list_member = M.Auth
 M.Ingestions = schema.new({ type = "list", list_member = M.Ingestion })
 
 M.KnowledgeBaseSummaries = schema.new({ type = "list", list_member = M.KnowledgeBaseSummary })
+
+M.LimitsProfileList = schema.new({ type = "list", list_member = M.LimitsProfile })
 
 M.Namespaces = schema.new({ type = "list", list_member = M.NamespaceInfoV2 })
 
@@ -239,6 +261,8 @@ M.FailedKeyRegistrationEntries = schema.new({ type = "list", list_member = M.Fai
 
 M.SuccessfulKeyRegistrationEntries = schema.new({ type = "list", list_member = M.SuccessfulKeyRegistrationEntry })
 
+M.ResourceLimitsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProfileLimitValue })
+
 M.SpaceResourceOperations = schema.new({ type = "list", list_member = M.SpaceResourceOperation })
 
 M.FailedSpaceResourceOperations = schema.new({ type = "list", list_member = M.FailedSpaceResourceOperation })
@@ -268,6 +292,8 @@ M.FilterGroupList = schema.new({ type = "list", list_member = M.FilterGroup })
 M.ColumnConfigurationList = schema.new({ type = "list", list_member = M.ColumnConfiguration })
 
 M.StaticFileList = schema.new({ type = "list", list_member = M.StaticFile })
+
+M.GroupArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ErrorList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -329,6 +355,8 @@ M.AssetBundleExportJobDashboardOverridePropertiesList = schema.new({ type = "lis
 
 M.AssetBundleExportJobFolderOverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobFolderOverrideProperties })
 
+M.AssetBundleExportJobTopicV2OverridePropertiesList = schema.new({ type = "list", list_member = M.AssetBundleExportJobTopicV2OverrideProperties })
+
 M.AssetBundleImportJobVPCConnectionOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobVPCConnectionOverrideParameters })
 
 M.AssetBundleImportJobRefreshScheduleOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobRefreshScheduleOverrideParameters })
@@ -345,6 +373,8 @@ M.AssetBundleImportJobDashboardOverrideParametersList = schema.new({ type = "lis
 
 M.AssetBundleImportJobFolderOverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobFolderOverrideParameters })
 
+M.AssetBundleImportJobTopicV2OverrideParametersList = schema.new({ type = "list", list_member = M.AssetBundleImportJobTopicV2OverrideParameters })
+
 M.AssetBundleImportJobDataSourceOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDataSourceOverridePermissions })
 
 M.AssetBundleImportJobDataSetOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDataSetOverridePermissions })
@@ -356,6 +386,8 @@ M.AssetBundleImportJobAnalysisOverridePermissionsList = schema.new({ type = "lis
 M.AssetBundleImportJobDashboardOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDashboardOverridePermissions })
 
 M.AssetBundleImportJobFolderOverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobFolderOverridePermissions })
+
+M.AssetBundleImportJobTopicV2OverridePermissionsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobTopicV2OverridePermissions })
 
 M.AssetBundleImportJobVPCConnectionOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobVPCConnectionOverrideTags })
 
@@ -370,6 +402,8 @@ M.AssetBundleImportJobAnalysisOverrideTagsList = schema.new({ type = "list", lis
 M.AssetBundleImportJobDashboardOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobDashboardOverrideTags })
 
 M.AssetBundleImportJobFolderOverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobFolderOverrideTags })
+
+M.AssetBundleImportJobTopicV2OverrideTagsList = schema.new({ type = "list", list_member = M.AssetBundleImportJobTopicV2OverrideTags })
 
 M.SnapshotAnonymousUserRedactedList = schema.new({ type = "list", list_member = M.SnapshotAnonymousUserRedacted })
 
@@ -393,6 +427,8 @@ M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInte
 
 M.SnapshotAnonymousUserList = schema.new({ type = "list", list_member = M.SnapshotAnonymousUser })
 
+M.EffectiveLimitList = schema.new({ type = "list", list_member = M.EffectiveLimit })
+
 M.ActionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DataSetReferenceList = schema.new({ type = "list", list_member = M.DataSetReference })
@@ -410,6 +446,8 @@ M.PrincipalList = schema.new({ type = "list", list_member = prelude.String })
 M.ColumnLevelPermissionRuleColumnNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LinkedDataSourceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.LabelActionMappingList = schema.new({ type = "list", list_member = M.LabelActionMapping })
 
 M.ActionsList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -506,6 +544,8 @@ M.AssetBundleExportJobAnalysisPropertyToOverrideList = schema.new({ type = "list
 M.AssetBundleExportJobDashboardPropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AssetBundleExportJobFolderPropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AssetBundleExportJobTopicV2PropertyToOverrideList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AssetBundleRestrictiveResourceIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -21287,6 +21327,29 @@ M.AppendOperation = schema.new({
     },
 })
 
+M.ApplicableTo = schema.new({
+    id = id.from(_N, "ApplicableTo"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ApplicableTo", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GroupArns = schema.new({
+            id = id.from(_N, "ApplicableTo", "GroupArns"),
+            type = "list",
+            name = "GroupArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.Palette = schema.new({
     id = id.from(_N, "Palette"),
     type = "structure",
@@ -21470,6 +21533,104 @@ M.ApplicationTheme = schema.new({
             name = "BrandElementStyle",
             target_id = id.from(_N, "BrandElementStyle"),
             target = M.BrandElementStyle,
+        }),
+    },
+})
+
+M.ApprovalPolicy = schema.new({
+    id = id.from(_N, "ApprovalPolicy"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PolicyArn = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "PolicyArn"),
+            type = "string",
+            name = "PolicyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AssetTypes = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "AssetTypes"),
+            type = "list",
+            name = "AssetTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicableTo = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "ApplicableTo"),
+            type = "structure",
+            name = "ApplicableTo",
+            target_id = id.from(_N, "ApplicableTo"),
+            target = M.ApplicableTo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApprovalGroups = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "ApprovalGroups"),
+            type = "list",
+            name = "ApprovalGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ApprovalPolicy", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -21672,6 +21833,32 @@ M.AssetBundleExportJobThemeOverrideProperties = schema.new({
     },
 })
 
+M.AssetBundleExportJobTopicV2OverrideProperties = schema.new({
+    id = id.from(_N, "AssetBundleExportJobTopicV2OverrideProperties"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "AssetBundleExportJobTopicV2OverrideProperties", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Properties = schema.new({
+            id = id.from(_N, "AssetBundleExportJobTopicV2OverrideProperties", "Properties"),
+            type = "list",
+            name = "Properties",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AssetBundleExportJobVPCConnectionOverrideProperties = schema.new({
     id = id.from(_N, "AssetBundleExportJobVPCConnectionOverrideProperties"),
     type = "structure",
@@ -21764,6 +21951,13 @@ M.AssetBundleCloudFormationOverridePropertyConfiguration = schema.new({
             name = "Folders",
             target_id = prelude.Document.id,
             list_member = M.AssetBundleExportJobFolderOverrideProperties,
+        }),
+        TopicsV2 = schema.new({
+            id = id.from(_N, "AssetBundleCloudFormationOverridePropertyConfiguration", "TopicsV2"),
+            type = "list",
+            name = "TopicsV2",
+            target_id = prelude.Document.id,
+            list_member = M.AssetBundleExportJobTopicV2OverrideProperties,
         }),
     },
 })
@@ -24103,6 +24297,34 @@ M.AssetBundleImportJobThemeOverrideParameters = schema.new({
     },
 })
 
+M.AssetBundleImportJobTopicV2OverrideParameters = schema.new({
+    id = id.from(_N, "AssetBundleImportJobTopicV2OverrideParameters"),
+    type = "structure",
+    members = {
+        TopicId = schema.new({
+            id = id.from(_N, "AssetBundleImportJobTopicV2OverrideParameters", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AssetBundleImportJobTopicV2OverrideParameters", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "AssetBundleImportJobTopicV2OverrideParameters", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AssetBundleImportJobVPCConnectionOverrideParameters = schema.new({
     id = id.from(_N, "AssetBundleImportJobVPCConnectionOverrideParameters"),
     type = "structure",
@@ -24219,6 +24441,13 @@ M.AssetBundleImportJobOverrideParameters = schema.new({
             target_id = prelude.Document.id,
             list_member = M.AssetBundleImportJobFolderOverrideParameters,
         }),
+        TopicsV2 = schema.new({
+            id = id.from(_N, "AssetBundleImportJobOverrideParameters", "TopicsV2"),
+            type = "list",
+            name = "TopicsV2",
+            target_id = prelude.Document.id,
+            list_member = M.AssetBundleImportJobTopicV2OverrideParameters,
+        }),
     },
 })
 
@@ -24238,6 +24467,33 @@ M.AssetBundleImportJobThemeOverridePermissions = schema.new({
         }),
         Permissions = schema.new({
             id = id.from(_N, "AssetBundleImportJobThemeOverridePermissions", "Permissions"),
+            type = "structure",
+            name = "Permissions",
+            target_id = id.from(_N, "AssetBundleResourcePermissions"),
+            target = M.AssetBundleResourcePermissions,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssetBundleImportJobTopicV2OverridePermissions = schema.new({
+    id = id.from(_N, "AssetBundleImportJobTopicV2OverridePermissions"),
+    type = "structure",
+    members = {
+        TopicIds = schema.new({
+            id = id.from(_N, "AssetBundleImportJobTopicV2OverridePermissions", "TopicIds"),
+            type = "list",
+            name = "TopicIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "AssetBundleImportJobTopicV2OverridePermissions", "Permissions"),
             type = "structure",
             name = "Permissions",
             target_id = id.from(_N, "AssetBundleResourcePermissions"),
@@ -24295,6 +24551,13 @@ M.AssetBundleImportJobOverridePermissions = schema.new({
             target_id = prelude.Document.id,
             list_member = M.AssetBundleImportJobFolderOverridePermissions,
         }),
+        TopicsV2 = schema.new({
+            id = id.from(_N, "AssetBundleImportJobOverridePermissions", "TopicsV2"),
+            type = "list",
+            name = "TopicsV2",
+            target_id = prelude.Document.id,
+            list_member = M.AssetBundleImportJobTopicV2OverridePermissions,
+        }),
     },
 })
 
@@ -24314,6 +24577,33 @@ M.AssetBundleImportJobThemeOverrideTags = schema.new({
         }),
         Tags = schema.new({
             id = id.from(_N, "AssetBundleImportJobThemeOverrideTags", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssetBundleImportJobTopicV2OverrideTags = schema.new({
+    id = id.from(_N, "AssetBundleImportJobTopicV2OverrideTags"),
+    type = "structure",
+    members = {
+        TopicIds = schema.new({
+            id = id.from(_N, "AssetBundleImportJobTopicV2OverrideTags", "TopicIds"),
+            type = "list",
+            name = "TopicIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "AssetBundleImportJobTopicV2OverrideTags", "Tags"),
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
@@ -24404,6 +24694,13 @@ M.AssetBundleImportJobOverrideTags = schema.new({
             name = "Folders",
             target_id = prelude.Document.id,
             list_member = M.AssetBundleImportJobFolderOverrideTags,
+        }),
+        TopicsV2 = schema.new({
+            id = id.from(_N, "AssetBundleImportJobOverrideTags", "TopicsV2"),
+            type = "list",
+            name = "TopicsV2",
+            target_id = prelude.Document.id,
+            list_member = M.AssetBundleImportJobTopicV2OverrideTags,
         }),
     },
 })
@@ -26026,6 +26323,219 @@ M.ConflictException = schema.new({
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UserLimitsEntry = schema.new({
+    id = id.from(_N, "UserLimitsEntry"),
+    type = "structure",
+    members = {
+        userName = schema.new({
+            id = id.from(_N, "UserLimitsEntry", "userName"),
+            type = "string",
+            name = "userName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "UserLimitsEntry", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDescribeUserLimitsInput = schema.new({
+    id = id.from(_N, "BatchDescribeUserLimitsRequest"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        users = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsInput", "users"),
+            type = "list",
+            name = "users",
+            target_id = prelude.Document.id,
+            list_member = M.UserLimitsEntry,
+        }),
+        resourceTypes = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsInput", "resourceTypes"),
+            type = "list",
+            name = "resourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.BatchDescribeUserLimitsError = schema.new({
+    id = id.from(_N, "BatchDescribeUserLimitsError"),
+    type = "structure",
+    members = {
+        userName = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsError", "userName"),
+            type = "string",
+            name = "userName",
+            target_id = prelude.String.id,
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsError", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+        }),
+        userArn = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsError", "userArn"),
+            type = "string",
+            name = "userArn",
+            target_id = prelude.String.id,
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsError", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EffectiveLimit = schema.new({
+    id = id.from(_N, "EffectiveLimit"),
+    type = "structure",
+    members = {
+        resourceType = schema.new({
+            id = id.from(_N, "EffectiveLimit", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        limitValue = schema.new({
+            id = id.from(_N, "EffectiveLimit", "limitValue"),
+            type = "long",
+            name = "limitValue",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        limitUnit = schema.new({
+            id = id.from(_N, "EffectiveLimit", "limitUnit"),
+            type = "string",
+            name = "limitUnit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "EffectiveLimit", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileId = schema.new({
+            id = id.from(_N, "EffectiveLimit", "profileId"),
+            type = "string",
+            name = "profileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UserLimits = schema.new({
+    id = id.from(_N, "UserLimits"),
+    type = "structure",
+    members = {
+        userName = schema.new({
+            id = id.from(_N, "UserLimits", "userName"),
+            type = "string",
+            name = "userName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "UserLimits", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        effectiveLimits = schema.new({
+            id = id.from(_N, "UserLimits", "effectiveLimits"),
+            type = "list",
+            name = "effectiveLimits",
+            target_id = prelude.Document.id,
+            list_member = M.EffectiveLimit,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDescribeUserLimitsOutput = schema.new({
+    id = id.from(_N, "BatchDescribeUserLimitsResponse"),
+    type = "structure",
+    members = {
+        userLimits = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsOutput", "userLimits"),
+            type = "list",
+            name = "userLimits",
+            target_id = prelude.Document.id,
+            list_member = M.UserLimits,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errors = schema.new({
+            id = id.from(_N, "BatchDescribeUserLimitsOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchDescribeUserLimitsError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -29657,6 +30167,94 @@ M.UnsupportedUserEditionException = schema.new({
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateApprovalPolicyInput = schema.new({
+    id = id.from(_N, "CreateApprovalPolicyRequest"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "CreateApprovalPolicyInput", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateApprovalPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateApprovalPolicyInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "CreateApprovalPolicyInput", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AssetTypes = schema.new({
+            id = id.from(_N, "CreateApprovalPolicyInput", "AssetTypes"),
+            type = "list",
+            name = "AssetTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicableTo = schema.new({
+            id = id.from(_N, "CreateApprovalPolicyInput", "ApplicableTo"),
+            type = "structure",
+            name = "ApplicableTo",
+            target_id = id.from(_N, "ApplicableTo"),
+            target = M.ApplicableTo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApprovalGroups = schema.new({
+            id = id.from(_N, "CreateApprovalPolicyInput", "ApprovalGroups"),
+            type = "list",
+            name = "ApprovalGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateApprovalPolicyOutput = schema.new({
+    id = id.from(_N, "CreateApprovalPolicyResponse"),
+    type = "structure",
+    members = {
+        Policy = schema.new({
+            id = id.from(_N, "CreateApprovalPolicyOutput", "Policy"),
+            type = "structure",
+            name = "Policy",
+            target_id = id.from(_N, "ApprovalPolicy"),
+            target = M.ApprovalPolicy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -33363,6 +33961,218 @@ M.CustomerManagedKeyUnavailableException = schema.new({
     },
 })
 
+M.MicrosoftPurviewCredentials = schema.new({
+    id = id.from(_N, "MicrosoftPurviewCredentials"),
+    type = "structure",
+    members = {
+        SecretArn = schema.new({
+            id = id.from(_N, "MicrosoftPurviewCredentials", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LabelActionMapping = schema.new({
+    id = id.from(_N, "LabelActionMapping"),
+    type = "structure",
+    members = {
+        LabelId = schema.new({
+            id = id.from(_N, "LabelActionMapping", "LabelId"),
+            type = "string",
+            name = "LabelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LabelName = schema.new({
+            id = id.from(_N, "LabelActionMapping", "LabelName"),
+            type = "string",
+            name = "LabelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Action = schema.new({
+            id = id.from(_N, "LabelActionMapping", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MicrosoftPurviewProviderConfig = schema.new({
+    id = id.from(_N, "MicrosoftPurviewProviderConfig"),
+    type = "structure",
+    members = {
+        Credentials = schema.new({
+            id = id.from(_N, "MicrosoftPurviewProviderConfig", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "MicrosoftPurviewCredentials"),
+            target = M.MicrosoftPurviewCredentials,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LabelActionMappings = schema.new({
+            id = id.from(_N, "MicrosoftPurviewProviderConfig", "LabelActionMappings"),
+            type = "list",
+            name = "LabelActionMappings",
+            target_id = prelude.Document.id,
+            list_member = M.LabelActionMapping,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UnmappedAction = schema.new({
+            id = id.from(_N, "MicrosoftPurviewProviderConfig", "UnmappedAction"),
+            type = "string",
+            name = "UnmappedAction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProviderConfig = schema.new({
+    id = id.from(_N, "ProviderConfig"),
+    type = "union",
+    members = {
+        MicrosoftPurview = schema.new({
+            id = id.from(_N, "ProviderConfig", "MicrosoftPurview"),
+            type = "structure",
+            name = "MicrosoftPurview",
+            target_id = id.from(_N, "MicrosoftPurviewProviderConfig"),
+            target = M.MicrosoftPurviewProviderConfig,
+        }),
+    },
+})
+
+M.CreateDlpSettingInput = schema.new({
+    id = id.from(_N, "CreateDlpSettingRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateDlpSettingInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DlpSettingId = schema.new({
+            id = id.from(_N, "CreateDlpSettingInput", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateDlpSettingInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderType = schema.new({
+            id = id.from(_N, "CreateDlpSettingInput", "ProviderType"),
+            type = "string",
+            name = "ProviderType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderConfig = schema.new({
+            id = id.from(_N, "CreateDlpSettingInput", "ProviderConfig"),
+            type = "union",
+            name = "ProviderConfig",
+            target_id = id.from(_N, "ProviderConfig"),
+            target = M.ProviderConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderOutageAction = schema.new({
+            id = id.from(_N, "CreateDlpSettingInput", "ProviderOutageAction"),
+            type = "string",
+            name = "ProviderOutageAction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "CreateDlpSettingInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateDlpSettingInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateDlpSettingOutput = schema.new({
+    id = id.from(_N, "CreateDlpSettingResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateDlpSettingOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DlpSettingId = schema.new({
+            id = id.from(_N, "CreateDlpSettingOutput", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "CreateDlpSettingOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Permission = schema.new({
     id = id.from(_N, "Permission"),
     type = "structure",
@@ -34311,6 +35121,108 @@ M.CreateKnowledgeBaseOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = nil },
                 [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.ProfileLimitValue = schema.new({
+    id = id.from(_N, "ProfileLimitValue"),
+    type = "structure",
+    members = {
+        maxValue = schema.new({
+            id = id.from(_N, "ProfileLimitValue", "maxValue"),
+            type = "long",
+            name = "maxValue",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        unit = schema.new({
+            id = id.from(_N, "ProfileLimitValue", "unit"),
+            type = "string",
+            name = "unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateLimitsProfileInput = schema.new({
+    id = id.from(_N, "CreateLimitsProfileRequest"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "CreateLimitsProfileInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        profileName = schema.new({
+            id = id.from(_N, "CreateLimitsProfileInput", "profileName"),
+            type = "string",
+            name = "profileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateLimitsProfileInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        resourceLimits = schema.new({
+            id = id.from(_N, "CreateLimitsProfileInput", "resourceLimits"),
+            type = "map",
+            name = "resourceLimits",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.ProfileLimitValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateLimitsProfileInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateLimitsProfileOutput = schema.new({
+    id = id.from(_N, "CreateLimitsProfileResponse"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CreateLimitsProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileId = schema.new({
+            id = id.from(_N, "CreateLimitsProfileOutput", "profileId"),
+            type = "string",
+            name = "profileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -38803,6 +39715,28 @@ M.DeleteAnalysisOutput = schema.new({
     },
 })
 
+M.DeleteApprovalPolicyInput = schema.new({
+    id = id.from(_N, "DeleteApprovalPolicyRequest"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "DeleteApprovalPolicyInput", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteApprovalPolicyOutput = schema.new({
+    id = id.from(_N, "DeleteApprovalPolicyResponse"),
+    type = "structure",
+})
+
 M.DeleteBrandInput = schema.new({
     id = id.from(_N, "DeleteBrandRequest"),
     type = "structure",
@@ -39218,6 +40152,64 @@ M.DeleteDefaultQBusinessApplicationOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
                 [traits.HTTP_RESPONSE_CODE] = {},
             },
+        }),
+    },
+})
+
+M.DeleteDlpSettingInput = schema.new({
+    id = id.from(_N, "DeleteDlpSettingRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DeleteDlpSettingInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DlpSettingId = schema.new({
+            id = id.from(_N, "DeleteDlpSettingInput", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDlpSettingOutput = schema.new({
+    id = id.from(_N, "DeleteDlpSettingResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeleteDlpSettingOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DlpSettingId = schema.new({
+            id = id.from(_N, "DeleteDlpSettingOutput", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DeleteDlpSettingOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -39712,6 +40704,49 @@ M.DeleteKnowledgeBaseOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = nil },
                 [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteLimitsProfileInput = schema.new({
+    id = id.from(_N, "DeleteLimitsProfileRequest"),
+    type = "structure",
+    members = {
+        profileId = schema.new({
+            id = id.from(_N, "DeleteLimitsProfileInput", "profileId"),
+            type = "string",
+            name = "profileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "DeleteLimitsProfileInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteLimitsProfileOutput = schema.new({
+    id = id.from(_N, "DeleteLimitsProfileResponse"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "DeleteLimitsProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -41523,6 +42558,40 @@ M.DescribeAnalysisPermissionsOutput = schema.new({
     },
 })
 
+M.DescribeApprovalPolicyInput = schema.new({
+    id = id.from(_N, "DescribeApprovalPolicyRequest"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "DescribeApprovalPolicyInput", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeApprovalPolicyOutput = schema.new({
+    id = id.from(_N, "DescribeApprovalPolicyResponse"),
+    type = "structure",
+    members = {
+        Policy = schema.new({
+            id = id.from(_N, "DescribeApprovalPolicyOutput", "Policy"),
+            type = "structure",
+            name = "Policy",
+            target_id = id.from(_N, "ApprovalPolicy"),
+            target = M.ApprovalPolicy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DescribeAssetBundleExportJobInput = schema.new({
     id = id.from(_N, "DescribeAssetBundleExportJobRequest"),
     type = "structure",
@@ -43199,6 +44268,145 @@ M.DescribeDefaultQBusinessApplicationOutput = schema.new({
     },
 })
 
+M.DescribeDlpSettingInput = schema.new({
+    id = id.from(_N, "DescribeDlpSettingRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeDlpSettingInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DlpSettingId = schema.new({
+            id = id.from(_N, "DescribeDlpSettingInput", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DlpSettingDetails = schema.new({
+    id = id.from(_N, "DlpSettingDetails"),
+    type = "structure",
+    members = {
+        DlpSettingId = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderType = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "ProviderType"),
+            type = "string",
+            name = "ProviderType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderConfig = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "ProviderConfig"),
+            type = "union",
+            name = "ProviderConfig",
+            target_id = id.from(_N, "ProviderConfig"),
+            target = M.ProviderConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderOutageAction = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "ProviderOutageAction"),
+            type = "string",
+            name = "ProviderOutageAction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "DlpSettingDetails", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeDlpSettingOutput = schema.new({
+    id = id.from(_N, "DescribeDlpSettingResponse"),
+    type = "structure",
+    members = {
+        DlpSetting = schema.new({
+            id = id.from(_N, "DescribeDlpSettingOutput", "DlpSetting"),
+            type = "structure",
+            name = "DlpSetting",
+            target_id = id.from(_N, "DlpSettingDetails"),
+            target = M.DlpSettingDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeDlpSettingOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DescribeFlowInput = schema.new({
     id = id.from(_N, "DescribeFlowRequest"),
     type = "structure",
@@ -44730,6 +45938,128 @@ M.DescribeKnowledgeBasePermissionsOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = nil },
                 [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeLimitsProfileInput = schema.new({
+    id = id.from(_N, "DescribeLimitsProfileRequest"),
+    type = "structure",
+    members = {
+        profileId = schema.new({
+            id = id.from(_N, "DescribeLimitsProfileInput", "profileId"),
+            type = "string",
+            name = "profileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "DescribeLimitsProfileInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.LimitsProfile = schema.new({
+    id = id.from(_N, "LimitsProfile"),
+    type = "structure",
+    members = {
+        profileId = schema.new({
+            id = id.from(_N, "LimitsProfile", "profileId"),
+            type = "string",
+            name = "profileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "LimitsProfile", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "LimitsProfile", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileName = schema.new({
+            id = id.from(_N, "LimitsProfile", "profileName"),
+            type = "string",
+            name = "profileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "LimitsProfile", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        resourceLimits = schema.new({
+            id = id.from(_N, "LimitsProfile", "resourceLimits"),
+            type = "map",
+            name = "resourceLimits",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.ProfileLimitValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "LimitsProfile", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "LimitsProfile", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeLimitsProfileOutput = schema.new({
+    id = id.from(_N, "DescribeLimitsProfileResponse"),
+    type = "structure",
+    members = {
+        profile = schema.new({
+            id = id.from(_N, "DescribeLimitsProfileOutput", "profile"),
+            type = "structure",
+            name = "profile",
+            target_id = id.from(_N, "LimitsProfile"),
+            target = M.LimitsProfile,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -47182,6 +48512,76 @@ M.DescribeVPCConnectionOutput = schema.new({
     },
 })
 
+M.DlpSettingSummary = schema.new({
+    id = id.from(_N, "DlpSettingSummary"),
+    type = "structure",
+    members = {
+        DlpSettingId = schema.new({
+            id = id.from(_N, "DlpSettingSummary", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DlpSettingSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "DlpSettingSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DlpSettingSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderType = schema.new({
+            id = id.from(_N, "DlpSettingSummary", "ProviderType"),
+            type = "string",
+            name = "ProviderType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "DlpSettingSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "DlpSettingSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DomainNotWhitelistedException = schema.new({
     id = id.from(_N, "DomainNotWhitelistedException"),
     type = "structure",
@@ -49195,6 +50595,54 @@ M.ListAnalysesOutput = schema.new({
     },
 })
 
+M.ListApprovalPoliciesInput = schema.new({
+    id = id.from(_N, "ListApprovalPoliciesRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListApprovalPoliciesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListApprovalPoliciesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+    },
+})
+
+M.ListApprovalPoliciesOutput = schema.new({
+    id = id.from(_N, "ListApprovalPoliciesResponse"),
+    type = "structure",
+    members = {
+        Policies = schema.new({
+            id = id.from(_N, "ListApprovalPoliciesOutput", "Policies"),
+            type = "list",
+            name = "Policies",
+            target_id = prelude.Document.id,
+            list_member = M.ApprovalPolicy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListApprovalPoliciesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListAssetBundleExportJobsInput = schema.new({
     id = id.from(_N, "ListAssetBundleExportJobsRequest"),
     type = "structure",
@@ -49753,6 +51201,70 @@ M.ListDataSourcesOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
                 [traits.HTTP_RESPONSE_CODE] = {},
             },
+        }),
+    },
+})
+
+M.ListDlpSettingsInput = schema.new({
+    id = id.from(_N, "ListDlpSettingsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "ListDlpSettingsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDlpSettingsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDlpSettingsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+    },
+})
+
+M.ListDlpSettingsOutput = schema.new({
+    id = id.from(_N, "ListDlpSettingsResponse"),
+    type = "structure",
+    members = {
+        DlpSettingSummaries = schema.new({
+            id = id.from(_N, "ListDlpSettingsOutput", "DlpSettingSummaries"),
+            type = "list",
+            name = "DlpSettingSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.DlpSettingSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDlpSettingsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "ListDlpSettingsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -50637,6 +52149,73 @@ M.ListKnowledgeBasesOutput = schema.new({
                 [traits.DEFAULT] = { value = nil },
                 [traits.HTTP_RESPONSE_CODE] = {},
             },
+        }),
+    },
+})
+
+M.ListLimitsProfilesInput = schema.new({
+    id = id.from(_N, "ListLimitsProfilesRequest"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "ListLimitsProfilesInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ListLimitsProfilesInput", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "resourceType" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListLimitsProfilesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListLimitsProfilesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListLimitsProfilesOutput = schema.new({
+    id = id.from(_N, "ListLimitsProfilesResponse"),
+    type = "structure",
+    members = {
+        profiles = schema.new({
+            id = id.from(_N, "ListLimitsProfilesOutput", "profiles"),
+            type = "list",
+            name = "profiles",
+            target_id = prelude.Document.id,
+            list_member = M.LimitsProfile,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListLimitsProfilesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -55883,6 +57462,80 @@ M.UpdateApplicationWithTokenExchangeGrantOutput = schema.new({
     },
 })
 
+M.UpdateApprovalPolicyInput = schema.new({
+    id = id.from(_N, "UpdateApprovalPolicyRequest"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "UpdateApprovalPolicyInput", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateApprovalPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateApprovalPolicyInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "UpdateApprovalPolicyInput", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AssetTypes = schema.new({
+            id = id.from(_N, "UpdateApprovalPolicyInput", "AssetTypes"),
+            type = "list",
+            name = "AssetTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ApplicableTo = schema.new({
+            id = id.from(_N, "UpdateApprovalPolicyInput", "ApplicableTo"),
+            type = "structure",
+            name = "ApplicableTo",
+            target_id = id.from(_N, "ApplicableTo"),
+            target = M.ApplicableTo,
+        }),
+        ApprovalGroups = schema.new({
+            id = id.from(_N, "UpdateApprovalPolicyInput", "ApprovalGroups"),
+            type = "list",
+            name = "ApprovalGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateApprovalPolicyOutput = schema.new({
+    id = id.from(_N, "UpdateApprovalPolicyResponse"),
+    type = "structure",
+    members = {
+        Policy = schema.new({
+            id = id.from(_N, "UpdateApprovalPolicyOutput", "Policy"),
+            type = "structure",
+            name = "Policy",
+            target_id = id.from(_N, "ApprovalPolicy"),
+            target = M.ApprovalPolicy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateBrandInput = schema.new({
     id = id.from(_N, "UpdateBrandRequest"),
     type = "structure",
@@ -57043,6 +58696,98 @@ M.UpdateDefaultQBusinessApplicationOutput = schema.new({
     },
 })
 
+M.UpdateDlpSettingInput = schema.new({
+    id = id.from(_N, "UpdateDlpSettingRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateDlpSettingInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DlpSettingId = schema.new({
+            id = id.from(_N, "UpdateDlpSettingInput", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateDlpSettingInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ProviderType = schema.new({
+            id = id.from(_N, "UpdateDlpSettingInput", "ProviderType"),
+            type = "string",
+            name = "ProviderType",
+            target_id = prelude.String.id,
+        }),
+        ProviderConfig = schema.new({
+            id = id.from(_N, "UpdateDlpSettingInput", "ProviderConfig"),
+            type = "union",
+            name = "ProviderConfig",
+            target_id = id.from(_N, "ProviderConfig"),
+            target = M.ProviderConfig,
+        }),
+        ProviderOutageAction = schema.new({
+            id = id.from(_N, "UpdateDlpSettingInput", "ProviderOutageAction"),
+            type = "string",
+            name = "ProviderOutageAction",
+            target_id = prelude.String.id,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "UpdateDlpSettingInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.UpdateDlpSettingOutput = schema.new({
+    id = id.from(_N, "UpdateDlpSettingResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateDlpSettingOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DlpSettingId = schema.new({
+            id = id.from(_N, "UpdateDlpSettingOutput", "DlpSettingId"),
+            type = "string",
+            name = "DlpSettingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateDlpSettingOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.UpdateFlowInput = schema.new({
     id = id.from(_N, "UpdateFlowRequest"),
     type = "structure",
@@ -57978,6 +59723,69 @@ M.UpdateKnowledgeBasePermissionsOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = nil },
                 [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateLimitsProfileInput = schema.new({
+    id = id.from(_N, "UpdateLimitsProfileRequest"),
+    type = "structure",
+    members = {
+        profileId = schema.new({
+            id = id.from(_N, "UpdateLimitsProfileInput", "profileId"),
+            type = "string",
+            name = "profileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "UpdateLimitsProfileInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        profileName = schema.new({
+            id = id.from(_N, "UpdateLimitsProfileInput", "profileName"),
+            type = "string",
+            name = "profileName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateLimitsProfileInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        resourceLimits = schema.new({
+            id = id.from(_N, "UpdateLimitsProfileInput", "resourceLimits"),
+            type = "map",
+            name = "resourceLimits",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.ProfileLimitValue,
+        }),
+    },
+})
+
+M.UpdateLimitsProfileOutput = schema.new({
+    id = id.from(_N, "UpdateLimitsProfileResponse"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateLimitsProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -60376,6 +62184,18 @@ M.BatchDeleteTopicReviewedAnswer = schema.operation({
     },
 })
 
+M.BatchDescribeUserLimits = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "BatchDescribeUserLimits"),
+    input = M.BatchDescribeUserLimitsInput,
+    output = M.BatchDescribeUserLimitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/governance/limits/accounts/{accountId}/user-limits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CancelIngestion = schema.operation({
     id = id.from("com.amazonaws.quicksight", "CancelIngestion"),
     input = M.CancelIngestionInput,
@@ -60448,6 +62268,18 @@ M.CreateAnalysis = schema.operation({
     },
 })
 
+M.CreateApprovalPolicy = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateApprovalPolicy"),
+    input = M.CreateApprovalPolicyInput,
+    output = M.CreateApprovalPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/governance/approvalworkflows/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateBrand = schema.operation({
     id = id.from("com.amazonaws.quicksight", "CreateBrand"),
     input = M.CreateBrandInput,
@@ -60502,6 +62334,18 @@ M.CreateDataSource = schema.operation({
     output = M.CreateDataSourceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDlpSetting = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateDlpSetting"),
+    input = M.CreateDlpSettingInput,
+    output = M.CreateDlpSettingOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/data-loss-prevention/settings/{DlpSettingId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -60598,6 +62442,18 @@ M.CreateKnowledgeBase = schema.operation({
     output = M.CreateKnowledgeBaseOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/accounts/{AwsAccountId}/knowledge-bases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLimitsProfile = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateLimitsProfile"),
+    input = M.CreateLimitsProfileInput,
+    output = M.CreateLimitsProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/governance/limits/accounts/{accountId}/profiles" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -60832,6 +62688,18 @@ M.DeleteAnalysis = schema.operation({
     },
 })
 
+M.DeleteApprovalPolicy = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteApprovalPolicy"),
+    input = M.DeleteApprovalPolicyInput,
+    output = M.DeleteApprovalPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/governance/approvalworkflows/policies/{PolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteBrand = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DeleteBrand"),
     input = M.DeleteBrandInput,
@@ -60928,6 +62796,18 @@ M.DeleteDefaultQBusinessApplication = schema.operation({
     },
 })
 
+M.DeleteDlpSetting = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteDlpSetting"),
+    input = M.DeleteDlpSettingInput,
+    output = M.DeleteDlpSettingOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/data-loss-prevention/settings/{DlpSettingId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteFlow = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DeleteFlow"),
     input = M.DeleteFlowInput,
@@ -61018,6 +62898,18 @@ M.DeleteKnowledgeBase = schema.operation({
     output = M.DeleteKnowledgeBaseOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v1/accounts/{AwsAccountId}/knowledge-bases/{KnowledgeBaseId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLimitsProfile = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteLimitsProfile"),
+    input = M.DeleteLimitsProfileInput,
+    output = M.DeleteLimitsProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/governance/limits/accounts/{accountId}/profiles/{profileId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -61360,6 +63252,18 @@ M.DescribeAnalysisPermissions = schema.operation({
     },
 })
 
+M.DescribeApprovalPolicy = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeApprovalPolicy"),
+    input = M.DescribeApprovalPolicyInput,
+    output = M.DescribeApprovalPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/governance/approvalworkflows/policies/{PolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeAssetBundleExportJob = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DescribeAssetBundleExportJob"),
     input = M.DescribeAssetBundleExportJobInput,
@@ -61588,6 +63492,18 @@ M.DescribeDefaultQBusinessApplication = schema.operation({
     },
 })
 
+M.DescribeDlpSetting = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeDlpSetting"),
+    input = M.DescribeDlpSettingInput,
+    output = M.DescribeDlpSettingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-loss-prevention/settings/{DlpSettingId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeFlow = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DescribeFlow"),
     input = M.DescribeFlowInput,
@@ -61726,6 +63642,18 @@ M.DescribeKnowledgeBasePermissions = schema.operation({
     output = M.DescribeKnowledgeBasePermissionsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/accounts/{AwsAccountId}/knowledge-bases/{KnowledgeBaseId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeLimitsProfile = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeLimitsProfile"),
+    input = M.DescribeLimitsProfileInput,
+    output = M.DescribeLimitsProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/governance/limits/accounts/{accountId}/profiles/{profileId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -62152,6 +64080,18 @@ M.ListAnalyses = schema.operation({
     },
 })
 
+M.ListApprovalPolicies = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListApprovalPolicies"),
+    input = M.ListApprovalPoliciesInput,
+    output = M.ListApprovalPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/governance/approvalworkflows/policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListAssetBundleExportJobs = schema.operation({
     id = id.from("com.amazonaws.quicksight", "ListAssetBundleExportJobs"),
     input = M.ListAssetBundleExportJobsInput,
@@ -62242,6 +64182,18 @@ M.ListDataSources = schema.operation({
     output = M.ListDataSourcesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDlpSettings = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListDlpSettings"),
+    input = M.ListDlpSettingsInput,
+    output = M.ListDlpSettingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/data-loss-prevention/settings" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -62374,6 +64326,18 @@ M.ListKnowledgeBases = schema.operation({
     output = M.ListKnowledgeBasesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/accounts/{AwsAccountId}/knowledge-bases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLimitsProfiles = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListLimitsProfiles"),
+    input = M.ListLimitsProfilesInput,
+    output = M.ListLimitsProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/governance/limits/accounts/{accountId}/profiles" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -63052,6 +65016,18 @@ M.UpdateApplicationWithTokenExchangeGrant = schema.operation({
     },
 })
 
+M.UpdateApprovalPolicy = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateApprovalPolicy"),
+    input = M.UpdateApprovalPolicyInput,
+    output = M.UpdateApprovalPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/governance/approvalworkflows/policies/{PolicyId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateBrand = schema.operation({
     id = id.from("com.amazonaws.quicksight", "UpdateBrand"),
     input = M.UpdateBrandInput,
@@ -63220,6 +65196,18 @@ M.UpdateDefaultQBusinessApplication = schema.operation({
     },
 })
 
+M.UpdateDlpSetting = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateDlpSetting"),
+    input = M.UpdateDlpSettingInput,
+    output = M.UpdateDlpSettingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/data-loss-prevention/settings/{DlpSettingId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateFlow = schema.operation({
     id = id.from("com.amazonaws.quicksight", "UpdateFlow"),
     input = M.UpdateFlowInput,
@@ -63346,6 +65334,18 @@ M.UpdateKnowledgeBasePermissions = schema.operation({
     output = M.UpdateKnowledgeBasePermissionsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/accounts/{AwsAccountId}/knowledge-bases/{KnowledgeBaseId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLimitsProfile = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateLimitsProfile"),
+    input = M.UpdateLimitsProfileInput,
+    output = M.UpdateLimitsProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/governance/limits/accounts/{accountId}/profiles/{profileId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

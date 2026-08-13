@@ -7604,6 +7604,7 @@ local record M
         FormTypeId: string
     end
 
+    -- The asset metadata returned by the GetAsset operation.
     record GetAssetOutput
         -- The unique identifier of the asset.
         Id: string
@@ -8717,6 +8718,7 @@ local record M
         "FAILED"
     end
 
+    -- The export configuration returned by the GetDataCatalogExportConfiguration operation.
     record GetDataCatalogExportConfigurationOutput
         -- The export setting for the data catalog. Valid values are ENABLED and DISABLED.
         ExportSetting: string
@@ -9248,11 +9250,11 @@ local record M
         MaterializedViewRefreshTaskRunId: string
         -- The database where the table resides.
         DatabaseName: string
-        -- The name of the table for which statistics is generated.
+        -- The name of the materialized view.
         TableName: string
         -- The ID of the Data Catalog where the table resides. If none is supplied, the account ID is used by default.
         CatalogId: string
-        -- The IAM role that the service assumes to generate statistics.
+        -- The IAM role that the service assumes to run the materialized view refresh task.
         Role: string
         -- The status of the task run.
         Status: string
@@ -11504,7 +11506,7 @@ local record M
         CatalogId: string
         -- The database where the table resides.
         DatabaseName: string
-        -- The name of the table for which statistics is generated.
+        -- The name of the materialized view.
         TableName: string
         -- The maximum size of the response.
         MaxResults: number
@@ -11907,6 +11909,7 @@ local record M
         ClientToken: string
     end
 
+    -- The export configuration returned by the PutDataCatalogExportConfiguration operation.
     record PutDataCatalogExportConfigurationOutput
         -- The export setting for the data catalog.
         ExportSetting: string
@@ -12393,6 +12396,7 @@ local record M
         AssetTypeId: string
     end
 
+    -- The search results returned by the SearchAssets operation.
     record SearchAssetsOutput
         -- The list of assets matching the search criteria.
         Items: {SearchResultItem}
@@ -12697,6 +12701,7 @@ local record M
 
     -- Exception thrown when a task is already in running state.
     record MaterializedViewRefreshTaskRunningException
+        -- A message describing the problem.
         Message: string
     end
 
@@ -12705,7 +12710,7 @@ local record M
         CatalogId: string
         -- The name of the database where the table resides.
         DatabaseName: string
-        -- The name of the table to generate run the materialized view refresh task.
+        -- The name of the materialized view to run the refresh task for.
         TableName: string
         -- Specifies whether this is a full refresh of the task run.
         FullRefresh: boolean
@@ -12836,11 +12841,13 @@ local record M
 
     -- Exception thrown when stopping a task that is not in running state.
     record MaterializedViewRefreshTaskNotRunningException
+        -- A message describing the problem.
         Message: string
     end
 
     -- Exception thrown when a task is already in stopping state.
     record MaterializedViewRefreshTaskStoppingException
+        -- A message describing the problem.
         Message: string
     end
 
@@ -12849,7 +12856,7 @@ local record M
         CatalogId: string
         -- The name of the database where the table resides.
         DatabaseName: string
-        -- The name of the table to generate statistics.
+        -- The name of the materialized view.
         TableName: string
     end
 

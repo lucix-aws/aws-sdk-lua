@@ -21,17 +21,20 @@ local record Client
     batchCreateTopicReviewedAnswer: function(Client, types.BatchCreateTopicReviewedAnswerInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateTopicReviewedAnswerOutput>
     batchDeleteKnowledgeBase: function(Client, types.BatchDeleteKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteKnowledgeBaseOutput>
     batchDeleteTopicReviewedAnswer: function(Client, types.BatchDeleteTopicReviewedAnswerInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteTopicReviewedAnswerOutput>
+    batchDescribeUserLimits: function(Client, types.BatchDescribeUserLimitsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDescribeUserLimitsOutput>
     cancelIngestion: function(Client, types.CancelIngestionInput, ? base_client.InvokeOptions): async.Operation<types.CancelIngestionOutput>
     createAccountCustomization: function(Client, types.CreateAccountCustomizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccountCustomizationOutput>
     createAccountSubscription: function(Client, types.CreateAccountSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccountSubscriptionOutput>
     createActionConnector: function(Client, types.CreateActionConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateActionConnectorOutput>
     createAgent: function(Client, types.CreateAgentInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentOutput>
     createAnalysis: function(Client, types.CreateAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnalysisOutput>
+    createApprovalPolicy: function(Client, types.CreateApprovalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateApprovalPolicyOutput>
     createBrand: function(Client, types.CreateBrandInput, ? base_client.InvokeOptions): async.Operation<types.CreateBrandOutput>
     createCustomPermissions: function(Client, types.CreateCustomPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomPermissionsOutput>
     createDashboard: function(Client, types.CreateDashboardInput, ? base_client.InvokeOptions): async.Operation<types.CreateDashboardOutput>
     createDataSet: function(Client, types.CreateDataSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSetOutput>
     createDataSource: function(Client, types.CreateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    createDlpSetting: function(Client, types.CreateDlpSettingInput, ? base_client.InvokeOptions): async.Operation<types.CreateDlpSettingOutput>
     createFlow: function(Client, types.CreateFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
     createFolder: function(Client, types.CreateFolderInput, ? base_client.InvokeOptions): async.Operation<types.CreateFolderOutput>
     createFolderMembership: function(Client, types.CreateFolderMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateFolderMembershipOutput>
@@ -40,6 +43,7 @@ local record Client
     createIAMPolicyAssignment: function(Client, types.CreateIAMPolicyAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateIAMPolicyAssignmentOutput>
     createIngestion: function(Client, types.CreateIngestionInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngestionOutput>
     createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
+    createLimitsProfile: function(Client, types.CreateLimitsProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateLimitsProfileOutput>
     createNamespace: function(Client, types.CreateNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
     createOAuthClientApplication: function(Client, types.CreateOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuthClientApplicationOutput>
     createRefreshSchedule: function(Client, types.CreateRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRefreshScheduleOutput>
@@ -59,6 +63,7 @@ local record Client
     deleteActionConnector: function(Client, types.DeleteActionConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteActionConnectorOutput>
     deleteAgent: function(Client, types.DeleteAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
     deleteAnalysis: function(Client, types.DeleteAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnalysisOutput>
+    deleteApprovalPolicy: function(Client, types.DeleteApprovalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApprovalPolicyOutput>
     deleteBrand: function(Client, types.DeleteBrandInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrandOutput>
     deleteBrandAssignment: function(Client, types.DeleteBrandAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrandAssignmentOutput>
     deleteCustomPermissions: function(Client, types.DeleteCustomPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomPermissionsOutput>
@@ -67,6 +72,7 @@ local record Client
     deleteDataSetRefreshProperties: function(Client, types.DeleteDataSetRefreshPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSetRefreshPropertiesOutput>
     deleteDataSource: function(Client, types.DeleteDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
     deleteDefaultQBusinessApplication: function(Client, types.DeleteDefaultQBusinessApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDefaultQBusinessApplicationOutput>
+    deleteDlpSetting: function(Client, types.DeleteDlpSettingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDlpSettingOutput>
     deleteFlow: function(Client, types.DeleteFlowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
     deleteFolder: function(Client, types.DeleteFolderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFolderOutput>
     deleteFolderMembership: function(Client, types.DeleteFolderMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFolderMembershipOutput>
@@ -75,6 +81,7 @@ local record Client
     deleteIAMPolicyAssignment: function(Client, types.DeleteIAMPolicyAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIAMPolicyAssignmentOutput>
     deleteIdentityPropagationConfig: function(Client, types.DeleteIdentityPropagationConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityPropagationConfigOutput>
     deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseOutput>
+    deleteLimitsProfile: function(Client, types.DeleteLimitsProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLimitsProfileOutput>
     deleteNamespace: function(Client, types.DeleteNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
     deleteOAuthClientApplication: function(Client, types.DeleteOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOAuthClientApplicationOutput>
     deleteRefreshSchedule: function(Client, types.DeleteRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRefreshScheduleOutput>
@@ -103,6 +110,7 @@ local record Client
     describeAnalysis: function(Client, types.DescribeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisOutput>
     describeAnalysisDefinition: function(Client, types.DescribeAnalysisDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisDefinitionOutput>
     describeAnalysisPermissions: function(Client, types.DescribeAnalysisPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisPermissionsOutput>
+    describeApprovalPolicy: function(Client, types.DescribeApprovalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApprovalPolicyOutput>
     describeAssetBundleExportJob: function(Client, types.DescribeAssetBundleExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetBundleExportJobOutput>
     describeAssetBundleImportJob: function(Client, types.DescribeAssetBundleImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetBundleImportJobOutput>
     describeAutomationJob: function(Client, types.DescribeAutomationJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutomationJobOutput>
@@ -122,6 +130,7 @@ local record Client
     describeDataSource: function(Client, types.DescribeDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataSourceOutput>
     describeDataSourcePermissions: function(Client, types.DescribeDataSourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataSourcePermissionsOutput>
     describeDefaultQBusinessApplication: function(Client, types.DescribeDefaultQBusinessApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDefaultQBusinessApplicationOutput>
+    describeDlpSetting: function(Client, types.DescribeDlpSettingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDlpSettingOutput>
     describeFlow: function(Client, types.DescribeFlowInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowOutput>
     describeFolder: function(Client, types.DescribeFolderInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFolderOutput>
     describeFolderPermissions: function(Client, types.DescribeFolderPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFolderPermissionsOutput>
@@ -134,6 +143,7 @@ local record Client
     describeKeyRegistration: function(Client, types.DescribeKeyRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKeyRegistrationOutput>
     describeKnowledgeBase: function(Client, types.DescribeKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKnowledgeBaseOutput>
     describeKnowledgeBasePermissions: function(Client, types.DescribeKnowledgeBasePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKnowledgeBasePermissionsOutput>
+    describeLimitsProfile: function(Client, types.DescribeLimitsProfileInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLimitsProfileOutput>
     describeNamespace: function(Client, types.DescribeNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNamespaceOutput>
     describeOAuthClientApplication: function(Client, types.DescribeOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOAuthClientApplicationOutput>
     describeQPersonalizationConfiguration: function(Client, types.DescribeQPersonalizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQPersonalizationConfigurationOutput>
@@ -169,6 +179,7 @@ local record Client
     listActionConnectors: function(Client, types.ListActionConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListActionConnectorsOutput>
     listAgents: function(Client, types.ListAgentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentsOutput>
     listAnalyses: function(Client, types.ListAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysesOutput>
+    listApprovalPolicies: function(Client, types.ListApprovalPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListApprovalPoliciesOutput>
     listAssetBundleExportJobs: function(Client, types.ListAssetBundleExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetBundleExportJobsOutput>
     listAssetBundleImportJobs: function(Client, types.ListAssetBundleImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetBundleImportJobsOutput>
     listBrands: function(Client, types.ListBrandsInput, ? base_client.InvokeOptions): async.Operation<types.ListBrandsOutput>
@@ -177,6 +188,7 @@ local record Client
     listDashboardVersions: function(Client, types.ListDashboardVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDashboardVersionsOutput>
     listDataSets: function(Client, types.ListDataSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSetsOutput>
     listDataSources: function(Client, types.ListDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    listDlpSettings: function(Client, types.ListDlpSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ListDlpSettingsOutput>
     listFlows: function(Client, types.ListFlowsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowsOutput>
     listFolderMembers: function(Client, types.ListFolderMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListFolderMembersOutput>
     listFolders: function(Client, types.ListFoldersInput, ? base_client.InvokeOptions): async.Operation<types.ListFoldersOutput>
@@ -188,6 +200,7 @@ local record Client
     listIdentityPropagationConfigs: function(Client, types.ListIdentityPropagationConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityPropagationConfigsOutput>
     listIngestions: function(Client, types.ListIngestionsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngestionsOutput>
     listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput, ? base_client.InvokeOptions): async.Operation<types.ListKnowledgeBasesOutput>
+    listLimitsProfiles: function(Client, types.ListLimitsProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListLimitsProfilesOutput>
     listNamespaces: function(Client, types.ListNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
     listOAuthClientApplications: function(Client, types.ListOAuthClientApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOAuthClientApplicationsOutput>
     listRefreshSchedules: function(Client, types.ListRefreshSchedulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRefreshSchedulesOutput>
@@ -244,6 +257,7 @@ local record Client
     updateAnalysis: function(Client, types.UpdateAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnalysisOutput>
     updateAnalysisPermissions: function(Client, types.UpdateAnalysisPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnalysisPermissionsOutput>
     updateApplicationWithTokenExchangeGrant: function(Client, types.UpdateApplicationWithTokenExchangeGrantInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationWithTokenExchangeGrantOutput>
+    updateApprovalPolicy: function(Client, types.UpdateApprovalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApprovalPolicyOutput>
     updateBrand: function(Client, types.UpdateBrandInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrandOutput>
     updateBrandAssignment: function(Client, types.UpdateBrandAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrandAssignmentOutput>
     updateBrandPublishedVersion: function(Client, types.UpdateBrandPublishedVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrandPublishedVersionOutput>
@@ -258,6 +272,7 @@ local record Client
     updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
     updateDataSourcePermissions: function(Client, types.UpdateDataSourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourcePermissionsOutput>
     updateDefaultQBusinessApplication: function(Client, types.UpdateDefaultQBusinessApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDefaultQBusinessApplicationOutput>
+    updateDlpSetting: function(Client, types.UpdateDlpSettingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDlpSettingOutput>
     updateFlow: function(Client, types.UpdateFlowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowOutput>
     updateFlowPermissions: function(Client, types.UpdateFlowPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowPermissionsOutput>
     updateFolder: function(Client, types.UpdateFolderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFolderOutput>
@@ -269,6 +284,7 @@ local record Client
     updateKeyRegistration: function(Client, types.UpdateKeyRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKeyRegistrationOutput>
     updateKnowledgeBase: function(Client, types.UpdateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBaseOutput>
     updateKnowledgeBasePermissions: function(Client, types.UpdateKnowledgeBasePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBasePermissionsOutput>
+    updateLimitsProfile: function(Client, types.UpdateLimitsProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLimitsProfileOutput>
     updateOAuthClientApplication: function(Client, types.UpdateOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOAuthClientApplicationOutput>
     updatePublicSharingSettings: function(Client, types.UpdatePublicSharingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePublicSharingSettingsOutput>
     updateQPersonalizationConfiguration: function(Client, types.UpdateQPersonalizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQPersonalizationConfigurationOutput>
@@ -351,6 +367,10 @@ function C:batchDeleteTopicReviewedAnswer(input: types.BatchDeleteTopicReviewedA
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteTopicReviewedAnswer as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteTopicReviewedAnswerOutput>
 end
 
+function C:batchDescribeUserLimits(input: types.BatchDescribeUserLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDescribeUserLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDescribeUserLimits as schema.OperationSchema, input, options) as async.Operation<types.BatchDescribeUserLimitsOutput>
+end
+
 function C:cancelIngestion(input: types.CancelIngestionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelIngestionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelIngestion as schema.OperationSchema, input, options) as async.Operation<types.CancelIngestionOutput>
 end
@@ -375,6 +395,10 @@ function C:createAnalysis(input: types.CreateAnalysisInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnalysis as schema.OperationSchema, input, options) as async.Operation<types.CreateAnalysisOutput>
 end
 
+function C:createApprovalPolicy(input: types.CreateApprovalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApprovalPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApprovalPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateApprovalPolicyOutput>
+end
+
 function C:createBrand(input: types.CreateBrandInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBrandOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBrand as schema.OperationSchema, input, options) as async.Operation<types.CreateBrandOutput>
 end
@@ -393,6 +417,10 @@ end
 
 function C:createDataSource(input: types.CreateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSource as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceOutput>
+end
+
+function C:createDlpSetting(input: types.CreateDlpSettingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDlpSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDlpSetting as schema.OperationSchema, input, options) as async.Operation<types.CreateDlpSettingOutput>
 end
 
 function C:createFlow(input: types.CreateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
@@ -425,6 +453,10 @@ end
 
 function C:createKnowledgeBase(input: types.CreateKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.CreateKnowledgeBaseOutput>
+end
+
+function C:createLimitsProfile(input: types.CreateLimitsProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLimitsProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLimitsProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateLimitsProfileOutput>
 end
 
 function C:createNamespace(input: types.CreateNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
@@ -503,6 +535,10 @@ function C:deleteAnalysis(input: types.DeleteAnalysisInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnalysis as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnalysisOutput>
 end
 
+function C:deleteApprovalPolicy(input: types.DeleteApprovalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApprovalPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApprovalPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteApprovalPolicyOutput>
+end
+
 function C:deleteBrand(input: types.DeleteBrandInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBrandOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBrand as schema.OperationSchema, input, options) as async.Operation<types.DeleteBrandOutput>
 end
@@ -535,6 +571,10 @@ function C:deleteDefaultQBusinessApplication(input: types.DeleteDefaultQBusiness
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDefaultQBusinessApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteDefaultQBusinessApplicationOutput>
 end
 
+function C:deleteDlpSetting(input: types.DeleteDlpSettingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDlpSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDlpSetting as schema.OperationSchema, input, options) as async.Operation<types.DeleteDlpSettingOutput>
+end
+
 function C:deleteFlow(input: types.DeleteFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlow as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowOutput>
 end
@@ -565,6 +605,10 @@ end
 
 function C:deleteKnowledgeBase(input: types.DeleteKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.DeleteKnowledgeBaseOutput>
+end
+
+function C:deleteLimitsProfile(input: types.DeleteLimitsProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLimitsProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLimitsProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteLimitsProfileOutput>
 end
 
 function C:deleteNamespace(input: types.DeleteNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
@@ -679,6 +723,10 @@ function C:describeAnalysisPermissions(input: types.DescribeAnalysisPermissionsI
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAnalysisPermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAnalysisPermissionsOutput>
 end
 
+function C:describeApprovalPolicy(input: types.DescribeApprovalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApprovalPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApprovalPolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeApprovalPolicyOutput>
+end
+
 function C:describeAssetBundleExportJob(input: types.DescribeAssetBundleExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetBundleExportJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssetBundleExportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssetBundleExportJobOutput>
 end
@@ -755,6 +803,10 @@ function C:describeDefaultQBusinessApplication(input: types.DescribeDefaultQBusi
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDefaultQBusinessApplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeDefaultQBusinessApplicationOutput>
 end
 
+function C:describeDlpSetting(input: types.DescribeDlpSettingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDlpSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDlpSetting as schema.OperationSchema, input, options) as async.Operation<types.DescribeDlpSettingOutput>
+end
+
 function C:describeFlow(input: types.DescribeFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlow as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowOutput>
 end
@@ -801,6 +853,10 @@ end
 
 function C:describeKnowledgeBasePermissions(input: types.DescribeKnowledgeBasePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeKnowledgeBasePermissionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeKnowledgeBasePermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeKnowledgeBasePermissionsOutput>
+end
+
+function C:describeLimitsProfile(input: types.DescribeLimitsProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLimitsProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLimitsProfile as schema.OperationSchema, input, options) as async.Operation<types.DescribeLimitsProfileOutput>
 end
 
 function C:describeNamespace(input: types.DescribeNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNamespaceOutput>
@@ -943,6 +999,10 @@ function C:listAnalyses(input: types.ListAnalysesInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnalyses as schema.OperationSchema, input, options) as async.Operation<types.ListAnalysesOutput>
 end
 
+function C:listApprovalPolicies(input: types.ListApprovalPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApprovalPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApprovalPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListApprovalPoliciesOutput>
+end
+
 function C:listAssetBundleExportJobs(input: types.ListAssetBundleExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetBundleExportJobsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetBundleExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListAssetBundleExportJobsOutput>
 end
@@ -973,6 +1033,10 @@ end
 
 function C:listDataSources(input: types.ListDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataSources as schema.OperationSchema, input, options) as async.Operation<types.ListDataSourcesOutput>
+end
+
+function C:listDlpSettings(input: types.ListDlpSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDlpSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDlpSettings as schema.OperationSchema, input, options) as async.Operation<types.ListDlpSettingsOutput>
 end
 
 function C:listFlows(input: types.ListFlowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowsOutput>
@@ -1017,6 +1081,10 @@ end
 
 function C:listKnowledgeBases(input: types.ListKnowledgeBasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListKnowledgeBasesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKnowledgeBases as schema.OperationSchema, input, options) as async.Operation<types.ListKnowledgeBasesOutput>
+end
+
+function C:listLimitsProfiles(input: types.ListLimitsProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLimitsProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLimitsProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListLimitsProfilesOutput>
 end
 
 function C:listNamespaces(input: types.ListNamespacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
@@ -1243,6 +1311,10 @@ function C:updateApplicationWithTokenExchangeGrant(input: types.UpdateApplicatio
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplicationWithTokenExchangeGrant as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationWithTokenExchangeGrantOutput>
 end
 
+function C:updateApprovalPolicy(input: types.UpdateApprovalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApprovalPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApprovalPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateApprovalPolicyOutput>
+end
+
 function C:updateBrand(input: types.UpdateBrandInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBrandOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBrand as schema.OperationSchema, input, options) as async.Operation<types.UpdateBrandOutput>
 end
@@ -1299,6 +1371,10 @@ function C:updateDefaultQBusinessApplication(input: types.UpdateDefaultQBusiness
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDefaultQBusinessApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateDefaultQBusinessApplicationOutput>
 end
 
+function C:updateDlpSetting(input: types.UpdateDlpSettingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDlpSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDlpSetting as schema.OperationSchema, input, options) as async.Operation<types.UpdateDlpSettingOutput>
+end
+
 function C:updateFlow(input: types.UpdateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlow as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowOutput>
 end
@@ -1341,6 +1417,10 @@ end
 
 function C:updateKnowledgeBasePermissions(input: types.UpdateKnowledgeBasePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBasePermissionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKnowledgeBasePermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateKnowledgeBasePermissionsOutput>
+end
+
+function C:updateLimitsProfile(input: types.UpdateLimitsProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLimitsProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLimitsProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateLimitsProfileOutput>
 end
 
 function C:updateOAuthClientApplication(input: types.UpdateOAuthClientApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOAuthClientApplicationOutput>

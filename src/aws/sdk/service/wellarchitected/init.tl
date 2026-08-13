@@ -20,6 +20,9 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     associateLenses: function(Client, types.AssociateLensesInput, ? base_client.InvokeOptions): async.Operation<types.AssociateLensesOutput>
     associateProfiles: function(Client, types.AssociateProfilesInput, ? base_client.InvokeOptions): async.Operation<types.AssociateProfilesOutput>
+    createAgentContext: function(Client, types.CreateAgentContextInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentContextOutput>
+    createAgentGoal: function(Client, types.CreateAgentGoalInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentGoalOutput>
+    createAgentProfile: function(Client, types.CreateAgentProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentProfileOutput>
     createLensShare: function(Client, types.CreateLensShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateLensShareOutput>
     createLensVersion: function(Client, types.CreateLensVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLensVersionOutput>
     createMilestone: function(Client, types.CreateMilestoneInput, ? base_client.InvokeOptions): async.Operation<types.CreateMilestoneOutput>
@@ -29,6 +32,9 @@ local record Client
     createTemplateShare: function(Client, types.CreateTemplateShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateShareOutput>
     createWorkload: function(Client, types.CreateWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkloadOutput>
     createWorkloadShare: function(Client, types.CreateWorkloadShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkloadShareOutput>
+    deleteAgentContext: function(Client, types.DeleteAgentContextInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentContextOutput>
+    deleteAgentGoal: function(Client, types.DeleteAgentGoalInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentGoalOutput>
+    deleteAgentProfile: function(Client, types.DeleteAgentProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentProfileOutput>
     deleteLens: function(Client, types.DeleteLensInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLensOutput>
     deleteLensShare: function(Client, types.DeleteLensShareInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLensShareOutput>
     deleteProfile: function(Client, types.DeleteProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
@@ -40,6 +46,11 @@ local record Client
     disassociateLenses: function(Client, types.DisassociateLensesInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateLensesOutput>
     disassociateProfiles: function(Client, types.DisassociateProfilesInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateProfilesOutput>
     exportLens: function(Client, types.ExportLensInput, ? base_client.InvokeOptions): async.Operation<types.ExportLensOutput>
+    getAgentContext: function(Client, types.GetAgentContextInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentContextOutput>
+    getAgentGoal: function(Client, types.GetAgentGoalInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentGoalOutput>
+    getAgentProfile: function(Client, types.GetAgentProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentProfileOutput>
+    getAgentRecommendation: function(Client, types.GetAgentRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentRecommendationOutput>
+    getAgentRecommendationGeneration: function(Client, types.GetAgentRecommendationGenerationInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentRecommendationGenerationOutput>
     getAnswer: function(Client, types.GetAnswerInput, ? base_client.InvokeOptions): async.Operation<types.GetAnswerOutput>
     getConsolidatedReport: function(Client, types.GetConsolidatedReportInput, ? base_client.InvokeOptions): async.Operation<types.GetConsolidatedReportOutput>
     getGlobalSettings: function(Client, types.GetGlobalSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetGlobalSettingsOutput>
@@ -55,6 +66,12 @@ local record Client
     getReviewTemplateLensReview: function(Client, types.GetReviewTemplateLensReviewInput, ? base_client.InvokeOptions): async.Operation<types.GetReviewTemplateLensReviewOutput>
     getWorkload: function(Client, types.GetWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadOutput>
     importLens: function(Client, types.ImportLensInput, ? base_client.InvokeOptions): async.Operation<types.ImportLensOutput>
+    listAgentContexts: function(Client, types.ListAgentContextsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentContextsOutput>
+    listAgentGoals: function(Client, types.ListAgentGoalsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentGoalsOutput>
+    listAgentProfiles: function(Client, types.ListAgentProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentProfilesOutput>
+    listAgentRecommendationGenerations: function(Client, types.ListAgentRecommendationGenerationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentRecommendationGenerationsOutput>
+    listAgentRecommendationItems: function(Client, types.ListAgentRecommendationItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentRecommendationItemsOutput>
+    listAgentRecommendations: function(Client, types.ListAgentRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentRecommendationsOutput>
     listAnswers: function(Client, types.ListAnswersInput, ? base_client.InvokeOptions): async.Operation<types.ListAnswersOutput>
     listCheckDetails: function(Client, types.ListCheckDetailsInput, ? base_client.InvokeOptions): async.Operation<types.ListCheckDetailsOutput>
     listCheckSummaries: function(Client, types.ListCheckSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListCheckSummariesOutput>
@@ -74,8 +91,14 @@ local record Client
     listTemplateShares: function(Client, types.ListTemplateSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplateSharesOutput>
     listWorkloads: function(Client, types.ListWorkloadsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkloadsOutput>
     listWorkloadShares: function(Client, types.ListWorkloadSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkloadSharesOutput>
+    putAgentRecommendationFeedback: function(Client, types.PutAgentRecommendationFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.PutAgentRecommendationFeedbackOutput>
+    startAgentRecommendationGeneration: function(Client, types.StartAgentRecommendationGenerationInput, ? base_client.InvokeOptions): async.Operation<types.StartAgentRecommendationGenerationOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAgentContext: function(Client, types.UpdateAgentContextInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentContextOutput>
+    updateAgentGoal: function(Client, types.UpdateAgentGoalInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentGoalOutput>
+    updateAgentProfile: function(Client, types.UpdateAgentProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentProfileOutput>
+    updateAgentRecommendationStatus: function(Client, types.UpdateAgentRecommendationStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentRecommendationStatusOutput>
     updateAnswer: function(Client, types.UpdateAnswerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnswerOutput>
     updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlobalSettingsOutput>
     updateIntegration: function(Client, types.UpdateIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegrationOutput>
@@ -142,6 +165,18 @@ function C:associateProfiles(input: types.AssociateProfilesInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateProfiles as schema.OperationSchema, input, options) as async.Operation<types.AssociateProfilesOutput>
 end
 
+function C:createAgentContext(input: types.CreateAgentContextInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentContextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentContext as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentContextOutput>
+end
+
+function C:createAgentGoal(input: types.CreateAgentGoalInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentGoalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentGoal as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentGoalOutput>
+end
+
+function C:createAgentProfile(input: types.CreateAgentProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentProfileOutput>
+end
+
 function C:createLensShare(input: types.CreateLensShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLensShareOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLensShare as schema.OperationSchema, input, options) as async.Operation<types.CreateLensShareOutput>
 end
@@ -176,6 +211,18 @@ end
 
 function C:createWorkloadShare(input: types.CreateWorkloadShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkloadShareOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkloadShare as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkloadShareOutput>
+end
+
+function C:deleteAgentContext(input: types.DeleteAgentContextInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentContextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentContext as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentContextOutput>
+end
+
+function C:deleteAgentGoal(input: types.DeleteAgentGoalInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentGoalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentGoal as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentGoalOutput>
+end
+
+function C:deleteAgentProfile(input: types.DeleteAgentProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentProfileOutput>
 end
 
 function C:deleteLens(input: types.DeleteLensInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLensOutput>
@@ -220,6 +267,26 @@ end
 
 function C:exportLens(input: types.ExportLensInput, options?: base_client.InvokeOptions): async.Operation<types.ExportLensOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportLens as schema.OperationSchema, input, options) as async.Operation<types.ExportLensOutput>
+end
+
+function C:getAgentContext(input: types.GetAgentContextInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentContextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentContext as schema.OperationSchema, input, options) as async.Operation<types.GetAgentContextOutput>
+end
+
+function C:getAgentGoal(input: types.GetAgentGoalInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentGoalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentGoal as schema.OperationSchema, input, options) as async.Operation<types.GetAgentGoalOutput>
+end
+
+function C:getAgentProfile(input: types.GetAgentProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentProfile as schema.OperationSchema, input, options) as async.Operation<types.GetAgentProfileOutput>
+end
+
+function C:getAgentRecommendation(input: types.GetAgentRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetAgentRecommendationOutput>
+end
+
+function C:getAgentRecommendationGeneration(input: types.GetAgentRecommendationGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentRecommendationGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentRecommendationGeneration as schema.OperationSchema, input, options) as async.Operation<types.GetAgentRecommendationGenerationOutput>
 end
 
 function C:getAnswer(input: types.GetAnswerInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnswerOutput>
@@ -280,6 +347,30 @@ end
 
 function C:importLens(input: types.ImportLensInput, options?: base_client.InvokeOptions): async.Operation<types.ImportLensOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportLens as schema.OperationSchema, input, options) as async.Operation<types.ImportLensOutput>
+end
+
+function C:listAgentContexts(input: types.ListAgentContextsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentContextsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentContexts as schema.OperationSchema, input, options) as async.Operation<types.ListAgentContextsOutput>
+end
+
+function C:listAgentGoals(input: types.ListAgentGoalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentGoalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentGoals as schema.OperationSchema, input, options) as async.Operation<types.ListAgentGoalsOutput>
+end
+
+function C:listAgentProfiles(input: types.ListAgentProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListAgentProfilesOutput>
+end
+
+function C:listAgentRecommendationGenerations(input: types.ListAgentRecommendationGenerationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentRecommendationGenerationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentRecommendationGenerations as schema.OperationSchema, input, options) as async.Operation<types.ListAgentRecommendationGenerationsOutput>
+end
+
+function C:listAgentRecommendationItems(input: types.ListAgentRecommendationItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentRecommendationItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentRecommendationItems as schema.OperationSchema, input, options) as async.Operation<types.ListAgentRecommendationItemsOutput>
+end
+
+function C:listAgentRecommendations(input: types.ListAgentRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListAgentRecommendationsOutput>
 end
 
 function C:listAnswers(input: types.ListAnswersInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnswersOutput>
@@ -358,12 +449,36 @@ function C:listWorkloadShares(input: types.ListWorkloadSharesInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkloadShares as schema.OperationSchema, input, options) as async.Operation<types.ListWorkloadSharesOutput>
 end
 
+function C:putAgentRecommendationFeedback(input: types.PutAgentRecommendationFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.PutAgentRecommendationFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAgentRecommendationFeedback as schema.OperationSchema, input, options) as async.Operation<types.PutAgentRecommendationFeedbackOutput>
+end
+
+function C:startAgentRecommendationGeneration(input: types.StartAgentRecommendationGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.StartAgentRecommendationGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAgentRecommendationGeneration as schema.OperationSchema, input, options) as async.Operation<types.StartAgentRecommendationGenerationOutput>
+end
+
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateAgentContext(input: types.UpdateAgentContextInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentContextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentContext as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentContextOutput>
+end
+
+function C:updateAgentGoal(input: types.UpdateAgentGoalInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentGoalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentGoal as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentGoalOutput>
+end
+
+function C:updateAgentProfile(input: types.UpdateAgentProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentProfileOutput>
+end
+
+function C:updateAgentRecommendationStatus(input: types.UpdateAgentRecommendationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentRecommendationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentRecommendationStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentRecommendationStatusOutput>
 end
 
 function C:updateAnswer(input: types.UpdateAnswerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnswerOutput>

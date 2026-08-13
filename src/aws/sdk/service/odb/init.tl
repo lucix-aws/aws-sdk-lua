@@ -20,12 +20,15 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     acceptMarketplaceRegistration: function(Client, types.AcceptMarketplaceRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.AcceptMarketplaceRegistrationOutput>
     associateIamRoleToResource: function(Client, types.AssociateIamRoleToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIamRoleToResourceOutput>
+    associateVirtualMachinesToExadbVmCluster: function(Client, types.AssociateVirtualMachinesToExadbVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.AssociateVirtualMachinesToExadbVmClusterOutput>
     createAutonomousDatabase: function(Client, types.CreateAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseOutput>
     createAutonomousDatabaseBackup: function(Client, types.CreateAutonomousDatabaseBackupInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseBackupOutput>
     createAutonomousDatabaseWallet: function(Client, types.CreateAutonomousDatabaseWalletInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseWalletOutput>
     createCloudAutonomousVmCluster: function(Client, types.CreateCloudAutonomousVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudAutonomousVmClusterOutput>
     createCloudExadataInfrastructure: function(Client, types.CreateCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudExadataInfrastructureOutput>
     createCloudVmCluster: function(Client, types.CreateCloudVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudVmClusterOutput>
+    createExadbVmCluster: function(Client, types.CreateExadbVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateExadbVmClusterOutput>
+    createExascaleDbStorageVault: function(Client, types.CreateExascaleDbStorageVaultInput, ? base_client.InvokeOptions): async.Operation<types.CreateExascaleDbStorageVaultOutput>
     createOdbNetwork: function(Client, types.CreateOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateOdbNetworkOutput>
     createOdbPeeringConnection: function(Client, types.CreateOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateOdbPeeringConnectionOutput>
     deleteAutonomousDatabase: function(Client, types.DeleteAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutonomousDatabaseOutput>
@@ -33,9 +36,12 @@ local record Client
     deleteCloudAutonomousVmCluster: function(Client, types.DeleteCloudAutonomousVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudAutonomousVmClusterOutput>
     deleteCloudExadataInfrastructure: function(Client, types.DeleteCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudExadataInfrastructureOutput>
     deleteCloudVmCluster: function(Client, types.DeleteCloudVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudVmClusterOutput>
+    deleteExadbVmCluster: function(Client, types.DeleteExadbVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExadbVmClusterOutput>
+    deleteExascaleDbStorageVault: function(Client, types.DeleteExascaleDbStorageVaultInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExascaleDbStorageVaultOutput>
     deleteOdbNetwork: function(Client, types.DeleteOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOdbNetworkOutput>
     deleteOdbPeeringConnection: function(Client, types.DeleteOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOdbPeeringConnectionOutput>
     disassociateIamRoleFromResource: function(Client, types.DisassociateIamRoleFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIamRoleFromResourceOutput>
+    disassociateVirtualMachinesFromExadbVmCluster: function(Client, types.DisassociateVirtualMachinesFromExadbVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateVirtualMachinesFromExadbVmClusterOutput>
     failoverAutonomousDatabase: function(Client, types.FailoverAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.FailoverAutonomousDatabaseOutput>
     getAutonomousDatabase: function(Client, types.GetAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetAutonomousDatabaseOutput>
     getAutonomousDatabaseBackup: function(Client, types.GetAutonomousDatabaseBackupInput, ? base_client.InvokeOptions): async.Operation<types.GetAutonomousDatabaseBackupOutput>
@@ -46,6 +52,8 @@ local record Client
     getCloudVmCluster: function(Client, types.GetCloudVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudVmClusterOutput>
     getDbNode: function(Client, types.GetDbNodeInput, ? base_client.InvokeOptions): async.Operation<types.GetDbNodeOutput>
     getDbServer: function(Client, types.GetDbServerInput, ? base_client.InvokeOptions): async.Operation<types.GetDbServerOutput>
+    getExadbVmCluster: function(Client, types.GetExadbVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetExadbVmClusterOutput>
+    getExascaleDbStorageVault: function(Client, types.GetExascaleDbStorageVaultInput, ? base_client.InvokeOptions): async.Operation<types.GetExascaleDbStorageVaultOutput>
     getOciOnboardingStatus: function(Client, types.GetOciOnboardingStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetOciOnboardingStatusOutput>
     getOdbNetwork: function(Client, types.GetOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.GetOdbNetworkOutput>
     getOdbPeeringConnection: function(Client, types.GetOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.GetOdbPeeringConnectionOutput>
@@ -63,6 +71,9 @@ local record Client
     listDbNodes: function(Client, types.ListDbNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListDbNodesOutput>
     listDbServers: function(Client, types.ListDbServersInput, ? base_client.InvokeOptions): async.Operation<types.ListDbServersOutput>
     listDbSystemShapes: function(Client, types.ListDbSystemShapesInput, ? base_client.InvokeOptions): async.Operation<types.ListDbSystemShapesOutput>
+    listExadbVmClusters: function(Client, types.ListExadbVmClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListExadbVmClustersOutput>
+    listExascaleDbStorageVaults: function(Client, types.ListExascaleDbStorageVaultsInput, ? base_client.InvokeOptions): async.Operation<types.ListExascaleDbStorageVaultsOutput>
+    listGiMinorVersions: function(Client, types.ListGiMinorVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListGiMinorVersionsOutput>
     listGiVersions: function(Client, types.ListGiVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListGiVersionsOutput>
     listOdbNetworks: function(Client, types.ListOdbNetworksInput, ? base_client.InvokeOptions): async.Operation<types.ListOdbNetworksOutput>
     listOdbPeeringConnections: function(Client, types.ListOdbPeeringConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListOdbPeeringConnectionsOutput>
@@ -82,6 +93,8 @@ local record Client
     updateAutonomousDatabase: function(Client, types.UpdateAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAutonomousDatabaseOutput>
     updateAutonomousDatabaseBackup: function(Client, types.UpdateAutonomousDatabaseBackupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAutonomousDatabaseBackupOutput>
     updateCloudExadataInfrastructure: function(Client, types.UpdateCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloudExadataInfrastructureOutput>
+    updateExadbVmCluster: function(Client, types.UpdateExadbVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExadbVmClusterOutput>
+    updateExascaleDbStorageVault: function(Client, types.UpdateExascaleDbStorageVaultInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExascaleDbStorageVaultOutput>
     updateOdbNetwork: function(Client, types.UpdateOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOdbNetworkOutput>
     updateOdbPeeringConnection: function(Client, types.UpdateOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOdbPeeringConnectionOutput>
 end
@@ -136,6 +149,10 @@ function C:associateIamRoleToResource(input: types.AssociateIamRoleToResourceInp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIamRoleToResource as schema.OperationSchema, input, options) as async.Operation<types.AssociateIamRoleToResourceOutput>
 end
 
+function C:associateVirtualMachinesToExadbVmCluster(input: types.AssociateVirtualMachinesToExadbVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateVirtualMachinesToExadbVmClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateVirtualMachinesToExadbVmCluster as schema.OperationSchema, input, options) as async.Operation<types.AssociateVirtualMachinesToExadbVmClusterOutput>
+end
+
 function C:createAutonomousDatabase(input: types.CreateAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.CreateAutonomousDatabaseOutput>
 end
@@ -158,6 +175,14 @@ end
 
 function C:createCloudVmCluster(input: types.CreateCloudVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudVmClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudVmCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudVmClusterOutput>
+end
+
+function C:createExadbVmCluster(input: types.CreateExadbVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExadbVmClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExadbVmCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateExadbVmClusterOutput>
+end
+
+function C:createExascaleDbStorageVault(input: types.CreateExascaleDbStorageVaultInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExascaleDbStorageVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExascaleDbStorageVault as schema.OperationSchema, input, options) as async.Operation<types.CreateExascaleDbStorageVaultOutput>
 end
 
 function C:createOdbNetwork(input: types.CreateOdbNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOdbNetworkOutput>
@@ -188,6 +213,14 @@ function C:deleteCloudVmCluster(input: types.DeleteCloudVmClusterInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCloudVmCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteCloudVmClusterOutput>
 end
 
+function C:deleteExadbVmCluster(input: types.DeleteExadbVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExadbVmClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExadbVmCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteExadbVmClusterOutput>
+end
+
+function C:deleteExascaleDbStorageVault(input: types.DeleteExascaleDbStorageVaultInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExascaleDbStorageVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExascaleDbStorageVault as schema.OperationSchema, input, options) as async.Operation<types.DeleteExascaleDbStorageVaultOutput>
+end
+
 function C:deleteOdbNetwork(input: types.DeleteOdbNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOdbNetworkOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOdbNetwork as schema.OperationSchema, input, options) as async.Operation<types.DeleteOdbNetworkOutput>
 end
@@ -198,6 +231,10 @@ end
 
 function C:disassociateIamRoleFromResource(input: types.DisassociateIamRoleFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateIamRoleFromResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateIamRoleFromResource as schema.OperationSchema, input, options) as async.Operation<types.DisassociateIamRoleFromResourceOutput>
+end
+
+function C:disassociateVirtualMachinesFromExadbVmCluster(input: types.DisassociateVirtualMachinesFromExadbVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateVirtualMachinesFromExadbVmClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateVirtualMachinesFromExadbVmCluster as schema.OperationSchema, input, options) as async.Operation<types.DisassociateVirtualMachinesFromExadbVmClusterOutput>
 end
 
 function C:failoverAutonomousDatabase(input: types.FailoverAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.FailoverAutonomousDatabaseOutput>
@@ -238,6 +275,14 @@ end
 
 function C:getDbServer(input: types.GetDbServerInput, options?: base_client.InvokeOptions): async.Operation<types.GetDbServerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDbServer as schema.OperationSchema, input, options) as async.Operation<types.GetDbServerOutput>
+end
+
+function C:getExadbVmCluster(input: types.GetExadbVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.GetExadbVmClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExadbVmCluster as schema.OperationSchema, input, options) as async.Operation<types.GetExadbVmClusterOutput>
+end
+
+function C:getExascaleDbStorageVault(input: types.GetExascaleDbStorageVaultInput, options?: base_client.InvokeOptions): async.Operation<types.GetExascaleDbStorageVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExascaleDbStorageVault as schema.OperationSchema, input, options) as async.Operation<types.GetExascaleDbStorageVaultOutput>
 end
 
 function C:getOciOnboardingStatus(input: types.GetOciOnboardingStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetOciOnboardingStatusOutput>
@@ -306,6 +351,18 @@ end
 
 function C:listDbSystemShapes(input: types.ListDbSystemShapesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDbSystemShapesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDbSystemShapes as schema.OperationSchema, input, options) as async.Operation<types.ListDbSystemShapesOutput>
+end
+
+function C:listExadbVmClusters(input: types.ListExadbVmClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListExadbVmClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExadbVmClusters as schema.OperationSchema, input, options) as async.Operation<types.ListExadbVmClustersOutput>
+end
+
+function C:listExascaleDbStorageVaults(input: types.ListExascaleDbStorageVaultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExascaleDbStorageVaultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExascaleDbStorageVaults as schema.OperationSchema, input, options) as async.Operation<types.ListExascaleDbStorageVaultsOutput>
+end
+
+function C:listGiMinorVersions(input: types.ListGiMinorVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGiMinorVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGiMinorVersions as schema.OperationSchema, input, options) as async.Operation<types.ListGiMinorVersionsOutput>
 end
 
 function C:listGiVersions(input: types.ListGiVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGiVersionsOutput>
@@ -382,6 +439,14 @@ end
 
 function C:updateCloudExadataInfrastructure(input: types.UpdateCloudExadataInfrastructureInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloudExadataInfrastructureOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCloudExadataInfrastructure as schema.OperationSchema, input, options) as async.Operation<types.UpdateCloudExadataInfrastructureOutput>
+end
+
+function C:updateExadbVmCluster(input: types.UpdateExadbVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExadbVmClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExadbVmCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateExadbVmClusterOutput>
+end
+
+function C:updateExascaleDbStorageVault(input: types.UpdateExascaleDbStorageVaultInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExascaleDbStorageVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExascaleDbStorageVault as schema.OperationSchema, input, options) as async.Operation<types.UpdateExascaleDbStorageVaultOutput>
 end
 
 function C:updateOdbNetwork(input: types.UpdateOdbNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOdbNetworkOutput>

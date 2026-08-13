@@ -148,16 +148,142 @@ local record M
         Message: string
     end
 
-    record AddClientIDToOpenIDConnectProviderInput
-        -- The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider resource to
-        -- add the client ID to. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation.
-        OpenIDConnectProviderArn: string
-        -- The client ID (also known as audience) to add to the IAM OpenID Connect provider
-        -- resource.
-        ClientID: string
+    -- Contains the list of replacement values for a single template parameter used when
+    -- creating a role from a role template.
+    record ReplacementValueEntry
+        -- The list of replacement values for the template parameter.
+        Values: {string}
     end
 
-    record AddClientIDToOpenIDConnectProviderOutput
+    record AcquireRoleInput
+        -- The Amazon Resource Name (ARN) of the role template to create the role from.
+        -- For more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference.
+        TemplateArn: string
+        -- The minor version of the role template to use. If you do not specify a minor version,
+        -- the service uses the template's default minor version.
+        TemplateMinorVersion: number
+        -- A map of values to substitute for the parameters that are defined in the role template
+        -- version. Each key is a parameter name from the template, and each value is a structure
+        -- that contains the replacement values for that parameter.
+        ReplacementValues: {string : ReplacementValueEntry}
+    end
+
+    enum PermissionsBoundaryAttachmentType
+        "PermissionsBoundaryPolicy"
+    end
+
+    -- Contains information about an attached permissions boundary.
+    -- An attached permissions boundary is a managed policy that has been attached to a user or
+    -- role to set the permissions boundary.
+    -- For more information about permissions boundaries, see Permissions boundaries for IAM
+    -- identities in the IAM User Guide.
+    record AttachedPermissionsBoundary
+        -- The permissions boundary usage type that indicates what type of IAM resource is used
+        -- as the permissions boundary for an entity. This data type can only have a value of
+        -- Policy.
+        PermissionsBoundaryType: string
+        -- The ARN of the policy used to set the permissions boundary for the user or role.
+        PermissionsBoundaryArn: string
+    end
+
+    -- Contains information about the last time that an IAM role was used. This includes the
+    -- date and time and the Region in which the role was last used. Activity is only reported for
+    -- the trailing 400 days. This period can be shorter if your Region began supporting these
+    -- features within the last year. The role might have been used more than 400 days ago. For
+    -- more information, see Regions where data is tracked in the IAM user
+    -- Guide.
+    -- This data type is returned as a response element in the GetRole and GetAccountAuthorizationDetails operations.
+    record RoleLastUsed
+        -- The date and time, in ISO 8601 date-time
+        -- format that the role was last used.
+        -- This field is null if the role has not been used within the IAM tracking period. For
+        -- more information about the tracking period, see Regions where data is tracked in the IAM User Guide.
+        LastUsedDate: number
+        -- The name of the Amazon Web Services Region in which the role was last used.
+        Region: string
+    end
+
+    -- Contains information about the role template that a role was created from.
+    record SourceRoleTemplate
+        -- The Amazon Resource Name (ARN) of the role template that the role was created
+        -- from.
+        TemplateArn: string
+        -- The minor version of the role template that was used to create the role.
+        TemplateMinorVersion: number
+    end
+
+    -- A structure that represents user-provided metadata that can be associated with an IAM
+    -- resource. For more information about tagging, see Tagging IAM resources in the
+    -- IAM User Guide.
+    record Tag
+        -- The key name that can be used to look up or retrieve the associated value. For example,
+        -- Department or Cost Center are common choices.
+        Key: string
+        -- The value associated with this tag. For example, tags with a key name of
+        -- Department could have values such as Human Resources,
+        -- Accounting, and Support. Tags with a key name of Cost
+        -- Center might have values that consist of the number associated with the different
+        -- cost centers in your company. Typically, many resources have tags with the same key name but
+        -- with different values.
+        Value: string
+    end
+
+    -- Contains information about an IAM role. This structure is returned as a response
+    -- element in several API operations that interact with roles.
+    record Role
+        -- The path to the role. For more information about paths, see IAM identifiers in the
+        -- IAM User Guide.
+        Path: string
+        -- The friendly name that identifies the role.
+        RoleName: string
+        -- The stable and unique string identifying the role. For more information about IDs, see
+        -- IAM
+        -- identifiers in the IAM User Guide.
+        RoleId: string
+        -- The Amazon Resource Name (ARN) specifying the role. For more information about ARNs and
+        -- how to use them in policies, see IAM identifiers in the
+        -- IAM User Guide guide.
+        Arn: string
+        -- The date and time, in ISO 8601 date-time
+        -- format, when the role was created.
+        CreateDate: number
+        -- The policy that grants an entity permission to assume the role.
+        AssumeRolePolicyDocument: string
+        -- A description of the role that you provide.
+        Description: string
+        -- The maximum session duration (in seconds) for the specified role. Anyone who uses the
+        -- CLI, or API to assume the role can specify the duration using the optional
+        -- DurationSeconds API parameter or duration-seconds CLI
+        -- parameter.
+        MaxSessionDuration: number
+        -- The ARN of the policy used to set the permissions boundary for the role.
+        -- For more information about permissions boundaries, see Permissions boundaries for IAM
+        -- identities in the IAM User Guide.
+        PermissionsBoundary: AttachedPermissionsBoundary
+        -- A list of tags that are attached to the role. For more information about tagging, see Tagging IAM resources in the
+        -- IAM User Guide.
+        Tags: {Tag}
+        -- Contains information about the last time that an IAM role was used. This includes the
+        -- date and time and the Region in which the role was last used. Activity is only reported for
+        -- the trailing 400 days. This period can be shorter if your Region began supporting these
+        -- features within the last year. The role might have been used more than 400 days ago. For
+        -- more information, see Regions where data is tracked in the IAM user
+        -- Guide.
+        RoleLastUsed: RoleLastUsed
+        -- Contains information about the role template that this role was created from. This
+        -- member is present only for roles created with AcquireRole.
+        SourceRoleTemplate: SourceRoleTemplate
+    end
+
+    record AcquireRoleOutput
+        -- A structure that contains details about the IAM role that was created.
+        Role: Role
+    end
+
+    -- The request was rejected because it attempted to create a resource that already
+    -- exists.
+    record EntityAlreadyExistsException
+        message: string
     end
 
     -- The request was rejected because an invalid or out-of-range value was supplied for an
@@ -172,6 +298,43 @@ local record M
         message: string
     end
 
+    -- The request was rejected because the policy document was malformed. The error message
+    -- describes the specific error.
+    record MalformedPolicyDocumentException
+        message: string
+    end
+
+    -- The request was rejected because the resulting role name conflicts with an existing role
+    -- in the account.
+    record NameConflictException
+        message: string
+    end
+
+    -- The request was rejected because someone modified the role template while the service was
+    -- creating the role. Wait a few minutes and try the request again.
+    record RoleModifiedException
+        message: string
+    end
+
+    -- The request was rejected because the specified role template is disabled. A disabled
+    -- role template cannot be used to create new roles. Contact your administrator to enable the
+    -- role template, or use a different role template.
+    record RoleTemplateDisabledException
+        message: string
+    end
+
+    record AddClientIDToOpenIDConnectProviderInput
+        -- The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider resource to
+        -- add the client ID to. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation.
+        OpenIDConnectProviderArn: string
+        -- The client ID (also known as audience) to add to the IAM OpenID Connect provider
+        -- resource.
+        ClientID: string
+    end
+
+    record AddClientIDToOpenIDConnectProviderOutput
+    end
+
     record AddRoleToInstanceProfileInput
         -- The name of the instance profile to update.
         -- This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric
@@ -184,12 +347,6 @@ local record M
     end
 
     record AddRoleToInstanceProfileOutput
-    end
-
-    -- The request was rejected because it attempted to create a resource that already
-    -- exists.
-    record EntityAlreadyExistsException
-        message: string
     end
 
     -- The request was rejected because service-linked roles are protected Amazon Web Services resources. Only
@@ -231,24 +388,6 @@ local record M
     end
 
     record AssociateDelegationRequestOutput
-    end
-
-    enum PermissionsBoundaryAttachmentType
-        "PermissionsBoundaryPolicy"
-    end
-
-    -- Contains information about an attached permissions boundary.
-    -- An attached permissions boundary is a managed policy that has been attached to a user or
-    -- role to set the permissions boundary.
-    -- For more information about permissions boundaries, see Permissions boundaries for IAM
-    -- identities in the IAM User Guide.
-    record AttachedPermissionsBoundary
-        -- The permissions boundary usage type that indicates what type of IAM resource is used
-        -- as the permissions boundary for an entity. This data type can only have a value of
-        -- Policy.
-        PermissionsBoundaryType: string
-        -- The ARN of the policy used to set the permissions boundary for the user or role.
-        PermissionsBoundaryArn: string
     end
 
     -- Contains information about an attached policy.
@@ -495,22 +634,6 @@ local record M
         Group: Group
     end
 
-    -- A structure that represents user-provided metadata that can be associated with an IAM
-    -- resource. For more information about tagging, see Tagging IAM resources in the
-    -- IAM User Guide.
-    record Tag
-        -- The key name that can be used to look up or retrieve the associated value. For example,
-        -- Department or Cost Center are common choices.
-        Key: string
-        -- The value associated with this tag. For example, tags with a key name of
-        -- Department could have values such as Human Resources,
-        -- Accounting, and Support. Tags with a key name of Cost
-        -- Center might have values that consist of the number associated with the different
-        -- cost centers in your company. Typically, many resources have tags with the same key name but
-        -- with different values.
-        Value: string
-    end
-
     record CreateInstanceProfileInput
         -- The name of the instance profile to create.
         -- This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric
@@ -530,67 +653,6 @@ local record M
         -- If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request
         -- fails and the resource is not created.
         Tags: {Tag}
-    end
-
-    -- Contains information about the last time that an IAM role was used. This includes the
-    -- date and time and the Region in which the role was last used. Activity is only reported for
-    -- the trailing 400 days. This period can be shorter if your Region began supporting these
-    -- features within the last year. The role might have been used more than 400 days ago. For
-    -- more information, see Regions where data is tracked in the IAM user
-    -- Guide.
-    -- This data type is returned as a response element in the GetRole and GetAccountAuthorizationDetails operations.
-    record RoleLastUsed
-        -- The date and time, in ISO 8601 date-time
-        -- format that the role was last used.
-        -- This field is null if the role has not been used within the IAM tracking period. For
-        -- more information about the tracking period, see Regions where data is tracked in the IAM User Guide.
-        LastUsedDate: number
-        -- The name of the Amazon Web Services Region in which the role was last used.
-        Region: string
-    end
-
-    -- Contains information about an IAM role. This structure is returned as a response
-    -- element in several API operations that interact with roles.
-    record Role
-        -- The path to the role. For more information about paths, see IAM identifiers in the
-        -- IAM User Guide.
-        Path: string
-        -- The friendly name that identifies the role.
-        RoleName: string
-        -- The stable and unique string identifying the role. For more information about IDs, see
-        -- IAM
-        -- identifiers in the IAM User Guide.
-        RoleId: string
-        -- The Amazon Resource Name (ARN) specifying the role. For more information about ARNs and
-        -- how to use them in policies, see IAM identifiers in the
-        -- IAM User Guide guide.
-        Arn: string
-        -- The date and time, in ISO 8601 date-time
-        -- format, when the role was created.
-        CreateDate: number
-        -- The policy that grants an entity permission to assume the role.
-        AssumeRolePolicyDocument: string
-        -- A description of the role that you provide.
-        Description: string
-        -- The maximum session duration (in seconds) for the specified role. Anyone who uses the
-        -- CLI, or API to assume the role can specify the duration using the optional
-        -- DurationSeconds API parameter or duration-seconds CLI
-        -- parameter.
-        MaxSessionDuration: number
-        -- The ARN of the policy used to set the permissions boundary for the role.
-        -- For more information about permissions boundaries, see Permissions boundaries for IAM
-        -- identities in the IAM User Guide.
-        PermissionsBoundary: AttachedPermissionsBoundary
-        -- A list of tags that are attached to the role. For more information about tagging, see Tagging IAM resources in the
-        -- IAM User Guide.
-        Tags: {Tag}
-        -- Contains information about the last time that an IAM role was used. This includes the
-        -- date and time and the Region in which the role was last used. Activity is only reported for
-        -- the trailing 400 days. This period can be shorter if your Region began supporting these
-        -- features within the last year. The role might have been used more than 400 days ago. For
-        -- more information, see Regions where data is tracked in the IAM user
-        -- Guide.
-        RoleLastUsed: RoleLastUsed
     end
 
     -- Contains information about an instance profile.
@@ -836,12 +898,6 @@ local record M
     record CreatePolicyOutput
         -- A structure containing details about the new policy.
         Policy: Policy
-    end
-
-    -- The request was rejected because the policy document was malformed. The error message
-    -- describes the specific error.
-    record MalformedPolicyDocumentException
-        message: string
     end
 
     record CreatePolicyVersionInput
@@ -2059,6 +2115,15 @@ local record M
         PasswordPolicy: PasswordPolicy
     end
 
+    record GetAccountPropertiesInput
+    end
+
+    record GetAccountPropertiesOutput
+        -- A map of account property key-value pairs. Keys are in the format
+        -- Namespace/PropertyName.
+        Properties: {string : string}
+    end
+
     record GetAccountSummaryInput
     end
 
@@ -2635,6 +2700,145 @@ local record M
         -- templates can be formatted in YAML. CloudFormation always converts a YAML policy to JSON format
         -- before submitting it to IAM.
         PolicyDocument: string
+    end
+
+    record GetRoleTemplateVersionInput
+        -- The Amazon Resource Name (ARN) of the role template whose version you want to
+        -- retrieve.
+        -- For more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference.
+        TemplateArn: string
+        -- The minor version of the role template to retrieve. If you do not specify a minor
+        -- version, the service returns the template's default minor version.
+        MinorVersion: number
+    end
+
+    -- Contains an inline policy template that the service embeds in roles that you create from a
+    -- role template.
+    record InlinePolicy
+        -- The name of the inline policy.
+        PolicyName: string
+        -- The inline policy document.
+        PolicyDocument: string
+    end
+
+    enum managedByTypeType
+        "Service"
+    end
+
+    enum parameterTypeType
+        "String"
+        "StringList"
+        "Number"
+        "NumberList"
+        "Arn"
+        "ArnList"
+    end
+
+    -- Defines a parameter that a role template accepts. You supply values for these parameters
+    -- when you create a role with AcquireRole.
+    record ParameterDefinition
+        -- The name of the parameter.
+        Name: string
+        -- The data type of the parameter. Valid values are String,
+        -- StringList, Number, NumberList,
+        -- Arn, and ArnList.
+        Type: string
+        -- An optional subtype that further constrains the values that are allowed for the
+        -- parameter.
+        SubType: string
+        -- A description of the parameter.
+        Description: string
+        -- Specifies whether you must supply a value for the parameter when you create a role from
+        -- the template.
+        IsRequired: boolean
+        -- The value that the service uses for the parameter when you do not supply one.
+        DefaultValue: string
+        -- Specifies whether you can change the parameter value after you create the role.
+        Immutable: boolean
+    end
+
+    -- Represents a tag that is applied to roles that are created from a role template. The key
+    -- and value can include @{parameter} placeholders that are replaced with
+    -- template parameter values when the role is created.
+    record TagTemplate
+        -- The key name of the tag.
+        Key: string
+        -- The value associated with the tag key.
+        Value: string
+    end
+
+    -- Contains information about a version of an IAM role template, including the
+    -- configuration that is used to create roles with AcquireRole. This structure
+    -- is returned as a response element by the GetRoleTemplateVersion operation.
+    record RoleTemplateVersion
+        -- The Amazon Resource Name (ARN) that identifies the role template.
+        -- For more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference.
+        TemplateArn: string
+        -- The friendly name that identifies the role template.
+        TemplateName: string
+        -- The identifier of the role template version.
+        TemplateVersionId: string
+        -- The description of the role template.
+        Description: string
+        -- The major version number of the role template.
+        MajorVersion: number
+        -- The minor version that the service uses by default when you create a role from this template
+        -- without specifying a minor version.
+        DefaultMinorVersion: number
+        -- Indicates that the role template is managed by an Amazon Web Services service.
+        ManagedByType: string
+        -- The identifier of the Amazon Web Services service that manages the role template.
+        ManagedByValue: string
+        -- Specifies whether the role template is enabled. When a template is disabled, you cannot
+        -- create roles from it.
+        Enabled: boolean
+        -- The minor version number of this role template version.
+        MinorVersion: number
+        -- The pattern that is used to generate the name of a role that is created from this
+        -- template. The pattern can include @{parameter} placeholders that are replaced
+        -- with the values you supply in the ReplacementValues parameter of AcquireRole.
+        RoleNamePattern: string
+        -- The pattern that is used to generate the path of a role that is created from this
+        -- template.
+        RolePathPattern: string
+        -- The pattern that is used to generate the description of a role that is created from this
+        -- template.
+        RoleDescriptionPattern: string
+        -- The trust policy template that grants an entity permission to assume roles that you
+        -- create from this template.
+        AssumeRolePolicyDocumentTemplate: string
+        -- A list of inline policy templates that the service embeds in roles that you create from
+        -- this template.
+        InlinePolicyTemplates: {InlinePolicy}
+        -- A list of the ARNs of the managed policies that the service attaches to roles that you
+        -- create from this template.
+        ManagedPolicyArns: {string}
+        -- The ARN of the policy that sets the permissions boundary for roles that you create from
+        -- this template.
+        -- For more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference.
+        PermissionBoundaryArn: string
+        -- A list of the parameters that are defined for this role template version. You supply
+        -- values for these parameters when you create a role with AcquireRole.
+        ParametersDefinition: {ParameterDefinition}
+        -- A list of tag templates that are applied to roles that are created from this
+        -- template.
+        RoleTagsTemplate: {TagTemplate}
+        -- The maximum session duration (in seconds) for roles that are created from this
+        -- template.
+        MaxSessionDuration: number
+        -- Specifies whether this specific minor version of the role template is enabled.
+        VersionEnabled: boolean
+        -- The date and time, in ISO 8601 date-time
+        -- format, when the role template version was created.
+        CreateTimestamp: number
+        -- The date and time, in ISO 8601 date-time
+        -- format, when the role template version was last updated.
+        UpdateTimestamp: number
+    end
+
+    record GetRoleTemplateVersionOutput
+        -- A structure that contains details about the requested role template version.
+        RoleTemplateVersion: RoleTemplateVersion
     end
 
     record GetSAMLProviderInput
@@ -4647,6 +4851,20 @@ local record M
         -- contains the value to use for the Marker parameter in a subsequent
         -- pagination request.
         Marker: string
+    end
+
+    record PutAccountPropertiesInput
+        -- A map of property key-value pairs to set. All keys must belong to the same
+        -- namespace.
+        -- Each key uses the format Namespace/PropertyName. The key must contain
+        -- exactly one / separating the namespace from the property name, and cannot
+        -- start or end with /.
+        -- The service validates each value based on the property key's expected type. For
+        -- example, boolean properties expect true or false.
+        Properties: {string : string}
+    end
+
+    record PutAccountPropertiesOutput
     end
 
     record PutGroupPolicyInput

@@ -9,6 +9,8 @@ local _N = "com.amazonaws.iam"
 
 local M: {string:any} = {}
 
+M.mapStringReplacementValueEntry = schema.new({ type = "map", map_key = prelude.String, map_value = M.ReplacementValueEntry })
+
 M.tagListType = schema.new({ type = "list", list_member = M.Tag })
 
 M.clientIDListType = schema.new({ type = "list", list_member = prelude.String })
@@ -26,6 +28,8 @@ M.groupDetailListType = schema.new({ type = "list", list_member = M.GroupDetail 
 M.roleDetailListType = schema.new({ type = "list", list_member = M.RoleDetail })
 
 M.ManagedPolicyDetailListType = schema.new({ type = "list", list_member = M.ManagedPolicyDetail })
+
+M.accountPropertiesMapType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.summaryMapType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
 
@@ -109,7 +113,17 @@ M.policyParameterListType = schema.new({ type = "list", list_member = M.PolicyPa
 
 M.rolePermissionRestrictionArnListType = schema.new({ type = "list", list_member = prelude.String })
 
+M.inlinePolicyTemplateListType = schema.new({ type = "list", list_member = M.InlinePolicy })
+
+M.managedPolicyArnListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.parametersDefinitionListType = schema.new({ type = "list", list_member = M.ParameterDefinition })
+
+M.tagTemplateListType = schema.new({ type = "list", list_member = M.TagTemplate })
+
 M.RoleUsageListType = schema.new({ type = "list", list_member = M.RoleUsageType })
+
+M.replacementValueListType = schema.new({ type = "list", list_member = prelude.String })
 
 M.policyDetailListType = schema.new({ type = "list", list_member = M.PolicyDetail })
 
@@ -373,23 +387,133 @@ M.AccountNotManagementOrDelegatedAdministratorException = schema.new({
     },
 })
 
-M.AddClientIDToOpenIDConnectProviderInput = schema.new({
-    id = id.from(_N, "AddClientIDToOpenIDConnectProviderRequest"),
+M.ReplacementValueEntry = schema.new({
+    id = id.from(_N, "ReplacementValueEntry"),
     type = "structure",
     members = {
-        OpenIDConnectProviderArn = schema.new({
-            id = id.from(_N, "AddClientIDToOpenIDConnectProviderInput", "OpenIDConnectProviderArn"),
+        Values = schema.new({
+            id = id.from(_N, "ReplacementValueEntry", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AcquireRoleInput = schema.new({
+    id = id.from(_N, "AcquireRoleRequest"),
+    type = "structure",
+    members = {
+        TemplateArn = schema.new({
+            id = id.from(_N, "AcquireRoleInput", "TemplateArn"),
             type = "string",
-            name = "OpenIDConnectProviderArn",
+            name = "TemplateArn",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        ClientID = schema.new({
-            id = id.from(_N, "AddClientIDToOpenIDConnectProviderInput", "ClientID"),
+        TemplateMinorVersion = schema.new({
+            id = id.from(_N, "AcquireRoleInput", "TemplateMinorVersion"),
+            type = "integer",
+            name = "TemplateMinorVersion",
+            target_id = prelude.Integer.id,
+        }),
+        ReplacementValues = schema.new({
+            id = id.from(_N, "AcquireRoleInput", "ReplacementValues"),
+            type = "map",
+            name = "ReplacementValues",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.ReplacementValueEntry,
+        }),
+    },
+})
+
+M.AttachedPermissionsBoundary = schema.new({
+    id = id.from(_N, "AttachedPermissionsBoundary"),
+    type = "structure",
+    members = {
+        PermissionsBoundaryType = schema.new({
+            id = id.from(_N, "AttachedPermissionsBoundary", "PermissionsBoundaryType"),
             type = "string",
-            name = "ClientID",
+            name = "PermissionsBoundaryType",
+            target_id = prelude.String.id,
+        }),
+        PermissionsBoundaryArn = schema.new({
+            id = id.from(_N, "AttachedPermissionsBoundary", "PermissionsBoundaryArn"),
+            type = "string",
+            name = "PermissionsBoundaryArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RoleLastUsed = schema.new({
+    id = id.from(_N, "RoleLastUsed"),
+    type = "structure",
+    members = {
+        LastUsedDate = schema.new({
+            id = id.from(_N, "RoleLastUsed", "LastUsedDate"),
+            type = "timestamp",
+            name = "LastUsedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "RoleLastUsed", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SourceRoleTemplate = schema.new({
+    id = id.from(_N, "SourceRoleTemplate"),
+    type = "structure",
+    members = {
+        TemplateArn = schema.new({
+            id = id.from(_N, "SourceRoleTemplate", "TemplateArn"),
+            type = "string",
+            name = "TemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TemplateMinorVersion = schema.new({
+            id = id.from(_N, "SourceRoleTemplate", "TemplateMinorVersion"),
+            type = "integer",
+            name = "TemplateMinorVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -398,7 +522,136 @@ M.AddClientIDToOpenIDConnectProviderInput = schema.new({
     },
 })
 
-M.AddClientIDToOpenIDConnectProviderOutput = prelude.Unit
+M.Role = schema.new({
+    id = id.from(_N, "Role"),
+    type = "structure",
+    members = {
+        Path = schema.new({
+            id = id.from(_N, "Role", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleName = schema.new({
+            id = id.from(_N, "Role", "RoleName"),
+            type = "string",
+            name = "RoleName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleId = schema.new({
+            id = id.from(_N, "Role", "RoleId"),
+            type = "string",
+            name = "RoleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "Role", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreateDate = schema.new({
+            id = id.from(_N, "Role", "CreateDate"),
+            type = "timestamp",
+            name = "CreateDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AssumeRolePolicyDocument = schema.new({
+            id = id.from(_N, "Role", "AssumeRolePolicyDocument"),
+            type = "string",
+            name = "AssumeRolePolicyDocument",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "Role", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        MaxSessionDuration = schema.new({
+            id = id.from(_N, "Role", "MaxSessionDuration"),
+            type = "integer",
+            name = "MaxSessionDuration",
+            target_id = prelude.Integer.id,
+        }),
+        PermissionsBoundary = schema.new({
+            id = id.from(_N, "Role", "PermissionsBoundary"),
+            type = "structure",
+            name = "PermissionsBoundary",
+            target_id = id.from(_N, "AttachedPermissionsBoundary"),
+            target = M.AttachedPermissionsBoundary,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "Role", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        RoleLastUsed = schema.new({
+            id = id.from(_N, "Role", "RoleLastUsed"),
+            type = "structure",
+            name = "RoleLastUsed",
+            target_id = id.from(_N, "RoleLastUsed"),
+            target = M.RoleLastUsed,
+        }),
+        SourceRoleTemplate = schema.new({
+            id = id.from(_N, "Role", "SourceRoleTemplate"),
+            type = "structure",
+            name = "SourceRoleTemplate",
+            target_id = id.from(_N, "SourceRoleTemplate"),
+            target = M.SourceRoleTemplate,
+        }),
+    },
+})
+
+M.AcquireRoleOutput = schema.new({
+    id = id.from(_N, "AcquireRoleResponse"),
+    type = "structure",
+    members = {
+        Role = schema.new({
+            id = id.from(_N, "AcquireRoleOutput", "Role"),
+            type = "structure",
+            name = "Role",
+            target_id = id.from(_N, "Role"),
+            target = M.Role,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EntityAlreadyExistsException = schema.new({
+    id = id.from(_N, "EntityAlreadyExistsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "EntityAlreadyExistsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
 
 M.InvalidInputException = schema.new({
     id = id.from(_N, "InvalidInputException"),
@@ -432,6 +685,97 @@ M.LimitExceededException = schema.new({
     },
 })
 
+M.MalformedPolicyDocumentException = schema.new({
+    id = id.from(_N, "MalformedPolicyDocumentException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "MalformedPolicyDocumentException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NameConflictException = schema.new({
+    id = id.from(_N, "NameConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "NameConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RoleModifiedException = schema.new({
+    id = id.from(_N, "RoleModifiedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "RoleModifiedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RoleTemplateDisabledException = schema.new({
+    id = id.from(_N, "RoleTemplateDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "RoleTemplateDisabledException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AddClientIDToOpenIDConnectProviderInput = schema.new({
+    id = id.from(_N, "AddClientIDToOpenIDConnectProviderRequest"),
+    type = "structure",
+    members = {
+        OpenIDConnectProviderArn = schema.new({
+            id = id.from(_N, "AddClientIDToOpenIDConnectProviderInput", "OpenIDConnectProviderArn"),
+            type = "string",
+            name = "OpenIDConnectProviderArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientID = schema.new({
+            id = id.from(_N, "AddClientIDToOpenIDConnectProviderInput", "ClientID"),
+            type = "string",
+            name = "ClientID",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AddClientIDToOpenIDConnectProviderOutput = prelude.Unit
+
 M.AddRoleToInstanceProfileInput = schema.new({
     id = id.from(_N, "AddRoleToInstanceProfileRequest"),
     type = "structure",
@@ -458,22 +802,6 @@ M.AddRoleToInstanceProfileInput = schema.new({
 })
 
 M.AddRoleToInstanceProfileOutput = prelude.Unit
-
-M.EntityAlreadyExistsException = schema.new({
-    id = id.from(_N, "EntityAlreadyExistsException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "EntityAlreadyExistsException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
 
 M.UnmodifiableEntityException = schema.new({
     id = id.from(_N, "UnmodifiableEntityException"),
@@ -535,25 +863,6 @@ M.AssociateDelegationRequestInput = schema.new({
 })
 
 M.AssociateDelegationRequestOutput = prelude.Unit
-
-M.AttachedPermissionsBoundary = schema.new({
-    id = id.from(_N, "AttachedPermissionsBoundary"),
-    type = "structure",
-    members = {
-        PermissionsBoundaryType = schema.new({
-            id = id.from(_N, "AttachedPermissionsBoundary", "PermissionsBoundaryType"),
-            type = "string",
-            name = "PermissionsBoundaryType",
-            target_id = prelude.String.id,
-        }),
-        PermissionsBoundaryArn = schema.new({
-            id = id.from(_N, "AttachedPermissionsBoundary", "PermissionsBoundaryArn"),
-            type = "string",
-            name = "PermissionsBoundaryArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
 
 M.AttachedPolicy = schema.new({
     id = id.from(_N, "AttachedPolicy"),
@@ -1030,31 +1339,6 @@ M.CreateGroupOutput = schema.new({
     },
 })
 
-M.Tag = schema.new({
-    id = id.from(_N, "Tag"),
-    type = "structure",
-    members = {
-        Key = schema.new({
-            id = id.from(_N, "Tag", "Key"),
-            type = "string",
-            name = "Key",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Value = schema.new({
-            id = id.from(_N, "Tag", "Value"),
-            type = "string",
-            name = "Value",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.CreateInstanceProfileInput = schema.new({
     id = id.from(_N, "CreateInstanceProfileRequest"),
     type = "structure",
@@ -1080,116 +1364,6 @@ M.CreateInstanceProfileInput = schema.new({
             name = "Tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
-        }),
-    },
-})
-
-M.RoleLastUsed = schema.new({
-    id = id.from(_N, "RoleLastUsed"),
-    type = "structure",
-    members = {
-        LastUsedDate = schema.new({
-            id = id.from(_N, "RoleLastUsed", "LastUsedDate"),
-            type = "timestamp",
-            name = "LastUsedDate",
-            target_id = prelude.Timestamp.id,
-        }),
-        Region = schema.new({
-            id = id.from(_N, "RoleLastUsed", "Region"),
-            type = "string",
-            name = "Region",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.Role = schema.new({
-    id = id.from(_N, "Role"),
-    type = "structure",
-    members = {
-        Path = schema.new({
-            id = id.from(_N, "Role", "Path"),
-            type = "string",
-            name = "Path",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RoleName = schema.new({
-            id = id.from(_N, "Role", "RoleName"),
-            type = "string",
-            name = "RoleName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RoleId = schema.new({
-            id = id.from(_N, "Role", "RoleId"),
-            type = "string",
-            name = "RoleId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Arn = schema.new({
-            id = id.from(_N, "Role", "Arn"),
-            type = "string",
-            name = "Arn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        CreateDate = schema.new({
-            id = id.from(_N, "Role", "CreateDate"),
-            type = "timestamp",
-            name = "CreateDate",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        AssumeRolePolicyDocument = schema.new({
-            id = id.from(_N, "Role", "AssumeRolePolicyDocument"),
-            type = "string",
-            name = "AssumeRolePolicyDocument",
-            target_id = prelude.String.id,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "Role", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        MaxSessionDuration = schema.new({
-            id = id.from(_N, "Role", "MaxSessionDuration"),
-            type = "integer",
-            name = "MaxSessionDuration",
-            target_id = prelude.Integer.id,
-        }),
-        PermissionsBoundary = schema.new({
-            id = id.from(_N, "Role", "PermissionsBoundary"),
-            type = "structure",
-            name = "PermissionsBoundary",
-            target_id = id.from(_N, "AttachedPermissionsBoundary"),
-            target = M.AttachedPermissionsBoundary,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "Role", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-        RoleLastUsed = schema.new({
-            id = id.from(_N, "Role", "RoleLastUsed"),
-            type = "structure",
-            name = "RoleLastUsed",
-            target_id = id.from(_N, "RoleLastUsed"),
-            target = M.RoleLastUsed,
         }),
     },
 })
@@ -1569,22 +1743,6 @@ M.CreatePolicyOutput = schema.new({
             name = "Policy",
             target_id = id.from(_N, "Policy"),
             target = M.Policy,
-        }),
-    },
-})
-
-M.MalformedPolicyDocumentException = schema.new({
-    id = id.from(_N, "MalformedPolicyDocumentException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "MalformedPolicyDocumentException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -3718,6 +3876,26 @@ M.GetAccountPasswordPolicyOutput = schema.new({
     },
 })
 
+M.GetAccountPropertiesInput = schema.new({
+    id = id.from(_N, "GetAccountPropertiesRequest"),
+    type = "structure",
+})
+
+M.GetAccountPropertiesOutput = schema.new({
+    id = id.from(_N, "GetAccountPropertiesResponse"),
+    type = "structure",
+    members = {
+        Properties = schema.new({
+            id = id.from(_N, "GetAccountPropertiesOutput", "Properties"),
+            type = "map",
+            name = "Properties",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.GetAccountSummaryInput = prelude.Unit
 
 M.GetAccountSummaryOutput = schema.new({
@@ -4723,6 +4901,311 @@ M.GetRolePolicyOutput = schema.new({
             type = "string",
             name = "PolicyDocument",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRoleTemplateVersionInput = schema.new({
+    id = id.from(_N, "GetRoleTemplateVersionRequest"),
+    type = "structure",
+    members = {
+        TemplateArn = schema.new({
+            id = id.from(_N, "GetRoleTemplateVersionInput", "TemplateArn"),
+            type = "string",
+            name = "TemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MinorVersion = schema.new({
+            id = id.from(_N, "GetRoleTemplateVersionInput", "MinorVersion"),
+            type = "integer",
+            name = "MinorVersion",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.InlinePolicy = schema.new({
+    id = id.from(_N, "InlinePolicy"),
+    type = "structure",
+    members = {
+        PolicyName = schema.new({
+            id = id.from(_N, "InlinePolicy", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PolicyDocument = schema.new({
+            id = id.from(_N, "InlinePolicy", "PolicyDocument"),
+            type = "string",
+            name = "PolicyDocument",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ParameterDefinition = schema.new({
+    id = id.from(_N, "ParameterDefinition"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ParameterDefinition", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ParameterDefinition", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubType = schema.new({
+            id = id.from(_N, "ParameterDefinition", "SubType"),
+            type = "string",
+            name = "SubType",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ParameterDefinition", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        IsRequired = schema.new({
+            id = id.from(_N, "ParameterDefinition", "IsRequired"),
+            type = "boolean",
+            name = "IsRequired",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        DefaultValue = schema.new({
+            id = id.from(_N, "ParameterDefinition", "DefaultValue"),
+            type = "string",
+            name = "DefaultValue",
+            target_id = prelude.String.id,
+        }),
+        Immutable = schema.new({
+            id = id.from(_N, "ParameterDefinition", "Immutable"),
+            type = "boolean",
+            name = "Immutable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.TagTemplate = schema.new({
+    id = id.from(_N, "TagTemplate"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "TagTemplate", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "TagTemplate", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RoleTemplateVersion = schema.new({
+    id = id.from(_N, "RoleTemplateVersion"),
+    type = "structure",
+    members = {
+        TemplateArn = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "TemplateArn"),
+            type = "string",
+            name = "TemplateArn",
+            target_id = prelude.String.id,
+        }),
+        TemplateName = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "TemplateName"),
+            type = "string",
+            name = "TemplateName",
+            target_id = prelude.String.id,
+        }),
+        TemplateVersionId = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "TemplateVersionId"),
+            type = "string",
+            name = "TemplateVersionId",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        MajorVersion = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "MajorVersion"),
+            type = "integer",
+            name = "MajorVersion",
+            target_id = prelude.Integer.id,
+        }),
+        DefaultMinorVersion = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "DefaultMinorVersion"),
+            type = "integer",
+            name = "DefaultMinorVersion",
+            target_id = prelude.Integer.id,
+        }),
+        ManagedByType = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "ManagedByType"),
+            type = "string",
+            name = "ManagedByType",
+            target_id = prelude.String.id,
+        }),
+        ManagedByValue = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "ManagedByValue"),
+            type = "string",
+            name = "ManagedByValue",
+            target_id = prelude.String.id,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        MinorVersion = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "MinorVersion"),
+            type = "integer",
+            name = "MinorVersion",
+            target_id = prelude.Integer.id,
+        }),
+        RoleNamePattern = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "RoleNamePattern"),
+            type = "string",
+            name = "RoleNamePattern",
+            target_id = prelude.String.id,
+        }),
+        RolePathPattern = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "RolePathPattern"),
+            type = "string",
+            name = "RolePathPattern",
+            target_id = prelude.String.id,
+        }),
+        RoleDescriptionPattern = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "RoleDescriptionPattern"),
+            type = "string",
+            name = "RoleDescriptionPattern",
+            target_id = prelude.String.id,
+        }),
+        AssumeRolePolicyDocumentTemplate = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "AssumeRolePolicyDocumentTemplate"),
+            type = "string",
+            name = "AssumeRolePolicyDocumentTemplate",
+            target_id = prelude.String.id,
+        }),
+        InlinePolicyTemplates = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "InlinePolicyTemplates"),
+            type = "list",
+            name = "InlinePolicyTemplates",
+            target_id = prelude.Document.id,
+            list_member = M.InlinePolicy,
+        }),
+        ManagedPolicyArns = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "ManagedPolicyArns"),
+            type = "list",
+            name = "ManagedPolicyArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        PermissionBoundaryArn = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "PermissionBoundaryArn"),
+            type = "string",
+            name = "PermissionBoundaryArn",
+            target_id = prelude.String.id,
+        }),
+        ParametersDefinition = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "ParametersDefinition"),
+            type = "list",
+            name = "ParametersDefinition",
+            target_id = prelude.Document.id,
+            list_member = M.ParameterDefinition,
+        }),
+        RoleTagsTemplate = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "RoleTagsTemplate"),
+            type = "list",
+            name = "RoleTagsTemplate",
+            target_id = prelude.Document.id,
+            list_member = M.TagTemplate,
+        }),
+        MaxSessionDuration = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "MaxSessionDuration"),
+            type = "integer",
+            name = "MaxSessionDuration",
+            target_id = prelude.Integer.id,
+        }),
+        VersionEnabled = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "VersionEnabled"),
+            type = "boolean",
+            name = "VersionEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        CreateTimestamp = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "CreateTimestamp"),
+            type = "timestamp",
+            name = "CreateTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdateTimestamp = schema.new({
+            id = id.from(_N, "RoleTemplateVersion", "UpdateTimestamp"),
+            type = "timestamp",
+            name = "UpdateTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetRoleTemplateVersionOutput = schema.new({
+    id = id.from(_N, "GetRoleTemplateVersionResponse"),
+    type = "structure",
+    members = {
+        RoleTemplateVersion = schema.new({
+            id = id.from(_N, "GetRoleTemplateVersionOutput", "RoleTemplateVersion"),
+            type = "structure",
+            name = "RoleTemplateVersion",
+            target_id = id.from(_N, "RoleTemplateVersion"),
+            target = M.RoleTemplateVersion,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -8007,6 +8490,29 @@ M.ListVirtualMFADevicesOutput = schema.new({
     },
 })
 
+M.PutAccountPropertiesInput = schema.new({
+    id = id.from(_N, "PutAccountPropertiesRequest"),
+    type = "structure",
+    members = {
+        Properties = schema.new({
+            id = id.from(_N, "PutAccountPropertiesInput", "Properties"),
+            type = "map",
+            name = "Properties",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAccountPropertiesOutput = schema.new({
+    id = id.from(_N, "PutAccountPropertiesResponse"),
+    type = "structure",
+})
+
 M.PutGroupPolicyInput = schema.new({
     id = id.from(_N, "PutGroupPolicyRequest"),
     type = "structure",
@@ -10267,6 +10773,17 @@ M.AcceptDelegationRequest = schema.operation({
     },
 })
 
+M.AcquireRole = schema.operation({
+    id = id.from("com.amazonaws.iam", "AcquireRole"),
+    input = M.AcquireRoleInput,
+    output = M.AcquireRoleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AddClientIDToOpenIDConnectProvider = schema.operation({
     id = id.from("com.amazonaws.iam", "AddClientIDToOpenIDConnectProvider"),
     input = M.AddClientIDToOpenIDConnectProviderInput,
@@ -10960,6 +11477,17 @@ M.GetAccountPasswordPolicy = schema.operation({
     },
 })
 
+M.GetAccountProperties = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetAccountProperties"),
+    input = M.GetAccountPropertiesInput,
+    output = M.GetAccountPropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetAccountSummary = schema.operation({
     id = id.from("com.amazonaws.iam", "GetAccountSummary"),
     input = M.GetAccountSummaryInput,
@@ -11151,6 +11679,17 @@ M.GetRolePolicy = schema.operation({
     id = id.from("com.amazonaws.iam", "GetRolePolicy"),
     input = M.GetRolePolicyInput,
     output = M.GetRolePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRoleTemplateVersion = schema.operation({
+    id = id.from("com.amazonaws.iam", "GetRoleTemplateVersion"),
+    input = M.GetRoleTemplateVersionInput,
+    output = M.GetRoleTemplateVersionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -11635,6 +12174,17 @@ M.ListVirtualMFADevices = schema.operation({
     id = id.from("com.amazonaws.iam", "ListVirtualMFADevices"),
     input = M.ListVirtualMFADevicesInput,
     output = M.ListVirtualMFADevicesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountProperties = schema.operation({
+    id = id.from("com.amazonaws.iam", "PutAccountProperties"),
+    input = M.PutAccountPropertiesInput,
+    output = M.PutAccountPropertiesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

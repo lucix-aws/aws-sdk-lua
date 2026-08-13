@@ -21,6 +21,8 @@ M.AutonomousDatabaseVersionList = schema.new({ type = "list", list_member = M.Au
 
 M.DbSystemShapeList = schema.new({ type = "list", list_member = M.DbSystemShapeSummary })
 
+M.GiMinorVersionList = schema.new({ type = "list", list_member = M.GiMinorVersionSummary })
+
 M.GiVersionList = schema.new({ type = "list", list_member = M.GiVersionSummary })
 
 M.SystemVersionList = schema.new({ type = "list", list_member = M.SystemVersionSummary })
@@ -57,6 +59,12 @@ M.CloudVmClusterList = schema.new({ type = "list", list_member = M.CloudVmCluste
 
 M.DbNodeList = schema.new({ type = "list", list_member = M.DbNodeSummary })
 
+M.ExadbVmClusterList = schema.new({ type = "list", list_member = M.ExadbVmClusterSummary })
+
+M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExascaleDbStorageVaultList = schema.new({ type = "list", list_member = M.ExascaleDbStorageVaultSummary })
+
 M.OdbNetworkList = schema.new({ type = "list", list_member = M.OdbNetworkSummary })
 
 M.OdbPeeringConnectionList = schema.new({ type = "list", list_member = M.OdbPeeringConnectionSummary })
@@ -81,9 +89,11 @@ M.CloudAutonomousVmClusterResourceDetailsList = schema.new({ type = "list", list
 
 M.SensitiveStringList = schema.new({ type = "list", list_member = prelude.String })
 
-M.OciDnsForwardingConfigList = schema.new({ type = "list", list_member = M.OciDnsForwardingConfig })
+M.ShapeAttributeList = schema.new({ type = "list", list_member = prelude.String })
 
-M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OciDnsForwardingConfigList = schema.new({ type = "list", list_member = M.OciDnsForwardingConfig })
 
 M.DatabaseConnectionStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -452,6 +462,111 @@ M.ResourceNotFoundException = schema.new({
             id = id.from(_N, "ResourceNotFoundException", "resourceType"),
             type = "string",
             name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateVirtualMachinesToExadbVmClusterInput = schema.new({
+    id = id.from(_N, "AssociateVirtualMachinesToExadbVmClusterInput"),
+    type = "structure",
+    members = {
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "AssociateVirtualMachinesToExadbVmClusterInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        desiredNodeCount = schema.new({
+            id = id.from(_N, "AssociateVirtualMachinesToExadbVmClusterInput", "desiredNodeCount"),
+            type = "integer",
+            name = "desiredNodeCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateVirtualMachinesToExadbVmClusterOutput = schema.new({
+    id = id.from(_N, "AssociateVirtualMachinesToExadbVmClusterOutput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "AssociateVirtualMachinesToExadbVmClusterOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AssociateVirtualMachinesToExadbVmClusterOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "AssociateVirtualMachinesToExadbVmClusterOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "AssociateVirtualMachinesToExadbVmClusterOutput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -2051,52 +2166,6 @@ M.CreateAutonomousDatabaseBackupOutput = schema.new({
             id = id.from(_N, "CreateAutonomousDatabaseBackupOutput", "autonomousDatabaseBackupId"),
             type = "string",
             name = "autonomousDatabaseBackupId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        resourceId = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
-            type = "string",
-            name = "resourceId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        resourceType = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
-            type = "string",
-            name = "resourceType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        quotaCode = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
-            type = "string",
-            name = "quotaCode",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -8204,6 +8273,331 @@ M.ListCloudVmClustersOutput = schema.new({
     },
 })
 
+M.CreateExadbVmClusterInput = schema.new({
+    id = id.from(_N, "CreateExadbVmClusterInput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        enabledEcpuCount = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "enabledEcpuCount"),
+            type = "integer",
+            name = "enabledEcpuCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        gridImageId = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "gridImageId"),
+            type = "string",
+            name = "gridImageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hostname = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "hostname"),
+            type = "string",
+            name = "hostname",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nodeCount = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "nodeCount"),
+            type = "integer",
+            name = "nodeCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        odbNetworkId = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "odbNetworkId"),
+            type = "string",
+            name = "odbNetworkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        shape = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "shape"),
+            type = "string",
+            name = "shape",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sshPublicKeys = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "sshPublicKeys"),
+            type = "list",
+            name = "sshPublicKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalEcpuCount = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "totalEcpuCount"),
+            type = "integer",
+            name = "totalEcpuCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vmFileSystemStorageTotalSizeInGBs = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "vmFileSystemStorageTotalSizeInGBs"),
+            type = "integer",
+            name = "vmFileSystemStorageTotalSizeInGBs",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clusterName = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+        }),
+        dataCollectionOptions = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "dataCollectionOptions"),
+            type = "structure",
+            name = "dataCollectionOptions",
+            target_id = id.from(_N, "DataCollectionOptions"),
+            target = M.DataCollectionOptions,
+        }),
+        licenseModel = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "licenseModel"),
+            type = "string",
+            name = "licenseModel",
+            target_id = prelude.String.id,
+        }),
+        scanListenerPortTcp = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "scanListenerPortTcp"),
+            type = "integer",
+            name = "scanListenerPortTcp",
+            target_id = prelude.Integer.id,
+        }),
+        scanListenerPortTcpSsl = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "scanListenerPortTcpSsl"),
+            type = "integer",
+            name = "scanListenerPortTcpSsl",
+            target_id = prelude.Integer.id,
+        }),
+        shapeAttribute = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "shapeAttribute"),
+            type = "string",
+            name = "shapeAttribute",
+            target_id = prelude.String.id,
+        }),
+        systemVersion = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "systemVersion"),
+            type = "string",
+            name = "systemVersion",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        timeZone = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "timeZone"),
+            type = "string",
+            name = "timeZone",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateExadbVmClusterOutput = schema.new({
+    id = id.from(_N, "CreateExadbVmClusterOutput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "CreateExadbVmClusterOutput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateExascaleDbStorageVaultInput = schema.new({
+    id = id.from(_N, "CreateExascaleDbStorageVaultInput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        highCapacityDatabaseStorageTotalSizeInGBs = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "highCapacityDatabaseStorageTotalSizeInGBs"),
+            type = "integer",
+            name = "highCapacityDatabaseStorageTotalSizeInGBs",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        additionalFlashCacheInPercent = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "additionalFlashCacheInPercent"),
+            type = "integer",
+            name = "additionalFlashCacheInPercent",
+            target_id = prelude.Integer.id,
+        }),
+        autoscaleLimitInGBs = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "autoscaleLimitInGBs"),
+            type = "integer",
+            name = "autoscaleLimitInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+        }),
+        availabilityZone = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "availabilityZone"),
+            type = "string",
+            name = "availabilityZone",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        isAutoscaleEnabled = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "isAutoscaleEnabled"),
+            type = "boolean",
+            name = "isAutoscaleEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        timeZone = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "timeZone"),
+            type = "string",
+            name = "timeZone",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateExascaleDbStorageVaultOutput = schema.new({
+    id = id.from(_N, "CreateExascaleDbStorageVaultOutput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "CreateExascaleDbStorageVaultOutput", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateOdbNetworkInput = schema.new({
     id = id.from(_N, "CreateOdbNetworkInput"),
     type = "structure",
@@ -8834,10 +9228,12 @@ M.GetDbNodeInput = schema.new({
             type = "string",
             name = "cloudVmClusterId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "GetDbNodeInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
         }),
         dbNodeId = schema.new({
             id = id.from(_N, "GetDbNodeInput", "dbNodeId"),
@@ -8893,10 +9289,12 @@ M.ListDbNodesInput = schema.new({
             type = "string",
             name = "cloudVmClusterId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "ListDbNodesInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8933,10 +9331,12 @@ M.RebootDbNodeInput = schema.new({
             type = "string",
             name = "cloudVmClusterId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "RebootDbNodeInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
         }),
         dbNodeId = schema.new({
             id = id.from(_N, "RebootDbNodeInput", "dbNodeId"),
@@ -8988,10 +9388,12 @@ M.StartDbNodeInput = schema.new({
             type = "string",
             name = "cloudVmClusterId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "StartDbNodeInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
         }),
         dbNodeId = schema.new({
             id = id.from(_N, "StartDbNodeInput", "dbNodeId"),
@@ -9043,10 +9445,12 @@ M.StopDbNodeInput = schema.new({
             type = "string",
             name = "cloudVmClusterId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "StopDbNodeInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
         }),
         dbNodeId = schema.new({
             id = id.from(_N, "StopDbNodeInput", "dbNodeId"),
@@ -9219,6 +9623,13 @@ M.DbSystemShapeSummary = schema.new({
             name = "shapeType",
             target_id = prelude.String.id,
         }),
+        shapeAttributes = schema.new({
+            id = id.from(_N, "DbSystemShapeSummary", "shapeAttributes"),
+            type = "list",
+            name = "shapeAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         name = schema.new({
             id = id.from(_N, "DbSystemShapeSummary", "name"),
             type = "string",
@@ -9238,6 +9649,48 @@ M.DbSystemShapeSummary = schema.new({
             target_id = prelude.Boolean.id,
         }),
     },
+})
+
+M.DeleteExadbVmClusterInput = schema.new({
+    id = id.from(_N, "DeleteExadbVmClusterInput"),
+    type = "structure",
+    members = {
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "DeleteExadbVmClusterInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteExadbVmClusterOutput = schema.new({
+    id = id.from(_N, "DeleteExadbVmClusterOutput"),
+    type = "structure",
+})
+
+M.DeleteExascaleDbStorageVaultInput = schema.new({
+    id = id.from(_N, "DeleteExascaleDbStorageVaultInput"),
+    type = "structure",
+    members = {
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "DeleteExascaleDbStorageVaultInput", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteExascaleDbStorageVaultOutput = schema.new({
+    id = id.from(_N, "DeleteExascaleDbStorageVaultOutput"),
+    type = "structure",
 })
 
 M.DeleteOdbNetworkInput = schema.new({
@@ -9330,6 +9783,1337 @@ M.DisassociateIamRoleFromResourceInput = schema.new({
 M.DisassociateIamRoleFromResourceOutput = schema.new({
     id = id.from(_N, "DisassociateIamRoleFromResourceOutput"),
     type = "structure",
+})
+
+M.DisassociateVirtualMachinesFromExadbVmClusterInput = schema.new({
+    id = id.from(_N, "DisassociateVirtualMachinesFromExadbVmClusterInput"),
+    type = "structure",
+    members = {
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "DisassociateVirtualMachinesFromExadbVmClusterInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dbNodeIds = schema.new({
+            id = id.from(_N, "DisassociateVirtualMachinesFromExadbVmClusterInput", "dbNodeIds"),
+            type = "list",
+            name = "dbNodeIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateVirtualMachinesFromExadbVmClusterOutput = schema.new({
+    id = id.from(_N, "DisassociateVirtualMachinesFromExadbVmClusterOutput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "DisassociateVirtualMachinesFromExadbVmClusterOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DisassociateVirtualMachinesFromExadbVmClusterOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "DisassociateVirtualMachinesFromExadbVmClusterOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "DisassociateVirtualMachinesFromExadbVmClusterOutput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExadbVmClusterStorageDetails = schema.new({
+    id = id.from(_N, "ExadbVmClusterStorageDetails"),
+    type = "structure",
+    members = {
+        totalSizeInGBs = schema.new({
+            id = id.from(_N, "ExadbVmClusterStorageDetails", "totalSizeInGBs"),
+            type = "integer",
+            name = "totalSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ExadbVmCluster = schema.new({
+    id = id.from(_N, "ExadbVmCluster"),
+    type = "structure",
+    members = {
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clusterName = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        dataCollectionOptions = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "dataCollectionOptions"),
+            type = "structure",
+            name = "dataCollectionOptions",
+            target_id = id.from(_N, "DataCollectionOptions"),
+            target = M.DataCollectionOptions,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        domain = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "domain"),
+            type = "string",
+            name = "domain",
+            target_id = prelude.String.id,
+        }),
+        enabledEcpuCount = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "enabledEcpuCount"),
+            type = "integer",
+            name = "enabledEcpuCount",
+            target_id = prelude.Integer.id,
+        }),
+        exadbVmClusterArn = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "exadbVmClusterArn"),
+            type = "string",
+            name = "exadbVmClusterArn",
+            target_id = prelude.String.id,
+        }),
+        exascaleDbStorageVaultArn = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "exascaleDbStorageVaultArn"),
+            type = "string",
+            name = "exascaleDbStorageVaultArn",
+            target_id = prelude.String.id,
+        }),
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+        }),
+        giVersion = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "giVersion"),
+            type = "string",
+            name = "giVersion",
+            target_id = prelude.String.id,
+        }),
+        gridImageId = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "gridImageId"),
+            type = "string",
+            name = "gridImageId",
+            target_id = prelude.String.id,
+        }),
+        gridImageType = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "gridImageType"),
+            type = "string",
+            name = "gridImageType",
+            target_id = prelude.String.id,
+        }),
+        hostname = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "hostname"),
+            type = "string",
+            name = "hostname",
+            target_id = prelude.String.id,
+        }),
+        iamRoles = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "iamRoles"),
+            type = "list",
+            name = "iamRoles",
+            target_id = prelude.Document.id,
+            list_member = M.IamRole,
+        }),
+        iormConfigCache = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "iormConfigCache"),
+            type = "structure",
+            name = "iormConfigCache",
+            target_id = id.from(_N, "ExadataIormConfig"),
+            target = M.ExadataIormConfig,
+        }),
+        lastUpdateHistoryEntryId = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "lastUpdateHistoryEntryId"),
+            type = "string",
+            name = "lastUpdateHistoryEntryId",
+            target_id = prelude.String.id,
+        }),
+        licenseModel = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "licenseModel"),
+            type = "string",
+            name = "licenseModel",
+            target_id = prelude.String.id,
+        }),
+        listenerPort = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "listenerPort"),
+            type = "integer",
+            name = "listenerPort",
+            target_id = prelude.Integer.id,
+        }),
+        memorySizeInGBs = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "memorySizeInGBs"),
+            type = "integer",
+            name = "memorySizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        nodeCount = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "nodeCount"),
+            type = "integer",
+            name = "nodeCount",
+            target_id = prelude.Integer.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        ociResourceAnchorName = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "ociResourceAnchorName"),
+            type = "string",
+            name = "ociResourceAnchorName",
+            target_id = prelude.String.id,
+        }),
+        ociUrl = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "ociUrl"),
+            type = "string",
+            name = "ociUrl",
+            target_id = prelude.String.id,
+        }),
+        odbNetworkArn = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "odbNetworkArn"),
+            type = "string",
+            name = "odbNetworkArn",
+            target_id = prelude.String.id,
+        }),
+        odbNetworkId = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "odbNetworkId"),
+            type = "string",
+            name = "odbNetworkId",
+            target_id = prelude.String.id,
+        }),
+        percentProgress = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "percentProgress"),
+            type = "float",
+            name = "percentProgress",
+            target_id = prelude.Float.id,
+        }),
+        scanDnsName = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "scanDnsName"),
+            type = "string",
+            name = "scanDnsName",
+            target_id = prelude.String.id,
+        }),
+        scanDnsRecordId = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "scanDnsRecordId"),
+            type = "string",
+            name = "scanDnsRecordId",
+            target_id = prelude.String.id,
+        }),
+        scanIpIds = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "scanIpIds"),
+            type = "list",
+            name = "scanIpIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        scanListenerPortTcp = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "scanListenerPortTcp"),
+            type = "integer",
+            name = "scanListenerPortTcp",
+            target_id = prelude.Integer.id,
+        }),
+        scanListenerPortTcpSsl = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "scanListenerPortTcpSsl"),
+            type = "integer",
+            name = "scanListenerPortTcpSsl",
+            target_id = prelude.Integer.id,
+        }),
+        shape = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "shape"),
+            type = "string",
+            name = "shape",
+            target_id = prelude.String.id,
+        }),
+        shapeAttribute = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "shapeAttribute"),
+            type = "string",
+            name = "shapeAttribute",
+            target_id = prelude.String.id,
+        }),
+        snapshotFileSystemStorage = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "snapshotFileSystemStorage"),
+            type = "structure",
+            name = "snapshotFileSystemStorage",
+            target_id = id.from(_N, "ExadbVmClusterStorageDetails"),
+            target = M.ExadbVmClusterStorageDetails,
+        }),
+        sshPublicKeys = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "sshPublicKeys"),
+            type = "list",
+            name = "sshPublicKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        systemVersion = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "systemVersion"),
+            type = "string",
+            name = "systemVersion",
+            target_id = prelude.String.id,
+        }),
+        timeZone = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "timeZone"),
+            type = "string",
+            name = "timeZone",
+            target_id = prelude.String.id,
+        }),
+        totalEcpuCount = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "totalEcpuCount"),
+            type = "integer",
+            name = "totalEcpuCount",
+            target_id = prelude.Integer.id,
+        }),
+        totalFileSystemStorage = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "totalFileSystemStorage"),
+            type = "structure",
+            name = "totalFileSystemStorage",
+            target_id = id.from(_N, "ExadbVmClusterStorageDetails"),
+            target = M.ExadbVmClusterStorageDetails,
+        }),
+        vipIds = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "vipIds"),
+            type = "list",
+            name = "vipIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        vmFileSystemStorage = schema.new({
+            id = id.from(_N, "ExadbVmCluster", "vmFileSystemStorage"),
+            type = "structure",
+            name = "vmFileSystemStorage",
+            target_id = id.from(_N, "ExadbVmClusterStorageDetails"),
+            target = M.ExadbVmClusterStorageDetails,
+        }),
+    },
+})
+
+M.ExadbVmClusterSummary = schema.new({
+    id = id.from(_N, "ExadbVmClusterSummary"),
+    type = "structure",
+    members = {
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clusterName = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        dataCollectionOptions = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "dataCollectionOptions"),
+            type = "structure",
+            name = "dataCollectionOptions",
+            target_id = id.from(_N, "DataCollectionOptions"),
+            target = M.DataCollectionOptions,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        domain = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "domain"),
+            type = "string",
+            name = "domain",
+            target_id = prelude.String.id,
+        }),
+        enabledEcpuCount = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "enabledEcpuCount"),
+            type = "integer",
+            name = "enabledEcpuCount",
+            target_id = prelude.Integer.id,
+        }),
+        exadbVmClusterArn = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "exadbVmClusterArn"),
+            type = "string",
+            name = "exadbVmClusterArn",
+            target_id = prelude.String.id,
+        }),
+        exascaleDbStorageVaultArn = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "exascaleDbStorageVaultArn"),
+            type = "string",
+            name = "exascaleDbStorageVaultArn",
+            target_id = prelude.String.id,
+        }),
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+        }),
+        giVersion = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "giVersion"),
+            type = "string",
+            name = "giVersion",
+            target_id = prelude.String.id,
+        }),
+        gridImageId = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "gridImageId"),
+            type = "string",
+            name = "gridImageId",
+            target_id = prelude.String.id,
+        }),
+        gridImageType = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "gridImageType"),
+            type = "string",
+            name = "gridImageType",
+            target_id = prelude.String.id,
+        }),
+        hostname = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "hostname"),
+            type = "string",
+            name = "hostname",
+            target_id = prelude.String.id,
+        }),
+        iamRoles = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "iamRoles"),
+            type = "list",
+            name = "iamRoles",
+            target_id = prelude.Document.id,
+            list_member = M.IamRole,
+        }),
+        iormConfigCache = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "iormConfigCache"),
+            type = "structure",
+            name = "iormConfigCache",
+            target_id = id.from(_N, "ExadataIormConfig"),
+            target = M.ExadataIormConfig,
+        }),
+        lastUpdateHistoryEntryId = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "lastUpdateHistoryEntryId"),
+            type = "string",
+            name = "lastUpdateHistoryEntryId",
+            target_id = prelude.String.id,
+        }),
+        licenseModel = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "licenseModel"),
+            type = "string",
+            name = "licenseModel",
+            target_id = prelude.String.id,
+        }),
+        listenerPort = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "listenerPort"),
+            type = "integer",
+            name = "listenerPort",
+            target_id = prelude.Integer.id,
+        }),
+        memorySizeInGBs = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "memorySizeInGBs"),
+            type = "integer",
+            name = "memorySizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        nodeCount = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "nodeCount"),
+            type = "integer",
+            name = "nodeCount",
+            target_id = prelude.Integer.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        ociResourceAnchorName = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "ociResourceAnchorName"),
+            type = "string",
+            name = "ociResourceAnchorName",
+            target_id = prelude.String.id,
+        }),
+        ociUrl = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "ociUrl"),
+            type = "string",
+            name = "ociUrl",
+            target_id = prelude.String.id,
+        }),
+        odbNetworkArn = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "odbNetworkArn"),
+            type = "string",
+            name = "odbNetworkArn",
+            target_id = prelude.String.id,
+        }),
+        odbNetworkId = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "odbNetworkId"),
+            type = "string",
+            name = "odbNetworkId",
+            target_id = prelude.String.id,
+        }),
+        percentProgress = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "percentProgress"),
+            type = "float",
+            name = "percentProgress",
+            target_id = prelude.Float.id,
+        }),
+        scanDnsName = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "scanDnsName"),
+            type = "string",
+            name = "scanDnsName",
+            target_id = prelude.String.id,
+        }),
+        scanDnsRecordId = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "scanDnsRecordId"),
+            type = "string",
+            name = "scanDnsRecordId",
+            target_id = prelude.String.id,
+        }),
+        scanIpIds = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "scanIpIds"),
+            type = "list",
+            name = "scanIpIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        scanListenerPortTcp = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "scanListenerPortTcp"),
+            type = "integer",
+            name = "scanListenerPortTcp",
+            target_id = prelude.Integer.id,
+        }),
+        scanListenerPortTcpSsl = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "scanListenerPortTcpSsl"),
+            type = "integer",
+            name = "scanListenerPortTcpSsl",
+            target_id = prelude.Integer.id,
+        }),
+        shape = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "shape"),
+            type = "string",
+            name = "shape",
+            target_id = prelude.String.id,
+        }),
+        shapeAttribute = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "shapeAttribute"),
+            type = "string",
+            name = "shapeAttribute",
+            target_id = prelude.String.id,
+        }),
+        snapshotFileSystemStorage = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "snapshotFileSystemStorage"),
+            type = "structure",
+            name = "snapshotFileSystemStorage",
+            target_id = id.from(_N, "ExadbVmClusterStorageDetails"),
+            target = M.ExadbVmClusterStorageDetails,
+        }),
+        sshPublicKeys = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "sshPublicKeys"),
+            type = "list",
+            name = "sshPublicKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        systemVersion = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "systemVersion"),
+            type = "string",
+            name = "systemVersion",
+            target_id = prelude.String.id,
+        }),
+        timeZone = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "timeZone"),
+            type = "string",
+            name = "timeZone",
+            target_id = prelude.String.id,
+        }),
+        totalEcpuCount = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "totalEcpuCount"),
+            type = "integer",
+            name = "totalEcpuCount",
+            target_id = prelude.Integer.id,
+        }),
+        totalFileSystemStorage = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "totalFileSystemStorage"),
+            type = "structure",
+            name = "totalFileSystemStorage",
+            target_id = id.from(_N, "ExadbVmClusterStorageDetails"),
+            target = M.ExadbVmClusterStorageDetails,
+        }),
+        vipIds = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "vipIds"),
+            type = "list",
+            name = "vipIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        vmFileSystemStorage = schema.new({
+            id = id.from(_N, "ExadbVmClusterSummary", "vmFileSystemStorage"),
+            type = "structure",
+            name = "vmFileSystemStorage",
+            target_id = id.from(_N, "ExadbVmClusterStorageDetails"),
+            target = M.ExadbVmClusterStorageDetails,
+        }),
+    },
+})
+
+M.GetExadbVmClusterInput = schema.new({
+    id = id.from(_N, "GetExadbVmClusterInput"),
+    type = "structure",
+    members = {
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "GetExadbVmClusterInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetExadbVmClusterOutput = schema.new({
+    id = id.from(_N, "GetExadbVmClusterOutput"),
+    type = "structure",
+    members = {
+        exadbVmCluster = schema.new({
+            id = id.from(_N, "GetExadbVmClusterOutput", "exadbVmCluster"),
+            type = "structure",
+            name = "exadbVmCluster",
+            target_id = id.from(_N, "ExadbVmCluster"),
+            target = M.ExadbVmCluster,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListExadbVmClustersInput = schema.new({
+    id = id.from(_N, "ListExadbVmClustersInput"),
+    type = "structure",
+    members = {
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "ListExadbVmClustersInput", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "exascaleDbStorageVaultId" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListExadbVmClustersInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListExadbVmClustersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListExadbVmClustersOutput = schema.new({
+    id = id.from(_N, "ListExadbVmClustersOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListExadbVmClustersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        exadbVmClusters = schema.new({
+            id = id.from(_N, "ListExadbVmClustersOutput", "exadbVmClusters"),
+            type = "list",
+            name = "exadbVmClusters",
+            target_id = prelude.Document.id,
+            list_member = M.ExadbVmClusterSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateExadbVmClusterInput = schema.new({
+    id = id.from(_N, "UpdateExadbVmClusterInput"),
+    type = "structure",
+    members = {
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dataCollectionOptions = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "dataCollectionOptions"),
+            type = "structure",
+            name = "dataCollectionOptions",
+            target_id = id.from(_N, "DataCollectionOptions"),
+            target = M.DataCollectionOptions,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        enabledEcpuCount = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "enabledEcpuCount"),
+            type = "integer",
+            name = "enabledEcpuCount",
+            target_id = prelude.Integer.id,
+        }),
+        gridImageId = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "gridImageId"),
+            type = "string",
+            name = "gridImageId",
+            target_id = prelude.String.id,
+        }),
+        licenseModel = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "licenseModel"),
+            type = "string",
+            name = "licenseModel",
+            target_id = prelude.String.id,
+        }),
+        sshPublicKeys = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "sshPublicKeys"),
+            type = "list",
+            name = "sshPublicKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        systemVersion = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "systemVersion"),
+            type = "string",
+            name = "systemVersion",
+            target_id = prelude.String.id,
+        }),
+        totalEcpuCount = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "totalEcpuCount"),
+            type = "integer",
+            name = "totalEcpuCount",
+            target_id = prelude.Integer.id,
+        }),
+        updateAction = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "updateAction"),
+            type = "string",
+            name = "updateAction",
+            target_id = prelude.String.id,
+        }),
+        vmFileSystemStorageTotalSizeInGBs = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterInput", "vmFileSystemStorageTotalSizeInGBs"),
+            type = "integer",
+            name = "vmFileSystemStorageTotalSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.UpdateExadbVmClusterOutput = schema.new({
+    id = id.from(_N, "UpdateExadbVmClusterOutput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        exadbVmClusterId = schema.new({
+            id = id.from(_N, "UpdateExadbVmClusterOutput", "exadbVmClusterId"),
+            type = "string",
+            name = "exadbVmClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExascaleDbStorageDetails = schema.new({
+    id = id.from(_N, "ExascaleDbStorageDetails"),
+    type = "structure",
+    members = {
+        availableSizeInGBs = schema.new({
+            id = id.from(_N, "ExascaleDbStorageDetails", "availableSizeInGBs"),
+            type = "integer",
+            name = "availableSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        totalSizeInGBs = schema.new({
+            id = id.from(_N, "ExascaleDbStorageDetails", "totalSizeInGBs"),
+            type = "integer",
+            name = "totalSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ExascaleDbStorageVault = schema.new({
+    id = id.from(_N, "ExascaleDbStorageVault"),
+    type = "structure",
+    members = {
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        additionalFlashCacheInPercent = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "additionalFlashCacheInPercent"),
+            type = "integer",
+            name = "additionalFlashCacheInPercent",
+            target_id = prelude.Integer.id,
+        }),
+        attachedShapeAttributes = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "attachedShapeAttributes"),
+            type = "list",
+            name = "attachedShapeAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        autoscaleLimitInGBs = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "autoscaleLimitInGBs"),
+            type = "integer",
+            name = "autoscaleLimitInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        availabilityZone = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "availabilityZone"),
+            type = "string",
+            name = "availabilityZone",
+            target_id = prelude.String.id,
+        }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        vmClusterArns = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "vmClusterArns"),
+            type = "list",
+            name = "vmClusterArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        vmClusterCount = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "vmClusterCount"),
+            type = "integer",
+            name = "vmClusterCount",
+            target_id = prelude.Integer.id,
+        }),
+        vmClusterIds = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "vmClusterIds"),
+            type = "list",
+            name = "vmClusterIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        exascaleDbStorageVaultArn = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "exascaleDbStorageVaultArn"),
+            type = "string",
+            name = "exascaleDbStorageVaultArn",
+            target_id = prelude.String.id,
+        }),
+        highCapacityDatabaseStorage = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "highCapacityDatabaseStorage"),
+            type = "structure",
+            name = "highCapacityDatabaseStorage",
+            target_id = id.from(_N, "ExascaleDbStorageDetails"),
+            target = M.ExascaleDbStorageDetails,
+        }),
+        isAutoscaleEnabled = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "isAutoscaleEnabled"),
+            type = "boolean",
+            name = "isAutoscaleEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        ociResourceAnchorName = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "ociResourceAnchorName"),
+            type = "string",
+            name = "ociResourceAnchorName",
+            target_id = prelude.String.id,
+        }),
+        ociUrl = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "ociUrl"),
+            type = "string",
+            name = "ociUrl",
+            target_id = prelude.String.id,
+        }),
+        percentProgress = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "percentProgress"),
+            type = "float",
+            name = "percentProgress",
+            target_id = prelude.Float.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        timeZone = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVault", "timeZone"),
+            type = "string",
+            name = "timeZone",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExascaleDbStorageVaultSummary = schema.new({
+    id = id.from(_N, "ExascaleDbStorageVaultSummary"),
+    type = "structure",
+    members = {
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        additionalFlashCacheInPercent = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "additionalFlashCacheInPercent"),
+            type = "integer",
+            name = "additionalFlashCacheInPercent",
+            target_id = prelude.Integer.id,
+        }),
+        attachedShapeAttributes = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "attachedShapeAttributes"),
+            type = "list",
+            name = "attachedShapeAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        autoscaleLimitInGBs = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "autoscaleLimitInGBs"),
+            type = "integer",
+            name = "autoscaleLimitInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        availabilityZone = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "availabilityZone"),
+            type = "string",
+            name = "availabilityZone",
+            target_id = prelude.String.id,
+        }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        vmClusterArns = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "vmClusterArns"),
+            type = "list",
+            name = "vmClusterArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        vmClusterCount = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "vmClusterCount"),
+            type = "integer",
+            name = "vmClusterCount",
+            target_id = prelude.Integer.id,
+        }),
+        vmClusterIds = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "vmClusterIds"),
+            type = "list",
+            name = "vmClusterIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        exascaleDbStorageVaultArn = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "exascaleDbStorageVaultArn"),
+            type = "string",
+            name = "exascaleDbStorageVaultArn",
+            target_id = prelude.String.id,
+        }),
+        highCapacityDatabaseStorage = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "highCapacityDatabaseStorage"),
+            type = "structure",
+            name = "highCapacityDatabaseStorage",
+            target_id = id.from(_N, "ExascaleDbStorageDetails"),
+            target = M.ExascaleDbStorageDetails,
+        }),
+        isAutoscaleEnabled = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "isAutoscaleEnabled"),
+            type = "boolean",
+            name = "isAutoscaleEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        ociResourceAnchorName = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "ociResourceAnchorName"),
+            type = "string",
+            name = "ociResourceAnchorName",
+            target_id = prelude.String.id,
+        }),
+        ociUrl = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "ociUrl"),
+            type = "string",
+            name = "ociUrl",
+            target_id = prelude.String.id,
+        }),
+        percentProgress = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "percentProgress"),
+            type = "float",
+            name = "percentProgress",
+            target_id = prelude.Float.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        timeZone = schema.new({
+            id = id.from(_N, "ExascaleDbStorageVaultSummary", "timeZone"),
+            type = "string",
+            name = "timeZone",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetExascaleDbStorageVaultInput = schema.new({
+    id = id.from(_N, "GetExascaleDbStorageVaultInput"),
+    type = "structure",
+    members = {
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "GetExascaleDbStorageVaultInput", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetExascaleDbStorageVaultOutput = schema.new({
+    id = id.from(_N, "GetExascaleDbStorageVaultOutput"),
+    type = "structure",
+    members = {
+        exascaleDbStorageVault = schema.new({
+            id = id.from(_N, "GetExascaleDbStorageVaultOutput", "exascaleDbStorageVault"),
+            type = "structure",
+            name = "exascaleDbStorageVault",
+            target_id = id.from(_N, "ExascaleDbStorageVault"),
+            target = M.ExascaleDbStorageVault,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListExascaleDbStorageVaultsInput = schema.new({
+    id = id.from(_N, "ListExascaleDbStorageVaultsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListExascaleDbStorageVaultsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListExascaleDbStorageVaultsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListExascaleDbStorageVaultsOutput = schema.new({
+    id = id.from(_N, "ListExascaleDbStorageVaultsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListExascaleDbStorageVaultsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        exascaleDbStorageVaults = schema.new({
+            id = id.from(_N, "ListExascaleDbStorageVaultsOutput", "exascaleDbStorageVaults"),
+            type = "list",
+            name = "exascaleDbStorageVaults",
+            target_id = prelude.Document.id,
+            list_member = M.ExascaleDbStorageVaultSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateExascaleDbStorageVaultInput = schema.new({
+    id = id.from(_N, "UpdateExascaleDbStorageVaultInput"),
+    type = "structure",
+    members = {
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultInput", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        additionalFlashCacheInPercent = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultInput", "additionalFlashCacheInPercent"),
+            type = "integer",
+            name = "additionalFlashCacheInPercent",
+            target_id = prelude.Integer.id,
+        }),
+        autoscaleLimitInGBs = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultInput", "autoscaleLimitInGBs"),
+            type = "integer",
+            name = "autoscaleLimitInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        highCapacityDatabaseStorageTotalSizeInGBs = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultInput", "highCapacityDatabaseStorageTotalSizeInGBs"),
+            type = "integer",
+            name = "highCapacityDatabaseStorageTotalSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        isAutoscaleEnabled = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultInput", "isAutoscaleEnabled"),
+            type = "boolean",
+            name = "isAutoscaleEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateExascaleDbStorageVaultOutput = schema.new({
+    id = id.from(_N, "UpdateExascaleDbStorageVaultOutput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        exascaleDbStorageVaultId = schema.new({
+            id = id.from(_N, "UpdateExascaleDbStorageVaultOutput", "exascaleDbStorageVaultId"),
+            type = "string",
+            name = "exascaleDbStorageVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.GetOciOnboardingStatusInput = schema.new({
@@ -10021,6 +11805,28 @@ M.GetOdbPeeringConnectionOutput = schema.new({
     },
 })
 
+M.GiMinorVersionSummary = schema.new({
+    id = id.from(_N, "GiMinorVersionSummary"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "GiMinorVersionSummary", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        gridImageId = schema.new({
+            id = id.from(_N, "GiMinorVersionSummary", "gridImageId"),
+            type = "string",
+            name = "gridImageId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GiVersionSummary = schema.new({
     id = id.from(_N, "GiVersionSummary"),
     type = "structure",
@@ -10203,6 +12009,12 @@ M.ListDbSystemShapesInput = schema.new({
             name = "availabilityZoneId",
             target_id = prelude.String.id,
         }),
+        shapeFamily = schema.new({
+            id = id.from(_N, "ListDbSystemShapesInput", "shapeFamily"),
+            type = "string",
+            name = "shapeFamily",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -10222,6 +12034,75 @@ M.ListDbSystemShapesOutput = schema.new({
             name = "dbSystemShapes",
             target_id = prelude.Document.id,
             list_member = M.DbSystemShapeSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListGiMinorVersionsInput = schema.new({
+    id = id.from(_N, "ListGiMinorVersionsInput"),
+    type = "structure",
+    members = {
+        giVersion = schema.new({
+            id = id.from(_N, "ListGiMinorVersionsInput", "giVersion"),
+            type = "string",
+            name = "giVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListGiMinorVersionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGiMinorVersionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        shapeFamily = schema.new({
+            id = id.from(_N, "ListGiMinorVersionsInput", "shapeFamily"),
+            type = "string",
+            name = "shapeFamily",
+            target_id = prelude.String.id,
+        }),
+        availabilityZone = schema.new({
+            id = id.from(_N, "ListGiMinorVersionsInput", "availabilityZone"),
+            type = "string",
+            name = "availabilityZone",
+            target_id = prelude.String.id,
+        }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "ListGiMinorVersionsInput", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGiMinorVersionsOutput = schema.new({
+    id = id.from(_N, "ListGiMinorVersionsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListGiMinorVersionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        giMinorVersions = schema.new({
+            id = id.from(_N, "ListGiMinorVersionsOutput", "giMinorVersions"),
+            type = "list",
+            name = "giMinorVersions",
+            target_id = prelude.Document.id,
+            list_member = M.GiMinorVersionSummary,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -11046,6 +12927,17 @@ M.AssociateIamRoleToResource = schema.operation({
     },
 })
 
+M.AssociateVirtualMachinesToExadbVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "AssociateVirtualMachinesToExadbVmCluster"),
+    input = M.AssociateVirtualMachinesToExadbVmClusterInput,
+    output = M.AssociateVirtualMachinesToExadbVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateAutonomousDatabase = schema.operation({
     id = id.from("com.amazonaws.odb", "CreateAutonomousDatabase"),
     input = M.CreateAutonomousDatabaseInput,
@@ -11105,6 +12997,28 @@ M.CreateCloudVmCluster = schema.operation({
     id = id.from("com.amazonaws.odb", "CreateCloudVmCluster"),
     input = M.CreateCloudVmClusterInput,
     output = M.CreateCloudVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExadbVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateExadbVmCluster"),
+    input = M.CreateExadbVmClusterInput,
+    output = M.CreateExadbVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateExascaleDbStorageVault = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateExascaleDbStorageVault"),
+    input = M.CreateExascaleDbStorageVaultInput,
+    output = M.CreateExascaleDbStorageVaultOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -11189,6 +13103,28 @@ M.DeleteCloudVmCluster = schema.operation({
     },
 })
 
+M.DeleteExadbVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteExadbVmCluster"),
+    input = M.DeleteExadbVmClusterInput,
+    output = M.DeleteExadbVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteExascaleDbStorageVault = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteExascaleDbStorageVault"),
+    input = M.DeleteExascaleDbStorageVaultInput,
+    output = M.DeleteExascaleDbStorageVaultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteOdbNetwork = schema.operation({
     id = id.from("com.amazonaws.odb", "DeleteOdbNetwork"),
     input = M.DeleteOdbNetworkInput,
@@ -11215,6 +13151,17 @@ M.DisassociateIamRoleFromResource = schema.operation({
     id = id.from("com.amazonaws.odb", "DisassociateIamRoleFromResource"),
     input = M.DisassociateIamRoleFromResourceInput,
     output = M.DisassociateIamRoleFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateVirtualMachinesFromExadbVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "DisassociateVirtualMachinesFromExadbVmCluster"),
+    input = M.DisassociateVirtualMachinesFromExadbVmClusterInput,
+    output = M.DisassociateVirtualMachinesFromExadbVmClusterOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -11325,6 +13272,28 @@ M.GetDbServer = schema.operation({
     id = id.from("com.amazonaws.odb", "GetDbServer"),
     input = M.GetDbServerInput,
     output = M.GetDbServerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExadbVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetExadbVmCluster"),
+    input = M.GetExadbVmClusterInput,
+    output = M.GetExadbVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetExascaleDbStorageVault = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetExascaleDbStorageVault"),
+    input = M.GetExascaleDbStorageVaultInput,
+    output = M.GetExascaleDbStorageVaultOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -11512,6 +13481,39 @@ M.ListDbSystemShapes = schema.operation({
     id = id.from("com.amazonaws.odb", "ListDbSystemShapes"),
     input = M.ListDbSystemShapesInput,
     output = M.ListDbSystemShapesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExadbVmClusters = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListExadbVmClusters"),
+    input = M.ListExadbVmClustersInput,
+    output = M.ListExadbVmClustersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExascaleDbStorageVaults = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListExascaleDbStorageVaults"),
+    input = M.ListExascaleDbStorageVaultsInput,
+    output = M.ListExascaleDbStorageVaultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGiMinorVersions = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListGiMinorVersions"),
+    input = M.ListGiMinorVersionsInput,
+    output = M.ListGiMinorVersionsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -11721,6 +13723,28 @@ M.UpdateCloudExadataInfrastructure = schema.operation({
     id = id.from("com.amazonaws.odb", "UpdateCloudExadataInfrastructure"),
     input = M.UpdateCloudExadataInfrastructureInput,
     output = M.UpdateCloudExadataInfrastructureOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExadbVmCluster = schema.operation({
+    id = id.from("com.amazonaws.odb", "UpdateExadbVmCluster"),
+    input = M.UpdateExadbVmClusterInput,
+    output = M.UpdateExadbVmClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExascaleDbStorageVault = schema.operation({
+    id = id.from("com.amazonaws.odb", "UpdateExascaleDbStorageVault"),
+    input = M.UpdateExascaleDbStorageVaultInput,
+    output = M.UpdateExascaleDbStorageVaultOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -8453,6 +8453,22 @@ local record M
         AppendedColumns: {AppendedColumn}
     end
 
+    enum ApplicableToType
+        "GROUP"
+    end
+
+    -- The scoping configuration that determines which principals an approval policy applies to.
+    record ApplicableTo
+        -- The type of scoping that determines which principals the approval policy applies to. Valid values
+        -- are defined as follows:
+        -- GROUP: The policy applies only to principals in the groups specified by
+        -- GroupArns. When you use GROUP, you must also provide a value for
+        -- GroupArns.
+        Type: string
+        -- The list of group ARNs that the policy applies to. Required when type is GROUP.
+        GroupArns: {string}
+    end
+
     -- The color palette.
     record Palette
         -- The foreground color.
@@ -8513,6 +8529,41 @@ local record M
         ContextualAccentPalette: ContextualAccentPalette
         -- The element style.
         BrandElementStyle: BrandElementStyle
+    end
+
+    enum GovernedAction
+        "SHARE"
+    end
+
+    enum AssetType
+        "AGENT"
+        "SPACE"
+        "KNOWLEDGE_BASE"
+    end
+
+    -- A governance approval policy that specifies which principals and governed actions require
+    -- approval, and which assets the policy applies to.
+    record ApprovalPolicy
+        -- The unique identifier of the approval policy.
+        PolicyId: string
+        -- The Amazon Resource Name (ARN) of the approval policy.
+        PolicyArn: string
+        -- The name of the approval policy.
+        Name: string
+        -- A description of the approval policy.
+        Description: string
+        -- The list of governed actions that trigger the approval workflow.
+        Actions: {string}
+        -- The list of asset types that the approval policy applies to.
+        AssetTypes: {string}
+        -- The scoping configuration that determines who the approval policy applies to.
+        ApplicableTo: ApplicableTo
+        -- The list of group ARNs whose members can approve requests.
+        ApprovalGroups: {string}
+        -- The date and time that the approval policy was created.
+        CreatedAt: number
+        -- The date and time that the approval policy was last updated.
+        UpdatedAt: number
     end
 
     enum AssetBundleExportJobAnalysisPropertyToOverride
@@ -8647,6 +8698,22 @@ local record M
         Properties: {string}
     end
 
+    enum AssetBundleExportJobTopicV2PropertyToOverride
+        "Name"
+        "Description"
+    end
+
+    -- Controls how a specific Topic resource is parameterized in the returned
+    -- CloudFormation template.
+    record AssetBundleExportJobTopicV2OverrideProperties
+        -- The ARN of the specific Topic resource whose override properties are
+        -- configured in this structure.
+        Arn: string
+        -- A list of Topic resource properties to generate variables for in the
+        -- returned CloudFormation template.
+        Properties: {string}
+    end
+
     enum AssetBundleExportJobVPCConnectionPropertyToOverride
         "Name"
         "DnsResolvers"
@@ -8694,6 +8761,9 @@ local record M
         -- An optional list of structures that controls how Folder resources are
         -- parameterized in the returned CloudFormation template.
         Folders: {AssetBundleExportJobFolderOverrideProperties}
+        -- An optional list of structures that controls how Topic resources are
+        -- parameterized in the returned CloudFormation template.
+        TopicsV2: {AssetBundleExportJobTopicV2OverrideProperties}
     end
 
     enum AssetBundleExportFormat
@@ -9568,6 +9638,16 @@ local record M
         Name: string
     end
 
+    -- The override parameters for a single topic that is being imported.
+    record AssetBundleImportJobTopicV2OverrideParameters
+        -- The ID of the topic that you want to apply overrides to.
+        TopicId: string
+        -- A new name for the topic.
+        Name: string
+        -- A new description for the topic.
+        Description: string
+    end
+
     -- The override parameters for a single VPC connection that is imported.
     record AssetBundleImportJobVPCConnectionOverrideParameters
         -- The ID of the VPC Connection to apply overrides to.
@@ -9618,6 +9698,9 @@ local record M
         -- A list of overrides for any Folder resources that are present in the asset
         -- bundle that is imported.
         Folders: {AssetBundleImportJobFolderOverrideParameters}
+        -- A list of overrides for any Topic resources that are present in the asset
+        -- bundle that is imported.
+        TopicsV2: {AssetBundleImportJobTopicV2OverrideParameters}
     end
 
     -- An object that contains a list of permissions to be applied to a list of theme
@@ -9627,6 +9710,16 @@ local record M
         -- override all themes in this asset bundle.
         ThemeIds: {string}
         -- A list of permissions for the themes that you want to apply overrides to.
+        Permissions: AssetBundleResourcePermissions
+    end
+
+    -- An object that contains a list of permissions to be applied to a list of topic
+    -- IDs.
+    record AssetBundleImportJobTopicV2OverridePermissions
+        -- A list of topic IDs that you want to apply overrides to. You can use * to
+        -- override all topics in this asset bundle.
+        TopicIds: {string}
+        -- A list of permissions for the topics that you want to apply overrides to.
         Permissions: AssetBundleResourcePermissions
     end
 
@@ -9650,6 +9743,8 @@ local record M
         Dashboards: {AssetBundleImportJobDashboardOverridePermissions}
         -- A list of permissions for the folders that you want to apply overrides to.
         Folders: {AssetBundleImportJobFolderOverridePermissions}
+        -- A list of permissions for the topics that you want to apply overrides to.
+        TopicsV2: {AssetBundleImportJobTopicV2OverridePermissions}
     end
 
     -- An object that contains a list of tags to be assigned to a list of theme IDs.
@@ -9658,6 +9753,15 @@ local record M
         -- override all themes in this asset bundle.
         ThemeIds: {string}
         -- A list of tags for the themes that you want to apply overrides to.
+        Tags: {Tag}
+    end
+
+    -- An object that contains a list of tags to be assigned to a list of topic IDs.
+    record AssetBundleImportJobTopicV2OverrideTags
+        -- A list of topic IDs that you want to apply overrides to. You can use * to
+        -- override all topics in this asset bundle.
+        TopicIds: {string}
+        -- A list of tags for the topics that you want to apply overrides to.
         Tags: {Tag}
     end
 
@@ -9695,6 +9799,9 @@ local record M
         -- A list of tag overrides for any Folder resources that are present in the
         -- asset bundle that is imported.
         Folders: {AssetBundleImportJobFolderOverrideTags}
+        -- A list of tag overrides for any Topic resources that are present in the
+        -- asset bundle that is imported.
+        TopicsV2: {AssetBundleImportJobTopicV2OverrideTags}
     end
 
     -- An optional parameter that overrides the validation strategy for all analyses and
@@ -10439,6 +10546,93 @@ local record M
         Message: string
         -- The Amazon Web Services request ID for this request.
         RequestId: string
+    end
+
+    enum ResourceType
+        "INDEX_STORAGE"
+        "AGENT_HOURS"
+    end
+
+    -- Identifies a user for the BatchDescribeUserLimits operation.
+    record UserLimitsEntry
+        -- The name of the user.
+        userName: string
+        -- The namespace of the user.
+        namespace: string
+    end
+
+    record BatchDescribeUserLimitsInput
+        -- The ID of the Amazon Web Services account that contains the users.
+        accountId: string
+        -- A list of users to describe limits for. Each entry contains a user name and namespace.
+        users: {UserLimitsEntry}
+        -- An optional filter that limits the results to specific resource types. If you don't specify a value, the operation returns limits for all resource types.
+        resourceTypes: {string}
+    end
+
+    -- Information about a user whose limits could not be described in a batch operation.
+    record BatchDescribeUserLimitsError
+        -- The name of the user that failed.
+        userName: string
+        -- The namespace of the user that failed.
+        namespace: string
+        -- The ARN of the user that failed.
+        userArn: string
+        -- The error code for the failure.
+        errorCode: string
+        -- The error message for the failure.
+        message: string
+    end
+
+    enum LimitUnit
+        "MB"
+        "GB"
+        "HOURS"
+        "DAYS"
+    end
+
+    enum LimitSource
+        "DIRECT_USER"
+        "GROUP"
+        "ROLE"
+        "ACCOUNT"
+        "SYSTEM_DEFAULT"
+    end
+
+    -- The effective limit for a resource type that applies to a user, considering all applicable profile assignments and inheritance rules.
+    record EffectiveLimit
+        -- The type of resource that the limit applies to.
+        resourceType: string
+        -- The maximum allowed value for the resource.
+        limitValue: number
+        -- The unit of measurement for the limit.
+        limitUnit: string
+        -- The source from which this limit was inherited. Possible values:
+        -- DIRECT_USER – The limit comes from a profile directly assigned to the user.
+        -- GROUP – The limit comes from a profile assigned to a group the user belongs to.
+        -- ROLE – The limit comes from a profile assigned to a role the user has.
+        -- ACCOUNT – The limit comes from the account-level default profile.
+        -- SYSTEM_DEFAULT – The limit comes from the built-in system default.
+        source: string
+        -- The identifier of the limits profile that defines this limit.
+        profileId: string
+    end
+
+    -- The effective limits for an Amazon Quick Sight user.
+    record UserLimits
+        -- The name of the user.
+        userName: string
+        -- The namespace of the user.
+        namespace: string
+        -- A list of effective limits for the user.
+        effectiveLimits: {EffectiveLimit}
+    end
+
+    record BatchDescribeUserLimitsOutput
+        -- A list of user limits results. Each entry contains the effective limits for a user.
+        userLimits: {UserLimits}
+        -- A list of errors for users whose limits could not be described.
+        errors: {BatchDescribeUserLimitsError}
     end
 
     -- The bookmarks configuration of an embedded dashboard.
@@ -11756,6 +11950,28 @@ local record M
         Message: string
         -- The Amazon Web Services request ID for this request.
         RequestId: string
+    end
+
+    record CreateApprovalPolicyInput
+        -- The unique identifier to assign to the approval policy. You cannot change this value after you create the policy.
+        PolicyId: string
+        -- The name of the approval policy.
+        Name: string
+        -- A description of the approval policy.
+        Description: string
+        -- The list of governed actions that trigger the approval workflow.
+        Actions: {string}
+        -- The list of asset types that the approval policy applies to.
+        AssetTypes: {string}
+        -- The scoping configuration that determines who the approval policy applies to.
+        ApplicableTo: ApplicableTo
+        -- The list of group ARNs whose members can approve requests.
+        ApprovalGroups: {string}
+    end
+
+    record CreateApprovalPolicyOutput
+        -- The approval policy that was created.
+        Policy: ApprovalPolicy
     end
 
     record CreateBrandInput
@@ -13256,6 +13472,76 @@ local record M
         RequestId: string
     end
 
+    -- The credentials for Microsoft Purview DLP integration. The credentials are stored in Amazon Web Services Secrets Manager and referenced by ARN.
+    record MicrosoftPurviewCredentials
+        -- The ARN of the Amazon Web Services Secrets Manager secret that contains the Microsoft Purview OAuth credentials. The secret includes the Azure tenant ID, client ID, and client secret or certificate.
+        SecretArn: string
+    end
+
+    enum DlpAction
+        "ALLOW"
+        "WARN"
+        "BLOCK"
+    end
+
+    -- Maps a sensitivity label from Microsoft Purview to an enforcement action.
+    record LabelActionMapping
+        -- The identifier of the sensitivity label from the DLP provider.
+        LabelId: string
+        -- The display name of the sensitivity label from the DLP provider.
+        LabelName: string
+        -- The enforcement action to apply when content with this sensitivity label is detected. Valid values are ALLOW, BLOCK, and WARN.
+        Action: string
+    end
+
+    -- The full configuration for Microsoft Purview DLP integration, including the provider credentials and the label-action mappings that define the enforcement policy.
+    record MicrosoftPurviewProviderConfig
+        -- The credentials used to authenticate with Microsoft Purview.
+        Credentials: MicrosoftPurviewCredentials
+        -- The mappings from Microsoft Purview sensitivity labels to enforcement actions.
+        LabelActionMappings: {LabelActionMapping}
+        -- The default action to apply to content that has no sensitivity label or whose label is not mapped. Valid values are ALLOW, BLOCK, and WARN.
+        UnmappedAction: string
+    end
+
+    -- The provider-specific configuration for a DLP integration. This is a union type structure. For this structure to be valid, only one of the attributes can be defined.
+    record ProviderConfig
+        -- The configuration for a Microsoft Purview DLP integration.
+        MicrosoftPurview: MicrosoftPurviewProviderConfig
+    end
+
+    enum DlpProviderType
+        "MICROSOFT_PURVIEW"
+    end
+
+    record CreateDlpSettingInput
+        -- The ID of the Amazon Web Services account in which to create the DLP setting.
+        AwsAccountId: string
+        -- A unique identifier for the DLP setting.
+        DlpSettingId: string
+        -- A human-readable display name for the DLP setting.
+        Name: string
+        -- The type of external DLP provider to use for sensitivity label classification. Currently, the only supported value is MICROSOFT_PURVIEW.
+        ProviderType: string
+        -- The provider-specific configuration for the DLP integration. This is a union type structure. For this structure to be valid, only one of the attributes can be defined.
+        ProviderConfig: ProviderConfig
+        -- The behavior to apply when the DLP provider is unreachable. Valid values are ALLOW, WARN, and BLOCK.
+        ProviderOutageAction: string
+        -- Specifies whether DLP enforcement is active for this setting. Set to true to enable enforcement, or false to disable it at time of setting creation.
+        Enabled: boolean
+        -- A list of resource tags to apply to the DLP setting. You can use tags to manage access to your Amazon Web Services resources.
+        Tags: {Tag}
+    end
+
+    record CreateDlpSettingOutput
+        -- The Amazon Resource Name (ARN) of the created DLP setting.
+        Arn: string
+        -- The ID of the created DLP setting.
+        DlpSettingId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
     -- A structure that contains the permission information for one principal against one flow.
     record Permission
         -- A list of actions that the principal can perform against the flow.
@@ -13551,15 +13837,22 @@ local record M
         Status: number
     end
 
-    -- The template configuration for a knowledge base.
+    -- The template configuration for a knowledge base. This object contains connector-specific configuration that defines how data is crawled and indexed.
     record KbTemplateConfiguration
-        -- The template document that defines the knowledge base behavior.
+        -- The connector configuration for the knowledge base data source. The structure depends on the connector type of the data source referenced by DataSourceArn.
+        -- The template must be a JSON object. The required fields vary by connector type:
+        -- Amazon S3 (S3V2) – Requires connectionConfiguration with bucketName. Supports filterConfiguration for inclusion and exclusion prefixes and patterns. Supports accessControlConfiguration and deletionProtectionConfiguration.
+        -- Google Drive (GOOGLEDRIVEV3) – Requires connectionConfiguration with authType set to SERVICE_ACCOUNT. Supports dataEntityConfiguration with crawlMyDrive, crawlSharedWithMe, and crawlSharedDrives.
+        -- OneDrive (ONEDRIVEV3) – Requires authType at the template root level set to TWO_LEGGED_OAUTH. Requires connectionConfiguration with tenantId in UUID format. Supports dataEntityConfiguration with crawlPersonalDrives and crawlSharedWithMe.
+        -- SharePoint (SHAREPOINTV3) – Requires connectionConfiguration with tenantId in UUID format. Supports dataEntityConfiguration with siteUrls, crawlFiles, and crawlPages.
+        -- Web Crawler (WEBCRAWLERV3) – Requires connectionConfiguration with seedUrls or siteMapUrls (mutually exclusive) and authType. Supports crawlConfiguration for crawl depth, rate limits, and scope. Supports filterConfiguration for file size limits and URL patterns. Valid values for authType: NO_AUTH, BASIC_AUTH, FORM, SAML.
+        -- The optional deletionProtectionConfiguration object is supported by all connector types. It contains enableDeletionProtection and deletionProtectionThreshold.
         template: any
     end
 
     -- The configuration settings for a knowledge base.
     record KnowledgeBaseConfiguration
-        -- The template configuration for the knowledge base.
+        -- The template configuration that defines how the data source connector crawls and indexes data for the knowledge base. The template structure varies by connector type. See KbTemplateConfiguration for connector-specific details.
         templateConfiguration: KbTemplateConfiguration
     end
 
@@ -13644,6 +13937,34 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    -- A value that defines a resource usage limit, consisting of a maximum value and a unit of measurement.
+    record ProfileLimitValue
+        -- The maximum allowed value for the resource.
+        maxValue: number
+        -- The unit of measurement for the limit value.
+        unit: string
+    end
+
+    record CreateLimitsProfileInput
+        -- The ID of the Amazon Web Services account that contains the limits profile.
+        accountId: string
+        -- A display name for the limits profile.
+        profileName: string
+        -- A description for the limits profile.
+        description: string
+        -- A map of resource types to their limit values for this profile.
+        resourceLimits: {string : ProfileLimitValue}
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.
+        clientToken: string
+    end
+
+    record CreateLimitsProfileOutput
+        -- The Amazon Resource Name (ARN) of the created limits profile.
+        arn: string
+        -- The unique identifier for the created limits profile.
+        profileId: string
     end
 
     enum IdentityStore
@@ -15506,6 +15827,14 @@ local record M
         RequestId: string
     end
 
+    record DeleteApprovalPolicyInput
+        -- The unique identifier of the approval policy to delete.
+        PolicyId: string
+    end
+
+    record DeleteApprovalPolicyOutput
+    end
+
     record DeleteBrandInput
         -- The ID of the Amazon Web Services account that owns the brand.
         AwsAccountId: string
@@ -15630,6 +15959,22 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record DeleteDlpSettingInput
+        -- The ID of the Amazon Web Services account that contains the DLP setting that you want to delete.
+        AwsAccountId: string
+        -- The ID of the DLP setting that you want to delete.
+        DlpSettingId: string
+    end
+
+    record DeleteDlpSettingOutput
+        -- The Amazon Resource Name (ARN) of the deleted DLP setting.
+        Arn: string
+        -- The ID of the deleted DLP setting.
+        DlpSettingId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
     end
 
     record DeleteFlowInput
@@ -15767,6 +16112,18 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record DeleteLimitsProfileInput
+        -- The unique identifier for the limits profile to delete.
+        profileId: string
+        -- The ID of the Amazon Web Services account that contains the limits profile.
+        accountId: string
+    end
+
+    record DeleteLimitsProfileOutput
+        -- The Amazon Resource Name (ARN) of the deleted limits profile.
+        arn: string
     end
 
     record DeleteNamespaceInput
@@ -16327,6 +16684,16 @@ local record M
         Status: number
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
+    end
+
+    record DescribeApprovalPolicyInput
+        -- The unique identifier of the approval policy to describe.
+        PolicyId: string
+    end
+
+    record DescribeApprovalPolicyOutput
+        -- The approval policy.
+        Policy: ApprovalPolicy
     end
 
     record DescribeAssetBundleExportJobInput
@@ -16927,6 +17294,47 @@ local record M
         ApplicationId: string
     end
 
+    record DescribeDlpSettingInput
+        -- The ID of the Amazon Web Services account that contains the DLP setting that you want to describe.
+        AwsAccountId: string
+        -- The ID of the DLP setting that you want to describe.
+        DlpSettingId: string
+    end
+
+    enum DlpSettingStatus
+        "ACTIVE"
+        "INACTIVE"
+    end
+
+    -- The full configuration details of a DLP setting.
+    record DlpSettingDetails
+        -- The ID of the DLP setting.
+        DlpSettingId: string
+        -- The display name of the DLP setting.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the DLP setting.
+        Arn: string
+        -- The status of the DLP setting. Valid values are ACTIVE and INACTIVE.
+        Status: string
+        -- The type of external DLP provider used for sensitivity label classification.
+        ProviderType: string
+        -- The provider-specific configuration for the DLP integration.
+        ProviderConfig: ProviderConfig
+        -- The behavior applied when the DLP provider is unreachable. Valid values are ALLOW, WARN, and BLOCK.
+        ProviderOutageAction: string
+        -- The date and time that the DLP setting was created, in ISO 8601 format.
+        CreatedAt: number
+        -- The date and time that the DLP setting was most recently updated, in ISO 8601 format.
+        UpdatedAt: number
+    end
+
+    record DescribeDlpSettingOutput
+        -- The full configuration of the requested DLP setting, returned as a DlpSettingDetails object.
+        DlpSetting: DlpSettingDetails
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
     enum FlowPublishState
         "PUBLISHED"
         "DRAFT"
@@ -17455,6 +17863,38 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record DescribeLimitsProfileInput
+        -- The unique identifier for the limits profile.
+        profileId: string
+        -- The ID of the Amazon Web Services account that contains the limits profile.
+        accountId: string
+    end
+
+    -- A limits profile that defines resource usage limits for Amazon Quick Sight users. Limits profiles can be assigned to users, groups, or roles to control resource consumption.
+    record LimitsProfile
+        -- The unique identifier for the limits profile.
+        profileId: string
+        -- The Amazon Resource Name (ARN) of the limits profile.
+        arn: string
+        -- The ID of the Amazon Web Services account that contains the limits profile.
+        accountId: string
+        -- The display name of the limits profile.
+        profileName: string
+        -- The description of the limits profile.
+        description: string
+        -- A map of resource types to their limit values.
+        resourceLimits: {string : ProfileLimitValue}
+        -- The date and time that the limits profile was created.
+        createdAt: number
+        -- The date and time that the limits profile was last updated.
+        updatedAt: number
+    end
+
+    record DescribeLimitsProfileOutput
+        -- The details of the requested limits profile, including its name, description, resource limits, and metadata.
+        profile: LimitsProfile
     end
 
     record DescribeNamespaceInput
@@ -18366,6 +18806,24 @@ local record M
         Status: number
     end
 
+    -- A summary of a DLP setting returned by list operations.
+    record DlpSettingSummary
+        -- The ID of the DLP setting.
+        DlpSettingId: string
+        -- The display name of the DLP setting.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the DLP setting.
+        Arn: string
+        -- The status of the DLP setting. Valid values are ACTIVE and INACTIVE.
+        Status: string
+        -- The type of external DLP provider used for sensitivity label classification.
+        ProviderType: string
+        -- The date and time that the DLP setting was created, in ISO 8601 format.
+        CreatedAt: number
+        -- The date and time that the DLP setting was most recently updated, in ISO 8601 format.
+        UpdatedAt: number
+    end
+
     -- The domain specified isn't on the allow list. All domains for embedded dashboards must be
     -- added to the approved list by an Amazon Quick Suite admin.
     record DomainNotWhitelistedException
@@ -19239,6 +19697,22 @@ local record M
         RequestId: string
     end
 
+    record ListApprovalPoliciesInput
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The maximum number of results to return in a single call. If you don't specify a value, the
+        -- service returns a default number of results. Use the NextToken value in the response
+        -- to retrieve additional results.
+        MaxResults: number
+    end
+
+    record ListApprovalPoliciesOutput
+        -- The list of approval policies.
+        Policies: {ApprovalPolicy}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+    end
+
     record ListAssetBundleExportJobsInput
         -- The ID of the Amazon Web Services account that the export jobs were executed in.
         AwsAccountId: string
@@ -19399,6 +19873,24 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record ListDlpSettingsInput
+        -- The ID of the Amazon Web Services account that contains the DLP settings that you want to list.
+        AwsAccountId: string
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The maximum number of results to return per request.
+        MaxResults: number
+    end
+
+    record ListDlpSettingsOutput
+        -- A list of DlpSettingSummary objects for the DLP settings in the account. The list is empty if no DLP settings have been configured.
+        DlpSettingSummaries: {DlpSettingSummary}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
     end
 
     record ListFlowsInput
@@ -19643,6 +20135,24 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record ListLimitsProfilesInput
+        -- The ID of the Amazon Web Services account that contains the limits profiles.
+        accountId: string
+        -- An optional filter that limits the results to profiles that contain the specified resource type. If you don't specify a value, the operation returns all profiles.
+        resourceType: string
+        -- The maximum number of results to return in a single call. If you don't specify a value, the service uses the default maximum.
+        maxResults: number
+        -- The token for the next set of results, or null if there are no more results.
+        nextToken: string
+    end
+
+    record ListLimitsProfilesOutput
+        -- A list of limits profiles.
+        profiles: {LimitsProfile}
+        -- The token for the next set of results, or null if there are no more results.
+        nextToken: string
     end
 
     record ListNamespacesInput
@@ -21383,6 +21893,28 @@ local record M
         RequestId: string
     end
 
+    record UpdateApprovalPolicyInput
+        -- The unique identifier of the approval policy to update.
+        PolicyId: string
+        -- The name of the approval policy.
+        Name: string
+        -- A description of the approval policy.
+        Description: string
+        -- The list of governed actions that trigger the approval workflow.
+        Actions: {string}
+        -- The list of asset types that the approval policy applies to.
+        AssetTypes: {string}
+        -- The scoping configuration that determines who the approval policy applies to.
+        ApplicableTo: ApplicableTo
+        -- The list of group ARNs whose members can approve requests.
+        ApprovalGroups: {string}
+    end
+
+    record UpdateApprovalPolicyOutput
+        -- The updated approval policy.
+        Policy: ApprovalPolicy
+    end
+
     record UpdateBrandInput
         -- The ID of the Amazon Web Services account that owns the brand.
         AwsAccountId: string
@@ -21790,6 +22322,32 @@ local record M
         Status: number
     end
 
+    record UpdateDlpSettingInput
+        -- The ID of the Amazon Web Services account that contains the DLP setting that you want to update.
+        AwsAccountId: string
+        -- The ID of the DLP setting that you want to update.
+        DlpSettingId: string
+        -- An updated display name for the DLP setting.
+        Name: string
+        -- An updated DLP provider type. Currently, the only supported value is MICROSOFT_PURVIEW.
+        ProviderType: string
+        -- An updated provider-specific configuration for the DLP integration. This is a union type structure. For this structure to be valid, only one of the attributes can be defined.
+        ProviderConfig: ProviderConfig
+        -- An updated behavior to apply when the DLP provider is unreachable. Valid values are ALLOW, WARN, and BLOCK.
+        ProviderOutageAction: string
+        -- Specifies whether DLP enforcement is active for this setting. Set to true to enable enforcement, or false to disable it.
+        Enabled: boolean
+    end
+
+    record UpdateDlpSettingOutput
+        -- The Amazon Resource Name (ARN) of the updated DLP setting.
+        Arn: string
+        -- The ID of the updated DLP setting.
+        DlpSettingId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
     record UpdateFlowInput
         -- The ID of the Amazon Web Services account that contains the flow that you are updating.
         AwsAccountId: string
@@ -22070,6 +22628,24 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record UpdateLimitsProfileInput
+        -- The unique identifier for the limits profile to update.
+        profileId: string
+        -- The ID of the Amazon Web Services account that contains the limits profile.
+        accountId: string
+        -- A new display name for the limits profile.
+        profileName: string
+        -- A new description for the limits profile.
+        description: string
+        -- A map of resource types to their updated limit values.
+        resourceLimits: {string : ProfileLimitValue}
+    end
+
+    record UpdateLimitsProfileOutput
+        -- The Amazon Resource Name (ARN) of the updated limits profile.
+        arn: string
     end
 
     record UpdateOAuthClientApplicationInput

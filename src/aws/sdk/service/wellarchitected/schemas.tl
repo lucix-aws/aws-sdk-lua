@@ -15,6 +15,14 @@ M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.Val
 
 M.ProfileArns = schema.new({ type = "list", list_member = prelude.String })
 
+M.Pillars = schema.new({ type = "list", list_member = prelude.String })
+
+M.AggregationConfigurations = schema.new({ type = "list", list_member = M.AggregationConfiguration })
+
+M.Tags = schema.new({ type = "list", list_member = M.Tag })
+
+M.FieldErrors = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.ProfileQuestionUpdates = schema.new({ type = "list", list_member = M.ProfileQuestionUpdate })
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -37,7 +45,37 @@ M.WorkloadProfileArns = schema.new({ type = "list", list_member = prelude.String
 
 M.ReviewTemplateArns = schema.new({ type = "list", list_member = prelude.String })
 
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImpactDetails = schema.new({ type = "list", list_member = prelude.String })
+
+M.InsightList = schema.new({ type = "list", list_member = M.Insight })
+
+M.Highlights = schema.new({ type = "list", list_member = prelude.String })
+
+M.CrossPillarBenefits = schema.new({ type = "list", list_member = M.CrossPillarBenefit })
+
+M.TradeOffs = schema.new({ type = "list", list_member = M.TradeOff })
+
+M.RecommendationSourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationGoals = schema.new({ type = "list", list_member = M.RecommendationGoal })
+
+M.AgentRecommendationRemediations = schema.new({ type = "list", list_member = M.AgentRecommendationRemediation })
+
 M.ConsolidatedReportMetrics = schema.new({ type = "list", list_member = M.ConsolidatedReportMetric })
+
+M.ContextSummaries = schema.new({ type = "list", list_member = M.ContextSummary })
+
+M.GoalSummaries = schema.new({ type = "list", list_member = M.GoalSummary })
+
+M.AgentProfileSummaries = schema.new({ type = "list", list_member = M.AgentProfileSummary })
+
+M.AgentRecommendationGenerationSummaries = schema.new({ type = "list", list_member = M.AgentRecommendationGenerationSummary })
+
+M.AgentRecommendationItemSummaries = schema.new({ type = "list", list_member = M.AgentRecommendationItemSummary })
+
+M.AgentRecommendationSummaries = schema.new({ type = "list", list_member = M.AgentRecommendationSummary })
 
 M.AnswerSummaries = schema.new({ type = "list", list_member = M.AnswerSummary })
 
@@ -75,6 +113,8 @@ M.WorkloadSummaries = schema.new({ type = "list", list_member = M.WorkloadSummar
 
 M.WorkloadShareSummaries = schema.new({ type = "list", list_member = M.WorkloadShareSummary })
 
+M.RecommendationTypes = schema.new({ type = "list", list_member = prelude.String })
+
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SelectedChoices = schema.new({ type = "list", list_member = prelude.String })
@@ -85,7 +125,23 @@ M.PillarNotes = schema.new({ type = "map", map_key = prelude.String, map_value =
 
 M.ReviewTemplateLensAliases = schema.new({ type = "list", list_member = prelude.String })
 
+M.ContextAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextRegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextAwsServiceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextResourceTagList = schema.new({ type = "list", list_member = M.ContextResourceTag })
+
 M.WorkloadResourceDefinition = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendedFixSteps = schema.new({ type = "list", list_member = prelude.String })
+
+M.GoalIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PillarItems = schema.new({ type = "list", list_member = M.PillarItem })
 
 M.Choices = schema.new({ type = "list", list_member = M.Choice })
 
@@ -109,7 +165,13 @@ M.ReviewTemplatePillarReviewSummaries = schema.new({ type = "list", list_member 
 
 M.SelectedPillars = schema.new({ type = "list", list_member = M.SelectedPillar })
 
+M.Regions = schema.new({ type = "list", list_member = prelude.String })
+
 M.SelectedProfileChoiceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.RemediationSteps = schema.new({ type = "list", list_member = M.RemediationStep })
+
+M.ResourceLinks = schema.new({ type = "list", list_member = M.ResourceLink })
 
 M.LensMetrics = schema.new({ type = "list", list_member = M.LensMetric })
 
@@ -118,6 +180,8 @@ M.ChoiceAnswerSummaries = schema.new({ type = "list", list_member = M.ChoiceAnsw
 M.AccountSummary = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
 
 M.ChoiceImprovementPlans = schema.new({ type = "list", list_member = M.ChoiceImprovementPlan })
+
+M.ItemIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.AdditionalResourcesList = schema.new({ type = "list", list_member = M.AdditionalResources })
 
@@ -267,6 +331,693 @@ M.AdditionalResources = schema.new({
             name = "Content",
             target_id = prelude.Document.id,
             list_member = M.ChoiceContent,
+        }),
+    },
+})
+
+M.AggregationConfiguration = schema.new({
+    id = id.from(_N, "AggregationConfiguration"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AggregationConfiguration", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regions = schema.new({
+            id = id.from(_N, "AggregationConfiguration", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accessRoleArn = schema.new({
+            id = id.from(_N, "AggregationConfiguration", "accessRoleArn"),
+            type = "string",
+            name = "accessRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "Tag", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "Tag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentProfileSummary = schema.new({
+    id = id.from(_N, "AgentProfileSummary"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationConfiguration = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "aggregationConfiguration"),
+            type = "list",
+            name = "aggregationConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eligibleForScheduledGeneration = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "eligibleForScheduledGeneration"),
+            type = "boolean",
+            name = "eligibleForScheduledGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        eligibleForArchitectureGeneration = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "eligibleForArchitectureGeneration"),
+            type = "boolean",
+            name = "eligibleForArchitectureGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        fieldErrors = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "fieldErrors"),
+            type = "map",
+            name = "fieldErrors",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.AgentRecommendationGenerationSummary = schema.new({
+    id = id.from(_N, "AgentRecommendationGenerationSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        estimatedCompletionTime = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "estimatedCompletionTime"),
+            type = "timestamp",
+            name = "estimatedCompletionTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.AgentRecommendationItemSummary = schema.new({
+    id = id.from(_N, "AgentRecommendationItemSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        recommendationArn = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ResourceLink = schema.new({
+    id = id.from(_N, "ResourceLink"),
+    type = "structure",
+    members = {
+        url = schema.new({
+            id = id.from(_N, "ResourceLink", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "ResourceLink", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemediationStep = schema.new({
+    id = id.from(_N, "RemediationStep"),
+    type = "structure",
+    members = {
+        title = schema.new({
+            id = id.from(_N, "RemediationStep", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        content = schema.new({
+            id = id.from(_N, "RemediationStep", "content"),
+            type = "string",
+            name = "content",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentRecommendationRemediation = schema.new({
+    id = id.from(_N, "AgentRecommendationRemediation"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "AgentRecommendationRemediation", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "AgentRecommendationRemediation", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        steps = schema.new({
+            id = id.from(_N, "AgentRecommendationRemediation", "steps"),
+            type = "list",
+            name = "steps",
+            target_id = prelude.Document.id,
+            list_member = M.RemediationStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceLinks = schema.new({
+            id = id.from(_N, "AgentRecommendationRemediation", "resourceLinks"),
+            type = "list",
+            name = "resourceLinks",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceLink,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "AgentRecommendationRemediation", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AgentRecommendationRemediation", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "AgentRecommendationRemediation", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "AgentRecommendationRemediation", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.Roi = schema.new({
+    id = id.from(_N, "Roi"),
+    type = "structure",
+    members = {
+        estimate = schema.new({
+            id = id.from(_N, "Roi", "estimate"),
+            type = "string",
+            name = "estimate",
+            target_id = prelude.String.id,
+        }),
+        detail = schema.new({
+            id = id.from(_N, "Roi", "detail"),
+            type = "string",
+            name = "detail",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentRecommendationSummary = schema.new({
+    id = id.from(_N, "AgentRecommendationSummary"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        pillar = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "pillar"),
+            type = "string",
+            name = "pillar",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        priority = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        effort = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "effort"),
+            type = "string",
+            name = "effort",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateReason = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "updateReason"),
+            type = "string",
+            name = "updateReason",
+            target_id = prelude.String.id,
+        }),
+        impact = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "impact"),
+            type = "string",
+            name = "impact",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roi = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "roi"),
+            type = "structure",
+            name = "roi",
+            target_id = id.from(_N, "Roi"),
+            target = M.Roi,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        numberOfResources = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "numberOfResources"),
+            type = "integer",
+            name = "numberOfResources",
+            target_id = prelude.Integer.id,
+        }),
+        awsServices = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "awsServices"),
+            type = "list",
+            name = "awsServices",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        businessUnits = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "businessUnits"),
+            type = "list",
+            name = "businessUnits",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        applications = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "applications"),
+            type = "list",
+            name = "applications",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })
@@ -1181,51 +1932,275 @@ M.ConsolidatedReportMetric = schema.new({
     },
 })
 
-M.CreateLensShareInput = schema.new({
-    id = id.from(_N, "CreateLensShareInput"),
+M.ContextResourceTag = schema.new({
+    id = id.from(_N, "ContextResourceTag"),
     type = "structure",
     members = {
-        LensAlias = schema.new({
-            id = id.from(_N, "CreateLensShareInput", "LensAlias"),
+        key = schema.new({
+            id = id.from(_N, "ContextResourceTag", "key"),
             type = "string",
-            name = "LensAlias",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "ContextResourceTag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContextContent = schema.new({
+    id = id.from(_N, "ContextContent"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "ContextContent", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "ContextContent", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        awsServices = schema.new({
+            id = id.from(_N, "ContextContent", "awsServices"),
+            type = "list",
+            name = "awsServices",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        resourceTypes = schema.new({
+            id = id.from(_N, "ContextContent", "resourceTypes"),
+            type = "list",
+            name = "resourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        resourceTags = schema.new({
+            id = id.from(_N, "ContextContent", "resourceTags"),
+            type = "list",
+            name = "resourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ContextResourceTag,
+        }),
+        applicationOverview = schema.new({
+            id = id.from(_N, "ContextContent", "applicationOverview"),
+            type = "string",
+            name = "applicationOverview",
+            target_id = prelude.String.id,
+        }),
+        industry = schema.new({
+            id = id.from(_N, "ContextContent", "industry"),
+            type = "string",
+            name = "industry",
+            target_id = prelude.String.id,
+        }),
+        applicationType = schema.new({
+            id = id.from(_N, "ContextContent", "applicationType"),
+            type = "string",
+            name = "applicationType",
+            target_id = prelude.String.id,
+        }),
+        criticality = schema.new({
+            id = id.from(_N, "ContextContent", "criticality"),
+            type = "string",
+            name = "criticality",
+            target_id = prelude.String.id,
+        }),
+        architectureOverview = schema.new({
+            id = id.from(_N, "ContextContent", "architectureOverview"),
+            type = "string",
+            name = "architectureOverview",
+            target_id = prelude.String.id,
+        }),
+        additionalContext = schema.new({
+            id = id.from(_N, "ContextContent", "additionalContext"),
+            type = "string",
+            name = "additionalContext",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContextSummary = schema.new({
+    id = id.from(_N, "ContextSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ContextSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "ContextSummary", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "ContextSummary", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contextType = schema.new({
+            id = id.from(_N, "ContextSummary", "contextType"),
+            type = "string",
+            name = "contextType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "ContextSummary", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "ContextContent"),
+            target = M.ContextContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        applicationType = schema.new({
+            id = id.from(_N, "ContextSummary", "applicationType"),
+            type = "string",
+            name = "applicationType",
+            target_id = prelude.String.id,
+        }),
+        criticality = schema.new({
+            id = id.from(_N, "ContextSummary", "criticality"),
+            type = "string",
+            name = "criticality",
+            target_id = prelude.String.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "ContextSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ContextSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "ContextSummary", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "ContextSummary", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CreateAgentContextInput = schema.new({
+    id = id.from(_N, "CreateAgentContextRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAgentContextInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "CreateAgentContextInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
             },
         }),
-        SharedWith = schema.new({
-            id = id.from(_N, "CreateLensShareInput", "SharedWith"),
+        title = schema.new({
+            id = id.from(_N, "CreateAgentContextInput", "title"),
             type = "string",
-            name = "SharedWith",
+            name = "title",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        ClientRequestToken = schema.new({
-            id = id.from(_N, "CreateLensShareInput", "ClientRequestToken"),
+        contextType = schema.new({
+            id = id.from(_N, "CreateAgentContextInput", "contextType"),
             type = "string",
-            name = "ClientRequestToken",
+            name = "contextType",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "CreateAgentContextInput", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "ContextContent"),
+            target = M.ContextContent,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
 })
 
-M.CreateLensShareOutput = schema.new({
-    id = id.from(_N, "CreateLensShareOutput"),
+M.CreateAgentContextOutput = schema.new({
+    id = id.from(_N, "CreateAgentContextResponse"),
     type = "structure",
     members = {
-        ShareId = schema.new({
-            id = id.from(_N, "CreateLensShareOutput", "ShareId"),
-            type = "string",
-            name = "ShareId",
-            target_id = prelude.String.id,
+        context = schema.new({
+            id = id.from(_N, "CreateAgentContextOutput", "context"),
+            type = "structure",
+            name = "context",
+            target_id = id.from(_N, "ContextSummary"),
+            target = M.ContextSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -1275,6 +2250,437 @@ M.ServiceQuotaExceededException = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.CreateAgentGoalInput = schema.new({
+    id = id.from(_N, "CreateAgentGoalRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAgentGoalInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "CreateAgentGoalInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "CreateAgentGoalInput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "CreateAgentGoalInput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateAgentGoalInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GoalSummary = schema.new({
+    id = id.from(_N, "GoalSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GoalSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "GoalSummary", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "GoalSummary", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "GoalSummary", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GoalSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "GoalSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GoalSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "GoalSummary", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "GoalSummary", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CreateAgentGoalOutput = schema.new({
+    id = id.from(_N, "CreateAgentGoalResponse"),
+    type = "structure",
+    members = {
+        goal = schema.new({
+            id = id.from(_N, "CreateAgentGoalOutput", "goal"),
+            type = "structure",
+            name = "goal",
+            target_id = id.from(_N, "GoalSummary"),
+            target = M.GoalSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAgentProfileInput = schema.new({
+    id = id.from(_N, "CreateAgentProfileRequest"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationConfiguration = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "aggregationConfiguration"),
+            type = "list",
+            name = "aggregationConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAgentProfileInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAgentProfileOutput = schema.new({
+    id = id.from(_N, "CreateAgentProfileResponse"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationConfiguration = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "aggregationConfiguration"),
+            type = "list",
+            name = "aggregationConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eligibleForScheduledGeneration = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "eligibleForScheduledGeneration"),
+            type = "boolean",
+            name = "eligibleForScheduledGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        eligibleForArchitectureGeneration = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "eligibleForArchitectureGeneration"),
+            type = "boolean",
+            name = "eligibleForArchitectureGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        fieldErrors = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "fieldErrors"),
+            type = "map",
+            name = "fieldErrors",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "CreateAgentProfileOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CreateLensShareInput = schema.new({
+    id = id.from(_N, "CreateLensShareInput"),
+    type = "structure",
+    members = {
+        LensAlias = schema.new({
+            id = id.from(_N, "CreateLensShareInput", "LensAlias"),
+            type = "string",
+            name = "LensAlias",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SharedWith = schema.new({
+            id = id.from(_N, "CreateLensShareInput", "SharedWith"),
+            type = "string",
+            name = "SharedWith",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientRequestToken = schema.new({
+            id = id.from(_N, "CreateLensShareInput", "ClientRequestToken"),
+            type = "string",
+            name = "ClientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateLensShareOutput = schema.new({
+    id = id.from(_N, "CreateLensShareOutput"),
+    type = "structure",
+    members = {
+        ShareId = schema.new({
+            id = id.from(_N, "CreateLensShareOutput", "ShareId"),
+            type = "string",
+            name = "ShareId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1952,6 +3358,135 @@ M.CreateWorkloadShareOutput = schema.new({
     },
 })
 
+M.CrossPillarBenefit = schema.new({
+    id = id.from(_N, "CrossPillarBenefit"),
+    type = "structure",
+    members = {
+        pillar = schema.new({
+            id = id.from(_N, "CrossPillarBenefit", "pillar"),
+            type = "string",
+            name = "pillar",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "CrossPillarBenefit", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CrossPillarBenefit", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        impact = schema.new({
+            id = id.from(_N, "CrossPillarBenefit", "impact"),
+            type = "string",
+            name = "impact",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAgentContextInput = schema.new({
+    id = id.from(_N, "DeleteAgentContextRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "DeleteAgentContextInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "DeleteAgentContextInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAgentContextOutput = schema.new({
+    id = id.from(_N, "DeleteAgentContextResponse"),
+    type = "structure",
+})
+
+M.DeleteAgentGoalInput = schema.new({
+    id = id.from(_N, "DeleteAgentGoalRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "DeleteAgentGoalInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "DeleteAgentGoalInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAgentGoalOutput = schema.new({
+    id = id.from(_N, "DeleteAgentGoalResponse"),
+    type = "structure",
+})
+
+M.DeleteAgentProfileInput = schema.new({
+    id = id.from(_N, "DeleteAgentProfileRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "DeleteAgentProfileInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAgentProfileOutput = schema.new({
+    id = id.from(_N, "DeleteAgentProfileResponse"),
+    type = "structure",
+})
+
 M.DeleteLensInput = schema.new({
     id = id.from(_N, "DeleteLensInput"),
     type = "structure",
@@ -2300,6 +3835,31 @@ M.DisassociateProfilesInput = schema.new({
 
 M.DisassociateProfilesOutput = prelude.Unit
 
+M.ErrorDetails = schema.new({
+    id = id.from(_N, "ErrorDetails"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "ErrorDetails", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ErrorDetails", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ExportLensInput = schema.new({
     id = id.from(_N, "ExportLensInput"),
     type = "structure",
@@ -2335,6 +3895,912 @@ M.ExportLensOutput = schema.new({
             type = "string",
             name = "LensJSON",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetAgentContextInput = schema.new({
+    id = id.from(_N, "GetAgentContextRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "GetAgentContextInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "GetAgentContextInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAgentContextOutput = schema.new({
+    id = id.from(_N, "GetAgentContextResponse"),
+    type = "structure",
+    members = {
+        context = schema.new({
+            id = id.from(_N, "GetAgentContextOutput", "context"),
+            type = "structure",
+            name = "context",
+            target_id = id.from(_N, "ContextSummary"),
+            target = M.ContextSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAgentGoalInput = schema.new({
+    id = id.from(_N, "GetAgentGoalRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "GetAgentGoalInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "GetAgentGoalInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAgentGoalOutput = schema.new({
+    id = id.from(_N, "GetAgentGoalResponse"),
+    type = "structure",
+    members = {
+        goal = schema.new({
+            id = id.from(_N, "GetAgentGoalOutput", "goal"),
+            type = "structure",
+            name = "goal",
+            target_id = id.from(_N, "GoalSummary"),
+            target = M.GoalSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAgentProfileInput = schema.new({
+    id = id.from(_N, "GetAgentProfileRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "GetAgentProfileInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAgentProfileOutput = schema.new({
+    id = id.from(_N, "GetAgentProfileResponse"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationConfiguration = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "aggregationConfiguration"),
+            type = "list",
+            name = "aggregationConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eligibleForScheduledGeneration = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "eligibleForScheduledGeneration"),
+            type = "boolean",
+            name = "eligibleForScheduledGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        eligibleForArchitectureGeneration = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "eligibleForArchitectureGeneration"),
+            type = "boolean",
+            name = "eligibleForArchitectureGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        fieldErrors = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "fieldErrors"),
+            type = "map",
+            name = "fieldErrors",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetAgentRecommendationInput = schema.new({
+    id = id.from(_N, "GetAgentRecommendationRequest"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "GetAgentRecommendationInput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        remediationType = schema.new({
+            id = id.from(_N, "GetAgentRecommendationInput", "remediationType"),
+            type = "string",
+            name = "remediationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "remediationType" },
+            },
+        }),
+    },
+})
+
+M.RecommendationGoal = schema.new({
+    id = id.from(_N, "RecommendationGoal"),
+    type = "structure",
+    members = {
+        title = schema.new({
+            id = id.from(_N, "RecommendationGoal", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Insight = schema.new({
+    id = id.from(_N, "Insight"),
+    type = "structure",
+    members = {
+        usagePattern = schema.new({
+            id = id.from(_N, "Insight", "usagePattern"),
+            type = "string",
+            name = "usagePattern",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        signalsDetected = schema.new({
+            id = id.from(_N, "Insight", "signalsDetected"),
+            type = "string",
+            name = "signalsDetected",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemediationSummary = schema.new({
+    id = id.from(_N, "RemediationSummary"),
+    type = "structure",
+    members = {
+        recommendation = schema.new({
+            id = id.from(_N, "RemediationSummary", "recommendation"),
+            type = "string",
+            name = "recommendation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        steps = schema.new({
+            id = id.from(_N, "RemediationSummary", "steps"),
+            type = "list",
+            name = "steps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TradeOff = schema.new({
+    id = id.from(_N, "TradeOff"),
+    type = "structure",
+    members = {
+        pillar = schema.new({
+            id = id.from(_N, "TradeOff", "pillar"),
+            type = "string",
+            name = "pillar",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "TradeOff", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "TradeOff", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        risk = schema.new({
+            id = id.from(_N, "TradeOff", "risk"),
+            type = "string",
+            name = "risk",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mitigation = schema.new({
+            id = id.from(_N, "TradeOff", "mitigation"),
+            type = "string",
+            name = "mitigation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        riskExplanation = schema.new({
+            id = id.from(_N, "TradeOff", "riskExplanation"),
+            type = "string",
+            name = "riskExplanation",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetAgentRecommendationOutput = schema.new({
+    id = id.from(_N, "GetAgentRecommendationResponse"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        pillar = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "pillar"),
+            type = "string",
+            name = "pillar",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        priority = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        effort = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "effort"),
+            type = "string",
+            name = "effort",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateReason = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "updateReason"),
+            type = "string",
+            name = "updateReason",
+            target_id = prelude.String.id,
+        }),
+        impact = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "impact"),
+            type = "string",
+            name = "impact",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roi = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "roi"),
+            type = "structure",
+            name = "roi",
+            target_id = id.from(_N, "Roi"),
+            target = M.Roi,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        numberOfResources = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "numberOfResources"),
+            type = "integer",
+            name = "numberOfResources",
+            target_id = prelude.Integer.id,
+        }),
+        awsServices = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "awsServices"),
+            type = "list",
+            name = "awsServices",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        businessUnits = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "businessUnits"),
+            type = "list",
+            name = "businessUnits",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        applications = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "applications"),
+            type = "list",
+            name = "applications",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        impactDetails = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "impactDetails"),
+            type = "list",
+            name = "impactDetails",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        insights = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        highlights = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "highlights"),
+            type = "list",
+            name = "highlights",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        remediationSummary = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "remediationSummary"),
+            type = "structure",
+            name = "remediationSummary",
+            target_id = id.from(_N, "RemediationSummary"),
+            target = M.RemediationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        crossPillarBenefits = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "crossPillarBenefits"),
+            type = "list",
+            name = "crossPillarBenefits",
+            target_id = prelude.Document.id,
+            list_member = M.CrossPillarBenefit,
+        }),
+        tradeOffs = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "tradeOffs"),
+            type = "list",
+            name = "tradeOffs",
+            target_id = prelude.Document.id,
+            list_member = M.TradeOff,
+        }),
+        sources = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        goals = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "goals"),
+            type = "list",
+            name = "goals",
+            target_id = prelude.Document.id,
+            list_member = M.RecommendationGoal,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        remediations = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "remediations"),
+            type = "list",
+            name = "remediations",
+            target_id = prelude.Document.id,
+            list_member = M.AgentRecommendationRemediation,
+        }),
+    },
+})
+
+M.GetAgentRecommendationGenerationInput = schema.new({
+    id = id.from(_N, "GetAgentRecommendationGenerationRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        generationId = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationInput", "generationId"),
+            type = "string",
+            name = "generationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.Progress = schema.new({
+    id = id.from(_N, "Progress"),
+    type = "structure",
+    members = {
+        stepsCompleted = schema.new({
+            id = id.from(_N, "Progress", "stepsCompleted"),
+            type = "integer",
+            name = "stepsCompleted",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalSteps = schema.new({
+            id = id.from(_N, "Progress", "totalSteps"),
+            type = "integer",
+            name = "totalSteps",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        completionPercentage = schema.new({
+            id = id.from(_N, "Progress", "completionPercentage"),
+            type = "double",
+            name = "completionPercentage",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PillarItem = schema.new({
+    id = id.from(_N, "PillarItem"),
+    type = "structure",
+    members = {
+        pillar = schema.new({
+            id = id.from(_N, "PillarItem", "pillar"),
+            type = "string",
+            name = "pillar",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ids = schema.new({
+            id = id.from(_N, "PillarItem", "ids"),
+            type = "list",
+            name = "ids",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Scope = schema.new({
+    id = id.from(_N, "Scope"),
+    type = "structure",
+    members = {
+        pillars = schema.new({
+            id = id.from(_N, "Scope", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        goalIds = schema.new({
+            id = id.from(_N, "Scope", "goalIds"),
+            type = "list",
+            name = "goalIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        items = schema.new({
+            id = id.from(_N, "Scope", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.PillarItem,
+        }),
+    },
+})
+
+M.GetAgentRecommendationGenerationOutput = schema.new({
+    id = id.from(_N, "GetAgentRecommendationGenerationResponse"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        estimatedCompletionTime = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "estimatedCompletionTime"),
+            type = "timestamp",
+            name = "estimatedCompletionTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        additionalContext = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "additionalContext"),
+            type = "document",
+            name = "additionalContext",
+            target_id = prelude.Document.id,
+        }),
+        scope = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "scope"),
+            type = "structure",
+            name = "scope",
+            target_id = id.from(_N, "Scope"),
+            target = M.Scope,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endedAt = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "endedAt"),
+            type = "timestamp",
+            name = "endedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        progress = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "progress"),
+            type = "structure",
+            name = "progress",
+            target_id = id.from(_N, "Progress"),
+            target = M.Progress,
+        }),
+        errorDetails = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "errorDetails"),
+            type = "structure",
+            name = "errorDetails",
+            target_id = id.from(_N, "ErrorDetails"),
+            target = M.ErrorDetails,
         }),
     },
 })
@@ -4479,6 +6945,386 @@ M.LensUpgradeSummary = schema.new({
     },
 })
 
+M.ListAgentContextsInput = schema.new({
+    id = id.from(_N, "ListAgentContextsRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "ListAgentContextsInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAgentContextsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentContextsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAgentContextsOutput = schema.new({
+    id = id.from(_N, "ListAgentContextsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAgentContextsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.ContextSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentContextsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAgentGoalsInput = schema.new({
+    id = id.from(_N, "ListAgentGoalsRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "ListAgentGoalsInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAgentGoalsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentGoalsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAgentGoalsOutput = schema.new({
+    id = id.from(_N, "ListAgentGoalsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAgentGoalsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.GoalSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentGoalsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAgentProfilesInput = schema.new({
+    id = id.from(_N, "ListAgentProfilesRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAgentProfilesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentProfilesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAgentProfilesOutput = schema.new({
+    id = id.from(_N, "ListAgentProfilesResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAgentProfilesOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.AgentProfileSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentProfilesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAgentRecommendationGenerationsInput = schema.new({
+    id = id.from(_N, "ListAgentRecommendationGenerationsRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "ListAgentRecommendationGenerationsInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        recommendationType = schema.new({
+            id = id.from(_N, "ListAgentRecommendationGenerationsInput", "recommendationType"),
+            type = "string",
+            name = "recommendationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "RecommendationType" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAgentRecommendationGenerationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentRecommendationGenerationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAgentRecommendationGenerationsOutput = schema.new({
+    id = id.from(_N, "ListAgentRecommendationGenerationsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAgentRecommendationGenerationsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.AgentRecommendationGenerationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentRecommendationGenerationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAgentRecommendationItemsInput = schema.new({
+    id = id.from(_N, "ListAgentRecommendationItemsRequest"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "ListAgentRecommendationItemsInput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "ListAgentRecommendationItemsInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "type" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAgentRecommendationItemsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentRecommendationItemsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAgentRecommendationItemsOutput = schema.new({
+    id = id.from(_N, "ListAgentRecommendationItemsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAgentRecommendationItemsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.AgentRecommendationItemSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentRecommendationItemsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAgentRecommendationsInput = schema.new({
+    id = id.from(_N, "ListAgentRecommendationsRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "ListAgentRecommendationsInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAgentRecommendationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentRecommendationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "ListAgentRecommendationsInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "state" },
+            },
+        }),
+        pillar = schema.new({
+            id = id.from(_N, "ListAgentRecommendationsInput", "pillar"),
+            type = "string",
+            name = "pillar",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "pillar" },
+            },
+        }),
+    },
+})
+
+M.ListAgentRecommendationsOutput = schema.new({
+    id = id.from(_N, "ListAgentRecommendationsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAgentRecommendationsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.AgentRecommendationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentRecommendationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListAnswersInput = schema.new({
     id = id.from(_N, "ListAnswersInput"),
     type = "structure",
@@ -6381,6 +9227,49 @@ M.ListWorkloadSharesOutput = schema.new({
     },
 })
 
+M.PutAgentRecommendationFeedbackInput = schema.new({
+    id = id.from(_N, "PutAgentRecommendationFeedbackRequest"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "PutAgentRecommendationFeedbackInput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "PutAgentRecommendationFeedbackInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        feedbackCategory = schema.new({
+            id = id.from(_N, "PutAgentRecommendationFeedbackInput", "feedbackCategory"),
+            type = "string",
+            name = "feedbackCategory",
+            target_id = prelude.String.id,
+        }),
+        comments = schema.new({
+            id = id.from(_N, "PutAgentRecommendationFeedbackInput", "comments"),
+            type = "string",
+            name = "comments",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutAgentRecommendationFeedbackOutput = schema.new({
+    id = id.from(_N, "PutAgentRecommendationFeedbackResponse"),
+    type = "structure",
+})
+
 M.ShareInvitation = schema.new({
     id = id.from(_N, "ShareInvitation"),
     type = "structure",
@@ -6426,6 +9315,138 @@ M.ShareInvitation = schema.new({
             type = "string",
             name = "TemplateArn",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartAgentRecommendationGenerationInput = schema.new({
+    id = id.from(_N, "StartAgentRecommendationGenerationRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        types = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationInput", "types"),
+            type = "list",
+            name = "types",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        additionalContext = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationInput", "additionalContext"),
+            type = "document",
+            name = "additionalContext",
+            target_id = prelude.Document.id,
+        }),
+        scope = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationInput", "scope"),
+            type = "structure",
+            name = "scope",
+            target_id = id.from(_N, "Scope"),
+            target = M.Scope,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartAgentRecommendationGenerationOutput = schema.new({
+    id = id.from(_N, "StartAgentRecommendationGenerationResponse"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        estimatedCompletionTime = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "estimatedCompletionTime"),
+            type = "timestamp",
+            name = "estimatedCompletionTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "StartAgentRecommendationGenerationOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })
@@ -6493,6 +9514,393 @@ M.UntagResourceInput = schema.new({
 
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateAgentContextInput = schema.new({
+    id = id.from(_N, "UpdateAgentContextRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateAgentContextInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "UpdateAgentContextInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateAgentContextInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "UpdateAgentContextInput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        content = schema.new({
+            id = id.from(_N, "UpdateAgentContextInput", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "ContextContent"),
+            target = M.ContextContent,
+        }),
+    },
+})
+
+M.UpdateAgentContextOutput = schema.new({
+    id = id.from(_N, "UpdateAgentContextResponse"),
+    type = "structure",
+    members = {
+        context = schema.new({
+            id = id.from(_N, "UpdateAgentContextOutput", "context"),
+            type = "structure",
+            name = "context",
+            target_id = id.from(_N, "ContextSummary"),
+            target = M.ContextSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAgentGoalInput = schema.new({
+    id = id.from(_N, "UpdateAgentGoalRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateAgentGoalInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "UpdateAgentGoalInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateAgentGoalInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "UpdateAgentGoalInput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        title = schema.new({
+            id = id.from(_N, "UpdateAgentGoalInput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateAgentGoalInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAgentGoalOutput = schema.new({
+    id = id.from(_N, "UpdateAgentGoalResponse"),
+    type = "structure",
+    members = {
+        goal = schema.new({
+            id = id.from(_N, "UpdateAgentGoalOutput", "goal"),
+            type = "structure",
+            name = "goal",
+            target_id = id.from(_N, "GoalSummary"),
+            target = M.GoalSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAgentProfileInput = schema.new({
+    id = id.from(_N, "UpdateAgentProfileRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+        }),
+        aggregationConfiguration = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "aggregationConfiguration"),
+            type = "list",
+            name = "aggregationConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationConfiguration,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateAgentProfileInput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateAgentProfileOutput = schema.new({
+    id = id.from(_N, "UpdateAgentProfileResponse"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationConfiguration = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "aggregationConfiguration"),
+            type = "list",
+            name = "aggregationConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eligibleForScheduledGeneration = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "eligibleForScheduledGeneration"),
+            type = "boolean",
+            name = "eligibleForScheduledGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        eligibleForArchitectureGeneration = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "eligibleForArchitectureGeneration"),
+            type = "boolean",
+            name = "eligibleForArchitectureGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        fieldErrors = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "fieldErrors"),
+            type = "map",
+            name = "fieldErrors",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "UpdateAgentProfileOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.UpdateAgentRecommendationStatusInput = schema.new({
+    id = id.from(_N, "UpdateAgentRecommendationStatusRequest"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "UpdateAgentRecommendationStatusInput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateAgentRecommendationStatusInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateReason = schema.new({
+            id = id.from(_N, "UpdateAgentRecommendationStatusInput", "updateReason"),
+            type = "string",
+            name = "updateReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAgentRecommendationStatusOutput = schema.new({
+    id = id.from(_N, "UpdateAgentRecommendationStatusResponse"),
     type = "structure",
 })
 
@@ -7453,6 +10861,42 @@ M.AssociateProfiles = schema.operation({
     },
 })
 
+M.CreateAgentContext = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateAgentContext"),
+    input = M.CreateAgentContextInput,
+    output = M.CreateAgentContextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/agent-profiles/{profileArn}/contexts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentGoal = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateAgentGoal"),
+    input = M.CreateAgentGoalInput,
+    output = M.CreateAgentGoalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/agent-profiles/{profileArn}/goals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAgentProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateAgentProfile"),
+    input = M.CreateAgentProfileInput,
+    output = M.CreateAgentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/agent-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateLensShare = schema.operation({
     id = id.from("com.amazonaws.wellarchitected", "CreateLensShare"),
     input = M.CreateLensShareInput,
@@ -7555,6 +10999,42 @@ M.CreateWorkloadShare = schema.operation({
     output = M.CreateWorkloadShareOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/workloads/{WorkloadId}/shares" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentContext = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteAgentContext"),
+    input = M.DeleteAgentContextInput,
+    output = M.DeleteAgentContextOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/agent-profiles/{profileArn}/contexts/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentGoal = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteAgentGoal"),
+    input = M.DeleteAgentGoalInput,
+    output = M.DeleteAgentGoalOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/agent-profiles/{profileArn}/goals/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAgentProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteAgentProfile"),
+    input = M.DeleteAgentProfileInput,
+    output = M.DeleteAgentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/agent-profiles/{profileArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7687,6 +11167,66 @@ M.ExportLens = schema.operation({
     output = M.ExportLensOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/lenses/{LensAlias}/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentContext = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentContext"),
+    input = M.GetAgentContextInput,
+    output = M.GetAgentContextOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/contexts/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentGoal = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentGoal"),
+    input = M.GetAgentGoalInput,
+    output = M.GetAgentGoalOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/goals/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentProfile"),
+    input = M.GetAgentProfileInput,
+    output = M.GetAgentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentRecommendation = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentRecommendation"),
+    input = M.GetAgentRecommendationInput,
+    output = M.GetAgentRecommendationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-recommendations/{recommendationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAgentRecommendationGeneration = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentRecommendationGeneration"),
+    input = M.GetAgentRecommendationGenerationInput,
+    output = M.GetAgentRecommendationGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/generations/{generationId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7867,6 +11407,78 @@ M.ImportLens = schema.operation({
     output = M.ImportLensOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/importLens" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentContexts = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListAgentContexts"),
+    input = M.ListAgentContextsInput,
+    output = M.ListAgentContextsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/contexts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentGoals = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListAgentGoals"),
+    input = M.ListAgentGoalsInput,
+    output = M.ListAgentGoalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/goals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentProfiles = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListAgentProfiles"),
+    input = M.ListAgentProfilesInput,
+    output = M.ListAgentProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentRecommendationGenerations = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListAgentRecommendationGenerations"),
+    input = M.ListAgentRecommendationGenerationsInput,
+    output = M.ListAgentRecommendationGenerationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/generations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentRecommendationItems = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListAgentRecommendationItems"),
+    input = M.ListAgentRecommendationItemsInput,
+    output = M.ListAgentRecommendationItemsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-recommendations/{recommendationArn}/items" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgentRecommendations = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListAgentRecommendations"),
+    input = M.ListAgentRecommendationsInput,
+    output = M.ListAgentRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/recommendations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -8101,6 +11713,30 @@ M.ListWorkloadShares = schema.operation({
     },
 })
 
+M.PutAgentRecommendationFeedback = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "PutAgentRecommendationFeedback"),
+    input = M.PutAgentRecommendationFeedbackInput,
+    output = M.PutAgentRecommendationFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-recommendations/{recommendationArn}/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAgentRecommendationGeneration = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "StartAgentRecommendationGeneration"),
+    input = M.StartAgentRecommendationGenerationInput,
+    output = M.StartAgentRecommendationGenerationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/agent-profiles/{profileArn}/generations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.TagResource = schema.operation({
     id = id.from("com.amazonaws.wellarchitected", "TagResource"),
     input = M.TagResourceInput,
@@ -8119,6 +11755,54 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/tags/{WorkloadArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentContext = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateAgentContext"),
+    input = M.UpdateAgentContextInput,
+    output = M.UpdateAgentContextOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-profiles/{profileArn}/contexts/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentGoal = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateAgentGoal"),
+    input = M.UpdateAgentGoalInput,
+    output = M.UpdateAgentGoalOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-profiles/{profileArn}/goals/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateAgentProfile"),
+    input = M.UpdateAgentProfileInput,
+    output = M.UpdateAgentProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-profiles/{profileArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentRecommendationStatus = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateAgentRecommendationStatus"),
+    input = M.UpdateAgentRecommendationStatusInput,
+    output = M.UpdateAgentRecommendationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/api/v1/agent-recommendations/{recommendationArn}/status" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

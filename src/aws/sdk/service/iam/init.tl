@@ -19,6 +19,7 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     acceptDelegationRequest: function(Client, types.AcceptDelegationRequestInput, ? base_client.InvokeOptions): async.Operation<types.AcceptDelegationRequestOutput>
+    acquireRole: function(Client, types.AcquireRoleInput, ? base_client.InvokeOptions): async.Operation<types.AcquireRoleOutput>
     addClientIDToOpenIDConnectProvider: function(Client, types.AddClientIDToOpenIDConnectProviderInput, ? base_client.InvokeOptions): async.Operation<types.AddClientIDToOpenIDConnectProviderOutput>
     addRoleToInstanceProfile: function(Client, types.AddRoleToInstanceProfileInput, ? base_client.InvokeOptions): async.Operation<types.AddRoleToInstanceProfileOutput>
     addUserToGroup: function(Client, types.AddUserToGroupInput, ? base_client.InvokeOptions): async.Operation<types.AddUserToGroupOutput>
@@ -82,6 +83,7 @@ local record Client
     getAccessKeyLastUsed: function(Client, types.GetAccessKeyLastUsedInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessKeyLastUsedOutput>
     getAccountAuthorizationDetails: function(Client, types.GetAccountAuthorizationDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountAuthorizationDetailsOutput>
     getAccountPasswordPolicy: function(Client, types.GetAccountPasswordPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountPasswordPolicyOutput>
+    getAccountProperties: function(Client, types.GetAccountPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountPropertiesOutput>
     getAccountSummary: function(Client, types.GetAccountSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSummaryOutput>
     getContextKeysForCustomPolicy: function(Client, types.GetContextKeysForCustomPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetContextKeysForCustomPolicyOutput>
     getContextKeysForPrincipalPolicy: function(Client, types.GetContextKeysForPrincipalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetContextKeysForPrincipalPolicyOutput>
@@ -100,6 +102,7 @@ local record Client
     getPolicyVersion: function(Client, types.GetPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyVersionOutput>
     getRole: function(Client, types.GetRoleInput, ? base_client.InvokeOptions): async.Operation<types.GetRoleOutput>
     getRolePolicy: function(Client, types.GetRolePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetRolePolicyOutput>
+    getRoleTemplateVersion: function(Client, types.GetRoleTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetRoleTemplateVersionOutput>
     getSAMLProvider: function(Client, types.GetSAMLProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetSAMLProviderOutput>
     getServerCertificate: function(Client, types.GetServerCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetServerCertificateOutput>
     getServiceLastAccessedDetails: function(Client, types.GetServiceLastAccessedDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceLastAccessedDetailsOutput>
@@ -144,6 +147,7 @@ local record Client
     listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
     listUserTags: function(Client, types.ListUserTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserTagsOutput>
     listVirtualMFADevices: function(Client, types.ListVirtualMFADevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualMFADevicesOutput>
+    putAccountProperties: function(Client, types.PutAccountPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountPropertiesOutput>
     putGroupPolicy: function(Client, types.PutGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutGroupPolicyOutput>
     putRolePermissionsBoundary: function(Client, types.PutRolePermissionsBoundaryInput, ? base_client.InvokeOptions): async.Operation<types.PutRolePermissionsBoundaryOutput>
     putRolePolicy: function(Client, types.PutRolePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutRolePolicyOutput>
@@ -240,6 +244,10 @@ end
 
 function C:acceptDelegationRequest(input: types.AcceptDelegationRequestInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptDelegationRequestOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptDelegationRequest as schema.OperationSchema, input, options) as async.Operation<types.AcceptDelegationRequestOutput>
+end
+
+function C:acquireRole(input: types.AcquireRoleInput, options?: base_client.InvokeOptions): async.Operation<types.AcquireRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcquireRole as schema.OperationSchema, input, options) as async.Operation<types.AcquireRoleOutput>
 end
 
 function C:addClientIDToOpenIDConnectProvider(input: types.AddClientIDToOpenIDConnectProviderInput, options?: base_client.InvokeOptions): async.Operation<types.AddClientIDToOpenIDConnectProviderOutput>
@@ -494,6 +502,10 @@ function C:getAccountPasswordPolicy(input: types.GetAccountPasswordPolicyInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountPasswordPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetAccountPasswordPolicyOutput>
 end
 
+function C:getAccountProperties(input: types.GetAccountPropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountPropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountProperties as schema.OperationSchema, input, options) as async.Operation<types.GetAccountPropertiesOutput>
+end
+
 function C:getAccountSummary(input: types.GetAccountSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSummaryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSummary as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSummaryOutput>
 end
@@ -564,6 +576,10 @@ end
 
 function C:getRolePolicy(input: types.GetRolePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetRolePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRolePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetRolePolicyOutput>
+end
+
+function C:getRoleTemplateVersion(input: types.GetRoleTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetRoleTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRoleTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.GetRoleTemplateVersionOutput>
 end
 
 function C:getSAMLProvider(input: types.GetSAMLProviderInput, options?: base_client.InvokeOptions): async.Operation<types.GetSAMLProviderOutput>
@@ -740,6 +756,10 @@ end
 
 function C:listVirtualMFADevices(input: types.ListVirtualMFADevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualMFADevicesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVirtualMFADevices as schema.OperationSchema, input, options) as async.Operation<types.ListVirtualMFADevicesOutput>
+end
+
+function C:putAccountProperties(input: types.PutAccountPropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountPropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountProperties as schema.OperationSchema, input, options) as async.Operation<types.PutAccountPropertiesOutput>
 end
 
 function C:putGroupPolicy(input: types.PutGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutGroupPolicyOutput>

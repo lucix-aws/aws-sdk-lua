@@ -76,6 +76,24 @@ function M.items_list_analyses(client, input)
     })
 end
 
+--- Returns a page iterator for listApprovalPolicies.
+function M.pages_list_approval_policies(client, input)
+    return paginator.pages(client, "listApprovalPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Policies",
+    })
+end
+
+--- Returns an item iterator for listApprovalPolicies.
+function M.items_list_approval_policies(client, input)
+    return paginator.items(client, "listApprovalPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Policies",
+    })
+end
+
 --- Returns a page iterator for listAssetBundleExportJobs.
 function M.pages_list_asset_bundle_export_jobs(client, input)
     return paginator.pages(client, "listAssetBundleExportJobs", input, {
@@ -217,6 +235,24 @@ function M.items_list_data_sources(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "DataSources",
+    })
+end
+
+--- Returns a page iterator for listDlpSettings.
+function M.pages_list_dlp_settings(client, input)
+    return paginator.pages(client, "listDlpSettings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DlpSettingSummaries",
+    })
+end
+
+--- Returns an item iterator for listDlpSettings.
+function M.items_list_dlp_settings(client, input)
+    return paginator.items(client, "listDlpSettings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DlpSettingSummaries",
     })
 end
 
@@ -397,6 +433,24 @@ function M.items_list_knowledge_bases(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "KnowledgeBaseSummaries",
+    })
+end
+
+--- Returns a page iterator for listLimitsProfiles.
+function M.pages_list_limits_profiles(client, input)
+    return paginator.pages(client, "listLimitsProfiles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "profiles",
+    })
+end
+
+--- Returns an item iterator for listLimitsProfiles.
+function M.items_list_limits_profiles(client, input)
+    return paginator.items(client, "listLimitsProfiles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "profiles",
     })
 end
 

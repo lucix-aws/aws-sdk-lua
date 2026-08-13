@@ -143,6 +143,45 @@ local record M
         resourceType: string
     end
 
+    record AssociateVirtualMachinesToExadbVmClusterInput
+        -- The unique identifier of the Exascale VM cluster to add virtual machines to.
+        exadbVmClusterId: string
+        -- The desired number of nodes in the Exascale VM cluster after the association.
+        desiredNodeCount: number
+    end
+
+    enum ResourceStatus
+        "AVAILABLE"
+        "FAILED"
+        "PROVISIONING"
+        "TERMINATED"
+        "TERMINATING"
+        "UPDATING"
+        "MAINTENANCE_IN_PROGRESS"
+    end
+
+    record AssociateVirtualMachinesToExadbVmClusterOutput
+        -- The user-friendly name for the Exascale VM cluster.
+        displayName: string
+        -- The current status of the Exascale VM cluster.
+        status: string
+        -- Additional information about the status of the Exascale VM cluster.
+        statusReason: string
+        -- The unique identifier of the Exascale VM cluster.
+        exadbVmClusterId: string
+    end
+
+    -- You have exceeded the service quota.
+    record ServiceQuotaExceededException
+        message: string
+        -- The identifier of the resource that exceeded the service quota.
+        resourceId: string
+        -- The type of resource that exceeded the service quota.
+        resourceType: string
+        -- The unqiue identifier of the service quota that was exceeded.
+        quotaCode: string
+    end
+
     -- The Oracle Application Express (APEX) details for an Autonomous Database.
     record AutonomousDatabaseApex
         -- The Oracle Application Express (APEX) version of the Autonomous Database.
@@ -814,16 +853,6 @@ local record M
         tags: {string : string}
     end
 
-    enum ResourceStatus
-        "AVAILABLE"
-        "FAILED"
-        "PROVISIONING"
-        "TERMINATED"
-        "TERMINATING"
-        "UPDATING"
-        "MAINTENANCE_IN_PROGRESS"
-    end
-
     record CreateAutonomousDatabaseBackupOutput
         -- The user-friendly name of the Autonomous Database backup that was created.
         displayName: string
@@ -833,17 +862,6 @@ local record M
         statusReason: string
         -- The unique identifier of the Autonomous Database backup that was created.
         autonomousDatabaseBackupId: string
-    end
-
-    -- You have exceeded the service quota.
-    record ServiceQuotaExceededException
-        message: string
-        -- The identifier of the resource that exceeded the service quota.
-        resourceId: string
-        -- The type of resource that exceeded the service quota.
-        resourceType: string
-        -- The unqiue identifier of the service quota that was exceeded.
-        quotaCode: string
     end
 
     record DeleteAutonomousDatabaseBackupInput
@@ -2680,7 +2698,7 @@ local record M
         ociUrl: string
         -- The domain of the VM cluster.
         domain: string
-        -- The FQDN of the DNS record for the Single Client Access Name (SCAN) IP addresses that are associated with the VM cluster.
+        -- The fully qualified domain name (FQDN) of the DNS record for the Single Client Access Name (SCAN) IP addresses that are associated with the VM cluster.
         scanDnsName: string
         -- The OCID of the DNS record for the SCAN IP addresses that are associated with the VM cluster.
         scanDnsRecordId: string
@@ -2768,7 +2786,7 @@ local record M
         ociUrl: string
         -- The domain of the VM cluster.
         domain: string
-        -- The FQDN of the DNS record for the Single Client Access Name (SCAN) IP addresses that are associated with the VM cluster.
+        -- The fully qualified domain name (FQDN) of the DNS record for the Single Client Access Name (SCAN) IP addresses that are associated with the VM cluster.
         scanDnsName: string
         -- The OCID of the DNS record for the SCAN IP addresses that are associated with the VM cluster.
         scanDnsRecordId: string
@@ -2821,7 +2839,7 @@ local record M
         dataCollectionOptions: DataCollectionOptions
         -- The size of the data disk group, in terabytes (TBs), to allocate for the VM cluster.
         dataStorageSizeInTBs: number
-        -- The amount of local node storage, in gigabytes (GBs), to allocate for the VM cluster.
+        -- The amount of local node storage, in gigabytes (GB), to allocate for the VM cluster.
         dbNodeStorageSizeInGBs: number
         -- The list of database servers for the VM cluster.
         dbServers: {string}
@@ -2833,7 +2851,7 @@ local record M
         isSparseDiskgroupEnabled: boolean
         -- The Oracle license model to apply to the VM cluster. Default: LICENSE_INCLUDED
         licenseModel: string
-        -- The amount of memory, in gigabytes (GBs), to allocate for the VM cluster.
+        -- The amount of memory, in gigabytes (GB), to allocate for the VM cluster.
         memorySizeInGBs: number
         -- The version of the operating system of the image for the VM cluster.
         systemVersion: string
@@ -2888,6 +2906,103 @@ local record M
         nextToken: string
         -- The list of VM clusters along with their properties.
         cloudVmClusters: {CloudVmClusterSummary}
+    end
+
+    enum ShapeAttribute
+        "SMART_STORAGE"
+        "BLOCK_STORAGE"
+    end
+
+    record CreateExadbVmClusterInput
+        -- A user-friendly name for the Exascale VM cluster.
+        displayName: string
+        -- The number of ECPUs to enable for the Exascale VM cluster.
+        enabledEcpuCount: number
+        -- The unique identifier of the Exascale storage vault for this Exascale VM cluster.
+        exascaleDbStorageVaultId: string
+        -- The Grid Infrastructure software image ID for the Exascale VM cluster.
+        gridImageId: string
+        -- The host name for the Exascale VM cluster.
+        hostname: string
+        -- The number of nodes in the Exascale VM cluster.
+        nodeCount: number
+        -- The unique identifier of the ODB network for the Exascale VM cluster.
+        odbNetworkId: string
+        -- The shape of the Exascale VM cluster.
+        shape: string
+        -- The public key portion of one or more key pairs used for SSH access to the Exascale VM cluster.
+        sshPublicKeys: {string}
+        -- The total number of ECPUs for the Exascale VM cluster.
+        totalEcpuCount: number
+        -- The total amount of file system storage, in gigabytes (GB), for the Exascale VM cluster.
+        vmFileSystemStorageTotalSizeInGBs: number
+        -- A name for the Grid Infrastructure cluster. The name isn't case sensitive.
+        clusterName: string
+        -- The set of preferences for the various diagnostic collection options for the Exascale VM cluster.
+        dataCollectionOptions: DataCollectionOptions
+        -- The Oracle license model to apply to the Exascale VM cluster.
+        licenseModel: string
+        -- The port number for TCP connections to the single client access name (SCAN) listener.
+        scanListenerPortTcp: number
+        -- The port number for TCP connections with SSL to the single client access name (SCAN) listener.
+        scanListenerPortTcpSsl: number
+        -- The shape attribute for the Exascale VM cluster.
+        shapeAttribute: string
+        -- The version of the operating system of the image for the Exascale VM cluster.
+        systemVersion: string
+        -- The list of resource tags to apply to the Exascale VM cluster.
+        tags: {string : string}
+        -- The time zone for the Exascale VM cluster.
+        timeZone: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, the Amazon Web Services SDK automatically generates one and uses it for the request to ensure idempotency. The client token is valid for up to 24 hours after it's first used.
+        clientToken: string
+    end
+
+    record CreateExadbVmClusterOutput
+        -- The user-friendly name for the Exascale VM cluster.
+        displayName: string
+        -- The current status of the Exascale VM cluster.
+        status: string
+        -- Additional information about the status of the Exascale VM cluster.
+        statusReason: string
+        -- The unique identifier of the Exascale VM cluster.
+        exadbVmClusterId: string
+    end
+
+    record CreateExascaleDbStorageVaultInput
+        -- A user-friendly name for the Exascale storage vault.
+        displayName: string
+        -- The total size of the high-capacity database storage, in gigabytes (GB), for the Exascale storage vault.
+        highCapacityDatabaseStorageTotalSizeInGBs: number
+        -- The additional flash cache percentage for the Exascale storage vault.
+        additionalFlashCacheInPercent: number
+        -- The autoscale limit in gigabytes (GB) for the Exascale storage vault.
+        autoscaleLimitInGBs: number
+        -- The Availability Zone ID for the Exascale storage vault.
+        availabilityZoneId: string
+        -- The Availability Zone for the Exascale storage vault.
+        availabilityZone: string
+        -- A description of the Exascale storage vault.
+        description: string
+        -- Specifies whether autoscaling is enabled for the Exascale storage vault.
+        isAutoscaleEnabled: boolean
+        -- The list of resource tags to apply to the Exascale storage vault.
+        tags: {string : string}
+        -- The time zone for the Exascale storage vault.
+        timeZone: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, the Amazon Web Services SDK automatically generates one and uses it for the request to ensure idempotency. The client token is valid for up to 24 hours after it's first used.
+        clientToken: string
+    end
+
+    record CreateExascaleDbStorageVaultOutput
+        -- The user-friendly name for the Exascale storage vault.
+        displayName: string
+        -- The current status of the Exascale storage vault.
+        status: string
+        -- Additional information about the status of the Exascale storage vault.
+        statusReason: string
+        -- The unique identifier of the Exascale storage vault.
+        exascaleDbStorageVaultId: string
     end
 
     record CreateOdbNetworkInput
@@ -3019,7 +3134,7 @@ local record M
         backupVnicId: string
         -- Number of CPU cores enabled on the DB node.
         cpuCoreCount: number
-        -- The amount of local node storage, in gigabytes (GBs), that's allocated on the DB node.
+        -- The amount of local node storage, in gigabytes (GB), that's allocated on the DB node.
         dbNodeStorageSizeInGBs: number
         -- The unique identifier of the Db server that is associated with the DB node.
         dbServerId: string
@@ -3116,8 +3231,10 @@ local record M
     end
 
     record GetDbNodeInput
-        -- The unique identifier of the VM cluster that contains the DB node.
+        -- The unique identifier of the VM cluster that contains the DB node. You must specify either this parameter or exadbVmClusterId.
         cloudVmClusterId: string
+        -- The unique identifier of the Exascale VM cluster that contains the DB node. You must specify either this parameter or cloudVmClusterId.
+        exadbVmClusterId: string
         -- The unique identifier of the DB node to retrieve information about.
         dbNodeId: string
     end
@@ -3131,8 +3248,10 @@ local record M
         maxResults: number
         -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
         nextToken: string
-        -- The unique identifier of the VM cluster.
+        -- The unique identifier of the VM cluster. You must specify either this parameter or exadbVmClusterId.
         cloudVmClusterId: string
+        -- The unique identifier of the Exascale VM cluster. You must specify either this parameter or cloudVmClusterId.
+        exadbVmClusterId: string
     end
 
     record ListDbNodesOutput
@@ -3143,8 +3262,10 @@ local record M
     end
 
     record RebootDbNodeInput
-        -- The unique identifier of the VM cluster that contains the DB node to reboot.
+        -- The unique identifier of the VM cluster that contains the DB node to reboot. You must specify either this parameter or exadbVmClusterId.
         cloudVmClusterId: string
+        -- The unique identifier of the Exascale VM cluster that contains the DB node to reboot. You must specify either this parameter or cloudVmClusterId.
+        exadbVmClusterId: string
         -- The unique identifier of the DB node to reboot.
         dbNodeId: string
     end
@@ -3159,8 +3280,10 @@ local record M
     end
 
     record StartDbNodeInput
-        -- The unique identifier of the VM cluster that contains the DB node to start.
+        -- The unique identifier of the VM cluster that contains the DB node to start. You must specify either this parameter or exadbVmClusterId.
         cloudVmClusterId: string
+        -- The unique identifier of the Exascale VM cluster that contains the DB node to start. You must specify either this parameter or cloudVmClusterId.
+        exadbVmClusterId: string
         -- The unique identifier of the DB node to start.
         dbNodeId: string
     end
@@ -3175,8 +3298,10 @@ local record M
     end
 
     record StopDbNodeInput
-        -- The unique identifier of the VM cluster that contains the DB node to stop.
+        -- The unique identifier of the VM cluster that contains the DB node to stop. You must specify either this parameter or exadbVmClusterId.
         cloudVmClusterId: string
+        -- The unique identifier of the Exascale VM cluster that contains the DB node to stop. You must specify either this parameter or cloudVmClusterId.
+        exadbVmClusterId: string
         -- The unique identifier of the DB node to stop.
         dbNodeId: string
     end
@@ -3241,12 +3366,30 @@ local record M
         shapeFamily: string
         -- The shape type. This property is determined by the CPU hardware.
         shapeType: string
+        -- If provided and applicable, return DB System shape parameters based on the shape attribute provided.
+        shapeAttributes: {string}
         -- The name of the shape.
         name: string
         -- The OCI model compute model used when you create or clone an instance: ECPU or OCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers. An OCPU is a legacy physical measure of compute resources. OCPUs are based on the physical core of a processor with hyper-threading enabled.
         computeModel: string
         -- Indicates whether the hardware system model supports configurable database and server storage types.
         areServerTypesSupported: boolean
+    end
+
+    record DeleteExadbVmClusterInput
+        -- The unique identifier of the Exascale VM cluster to delete.
+        exadbVmClusterId: string
+    end
+
+    record DeleteExadbVmClusterOutput
+    end
+
+    record DeleteExascaleDbStorageVaultInput
+        -- The unique identifier of the Exascale storage vault to delete.
+        exascaleDbStorageVaultId: string
+    end
+
+    record DeleteExascaleDbStorageVaultOutput
     end
 
     record DeleteOdbNetworkInput
@@ -3277,6 +3420,444 @@ local record M
     end
 
     record DisassociateIamRoleFromResourceOutput
+    end
+
+    record DisassociateVirtualMachinesFromExadbVmClusterInput
+        -- The unique identifier of the Exascale VM cluster to remove virtual machines from.
+        exadbVmClusterId: string
+        -- The list of DB node IDs to remove from the Exascale VM cluster.
+        dbNodeIds: {string}
+    end
+
+    record DisassociateVirtualMachinesFromExadbVmClusterOutput
+        -- The user-friendly name for the Exascale VM cluster.
+        displayName: string
+        -- The current status of the Exascale VM cluster.
+        status: string
+        -- Additional information about the status of the Exascale VM cluster.
+        statusReason: string
+        -- The unique identifier of the Exascale VM cluster.
+        exadbVmClusterId: string
+    end
+
+    enum GridImageType
+        "RELEASE_UPDATE"
+        "CUSTOM_IMAGE"
+    end
+
+    -- Storage details for an Exascale VM cluster.
+    record ExadbVmClusterStorageDetails
+        -- The total storage size, in gigabytes (GB).
+        totalSizeInGBs: number
+    end
+
+    -- Information about an Exascale VM cluster.
+    record ExadbVmCluster
+        -- The unique identifier of the Exascale VM cluster.
+        exadbVmClusterId: string
+        -- The name of the Grid Infrastructure (GI) cluster.
+        clusterName: string
+        -- The date and time when the Exascale VM cluster was created.
+        createdAt: number
+        -- The set of diagnostic collection options enabled for the Exascale VM cluster.
+        dataCollectionOptions: DataCollectionOptions
+        -- The user-friendly name for the Exascale VM cluster.
+        displayName: string
+        -- The domain of the Exascale VM cluster.
+        domain: string
+        -- The number of elastic compute processing units (ECPUs) enabled on the Exascale VM cluster.
+        enabledEcpuCount: number
+        -- The Amazon Resource Name (ARN) of the Exascale VM cluster.
+        exadbVmClusterArn: string
+        -- The Amazon Resource Name (ARN) of the Exascale storage vault associated with this Exascale VM cluster.
+        exascaleDbStorageVaultArn: string
+        -- The unique identifier of the Exascale storage vault associated with this Exascale VM cluster.
+        exascaleDbStorageVaultId: string
+        -- The software version of the Oracle Grid Infrastructure (GI) for the Exascale VM cluster.
+        giVersion: string
+        -- The Grid Infrastructure software image ID for the Exascale VM cluster.
+        gridImageId: string
+        -- The type of Grid Infrastructure image for the Exascale VM cluster.
+        gridImageType: string
+        -- The host name for the Exascale VM cluster.
+        hostname: string
+        -- The Amazon Web Services Identity and Access Management (IAM) service roles associated with the Exascale VM cluster.
+        iamRoles: {IamRole}
+        -- The I/O Resource Management (IORM) configuration cache details for the Exascale VM cluster.
+        iormConfigCache: ExadataIormConfig
+        -- The Oracle Cloud ID (OCID) of the last maintenance update history entry.
+        lastUpdateHistoryEntryId: string
+        -- The Oracle license model applied to the Exascale VM cluster.
+        licenseModel: string
+        -- The port number configured for the listener on the Exascale VM cluster.
+        listenerPort: number
+        -- The amount of memory, in gigabytes (GB), that's allocated for the Exascale VM cluster.
+        memorySizeInGBs: number
+        -- The number of nodes in the Exascale VM cluster.
+        nodeCount: number
+        -- The OCID of the Exascale VM cluster.
+        ocid: string
+        -- The name of the OCI resource anchor for the Exascale VM cluster.
+        ociResourceAnchorName: string
+        -- The HTTPS link to the Exascale VM cluster in Oracle Cloud Infrastructure (OCI).
+        ociUrl: string
+        -- The Amazon Resource Name (ARN) of the ODB network associated with this Exascale VM cluster.
+        odbNetworkArn: string
+        -- The unique identifier of the ODB network for the Exascale VM cluster.
+        odbNetworkId: string
+        -- The amount of progress made on the current operation on the Exascale VM cluster, expressed as a percentage.
+        percentProgress: number
+        -- The fully qualified domain name (FQDN) of the DNS record for the Single Client Access Name (SCAN) IP addresses that are associated with the Exascale VM cluster.
+        scanDnsName: string
+        -- The OCID of the DNS record for the SCAN IP addresses that are associated with the Exascale VM cluster.
+        scanDnsRecordId: string
+        -- The OCID of the SCAN IP addresses that are associated with the Exascale VM cluster.
+        scanIpIds: {string}
+        -- The port number for TCP connections to the single client access name (SCAN) listener for the Exascale VM cluster.
+        scanListenerPortTcp: number
+        -- The port number for TCP connections with SSL to the single client access name (SCAN) listener for the Exascale VM cluster.
+        scanListenerPortTcpSsl: number
+        -- The hardware model name of the Exadata infrastructure that's running the Exascale VM cluster.
+        shape: string
+        -- The shape attribute for the Exascale VM cluster.
+        shapeAttribute: string
+        -- The snapshot file system storage details for the Exascale VM cluster.
+        snapshotFileSystemStorage: ExadbVmClusterStorageDetails
+        -- The public key portion of one or more key pairs used for SSH access to the Exascale VM cluster.
+        sshPublicKeys: {string}
+        -- The current status of the Exascale VM cluster.
+        status: string
+        -- Additional information about the status of the Exascale VM cluster.
+        statusReason: string
+        -- The operating system version of the image chosen for the Exascale VM cluster.
+        systemVersion: string
+        -- The time zone of the Exascale VM cluster.
+        timeZone: string
+        -- The total number of ECPUs for the Exascale VM cluster.
+        totalEcpuCount: number
+        -- The total file system storage details for the Exascale VM cluster.
+        totalFileSystemStorage: ExadbVmClusterStorageDetails
+        -- The virtual IP (VIP) addresses associated with the Exascale VM cluster. One VIP address is assigned per node to support failover. If a node fails, its VIP is reassigned to another active node in the cluster.
+        vipIds: {string}
+        -- The VM file system storage details for the Exascale VM cluster.
+        vmFileSystemStorage: ExadbVmClusterStorageDetails
+    end
+
+    -- Summary information about an Exascale VM cluster.
+    record ExadbVmClusterSummary
+        -- The unique identifier of the Exascale VM cluster.
+        exadbVmClusterId: string
+        -- The name of the Grid Infrastructure (GI) cluster.
+        clusterName: string
+        -- The date and time when the Exascale VM cluster was created.
+        createdAt: number
+        -- The set of diagnostic collection options enabled for the Exascale VM cluster.
+        dataCollectionOptions: DataCollectionOptions
+        -- The user-friendly name for the Exascale VM cluster.
+        displayName: string
+        -- The domain of the Exascale VM cluster.
+        domain: string
+        -- The number of elastic compute processing units (ECPUs) enabled on the Exascale VM cluster.
+        enabledEcpuCount: number
+        -- The Amazon Resource Name (ARN) of the Exascale VM cluster.
+        exadbVmClusterArn: string
+        -- The Amazon Resource Name (ARN) of the Exascale storage vault associated with this Exascale VM cluster.
+        exascaleDbStorageVaultArn: string
+        -- The unique identifier of the Exascale storage vault associated with this Exascale VM cluster.
+        exascaleDbStorageVaultId: string
+        -- The software version of the Oracle Grid Infrastructure (GI) for the Exascale VM cluster.
+        giVersion: string
+        -- The Grid Infrastructure software image ID for the Exascale VM cluster.
+        gridImageId: string
+        -- The type of Grid Infrastructure image for the Exascale VM cluster.
+        gridImageType: string
+        -- The host name for the Exascale VM cluster.
+        hostname: string
+        -- The Amazon Web Services Identity and Access Management (IAM) service roles associated with the Exascale VM cluster.
+        iamRoles: {IamRole}
+        -- The I/O Resource Management (IORM) configuration cache details for the Exascale VM cluster.
+        iormConfigCache: ExadataIormConfig
+        -- The Oracle Cloud ID (OCID) of the last maintenance update history entry.
+        lastUpdateHistoryEntryId: string
+        -- The Oracle license model applied to the Exascale VM cluster.
+        licenseModel: string
+        -- The port number configured for the listener on the Exascale VM cluster.
+        listenerPort: number
+        -- The amount of memory, in gigabytes (GB), that's allocated for the Exascale VM cluster.
+        memorySizeInGBs: number
+        -- The number of nodes in the Exascale VM cluster.
+        nodeCount: number
+        -- The OCID of the Exascale VM cluster.
+        ocid: string
+        -- The name of the OCI resource anchor for the Exascale VM cluster.
+        ociResourceAnchorName: string
+        -- The HTTPS link to the Exascale VM cluster in Oracle Cloud Infrastructure (OCI).
+        ociUrl: string
+        -- The Amazon Resource Name (ARN) of the ODB network associated with this Exascale VM cluster.
+        odbNetworkArn: string
+        -- The unique identifier of the ODB network for the Exascale VM cluster.
+        odbNetworkId: string
+        -- The amount of progress made on the current operation on the Exascale VM cluster, expressed as a percentage.
+        percentProgress: number
+        -- The fully qualified domain name (FQDN) of the DNS record for the Single Client Access Name (SCAN) IP addresses that are associated with the Exascale VM cluster.
+        scanDnsName: string
+        -- The OCID of the DNS record for the SCAN IP addresses that are associated with the Exascale VM cluster.
+        scanDnsRecordId: string
+        -- The OCID of the SCAN IP addresses that are associated with the Exascale VM cluster.
+        scanIpIds: {string}
+        -- The port number for TCP connections to the single client access name (SCAN) listener for the Exascale VM cluster.
+        scanListenerPortTcp: number
+        -- The port number for TCP connections with SSL to the single client access name (SCAN) listener for the Exascale VM cluster.
+        scanListenerPortTcpSsl: number
+        -- The hardware model name of the Exadata infrastructure that's running the Exascale VM cluster.
+        shape: string
+        -- The shape attribute for the Exascale VM cluster.
+        shapeAttribute: string
+        -- The snapshot file system storage details for the Exascale VM cluster.
+        snapshotFileSystemStorage: ExadbVmClusterStorageDetails
+        -- The public key portion of one or more key pairs used for SSH access to the Exascale VM cluster.
+        sshPublicKeys: {string}
+        -- The current status of the Exascale VM cluster.
+        status: string
+        -- Additional information about the status of the Exascale VM cluster.
+        statusReason: string
+        -- The operating system version of the image chosen for the Exascale VM cluster.
+        systemVersion: string
+        -- The time zone of the Exascale VM cluster.
+        timeZone: string
+        -- The total number of ECPUs for the Exascale VM cluster.
+        totalEcpuCount: number
+        -- The total file system storage details for the Exascale VM cluster.
+        totalFileSystemStorage: ExadbVmClusterStorageDetails
+        -- The virtual IP (VIP) addresses associated with the Exascale VM cluster. One VIP address is assigned per node to support failover. If a node fails, its VIP is reassigned to another active node in the cluster.
+        vipIds: {string}
+        -- The VM file system storage details for the Exascale VM cluster.
+        vmFileSystemStorage: ExadbVmClusterStorageDetails
+    end
+
+    record GetExadbVmClusterInput
+        -- The unique identifier of the Exascale VM cluster.
+        exadbVmClusterId: string
+    end
+
+    record GetExadbVmClusterOutput
+        -- The Exascale VM cluster.
+        exadbVmCluster: ExadbVmCluster
+    end
+
+    record ListExadbVmClustersInput
+        -- The unique identifier of the Exascale storage vault to list the associated Exascale VM clusters.
+        exascaleDbStorageVaultId: string
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+    end
+
+    record ListExadbVmClustersOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of Exascale VM clusters.
+        exadbVmClusters: {ExadbVmClusterSummary}
+    end
+
+    enum UpdateAction
+        "ROLLING_APPLY"
+        "NON_ROLLING_APPLY"
+        "PRECHECK"
+        "ROLLBACK"
+    end
+
+    record UpdateExadbVmClusterInput
+        -- The unique identifier of the Exascale VM cluster to update.
+        exadbVmClusterId: string
+        -- The set of preferences for the various diagnostic collection options for the Exascale VM cluster.
+        dataCollectionOptions: DataCollectionOptions
+        -- A new user-friendly name for the Exascale VM cluster.
+        displayName: string
+        -- The number of ECPUs to enable for the Exascale VM cluster.
+        enabledEcpuCount: number
+        -- The Grid Infrastructure software image ID for the Exascale VM cluster.
+        gridImageId: string
+        -- The Oracle license model to apply to the Exascale VM cluster.
+        licenseModel: string
+        -- The public key portion of one or more key pairs used for SSH access to the Exascale VM cluster.
+        sshPublicKeys: {string}
+        -- The version of the operating system of the image for the Exascale VM cluster.
+        systemVersion: string
+        -- The total number of ECPUs for the Exascale VM cluster.
+        totalEcpuCount: number
+        -- The update action to perform on the Exascale VM cluster.
+        updateAction: string
+        -- The total amount of file system storage, in gigabytes (GB), for the Exascale VM cluster.
+        vmFileSystemStorageTotalSizeInGBs: number
+    end
+
+    record UpdateExadbVmClusterOutput
+        -- The user-friendly name for the Exascale VM cluster.
+        displayName: string
+        -- The current status of the Exascale VM cluster.
+        status: string
+        -- Additional information about the status of the Exascale VM cluster.
+        statusReason: string
+        -- The unique identifier of the Exascale VM cluster.
+        exadbVmClusterId: string
+    end
+
+    -- The storage details for an Exascale storage vault.
+    record ExascaleDbStorageDetails
+        -- The available storage size, in gigabytes (GB).
+        availableSizeInGBs: number
+        -- The total storage size, in gigabytes (GB).
+        totalSizeInGBs: number
+    end
+
+    -- Information about an Exascale storage vault.
+    record ExascaleDbStorageVault
+        -- The unique identifier of the Exascale storage vault.
+        exascaleDbStorageVaultId: string
+        -- The additional flash cache percentage for the Exascale storage vault.
+        additionalFlashCacheInPercent: number
+        -- The list of shape attributes attached to the Exascale storage vault.
+        attachedShapeAttributes: {string}
+        -- The autoscale limit in gigabytes (GB) for the Exascale storage vault.
+        autoscaleLimitInGBs: number
+        -- The Availability Zone for the Exascale storage vault.
+        availabilityZone: string
+        -- The Availability Zone ID for the Exascale storage vault.
+        availabilityZoneId: string
+        -- The date and time when the Exascale storage vault was created.
+        createdAt: number
+        -- The description of the Exascale storage vault.
+        description: string
+        -- The user-friendly name for the Exascale storage vault.
+        displayName: string
+        -- The list of Amazon Resource Names (ARNs) of the VM clusters associated with this Exascale storage vault.
+        vmClusterArns: {string}
+        -- The number of VM clusters associated with this Exascale storage vault.
+        vmClusterCount: number
+        -- The list of unique identifiers of the VM clusters associated with this Exascale storage vault.
+        vmClusterIds: {string}
+        -- The Amazon Resource Name (ARN) of the Exascale storage vault.
+        exascaleDbStorageVaultArn: string
+        -- The high-capacity database storage details for the Exascale storage vault.
+        highCapacityDatabaseStorage: ExascaleDbStorageDetails
+        -- Specifies whether autoscaling is enabled for the Exascale storage vault.
+        isAutoscaleEnabled: boolean
+        -- The OCID of the Exascale storage vault.
+        ocid: string
+        -- The name of the OCI resource anchor for the Exascale storage vault.
+        ociResourceAnchorName: string
+        -- The HTTPS link to the Exascale storage vault in Oracle Cloud Infrastructure (OCI).
+        ociUrl: string
+        -- The amount of progress made on the current operation on the Exascale storage vault, expressed as a percentage.
+        percentProgress: number
+        -- The current status of the Exascale storage vault.
+        status: string
+        -- Additional information about the status of the Exascale storage vault.
+        statusReason: string
+        -- The time zone of the Exascale storage vault.
+        timeZone: string
+    end
+
+    -- Summary information about an Exascale storage vault.
+    record ExascaleDbStorageVaultSummary
+        -- The unique identifier of the Exascale storage vault.
+        exascaleDbStorageVaultId: string
+        -- The additional flash cache percentage for the Exascale storage vault.
+        additionalFlashCacheInPercent: number
+        -- The list of shape attributes attached to the Exascale storage vault.
+        attachedShapeAttributes: {string}
+        -- The autoscale limit in gigabytes (GB) for the Exascale storage vault.
+        autoscaleLimitInGBs: number
+        -- The Availability Zone for the Exascale storage vault.
+        availabilityZone: string
+        -- The Availability Zone ID for the Exascale storage vault.
+        availabilityZoneId: string
+        -- The date and time when the Exascale storage vault was created.
+        createdAt: number
+        -- The description of the Exascale storage vault.
+        description: string
+        -- The user-friendly name for the Exascale storage vault.
+        displayName: string
+        -- The list of Amazon Resource Names (ARNs) of the VM clusters associated with this Exascale storage vault.
+        vmClusterArns: {string}
+        -- The number of VM clusters associated with this Exascale storage vault.
+        vmClusterCount: number
+        -- The list of unique identifiers of the VM clusters associated with this Exascale storage vault.
+        vmClusterIds: {string}
+        -- The Amazon Resource Name (ARN) of the Exascale storage vault.
+        exascaleDbStorageVaultArn: string
+        -- The high-capacity database storage details for the Exascale storage vault.
+        highCapacityDatabaseStorage: ExascaleDbStorageDetails
+        -- Specifies whether autoscaling is enabled for the Exascale storage vault.
+        isAutoscaleEnabled: boolean
+        -- The OCID of the Exascale storage vault.
+        ocid: string
+        -- The name of the OCI resource anchor for the Exascale storage vault.
+        ociResourceAnchorName: string
+        -- The HTTPS link to the Exascale storage vault in Oracle Cloud Infrastructure (OCI).
+        ociUrl: string
+        -- The amount of progress made on the current operation on the Exascale storage vault, expressed as a percentage.
+        percentProgress: number
+        -- The current status of the Exascale storage vault.
+        status: string
+        -- Additional information about the status of the Exascale storage vault.
+        statusReason: string
+        -- The time zone of the Exascale storage vault.
+        timeZone: string
+    end
+
+    record GetExascaleDbStorageVaultInput
+        -- The unique identifier of the Exascale storage vault.
+        exascaleDbStorageVaultId: string
+    end
+
+    record GetExascaleDbStorageVaultOutput
+        -- The Exascale storage vault.
+        exascaleDbStorageVault: ExascaleDbStorageVault
+    end
+
+    record ListExascaleDbStorageVaultsInput
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+    end
+
+    record ListExascaleDbStorageVaultsOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of Exascale storage vaults.
+        exascaleDbStorageVaults: {ExascaleDbStorageVaultSummary}
+    end
+
+    record UpdateExascaleDbStorageVaultInput
+        -- The unique identifier of the Exascale storage vault to update.
+        exascaleDbStorageVaultId: string
+        -- The additional flash cache percentage for the Exascale storage vault.
+        additionalFlashCacheInPercent: number
+        -- The autoscale limit in gigabytes (GB) for the Exascale storage vault.
+        autoscaleLimitInGBs: number
+        -- A new description for the Exascale storage vault.
+        description: string
+        -- A new user-friendly name for the Exascale storage vault.
+        displayName: string
+        -- The total size of the high-capacity database storage, in gigabytes (GB), for the Exascale storage vault.
+        highCapacityDatabaseStorageTotalSizeInGBs: number
+        -- Specifies whether autoscaling is enabled for the Exascale storage vault.
+        isAutoscaleEnabled: boolean
+    end
+
+    record UpdateExascaleDbStorageVaultOutput
+        -- The user-friendly name for the Exascale storage vault.
+        displayName: string
+        -- The current status of the Exascale storage vault.
+        status: string
+        -- Additional information about the status of the Exascale storage vault.
+        statusReason: string
+        -- The unique identifier of the Exascale storage vault.
+        exascaleDbStorageVaultId: string
     end
 
     record GetOciOnboardingStatusInput
@@ -3551,6 +4132,14 @@ local record M
         odbPeeringConnection: OdbPeeringConnection
     end
 
+    -- Summary information about an Oracle Grid Infrastructure (GI) minor version.
+    record GiMinorVersionSummary
+        -- The GI minor version.
+        version: string
+        -- The Grid Infrastructure software image ID for this minor version.
+        gridImageId: string
+    end
+
     -- Information about a specific version of Oracle Grid Infrastructure (GI) software that can be installed on a VM cluster.
     record GiVersionSummary
         -- The GI software version.
@@ -3608,6 +4197,8 @@ local record M
         availabilityZone: string
         -- The physical ID of the AZ, for example, use1-az4. This ID persists across accounts.
         availabilityZoneId: string
+        -- The shape family to filter results by.
+        shapeFamily: string
     end
 
     record ListDbSystemShapesOutput
@@ -3615,6 +4206,28 @@ local record M
         nextToken: string
         -- The list of shapes and their properties.
         dbSystemShapes: {DbSystemShapeSummary}
+    end
+
+    record ListGiMinorVersionsInput
+        -- The Oracle Grid Infrastructure (GI) major version.
+        giVersion: string
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+        -- The shape family for the GI minor version.
+        shapeFamily: string
+        -- The Availability Zone to filter GI minor versions.
+        availabilityZone: string
+        -- The Availability Zone ID to filter GI minor versions.
+        availabilityZoneId: string
+    end
+
+    record ListGiMinorVersionsOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of GI minor versions.
+        giMinorVersions: {GiMinorVersionSummary}
     end
 
     record ListGiVersionsInput

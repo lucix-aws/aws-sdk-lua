@@ -238,6 +238,60 @@ function M.items_list_db_system_shapes(client, input)
     })
 end
 
+--- Returns a page iterator for listExadbVmClusters.
+function M.pages_list_exadb_vm_clusters(client, input)
+    return paginator.pages(client, "listExadbVmClusters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exadbVmClusters",
+    })
+end
+
+--- Returns an item iterator for listExadbVmClusters.
+function M.items_list_exadb_vm_clusters(client, input)
+    return paginator.items(client, "listExadbVmClusters", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exadbVmClusters",
+    })
+end
+
+--- Returns a page iterator for listExascaleDbStorageVaults.
+function M.pages_list_exascale_db_storage_vaults(client, input)
+    return paginator.pages(client, "listExascaleDbStorageVaults", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exascaleDbStorageVaults",
+    })
+end
+
+--- Returns an item iterator for listExascaleDbStorageVaults.
+function M.items_list_exascale_db_storage_vaults(client, input)
+    return paginator.items(client, "listExascaleDbStorageVaults", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "exascaleDbStorageVaults",
+    })
+end
+
+--- Returns a page iterator for listGiMinorVersions.
+function M.pages_list_gi_minor_versions(client, input)
+    return paginator.pages(client, "listGiMinorVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "giMinorVersions",
+    })
+end
+
+--- Returns an item iterator for listGiMinorVersions.
+function M.items_list_gi_minor_versions(client, input)
+    return paginator.items(client, "listGiMinorVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "giMinorVersions",
+    })
+end
+
 --- Returns a page iterator for listGiVersions.
 function M.pages_list_gi_versions(client, input)
     return paginator.pages(client, "listGiVersions", input, {

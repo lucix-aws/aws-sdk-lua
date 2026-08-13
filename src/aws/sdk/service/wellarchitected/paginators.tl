@@ -12,6 +12,114 @@ function M.pages_get_consolidated_report(client, input)
     })
 end
 
+--- Returns a page iterator for listAgentContexts.
+function M.pages_list_agent_contexts(client, input)
+    return paginator.pages(client, "listAgentContexts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAgentContexts.
+function M.items_list_agent_contexts(client, input)
+    return paginator.items(client, "listAgentContexts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listAgentGoals.
+function M.pages_list_agent_goals(client, input)
+    return paginator.pages(client, "listAgentGoals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAgentGoals.
+function M.items_list_agent_goals(client, input)
+    return paginator.items(client, "listAgentGoals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listAgentProfiles.
+function M.pages_list_agent_profiles(client, input)
+    return paginator.pages(client, "listAgentProfiles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAgentProfiles.
+function M.items_list_agent_profiles(client, input)
+    return paginator.items(client, "listAgentProfiles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listAgentRecommendationGenerations.
+function M.pages_list_agent_recommendation_generations(client, input)
+    return paginator.pages(client, "listAgentRecommendationGenerations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAgentRecommendationGenerations.
+function M.items_list_agent_recommendation_generations(client, input)
+    return paginator.items(client, "listAgentRecommendationGenerations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listAgentRecommendationItems.
+function M.pages_list_agent_recommendation_items(client, input)
+    return paginator.pages(client, "listAgentRecommendationItems", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAgentRecommendationItems.
+function M.items_list_agent_recommendation_items(client, input)
+    return paginator.items(client, "listAgentRecommendationItems", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listAgentRecommendations.
+function M.pages_list_agent_recommendations(client, input)
+    return paginator.pages(client, "listAgentRecommendations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAgentRecommendations.
+function M.items_list_agent_recommendations(client, input)
+    return paginator.items(client, "listAgentRecommendations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listAnswers.
 function M.pages_list_answers(client, input)
     return paginator.pages(client, "listAnswers", input, {

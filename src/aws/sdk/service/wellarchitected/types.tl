@@ -75,13 +75,258 @@ local record M
         "IMPROVEMENT_PLAN"
     end
 
-    -- The choice level additional resources for a custom lens.
-    -- This field does not apply to Amazon Web Services official lenses.
+    -- The choice level additional resources for a custom lens. This field does not apply to Amazon Web Services official lenses.
     record AdditionalResources
         -- Type of additional resource for a custom lens.
         Type: string
         -- The URLs for additional resources, either helpful resources or improvement plans, for a custom lens. Up to five additional URLs can be specified.
         Content: {ChoiceContent}
+    end
+
+    -- Configuration settings that define the scope of Amazon Web Services resources to analyze for optimization recommendations.
+    record AggregationConfiguration
+        -- The Amazon Web Services account ID to analyze.
+        accountId: string
+        -- A list of Amazon Web Services Regions to include in the analysis.
+        regions: {string}
+        -- The ARN of an IAM role to assume for resource analysis in this account.
+        accessRoleArn: string
+    end
+
+    enum Pillar
+        "COST_OPTIMIZATION"
+        "SECURITY"
+        "RESILIENCE"
+        "PERFORMANCE"
+        "OPERATIONAL_EXCELLENCE"
+    end
+
+    -- A key-value pair associated with a resource for cost allocation and access control.
+    record Tag
+        -- The key of the tag.
+        key: string
+        -- The value of the tag.
+        value: string
+    end
+
+    -- Summary of an optimization profile, including its configuration, metadata, and audit information.
+    record AgentProfileSummary
+        -- The system name of the profile.
+        name: string
+        -- The display name of the profile shown to users.
+        displayName: string
+        -- A description of the profile.
+        description: string
+        -- The business overview for this profile.
+        businessOverview: string
+        -- The Well-Architected Tool Framework pillars associated with this profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled for the profile.
+        deletionProtection: boolean
+        -- The ARN of the IAM execution role used for recommendation actions.
+        executionRoleArn: string
+        -- The aggregation configuration that defines which Amazon Web Services accounts and Regions to analyze.
+        aggregationConfiguration: {AggregationConfiguration}
+        -- The Amazon Resource Name (ARN) of the optimization profile.
+        arn: string
+        -- Indicates whether the profile is valid for scheduled recommendation generation.
+        eligibleForScheduledGeneration: boolean
+        -- Indicates whether the profile is valid for manual architecture generation.
+        eligibleForArchitectureGeneration: boolean
+        -- A map of field paths to error messages for invalid or missing input fields.
+        fieldErrors: {string : string}
+        -- The tags associated with the profile.
+        tags: {Tag}
+        -- The identifier of the user or system that created this profile.
+        createdBy: string
+        -- The timestamp when the profile was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this profile.
+        lastModifiedBy: string
+        -- The timestamp when the profile was last modified.
+        lastModifiedAt: number
+    end
+
+    enum GenerationStatus
+        "QUEUED"
+        "IN_PROGRESS"
+        "COMPLETED"
+        "ERROR"
+    end
+
+    -- Summary of a recommendation generation process initiated through the agent API.
+    record AgentRecommendationGenerationSummary
+        -- The unique identifier of the recommendation generation.
+        id: string
+        -- The Amazon Resource Name (ARN) of the profile used for this generation.
+        profileArn: string
+        -- The name of the recommendation generation.
+        name: string
+        -- The current status of the recommendation generation.
+        status: string
+        -- The estimated time for the generation to complete.
+        estimatedCompletionTime: number
+        -- The identifier of the user or system that started this generation.
+        createdBy: string
+        -- The timestamp when the generation was started.
+        createdAt: number
+        -- The identifier of the user or system that last modified this generation.
+        lastModifiedBy: string
+        -- The timestamp when the generation was last modified.
+        lastModifiedAt: number
+    end
+
+    enum RecommendationItemType
+        "AWS_RESOURCE"
+        "RECOMMENDATION"
+    end
+
+    -- Summary of an agent recommendation item, representing an Amazon Web Services resource or recommendation affected by the optimization recommendation.
+    record AgentRecommendationItemSummary
+        -- The unique identifier of the recommendation item.
+        id: string
+        -- The Amazon Resource Name (ARN) of the associated recommendation.
+        recommendationArn: string
+        -- Metadata containing a snapshot of the resource or recommendation at the time of generation.
+        metadata: any
+        -- The identifier of the user or system that created this recommendation item.
+        createdBy: string
+        -- The timestamp when the recommendation item was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this recommendation item.
+        lastModifiedBy: string
+        -- The timestamp when the recommendation item was last modified.
+        lastModifiedAt: number
+    end
+
+    -- An external reference associated with remediation steps.
+    record ResourceLink
+        -- The URL of the external reference.
+        url: string
+        -- An optional human-readable title for the link.
+        title: string
+    end
+
+    -- One step within a remediation procedure.
+    record RemediationStep
+        -- An optional short label for the step.
+        title: string
+        -- The content describing the step, which can include code examples and verification checklists.
+        content: string
+    end
+
+    enum RemediationType
+        "AUTO_REMEDIATION"
+        "CONSOLE"
+        "CLI"
+        "SDK"
+        "IAC"
+        "MCP"
+    end
+
+    -- The core fields for a remediation.
+    record AgentRecommendationRemediation
+        -- The ARN of the recommendation that this remediation belongs to.
+        recommendationArn: string
+        -- The procedural steps to perform the remediation.
+        steps: {RemediationStep}
+        -- External references associated with the steps.
+        resourceLinks: {ResourceLink}
+        -- The identifier of the user or system that created this remediation.
+        createdBy: string
+        -- The timestamp when the remediation was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this remediation.
+        lastModifiedBy: string
+        -- The timestamp when the remediation was last modified.
+        lastModifiedAt: number
+    end
+
+    enum Effort
+        "LARGE"
+        "MEDIUM"
+        "SMALL"
+    end
+
+    enum ImpactCategory
+        "HIGH"
+        "MEDIUM"
+        "LOW"
+    end
+
+    enum Priority
+        "HIGH"
+        "MEDIUM"
+        "LOW"
+    end
+
+    -- A return-on-investment estimate with context.
+    record Roi
+        -- A short statistic or key metric. Optional when there is no quantifiable figure.
+        estimate: string
+        -- A sentence providing context for the estimate.
+        detail: string
+    end
+
+    enum RecommendationState
+        "OPEN"
+        "CLOSED"
+    end
+
+    enum RecommendationStatus
+        "ACTIVE"
+        "SUPPRESSED"
+        "COMPLETED"
+    end
+
+    enum RecommendationType
+        "RESOURCE"
+        "ARCHITECTURE"
+        "APPLICATION"
+    end
+
+    -- Summary of an agent optimization recommendation returned by list operations.
+    record AgentRecommendationSummary
+        -- The Amazon Resource Name (ARN) of the recommendation.
+        recommendationArn: string
+        -- The Amazon Resource Name (ARN) of the associated profile.
+        profileArn: string
+        -- The title of the recommendation.
+        title: string
+        -- A description of the recommendation.
+        description: string
+        -- The Well-Architected Tool Framework pillar that the recommendation addresses.
+        pillar: string
+        -- The priority of the recommendation.
+        priority: string
+        -- The effort required to implement the recommendation.
+        effort: string
+        -- The current status of the recommendation.
+        status: string
+        -- The current state of the recommendation.
+        state: string
+        -- The free-text reason associated with the recommendation's most recent status update.
+        updateReason: string
+        -- The severity of the recommendation's impact.
+        impact: string
+        -- The return on investment estimate for the recommendation.
+        roi: Roi
+        -- The number of Amazon Web Services resources this recommendation affects.
+        numberOfResources: number
+        -- The Amazon Web Services services that the recommendation applies to.
+        awsServices: {string}
+        -- The business units that own the affected resources.
+        businessUnits: {string}
+        -- The applications that the recommendation targets.
+        applications: {string}
+        -- The identifier of the user or system that created this recommendation.
+        createdBy: string
+        -- The timestamp when the recommendation was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this recommendation.
+        lastModifiedBy: string
+        -- The timestamp when the recommendation was last modified.
+        lastModifiedAt: number
     end
 
     enum ChoiceReason
@@ -114,15 +359,11 @@ local record M
         ChoiceId: string
         Title: string
         Description: string
-        -- The helpful resource (both text and URL) for a particular choice.
-        -- This field only applies to custom lenses. Each choice can have only one helpful resource.
+        -- The helpful resource (both text and URL) for a particular choice. This field only applies to custom lenses. Each choice can have only one helpful resource.
         HelpfulResource: ChoiceContent
-        -- The improvement plan (both text and URL) for a particular choice.
-        -- This field only applies to custom lenses. Each choice can have only one improvement plan.
+        -- The improvement plan (both text and URL) for a particular choice. This field only applies to custom lenses. Each choice can have only one improvement plan.
         ImprovementPlan: ChoiceContent
-        -- The additional resources for a choice in a custom lens.
-        -- A choice can have up to two additional resources: one of type HELPFUL_RESOURCE,
-        -- one of type IMPROVEMENT_PLAN, or both.
+        -- The additional resources for a choice in a custom lens. A choice can have up to two additional resources: one of type HELPFUL_RESOURCE, one of type IMPROVEMENT_PLAN, or both.
         AdditionalResources: {AdditionalResources}
     end
 
@@ -130,6 +371,7 @@ local record M
     record JiraConfiguration
         -- The URL of the associated Jira issue.
         JiraIssueUrl: string
+        -- The date and time when the Jira configuration was last synced.
         LastSyncedTime: number
     end
 
@@ -157,8 +399,7 @@ local record M
         QuestionDescription: string
         ImprovementPlanUrl: string
         HelpfulResourceUrl: string
-        -- The helpful resource text to be displayed for a custom lens.
-        -- This field does not apply to Amazon Web Services official lenses.
+        -- The helpful resource text to be displayed for a custom lens. This field does not apply to Amazon Web Services official lenses.
         HelpfulResourceDisplayText: string
         Choices: {Choice}
         SelectedChoices: {string}
@@ -204,6 +445,12 @@ local record M
         QuestionType: string
         -- Configuration of the Jira integration.
         JiraConfiguration: JiraConfiguration
+    end
+
+    enum ApplicationType
+        "SAS"
+        "DESKTOP_APPLICATION"
+        "OTHER"
     end
 
     -- Input to associate lens reviews.
@@ -309,6 +556,7 @@ local record M
         FlaggedResources: number
         -- Reason associated to the check.
         Reason: string
+        -- The date and time when the check was last updated.
         UpdatedAt: number
     end
 
@@ -322,6 +570,7 @@ local record M
         Provider: string
         -- Trusted Advisor check description.
         Description: string
+        -- The date and time when the check summary was last updated.
         UpdatedAt: number
         -- Well-Architected Lens ARN associated to the check.
         LensArn: string
@@ -334,7 +583,7 @@ local record M
         AccountSummary: {string : number}
     end
 
-    -- The choice level improvement plan.
+    -- The choice level improvement plan. This value is only applicable to custom lenses.
     record ChoiceImprovementPlan
         ChoiceId: string
         -- The display text for the improvement plan.
@@ -389,11 +638,210 @@ local record M
         WorkloadId: string
         WorkloadName: string
         WorkloadArn: string
+        -- The date and time when the consolidated report metric was last updated.
         UpdatedAt: number
         -- The metrics for the lenses in the workload.
         Lenses: {LensMetric}
         -- The total number of lenses applied to the workload.
         LensesAppliedCount: number
+    end
+
+    enum Criticality
+        "MISSION_CRITICAL"
+        "BUSINESS_CRITICAL"
+        "NON_CRITICAL"
+        "TEST_DEVELOPMENT"
+    end
+
+    -- A key-value pair representing a resource tag used to scope context content.
+    record ContextResourceTag
+        -- The tag key.
+        key: string
+        -- The tag value.
+        value: string
+    end
+
+    -- Typed content structure for a context. Contains application-specific fields that describe the environment used during recommendation generation.
+    record ContextContent
+        -- The Amazon Web Services account IDs associated with this application context.
+        accountIds: {string}
+        -- The Amazon Web Services Regions where this application operates.
+        regions: {string}
+        -- The Amazon Web Services services used by this application.
+        awsServices: {string}
+        -- The Amazon Web Services resource types relevant to this application.
+        resourceTypes: {string}
+        -- Resource tags used to scope this application context.
+        resourceTags: {ContextResourceTag}
+        -- A free-form overview of the application.
+        applicationOverview: string
+        -- The industry vertical for this application.
+        industry: string
+        -- The type of the application.
+        applicationType: string
+        -- The business criticality of the application.
+        criticality: string
+        -- A free-form description of the application architecture.
+        architectureOverview: string
+        -- Additional context not captured by other fields.
+        additionalContext: string
+    end
+
+    enum ContextType
+        "APPLICATION"
+    end
+
+    -- Summary of a context associated with a profile, representing application or environment information used during recommendation generation.
+    record ContextSummary
+        -- The unique identifier of the context.
+        id: string
+        -- The Amazon Resource Name (ARN) of the associated profile.
+        profileArn: string
+        -- The title of the context.
+        title: string
+        -- The type of the context.
+        contextType: string
+        -- The typed content of the context, containing application-specific fields such as account IDs, Regions, services, and resource types.
+        content: ContextContent
+        -- The type of application described by this context.
+        applicationType: string
+        -- The business criticality of the application described by this context.
+        criticality: string
+        -- The identifier of the user or system that created this context.
+        createdBy: string
+        -- The timestamp when the context was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this context.
+        lastModifiedBy: string
+        -- The timestamp when the context was last modified.
+        lastModifiedAt: number
+    end
+
+    record CreateAgentContextInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+        -- The Amazon Resource Name (ARN) of the profile to associate the context with.
+        profileArn: string
+        -- The title of the context.
+        title: string
+        -- The type of the context.
+        contextType: string
+        -- The typed content of the context. The structure contains application-specific fields such as account IDs, Regions, services, and resource types.
+        content: ContextContent
+    end
+
+    record CreateAgentContextOutput
+        -- The created context summary.
+        context: ContextSummary
+    end
+
+    -- The user has reached their resource quota.
+    record ServiceQuotaExceededException
+        Message: string
+        ResourceId: string
+        ResourceType: string
+        QuotaCode: string
+        ServiceCode: string
+    end
+
+    record CreateAgentGoalInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+        -- The Amazon Resource Name (ARN) of the profile to associate the goal with.
+        profileArn: string
+        -- The Well-Architected Tool Framework pillars to associate with this goal.
+        pillars: {string}
+        -- The title of the goal.
+        title: string
+        -- A description of the goal.
+        description: string
+    end
+
+    -- Summary of an optimization goal associated with a profile.
+    record GoalSummary
+        -- The unique identifier of the goal.
+        id: string
+        -- The Amazon Resource Name (ARN) of the associated profile.
+        profileArn: string
+        -- The Well-Architected Tool Framework pillars associated with this goal.
+        pillars: {string}
+        -- The title of the goal.
+        title: string
+        -- A description of the goal.
+        description: string
+        -- The identifier of the user or system that created this goal.
+        createdBy: string
+        -- The timestamp when the goal was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this goal.
+        lastModifiedBy: string
+        -- The timestamp when the goal was last modified.
+        lastModifiedAt: number
+    end
+
+    record CreateAgentGoalOutput
+        -- The created goal summary.
+        goal: GoalSummary
+    end
+
+    record CreateAgentProfileInput
+        -- The system name of the profile.
+        name: string
+        -- The display name of the profile shown to users.
+        displayName: string
+        -- A description of the profile.
+        description: string
+        -- The business overview for this profile.
+        businessOverview: string
+        -- The Well-Architected Tool Framework pillars to associate with this profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled for the profile.
+        deletionProtection: boolean
+        -- The ARN of the IAM execution role used for recommendation actions.
+        executionRoleArn: string
+        -- The aggregation configuration that defines which Amazon Web Services accounts and Regions to analyze.
+        aggregationConfiguration: {AggregationConfiguration}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+        -- The tags to associate with the profile.
+        tags: {Tag}
+    end
+
+    record CreateAgentProfileOutput
+        -- The system name of the created profile.
+        name: string
+        -- The display name of the created profile.
+        displayName: string
+        -- A description of the created profile.
+        description: string
+        -- The business overview of the created profile.
+        businessOverview: string
+        -- The Well-Architected Tool Framework pillars associated with the created profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled.
+        deletionProtection: boolean
+        -- The ARN of the IAM execution role.
+        executionRoleArn: string
+        -- The aggregation configuration.
+        aggregationConfiguration: {AggregationConfiguration}
+        -- The Amazon Resource Name (ARN) of the created profile.
+        arn: string
+        -- Indicates whether the profile is valid for scheduled recommendation generation.
+        eligibleForScheduledGeneration: boolean
+        -- Indicates whether the profile is valid for manual architecture generation.
+        eligibleForArchitectureGeneration: boolean
+        -- A map of field paths to error messages for invalid or missing input fields.
+        fieldErrors: {string : string}
+        -- The tags associated with the created profile.
+        tags: {Tag}
+        -- The identifier of the user or system that created this profile.
+        createdBy: string
+        -- The timestamp when the profile was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this profile.
+        lastModifiedBy: string
+        -- The timestamp when the profile was last modified.
+        lastModifiedAt: number
     end
 
     record CreateLensShareInput
@@ -404,15 +852,6 @@ local record M
 
     record CreateLensShareOutput
         ShareId: string
-    end
-
-    -- The user has reached their resource quota.
-    record ServiceQuotaExceededException
-        Message: string
-        ResourceId: string
-        ResourceType: string
-        QuotaCode: string
-        ServiceCode: string
     end
 
     record CreateLensVersionInput
@@ -528,8 +967,7 @@ local record M
     record WorkloadDiscoveryConfig
         -- Discovery integration status in respect to Trusted Advisor for the workload.
         TrustedAdvisorIntegrationStatus: string
-        -- The mode to use for identifying resources associated with the workload.
-        -- You can specify WORKLOAD_METADATA, APP_REGISTRY, or both.
+        -- The mode to use for identifying resources associated with the workload. You can specify WORKLOAD_METADATA, APP_REGISTRY, or both.
         WorkloadResourceDefinition: {string}
     end
 
@@ -607,6 +1045,46 @@ local record M
     record CreateWorkloadShareOutput
         WorkloadId: string
         ShareId: string
+    end
+
+    -- A benefit on a different pillar from acting on the recommendation.
+    record CrossPillarBenefit
+        -- The pillar that would be positively impacted.
+        pillar: string
+        -- A short phrase describing the outcome.
+        title: string
+        -- A description of what changes and why it matters.
+        description: string
+        -- The severity of the benefit.
+        impact: string
+    end
+
+    record DeleteAgentContextInput
+        -- The Amazon Resource Name (ARN) of the profile containing the context.
+        profileArn: string
+        -- The unique identifier of the context to delete.
+        id: string
+    end
+
+    record DeleteAgentContextOutput
+    end
+
+    record DeleteAgentGoalInput
+        -- The Amazon Resource Name (ARN) of the profile containing the goal.
+        profileArn: string
+        -- The unique identifier of the goal to delete.
+        id: string
+    end
+
+    record DeleteAgentGoalOutput
+    end
+
+    record DeleteAgentProfileInput
+        -- The Amazon Resource Name (ARN) of the profile to delete.
+        profileArn: string
+    end
+
+    record DeleteAgentProfileOutput
     end
 
     enum LensStatusType
@@ -720,6 +1198,14 @@ local record M
         "DISABLED"
     end
 
+    -- Details about an error that occurred during recommendation generation.
+    record ErrorDetails
+        -- The status code identifying the type of error.
+        code: string
+        -- A human-readable description of the error.
+        message: string
+    end
+
     record ExportLensInput
         LensAlias: string
         -- The lens version to be exported.
@@ -729,6 +1215,271 @@ local record M
     record ExportLensOutput
         -- The JSON representation of a lens.
         LensJSON: string
+    end
+
+    enum FeedbackCategory
+        "OTHER"
+        "RECOMMENDATION_NOT_RELEVANT"
+        "RESOURCE_NOT_IMPORTANT"
+        "RESOURCE_TYPE_NOT_IMPORTANT"
+        "RECOMMENDATION_INCORRECT"
+    end
+
+    record GetAgentContextInput
+        -- The Amazon Resource Name (ARN) of the profile containing the context.
+        profileArn: string
+        -- The unique identifier of the context to retrieve.
+        id: string
+    end
+
+    record GetAgentContextOutput
+        -- The retrieved context summary.
+        context: ContextSummary
+    end
+
+    record GetAgentGoalInput
+        -- The Amazon Resource Name (ARN) of the profile containing the goal.
+        profileArn: string
+        -- The unique identifier of the goal to retrieve.
+        id: string
+    end
+
+    record GetAgentGoalOutput
+        -- The retrieved goal summary.
+        goal: GoalSummary
+    end
+
+    record GetAgentProfileInput
+        -- The Amazon Resource Name (ARN) of the optimization profile to retrieve.
+        profileArn: string
+    end
+
+    record GetAgentProfileOutput
+        -- The system name of the profile.
+        name: string
+        -- The display name of the profile.
+        displayName: string
+        -- A description of the profile.
+        description: string
+        -- The business overview of the profile.
+        businessOverview: string
+        -- The Well-Architected Tool Framework pillars associated with the profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled.
+        deletionProtection: boolean
+        -- The ARN of the IAM execution role.
+        executionRoleArn: string
+        -- The aggregation configuration.
+        aggregationConfiguration: {AggregationConfiguration}
+        -- The Amazon Resource Name (ARN) of the profile.
+        arn: string
+        -- Indicates whether the profile is valid for scheduled recommendation generation.
+        eligibleForScheduledGeneration: boolean
+        -- Indicates whether the profile is valid for manual architecture generation.
+        eligibleForArchitectureGeneration: boolean
+        -- A map of field paths to error messages for invalid or missing input fields.
+        fieldErrors: {string : string}
+        -- The tags associated with the profile.
+        tags: {Tag}
+        -- The identifier of the user or system that created this profile.
+        createdBy: string
+        -- The timestamp when the profile was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this profile.
+        lastModifiedBy: string
+        -- The timestamp when the profile was last modified.
+        lastModifiedAt: number
+    end
+
+    record GetAgentRecommendationInput
+        -- The Amazon Resource Name (ARN) of the recommendation to retrieve.
+        recommendationArn: string
+        -- Optional filter on remediation type.
+        remediationType: string
+    end
+
+    -- Contains information about a goal associated with a recommendation.
+    record RecommendationGoal
+        -- The title of the goal associated with the recommendation.
+        title: string
+    end
+
+    -- An insight describing a usage pattern and the signals detected.
+    record Insight
+        -- A description of the usage pattern.
+        usagePattern: string
+        -- A description of the signals detected.
+        signalsDetected: string
+    end
+
+    -- A high-level remediation summary returned in the detail response.
+    record RemediationSummary
+        -- A short imperative statement of the recommended action.
+        recommendation: string
+        -- High-level steps to implement the fix.
+        steps: {string}
+    end
+
+    enum RecommendationSource
+        "TRUSTED_ADVISOR"
+        "COST_EXPLORER"
+        "CLOUDWATCH"
+        "WELL_ARCHITECTED_TOOL"
+        "WELL_ARCHITECTED_AGENT"
+        "CUSTOMER_IAC"
+    end
+
+    enum RiskRating
+        "LOW"
+        "MEDIUM"
+        "HIGH"
+    end
+
+    -- A negative trade-off from acting on the recommendation.
+    record TradeOff
+        -- The pillar that could be negatively impacted.
+        pillar: string
+        -- A short phrase describing what is lost or degraded.
+        title: string
+        -- A description of the specific risk and the condition that triggers it.
+        description: string
+        -- The risk rating for the trade-off.
+        risk: string
+        -- A specific action to mitigate the trade-off and when to take it.
+        mitigation: string
+        -- An optional explanation providing additional context for the risk rating.
+        riskExplanation: string
+    end
+
+    record GetAgentRecommendationOutput
+        -- The Amazon Resource Name (ARN) of the recommendation.
+        recommendationArn: string
+        -- The Amazon Resource Name (ARN) of the associated profile.
+        profileArn: string
+        -- The title of the recommendation.
+        title: string
+        -- A description of the recommendation.
+        description: string
+        -- The Well-Architected Tool Framework pillar that the recommendation addresses.
+        pillar: string
+        -- The priority of the recommendation.
+        priority: string
+        -- The effort required to implement the recommendation.
+        effort: string
+        -- The current status of the recommendation.
+        status: string
+        -- The current state of the recommendation.
+        state: string
+        -- The free-text reason associated with the recommendation's most recent status update.
+        updateReason: string
+        -- The severity of the recommendation's impact.
+        impact: string
+        -- The return on investment estimate for the recommendation.
+        roi: Roi
+        -- The number of Amazon Web Services resources this recommendation affects.
+        numberOfResources: number
+        -- The Amazon Web Services services that the recommendation applies to.
+        awsServices: {string}
+        -- The business units that own the affected resources.
+        businessUnits: {string}
+        -- The applications that the recommendation targets.
+        applications: {string}
+        -- Detailed impact information for the recommendation.
+        impactDetails: {string}
+        -- A list of insights about the recommendation.
+        insights: {Insight}
+        -- Highlights describing what was detected.
+        highlights: {string}
+        -- A high-level summary of the recommended remediation.
+        remediationSummary: RemediationSummary
+        -- Cross-pillar benefits of acting on the recommendation.
+        crossPillarBenefits: {CrossPillarBenefit}
+        -- Trade-offs of acting on the recommendation.
+        tradeOffs: {TradeOff}
+        -- Sources that generated this recommendation.
+        sources: {string}
+        -- Goals that this recommendation targets.
+        goals: {RecommendationGoal}
+        -- A set of key-value pairs associated with the recommendation, used for cost allocation and access control.
+        tags: {Tag}
+        -- The identifier of the user or system that created this recommendation.
+        createdBy: string
+        -- The timestamp when the recommendation was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this recommendation.
+        lastModifiedBy: string
+        -- The timestamp when the recommendation was last modified.
+        lastModifiedAt: number
+        -- A list of remediations for the recommendation.
+        remediations: {AgentRecommendationRemediation}
+    end
+
+    record GetAgentRecommendationGenerationInput
+        -- The ARN of the optimization profile associated with this generation.
+        profileArn: string
+        -- The unique identifier of the recommendation generation to retrieve.
+        generationId: string
+    end
+
+    -- Progress information for a recommendation generation process.
+    record Progress
+        -- The number of generation steps that have been completed.
+        stepsCompleted: number
+        -- The total number of steps in the generation process.
+        totalSteps: number
+        -- The completion percentage of the generation process (0-100).
+        completionPercentage: number
+    end
+
+    -- Item configuration for a specific Well-Architected Tool Framework pillar.
+    record PillarItem
+        -- The pillar this item configuration applies to.
+        pillar: string
+        -- A list of item IDs to process for this pillar, such as best practice IDs, Amazon Web Services service names, or resource ARNs.
+        ids: {string}
+    end
+
+    -- Defines the scope for recommendation generation, specifying which pillars and goals to focus on.
+    record Scope
+        -- The Well-Architected Tool Framework pillars to include in the generation scope.
+        pillars: {string}
+        -- Specific goal IDs to focus on during recommendation generation.
+        goalIds: {string}
+        -- Optional per-pillar item filtering configuration.
+        items: {PillarItem}
+    end
+
+    record GetAgentRecommendationGenerationOutput
+        -- The unique identifier of the recommendation generation.
+        id: string
+        -- The Amazon Resource Name (ARN) of the profile used for this generation.
+        profileArn: string
+        -- The name of the recommendation generation.
+        name: string
+        -- The current status of the recommendation generation.
+        status: string
+        -- The estimated time for the generation to complete.
+        estimatedCompletionTime: number
+        -- The identifier of the user or system that started this generation.
+        createdBy: string
+        -- The timestamp when the generation was started.
+        createdAt: number
+        -- The identifier of the user or system that last modified this generation.
+        lastModifiedBy: string
+        -- The timestamp when the generation was last modified.
+        lastModifiedAt: number
+        -- Additional context information provided to guide the recommendation generation process.
+        additionalContext: any
+        -- The scope configuration that defines which pillars and goals to focus on during generation.
+        scope: Scope
+        -- The timestamp when the recommendation generation process started.
+        startedAt: number
+        -- The timestamp when the recommendation generation process completed.
+        endedAt: number
+        -- Current progress information including steps completed and completion percentage.
+        progress: Progress
+        -- Details about the error if the generation status is ERROR.
+        errorDetails: ErrorDetails
     end
 
     -- Input to get answer.
@@ -755,9 +1506,7 @@ local record M
     end
 
     record GetConsolidatedReportInput
-        -- The format of the consolidated report.
-        -- For PDF, Base64String is returned. For JSON,
-        -- Metrics is returned.
+        -- The format of the consolidated report. For PDF, Base64String is returned. For JSON, Metrics is returned.
         Format: string
         -- Set to true to have shared resources included in the report.
         IncludeSharedResources: boolean
@@ -767,8 +1516,7 @@ local record M
     end
 
     record GetConsolidatedReportOutput
-        -- The metrics that make up the consolidated report.
-        -- Only returned when JSON format is requested.
+        -- The metrics that make up the consolidated report. Only returned when JSON format is requested.
         Metrics: {ConsolidatedReportMetric}
         NextToken: string
         Base64String: string
@@ -876,6 +1624,7 @@ local record M
         PillarReviewSummaries: {PillarReviewSummary}
         -- Jira configuration status of the Lens review.
         JiraConfiguration: JiraSelectedQuestionConfiguration
+        -- The date and time when the lens review was last updated.
         UpdatedAt: number
         Notes: string
         RiskCounts: {string : number}
@@ -992,18 +1741,16 @@ local record M
         WorkloadName: string
         Description: string
         Environment: string
+        -- The date and time when the workload was last updated.
         UpdatedAt: number
         AccountIds: {string}
         AwsRegions: {string}
         NonAwsRegions: {string}
         ArchitecturalDesign: string
         ReviewOwner: string
+        -- The review restriction date for the workload.
         ReviewRestrictionDate: number
-        -- Flag indicating whether the workload owner has acknowledged that the Review
-        -- owner field is required.
-        -- If a Review owner is not added to the workload within
-        -- 60 days of acknowledgement, access to the workload is restricted until an owner is
-        -- added.
+        -- Flag indicating whether the workload owner has acknowledged that the Review owner field is required. If a Review owner is not added to the workload within 60 days of acknowledgement, access to the workload is restricted until an owner is added.
         IsReviewOwnerUpdateAcknowledged: boolean
         IndustryType: string
         Industry: string
@@ -1032,6 +1779,7 @@ local record M
     record Milestone
         MilestoneNumber: number
         MilestoneName: string
+        -- The date and time when the milestone was recorded.
         RecordedAt: number
         Workload: Workload
     end
@@ -1084,7 +1832,9 @@ local record M
         -- Profile questions.
         ProfileQuestions: {ProfileQuestion}
         Owner: string
+        -- The date and time when the profile was created.
         CreatedAt: number
+        -- The date and time when the profile was last updated.
         UpdatedAt: number
         -- The ID assigned to the share invitation.
         ShareInvitationId: string
@@ -1126,7 +1876,9 @@ local record M
         TemplateName: string
         -- Profile template questions.
         TemplateQuestions: {ProfileTemplateQuestion}
+        -- The date and time when the profile template was created.
         CreatedAt: number
+        -- The date and time when the profile template was last updated.
         UpdatedAt: number
     end
 
@@ -1160,6 +1912,7 @@ local record M
         -- A count of how many total questions are answered and unanswered in the review template.
         QuestionCounts: {string : number}
         Owner: string
+        -- The date and time when the review template was last updated.
         UpdatedAt: number
         -- The review template ARN.
         TemplateArn: string
@@ -1198,8 +1951,7 @@ local record M
         QuestionDescription: string
         ImprovementPlanUrl: string
         HelpfulResourceUrl: string
-        -- The helpful resource text to be displayed for a custom lens.
-        -- This field does not apply to Amazon Web Services official lenses.
+        -- The helpful resource text to be displayed for a custom lens. This field does not apply to Amazon Web Services official lenses.
         HelpfulResourceDisplayText: string
         Choices: {Choice}
         SelectedChoices: {string}
@@ -1248,6 +2000,7 @@ local record M
         LensStatus: string
         -- Pillar review summaries of a lens review.
         PillarReviewSummaries: {ReviewTemplatePillarReviewSummary}
+        -- The date and time when the review template lens review was last updated.
         UpdatedAt: number
         Notes: string
         -- A count of how many questions are answered and unanswered in the lens review.
@@ -1301,7 +2054,7 @@ local record M
         QuestionTitle: string
         Risk: string
         ImprovementPlanUrl: string
-        -- The improvement plan details.
+        -- The improvement plan details. This value is only applicable to custom lenses.
         ImprovementPlans: {ChoiceImprovementPlan}
         -- Configuration of the Jira integration.
         JiraConfiguration: JiraConfiguration
@@ -1321,6 +2074,7 @@ local record M
         LensName: string
         -- The status of the lens.
         LensStatus: string
+        -- The date and time when the lens review was last updated.
         UpdatedAt: number
         RiskCounts: {string : number}
         -- The profiles associated with the workload.
@@ -1363,7 +2117,9 @@ local record M
         -- The type of the lens.
         LensType: string
         Description: string
+        -- The date and time when the lens was created.
         CreatedAt: number
+        -- The date and time when the lens was last updated.
         UpdatedAt: number
         -- The version of the lens.
         LensVersion: string
@@ -1386,6 +2142,103 @@ local record M
         -- ResourceArn of the lens being upgraded
         ResourceArn: string
         ResourceName: string
+    end
+
+    record ListAgentContextsInput
+        -- The Amazon Resource Name (ARN) of the profile to list contexts for.
+        profileArn: string
+        maxResults: number
+        nextToken: string
+    end
+
+    record ListAgentContextsOutput
+        -- A list of context summaries associated with the profile.
+        items: {ContextSummary}
+        nextToken: string
+    end
+
+    record ListAgentGoalsInput
+        -- The Amazon Resource Name (ARN) of the optimization profile to list goals for.
+        profileArn: string
+        -- The maximum number of goals to return in a single response.
+        maxResults: number
+        -- A pagination token returned from a previous call to continue retrieving results.
+        nextToken: string
+    end
+
+    record ListAgentGoalsOutput
+        -- A list of goal summaries associated with the profile.
+        items: {GoalSummary}
+        -- A pagination token to retrieve the next set of results, if available.
+        nextToken: string
+    end
+
+    record ListAgentProfilesInput
+        -- The maximum number of profiles to return in a single call. Default is 100.
+        maxResults: number
+        -- A pagination token returned from a previous call to continue retrieving results.
+        nextToken: string
+    end
+
+    record ListAgentProfilesOutput
+        -- A list of profile summaries.
+        items: {AgentProfileSummary}
+        -- A pagination token to retrieve the next set of results, if available.
+        nextToken: string
+    end
+
+    record ListAgentRecommendationGenerationsInput
+        -- The Amazon Resource Name (ARN) of the optimization profile to list generation processes for.
+        profileArn: string
+        -- Optional filter by recommendation type.
+        recommendationType: string
+        -- The maximum number of generation processes to return in a single response.
+        maxResults: number
+        -- A pagination token returned from a previous call to continue retrieving results.
+        nextToken: string
+    end
+
+    record ListAgentRecommendationGenerationsOutput
+        -- A list of recommendation generation summaries.
+        items: {AgentRecommendationGenerationSummary}
+        -- A pagination token to retrieve the next set of results, if available.
+        nextToken: string
+    end
+
+    record ListAgentRecommendationItemsInput
+        -- The Amazon Resource Name (ARN) of the recommendation to list items for.
+        recommendationArn: string
+        -- The maximum number of recommendation items to return in a single response.
+        maxResults: number
+        -- A pagination token returned from a previous call to continue retrieving results.
+        nextToken: string
+    end
+
+    record ListAgentRecommendationItemsOutput
+        -- A list of recommendation items with their detailed metadata and configuration information.
+        items: {AgentRecommendationItemSummary}
+        -- A pagination token to retrieve the next set of results, if available.
+        nextToken: string
+    end
+
+    record ListAgentRecommendationsInput
+        -- The Amazon Resource Name (ARN) of the optimization profile to list recommendations for.
+        profileArn: string
+        -- The maximum number of recommendations to return in a single response.
+        maxResults: number
+        -- A pagination token returned from a previous call to continue retrieving results.
+        nextToken: string
+        -- Optional filter to return only recommendations with the specified state (OPEN or CLOSED).
+        state: string
+        -- Optional filter to return only recommendations for the specified pillar.
+        pillar: string
+    end
+
+    record ListAgentRecommendationsOutput
+        -- A list of recommendation summaries.
+        items: {AgentRecommendationSummary}
+        -- A pagination token to retrieve the next set of results, if available.
+        nextToken: string
     end
 
     enum QuestionPriority
@@ -1537,6 +2390,7 @@ local record M
         WorkloadArn: string
         WorkloadName: string
         Owner: string
+        -- The date and time when the workload was last updated.
         UpdatedAt: number
         Lenses: {string}
         RiskCounts: {string : number}
@@ -1550,6 +2404,7 @@ local record M
     record MilestoneSummary
         MilestoneNumber: number
         MilestoneName: string
+        -- The date and time when the milestone was recorded.
         RecordedAt: number
         WorkloadSummary: WorkloadSummary
     end
@@ -1566,8 +2421,7 @@ local record M
         NextToken: string
         -- The maximum number of results to return for this request.
         MaxResults: number
-        -- The ARN for the related resource for the notification.
-        -- Only one of WorkloadID or ResourceARN should be specified.
+        -- The ARN for the related resource for the notification. Only one of WorkloadID or ResourceARN should be specified.
         ResourceArn: string
     end
 
@@ -1629,8 +2483,7 @@ local record M
     end
 
     record ListProfilesInput
-        -- An optional string added to the beginning of each profile name returned in the
-        -- results.
+        -- An optional string added to the beginning of each profile name returned in the results.
         ProfileNamePrefix: string
         -- Profile owner type.
         ProfileOwnerType: string
@@ -1649,7 +2502,9 @@ local record M
         -- The profile description.
         ProfileDescription: string
         Owner: string
+        -- The date and time when the profile was created.
         CreatedAt: number
+        -- The date and time when the profile was last updated.
         UpdatedAt: number
     end
 
@@ -1734,6 +2589,7 @@ local record M
         -- Lenses associated with the review template.
         Lenses: {string}
         Owner: string
+        -- The date and time when the review template was last updated.
         UpdatedAt: number
         -- The review template ARN.
         TemplateArn: string
@@ -1766,11 +2622,9 @@ local record M
         NextToken: string
         -- The maximum number of results to return for this request.
         MaxResults: number
-        -- An optional string added to the beginning of each profile name returned in the
-        -- results.
+        -- An optional string added to the beginning of each profile name returned in the results.
         ProfileNamePrefix: string
-        -- An optional string added to the beginning of each review template name returned in the
-        -- results.
+        -- An optional string added to the beginning of each review template name returned in the results.
         TemplateNamePrefix: string
     end
 
@@ -1817,8 +2671,7 @@ local record M
     record ListTemplateSharesInput
         -- The review template ARN.
         TemplateArn: string
-        -- The Amazon Web Services account ID, organization ID, or organizational unit
-        -- (OU) ID with which the profile is shared.
+        -- The Amazon Web Services account ID, organization ID, or organizational unit (OU) ID with which the profile is shared.
         SharedWithPrefix: string
         NextToken: string
         -- The maximum number of results to return for this request.
@@ -1885,6 +2738,23 @@ local record M
         NextToken: string
     end
 
+    enum RecommendationFeedbackType
+        "USEFUL"
+        "NOT_USEFUL"
+    end
+
+    record PutAgentRecommendationFeedbackInput
+        -- The Amazon Resource Name (ARN) of the recommendation to provide feedback for.
+        recommendationArn: string
+        -- Optional category classifying the nature of the feedback.
+        feedbackCategory: string
+        -- Optional comments providing additional context about the feedback.
+        comments: string
+    end
+
+    record PutAgentRecommendationFeedbackOutput
+    end
+
     -- The share invitation.
     record ShareInvitation
         -- The ID assigned to the share invitation.
@@ -1906,6 +2776,40 @@ local record M
         "REJECT"
     end
 
+    record StartAgentRecommendationGenerationInput
+        -- The Amazon Resource Name (ARN) of the optimization profile to use for generating recommendations.
+        profileArn: string
+        -- The types of recommendations to generate.
+        types: {string}
+        -- An optional name for this generation process to help identify it in lists and logs.
+        name: string
+        -- Optional additional context to guide the recommendation generation, such as specific business requirements or constraints.
+        additionalContext: any
+        -- Scope configuration to focus the generation on specific pillars or goals.
+        scope: Scope
+    end
+
+    record StartAgentRecommendationGenerationOutput
+        -- The unique identifier of the recommendation generation.
+        id: string
+        -- The Amazon Resource Name (ARN) of the profile used for this generation.
+        profileArn: string
+        -- The name of the recommendation generation.
+        name: string
+        -- The current status of the recommendation generation.
+        status: string
+        -- The estimated time for the generation to complete.
+        estimatedCompletionTime: number
+        -- The identifier of the user or system that started this generation.
+        createdBy: string
+        -- The timestamp when the generation was started.
+        createdAt: number
+        -- The identifier of the user or system that last modified this generation.
+        lastModifiedBy: string
+        -- The timestamp when the generation was last modified.
+        lastModifiedAt: number
+    end
+
     record TagResourceInput
         WorkloadArn: string
         -- The tags for the resource.
@@ -1917,12 +2821,119 @@ local record M
 
     record UntagResourceInput
         WorkloadArn: string
-        -- A list of tag keys. Existing tags of the resource
-        -- whose keys are members of this list are removed from the resource.
+        -- A list of tag keys. Existing tags of the resource whose keys are members of this list are removed from the resource.
         TagKeys: {string}
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateAgentContextInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+        -- The Amazon Resource Name (ARN) of the profile containing the context.
+        profileArn: string
+        -- The unique identifier of the context to update.
+        id: string
+        -- The updated title of the context.
+        title: string
+        -- The updated typed content of the context. The structure contains application-specific fields such as account IDs, Regions, services, and resource types.
+        content: ContextContent
+    end
+
+    record UpdateAgentContextOutput
+        -- The updated context summary.
+        context: ContextSummary
+    end
+
+    record UpdateAgentGoalInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+        -- The Amazon Resource Name (ARN) of the profile containing the goal to update.
+        profileArn: string
+        -- The unique identifier of the goal to update.
+        id: string
+        -- The updated pillars for the goal. Pillars define the optimization focus areas such as cost, performance, resilience, and operational excellence.
+        pillars: {string}
+        -- The updated title for the goal. Maximum length of 1000 characters.
+        title: string
+        -- A description of the goal.
+        description: string
+    end
+
+    record UpdateAgentGoalOutput
+        -- The updated goal summary.
+        goal: GoalSummary
+    end
+
+    record UpdateAgentProfileInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+        -- The Amazon Resource Name (ARN) of the profile to update.
+        profileArn: string
+        -- The updated display name of the profile.
+        displayName: string
+        -- The updated description of the profile.
+        description: string
+        -- The updated ARN of the IAM execution role.
+        executionRoleArn: string
+        -- The updated aggregation configuration.
+        aggregationConfiguration: {AggregationConfiguration}
+        -- The updated business overview for the profile.
+        businessOverview: string
+        -- The updated Well-Architected Tool Framework pillars for the profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled for the profile.
+        deletionProtection: boolean
+    end
+
+    record UpdateAgentProfileOutput
+        -- The system name of the updated profile.
+        name: string
+        -- The display name of the updated profile.
+        displayName: string
+        -- A description of the updated profile.
+        description: string
+        -- The business overview of the updated profile.
+        businessOverview: string
+        -- The Well-Architected Tool Framework pillars associated with the updated profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled.
+        deletionProtection: boolean
+        -- The ARN of the IAM execution role.
+        executionRoleArn: string
+        -- The aggregation configuration.
+        aggregationConfiguration: {AggregationConfiguration}
+        -- The Amazon Resource Name (ARN) of the updated profile.
+        arn: string
+        -- Indicates whether the profile is valid for scheduled recommendation generation.
+        eligibleForScheduledGeneration: boolean
+        -- Indicates whether the profile is valid for manual architecture generation.
+        eligibleForArchitectureGeneration: boolean
+        -- A map of field paths to error messages for invalid or missing input fields.
+        fieldErrors: {string : string}
+        -- The tags associated with the updated profile.
+        tags: {Tag}
+        -- The identifier of the user or system that created this profile.
+        createdBy: string
+        -- The timestamp when the profile was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this profile.
+        lastModifiedBy: string
+        -- The timestamp when the profile was last modified.
+        lastModifiedAt: number
+    end
+
+    record UpdateAgentRecommendationStatusInput
+        -- The Amazon Resource Name (ARN) of the recommendation to update.
+        recommendationArn: string
+        -- The new status to assign to the recommendation.
+        status: string
+        -- A free-text reason explaining this status update.
+        updateReason: string
+    end
+
+    record UpdateAgentRecommendationStatusOutput
     end
 
     -- Input to update answer.
@@ -1931,8 +2942,7 @@ local record M
         LensAlias: string
         QuestionId: string
         SelectedChoices: {string}
-        -- A list of choices to update on a question in your workload. The String key
-        -- corresponds to the choice ID to be updated.
+        -- A list of choices to update on a question in your workload. The String key corresponds to the choice ID to be updated.
         ChoiceUpdates: {string : ChoiceUpdate}
         Notes: string
         IsApplicable: boolean
@@ -2081,11 +3091,7 @@ local record M
         PillarPriorities: {string}
         ArchitecturalDesign: string
         ReviewOwner: string
-        -- Flag indicating whether the workload owner has acknowledged that the Review
-        -- owner field is required.
-        -- If a Review owner is not added to the workload within
-        -- 60 days of acknowledgement, access to the workload is restricted until an owner is
-        -- added.
+        -- Flag indicating whether the workload owner has acknowledged that the Review owner field is required. If a Review owner is not added to the workload within 60 days of acknowledgement, access to the workload is restricted until an owner is added.
         IsReviewOwnerUpdateAcknowledged: boolean
         IndustryType: string
         Industry: string
