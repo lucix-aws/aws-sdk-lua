@@ -20,6 +20,24 @@ function M.pages_describe_pull_request_events(client, input)
     })
 end
 
+--- Returns a page iterator for getBlobDifferences.
+function M.pages_get_blob_differences(client, input)
+    return paginator.pages(client, "getBlobDifferences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "hunks",
+    })
+end
+
+--- Returns an item iterator for getBlobDifferences.
+function M.items_get_blob_differences(client, input)
+    return paginator.items(client, "getBlobDifferences", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "hunks",
+    })
+end
+
 --- Returns a page iterator for getCommentReactions.
 function M.pages_get_comment_reactions(client, input)
     return paginator.pages(client, "getCommentReactions", input, {

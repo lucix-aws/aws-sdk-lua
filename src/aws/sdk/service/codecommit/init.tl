@@ -43,6 +43,7 @@ local record Client
     evaluatePullRequestApprovalRules: function(Client, types.EvaluatePullRequestApprovalRulesInput, ? base_client.InvokeOptions): async.Operation<types.EvaluatePullRequestApprovalRulesOutput>
     getApprovalRuleTemplate: function(Client, types.GetApprovalRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetApprovalRuleTemplateOutput>
     getBlob: function(Client, types.GetBlobInput, ? base_client.InvokeOptions): async.Operation<types.GetBlobOutput>
+    getBlobDifferences: function(Client, types.GetBlobDifferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetBlobDifferencesOutput>
     getBranch: function(Client, types.GetBranchInput, ? base_client.InvokeOptions): async.Operation<types.GetBranchOutput>
     getComment: function(Client, types.GetCommentInput, ? base_client.InvokeOptions): async.Operation<types.GetCommentOutput>
     getCommentReactions: function(Client, types.GetCommentReactionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCommentReactionsOutput>
@@ -239,6 +240,10 @@ end
 
 function C:getBlob(input: types.GetBlobInput, options?: base_client.InvokeOptions): async.Operation<types.GetBlobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBlob as schema.OperationSchema, input, options) as async.Operation<types.GetBlobOutput>
+end
+
+function C:getBlobDifferences(input: types.GetBlobDifferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetBlobDifferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBlobDifferences as schema.OperationSchema, input, options) as async.Operation<types.GetBlobDifferencesOutput>
 end
 
 function C:getBranch(input: types.GetBranchInput, options?: base_client.InvokeOptions): async.Operation<types.GetBranchOutput>

@@ -175,6 +175,8 @@ M.AllowedAnalysesList = schema.new({ type = "list", list_member = prelude.String
 
 M.AllowedAnalysisProviderList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AggregationThresholdList = schema.new({ type = "list", list_member = M.AggregationThreshold })
+
 M.SparkProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ProtectedJobMemberOutputList = schema.new({ type = "list", list_member = M.ProtectedJobSingleMemberOutput })
@@ -202,6 +204,8 @@ M.InheritedAllowedResultReceiversSourceList = schema.new({ type = "list", list_m
 M.AnalysisRuleColumnNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ColumnLineageList = schema.new({ type = "list", list_member = M.ColumnLineageEntry })
+
+M.OutputColumnThresholdList = schema.new({ type = "list", list_member = M.OutputColumnThreshold })
 
 M.ProtectedJobReceiverAccountIds = schema.new({ type = "list", list_member = prelude.String })
 
@@ -471,6 +475,82 @@ M.AggregationConstraint = schema.new({
             id = id.from(_N, "AggregationConstraint", "type"),
             type = "string",
             name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OutputColumnThreshold = schema.new({
+    id = id.from(_N, "OutputColumnThreshold"),
+    type = "structure",
+    members = {
+        outputColumnName = schema.new({
+            id = id.from(_N, "OutputColumnThreshold", "outputColumnName"),
+            type = "string",
+            name = "outputColumnName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        minimumIdentityCount = schema.new({
+            id = id.from(_N, "OutputColumnThreshold", "minimumIdentityCount"),
+            type = "integer",
+            name = "minimumIdentityCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AggregationThreshold = schema.new({
+    id = id.from(_N, "AggregationThreshold"),
+    type = "structure",
+    members = {
+        identityColumns = schema.new({
+            id = id.from(_N, "AggregationThreshold", "identityColumns"),
+            type = "list",
+            name = "identityColumns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        minimumIdentityCount = schema.new({
+            id = id.from(_N, "AggregationThreshold", "minimumIdentityCount"),
+            type = "integer",
+            name = "minimumIdentityCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "AggregationThreshold", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outputColumnThresholds = schema.new({
+            id = id.from(_N, "AggregationThreshold", "outputColumnThresholds"),
+            type = "list",
+            name = "outputColumnThresholds",
+            target_id = prelude.Document.id,
+            list_member = M.OutputColumnThreshold,
+        }),
+        allowedAggregateExpressionType = schema.new({
+            id = id.from(_N, "AggregationThreshold", "allowedAggregateExpressionType"),
+            type = "string",
+            name = "allowedAggregateExpressionType",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -925,6 +1005,33 @@ M.ConsolidatedPolicyAggregation = schema.new({
     },
 })
 
+M.ComparisonControls = schema.new({
+    id = id.from(_N, "ComparisonControls"),
+    type = "structure",
+    members = {
+        allowedLiteralComparisonColumns = schema.new({
+            id = id.from(_N, "ComparisonControls", "allowedLiteralComparisonColumns"),
+            type = "list",
+            name = "allowedLiteralComparisonColumns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        allowedColumnComparisonColumns = schema.new({
+            id = id.from(_N, "ComparisonControls", "allowedColumnComparisonColumns"),
+            type = "list",
+            name = "allowedColumnComparisonColumns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DifferentialPrivacyColumn = schema.new({
     id = id.from(_N, "DifferentialPrivacyColumn"),
     type = "structure",
@@ -998,6 +1105,20 @@ M.ConsolidatedPolicyCustom = schema.new({
             name = "differentialPrivacy",
             target_id = id.from(_N, "DifferentialPrivacyConfiguration"),
             target = M.DifferentialPrivacyConfiguration,
+        }),
+        aggregationThresholds = schema.new({
+            id = id.from(_N, "ConsolidatedPolicyCustom", "aggregationThresholds"),
+            type = "list",
+            name = "aggregationThresholds",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationThreshold,
+        }),
+        comparisonControls = schema.new({
+            id = id.from(_N, "ConsolidatedPolicyCustom", "comparisonControls"),
+            type = "structure",
+            name = "comparisonControls",
+            target_id = id.from(_N, "ComparisonControls"),
+            target = M.ComparisonControls,
         }),
         allowedResultReceivers = schema.new({
             id = id.from(_N, "ConsolidatedPolicyCustom", "allowedResultReceivers"),
@@ -1228,6 +1349,20 @@ M.AnalysisRuleCustom = schema.new({
             name = "differentialPrivacy",
             target_id = id.from(_N, "DifferentialPrivacyConfiguration"),
             target = M.DifferentialPrivacyConfiguration,
+        }),
+        aggregationThresholds = schema.new({
+            id = id.from(_N, "AnalysisRuleCustom", "aggregationThresholds"),
+            type = "list",
+            name = "aggregationThresholds",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationThreshold,
+        }),
+        comparisonControls = schema.new({
+            id = id.from(_N, "AnalysisRuleCustom", "comparisonControls"),
+            type = "structure",
+            name = "comparisonControls",
+            target_id = id.from(_N, "ComparisonControls"),
+            target = M.ComparisonControls,
         }),
         allowedResultReceivers = schema.new({
             id = id.from(_N, "AnalysisRuleCustom", "allowedResultReceivers"),
@@ -10698,6 +10833,20 @@ M.IntermediateTableAnalysisRuleCustom = schema.new({
             name = "disallowedOutputColumns",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        aggregationThresholds = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "aggregationThresholds"),
+            type = "list",
+            name = "aggregationThresholds",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationThreshold,
+        }),
+        comparisonControls = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "comparisonControls"),
+            type = "structure",
+            name = "comparisonControls",
+            target_id = id.from(_N, "ComparisonControls"),
+            target = M.ComparisonControls,
         }),
     },
 })

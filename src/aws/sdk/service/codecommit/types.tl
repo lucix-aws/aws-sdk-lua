@@ -2107,6 +2107,105 @@ local record M
         message: string
     end
 
+    record GetBlobDifferencesInput
+        -- The name of the repository that contains the blobs to compare.
+        repositoryName: string
+        -- The ID of the "after" (destination) blob in the diff. Typically the value of
+        -- afterBlob.blobId from a Difference object returned by
+        -- GetDifferences.
+        afterBlobId: string
+        -- The ID of the "before" (source) blob in the diff. Typically the value of
+        -- beforeBlob.blobId from a Difference object returned by
+        -- GetDifferences.
+        -- If you do not specify a value, the operation returns a diff against an empty
+        -- before-state. This is equivalent to treating the file as newly added.
+        beforeBlobId: string
+        -- The number of unchanged lines of context to include before and after each block of
+        -- changes in a hunk. Valid values are 0 through 20. Defaults to 3.
+        contextLines: number
+        -- Specifies whether to ignore whitespace-only changes when computing the diff. When
+        -- true, the operation treats lines that differ only in whitespace as
+        -- unchanged. Defaults to false.
+        ignoreWhitespace: boolean
+        -- The maximum number of DiffHunk entries to return in a single response
+        -- page. Defaults to 100.
+        MaxResults: number
+        -- An enumeration token that returns the next batch of results when present in a
+        -- request.
+        NextToken: string
+    end
+
+    enum DiffChangeType
+        "CONTEXT"
+        "ADD"
+        "DELETE"
+    end
+
+    -- A single line-level entry in a diff hunk. Each DiffChange describes one
+    -- line and its change type: unchanged context, an addition in the after blob, or a
+    -- deletion from the before blob.
+    record DiffChange
+        -- The 1-based line number in the before blob. This field is omitted for
+        -- ADD lines.
+        beforeLineNumber: number
+        -- The 1-based line number in the after blob. This field is omitted for
+        -- DELETE lines.
+        afterLineNumber: number
+        -- The text content of the line, without the trailing newline.
+        content: string
+    end
+
+    -- A contiguous run of changed lines from a blob diff, together with any surrounding
+    -- unchanged context lines. Hunks are returned in order from the start of the file to the
+    -- end. Adjacent or overlapping hunks are merged into a single hunk in the response.
+    record DiffHunk
+        -- The 1-based line number in the before blob where this hunk begins. When the hunk
+        -- consists entirely of additions, beforeLineCount is
+        -- 0.
+        beforeStartLine: number
+        -- The number of lines from the before blob covered by this hunk, including any
+        -- context lines.
+        beforeLineCount: number
+        -- The 1-based line number in the after blob where this hunk begins. When the hunk
+        -- consists entirely of deletions, afterLineCount is
+        -- 0.
+        afterStartLine: number
+        -- The number of lines from the after blob covered by this hunk, including any context
+        -- lines.
+        afterLineCount: number
+        -- An ordered list of line-level changes that make up this hunk. Each entry indicates
+        -- whether the line is unchanged context, an addition, or a deletion.
+        changes: {DiffChange}
+    end
+
+    record GetBlobDifferencesOutput
+        -- An ordered list of diff hunks. Each hunk represents a contiguous run of changed and
+        -- adjacent context lines. The list is empty when the blobs are identical or when the
+        -- content is binary. The list is also empty when a paginated request has already returned
+        -- all hunks in earlier pages, in which case NextToken is also
+        -- null.
+        hunks: {DiffHunk}
+        -- Specifies whether the operation treated the diff content as binary. When
+        -- true, the operation does not compute a line-level diff and
+        -- hunks is empty.
+        isBinary: boolean
+        -- The size, in bytes, of the blob identified by beforeBlobId. Returns
+        -- 0 when you do not specify beforeBlobId.
+        beforeBlobSize: number
+        -- The size, in bytes, of the blob identified by afterBlobId.
+        afterBlobSize: number
+        -- An enumeration token that can be used in a request to return the next batch of
+        -- DiffHunk entries. null when the response contains the final
+        -- page of the diff.
+        NextToken: string
+    end
+
+    -- The specified input is either not valid, or it could not be validated.
+    record ValidationException
+        -- Any message associated with the exception.
+        message: string
+    end
+
     -- Represents the input of a get branch operation.
     record GetBranchInput
         -- The name of the repository that contains the branch for which you want to retrieve information.

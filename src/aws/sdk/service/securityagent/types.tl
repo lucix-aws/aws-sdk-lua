@@ -686,6 +686,8 @@ local record M
         cleanUpStrategy: string
         -- A list of managed skills to disable for this pentest. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
         disableManagedSkills: {string}
+        -- The maximum number of billable task hours allowed for jobs started from this pentest. If a job reaches the configured limit, it is gracefully stopped. If not set, jobs run to completion with no budget cap.
+        maxTaskHours: number
         -- The date and time the pentest was created, in UTC format.
         createdAt: number
         -- The date and time the pentest was last updated, in UTC format.
@@ -863,6 +865,8 @@ local record M
         integratedRepositories: {IntegratedRepository}
         -- The code remediation strategy for the code review job.
         codeRemediationStrategy: string
+        -- The maximum number of billable task hours allowed for this code review job. If the cumulative task hours reach this limit, the job is gracefully stopped.
+        maxTaskHours: number
         -- The date and time the code review job was created, in UTC format.
         createdAt: number
         -- The date and time the code review job was last updated, in UTC format.
@@ -980,6 +984,8 @@ local record M
         codeRemediationStrategy: string
         -- The validation mode for the code review. Valid values are SIMULATED and DISABLED.
         validationMode: string
+        -- The maximum number of billable task hours allowed for jobs started from this code review. If a job reaches the configured limit, it is gracefully stopped. If not set, jobs run to completion with no budget cap.
+        maxTaskHours: number
         -- The date and time the code review was created, in UTC format.
         createdAt: number
         -- The date and time the code review was last updated, in UTC format.
@@ -1140,6 +1146,10 @@ local record M
         verificationScript: VerificationScript
         -- The rationale provided by the alignment agent explaining how the finding was adjusted based on customer preferences.
         alignmentRationale: string
+        -- The list of pentest job identifiers for revalidation jobs that retested this finding.
+        revalidationJobIds: {string}
+        -- The identifier of the original finding that this revalidation finding was produced from.
+        originalFindingId: string
         -- The date and time the finding was created, in UTC format.
         createdAt: number
         -- The date and time the finding was last updated, in UTC format.
@@ -1160,6 +1170,11 @@ local record M
         pentestJobIds: {string}
         -- The unique identifier of the agent space that contains the pentest jobs.
         agentSpaceId: string
+    end
+
+    enum JobType
+        "FULL"
+        "REVALIDATION"
     end
 
     -- Represents a pentest job, which is an execution instance of a pentest. A pentest job progresses through preflight, static analysis, pentest, and finalizing steps.
@@ -1210,6 +1225,12 @@ local record M
         cleanUpStrategy: string
         -- A list of managed skills disabled for this pentest job. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
         disableManagedSkills: {string}
+        -- The maximum number of billable task hours allowed for this pentest job. If the cumulative task hours reach this limit, the job is gracefully stopped.
+        maxTaskHours: number
+        -- The type of the pentest job. Valid values are FULL and REVALIDATION.
+        jobType: string
+        -- The list of finding identifiers selected for revalidation. Present only when jobType is REVALIDATION.
+        selectedFindingIds: {string}
         -- The date and time the pentest job was created, in UTC format.
         createdAt: number
         -- The date and time the pentest job was last updated, in UTC format.
@@ -1818,6 +1839,8 @@ local record M
         codeRemediationStrategy: string
         -- The validation mode for the code review. Valid values are SIMULATED and DISABLED.
         validationMode: string
+        -- The maximum number of billable task hours allowed for jobs started from this code review. Must be a positive number. If not set, jobs run to completion with no budget cap.
+        maxTaskHours: number
     end
 
     -- Output for the CreateCodeReview operation.
@@ -1842,6 +1865,8 @@ local record M
         codeRemediationStrategy: string
         -- The validation mode for the code review.
         validationMode: string
+        -- The maximum number of billable task hours configured for jobs started from this code review. Null if no budget cap is set.
+        maxTaskHours: number
     end
 
     -- The input required to create a GitHub integration, including the OAuth authorization code and CSRF state.
@@ -1974,6 +1999,8 @@ local record M
         codeRemediationStrategy: string
         -- A list of managed skills to disable for this pentest. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
         disableManagedSkills: {string}
+        -- The maximum number of billable task hours allowed for jobs started from this pentest. Must be a positive number. If not set, jobs run to completion with no budget cap.
+        maxTaskHours: number
     end
 
     -- Output for the CreatePentest operation.
@@ -3475,6 +3502,10 @@ local record M
         agentSpaceId: string
         -- The unique identifier of the pentest to start a job for.
         pentestId: string
+        -- The type of pentest job to start. Valid values are FULL and REVALIDATION. When set to REVALIDATION, the selectedFindingIds parameter is required.
+        jobType: string
+        -- The list of finding identifiers to revalidate. Required when jobType is REVALIDATION. Each finding must belong to the same agent space and pentest.
+        selectedFindingIds: {string}
     end
 
     -- Output for the StartPentestJob operation.
@@ -3625,6 +3656,8 @@ local record M
         codeRemediationStrategy: string
         -- The updated validation mode for the code review. Valid values are SIMULATED and DISABLED.
         validationMode: string
+        -- The updated maximum number of billable task hours allowed for jobs started from this code review.
+        maxTaskHours: number
     end
 
     -- Output for the UpdateCodeReview operation.
@@ -3649,6 +3682,8 @@ local record M
         codeRemediationStrategy: string
         -- The validation mode for the code review.
         validationMode: string
+        -- The maximum number of billable task hours configured for jobs started from this code review. Null if no budget cap is set.
+        maxTaskHours: number
     end
 
     -- Input for updating an existing security finding.
@@ -3717,6 +3752,8 @@ local record M
         codeRemediationStrategy: string
         -- The updated list of managed skills to disable for this pentest. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
         disableManagedSkills: {string}
+        -- The updated maximum number of billable task hours allowed for jobs started from this pentest.
+        maxTaskHours: number
     end
 
     -- Output for the UpdatePentest operation.

@@ -576,12 +576,14 @@ local record M
         "DISABLED"
     end
 
-    -- Structure that contains options for your certificate. You can use this structure to specify whether to export your certificate. Certificate transparency logging opt-out is no longer available. All public certificates are recorded in a certificate transparency log. For general information, see Certificate Transparency Logging. You can export public ACM certificates to use with Amazon Web Services services as well as outside Amazon Web Services Cloud. For more information, see Certificate Manager exportable public certificate.
+    -- Structure that contains options for your certificate. You can use this structure to change the domain validation method or specify whether to export your certificate. All public certificates are recorded in a certificate transparency log. For general information, see Certificate Transparency Logging. You can export public ACM certificates to use with Amazon Web Services services as well as outside Amazon Web Services Cloud. For more information, see Certificate Manager exportable public certificate.
     record CertificateOptions
         -- This parameter has been deprecated. Certificate transparency logging opt-out is no longer available. All public certificates are recorded in a certificate transparency log.
         CertificateTransparencyLoggingPreference: string
         -- You can opt in to allow the export of your certificates by specifying ENABLED. You cannot update the value of Export after the the certificate is created.
         Export: string
+        -- The domain validation method for the certificate. To migrate from email to DNS validation, specify DNS.
+        ValidationMethod: string
     end
 
     -- Contains information about the status of ACM's managed renewal for the certificate. This structure exists only when the certificate type is AMAZON_ISSUED.
@@ -608,6 +610,38 @@ local record M
         "REMOVE_FROM_CRL"
         "PRIVILEGE_WITHDRAWN"
         "A_A_COMPROMISE"
+    end
+
+    -- Contains information about a domain validation method migration, including the previous validation method and the target validation method.
+    record DomainValidationMethodUpdateSummary
+        -- The validation method that the certificate was using before the update.
+        From: string
+        -- The target validation method for the update.
+        To: string
+    end
+
+    enum UpdateStatus
+        "PENDING_DOMAIN_VALIDATION"
+        "SUCCESS"
+        "FAILED"
+    end
+
+    enum UpdateType
+        "DOMAIN_VALIDATION_METHOD"
+    end
+
+    -- Contains information about the most recent certificate update, such as a domain validation method migration. This structure is returned as part of the CertificateDetail response from DescribeCertificate.
+    record UpdateSummary
+        -- The status of the certificate update. The following are valid values: PENDING_DOMAIN_VALIDATION – The certificate update is waiting for domain ownership validation to complete. SUCCESS – The certificate was updated successfully. FAILED – The certificate update failed.
+        Status: string
+        -- The type of update that was requested for the certificate. The following are valid values: DOMAIN_VALIDATION_METHOD – The update changes the domain validation method for the certificate.
+        Type: string
+        -- Contains information about a domain validation method migration, including the previous and target validation methods.
+        DomainValidationMethodUpdateSummary: DomainValidationMethodUpdateSummary
+        -- The time at which the certificate update was requested.
+        RequestedAt: number
+        -- The time at which the certificate update status was last changed.
+        UpdatedAt: number
     end
 
     -- Contains metadata about an ACM certificate. This structure is returned in the response to a DescribeCertificate request.
@@ -666,6 +700,8 @@ local record M
         RenewalEligibility: string
         -- Contains the certificate options. Certificate transparency logging opt-out is no longer available. All public certificates are recorded in a certificate transparency log.
         Options: CertificateOptions
+        -- Contains information about the most recent update to the certificate. This field exists only when the certificate type is AMAZON_ISSUED and a certificate update has been requested.
+        UpdateSummary: UpdateSummary
         -- The origin of the certificate's key pair.
         CertificateKeyPairOrigin: string
         -- The ARN of the ACME endpoint used to issue the certificate.
@@ -1080,6 +1116,62 @@ local record M
     -- One or more of request parameters specified is not valid.
     record InvalidArgsException
         message: string
+    end
+
+    record ListCertificateDomainValidationsInput
+        -- The Amazon Resource Name (ARN) of the certificate for which to list domain validation summaries.
+        CertificateArn: string
+        -- A token returned by a previous call to ListCertificateDomainValidations. If the number of results exceeds MaxItems, use this token to retrieve the next page of results.
+        NextToken: string
+        -- The maximum number of domain validation summaries to return. If you don't specify a value, the default is 1000.
+        MaxItems: number
+    end
+
+    -- Contains the CNAME record that you must add to your DNS configuration to validate domain ownership using DNS validation.
+    record DnsValidationChallenge
+        -- The CNAME record that ACM creates for DNS validation. Add this record to your DNS configuration to prove that you own or control the domain.
+        ResourceRecord: ResourceRecord
+    end
+
+    -- Contains the email addresses used for email-based domain validation.
+    record EmailValidationChallenge
+        -- A list of email addresses that ACM uses to send domain validation emails.
+        ValidationEmails: {string}
+        -- The domain name that ACM uses to send validation emails.
+        ValidationDomain: string
+    end
+
+    -- Contains the challenge details that you use to prove domain ownership. Only one member is set, depending on the validation method.
+    record ValidationChallenge
+        EmailValidationChallenge: EmailValidationChallenge
+        DnsValidationChallenge: DnsValidationChallenge
+    end
+
+    -- Contains the validation method, validation status, and validation challenge details for a domain. This structure appears in DomainValidationSummary as both the active and requested validation configuration.
+    record ValidationConfiguration
+        -- The validation method for this configuration. Valid values: DNS – Validation using a CNAME record added to your DNS configuration. EMAIL – Validation using an approval email sent to domain contacts. HTTP – Validation using an HTTP resource placed on your web server.
+        ValidationMethod: string
+        -- The validation challenge details for this configuration. The structure varies by validation method: for DNS validation, contains a DnsValidationChallenge with the CNAME record to add; for email validation, contains an EmailValidationChallenge with the validation email addresses.
+        ValidationChallenge: ValidationChallenge
+        -- The validation status for this domain. Valid values: PENDING_VALIDATION – The domain is waiting for validation to complete. SUCCESS – Validation completed successfully. FAILED – Validation failed.
+        ValidationStatus: string
+    end
+
+    -- Contains per-domain validation information for a certificate. This structure is returned as a member of the ListCertificateDomainValidations response.
+    record DomainValidationSummary
+        -- The fully qualified domain name (FQDN) in the certificate for which this validation summary applies.
+        DomainName: string
+        -- The validation configuration currently in effect for this domain. This reflects the validation method that ACM is currently using to validate domain ownership (for example, email or DNS).
+        ActiveValidationConfiguration: ValidationConfiguration
+        -- The validation configuration for a pending validation method migration. This field is present only when a migration is in progress (for example, from email to DNS validation). It contains the target validation method, the current validation status, and the validation challenge details (such as the CNAME record to add to your DNS configuration).
+        RequestedValidationConfiguration: ValidationConfiguration
+    end
+
+    record ListCertificateDomainValidationsOutput
+        -- A list of DomainValidationSummary objects, one for each domain on the certificate. Each object contains the domain name and its active and requested validation configurations.
+        DomainValidationSummaryList: {DomainValidationSummary}
+        -- If the number of results exceeds MaxItems, this token is included in the response. Use this token in a subsequent ListCertificateDomainValidations request to retrieve the next page of results.
+        NextToken: string
     end
 
     -- This structure can be used in the ListCertificates action to filter the output of the certificate list.
@@ -1502,7 +1594,7 @@ local record M
     record UpdateCertificateOptionsInput
         -- ARN of the requested certificate to update. This must be of the form: arn:aws:acm:us-east-1:account:certificate/12345678-1234-1234-1234-123456789012
         CertificateArn: string
-        -- Use to update the options for your certificate. Currently, you can specify whether to export your certificate. Certificate transparency logging opt-out is no longer available. All public certificates are recorded in a certificate transparency log. For more information, see Certificate Transparency Logging.
+        -- Use to update the options for your certificate. Currently, you can change the domain validation method or specify whether to export your certificate. For more information about migrating from email to DNS validation, see Migrate from email to DNS validation.
         Options: CertificateOptions
     end
 

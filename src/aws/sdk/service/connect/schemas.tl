@@ -1749,6 +1749,22 @@ M.AiAgentInfo = schema.new({
     },
 })
 
+M.AiAgentInput = schema.new({
+    id = id.from(_N, "AiAgentInput"),
+    type = "structure",
+    members = {
+        AiAgentId = schema.new({
+            id = id.from(_N, "AiAgentInput", "AiAgentId"),
+            type = "string",
+            name = "AiAgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AiAgentSearchCriteria = schema.new({
     id = id.from(_N, "AiAgentSearchCriteria"),
     type = "structure",
@@ -33452,6 +33468,154 @@ M.SendOutboundWebNotificationOutput = schema.new({
     type = "structure",
 })
 
+M.ChatMessage = schema.new({
+    id = id.from(_N, "ChatMessage"),
+    type = "structure",
+    members = {
+        ContentType = schema.new({
+            id = id.from(_N, "ChatMessage", "ContentType"),
+            type = "string",
+            name = "ContentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Content = schema.new({
+            id = id.from(_N, "ChatMessage", "Content"),
+            type = "string",
+            name = "Content",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PersistentChat = schema.new({
+    id = id.from(_N, "PersistentChat"),
+    type = "structure",
+    members = {
+        RehydrationType = schema.new({
+            id = id.from(_N, "PersistentChat", "RehydrationType"),
+            type = "string",
+            name = "RehydrationType",
+            target_id = prelude.String.id,
+        }),
+        SourceContactId = schema.new({
+            id = id.from(_N, "PersistentChat", "SourceContactId"),
+            type = "string",
+            name = "SourceContactId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartAssistantContactInput = schema.new({
+    id = id.from(_N, "StartAssistantContactRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "StartAssistantContactInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AiAgent = schema.new({
+            id = id.from(_N, "StartAssistantContactInput", "AiAgent"),
+            type = "structure",
+            name = "AiAgent",
+            target_id = id.from(_N, "AiAgentInput"),
+            target = M.AiAgentInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ParticipantDetails = schema.new({
+            id = id.from(_N, "StartAssistantContactInput", "ParticipantDetails"),
+            type = "structure",
+            name = "ParticipantDetails",
+            target_id = id.from(_N, "ParticipantDetails"),
+            target = M.ParticipantDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InitialMessage = schema.new({
+            id = id.from(_N, "StartAssistantContactInput", "InitialMessage"),
+            type = "structure",
+            name = "InitialMessage",
+            target_id = id.from(_N, "ChatMessage"),
+            target = M.ChatMessage,
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "StartAssistantContactInput", "Attributes"),
+            type = "map",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "StartAssistantContactInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        PersistentChat = schema.new({
+            id = id.from(_N, "StartAssistantContactInput", "PersistentChat"),
+            type = "structure",
+            name = "PersistentChat",
+            target_id = id.from(_N, "PersistentChat"),
+            target = M.PersistentChat,
+        }),
+        RelatedContactId = schema.new({
+            id = id.from(_N, "StartAssistantContactInput", "RelatedContactId"),
+            type = "string",
+            name = "RelatedContactId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartAssistantContactOutput = schema.new({
+    id = id.from(_N, "StartAssistantContactResponse"),
+    type = "structure",
+    members = {
+        ContactId = schema.new({
+            id = id.from(_N, "StartAssistantContactOutput", "ContactId"),
+            type = "string",
+            name = "ContactId",
+            target_id = prelude.String.id,
+        }),
+        ParticipantId = schema.new({
+            id = id.from(_N, "StartAssistantContactOutput", "ParticipantId"),
+            type = "string",
+            name = "ParticipantId",
+            target_id = prelude.String.id,
+        }),
+        ParticipantToken = schema.new({
+            id = id.from(_N, "StartAssistantContactOutput", "ParticipantToken"),
+            type = "string",
+            name = "ParticipantToken",
+            target_id = prelude.String.id,
+        }),
+        ContinuedFromContactId = schema.new({
+            id = id.from(_N, "StartAssistantContactOutput", "ContinuedFromContactId"),
+            type = "string",
+            name = "ContinuedFromContactId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.StartAttachedFileUploadInput = schema.new({
     id = id.from(_N, "StartAttachedFileUploadRequest"),
     type = "structure",
@@ -33608,31 +33772,6 @@ M.StartAttachedFileUploadOutput = schema.new({
     },
 })
 
-M.ChatMessage = schema.new({
-    id = id.from(_N, "ChatMessage"),
-    type = "structure",
-    members = {
-        ContentType = schema.new({
-            id = id.from(_N, "ChatMessage", "ContentType"),
-            type = "string",
-            name = "ContentType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Content = schema.new({
-            id = id.from(_N, "ChatMessage", "Content"),
-            type = "string",
-            name = "Content",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.ParticipantConfiguration = schema.new({
     id = id.from(_N, "ParticipantConfiguration"),
     type = "structure",
@@ -33641,25 +33780,6 @@ M.ParticipantConfiguration = schema.new({
             id = id.from(_N, "ParticipantConfiguration", "ResponseMode"),
             type = "string",
             name = "ResponseMode",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.PersistentChat = schema.new({
-    id = id.from(_N, "PersistentChat"),
-    type = "structure",
-    members = {
-        RehydrationType = schema.new({
-            id = id.from(_N, "PersistentChat", "RehydrationType"),
-            type = "string",
-            name = "RehydrationType",
-            target_id = prelude.String.id,
-        }),
-        SourceContactId = schema.new({
-            id = id.from(_N, "PersistentChat", "SourceContactId"),
-            type = "string",
-            name = "SourceContactId",
             target_id = prelude.String.id,
         }),
     },
@@ -34802,85 +34922,6 @@ M.StartTestCaseExecutionOutput = schema.new({
             id = id.from(_N, "StartTestCaseExecutionOutput", "Status"),
             type = "string",
             name = "Status",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.StartWebRTCContactInput = schema.new({
-    id = id.from(_N, "StartWebRTCContactRequest"),
-    type = "structure",
-    members = {
-        Attributes = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "Attributes"),
-            type = "map",
-            name = "Attributes",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-        }),
-        ClientToken = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "ClientToken"),
-            type = "string",
-            name = "ClientToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.IDEMPOTENCY_TOKEN] = {},
-            },
-        }),
-        ContactFlowId = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "ContactFlowId"),
-            type = "string",
-            name = "ContactFlowId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        InstanceId = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "InstanceId"),
-            type = "string",
-            name = "InstanceId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        AllowedCapabilities = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "AllowedCapabilities"),
-            type = "structure",
-            name = "AllowedCapabilities",
-            target_id = id.from(_N, "AllowedCapabilities"),
-            target = M.AllowedCapabilities,
-        }),
-        ParticipantDetails = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "ParticipantDetails"),
-            type = "structure",
-            name = "ParticipantDetails",
-            target_id = id.from(_N, "ParticipantDetails"),
-            target = M.ParticipantDetails,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RelatedContactId = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "RelatedContactId"),
-            type = "string",
-            name = "RelatedContactId",
-            target_id = prelude.String.id,
-        }),
-        References = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "References"),
-            type = "map",
-            name = "References",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = M.Reference,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "StartWebRTCContactInput", "Description"),
-            type = "string",
-            name = "Description",
             target_id = prelude.String.id,
         }),
     },
@@ -41909,6 +41950,93 @@ M.StartTaskContactInput = schema.new({
     },
 })
 
+M.StartWebRTCContactInput = schema.new({
+    id = id.from(_N, "StartWebRTCContactRequest"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "Attributes"),
+            type = "map",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        ContactFlowId = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "ContactFlowId"),
+            type = "string",
+            name = "ContactFlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AllowedCapabilities = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "AllowedCapabilities"),
+            type = "structure",
+            name = "AllowedCapabilities",
+            target_id = id.from(_N, "AllowedCapabilities"),
+            target = M.AllowedCapabilities,
+        }),
+        ParticipantDetails = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "ParticipantDetails"),
+            type = "structure",
+            name = "ParticipantDetails",
+            target_id = id.from(_N, "ParticipantDetails"),
+            target = M.ParticipantDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RelatedContactId = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "RelatedContactId"),
+            type = "string",
+            name = "RelatedContactId",
+            target_id = prelude.String.id,
+        }),
+        References = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "References"),
+            type = "map",
+            name = "References",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.Reference,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        SegmentAttributes = schema.new({
+            id = id.from(_N, "StartWebRTCContactInput", "SegmentAttributes"),
+            type = "map",
+            name = "SegmentAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.SegmentAttributeValue,
+        }),
+    },
+})
+
 M.UpdateContactInput = schema.new({
     id = id.from(_N, "UpdateContactRequest"),
     type = "structure",
@@ -46707,6 +46835,18 @@ M.SendOutboundWebNotification = schema.operation({
     output = M.SendOutboundWebNotificationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/instance/{InstanceId}/outbound-web-notification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAssistantContact = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartAssistantContact"),
+    input = M.StartAssistantContactInput,
+    output = M.StartAssistantContactOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact/assistant" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

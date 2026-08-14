@@ -310,6 +310,7 @@ local record Client
     sendChatIntegrationEvent: function(Client, types.SendChatIntegrationEventInput, ? base_client.InvokeOptions): async.Operation<types.SendChatIntegrationEventOutput>
     sendOutboundEmail: function(Client, types.SendOutboundEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendOutboundEmailOutput>
     sendOutboundWebNotification: function(Client, types.SendOutboundWebNotificationInput, ? base_client.InvokeOptions): async.Operation<types.SendOutboundWebNotificationOutput>
+    startAssistantContact: function(Client, types.StartAssistantContactInput, ? base_client.InvokeOptions): async.Operation<types.StartAssistantContactOutput>
     startAttachedFileUpload: function(Client, types.StartAttachedFileUploadInput, ? base_client.InvokeOptions): async.Operation<types.StartAttachedFileUploadOutput>
     startChatContact: function(Client, types.StartChatContactInput, ? base_client.InvokeOptions): async.Operation<types.StartChatContactOutput>
     startContactConversationalAnalyticsJob: function(Client, types.StartContactConversationalAnalyticsJobInput, ? base_client.InvokeOptions): async.Operation<types.StartContactConversationalAnalyticsJobOutput>
@@ -1615,6 +1616,10 @@ end
 
 function C:sendOutboundWebNotification(input: types.SendOutboundWebNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.SendOutboundWebNotificationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendOutboundWebNotification as schema.OperationSchema, input, options) as async.Operation<types.SendOutboundWebNotificationOutput>
+end
+
+function C:startAssistantContact(input: types.StartAssistantContactInput, options?: base_client.InvokeOptions): async.Operation<types.StartAssistantContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAssistantContact as schema.OperationSchema, input, options) as async.Operation<types.StartAssistantContactOutput>
 end
 
 function C:startAttachedFileUpload(input: types.StartAttachedFileUploadInput, options?: base_client.InvokeOptions): async.Operation<types.StartAttachedFileUploadOutput>

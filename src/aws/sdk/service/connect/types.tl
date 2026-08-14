@@ -502,6 +502,12 @@ local record M
         AiAgentEscalated: boolean
     end
 
+    -- The AI agent that participates in the contact, including its identifier.
+    record AiAgentInput
+        -- The identifier of the AI agent that participates in the contact.
+        AiAgentId: string
+    end
+
     -- The search criteria based on AI Agents metadata.
     record AiAgentSearchCriteria
         -- ID of the AI Agent that was involved in the contact.
@@ -14057,7 +14063,7 @@ local record M
         Content: string
     end
 
-    -- The customer's details.
+    -- The details of the participant, including their display name.
     record ParticipantDetails
         -- Display name of the participant.
         DisplayName: string
@@ -14300,6 +14306,79 @@ local record M
     record SendOutboundWebNotificationOutput
     end
 
+    -- A chat message.
+    record ChatMessage
+        -- The type of the content. Supported types are text/plain, text/markdown,
+        -- application/json, and
+        -- application/vnd.amazonaws.connect.message.interactive.response.
+        ContentType: string
+        -- The content of the chat message. Maximum of 16,384 bytes for all content types
+        -- (text/plain, text/markdown, application/json, and
+        -- application/vnd.amazonaws.connect.message.interactive.response).
+        -- Some messaging channels enforce lower limits. For channel-specific message size limits, see Chat message size limits
+        -- by channel in the Amazon Connect Customer Administrator Guide.
+        Content: string
+    end
+
+    -- Enable persistent chats. For more information about enabling persistent chat, and for example use cases and how
+    -- to configure for them, see Enable
+    -- persistent chat.
+    record PersistentChat
+        -- The contactId that is used for rehydration depends on the rehydration type. RehydrationType is required for
+        -- persistent chat.
+        -- ENTIRE_PAST_SESSION: Rehydrates a chat from the most recently terminated past chat contact of the
+        -- specified past ended chat session. To use this type, provide the initialContactId of the past ended
+        -- chat session in the sourceContactId field. In this type, Connect Customer determines the most recent
+        -- chat contact on the specified chat session that has ended, and uses it to start a persistent chat.
+        -- FROM_SEGMENT: Rehydrates a chat from the past chat contact that is specified in the
+        -- sourceContactId field.
+        -- The actual contactId used for rehydration is provided in the response of this API.
+        RehydrationType: string
+        -- The contactId from which a persistent chat session must be started.
+        SourceContactId: string
+    end
+
+    record StartAssistantContactInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The AI agent that participates in the contact.
+        AiAgent: AiAgentInput
+        -- The display name and other details that identify the chat participant.
+        ParticipantDetails: ParticipantDetails
+        -- The initial message to send to the newly created chat.
+        InitialMessage: ChatMessage
+        -- A map of key-value pairs to associate with the contact. Amazon Connect makes these attributes available to
+        -- flows as standard contact attributes.
+        -- You can provide up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can contain only
+        -- alphanumeric characters, dashes, and underscores.
+        Attributes: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. If not provided, the Amazon Web Services
+        -- SDK populates this field. For more information about idempotency, see
+        -- Making retries safe with idempotent APIs.
+        ClientToken: string
+        -- The configuration that enables persistent chat. For more information about persistent chat and its use cases,
+        -- see Enable persistent
+        -- chat.
+        PersistentChat: PersistentChat
+        -- The identifier of an Connect Customer contact related to the new assistant contact.
+        -- You cannot provide both RelatedContactId and PersistentChat.
+        RelatedContactId: string
+    end
+
+    record StartAssistantContactOutput
+        -- The identifier of the contact within the Connect Customer instance.
+        ContactId: string
+        -- The identifier of the chat participant. The participant identifier remains the same throughout the chat
+        -- lifecycle.
+        ParticipantId: string
+        -- The token that the chat participant uses to call the CreateParticipantConnection API. The token remains valid for the lifetime of the chat participant.
+        ParticipantToken: string
+        -- For a persistent chat, the identifier of the contact from which the chat continues. Amazon Connect returns this
+        -- field only for persistent chats.
+        ContinuedFromContactId: string
+    end
+
     record StartAttachedFileUploadInput
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services
@@ -14359,20 +14438,6 @@ local record M
         "AGENT"
     end
 
-    -- A chat message.
-    record ChatMessage
-        -- The type of the content. Supported types are text/plain, text/markdown,
-        -- application/json, and
-        -- application/vnd.amazonaws.connect.message.interactive.response.
-        ContentType: string
-        -- The content of the chat message. Maximum of 16,384 bytes for all content types
-        -- (text/plain, text/markdown, application/json, and
-        -- application/vnd.amazonaws.connect.message.interactive.response).
-        -- Some messaging channels enforce lower limits. For channel-specific message size limits, see Chat message size limits
-        -- by channel in the Amazon Connect Customer Administrator Guide.
-        Content: string
-    end
-
     enum ResponseMode
         "INCREMENTAL"
         "COMPLETE"
@@ -14382,24 +14447,6 @@ local record M
     record ParticipantConfiguration
         -- The mode in which responses should be sent to the participant.
         ResponseMode: string
-    end
-
-    -- Enable persistent chats. For more information about enabling persistent chat, and for example use cases and how
-    -- to configure for them, see Enable
-    -- persistent chat.
-    record PersistentChat
-        -- The contactId that is used for rehydration depends on the rehydration type. RehydrationType is required for
-        -- persistent chat.
-        -- ENTIRE_PAST_SESSION: Rehydrates a chat from the most recently terminated past chat contact of the
-        -- specified past ended chat session. To use this type, provide the initialContactId of the past ended
-        -- chat session in the sourceContactId field. In this type, Connect Customer determines the most recent
-        -- chat contact on the specified chat session that has ended, and uses it to start a persistent chat.
-        -- FROM_SEGMENT: Rehydrates a chat from the past chat contact that is specified in the
-        -- sourceContactId field.
-        -- The actual contactId used for rehydration is provided in the response of this API.
-        RehydrationType: string
-        -- The contactId from which a persistent chat session must be started.
-        SourceContactId: string
     end
 
     record StartChatContactOutput
@@ -14871,42 +14918,6 @@ local record M
         -- The identifier of the test case resource that was executed.
         TestCaseId: string
         Status: string
-    end
-
-    record StartWebRTCContactInput
-        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes, and
-        -- can be accessed in flows just like any other contact attributes.
-        -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
-        -- alphanumeric, -, and _ characters.
-        Attributes: {string : string}
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        -- request. If not provided, the Amazon Web Services
-        -- SDK populates this field. For more information about idempotency, see
-        -- Making retries safe with idempotent APIs.
-        -- The token is valid for 7 days after creation. If a contact is already started, the contact ID is
-        -- returned.
-        ClientToken: string
-        -- The identifier of the flow for the call. To see the ContactFlowId in the Connect Customer admin website, on the navigation menu go to
-        -- Routing, Flows. Choose the flow. On the flow page,
-        -- under the name of the flow, choose Show additional flow information. The
-        -- ContactFlowId is the last part of the ARN, shown here in bold:
-        -- arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
-        ContactFlowId: string
-        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
-        InstanceId: string
-        -- Information about the video sharing capabilities of the participants (customer, agent).
-        AllowedCapabilities: AllowedCapabilities
-        ParticipantDetails: ParticipantDetails
-        -- The unique identifier for an Connect Customer contact. This identifier is related to the contact
-        -- starting.
-        RelatedContactId: string
-        -- A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Tasks can have the following
-        -- reference types at the time of creation: URL | NUMBER | STRING |
-        -- DATE | EMAIL. ATTACHMENT is not a supported reference type during task
-        -- creation.
-        References: {string : Reference}
-        -- A description of the task that is shown to an agent in the Contact Control Panel (CCP).
-        Description: string
     end
 
     -- The attendee information, including attendee ID and join token.
@@ -17455,6 +17466,46 @@ local record M
         SegmentAttributes: {string : SegmentAttributeValue}
         -- List of S3 presigned URLs of task attachments and their file name. You can have a maximum of 5 attachments per task.
         Attachments: {TaskAttachment}
+    end
+
+    record StartWebRTCContactInput
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes, and
+        -- can be accessed in flows just like any other contact attributes.
+        -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
+        -- alphanumeric, -, and _ characters.
+        Attributes: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. If not provided, the Amazon Web Services
+        -- SDK populates this field. For more information about idempotency, see
+        -- Making retries safe with idempotent APIs.
+        -- The token is valid for 7 days after creation. If a contact is already started, the contact ID is
+        -- returned.
+        ClientToken: string
+        -- The identifier of the flow for the call. To see the ContactFlowId in the Connect Customer admin website, on the navigation menu go to
+        -- Routing, Flows. Choose the flow. On the flow page,
+        -- under the name of the flow, choose Show additional flow information. The
+        -- ContactFlowId is the last part of the ARN, shown here in bold:
+        -- arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
+        ContactFlowId: string
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- Information about the video sharing capabilities of the participants (customer, agent).
+        AllowedCapabilities: AllowedCapabilities
+        ParticipantDetails: ParticipantDetails
+        -- The unique identifier for an Connect Customer contact. This identifier is related to the contact
+        -- starting.
+        RelatedContactId: string
+        -- A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Tasks can have the following
+        -- reference types at the time of creation: URL | NUMBER | STRING |
+        -- DATE | EMAIL. ATTACHMENT is not a supported reference type during task
+        -- creation.
+        References: {string : Reference}
+        -- A description of the task that is shown to an agent in the Contact Control Panel (CCP).
+        Description: string
+        -- Use this map to specify system-defined attributes for the WebRTC contact segment. Use the
+        -- connect:Subtype attribute to specify the channel subtype, such as connect:WebRTC.
+        -- Attribute keys can contain only alphanumeric characters, hyphens, and underscores.
+        SegmentAttributes: {string : SegmentAttributeValue}
     end
 
     record UpdateContactInput

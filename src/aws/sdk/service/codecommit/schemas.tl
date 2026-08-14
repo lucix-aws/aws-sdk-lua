@@ -49,6 +49,8 @@ M.MergeHunks = schema.new({ type = "list", list_member = M.MergeHunk })
 
 M.PullRequestEventList = schema.new({ type = "list", list_member = M.PullRequestEvent })
 
+M.DiffHunkList = schema.new({ type = "list", list_member = M.DiffHunk })
+
 M.ReactionsForCommentList = schema.new({ type = "list", list_member = M.ReactionForComment })
 
 M.CommentsForComparedCommitData = schema.new({ type = "list", list_member = M.CommentsForComparedCommit })
@@ -104,6 +106,8 @@ M.ApprovalRulesSatisfiedList = schema.new({ type = "list", list_member = prelude
 M.ApprovalRulesNotSatisfiedList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ParentList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DiffChangeList = schema.new({ type = "list", list_member = M.DiffChange })
 
 M.ReactionUsersList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -5256,6 +5260,197 @@ M.InvalidBlobIdException = schema.new({
     },
 })
 
+M.GetBlobDifferencesInput = schema.new({
+    id = id.from(_N, "GetBlobDifferencesInput"),
+    type = "structure",
+    members = {
+        repositoryName = schema.new({
+            id = id.from(_N, "GetBlobDifferencesInput", "repositoryName"),
+            type = "string",
+            name = "repositoryName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        afterBlobId = schema.new({
+            id = id.from(_N, "GetBlobDifferencesInput", "afterBlobId"),
+            type = "string",
+            name = "afterBlobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        beforeBlobId = schema.new({
+            id = id.from(_N, "GetBlobDifferencesInput", "beforeBlobId"),
+            type = "string",
+            name = "beforeBlobId",
+            target_id = prelude.String.id,
+        }),
+        contextLines = schema.new({
+            id = id.from(_N, "GetBlobDifferencesInput", "contextLines"),
+            type = "integer",
+            name = "contextLines",
+            target_id = prelude.Integer.id,
+        }),
+        ignoreWhitespace = schema.new({
+            id = id.from(_N, "GetBlobDifferencesInput", "ignoreWhitespace"),
+            type = "boolean",
+            name = "ignoreWhitespace",
+            target_id = prelude.Boolean.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetBlobDifferencesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetBlobDifferencesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DiffChange = schema.new({
+    id = id.from(_N, "DiffChange"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "DiffChange", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        beforeLineNumber = schema.new({
+            id = id.from(_N, "DiffChange", "beforeLineNumber"),
+            type = "integer",
+            name = "beforeLineNumber",
+            target_id = prelude.Integer.id,
+        }),
+        afterLineNumber = schema.new({
+            id = id.from(_N, "DiffChange", "afterLineNumber"),
+            type = "integer",
+            name = "afterLineNumber",
+            target_id = prelude.Integer.id,
+        }),
+        content = schema.new({
+            id = id.from(_N, "DiffChange", "content"),
+            type = "string",
+            name = "content",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DiffHunk = schema.new({
+    id = id.from(_N, "DiffHunk"),
+    type = "structure",
+    members = {
+        beforeStartLine = schema.new({
+            id = id.from(_N, "DiffHunk", "beforeStartLine"),
+            type = "integer",
+            name = "beforeStartLine",
+            target_id = prelude.Integer.id,
+        }),
+        beforeLineCount = schema.new({
+            id = id.from(_N, "DiffHunk", "beforeLineCount"),
+            type = "integer",
+            name = "beforeLineCount",
+            target_id = prelude.Integer.id,
+        }),
+        afterStartLine = schema.new({
+            id = id.from(_N, "DiffHunk", "afterStartLine"),
+            type = "integer",
+            name = "afterStartLine",
+            target_id = prelude.Integer.id,
+        }),
+        afterLineCount = schema.new({
+            id = id.from(_N, "DiffHunk", "afterLineCount"),
+            type = "integer",
+            name = "afterLineCount",
+            target_id = prelude.Integer.id,
+        }),
+        changes = schema.new({
+            id = id.from(_N, "DiffHunk", "changes"),
+            type = "list",
+            name = "changes",
+            target_id = prelude.Document.id,
+            list_member = M.DiffChange,
+        }),
+    },
+})
+
+M.GetBlobDifferencesOutput = schema.new({
+    id = id.from(_N, "GetBlobDifferencesOutput"),
+    type = "structure",
+    members = {
+        hunks = schema.new({
+            id = id.from(_N, "GetBlobDifferencesOutput", "hunks"),
+            type = "list",
+            name = "hunks",
+            target_id = prelude.Document.id,
+            list_member = M.DiffHunk,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        isBinary = schema.new({
+            id = id.from(_N, "GetBlobDifferencesOutput", "isBinary"),
+            type = "boolean",
+            name = "isBinary",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        beforeBlobSize = schema.new({
+            id = id.from(_N, "GetBlobDifferencesOutput", "beforeBlobSize"),
+            type = "long",
+            name = "beforeBlobSize",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        afterBlobSize = schema.new({
+            id = id.from(_N, "GetBlobDifferencesOutput", "afterBlobSize"),
+            type = "long",
+            name = "afterBlobSize",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetBlobDifferencesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetBranchInput = schema.new({
     id = id.from(_N, "GetBranchInput"),
     type = "structure",
@@ -9866,6 +10061,17 @@ M.GetBlob = schema.operation({
     id = id.from("com.amazonaws.codecommit", "GetBlob"),
     input = M.GetBlobInput,
     output = M.GetBlobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetBlobDifferences = schema.operation({
+    id = id.from("com.amazonaws.codecommit", "GetBlobDifferences"),
+    input = M.GetBlobDifferencesInput,
+    output = M.GetBlobDifferencesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

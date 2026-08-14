@@ -113,6 +113,35 @@ local record M
         minimum: number
     end
 
+    enum AllowedAggregateExpressionType
+        "COLUMNS_ONLY"
+        "ANY_EXPRESSION"
+    end
+
+    -- Specifies the minimum number of distinct identities for an individual output column. This value overrides the table-wide minimumIdentityCount that you set in AggregationThreshold.
+    record OutputColumnThreshold
+        -- The name of the output column that the override applies to. You can specify each column only once.
+        outputColumnName: string
+        -- The minimum number of distinct identities that each query output group must represent for this column. Specify 0 to exempt the column from the threshold, or a value of 2 or greater to enforce a threshold.
+        minimumIdentityCount: number
+    end
+
+    enum AggregationThresholdType
+        "COUNT_DISTINCT"
+    end
+
+    -- Specifies the minimum number of distinct identities that each query output group must represent.
+    record AggregationThreshold
+        -- The identity column, such as user_id, whose distinct values Clean Rooms counts to enforce minimum aggregation thresholds. Currently, you can specify only one column, and its data type must be string, varchar, or char.
+        identityColumns: {string}
+        -- The minimum number of distinct identities that each query output group must represent. This threshold applies to all output columns in the table. To override this threshold for a specific column, use outputColumnThresholds.
+        minimumIdentityCount: number
+        -- The per-column overrides of minimumIdentityCount. An output column without an override uses minimumIdentityCount.
+        outputColumnThresholds: {OutputColumnThreshold}
+        -- Specifies whether a query can aggregate a transformed column. This applies to the arguments of both aggregate and window functions. Valid values are: COLUMNS_ONLY – A query can aggregate only a direct column reference, such as SUM(amount), or a constant. Clean Rooms rejects a query that transforms a column and then aggregates it, such as SUM(amount * 2) or SUM(ROUND(amount)). ANY_EXPRESSION – A query can aggregate any expression. This includes arithmetic, such as SUM(price * quantity); a cast, such as SUM(CAST(amount AS DECIMAL)); a nested function call, such as SUM(COALESCE(amount, 0)); and a conditional, such as SUM(CASE WHEN region = 'EU' THEN amount ELSE 0 END).
+        allowedAggregateExpressionType: string
+    end
+
     enum SupportedS3Region
         "us-west-1"
         "us-west-2"
@@ -373,6 +402,14 @@ local record M
         allowedAdditionalAnalyses: {string}
     end
 
+    -- Specifies how a query can compare the columns in a table, including literal comparisons and column-to-column comparisons.
+    record ComparisonControls
+        -- The columns that a query can compare to literal values, for example, in a WHERE clause. Clean Rooms rejects a query that compares any other column to a literal value. Specify an empty list to block literal comparison on every column. You can't specify a column that you also use as an identity column in an aggregation threshold.
+        allowedLiteralComparisonColumns: {string}
+        -- The columns that a query can compare to another column, for example, in a join, a WHERE clause, a GROUP BY clause, or a window function. Clean Rooms rejects a query that uses any other column in a column-to-column comparison. Specify an empty list to block column-to-column comparison on every column.
+        allowedColumnComparisonColumns: {string}
+    end
+
     -- Specifies the name of the column that contains the unique identifier of your users, whose privacy you want to protect.
     record DifferentialPrivacyColumn
         -- The name of the column, such as user_id, that contains the unique identifier of your users, whose privacy you want to protect. If you want to turn on differential privacy for two or more tables in a collaboration, you must configure the same column as the user identifier column in both analysis rules.
@@ -396,6 +433,10 @@ local record M
         -- Disallowed output columns
         disallowedOutputColumns: {string}
         differentialPrivacy: DifferentialPrivacyConfiguration
+        -- The aggregation thresholds for the consolidated policy.
+        aggregationThresholds: {AggregationThreshold}
+        -- The comparison controls for the consolidated policy.
+        comparisonControls: ComparisonControls
         -- The allowed result receivers.
         allowedResultReceivers: {string}
         -- The additional analyses allowed by the consolidated policy.
@@ -454,7 +495,7 @@ local record M
         additionalAnalyses: string
     end
 
-    -- A type of analysis rule that enables the table owner to approve custom SQL queries on their configured tables. It supports differential privacy.
+    -- A type of analysis rule that enables the table owner to approve custom SQL queries on their configured tables. It supports differential privacy, minimum aggregation thresholds, and comparison controls.
     record AnalysisRuleCustom
         -- The ARN of the analysis templates that are allowed by the custom analysis rule.
         allowedAnalyses: {string}
@@ -466,6 +507,10 @@ local record M
         disallowedOutputColumns: {string}
         -- The differential privacy configuration.
         differentialPrivacy: DifferentialPrivacyConfiguration
+        -- The aggregation thresholds that each query output group must satisfy. Clean Rooms filters out any group that represents fewer than the specified number of distinct identities. You can specify at most one threshold. You can't use aggregation thresholds with differential privacy, or when allowedAnalyses allows only jobs.
+        aggregationThresholds: {AggregationThreshold}
+        -- The controls that restrict how a query can compare the columns in the configured table. You can't use comparison controls with differential privacy, or when allowedAnalyses allows only jobs.
+        comparisonControls: ComparisonControls
         -- The list of Amazon Web Services account IDs that are allowed to receive results from queries run on the configured table.
         allowedResultReceivers: {string}
         -- The list of allowed additional analyses for the custom analysis rule.
@@ -3379,6 +3424,10 @@ local record M
         differentialPrivacy: DifferentialPrivacyConfiguration
         -- The list of columns that are not allowed in the query output.
         disallowedOutputColumns: {string}
+        -- The aggregation thresholds that each query output group must satisfy. Clean Rooms filters out any group that represents fewer than the specified number of distinct identities. You can specify at most one threshold. You can't use aggregation thresholds with differential privacy, or when allowedAnalyses allows only jobs.
+        aggregationThresholds: {AggregationThreshold}
+        -- The controls that restrict how a query can compare the columns in the intermediate table. You can't use comparison controls with differential privacy, or when allowedAnalyses allows only jobs.
+        comparisonControls: ComparisonControls
     end
 
     -- Contains the version 1 policy for an intermediate table analysis rule.

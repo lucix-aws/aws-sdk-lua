@@ -2086,6 +2086,12 @@ M.Pentest = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "Pentest", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "Pentest", "createdAt"),
             type = "timestamp",
@@ -2514,6 +2520,12 @@ M.CodeReviewJob = schema.new({
             name = "codeRemediationStrategy",
             target_id = prelude.String.id,
         }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "CodeReviewJob", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "CodeReviewJob", "createdAt"),
             type = "timestamp",
@@ -2823,6 +2835,12 @@ M.CodeReview = schema.new({
             type = "string",
             name = "validationMode",
             target_id = prelude.String.id,
+        }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "CodeReview", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "CodeReview", "createdAt"),
@@ -3182,6 +3200,19 @@ M.Finding = schema.new({
             name = "alignmentRationale",
             target_id = prelude.String.id,
         }),
+        revalidationJobIds = schema.new({
+            id = id.from(_N, "Finding", "revalidationJobIds"),
+            type = "list",
+            name = "revalidationJobIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        originalFindingId = schema.new({
+            id = id.from(_N, "Finding", "originalFindingId"),
+            type = "string",
+            name = "originalFindingId",
+            target_id = prelude.String.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "Finding", "createdAt"),
             type = "timestamp",
@@ -3404,6 +3435,25 @@ M.PentestJob = schema.new({
             id = id.from(_N, "PentestJob", "disableManagedSkills"),
             type = "list",
             name = "disableManagedSkills",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "PentestJob", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
+        }),
+        jobType = schema.new({
+            id = id.from(_N, "PentestJob", "jobType"),
+            type = "string",
+            name = "jobType",
+            target_id = prelude.String.id,
+        }),
+        selectedFindingIds = schema.new({
+            id = id.from(_N, "PentestJob", "selectedFindingIds"),
+            type = "list",
+            name = "selectedFindingIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -5226,6 +5276,12 @@ M.CreateCodeReviewInput = schema.new({
             name = "validationMode",
             target_id = prelude.String.id,
         }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
+        }),
     },
 })
 
@@ -5303,6 +5359,12 @@ M.CreateCodeReviewOutput = schema.new({
             type = "string",
             name = "validationMode",
             target_id = prelude.String.id,
+        }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
         }),
     },
 })
@@ -5650,6 +5712,12 @@ M.CreatePentestInput = schema.new({
             name = "disableManagedSkills",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "CreatePentestInput", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
         }),
     },
 })
@@ -10261,6 +10329,19 @@ M.StartPentestJobInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        jobType = schema.new({
+            id = id.from(_N, "StartPentestJobInput", "jobType"),
+            type = "string",
+            name = "jobType",
+            target_id = prelude.String.id,
+        }),
+        selectedFindingIds = schema.new({
+            id = id.from(_N, "StartPentestJobInput", "selectedFindingIds"),
+            type = "list",
+            name = "selectedFindingIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -10708,6 +10789,12 @@ M.UpdateCodeReviewInput = schema.new({
             name = "validationMode",
             target_id = prelude.String.id,
         }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
+        }),
     },
 })
 
@@ -10785,6 +10872,12 @@ M.UpdateCodeReviewOutput = schema.new({
             type = "string",
             name = "validationMode",
             target_id = prelude.String.id,
+        }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
         }),
     },
 })
@@ -10994,6 +11087,12 @@ M.UpdatePentestInput = schema.new({
             name = "disableManagedSkills",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        maxTaskHours = schema.new({
+            id = id.from(_N, "UpdatePentestInput", "maxTaskHours"),
+            type = "double",
+            name = "maxTaskHours",
+            target_id = prelude.Double.id,
         }),
     },
 })

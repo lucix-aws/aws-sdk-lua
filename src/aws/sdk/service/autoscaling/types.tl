@@ -2210,6 +2210,15 @@ local record M
         -- same time.
         -- If you do not specify this property, the default is 100 percent, or the percentage set
         -- in the instance maintenance policy for the Auto Scaling group, if defined.
+        -- Explicitly setting MaxHealthyPercentage to 100 is not equivalent to
+        -- omitting it. When MaxHealthyPercentage is explicitly set and it is
+        -- mathematically impossible to replace instances while honoring both
+        -- MinHealthyPercentage and MaxHealthyPercentage bounds
+        -- simultaneously, Auto Scaling launches a new instance before terminating an old one
+        -- (temporarily exceeding the desired capacity). When MaxHealthyPercentage
+        -- is omitted, Auto Scaling terminates an instance and launches its replacement
+        -- simultaneously. This behavioral difference can affect workflows that depend on
+        -- instance replacement ordering.
         MaxHealthyPercentage: number
         -- The amount of time, in seconds, to wait at the end of an instance refresh before the instance refresh is considered complete.
         BakeTime: number
@@ -3755,6 +3764,13 @@ local record M
         UpdateTime: number
     end
 
+    -- The service is currently processing another request with the same client token. Retry
+    -- the request with the same client token—the in-flight operation will complete and return
+    -- its result.
+    record IdempotentCallInProgressFault
+        Message: string
+    end
+
     -- Indicates that the parameters in the current request do not match the parameters from a previous request with the same client token within the idempotency window.
     record IdempotentParameterMismatchError
         Message: string
@@ -4232,6 +4248,11 @@ local record M
     record TerminateInstanceInAutoScalingGroupInput
         -- The ID of the instance.
         InstanceId: string
+        -- The IDs of the instances. You can specify up to 100 instances.
+        -- This parameter requires that you also specify AutoScalingGroupName.
+        InstanceIds: {string}
+        -- The name of the Auto Scaling group. Required when using InstanceIds.
+        AutoScalingGroupName: string
         -- Indicates whether terminating the instance also decrements the size of the Auto Scaling
         -- group.
         ShouldDecrementDesiredCapacity: boolean
@@ -4240,6 +4261,8 @@ local record M
     record TerminateInstanceInAutoScalingGroupOutput
         -- A scaling activity.
         Activity: Activity
+        -- The scaling activities related to terminating the instances from the Auto Scaling group.
+        Activities: {Activity}
     end
 
     record UpdateAutoScalingGroupInput

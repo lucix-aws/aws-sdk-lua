@@ -21,6 +21,8 @@ M.AcmeEndpointList = schema.new({ type = "list", list_member = M.AcmeEndpointSum
 
 M.AcmeExternalAccountBindingList = schema.new({ type = "list", list_member = M.AcmeExternalAccountBindingSummary })
 
+M.DomainValidationSummaryList = schema.new({ type = "list", list_member = M.DomainValidationSummary })
+
 M.CertificateStatuses = schema.new({ type = "list", list_member = prelude.String })
 
 M.CertificateKeyPairOrigins = schema.new({ type = "list", list_member = prelude.String })
@@ -1194,6 +1196,12 @@ M.CertificateOptions = schema.new({
             name = "Export",
             target_id = prelude.String.id,
         }),
+        ValidationMethod = schema.new({
+            id = id.from(_N, "CertificateOptions", "ValidationMethod"),
+            type = "string",
+            name = "ValidationMethod",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1234,6 +1242,63 @@ M.RenewalSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.DomainValidationMethodUpdateSummary = schema.new({
+    id = id.from(_N, "DomainValidationMethodUpdateSummary"),
+    type = "structure",
+    members = {
+        From = schema.new({
+            id = id.from(_N, "DomainValidationMethodUpdateSummary", "From"),
+            type = "string",
+            name = "From",
+            target_id = prelude.String.id,
+        }),
+        To = schema.new({
+            id = id.from(_N, "DomainValidationMethodUpdateSummary", "To"),
+            type = "string",
+            name = "To",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateSummary = schema.new({
+    id = id.from(_N, "UpdateSummary"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "UpdateSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "UpdateSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        DomainValidationMethodUpdateSummary = schema.new({
+            id = id.from(_N, "UpdateSummary", "DomainValidationMethodUpdateSummary"),
+            type = "structure",
+            name = "DomainValidationMethodUpdateSummary",
+            target_id = id.from(_N, "DomainValidationMethodUpdateSummary"),
+            target = M.DomainValidationMethodUpdateSummary,
+        }),
+        RequestedAt = schema.new({
+            id = id.from(_N, "UpdateSummary", "RequestedAt"),
+            type = "timestamp",
+            name = "RequestedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "UpdateSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -1410,6 +1475,13 @@ M.CertificateDetail = schema.new({
             name = "Options",
             target_id = id.from(_N, "CertificateOptions"),
             target = M.CertificateOptions,
+        }),
+        UpdateSummary = schema.new({
+            id = id.from(_N, "CertificateDetail", "UpdateSummary"),
+            type = "structure",
+            name = "UpdateSummary",
+            target_id = id.from(_N, "UpdateSummary"),
+            target = M.UpdateSummary,
         }),
         CertificateKeyPairOrigin = schema.new({
             id = id.from(_N, "CertificateDetail", "CertificateKeyPairOrigin"),
@@ -2601,6 +2673,165 @@ M.InvalidArgsException = schema.new({
             id = id.from(_N, "InvalidArgsException", "message"),
             type = "string",
             name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCertificateDomainValidationsInput = schema.new({
+    id = id.from(_N, "ListCertificateDomainValidationsRequest"),
+    type = "structure",
+    members = {
+        CertificateArn = schema.new({
+            id = id.from(_N, "ListCertificateDomainValidationsInput", "CertificateArn"),
+            type = "string",
+            name = "CertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCertificateDomainValidationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxItems = schema.new({
+            id = id.from(_N, "ListCertificateDomainValidationsInput", "MaxItems"),
+            type = "integer",
+            name = "MaxItems",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DnsValidationChallenge = schema.new({
+    id = id.from(_N, "DnsValidationChallenge"),
+    type = "structure",
+    members = {
+        ResourceRecord = schema.new({
+            id = id.from(_N, "DnsValidationChallenge", "ResourceRecord"),
+            type = "structure",
+            name = "ResourceRecord",
+            target_id = id.from(_N, "ResourceRecord"),
+            target = M.ResourceRecord,
+        }),
+    },
+})
+
+M.EmailValidationChallenge = schema.new({
+    id = id.from(_N, "EmailValidationChallenge"),
+    type = "structure",
+    members = {
+        ValidationEmails = schema.new({
+            id = id.from(_N, "EmailValidationChallenge", "ValidationEmails"),
+            type = "list",
+            name = "ValidationEmails",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ValidationDomain = schema.new({
+            id = id.from(_N, "EmailValidationChallenge", "ValidationDomain"),
+            type = "string",
+            name = "ValidationDomain",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationChallenge = schema.new({
+    id = id.from(_N, "ValidationChallenge"),
+    type = "union",
+    members = {
+        EmailValidationChallenge = schema.new({
+            id = id.from(_N, "ValidationChallenge", "EmailValidationChallenge"),
+            type = "structure",
+            name = "EmailValidationChallenge",
+            target_id = id.from(_N, "EmailValidationChallenge"),
+            target = M.EmailValidationChallenge,
+        }),
+        DnsValidationChallenge = schema.new({
+            id = id.from(_N, "ValidationChallenge", "DnsValidationChallenge"),
+            type = "structure",
+            name = "DnsValidationChallenge",
+            target_id = id.from(_N, "DnsValidationChallenge"),
+            target = M.DnsValidationChallenge,
+        }),
+    },
+})
+
+M.ValidationConfiguration = schema.new({
+    id = id.from(_N, "ValidationConfiguration"),
+    type = "structure",
+    members = {
+        ValidationMethod = schema.new({
+            id = id.from(_N, "ValidationConfiguration", "ValidationMethod"),
+            type = "string",
+            name = "ValidationMethod",
+            target_id = prelude.String.id,
+        }),
+        ValidationChallenge = schema.new({
+            id = id.from(_N, "ValidationConfiguration", "ValidationChallenge"),
+            type = "union",
+            name = "ValidationChallenge",
+            target_id = id.from(_N, "ValidationChallenge"),
+            target = M.ValidationChallenge,
+        }),
+        ValidationStatus = schema.new({
+            id = id.from(_N, "ValidationConfiguration", "ValidationStatus"),
+            type = "string",
+            name = "ValidationStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DomainValidationSummary = schema.new({
+    id = id.from(_N, "DomainValidationSummary"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "DomainValidationSummary", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ActiveValidationConfiguration = schema.new({
+            id = id.from(_N, "DomainValidationSummary", "ActiveValidationConfiguration"),
+            type = "structure",
+            name = "ActiveValidationConfiguration",
+            target_id = id.from(_N, "ValidationConfiguration"),
+            target = M.ValidationConfiguration,
+        }),
+        RequestedValidationConfiguration = schema.new({
+            id = id.from(_N, "DomainValidationSummary", "RequestedValidationConfiguration"),
+            type = "structure",
+            name = "RequestedValidationConfiguration",
+            target_id = id.from(_N, "ValidationConfiguration"),
+            target = M.ValidationConfiguration,
+        }),
+    },
+})
+
+M.ListCertificateDomainValidationsOutput = schema.new({
+    id = id.from(_N, "ListCertificateDomainValidationsResponse"),
+    type = "structure",
+    members = {
+        DomainValidationSummaryList = schema.new({
+            id = id.from(_N, "ListCertificateDomainValidationsOutput", "DomainValidationSummaryList"),
+            type = "list",
+            name = "DomainValidationSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.DomainValidationSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCertificateDomainValidationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
             target_id = prelude.String.id,
         }),
     },
@@ -4126,6 +4357,20 @@ M.ListAcmeExternalAccountBindings = schema.operation({
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.ListCertificateDomainValidations = schema.operation({
+    id = id.from("com.amazonaws.acm", "ListCertificateDomainValidations"),
+    input = M.ListCertificateDomainValidationsInput,
+    output = M.ListCertificateDomainValidationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
         },
     },
 })

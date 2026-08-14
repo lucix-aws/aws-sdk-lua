@@ -40,6 +40,7 @@ local record Client
     listAcmeDomainValidations: function(Client, types.ListAcmeDomainValidationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAcmeDomainValidationsOutput>
     listAcmeEndpoints: function(Client, types.ListAcmeEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListAcmeEndpointsOutput>
     listAcmeExternalAccountBindings: function(Client, types.ListAcmeExternalAccountBindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListAcmeExternalAccountBindingsOutput>
+    listCertificateDomainValidations: function(Client, types.ListCertificateDomainValidationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificateDomainValidationsOutput>
     listCertificates: function(Client, types.ListCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
     listTagsForCertificate: function(Client, types.ListTagsForCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForCertificateOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -187,6 +188,10 @@ end
 
 function C:listAcmeExternalAccountBindings(input: types.ListAcmeExternalAccountBindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAcmeExternalAccountBindingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAcmeExternalAccountBindings as schema.OperationSchema, input, options) as async.Operation<types.ListAcmeExternalAccountBindingsOutput>
+end
+
+function C:listCertificateDomainValidations(input: types.ListCertificateDomainValidationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificateDomainValidationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificateDomainValidations as schema.OperationSchema, input, options) as async.Operation<types.ListCertificateDomainValidationsOutput>
 end
 
 function C:listCertificates(input: types.ListCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>

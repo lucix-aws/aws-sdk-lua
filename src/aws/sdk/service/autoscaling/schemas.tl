@@ -113,6 +113,8 @@ M.Alarms = schema.new({ type = "list", list_member = M.Alarm })
 
 M.ProcessNames = schema.new({ type = "list", list_member = prelude.String })
 
+M.TerminationInstanceIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.PredictiveScalingForecastTimestamps = schema.new({ type = "list", list_member = prelude.Timestamp })
 
 M.PredictiveScalingForecastValues = schema.new({ type = "list", list_member = prelude.Double })
@@ -5688,6 +5690,22 @@ M.GetPredictiveScalingForecastOutput = schema.new({
     },
 })
 
+M.IdempotentCallInProgressFault = schema.new({
+    id = id.from(_N, "IdempotentCallInProgressFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "IdempotentCallInProgressFault", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.IdempotentParameterMismatchError = schema.new({
     id = id.from(_N, "IdempotentParameterMismatchError"),
     type = "structure",
@@ -6537,9 +6555,19 @@ M.TerminateInstanceInAutoScalingGroupInput = schema.new({
             type = "string",
             name = "InstanceId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        InstanceIds = schema.new({
+            id = id.from(_N, "TerminateInstanceInAutoScalingGroupInput", "InstanceIds"),
+            type = "list",
+            name = "InstanceIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AutoScalingGroupName = schema.new({
+            id = id.from(_N, "TerminateInstanceInAutoScalingGroupInput", "AutoScalingGroupName"),
+            type = "string",
+            name = "AutoScalingGroupName",
+            target_id = prelude.String.id,
         }),
         ShouldDecrementDesiredCapacity = schema.new({
             id = id.from(_N, "TerminateInstanceInAutoScalingGroupInput", "ShouldDecrementDesiredCapacity"),
@@ -6563,6 +6591,13 @@ M.TerminateInstanceInAutoScalingGroupOutput = schema.new({
             name = "Activity",
             target_id = id.from(_N, "Activity"),
             target = M.Activity,
+        }),
+        Activities = schema.new({
+            id = id.from(_N, "TerminateInstanceInAutoScalingGroupOutput", "Activities"),
+            type = "list",
+            name = "Activities",
+            target_id = prelude.Document.id,
+            list_member = M.Activity,
         }),
     },
 })

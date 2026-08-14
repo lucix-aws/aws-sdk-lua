@@ -76,6 +76,24 @@ function M.items_list_acme_external_account_bindings(client, input)
     })
 end
 
+--- Returns a page iterator for listCertificateDomainValidations.
+function M.pages_list_certificate_domain_validations(client, input)
+    return paginator.pages(client, "listCertificateDomainValidations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DomainValidationSummaryList",
+    })
+end
+
+--- Returns an item iterator for listCertificateDomainValidations.
+function M.items_list_certificate_domain_validations(client, input)
+    return paginator.items(client, "listCertificateDomainValidations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DomainValidationSummaryList",
+    })
+end
+
 --- Returns a page iterator for listCertificates.
 function M.pages_list_certificates(client, input)
     return paginator.pages(client, "listCertificates", input, {
