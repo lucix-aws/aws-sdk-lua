@@ -21939,18 +21939,12 @@ M.ProcessingClusterConfig = schema.new({
             type = "integer",
             name = "InstanceCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         InstanceType = schema.new({
             id = id.from(_N, "ProcessingClusterConfig", "InstanceType"),
             type = "string",
             name = "InstanceType",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         VolumeSizeInGB = schema.new({
             id = id.from(_N, "ProcessingClusterConfig", "VolumeSizeInGB"),

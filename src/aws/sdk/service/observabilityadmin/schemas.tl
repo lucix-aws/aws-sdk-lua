@@ -260,6 +260,28 @@ M.LogsEncryptionConfiguration = schema.new({
     },
 })
 
+M.TagPropagationConfiguration = schema.new({
+    id = id.from(_N, "TagPropagationConfiguration"),
+    type = "structure",
+    members = {
+        DestinationRoleArn = schema.new({
+            id = id.from(_N, "TagPropagationConfiguration", "DestinationRoleArn"),
+            type = "string",
+            name = "DestinationRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagConflictResolutionStrategy = schema.new({
+            id = id.from(_N, "TagPropagationConfiguration", "TagConflictResolutionStrategy"),
+            type = "string",
+            name = "TagConflictResolutionStrategy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DestinationLogsConfiguration = schema.new({
     id = id.from(_N, "DestinationLogsConfiguration"),
     type = "structure",
@@ -284,6 +306,13 @@ M.DestinationLogsConfiguration = schema.new({
             name = "LogGroupNameConfiguration",
             target_id = id.from(_N, "LogGroupNameConfiguration"),
             target = M.LogGroupNameConfiguration,
+        }),
+        TagPropagationConfiguration = schema.new({
+            id = id.from(_N, "DestinationLogsConfiguration", "TagPropagationConfiguration"),
+            type = "structure",
+            name = "TagPropagationConfiguration",
+            target_id = id.from(_N, "TagPropagationConfiguration"),
+            target = M.TagPropagationConfiguration,
         }),
     },
 })
@@ -512,6 +541,18 @@ M.CentralizationRuleSummary = schema.new({
             id = id.from(_N, "CentralizationRuleSummary", "FailureReason"),
             type = "string",
             name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        TagPropagationStatus = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "TagPropagationStatus"),
+            type = "string",
+            name = "TagPropagationStatus",
+            target_id = prelude.String.id,
+        }),
+        TagPropagationFailureReason = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "TagPropagationFailureReason"),
+            type = "string",
+            name = "TagPropagationFailureReason",
             target_id = prelude.String.id,
         }),
         DestinationAccountId = schema.new({
@@ -1635,6 +1676,18 @@ M.GetCentralizationRuleForOrganizationOutput = schema.new({
             id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "FailureReason"),
             type = "string",
             name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        TagPropagationStatus = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "TagPropagationStatus"),
+            type = "string",
+            name = "TagPropagationStatus",
+            target_id = prelude.String.id,
+        }),
+        TagPropagationFailureReason = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "TagPropagationFailureReason"),
+            type = "string",
+            name = "TagPropagationFailureReason",
             target_id = prelude.String.id,
         }),
         CentralizationRule = schema.new({

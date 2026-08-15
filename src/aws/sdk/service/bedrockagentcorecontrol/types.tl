@@ -6618,6 +6618,8 @@ local record M
         clientToken: string
         -- A map of tag keys and values to assign to the payment manager.
         tags: {string : string}
+        -- The Amazon Resource Name (ARN) of the customer managed KMS key to use for encrypting sensitive payment manager data at rest. If you don't specify a key, the data is encrypted with an Amazon Web Services owned key.
+        kmsKeyArn: string
     end
 
     enum PaymentManagerStatus
@@ -6649,6 +6651,8 @@ local record M
         status: string
         -- The tags associated with the created payment manager.
         tags: {string : string}
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt sensitive payment manager data at rest, if configured.
+        kmsKeyArn: string
     end
 
     record DeletePaymentManagerInput
@@ -6693,6 +6697,8 @@ local record M
         status: string
         -- The tags associated with the payment manager.
         tags: {string : string}
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt sensitive payment manager data at rest, if configured.
+        kmsKeyArn: string
     end
 
     record ListPaymentManagersInput
@@ -6722,6 +6728,8 @@ local record M
         createdAt: number
         -- The timestamp when the payment manager was last updated.
         lastUpdatedAt: number
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt sensitive payment manager data at rest, if configured.
+        kmsKeyArn: string
     end
 
     record ListPaymentManagersOutput
@@ -6745,6 +6753,11 @@ local record M
         stripePrivy: PaymentCredentialProviderConfiguration
     end
 
+    enum PaymentConnectorProvisionMode
+        "MANUAL"
+        "QUICK_CREATE"
+    end
+
     enum PaymentConnectorType
         "CoinbaseCDP"
         "StripePrivy"
@@ -6759,6 +6772,8 @@ local record M
         description: string
         -- The credential provider configurations for the payment connector. These configurations specify how the connector authenticates with the payment provider.
         credentialProviderConfigurations: {CredentialsProviderConfiguration}
+        -- The provision mode for creating the payment connector. If you don't specify a value, the default is MANUAL. MANUAL - You provide the credential provider configurations directly. QUICK_CREATE - The service orchestrates OAuth consent and provisions the credential provider for you.
+        provisionMode: string
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
         clientToken: string
     end
@@ -6771,6 +6786,11 @@ local record M
         "CREATE_FAILED"
         "UPDATE_FAILED"
         "DELETE_FAILED"
+        "AWS_MARKETPLACE_SUBSCRIPTION_REQUIRED"
+        "PENDING_AUTHENTICATION"
+        "PROVISIONING"
+        "AUTHENTICATION_EXPIRED"
+        "AUTHENTICATION_FAILED"
     end
 
     record CreatePaymentConnectorOutput
@@ -6786,6 +6806,17 @@ local record M
         createdAt: number
         -- The current status of the payment connector. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
         status: string
+        -- The URL that the user must open to complete OAuth consent. This field is only present when the payment connector status is PENDING_AUTHENTICATION.
+        authorizationUrl: string
+    end
+
+    -- The request failed because it requires an active Amazon Web Services Marketplace subscription that is not present. Subscribe to the required product in Amazon Web Services Marketplace and try again.
+    record SubscriptionRequiredException
+        message: string
+        -- URL to the Marketplace listing for subscription
+        subscriptionUrl: string
+        -- The product requiring subscription
+        productName: string
     end
 
     record DeletePaymentConnectorInput
@@ -6826,6 +6857,8 @@ local record M
         lastUpdatedAt: number
         -- The current status of the payment connector. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
         status: string
+        -- The URL that the user must open to complete OAuth consent. This field is only present when the payment connector status is PENDING_AUTHENTICATION.
+        authorizationUrl: string
     end
 
     record ListPaymentConnectorsInput
@@ -6882,6 +6915,8 @@ local record M
         lastUpdatedAt: number
         -- The current status of the updated payment connector. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
         status: string
+        -- The URL that the user must open to complete OAuth consent. This field is only present when the payment connector status is PENDING_AUTHENTICATION.
+        authorizationUrl: string
     end
 
     record UpdatePaymentManagerInput
@@ -6897,6 +6932,8 @@ local record M
         roleArn: string
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
         clientToken: string
+        -- The updated Amazon Resource Name (ARN) of the customer managed KMS key used to encrypt sensitive payment manager data at rest.
+        kmsKeyArn: string
     end
 
     record UpdatePaymentManagerOutput
@@ -6915,6 +6952,8 @@ local record M
         lastUpdatedAt: number
         -- The current status of the updated payment manager. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
         status: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt sensitive payment manager data at rest, if configured.
+        kmsKeyArn: string
     end
 
     record CreatePolicyEngineInput

@@ -19,6 +19,7 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     agenticRetrieveStream: function(Client, types.AgenticRetrieveStreamInput, ? base_client.InvokeOptions): async.Operation<types.AgenticRetrieveStreamOutput>
+    checkIngestedDocumentAcl: function(Client, types.CheckIngestedDocumentAclInput, ? base_client.InvokeOptions): async.Operation<types.CheckIngestedDocumentAclOutput>
     createInvocation: function(Client, types.CreateInvocationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvocationOutput>
     createSession: function(Client, types.CreateSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSessionOutput>
     deleteAgentMemory: function(Client, types.DeleteAgentMemoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentMemoryOutput>
@@ -29,6 +30,7 @@ local record Client
     getDocumentContent: function(Client, types.GetDocumentContentInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentContentOutput>
     getExecutionFlowSnapshot: function(Client, types.GetExecutionFlowSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetExecutionFlowSnapshotOutput>
     getFlowExecution: function(Client, types.GetFlowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowExecutionOutput>
+    getIngestedDocumentAcl: function(Client, types.GetIngestedDocumentAclInput, ? base_client.InvokeOptions): async.Operation<types.GetIngestedDocumentAclOutput>
     getInvocationStep: function(Client, types.GetInvocationStepInput, ? base_client.InvokeOptions): async.Operation<types.GetInvocationStepOutput>
     getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
     invokeAgent: function(Client, types.InvokeAgentInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAgentOutput>
@@ -99,6 +101,10 @@ function C:agenticRetrieveStream(input: types.AgenticRetrieveStreamInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AgenticRetrieveStream as schema.OperationSchema, input, options) as async.Operation<types.AgenticRetrieveStreamOutput>
 end
 
+function C:checkIngestedDocumentAcl(input: types.CheckIngestedDocumentAclInput, options?: base_client.InvokeOptions): async.Operation<types.CheckIngestedDocumentAclOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckIngestedDocumentAcl as schema.OperationSchema, input, options) as async.Operation<types.CheckIngestedDocumentAclOutput>
+end
+
 function C:createInvocation(input: types.CreateInvocationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInvocationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInvocation as schema.OperationSchema, input, options) as async.Operation<types.CreateInvocationOutput>
 end
@@ -137,6 +143,10 @@ end
 
 function C:getFlowExecution(input: types.GetFlowExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFlowExecutionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFlowExecution as schema.OperationSchema, input, options) as async.Operation<types.GetFlowExecutionOutput>
+end
+
+function C:getIngestedDocumentAcl(input: types.GetIngestedDocumentAclInput, options?: base_client.InvokeOptions): async.Operation<types.GetIngestedDocumentAclOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIngestedDocumentAcl as schema.OperationSchema, input, options) as async.Operation<types.GetIngestedDocumentAclOutput>
 end
 
 function C:getInvocationStep(input: types.GetInvocationStepInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvocationStepOutput>

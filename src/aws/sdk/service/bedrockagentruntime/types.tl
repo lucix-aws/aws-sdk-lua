@@ -1484,6 +1484,22 @@ local record M
         agentVersion: string
     end
 
+    record CheckIngestedDocumentAclInput
+        -- The unique identifier of the knowledge base that contains the document.
+        knowledgeBaseId: string
+        -- The unique identifier of the data source that contains the document.
+        dataSourceId: string
+        -- The unique identifier of the document to check access for.
+        documentId: string
+        -- The context object containing identity information for access control filtering, including user ID and optional group memberships used to evaluate the document access control list (ACL).
+        userContext: UserContext
+    end
+
+    record CheckIngestedDocumentAclOutput
+        -- Specifies whether the user has access to the document based on the ingested access control list (ACL). Returns true if the user is allowed access, and false otherwise.
+        hasAccess: boolean
+    end
+
     record GetExecutionFlowSnapshotInput
         -- The unique identifier of the flow.
         flowIdentifier: string
@@ -2265,6 +2281,7 @@ local record M
         documentId: string
         -- The output format for the document content. RAW returns the original file. EXTRACTED returns parsed text as JSON. Defaults to RAW.
         outputFormat: string
+        -- Contains information about the user making the request. This is used for access control filtering to ensure that results only include documents the user is authorized to access.
         userContext: UserContext
     end
 
@@ -2275,6 +2292,68 @@ local record M
         presignedUrl: string
         -- The size of the document content in bytes available at the pre-signed URL.
         documentContentLength: number
+    end
+
+    record GetIngestedDocumentAclInput
+        -- The unique identifier of the knowledge base that contains the document.
+        knowledgeBaseId: string
+        -- The unique identifier of the data source that contains the document.
+        dataSourceId: string
+        -- The unique identifier of the document to retrieve the ingested access control list (ACL) for.
+        documentId: string
+    end
+
+    enum DocumentAclMemberRelation
+        "AND"
+        "OR"
+    end
+
+    enum DocumentAclMembershipType
+        "KNOWLEDGE_BASE"
+        "DATA_SOURCE"
+    end
+
+    -- A group entry within a document access control list (ACL) condition.
+    record DocumentAclGroup
+        -- The identifier of the group.
+        id: string
+    end
+
+    -- A user entry within a document access control list (ACL) condition.
+    record DocumentAclUser
+        -- The identifier of the user.
+        id: string
+    end
+
+    -- A condition within a document access control list (ACL) membership, specifying users and groups that are evaluated together.
+    record DocumentAclCondition
+        -- The logical operator for combining users and groups within this condition. Valid values: AND – Both a user match and a group match are required. OR – Either a user match or a group match is sufficient.
+        conditionOperator: string
+        -- The list of user entries in this condition.
+        users: {DocumentAclUser}
+        -- The list of group entries in this condition.
+        groups: {DocumentAclGroup}
+    end
+
+    -- The membership entry for a document access control list (ACL), containing conditions and their logical relation.
+    record DocumentAclMembership
+        -- The logical relation between conditions. Valid values: AND – All conditions must match. OR – At least one condition must match.
+        memberRelation: string
+        -- The list of conditions that determine membership.
+        conditions: {DocumentAclCondition}
+    end
+
+    -- The access control list for a document, containing allow and deny membership lists. Each list specifies conditions that determine which users and groups are granted or denied access.
+    record DocumentAcl
+        -- The list of principals allowed access to the document.
+        allowList: DocumentAclMembership
+        -- The list of principals denied access to the document.
+        denyList: DocumentAclMembership
+    end
+
+    record GetIngestedDocumentAclOutput
+        -- The ingested document access control list (ACL) containing allow and deny membership information.
+        documentAcl: DocumentAcl
     end
 
     -- Settings for a model called with InvokeAgent.
@@ -3598,6 +3677,7 @@ local record M
     record ManagedSearchConfiguration
         -- The number of results to retrieve.
         numberOfResults: number
+        -- Filters the metadata of the retrieved results so that Amazon Bedrock returns only results that match the filter.
         filter: RetrievalFilter
         -- The type of reranking model to use when reranking results retrieved from the managed search. Use CUSTOM to specify a model, MANAGED to use the service default, or NONE to disable reranking.
         rerankingModelType: string
@@ -3704,6 +3784,7 @@ local record M
         guardrailConfiguration: GuardrailConfiguration
         -- If there are more results than can fit in the response, the response returns a nextToken. Use this token in the nextToken field of another request to retrieve the next batch of results.
         nextToken: string
+        -- Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.
         userContext: UserContext
     end
 
@@ -3750,6 +3831,7 @@ local record M
         retrieveAndGenerateConfiguration: RetrieveAndGenerateConfiguration
         -- Contains details about the session with the knowledge base.
         sessionConfiguration: RetrieveAndGenerateSessionConfiguration
+        -- Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.
         userContext: UserContext
     end
 
@@ -3762,6 +3844,7 @@ local record M
         retrieveAndGenerateConfiguration: RetrieveAndGenerateConfiguration
         -- Contains details about the session with the knowledge base.
         sessionConfiguration: RetrieveAndGenerateSessionConfiguration
+        -- Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.
         userContext: UserContext
     end
 

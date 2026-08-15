@@ -1376,7 +1376,7 @@ local record M
     record UpdateNamespaceInput
         -- The name of the namespace to update. You can't update the name of a namespace once it is created.
         namespaceName: string
-        -- The password of the administrator for the first database created in the namespace. This parameter must be updated together with adminUsername. You can't use adminUserPassword if manageAdminPassword is true.
+        -- The password of the administrator for the first database created in the namespace. This parameter must be updated together with adminUsername. You can't use adminUserPassword if manageAdminPassword is true. If your admin user account is locked, this operation also unlocks your account and resets the failed-login counter. This option is available only when account lockout security is enabled for the namespace.
         adminUserPassword: string
         -- The username of the administrator for the first database created in the namespace. This parameter must be updated together with adminUserPassword.
         adminUsername: string

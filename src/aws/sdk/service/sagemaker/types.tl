@@ -243,6 +243,12 @@ local record M
         "ml.m8g.16xlarge"
         "ml.m8g.24xlarge"
         "ml.m8g.48xlarge"
+        "ml.g7.2xlarge"
+        "ml.g7.4xlarge"
+        "ml.g7.8xlarge"
+        "ml.g7.12xlarge"
+        "ml.g7.24xlarge"
+        "ml.g7.48xlarge"
     end
 
     -- Configuration of the resources used for the compute allocation definition.
@@ -1141,6 +1147,12 @@ local record M
         "ml.g6e.16xlarge"
         "ml.g6e.24xlarge"
         "ml.g6e.48xlarge"
+        "ml.g7.2xlarge"
+        "ml.g7.4xlarge"
+        "ml.g7.8xlarge"
+        "ml.g7.12xlarge"
+        "ml.g7.24xlarge"
+        "ml.g7.48xlarge"
         "ml.g7e.2xlarge"
         "ml.g7e.4xlarge"
         "ml.g7e.8xlarge"

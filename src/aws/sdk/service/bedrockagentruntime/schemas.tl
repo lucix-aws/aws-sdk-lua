@@ -71,6 +71,8 @@ M.BedrockSessionContentBlocks = schema.new({ type = "list", list_member = M.Bedr
 
 M.AgenticRetrieveResults = schema.new({ type = "list", list_member = M.AgenticRetrieveResultItem })
 
+M.DocumentAclConditionList = schema.new({ type = "list", list_member = M.DocumentAclCondition })
+
 M.Messages = schema.new({ type = "list", list_member = M.Message })
 
 M.CallerChain = schema.new({ type = "list", list_member = M.Caller })
@@ -128,6 +130,10 @@ M.FlowTraceNodeInputFields = schema.new({ type = "list", list_member = M.FlowTra
 M.FlowTraceNodeOutputFields = schema.new({ type = "list", list_member = M.FlowTraceNodeOutputField })
 
 M.FlowTraceConditions = schema.new({ type = "list", list_member = M.FlowTraceCondition })
+
+M.DocumentAclUserList = schema.new({ type = "list", list_member = M.DocumentAclUser })
+
+M.DocumentAclGroupList = schema.new({ type = "list", list_member = M.DocumentAclGroup })
 
 M.ResponseBody = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContentBody })
 
@@ -3732,6 +3738,68 @@ M.TracePart = schema.new({
     },
 })
 
+M.CheckIngestedDocumentAclInput = schema.new({
+    id = id.from(_N, "CheckIngestedDocumentAclRequest"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "CheckIngestedDocumentAclInput", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        dataSourceId = schema.new({
+            id = id.from(_N, "CheckIngestedDocumentAclInput", "dataSourceId"),
+            type = "string",
+            name = "dataSourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        documentId = schema.new({
+            id = id.from(_N, "CheckIngestedDocumentAclInput", "documentId"),
+            type = "string",
+            name = "documentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        userContext = schema.new({
+            id = id.from(_N, "CheckIngestedDocumentAclInput", "userContext"),
+            type = "structure",
+            name = "userContext",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CheckIngestedDocumentAclOutput = schema.new({
+    id = id.from(_N, "CheckIngestedDocumentAclResponse"),
+    type = "structure",
+    members = {
+        hasAccess = schema.new({
+            id = id.from(_N, "CheckIngestedDocumentAclOutput", "hasAccess"),
+            type = "boolean",
+            name = "hasAccess",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetExecutionFlowSnapshotInput = schema.new({
     id = id.from(_N, "GetExecutionFlowSnapshotRequest"),
     type = "structure",
@@ -6190,6 +6258,177 @@ M.GetDocumentContentOutput = schema.new({
             type = "long",
             name = "documentContentLength",
             target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GetIngestedDocumentAclInput = schema.new({
+    id = id.from(_N, "GetIngestedDocumentAclRequest"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "GetIngestedDocumentAclInput", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        dataSourceId = schema.new({
+            id = id.from(_N, "GetIngestedDocumentAclInput", "dataSourceId"),
+            type = "string",
+            name = "dataSourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        documentId = schema.new({
+            id = id.from(_N, "GetIngestedDocumentAclInput", "documentId"),
+            type = "string",
+            name = "documentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DocumentAclGroup = schema.new({
+    id = id.from(_N, "DocumentAclGroup"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DocumentAclGroup", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "DocumentAclGroup", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DocumentAclUser = schema.new({
+    id = id.from(_N, "DocumentAclUser"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DocumentAclUser", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "DocumentAclUser", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DocumentAclCondition = schema.new({
+    id = id.from(_N, "DocumentAclCondition"),
+    type = "structure",
+    members = {
+        conditionOperator = schema.new({
+            id = id.from(_N, "DocumentAclCondition", "conditionOperator"),
+            type = "string",
+            name = "conditionOperator",
+            target_id = prelude.String.id,
+        }),
+        users = schema.new({
+            id = id.from(_N, "DocumentAclCondition", "users"),
+            type = "list",
+            name = "users",
+            target_id = prelude.Document.id,
+            list_member = M.DocumentAclUser,
+        }),
+        groups = schema.new({
+            id = id.from(_N, "DocumentAclCondition", "groups"),
+            type = "list",
+            name = "groups",
+            target_id = prelude.Document.id,
+            list_member = M.DocumentAclGroup,
+        }),
+    },
+})
+
+M.DocumentAclMembership = schema.new({
+    id = id.from(_N, "DocumentAclMembership"),
+    type = "structure",
+    members = {
+        memberRelation = schema.new({
+            id = id.from(_N, "DocumentAclMembership", "memberRelation"),
+            type = "string",
+            name = "memberRelation",
+            target_id = prelude.String.id,
+        }),
+        conditions = schema.new({
+            id = id.from(_N, "DocumentAclMembership", "conditions"),
+            type = "list",
+            name = "conditions",
+            target_id = prelude.Document.id,
+            list_member = M.DocumentAclCondition,
+        }),
+    },
+})
+
+M.DocumentAcl = schema.new({
+    id = id.from(_N, "DocumentAcl"),
+    type = "structure",
+    members = {
+        allowList = schema.new({
+            id = id.from(_N, "DocumentAcl", "allowList"),
+            type = "structure",
+            name = "allowList",
+            target_id = id.from(_N, "DocumentAclMembership"),
+            target = M.DocumentAclMembership,
+        }),
+        denyList = schema.new({
+            id = id.from(_N, "DocumentAcl", "denyList"),
+            type = "structure",
+            name = "denyList",
+            target_id = id.from(_N, "DocumentAclMembership"),
+            target = M.DocumentAclMembership,
+        }),
+    },
+})
+
+M.GetIngestedDocumentAclOutput = schema.new({
+    id = id.from(_N, "GetIngestedDocumentAclResponse"),
+    type = "structure",
+    members = {
+        documentAcl = schema.new({
+            id = id.from(_N, "GetIngestedDocumentAclOutput", "documentAcl"),
+            type = "structure",
+            name = "documentAcl",
+            target_id = id.from(_N, "DocumentAcl"),
+            target = M.DocumentAcl,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -10993,6 +11232,18 @@ M.AgenticRetrieveStream = schema.operation({
     },
 })
 
+M.CheckIngestedDocumentAcl = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "CheckIngestedDocumentAcl"),
+    input = M.CheckIngestedDocumentAclInput,
+    output = M.CheckIngestedDocumentAclOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/check-ingested-document-acl" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateInvocation = schema.operation({
     id = id.from("com.amazonaws.bedrockagentruntime", "CreateInvocation"),
     input = M.CreateInvocationInput,
@@ -11107,6 +11358,18 @@ M.GetFlowExecution = schema.operation({
     output = M.GetFlowExecutionOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIngestedDocumentAcl = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "GetIngestedDocumentAcl"),
+    input = M.GetIngestedDocumentAclInput,
+    output = M.GetIngestedDocumentAclOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/get-ingested-document-acl" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -258,6 +258,10 @@ local record M
     record AssociateGlossaryTermsInput
         -- The unique identifier of the asset to associate glossary terms with.
         AssetIdentifier: string
+        -- The name of the iterable form. When specified along with itemIdentifier, the glossary terms are associated with an item within the iterable form rather than the asset itself.
+        IterableFormName: string
+        -- The identifier of the item within the iterable form. Required when iterableFormName is specified.
+        ItemIdentifier: string
         -- The list of glossary term identifiers to associate with the asset.
         GlossaryTermIdentifiers: {string}
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
@@ -267,6 +271,10 @@ local record M
     record AssociateGlossaryTermsOutput
         -- The unique identifier of the asset.
         AssetIdentifier: string
+        -- The name of the iterable form, if the association targets an item.
+        IterableFormName: string
+        -- The identifier of the item within the iterable form, if applicable.
+        ItemIdentifier: string
         -- The glossary terms now associated with the asset.
         GlossaryTerms: {string}
     end
@@ -6637,6 +6645,10 @@ local record M
     record DeleteAttachmentOutput
         -- The unique identifier of the asset.
         AssetIdentifier: string
+        -- The name of the iterable form, if the deletion targets an item.
+        IterableFormName: string
+        -- The identifier of the item within the iterable form, if applicable.
+        ItemIdentifier: string
     end
 
     record DeleteBlueprintInput
@@ -7580,6 +7592,10 @@ local record M
     record DisassociateGlossaryTermsInput
         -- The unique identifier of the asset to disassociate glossary terms from.
         AssetIdentifier: string
+        -- The name of the iterable form. When specified along with itemIdentifier, the glossary terms are disassociated from an item within the iterable form rather than the asset itself.
+        IterableFormName: string
+        -- The identifier of the item within the iterable form. Required when iterableFormName is specified.
+        ItemIdentifier: string
         -- The list of glossary term identifiers to disassociate from the asset.
         GlossaryTermIdentifiers: {string}
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
@@ -7589,6 +7605,10 @@ local record M
     record DisassociateGlossaryTermsOutput
         -- The unique identifier of the asset.
         AssetIdentifier: string
+        -- The name of the iterable form, if the disassociation targets an item.
+        IterableFormName: string
+        -- The identifier of the item within the iterable form, if applicable.
+        ItemIdentifier: string
         -- The remaining glossary terms associated with the asset.
         GlossaryTerms: {string}
     end

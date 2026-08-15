@@ -3914,6 +3914,7 @@ local record M
         "ACTIVE"
         "FAILED"
         "DELETED"
+        "BLOCKED"
     end
 
     -- Represents a payment instrument.
@@ -3942,6 +3943,15 @@ local record M
     record CreatePaymentInstrumentOutput
         -- The created payment instrument.
         paymentInstrument: PaymentInstrument
+    end
+
+    -- Returned when you attempt a wallet operation against a Coinbase Marketplace connector whose account does not hold an active Marketplace subscription and is not within the legacy exception period. Subscribe to the Marketplace listing before you retry the operation.
+    record SubscriptionRequiredException
+        message: string
+        -- The URL to the Marketplace listing where you can subscribe.
+        subscriptionUrl: string
+        -- The name of the product that requires a Marketplace subscription.
+        productName: string
     end
 
     -- Request structure for deleting a payment instrument.
@@ -4230,16 +4240,30 @@ local record M
         version: string
         -- The X402 payment payload.
         payload: any
+        -- The maximum on-chain Permit2 allowance to grant before signing the payment authorization, in the asset's smallest denomination. This field is valid only for the upto (metered) scheme; supplying it for the exact scheme returns a validation error. When set, the service approves an ERC-20 allowance for this amount before processing the payment. The approval sets, rather than adds to, the wallet's allowance. Set this field only when the wallet needs approving, for example on its first upto payment, to avoid a redundant on-chain transaction. Omit the field to skip allowance handling. This is the default, and the only behavior for the exact scheme.
+        permit2AllowanceLimit: string
+    end
+
+    -- Contains the payment challenge from a 402 Payment Required response. Forward the raw WWW-Authenticate: Payment header value verbatim. In response, you receive a payment credential that satisfies the challenge. Provide exactly one challenge per request.
+    record MppPaymentInput
+        -- The MPP protocol version, for example "1" or "2".
+        version: string
+        -- The raw WWW-Authenticate: Payment header value from the 402 response, passed verbatim. Provide exactly one entry. The service uses this value to generate the payment credential.
+        wwwAuthenticateHeaders: {string}
+        -- Authorizes the service to sign a payment whose blockchain network (gas) fees are charged to your wallet, on top of the payment amount. The challenge indicates who sponsors the network fees. When the challenge does not sponsor them, the service signs the payment only if this field is true. Otherwise it returns a validation error, so you can decide whether to pay the fees or obtain a challenge that sponsors them. Optional. When omitted or false, you decline to pay network fees. This field has no effect on challenges that already sponsor the fees.
+        buyerPaysGasFees: boolean
     end
 
     -- The payment input details, which vary by payment type.
     record PaymentInput
         -- Input for a crypto X402 payment.
         cryptoX402: CryptoX402PaymentInput
+        mpp: MppPaymentInput
     end
 
     enum PaymentType
         "CRYPTO_X402"
+        "MPP"
     end
 
     -- Request structure for processing a payment.
@@ -4270,10 +4294,21 @@ local record M
         payload: any
     end
 
+    -- Contains the payment credential, ready to retry the request.
+    record MppPaymentOutput
+        -- The MPP protocol version, for example "1" or "2".
+        version: string
+        -- The id of the challenge that was paid, echoed from the input challenge so you can correlate the result without decoding the credential.
+        selectedPaymentId: string
+        -- Ready-to-send value for the Authorization header, in the form "Payment <base64url-token>". Attach this header and retry the original request. To inspect the full credential, base64url-decode the token.
+        paymentCredential: string
+    end
+
     -- The payment output details, which vary by payment type.
     record PaymentOutput
         -- Output from a crypto X402 payment.
         cryptoX402: CryptoX402PaymentOutput
+        mpp: MppPaymentOutput
     end
 
     enum PaymentStatus

@@ -608,6 +608,51 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.S3Location = schema.new({
+    id = id.from(_N, "S3Location"),
+    type = "structure",
+    members = {
+        Bucket = schema.new({
+            id = id.from(_N, "S3Location", "Bucket"),
+            type = "string",
+            name = "Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectKey = schema.new({
+            id = id.from(_N, "S3Location", "ObjectKey"),
+            type = "string",
+            name = "ObjectKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VersionId = schema.new({
+            id = id.from(_N, "S3Location", "VersionId"),
+            type = "string",
+            name = "VersionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Code = schema.new({
+    id = id.from(_N, "Code"),
+    type = "union",
+    members = {
+        S3Location = schema.new({
+            id = id.from(_N, "Code", "S3Location"),
+            type = "structure",
+            name = "S3Location",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+    },
+})
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",
@@ -766,6 +811,13 @@ M.CreateWorkflowInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "CreateWorkflowInput", "Code"),
+            type = "union",
+            name = "Code",
+            target_id = id.from(_N, "Code"),
+            target = M.Code,
         }),
         RoleArn = schema.new({
             id = id.from(_N, "CreateWorkflowInput", "RoleArn"),
@@ -1106,6 +1158,22 @@ M.GetWorkflowOutput = schema.new({
             target_id = id.from(_N, "DefinitionS3Location"),
             target = M.DefinitionS3Location,
         }),
+        Code = schema.new({
+            id = id.from(_N, "GetWorkflowOutput", "Code"),
+            type = "union",
+            name = "Code",
+            target_id = id.from(_N, "Code"),
+            target = M.Code,
+        }),
+        CodeSnapshottedAt = schema.new({
+            id = id.from(_N, "GetWorkflowOutput", "CodeSnapshottedAt"),
+            type = "timestamp",
+            name = "CodeSnapshottedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
         ScheduleConfiguration = schema.new({
             id = id.from(_N, "GetWorkflowOutput", "ScheduleConfiguration"),
             type = "structure",
@@ -1277,6 +1345,13 @@ M.UpdateWorkflowInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "UpdateWorkflowInput", "Code"),
+            type = "union",
+            name = "Code",
+            target_id = id.from(_N, "Code"),
+            target = M.Code,
         }),
         RoleArn = schema.new({
             id = id.from(_N, "UpdateWorkflowInput", "RoleArn"),

@@ -188,6 +188,22 @@ local record M
     record UntagResourceOutput
     end
 
+    -- Specifies the Amazon S3 location of code artifacts that workflows use during execution.
+    record S3Location
+        -- The name of the Amazon S3 bucket.
+        Bucket: string
+        -- The key of the code artifact within the Amazon S3 bucket.
+        ObjectKey: string
+        -- The version ID of the object in Amazon S3. If not specified, the latest version is used.
+        VersionId: string
+    end
+
+    -- Specifies the Amazon S3 location of code artifacts that workflows use during execution.
+    record Code
+        -- The Amazon S3 location of the code artifacts that your workflow tasks use during execution.
+        S3Location: S3Location
+    end
+
     -- You cannot create a resource that already exists, or the resource is in a state that prevents the requested operation.
     record ConflictException
         Message: string
@@ -243,6 +259,8 @@ local record M
         ClientToken: string
         -- The Amazon S3 location where the workflow definition file is stored. This must point to a valid YAML file that defines the workflow structure using supported Amazon Web Services operators and tasks. Amazon Managed Workflows for Apache Airflow Serverless takes a snapshot of the definition at creation time, so subsequent changes to the Amazon S3 object will not affect the workflow unless you create a new version. In your YAML definition, include task dependencies, scheduling information, and operator configurations that are compatible with the Amazon Managed Workflows for Apache Airflow Serverless execution environment.
         DefinitionS3Location: DefinitionS3Location
+        -- The location of code artifacts in Amazon S3 for the workflow. The service copies the code from this location at the time of the request.
+        Code: Code
         -- The Amazon Resource Name (ARN) of the IAM role that Amazon Managed Workflows for Apache Airflow Serverless assumes when executing the workflow. This role must have the necessary permissions to access the required Amazon Web Services services and resources that your workflow tasks will interact with. The role is used for task execution in the isolated, multi-tenant environment and should follow the principle of least privilege. Amazon Managed Workflows for Apache Airflow Serverless validates role access during workflow creation but runtime permission checks are performed by the target services.
         RoleArn: string
         -- An optional description of the workflow that you can use to provide additional context about the workflow's purpose and functionality.
@@ -346,6 +364,10 @@ local record M
         WorkflowStatus: string
         -- The Amazon S3 location of the workflow definition file.
         DefinitionS3Location: DefinitionS3Location
+        -- The Amazon S3 location of the code artifacts provided during workflow creation or update.
+        Code: Code
+        -- The time at which the code artifacts were copied for this workflow, in ISO 8601 date-time format.
+        CodeSnapshottedAt: number
         -- The schedule configuration for the workflow, including cron expressions for automated execution. Amazon Managed Workflows for Apache Airflow Serverless uses EventBridge Scheduler for cost-effective, timezone-aware scheduling. When a workflow includes schedule information in its YAML definition, the service automatically configures the appropriate triggers for automated execution. Only one version of a workflow can have an active schedule at any given time.
         ScheduleConfiguration: ScheduleConfiguration
         -- The Amazon Resource Name (ARN) of the IAM role used for workflow execution.
@@ -397,6 +419,8 @@ local record M
         WorkflowArn: string
         -- The Amazon S3 location where the updated workflow definition file is stored.
         DefinitionS3Location: DefinitionS3Location
+        -- The location of code artifacts in Amazon S3 for the updated workflow. The service copies the code from this location at the time of the request.
+        Code: Code
         -- The Amazon Resource Name (ARN) of the IAM role that Amazon Managed Workflows for Apache Airflow Serverless assumes when it executes the updated workflow.
         RoleArn: string
         -- An updated description for the workflow.

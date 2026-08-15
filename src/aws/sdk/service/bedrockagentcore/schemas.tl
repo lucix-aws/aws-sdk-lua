@@ -145,6 +145,8 @@ M.ToolDescriptionResultList = schema.new({ type = "list", list_member = M.ToolDe
 
 M.LinkedAccountList = schema.new({ type = "list", list_member = M.LinkedAccount })
 
+M.WwwAuthenticateHeaderList = schema.new({ type = "list", list_member = prelude.String })
+
 M.HarnessAwsSkillPaths = schema.new({ type = "list", list_member = prelude.String })
 
 M.HarnessToolResultBlocksDelta = schema.new({ type = "list", list_member = M.HarnessToolResultBlockDelta })
@@ -12228,6 +12230,37 @@ M.CreatePaymentInstrumentOutput = schema.new({
     },
 })
 
+M.SubscriptionRequiredException = schema.new({
+    id = id.from(_N, "SubscriptionRequiredException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "SubscriptionRequiredException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriptionUrl = schema.new({
+            id = id.from(_N, "SubscriptionRequiredException", "subscriptionUrl"),
+            type = "string",
+            name = "subscriptionUrl",
+            target_id = prelude.String.id,
+        }),
+        productName = schema.new({
+            id = id.from(_N, "SubscriptionRequiredException", "productName"),
+            type = "string",
+            name = "productName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeletePaymentInstrumentInput = schema.new({
     id = id.from(_N, "DeletePaymentInstrumentRequest"),
     type = "structure",
@@ -13157,6 +13190,44 @@ M.CryptoX402PaymentInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        permit2AllowanceLimit = schema.new({
+            id = id.from(_N, "CryptoX402PaymentInput", "permit2AllowanceLimit"),
+            type = "string",
+            name = "permit2AllowanceLimit",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MppPaymentInput = schema.new({
+    id = id.from(_N, "MppPaymentInput"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "MppPaymentInput", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        wwwAuthenticateHeaders = schema.new({
+            id = id.from(_N, "MppPaymentInput", "wwwAuthenticateHeaders"),
+            type = "list",
+            name = "wwwAuthenticateHeaders",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        buyerPaysGasFees = schema.new({
+            id = id.from(_N, "MppPaymentInput", "buyerPaysGasFees"),
+            type = "boolean",
+            name = "buyerPaysGasFees",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -13170,6 +13241,13 @@ M.PaymentInput = schema.new({
             name = "cryptoX402",
             target_id = id.from(_N, "CryptoX402PaymentInput"),
             target = M.CryptoX402PaymentInput,
+        }),
+        mpp = schema.new({
+            id = id.from(_N, "PaymentInput", "mpp"),
+            type = "structure",
+            name = "mpp",
+            target_id = id.from(_N, "MppPaymentInput"),
+            target = M.MppPaymentInput,
         }),
     },
 })
@@ -13279,6 +13357,40 @@ M.CryptoX402PaymentOutput = schema.new({
     },
 })
 
+M.MppPaymentOutput = schema.new({
+    id = id.from(_N, "MppPaymentOutput"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "MppPaymentOutput", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        selectedPaymentId = schema.new({
+            id = id.from(_N, "MppPaymentOutput", "selectedPaymentId"),
+            type = "string",
+            name = "selectedPaymentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentCredential = schema.new({
+            id = id.from(_N, "MppPaymentOutput", "paymentCredential"),
+            type = "string",
+            name = "paymentCredential",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PaymentOutput = schema.new({
     id = id.from(_N, "PaymentOutput"),
     type = "union",
@@ -13289,6 +13401,13 @@ M.PaymentOutput = schema.new({
             name = "cryptoX402",
             target_id = id.from(_N, "CryptoX402PaymentOutput"),
             target = M.CryptoX402PaymentOutput,
+        }),
+        mpp = schema.new({
+            id = id.from(_N, "PaymentOutput", "mpp"),
+            type = "structure",
+            name = "mpp",
+            target_id = id.from(_N, "MppPaymentOutput"),
+            target = M.MppPaymentOutput,
         }),
     },
 })

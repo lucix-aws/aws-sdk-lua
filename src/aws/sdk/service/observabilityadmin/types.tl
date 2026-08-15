@@ -97,6 +97,20 @@ local record M
         EncryptionScope: string
     end
 
+    enum TagConflictResolutionStrategy
+        "IN_SYNC"
+        "ADD_ONLY"
+        "UPDATE_SYNC"
+    end
+
+    -- Specifies configuration for propagating resource tags from source log groups to centralized destination log groups. The service uses a customer-managed IAM role in the destination account to add, update, and remove tags on destination log groups.
+    record TagPropagationConfiguration
+        -- The ARN of a customer-managed IAM role in the destination account. The service assumes this role to propagate tags to destination log groups. You must have iam:PassRole permission on this role.
+        DestinationRoleArn: string
+        -- The strategy for resolving conflicts when a tag key exists on both the source and destination log groups. If not specified, defaults to UPDATE_SYNC. ADD_ONLY – Only adds new tags from the source without modifying existing destination tags. UPDATE_SYNC – Adds new tags and updates existing tags from the source. Does not remove destination tags that are absent from the source. IN_SYNC – Keeps destination tags fully synchronized with source tags, including removing destination tags that do not exist on the source.
+        TagConflictResolutionStrategy: string
+    end
+
     -- Configuration for centralization destination log groups, including encryption and backup settings.
     record DestinationLogsConfiguration
         -- The encryption configuration for centralization destination log groups.
@@ -105,6 +119,8 @@ local record M
         BackupConfiguration: LogsBackupConfiguration
         -- Configuration that specifies a naming pattern for destination log groups created during centralization. The pattern supports static text and dynamic variables that are replaced with source attributes when log groups are created.
         LogGroupNameConfiguration: LogGroupNameConfiguration
+        -- Specifies the tag propagation configuration for this centralization rule. When present, LogGroupNameConfiguration must use a LogGroupNamePattern that contains ${source.logGroup}, ${source.accountId}, and ${source.region}.
+        TagPropagationConfiguration: TagPropagationConfiguration
     end
 
     -- Configuration for backing up centralized metrics data to a secondary region.
@@ -178,6 +194,16 @@ local record M
         "Provisioning"
     end
 
+    enum TagPropagationFailureReason
+        "RoleNotAssumable"
+        "RoleLacksPermissions"
+    end
+
+    enum TagPropagationStatus
+        "Healthy"
+        "Unhealthy"
+    end
+
     -- A summary of a centralization rule's key properties and status.
     record CentralizationRuleSummary
         -- The name of the organization centralization rule.
@@ -196,6 +222,10 @@ local record M
         RuleHealth: string
         -- The reason why an organization centralization rule is marked UNHEALTHY.
         FailureReason: string
+        -- The health status of tag propagation for this rule. This status is independent of the overall RuleHealth for log delivery. Returns Healthy when the most recent tag-propagation attempt succeeded, or Unhealthy when the most recent attempt failed.
+        TagPropagationStatus: string
+        -- The reason tag propagation is unhealthy for this rule. Only present when TagPropagationStatus is Unhealthy.
+        TagPropagationFailureReason: string
         -- The primary destination account of the organization centralization rule.
         DestinationAccountId: string
         -- The primary destination region of the organization centralization rule.
@@ -674,6 +704,10 @@ local record M
         RuleHealth: string
         -- The reason why an organization centralization rule is marked UNHEALTHY.
         FailureReason: string
+        -- The health status of tag propagation for this rule. This status is independent of the overall RuleHealth for log delivery. Returns Healthy when the most recent tag-propagation attempt succeeded, or Unhealthy when the most recent attempt failed.
+        TagPropagationStatus: string
+        -- The reason tag propagation is unhealthy for this rule. Only present when TagPropagationStatus is Unhealthy.
+        TagPropagationFailureReason: string
         -- The configuration details for the organization centralization rule.
         CentralizationRule: CentralizationRule
     end

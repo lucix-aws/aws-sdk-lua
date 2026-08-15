@@ -1156,6 +1156,18 @@ M.AssociateGlossaryTermsInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsInput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+        }),
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsInput", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
+            target_id = prelude.String.id,
+        }),
         GlossaryTermIdentifiers = schema.new({
             id = id.from(_N, "AssociateGlossaryTermsInput", "GlossaryTermIdentifiers"),
             type = "list",
@@ -1186,6 +1198,18 @@ M.AssociateGlossaryTermsOutput = schema.new({
             id = id.from(_N, "AssociateGlossaryTermsOutput", "AssetIdentifier"),
             type = "string",
             name = "AssetIdentifier",
+            target_id = prelude.String.id,
+        }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsOutput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+        }),
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsOutput", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
             target_id = prelude.String.id,
         }),
         GlossaryTerms = schema.new({
@@ -16818,6 +16842,18 @@ M.DeleteAttachmentOutput = schema.new({
             name = "AssetIdentifier",
             target_id = prelude.String.id,
         }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "DeleteAttachmentOutput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+        }),
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "DeleteAttachmentOutput", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -19414,6 +19450,18 @@ M.DisassociateGlossaryTermsInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsInput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+        }),
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsInput", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
+            target_id = prelude.String.id,
+        }),
         GlossaryTermIdentifiers = schema.new({
             id = id.from(_N, "DisassociateGlossaryTermsInput", "GlossaryTermIdentifiers"),
             type = "list",
@@ -19444,6 +19492,18 @@ M.DisassociateGlossaryTermsOutput = schema.new({
             id = id.from(_N, "DisassociateGlossaryTermsOutput", "AssetIdentifier"),
             type = "string",
             name = "AssetIdentifier",
+            target_id = prelude.String.id,
+        }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsOutput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+        }),
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsOutput", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
             target_id = prelude.String.id,
         }),
         GlossaryTerms = schema.new({

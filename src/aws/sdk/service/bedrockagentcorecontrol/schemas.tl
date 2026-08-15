@@ -1945,6 +1945,9 @@ M.CapacityProviderConfiguration = schema.new({
             type = "string",
             name = "capacityProviderArn",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -2561,9 +2564,6 @@ M.GetAgentRuntimeOutput = schema.new({
             name = "networkConfiguration",
             target_id = id.from(_N, "NetworkConfiguration"),
             target = M.NetworkConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         status = schema.new({
             id = id.from(_N, "GetAgentRuntimeOutput", "status"),
@@ -20794,6 +20794,12 @@ M.CreatePaymentManagerInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "CreatePaymentManagerInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -20889,6 +20895,12 @@ M.CreatePaymentManagerOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "CreatePaymentManagerOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -21071,6 +21083,12 @@ M.GetPaymentManagerOutput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "GetPaymentManagerOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -21185,6 +21203,12 @@ M.PaymentManagerSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "PaymentManagerSummary", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -21296,6 +21320,12 @@ M.CreatePaymentConnectorInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        provisionMode = schema.new({
+            id = id.from(_N, "CreatePaymentConnectorInput", "provisionMode"),
+            type = "string",
+            name = "provisionMode",
+            target_id = prelude.String.id,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "CreatePaymentConnectorInput", "clientToken"),
             type = "string",
@@ -21379,6 +21409,43 @@ M.CreatePaymentConnectorOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        authorizationUrl = schema.new({
+            id = id.from(_N, "CreatePaymentConnectorOutput", "authorizationUrl"),
+            type = "string",
+            name = "authorizationUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SubscriptionRequiredException = schema.new({
+    id = id.from(_N, "SubscriptionRequiredException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "SubscriptionRequiredException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriptionUrl = schema.new({
+            id = id.from(_N, "SubscriptionRequiredException", "subscriptionUrl"),
+            type = "string",
+            name = "subscriptionUrl",
+            target_id = prelude.String.id,
+        }),
+        productName = schema.new({
+            id = id.from(_N, "SubscriptionRequiredException", "productName"),
+            type = "string",
+            name = "productName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -21550,6 +21617,12 @@ M.GetPaymentConnectorOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        authorizationUrl = schema.new({
+            id = id.from(_N, "GetPaymentConnectorOutput", "authorizationUrl"),
+            type = "string",
+            name = "authorizationUrl",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -21795,6 +21868,12 @@ M.UpdatePaymentConnectorOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        authorizationUrl = schema.new({
+            id = id.from(_N, "UpdatePaymentConnectorOutput", "authorizationUrl"),
+            type = "string",
+            name = "authorizationUrl",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -21845,6 +21924,12 @@ M.UpdatePaymentManagerInput = schema.new({
             traits = {
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "UpdatePaymentManagerInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -21926,6 +22011,12 @@ M.UpdatePaymentManagerOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "UpdatePaymentManagerOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })
