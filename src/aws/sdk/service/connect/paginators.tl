@@ -422,6 +422,24 @@ function M.items_list_evaluation_forms(client, input)
     })
 end
 
+--- Returns a page iterator for listExtractionDefinitions.
+function M.pages_list_extraction_definitions(client, input)
+    return paginator.pages(client, "listExtractionDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExtractionDefinitionSummaryList",
+    })
+end
+
+--- Returns an item iterator for listExtractionDefinitions.
+function M.items_list_extraction_definitions(client, input)
+    return paginator.items(client, "listExtractionDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExtractionDefinitionSummaryList",
+    })
+end
+
 --- Returns a page iterator for listFlowAssociations.
 function M.pages_list_flow_associations(client, input)
     return paginator.pages(client, "listFlowAssociations", input, {

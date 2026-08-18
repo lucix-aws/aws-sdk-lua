@@ -187,6 +187,27 @@ local record M
         FieldList: {ValidationExceptionField}
     end
 
+    enum PoiCategory
+        "FoodAndDrink"
+        "Entertainment"
+        "SightsAndMuseums"
+        "Transportation"
+        "Accommodations"
+        "LeisureAndOutdoor"
+        "Shopping"
+        "BusinessAndServices"
+        "FacilitiesAndBuildings"
+    end
+
+    enum PoiDensity
+        "Off"
+        "VerySparse"
+        "Sparse"
+        "Default"
+        "Dense"
+        "VeryDense"
+    end
+
     enum Terrain
         "Hillshade"
         "Terrain3D"
@@ -219,6 +240,10 @@ local record M
         TravelModes: {string}
         -- Adjusts how building details are rendered on the map. The following building styles are currently supported: Buildings3D: Displays buildings as three-dimensional extrusions on the map. Buildings3D is valid only for the Standard and Monochrome map styles.
         Buildings: string
+        -- Controls how densely points of interest are rendered on the map. The density value controls the zoom level at which each category of points of interest appears, and how quickly less prominent points of interest are revealed as you zoom in. Denser values display more points of interest at lower zoom levels. Use Off to hide all points of interest. When you omit this parameter, the map renders at Default density. The difference between density values is most noticeable at mid-range zoom levels. At high zoom levels, all density values converge on displaying every available point of interest. This parameter is valid only for the Standard and Hybrid map styles. In ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers, this parameter is valid only for the Standard map style.
+        PoiDensity: string
+        -- Renders only the specified categories of points of interest. When you omit this parameter, the map renders all categories. The following categories are currently supported: FoodAndDrink Entertainment SightsAndMuseums Transportation Accommodations LeisureAndOutdoor Shopping BusinessAndServices FacilitiesAndBuildings Specify each category as a separate poi-categories query parameter. Duplicate values are rejected. This parameter has no effect when poi-density is set to Off, which hides all points of interest regardless of category. This parameter is valid only for the Standard and Hybrid map styles. In ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers, this parameter is valid only for the Standard map style.
+        PoiCategories: {string}
         -- Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.
         Key: string
     end

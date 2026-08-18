@@ -233,6 +233,8 @@ M.EvaluationFormSummaryList = schema.new({ type = "list", list_member = M.Evalua
 
 M.EvaluationFormVersionSummaryList = schema.new({ type = "list", list_member = M.EvaluationFormVersionSummary })
 
+M.ExtractionDefinitionSummaryList = schema.new({ type = "list", list_member = M.ExtractionDefinitionSummary })
+
 M.HoursOfOperationOverrideList = schema.new({ type = "list", list_member = M.HoursOfOperationOverride })
 
 M.HoursOfOperationSummaryList = schema.new({ type = "list", list_member = M.HoursOfOperationSummary })
@@ -636,6 +638,8 @@ M.ParticipantTimerConfigList = schema.new({ type = "list", list_member = M.Parti
 M.MetricFilterList = schema.new({ type = "list", list_member = M.MetricFilter })
 
 M.FieldValues = schema.new({ type = "list", list_member = M.FieldValue })
+
+M.RulesExtractionDefinitionIdentifierList = schema.new({ type = "list", list_member = M.RulesExtractionDefinitionIdentifier })
 
 M.PrimaryAttributeValuesSet = schema.new({ type = "list", list_member = M.PrimaryAttributeValue })
 
@@ -7000,6 +7004,149 @@ M.CreateEvaluationFormOutput = schema.new({
     },
 })
 
+M.ExtractionDefinitionDisplay = schema.new({
+    id = id.from(_N, "ExtractionDefinitionDisplay"),
+    type = "structure",
+    members = {
+        Label = schema.new({
+            id = id.from(_N, "ExtractionDefinitionDisplay", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExtractionDefinitionNotFoundBehavior = schema.new({
+    id = id.from(_N, "ExtractionDefinitionNotFoundBehavior"),
+    type = "structure",
+    members = {
+        Behavior = schema.new({
+            id = id.from(_N, "ExtractionDefinitionNotFoundBehavior", "Behavior"),
+            type = "string",
+            name = "Behavior",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DefaultValue = schema.new({
+            id = id.from(_N, "ExtractionDefinitionNotFoundBehavior", "DefaultValue"),
+            type = "string",
+            name = "DefaultValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExtractionConfiguration = schema.new({
+    id = id.from(_N, "ExtractionConfiguration"),
+    type = "structure",
+    members = {
+        PromptHint = schema.new({
+            id = id.from(_N, "ExtractionConfiguration", "PromptHint"),
+            type = "string",
+            name = "PromptHint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NotFoundBehavior = schema.new({
+            id = id.from(_N, "ExtractionConfiguration", "NotFoundBehavior"),
+            type = "structure",
+            name = "NotFoundBehavior",
+            target_id = id.from(_N, "ExtractionDefinitionNotFoundBehavior"),
+            target = M.ExtractionDefinitionNotFoundBehavior,
+        }),
+    },
+})
+
+M.CreateExtractionDefinitionInput = schema.new({
+    id = id.from(_N, "CreateExtractionDefinitionRequest"),
+    type = "structure",
+    members = {
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateExtractionDefinitionInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "CreateExtractionDefinitionInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateExtractionDefinitionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionConfiguration = schema.new({
+            id = id.from(_N, "CreateExtractionDefinitionInput", "ExtractionConfiguration"),
+            type = "structure",
+            name = "ExtractionConfiguration",
+            target_id = id.from(_N, "ExtractionConfiguration"),
+            target = M.ExtractionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Display = schema.new({
+            id = id.from(_N, "CreateExtractionDefinitionInput", "Display"),
+            type = "structure",
+            name = "Display",
+            target_id = id.from(_N, "ExtractionDefinitionDisplay"),
+            target = M.ExtractionDefinitionDisplay,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateExtractionDefinitionInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateExtractionDefinitionOutput = schema.new({
+    id = id.from(_N, "CreateExtractionDefinitionResponse"),
+    type = "structure",
+    members = {
+        ExtractionDefinitionArn = schema.new({
+            id = id.from(_N, "CreateExtractionDefinitionOutput", "ExtractionDefinitionArn"),
+            type = "string",
+            name = "ExtractionDefinitionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionId = schema.new({
+            id = id.from(_N, "CreateExtractionDefinitionOutput", "ExtractionDefinitionId"),
+            type = "string",
+            name = "ExtractionDefinitionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.HoursOfOperationTimeSlice = schema.new({
     id = id.from(_N, "HoursOfOperationTimeSlice"),
     type = "structure",
@@ -9006,6 +9153,39 @@ M.EventBridgeActionDefinition = schema.new({
     },
 })
 
+M.RulesExtractionDefinitionIdentifier = schema.new({
+    id = id.from(_N, "RulesExtractionDefinitionIdentifier"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "RulesExtractionDefinitionIdentifier", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExtractInformationActionDefinition = schema.new({
+    id = id.from(_N, "ExtractInformationActionDefinition"),
+    type = "structure",
+    members = {
+        RulesExtractionDefinitions = schema.new({
+            id = id.from(_N, "ExtractInformationActionDefinition", "RulesExtractionDefinitions"),
+            type = "list",
+            name = "RulesExtractionDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.RulesExtractionDefinitionIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.NotificationRecipientType = schema.new({
     id = id.from(_N, "NotificationRecipientType"),
     type = "structure",
@@ -9232,6 +9412,13 @@ M.RuleAction = schema.new({
             name = "SubmitAutoEvaluationAction",
             target_id = id.from(_N, "SubmitAutoEvaluationActionDefinition"),
             target = M.SubmitAutoEvaluationActionDefinition,
+        }),
+        ExtractInformationAction = schema.new({
+            id = id.from(_N, "RuleAction", "ExtractInformationAction"),
+            type = "structure",
+            name = "ExtractInformationAction",
+            target_id = id.from(_N, "ExtractInformationActionDefinition"),
+            target = M.ExtractInformationActionDefinition,
         }),
     },
 })
@@ -12001,6 +12188,38 @@ M.DeleteEvaluationFormInput = schema.new({
 })
 
 M.DeleteEvaluationFormOutput = prelude.Unit
+
+M.DeleteExtractionDefinitionInput = schema.new({
+    id = id.from(_N, "DeleteExtractionDefinitionRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DeleteExtractionDefinitionInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ExtractionDefinitionId = schema.new({
+            id = id.from(_N, "DeleteExtractionDefinitionInput", "ExtractionDefinitionId"),
+            type = "string",
+            name = "ExtractionDefinitionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteExtractionDefinitionOutput = schema.new({
+    id = id.from(_N, "DeleteExtractionDefinitionResponse"),
+    type = "structure",
+})
 
 M.DeleteHoursOfOperationInput = schema.new({
     id = id.from(_N, "DeleteHoursOfOperationRequest"),
@@ -15359,6 +15578,136 @@ M.DescribeEvaluationFormInput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = nil },
                 [traits.HTTP_QUERY] = { name = "version" },
+            },
+        }),
+    },
+})
+
+M.DescribeExtractionDefinitionInput = schema.new({
+    id = id.from(_N, "DescribeExtractionDefinitionRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DescribeExtractionDefinitionInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ExtractionDefinitionId = schema.new({
+            id = id.from(_N, "DescribeExtractionDefinitionInput", "ExtractionDefinitionId"),
+            type = "string",
+            name = "ExtractionDefinitionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ExtractionDefinition = schema.new({
+    id = id.from(_N, "ExtractionDefinition"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionId = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "ExtractionDefinitionId"),
+            type = "string",
+            name = "ExtractionDefinitionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionArn = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "ExtractionDefinitionArn"),
+            type = "string",
+            name = "ExtractionDefinitionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionConfiguration = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "ExtractionConfiguration"),
+            type = "structure",
+            name = "ExtractionConfiguration",
+            target_id = id.from(_N, "ExtractionConfiguration"),
+            target = M.ExtractionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Display = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "Display"),
+            type = "structure",
+            name = "Display",
+            target_id = id.from(_N, "ExtractionDefinitionDisplay"),
+            target = M.ExtractionDefinitionDisplay,
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastUpdatedBy = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "LastUpdatedBy"),
+            type = "string",
+            name = "LastUpdatedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "ExtractionDefinition", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.DescribeExtractionDefinitionOutput = schema.new({
+    id = id.from(_N, "DescribeExtractionDefinitionResponse"),
+    type = "structure",
+    members = {
+        ExtractionDefinition = schema.new({
+            id = id.from(_N, "DescribeExtractionDefinitionOutput", "ExtractionDefinition"),
+            type = "structure",
+            name = "ExtractionDefinition",
+            target_id = id.from(_N, "ExtractionDefinition"),
+            target = M.ExtractionDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -24372,6 +24721,125 @@ M.ListEvaluationFormVersionsOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListEvaluationFormVersionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListExtractionDefinitionsInput = schema.new({
+    id = id.from(_N, "ListExtractionDefinitionsRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "ListExtractionDefinitionsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListExtractionDefinitionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListExtractionDefinitionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ExtractionDefinitionSummary = schema.new({
+    id = id.from(_N, "ExtractionDefinitionSummary"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ExtractionDefinitionSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionId = schema.new({
+            id = id.from(_N, "ExtractionDefinitionSummary", "ExtractionDefinitionId"),
+            type = "string",
+            name = "ExtractionDefinitionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionArn = schema.new({
+            id = id.from(_N, "ExtractionDefinitionSummary", "ExtractionDefinitionArn"),
+            type = "string",
+            name = "ExtractionDefinitionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "ExtractionDefinitionSummary", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "ExtractionDefinitionSummary", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastUpdatedBy = schema.new({
+            id = id.from(_N, "ExtractionDefinitionSummary", "LastUpdatedBy"),
+            type = "string",
+            name = "LastUpdatedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListExtractionDefinitionsOutput = schema.new({
+    id = id.from(_N, "ListExtractionDefinitionsResponse"),
+    type = "structure",
+    members = {
+        ExtractionDefinitionSummaryList = schema.new({
+            id = id.from(_N, "ListExtractionDefinitionsOutput", "ExtractionDefinitionSummaryList"),
+            type = "list",
+            name = "ExtractionDefinitionSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.ExtractionDefinitionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListExtractionDefinitionsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -36780,6 +37248,73 @@ M.UpdateEvaluationFormOutput = schema.new({
     },
 })
 
+M.UpdateExtractionDefinitionInput = schema.new({
+    id = id.from(_N, "UpdateExtractionDefinitionRequest"),
+    type = "structure",
+    members = {
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateExtractionDefinitionInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        ExtractionDefinitionId = schema.new({
+            id = id.from(_N, "UpdateExtractionDefinitionInput", "ExtractionDefinitionId"),
+            type = "string",
+            name = "ExtractionDefinitionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "UpdateExtractionDefinitionInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateExtractionDefinitionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionConfiguration = schema.new({
+            id = id.from(_N, "UpdateExtractionDefinitionInput", "ExtractionConfiguration"),
+            type = "structure",
+            name = "ExtractionConfiguration",
+            target_id = id.from(_N, "ExtractionConfiguration"),
+            target = M.ExtractionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Display = schema.new({
+            id = id.from(_N, "UpdateExtractionDefinitionInput", "Display"),
+            type = "structure",
+            name = "Display",
+            target_id = id.from(_N, "ExtractionDefinitionDisplay"),
+            target = M.ExtractionDefinitionDisplay,
+        }),
+    },
+})
+
+M.UpdateExtractionDefinitionOutput = schema.new({
+    id = id.from(_N, "UpdateExtractionDefinitionResponse"),
+    type = "structure",
+})
+
 M.UpdateHoursOfOperationInput = schema.new({
     id = id.from(_N, "UpdateHoursOfOperationRequest"),
     type = "structure",
@@ -43877,6 +44412,18 @@ M.CreateEvaluationForm = schema.operation({
     },
 })
 
+M.CreateExtractionDefinition = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateExtractionDefinition"),
+    input = M.CreateExtractionDefinitionInput,
+    output = M.CreateExtractionDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/extraction-definitions/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateHoursOfOperation = schema.operation({
     id = id.from("com.amazonaws.connect", "CreateHoursOfOperation"),
     input = M.CreateHoursOfOperationInput,
@@ -44357,6 +44904,18 @@ M.DeleteEvaluationForm = schema.operation({
     },
 })
 
+M.DeleteExtractionDefinition = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteExtractionDefinition"),
+    input = M.DeleteExtractionDefinitionInput,
+    output = M.DeleteExtractionDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/extraction-definitions/{InstanceId}/{ExtractionDefinitionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteHoursOfOperation = schema.operation({
     id = id.from("com.amazonaws.connect", "DeleteHoursOfOperation"),
     input = M.DeleteHoursOfOperationInput,
@@ -44819,6 +45378,18 @@ M.DescribeEvaluationForm = schema.operation({
     output = M.DescribeEvaluationFormOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeExtractionDefinition = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeExtractionDefinition"),
+    input = M.DescribeExtractionDefinitionInput,
+    output = M.DescribeExtractionDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/extraction-definitions/{InstanceId}/{ExtractionDefinitionId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -45827,6 +46398,18 @@ M.ListEvaluationFormVersions = schema.operation({
     output = M.ListEvaluationFormVersionsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExtractionDefinitions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListExtractionDefinitions"),
+    input = M.ListExtractionDefinitionsInput,
+    output = M.ListExtractionDefinitionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/extraction-definitions/{InstanceId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -47423,6 +48006,18 @@ M.UpdateEvaluationForm = schema.operation({
     output = M.UpdateEvaluationFormOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateExtractionDefinition = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateExtractionDefinition"),
+    input = M.UpdateExtractionDefinitionInput,
+    output = M.UpdateExtractionDefinitionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/extraction-definitions/{InstanceId}/{ExtractionDefinitionId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

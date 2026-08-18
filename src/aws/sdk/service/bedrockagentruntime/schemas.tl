@@ -55,6 +55,8 @@ M.InvocationSummaries = schema.new({ type = "list", list_member = M.InvocationSu
 
 M.InvocationStepSummaries = schema.new({ type = "list", list_member = M.InvocationStepSummary })
 
+M.AgenticRetrieveMemoryRetrievalConfigList = schema.new({ type = "list", list_member = M.AgenticRetrieveMemoryRetrievalConfig })
+
 M.SessionAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.PromptSessionAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -88,6 +90,8 @@ M.ExternalSources = schema.new({ type = "list", list_member = M.ExternalSource }
 M.RetrievedReferences = schema.new({ type = "list", list_member = M.RetrievedReference })
 
 M.RetrievalResultMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.AgenticRetrieveMemoryMetadataFilterList = schema.new({ type = "list", list_member = M.AgenticRetrieveMemoryMetadataFilter })
 
 M.AgenticRetrieveCitationList = schema.new({ type = "list", list_member = M.AgenticRetrieveCitation })
 
@@ -172,6 +176,8 @@ M.Files = schema.new({ type = "list", list_member = prelude.String })
 M.ApiContentMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.PropertyParameters })
 
 M.FieldsForReranking = schema.new({ type = "list", list_member = M.FieldForReranking })
+
+M.AgenticRetrieveMemoryMetadataStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.GuardrailTopicList = schema.new({ type = "list", list_member = M.GuardrailTopic })
 
@@ -1179,6 +1185,50 @@ M.AgenticRetrieveMessageContent = schema.new({
     },
 })
 
+M.AgenticRetrieveMemoryRetrieveDetails = schema.new({
+    id = id.from(_N, "AgenticRetrieveMemoryRetrieveDetails"),
+    type = "structure",
+    members = {
+        inputQuery = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrieveDetails", "inputQuery"),
+            type = "structure",
+            name = "inputQuery",
+            target_id = id.from(_N, "AgenticRetrieveMessageContent"),
+            target = M.AgenticRetrieveMessageContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        memoryId = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrieveDetails", "memoryId"),
+            type = "string",
+            name = "memoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrieveDetails", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+        }),
+        namespacePath = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrieveDetails", "namespacePath"),
+            type = "string",
+            name = "namespacePath",
+            target_id = prelude.String.id,
+        }),
+        strategyId = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrieveDetails", "strategyId"),
+            type = "string",
+            name = "strategyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AgenticRetrieveActionDetails = schema.new({
     id = id.from(_N, "AgenticRetrieveActionDetails"),
     type = "structure",
@@ -1223,6 +1273,13 @@ M.AgenticRetrieveAction = schema.new({
             name = "fullDocumentExpansion",
             target_id = id.from(_N, "AgenticRetrieveFullDocExpansionDetails"),
             target = M.AgenticRetrieveFullDocExpansionDetails,
+        }),
+        memoryRetrieve = schema.new({
+            id = id.from(_N, "AgenticRetrieveAction", "memoryRetrieve"),
+            type = "structure",
+            name = "memoryRetrieve",
+            target_id = id.from(_N, "AgenticRetrieveMemoryRetrieveDetails"),
+            target = M.AgenticRetrieveMemoryRetrieveDetails,
         }),
     },
 })
@@ -1534,6 +1591,191 @@ M.AgenticRetrieveGuardrailWarning = schema.new({
             id = id.from(_N, "AgenticRetrieveGuardrailWarning", "message"),
             type = "string",
             name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveMemoryMetadataFilterLeft = schema.new({
+    id = id.from(_N, "AgenticRetrieveMemoryMetadataFilterLeft"),
+    type = "union",
+    members = {
+        metadataKey = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataFilterLeft", "metadataKey"),
+            type = "string",
+            name = "metadataKey",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveMemoryMetadataValue = schema.new({
+    id = id.from(_N, "AgenticRetrieveMemoryMetadataValue"),
+    type = "union",
+    members = {
+        stringValue = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataValue", "stringValue"),
+            type = "string",
+            name = "stringValue",
+            target_id = prelude.String.id,
+        }),
+        numberValue = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataValue", "numberValue"),
+            type = "double",
+            name = "numberValue",
+            target_id = prelude.Double.id,
+        }),
+        stringListValue = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataValue", "stringListValue"),
+            type = "list",
+            name = "stringListValue",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        dateTimeValue = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataValue", "dateTimeValue"),
+            type = "timestamp",
+            name = "dateTimeValue",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveMemoryMetadataFilterRight = schema.new({
+    id = id.from(_N, "AgenticRetrieveMemoryMetadataFilterRight"),
+    type = "union",
+    members = {
+        metadataValue = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataFilterRight", "metadataValue"),
+            type = "union",
+            name = "metadataValue",
+            target_id = id.from(_N, "AgenticRetrieveMemoryMetadataValue"),
+            target = M.AgenticRetrieveMemoryMetadataValue,
+        }),
+    },
+})
+
+M.AgenticRetrieveMemoryMetadataFilter = schema.new({
+    id = id.from(_N, "AgenticRetrieveMemoryMetadataFilter"),
+    type = "structure",
+    members = {
+        left = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataFilter", "left"),
+            type = "union",
+            name = "left",
+            target_id = id.from(_N, "AgenticRetrieveMemoryMetadataFilterLeft"),
+            target = M.AgenticRetrieveMemoryMetadataFilterLeft,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operator = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataFilter", "operator"),
+            type = "string",
+            name = "operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        right = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryMetadataFilter", "right"),
+            type = "union",
+            name = "right",
+            target_id = id.from(_N, "AgenticRetrieveMemoryMetadataFilterRight"),
+            target = M.AgenticRetrieveMemoryMetadataFilterRight,
+        }),
+    },
+})
+
+M.AgenticRetrieveMemoryRetrievalConfig = schema.new({
+    id = id.from(_N, "AgenticRetrieveMemoryRetrievalConfig"),
+    type = "structure",
+    members = {
+        namespace = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrievalConfig", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+        }),
+        namespacePath = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrievalConfig", "namespacePath"),
+            type = "string",
+            name = "namespacePath",
+            target_id = prelude.String.id,
+        }),
+        strategyId = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrievalConfig", "strategyId"),
+            type = "string",
+            name = "strategyId",
+            target_id = prelude.String.id,
+        }),
+        metadataFilters = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryRetrievalConfig", "metadataFilters"),
+            type = "list",
+            name = "metadataFilters",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveMemoryMetadataFilter,
+        }),
+    },
+})
+
+M.AgenticRetrieveMemorySessionBinding = schema.new({
+    id = id.from(_N, "AgenticRetrieveMemorySessionBinding"),
+    type = "structure",
+    members = {
+        actorId = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemorySessionBinding", "actorId"),
+            type = "string",
+            name = "actorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sessionId = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemorySessionBinding", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveMemoryConfiguration = schema.new({
+    id = id.from(_N, "AgenticRetrieveMemoryConfiguration"),
+    type = "structure",
+    members = {
+        memoryId = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryConfiguration", "memoryId"),
+            type = "string",
+            name = "memoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sessionBinding = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryConfiguration", "sessionBinding"),
+            type = "structure",
+            name = "sessionBinding",
+            target_id = id.from(_N, "AgenticRetrieveMemorySessionBinding"),
+            target = M.AgenticRetrieveMemorySessionBinding,
+        }),
+        retrievalConfigs = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryConfiguration", "retrievalConfigs"),
+            type = "list",
+            name = "retrievalConfigs",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveMemoryRetrievalConfig,
+        }),
+        persistenceMode = schema.new({
+            id = id.from(_N, "AgenticRetrieveMemoryConfiguration", "persistenceMode"),
+            type = "string",
+            name = "persistenceMode",
             target_id = prelude.String.id,
         }),
     },
@@ -10485,6 +10727,13 @@ M.AgenticRetrieveStreamInput = schema.new({
             name = "userContext",
             target_id = id.from(_N, "UserContext"),
             target = M.UserContext,
+        }),
+        memoryConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "memoryConfiguration"),
+            type = "structure",
+            name = "memoryConfiguration",
+            target_id = id.from(_N, "AgenticRetrieveMemoryConfiguration"),
+            target = M.AgenticRetrieveMemoryConfiguration,
         }),
         generateResponse = schema.new({
             id = id.from(_N, "AgenticRetrieveStreamInput", "generateResponse"),

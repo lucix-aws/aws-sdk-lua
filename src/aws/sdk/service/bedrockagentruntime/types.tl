@@ -411,6 +411,20 @@ local record M
         text: string
     end
 
+    -- A long-term memory retrieval that the agent chose to perform. The record reports the query and the namespace. The corresponding Retrieval step reports the results.
+    record AgenticRetrieveMemoryRetrieveDetails
+        -- The query that the agent composed.
+        inputQuery: AgenticRetrieveMessageContent
+        -- The identifier of the AgentCore Memory resource retrieved from.
+        memoryId: string
+        -- The namespace prefix retrieved from, as supplied in the request. This field is present when the request specified namespace.
+        namespace: string
+        -- The parent namespace retrieved from hierarchically, as supplied in the request. This field is present when the request specified namespacePath.
+        namespacePath: string
+        -- The extraction strategy that restricted retrieval, if the request specified one.
+        strategyId: string
+    end
+
     -- Details of a retrieve action including the query and target retrievers.
     record AgenticRetrieveActionDetails
         -- The input query used for retrieval.
@@ -425,6 +439,8 @@ local record M
         retrieve: AgenticRetrieveActionDetails
         -- Details of a full document expansion action.
         fullDocumentExpansion: AgenticRetrieveFullDocExpansionDetails
+        -- The details of a long-term memory retrieval that the agent chose to perform.
+        memoryRetrieve: AgenticRetrieveMemoryRetrieveDetails
     end
 
     -- Configuration for a Bedrock guardrail applied during agentic retrieval.
@@ -551,6 +567,90 @@ local record M
         message: string
     end
 
+    enum AgenticRetrieveMemoryPersistenceMode
+        "DEFAULT"
+        "NONE"
+    end
+
+    -- The left operand of a metadata filter expression. Set exactly one member.
+    record AgenticRetrieveMemoryMetadataFilterLeft
+        -- The metadata key to filter on.
+        metadataKey: string
+    end
+
+    enum AgenticRetrieveMemoryMetadataFilterOperator
+        "EQUALS_TO"
+        "EXISTS"
+        "NOT_EXISTS"
+        "BEFORE"
+        "AFTER"
+        "CONTAINS"
+        "GREATER_THAN"
+        "GREATER_THAN_OR_EQUALS"
+        "LESS_THAN"
+        "LESS_THAN_OR_EQUALS"
+    end
+
+    -- A metadata value that a filter expression compares against. Set exactly one member.
+    record AgenticRetrieveMemoryMetadataValue
+        -- A string value.
+        stringValue: string
+        -- A numeric value.
+        numberValue: number
+        -- A list of string values.
+        stringListValue: {string}
+        -- A timestamp value in ISO 8601 UTC format.
+        dateTimeValue: number
+    end
+
+    -- The right operand of a metadata filter expression. Set exactly one member.
+    record AgenticRetrieveMemoryMetadataFilterRight
+        -- The value to compare the metadata key against.
+        metadataValue: AgenticRetrieveMemoryMetadataValue
+    end
+
+    -- A metadata filter expression, in the form accepted by the AgentCore Memory RetrieveMemoryRecords operation. The expression has a left operand that names the metadata key, an operator, and a right operand. For the EXISTS and NOT_EXISTS operators, omit the right operand.
+    record AgenticRetrieveMemoryMetadataFilter
+        -- The metadata key that the expression evaluates.
+        left: AgenticRetrieveMemoryMetadataFilterLeft
+        -- The relationship that the metadata key and value must have for a memory record to match.
+        operator: string
+        -- The value that the expression compares the metadata key against. Supply this value for every operator except EXISTS and NOT_EXISTS.
+        right: AgenticRetrieveMemoryMetadataFilterRight
+    end
+
+    -- The long-term memory namespace that the agent might retrieve memory records from, and the filters applied to that retrieval. You must specify either namespace or namespacePath.
+    record AgenticRetrieveMemoryRetrievalConfig
+        -- The namespace prefix to filter memory records by. The agent retrieves memory records in namespaces that start with the provided prefix. You must specify either namespace or namespacePath.
+        namespace: string
+        -- The parent namespace to use for hierarchical retrievals. The agent retrieves all memory records whose namespace falls under the same parent hierarchy. You must specify either namespace or namespacePath.
+        namespacePath: string
+        -- The extraction strategy ID that restricts retrieval to memory records produced by a single strategy. Omit this parameter to retrieve records from every strategy on the memory resource.
+        strategyId: string
+        -- The metadata filter expressions that restrict retrieval to matching memory records. You can specify a maximum of 5 expressions.
+        metadataFilters: {AgenticRetrieveMemoryMetadataFilter}
+    end
+
+    -- The short-term memory session that this retrieval reads from and writes to.
+    record AgenticRetrieveMemorySessionBinding
+        -- The identifier of the end user or agent that the session belongs to. This identifier scopes session history so that one actor's history is never returned for another. You are responsible for sending the correct actor value.
+        actorId: string
+        -- The identifier of the session to restore and continue. You are responsible for sending the correct session value.
+        sessionId: string
+    end
+
+    -- Specifies an AgentCore Memory resource and how this retrieval uses it. Set sessionBinding to restore and continue a session. Set retrievalConfigs to let the agent retrieve from long-term memory. You must specify at least one of the two.
+    record AgenticRetrieveMemoryConfiguration
+        -- The identifier of the AgentCore Memory resource to use. The resource must exist in your account and be in the ACTIVE state.
+        memoryId: string
+        -- The short-term memory session whose history is restored for this retrieval. To persist the agent-generated answer to the session, omit persistenceMode or set it to DEFAULT. To leave the session unchanged, set persistenceMode to NONE. Supply session history through the existing messages parameter or through short-term memory, but not both.
+        sessionBinding: AgenticRetrieveMemorySessionBinding
+        -- Specifies the long-term memory configuration the agent can retrieve from. The agent decides whether to retrieve and composes its own query. This field currently accepts at most one entry.
+        retrievalConfigs: {AgenticRetrieveMemoryRetrievalConfig}
+        -- Specifies whether the agent-generated answer is written back to the given short-term memory session, and applies only when sessionBinding is set. Valid values: DEFAULT (default) – Specifies that the question and the agent-generated answer are persisted to the session as a single event. This value requires generateResponse to be true. NONE – Specifies that the session is left unchanged.
+        persistenceMode: string
+    end
+
     enum ConversationRole
         "user"
         "assistant"
@@ -616,6 +716,7 @@ local record M
 
     enum AgenticRetrieveType
         "BedrockKnowledgeBase"
+        "BedrockAgentCoreMemory"
     end
 
     -- Metadata about a retrieval source.
@@ -637,6 +738,7 @@ local record M
         "Retrieval"
         "SpeculativeRetrieval"
         "FullDocumentExpansion"
+        "SessionHistoryLoad"
     end
 
     -- Contains information about the user making the request. Use this to pass user identity information for access control filtering, so that retrieval results only include documents the user is authorized to access.
@@ -3729,6 +3831,8 @@ local record M
         nextToken: string
         -- Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.
         userContext: UserContext
+        -- The configuration for using an Amazon Bedrock AgentCore Memory resource with this retrieval.
+        memoryConfiguration: AgenticRetrieveMemoryConfiguration
         -- Whether to generate a response based on the retrieved results.
         generateResponse: boolean
     end

@@ -184,6 +184,78 @@ function M.items_list_launch_actions(client, input)
     })
 end
 
+--- Returns a page iterator for listRecoveryPlanExecutionSteps.
+function M.pages_list_recovery_plan_execution_steps(client, input)
+    return paginator.pages(client, "listRecoveryPlanExecutionSteps", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPlanExecutionSteps",
+    })
+end
+
+--- Returns an item iterator for listRecoveryPlanExecutionSteps.
+function M.items_list_recovery_plan_execution_steps(client, input)
+    return paginator.items(client, "listRecoveryPlanExecutionSteps", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPlanExecutionSteps",
+    })
+end
+
+--- Returns a page iterator for listRecoveryPlanExecutions.
+function M.pages_list_recovery_plan_executions(client, input)
+    return paginator.pages(client, "listRecoveryPlanExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPlanExecutions",
+    })
+end
+
+--- Returns an item iterator for listRecoveryPlanExecutions.
+function M.items_list_recovery_plan_executions(client, input)
+    return paginator.items(client, "listRecoveryPlanExecutions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPlanExecutions",
+    })
+end
+
+--- Returns a page iterator for listRecoveryPlanSteps.
+function M.pages_list_recovery_plan_steps(client, input)
+    return paginator.pages(client, "listRecoveryPlanSteps", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPlanSteps",
+    })
+end
+
+--- Returns an item iterator for listRecoveryPlanSteps.
+function M.items_list_recovery_plan_steps(client, input)
+    return paginator.items(client, "listRecoveryPlanSteps", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPlanSteps",
+    })
+end
+
+--- Returns a page iterator for listRecoveryPlans.
+function M.pages_list_recovery_plans(client, input)
+    return paginator.pages(client, "listRecoveryPlans", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPlans",
+    })
+end
+
+--- Returns an item iterator for listRecoveryPlans.
+function M.items_list_recovery_plans(client, input)
+    return paginator.items(client, "listRecoveryPlans", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recoveryPlans",
+    })
+end
+
 --- Returns a page iterator for listStagingAccounts.
 function M.pages_list_staging_accounts(client, input)
     return paginator.pages(client, "listStagingAccounts", input, {

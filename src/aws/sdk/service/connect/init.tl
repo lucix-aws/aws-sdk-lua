@@ -63,6 +63,7 @@ local record Client
     createDataTableAttribute: function(Client, types.CreateDataTableAttributeInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataTableAttributeOutput>
     createEmailAddress: function(Client, types.CreateEmailAddressInput, ? base_client.InvokeOptions): async.Operation<types.CreateEmailAddressOutput>
     createEvaluationForm: function(Client, types.CreateEvaluationFormInput, ? base_client.InvokeOptions): async.Operation<types.CreateEvaluationFormOutput>
+    createExtractionDefinition: function(Client, types.CreateExtractionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateExtractionDefinitionOutput>
     createHoursOfOperation: function(Client, types.CreateHoursOfOperationInput, ? base_client.InvokeOptions): async.Operation<types.CreateHoursOfOperationOutput>
     createHoursOfOperationOverride: function(Client, types.CreateHoursOfOperationOverrideInput, ? base_client.InvokeOptions): async.Operation<types.CreateHoursOfOperationOverrideOutput>
     createInstance: function(Client, types.CreateInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceOutput>
@@ -103,6 +104,7 @@ local record Client
     deleteDataTableAttribute: function(Client, types.DeleteDataTableAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataTableAttributeOutput>
     deleteEmailAddress: function(Client, types.DeleteEmailAddressInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEmailAddressOutput>
     deleteEvaluationForm: function(Client, types.DeleteEvaluationFormInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEvaluationFormOutput>
+    deleteExtractionDefinition: function(Client, types.DeleteExtractionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExtractionDefinitionOutput>
     deleteHoursOfOperation: function(Client, types.DeleteHoursOfOperationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHoursOfOperationOutput>
     deleteHoursOfOperationOverride: function(Client, types.DeleteHoursOfOperationOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHoursOfOperationOverrideOutput>
     deleteInstance: function(Client, types.DeleteInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceOutput>
@@ -142,6 +144,7 @@ local record Client
     describeDataTableAttribute: function(Client, types.DescribeDataTableAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataTableAttributeOutput>
     describeEmailAddress: function(Client, types.DescribeEmailAddressInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEmailAddressOutput>
     describeEvaluationForm: function(Client, types.DescribeEvaluationFormInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEvaluationFormOutput>
+    describeExtractionDefinition: function(Client, types.DescribeExtractionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExtractionDefinitionOutput>
     describeHoursOfOperation: function(Client, types.DescribeHoursOfOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHoursOfOperationOutput>
     describeHoursOfOperationOverride: function(Client, types.DescribeHoursOfOperationOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHoursOfOperationOverrideOutput>
     describeInstance: function(Client, types.DescribeInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceOutput>
@@ -226,6 +229,7 @@ local record Client
     listEntitySecurityProfiles: function(Client, types.ListEntitySecurityProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListEntitySecurityProfilesOutput>
     listEvaluationForms: function(Client, types.ListEvaluationFormsInput, ? base_client.InvokeOptions): async.Operation<types.ListEvaluationFormsOutput>
     listEvaluationFormVersions: function(Client, types.ListEvaluationFormVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEvaluationFormVersionsOutput>
+    listExtractionDefinitions: function(Client, types.ListExtractionDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExtractionDefinitionsOutput>
     listFlowAssociations: function(Client, types.ListFlowAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowAssociationsOutput>
     listHoursOfOperationOverrides: function(Client, types.ListHoursOfOperationOverridesInput, ? base_client.InvokeOptions): async.Operation<types.ListHoursOfOperationOverridesOutput>
     listHoursOfOperations: function(Client, types.ListHoursOfOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListHoursOfOperationsOutput>
@@ -359,6 +363,7 @@ local record Client
     updateDataTablePrimaryValues: function(Client, types.UpdateDataTablePrimaryValuesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataTablePrimaryValuesOutput>
     updateEmailAddressMetadata: function(Client, types.UpdateEmailAddressMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEmailAddressMetadataOutput>
     updateEvaluationForm: function(Client, types.UpdateEvaluationFormInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEvaluationFormOutput>
+    updateExtractionDefinition: function(Client, types.UpdateExtractionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExtractionDefinitionOutput>
     updateHoursOfOperation: function(Client, types.UpdateHoursOfOperationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHoursOfOperationOutput>
     updateHoursOfOperationOverride: function(Client, types.UpdateHoursOfOperationOverrideInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHoursOfOperationOverrideOutput>
     updateInstanceAttribute: function(Client, types.UpdateInstanceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceAttributeOutput>
@@ -630,6 +635,10 @@ function C:createEvaluationForm(input: types.CreateEvaluationFormInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEvaluationForm as schema.OperationSchema, input, options) as async.Operation<types.CreateEvaluationFormOutput>
 end
 
+function C:createExtractionDefinition(input: types.CreateExtractionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExtractionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExtractionDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateExtractionDefinitionOutput>
+end
+
 function C:createHoursOfOperation(input: types.CreateHoursOfOperationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateHoursOfOperationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHoursOfOperation as schema.OperationSchema, input, options) as async.Operation<types.CreateHoursOfOperationOutput>
 end
@@ -790,6 +799,10 @@ function C:deleteEvaluationForm(input: types.DeleteEvaluationFormInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEvaluationForm as schema.OperationSchema, input, options) as async.Operation<types.DeleteEvaluationFormOutput>
 end
 
+function C:deleteExtractionDefinition(input: types.DeleteExtractionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExtractionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExtractionDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteExtractionDefinitionOutput>
+end
+
 function C:deleteHoursOfOperation(input: types.DeleteHoursOfOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHoursOfOperationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHoursOfOperation as schema.OperationSchema, input, options) as async.Operation<types.DeleteHoursOfOperationOutput>
 end
@@ -944,6 +957,10 @@ end
 
 function C:describeEvaluationForm(input: types.DescribeEvaluationFormInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEvaluationFormOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEvaluationForm as schema.OperationSchema, input, options) as async.Operation<types.DescribeEvaluationFormOutput>
+end
+
+function C:describeExtractionDefinition(input: types.DescribeExtractionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExtractionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExtractionDefinition as schema.OperationSchema, input, options) as async.Operation<types.DescribeExtractionDefinitionOutput>
 end
 
 function C:describeHoursOfOperation(input: types.DescribeHoursOfOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHoursOfOperationOutput>
@@ -1280,6 +1297,10 @@ end
 
 function C:listEvaluationFormVersions(input: types.ListEvaluationFormVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEvaluationFormVersionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEvaluationFormVersions as schema.OperationSchema, input, options) as async.Operation<types.ListEvaluationFormVersionsOutput>
+end
+
+function C:listExtractionDefinitions(input: types.ListExtractionDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExtractionDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExtractionDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListExtractionDefinitionsOutput>
 end
 
 function C:listFlowAssociations(input: types.ListFlowAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowAssociationsOutput>
@@ -1812,6 +1833,10 @@ end
 
 function C:updateEvaluationForm(input: types.UpdateEvaluationFormInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEvaluationFormOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEvaluationForm as schema.OperationSchema, input, options) as async.Operation<types.UpdateEvaluationFormOutput>
+end
+
+function C:updateExtractionDefinition(input: types.UpdateExtractionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExtractionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExtractionDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateExtractionDefinitionOutput>
 end
 
 function C:updateHoursOfOperation(input: types.UpdateHoursOfOperationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHoursOfOperationOutput>

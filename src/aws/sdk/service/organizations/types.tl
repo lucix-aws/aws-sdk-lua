@@ -141,6 +141,9 @@ local record M
         "TRANSFER_RESPONSIBILITY_TARGET_DELETION_IN_PROGRESS"
         "TRANSFER_RESPONSIBILITY_SOURCE_DELETION_IN_PROGRESS"
         "UNSUPPORTED_PRICING"
+        "UNMET_BILLING_PREREQUISITE"
+        "ACCOUNT_NOT_ACTIVE_FOR_TRANSFER_RESPONSIBILITY"
+        "TRANSFER_RESPONSIBILITY_UPDATE_NOT_ALLOWED"
     end
 
     -- Performing this operation violates a minimum or maximum value limit. For example,
@@ -163,6 +166,9 @@ local record M
     -- ACCOUNT_CREATION_NOT_COMPLETE: Your account setup isn't complete or your
     -- account isn't fully active. You must complete the account setup before you
     -- create an organization.
+    -- ACCOUNT_NOT_ACTIVE_FOR_TRANSFER_RESPONSIBILITY: Your account setup isn't
+    -- complete or your account isn't fully active to invite or accept a Billing
+    -- Transfer invitation.
     -- ACTIVE_RESPONSIBILITY_TRANSFER_PROCESS: You cannot delete organization due to an ongoing responsibility transfer process. For example, a pending invitation or an in-progress transfer. To delete the organization, you must resolve the current transfer process.
     -- ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
     -- of accounts in an organization. If you need more accounts, contact Amazon Web Services Support to
@@ -281,7 +287,14 @@ local record M
     -- this transfer invitation because it is marked for deletion.
     -- TRANSFER_RESPONSIBILITY_TARGET_DELETION_IN_PROGRESS: The source organization cannot accept
     -- this transfer invitation because target organization is marked for deletion.
-    -- UNSUPPORTED_PRICING: Your organization has a pricing contract that is unsupported.
+    -- TRANSFER_RESPONSIBILITY_UPDATE_NOT_ALLOWED: You cannot update this transfer
+    -- because it is no longer active. Transfers that have been withdrawn, declined,
+    -- expired, or cancelled cannot be modified.
+    -- UNMET_BILLING_PREREQUISITE: Your current billing configuration is unsupported.
+    -- Contact Amazon Web Services Support for assistance.
+    -- UNSUPPORTED_PRICING: Ineligible for Billing Transfer. Your organization is
+    -- subject to a pricing agreement with Amazon Web Services that Billing Transfer does not
+    -- support.
     -- WAIT_PERIOD_ACTIVE: After you create an Amazon Web Services account, you must wait until at
     -- least four days after the account was created. Invited accounts aren't subject
     -- to this waiting period.
@@ -311,6 +324,8 @@ local record M
         "SOURCE_AND_TARGET_CANNOT_MATCH"
         "UNUSED_PREPAYMENT_BALANCE"
         "LEGACY_PERMISSIONS_STILL_IN_USE"
+        "PAST_DUE_INVOICE"
+        "TARGET_ACCOUNT_VALIDATION_FAILURE"
     end
 
     -- The requested operation would violate the constraint identified in the reason
@@ -336,20 +351,23 @@ local record M
     -- fine-grained actions for billing, cost management, and accounts.
     -- ORGANIZATION_ALREADY_HAS_ALL_FEATURES: The handshake request is invalid
     -- because the organization has already enabled all features.
-    -- ORGANIZATION_FROM_DIFFERENT_SELLER_OF_RECORD: The request failed because the
-    -- account is from a different marketplace than the accounts in the
-    -- organization.
+    -- ORGANIZATION_FROM_DIFFERENT_SELLER_OF_RECORD: You can only join an
+    -- organization that operates in the same Amazon Web Services partition as your account.
     -- ORGANIZATION_IS_ALREADY_PENDING_ALL_FEATURES_MIGRATION: The handshake request
     -- is invalid because the organization has already started the process to enable
     -- all features.
     -- ORGANIZATION_MEMBERSHIP_CHANGE_RATE_LIMIT_EXCEEDED: You attempted to change
     -- the membership of an account too quickly after its previous change.
+    -- PAST_DUE_INVOICE: Your organization has an invoice that is past due.
     -- PAYMENT_INSTRUMENT_REQUIRED: You can't complete the operation with an account
     -- that doesn't have a payment instrument, such as a credit card, associated with
     -- it.
     -- RESPONSIBILITY_TRANSFER_ALREADY_EXISTS: You cannot perform this operation with the current
     -- transfer.
     -- SOURCE_AND_TARGET_CANNOT_MATCH: An account can't accept a transfer invitation if it is both the sender and recipient of the invitation.
+    -- TARGET_ACCOUNT_VALIDATION_FAILURE: Billing transfer is not available for your
+    -- account. Contact your billing administrator or Amazon Web Services Support for
+    -- assistance.
     -- UNUSED_PREPAYMENT_BALANCE: Your organization has an outstanding pre-payment balance.
     record HandshakeConstraintViolationException
         Message: string
@@ -408,6 +426,7 @@ local record M
         "INVALID_START_DATE"
         "END_DATE_NOT_END_OF_MONTH"
         "END_DATE_TOO_EARLY"
+        "END_DATE_TOO_LATE"
         "INVALID_END_DATE"
     end
 
@@ -428,9 +447,9 @@ local record M
     -- INPUT_REQUIRED: You must include a value for all required parameters.
     -- INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address for the
     -- invited account owner.
-    -- INVALID_END_DATE: The selected withdrawal date doesn't meet the terms of your partner
-    -- agreement. Visit Amazon Web Services Partner Central to view your partner agreements or contact your Amazon Web Services
-    -- Partner for help.
+    -- INVALID_END_DATE: The selected withdrawal date doesn't meet the minimum notice
+    -- period required by your partner agreement. Visit Amazon Web Services Partner Central or contact your Amazon Web Services
+    -- Channel Partner for help.
     -- INVALID_ENUM: You specified an invalid value.
     -- INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
     -- INVALID_FULL_NAME_TARGET: You specified a full name that contains invalid

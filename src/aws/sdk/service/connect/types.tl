@@ -21,6 +21,7 @@ local record M
         "ASSIGN_SLA"
         "END_ASSOCIATED_TASKS"
         "SUBMIT_AUTO_EVALUATION"
+        "EXTRACT_INFORMATION"
     end
 
     -- Information about an action.
@@ -2652,6 +2653,61 @@ local record M
         EvaluationFormArn: string
     end
 
+    -- The display configuration for an extraction definition.
+    record ExtractionDefinitionDisplay
+        -- The label displayed in the agent workspace for this extraction definition.
+        Label: string
+    end
+
+    enum NotFoundBehaviorType
+        "USE_DEFAULT_VALUE"
+        "OMIT"
+    end
+
+    -- The behavior configuration when an extraction definition cannot find the target value.
+    record ExtractionDefinitionNotFoundBehavior
+        -- The behavior type. USE_DEFAULT_VALUE returns the specified default value.
+        -- OMIT excludes the field from the output.
+        Behavior: string
+        -- The default value to use when the behavior is USE_DEFAULT_VALUE.
+        DefaultValue: string
+    end
+
+    -- The extraction configuration that defines how data is extracted from customer
+    -- interactions.
+    record ExtractionConfiguration
+        -- The prompt hint that guides the extraction. This text tells the generative AI model what
+        -- data to look for in the customer interaction.
+        PromptHint: string
+        -- The behavior when the extraction cannot find the specified data in the interaction.
+        NotFoundBehavior: ExtractionDefinitionNotFoundBehavior
+    end
+
+    record CreateExtractionDefinitionInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. If not provided, the Amazon Web Services SDK populates this field.
+        ClientToken: string
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- A unique name of the extraction definition.
+        Name: string
+        -- The configuration that defines how data is extracted, including the prompt hint and
+        -- not-found behavior.
+        ExtractionConfiguration: ExtractionConfiguration
+        -- The display settings for the extraction definition, including the label shown in the
+        -- agent workspace.
+        Display: ExtractionDefinitionDisplay
+        -- The tags used to organize, track, or control access for this resource.
+        Tags: {string : string}
+    end
+
+    record CreateExtractionDefinitionOutput
+        -- The Amazon Resource Name (ARN) of the extraction definition.
+        ExtractionDefinitionArn: string
+        -- The identifier of the extraction definition.
+        ExtractionDefinitionId: string
+    end
+
     enum HoursOfOperationDays
         "SUNDAY"
         "MONDAY"
@@ -3526,6 +3582,19 @@ local record M
         Name: string
     end
 
+    -- An identifier that references an extraction definition resource.
+    record RulesExtractionDefinitionIdentifier
+        -- The identifier of the extraction definition.
+        Identifier: string
+    end
+
+    -- Information about the extract information action, which references extraction definitions
+    -- to use when extracting structured data from customer interactions.
+    record ExtractInformationActionDefinition
+        -- The list of extraction definition identifiers that specify what data to extract.
+        RulesExtractionDefinitions: {RulesExtractionDefinitionIdentifier}
+    end
+
     enum NotificationContentType
         "PLAIN_TEXT"
     end
@@ -3633,6 +3702,8 @@ local record M
         EndAssociatedTasksAction: EndAssociatedTasksActionDefinition
         -- Information about the submit automated evaluation action.
         SubmitAutoEvaluationAction: SubmitAutoEvaluationActionDefinition
+        -- Information about the extract information action.
+        ExtractInformationAction: ExtractInformationActionDefinition
     end
 
     enum RulePublishStatus
@@ -3645,6 +3716,8 @@ local record M
         "OnRealTimeCallAnalysisAvailable"
         "OnRealTimeChatAnalysisAvailable"
         "OnPostChatAnalysisAvailable"
+        "OnAfterCallWorkAvailable"
+        "OnAfterChatWorkAvailable"
         "OnEmailAnalysisAvailable"
         "OnZendeskTicketCreate"
         "OnZendeskTicketStatusUpdate"
@@ -4716,6 +4789,16 @@ local record M
     end
 
     record DeleteEvaluationFormOutput
+    end
+
+    record DeleteExtractionDefinitionInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the extraction definition to delete.
+        ExtractionDefinitionId: string
+    end
+
+    record DeleteExtractionDefinitionOutput
     end
 
     record DeleteHoursOfOperationInput
@@ -6020,6 +6103,40 @@ local record M
     enum EvaluationFormVersionStatus
         "DRAFT"
         "ACTIVE"
+    end
+
+    record DescribeExtractionDefinitionInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the extraction definition to describe.
+        ExtractionDefinitionId: string
+    end
+
+    -- Information about an extraction definition.
+    record ExtractionDefinition
+        -- The name of the extraction definition.
+        Name: string
+        -- The identifier of the extraction definition.
+        ExtractionDefinitionId: string
+        -- The Amazon Resource Name (ARN) of the extraction definition.
+        ExtractionDefinitionArn: string
+        -- The configuration that defines how data is extracted.
+        ExtractionConfiguration: ExtractionConfiguration
+        -- The display settings for the extraction definition.
+        Display: ExtractionDefinitionDisplay
+        -- The timestamp when the extraction definition was created.
+        CreatedTime: number
+        -- The timestamp when the extraction definition was last updated.
+        LastUpdatedTime: number
+        -- The Amazon Resource Name (ARN) of the user who last updated the extraction definition.
+        LastUpdatedBy: string
+        -- The tags used to organize, track, or control access for this resource.
+        Tags: {string : string}
+    end
+
+    record DescribeExtractionDefinitionOutput
+        -- The extraction definition.
+        ExtractionDefinition: ExtractionDefinition
     end
 
     record DescribeHoursOfOperationInput
@@ -10964,6 +11081,39 @@ local record M
         NextToken: string
     end
 
+    record ListExtractionDefinitionsInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The maximum number of results to return per page. The default MaxResult size is 100.
+        MaxResults: number
+        -- The token for the next set of results. Use the value returned in the previous response in
+        -- the next request to retrieve the next set of results.
+        NextToken: string
+    end
+
+    -- Summary information about an extraction definition.
+    record ExtractionDefinitionSummary
+        -- The name of the extraction definition.
+        Name: string
+        -- The identifier of the extraction definition.
+        ExtractionDefinitionId: string
+        -- The Amazon Resource Name (ARN) of the extraction definition.
+        ExtractionDefinitionArn: string
+        -- The timestamp when the extraction definition was created.
+        CreatedTime: number
+        -- The timestamp when the extraction definition was last updated.
+        LastUpdatedTime: number
+        -- The Amazon Resource Name (ARN) of the user who last updated the extraction definition.
+        LastUpdatedBy: string
+    end
+
+    record ListExtractionDefinitionsOutput
+        -- Information about the extraction definitions.
+        ExtractionDefinitionSummaryList: {ExtractionDefinitionSummary}
+        -- If there are additional results, this is the token for the next set of results.
+        NextToken: string
+    end
+
     record ListFlowAssociationsInput
         -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -14341,16 +14491,15 @@ local record M
     record StartAssistantContactInput
         -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The AI agent that participates in the contact.
+        -- The AI agent configuration for this contact.
         AiAgent: AiAgentInput
         -- The display name and other details that identify the chat participant.
         ParticipantDetails: ParticipantDetails
         -- The initial message to send to the newly created chat.
         InitialMessage: ChatMessage
-        -- A map of key-value pairs to associate with the contact. Amazon Connect makes these attributes available to
+        -- A map of key-value pairs to associate with the contact. We make these attributes available to
         -- flows as standard contact attributes.
-        -- You can provide up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can contain only
-        -- alphanumeric characters, dashes, and underscores.
+        -- You can provide up to 32,768 UTF-8 bytes across all key-value pairs for each contact.
         Attributes: {string : string}
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services
@@ -14372,10 +14521,9 @@ local record M
         -- The identifier of the chat participant. The participant identifier remains the same throughout the chat
         -- lifecycle.
         ParticipantId: string
-        -- The token that the chat participant uses to call the CreateParticipantConnection API. The token remains valid for the lifetime of the chat participant.
+        -- The token that the chat participant uses with the CreateParticipantConnection operation. The token remains valid for the lifetime of the chat participant.
         ParticipantToken: string
-        -- For a persistent chat, the identifier of the contact from which the chat continues. Amazon Connect returns this
-        -- field only for persistent chats.
+        -- The identifier of the contact from which the chat continues, returned only for persistent chats.
         ContinuedFromContactId: string
     end
 
@@ -15559,6 +15707,26 @@ local record M
         EvaluationFormArn: string
         -- The version of the updated evaluation form resource.
         EvaluationFormVersion: number
+    end
+
+    record UpdateExtractionDefinitionInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. If not provided, the Amazon Web Services SDK populates this field.
+        ClientToken: string
+        -- The identifier of the extraction definition to update.
+        ExtractionDefinitionId: string
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The name of the extraction definition.
+        Name: string
+        -- The configuration that defines how data is extracted, including the prompt hint and
+        -- not-found behavior.
+        ExtractionConfiguration: ExtractionConfiguration
+        -- The display settings for the extraction definition.
+        Display: ExtractionDefinitionDisplay
+    end
+
+    record UpdateExtractionDefinitionOutput
     end
 
     record UpdateHoursOfOperationInput
@@ -17502,9 +17670,8 @@ local record M
         References: {string : Reference}
         -- A description of the task that is shown to an agent in the Contact Control Panel (CCP).
         Description: string
-        -- Use this map to specify system-defined attributes for the WebRTC contact segment. Use the
+        -- A map of system-defined attributes for the WebRTC contact segment. Use the
         -- connect:Subtype attribute to specify the channel subtype, such as connect:WebRTC.
-        -- Attribute keys can contain only alphanumeric characters, hyphens, and underscores.
         SegmentAttributes: {string : SegmentAttributeValue}
     end
 

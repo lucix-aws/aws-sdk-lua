@@ -8308,6 +8308,32 @@ M.EvaluatorModelConfig = schema.new({
     },
 })
 
+M.DerivedEvaluatorConfig = schema.new({
+    id = id.from(_N, "DerivedEvaluatorConfig"),
+    type = "structure",
+    members = {
+        baseEvaluatorId = schema.new({
+            id = id.from(_N, "DerivedEvaluatorConfig", "baseEvaluatorId"),
+            type = "string",
+            name = "baseEvaluatorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        modelConfig = schema.new({
+            id = id.from(_N, "DerivedEvaluatorConfig", "modelConfig"),
+            type = "union",
+            name = "modelConfig",
+            target_id = id.from(_N, "EvaluatorModelConfig"),
+            target = M.EvaluatorModelConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CategoricalScaleDefinition = schema.new({
     id = id.from(_N, "CategoricalScaleDefinition"),
     type = "structure",
@@ -8441,6 +8467,13 @@ M.EvaluatorConfig = schema.new({
             name = "codeBased",
             target_id = id.from(_N, "CodeBasedEvaluatorConfig"),
             target = M.CodeBasedEvaluatorConfig,
+        }),
+        derived = schema.new({
+            id = id.from(_N, "EvaluatorConfig", "derived"),
+            type = "structure",
+            name = "derived",
+            target_id = id.from(_N, "DerivedEvaluatorConfig"),
+            target = M.DerivedEvaluatorConfig,
         }),
     },
 })
@@ -8676,6 +8709,18 @@ M.GetEvaluatorOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        evaluatorType = schema.new({
+            id = id.from(_N, "GetEvaluatorOutput", "evaluatorType"),
+            type = "string",
+            name = "evaluatorType",
+            target_id = prelude.String.id,
+        }),
+        provider = schema.new({
+            id = id.from(_N, "GetEvaluatorOutput", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+        }),
         level = schema.new({
             id = id.from(_N, "GetEvaluatorOutput", "level"),
             type = "string",
@@ -8797,6 +8842,12 @@ M.EvaluatorSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        provider = schema.new({
+            id = id.from(_N, "EvaluatorSummary", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
         }),
         level = schema.new({
             id = id.from(_N, "EvaluatorSummary", "level"),

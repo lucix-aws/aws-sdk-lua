@@ -19,14 +19,20 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     associateSourceNetworkStack: function(Client, types.AssociateSourceNetworkStackInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSourceNetworkStackOutput>
+    cancelRecoveryPlanExecution: function(Client, types.CancelRecoveryPlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.CancelRecoveryPlanExecutionOutput>
     createExtendedSourceServer: function(Client, types.CreateExtendedSourceServerInput, ? base_client.InvokeOptions): async.Operation<types.CreateExtendedSourceServerOutput>
     createLaunchConfigurationTemplate: function(Client, types.CreateLaunchConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateLaunchConfigurationTemplateOutput>
+    createRecoveryPlan: function(Client, types.CreateRecoveryPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecoveryPlanOutput>
+    createRecoveryPlanStep: function(Client, types.CreateRecoveryPlanStepInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecoveryPlanStepOutput>
     createReplicationConfigurationTemplate: function(Client, types.CreateReplicationConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateReplicationConfigurationTemplateOutput>
     createSourceNetwork: function(Client, types.CreateSourceNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateSourceNetworkOutput>
     deleteJob: function(Client, types.DeleteJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
     deleteLaunchAction: function(Client, types.DeleteLaunchActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLaunchActionOutput>
     deleteLaunchConfigurationTemplate: function(Client, types.DeleteLaunchConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLaunchConfigurationTemplateOutput>
     deleteRecoveryInstance: function(Client, types.DeleteRecoveryInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecoveryInstanceOutput>
+    deleteRecoveryPlan: function(Client, types.DeleteRecoveryPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecoveryPlanOutput>
+    deleteRecoveryPlanExecution: function(Client, types.DeleteRecoveryPlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecoveryPlanExecutionOutput>
+    deleteRecoveryPlanStep: function(Client, types.DeleteRecoveryPlanStepInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecoveryPlanStepOutput>
     deleteReplicationConfigurationTemplate: function(Client, types.DeleteReplicationConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReplicationConfigurationTemplateOutput>
     deleteSourceNetwork: function(Client, types.DeleteSourceNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSourceNetworkOutput>
     deleteSourceServer: function(Client, types.DeleteSourceServerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSourceServerOutput>
@@ -43,17 +49,28 @@ local record Client
     exportSourceNetworkCfnTemplate: function(Client, types.ExportSourceNetworkCfnTemplateInput, ? base_client.InvokeOptions): async.Operation<types.ExportSourceNetworkCfnTemplateOutput>
     getFailbackReplicationConfiguration: function(Client, types.GetFailbackReplicationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetFailbackReplicationConfigurationOutput>
     getLaunchConfiguration: function(Client, types.GetLaunchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetLaunchConfigurationOutput>
+    getRecoveryPlan: function(Client, types.GetRecoveryPlanInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPlanOutput>
+    getRecoveryPlanExecution: function(Client, types.GetRecoveryPlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPlanExecutionOutput>
+    getRecoveryPlanExecutionStep: function(Client, types.GetRecoveryPlanExecutionStepInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPlanExecutionStepOutput>
+    getRecoveryPlanStep: function(Client, types.GetRecoveryPlanStepInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPlanStepOutput>
     getReplicationConfiguration: function(Client, types.GetReplicationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetReplicationConfigurationOutput>
     initializeService: function(Client, types.InitializeServiceInput, ? base_client.InvokeOptions): async.Operation<types.InitializeServiceOutput>
     listExtensibleSourceServers: function(Client, types.ListExtensibleSourceServersInput, ? base_client.InvokeOptions): async.Operation<types.ListExtensibleSourceServersOutput>
     listLaunchActions: function(Client, types.ListLaunchActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLaunchActionsOutput>
+    listRecoveryPlanExecutions: function(Client, types.ListRecoveryPlanExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryPlanExecutionsOutput>
+    listRecoveryPlanExecutionSteps: function(Client, types.ListRecoveryPlanExecutionStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryPlanExecutionStepsOutput>
+    listRecoveryPlans: function(Client, types.ListRecoveryPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryPlansOutput>
+    listRecoveryPlanSteps: function(Client, types.ListRecoveryPlanStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryPlanStepsOutput>
     listStagingAccounts: function(Client, types.ListStagingAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListStagingAccountsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putLaunchAction: function(Client, types.PutLaunchActionInput, ? base_client.InvokeOptions): async.Operation<types.PutLaunchActionOutput>
+    reorderRecoveryPlanSteps: function(Client, types.ReorderRecoveryPlanStepsInput, ? base_client.InvokeOptions): async.Operation<types.ReorderRecoveryPlanStepsOutput>
     retryDataReplication: function(Client, types.RetryDataReplicationInput, ? base_client.InvokeOptions): async.Operation<types.RetryDataReplicationOutput>
+    retryRecoveryPlanExecutionStep: function(Client, types.RetryRecoveryPlanExecutionStepInput, ? base_client.InvokeOptions): async.Operation<types.RetryRecoveryPlanExecutionStepOutput>
     reverseReplication: function(Client, types.ReverseReplicationInput, ? base_client.InvokeOptions): async.Operation<types.ReverseReplicationOutput>
     startFailbackLaunch: function(Client, types.StartFailbackLaunchInput, ? base_client.InvokeOptions): async.Operation<types.StartFailbackLaunchOutput>
     startRecovery: function(Client, types.StartRecoveryInput, ? base_client.InvokeOptions): async.Operation<types.StartRecoveryOutput>
+    startRecoveryPlanExecution: function(Client, types.StartRecoveryPlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartRecoveryPlanExecutionOutput>
     startReplication: function(Client, types.StartReplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartReplicationOutput>
     startSourceNetworkRecovery: function(Client, types.StartSourceNetworkRecoveryInput, ? base_client.InvokeOptions): async.Operation<types.StartSourceNetworkRecoveryOutput>
     startSourceNetworkReplication: function(Client, types.StartSourceNetworkReplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartSourceNetworkReplicationOutput>
@@ -66,6 +83,9 @@ local record Client
     updateFailbackReplicationConfiguration: function(Client, types.UpdateFailbackReplicationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFailbackReplicationConfigurationOutput>
     updateLaunchConfiguration: function(Client, types.UpdateLaunchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLaunchConfigurationOutput>
     updateLaunchConfigurationTemplate: function(Client, types.UpdateLaunchConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
+    updateRecoveryPlan: function(Client, types.UpdateRecoveryPlanInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPlanOutput>
+    updateRecoveryPlanExecutionStep: function(Client, types.UpdateRecoveryPlanExecutionStepInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPlanExecutionStepOutput>
+    updateRecoveryPlanStep: function(Client, types.UpdateRecoveryPlanStepInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPlanStepOutput>
     updateReplicationConfiguration: function(Client, types.UpdateReplicationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReplicationConfigurationOutput>
     updateReplicationConfigurationTemplate: function(Client, types.UpdateReplicationConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReplicationConfigurationTemplateOutput>
 end
@@ -116,12 +136,24 @@ function C:associateSourceNetworkStack(input: types.AssociateSourceNetworkStackI
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSourceNetworkStack as schema.OperationSchema, input, options) as async.Operation<types.AssociateSourceNetworkStackOutput>
 end
 
+function C:cancelRecoveryPlanExecution(input: types.CancelRecoveryPlanExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelRecoveryPlanExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelRecoveryPlanExecution as schema.OperationSchema, input, options) as async.Operation<types.CancelRecoveryPlanExecutionOutput>
+end
+
 function C:createExtendedSourceServer(input: types.CreateExtendedSourceServerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExtendedSourceServerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExtendedSourceServer as schema.OperationSchema, input, options) as async.Operation<types.CreateExtendedSourceServerOutput>
 end
 
 function C:createLaunchConfigurationTemplate(input: types.CreateLaunchConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLaunchConfigurationTemplateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLaunchConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateLaunchConfigurationTemplateOutput>
+end
+
+function C:createRecoveryPlan(input: types.CreateRecoveryPlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecoveryPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecoveryPlan as schema.OperationSchema, input, options) as async.Operation<types.CreateRecoveryPlanOutput>
+end
+
+function C:createRecoveryPlanStep(input: types.CreateRecoveryPlanStepInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecoveryPlanStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecoveryPlanStep as schema.OperationSchema, input, options) as async.Operation<types.CreateRecoveryPlanStepOutput>
 end
 
 function C:createReplicationConfigurationTemplate(input: types.CreateReplicationConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReplicationConfigurationTemplateOutput>
@@ -146,6 +178,18 @@ end
 
 function C:deleteRecoveryInstance(input: types.DeleteRecoveryInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecoveryInstanceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecoveryInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecoveryInstanceOutput>
+end
+
+function C:deleteRecoveryPlan(input: types.DeleteRecoveryPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecoveryPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecoveryPlan as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecoveryPlanOutput>
+end
+
+function C:deleteRecoveryPlanExecution(input: types.DeleteRecoveryPlanExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecoveryPlanExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecoveryPlanExecution as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecoveryPlanExecutionOutput>
+end
+
+function C:deleteRecoveryPlanStep(input: types.DeleteRecoveryPlanStepInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecoveryPlanStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecoveryPlanStep as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecoveryPlanStepOutput>
 end
 
 function C:deleteReplicationConfigurationTemplate(input: types.DeleteReplicationConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReplicationConfigurationTemplateOutput>
@@ -212,6 +256,22 @@ function C:getLaunchConfiguration(input: types.GetLaunchConfigurationInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLaunchConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetLaunchConfigurationOutput>
 end
 
+function C:getRecoveryPlan(input: types.GetRecoveryPlanInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryPlan as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryPlanOutput>
+end
+
+function C:getRecoveryPlanExecution(input: types.GetRecoveryPlanExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryPlanExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryPlanExecution as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryPlanExecutionOutput>
+end
+
+function C:getRecoveryPlanExecutionStep(input: types.GetRecoveryPlanExecutionStepInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryPlanExecutionStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryPlanExecutionStep as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryPlanExecutionStepOutput>
+end
+
+function C:getRecoveryPlanStep(input: types.GetRecoveryPlanStepInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryPlanStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryPlanStep as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryPlanStepOutput>
+end
+
 function C:getReplicationConfiguration(input: types.GetReplicationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetReplicationConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReplicationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetReplicationConfigurationOutput>
 end
@@ -228,6 +288,22 @@ function C:listLaunchActions(input: types.ListLaunchActionsInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLaunchActions as schema.OperationSchema, input, options) as async.Operation<types.ListLaunchActionsOutput>
 end
 
+function C:listRecoveryPlanExecutions(input: types.ListRecoveryPlanExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryPlanExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryPlanExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryPlanExecutionsOutput>
+end
+
+function C:listRecoveryPlanExecutionSteps(input: types.ListRecoveryPlanExecutionStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryPlanExecutionStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryPlanExecutionSteps as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryPlanExecutionStepsOutput>
+end
+
+function C:listRecoveryPlans(input: types.ListRecoveryPlansInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryPlansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryPlans as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryPlansOutput>
+end
+
+function C:listRecoveryPlanSteps(input: types.ListRecoveryPlanStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryPlanStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryPlanSteps as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryPlanStepsOutput>
+end
+
 function C:listStagingAccounts(input: types.ListStagingAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStagingAccountsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStagingAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListStagingAccountsOutput>
 end
@@ -240,8 +316,16 @@ function C:putLaunchAction(input: types.PutLaunchActionInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLaunchAction as schema.OperationSchema, input, options) as async.Operation<types.PutLaunchActionOutput>
 end
 
+function C:reorderRecoveryPlanSteps(input: types.ReorderRecoveryPlanStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ReorderRecoveryPlanStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReorderRecoveryPlanSteps as schema.OperationSchema, input, options) as async.Operation<types.ReorderRecoveryPlanStepsOutput>
+end
+
 function C:retryDataReplication(input: types.RetryDataReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.RetryDataReplicationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetryDataReplication as schema.OperationSchema, input, options) as async.Operation<types.RetryDataReplicationOutput>
+end
+
+function C:retryRecoveryPlanExecutionStep(input: types.RetryRecoveryPlanExecutionStepInput, options?: base_client.InvokeOptions): async.Operation<types.RetryRecoveryPlanExecutionStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetryRecoveryPlanExecutionStep as schema.OperationSchema, input, options) as async.Operation<types.RetryRecoveryPlanExecutionStepOutput>
 end
 
 function C:reverseReplication(input: types.ReverseReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.ReverseReplicationOutput>
@@ -254,6 +338,10 @@ end
 
 function C:startRecovery(input: types.StartRecoveryInput, options?: base_client.InvokeOptions): async.Operation<types.StartRecoveryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRecovery as schema.OperationSchema, input, options) as async.Operation<types.StartRecoveryOutput>
+end
+
+function C:startRecoveryPlanExecution(input: types.StartRecoveryPlanExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartRecoveryPlanExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRecoveryPlanExecution as schema.OperationSchema, input, options) as async.Operation<types.StartRecoveryPlanExecutionOutput>
 end
 
 function C:startReplication(input: types.StartReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StartReplicationOutput>
@@ -302,6 +390,18 @@ end
 
 function C:updateLaunchConfigurationTemplate(input: types.UpdateLaunchConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLaunchConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
+end
+
+function C:updateRecoveryPlan(input: types.UpdateRecoveryPlanInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecoveryPlan as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecoveryPlanOutput>
+end
+
+function C:updateRecoveryPlanExecutionStep(input: types.UpdateRecoveryPlanExecutionStepInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPlanExecutionStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecoveryPlanExecutionStep as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecoveryPlanExecutionStepOutput>
+end
+
+function C:updateRecoveryPlanStep(input: types.UpdateRecoveryPlanStepInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPlanStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecoveryPlanStep as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecoveryPlanStepOutput>
 end
 
 function C:updateReplicationConfiguration(input: types.UpdateReplicationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReplicationConfigurationOutput>

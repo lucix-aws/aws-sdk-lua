@@ -256,6 +256,58 @@ local record M
         fieldList: {ValidationExceptionField}
     end
 
+    record CancelRecoveryPlanExecutionInput
+        -- The ARN of the Recovery Plan execution to cancel.
+        recoveryPlanExecutionArn: string
+    end
+
+    -- Error details for a failed operation.
+    record ErrorDetail
+        -- The error message.
+        message: string
+        -- The error code.
+        code: string
+    end
+
+    enum RecoveryPlanExecutionMode
+        "DRILL"
+        "RECOVERY"
+    end
+
+    enum RecoveryPlanExecutionStatus
+        "CREATED"
+        "IN_PROGRESS"
+        "COMPLETED"
+        "FAILED"
+        "CANCELLING"
+        "CANCELLED"
+    end
+
+    -- A Recovery Plan execution.
+    record RecoveryPlanExecution
+        -- The ARN of the Recovery Plan execution.
+        recoveryPlanExecutionArn: string
+        -- The ARN of the Recovery Plan being executed.
+        recoveryPlanArn: string
+        -- The execution mode.
+        mode: string
+        -- The execution status.
+        status: string
+        -- The timestamp when the execution started.
+        startedAt: string
+        -- The timestamp when the execution completed.
+        completedAt: string
+        -- Error details if the execution failed.
+        errorDetail: ErrorDetail
+        -- The tags associated with the Recovery Plan execution.
+        tags: {string : string}
+    end
+
+    record CancelRecoveryPlanExecutionOutput
+        -- The cancelled Recovery Plan execution.
+        recoveryPlanExecution: RecoveryPlanExecution
+    end
+
     enum ProductCodeMode
         "ENABLED"
         "DISABLED"
@@ -671,6 +723,100 @@ local record M
         launchConfigurationTemplate: LaunchConfigurationTemplate
     end
 
+    record CreateRecoveryPlanInput
+        name: string
+        description: string
+        -- A unique string provided to ensure request idempotency.
+        clientToken: string
+        -- The tags to apply to the Recovery Plan.
+        tags: {string : string}
+    end
+
+    enum RecoveryPlanStatus
+        "ACTIVE"
+        "INVALID"
+    end
+
+    -- A Recovery Plan resource.
+    record RecoveryPlan
+        -- The ARN of the Recovery Plan.
+        recoveryPlanArn: string
+        name: string
+        description: string
+        -- The status of the Recovery Plan.
+        status: string
+        -- The timestamp when the Recovery Plan was created.
+        createdAt: string
+        -- The timestamp when the Recovery Plan was last updated.
+        updatedAt: string
+        -- The tags associated with the Recovery Plan.
+        tags: {string : string}
+    end
+
+    record CreateRecoveryPlanOutput
+        recoveryPlan: RecoveryPlan
+    end
+
+    enum RecoveryPlanServerImpactLevel
+        "CRITICAL"
+        "OPTIONAL"
+    end
+
+    -- A server associated with a Recovery Plan Step.
+    record RecoveryPlanServer
+        -- The ARN of the source server.
+        serverArn: string
+        -- Defaults to CRITICAL if not specified.
+        impactLevel: string
+    end
+
+    -- Configuration for a SERVER type step.
+    record ServerStepConfiguration
+        -- The list of servers to recover in this step.
+        servers: {RecoveryPlanServer}
+    end
+
+    -- Configuration for a WAIT type step.
+    record WaitStepConfiguration
+        waitDurationMinutes: number
+    end
+
+    -- Type-specific configuration for a recovery plan step.
+    -- Exactly one member must be set.
+    record RecoveryPlanStepConfiguration
+        -- Configuration for a SERVER type step.
+        serverStepConfiguration: ServerStepConfiguration
+        -- Configuration for a WAIT type step.
+        waitStepConfiguration: WaitStepConfiguration
+    end
+
+    record CreateRecoveryPlanStepInput
+        -- The ARN of the Recovery Plan to add the step to.
+        recoveryPlanArn: string
+        stepName: string
+        stepOrder: number
+        configuration: RecoveryPlanStepConfiguration
+        -- A unique string provided to ensure request idempotency.
+        clientToken: string
+    end
+
+    -- A Recovery Plan Step resource.
+    record RecoveryPlanStep
+        -- The ARN of the Recovery Plan step.
+        recoveryPlanStepArn: string
+        stepOrder: number
+        stepName: string
+        configuration: RecoveryPlanStepConfiguration
+        -- The timestamp when the step was created.
+        createdAt: string
+        -- The timestamp when the step was last updated.
+        updatedAt: string
+    end
+
+    record CreateRecoveryPlanStepOutput
+        recoveryPlanStep: RecoveryPlanStep
+    end
+
     enum ReplicationConfigurationDataPlaneRouting
         "PRIVATE_IP"
         "PUBLIC_IP"
@@ -834,6 +980,36 @@ local record M
     end
 
     record DeleteRecoveryInstanceOutput
+    end
+
+    record DeleteRecoveryPlanInput
+        -- The ARN of the Recovery Plan to delete.
+        recoveryPlanArn: string
+    end
+
+    record DeleteRecoveryPlanOutput
+        -- The ARN of the deleted Recovery Plan.
+        recoveryPlanArn: string
+    end
+
+    record DeleteRecoveryPlanExecutionInput
+        -- The ARN of the Recovery Plan execution to delete.
+        recoveryPlanExecutionArn: string
+    end
+
+    record DeleteRecoveryPlanExecutionOutput
+        -- The ARN of the deleted Recovery Plan execution.
+        recoveryPlanExecutionArn: string
+    end
+
+    record DeleteRecoveryPlanStepInput
+        -- The ARN of the Recovery Plan step to delete.
+        recoveryPlanStepArn: string
+    end
+
+    record DeleteRecoveryPlanStepOutput
+        -- The ARN of the deleted Recovery Plan step.
+        recoveryPlanStepArn: string
     end
 
     record DeleteReplicationConfigurationTemplateInput
@@ -1515,6 +1691,97 @@ local record M
         agentVersion: string
     end
 
+    record GetRecoveryPlanInput
+        -- The ARN of the Recovery Plan to retrieve.
+        recoveryPlanArn: string
+    end
+
+    record GetRecoveryPlanOutput
+        recoveryPlan: RecoveryPlan
+    end
+
+    record GetRecoveryPlanExecutionInput
+        -- The ARN of the Recovery Plan execution.
+        recoveryPlanExecutionArn: string
+    end
+
+    record GetRecoveryPlanExecutionOutput
+        -- The Recovery Plan execution details.
+        recoveryPlanExecution: RecoveryPlanExecution
+    end
+
+    record GetRecoveryPlanExecutionStepInput
+        -- The ARN of the execution step.
+        recoveryPlanExecutionStepArn: string
+    end
+
+    -- A server within a recovery plan execution step, enriched with execution state.
+    record RecoveryPlanExecutionServer
+        -- The ARN of the source server.
+        serverArn: string
+        -- Defaults to CRITICAL if not specified.
+        impactLevel: string
+        -- The DRS recovery job ID. Populated when recovery is initiated for this server.
+        jobID: string
+    end
+
+    -- Configuration for a SERVER type execution step.
+    record ExecutionServerStepConfiguration
+        -- The list of servers in this execution step.
+        servers: {RecoveryPlanExecutionServer}
+    end
+
+    -- Type-specific configuration for an execution step response.
+    -- Mirrors RecoveryPlanStepConfiguration but uses execution-enriched server shapes.
+    record RecoveryPlanExecutionStepConfiguration
+        -- Configuration for a SERVER type step (with execution state like jobID).
+        executionServerStepConfiguration: ExecutionServerStepConfiguration
+        -- Configuration for a WAIT type step.
+        waitStepConfiguration: WaitStepConfiguration
+    end
+
+    enum RecoveryPlanExecutionStepStatus
+        "NOT_STARTED"
+        "EXECUTING"
+        "WAITING"
+        "COMPLETED"
+        "FAILED"
+        "TIMED_OUT"
+        "SKIPPED"
+    end
+
+    -- A Recovery Plan Execution Step resource.
+    record RecoveryPlanExecutionStep
+        -- The ARN of the execution step.
+        recoveryPlanExecutionStepArn: string
+        stepIndex: number
+        -- The status of the execution step.
+        status: string
+        stepName: string
+        configuration: RecoveryPlanExecutionStepConfiguration
+        -- Error details if the step failed.
+        errorDetail: ErrorDetail
+        -- The number of times this step has been attempted.
+        attempt: number
+        -- The timestamp when the execution step was created.
+        createdAt: string
+        -- The timestamp when the execution step was last updated.
+        updatedAt: string
+    end
+
+    record GetRecoveryPlanExecutionStepOutput
+        recoveryPlanExecutionStep: RecoveryPlanExecutionStep
+    end
+
+    record GetRecoveryPlanStepInput
+        -- The ARN of the Recovery Plan step to retrieve.
+        recoveryPlanStepArn: string
+    end
+
+    record GetRecoveryPlanStepOutput
+        recoveryPlanStep: RecoveryPlanStep
+    end
+
     record InitializeServiceInput
     end
 
@@ -1595,6 +1862,120 @@ local record M
         -- List of resource launch actions.
         items: {LaunchAction}
         -- Next token returned when listing resource launch actions.
+        nextToken: string
+    end
+
+    record ListRecoveryPlanExecutionsInput
+        -- Filter executions by Recovery Plan ARN.
+        recoveryPlanArn: string
+        -- Filter executions by status.
+        status: string
+        -- Maximum number of results to return.
+        maxResults: number
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    -- Summary information about a Recovery Plan execution.
+    record RecoveryPlanExecutionSummary
+        -- The ARN of the Recovery Plan execution.
+        recoveryPlanExecutionArn: string
+        -- The ARN of the Recovery Plan.
+        recoveryPlanArn: string
+        -- The execution mode.
+        mode: string
+        -- The execution status.
+        status: string
+        -- The timestamp when the execution started.
+        startedAt: string
+        -- Error details if the execution failed.
+        errorDetail: ErrorDetail
+    end
+
+    record ListRecoveryPlanExecutionsOutput
+        -- The list of Recovery Plan executions.
+        recoveryPlanExecutions: {RecoveryPlanExecutionSummary}
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    -- Filters for listing Recovery Plan execution steps.
+    record ListRecoveryPlanExecutionStepsFilter
+        -- Filter by execution step status.
+        status: string
+    end
+
+    record ListRecoveryPlanExecutionStepsInput
+        -- The ARN of the Recovery Plan execution.
+        recoveryPlanExecutionArn: string
+        -- Filters for listing execution steps.
+        filter: ListRecoveryPlanExecutionStepsFilter
+        -- Maximum number of results to return.
+        maxResults: number
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    -- Summary information about a Recovery Plan execution step.
+    record RecoveryPlanExecutionStepSummary
+        -- The ARN of the execution step.
+        recoveryPlanExecutionStepArn: string
+        stepName: string
+        stepIndex: number
+        -- The status of the execution step.
+        status: string
+        configuration: RecoveryPlanExecutionStepConfiguration
+        -- Error details if the step failed.
+        errorDetail: ErrorDetail
+    end
+
+    record ListRecoveryPlanExecutionStepsOutput
+        -- The list of execution steps.
+        recoveryPlanExecutionSteps: {RecoveryPlanExecutionStepSummary}
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    record ListRecoveryPlansInput
+        -- Maximum number of results to return.
+        maxResults: number
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    -- Summary information about a Recovery Plan.
+    record RecoveryPlanSummary
+        -- The ARN of the Recovery Plan.
+        recoveryPlanArn: string
+        name: string
+        -- The status of the Recovery Plan.
+        status: string
+        -- The timestamp when the Recovery Plan was created.
+        createdAt: string
+        -- The timestamp when the Recovery Plan was last updated.
+        updatedAt: string
+    end
+
+    record ListRecoveryPlansOutput
+        -- The list of Recovery Plans.
+        recoveryPlans: {RecoveryPlanSummary}
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    record ListRecoveryPlanStepsInput
+        -- The ARN of the Recovery Plan.
+        recoveryPlanArn: string
+        -- Maximum number of results to return.
+        maxResults: number
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    record ListRecoveryPlanStepsOutput
+        -- The list of Recovery Plan steps.
+        recoveryPlanSteps: {RecoveryPlanStep}
+        -- The token for the next page of results.
         nextToken: string
     end
 
@@ -1730,6 +2111,44 @@ local record M
     record UpdateFailbackReplicationConfigurationOutput
     end
 
+    -- A source server with a specific recovery snapshot for plan execution.
+    record RecoveryPlanExecutionSourceServer
+        -- The ID of the source server.
+        sourceServerID: string
+        -- The ID of the recovery snapshot to use.
+        recoverySnapshotID: string
+    end
+
+    record StartRecoveryPlanExecutionInput
+        -- The ARN of the Recovery Plan to execute.
+        recoveryPlanArn: string
+        -- The execution mode (DRILL or RECOVERY).
+        mode: string
+        -- A unique string provided to ensure request idempotency.
+        clientToken: string
+        -- Optional list of source servers with specific recovery snapshots. If not provided, the latest snapshot is used for each server.
+        sourceServers: {RecoveryPlanExecutionSourceServer}
+        -- The tags to apply to the Recovery Plan execution.
+        tags: {string : string}
+    end
+
+    record StartRecoveryPlanExecutionOutput
+        -- The started Recovery Plan execution.
+        recoveryPlanExecution: RecoveryPlanExecution
+    end
+
+    record ReorderRecoveryPlanStepsInput
+        -- The ARN of the Recovery Plan.
+        recoveryPlanArn: string
+        -- Ordered list of all step ARNs representing the desired sequence.
+        orderedStepArns: {string}
+    end
+
+    record ReorderRecoveryPlanStepsOutput
+        -- The steps with updated order.
+        recoveryPlanSteps: {RecoveryPlanStep}
+    end
+
     record UpdateReplicationConfigurationTemplateInput
         -- The Replication Configuration Template ID.
         replicationConfigurationTemplateID: string
@@ -1804,6 +2223,15 @@ local record M
         autoReplicateNewDisks: boolean
         -- Which version of the Internet Protocol to use for replication of data. (IPv4 or IPv6)
         internetProtocol: string
+    end
+
+    record RetryRecoveryPlanExecutionStepInput
+        -- The ARN of the execution step to retry.
+        recoveryPlanExecutionStepArn: string
+    end
+
+    record RetryRecoveryPlanExecutionStepOutput
+        recoveryPlanExecutionStep: RecoveryPlanExecutionStep
     end
 
     record ExportSourceNetworkCfnTemplateInput
@@ -2186,6 +2614,43 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateRecoveryPlanInput
+        -- The ARN of the Recovery Plan to update.
+        recoveryPlanArn: string
+        name: string
+        description: string
+    end
+
+    record UpdateRecoveryPlanOutput
+        recoveryPlan: RecoveryPlan
+    end
+
+    record UpdateRecoveryPlanExecutionStepInput
+        -- The ARN of the execution step to update.
+        recoveryPlanExecutionStepArn: string
+        -- Only SKIPPED is accepted. Step must be in NOT_STARTED or FAILED status.
+        status: string
+        -- Full replacement of the server list. Only allowed when the step is in NOT_STARTED status (Server type steps only).
+        servers: {RecoveryPlanServer}
+        -- Updated wait duration. Only allowed when the step is in NOT_STARTED status (Wait type steps only).
+        waitDurationMinutes: number
+    end
+
+    record UpdateRecoveryPlanExecutionStepOutput
+        recoveryPlanExecutionStep: RecoveryPlanExecutionStep
+    end
+
+    record UpdateRecoveryPlanStepInput
+        -- The ARN of the Recovery Plan step to update.
+        recoveryPlanStepArn: string
+        stepName: string
+        configuration: RecoveryPlanStepConfiguration
+    end
+
+    record UpdateRecoveryPlanStepOutput
+        recoveryPlanStep: RecoveryPlanStep
     end
 
 end

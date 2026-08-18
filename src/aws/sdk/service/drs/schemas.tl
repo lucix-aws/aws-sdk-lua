@@ -9,19 +9,31 @@ local _N = "com.amazonaws.drs"
 
 local M: {string:any} = {}
 
-M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
-
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.StagingSourceServersList = schema.new({ type = "list", list_member = M.StagingSourceServer })
 
 M.LaunchActions = schema.new({ type = "list", list_member = M.LaunchAction })
 
+M.RecoveryPlanExecutionSummaryList = schema.new({ type = "list", list_member = M.RecoveryPlanExecutionSummary })
+
+M.RecoveryPlanExecutionStepSummaryList = schema.new({ type = "list", list_member = M.RecoveryPlanExecutionStepSummary })
+
+M.RecoveryPlanSummaryList = schema.new({ type = "list", list_member = M.RecoveryPlanSummary })
+
+M.RecoveryPlanStepList = schema.new({ type = "list", list_member = M.RecoveryPlanStep })
+
 M.Accounts = schema.new({ type = "list", list_member = M.Account })
 
 M.LaunchActionParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.LaunchActionParameter })
 
+M.RecoveryPlanStepArnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecoveryPlanServers = schema.new({ type = "list", list_member = M.RecoveryPlanServer })
 
 M.JobsList = schema.new({ type = "list", list_member = M.Job })
 
@@ -36,6 +48,8 @@ M.DescribeRecoveryInstancesItems = schema.new({ type = "list", list_member = M.R
 M.StartFailbackRequestRecoveryInstanceIDs = schema.new({ type = "list", list_member = prelude.String })
 
 M.RecoveryInstancesForTerminationRequest = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecoveryPlanExecutionSourceServerList = schema.new({ type = "list", list_member = M.RecoveryPlanExecutionSourceServer })
 
 M.ReplicationConfigurationTemplateIDs = schema.new({ type = "list", list_member = prelude.String })
 
@@ -86,6 +100,8 @@ M.Cpus = schema.new({ type = "list", list_member = M.CPU })
 M.EbsSnapshotsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DataReplicationInitiationSteps = schema.new({ type = "list", list_member = M.DataReplicationInitiationStep })
+
+M.RecoveryPlanExecutionServers = schema.new({ type = "list", list_member = M.RecoveryPlanExecutionServer })
 
 M.RecoveryInstanceDataReplicationInfoReplicatedDisks = schema.new({ type = "list", list_member = M.RecoveryInstanceDataReplicationInfoReplicatedDisk })
 
@@ -721,6 +737,137 @@ M.ValidationException = schema.new({
             name = "fieldList",
             target_id = prelude.Document.id,
             list_member = M.ValidationExceptionField,
+        }),
+    },
+})
+
+M.CancelRecoveryPlanExecutionInput = schema.new({
+    id = id.from(_N, "CancelRecoveryPlanExecutionRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionArn = schema.new({
+            id = id.from(_N, "CancelRecoveryPlanExecutionInput", "recoveryPlanExecutionArn"),
+            type = "string",
+            name = "recoveryPlanExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ErrorDetail = schema.new({
+    id = id.from(_N, "ErrorDetail"),
+    type = "structure",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ErrorDetail", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "ErrorDetail", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RecoveryPlanExecution = schema.new({
+    id = id.from(_N, "RecoveryPlanExecution"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionArn = schema.new({
+            id = id.from(_N, "RecoveryPlanExecution", "recoveryPlanExecutionArn"),
+            type = "string",
+            name = "recoveryPlanExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "RecoveryPlanExecution", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mode = schema.new({
+            id = id.from(_N, "RecoveryPlanExecution", "mode"),
+            type = "string",
+            name = "mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "RecoveryPlanExecution", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "RecoveryPlanExecution", "startedAt"),
+            type = "string",
+            name = "startedAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        completedAt = schema.new({
+            id = id.from(_N, "RecoveryPlanExecution", "completedAt"),
+            type = "string",
+            name = "completedAt",
+            target_id = prelude.String.id,
+        }),
+        errorDetail = schema.new({
+            id = id.from(_N, "RecoveryPlanExecution", "errorDetail"),
+            type = "structure",
+            name = "errorDetail",
+            target_id = id.from(_N, "ErrorDetail"),
+            target = M.ErrorDetail,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "RecoveryPlanExecution", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CancelRecoveryPlanExecutionOutput = schema.new({
+    id = id.from(_N, "CancelRecoveryPlanExecutionResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecution = schema.new({
+            id = id.from(_N, "CancelRecoveryPlanExecutionOutput", "recoveryPlanExecution"),
+            type = "structure",
+            name = "recoveryPlanExecution",
+            target_id = id.from(_N, "RecoveryPlanExecution"),
+            target = M.RecoveryPlanExecution,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -1613,6 +1760,333 @@ M.CreateLaunchConfigurationTemplateOutput = schema.new({
     },
 })
 
+M.CreateRecoveryPlanInput = schema.new({
+    id = id.from(_N, "CreateRecoveryPlanRequest"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.RecoveryPlan = schema.new({
+    id = id.from(_N, "RecoveryPlan"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "RecoveryPlan", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "RecoveryPlan", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "RecoveryPlan", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "RecoveryPlan", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "RecoveryPlan", "createdAt"),
+            type = "string",
+            name = "createdAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "RecoveryPlan", "updatedAt"),
+            type = "string",
+            name = "updatedAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "RecoveryPlan", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateRecoveryPlanOutput = schema.new({
+    id = id.from(_N, "CreateRecoveryPlanResponse"),
+    type = "structure",
+    members = {
+        recoveryPlan = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanOutput", "recoveryPlan"),
+            type = "structure",
+            name = "recoveryPlan",
+            target_id = id.from(_N, "RecoveryPlan"),
+            target = M.RecoveryPlan,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RecoveryPlanServer = schema.new({
+    id = id.from(_N, "RecoveryPlanServer"),
+    type = "structure",
+    members = {
+        serverArn = schema.new({
+            id = id.from(_N, "RecoveryPlanServer", "serverArn"),
+            type = "string",
+            name = "serverArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        impactLevel = schema.new({
+            id = id.from(_N, "RecoveryPlanServer", "impactLevel"),
+            type = "string",
+            name = "impactLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServerStepConfiguration = schema.new({
+    id = id.from(_N, "ServerStepConfiguration"),
+    type = "structure",
+    members = {
+        servers = schema.new({
+            id = id.from(_N, "ServerStepConfiguration", "servers"),
+            type = "list",
+            name = "servers",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanServer,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WaitStepConfiguration = schema.new({
+    id = id.from(_N, "WaitStepConfiguration"),
+    type = "structure",
+    members = {
+        waitDurationMinutes = schema.new({
+            id = id.from(_N, "WaitStepConfiguration", "waitDurationMinutes"),
+            type = "integer",
+            name = "waitDurationMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RecoveryPlanStepConfiguration = schema.new({
+    id = id.from(_N, "RecoveryPlanStepConfiguration"),
+    type = "union",
+    members = {
+        serverStepConfiguration = schema.new({
+            id = id.from(_N, "RecoveryPlanStepConfiguration", "serverStepConfiguration"),
+            type = "structure",
+            name = "serverStepConfiguration",
+            target_id = id.from(_N, "ServerStepConfiguration"),
+            target = M.ServerStepConfiguration,
+        }),
+        waitStepConfiguration = schema.new({
+            id = id.from(_N, "RecoveryPlanStepConfiguration", "waitStepConfiguration"),
+            type = "structure",
+            name = "waitStepConfiguration",
+            target_id = id.from(_N, "WaitStepConfiguration"),
+            target = M.WaitStepConfiguration,
+        }),
+    },
+})
+
+M.CreateRecoveryPlanStepInput = schema.new({
+    id = id.from(_N, "CreateRecoveryPlanStepRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanStepInput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepName = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanStepInput", "stepName"),
+            type = "string",
+            name = "stepName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepOrder = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanStepInput", "stepOrder"),
+            type = "integer",
+            name = "stepOrder",
+            target_id = prelude.Integer.id,
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanStepInput", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "RecoveryPlanStepConfiguration"),
+            target = M.RecoveryPlanStepConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanStepInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.RecoveryPlanStep = schema.new({
+    id = id.from(_N, "RecoveryPlanStep"),
+    type = "structure",
+    members = {
+        recoveryPlanStepArn = schema.new({
+            id = id.from(_N, "RecoveryPlanStep", "recoveryPlanStepArn"),
+            type = "string",
+            name = "recoveryPlanStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepOrder = schema.new({
+            id = id.from(_N, "RecoveryPlanStep", "stepOrder"),
+            type = "integer",
+            name = "stepOrder",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepName = schema.new({
+            id = id.from(_N, "RecoveryPlanStep", "stepName"),
+            type = "string",
+            name = "stepName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "RecoveryPlanStep", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "RecoveryPlanStepConfiguration"),
+            target = M.RecoveryPlanStepConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "RecoveryPlanStep", "createdAt"),
+            type = "string",
+            name = "createdAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "RecoveryPlanStep", "updatedAt"),
+            type = "string",
+            name = "updatedAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateRecoveryPlanStepOutput = schema.new({
+    id = id.from(_N, "CreateRecoveryPlanStepResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanStep = schema.new({
+            id = id.from(_N, "CreateRecoveryPlanStepOutput", "recoveryPlanStep"),
+            type = "structure",
+            name = "recoveryPlanStep",
+            target_id = id.from(_N, "RecoveryPlanStep"),
+            target = M.RecoveryPlanStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PITPolicyRule = schema.new({
     id = id.from(_N, "PITPolicyRule"),
     type = "structure",
@@ -2061,6 +2535,102 @@ M.DeleteRecoveryInstanceInput = schema.new({
 })
 
 M.DeleteRecoveryInstanceOutput = prelude.Unit
+
+M.DeleteRecoveryPlanInput = schema.new({
+    id = id.from(_N, "DeleteRecoveryPlanRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "DeleteRecoveryPlanInput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRecoveryPlanOutput = schema.new({
+    id = id.from(_N, "DeleteRecoveryPlanResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "DeleteRecoveryPlanOutput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRecoveryPlanExecutionInput = schema.new({
+    id = id.from(_N, "DeleteRecoveryPlanExecutionRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionArn = schema.new({
+            id = id.from(_N, "DeleteRecoveryPlanExecutionInput", "recoveryPlanExecutionArn"),
+            type = "string",
+            name = "recoveryPlanExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRecoveryPlanExecutionOutput = schema.new({
+    id = id.from(_N, "DeleteRecoveryPlanExecutionResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionArn = schema.new({
+            id = id.from(_N, "DeleteRecoveryPlanExecutionOutput", "recoveryPlanExecutionArn"),
+            type = "string",
+            name = "recoveryPlanExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRecoveryPlanStepInput = schema.new({
+    id = id.from(_N, "DeleteRecoveryPlanStepRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanStepArn = schema.new({
+            id = id.from(_N, "DeleteRecoveryPlanStepInput", "recoveryPlanStepArn"),
+            type = "string",
+            name = "recoveryPlanStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRecoveryPlanStepOutput = schema.new({
+    id = id.from(_N, "DeleteRecoveryPlanStepResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanStepArn = schema.new({
+            id = id.from(_N, "DeleteRecoveryPlanStepOutput", "recoveryPlanStepArn"),
+            type = "string",
+            name = "recoveryPlanStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
 
 M.DeleteReplicationConfigurationTemplateInput = schema.new({
     id = id.from(_N, "DeleteReplicationConfigurationTemplateRequest"),
@@ -3598,6 +4168,291 @@ M.DisconnectSourceServerOutput = schema.new({
     },
 })
 
+M.GetRecoveryPlanInput = schema.new({
+    id = id.from(_N, "GetRecoveryPlanRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "GetRecoveryPlanInput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRecoveryPlanOutput = schema.new({
+    id = id.from(_N, "GetRecoveryPlanResponse"),
+    type = "structure",
+    members = {
+        recoveryPlan = schema.new({
+            id = id.from(_N, "GetRecoveryPlanOutput", "recoveryPlan"),
+            type = "structure",
+            name = "recoveryPlan",
+            target_id = id.from(_N, "RecoveryPlan"),
+            target = M.RecoveryPlan,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRecoveryPlanExecutionInput = schema.new({
+    id = id.from(_N, "GetRecoveryPlanExecutionRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionArn = schema.new({
+            id = id.from(_N, "GetRecoveryPlanExecutionInput", "recoveryPlanExecutionArn"),
+            type = "string",
+            name = "recoveryPlanExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRecoveryPlanExecutionOutput = schema.new({
+    id = id.from(_N, "GetRecoveryPlanExecutionResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecution = schema.new({
+            id = id.from(_N, "GetRecoveryPlanExecutionOutput", "recoveryPlanExecution"),
+            type = "structure",
+            name = "recoveryPlanExecution",
+            target_id = id.from(_N, "RecoveryPlanExecution"),
+            target = M.RecoveryPlanExecution,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRecoveryPlanExecutionStepInput = schema.new({
+    id = id.from(_N, "GetRecoveryPlanExecutionStepRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionStepArn = schema.new({
+            id = id.from(_N, "GetRecoveryPlanExecutionStepInput", "recoveryPlanExecutionStepArn"),
+            type = "string",
+            name = "recoveryPlanExecutionStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RecoveryPlanExecutionServer = schema.new({
+    id = id.from(_N, "RecoveryPlanExecutionServer"),
+    type = "structure",
+    members = {
+        serverArn = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionServer", "serverArn"),
+            type = "string",
+            name = "serverArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        impactLevel = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionServer", "impactLevel"),
+            type = "string",
+            name = "impactLevel",
+            target_id = prelude.String.id,
+        }),
+        jobID = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionServer", "jobID"),
+            type = "string",
+            name = "jobID",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExecutionServerStepConfiguration = schema.new({
+    id = id.from(_N, "ExecutionServerStepConfiguration"),
+    type = "structure",
+    members = {
+        servers = schema.new({
+            id = id.from(_N, "ExecutionServerStepConfiguration", "servers"),
+            type = "list",
+            name = "servers",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanExecutionServer,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RecoveryPlanExecutionStepConfiguration = schema.new({
+    id = id.from(_N, "RecoveryPlanExecutionStepConfiguration"),
+    type = "union",
+    members = {
+        executionServerStepConfiguration = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStepConfiguration", "executionServerStepConfiguration"),
+            type = "structure",
+            name = "executionServerStepConfiguration",
+            target_id = id.from(_N, "ExecutionServerStepConfiguration"),
+            target = M.ExecutionServerStepConfiguration,
+        }),
+        waitStepConfiguration = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStepConfiguration", "waitStepConfiguration"),
+            type = "structure",
+            name = "waitStepConfiguration",
+            target_id = id.from(_N, "WaitStepConfiguration"),
+            target = M.WaitStepConfiguration,
+        }),
+    },
+})
+
+M.RecoveryPlanExecutionStep = schema.new({
+    id = id.from(_N, "RecoveryPlanExecutionStep"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionStepArn = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "recoveryPlanExecutionStepArn"),
+            type = "string",
+            name = "recoveryPlanExecutionStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepIndex = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "stepIndex"),
+            type = "integer",
+            name = "stepIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepName = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "stepName"),
+            type = "string",
+            name = "stepName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "RecoveryPlanExecutionStepConfiguration"),
+            target = M.RecoveryPlanExecutionStepConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorDetail = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "errorDetail"),
+            type = "structure",
+            name = "errorDetail",
+            target_id = id.from(_N, "ErrorDetail"),
+            target = M.ErrorDetail,
+        }),
+        attempt = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "attempt"),
+            type = "integer",
+            name = "attempt",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "createdAt"),
+            type = "string",
+            name = "createdAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStep", "updatedAt"),
+            type = "string",
+            name = "updatedAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRecoveryPlanExecutionStepOutput = schema.new({
+    id = id.from(_N, "GetRecoveryPlanExecutionStepResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionStep = schema.new({
+            id = id.from(_N, "GetRecoveryPlanExecutionStepOutput", "recoveryPlanExecutionStep"),
+            type = "structure",
+            name = "recoveryPlanExecutionStep",
+            target_id = id.from(_N, "RecoveryPlanExecutionStep"),
+            target = M.RecoveryPlanExecutionStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRecoveryPlanStepInput = schema.new({
+    id = id.from(_N, "GetRecoveryPlanStepRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanStepArn = schema.new({
+            id = id.from(_N, "GetRecoveryPlanStepInput", "recoveryPlanStepArn"),
+            type = "string",
+            name = "recoveryPlanStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRecoveryPlanStepOutput = schema.new({
+    id = id.from(_N, "GetRecoveryPlanStepResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanStep = schema.new({
+            id = id.from(_N, "GetRecoveryPlanStepOutput", "recoveryPlanStep"),
+            type = "structure",
+            name = "recoveryPlanStep",
+            target_id = id.from(_N, "RecoveryPlanStep"),
+            target = M.RecoveryPlanStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.InitializeServiceInput = schema.new({
     id = id.from(_N, "InitializeServiceRequest"),
     type = "structure",
@@ -3830,6 +4685,395 @@ M.ListLaunchActionsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListLaunchActionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRecoveryPlanExecutionsInput = schema.new({
+    id = id.from(_N, "ListRecoveryPlanExecutionsRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionsInput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionsInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RecoveryPlanExecutionSummary = schema.new({
+    id = id.from(_N, "RecoveryPlanExecutionSummary"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionArn = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionSummary", "recoveryPlanExecutionArn"),
+            type = "string",
+            name = "recoveryPlanExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionSummary", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mode = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionSummary", "mode"),
+            type = "string",
+            name = "mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionSummary", "startedAt"),
+            type = "string",
+            name = "startedAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorDetail = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionSummary", "errorDetail"),
+            type = "structure",
+            name = "errorDetail",
+            target_id = id.from(_N, "ErrorDetail"),
+            target = M.ErrorDetail,
+        }),
+    },
+})
+
+M.ListRecoveryPlanExecutionsOutput = schema.new({
+    id = id.from(_N, "ListRecoveryPlanExecutionsResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutions = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionsOutput", "recoveryPlanExecutions"),
+            type = "list",
+            name = "recoveryPlanExecutions",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanExecutionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRecoveryPlanExecutionStepsFilter = schema.new({
+    id = id.from(_N, "ListRecoveryPlanExecutionStepsFilter"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionStepsFilter", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRecoveryPlanExecutionStepsInput = schema.new({
+    id = id.from(_N, "ListRecoveryPlanExecutionStepsRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionArn = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionStepsInput", "recoveryPlanExecutionArn"),
+            type = "string",
+            name = "recoveryPlanExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        filter = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionStepsInput", "filter"),
+            type = "structure",
+            name = "filter",
+            target_id = id.from(_N, "ListRecoveryPlanExecutionStepsFilter"),
+            target = M.ListRecoveryPlanExecutionStepsFilter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionStepsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionStepsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RecoveryPlanExecutionStepSummary = schema.new({
+    id = id.from(_N, "RecoveryPlanExecutionStepSummary"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionStepArn = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStepSummary", "recoveryPlanExecutionStepArn"),
+            type = "string",
+            name = "recoveryPlanExecutionStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepName = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStepSummary", "stepName"),
+            type = "string",
+            name = "stepName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepIndex = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStepSummary", "stepIndex"),
+            type = "integer",
+            name = "stepIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStepSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStepSummary", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "RecoveryPlanExecutionStepConfiguration"),
+            target = M.RecoveryPlanExecutionStepConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorDetail = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionStepSummary", "errorDetail"),
+            type = "structure",
+            name = "errorDetail",
+            target_id = id.from(_N, "ErrorDetail"),
+            target = M.ErrorDetail,
+        }),
+    },
+})
+
+M.ListRecoveryPlanExecutionStepsOutput = schema.new({
+    id = id.from(_N, "ListRecoveryPlanExecutionStepsResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionSteps = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionStepsOutput", "recoveryPlanExecutionSteps"),
+            type = "list",
+            name = "recoveryPlanExecutionSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanExecutionStepSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecoveryPlanExecutionStepsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRecoveryPlansInput = schema.new({
+    id = id.from(_N, "ListRecoveryPlansRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListRecoveryPlansInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecoveryPlansInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RecoveryPlanSummary = schema.new({
+    id = id.from(_N, "RecoveryPlanSummary"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "RecoveryPlanSummary", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "RecoveryPlanSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "RecoveryPlanSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "RecoveryPlanSummary", "createdAt"),
+            type = "string",
+            name = "createdAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "RecoveryPlanSummary", "updatedAt"),
+            type = "string",
+            name = "updatedAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRecoveryPlansOutput = schema.new({
+    id = id.from(_N, "ListRecoveryPlansResponse"),
+    type = "structure",
+    members = {
+        recoveryPlans = schema.new({
+            id = id.from(_N, "ListRecoveryPlansOutput", "recoveryPlans"),
+            type = "list",
+            name = "recoveryPlans",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecoveryPlansOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRecoveryPlanStepsInput = schema.new({
+    id = id.from(_N, "ListRecoveryPlanStepsRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "ListRecoveryPlanStepsInput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListRecoveryPlanStepsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecoveryPlanStepsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRecoveryPlanStepsOutput = schema.new({
+    id = id.from(_N, "ListRecoveryPlanStepsResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanSteps = schema.new({
+            id = id.from(_N, "ListRecoveryPlanStepsOutput", "recoveryPlanSteps"),
+            type = "list",
+            name = "recoveryPlanSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecoveryPlanStepsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -4322,6 +5566,140 @@ M.UpdateFailbackReplicationConfigurationInput = schema.new({
 
 M.UpdateFailbackReplicationConfigurationOutput = prelude.Unit
 
+M.RecoveryPlanExecutionSourceServer = schema.new({
+    id = id.from(_N, "RecoveryPlanExecutionSourceServer"),
+    type = "structure",
+    members = {
+        sourceServerID = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionSourceServer", "sourceServerID"),
+            type = "string",
+            name = "sourceServerID",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        recoverySnapshotID = schema.new({
+            id = id.from(_N, "RecoveryPlanExecutionSourceServer", "recoverySnapshotID"),
+            type = "string",
+            name = "recoverySnapshotID",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartRecoveryPlanExecutionInput = schema.new({
+    id = id.from(_N, "StartRecoveryPlanExecutionRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "StartRecoveryPlanExecutionInput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mode = schema.new({
+            id = id.from(_N, "StartRecoveryPlanExecutionInput", "mode"),
+            type = "string",
+            name = "mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartRecoveryPlanExecutionInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        sourceServers = schema.new({
+            id = id.from(_N, "StartRecoveryPlanExecutionInput", "sourceServers"),
+            type = "list",
+            name = "sourceServers",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanExecutionSourceServer,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "StartRecoveryPlanExecutionInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.StartRecoveryPlanExecutionOutput = schema.new({
+    id = id.from(_N, "StartRecoveryPlanExecutionResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecution = schema.new({
+            id = id.from(_N, "StartRecoveryPlanExecutionOutput", "recoveryPlanExecution"),
+            type = "structure",
+            name = "recoveryPlanExecution",
+            target_id = id.from(_N, "RecoveryPlanExecution"),
+            target = M.RecoveryPlanExecution,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ReorderRecoveryPlanStepsInput = schema.new({
+    id = id.from(_N, "ReorderRecoveryPlanStepsRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "ReorderRecoveryPlanStepsInput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        orderedStepArns = schema.new({
+            id = id.from(_N, "ReorderRecoveryPlanStepsInput", "orderedStepArns"),
+            type = "list",
+            name = "orderedStepArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ReorderRecoveryPlanStepsOutput = schema.new({
+    id = id.from(_N, "ReorderRecoveryPlanStepsResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanSteps = schema.new({
+            id = id.from(_N, "ReorderRecoveryPlanStepsOutput", "recoveryPlanSteps"),
+            type = "list",
+            name = "recoveryPlanSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateReplicationConfigurationTemplateInput = schema.new({
     id = id.from(_N, "UpdateReplicationConfigurationTemplateRequest"),
     type = "structure",
@@ -4564,6 +5942,39 @@ M.UpdateReplicationConfigurationTemplateOutput = schema.new({
             type = "string",
             name = "internetProtocol",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RetryRecoveryPlanExecutionStepInput = schema.new({
+    id = id.from(_N, "RetryRecoveryPlanExecutionStepRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionStepArn = schema.new({
+            id = id.from(_N, "RetryRecoveryPlanExecutionStepInput", "recoveryPlanExecutionStepArn"),
+            type = "string",
+            name = "recoveryPlanExecutionStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RetryRecoveryPlanExecutionStepOutput = schema.new({
+    id = id.from(_N, "RetryRecoveryPlanExecutionStepResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionStep = schema.new({
+            id = id.from(_N, "RetryRecoveryPlanExecutionStepOutput", "recoveryPlanExecutionStep"),
+            type = "structure",
+            name = "recoveryPlanExecutionStep",
+            target_id = id.from(_N, "RecoveryPlanExecutionStep"),
+            target = M.RecoveryPlanExecutionStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -5713,6 +7124,149 @@ M.UntagResourceInput = schema.new({
 
 M.UntagResourceOutput = prelude.Unit
 
+M.UpdateRecoveryPlanInput = schema.new({
+    id = id.from(_N, "UpdateRecoveryPlanRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanArn = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanInput", "recoveryPlanArn"),
+            type = "string",
+            name = "recoveryPlanArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRecoveryPlanOutput = schema.new({
+    id = id.from(_N, "UpdateRecoveryPlanResponse"),
+    type = "structure",
+    members = {
+        recoveryPlan = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanOutput", "recoveryPlan"),
+            type = "structure",
+            name = "recoveryPlan",
+            target_id = id.from(_N, "RecoveryPlan"),
+            target = M.RecoveryPlan,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateRecoveryPlanExecutionStepInput = schema.new({
+    id = id.from(_N, "UpdateRecoveryPlanExecutionStepRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionStepArn = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanExecutionStepInput", "recoveryPlanExecutionStepArn"),
+            type = "string",
+            name = "recoveryPlanExecutionStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanExecutionStepInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        servers = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanExecutionStepInput", "servers"),
+            type = "list",
+            name = "servers",
+            target_id = prelude.Document.id,
+            list_member = M.RecoveryPlanServer,
+        }),
+        waitDurationMinutes = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanExecutionStepInput", "waitDurationMinutes"),
+            type = "integer",
+            name = "waitDurationMinutes",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.UpdateRecoveryPlanExecutionStepOutput = schema.new({
+    id = id.from(_N, "UpdateRecoveryPlanExecutionStepResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanExecutionStep = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanExecutionStepOutput", "recoveryPlanExecutionStep"),
+            type = "structure",
+            name = "recoveryPlanExecutionStep",
+            target_id = id.from(_N, "RecoveryPlanExecutionStep"),
+            target = M.RecoveryPlanExecutionStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateRecoveryPlanStepInput = schema.new({
+    id = id.from(_N, "UpdateRecoveryPlanStepRequest"),
+    type = "structure",
+    members = {
+        recoveryPlanStepArn = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanStepInput", "recoveryPlanStepArn"),
+            type = "string",
+            name = "recoveryPlanStepArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stepName = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanStepInput", "stepName"),
+            type = "string",
+            name = "stepName",
+            target_id = prelude.String.id,
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanStepInput", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "RecoveryPlanStepConfiguration"),
+            target = M.RecoveryPlanStepConfiguration,
+        }),
+    },
+})
+
+M.UpdateRecoveryPlanStepOutput = schema.new({
+    id = id.from(_N, "UpdateRecoveryPlanStepResponse"),
+    type = "structure",
+    members = {
+        recoveryPlanStep = schema.new({
+            id = id.from(_N, "UpdateRecoveryPlanStepOutput", "recoveryPlanStep"),
+            type = "structure",
+            name = "recoveryPlanStep",
+            target_id = id.from(_N, "RecoveryPlanStep"),
+            target = M.RecoveryPlanStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -5750,6 +7304,18 @@ M.AssociateSourceNetworkStack = schema.operation({
     },
 })
 
+M.CancelRecoveryPlanExecution = schema.operation({
+    id = id.from("com.amazonaws.drs", "CancelRecoveryPlanExecution"),
+    input = M.CancelRecoveryPlanExecutionInput,
+    output = M.CancelRecoveryPlanExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CancelRecoveryPlanExecution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateExtendedSourceServer = schema.operation({
     id = id.from("com.amazonaws.drs", "CreateExtendedSourceServer"),
     input = M.CreateExtendedSourceServerInput,
@@ -5768,6 +7334,30 @@ M.CreateLaunchConfigurationTemplate = schema.operation({
     output = M.CreateLaunchConfigurationTemplateOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/CreateLaunchConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecoveryPlan = schema.operation({
+    id = id.from("com.amazonaws.drs", "CreateRecoveryPlan"),
+    input = M.CreateRecoveryPlanInput,
+    output = M.CreateRecoveryPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateRecoveryPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRecoveryPlanStep = schema.operation({
+    id = id.from("com.amazonaws.drs", "CreateRecoveryPlanStep"),
+    input = M.CreateRecoveryPlanStepInput,
+    output = M.CreateRecoveryPlanStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateRecoveryPlanStep" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -5840,6 +7430,42 @@ M.DeleteRecoveryInstance = schema.operation({
     output = M.DeleteRecoveryInstanceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/DeleteRecoveryInstance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecoveryPlan = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteRecoveryPlan"),
+    input = M.DeleteRecoveryPlanInput,
+    output = M.DeleteRecoveryPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteRecoveryPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecoveryPlanExecution = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteRecoveryPlanExecution"),
+    input = M.DeleteRecoveryPlanExecutionInput,
+    output = M.DeleteRecoveryPlanExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteRecoveryPlanExecution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRecoveryPlanStep = schema.operation({
+    id = id.from("com.amazonaws.drs", "DeleteRecoveryPlanStep"),
+    input = M.DeleteRecoveryPlanStepInput,
+    output = M.DeleteRecoveryPlanStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteRecoveryPlanStep" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -6038,6 +7664,54 @@ M.GetLaunchConfiguration = schema.operation({
     },
 })
 
+M.GetRecoveryPlan = schema.operation({
+    id = id.from("com.amazonaws.drs", "GetRecoveryPlan"),
+    input = M.GetRecoveryPlanInput,
+    output = M.GetRecoveryPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRecoveryPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecoveryPlanExecution = schema.operation({
+    id = id.from("com.amazonaws.drs", "GetRecoveryPlanExecution"),
+    input = M.GetRecoveryPlanExecutionInput,
+    output = M.GetRecoveryPlanExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRecoveryPlanExecution" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecoveryPlanExecutionStep = schema.operation({
+    id = id.from("com.amazonaws.drs", "GetRecoveryPlanExecutionStep"),
+    input = M.GetRecoveryPlanExecutionStepInput,
+    output = M.GetRecoveryPlanExecutionStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRecoveryPlanExecutionStep" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRecoveryPlanStep = schema.operation({
+    id = id.from("com.amazonaws.drs", "GetRecoveryPlanStep"),
+    input = M.GetRecoveryPlanStepInput,
+    output = M.GetRecoveryPlanStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRecoveryPlanStep" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetReplicationConfiguration = schema.operation({
     id = id.from("com.amazonaws.drs", "GetReplicationConfiguration"),
     input = M.GetReplicationConfigurationInput,
@@ -6086,6 +7760,54 @@ M.ListLaunchActions = schema.operation({
     },
 })
 
+M.ListRecoveryPlanExecutions = schema.operation({
+    id = id.from("com.amazonaws.drs", "ListRecoveryPlanExecutions"),
+    input = M.ListRecoveryPlanExecutionsInput,
+    output = M.ListRecoveryPlanExecutionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRecoveryPlanExecutions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecoveryPlanExecutionSteps = schema.operation({
+    id = id.from("com.amazonaws.drs", "ListRecoveryPlanExecutionSteps"),
+    input = M.ListRecoveryPlanExecutionStepsInput,
+    output = M.ListRecoveryPlanExecutionStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRecoveryPlanExecutionSteps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecoveryPlans = schema.operation({
+    id = id.from("com.amazonaws.drs", "ListRecoveryPlans"),
+    input = M.ListRecoveryPlansInput,
+    output = M.ListRecoveryPlansOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRecoveryPlans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecoveryPlanSteps = schema.operation({
+    id = id.from("com.amazonaws.drs", "ListRecoveryPlanSteps"),
+    input = M.ListRecoveryPlanStepsInput,
+    output = M.ListRecoveryPlanStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRecoveryPlanSteps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListStagingAccounts = schema.operation({
     id = id.from("com.amazonaws.drs", "ListStagingAccounts"),
     input = M.ListStagingAccountsInput,
@@ -6122,12 +7844,36 @@ M.PutLaunchAction = schema.operation({
     },
 })
 
+M.ReorderRecoveryPlanSteps = schema.operation({
+    id = id.from("com.amazonaws.drs", "ReorderRecoveryPlanSteps"),
+    input = M.ReorderRecoveryPlanStepsInput,
+    output = M.ReorderRecoveryPlanStepsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ReorderRecoveryPlanSteps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.RetryDataReplication = schema.operation({
     id = id.from("com.amazonaws.drs", "RetryDataReplication"),
     input = M.RetryDataReplicationInput,
     output = M.RetryDataReplicationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/RetryDataReplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RetryRecoveryPlanExecutionStep = schema.operation({
+    id = id.from("com.amazonaws.drs", "RetryRecoveryPlanExecutionStep"),
+    input = M.RetryRecoveryPlanExecutionStepInput,
+    output = M.RetryRecoveryPlanExecutionStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RetryRecoveryPlanExecutionStep" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -6164,6 +7910,18 @@ M.StartRecovery = schema.operation({
     output = M.StartRecoveryOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/StartRecovery" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartRecoveryPlanExecution = schema.operation({
+    id = id.from("com.amazonaws.drs", "StartRecoveryPlanExecution"),
+    input = M.StartRecoveryPlanExecutionInput,
+    output = M.StartRecoveryPlanExecutionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartRecoveryPlanExecution" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -6308,6 +8066,42 @@ M.UpdateLaunchConfigurationTemplate = schema.operation({
     output = M.UpdateLaunchConfigurationTemplateOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/UpdateLaunchConfigurationTemplate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecoveryPlan = schema.operation({
+    id = id.from("com.amazonaws.drs", "UpdateRecoveryPlan"),
+    input = M.UpdateRecoveryPlanInput,
+    output = M.UpdateRecoveryPlanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateRecoveryPlan" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecoveryPlanExecutionStep = schema.operation({
+    id = id.from("com.amazonaws.drs", "UpdateRecoveryPlanExecutionStep"),
+    input = M.UpdateRecoveryPlanExecutionStepInput,
+    output = M.UpdateRecoveryPlanExecutionStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateRecoveryPlanExecutionStep" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecoveryPlanStep = schema.operation({
+    id = id.from("com.amazonaws.drs", "UpdateRecoveryPlanStep"),
+    input = M.UpdateRecoveryPlanStepInput,
+    output = M.UpdateRecoveryPlanStepOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateRecoveryPlanStep" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

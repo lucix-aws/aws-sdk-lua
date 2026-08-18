@@ -2143,6 +2143,7 @@ local record M
     enum DatasetSchemaType
         "AGENTCORE_EVALUATION_PREDEFINED_V1"
         "AGENTCORE_EVALUATION_SIMULATED_V1"
+        "GENERIC_EVALUATION_PREDEFINED_V1"
     end
 
     record CreateDatasetInput
@@ -2482,6 +2483,14 @@ local record M
         responsesEvaluatorModelConfig: OpenResponsesEvaluatorModelConfig
     end
 
+    -- The configuration for a derived evaluator. It reuses an existing evaluator's logic on your own model.
+    record DerivedEvaluatorConfig
+        -- The identifier of the base evaluator whose logic to run (a Builtin.* or ThirdParty.* evaluator).
+        baseEvaluatorId: string
+        -- The configuration of the evaluator model that you supply.
+        modelConfig: EvaluatorModelConfig
+    end
+
     -- The definition of a categorical rating scale option that provides a named category with its description for evaluation scoring.
     record CategoricalScaleDefinition
         -- The description that explains what this categorical rating represents and when it should be used.
@@ -2524,6 +2533,8 @@ local record M
         llmAsAJudge: LlmAsAJudgeEvaluatorConfig
         -- Configuration for a code-based evaluator that uses a customer-managed Lambda function to programmatically assess agent performance.
         codeBased: CodeBasedEvaluatorConfig
+        -- The configuration for an evaluator derived from an existing base evaluator (a built-in or third-party evaluator), run on your own model. The base evaluator supplies the prompt and scoring.
+        derived: DerivedEvaluatorConfig
     end
 
     enum EvaluatorLevel
@@ -2595,6 +2606,21 @@ local record M
         includedData: string
     end
 
+    enum EvaluatorType
+        "Builtin"
+        "ThirdParty"
+        "Custom"
+        "CustomCode"
+        "CustomDerived"
+    end
+
+    enum Provider
+        "AWS"
+        "DeepEval"
+        "AutoEval"
+        "Custom"
+    end
+
     record GetEvaluatorOutput
         -- The Amazon Resource Name (ARN) of the evaluator.
         evaluatorArn: string
@@ -2606,6 +2632,10 @@ local record M
         description: string
         -- The configuration of the evaluator, including LLM-as-a-Judge or code-based settings.
         evaluatorConfig: EvaluatorConfig
+        -- The kind of evaluator resource. Valid values: Builtin – An Amazon Web Services-managed global evaluator. ThirdParty – An Amazon Web Services-managed global evaluator from a third-party provider. Custom – A customer-created evaluator. CustomCode – A customer-created code-based evaluator. CustomDerived – A customer-created evaluator derived from an existing base evaluator.
+        evaluatorType: string
+        -- The source of the evaluator's logic: Amazon Web Services, a third-party library, or you.
+        provider: string
         -- The evaluation level (TOOL_CALL, TRACE, or SESSION) that determines the scope of evaluation.
         level: string
         -- The current status of the evaluator.
@@ -2627,12 +2657,6 @@ local record M
         maxResults: number
     end
 
-    enum EvaluatorType
-        "Builtin"
-        "Custom"
-        "CustomCode"
-    end
-
     -- The summary information about an evaluator, including basic metadata and status information.
     record EvaluatorSummary
         -- The Amazon Resource Name (ARN) of the evaluator.
@@ -2645,6 +2669,8 @@ local record M
         description: string
         -- The type of evaluator, indicating whether it is a built-in evaluator provided by the service or a custom evaluator created by the user.
         evaluatorType: string
+        -- The source of the evaluator's logic: Amazon Web Services, a third-party library, or you.
+        provider: string
         -- The evaluation level (TOOL_CALL, TRACE, or SESSION) that determines the scope of evaluation.
         level: string
         -- The current status of the evaluator.

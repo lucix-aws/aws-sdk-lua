@@ -13,6 +13,8 @@ M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.Val
 
 M.TravelModeList = schema.new({ type = "list", list_member = prelude.String })
 
+M.PoiCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
 M.TileAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
@@ -626,6 +628,25 @@ M.GetStyleDescriptorInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "buildings" },
             },
         }),
+        PoiDensity = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "PoiDensity"),
+            type = "string",
+            name = "PoiDensity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "poi-density" },
+            },
+        }),
+        PoiCategories = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "PoiCategories"),
+            type = "list",
+            name = "PoiCategories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "poi-categories" },
+            },
+        }),
         Key = schema.new({
             id = id.from(_N, "GetStyleDescriptorInput", "Key"),
             type = "string",
@@ -850,7 +871,7 @@ M.GetGlyphs = schema.operation({
     input = M.GetGlyphsInput,
     output = M.GetGlyphsOutput,
     traits = {
-        [traits.HTTP] = { method = "GET", path = "/glyphs/{FontStack}/{FontUnicodeRange}" },
+        [traits.HTTP] = { method = "GET", path = "/v2/glyphs/{FontStack}/{FontUnicodeRange}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -862,7 +883,7 @@ M.GetSprites = schema.operation({
     input = M.GetSpritesInput,
     output = M.GetSpritesOutput,
     traits = {
-        [traits.HTTP] = { method = "GET", path = "/styles/{Style}/{ColorScheme}/{Variant}/sprites/{FileName}" },
+        [traits.HTTP] = { method = "GET", path = "/v2/styles/{Style}/{ColorScheme}/{Variant}/sprites/{FileName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -874,7 +895,7 @@ M.GetStaticMap = schema.operation({
     input = M.GetStaticMapInput,
     output = M.GetStaticMapOutput,
     traits = {
-        [traits.HTTP] = { method = "GET", path = "/static/{FileName}" },
+        [traits.HTTP] = { method = "GET", path = "/v2/static/{FileName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -886,7 +907,7 @@ M.GetStyleDescriptor = schema.operation({
     input = M.GetStyleDescriptorInput,
     output = M.GetStyleDescriptorOutput,
     traits = {
-        [traits.HTTP] = { method = "GET", path = "/styles/{Style}/descriptor" },
+        [traits.HTTP] = { method = "GET", path = "/v2/styles/{Style}/descriptor" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -898,7 +919,7 @@ M.GetTile = schema.operation({
     input = M.GetTileInput,
     output = M.GetTileOutput,
     traits = {
-        [traits.HTTP] = { method = "GET", path = "/tiles/{Tileset}/{Z}/{X}/{Y}" },
+        [traits.HTTP] = { method = "GET", path = "/v2/tiles/{Tileset}/{Z}/{X}/{Y}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
