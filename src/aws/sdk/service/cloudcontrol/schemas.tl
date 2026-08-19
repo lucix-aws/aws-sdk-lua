@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.cloudcontrol"
 
@@ -24,6 +25,7 @@ M.AlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AlreadyExistsException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -143,6 +145,7 @@ M.ConcurrentModificationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConcurrentModificationException", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -159,6 +162,7 @@ M.RequestTokenNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RequestTokenNotFoundException", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -175,6 +179,7 @@ M.ClientTokenConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ClientTokenConflictException", httpResponseCode = 409 },
     },
     members = {
         Message = schema.new({
@@ -191,6 +196,7 @@ M.ConcurrentOperationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConcurrentOperationException", httpResponseCode = 409 },
     },
     members = {
         Message = schema.new({
@@ -267,6 +273,7 @@ M.GeneralServiceException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "GeneralServiceException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -283,6 +290,7 @@ M.HandlerFailureException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "HandlerFailureException", httpResponseCode = 502 },
     },
     members = {
         Message = schema.new({
@@ -299,6 +307,7 @@ M.HandlerInternalFailureException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "HandlerInternalFailureException", httpResponseCode = 502 },
     },
     members = {
         Message = schema.new({
@@ -315,6 +324,7 @@ M.InvalidCredentialsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidCredentialsException", httpResponseCode = 401 },
     },
     members = {
         Message = schema.new({
@@ -331,6 +341,7 @@ M.InvalidRequestException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidRequestException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -347,6 +358,7 @@ M.NetworkFailureException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "NetworkFailureException", httpResponseCode = 502 },
     },
     members = {
         Message = schema.new({
@@ -363,6 +375,7 @@ M.NotStabilizedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NotStabilizedException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -379,6 +392,7 @@ M.NotUpdatableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NotUpdatableException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -395,6 +409,7 @@ M.PrivateTypeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PrivateTypeException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -411,6 +426,7 @@ M.ResourceConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceConflictException", httpResponseCode = 409 },
     },
     members = {
         Message = schema.new({
@@ -427,6 +443,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFoundException", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -443,6 +460,7 @@ M.ServiceInternalErrorException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceInternalErrorException", httpResponseCode = 502 },
     },
     members = {
         Message = schema.new({
@@ -459,6 +477,7 @@ M.ServiceLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceLimitExceededException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -475,6 +494,7 @@ M.ThrottlingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ThrottlingException", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({
@@ -491,6 +511,7 @@ M.TypeNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TypeNotFoundException", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -507,6 +528,7 @@ M.UnsupportedActionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedActionException", httpResponseCode = 405 },
     },
     members = {
         Message = schema.new({

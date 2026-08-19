@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.bedrock"
 
@@ -8985,7 +8986,7 @@ M.EvaluationSummary = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         ragIdentifiers = schema.new({

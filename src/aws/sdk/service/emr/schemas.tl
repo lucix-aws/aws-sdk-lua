@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.emr"
 
@@ -732,6 +733,7 @@ M.InternalServerError = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalFailure", httpResponseCode = 500 },
     },
 })
 

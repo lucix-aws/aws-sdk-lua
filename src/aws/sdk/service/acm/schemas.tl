@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.acm"
 
@@ -74,6 +75,7 @@ M.AccessDeniedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AccessDenied", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -1024,6 +1026,7 @@ M.ThrottlingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "Throttling", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1063,6 +1066,7 @@ M.ValidationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ValidationError", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

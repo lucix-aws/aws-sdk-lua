@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.sts"
 
@@ -271,6 +272,7 @@ M.ExpiredTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ExpiredTokenException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -287,6 +289,7 @@ M.MalformedPolicyDocumentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MalformedPolicyDocument", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -303,6 +306,7 @@ M.PackedPolicyTooLargeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PackedPolicyTooLarge", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -319,6 +323,7 @@ M.RegionDisabledException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RegionDisabledException", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -451,6 +456,7 @@ M.IDPRejectedClaimException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IDPRejectedClaim", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -467,6 +473,7 @@ M.InvalidIdentityTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidIdentityToken", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -593,6 +600,7 @@ M.IDPCommunicationErrorException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IDPCommunicationError", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -690,6 +698,7 @@ M.InvalidAuthorizationMessageException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAuthorizationMessageException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -765,6 +774,7 @@ M.ExpiredTradeInTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ExpiredTradeInTokenException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1014,6 +1024,7 @@ M.JWTPayloadSizeExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "JWTPayloadSizeExceededException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1030,6 +1041,7 @@ M.OutboundWebIdentityFederationDisabledException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OutboundWebIdentityFederationDisabledException", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -1046,6 +1058,7 @@ M.SessionDurationEscalationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SessionDurationEscalationException", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({

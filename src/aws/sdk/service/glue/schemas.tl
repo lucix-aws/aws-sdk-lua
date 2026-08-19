@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.glue"
 
@@ -1492,7 +1493,7 @@ M.Property = schema.new({
             list_member = prelude.String,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         AllowedValues = schema.new({
@@ -18326,7 +18327,7 @@ M.ComputeEnvironmentConfiguration = schema.new({
             list_member = prelude.String,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         PhysicalConnectionPropertiesRequired = schema.new({

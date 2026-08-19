@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.dax"
 
@@ -54,6 +55,7 @@ M.ClusterAlreadyExistsFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ClusterAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -70,6 +72,7 @@ M.ClusterQuotaForCustomerExceededFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ClusterQuotaForCustomerExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -526,6 +529,7 @@ M.InsufficientClusterCapacityFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InsufficientClusterCapacity", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -542,6 +546,7 @@ M.InvalidClusterStateFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidClusterState", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -558,6 +563,7 @@ M.InvalidParameterCombinationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterCombination", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -574,6 +580,7 @@ M.InvalidParameterGroupStateFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterGroupState", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -590,6 +597,7 @@ M.InvalidParameterValueException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterValue", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -606,6 +614,7 @@ M.InvalidVPCNetworkStateFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidVPCNetworkStateFault", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -622,6 +631,7 @@ M.NodeQuotaForClusterExceededFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NodeQuotaForClusterExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -638,6 +648,7 @@ M.NodeQuotaForCustomerExceededFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NodeQuotaForCustomerExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -654,6 +665,7 @@ M.ParameterGroupNotFoundFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterGroupNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -670,6 +682,7 @@ M.ServiceLinkedRoleNotFoundFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceLinkedRoleNotFoundFault", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -686,6 +699,7 @@ M.ServiceQuotaExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceQuotaExceeded", httpResponseCode = 402 },
     },
 })
 
@@ -694,6 +708,7 @@ M.SubnetGroupNotFoundFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetGroupNotFoundFault", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -710,6 +725,7 @@ M.TagQuotaPerResourceExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TagQuotaPerResourceExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -781,6 +797,7 @@ M.ParameterGroupAlreadyExistsFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterGroupAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -797,6 +814,7 @@ M.ParameterGroupQuotaExceededFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterGroupQuotaExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -924,6 +942,7 @@ M.InvalidSubnet = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSubnet", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -940,6 +959,7 @@ M.SubnetGroupAlreadyExistsFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetGroupAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -956,6 +976,7 @@ M.SubnetGroupQuotaExceededFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetGroupQuotaExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -972,6 +993,7 @@ M.SubnetNotAllowedFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetNotAllowedFault", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -988,6 +1010,7 @@ M.SubnetQuotaExceededFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetQuotaExceededFault", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1004,6 +1027,7 @@ M.ClusterNotFoundFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ClusterNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -1074,6 +1098,7 @@ M.NodeNotFoundFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NodeNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -1178,6 +1203,7 @@ M.SubnetGroupInUseFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetGroupInUse", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1659,6 +1685,7 @@ M.InvalidARNFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidARN", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1796,6 +1823,7 @@ M.TagNotFoundFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TagNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -1978,6 +2006,7 @@ M.SubnetInUse = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetInUse", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

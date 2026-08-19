@@ -541,6 +541,57 @@ local record M
         Outpost: Outpost
     end
 
+    -- Information about a VPC used for private connectivity, including its subnets and an
+    -- associated VPC endpoint.
+    record VpcInformation
+        -- The ID of the VPC used for private connectivity.
+        VpcId: string
+        -- The IDs of the subnets associated with the VPC endpoint. Currently, only one subnet is
+        -- supported.
+        SubnetIds: {string}
+        -- The ID of the interface VPC endpoint for the Amazon Web Services Outposts service. When specified, the endpoint
+        -- must be in the available state and the specified subnets must be associated with
+        -- it.
+        VpcEndpointId: string
+    end
+
+    record CreatePrivateConnectivityConfigInput
+        -- The ID or ARN of the Outpost.
+        OutpostId: string
+        -- Information about the VPC used for private connectivity, including the VPC, its subnets,
+        -- and an associated VPC endpoint. You can specify at most one entry.
+        VpcInformationList: {VpcInformation}
+    end
+
+    enum PrivateConnectivityStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- Information about the private connectivity configuration for an Outpost.
+    record PrivateConnectivityConfig
+        -- The Amazon Resource Name (ARN) of the service-linked role that Amazon Web Services Outposts creates and uses to
+        -- provision and attach the network interfaces for private connectivity in your VPC. The role's
+        -- permissions are scoped to the specific Outpost and VPC.
+        RoleArn: string
+        -- The status of private connectivity for the Outpost. Valid values are ENABLED
+        -- and DISABLED.
+        PrivateConnectivityStatus: string
+        -- Information about the VPC used for private connectivity.
+        VpcInformationList: {VpcInformation}
+        -- The Amazon Resource Name (ARN) of the provisioning role in your account that Amazon Web Services Outposts uses
+        -- to establish the service link connection during Outpost installation. This field is present
+        -- only when VPC endpoint-based provisioning is configured.
+        ProvisioningRoleArn: string
+    end
+
+    record CreatePrivateConnectivityConfigOutput
+        -- The private connectivity configuration for the Outpost.
+        PrivateConnectivityConfig: PrivateConnectivityConfig
+        -- The ID of the Outpost.
+        OutpostId: string
+    end
+
     enum QuoteConstraintType
         "RACK_MAXIMUM"
         "RACK_MAX_POWER_KVA"
@@ -1304,6 +1355,16 @@ local record M
     record GetOutpostSupportedInstanceTypesOutput
         InstanceTypes: {InstanceTypeItem}
         NextToken: string
+    end
+
+    record GetPrivateConnectivityConfigInput
+        -- The ID or ARN of the Outpost.
+        OutpostId: string
+    end
+
+    record GetPrivateConnectivityConfigOutput
+        -- The private connectivity configuration for the Outpost.
+        PrivateConnectivityConfig: PrivateConnectivityConfig
     end
 
     record GetQuoteInput

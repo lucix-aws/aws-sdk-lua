@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.wickr"
 
@@ -1050,7 +1051,7 @@ M.Bot = schema.new({
         }),
         status = schema.new({
             id = id.from(_N, "Bot", "status"),
-            type = "number",
+            type = "int_enum",
             name = "status",
             target_id = prelude.Integer.id,
         }),
@@ -2121,7 +2122,7 @@ M.GetBotOutput = schema.new({
         }),
         status = schema.new({
             id = id.from(_N, "GetBotOutput", "status"),
-            type = "number",
+            type = "int_enum",
             name = "status",
             target_id = prelude.Integer.id,
         }),
@@ -3231,7 +3232,7 @@ M.ListBotsInput = schema.new({
         }),
         status = schema.new({
             id = id.from(_N, "ListBotsInput", "status"),
-            type = "number",
+            type = "int_enum",
             name = "status",
             target_id = prelude.Integer.id,
             traits = {
@@ -3833,7 +3834,7 @@ M.ListUsersInput = schema.new({
         }),
         status = schema.new({
             id = id.from(_N, "ListUsersInput", "status"),
-            type = "number",
+            type = "int_enum",
             name = "status",
             target_id = prelude.Integer.id,
             traits = {

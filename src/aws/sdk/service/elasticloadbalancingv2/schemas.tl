@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.elasticloadbalancingv2"
 
@@ -615,6 +616,7 @@ M.CertificateNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CertificateNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -631,6 +633,7 @@ M.ListenerNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ListenerNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -647,6 +650,7 @@ M.TooManyCertificatesException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyCertificates", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -717,6 +721,7 @@ M.DuplicateTagKeysException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateTagKeys", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -733,6 +738,7 @@ M.LoadBalancerNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LoadBalancerNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -749,6 +755,7 @@ M.RuleNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RuleNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -765,6 +772,7 @@ M.TargetGroupNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TargetGroupNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -781,6 +789,7 @@ M.TooManyTagsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyTags", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -797,6 +806,7 @@ M.TrustStoreNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TrustStoreNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -912,6 +922,7 @@ M.InvalidRevocationContentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidRevocationContent", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -928,6 +939,7 @@ M.RevocationContentNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RevocationContentNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -944,6 +956,7 @@ M.TooManyTrustStoreRevocationEntriesException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyTrustStoreRevocationEntries", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -985,6 +998,7 @@ M.AllocationIdNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AllocationIdNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1001,6 +1015,7 @@ M.ALPNPolicyNotSupportedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ALPNPolicyNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1106,6 +1121,7 @@ M.AvailabilityZoneNotSupportedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AvailabilityZoneNotSupported", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1122,6 +1138,7 @@ M.CaCertificatesBundleNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CaCertificatesBundleNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1138,6 +1155,7 @@ M.CapacityDecreaseRequestsLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CapacityDecreaseRequestLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1154,6 +1172,7 @@ M.CapacityReservationPendingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CapacityReservationPending", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1189,6 +1208,7 @@ M.CapacityUnitsLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CapacityUnitsLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1412,6 +1432,7 @@ M.DuplicateListenerException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateListener", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1428,6 +1449,7 @@ M.IncompatibleProtocolsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IncompatibleProtocols", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1444,6 +1466,7 @@ M.InvalidConfigurationRequestException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidConfigurationRequest", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1460,6 +1483,7 @@ M.InvalidLoadBalancerActionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidLoadBalancerAction", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1476,6 +1500,7 @@ M.SSLPolicyNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SSLPolicyNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1492,6 +1517,7 @@ M.TargetGroupAssociationLimitException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TargetGroupAssociationLimit", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1508,6 +1534,7 @@ M.TooManyActionsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyActions", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1524,6 +1551,7 @@ M.TooManyListenersException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyListeners", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1540,6 +1568,7 @@ M.TooManyRegistrationsForTargetIdException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyRegistrationsForTargetId", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1556,6 +1585,7 @@ M.TooManyTargetsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyTargets", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1572,6 +1602,7 @@ M.TooManyUniqueTargetGroupsPerLoadBalancerException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyUniqueTargetGroupsPerLoadBalancer", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1588,6 +1619,7 @@ M.TrustStoreNotReadyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TrustStoreNotReady", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1604,6 +1636,7 @@ M.UnsupportedProtocolException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedProtocol", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1891,6 +1924,7 @@ M.DuplicateLoadBalancerNameException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateLoadBalancerName", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1907,6 +1941,7 @@ M.InvalidSchemeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidScheme", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1923,6 +1958,7 @@ M.InvalidSecurityGroupException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSecurityGroup", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1939,6 +1975,7 @@ M.InvalidSubnetException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSubnet", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1955,6 +1992,7 @@ M.OperationNotPermittedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OperationNotPermitted", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1971,6 +2009,7 @@ M.ResourceInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceInUse", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1987,6 +2026,7 @@ M.SubnetNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2003,6 +2043,7 @@ M.TooManyLoadBalancersException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyLoadBalancers", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2426,6 +2467,7 @@ M.PriorityInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PriorityInUse", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2442,6 +2484,7 @@ M.TooManyRulesException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyRules", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2458,6 +2501,7 @@ M.TooManyTargetGroupsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyTargetGroups", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2750,6 +2794,7 @@ M.DuplicateTargetGroupNameException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateTargetGroupName", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2864,6 +2909,7 @@ M.DuplicateTrustStoreNameException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateTrustStoreName", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2880,6 +2926,7 @@ M.InvalidCaCertificatesBundleException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidCaCertificatesBundle", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2896,6 +2943,7 @@ M.TooManyTrustStoresException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyTrustStores", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2912,6 +2960,7 @@ M.DeleteAssociationSameAccountException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DeleteAssociationSameAccount", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3021,6 +3070,7 @@ M.TrustStoreAssociationNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AssociationNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3079,6 +3129,7 @@ M.TrustStoreInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TrustStoreInUse", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3160,6 +3211,7 @@ M.InvalidTargetException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidTarget", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3980,6 +4032,7 @@ M.HealthUnavailableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "HealthUnavailable", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -4143,6 +4196,7 @@ M.RevocationIdNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RevocationIdNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4241,6 +4295,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4324,6 +4379,7 @@ M.InsufficientCapacityException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InsufficientCapacity", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -4402,6 +4458,7 @@ M.PriorRequestNotCompleteException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PriorRequestNotComplete", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({

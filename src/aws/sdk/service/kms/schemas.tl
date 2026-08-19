@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.kms"
 
@@ -85,6 +86,7 @@ M.AlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AlreadyExists", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -130,6 +132,7 @@ M.DependencyTimeoutException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "DependencyTimeout", httpResponseCode = 503 },
     },
     members = {
         message = schema.new({
@@ -146,6 +149,7 @@ M.InvalidArnException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidArn", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -162,6 +166,7 @@ M.KMSInternalException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMSInternal", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -178,6 +183,7 @@ M.KMSInvalidStateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMSInvalidStateException", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -194,6 +200,7 @@ M.NotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -210,6 +217,7 @@ M.CloudHsmClusterInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CloudHsmClusterInUseException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -226,6 +234,7 @@ M.CloudHsmClusterInvalidConfigurationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CloudHsmClusterInvalidConfigurationException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -242,6 +251,7 @@ M.CloudHsmClusterNotActiveException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CloudHsmClusterNotActiveException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -258,6 +268,7 @@ M.CloudHsmClusterNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CloudHsmClusterNotFoundException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -274,6 +285,7 @@ M.CloudHsmClusterNotRelatedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CloudHsmClusterNotRelatedException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -290,6 +302,7 @@ M.ConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConflictException", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -327,6 +340,7 @@ M.CustomKeyStoreInvalidStateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CustomKeyStoreInvalidStateException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -343,6 +357,7 @@ M.CustomKeyStoreNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CustomKeyStoreNotFoundException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -386,6 +401,7 @@ M.InvalidAliasNameException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAliasName", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -402,6 +418,7 @@ M.LimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -533,6 +550,7 @@ M.CustomKeyStoreNameInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CustomKeyStoreNameInUseException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -549,6 +567,7 @@ M.IncorrectTrustAnchorException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IncorrectTrustAnchorException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -565,6 +584,7 @@ M.XksProxyIncorrectAuthenticationCredentialException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyIncorrectAuthenticationCredentialException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -581,6 +601,7 @@ M.XksProxyInvalidConfigurationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyInvalidConfigurationException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -597,6 +618,7 @@ M.XksProxyInvalidResponseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyInvalidResponseException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -613,6 +635,7 @@ M.XksProxyUriEndpointInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyUriEndpointInUseException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -629,6 +652,7 @@ M.XksProxyUriInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyUriInUseException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -645,6 +669,7 @@ M.XksProxyUriUnreachableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyUriUnreachableException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -661,6 +686,7 @@ M.XksProxyVpcEndpointServiceInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyVpcEndpointServiceInUseException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -677,6 +703,7 @@ M.XksProxyVpcEndpointServiceInvalidConfigurationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyVpcEndpointServiceInvalidConfigurationException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -693,6 +720,7 @@ M.XksProxyVpcEndpointServiceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksProxyVpcEndpointServiceNotFoundException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -833,6 +861,7 @@ M.DisabledException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "Disabled", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -849,6 +878,7 @@ M.DryRunOperationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DryRunOperation", httpResponseCode = 412 },
     },
     members = {
         message = schema.new({
@@ -865,6 +895,7 @@ M.InvalidGrantTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidGrantToken", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1231,6 +1262,7 @@ M.MalformedPolicyDocumentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MalformedPolicyDocument", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1247,6 +1279,7 @@ M.TagException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TagException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1263,6 +1296,7 @@ M.UnsupportedOperationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedOperation", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1279,6 +1313,7 @@ M.XksKeyAlreadyInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksKeyAlreadyInUse", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1295,6 +1330,7 @@ M.XksKeyInvalidConfigurationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksKeyInvalidConfiguration", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1311,6 +1347,7 @@ M.XksKeyNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "XksKeyNotFoundException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1327,6 +1364,7 @@ M.CustomKeyStoreHasCMKsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CustomKeyStoreHasCMKsException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1564,6 +1602,7 @@ M.IncorrectKeyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IncorrectKeyException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1580,6 +1619,7 @@ M.InvalidCiphertextException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidCiphertext", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1596,6 +1636,7 @@ M.InvalidKeyUsageException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidKeyUsage", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1612,6 +1653,7 @@ M.KeyUnavailableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "KeyUnavailable", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -1859,6 +1901,7 @@ M.InvalidMarkerException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidMarker", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2088,6 +2131,7 @@ M.ExpiredImportTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ExpiredImportTokenException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3053,6 +3097,7 @@ M.IncorrectKeyMaterialException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IncorrectKeyMaterialException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3069,6 +3114,7 @@ M.InvalidImportTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidImportTokenException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3085,6 +3131,7 @@ M.InvalidGrantIdException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidGrantId", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3120,6 +3167,7 @@ M.KMSInvalidMacException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMSInvalidMac", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3136,6 +3184,7 @@ M.KMSInvalidSignatureException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMSInvalidSignature", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

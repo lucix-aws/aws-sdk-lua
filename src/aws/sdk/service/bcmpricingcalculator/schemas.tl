@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.bcmpricingcalculator"
 
@@ -116,6 +117,7 @@ M.AccessDeniedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AccessDeniedCode", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -350,6 +352,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFoundCode", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -387,6 +390,7 @@ M.ThrottlingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ThrottlingCode", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -1023,6 +1027,7 @@ M.ConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConflictCode", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -2010,6 +2015,7 @@ M.ServiceQuotaExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceQuotaCode", httpResponseCode = 402 },
     },
     members = {
         message = schema.new({

@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.licensemanager"
 
@@ -141,6 +142,7 @@ M.AccessDeniedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceAccessDenied", httpResponseCode = 401 },
     },
     members = {
         Message = schema.new({
@@ -157,6 +159,7 @@ M.AuthorizationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AuthorizationFailure", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -173,6 +176,7 @@ M.InvalidParameterValueException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterValueProvided", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -189,6 +193,7 @@ M.RateLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RateLimitExceeded", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({
@@ -205,6 +210,7 @@ M.ResourceLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -221,6 +227,7 @@ M.ServerInternalException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalError", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -393,6 +400,7 @@ M.ConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConflictException", httpResponseCode = 409 },
     },
     members = {
         Message = schema.new({
@@ -409,6 +417,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResource.NotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1895,7 +1904,7 @@ M.ReportContext = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         licenseAssetGroupArns = schema.new({
@@ -3699,6 +3708,7 @@ M.FilterLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "FilterLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4960,6 +4970,7 @@ M.FailedDependencyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "FailedDependency", httpResponseCode = 424 },
     },
     members = {
         Message = schema.new({
@@ -5781,6 +5792,7 @@ M.InvalidResourceStateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceState", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -5797,6 +5809,7 @@ M.LicenseUsageException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LicenseUsageFailure", httpResponseCode = 412 },
     },
     members = {
         Message = schema.new({

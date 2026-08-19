@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.applicationautoscaling"
 
@@ -77,6 +78,7 @@ M.ConcurrentUpdateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConcurrentUpdateException", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -141,6 +143,7 @@ M.InternalServiceException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalServiceException", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -157,6 +160,7 @@ M.ObjectNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ObjectNotFoundException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -173,6 +177,7 @@ M.ValidationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ValidationException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -451,6 +456,7 @@ M.InvalidNextTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidNextTokenException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1472,6 +1478,7 @@ M.FailedResourceAccessException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "FailedResourceAccessException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1871,6 +1878,7 @@ M.LimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceededException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({

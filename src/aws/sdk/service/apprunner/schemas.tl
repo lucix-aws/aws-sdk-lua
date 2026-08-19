@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.apprunner"
 
@@ -219,6 +220,7 @@ M.InternalServiceErrorException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalServiceError", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -235,6 +237,7 @@ M.InvalidRequestException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidRequest", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -251,6 +254,7 @@ M.InvalidStateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidState", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -423,6 +427,7 @@ M.ServiceQuotaExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceQuotaExceeded", httpResponseCode = 402 },
     },
     members = {
         Message = schema.new({
@@ -1661,6 +1666,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotfound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({

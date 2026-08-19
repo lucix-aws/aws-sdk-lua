@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.autoscaling"
 
@@ -204,6 +205,7 @@ M.ActiveInstanceRefreshNotFoundFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ActiveInstanceRefreshNotFound", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -360,6 +362,7 @@ M.AlreadyExistsFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AlreadyExists", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -401,6 +404,7 @@ M.ResourceContentionFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceContention", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -417,6 +421,7 @@ M.ServiceLinkedRoleFailure = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceLinkedRoleFailure", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -464,6 +469,7 @@ M.InstanceRefreshInProgressFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InstanceRefreshInProgress", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -736,6 +742,7 @@ M.LimitExceededFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2103,6 +2110,7 @@ M.ResourceInUseFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceInUse", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2143,6 +2151,7 @@ M.ScalingActivityInProgressFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ScalingActivityInProgress", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2979,6 +2988,7 @@ M.InvalidNextToken = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidNextToken", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -5695,6 +5705,7 @@ M.IdempotentCallInProgressFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "IdempotentCallInProgress", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -5711,6 +5722,7 @@ M.IdempotentParameterMismatchError = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IdempotentParameterMismatch", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -6326,6 +6338,7 @@ M.IrreversibleInstanceRefreshFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IrreversibleInstanceRefresh", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

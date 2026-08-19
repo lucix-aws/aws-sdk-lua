@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.workspaces"
 
@@ -2133,6 +2134,12 @@ M.WorkspaceProperties = schema.new({
             name = "GlobalAccelerator",
             target_id = id.from(_N, "GlobalAcceleratorForWorkSpace"),
             target = M.GlobalAcceleratorForWorkSpace,
+        }),
+        NestedVirtualizationEnabled = schema.new({
+            id = id.from(_N, "WorkspaceProperties", "NestedVirtualizationEnabled"),
+            type = "boolean",
+            name = "NestedVirtualizationEnabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

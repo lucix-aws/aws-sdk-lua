@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.cloudsearch"
 
@@ -86,6 +87,7 @@ M.InternalException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalException", httpResponseCode = 500 },
     },
     members = {
         Code = schema.new({
@@ -108,6 +110,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFound", httpResponseCode = 409 },
     },
     members = {
         Code = schema.new({
@@ -317,6 +320,7 @@ M.LimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceeded", httpResponseCode = 409 },
     },
     members = {
         Code = schema.new({
@@ -339,6 +343,7 @@ M.ResourceAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceAlreadyExists", httpResponseCode = 409 },
     },
     members = {
         Code = schema.new({
@@ -549,6 +554,7 @@ M.InvalidTypeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidType", httpResponseCode = 409 },
     },
     members = {
         Code = schema.new({
@@ -1712,6 +1718,7 @@ M.DisabledOperationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DisabledAction", httpResponseCode = 409 },
     },
     members = {
         Code = schema.new({

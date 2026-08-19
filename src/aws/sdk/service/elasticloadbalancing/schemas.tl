@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.elasticloadbalancing"
 
@@ -101,6 +102,7 @@ M.AccessPointNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LoadBalancerNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -190,6 +192,7 @@ M.DuplicateTagKeysException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateTagKeys", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -206,6 +209,7 @@ M.TooManyTagsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyTags", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -281,6 +285,7 @@ M.InvalidConfigurationRequestException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidConfigurationRequest", httpResponseCode = 409 },
     },
     members = {
         Message = schema.new({
@@ -297,6 +302,7 @@ M.InvalidSecurityGroupException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSecurityGroup", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -353,6 +359,7 @@ M.InvalidSubnetException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSubnet", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -369,6 +376,7 @@ M.SubnetNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubnetNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -405,6 +413,7 @@ M.CertificateNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CertificateNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -591,6 +600,7 @@ M.DuplicatePolicyNameException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicatePolicyName", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -607,6 +617,7 @@ M.TooManyPoliciesException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyPolicies", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -779,6 +790,7 @@ M.DuplicateAccessPointNameException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateLoadBalancerName", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -795,6 +807,7 @@ M.InvalidSchemeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidScheme", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -811,6 +824,7 @@ M.OperationNotPermittedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OperationNotPermitted", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -827,6 +841,7 @@ M.TooManyAccessPointsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyLoadBalancers", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -843,6 +858,7 @@ M.UnsupportedProtocolException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedProtocol", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -890,6 +906,7 @@ M.DuplicateListenerException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateListener", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -971,6 +988,7 @@ M.PolicyTypeNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PolicyTypeNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1086,6 +1104,7 @@ M.DependencyThrottleException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DependencyThrottle", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1155,6 +1174,7 @@ M.InvalidEndPointException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidInstance", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1369,6 +1389,7 @@ M.LoadBalancerAttributeNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LoadBalancerAttributeNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1464,6 +1485,7 @@ M.PolicyNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PolicyNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2118,6 +2140,7 @@ M.ListenerNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ListenerNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({

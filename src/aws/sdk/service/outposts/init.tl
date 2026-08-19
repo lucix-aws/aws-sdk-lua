@@ -22,6 +22,7 @@ local record Client
     cancelOrder: function(Client, types.CancelOrderInput, ? base_client.InvokeOptions): async.Operation<types.CancelOrderOutput>
     createOrder: function(Client, types.CreateOrderInput, ? base_client.InvokeOptions): async.Operation<types.CreateOrderOutput>
     createOutpost: function(Client, types.CreateOutpostInput, ? base_client.InvokeOptions): async.Operation<types.CreateOutpostOutput>
+    createPrivateConnectivityConfig: function(Client, types.CreatePrivateConnectivityConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateConnectivityConfigOutput>
     createQuote: function(Client, types.CreateQuoteInput, ? base_client.InvokeOptions): async.Operation<types.CreateQuoteOutput>
     createRenewal: function(Client, types.CreateRenewalInput, ? base_client.InvokeOptions): async.Operation<types.CreateRenewalOutput>
     createSite: function(Client, types.CreateSiteInput, ? base_client.InvokeOptions): async.Operation<types.CreateSiteOutput>
@@ -36,6 +37,7 @@ local record Client
     getOutpostBillingInformation: function(Client, types.GetOutpostBillingInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostBillingInformationOutput>
     getOutpostInstanceTypes: function(Client, types.GetOutpostInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostInstanceTypesOutput>
     getOutpostSupportedInstanceTypes: function(Client, types.GetOutpostSupportedInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
+    getPrivateConnectivityConfig: function(Client, types.GetPrivateConnectivityConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetPrivateConnectivityConfigOutput>
     getQuote: function(Client, types.GetQuoteInput, ? base_client.InvokeOptions): async.Operation<types.GetQuoteOutput>
     getRenewalPricing: function(Client, types.GetRenewalPricingInput, ? base_client.InvokeOptions): async.Operation<types.GetRenewalPricingOutput>
     getSite: function(Client, types.GetSiteInput, ? base_client.InvokeOptions): async.Operation<types.GetSiteOutput>
@@ -121,6 +123,10 @@ function C:createOutpost(input: types.CreateOutpostInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOutpost as schema.OperationSchema, input, options) as async.Operation<types.CreateOutpostOutput>
 end
 
+function C:createPrivateConnectivityConfig(input: types.CreatePrivateConnectivityConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePrivateConnectivityConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrivateConnectivityConfig as schema.OperationSchema, input, options) as async.Operation<types.CreatePrivateConnectivityConfigOutput>
+end
+
 function C:createQuote(input: types.CreateQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQuoteOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQuote as schema.OperationSchema, input, options) as async.Operation<types.CreateQuoteOutput>
 end
@@ -175,6 +181,10 @@ end
 
 function C:getOutpostSupportedInstanceTypes(input: types.GetOutpostSupportedInstanceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutpostSupportedInstanceTypes as schema.OperationSchema, input, options) as async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
+end
+
+function C:getPrivateConnectivityConfig(input: types.GetPrivateConnectivityConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetPrivateConnectivityConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrivateConnectivityConfig as schema.OperationSchema, input, options) as async.Operation<types.GetPrivateConnectivityConfigOutput>
 end
 
 function C:getQuote(input: types.GetQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.GetQuoteOutput>

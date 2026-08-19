@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.ram"
 
@@ -223,6 +224,7 @@ M.IdempotentParameterMismatchException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IdempotentParameterMismatch", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -242,6 +244,7 @@ M.InvalidClientTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidClientToken", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -261,6 +264,7 @@ M.MalformedArnException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidArn.Malformed", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -280,6 +284,7 @@ M.OperationNotPermittedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OperationNotPermitted", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -299,6 +304,7 @@ M.ResourceShareInvitationAlreadyAcceptedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceShareInvitationArn.AlreadyAccepted", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -318,6 +324,7 @@ M.ResourceShareInvitationAlreadyRejectedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceShareInvitationArn.AlreadyRejected", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -337,6 +344,7 @@ M.ResourceShareInvitationArnNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceShareInvitationArn.NotFound", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -356,6 +364,7 @@ M.ResourceShareInvitationExpiredException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceShareInvitationArn.Expired", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -375,6 +384,7 @@ M.ServerInternalException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalError", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -394,6 +404,7 @@ M.ServiceUnavailableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "Unavailable", httpResponseCode = 503 },
     },
     members = {
         message = schema.new({
@@ -476,6 +487,7 @@ M.InvalidParameterException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameter", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -495,6 +507,7 @@ M.InvalidStateTransitionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidStateTransitionException.Unknown", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -514,6 +527,7 @@ M.ResourceShareLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceShareLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -533,6 +547,7 @@ M.ThrottlingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ThrottlingException", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -552,6 +567,7 @@ M.UnknownResourceException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceShareArn.NotFound", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -799,6 +815,7 @@ M.InvalidPolicyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidPolicy", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -818,6 +835,7 @@ M.MalformedPolicyTemplateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MalformedPolicyTemplateException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -837,6 +855,7 @@ M.PermissionAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PermissionAlreadyExistsException", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -856,6 +875,7 @@ M.PermissionLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PermissionLimitExceededException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1012,6 +1032,7 @@ M.PermissionVersionsLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PermissionVersionsLimitExceededException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1209,6 +1230,7 @@ M.TagLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TagLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1228,6 +1250,7 @@ M.TagPolicyViolationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TagPolicyViolation", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1638,6 +1661,7 @@ M.InvalidNextTokenException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidNextToken", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1657,6 +1681,7 @@ M.ResourceArnNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceArn.NotFound", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1802,6 +1827,7 @@ M.InvalidMaxResultsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidMaxResults", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2042,6 +2068,7 @@ M.MissingRequiredParameterException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MissingRequiredParameter", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2514,6 +2541,7 @@ M.InvalidResourceTypeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceType.Unknown", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2928,6 +2956,7 @@ M.UnmatchedPolicyPermissionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnmatchedPolicyPermissionException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

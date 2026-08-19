@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.invoicing"
 
@@ -56,6 +57,7 @@ M.AccessDeniedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvoicingAccessDenied", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -383,6 +385,7 @@ M.InternalServerException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvoicingInternalServer", httpResponseCode = 500 },
     },
     members = {
         retryAfterSeconds = schema.new({
@@ -408,6 +411,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvoicingResourceNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -430,6 +434,7 @@ M.ThrottlingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvoicingThrottling", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -471,6 +476,7 @@ M.ValidationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvoicingValidation", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -531,6 +537,7 @@ M.ConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvoicingConflict", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -1004,6 +1011,7 @@ M.ServiceQuotaExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvoicingServiceQuotaExceeded", httpResponseCode = 402 },
     },
     members = {
         message = schema.new({

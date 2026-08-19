@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.directoryservice"
 
@@ -1365,7 +1366,7 @@ M.DirectoryConnectSettings = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         CustomerDnsIpsV6 = schema.new({
@@ -1625,7 +1626,7 @@ M.CreateConditionalForwarderInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         DnsIpv6Addrs = schema.new({
@@ -5306,7 +5307,7 @@ M.RemoveIpRoutesInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         CidrIpv6s = schema.new({
@@ -5808,7 +5809,7 @@ M.UpdateConditionalForwarderInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         DnsIpv6Addrs = schema.new({

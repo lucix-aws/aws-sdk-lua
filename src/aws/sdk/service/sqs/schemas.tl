@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.sqs"
 
@@ -111,6 +112,7 @@ M.InvalidAddress = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAddress", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -127,6 +129,7 @@ M.InvalidSecurity = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSecurity", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -143,6 +146,7 @@ M.OverLimit = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OverLimit", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -159,6 +163,7 @@ M.QueueDoesNotExist = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.NonExistentQueue", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -175,6 +180,7 @@ M.RequestThrottled = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RequestThrottled", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -191,6 +197,7 @@ M.UnsupportedOperation = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.UnsupportedOperation", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -239,6 +246,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFoundException", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -291,6 +299,7 @@ M.MessageNotInflight = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.MessageNotInflight", httpResponseCode = 400 },
     },
 })
 
@@ -299,6 +308,7 @@ M.ReceiptHandleIsInvalid = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ReceiptHandleIsInvalid", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -315,6 +325,7 @@ M.BatchEntryIdsNotDistinct = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.BatchEntryIdsNotDistinct", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -478,6 +489,7 @@ M.EmptyBatchRequest = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.EmptyBatchRequest", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -494,6 +506,7 @@ M.InvalidBatchEntryId = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.InvalidBatchEntryId", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -510,6 +523,7 @@ M.TooManyEntriesInBatchRequest = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.TooManyEntriesInBatchRequest", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -611,6 +625,7 @@ M.QueueDeletedRecently = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.QueueDeletedRecently", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -627,6 +642,7 @@ M.QueueNameExists = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "QueueAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1124,6 +1140,7 @@ M.PurgeQueueInProgress = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.PurgeQueueInProgress", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -1158,6 +1175,7 @@ M.KmsAccessDenied = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMS.AccessDeniedException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1174,6 +1192,7 @@ M.KmsDisabled = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMS.DisabledException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1190,6 +1209,7 @@ M.KmsInvalidKeyUsage = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMS.InvalidKeyUsageException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1206,6 +1226,7 @@ M.KmsInvalidState = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMS.InvalidStateException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1222,6 +1243,7 @@ M.KmsNotFound = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMS.NotFoundException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1238,6 +1260,7 @@ M.KmsOptInRequired = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMS.OptInRequired", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -1254,6 +1277,7 @@ M.KmsThrottled = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KMS.ThrottlingException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1669,6 +1693,7 @@ M.BatchRequestTooLong = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AWS.SimpleQueueService.BatchRequestTooLong", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

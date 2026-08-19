@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.outposts"
 
@@ -12,6 +13,8 @@ local M: {string:any} = {}
 M.LineItemRequestListDefinition = schema.new({ type = "list", list_member = M.LineItemRequest })
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.VpcInformationList = schema.new({ type = "list", list_member = M.VpcInformation })
 
 M.QuoteCapacityList = schema.new({ type = "list", list_member = M.QuoteCapacity })
 
@@ -100,6 +103,8 @@ M.EC2CapacityListDefinition = schema.new({ type = "list", list_member = M.EC2Cap
 M.SupportedUplinkGbpsListDefinition = schema.new({ type = "list", list_member = prelude.Integer })
 
 M.CIDRList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.OrderIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -1204,6 +1209,111 @@ M.CreateOutpostOutput = schema.new({
             name = "Outpost",
             target_id = id.from(_N, "Outpost"),
             target = M.Outpost,
+        }),
+    },
+})
+
+M.VpcInformation = schema.new({
+    id = id.from(_N, "VpcInformation"),
+    type = "structure",
+    members = {
+        VpcId = schema.new({
+            id = id.from(_N, "VpcInformation", "VpcId"),
+            type = "string",
+            name = "VpcId",
+            target_id = prelude.String.id,
+        }),
+        SubnetIds = schema.new({
+            id = id.from(_N, "VpcInformation", "SubnetIds"),
+            type = "list",
+            name = "SubnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        VpcEndpointId = schema.new({
+            id = id.from(_N, "VpcInformation", "VpcEndpointId"),
+            type = "string",
+            name = "VpcEndpointId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreatePrivateConnectivityConfigInput = schema.new({
+    id = id.from(_N, "CreatePrivateConnectivityConfigInput"),
+    type = "structure",
+    members = {
+        OutpostId = schema.new({
+            id = id.from(_N, "CreatePrivateConnectivityConfigInput", "OutpostId"),
+            type = "string",
+            name = "OutpostId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        VpcInformationList = schema.new({
+            id = id.from(_N, "CreatePrivateConnectivityConfigInput", "VpcInformationList"),
+            type = "list",
+            name = "VpcInformationList",
+            target_id = prelude.Document.id,
+            list_member = M.VpcInformation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PrivateConnectivityConfig = schema.new({
+    id = id.from(_N, "PrivateConnectivityConfig"),
+    type = "structure",
+    members = {
+        RoleArn = schema.new({
+            id = id.from(_N, "PrivateConnectivityConfig", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        PrivateConnectivityStatus = schema.new({
+            id = id.from(_N, "PrivateConnectivityConfig", "PrivateConnectivityStatus"),
+            type = "string",
+            name = "PrivateConnectivityStatus",
+            target_id = prelude.String.id,
+        }),
+        VpcInformationList = schema.new({
+            id = id.from(_N, "PrivateConnectivityConfig", "VpcInformationList"),
+            type = "list",
+            name = "VpcInformationList",
+            target_id = prelude.Document.id,
+            list_member = M.VpcInformation,
+        }),
+        ProvisioningRoleArn = schema.new({
+            id = id.from(_N, "PrivateConnectivityConfig", "ProvisioningRoleArn"),
+            type = "string",
+            name = "ProvisioningRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreatePrivateConnectivityConfigOutput = schema.new({
+    id = id.from(_N, "CreatePrivateConnectivityConfigOutput"),
+    type = "structure",
+    members = {
+        PrivateConnectivityConfig = schema.new({
+            id = id.from(_N, "CreatePrivateConnectivityConfigOutput", "PrivateConnectivityConfig"),
+            type = "structure",
+            name = "PrivateConnectivityConfig",
+            target_id = id.from(_N, "PrivateConnectivityConfig"),
+            target = M.PrivateConnectivityConfig,
+        }),
+        OutpostId = schema.new({
+            id = id.from(_N, "CreatePrivateConnectivityConfigOutput", "OutpostId"),
+            type = "string",
+            name = "OutpostId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2690,6 +2800,37 @@ M.GetOutpostSupportedInstanceTypesOutput = schema.new({
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetPrivateConnectivityConfigInput = schema.new({
+    id = id.from(_N, "GetPrivateConnectivityConfigInput"),
+    type = "structure",
+    members = {
+        OutpostId = schema.new({
+            id = id.from(_N, "GetPrivateConnectivityConfigInput", "OutpostId"),
+            type = "string",
+            name = "OutpostId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetPrivateConnectivityConfigOutput = schema.new({
+    id = id.from(_N, "GetPrivateConnectivityConfigOutput"),
+    type = "structure",
+    members = {
+        PrivateConnectivityConfig = schema.new({
+            id = id.from(_N, "GetPrivateConnectivityConfigOutput", "PrivateConnectivityConfig"),
+            type = "structure",
+            name = "PrivateConnectivityConfig",
+            target_id = id.from(_N, "PrivateConnectivityConfig"),
+            target = M.PrivateConnectivityConfig,
         }),
     },
 })
@@ -4431,6 +4572,18 @@ M.CreateOutpost = schema.operation({
     },
 })
 
+M.CreatePrivateConnectivityConfig = schema.operation({
+    id = id.from("com.amazonaws.outposts", "CreatePrivateConnectivityConfig"),
+    input = M.CreatePrivateConnectivityConfigInput,
+    output = M.CreatePrivateConnectivityConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/outposts/{OutpostId}/privateConnectivity" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateQuote = schema.operation({
     id = id.from("com.amazonaws.outposts", "CreateQuote"),
     input = M.CreateQuoteInput,
@@ -4593,6 +4746,18 @@ M.GetOutpostSupportedInstanceTypes = schema.operation({
     output = M.GetOutpostSupportedInstanceTypesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostIdentifier}/supportedInstanceTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPrivateConnectivityConfig = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetPrivateConnectivityConfig"),
+    input = M.GetPrivateConnectivityConfigInput,
+    output = M.GetPrivateConnectivityConfigOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/outposts/{OutpostId}/privateConnectivity" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

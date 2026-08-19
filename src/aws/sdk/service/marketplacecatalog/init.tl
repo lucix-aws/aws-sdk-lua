@@ -21,9 +21,11 @@ local record Client
     batchDescribeEntities: function(Client, types.BatchDescribeEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.BatchDescribeEntitiesOutput>
     cancelChangeSet: function(Client, types.CancelChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.CancelChangeSetOutput>
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    describeAssessment: function(Client, types.DescribeAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssessmentOutput>
     describeChangeSet: function(Client, types.DescribeChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChangeSetOutput>
     describeEntity: function(Client, types.DescribeEntityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEntityOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    listAssessments: function(Client, types.ListAssessmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssessmentsOutput>
     listChangeSets: function(Client, types.ListChangeSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListChangeSetsOutput>
     listEntities: function(Client, types.ListEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListEntitiesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -87,6 +89,10 @@ function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
+function C:describeAssessment(input: types.DescribeAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssessmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssessment as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssessmentOutput>
+end
+
 function C:describeChangeSet(input: types.DescribeChangeSetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChangeSetOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChangeSet as schema.OperationSchema, input, options) as async.Operation<types.DescribeChangeSetOutput>
 end
@@ -97,6 +103,10 @@ end
 
 function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
+end
+
+function C:listAssessments(input: types.ListAssessmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssessmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssessments as schema.OperationSchema, input, options) as async.Operation<types.ListAssessmentsOutput>
 end
 
 function C:listChangeSets(input: types.ListChangeSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChangeSetsOutput>

@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.marketplacecatalog"
 
@@ -15,7 +16,13 @@ M.EntityDetails = schema.new({ type = "map", map_key = prelude.String, map_value
 
 M.Errors = schema.new({ type = "map", map_key = prelude.String, map_value = M.BatchDescribeErrorDetail })
 
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.ControlAssessmentList = schema.new({ type = "list", list_member = M.ControlAssessment })
+
 M.ChangeSetDescription = schema.new({ type = "list", list_member = M.ChangeSummary })
+
+M.AssessmentSummaryList = schema.new({ type = "list", list_member = M.AssessmentSummary })
 
 M.FilterList = schema.new({ type = "list", list_member = M.Filter })
 
@@ -28,6 +35,8 @@ M.TagList = schema.new({ type = "list", list_member = M.Tag })
 M.RequestedChangeList = schema.new({ type = "list", list_member = M.Change })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ControlErrorList = schema.new({ type = "list", list_member = M.ControlError })
 
 M.ErrorDetailList = schema.new({ type = "list", list_member = M.ErrorDetail })
 
@@ -126,6 +135,8 @@ M.OfferBuyerAccountsList = schema.new({ type = "list", list_member = prelude.Str
 M.OfferTargetingList = schema.new({ type = "list", list_member = prelude.String })
 
 M.OfferSetAssociatedOfferIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ErrorScopeList = schema.new({ type = "list", list_member = M.ErrorScope })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -297,6 +308,161 @@ M.AmiProductSummary = schema.new({
     },
 })
 
+M.AMISecurityFilters = schema.new({
+    id = id.from(_N, "AMISecurityFilters"),
+    type = "structure",
+    members = {
+        DeliveryOptionId = schema.new({
+            id = id.from(_N, "AMISecurityFilters", "DeliveryOptionId"),
+            type = "string",
+            name = "DeliveryOptionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AMISecuritySummary = schema.new({
+    id = id.from(_N, "AMISecuritySummary"),
+    type = "structure",
+    members = {
+        DeliveryOptionId = schema.new({
+            id = id.from(_N, "AMISecuritySummary", "DeliveryOptionId"),
+            type = "string",
+            name = "DeliveryOptionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssessmentTargetSummary = schema.new({
+    id = id.from(_N, "AssessmentTargetSummary"),
+    type = "structure",
+    members = {
+        EntityId = schema.new({
+            id = id.from(_N, "AssessmentTargetSummary", "EntityId"),
+            type = "string",
+            name = "EntityId",
+            target_id = prelude.String.id,
+        }),
+        ChangeSetId = schema.new({
+            id = id.from(_N, "AssessmentTargetSummary", "ChangeSetId"),
+            type = "string",
+            name = "ChangeSetId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerSecuritySummary = schema.new({
+    id = id.from(_N, "ContainerSecuritySummary"),
+    type = "structure",
+    members = {
+        DeliveryOptionId = schema.new({
+            id = id.from(_N, "ContainerSecuritySummary", "DeliveryOptionId"),
+            type = "string",
+            name = "DeliveryOptionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FrameworkSummary = schema.new({
+    id = id.from(_N, "FrameworkSummary"),
+    type = "union",
+    members = {
+        AMISecuritySummary = schema.new({
+            id = id.from(_N, "FrameworkSummary", "AMISecuritySummary"),
+            type = "structure",
+            name = "AMISecuritySummary",
+            target_id = id.from(_N, "AMISecuritySummary"),
+            target = M.AMISecuritySummary,
+        }),
+        ContainerSecuritySummary = schema.new({
+            id = id.from(_N, "FrameworkSummary", "ContainerSecuritySummary"),
+            type = "structure",
+            name = "ContainerSecuritySummary",
+            target_id = id.from(_N, "ContainerSecuritySummary"),
+            target = M.ContainerSecuritySummary,
+        }),
+    },
+})
+
+M.AssessmentSummary = schema.new({
+    id = id.from(_N, "AssessmentSummary"),
+    type = "structure",
+    members = {
+        AssessmentArn = schema.new({
+            id = id.from(_N, "AssessmentSummary", "AssessmentArn"),
+            type = "string",
+            name = "AssessmentArn",
+            target_id = prelude.String.id,
+        }),
+        AssessmentId = schema.new({
+            id = id.from(_N, "AssessmentSummary", "AssessmentId"),
+            type = "string",
+            name = "AssessmentId",
+            target_id = prelude.String.id,
+        }),
+        FrameworkId = schema.new({
+            id = id.from(_N, "AssessmentSummary", "FrameworkId"),
+            type = "string",
+            name = "FrameworkId",
+            target_id = prelude.String.id,
+        }),
+        AssessmentTargetSummary = schema.new({
+            id = id.from(_N, "AssessmentSummary", "AssessmentTargetSummary"),
+            type = "structure",
+            name = "AssessmentTargetSummary",
+            target_id = id.from(_N, "AssessmentTargetSummary"),
+            target = M.AssessmentTargetSummary,
+        }),
+        FrameworkSummary = schema.new({
+            id = id.from(_N, "AssessmentSummary", "FrameworkSummary"),
+            type = "union",
+            name = "FrameworkSummary",
+            target_id = id.from(_N, "FrameworkSummary"),
+            target = M.FrameworkSummary,
+        }),
+        AssessmentResult = schema.new({
+            id = id.from(_N, "AssessmentSummary", "AssessmentResult"),
+            type = "string",
+            name = "AssessmentResult",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AssessmentSummary", "CreatedAt"),
+            type = "string",
+            name = "CreatedAt",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "AssessmentSummary", "ExpiresAt"),
+            type = "string",
+            name = "ExpiresAt",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssessmentTargetFilter = schema.new({
+    id = id.from(_N, "AssessmentTargetFilter"),
+    type = "structure",
+    members = {
+        EntityId = schema.new({
+            id = id.from(_N, "AssessmentTargetFilter", "EntityId"),
+            type = "string",
+            name = "EntityId",
+            target_id = prelude.String.id,
+        }),
+        ChangeSetId = schema.new({
+            id = id.from(_N, "AssessmentTargetFilter", "ChangeSetId"),
+            type = "string",
+            name = "ChangeSetId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EntityRequest = schema.new({
     id = id.from(_N, "EntityRequest"),
     type = "structure",
@@ -450,6 +616,49 @@ M.ThrottlingException = schema.new({
     },
 })
 
+M.ValidationExceptionField = schema.new({
+    id = id.from(_N, "ValidationExceptionField"),
+    type = "structure",
+    members = {
+        Reason = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+        EntityType = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "EntityType"),
+            type = "string",
+            name = "EntityType",
+            target_id = prelude.String.id,
+        }),
+        EntityId = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "EntityId"),
+            type = "string",
+            name = "EntityId",
+            target_id = prelude.String.id,
+        }),
+        ChangeType = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "ChangeType"),
+            type = "string",
+            name = "ChangeType",
+            target_id = prelude.String.id,
+        }),
+        Field = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "Field"),
+            type = "string",
+            name = "Field",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ValidationException = schema.new({
     id = id.from(_N, "ValidationException"),
     type = "structure",
@@ -462,6 +671,13 @@ M.ValidationException = schema.new({
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
+        }),
+        ValidationExceptionFieldList = schema.new({
+            id = id.from(_N, "ValidationException", "ValidationExceptionFieldList"),
+            type = "list",
+            name = "ValidationExceptionFieldList",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationExceptionField,
         }),
     },
 })
@@ -564,6 +780,187 @@ M.DeleteResourcePolicyInput = schema.new({
 M.DeleteResourcePolicyOutput = schema.new({
     id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
+})
+
+M.DescribeAssessmentInput = schema.new({
+    id = id.from(_N, "DescribeAssessmentRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "DescribeAssessmentInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AssessmentIdentifier = schema.new({
+            id = id.from(_N, "DescribeAssessmentInput", "AssessmentIdentifier"),
+            type = "string",
+            name = "AssessmentIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeAssessmentInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeAssessmentInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ErrorScope = schema.new({
+    id = id.from(_N, "ErrorScope"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ErrorScope", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ErrorScope", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ControlError = schema.new({
+    id = id.from(_N, "ControlError"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ControlError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ControlError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "ControlError", "Scope"),
+            type = "list",
+            name = "Scope",
+            target_id = prelude.Document.id,
+            list_member = M.ErrorScope,
+        }),
+    },
+})
+
+M.ControlAssessment = schema.new({
+    id = id.from(_N, "ControlAssessment"),
+    type = "structure",
+    members = {
+        ControlId = schema.new({
+            id = id.from(_N, "ControlAssessment", "ControlId"),
+            type = "string",
+            name = "ControlId",
+            target_id = prelude.String.id,
+        }),
+        ControlAssessmentResult = schema.new({
+            id = id.from(_N, "ControlAssessment", "ControlAssessmentResult"),
+            type = "string",
+            name = "ControlAssessmentResult",
+            target_id = prelude.String.id,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "ControlAssessment", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.ControlError,
+        }),
+    },
+})
+
+M.DescribeAssessmentOutput = schema.new({
+    id = id.from(_N, "DescribeAssessmentResponse"),
+    type = "structure",
+    members = {
+        AssessmentArn = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "AssessmentArn"),
+            type = "string",
+            name = "AssessmentArn",
+            target_id = prelude.String.id,
+        }),
+        AssessmentId = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "AssessmentId"),
+            type = "string",
+            name = "AssessmentId",
+            target_id = prelude.String.id,
+        }),
+        FrameworkId = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "FrameworkId"),
+            type = "string",
+            name = "FrameworkId",
+            target_id = prelude.String.id,
+        }),
+        AssessmentTargetSummary = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "AssessmentTargetSummary"),
+            type = "structure",
+            name = "AssessmentTargetSummary",
+            target_id = id.from(_N, "AssessmentTargetSummary"),
+            target = M.AssessmentTargetSummary,
+        }),
+        FrameworkSummary = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "FrameworkSummary"),
+            type = "union",
+            name = "FrameworkSummary",
+            target_id = id.from(_N, "FrameworkSummary"),
+            target = M.FrameworkSummary,
+        }),
+        AssessmentResult = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "AssessmentResult"),
+            type = "string",
+            name = "AssessmentResult",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "CreatedAt"),
+            type = "string",
+            name = "CreatedAt",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "ExpiresAt"),
+            type = "string",
+            name = "ExpiresAt",
+            target_id = prelude.String.id,
+        }),
+        ControlAssessments = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "ControlAssessments"),
+            type = "list",
+            name = "ControlAssessments",
+            target_id = prelude.Document.id,
+            list_member = M.ControlAssessment,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeAssessmentOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.DescribeChangeSetInput = schema.new({
@@ -858,6 +1255,111 @@ M.GetResourcePolicyOutput = schema.new({
             id = id.from(_N, "GetResourcePolicyOutput", "Policy"),
             type = "string",
             name = "Policy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerSecurityFilters = schema.new({
+    id = id.from(_N, "ContainerSecurityFilters"),
+    type = "structure",
+    members = {
+        DeliveryOptionId = schema.new({
+            id = id.from(_N, "ContainerSecurityFilters", "DeliveryOptionId"),
+            type = "string",
+            name = "DeliveryOptionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FrameworkFilters = schema.new({
+    id = id.from(_N, "FrameworkFilters"),
+    type = "union",
+    members = {
+        AMISecurityFilters = schema.new({
+            id = id.from(_N, "FrameworkFilters", "AMISecurityFilters"),
+            type = "structure",
+            name = "AMISecurityFilters",
+            target_id = id.from(_N, "AMISecurityFilters"),
+            target = M.AMISecurityFilters,
+        }),
+        ContainerSecurityFilters = schema.new({
+            id = id.from(_N, "FrameworkFilters", "ContainerSecurityFilters"),
+            type = "structure",
+            name = "ContainerSecurityFilters",
+            target_id = id.from(_N, "ContainerSecurityFilters"),
+            target = M.ContainerSecurityFilters,
+        }),
+    },
+})
+
+M.ListAssessmentsInput = schema.new({
+    id = id.from(_N, "ListAssessmentsRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "ListAssessmentsInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FrameworkId = schema.new({
+            id = id.from(_N, "ListAssessmentsInput", "FrameworkId"),
+            type = "string",
+            name = "FrameworkId",
+            target_id = prelude.String.id,
+        }),
+        AssessmentTargetFilter = schema.new({
+            id = id.from(_N, "ListAssessmentsInput", "AssessmentTargetFilter"),
+            type = "structure",
+            name = "AssessmentTargetFilter",
+            target_id = id.from(_N, "AssessmentTargetFilter"),
+            target = M.AssessmentTargetFilter,
+        }),
+        FrameworkFilters = schema.new({
+            id = id.from(_N, "ListAssessmentsInput", "FrameworkFilters"),
+            type = "union",
+            name = "FrameworkFilters",
+            target_id = id.from(_N, "FrameworkFilters"),
+            target = M.FrameworkFilters,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAssessmentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 20 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAssessmentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAssessmentsOutput = schema.new({
+    id = id.from(_N, "ListAssessmentsResponse"),
+    type = "structure",
+    members = {
+        AssessmentSummaryList = schema.new({
+            id = id.from(_N, "ListAssessmentsOutput", "AssessmentSummaryList"),
+            type = "list",
+            name = "AssessmentSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.AssessmentSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAssessmentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
             target_id = prelude.String.id,
         }),
     },
@@ -3530,6 +4032,18 @@ M.DeleteResourcePolicy = schema.operation({
     },
 })
 
+M.DescribeAssessment = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "DescribeAssessment"),
+    input = M.DescribeAssessmentInput,
+    output = M.DescribeAssessmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DescribeAssessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeChangeSet = schema.operation({
     id = id.from("com.amazonaws.marketplacecatalog", "DescribeChangeSet"),
     input = M.DescribeChangeSetInput,
@@ -3560,6 +4074,18 @@ M.GetResourcePolicy = schema.operation({
     output = M.GetResourcePolicyOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/GetResourcePolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssessments = schema.operation({
+    id = id.from("com.amazonaws.marketplacecatalog", "ListAssessments"),
+    input = M.ListAssessmentsInput,
+    output = M.ListAssessmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListAssessments" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.cleanrooms"
 
@@ -3366,7 +3367,7 @@ M.Schema = schema.new({
             list_member = M.SchemaStatusDetail,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         resourceArn = schema.new({
@@ -14040,7 +14041,7 @@ M.ProtectedJobSummary = schema.new({
             list_member = M.ProtectedJobReceiverConfiguration,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         jobComputePayerAccountId = schema.new({
@@ -14227,7 +14228,7 @@ M.ProtectedQuerySummary = schema.new({
             list_member = M.ReceiverConfiguration,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         queryComputePayerAccountId = schema.new({

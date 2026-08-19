@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.ec2instanceconnect"
 
@@ -14,6 +15,7 @@ M.AuthException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "Forbidden", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -30,6 +32,7 @@ M.EC2InstanceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "EC2InstanceNotFound", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -46,6 +49,7 @@ M.EC2InstanceStateInvalidException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "EC2InstanceStateInvalid", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -62,6 +66,7 @@ M.EC2InstanceTypeInvalidException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "EC2InstanceTypeInvalid", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -78,6 +83,7 @@ M.EC2InstanceUnavailableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "EC2InstanceUnavailable", httpResponseCode = 503 },
     },
     members = {
         Message = schema.new({
@@ -94,6 +100,7 @@ M.InvalidArgsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidArguments", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -166,6 +173,7 @@ M.SerialConsoleAccessDisabledException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SerialConsoleAccessDisabled", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -182,6 +190,7 @@ M.SerialConsoleSessionLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SerialConsoleSessionLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -198,6 +207,7 @@ M.SerialConsoleSessionUnavailableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "SerialConsoleSessionUnavailable", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -214,6 +224,7 @@ M.SerialConsoleSessionUnsupportedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SerialConsoleSessionUnsupported", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -230,6 +241,7 @@ M.ServiceException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalServerError", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -246,6 +258,7 @@ M.ThrottlingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyRequests", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({

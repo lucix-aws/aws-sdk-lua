@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.keyspacesstreams"
 
@@ -32,6 +33,7 @@ M.AccessDeniedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AccessDeniedException", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -102,6 +104,7 @@ M.InternalServerException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalServerException", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -118,6 +121,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFoundException", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -134,6 +138,7 @@ M.ThrottlingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ThrottlingException", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -150,6 +155,7 @@ M.ValidationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ValidationException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

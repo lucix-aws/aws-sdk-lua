@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.connect"
 
@@ -720,6 +721,7 @@ M.AccessDeniedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AccessDeniedException", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -888,6 +890,7 @@ M.ThrottlingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ThrottlingException", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({
@@ -2149,6 +2152,7 @@ M.LimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceededException", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({
@@ -6586,7 +6590,7 @@ M.EvaluationFormSingleSelectQuestionAutomation = schema.new({
             target_id = prelude.Document.id,
             list_member = M.EvaluationFormSingleSelectQuestionAutomationOption,
             traits = {
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         DefaultOptionRefId = schema.new({
@@ -35071,6 +35075,7 @@ M.DestinationNotAllowedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DestinationNotAllowedException", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -35087,6 +35092,7 @@ M.OutboundContactNotPermittedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OutboundContactNotPermittedException", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -35569,6 +35575,7 @@ M.ContactNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ContactNotFoundException", httpResponseCode = 410 },
     },
     members = {
         Message = schema.new({

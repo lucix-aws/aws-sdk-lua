@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.cloudwatch"
 
@@ -726,6 +727,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFoundException", httpResponseCode = 404 },
     },
     members = {
         ResourceType = schema.new({
@@ -909,6 +911,7 @@ M.ConcurrentModificationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConcurrentModificationException", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({
@@ -975,6 +978,7 @@ M.DashboardInvalidInputError = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterInput", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -998,6 +1002,7 @@ M.DashboardNotFoundError = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -1108,6 +1113,7 @@ M.ResourceConflict = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceConflict", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -1124,6 +1130,7 @@ M.ResourceNotFound = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -1197,6 +1204,7 @@ M.InternalServiceFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalServiceError", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -1213,6 +1221,7 @@ M.InvalidParameterCombinationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterCombination", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1229,6 +1238,7 @@ M.InvalidParameterValueException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterValue", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1245,6 +1255,7 @@ M.MissingRequiredParameterException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MissingParameter", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1380,6 +1391,7 @@ M.InvalidNextToken = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidNextToken", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2476,6 +2488,7 @@ M.LimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceededException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3987,6 +4000,7 @@ M.LimitExceededFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -4799,6 +4813,7 @@ M.InvalidFormatFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidFormat", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

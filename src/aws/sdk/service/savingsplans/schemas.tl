@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.savingsplans"
 
@@ -143,6 +144,7 @@ M.InternalServerException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalServerException", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -162,6 +164,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFoundException", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -181,6 +184,7 @@ M.ServiceQuotaExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceQuotaExceededException", httpResponseCode = 402 },
     },
     members = {
         message = schema.new({
@@ -200,6 +204,7 @@ M.ValidationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ValidationException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

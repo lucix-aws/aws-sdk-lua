@@ -90,6 +90,82 @@ local record M
         Visibility: string
     end
 
+    -- Filters that apply to assessments performed against the AMI Security framework.
+    record AMISecurityFilters
+        -- The unique ID of the delivery option whose AMI Security assessments you want to
+        -- list.
+        DeliveryOptionId: string
+    end
+
+    -- The details of the resource assessed under the AMI Security framework.
+    record AMISecuritySummary
+        -- The unique ID of the delivery option that was evaluated.
+        DeliveryOptionId: string
+    end
+
+    enum AssessmentResult
+        "PASS"
+        "FAIL"
+    end
+
+    -- Identifies the entity or change set that was assessed.
+    record AssessmentTargetSummary
+        -- The unique ID of the entity that was assessed.
+        EntityId: string
+        -- The unique ID of the change set that was assessed.
+        ChangeSetId: string
+    end
+
+    -- The details of the resource assessed under the Container Security framework.
+    record ContainerSecuritySummary
+        -- The unique ID of the delivery option that was evaluated.
+        DeliveryOptionId: string
+    end
+
+    -- The framework-specific details of the assessed resource. Exactly one member is set,
+    -- corresponding to the framework that was assessed.
+    record FrameworkSummary
+        -- The details of the resource assessed under the AMI Security framework.
+        AMISecuritySummary: AMISecuritySummary
+        -- The details of the resource assessed under the Container Security framework.
+        ContainerSecuritySummary: ContainerSecuritySummary
+    end
+
+    -- Summarized information about an assessment.
+    record AssessmentSummary
+        -- The ARN associated with the assessment.
+        AssessmentArn: string
+        -- The unique ID of the assessment.
+        AssessmentId: string
+        -- The identifier of the framework that was evaluated by this assessment, in the format
+        -- frameworkId@version (for example,
+        -- AMISecurity@1.0).
+        FrameworkId: string
+        -- Identifies the entity or change set that was assessed.
+        AssessmentTargetSummary: AssessmentTargetSummary
+        -- The framework-specific details of the assessed resource. The set member corresponds
+        -- to the framework identified by FrameworkId.
+        FrameworkSummary: FrameworkSummary
+        -- The overall result of the assessment.
+        AssessmentResult: string
+        -- The date and time the assessment was created, in ISO 8601 format
+        -- (2018-02-27T13:45:22Z).
+        CreatedAt: string
+        -- The date and time the assessment expires, in ISO 8601 format
+        -- (2018-02-27T13:45:22Z).
+        ExpiresAt: string
+    end
+
+    -- Filters assessment list results by the resource that was assessed. Provide an entity
+    -- identifier, a change set identifier, or both.
+    record AssessmentTargetFilter
+        -- The unique ID of the entity whose assessments you want to list.
+        EntityId: string
+        -- The unique ID of the change set that triggered the assessments you want to
+        -- list.
+        ChangeSetId: string
+    end
+
     -- An object that contains entity ID and the catalog in which the entity is present.
     record EntityRequest
         -- The name of the catalog the entity is present in. The only value at this time is
@@ -147,10 +223,44 @@ local record M
         Message: string
     end
 
+    enum ValidationExceptionReason
+        "UnknownOperation"
+        "CannotParse"
+        "FieldValidationFailed"
+        "Other"
+    end
+
+    -- Detailed information about a single request field that failed
+    -- validation, including the field's location, the reason it failed, and a
+    -- human-readable message.
+    record ValidationExceptionField
+        -- The reason the field failed validation.
+        Reason: string
+        -- The entity type the failing field applies to, if the field is on a
+        -- specific entity. For example, AmiProduct@1.0.
+        EntityType: string
+        -- The entity identifier the failing field applies to, if the field is on a
+        -- specific entity.
+        EntityId: string
+        -- The change type the failing field applies to, if the field is part of a
+        -- change request. For example, AddDeliveryOptions.
+        ChangeType: string
+        -- The name of the request field that failed validation, expressed as a
+        -- JSON path (for example, Details.DeliveryOptions[0].Type).
+        Field: string
+        -- A human-readable message describing why the field failed
+        -- validation.
+        Message: string
+    end
+
     -- An error occurred during validation.
     -- HTTP status code: 422
     record ValidationException
         Message: string
+        -- A list of detailed entries describing the request fields that failed
+        -- validation. Present when the failure can be attributed to one or more specific
+        -- fields.
+        ValidationExceptionFieldList: {ValidationExceptionField}
     end
 
     record CancelChangeSetInput
@@ -187,6 +297,92 @@ local record M
     end
 
     record DeleteResourcePolicyOutput
+    end
+
+    record DescribeAssessmentInput
+        -- The catalog related to the request. Fixed value: AWSMarketplace
+        Catalog: string
+        -- The unique identifier of the assessment to describe. You can provide either
+        -- the assessment ID (for example, assessment-12345) or the full
+        -- assessment ARN (for example,
+        -- arn:aws:aws-marketplace:us-east-1::AWSMarketplace/Assessment/assessment-12345).
+        AssessmentIdentifier: string
+        -- Specifies the upper limit of ControlAssessment elements returned on a
+        -- single page. If a value isn't provided, the default value is 50. Valid values range
+        -- from 1 to 100.
+        MaxResults: number
+        -- The value of the next token, if it exists. null if there are no more
+        -- results.
+        NextToken: string
+    end
+
+    enum ControlAssessmentResult
+        "PASS"
+        "FAIL"
+        "NOT_EXECUTED"
+        "EXEMPTION_PASS"
+    end
+
+    -- A name-value pair that identifies the resource or attribute that a
+    -- ControlError applies to.
+    record ErrorScope
+        -- The name of the resource field the error applies to (for example,
+        -- AMI_ID, FILE_PATH, or PACKAGE_NAME).
+        Name: string
+        -- The value of the resource field the error applies to.
+        Value: string
+    end
+
+    -- An error reported during the evaluation of a single control.
+    record ControlError
+        -- The error code that identifies the type of error.
+        Code: string
+        -- The message for the error.
+        Message: string
+        -- The list of name-value pairs that identify the resource or attribute that the error
+        -- applies to.
+        Scope: {ErrorScope}
+    end
+
+    -- The result of evaluating a single control as part of an assessment.
+    record ControlAssessment
+        -- The unique ID of the control that was evaluated.
+        ControlId: string
+        -- The result of the control evaluation.
+        ControlAssessmentResult: string
+        -- An array of ControlError objects associated with the control
+        -- evaluation.
+        Errors: {ControlError}
+    end
+
+    record DescribeAssessmentOutput
+        -- The ARN associated with the assessment.
+        AssessmentArn: string
+        -- The unique ID of the assessment.
+        AssessmentId: string
+        -- The identifier of the framework that was evaluated by this assessment, in the format
+        -- frameworkId@version (for example,
+        -- AMISecurity@1.0).
+        FrameworkId: string
+        -- Identifies the entity or change set that was assessed.
+        AssessmentTargetSummary: AssessmentTargetSummary
+        -- The framework-specific details of the assessed resource. The set member corresponds
+        -- to the framework identified by FrameworkId.
+        FrameworkSummary: FrameworkSummary
+        -- The overall result of the assessment.
+        AssessmentResult: string
+        -- The date and time the assessment was created, in ISO 8601 format
+        -- (2018-02-27T13:45:22Z).
+        CreatedAt: string
+        -- The date and time the assessment expires, in ISO 8601 format
+        -- (2018-02-27T13:45:22Z).
+        ExpiresAt: string
+        -- An array of ControlAssessment objects, each containing the result of an
+        -- individual control evaluated as part of the assessment.
+        ControlAssessments: {ControlAssessment}
+        -- The value of the next token, if it exists. null if there are no more
+        -- results.
+        NextToken: string
     end
 
     record DescribeChangeSetInput
@@ -327,6 +523,52 @@ local record M
     record GetResourcePolicyOutput
         -- The policy document to set; formatted in JSON.
         Policy: string
+    end
+
+    -- Filters that apply to assessments performed against the Container Security
+    -- framework.
+    record ContainerSecurityFilters
+        -- The unique ID of the delivery option whose Container Security assessments you want
+        -- to list.
+        DeliveryOptionId: string
+    end
+
+    -- Framework-specific filters used to scope ListAssessments results. Set
+    -- exactly one member, corresponding to the framework you want to filter by.
+    record FrameworkFilters
+        -- Filters that apply to assessments performed against the AMI Security framework.
+        AMISecurityFilters: AMISecurityFilters
+        -- Filters that apply to assessments performed against the Container Security
+        -- framework.
+        ContainerSecurityFilters: ContainerSecurityFilters
+    end
+
+    record ListAssessmentsInput
+        -- The catalog related to the request. Fixed value: AWSMarketplace
+        Catalog: string
+        -- The unique identifier of a framework. When specified, only assessments performed
+        -- against this framework are returned. For example, AMISecurity.
+        FrameworkId: string
+        -- Filters the list of assessments to those performed against a specific entity or
+        -- change set.
+        AssessmentTargetFilter: AssessmentTargetFilter
+        -- Framework-specific filters. Set exactly one member to filter results to assessments
+        -- performed against that framework.
+        FrameworkFilters: FrameworkFilters
+        -- Specifies the upper limit of the elements on a single page. If a value isn't provided,
+        -- the default value is 20. Valid values range from 1 to 100.
+        MaxResults: number
+        -- The value of the next token, if it exists. null if there are no more
+        -- results.
+        NextToken: string
+    end
+
+    record ListAssessmentsOutput
+        -- An array of AssessmentSummary objects.
+        AssessmentSummaryList: {AssessmentSummary}
+        -- The value of the next token, if it exists. null if there are no more
+        -- results.
+        NextToken: string
     end
 
     -- A filter object, used to optionally filter results from calls to the

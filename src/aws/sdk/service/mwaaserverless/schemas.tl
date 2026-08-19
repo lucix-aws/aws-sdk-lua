@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.mwaaserverless"
 
@@ -850,7 +851,7 @@ M.CreateWorkflowInput = schema.new({
         }),
         EngineVersion = schema.new({
             id = id.from(_N, "CreateWorkflowInput", "EngineVersion"),
-            type = "number",
+            type = "int_enum",
             name = "EngineVersion",
             target_id = prelude.Integer.id,
         }),
@@ -1141,7 +1142,7 @@ M.GetWorkflowOutput = schema.new({
         }),
         EngineVersion = schema.new({
             id = id.from(_N, "GetWorkflowOutput", "EngineVersion"),
-            type = "number",
+            type = "int_enum",
             name = "EngineVersion",
             target_id = prelude.Integer.id,
         }),
@@ -1377,7 +1378,7 @@ M.UpdateWorkflowInput = schema.new({
         }),
         EngineVersion = schema.new({
             id = id.from(_N, "UpdateWorkflowInput", "EngineVersion"),
-            type = "number",
+            type = "int_enum",
             name = "EngineVersion",
             target_id = prelude.Integer.id,
         }),

@@ -997,6 +997,10 @@ local record M
         OperatingSystemName: string
         -- Indicates the Global Accelerator properties.
         GlobalAccelerator: GlobalAcceleratorForWorkSpace
+        -- Specifies whether nested virtualization is enabled for the WorkSpace.
+        -- For more information, see Nested virtualization
+        -- for Amazon WorkSpaces.
+        NestedVirtualizationEnabled: boolean
     end
 
     -- Describes the information used to create a WorkSpace.
@@ -1060,6 +1064,7 @@ local record M
         "USER_VOLUME"
         "COMPUTE_TYPE"
         "PROTOCOL"
+        "NESTED_VIRTUALIZATION"
     end
 
     enum ModificationStateEnum
@@ -1070,7 +1075,7 @@ local record M
 
     -- Describes a WorkSpace modification.
     record ModificationState
-        -- The resource.
+        -- The WorkSpace property being modified.
         Resource: string
         -- The modification state.
         State: string

@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.ssmsap"
 
@@ -2098,7 +2099,7 @@ M.RegisterApplicationInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ApplicationCredential,
             traits = {
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         DatabaseArn = schema.new({

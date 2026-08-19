@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.medialive"
 
@@ -449,6 +450,42 @@ M.NielsenNaesIiNw = schema.new({
     },
 })
 
+M.NielsenNwOnly = schema.new({
+    id = id.from(_N, "NielsenNwOnly"),
+    type = "structure",
+    members = {
+        CheckDigitString = schema.new({
+            id = id.from(_N, "NielsenNwOnly", "CheckDigitString"),
+            type = "string",
+            name = "CheckDigitString",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "checkDigitString" },
+            },
+        }),
+        Sid = schema.new({
+            id = id.from(_N, "NielsenNwOnly", "Sid"),
+            type = "double",
+            name = "Sid",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sid" },
+            },
+        }),
+        Timezone = schema.new({
+            id = id.from(_N, "NielsenNwOnly", "Timezone"),
+            type = "string",
+            name = "Timezone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "timezone" },
+            },
+        }),
+    },
+})
+
 M.NielsenWatermarksSettings = schema.new({
     id = id.from(_N, "NielsenWatermarksSettings"),
     type = "structure",
@@ -480,6 +517,16 @@ M.NielsenWatermarksSettings = schema.new({
             target = M.NielsenNaesIiNw,
             traits = {
                 [traits.JSON_NAME] = { name = "nielsenNaesIiNwSettings" },
+            },
+        }),
+        NielsenNwOnlySettings = schema.new({
+            id = id.from(_N, "NielsenWatermarksSettings", "NielsenNwOnlySettings"),
+            type = "structure",
+            name = "NielsenNwOnlySettings",
+            target_id = id.from(_N, "NielsenNwOnly"),
+            target = M.NielsenNwOnly,
+            traits = {
+                [traits.JSON_NAME] = { name = "nielsenNwOnlySettings" },
             },
         }),
     },

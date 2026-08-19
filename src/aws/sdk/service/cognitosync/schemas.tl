@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.cognitosync"
 
@@ -28,6 +29,7 @@ M.AlreadyStreamedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AlreadyStreamed", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -77,6 +79,7 @@ M.DuplicateRequestException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateRequest", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -96,6 +99,7 @@ M.InternalErrorException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalError", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -115,6 +119,7 @@ M.InvalidParameterException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameter", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -134,6 +139,7 @@ M.NotAuthorizedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NotAuthorizedError", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -153,6 +159,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -272,6 +279,7 @@ M.ResourceConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceConflict", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -291,6 +299,7 @@ M.TooManyRequestsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyRequests", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -1004,6 +1013,7 @@ M.InvalidConfigurationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidConfiguration", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1111,6 +1121,7 @@ M.ConcurrentModificationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConcurrentModification", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1292,6 +1303,7 @@ M.InvalidLambdaFunctionOutputException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidLambdaFunctionOutput", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1311,6 +1323,7 @@ M.LambdaThrottledException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LambdaThrottled", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -1330,6 +1343,7 @@ M.LimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

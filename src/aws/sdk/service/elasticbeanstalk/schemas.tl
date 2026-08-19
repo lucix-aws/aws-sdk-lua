@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.elasticbeanstalk"
 
@@ -135,6 +136,7 @@ M.InsufficientPrivilegesException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InsufficientPrivilegesException", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -625,6 +627,7 @@ M.ManagedActionInvalidStateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ManagedActionInvalidStateException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1024,6 +1027,7 @@ M.TooManyEnvironmentsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyEnvironmentsException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1109,6 +1113,7 @@ M.TooManyApplicationsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyApplicationsException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1125,6 +1130,7 @@ M.CodeBuildNotInServiceRegionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CodeBuildNotInServiceRegionException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1269,6 +1275,7 @@ M.S3LocationNotInServiceRegionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "S3LocationNotInServiceRegionException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1489,6 +1496,7 @@ M.TooManyBucketsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyBucketsException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1505,6 +1513,7 @@ M.TooManyConfigurationTemplatesException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyConfigurationTemplatesException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1950,6 +1959,7 @@ M.TooManyPlatformsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyPlatformsException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1981,6 +1991,7 @@ M.S3SubscriptionRequiredException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "S3SubscriptionRequiredException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2021,6 +2032,7 @@ M.OperationInProgressException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OperationInProgressFailure", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2070,6 +2082,7 @@ M.SourceBundleDeletionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SourceBundleDeletionFailure", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2167,6 +2180,7 @@ M.PlatformVersionStillReferencedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PlatformVersionStillReferencedException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2747,6 +2761,7 @@ M.InvalidRequestException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidRequestException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -4081,6 +4096,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFoundException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -4097,6 +4113,7 @@ M.ResourceTypeNotSupportedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceTypeNotSupportedException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -4916,6 +4933,7 @@ M.TooManyTagsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyTagsException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

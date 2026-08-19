@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.iam"
 
@@ -168,6 +169,7 @@ M.ConcurrentModificationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConcurrentModification", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -184,6 +186,7 @@ M.NoSuchEntityException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NoSuchEntity", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -200,6 +203,7 @@ M.ServiceFailureException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceFailure", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -642,6 +646,7 @@ M.EntityAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "EntityAlreadyExists", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -658,6 +663,7 @@ M.InvalidInputException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidInput", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -674,6 +680,7 @@ M.LimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceeded", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -690,6 +697,7 @@ M.MalformedPolicyDocumentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MalformedPolicyDocument", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -706,6 +714,7 @@ M.NameConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NameConflict", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -722,6 +731,7 @@ M.RoleModifiedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RoleModified", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -738,6 +748,7 @@ M.RoleTemplateDisabledException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RoleTemplateDisabled", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -808,6 +819,7 @@ M.UnmodifiableEntityException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnmodifiableEntity", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -915,6 +927,7 @@ M.PolicyNotAttachableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PolicyNotAttachable", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1012,6 +1025,7 @@ M.EntityTemporarilyUnmodifiableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "EntityTemporarilyUnmodifiable", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -1028,6 +1042,7 @@ M.InvalidUserTypeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidUserType", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1044,6 +1059,7 @@ M.PasswordPolicyViolationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PasswordPolicyViolation", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1595,6 +1611,7 @@ M.OpenIdIdpCommunicationErrorException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpenIdIdpCommunicationError", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2146,6 +2163,7 @@ M.ServiceNotSupportedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NotSupportedService", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -2447,6 +2465,7 @@ M.DeleteConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DeleteConflict", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -3074,6 +3093,7 @@ M.FeatureDisabledException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "FeatureDisabled", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -3135,6 +3155,7 @@ M.InvalidAuthenticationCodeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAuthenticationCode", httpResponseCode = 403 },
     },
     members = {
         message = schema.new({
@@ -3232,6 +3253,7 @@ M.FeatureEnabledException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "FeatureEnabled", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -3304,6 +3326,7 @@ M.ReportGenerationLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ReportGenerationLimitExceeded", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -3986,6 +4009,7 @@ M.CredentialReportExpiredException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ReportExpired", httpResponseCode = 410 },
     },
     members = {
         message = schema.new({
@@ -4002,6 +4026,7 @@ M.CredentialReportNotPresentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ReportNotPresent", httpResponseCode = 410 },
     },
     members = {
         message = schema.new({
@@ -4018,6 +4043,7 @@ M.CredentialReportNotReadyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ReportInProgress", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -5978,6 +6004,7 @@ M.UnrecognizedPublicKeyEncodingException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnrecognizedPublicKeyEncoding", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -8929,6 +8956,7 @@ M.PolicyEvaluationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "PolicyEvaluation", httpResponseCode = 500 },
     },
     members = {
         message = schema.new({
@@ -10494,6 +10522,7 @@ M.KeyPairMismatchException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "KeyPairMismatch", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -10510,6 +10539,7 @@ M.MalformedCertificateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MalformedCertificate", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -10600,6 +10630,7 @@ M.DuplicateCertificateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateCertificate", httpResponseCode = 409 },
     },
     members = {
         message = schema.new({
@@ -10616,6 +10647,7 @@ M.InvalidCertificateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidCertificate", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -10671,6 +10703,7 @@ M.DuplicateSSHPublicKeyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateSSHPublicKey", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -10687,6 +10720,7 @@ M.InvalidPublicKeyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidPublicKey", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

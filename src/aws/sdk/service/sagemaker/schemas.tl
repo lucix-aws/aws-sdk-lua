@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.sagemaker"
 
@@ -10588,7 +10589,7 @@ M.MetricsEndpoint = schema.new({
         }),
         MetricPublishFrequencyInSeconds = schema.new({
             id = id.from(_N, "MetricsEndpoint", "MetricPublishFrequencyInSeconds"),
-            type = "number",
+            type = "int_enum",
             name = "MetricPublishFrequencyInSeconds",
             target_id = prelude.Integer.id,
         }),
@@ -14659,7 +14660,7 @@ M.MetricsConfig = schema.new({
         }),
         MetricPublishFrequencyInSeconds = schema.new({
             id = id.from(_N, "MetricsConfig", "MetricPublishFrequencyInSeconds"),
-            type = "number",
+            type = "int_enum",
             name = "MetricPublishFrequencyInSeconds",
             target_id = prelude.Integer.id,
         }),

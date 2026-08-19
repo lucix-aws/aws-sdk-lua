@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.sagemakerruntime"
 
@@ -268,6 +269,7 @@ M.ModelNotReadyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ModelNotReadyException", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({

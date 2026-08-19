@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.ses"
 
@@ -70,6 +71,7 @@ M.AccountSendingPausedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AccountSendingPausedException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -111,6 +113,7 @@ M.AlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AlreadyExists", httpResponseCode = 400 },
     },
     members = {
         Name = schema.new({
@@ -446,6 +449,7 @@ M.CannotDeleteException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CannotDelete", httpResponseCode = 400 },
     },
     members = {
         Name = schema.new({
@@ -498,6 +502,7 @@ M.LimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "LimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -514,6 +519,7 @@ M.RuleSetDoesNotExistException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RuleSetDoesNotExist", httpResponseCode = 400 },
     },
     members = {
         Name = schema.new({
@@ -603,6 +609,7 @@ M.ConfigurationSetAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConfigurationSetAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -625,6 +632,7 @@ M.ConfigurationSetDoesNotExistException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConfigurationSetDoesNotExist", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -647,6 +655,7 @@ M.ConfigurationSetSendingPausedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConfigurationSetSendingPausedException", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -716,6 +725,7 @@ M.InvalidConfigurationSetException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidConfigurationSet", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -860,6 +870,7 @@ M.EventDestinationAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "EventDestinationAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -888,6 +899,7 @@ M.InvalidCloudWatchDestinationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidCloudWatchDestination", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -916,6 +928,7 @@ M.InvalidFirehoseDestinationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidFirehoseDestination", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -944,6 +957,7 @@ M.InvalidSNSDestinationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSNSDestination", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -1016,6 +1030,7 @@ M.InvalidTrackingOptionsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidTrackingOptions", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1032,6 +1047,7 @@ M.TrackingOptionsAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TrackingOptionsAlreadyExistsException", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -1117,6 +1133,7 @@ M.CustomVerificationEmailInvalidContentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CustomVerificationEmailInvalidContent", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -1133,6 +1150,7 @@ M.CustomVerificationEmailTemplateAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CustomVerificationEmailTemplateAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         CustomVerificationEmailTemplateName = schema.new({
@@ -1155,6 +1173,7 @@ M.FromEmailAddressNotVerifiedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "FromEmailAddressNotVerified", httpResponseCode = 400 },
     },
     members = {
         FromEmailAddress = schema.new({
@@ -1538,6 +1557,7 @@ M.InvalidLambdaFunctionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidLambdaFunction", httpResponseCode = 400 },
     },
     members = {
         FunctionArn = schema.new({
@@ -1560,6 +1580,7 @@ M.InvalidS3ConfigurationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidS3Configuration", httpResponseCode = 400 },
     },
     members = {
         Bucket = schema.new({
@@ -1582,6 +1603,7 @@ M.InvalidSnsTopicException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSnsTopic", httpResponseCode = 400 },
     },
     members = {
         Topic = schema.new({
@@ -1604,6 +1626,7 @@ M.RuleDoesNotExistException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RuleDoesNotExist", httpResponseCode = 400 },
     },
     members = {
         Name = schema.new({
@@ -1703,6 +1726,7 @@ M.InvalidTemplateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidTemplate", httpResponseCode = 400 },
     },
     members = {
         TemplateName = schema.new({
@@ -1762,6 +1786,7 @@ M.CustomVerificationEmailTemplateDoesNotExistException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CustomVerificationEmailTemplateDoesNotExist", httpResponseCode = 400 },
     },
     members = {
         CustomVerificationEmailTemplateName = schema.new({
@@ -1835,6 +1860,7 @@ M.EventDestinationDoesNotExistException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "EventDestinationDoesNotExist", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -1884,6 +1910,7 @@ M.TrackingOptionsDoesNotExistException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TrackingOptionsDoesNotExistException", httpResponseCode = 400 },
     },
     members = {
         ConfigurationSetName = schema.new({
@@ -2868,6 +2895,7 @@ M.TemplateDoesNotExistException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TemplateDoesNotExist", httpResponseCode = 400 },
     },
     members = {
         TemplateName = schema.new({
@@ -2890,6 +2918,7 @@ M.InvalidDeliveryOptionsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDeliveryOptions", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2906,6 +2935,7 @@ M.InvalidPolicyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidPolicy", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -2922,6 +2952,7 @@ M.InvalidRenderingParameterException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidRenderingParameter", httpResponseCode = 400 },
     },
     members = {
         TemplateName = schema.new({
@@ -3229,6 +3260,7 @@ M.MailFromDomainNotVerifiedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MailFromDomainNotVerifiedException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3301,6 +3333,7 @@ M.MessageRejected = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MessageRejected", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3317,6 +3350,7 @@ M.MissingRenderingAttributeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MissingRenderingAttribute", httpResponseCode = 400 },
     },
     members = {
         TemplateName = schema.new({
@@ -3339,6 +3373,7 @@ M.ProductionAccessNotGrantedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ProductionAccessNotGranted", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({

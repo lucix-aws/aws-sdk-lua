@@ -1614,12 +1614,18 @@ local record M
         -- VCPU = 4
         -- value = 20480, 24576, or 28672
         -- VCPU = 4 or 8
-        -- value = 36864, 45056, 53248, or 61440
+        -- value = 36864, 45056, or 53248
         -- VCPU = 8
+        -- value = 61440
+        -- VCPU = 8 or 32
         -- value = 32768, 40960, 49152, or 57344
         -- VCPU = 8 or 16
-        -- value = 65536, 73728, 81920, 90112, 98304, 106496, 114688, or 122880
+        -- value = 65536, 73728, 81920, 90112, 98304, 106496, or 114688
         -- VCPU = 16
+        -- value = 122880
+        -- VCPU = 16 or 32
+        -- value = 249856
+        -- VCPU = 32
         -- type="VCPU"
         -- The number of vCPUs reserved for the container. This parameter maps to
         -- CpuShares in the Create a container section of the
@@ -1631,8 +1637,8 @@ local record M
         -- in the Amazon Web Services General Reference.
         -- For jobs that are running on Fargate resources, then value must match one
         -- of the supported values and the MEMORY values must be one of the values supported
-        -- for that VCPU value. The supported values are 0.25, 0.5, 1, 2, 4, 8, and
-        -- 16
+        -- for that VCPU value. The supported values are 0.25, 0.5, 1, 2, 4, 8, 16, and
+        -- 32.
         -- value = 0.25
         -- MEMORY = 512, 1024, or 2048
         -- value = 0.5
@@ -1648,6 +1654,8 @@ local record M
         -- MEMORY = 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, 57344, or 61440
         -- value = 16
         -- MEMORY = 32768, 40960, 49152, 57344, 65536, 73728, 81920, 90112, 98304, 106496, 114688, or 122880
+        -- value = 32
+        -- MEMORY = 61440, 122880, or 249856
         value: string
     end
 
@@ -2178,6 +2186,7 @@ local record M
         -- If no value is specified, then the IPC resource namespace sharing depends on the Docker
         -- daemon setting on the container instance. For more information, see IPC settings in
         -- the Docker run reference.
+        -- This parameter is not supported for jobs that run on Fargate resources.
         ipcMode: string
         -- The Amazon Resource Name (ARN) that's associated with the Amazon ECS task.
         -- This is object is comparable to ContainerProperties:jobRoleArn.

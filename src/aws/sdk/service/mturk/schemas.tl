@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.mturk"
 
@@ -83,6 +84,7 @@ M.RequestError = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "RequestError", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -105,6 +107,7 @@ M.ServiceFault = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceFault", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({

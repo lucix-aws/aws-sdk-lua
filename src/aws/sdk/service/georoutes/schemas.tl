@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.georoutes"
 
@@ -5097,7 +5098,7 @@ M.RoutePedestrianLegDetails = schema.new({
             list_member = M.RoutePedestrianAfterTravelStep,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         Arrival = schema.new({
@@ -8491,7 +8492,7 @@ M.RouteVehicleLegDetails = schema.new({
             list_member = M.RouteVehicleAfterTravelStep,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = {} },
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
         Arrival = schema.new({

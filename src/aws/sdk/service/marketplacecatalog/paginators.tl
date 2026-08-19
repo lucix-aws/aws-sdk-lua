@@ -4,6 +4,42 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for describeAssessment.
+function M.pages_describe_assessment(client, input)
+    return paginator.pages(client, "describeAssessment", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ControlAssessments",
+    })
+end
+
+--- Returns an item iterator for describeAssessment.
+function M.items_describe_assessment(client, input)
+    return paginator.items(client, "describeAssessment", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ControlAssessments",
+    })
+end
+
+--- Returns a page iterator for listAssessments.
+function M.pages_list_assessments(client, input)
+    return paginator.pages(client, "listAssessments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AssessmentSummaryList",
+    })
+end
+
+--- Returns an item iterator for listAssessments.
+function M.items_list_assessments(client, input)
+    return paginator.items(client, "listAssessments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AssessmentSummaryList",
+    })
+end
+
 --- Returns a page iterator for listChangeSets.
 function M.pages_list_change_sets(client, input)
     return paginator.pages(client, "listChangeSets", input, {

@@ -4,6 +4,7 @@ local id = require("smithy.shape_id")
 local schema = require("smithy.schema")
 local prelude = require("smithy.prelude")
 local traits = require("smithy.traits")
+local smithy = require("smithy")
 
 local _N = "com.amazonaws.ssm"
 
@@ -594,6 +595,7 @@ M.InternalServerError = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "InternalServerError", httpResponseCode = 500 },
     },
     members = {
         Message = schema.new({
@@ -610,6 +612,7 @@ M.InvalidResourceId = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceId", httpResponseCode = 400 },
     },
 })
 
@@ -618,6 +621,7 @@ M.InvalidResourceType = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceType", httpResponseCode = 400 },
     },
 })
 
@@ -626,6 +630,7 @@ M.TooManyTagsError = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyTagsError", httpResponseCode = 400 },
     },
 })
 
@@ -634,6 +639,7 @@ M.TooManyUpdates = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TooManyUpdates", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({
@@ -717,6 +723,7 @@ M.AlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AlreadyExistsException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -789,6 +796,7 @@ M.OpsItemConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsItemConflictException", httpResponseCode = 409 },
     },
     members = {
         Message = schema.new({
@@ -805,6 +813,7 @@ M.OpsItemInvalidParameterException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsItemInvalidParameterException", httpResponseCode = 400 },
     },
     members = {
         ParameterNames = schema.new({
@@ -828,6 +837,7 @@ M.OpsItemLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsItemLimitExceededException", httpResponseCode = 400 },
     },
     members = {
         ResourceTypes = schema.new({
@@ -866,6 +876,7 @@ M.OpsItemNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsItemNotFoundException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -882,6 +893,7 @@ M.OpsItemRelatedItemAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsItemRelatedItemAlreadyExistsException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -938,6 +950,7 @@ M.DuplicateInstanceId = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateInstanceId", httpResponseCode = 404 },
     },
 })
 
@@ -946,6 +959,7 @@ M.InvalidCommandId = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidCommandId", httpResponseCode = 404 },
     },
 })
 
@@ -954,6 +968,7 @@ M.InvalidInstanceId = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidInstanceId", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -999,6 +1014,7 @@ M.DoesNotExistException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DoesNotExistException", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -1113,6 +1129,7 @@ M.InvalidParameters = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameters", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1129,6 +1146,7 @@ M.AssociationAlreadyExists = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AssociationAlreadyExists", httpResponseCode = 400 },
     },
 })
 
@@ -1137,6 +1155,7 @@ M.AssociationLimitExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AssociationLimitExceeded", httpResponseCode = 400 },
     },
 })
 
@@ -1721,6 +1740,7 @@ M.InvalidDocument = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDocument", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -1737,6 +1757,7 @@ M.InvalidDocumentVersion = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDocumentVersion", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1753,6 +1774,7 @@ M.InvalidOutputLocation = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidOutputLocation", httpResponseCode = 400 },
     },
 })
 
@@ -1761,6 +1783,7 @@ M.InvalidSchedule = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidSchedule", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1777,6 +1800,7 @@ M.InvalidTag = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidTag", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1793,6 +1817,7 @@ M.InvalidTarget = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidTarget", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1809,6 +1834,7 @@ M.InvalidTargetMaps = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidTargetMaps", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -1825,6 +1851,7 @@ M.UnsupportedPlatformType = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedPlatformType", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2052,6 +2079,7 @@ M.ConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ConflictException", httpResponseCode = 409 },
     },
     members = {
         Message = schema.new({
@@ -2695,6 +2723,7 @@ M.DocumentAlreadyExists = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DocumentAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2711,6 +2740,7 @@ M.DocumentLimitExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DocumentLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2727,6 +2757,7 @@ M.InvalidDocumentContent = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDocumentContent", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2743,6 +2774,7 @@ M.InvalidDocumentSchemaVersion = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDocumentSchemaVersion", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2759,6 +2791,7 @@ M.MaxDocumentSizeExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MaxDocumentSizeExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2775,6 +2808,7 @@ M.NoLongerSupportedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "NoLongerSupported", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2904,6 +2938,7 @@ M.IdempotentParameterMismatch = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IdempotentParameterMismatch", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -2920,6 +2955,7 @@ M.ResourceLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceLimitExceededException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3120,6 +3156,7 @@ M.OpsItemAccessDeniedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsItemAccessDeniedException", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -3136,6 +3173,7 @@ M.OpsItemAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsItemAlreadyExistsException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3215,6 +3253,7 @@ M.OpsMetadataAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsMetadataAlreadyExistsException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3231,6 +3270,7 @@ M.OpsMetadataInvalidArgumentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsMetadataInvalidArgumentException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -3247,6 +3287,7 @@ M.OpsMetadataLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsMetadataLimitExceededException", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -3263,6 +3304,7 @@ M.OpsMetadataTooManyUpdatesException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsMetadataTooManyUpdatesException", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -3734,6 +3776,7 @@ M.ResourceDataSyncAlreadyExistsException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceDataSyncAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         SyncName = schema.new({
@@ -3750,6 +3793,7 @@ M.ResourceDataSyncCountExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceDataSyncCountExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3766,6 +3810,7 @@ M.ResourceDataSyncInvalidConfigurationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceDataSyncInvalidConfiguration", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -3803,6 +3848,7 @@ M.InvalidActivation = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidActivation", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -3819,6 +3865,7 @@ M.InvalidActivationId = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidActivationId", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -3835,6 +3882,7 @@ M.AssociationDoesNotExist = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AssociationDoesNotExist", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -3910,6 +3958,7 @@ M.ResourceNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceNotFoundException", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -3926,6 +3975,7 @@ M.AssociatedInstances = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AssociatedInstances", httpResponseCode = 400 },
     },
 })
 
@@ -3976,6 +4026,7 @@ M.InvalidDocumentOperation = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDocumentOperation", httpResponseCode = 403 },
     },
     members = {
         Message = schema.new({
@@ -4121,6 +4172,7 @@ M.InvalidDeleteInventoryParametersException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDeleteInventoryParameters", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4137,6 +4189,7 @@ M.InvalidInventoryRequestException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidInventoryRequest", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4153,6 +4206,7 @@ M.InvalidOptionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidOption", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4169,6 +4223,7 @@ M.InvalidTypeNameException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidTypeName", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4256,6 +4311,7 @@ M.OpsMetadataNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsMetadataNotFoundException", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -4293,6 +4349,7 @@ M.ParameterNotFound = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterNotFound", httpResponseCode = 404 },
     },
     members = {
         message = schema.new({
@@ -4376,6 +4433,7 @@ M.ResourceInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceInUseException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4419,6 +4477,7 @@ M.ResourceDataSyncNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceDataSyncNotFound", httpResponseCode = 404 },
     },
     members = {
         SyncName = schema.new({
@@ -4486,6 +4545,7 @@ M.MalformedResourcePolicyDocumentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MalformedResourcePolicyDocumentException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4502,6 +4562,7 @@ M.ResourcePolicyConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourcePolicyConflictException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4518,6 +4579,7 @@ M.ResourcePolicyInvalidParameterException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourcePolicyInvalidParameterException", httpResponseCode = 400 },
     },
     members = {
         ParameterNames = schema.new({
@@ -4541,6 +4603,7 @@ M.ResourcePolicyNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourcePolicyNotFoundException", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -4675,6 +4738,7 @@ M.TargetInUseException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TargetInUseException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4801,6 +4865,7 @@ M.InvalidFilter = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidFilter", httpResponseCode = 441 },
     },
     members = {
         Message = schema.new({
@@ -4817,6 +4882,7 @@ M.InvalidNextToken = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidNextToken", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -4878,6 +4944,7 @@ M.InvalidAssociationVersion = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAssociationVersion", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -5052,6 +5119,7 @@ M.AssociationExecutionDoesNotExist = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AssociationExecutionDoesNotExist", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -5609,6 +5677,7 @@ M.InvalidFilterKey = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidFilterKey", httpResponseCode = 400 },
     },
 })
 
@@ -5617,6 +5686,7 @@ M.InvalidFilterValue = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidFilterValue", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -5633,6 +5703,7 @@ M.AutomationExecutionNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AutomationExecutionNotFound", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -6310,6 +6381,7 @@ M.InvalidPermissionType = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidPermissionType", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -6499,6 +6571,7 @@ M.UnsupportedOperatingSystem = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedOperatingSystem", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -6939,6 +7012,7 @@ M.InvalidInstanceInformationFilterValue = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidInstanceInformationFilterValue", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -7702,6 +7776,7 @@ M.InvalidInstancePropertyFilterValue = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidInstancePropertyFilterValue", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -7813,6 +7888,7 @@ M.InvalidDeletionIdException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDeletionId", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -9239,6 +9315,7 @@ M.InvalidFilterOption = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidFilterOption", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -9819,6 +9896,7 @@ M.OpsItemRelatedItemAssociationNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsItemRelatedItemAssociationNotFoundException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -9945,6 +10023,7 @@ M.ValidationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ValidationException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -10338,6 +10417,7 @@ M.InvalidDocumentType = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDocumentType", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -10354,6 +10434,7 @@ M.UnsupportedCalendarException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedCalendarException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -10608,6 +10689,7 @@ M.InvalidPluginName = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidPluginName", httpResponseCode = 404 },
     },
 })
 
@@ -10616,6 +10698,7 @@ M.InvocationDoesNotExist = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvocationDoesNotExist", httpResponseCode = 400 },
     },
 })
 
@@ -10838,6 +10921,7 @@ M.UnsupportedFeatureRequiredException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedFeatureRequiredException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -11305,6 +11389,7 @@ M.InvalidAggregatorException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAggregator", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -11321,6 +11406,7 @@ M.InvalidInventoryGroupException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidInventoryGroup", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -11337,6 +11423,7 @@ M.InvalidResultAttributeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResultAttribute", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -12688,6 +12775,7 @@ M.InvalidKeyId = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidKeyId", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -12704,6 +12792,7 @@ M.ParameterVersionNotFound = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterVersionNotFound", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -13308,6 +13397,7 @@ M.ServiceSettingNotFound = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServiceSettingNotFound", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -13382,6 +13472,7 @@ M.ParameterVersionLabelLimitExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterVersionLabelLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -15560,6 +15651,7 @@ M.UnsupportedOperationException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedOperation", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -16307,6 +16399,7 @@ M.DocumentPermissionLimit = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DocumentPermissionLimit", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -16373,6 +16466,7 @@ M.ComplianceTypeCountLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ComplianceTypeCountLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -16389,6 +16483,7 @@ M.InvalidItemContentException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidItemContent", httpResponseCode = 400 },
     },
     members = {
         TypeName = schema.new({
@@ -16411,6 +16506,7 @@ M.ItemSizeLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ItemSizeLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         TypeName = schema.new({
@@ -16549,6 +16645,7 @@ M.TotalSizeLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TotalSizeLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -16565,6 +16662,7 @@ M.CustomSchemaCountLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "CustomSchemaCountLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -16581,6 +16679,7 @@ M.InvalidInventoryItemContextException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidInventoryItemContext", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -16597,6 +16696,7 @@ M.ItemContentMismatchException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ItemContentMismatch", httpResponseCode = 400 },
     },
     members = {
         TypeName = schema.new({
@@ -16713,6 +16813,7 @@ M.SubTypeCountLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "SubTypeCountLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -16729,6 +16830,7 @@ M.UnsupportedInventoryItemContextException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedInventoryItemContext", httpResponseCode = 400 },
     },
     members = {
         TypeName = schema.new({
@@ -16751,6 +16853,7 @@ M.UnsupportedInventorySchemaVersionException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedInventorySchemaVersion", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -16767,6 +16870,7 @@ M.HierarchyLevelLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "HierarchyLevelLimitExceededException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16783,6 +16887,7 @@ M.HierarchyTypeMismatchException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "HierarchyTypeMismatchException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16799,6 +16904,7 @@ M.IncompatiblePolicyException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "IncompatiblePolicyException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16815,6 +16921,7 @@ M.InvalidAllowedPatternException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAllowedPatternException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16831,6 +16938,7 @@ M.InvalidPolicyAttributeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidPolicyAttributeException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16847,6 +16955,7 @@ M.InvalidPolicyTypeException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidPolicyTypeException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16863,6 +16972,7 @@ M.ParameterAlreadyExists = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterAlreadyExists", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16879,6 +16989,7 @@ M.ParameterLimitExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterLimitExceeded", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -16895,6 +17006,7 @@ M.ParameterMaxVersionLimitExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterMaxVersionLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16911,6 +17023,7 @@ M.ParameterPatternMismatchException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ParameterPatternMismatchException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -16927,6 +17040,7 @@ M.PoliciesLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "PoliciesLimitExceededException", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -17048,6 +17162,7 @@ M.UnsupportedParameterType = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "UnsupportedParameterType", httpResponseCode = 400 },
     },
     members = {
         message = schema.new({
@@ -17120,6 +17235,7 @@ M.ResourcePolicyLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourcePolicyLimitExceededException", httpResponseCode = 400 },
     },
     members = {
         Limit = schema.new({
@@ -17299,6 +17415,7 @@ M.FeatureNotAvailableException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "FeatureNotAvailableException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -17563,6 +17680,7 @@ M.AutomationStepNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AutomationStepNotFoundException", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -17579,6 +17697,7 @@ M.InvalidAutomationSignalException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAutomationSignalException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -17633,6 +17752,7 @@ M.InvalidNotificationConfig = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidNotificationConfig", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -17649,6 +17769,7 @@ M.InvalidOutputFolder = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidOutputFolder", httpResponseCode = 400 },
     },
 })
 
@@ -17657,6 +17778,7 @@ M.InvalidRole = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidRole", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -17858,6 +17980,7 @@ M.InvalidAssociation = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAssociation", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -17896,6 +18019,7 @@ M.AutomationDefinitionNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AutomationDefinitionNotFound", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -17912,6 +18036,7 @@ M.AutomationDefinitionVersionNotFoundException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AutomationDefinitionVersionNotFound", httpResponseCode = 404 },
     },
     members = {
         Message = schema.new({
@@ -17928,6 +18053,7 @@ M.AutomationExecutionLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AutomationExecutionLimitExceeded", httpResponseCode = 429 },
     },
     members = {
         Message = schema.new({
@@ -17944,6 +18070,7 @@ M.InvalidAutomationExecutionParametersException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAutomationExecutionParameters", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -18074,6 +18201,7 @@ M.AutomationDefinitionNotApprovedException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AutomationDefinitionNotApproved", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -18354,6 +18482,7 @@ M.TargetNotConnected = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "TargetNotConnected", httpResponseCode = 430 },
     },
     members = {
         Message = schema.new({
@@ -18370,6 +18499,7 @@ M.InvalidAutomationStatusUpdateException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidAutomationStatusUpdateException", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -18499,6 +18629,7 @@ M.AssociationVersionLimitExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "AssociationVersionLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -18515,6 +18646,7 @@ M.InvalidUpdate = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidUpdate", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -18698,6 +18830,7 @@ M.StatusUnchanged = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "StatusUnchanged", httpResponseCode = 400 },
     },
 })
 
@@ -18803,6 +18936,7 @@ M.DocumentVersionLimitExceeded = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DocumentVersionLimitExceeded", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -18819,6 +18953,7 @@ M.DuplicateDocumentContent = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateDocumentContent", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -18835,6 +18970,7 @@ M.DuplicateDocumentVersionName = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DuplicateDocumentVersionName", httpResponseCode = 400 },
     },
     members = {
         Message = schema.new({
@@ -19715,6 +19851,7 @@ M.OpsMetadataKeyLimitExceededException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "OpsMetadataKeyLimitExceededException", httpResponseCode = 429 },
     },
     members = {
         message = schema.new({
@@ -19979,6 +20116,7 @@ M.ResourceDataSyncConflictException = schema.new({
     type = "structure",
     traits = {
         [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ResourceDataSyncConflictException", httpResponseCode = 409 },
     },
     members = {
         Message = schema.new({
