@@ -153,6 +153,22 @@ M.InternalServerException = schema.new({
     },
 })
 
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ValidationException = schema.new({
     id = id.from(_N, "ValidationException"),
     type = "structure",
@@ -309,22 +325,6 @@ M.ServiceQuotaExceededException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "ServiceQuotaExceededException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ThrottlingException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,

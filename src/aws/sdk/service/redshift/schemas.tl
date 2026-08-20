@@ -186,6 +186,8 @@ M.ValueStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
 
+M.S3TableLastIngestionTimeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.VpcEndpointsList = schema.new({ type = "list", list_member = M.VpcEndpoint })
 
 M.AuthorizedAudienceList = schema.new({ type = "list", list_member = prelude.String })
@@ -2581,6 +2583,60 @@ M.ClusterIamRole = schema.new({
     },
 })
 
+M.S3TablePublishStatus = schema.new({
+    id = id.from(_N, "S3TablePublishStatus"),
+    type = "structure",
+    members = {
+        S3Tables = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "S3Tables"),
+            type = "list",
+            name = "S3Tables",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        S3TableNamespace = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "S3TableNamespace"),
+            type = "string",
+            name = "S3TableNamespace",
+            target_id = prelude.String.id,
+        }),
+        S3TableGranularity = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "S3TableGranularity"),
+            type = "string",
+            name = "S3TableGranularity",
+            target_id = prelude.String.id,
+        }),
+        EnabledAll = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "EnabledAll"),
+            type = "boolean",
+            name = "EnabledAll",
+            target_id = prelude.Boolean.id,
+        }),
+        LastIngestionTimes = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "LastIngestionTimes"),
+            type = "map",
+            name = "LastIngestionTimes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.LoggingPublishStatus = schema.new({
+    id = id.from(_N, "LoggingPublishStatus"),
+    type = "structure",
+    members = {
+        S3Tables = schema.new({
+            id = id.from(_N, "LoggingPublishStatus", "S3Tables"),
+            type = "structure",
+            name = "S3Tables",
+            target_id = id.from(_N, "S3TablePublishStatus"),
+            target = M.S3TablePublishStatus,
+        }),
+    },
+})
+
 M.SecondaryClusterInfo = schema.new({
     id = id.from(_N, "SecondaryClusterInfo"),
     type = "structure",
@@ -3216,6 +3272,13 @@ M.Cluster = schema.new({
             type = "string",
             name = "ExtraComputeForAutomaticOptimization",
             target_id = prelude.String.id,
+        }),
+        LoggingPublishStatus = schema.new({
+            id = id.from(_N, "Cluster", "LoggingPublishStatus"),
+            type = "structure",
+            name = "LoggingPublishStatus",
+            target_id = id.from(_N, "LoggingPublishStatus"),
+            target = M.LoggingPublishStatus,
         }),
     },
 })
@@ -9959,6 +10022,13 @@ M.DescribeLoggingStatusOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        S3Tables = schema.new({
+            id = id.from(_N, "DescribeLoggingStatusOutput", "S3Tables"),
+            type = "structure",
+            name = "S3Tables",
+            target_id = id.from(_N, "S3TablePublishStatus"),
+            target = M.S3TablePublishStatus,
+        }),
     },
 })
 
@@ -11466,6 +11536,19 @@ M.DisableLoggingInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        LogDestinationType = schema.new({
+            id = id.from(_N, "DisableLoggingInput", "LogDestinationType"),
+            type = "string",
+            name = "LogDestinationType",
+            target_id = prelude.String.id,
+        }),
+        LogExports = schema.new({
+            id = id.from(_N, "DisableLoggingInput", "LogExports"),
+            type = "list",
+            name = "LogExports",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -11521,6 +11604,13 @@ M.DisableLoggingOutput = schema.new({
             name = "LogExports",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        S3Tables = schema.new({
+            id = id.from(_N, "DisableLoggingOutput", "S3Tables"),
+            type = "structure",
+            name = "S3Tables",
+            target_id = id.from(_N, "S3TablePublishStatus"),
+            target = M.S3TablePublishStatus,
         }),
     },
 })
@@ -11688,6 +11778,18 @@ M.EnableLoggingInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        S3TableKmsKeyId = schema.new({
+            id = id.from(_N, "EnableLoggingInput", "S3TableKmsKeyId"),
+            type = "string",
+            name = "S3TableKmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        S3TableGranularity = schema.new({
+            id = id.from(_N, "EnableLoggingInput", "S3TableGranularity"),
+            type = "string",
+            name = "S3TableGranularity",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -11743,6 +11845,13 @@ M.EnableLoggingOutput = schema.new({
             name = "LogExports",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        S3Tables = schema.new({
+            id = id.from(_N, "EnableLoggingOutput", "S3Tables"),
+            type = "structure",
+            name = "S3Tables",
+            target_id = id.from(_N, "S3TablePublishStatus"),
+            target = M.S3TablePublishStatus,
         }),
     },
 })

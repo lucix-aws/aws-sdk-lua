@@ -2723,34 +2723,35 @@ local record M
         "minute"
     end
 
-    -- Rate configuration for a metric (requests or tokens)
+    -- Contains the rate configuration for a rate limit metric, specifying the allowed rate and time period.
     record RateConfig
         -- The rate value for the limit. For request limits, this is the number of requests allowed per period. For token limits, this is the number of tokens allowed per period. For connection limits, this is the number of concurrent connections allowed.
         rate: number
+        -- The time period for the rate limit. Valid values: second—Measures the rate limit over a one-second window. minute—Measures the rate limit over a one-minute window.
         period: string
     end
 
-    -- A single rule entry within a limit, mapping dimension values to rate configurations
+    -- A single rule entry within a rate limit that maps dimension values to rate configurations. Each entry defines the rate limits for a specific combination of dimension values.
     record LimitEntry
-        -- Map of dimension name to dimension value, matching the parent limit's dimensionKeys.
-        -- Keys must exactly match the dimensionKeys. Values may be "*" as a wildcard.
-        -- "*" may only appear at trailing positions (based on dimensionKeys ordering).
+        -- A map of dimension names to dimension values for this rule entry. Keys must match the parent rate limit's dimension keys. Values may use * as a wildcard, but only in trailing positions based on the dimension keys ordering.
         dimensions: {string : string}
-        -- Request rate limits (RPS or RPM). Limited to 1 entry for now.
+        -- The request rate limit configuration. Specifies the maximum number of requests allowed per time period.
         requests: {RateConfig}
-        -- Token rate limits (TPM). Limited to 1 entry for now. — P1
+        -- The token rate limit configuration. Specifies the maximum number of tokens allowed per time period.
         tokens: {RateConfig}
-        -- Connection rate limits (per second only). Limited to 1 entry for now. — P2
+        -- The connection rate limit configuration. Specifies the maximum number of concurrent connections allowed.
         connections: {RateConfig}
     end
 
-    -- A limit definition within a BatchPut request (rateLimitId used for upsert matching)
+    -- A rate limit definition within a batch put request. If you provide a rateLimitId, the service uses it for upsert matching against existing rate limits.
     record BatchPutLimitEntry
-        -- Optional — if provided, used for upsert matching against existing limits.
+        -- The unique identifier of the rate limit. If provided, the service uses it for upsert matching against existing rate limits.
         rateLimitId: string
-        -- Optional human-readable description for this limit.
+        -- An optional human-readable description for this rate limit. If not provided, the rate limit is created without a description.
         description: string
+        -- The ordered list of dimension key names that define the scope of this rate limit.
         dimensionKeys: {string}
+        -- The list of rule entries that map dimension values to rate configurations.
         entries: {LimitEntry}
     end
 
@@ -2759,7 +2760,7 @@ local record M
         gatewayIdentifier: string
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
         clientToken: string
-        -- Complete set of rate limits for this gateway. Replaces all existing limits atomically.
+        -- The complete set of rate limits for this gateway. This operation replaces all existing rate limits in a single request. If the operation fails, no rate limits are changed.
         rateLimits: {BatchPutLimitEntry}
     end
 
@@ -2770,15 +2771,19 @@ local record M
         "DELETING"
     end
 
-    -- Shared fields for GatewayRateLimit responses
+    -- Contains detailed information about a gateway rate limit, including its configuration and current status.
     record GatewayRateLimitDetail
+        -- The unique identifier of the rate limit.
         rateLimitId: string
         -- The unique identifier of the gateway.
         gatewayIdentifier: string
-        -- Optional human-readable description for this limit.
+        -- The human-readable description of the rate limit.
         description: string
+        -- The ordered list of dimension key names that define the scope of this rate limit.
         dimensionKeys: {string}
+        -- The list of rule entries that map dimension values to rate configurations.
         entries: {LimitEntry}
+        -- The current status of the rate limit.
         status: string
         -- The timestamp when the rate limit was created.
         createdAt: number
@@ -2796,26 +2801,29 @@ local record M
         gatewayIdentifier: string
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
         clientToken: string
-        -- Optional customer-defined limit ID. If not provided, system generates one.
+        -- An optional customer-defined identifier for the rate limit. If not provided, the system generates one.
         rateLimitId: string
-        -- Optional human-readable description for this limit.
+        -- An optional human-readable description for this rate limit. If not provided, the rate limit is created without a description.
         description: string
-        -- Ordered list of dimension names defining the scope of this limit.
-        -- Unique per gateway — no two limits can share the same dimensionKeys.
+        -- The ordered list of dimension key names that define the scope of this rate limit. Must be unique per gateway—no two rate limits can share the same dimension keys.
         dimensionKeys: {string}
-        -- Rule entries mapping dimension values to rate configurations.
+        -- The rule entries that map dimension values to rate configurations.
         entries: {LimitEntry}
     end
 
-    -- Shared fields for GatewayRateLimit responses
+    -- Shared fields for GatewayRateLimit responses.
     record CreateGatewayRateLimitOutput
+        -- The unique identifier of the created rate limit.
         rateLimitId: string
         -- The unique identifier of the gateway.
         gatewayIdentifier: string
-        -- Optional human-readable description for this limit.
+        -- The human-readable description of the rate limit.
         description: string
+        -- The ordered list of dimension key names that define the scope of this rate limit.
         dimensionKeys: {string}
+        -- The list of rule entries that map dimension values to rate configurations.
         entries: {LimitEntry}
+        -- The current status of the rate limit.
         status: string
         -- The timestamp when the rate limit was created.
         createdAt: number
@@ -2831,7 +2839,9 @@ local record M
     end
 
     record DeleteGatewayRateLimitOutput
+        -- The unique identifier of the deleted rate limit.
         rateLimitId: string
+        -- The current status of the rate limit deletion.
         status: string
     end
 
@@ -2842,15 +2852,19 @@ local record M
         rateLimitId: string
     end
 
-    -- Shared fields for GatewayRateLimit responses
+    -- Shared fields for GatewayRateLimit responses.
     record GetGatewayRateLimitOutput
+        -- The unique identifier of the rate limit.
         rateLimitId: string
         -- The unique identifier of the gateway.
         gatewayIdentifier: string
-        -- Optional human-readable description for this limit.
+        -- The human-readable description of the rate limit.
         description: string
+        -- The ordered list of dimension key names that define the scope of this rate limit.
         dimensionKeys: {string}
+        -- The list of rule entries that map dimension values to rate configurations.
         entries: {LimitEntry}
+        -- The current status of the rate limit.
         status: string
         -- The timestamp when the rate limit was created.
         createdAt: number
@@ -2879,21 +2893,25 @@ local record M
         gatewayIdentifier: string
         -- The unique identifier of the rate limit to update.
         rateLimitId: string
-        -- Optional human-readable description for this limit.
+        -- The updated human-readable description for this rate limit.
         description: string
-        -- Updated rule entries. key and dimensionKeys are immutable and cannot be changed.
+        -- The updated rule entries. The dimension keys are immutable after creation and cannot be changed.
         entries: {LimitEntry}
     end
 
-    -- Shared fields for GatewayRateLimit responses
+    -- Shared fields for GatewayRateLimit responses.
     record UpdateGatewayRateLimitOutput
+        -- The unique identifier of the rate limit.
         rateLimitId: string
         -- The unique identifier of the gateway.
         gatewayIdentifier: string
-        -- Optional human-readable description for this limit.
+        -- The human-readable description of the rate limit.
         description: string
+        -- The ordered list of dimension key names that define the scope of this rate limit.
         dimensionKeys: {string}
+        -- The list of rule entries that map dimension values to rate configurations.
         entries: {LimitEntry}
+        -- The current status of the rate limit.
         status: string
         -- The timestamp when the rate limit was created.
         createdAt: number
@@ -5093,6 +5111,22 @@ local record M
         episodicMemoryStrategy: EpisodicMemoryStrategyInput
     end
 
+    -- The validation rules for namespace variable values. When you specify multiple rules, the service enforces a logical AND across all provided key-value pairs.
+    record NamespaceKeyValidation
+        -- The allowed values for this namespace variable key.
+        allowedValues: {string}
+        -- A regex pattern that the namespace variable key-value must match.
+        regexPattern: string
+    end
+
+    -- A namespace variable key definition with optional NamespaceKeyValidation rules.
+    record NamespaceKeyEntry
+        -- The namespace variable key name.
+        key: string
+        -- The validation rules that constrain values for this namespace variable at runtime (CreateEvent API).
+        validation: NamespaceKeyValidation
+    end
+
     enum ContentLevel
         "METADATA_ONLY"
         "FULL_CONTENT"
@@ -5145,6 +5179,8 @@ local record M
         memoryStrategies: {MemoryStrategyInput}
         -- Metadata keys to index for filtering. Once declared, indexed keys cannot be removed.
         indexedKeys: {IndexedKey}
+        -- The namespace variable key definitions with optional validation rules. Use these namespaceKeys in namespaceTemplates to control namespace hierarchy.
+        namespaceKeys: {NamespaceKeyEntry}
         -- Configuration for streaming memory record data to external resources.
         streamDeliveryResources: StreamDeliveryResources
         -- A map of tag keys and values to assign to an AgentCore Memory. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
@@ -5420,6 +5456,8 @@ local record M
         strategies: {MemoryStrategy}
         -- The indexed metadata keys for this memory. Only indexed keys can be used in metadata filters.
         indexedKeys: {IndexedKey}
+        -- The namespace variable key definitions for this memory. Namespace keys define custom variables used in namespaceTemplates with optional validation rules.
+        namespaceKeys: {NamespaceKeyEntry}
         -- Configuration for streaming memory record data to external resources.
         streamDeliveryResources: StreamDeliveryResources
         -- ARN of the resource managing this memory (e.g. a harness). When set, strategy modifications and deletion are only allowed through the managing resource.
@@ -5627,6 +5665,8 @@ local record M
         memoryStrategies: ModifyMemoryStrategies
         -- Additional metadata keys to index. Previously indexed keys cannot be removed.
         addIndexedKeys: {IndexedKey}
+        -- The namespace variable key definitions with validation rules for this memory. Use this parameter to update existing namespaceKey validation rules or add new keys when namespace templates change.
+        namespaceKeys: {NamespaceKeyEntry}
         -- Configuration for streaming memory record data to external resources.
         streamDeliveryResources: StreamDeliveryResources
     end
@@ -5744,9 +5784,7 @@ local record M
         "ES256"
     end
 
-    -- Configuration for private_key_jwt client authentication (RFC 7523).
-    -- On Create: privateKeySource and signingAlgorithm are required (enforced server-side).
-    -- On Update: all fields are optional — only provided fields are updated.
+    -- The private key configuration for private_key_jwt client authentication.
     record PrivateKeyJwtConfig
         -- The private key source for the JWT client assertion.
         privateKeySource: PrivateKeySource
@@ -5774,6 +5812,7 @@ local record M
         onBehalfOfTokenExchangeConfig: OnBehalfOfTokenExchangeConfigType
         -- The client authentication method to use when authenticating with the token endpoint.
         clientAuthenticationMethod: string
+        -- The private_key_jwt client authentication configuration for this credential provider. When specified, the credential provider uses JWT client assertions to authenticate with the token endpoint.
         privateKeyJwtConfig: PrivateKeyJwtConfig
         -- The default private endpoint for the custom OAuth2 provider, enabling secure connectivity through a VPC Lattice resource configuration.
         privateEndpoint: PrivateEndpoint
@@ -5927,6 +5966,7 @@ local record M
         privateEndpoint: PrivateEndpoint
         -- The private endpoint overrides for the custom OAuth2 provider configuration.
         privateEndpointOverrides: {PrivateEndpointOverride}
+        -- The configuration for private_key_jwt client authentication used by this OAuth2 credential provider.
         privateKeyJwtConfig: PrivateKeyJwtConfig
     end
 

@@ -46,6 +46,11 @@ local record M
         message: string
     end
 
+    -- The request was denied due to request throttling. Try your request again later.
+    record ThrottlingException
+        message: string
+    end
+
     -- The input does not satisfy the constraints specified by the service. Check your request parameters and retry the request.
     record ValidationException
         message: string
@@ -98,11 +103,6 @@ local record M
 
     -- The request exceeds a service quota for your account.
     record ServiceQuotaExceededException
-        message: string
-    end
-
-    -- The request was denied due to request throttling. Try your request again later.
-    record ThrottlingException
         message: string
     end
 

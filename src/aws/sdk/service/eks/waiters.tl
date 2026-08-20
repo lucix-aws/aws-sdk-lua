@@ -70,6 +70,46 @@ function M.wait_until_addon_deleted(client, input, options)
     }, options)
 end
 
+--- Wait until CertificateAuthorityUpdateComplete.
+function M.wait_until_certificate_authority_update_complete(client, input, options)
+    return waiter.wait(client, "describeUpdate", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "update.status",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "update.status",
+                        expected = "Cancelled",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "update.status",
+                        expected = "Successful",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
 --- Wait until ClusterActive.
 function M.wait_until_cluster_active(client, input, options)
     return waiter.wait(client, "describeCluster", input, {

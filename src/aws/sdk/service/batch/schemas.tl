@@ -743,6 +743,19 @@ M.ComputeResource = schema.new({
     },
 })
 
+M.EcsSettings = schema.new({
+    id = id.from(_N, "EcsSettings"),
+    type = "structure",
+    members = {
+        containerInsights = schema.new({
+            id = id.from(_N, "EcsSettings", "containerInsights"),
+            type = "string",
+            name = "containerInsights",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EksConfiguration = schema.new({
     id = id.from(_N, "EksConfiguration"),
     type = "structure",
@@ -835,6 +848,13 @@ M.CreateComputeEnvironmentInput = schema.new({
             type = "string",
             name = "context",
             target_id = prelude.String.id,
+        }),
+        ecsSettings = schema.new({
+            id = id.from(_N, "CreateComputeEnvironmentInput", "ecsSettings"),
+            type = "structure",
+            name = "ecsSettings",
+            target_id = id.from(_N, "EcsSettings"),
+            target = M.EcsSettings,
         }),
     },
 })
@@ -1782,6 +1802,13 @@ M.ComputeEnvironmentDetail = schema.new({
             type = "string",
             name = "context",
             target_id = prelude.String.id,
+        }),
+        ecsSettings = schema.new({
+            id = id.from(_N, "ComputeEnvironmentDetail", "ecsSettings"),
+            type = "structure",
+            name = "ecsSettings",
+            target_id = id.from(_N, "EcsSettings"),
+            target = M.EcsSettings,
         }),
     },
 })
@@ -7637,6 +7664,13 @@ M.UpdateComputeEnvironmentInput = schema.new({
             type = "string",
             name = "context",
             target_id = prelude.String.id,
+        }),
+        ecsSettings = schema.new({
+            id = id.from(_N, "UpdateComputeEnvironmentInput", "ecsSettings"),
+            type = "structure",
+            name = "ecsSettings",
+            target_id = id.from(_N, "EcsSettings"),
+            target = M.EcsSettings,
         }),
     },
 })

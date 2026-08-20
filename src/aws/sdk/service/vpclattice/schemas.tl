@@ -7200,9 +7200,19 @@ M.UpdateServiceNetworkVpcAssociationInput = schema.new({
             name = "securityGroupIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        privateDnsEnabled = schema.new({
+            id = id.from(_N, "UpdateServiceNetworkVpcAssociationInput", "privateDnsEnabled"),
+            type = "boolean",
+            name = "privateDnsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        dnsOptions = schema.new({
+            id = id.from(_N, "UpdateServiceNetworkVpcAssociationInput", "dnsOptions"),
+            type = "structure",
+            name = "dnsOptions",
+            target_id = id.from(_N, "DnsOptions"),
+            target = M.DnsOptions,
         }),
     },
 })
@@ -7241,6 +7251,19 @@ M.UpdateServiceNetworkVpcAssociationOutput = schema.new({
             name = "securityGroupIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        privateDnsEnabled = schema.new({
+            id = id.from(_N, "UpdateServiceNetworkVpcAssociationOutput", "privateDnsEnabled"),
+            type = "boolean",
+            name = "privateDnsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        dnsOptions = schema.new({
+            id = id.from(_N, "UpdateServiceNetworkVpcAssociationOutput", "dnsOptions"),
+            type = "structure",
+            name = "dnsOptions",
+            target_id = id.from(_N, "DnsOptions"),
+            target = M.DnsOptions,
         }),
     },
 })

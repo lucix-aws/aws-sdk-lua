@@ -583,6 +583,32 @@ local record M
         scalingPolicy: ComputeScalingPolicy
     end
 
+    enum ContainerInsights
+        "ENABLED"
+        "ENHANCED"
+        "DISABLED"
+    end
+
+    -- The Amazon ECS settings for a compute environment, including the CloudWatch Container Insights
+    -- mode. Use this structure with CreateComputeEnvironment and
+    -- UpdateComputeEnvironment.
+    record EcsSettings
+        -- Specifies the CloudWatch Container Insights mode for the compute environment. Valid values
+        -- are:
+        -- ENABLED
+        -- Turns on standard Container Insights, which collects CPU, memory, disk, and network
+        -- utilization metrics for the compute environment.
+        -- ENHANCED
+        -- Turns on enhanced Container Insights, which collects the standard metrics along with
+        -- additional per-task observability metrics.
+        -- DISABLED
+        -- Turns off Container Insights for the compute environment.
+        -- If you don't specify a value, the default is DISABLED. For more information,
+        -- see Container Insights in the
+        -- Batch User Guide.
+        containerInsights: string
+    end
+
     -- Configuration for the Amazon EKS cluster that supports the Batch compute environment. The
     -- cluster must exist before the compute environment can be created.
     record EksConfiguration
@@ -677,6 +703,9 @@ local record M
         eksConfiguration: EksConfiguration
         -- Reserved.
         context: string
+        -- The Amazon ECS settings for the compute environment. These settings control CloudWatch
+        -- Container Insights collection for the compute environment.
+        ecsSettings: EcsSettings
     end
 
     record CreateComputeEnvironmentOutput
@@ -1212,6 +1241,9 @@ local record M
         uuid: string
         -- Reserved.
         context: string
+        -- The Amazon ECS settings for the compute environment. These settings control CloudWatch
+        -- Container Insights collection.
+        ecsSettings: EcsSettings
     end
 
     record DescribeComputeEnvironmentsOutput
@@ -5152,6 +5184,9 @@ local record M
         updatePolicy: UpdatePolicy
         -- Reserved.
         context: string
+        -- The Amazon ECS settings for the compute environment. These settings control CloudWatch
+        -- Container Insights collection for the compute environment.
+        ecsSettings: EcsSettings
     end
 
     record UpdateComputeEnvironmentOutput

@@ -1005,6 +1005,26 @@ local record M
         ApplyStatus: string
     end
 
+    -- Describes the status of system table publishing to S3 Tables for a cluster.
+    record S3TablePublishStatus
+        -- The system tables currently being published.
+        S3Tables: {string}
+        -- The namespace in the S3 table bucket that holds the published tables.
+        S3TableNamespace: string
+        -- The scope of system table publishing in effect. Possible values are cluster and account.
+        S3TableGranularity: string
+        -- true if the cluster is enrolled in all current and future system tables rather than an explicit subset.
+        EnabledAll: boolean
+        -- A map whose keys are the names of the published system tables and whose values are the time each table last received data. Use this to judge data freshness.
+        LastIngestionTimes: {string : string}
+    end
+
+    -- Describes the system table publishing status for a cluster.
+    record LoggingPublishStatus
+        -- The status of system table publishing to S3 Tables.
+        S3Tables: S3TablePublishStatus
+    end
+
     -- The AvailabilityZone and ClusterNodes information of the secondary compute unit.
     record SecondaryClusterInfo
         -- The name of the Availability Zone in which the secondary compute unit of the cluster is located.
@@ -1316,6 +1336,8 @@ local record M
         -- A boolean value that, if true, indicates that the cluster allocates additional compute resources to run automatic optimization operations.
         -- Default: false
         ExtraComputeForAutomaticOptimization: string
+        -- The status of system table publishing for the cluster. This field is present only when system table publishing is configured.
+        LoggingPublishStatus: LoggingPublishStatus
     end
 
     -- The account already has a cluster with the given identifier.
@@ -4489,6 +4511,7 @@ local record M
     enum LogDestinationType
         "s3"
         "cloudwatch"
+        "s3table"
     end
 
     -- Describes the status of logging for a cluster.
@@ -4505,11 +4528,13 @@ local record M
         LastFailureTime: number
         -- The message indicating that logs failed to be delivered.
         LastFailureMessage: string
-        -- The log destination type. An enum with possible values of s3 and cloudwatch.
+        -- The log destination type. An enum with possible values of s3, cloudwatch, and s3table.
         LogDestinationType: string
-        -- The collection of exported log types. Possible values are connectionlog, useractivitylog, and
-        -- userlog.
+        -- The collection of exported log types. When LogDestinationType is s3 or cloudwatch, possible values are connectionlog, useractivitylog, and
+        -- userlog. When LogDestinationType is s3table, the values are the names of the system tables being published.
         LogExports: {string}
+        -- The status of system table publishing to S3 Tables. This field is populated only when system table publishing is active.
+        S3Tables: S3TablePublishStatus
     end
 
     enum NodeConfigurationOptionsFilterName
@@ -5376,6 +5401,10 @@ local record M
         -- The identifier of the cluster on which logging is to be stopped.
         -- Example: examplecluster
         ClusterIdentifier: string
+        -- The log destination type. An enum with possible values of s3, cloudwatch, and s3table. When set to s3table, stops system table publishing. When omitted, the operation disables audit logging.
+        LogDestinationType: string
+        -- The collection of log types to stop exporting. When LogDestinationType is s3table, the values are the names of the system tables to stop publishing. Omitting this parameter or passing all stops publishing all system tables.
+        LogExports: {string}
     end
 
     -- Describes the status of logging for a cluster.
@@ -5392,11 +5421,13 @@ local record M
         LastFailureTime: number
         -- The message indicating that logs failed to be delivered.
         LastFailureMessage: string
-        -- The log destination type. An enum with possible values of s3 and cloudwatch.
+        -- The log destination type. An enum with possible values of s3, cloudwatch, and s3table.
         LogDestinationType: string
-        -- The collection of exported log types. Possible values are connectionlog, useractivitylog, and
-        -- userlog.
+        -- The collection of exported log types. When LogDestinationType is s3 or cloudwatch, possible values are connectionlog, useractivitylog, and
+        -- userlog. When LogDestinationType is s3table, the values are the names of the system tables being published.
         LogExports: {string}
+        -- The status of system table publishing to S3 Tables. This field is populated only when system table publishing is active.
+        S3Tables: S3TablePublishStatus
     end
 
     record DisableSnapshotCopyInput
@@ -5459,10 +5490,14 @@ local record M
         -- underscore (_), period (.), colon (:), slash (/), equal (=), plus (+), backslash (\),
         -- hyphen (-), at symbol (@).
         S3KeyPrefix: string
-        -- The log destination type. An enum with possible values of s3 and cloudwatch.
+        -- The log destination type. An enum with possible values of s3, cloudwatch, and s3table.
         LogDestinationType: string
-        -- The collection of exported log types. Possible values are connectionlog, useractivitylog, and userlog.
+        -- The collection of exported log types. When LogDestinationType is s3 or cloudwatch, possible values are connectionlog, useractivitylog, and userlog. When LogDestinationType is s3table, the values are the names of the system tables to publish. Omitting this parameter, passing an empty list, or including the value all publishes all current and future system tables.
         LogExports: {string}
+        -- The identifier of a customer managed KMS key used to encrypt the S3 tables. This parameter is valid only when LogDestinationType is s3table.
+        S3TableKmsKeyId: string
+        -- The scope of system table publishing. Valid values are cluster and account. A value of cluster scopes publishing to the individual cluster. A value of account scopes publishing to the Amazon Web Services account. This parameter is valid only when LogDestinationType is s3table.
+        S3TableGranularity: string
     end
 
     -- Describes the status of logging for a cluster.
@@ -5479,11 +5514,13 @@ local record M
         LastFailureTime: number
         -- The message indicating that logs failed to be delivered.
         LastFailureMessage: string
-        -- The log destination type. An enum with possible values of s3 and cloudwatch.
+        -- The log destination type. An enum with possible values of s3, cloudwatch, and s3table.
         LogDestinationType: string
-        -- The collection of exported log types. Possible values are connectionlog, useractivitylog, and
-        -- userlog.
+        -- The collection of exported log types. When LogDestinationType is s3 or cloudwatch, possible values are connectionlog, useractivitylog, and
+        -- userlog. When LogDestinationType is s3table, the values are the names of the system tables being published.
         LogExports: {string}
+        -- The status of system table publishing to S3 Tables. This field is populated only when system table publishing is active.
+        S3Tables: S3TablePublishStatus
     end
 
     -- The cluster does not have read bucket or put object permissions on the S3 bucket
@@ -5979,9 +6016,6 @@ local record M
         -- the MasterUserPassword element exists in the
         -- PendingModifiedValues element of the operation response.
         -- You can't use MasterUserPassword if ManageMasterPassword is true.
-        -- If your admin user account is locked, this operation also unlocks your account and
-        -- resets the failed-login counter. This option is available only when account lockout
-        -- security is enabled for the cluster.
         -- Operations never return the password, so this operation provides a way to
         -- regain access to the admin user account for a cluster if the password is
         -- lost.

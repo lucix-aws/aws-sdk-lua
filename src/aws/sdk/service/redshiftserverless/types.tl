@@ -276,6 +276,25 @@ local record M
         redshiftIdcApplicationArn: string
     end
 
+    enum S3TableGranularity
+        "namespace"
+        "account"
+    end
+
+    -- Describes the state of Amazon S3 Tables system-table log publishing for a namespace.
+    record S3TablePublishStatus
+        -- The system tables currently being published.
+        s3Tables: {string}
+        -- The identifier of the namespace in the S3 table bucket that holds the published tables.
+        s3TableNamespace: string
+        -- The scope currently in effect. Values are namespace or account.
+        s3TableGranularity: string
+        -- true when the namespace is enrolled in every current and future system table rather than an explicit list of tables.
+        enabledAll: boolean
+        -- A map of system table name to the time that table last received data, as an ISO-8601 timestamp. A table that has not yet been ingested is absent from the map. Use it to judge data freshness.
+        lastIngestionTimes: {string : string}
+    end
+
     enum NamespaceStatus
         "AVAILABLE"
         "MODIFYING"
@@ -314,6 +333,8 @@ local record M
         lakehouseRegistrationStatus: string
         -- The Amazon Resource Name (ARN) of the Glue Data Catalog associated with the namespace enabled with Amazon Redshift federated permissions.
         catalogArn: string
+        -- The current Amazon S3 Tables log-publishing status for the namespace. Not returned when S3 Tables publishing has never been configured for the namespace.
+        s3TablePublishStatus: S3TablePublishStatus
     end
 
     record CreateNamespaceOutput
@@ -1347,6 +1368,11 @@ local record M
         workgroups: {Workgroup}
     end
 
+    enum LogDestinationType
+        "s3table"
+        "cloudwatch"
+    end
+
     record UpdateLakehouseConfigurationInput
         -- The name of the namespace whose lakehouse configuration you want to modify.
         namespaceName: string
@@ -1373,6 +1399,11 @@ local record M
         catalogArn: string
     end
 
+    enum S3TableAction
+        "Enable"
+        "Disable"
+    end
+
     record UpdateNamespaceInput
         -- The name of the namespace to update. You can't update the name of a namespace once it is created.
         namespaceName: string
@@ -1392,6 +1423,16 @@ local record M
         manageAdminPassword: boolean
         -- The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if manageAdminPassword is true.
         adminPasswordSecretKmsKeyId: string
+        -- The destination for the log data. Valid values are s3table and cloudwatch. Set this to s3table to manage Amazon S3 Tables system-table publishing for the namespace.
+        logDestinationType: string
+        -- Whether to enable or disable Amazon S3 Tables publishing. Valid values are Enable and Disable, matched case-insensitively. When omitted, defaults to Enable. Valid only when logDestinationType is s3table.
+        s3TableAction: string
+        -- The system tables to publish (on enable) or to stop publishing (on disable). Each value is either a system table view name that begins with sys_ or the keyword all. Omitting this parameter, passing an empty list, or including all each select every current and future system table. Each name must be 1-128 characters, and the list can contain up to 256 names. Valid only when logDestinationType is s3table.
+        s3TableNames: {string}
+        -- The identifier of the Key Management Service key used to encrypt the published Amazon S3 Tables data. When omitted, the data is encrypted with SSE-S3 (Amazon S3 managed keys). Valid only when logDestinationType is s3table.
+        s3TableKmsKeyId: string
+        -- The scope of the Amazon S3 Tables destination. Valid values are namespace and account, matched case-insensitively. namespace scopes the published tables to this namespace; account scopes them to the Amazon Web Services account. Required when enabling. Omitting this parameter or passing a blank value fails with ValidationException. Valid only when logDestinationType is s3table.
+        s3TableGranularity: string
     end
 
     record UpdateNamespaceOutput

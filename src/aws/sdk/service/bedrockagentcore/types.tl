@@ -3269,6 +3269,8 @@ local record M
     record MemoryRecordDeleteInput
         -- The unique ID of the memory record to be deleted.
         memoryRecordId: string
+        -- The namespace of the memory record being deleted. This value is used for IAM condition key authorization.
+        namespace: string
     end
 
     record BatchDeleteMemoryRecordsInput
@@ -3295,6 +3297,8 @@ local record M
         content: MemoryContent
         -- The updated list of namespace identifiers for categorizing the memory record.
         namespaces: {string}
+        -- The namespaces of the source memory record being updated. This value is used for IAM condition key authorization.
+        sourceNamespaces: {string}
         -- The updated ID of the memory strategy that defines how this memory record is grouped.
         memoryStrategyId: string
         -- Metadata key-value pairs to be stored with the memory record.
@@ -3321,6 +3325,12 @@ local record M
         rootEventId: string
         -- The name of the branch.
         name: string
+    end
+
+    -- The configuration for extraction behavior. Use this structure to specify namespace variable keys and their values for namespace substitution during long-term memory extraction.
+    record ExtractionConfig
+        -- A map of namespaceKeys to their values. The service substitutes these values into namespaceTemplates during long-term memory extraction to control namespace hierarchy.
+        namespaceVariables: {string : string}
     end
 
     enum ExtractionMode
@@ -3354,12 +3364,20 @@ local record M
         role: string
     end
 
+    -- Contains non-conversational, JSON-formatted content for an event payload. JSON payloads are extracted into long-term memory.
+    record MemoryJsonData
+        -- The JSON content of the payload. Accepts any JSON value, including objects, arrays, strings, numbers, booleans, and null. The maximum size is 100 KB.
+        content: any
+    end
+
     -- Contains the payload content for an event.
     record PayloadType
         -- The conversational content of the payload.
         conversational: Conversational
         -- The binary content of the payload.
         blob: any
+        -- The JSON content of the payload. Use this type to store non-conversational, JSON-formatted data, such as behavioral events, activity logs, or system events.
+        json: MemoryJsonData
     end
 
     record CreateEventInput
@@ -3371,7 +3389,7 @@ local record M
         sessionId: string
         -- The timestamp when the event occurred. If not specified, the current time is used.
         eventTimestamp: number
-        -- The content payload of the event. This can include conversational data or binary content.
+        -- The content payload of the event. This can include conversational data, JSON data, or binary content.
         payload: {PayloadType}
         -- The branch information for this event. Branches allow for organizing events into different conversation threads or paths.
         branch: Branch
@@ -3381,6 +3399,8 @@ local record M
         metadata: {string : MetadataValue}
         -- Controls long-term memory extraction for this event. When set to SKIP, the event is stored in short-term memory but is excluded from long-term memory extraction. If not specified, the event is processed for extraction as usual.
         extractionMode: string
+        -- The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.
+        extractionConfig: ExtractionConfig
     end
 
     -- Contains information about an event in an AgentCore Memory resource.
@@ -3434,6 +3454,8 @@ local record M
         memoryId: string
         -- The identifier of the memory record to delete.
         memoryRecordId: string
+        -- The namespace of the memory record to delete. This value is used for IAM condition key authorization.
+        namespace: string
     end
 
     record DeleteMemoryRecordOutput
@@ -3462,6 +3484,8 @@ local record M
         memoryId: string
         -- The identifier of the memory record to retrieve.
         memoryRecordId: string
+        -- The namespace of the memory record to retrieve. This value is used for IAM condition key authorization.
+        namespace: string
     end
 
     -- Contains information about a memory record in an AgentCore Memory resource.

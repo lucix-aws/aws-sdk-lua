@@ -112,6 +112,8 @@ M.MemoryStrategyInputList = schema.new({ type = "list", list_member = M.MemorySt
 
 M.IndexedKeysList = schema.new({ type = "list", list_member = M.IndexedKey })
 
+M.NamespaceKeysList = schema.new({ type = "list", list_member = M.NamespaceKeyEntry })
+
 M.Oauth2CredentialProviders = schema.new({ type = "list", list_member = M.Oauth2CredentialProviderItem })
 
 M.OnlineEvaluationConfigSummaryList = schema.new({ type = "list", list_member = M.OnlineEvaluationConfigSummary })
@@ -249,6 +251,8 @@ M.InferenceOperationConfigurations = schema.new({ type = "list", list_member = M
 M.HarnessAwsSkillPaths = schema.new({ type = "list", list_member = prelude.String })
 
 M.NamespacesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NamespaceAllowedValuesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EphemeralBlockDeviceMappingList = schema.new({ type = "list", list_member = M.EphemeralBlockDeviceMapping })
 
@@ -16223,6 +16227,49 @@ M.MemoryStrategyInput = schema.new({
     },
 })
 
+M.NamespaceKeyValidation = schema.new({
+    id = id.from(_N, "NamespaceKeyValidation"),
+    type = "structure",
+    members = {
+        allowedValues = schema.new({
+            id = id.from(_N, "NamespaceKeyValidation", "allowedValues"),
+            type = "list",
+            name = "allowedValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        regexPattern = schema.new({
+            id = id.from(_N, "NamespaceKeyValidation", "regexPattern"),
+            type = "string",
+            name = "regexPattern",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NamespaceKeyEntry = schema.new({
+    id = id.from(_N, "NamespaceKeyEntry"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "NamespaceKeyEntry", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        validation = schema.new({
+            id = id.from(_N, "NamespaceKeyEntry", "validation"),
+            type = "structure",
+            name = "validation",
+            target_id = id.from(_N, "NamespaceKeyValidation"),
+            target = M.NamespaceKeyValidation,
+        }),
+    },
+})
+
 M.ContentConfiguration = schema.new({
     id = id.from(_N, "ContentConfiguration"),
     type = "structure",
@@ -16367,6 +16414,13 @@ M.CreateMemoryInput = schema.new({
             name = "indexedKeys",
             target_id = prelude.Document.id,
             list_member = M.IndexedKey,
+        }),
+        namespaceKeys = schema.new({
+            id = id.from(_N, "CreateMemoryInput", "namespaceKeys"),
+            type = "list",
+            name = "namespaceKeys",
+            target_id = prelude.Document.id,
+            list_member = M.NamespaceKeyEntry,
         }),
         streamDeliveryResources = schema.new({
             id = id.from(_N, "CreateMemoryInput", "streamDeliveryResources"),
@@ -17127,6 +17181,13 @@ M.Memory = schema.new({
             target_id = prelude.Document.id,
             list_member = M.IndexedKey,
         }),
+        namespaceKeys = schema.new({
+            id = id.from(_N, "Memory", "namespaceKeys"),
+            type = "list",
+            name = "namespaceKeys",
+            target_id = prelude.Document.id,
+            list_member = M.NamespaceKeyEntry,
+        }),
         streamDeliveryResources = schema.new({
             id = id.from(_N, "Memory", "streamDeliveryResources"),
             type = "structure",
@@ -17731,6 +17792,13 @@ M.UpdateMemoryInput = schema.new({
             name = "addIndexedKeys",
             target_id = prelude.Document.id,
             list_member = M.IndexedKey,
+        }),
+        namespaceKeys = schema.new({
+            id = id.from(_N, "UpdateMemoryInput", "namespaceKeys"),
+            type = "list",
+            name = "namespaceKeys",
+            target_id = prelude.Document.id,
+            list_member = M.NamespaceKeyEntry,
         }),
         streamDeliveryResources = schema.new({
             id = id.from(_N, "UpdateMemoryInput", "streamDeliveryResources"),

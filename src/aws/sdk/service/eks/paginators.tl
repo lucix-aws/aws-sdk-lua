@@ -130,6 +130,24 @@ function M.items_list_capabilities(client, input)
     })
 end
 
+--- Returns a page iterator for listCertificateAuthorities.
+function M.pages_list_certificate_authorities(client, input)
+    return paginator.pages(client, "listCertificateAuthorities", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "certificateAuthorities",
+    })
+end
+
+--- Returns an item iterator for listCertificateAuthorities.
+function M.items_list_certificate_authorities(client, input)
+    return paginator.items(client, "listCertificateAuthorities", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "certificateAuthorities",
+    })
+end
+
 --- Returns a page iterator for listClusters.
 function M.pages_list_clusters(client, input)
     return paginator.pages(client, "listClusters", input, {

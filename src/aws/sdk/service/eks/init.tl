@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    activateCertificateAuthority: function(Client, types.ActivateCertificateAuthorityInput, ? base_client.InvokeOptions): async.Operation<types.ActivateCertificateAuthorityOutput>
     associateAccessPolicy: function(Client, types.AssociateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAccessPolicyOutput>
     associateEncryptionConfig: function(Client, types.AssociateEncryptionConfigInput, ? base_client.InvokeOptions): async.Operation<types.AssociateEncryptionConfigOutput>
     associateIdentityProviderConfig: function(Client, types.AssociateIdentityProviderConfigInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIdentityProviderConfigOutput>
@@ -25,6 +26,7 @@ local record Client
     createAccessEntry: function(Client, types.CreateAccessEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessEntryOutput>
     createAddon: function(Client, types.CreateAddonInput, ? base_client.InvokeOptions): async.Operation<types.CreateAddonOutput>
     createCapability: function(Client, types.CreateCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapabilityOutput>
+    createCertificateAuthority: function(Client, types.CreateCertificateAuthorityInput, ? base_client.InvokeOptions): async.Operation<types.CreateCertificateAuthorityOutput>
     createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
     createEksAnywhereSubscription: function(Client, types.CreateEksAnywhereSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateEksAnywhereSubscriptionOutput>
     createFargateProfile: function(Client, types.CreateFargateProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateFargateProfileOutput>
@@ -33,6 +35,7 @@ local record Client
     deleteAccessEntry: function(Client, types.DeleteAccessEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessEntryOutput>
     deleteAddon: function(Client, types.DeleteAddonInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAddonOutput>
     deleteCapability: function(Client, types.DeleteCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapabilityOutput>
+    deleteCertificateAuthority: function(Client, types.DeleteCertificateAuthorityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCertificateAuthorityOutput>
     deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
     deleteEksAnywhereSubscription: function(Client, types.DeleteEksAnywhereSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEksAnywhereSubscriptionOutput>
     deleteFargateProfile: function(Client, types.DeleteFargateProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFargateProfileOutput>
@@ -44,6 +47,7 @@ local record Client
     describeAddonConfiguration: function(Client, types.DescribeAddonConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddonConfigurationOutput>
     describeAddonVersions: function(Client, types.DescribeAddonVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddonVersionsOutput>
     describeCapability: function(Client, types.DescribeCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapabilityOutput>
+    describeCertificateAuthority: function(Client, types.DescribeCertificateAuthorityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificateAuthorityOutput>
     describeCluster: function(Client, types.DescribeClusterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
     describeClusterVersions: function(Client, types.DescribeClusterVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterVersionsOutput>
     describeEksAnywhereSubscription: function(Client, types.DescribeEksAnywhereSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEksAnywhereSubscriptionOutput>
@@ -61,6 +65,7 @@ local record Client
     listAddons: function(Client, types.ListAddonsInput, ? base_client.InvokeOptions): async.Operation<types.ListAddonsOutput>
     listAssociatedAccessPolicies: function(Client, types.ListAssociatedAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociatedAccessPoliciesOutput>
     listCapabilities: function(Client, types.ListCapabilitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListCapabilitiesOutput>
+    listCertificateAuthorities: function(Client, types.ListCertificateAuthoritiesInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificateAuthoritiesOutput>
     listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
     listEksAnywhereSubscriptions: function(Client, types.ListEksAnywhereSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEksAnywhereSubscriptionsOutput>
     listFargateProfiles: function(Client, types.ListFargateProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListFargateProfilesOutput>
@@ -127,6 +132,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:activateCertificateAuthority(input: types.ActivateCertificateAuthorityInput, options?: base_client.InvokeOptions): async.Operation<types.ActivateCertificateAuthorityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateCertificateAuthority as schema.OperationSchema, input, options) as async.Operation<types.ActivateCertificateAuthorityOutput>
+end
+
 function C:associateAccessPolicy(input: types.AssociateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAccessPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.AssociateAccessPolicyOutput>
 end
@@ -153,6 +162,10 @@ end
 
 function C:createCapability(input: types.CreateCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapabilityOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapability as schema.OperationSchema, input, options) as async.Operation<types.CreateCapabilityOutput>
+end
+
+function C:createCertificateAuthority(input: types.CreateCertificateAuthorityInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCertificateAuthorityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCertificateAuthority as schema.OperationSchema, input, options) as async.Operation<types.CreateCertificateAuthorityOutput>
 end
 
 function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
@@ -185,6 +198,10 @@ end
 
 function C:deleteCapability(input: types.DeleteCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCapabilityOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCapability as schema.OperationSchema, input, options) as async.Operation<types.DeleteCapabilityOutput>
+end
+
+function C:deleteCertificateAuthority(input: types.DeleteCertificateAuthorityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCertificateAuthorityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCertificateAuthority as schema.OperationSchema, input, options) as async.Operation<types.DeleteCertificateAuthorityOutput>
 end
 
 function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
@@ -229,6 +246,10 @@ end
 
 function C:describeCapability(input: types.DescribeCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapabilityOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapability as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapabilityOutput>
+end
+
+function C:describeCertificateAuthority(input: types.DescribeCertificateAuthorityInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificateAuthorityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCertificateAuthority as schema.OperationSchema, input, options) as async.Operation<types.DescribeCertificateAuthorityOutput>
 end
 
 function C:describeCluster(input: types.DescribeClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
@@ -297,6 +318,10 @@ end
 
 function C:listCapabilities(input: types.ListCapabilitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCapabilitiesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCapabilities as schema.OperationSchema, input, options) as async.Operation<types.ListCapabilitiesOutput>
+end
+
+function C:listCertificateAuthorities(input: types.ListCertificateAuthoritiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificateAuthoritiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificateAuthorities as schema.OperationSchema, input, options) as async.Operation<types.ListCertificateAuthoritiesOutput>
 end
 
 function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>

@@ -122,6 +122,8 @@ M.ExecutionSummaryClusterList = schema.new({ type = "list", list_member = M.Exec
 
 M.SessionMetadataList = schema.new({ type = "list", list_member = M.SessionMetadataShape })
 
+M.NamespaceVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.NamespacesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MemoryRecordMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MemoryRecordMetadataValue })
@@ -10148,6 +10150,12 @@ M.MemoryRecordDeleteInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        namespace = schema.new({
+            id = id.from(_N, "MemoryRecordDeleteInput", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -10238,6 +10246,13 @@ M.MemoryRecordUpdateInput = schema.new({
             id = id.from(_N, "MemoryRecordUpdateInput", "namespaces"),
             type = "list",
             name = "namespaces",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        sourceNamespaces = schema.new({
+            id = id.from(_N, "MemoryRecordUpdateInput", "sourceNamespaces"),
+            type = "list",
+            name = "sourceNamespaces",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -10334,6 +10349,21 @@ M.Branch = schema.new({
     },
 })
 
+M.ExtractionConfig = schema.new({
+    id = id.from(_N, "ExtractionConfig"),
+    type = "structure",
+    members = {
+        namespaceVariables = schema.new({
+            id = id.from(_N, "ExtractionConfig", "namespaceVariables"),
+            type = "map",
+            name = "namespaceVariables",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.MetadataValue = schema.new({
     id = id.from(_N, "MetadataValue"),
     type = "union",
@@ -10386,6 +10416,22 @@ M.Conversational = schema.new({
     },
 })
 
+M.MemoryJsonData = schema.new({
+    id = id.from(_N, "MemoryJsonData"),
+    type = "structure",
+    members = {
+        content = schema.new({
+            id = id.from(_N, "MemoryJsonData", "content"),
+            type = "document",
+            name = "content",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PayloadType = schema.new({
     id = id.from(_N, "PayloadType"),
     type = "union",
@@ -10402,6 +10448,13 @@ M.PayloadType = schema.new({
             type = "document",
             name = "blob",
             target_id = prelude.Document.id,
+        }),
+        json = schema.new({
+            id = id.from(_N, "PayloadType", "json"),
+            type = "structure",
+            name = "json",
+            target_id = id.from(_N, "MemoryJsonData"),
+            target = M.MemoryJsonData,
         }),
     },
 })
@@ -10483,6 +10536,13 @@ M.CreateEventInput = schema.new({
             type = "string",
             name = "extractionMode",
             target_id = prelude.String.id,
+        }),
+        extractionConfig = schema.new({
+            id = id.from(_N, "CreateEventInput", "extractionConfig"),
+            type = "structure",
+            name = "extractionConfig",
+            target_id = id.from(_N, "ExtractionConfig"),
+            target = M.ExtractionConfig,
         }),
     },
 })
@@ -10687,6 +10747,15 @@ M.DeleteMemoryRecordInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        namespace = schema.new({
+            id = id.from(_N, "DeleteMemoryRecordInput", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "namespace" },
+            },
+        }),
     },
 })
 
@@ -10792,6 +10861,15 @@ M.GetMemoryRecordInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "GetMemoryRecordInput", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "namespace" },
             },
         }),
     },

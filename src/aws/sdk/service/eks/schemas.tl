@@ -36,6 +36,8 @@ M.AssociatedAccessPoliciesList = schema.new({ type = "list", list_member = M.Ass
 
 M.CapabilitySummaryList = schema.new({ type = "list", list_member = M.CapabilitySummary })
 
+M.CertificateAuthoritySummaryList = schema.new({ type = "list", list_member = M.CertificateAuthoritySummary })
+
 M.IncludeClustersList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EksAnywhereSubscriptionStatusValues = schema.new({ type = "list", list_member = prelude.String })
@@ -246,6 +248,395 @@ M.AccessScope = schema.new({
             name = "namespaces",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+    },
+})
+
+M.ActivateCertificateAuthorityInput = schema.new({
+    id = id.from(_N, "ActivateCertificateAuthorityRequest"),
+    type = "structure",
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "ActivateCertificateAuthorityInput", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        certificateAuthorityId = schema.new({
+            id = id.from(_N, "ActivateCertificateAuthorityInput", "certificateAuthorityId"),
+            type = "string",
+            name = "certificateAuthorityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientRequestToken = schema.new({
+            id = id.from(_N, "ActivateCertificateAuthorityInput", "clientRequestToken"),
+            type = "string",
+            name = "clientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CertificateAuthoritySummary = schema.new({
+    id = id.from(_N, "CertificateAuthoritySummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "CertificateAuthoritySummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CertificateAuthoritySummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "CertificateAuthoritySummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        activatedAt = schema.new({
+            id = id.from(_N, "CertificateAuthoritySummary", "activatedAt"),
+            type = "timestamp",
+            name = "activatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        activatedBy = schema.new({
+            id = id.from(_N, "CertificateAuthoritySummary", "activatedBy"),
+            type = "string",
+            name = "activatedBy",
+            target_id = prelude.String.id,
+        }),
+        signingStatus = schema.new({
+            id = id.from(_N, "CertificateAuthoritySummary", "signingStatus"),
+            type = "string",
+            name = "signingStatus",
+            target_id = prelude.String.id,
+        }),
+        distributionStatus = schema.new({
+            id = id.from(_N, "CertificateAuthoritySummary", "distributionStatus"),
+            type = "string",
+            name = "distributionStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Cancellation = schema.new({
+    id = id.from(_N, "Cancellation"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "Cancellation", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "Cancellation", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ErrorDetail = schema.new({
+    id = id.from(_N, "ErrorDetail"),
+    type = "structure",
+    members = {
+        errorCode = schema.new({
+            id = id.from(_N, "ErrorDetail", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "ErrorDetail", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+        resourceIds = schema.new({
+            id = id.from(_N, "ErrorDetail", "resourceIds"),
+            type = "list",
+            name = "resourceIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateParam = schema.new({
+    id = id.from(_N, "UpdateParam"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "UpdateParam", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "UpdateParam", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Update = schema.new({
+    id = id.from(_N, "Update"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "Update", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "Update", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "Update", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        params = schema.new({
+            id = id.from(_N, "Update", "params"),
+            type = "list",
+            name = "params",
+            target_id = prelude.Document.id,
+            list_member = M.UpdateParam,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Update", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        errors = schema.new({
+            id = id.from(_N, "Update", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.ErrorDetail,
+        }),
+        cancellation = schema.new({
+            id = id.from(_N, "Update", "cancellation"),
+            type = "structure",
+            name = "cancellation",
+            target_id = id.from(_N, "Cancellation"),
+            target = M.Cancellation,
+        }),
+    },
+})
+
+M.ActivateCertificateAuthorityOutput = schema.new({
+    id = id.from(_N, "ActivateCertificateAuthorityResponse"),
+    type = "structure",
+    members = {
+        update = schema.new({
+            id = id.from(_N, "ActivateCertificateAuthorityOutput", "update"),
+            type = "structure",
+            name = "update",
+            target_id = id.from(_N, "Update"),
+            target = M.Update,
+        }),
+        certificateAuthority = schema.new({
+            id = id.from(_N, "ActivateCertificateAuthorityOutput", "certificateAuthority"),
+            type = "structure",
+            name = "certificateAuthority",
+            target_id = id.from(_N, "CertificateAuthoritySummary"),
+            target = M.CertificateAuthoritySummary,
+        }),
+    },
+})
+
+M.InvalidParameterException = schema.new({
+    id = id.from(_N, "InvalidParameterException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "InvalidParameterException", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+        }),
+        nodegroupName = schema.new({
+            id = id.from(_N, "InvalidParameterException", "nodegroupName"),
+            type = "string",
+            name = "nodegroupName",
+            target_id = prelude.String.id,
+        }),
+        fargateProfileName = schema.new({
+            id = id.from(_N, "InvalidParameterException", "fargateProfileName"),
+            type = "string",
+            name = "fargateProfileName",
+            target_id = prelude.String.id,
+        }),
+        addonName = schema.new({
+            id = id.from(_N, "InvalidParameterException", "addonName"),
+            type = "string",
+            name = "addonName",
+            target_id = prelude.String.id,
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "InvalidParameterException", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "InvalidParameterException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+        }),
+        nodegroupName = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "nodegroupName"),
+            type = "string",
+            name = "nodegroupName",
+            target_id = prelude.String.id,
+        }),
+        fargateProfileName = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "fargateProfileName"),
+            type = "string",
+            name = "fargateProfileName",
+            target_id = prelude.String.id,
+        }),
+        addonName = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "addonName"),
+            type = "string",
+            name = "addonName",
+            target_id = prelude.String.id,
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServerException = schema.new({
+    id = id.from(_N, "ServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "ServerException", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+        }),
+        nodegroupName = schema.new({
+            id = id.from(_N, "ServerException", "nodegroupName"),
+            type = "string",
+            name = "nodegroupName",
+            target_id = prelude.String.id,
+        }),
+        addonName = schema.new({
+            id = id.from(_N, "ServerException", "addonName"),
+            type = "string",
+            name = "addonName",
+            target_id = prelude.String.id,
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "ServerException", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "ServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ActiveCertificateAuthority = schema.new({
+    id = id.from(_N, "ActiveCertificateAuthority"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ActiveCertificateAuthority", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        activatedBy = schema.new({
+            id = id.from(_N, "ActiveCertificateAuthority", "activatedBy"),
+            type = "string",
+            name = "activatedBy",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -962,52 +1353,6 @@ M.AssociateAccessPolicyOutput = schema.new({
     },
 })
 
-M.InvalidParameterException = schema.new({
-    id = id.from(_N, "InvalidParameterException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        clusterName = schema.new({
-            id = id.from(_N, "InvalidParameterException", "clusterName"),
-            type = "string",
-            name = "clusterName",
-            target_id = prelude.String.id,
-        }),
-        nodegroupName = schema.new({
-            id = id.from(_N, "InvalidParameterException", "nodegroupName"),
-            type = "string",
-            name = "nodegroupName",
-            target_id = prelude.String.id,
-        }),
-        fargateProfileName = schema.new({
-            id = id.from(_N, "InvalidParameterException", "fargateProfileName"),
-            type = "string",
-            name = "fargateProfileName",
-            target_id = prelude.String.id,
-        }),
-        addonName = schema.new({
-            id = id.from(_N, "InvalidParameterException", "addonName"),
-            type = "string",
-            name = "addonName",
-            target_id = prelude.String.id,
-        }),
-        subscriptionId = schema.new({
-            id = id.from(_N, "InvalidParameterException", "subscriptionId"),
-            type = "string",
-            name = "subscriptionId",
-            target_id = prelude.String.id,
-        }),
-        message = schema.new({
-            id = id.from(_N, "InvalidParameterException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.InvalidRequestException = schema.new({
     id = id.from(_N, "InvalidRequestException"),
     type = "structure",
@@ -1041,92 +1386,6 @@ M.InvalidRequestException = schema.new({
         }),
         message = schema.new({
             id = id.from(_N, "InvalidRequestException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        clusterName = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "clusterName"),
-            type = "string",
-            name = "clusterName",
-            target_id = prelude.String.id,
-        }),
-        nodegroupName = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "nodegroupName"),
-            type = "string",
-            name = "nodegroupName",
-            target_id = prelude.String.id,
-        }),
-        fargateProfileName = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "fargateProfileName"),
-            type = "string",
-            name = "fargateProfileName",
-            target_id = prelude.String.id,
-        }),
-        addonName = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "addonName"),
-            type = "string",
-            name = "addonName",
-            target_id = prelude.String.id,
-        }),
-        subscriptionId = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "subscriptionId"),
-            type = "string",
-            name = "subscriptionId",
-            target_id = prelude.String.id,
-        }),
-        message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ServerException = schema.new({
-    id = id.from(_N, "ServerException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        clusterName = schema.new({
-            id = id.from(_N, "ServerException", "clusterName"),
-            type = "string",
-            name = "clusterName",
-            target_id = prelude.String.id,
-        }),
-        nodegroupName = schema.new({
-            id = id.from(_N, "ServerException", "nodegroupName"),
-            type = "string",
-            name = "nodegroupName",
-            target_id = prelude.String.id,
-        }),
-        addonName = schema.new({
-            id = id.from(_N, "ServerException", "addonName"),
-            type = "string",
-            name = "addonName",
-            target_id = prelude.String.id,
-        }),
-        subscriptionId = schema.new({
-            id = id.from(_N, "ServerException", "subscriptionId"),
-            type = "string",
-            name = "subscriptionId",
-            target_id = prelude.String.id,
-        }),
-        message = schema.new({
-            id = id.from(_N, "ServerException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -1200,122 +1459,6 @@ M.AssociateEncryptionConfigInput = schema.new({
             traits = {
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
-        }),
-    },
-})
-
-M.Cancellation = schema.new({
-    id = id.from(_N, "Cancellation"),
-    type = "structure",
-    members = {
-        status = schema.new({
-            id = id.from(_N, "Cancellation", "status"),
-            type = "string",
-            name = "status",
-            target_id = prelude.String.id,
-        }),
-        reason = schema.new({
-            id = id.from(_N, "Cancellation", "reason"),
-            type = "string",
-            name = "reason",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ErrorDetail = schema.new({
-    id = id.from(_N, "ErrorDetail"),
-    type = "structure",
-    members = {
-        errorCode = schema.new({
-            id = id.from(_N, "ErrorDetail", "errorCode"),
-            type = "string",
-            name = "errorCode",
-            target_id = prelude.String.id,
-        }),
-        errorMessage = schema.new({
-            id = id.from(_N, "ErrorDetail", "errorMessage"),
-            type = "string",
-            name = "errorMessage",
-            target_id = prelude.String.id,
-        }),
-        resourceIds = schema.new({
-            id = id.from(_N, "ErrorDetail", "resourceIds"),
-            type = "list",
-            name = "resourceIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-    },
-})
-
-M.UpdateParam = schema.new({
-    id = id.from(_N, "UpdateParam"),
-    type = "structure",
-    members = {
-        type = schema.new({
-            id = id.from(_N, "UpdateParam", "type"),
-            type = "string",
-            name = "type",
-            target_id = prelude.String.id,
-        }),
-        value = schema.new({
-            id = id.from(_N, "UpdateParam", "value"),
-            type = "string",
-            name = "value",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.Update = schema.new({
-    id = id.from(_N, "Update"),
-    type = "structure",
-    members = {
-        id = schema.new({
-            id = id.from(_N, "Update", "id"),
-            type = "string",
-            name = "id",
-            target_id = prelude.String.id,
-        }),
-        status = schema.new({
-            id = id.from(_N, "Update", "status"),
-            type = "string",
-            name = "status",
-            target_id = prelude.String.id,
-        }),
-        type = schema.new({
-            id = id.from(_N, "Update", "type"),
-            type = "string",
-            name = "type",
-            target_id = prelude.String.id,
-        }),
-        params = schema.new({
-            id = id.from(_N, "Update", "params"),
-            type = "list",
-            name = "params",
-            target_id = prelude.Document.id,
-            list_member = M.UpdateParam,
-        }),
-        createdAt = schema.new({
-            id = id.from(_N, "Update", "createdAt"),
-            type = "timestamp",
-            name = "createdAt",
-            target_id = prelude.Timestamp.id,
-        }),
-        errors = schema.new({
-            id = id.from(_N, "Update", "errors"),
-            type = "list",
-            name = "errors",
-            target_id = prelude.Document.id,
-            list_member = M.ErrorDetail,
-        }),
-        cancellation = schema.new({
-            id = id.from(_N, "Update", "cancellation"),
-            type = "structure",
-            name = "cancellation",
-            target_id = id.from(_N, "Cancellation"),
-            target = M.Cancellation,
         }),
     },
 })
@@ -2093,6 +2236,53 @@ M.CreateCapabilityOutput = schema.new({
     },
 })
 
+M.CreateCertificateAuthorityInput = schema.new({
+    id = id.from(_N, "CreateCertificateAuthorityRequest"),
+    type = "structure",
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "CreateCertificateAuthorityInput", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientRequestToken = schema.new({
+            id = id.from(_N, "CreateCertificateAuthorityInput", "clientRequestToken"),
+            type = "string",
+            name = "clientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateCertificateAuthorityOutput = schema.new({
+    id = id.from(_N, "CreateCertificateAuthorityResponse"),
+    type = "structure",
+    members = {
+        update = schema.new({
+            id = id.from(_N, "CreateCertificateAuthorityOutput", "update"),
+            type = "structure",
+            name = "update",
+            target_id = id.from(_N, "Update"),
+            target = M.Update,
+        }),
+        certificateAuthority = schema.new({
+            id = id.from(_N, "CreateCertificateAuthorityOutput", "certificateAuthority"),
+            type = "structure",
+            name = "certificateAuthority",
+            target_id = id.from(_N, "CertificateAuthoritySummary"),
+            target = M.CertificateAuthoritySummary,
+        }),
+    },
+})
+
 M.CreateAccessConfigRequest = schema.new({
     id = id.from(_N, "CreateAccessConfigRequest"),
     type = "structure",
@@ -2767,6 +2957,13 @@ M.Certificate = schema.new({
             name = "data",
             target_id = prelude.String.id,
         }),
+        active = schema.new({
+            id = id.from(_N, "Certificate", "active"),
+            type = "structure",
+            name = "active",
+            target_id = id.from(_N, "ActiveCertificateAuthority"),
+            target = M.ActiveCertificateAuthority,
+        }),
     },
 })
 
@@ -3420,22 +3617,6 @@ M.CreateClusterOutput = schema.new({
             name = "cluster",
             target_id = id.from(_N, "Cluster"),
             target = M.Cluster,
-        }),
-    },
-})
-
-M.ServiceUnavailableException = schema.new({
-    id = id.from(_N, "ServiceUnavailableException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceUnavailableException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -4850,6 +5031,64 @@ M.DeleteCapabilityOutput = schema.new({
     },
 })
 
+M.DeleteCertificateAuthorityInput = schema.new({
+    id = id.from(_N, "DeleteCertificateAuthorityRequest"),
+    type = "structure",
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "DeleteCertificateAuthorityInput", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        certificateAuthorityId = schema.new({
+            id = id.from(_N, "DeleteCertificateAuthorityInput", "certificateAuthorityId"),
+            type = "string",
+            name = "certificateAuthorityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientRequestToken = schema.new({
+            id = id.from(_N, "DeleteCertificateAuthorityInput", "clientRequestToken"),
+            type = "string",
+            name = "clientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "clientRequestToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCertificateAuthorityOutput = schema.new({
+    id = id.from(_N, "DeleteCertificateAuthorityResponse"),
+    type = "structure",
+    members = {
+        update = schema.new({
+            id = id.from(_N, "DeleteCertificateAuthorityOutput", "update"),
+            type = "structure",
+            name = "update",
+            target_id = id.from(_N, "Update"),
+            target = M.Update,
+        }),
+        certificateAuthority = schema.new({
+            id = id.from(_N, "DeleteCertificateAuthorityOutput", "certificateAuthority"),
+            type = "structure",
+            name = "certificateAuthority",
+            target_id = id.from(_N, "CertificateAuthoritySummary"),
+            target = M.CertificateAuthoritySummary,
+        }),
+    },
+})
+
 M.DeleteClusterInput = schema.new({
     id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
@@ -5337,6 +5576,160 @@ M.DescribeCapabilityOutput = schema.new({
             name = "capability",
             target_id = id.from(_N, "Capability"),
             target = M.Capability,
+        }),
+    },
+})
+
+M.DescribeCertificateAuthorityInput = schema.new({
+    id = id.from(_N, "DescribeCertificateAuthorityRequest"),
+    type = "structure",
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "DescribeCertificateAuthorityInput", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        certificateAuthorityId = schema.new({
+            id = id.from(_N, "DescribeCertificateAuthorityInput", "certificateAuthorityId"),
+            type = "string",
+            name = "certificateAuthorityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.CertificateAuthorityScheduledEvents = schema.new({
+    id = id.from(_N, "CertificateAuthorityScheduledEvents"),
+    type = "structure",
+    members = {
+        firstAutoActivation = schema.new({
+            id = id.from(_N, "CertificateAuthorityScheduledEvents", "firstAutoActivation"),
+            type = "timestamp",
+            name = "firstAutoActivation",
+            target_id = prelude.Timestamp.id,
+        }),
+        finalAutoActivation = schema.new({
+            id = id.from(_N, "CertificateAuthorityScheduledEvents", "finalAutoActivation"),
+            type = "timestamp",
+            name = "finalAutoActivation",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CertificateAuthorityValidity = schema.new({
+    id = id.from(_N, "CertificateAuthorityValidity"),
+    type = "structure",
+    members = {
+        notBefore = schema.new({
+            id = id.from(_N, "CertificateAuthorityValidity", "notBefore"),
+            type = "timestamp",
+            name = "notBefore",
+            target_id = prelude.Timestamp.id,
+        }),
+        notAfter = schema.new({
+            id = id.from(_N, "CertificateAuthorityValidity", "notAfter"),
+            type = "timestamp",
+            name = "notAfter",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CertificateAuthority = schema.new({
+    id = id.from(_N, "CertificateAuthority"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "CertificateAuthority", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CertificateAuthority", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "CertificateAuthority", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        activatedAt = schema.new({
+            id = id.from(_N, "CertificateAuthority", "activatedAt"),
+            type = "timestamp",
+            name = "activatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        activatedBy = schema.new({
+            id = id.from(_N, "CertificateAuthority", "activatedBy"),
+            type = "string",
+            name = "activatedBy",
+            target_id = prelude.String.id,
+        }),
+        signingStatus = schema.new({
+            id = id.from(_N, "CertificateAuthority", "signingStatus"),
+            type = "string",
+            name = "signingStatus",
+            target_id = prelude.String.id,
+        }),
+        distributionStatus = schema.new({
+            id = id.from(_N, "CertificateAuthority", "distributionStatus"),
+            type = "string",
+            name = "distributionStatus",
+            target_id = prelude.String.id,
+        }),
+        validity = schema.new({
+            id = id.from(_N, "CertificateAuthority", "validity"),
+            type = "structure",
+            name = "validity",
+            target_id = id.from(_N, "CertificateAuthorityValidity"),
+            target = M.CertificateAuthorityValidity,
+        }),
+        scheduledEvents = schema.new({
+            id = id.from(_N, "CertificateAuthority", "scheduledEvents"),
+            type = "structure",
+            name = "scheduledEvents",
+            target_id = id.from(_N, "CertificateAuthorityScheduledEvents"),
+            target = M.CertificateAuthorityScheduledEvents,
+        }),
+        rollbackAvailable = schema.new({
+            id = id.from(_N, "CertificateAuthority", "rollbackAvailable"),
+            type = "boolean",
+            name = "rollbackAvailable",
+            target_id = prelude.Boolean.id,
+        }),
+        data = schema.new({
+            id = id.from(_N, "CertificateAuthority", "data"),
+            type = "string",
+            name = "data",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeCertificateAuthorityOutput = schema.new({
+    id = id.from(_N, "DescribeCertificateAuthorityResponse"),
+    type = "structure",
+    members = {
+        certificateAuthority = schema.new({
+            id = id.from(_N, "DescribeCertificateAuthorityOutput", "certificateAuthority"),
+            type = "structure",
+            name = "certificateAuthority",
+            target_id = id.from(_N, "CertificateAuthority"),
+            target = M.CertificateAuthority,
         }),
     },
 })
@@ -6982,6 +7375,61 @@ M.ListCapabilitiesOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListCapabilitiesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCertificateAuthoritiesInput = schema.new({
+    id = id.from(_N, "ListCertificateAuthoritiesRequest"),
+    type = "structure",
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "ListCertificateAuthoritiesInput", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListCertificateAuthoritiesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCertificateAuthoritiesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListCertificateAuthoritiesOutput = schema.new({
+    id = id.from(_N, "ListCertificateAuthoritiesResponse"),
+    type = "structure",
+    members = {
+        certificateAuthorities = schema.new({
+            id = id.from(_N, "ListCertificateAuthoritiesOutput", "certificateAuthorities"),
+            type = "list",
+            name = "certificateAuthorities",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateAuthoritySummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCertificateAuthoritiesOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -8725,6 +9173,18 @@ M.Service = schema.service({
     },
 })
 
+M.ActivateCertificateAuthority = schema.operation({
+    id = id.from("com.amazonaws.eks", "ActivateCertificateAuthority"),
+    input = M.ActivateCertificateAuthorityInput,
+    output = M.ActivateCertificateAuthorityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/certificate-authorities/{certificateAuthorityId}/activate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AssociateAccessPolicy = schema.operation({
     id = id.from("com.amazonaws.eks", "AssociateAccessPolicy"),
     input = M.AssociateAccessPolicyInput,
@@ -8803,6 +9263,18 @@ M.CreateCapability = schema.operation({
     output = M.CreateCapabilityOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/capabilities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCertificateAuthority = schema.operation({
+    id = id.from("com.amazonaws.eks", "CreateCertificateAuthority"),
+    input = M.CreateCertificateAuthorityInput,
+    output = M.CreateCertificateAuthorityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/certificate-authorities" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -8899,6 +9371,18 @@ M.DeleteCapability = schema.operation({
     output = M.DeleteCapabilityOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/capabilities/{capabilityName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCertificateAuthority = schema.operation({
+    id = id.from("com.amazonaws.eks", "DeleteCertificateAuthority"),
+    input = M.DeleteCertificateAuthorityInput,
+    output = M.DeleteCertificateAuthorityOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/clusters/{clusterName}/certificate-authorities/{certificateAuthorityId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9031,6 +9515,18 @@ M.DescribeCapability = schema.operation({
     output = M.DescribeCapabilityOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/capabilities/{capabilityName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCertificateAuthority = schema.operation({
+    id = id.from("com.amazonaws.eks", "DescribeCertificateAuthority"),
+    input = M.DescribeCertificateAuthorityInput,
+    output = M.DescribeCertificateAuthorityOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/certificate-authorities/{certificateAuthorityId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9235,6 +9731,18 @@ M.ListCapabilities = schema.operation({
     output = M.ListCapabilitiesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/capabilities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCertificateAuthorities = schema.operation({
+    id = id.from("com.amazonaws.eks", "ListCertificateAuthorities"),
+    input = M.ListCertificateAuthoritiesInput,
+    output = M.ListCertificateAuthoritiesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/clusters/{clusterName}/certificate-authorities" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

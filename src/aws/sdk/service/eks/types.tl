@@ -93,6 +93,322 @@ local record M
         namespaces: {string}
     end
 
+    record ActivateCertificateAuthorityInput
+        -- The name of your cluster.
+        clusterName: string
+        -- The ID of the certificate authority to activate as the cluster's signing certificate
+        -- authority. This certificate authority must already exist on the cluster and have a
+        -- distributionStatus of COMPLETE.
+        certificateAuthorityId: string
+        -- A unique, case-sensitive identifier that you provide to ensure
+        -- the idempotency of the request.
+        clientRequestToken: string
+    end
+
+    enum CertificateAuthorityActivatedBy
+        "EKS"
+        "CUSTOMER"
+    end
+
+    enum CertificateAuthorityCreatedBy
+        "EKS"
+        "CUSTOMER"
+    end
+
+    enum CertificateAuthorityDistributionStatus
+        "IN_PROGRESS"
+        "COMPLETE"
+        "FAILED"
+        "DELETING"
+    end
+
+    enum CertificateAuthoritySigningStatus
+        "NOT_USED"
+        "ACTIVATING"
+        "IN_USE"
+    end
+
+    -- Summary information about a certificate authority (CA) for an Amazon EKS cluster, returned by
+    -- ListCertificateAuthorities
+    -- and the certificate-authority write
+    -- operations.
+    record CertificateAuthoritySummary
+        -- The unique identifier of the certificate authority.
+        id: string
+        -- The Unix epoch timestamp in seconds for when the certificate authority was created.
+        createdAt: number
+        -- The entity that created the certificate authority, either CUSTOMER or
+        -- EKS.
+        createdBy: string
+        -- The Unix epoch timestamp in seconds for when the certificate authority was last
+        -- activated. This value is absent if the certificate authority has never been
+        -- activated.
+        activatedAt: number
+        -- The entity that most recently activated the certificate authority, either
+        -- CUSTOMER or EKS.
+        activatedBy: string
+        -- The signing status of the certificate authority: IN_USE,
+        -- ACTIVATING, or NOT_USED.
+        signingStatus: string
+        -- The distribution status of the certificate authority: IN_PROGRESS,
+        -- COMPLETE, FAILED, or DELETING.
+        distributionStatus: string
+    end
+
+    enum CancellationStatus
+        "InProgress"
+        "Failed"
+        "Successful"
+    end
+
+    -- Contains information about the latest cancellation of an update to an Amazon EKS cluster.
+    record Cancellation
+        -- The current status of the cancellation. Valid values are InProgress,
+        -- Failed, and Successful.
+        status: string
+        -- A message providing additional details about the cancellation, such as the reason for
+        -- the cancellation or failure details.
+        reason: string
+    end
+
+    enum ErrorCode
+        "SubnetNotFound"
+        "SecurityGroupNotFound"
+        "EniLimitReached"
+        "IpNotAvailable"
+        "AccessDenied"
+        "OperationNotPermitted"
+        "VpcIdNotFound"
+        "Unknown"
+        "NodeCreationFailure"
+        "PodEvictionFailure"
+        "InsufficientFreeAddresses"
+        "ClusterUnreachable"
+        "InsufficientNumberOfReplicas"
+        "ConfigurationConflict"
+        "AdmissionRequestDenied"
+        "UnsupportedAddonModification"
+        "K8sResourceNotFound"
+    end
+
+    -- An object representing an error when an asynchronous operation fails.
+    record ErrorDetail
+        -- A brief description of the error.
+        -- SubnetNotFound: We couldn't find one of the
+        -- subnets associated with the cluster.
+        -- SecurityGroupNotFound: We couldn't find one
+        -- of the security groups associated with the cluster.
+        -- EniLimitReached: You have reached the elastic
+        -- network interface limit for your account.
+        -- IpNotAvailable: A subnet associated with the
+        -- cluster doesn't have any available IP addresses.
+        -- AccessDenied: You don't have permissions to
+        -- perform the specified operation.
+        -- OperationNotPermitted: The service role
+        -- associated with the cluster doesn't have the required access permissions for
+        -- Amazon EKS.
+        -- VpcIdNotFound: We couldn't find the VPC
+        -- associated with the cluster.
+        errorCode: string
+        -- A more complete description of the error.
+        errorMessage: string
+        -- An optional field that contains the resource IDs associated with the error.
+        resourceIds: {string}
+    end
+
+    enum UpdateParamType
+        "Version"
+        "PlatformVersion"
+        "EndpointPrivateAccess"
+        "EndpointPublicAccess"
+        "ClusterLogging"
+        "DesiredSize"
+        "LabelsToAdd"
+        "LabelsToRemove"
+        "TaintsToAdd"
+        "TaintsToRemove"
+        "MaxSize"
+        "MinSize"
+        "ReleaseVersion"
+        "PublicAccessCidrs"
+        "LaunchTemplateName"
+        "LaunchTemplateVersion"
+        "IdentityProviderConfig"
+        "EncryptionConfig"
+        "AddonVersion"
+        "ServiceAccountRoleArn"
+        "ResolveConflicts"
+        "MaxUnavailable"
+        "MaxUnavailablePercentage"
+        "NodeRepairEnabled"
+        "UpdateStrategy"
+        "ConfigurationValues"
+        "SecurityGroups"
+        "Subnets"
+        "AuthenticationMode"
+        "PodIdentityAssociations"
+        "UpgradePolicy"
+        "ZonalShiftConfig"
+        "ComputeConfig"
+        "StorageConfig"
+        "KubernetesNetworkConfig"
+        "RemoteNetworkConfig"
+        "DeletionProtection"
+        "NodeRepairConfig"
+        "RoleArn"
+        "RoleMappingsToAddOrUpdate"
+        "RoleMappingsToRemove"
+        "NetworkAccess"
+        "VendedLogs"
+        "UpdatedTier"
+        "PreviousTier"
+        "WarmPoolEnabled"
+        "WarmPoolMaxGroupPreparedCapacity"
+        "WarmPoolMinSize"
+        "WarmPoolState"
+        "WarmPoolReuseOnScaleIn"
+        "ControlPlaneEgressMode"
+        "KubeApiServerConfig"
+        "KubeSchedulerConfig"
+        "KubeControllerManagerConfig"
+        "ActiveCertificateAuthority"
+        "TrustedCertificateAuthorities"
+        "CertificateAuthorityId"
+        "SigningStatus"
+    end
+
+    -- An object representing the details of an update request.
+    record UpdateParam
+        -- The value of the keys submitted as part of an update request.
+        value: string
+    end
+
+    enum UpdateStatus
+        "InProgress"
+        "Failed"
+        "Cancelled"
+        "Successful"
+    end
+
+    enum UpdateType
+        "VersionUpdate"
+        "EndpointAccessUpdate"
+        "LoggingUpdate"
+        "ConfigUpdate"
+        "AssociateIdentityProviderConfig"
+        "DisassociateIdentityProviderConfig"
+        "AssociateEncryptionConfig"
+        "AddonUpdate"
+        "VpcConfigUpdate"
+        "AccessConfigUpdate"
+        "UpgradePolicyUpdate"
+        "ZonalShiftConfigUpdate"
+        "AutoModeUpdate"
+        "RemoteNetworkConfigUpdate"
+        "DeletionProtectionUpdate"
+        "CapabilityUpdate"
+        "ControlPlaneScalingConfigUpdate"
+        "VendedLogsUpdate"
+        "ControlPlaneEgressUpdate"
+        "VersionRollback"
+        "ControlPlaneComponentConfigUpdate"
+        "CertificateAuthorityUpdate"
+    end
+
+    -- An object representing an asynchronous update.
+    record Update
+        -- A UUID that is used to track the update.
+        id: string
+        -- The current status of the update.
+        status: string
+        -- A key-value map that contains the parameters associated with the update.
+        params: {UpdateParam}
+        -- The Unix epoch timestamp at object creation.
+        createdAt: number
+        -- Any errors associated with a Failed update.
+        errors: {ErrorDetail}
+        -- The latest cancellation information for the update. This field is present only if any
+        -- cancellation is attempted for the update.
+        cancellation: Cancellation
+    end
+
+    record ActivateCertificateAuthorityOutput
+        -- An object representing the asynchronous update that promotes the certificate authority
+        -- to be the cluster's signer.
+        update: Update
+        -- Summary information about the certificate authority that is being activated.
+        certificateAuthority: CertificateAuthoritySummary
+    end
+
+    -- The specified parameter is invalid. Review the available parameters for the API
+    -- request.
+    record InvalidParameterException
+        -- The Amazon EKS cluster associated with the exception.
+        clusterName: string
+        -- The Amazon EKS managed node group associated with the exception.
+        nodegroupName: string
+        -- The Fargate profile associated with the exception.
+        fargateProfileName: string
+        -- The specified parameter for the add-on name is invalid. Review the available
+        -- parameters for the API request
+        addonName: string
+        -- The Amazon EKS subscription ID with the exception.
+        subscriptionId: string
+        -- The specified parameter is invalid. Review the available parameters for the API
+        -- request.
+        message: string
+    end
+
+    -- The specified resource could not be found. You can view your available clusters with
+    -- ListClusters. You can view your available managed node groups with
+    -- ListNodegroups. Amazon EKS clusters and node groups are Amazon Web Services Region
+    -- specific.
+    record ResourceNotFoundException
+        -- The Amazon EKS cluster associated with the exception.
+        clusterName: string
+        -- The Amazon EKS managed node group associated with the exception.
+        nodegroupName: string
+        -- The Fargate profile associated with the exception.
+        fargateProfileName: string
+        -- The Amazon EKS add-on name associated with the exception.
+        addonName: string
+        -- The Amazon EKS subscription ID with the exception.
+        subscriptionId: string
+        -- The Amazon EKS message associated with the exception.
+        message: string
+    end
+
+    -- These errors are usually caused by a server-side issue.
+    record ServerException
+        -- The Amazon EKS cluster associated with the exception.
+        clusterName: string
+        -- The Amazon EKS managed node group associated with the exception.
+        nodegroupName: string
+        -- The Amazon EKS add-on name associated with the exception.
+        addonName: string
+        -- The Amazon EKS subscription ID with the exception.
+        subscriptionId: string
+        -- These errors are usually caused by a server-side issue.
+        message: string
+    end
+
+    -- The service is unavailable. Back off and retry the operation.
+    record ServiceUnavailableException
+        -- The request has failed due to a temporary failure of the server.
+        message: string
+    end
+
+    -- Identifies the certificate authority that is currently signing certificates for the
+    -- cluster.
+    record ActiveCertificateAuthority
+        -- The unique identifier of the certificate authority that is currently signing
+        -- certificates for the cluster.
+        id: string
+        -- The entity that activated the current signing certificate authority, either
+        -- CUSTOMER or EKS.
+        activatedBy: string
+    end
+
     enum AddonIssueCode
         "AccessDenied"
         "InternalFailure"
@@ -422,25 +738,6 @@ local record M
         associatedAccessPolicy: AssociatedAccessPolicy
     end
 
-    -- The specified parameter is invalid. Review the available parameters for the API
-    -- request.
-    record InvalidParameterException
-        -- The Amazon EKS cluster associated with the exception.
-        clusterName: string
-        -- The Amazon EKS managed node group associated with the exception.
-        nodegroupName: string
-        -- The Fargate profile associated with the exception.
-        fargateProfileName: string
-        -- The specified parameter for the add-on name is invalid. Review the available
-        -- parameters for the API request
-        addonName: string
-        -- The Amazon EKS subscription ID with the exception.
-        subscriptionId: string
-        -- The specified parameter is invalid. Review the available parameters for the API
-        -- request.
-        message: string
-    end
-
     -- The request is invalid given the state of the cluster. Check the state of the cluster
     -- and the associated operations.
     record InvalidRequestException
@@ -454,39 +751,6 @@ local record M
         -- The Amazon EKS subscription ID with the exception.
         subscriptionId: string
         -- The Amazon EKS add-on name associated with the exception.
-        message: string
-    end
-
-    -- The specified resource could not be found. You can view your available clusters with
-    -- ListClusters. You can view your available managed node groups with
-    -- ListNodegroups. Amazon EKS clusters and node groups are Amazon Web Services Region
-    -- specific.
-    record ResourceNotFoundException
-        -- The Amazon EKS cluster associated with the exception.
-        clusterName: string
-        -- The Amazon EKS managed node group associated with the exception.
-        nodegroupName: string
-        -- The Fargate profile associated with the exception.
-        fargateProfileName: string
-        -- The Amazon EKS add-on name associated with the exception.
-        addonName: string
-        -- The Amazon EKS subscription ID with the exception.
-        subscriptionId: string
-        -- The Amazon EKS message associated with the exception.
-        message: string
-    end
-
-    -- These errors are usually caused by a server-side issue.
-    record ServerException
-        -- The Amazon EKS cluster associated with the exception.
-        clusterName: string
-        -- The Amazon EKS managed node group associated with the exception.
-        nodegroupName: string
-        -- The Amazon EKS add-on name associated with the exception.
-        addonName: string
-        -- The Amazon EKS subscription ID with the exception.
-        subscriptionId: string
-        -- These errors are usually caused by a server-side issue.
         message: string
     end
 
@@ -518,178 +782,6 @@ local record M
         -- A unique, case-sensitive identifier that you provide to ensure
         -- the idempotency of the request.
         clientRequestToken: string
-    end
-
-    enum CancellationStatus
-        "InProgress"
-        "Failed"
-        "Successful"
-    end
-
-    -- Contains information about the latest cancellation of an update to an Amazon EKS cluster.
-    record Cancellation
-        -- The current status of the cancellation. Valid values are InProgress,
-        -- Failed, and Successful.
-        status: string
-        -- A message providing additional details about the cancellation, such as the reason for
-        -- the cancellation or failure details.
-        reason: string
-    end
-
-    enum ErrorCode
-        "SubnetNotFound"
-        "SecurityGroupNotFound"
-        "EniLimitReached"
-        "IpNotAvailable"
-        "AccessDenied"
-        "OperationNotPermitted"
-        "VpcIdNotFound"
-        "Unknown"
-        "NodeCreationFailure"
-        "PodEvictionFailure"
-        "InsufficientFreeAddresses"
-        "ClusterUnreachable"
-        "InsufficientNumberOfReplicas"
-        "ConfigurationConflict"
-        "AdmissionRequestDenied"
-        "UnsupportedAddonModification"
-        "K8sResourceNotFound"
-    end
-
-    -- An object representing an error when an asynchronous operation fails.
-    record ErrorDetail
-        -- A brief description of the error.
-        -- SubnetNotFound: We couldn't find one of the
-        -- subnets associated with the cluster.
-        -- SecurityGroupNotFound: We couldn't find one
-        -- of the security groups associated with the cluster.
-        -- EniLimitReached: You have reached the elastic
-        -- network interface limit for your account.
-        -- IpNotAvailable: A subnet associated with the
-        -- cluster doesn't have any available IP addresses.
-        -- AccessDenied: You don't have permissions to
-        -- perform the specified operation.
-        -- OperationNotPermitted: The service role
-        -- associated with the cluster doesn't have the required access permissions for
-        -- Amazon EKS.
-        -- VpcIdNotFound: We couldn't find the VPC
-        -- associated with the cluster.
-        errorCode: string
-        -- A more complete description of the error.
-        errorMessage: string
-        -- An optional field that contains the resource IDs associated with the error.
-        resourceIds: {string}
-    end
-
-    enum UpdateParamType
-        "Version"
-        "PlatformVersion"
-        "EndpointPrivateAccess"
-        "EndpointPublicAccess"
-        "ClusterLogging"
-        "DesiredSize"
-        "LabelsToAdd"
-        "LabelsToRemove"
-        "TaintsToAdd"
-        "TaintsToRemove"
-        "MaxSize"
-        "MinSize"
-        "ReleaseVersion"
-        "PublicAccessCidrs"
-        "LaunchTemplateName"
-        "LaunchTemplateVersion"
-        "IdentityProviderConfig"
-        "EncryptionConfig"
-        "AddonVersion"
-        "ServiceAccountRoleArn"
-        "ResolveConflicts"
-        "MaxUnavailable"
-        "MaxUnavailablePercentage"
-        "NodeRepairEnabled"
-        "UpdateStrategy"
-        "ConfigurationValues"
-        "SecurityGroups"
-        "Subnets"
-        "AuthenticationMode"
-        "PodIdentityAssociations"
-        "UpgradePolicy"
-        "ZonalShiftConfig"
-        "ComputeConfig"
-        "StorageConfig"
-        "KubernetesNetworkConfig"
-        "RemoteNetworkConfig"
-        "DeletionProtection"
-        "NodeRepairConfig"
-        "RoleArn"
-        "RoleMappingsToAddOrUpdate"
-        "RoleMappingsToRemove"
-        "NetworkAccess"
-        "VendedLogs"
-        "UpdatedTier"
-        "PreviousTier"
-        "WarmPoolEnabled"
-        "WarmPoolMaxGroupPreparedCapacity"
-        "WarmPoolMinSize"
-        "WarmPoolState"
-        "WarmPoolReuseOnScaleIn"
-        "ControlPlaneEgressMode"
-        "KubeApiServerConfig"
-        "KubeSchedulerConfig"
-        "KubeControllerManagerConfig"
-    end
-
-    -- An object representing the details of an update request.
-    record UpdateParam
-        -- The value of the keys submitted as part of an update request.
-        value: string
-    end
-
-    enum UpdateStatus
-        "InProgress"
-        "Failed"
-        "Cancelled"
-        "Successful"
-    end
-
-    enum UpdateType
-        "VersionUpdate"
-        "EndpointAccessUpdate"
-        "LoggingUpdate"
-        "ConfigUpdate"
-        "AssociateIdentityProviderConfig"
-        "DisassociateIdentityProviderConfig"
-        "AssociateEncryptionConfig"
-        "AddonUpdate"
-        "VpcConfigUpdate"
-        "AccessConfigUpdate"
-        "UpgradePolicyUpdate"
-        "ZonalShiftConfigUpdate"
-        "AutoModeUpdate"
-        "RemoteNetworkConfigUpdate"
-        "DeletionProtectionUpdate"
-        "CapabilityUpdate"
-        "ControlPlaneScalingConfigUpdate"
-        "VendedLogsUpdate"
-        "ControlPlaneEgressUpdate"
-        "VersionRollback"
-        "ControlPlaneComponentConfigUpdate"
-    end
-
-    -- An object representing an asynchronous update.
-    record Update
-        -- A UUID that is used to track the update.
-        id: string
-        -- The current status of the update.
-        status: string
-        -- A key-value map that contains the parameters associated with the update.
-        params: {UpdateParam}
-        -- The Unix epoch timestamp at object creation.
-        createdAt: number
-        -- Any errors associated with a Failed update.
-        errors: {ErrorDetail}
-        -- The latest cancellation information for the update. This field is present only if any
-        -- cancellation is attempted for the update.
-        cancellation: Cancellation
     end
 
     record AssociateEncryptionConfigOutput
@@ -1073,6 +1165,23 @@ local record M
     record CreateCapabilityOutput
         -- An object containing information about the newly created capability, including its name, ARN, status, and configuration.
         capability: Capability
+    end
+
+    record CreateCertificateAuthorityInput
+        -- The name of your cluster.
+        clusterName: string
+        -- A unique, case-sensitive identifier that you provide to ensure
+        -- the idempotency of the request.
+        clientRequestToken: string
+    end
+
+    record CreateCertificateAuthorityOutput
+        -- An object representing the asynchronous update that adds the certificate authority to
+        -- the cluster's trust bundle.
+        update: Update
+        -- Summary information about the certificate authority that was created, including its ID
+        -- and initial signing and distribution status.
+        certificateAuthority: CertificateAuthoritySummary
     end
 
     -- The access configuration information for the cluster.
@@ -1641,6 +1750,9 @@ local record M
         -- this to the certificate-authority-data section of the
         -- kubeconfig file for your cluster.
         data: string
+        -- An object identifying the certificate authority that is currently signing certificates
+        -- for the cluster.
+        active: ActiveCertificateAuthority
     end
 
     -- Indicates the status of the request to update the compute capability of your EKS Auto
@@ -2010,12 +2122,6 @@ local record M
     record CreateClusterOutput
         -- The full description of your new cluster.
         cluster: Cluster
-    end
-
-    -- The service is unavailable. Back off and retry the operation.
-    record ServiceUnavailableException
-        -- The request has failed due to a temporary failure of the server.
-        message: string
     end
 
     -- At least one of your specified cluster subnets is in an Availability Zone that does not support
@@ -2975,6 +3081,25 @@ local record M
         capability: Capability
     end
 
+    record DeleteCertificateAuthorityInput
+        -- The name of your cluster.
+        clusterName: string
+        -- The ID of the certificate authority to delete. You can't delete the certificate
+        -- authority that's currently signing certificates for the cluster.
+        certificateAuthorityId: string
+        -- A unique, case-sensitive identifier that you provide to ensure
+        -- the idempotency of the request.
+        clientRequestToken: string
+    end
+
+    record DeleteCertificateAuthorityOutput
+        -- An object representing the asynchronous update that removes the certificate authority
+        -- from the cluster's trust bundle.
+        update: Update
+        -- Summary information about the certificate authority that is being deleted.
+        certificateAuthority: CertificateAuthoritySummary
+    end
+
     record DeleteClusterInput
         -- The name of the cluster to delete.
         name: string
@@ -3146,6 +3271,84 @@ local record M
     record DescribeCapabilityOutput
         -- An object containing detailed information about the capability, including its name, ARN, type, status, version, configuration, health status, and timestamps for when it was created and last modified.
         capability: Capability
+    end
+
+    record DescribeCertificateAuthorityInput
+        -- The name of your cluster.
+        clusterName: string
+        -- The ID of the certificate authority to describe.
+        certificateAuthorityId: string
+    end
+
+    -- The scheduled events during which Amazon EKS may automatically activate a certificate
+    -- authority, computed from its validity period. These events help ensure that a cluster's
+    -- signing certificate authority is rotated before its certificate expires.
+    record CertificateAuthorityScheduledEvents
+        -- The earliest Unix epoch timestamp in seconds at which Amazon EKS may automatically activate
+        -- this certificate authority.
+        firstAutoActivation: number
+        -- The Unix epoch timestamp in seconds by which Amazon EKS will automatically activate this
+        -- certificate authority if you haven't already activated it.
+        finalAutoActivation: number
+    end
+
+    -- The validity period of a certificate authority's certificate.
+    record CertificateAuthorityValidity
+        -- The Unix epoch timestamp in seconds for the start of the certificate authority's
+        -- validity period.
+        notBefore: number
+        -- The Unix epoch timestamp in seconds for the end of the certificate authority's validity
+        -- period.
+        notAfter: number
+    end
+
+    -- An object representing a certificate authority (CA) for an Amazon EKS cluster.
+    record CertificateAuthority
+        -- The unique identifier of the certificate authority.
+        id: string
+        -- The Unix epoch timestamp in seconds for when the certificate authority was created.
+        createdAt: number
+        -- The entity that created the certificate authority. Certificate authorities that you
+        -- create are CUSTOMER; those that Amazon EKS provisions on your behalf, such as a
+        -- cluster's initial certificate authority, are EKS.
+        createdBy: string
+        -- The Unix epoch timestamp in seconds for when the certificate authority was last
+        -- activated as the cluster's signer. This value is absent if the certificate authority has
+        -- never been activated.
+        activatedAt: number
+        -- The entity that most recently activated the certificate authority. A value of
+        -- EKS indicates that Amazon EKS activated it automatically; CUSTOMER
+        -- indicates that you activated it.
+        activatedBy: string
+        -- The signing status of the certificate authority. IN_USE means the
+        -- certificate authority is currently signing certificates for the cluster,
+        -- ACTIVATING means it's being promoted to the signer, and
+        -- NOT_USED means it's trusted by the cluster (for example, a successor CA
+        -- during a rotation, or a retired outgoing CA) but isn't the signer.
+        signingStatus: string
+        -- The distribution status of the certificate authority, which tracks whether Amazon EKS has
+        -- distributed its trust to the Amazon Web Services managed components in your cluster (the control plane,
+        -- Amazon EKS Auto Mode instances, and Amazon Web Services Fargate nodes). Valid values are
+        -- IN_PROGRESS, COMPLETE, FAILED, and
+        -- DELETING. A successor CA can only be activated after its distribution
+        -- status is COMPLETE.
+        distributionStatus: string
+        -- The validity period of the certificate authority's certificate.
+        validity: CertificateAuthorityValidity
+        -- The scheduled auto-activation events for the certificate authority, computed from its
+        -- validity period.
+        scheduledEvents: CertificateAuthorityScheduledEvents
+        -- Indicates whether CA rollback is still available for this certificate authority. After
+        -- you activate a successor CA, rollback lets you revert to the outgoing CA for a limited
+        -- period while you finish updating any worker nodes or clients that were missed.
+        rollbackAvailable: boolean
+        -- The Base64-encoded public certificate of the certificate authority.
+        data: string
+    end
+
+    record DescribeCertificateAuthorityOutput
+        -- An object containing detailed information about the certificate authority.
+        certificateAuthority: CertificateAuthority
     end
 
     record DescribeClusterInput
@@ -3806,6 +4009,38 @@ local record M
         -- A list of capability summary objects, each containing basic information about a capability including its name, ARN, type, status, version, and timestamps.
         capabilities: {CapabilitySummary}
         -- The nextToken value to include in a future ListCapabilities request. When the results of a ListCapabilities request exceed maxResults, you can use this value to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
+    end
+
+    record ListCertificateAuthoritiesInput
+        -- The name of your cluster.
+        clusterName: string
+        -- The maximum number of results to return in a single call. To retrieve the remaining
+        -- results, make another call with the returned nextToken value. If you don't
+        -- specify a value, the default is 100 results.
+        maxResults: number
+        -- The nextToken value returned from a previous paginated request, where
+        -- maxResults was used and the results exceeded the value of that
+        -- parameter. Pagination continues from the end of the previous results that returned the
+        -- nextToken value. This value is null when there are no more results to
+        -- return.
+        -- This token should be treated as an opaque identifier that is used only to
+        -- retrieve the next items in a list and not for other programmatic purposes.
+        nextToken: string
+    end
+
+    record ListCertificateAuthoritiesOutput
+        -- A list of certificate authority summary objects, each containing basic information
+        -- about a certificate authority, including its ID, signing status, and distribution
+        -- status.
+        certificateAuthorities: {CertificateAuthoritySummary}
+        -- The nextToken value to include in a future
+        -- ListCertificateAuthorities request. When the results of a
+        -- ListCertificateAuthorities request exceed maxResults, you
+        -- can use this value to retrieve the next page of results. This value is null when there
+        -- are no more results to return.
+        -- This token should be treated as an opaque identifier that is used only to
+        -- retrieve the next items in a list and not for other programmatic purposes.
         nextToken: string
     end
 

@@ -34,6 +34,8 @@ M.IamRoleArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LogExportList = schema.new({ type = "list", list_member = prelude.String })
 
+M.S3TableNameList = schema.new({ type = "list", list_member = prelude.String })
+
 M.RecoveryPointList = schema.new({ type = "list", list_member = M.RecoveryPoint })
 
 M.ReservationOfferingsList = schema.new({ type = "list", list_member = M.ReservationOffering })
@@ -67,6 +69,8 @@ M.NextInvocationsList = schema.new({ type = "list", list_member = prelude.Timest
 M.VpcIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
+
+M.S3TableLastIngestionTimeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.VpcEndpointList = schema.new({ type = "list", list_member = M.VpcEndpoint })
 
@@ -884,6 +888,46 @@ M.CreateNamespaceInput = schema.new({
     },
 })
 
+M.S3TablePublishStatus = schema.new({
+    id = id.from(_N, "S3TablePublishStatus"),
+    type = "structure",
+    members = {
+        s3Tables = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "s3Tables"),
+            type = "list",
+            name = "s3Tables",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        s3TableNamespace = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "s3TableNamespace"),
+            type = "string",
+            name = "s3TableNamespace",
+            target_id = prelude.String.id,
+        }),
+        s3TableGranularity = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "s3TableGranularity"),
+            type = "string",
+            name = "s3TableGranularity",
+            target_id = prelude.String.id,
+        }),
+        enabledAll = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "enabledAll"),
+            type = "boolean",
+            name = "enabledAll",
+            target_id = prelude.Boolean.id,
+        }),
+        lastIngestionTimes = schema.new({
+            id = id.from(_N, "S3TablePublishStatus", "lastIngestionTimes"),
+            type = "map",
+            name = "lastIngestionTimes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.Namespace = schema.new({
     id = id.from(_N, "Namespace"),
     type = "structure",
@@ -982,6 +1026,13 @@ M.Namespace = schema.new({
             type = "string",
             name = "catalogArn",
             target_id = prelude.String.id,
+        }),
+        s3TablePublishStatus = schema.new({
+            id = id.from(_N, "Namespace", "s3TablePublishStatus"),
+            type = "structure",
+            name = "s3TablePublishStatus",
+            target_id = id.from(_N, "S3TablePublishStatus"),
+            target = M.S3TablePublishStatus,
         }),
     },
 })
@@ -4172,6 +4223,37 @@ M.UpdateNamespaceInput = schema.new({
             id = id.from(_N, "UpdateNamespaceInput", "adminPasswordSecretKmsKeyId"),
             type = "string",
             name = "adminPasswordSecretKmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        logDestinationType = schema.new({
+            id = id.from(_N, "UpdateNamespaceInput", "logDestinationType"),
+            type = "string",
+            name = "logDestinationType",
+            target_id = prelude.String.id,
+        }),
+        s3TableAction = schema.new({
+            id = id.from(_N, "UpdateNamespaceInput", "s3TableAction"),
+            type = "string",
+            name = "s3TableAction",
+            target_id = prelude.String.id,
+        }),
+        s3TableNames = schema.new({
+            id = id.from(_N, "UpdateNamespaceInput", "s3TableNames"),
+            type = "list",
+            name = "s3TableNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        s3TableKmsKeyId = schema.new({
+            id = id.from(_N, "UpdateNamespaceInput", "s3TableKmsKeyId"),
+            type = "string",
+            name = "s3TableKmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        s3TableGranularity = schema.new({
+            id = id.from(_N, "UpdateNamespaceInput", "s3TableGranularity"),
+            type = "string",
+            name = "s3TableGranularity",
             target_id = prelude.String.id,
         }),
     },

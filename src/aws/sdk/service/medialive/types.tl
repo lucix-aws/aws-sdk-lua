@@ -5851,6 +5851,19 @@ local record M
         Av1Settings: Av1Settings
     end
 
+    -- A rectangle defined by position (x, y) and dimensions (width, height) in pixels.
+    -- Used for output positioning and input cropping.
+    record VideoPositionRectangle
+        -- Height in pixels. Must be an even number.
+        Height: number
+        -- Width in pixels. Must be an even number.
+        Width: number
+        -- Left offset in pixels. Must be an even number.
+        X: number
+        -- Top offset in pixels. Must be an even number.
+        Y: number
+    end
+
     enum VideoDescriptionRespondToAfd
         "NONE"
         "PASSTHROUGH"
@@ -5885,6 +5898,18 @@ local record M
         Sharpness: number
         -- Output video width, in pixels. Must be an even number. For most codecs, you can leave this field and height blank in order to use the height and width (resolution) from the source. Note, however, that leaving blank is not recommended. For the Frame Capture codec, height and width are required.
         Width: number
+        -- Region of the input video to crop before scaling. If not specified, the entire input
+        -- frame is used.
+        -- Note: Unlike {@link outputPositionRectangle}, the bounds of cropRectangle are validated
+        -- at ingest time by the encoder/scaler rather than at the API level, because the input
+        -- resolution is not known until the source is probed. Field-level constraints on (x, y,
+        -- width, height) defined on {@link VideoPositionRectangle} still apply.
+        CropRectangle: VideoPositionRectangle
+        -- Position of the encoded video within the output frame. The area outside the rectangle
+        -- is filled with black. If not specified, the video fills the entire output frame.
+        -- When used, both {@link width} and {@link height} of the VideoDescription must be
+        -- explicitly specified so that the rectangle can be validated against the output frame.
+        OutputPositionRectangle: VideoPositionRectangle
     end
 
     enum AcceptHeader

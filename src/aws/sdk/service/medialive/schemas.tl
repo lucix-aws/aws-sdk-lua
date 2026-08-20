@@ -14595,6 +14595,53 @@ M.VideoCodecSettings = schema.new({
     },
 })
 
+M.VideoPositionRectangle = schema.new({
+    id = id.from(_N, "VideoPositionRectangle"),
+    type = "structure",
+    members = {
+        Height = schema.new({
+            id = id.from(_N, "VideoPositionRectangle", "Height"),
+            type = "integer",
+            name = "Height",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "height" },
+            },
+        }),
+        Width = schema.new({
+            id = id.from(_N, "VideoPositionRectangle", "Width"),
+            type = "integer",
+            name = "Width",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "width" },
+            },
+        }),
+        X = schema.new({
+            id = id.from(_N, "VideoPositionRectangle", "X"),
+            type = "integer",
+            name = "X",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "x" },
+            },
+        }),
+        Y = schema.new({
+            id = id.from(_N, "VideoPositionRectangle", "Y"),
+            type = "integer",
+            name = "Y",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "y" },
+            },
+        }),
+    },
+})
+
 M.VideoDescription = schema.new({
     id = id.from(_N, "VideoDescription"),
     type = "structure",
@@ -14662,6 +14709,26 @@ M.VideoDescription = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "width" },
+            },
+        }),
+        CropRectangle = schema.new({
+            id = id.from(_N, "VideoDescription", "CropRectangle"),
+            type = "structure",
+            name = "CropRectangle",
+            target_id = id.from(_N, "VideoPositionRectangle"),
+            target = M.VideoPositionRectangle,
+            traits = {
+                [traits.JSON_NAME] = { name = "cropRectangle" },
+            },
+        }),
+        OutputPositionRectangle = schema.new({
+            id = id.from(_N, "VideoDescription", "OutputPositionRectangle"),
+            type = "structure",
+            name = "OutputPositionRectangle",
+            target_id = id.from(_N, "VideoPositionRectangle"),
+            target = M.VideoPositionRectangle,
+            traits = {
+                [traits.JSON_NAME] = { name = "outputPositionRectangle" },
             },
         }),
     },

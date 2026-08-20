@@ -2354,6 +2354,10 @@ local record M
         serviceNetworkVpcAssociationIdentifier: string
         -- The IDs of the security groups.
         securityGroupIds: {string}
+        -- Indicates if private DNS is enabled for the VPC association.
+        privateDnsEnabled: boolean
+        -- DNS options for the service network VPC association.
+        dnsOptions: DnsOptions
     end
 
     record UpdateServiceNetworkVpcAssociationOutput
@@ -2367,6 +2371,10 @@ local record M
         createdBy: string
         -- The IDs of the security groups.
         securityGroupIds: {string}
+        -- Indicates if private DNS is enabled for the VPC association.
+        privateDnsEnabled: boolean
+        -- DNS options for the service network VPC association.
+        dnsOptions: DnsOptions
     end
 
     record TagResourceInput
