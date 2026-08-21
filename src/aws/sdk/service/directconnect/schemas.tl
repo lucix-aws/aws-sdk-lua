@@ -617,6 +617,30 @@ M.AllocateConnectionOnInterconnectOutput = schema.new({
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "AllocateConnectionOnInterconnectOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "AllocateConnectionOnInterconnectOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "AllocateConnectionOnInterconnectOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "AllocateConnectionOnInterconnectOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -833,6 +857,30 @@ M.AllocateHostedConnectionOutput = schema.new({
             type = "boolean",
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "AllocateHostedConnectionOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "AllocateHostedConnectionOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "AllocateHostedConnectionOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "AllocateHostedConnectionOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -1239,6 +1287,18 @@ M.AllocatePrivateVirtualInterfaceOutput = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "AllocatePrivateVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "AllocatePrivateVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
         rateLimit = schema.new({
             id = id.from(_N, "AllocatePrivateVirtualInterfaceOutput", "rateLimit"),
             type = "string",
@@ -1559,6 +1619,18 @@ M.AllocatePublicVirtualInterfaceOutput = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "AllocatePublicVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "AllocatePublicVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
         rateLimit = schema.new({
             id = id.from(_N, "AllocatePublicVirtualInterfaceOutput", "rateLimit"),
             type = "string",
@@ -1858,6 +1930,18 @@ M.VirtualInterface = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "VirtualInterface", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "VirtualInterface", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
         rateLimit = schema.new({
             id = id.from(_N, "VirtualInterface", "rateLimit"),
             type = "string",
@@ -2080,6 +2164,30 @@ M.AssociateConnectionWithLagOutput = schema.new({
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "AssociateConnectionWithLagOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "AssociateConnectionWithLagOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "AssociateConnectionWithLagOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "AssociateConnectionWithLagOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -2261,6 +2369,30 @@ M.AssociateHostedConnectionOutput = schema.new({
             type = "boolean",
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "AssociateHostedConnectionOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "AssociateHostedConnectionOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "AssociateHostedConnectionOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "AssociateHostedConnectionOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -2518,6 +2650,18 @@ M.AssociateVirtualInterfaceOutput = schema.new({
             type = "boolean",
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "AssociateVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "AssociateVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
         rateLimit = schema.new({
             id = id.from(_N, "AssociateVirtualInterfaceOutput", "rateLimit"),
@@ -2845,6 +2989,30 @@ M.Connection = schema.new({
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "Connection", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "Connection", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "Connection", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "Connection", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -3141,6 +3309,30 @@ M.CreateConnectionOutput = schema.new({
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "CreateConnectionOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "CreateConnectionOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "CreateConnectionOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "CreateConnectionOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -3212,6 +3404,12 @@ M.DirectConnectGateway = schema.new({
             type = "string",
             name = "stateChangeError",
             target_id = prelude.String.id,
+        }),
+        totalPrefixPoolAllocations = schema.new({
+            id = id.from(_N, "DirectConnectGateway", "totalPrefixPoolAllocations"),
+            type = "integer",
+            name = "totalPrefixPoolAllocations",
+            target_id = prelude.Integer.id,
         }),
         tags = schema.new({
             id = id.from(_N, "DirectConnectGateway", "tags"),
@@ -3800,6 +3998,30 @@ M.CreateLagOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "CreateLagOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "CreateLagOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "CreateLagOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "CreateLagOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
         rateLimiterStatus = schema.new({
             id = id.from(_N, "CreateLagOutput", "rateLimiterStatus"),
             type = "structure",
@@ -3902,6 +4124,18 @@ M.NewPrivateVirtualInterface = schema.new({
             type = "boolean",
             name = "enableSiteLink",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "NewPrivateVirtualInterface", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "NewPrivateVirtualInterface", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
         rateLimit = schema.new({
             id = id.from(_N, "NewPrivateVirtualInterface", "rateLimit"),
@@ -4112,6 +4346,18 @@ M.CreatePrivateVirtualInterfaceOutput = schema.new({
             type = "boolean",
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "CreatePrivateVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "CreatePrivateVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
         rateLimit = schema.new({
             id = id.from(_N, "CreatePrivateVirtualInterfaceOutput", "rateLimit"),
@@ -4408,6 +4654,18 @@ M.CreatePublicVirtualInterfaceOutput = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "CreatePublicVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "CreatePublicVirtualInterfaceOutput", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
         rateLimit = schema.new({
             id = id.from(_N, "CreatePublicVirtualInterfaceOutput", "rateLimit"),
             type = "string",
@@ -4499,6 +4757,18 @@ M.NewTransitVirtualInterface = schema.new({
             type = "boolean",
             name = "enableSiteLink",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "NewTransitVirtualInterface", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "NewTransitVirtualInterface", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
         rateLimit = schema.new({
             id = id.from(_N, "NewTransitVirtualInterface", "rateLimit"),
@@ -4772,6 +5042,30 @@ M.DeleteConnectionOutput = schema.new({
             type = "boolean",
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "DeleteConnectionOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "DeleteConnectionOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "DeleteConnectionOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "DeleteConnectionOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -5061,6 +5355,30 @@ M.DeleteLagOutput = schema.new({
             name = "macSecKeys",
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
+        }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "DeleteLagOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "DeleteLagOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "DeleteLagOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "DeleteLagOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
         rateLimiterStatus = schema.new({
             id = id.from(_N, "DeleteLagOutput", "rateLimiterStatus"),
@@ -5955,6 +6273,30 @@ M.Lag = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "Lag", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "Lag", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "Lag", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "Lag", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
         rateLimiterStatus = schema.new({
             id = id.from(_N, "Lag", "rateLimiterStatus"),
             type = "structure",
@@ -6506,6 +6848,30 @@ M.DisassociateConnectionFromLagOutput = schema.new({
             type = "boolean",
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "DisassociateConnectionFromLagOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "DisassociateConnectionFromLagOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "DisassociateConnectionFromLagOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "DisassociateConnectionFromLagOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -7141,6 +7507,30 @@ M.UpdateConnectionOutput = schema.new({
             name = "partnerInterconnectMacSecCapable",
             target_id = prelude.Boolean.id,
         }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "UpdateConnectionOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "UpdateConnectionOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "UpdateConnectionOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "UpdateConnectionOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -7403,6 +7793,30 @@ M.UpdateLagOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        prefixPoolSizeIpv4 = schema.new({
+            id = id.from(_N, "UpdateLagOutput", "prefixPoolSizeIpv4"),
+            type = "integer",
+            name = "prefixPoolSizeIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolSizeIpv6 = schema.new({
+            id = id.from(_N, "UpdateLagOutput", "prefixPoolSizeIpv6"),
+            type = "integer",
+            name = "prefixPoolSizeIpv6",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv4 = schema.new({
+            id = id.from(_N, "UpdateLagOutput", "prefixPoolUnallocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolUnallocatedCountIpv6 = schema.new({
+            id = id.from(_N, "UpdateLagOutput", "prefixPoolUnallocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolUnallocatedCountIpv6",
+            target_id = prelude.Integer.id,
+        }),
         rateLimiterStatus = schema.new({
             id = id.from(_N, "UpdateLagOutput", "rateLimiterStatus"),
             type = "structure",
@@ -7443,6 +7857,18 @@ M.UpdateVirtualInterfaceAttributesInput = schema.new({
             type = "string",
             name = "virtualInterfaceName",
             target_id = prelude.String.id,
+        }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "UpdateVirtualInterfaceAttributesInput", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "UpdateVirtualInterfaceAttributesInput", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
         rateLimit = schema.new({
             id = id.from(_N, "UpdateVirtualInterfaceAttributesInput", "rateLimit"),
@@ -7627,6 +8053,18 @@ M.UpdateVirtualInterfaceAttributesOutput = schema.new({
             type = "boolean",
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        prefixPoolAllocatedCountIpv4 = schema.new({
+            id = id.from(_N, "UpdateVirtualInterfaceAttributesOutput", "prefixPoolAllocatedCountIpv4"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv4",
+            target_id = prelude.Integer.id,
+        }),
+        prefixPoolAllocatedCountIpv6 = schema.new({
+            id = id.from(_N, "UpdateVirtualInterfaceAttributesOutput", "prefixPoolAllocatedCountIpv6"),
+            type = "integer",
+            name = "prefixPoolAllocatedCountIpv6",
+            target_id = prelude.Integer.id,
         }),
         rateLimit = schema.new({
             id = id.from(_N, "UpdateVirtualInterfaceAttributesOutput", "rateLimit"),

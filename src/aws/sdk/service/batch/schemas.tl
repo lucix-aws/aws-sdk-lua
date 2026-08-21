@@ -601,6 +601,222 @@ M.LaunchTemplateSpecification = schema.new({
     },
 })
 
+M.InfrastructureOptimization = schema.new({
+    id = id.from(_N, "InfrastructureOptimization"),
+    type = "structure",
+    members = {
+        scaleInAfter = schema.new({
+            id = id.from(_N, "InfrastructureOptimization", "scaleInAfter"),
+            type = "integer",
+            name = "scaleInAfter",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CapacityReservationRequest = schema.new({
+    id = id.from(_N, "CapacityReservationRequest"),
+    type = "structure",
+    members = {
+        reservationGroupArn = schema.new({
+            id = id.from(_N, "CapacityReservationRequest", "reservationGroupArn"),
+            type = "string",
+            name = "reservationGroupArn",
+            target_id = prelude.String.id,
+        }),
+        reservationPreference = schema.new({
+            id = id.from(_N, "CapacityReservationRequest", "reservationPreference"),
+            type = "string",
+            name = "reservationPreference",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InstanceRequirementsRequest = schema.new({
+    id = id.from(_N, "InstanceRequirementsRequest"),
+    type = "structure",
+    members = {
+        allowedInstanceTypes = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "allowedInstanceTypes"),
+            type = "list",
+            name = "allowedInstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ManagedInstancesLocalStorageConfiguration = schema.new({
+    id = id.from(_N, "ManagedInstancesLocalStorageConfiguration"),
+    type = "structure",
+    members = {
+        useLocalStorage = schema.new({
+            id = id.from(_N, "ManagedInstancesLocalStorageConfiguration", "useLocalStorage"),
+            type = "boolean",
+            name = "useLocalStorage",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ManagedInstancesNetworkConfiguration = schema.new({
+    id = id.from(_N, "ManagedInstancesNetworkConfiguration"),
+    type = "structure",
+    members = {
+        subnets = schema.new({
+            id = id.from(_N, "ManagedInstancesNetworkConfiguration", "subnets"),
+            type = "list",
+            name = "subnets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        securityGroups = schema.new({
+            id = id.from(_N, "ManagedInstancesNetworkConfiguration", "securityGroups"),
+            type = "list",
+            name = "securityGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ManagedInstancesStorageConfiguration = schema.new({
+    id = id.from(_N, "ManagedInstancesStorageConfiguration"),
+    type = "structure",
+    members = {
+        storageSizeGiB = schema.new({
+            id = id.from(_N, "ManagedInstancesStorageConfiguration", "storageSizeGiB"),
+            type = "integer",
+            name = "storageSizeGiB",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.InstanceLaunchTemplate = schema.new({
+    id = id.from(_N, "InstanceLaunchTemplate"),
+    type = "structure",
+    members = {
+        ec2InstanceProfileArn = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "ec2InstanceProfileArn"),
+            type = "string",
+            name = "ec2InstanceProfileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        networkConfiguration = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "networkConfiguration"),
+            type = "structure",
+            name = "networkConfiguration",
+            target_id = id.from(_N, "ManagedInstancesNetworkConfiguration"),
+            target = M.ManagedInstancesNetworkConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instanceRequirements = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "instanceRequirements"),
+            type = "structure",
+            name = "instanceRequirements",
+            target_id = id.from(_N, "InstanceRequirementsRequest"),
+            target = M.InstanceRequirementsRequest,
+        }),
+        capacityOptionType = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "capacityOptionType"),
+            type = "string",
+            name = "capacityOptionType",
+            target_id = prelude.String.id,
+        }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "ManagedInstancesStorageConfiguration"),
+            target = M.ManagedInstancesStorageConfiguration,
+        }),
+        monitoring = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "monitoring"),
+            type = "string",
+            name = "monitoring",
+            target_id = prelude.String.id,
+        }),
+        fipsEnabled = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "fipsEnabled"),
+            type = "boolean",
+            name = "fipsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        capacityReservations = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "capacityReservations"),
+            type = "structure",
+            name = "capacityReservations",
+            target_id = id.from(_N, "CapacityReservationRequest"),
+            target = M.CapacityReservationRequest,
+        }),
+        instanceMetadataTagsPropagation = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "instanceMetadataTagsPropagation"),
+            type = "boolean",
+            name = "instanceMetadataTagsPropagation",
+            target_id = prelude.Boolean.id,
+        }),
+        localStorageConfiguration = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "localStorageConfiguration"),
+            type = "structure",
+            name = "localStorageConfiguration",
+            target_id = id.from(_N, "ManagedInstancesLocalStorageConfiguration"),
+            target = M.ManagedInstancesLocalStorageConfiguration,
+        }),
+    },
+})
+
+M.ManagedInstancesProvider = schema.new({
+    id = id.from(_N, "ManagedInstancesProvider"),
+    type = "structure",
+    members = {
+        propagateTags = schema.new({
+            id = id.from(_N, "ManagedInstancesProvider", "propagateTags"),
+            type = "string",
+            name = "propagateTags",
+            target_id = prelude.String.id,
+        }),
+        infrastructureRoleArn = schema.new({
+            id = id.from(_N, "ManagedInstancesProvider", "infrastructureRoleArn"),
+            type = "string",
+            name = "infrastructureRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instanceLaunchTemplate = schema.new({
+            id = id.from(_N, "ManagedInstancesProvider", "instanceLaunchTemplate"),
+            type = "structure",
+            name = "instanceLaunchTemplate",
+            target_id = id.from(_N, "InstanceLaunchTemplate"),
+            target = M.InstanceLaunchTemplate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        infrastructureOptimization = schema.new({
+            id = id.from(_N, "ManagedInstancesProvider", "infrastructureOptimization"),
+            type = "structure",
+            name = "infrastructureOptimization",
+            target_id = id.from(_N, "InfrastructureOptimization"),
+            target = M.InfrastructureOptimization,
+        }),
+    },
+})
+
 M.ComputeScalingPolicy = schema.new({
     id = id.from(_N, "ComputeScalingPolicy"),
     type = "structure",
@@ -739,6 +955,21 @@ M.ComputeResource = schema.new({
             name = "scalingPolicy",
             target_id = id.from(_N, "ComputeScalingPolicy"),
             target = M.ComputeScalingPolicy,
+        }),
+        managedInstancesProvider = schema.new({
+            id = id.from(_N, "ComputeResource", "managedInstancesProvider"),
+            type = "structure",
+            name = "managedInstancesProvider",
+            target_id = id.from(_N, "ManagedInstancesProvider"),
+            target = M.ManagedInstancesProvider,
+        }),
+        capacityTags = schema.new({
+            id = id.from(_N, "ComputeResource", "capacityTags"),
+            type = "map",
+            name = "capacityTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -2887,6 +3118,12 @@ M.EcsTaskProperties = schema.new({
             name = "enableExecuteCommand",
             target_id = prelude.Boolean.id,
         }),
+        networkMode = schema.new({
+            id = id.from(_N, "EcsTaskProperties", "networkMode"),
+            type = "string",
+            name = "networkMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4279,6 +4516,12 @@ M.EcsTaskDetails = schema.new({
             type = "boolean",
             name = "enableExecuteCommand",
             target_id = prelude.Boolean.id,
+        }),
+        networkMode = schema.new({
+            id = id.from(_N, "EcsTaskDetails", "networkMode"),
+            type = "string",
+            name = "networkMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -7491,6 +7734,99 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.InstanceLaunchTemplateUpdate = schema.new({
+    id = id.from(_N, "InstanceLaunchTemplateUpdate"),
+    type = "structure",
+    members = {
+        ec2InstanceProfileArn = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplateUpdate", "ec2InstanceProfileArn"),
+            type = "string",
+            name = "ec2InstanceProfileArn",
+            target_id = prelude.String.id,
+        }),
+        networkConfiguration = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplateUpdate", "networkConfiguration"),
+            type = "structure",
+            name = "networkConfiguration",
+            target_id = id.from(_N, "ManagedInstancesNetworkConfiguration"),
+            target = M.ManagedInstancesNetworkConfiguration,
+        }),
+        instanceRequirements = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplateUpdate", "instanceRequirements"),
+            type = "structure",
+            name = "instanceRequirements",
+            target_id = id.from(_N, "InstanceRequirementsRequest"),
+            target = M.InstanceRequirementsRequest,
+        }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplateUpdate", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "ManagedInstancesStorageConfiguration"),
+            target = M.ManagedInstancesStorageConfiguration,
+        }),
+        monitoring = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplateUpdate", "monitoring"),
+            type = "string",
+            name = "monitoring",
+            target_id = prelude.String.id,
+        }),
+        capacityReservations = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplateUpdate", "capacityReservations"),
+            type = "structure",
+            name = "capacityReservations",
+            target_id = id.from(_N, "CapacityReservationRequest"),
+            target = M.CapacityReservationRequest,
+        }),
+        instanceMetadataTagsPropagation = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplateUpdate", "instanceMetadataTagsPropagation"),
+            type = "boolean",
+            name = "instanceMetadataTagsPropagation",
+            target_id = prelude.Boolean.id,
+        }),
+        localStorageConfiguration = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplateUpdate", "localStorageConfiguration"),
+            type = "structure",
+            name = "localStorageConfiguration",
+            target_id = id.from(_N, "ManagedInstancesLocalStorageConfiguration"),
+            target = M.ManagedInstancesLocalStorageConfiguration,
+        }),
+    },
+})
+
+M.UpdateManagedInstancesProviderConfiguration = schema.new({
+    id = id.from(_N, "UpdateManagedInstancesProviderConfiguration"),
+    type = "structure",
+    members = {
+        propagateTags = schema.new({
+            id = id.from(_N, "UpdateManagedInstancesProviderConfiguration", "propagateTags"),
+            type = "string",
+            name = "propagateTags",
+            target_id = prelude.String.id,
+        }),
+        infrastructureRoleArn = schema.new({
+            id = id.from(_N, "UpdateManagedInstancesProviderConfiguration", "infrastructureRoleArn"),
+            type = "string",
+            name = "infrastructureRoleArn",
+            target_id = prelude.String.id,
+        }),
+        instanceLaunchTemplate = schema.new({
+            id = id.from(_N, "UpdateManagedInstancesProviderConfiguration", "instanceLaunchTemplate"),
+            type = "structure",
+            name = "instanceLaunchTemplate",
+            target_id = id.from(_N, "InstanceLaunchTemplateUpdate"),
+            target = M.InstanceLaunchTemplateUpdate,
+        }),
+        infrastructureOptimization = schema.new({
+            id = id.from(_N, "UpdateManagedInstancesProviderConfiguration", "infrastructureOptimization"),
+            type = "structure",
+            name = "infrastructureOptimization",
+            target_id = id.from(_N, "InfrastructureOptimization"),
+            target = M.InfrastructureOptimization,
+        }),
+    },
+})
+
 M.ComputeResourceUpdate = schema.new({
     id = id.from(_N, "ComputeResourceUpdate"),
     type = "structure",
@@ -7610,6 +7946,21 @@ M.ComputeResourceUpdate = schema.new({
             name = "scalingPolicy",
             target_id = id.from(_N, "ComputeScalingPolicy"),
             target = M.ComputeScalingPolicy,
+        }),
+        managedInstancesProvider = schema.new({
+            id = id.from(_N, "ComputeResourceUpdate", "managedInstancesProvider"),
+            type = "structure",
+            name = "managedInstancesProvider",
+            target_id = id.from(_N, "UpdateManagedInstancesProviderConfiguration"),
+            target = M.UpdateManagedInstancesProviderConfiguration,
+        }),
+        capacityTags = schema.new({
+            id = id.from(_N, "ComputeResourceUpdate", "capacityTags"),
+            type = "map",
+            name = "capacityTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })

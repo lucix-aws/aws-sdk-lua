@@ -145,7 +145,7 @@ local record M
         Statement: string
     end
 
-    -- The resource-based policy you tried to add to the Lambda function would grant public access to it, and your account's BlockPublicAccess setting prevents public access. For more information about blocking public access to Lambda functions, see Block public access to Lambda resources.
+    -- The resource-based policy you tried to add to the Lambda resource would grant public access to it, which isn't allowed.
     record PublicPolicyException
         -- The exception type.
         Type: string
@@ -615,6 +615,16 @@ local record M
     end
 
     record DeleteFunctionEventInvokeConfigOutput
+    end
+
+    record DeleteResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the Lambda resource you want to delete the policy from. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.
+        ResourceArn: string
+        -- The revision ID that the existing policy must match for the deletion to proceed. If the revision ID doesn't match, the operation fails with a PreconditionFailedException error. To retrieve the current revision ID, use the GetResourcePolicy operation.
+        RevisionId: string
+    end
+
+    record DeleteResourcePolicyOutput
     end
 
     enum OperationAction
@@ -1329,7 +1339,7 @@ local record M
     record ProvisionedPollerConfig
         -- The minimum number of event pollers this event source can scale down to. For Amazon SQS events source mappings, default is 2, and minimum 2 required. For Amazon MSK and self-managed Apache Kafka event source mappings, default is 1.
         MinimumPollers: number
-        -- The maximum number of event pollers this event source can scale up to. For Amazon SQS events source mappings, default is 200, and minimum value allowed is 2. For Amazon MSK and self-managed Apache Kafka event source mappings, default is 200, and minimum value allowed is 1.
+        -- The maximum number of event pollers this event source can scale up to. For Amazon SQS event source mappings, the accepted range is between 2 and 10,000, with a default of 200. For Amazon MSK and self-managed Apache Kafka event source mappings, the accepted range is between 1 and 2,000, with a default of 200.
         MaximumPollers: number
         -- (Amazon MSK and self-managed Apache Kafka) The name of the provisioned poller group. Use this option to group multiple ESMs within the event source's VPC to share Event Poller Unit (EPU) capacity. You can use this option to optimize Provisioned mode costs for your ESMs. You can group up to 100 ESMs per poller group and aggregate maximum pollers across all ESMs in a group cannot exceed 2000.
         PollerGroupName: string
@@ -3961,6 +3971,18 @@ local record M
         DestinationConfig: DestinationConfig
     end
 
+    record GetResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the Lambda resource you want to retrieve the policy for. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.
+        ResourceArn: string
+    end
+
+    record GetResourcePolicyOutput
+        -- The resource-based policy attached to the Lambda resource you specified.
+        Policy: string
+        -- The revision ID of the policy. Pass this value as the RevisionId in a PutResourcePolicy or DeleteResourcePolicy request. Doing so ensures the operation acts on the expected version of the policy.
+        RevisionId: string
+    end
+
     record ListLayersInput
         -- The compatible instruction set architecture.
         CompatibleArchitecture: string
@@ -4324,6 +4346,22 @@ local record M
         MaximumEventAgeInSeconds: number
         -- A destination for events after they have been sent to a function for processing. Destinations Function - The Amazon Resource Name (ARN) of a Lambda function. Queue - The ARN of a standard SQS queue. Bucket - The ARN of an Amazon S3 bucket. Topic - The ARN of a standard SNS topic. Event Bus - The ARN of an Amazon EventBridge event bus. S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type.
         DestinationConfig: DestinationConfig
+    end
+
+    record PutResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the Lambda resource you want to add the policy to. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.
+        ResourceArn: string
+        -- The policy document you want to add to your Lambda resource. This is formatted as a JSON string. For more information, see Working with resource-based policies in Lambda in the Lambda Developer Guide.
+        Policy: string
+        -- The revision ID that the existing policy must match for the replacement to proceed. If the revision ID doesn't match, the operation fails with a PreconditionFailedException error. To retrieve the current revision ID, use the GetResourcePolicy operation.
+        RevisionId: string
+    end
+
+    record PutResourcePolicyOutput
+        -- The resource-based policy that Lambda adds to the resource.
+        Policy: string
+        -- The revision ID of the policy that Lambda adds to your Lambda resource.
+        RevisionId: string
     end
 
     -- The callback ID token has either expired or the callback associated with the token has already been closed.

@@ -18466,6 +18466,12 @@ M.CreateMlflowAppInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "CreateMlflowAppInput", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+        }),
         ModelRegistrationMode = schema.new({
             id = id.from(_N, "CreateMlflowAppInput", "ModelRegistrationMode"),
             type = "string",
@@ -21108,6 +21114,22 @@ M.PartnerAppConfig = schema.new({
     },
 })
 
+M.IdcConfigInput = schema.new({
+    id = id.from(_N, "IdcConfigInput"),
+    type = "structure",
+    members = {
+        InstanceArn = schema.new({
+            id = id.from(_N, "IdcConfigInput", "InstanceArn"),
+            type = "string",
+            name = "InstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PartnerAppMaintenanceConfig = schema.new({
     id = id.from(_N, "PartnerAppMaintenanceConfig"),
     type = "structure",
@@ -21180,6 +21202,13 @@ M.CreatePartnerAppInput = schema.new({
             name = "ApplicationConfig",
             target_id = id.from(_N, "PartnerAppConfig"),
             target = M.PartnerAppConfig,
+        }),
+        IdcConfig = schema.new({
+            id = id.from(_N, "CreatePartnerAppInput", "IdcConfig"),
+            type = "structure",
+            name = "IdcConfig",
+            target_id = id.from(_N, "IdcConfigInput"),
+            target = M.IdcConfigInput,
         }),
         AuthType = schema.new({
             id = id.from(_N, "CreatePartnerAppInput", "AuthType"),
@@ -32738,6 +32767,12 @@ M.DescribeMlflowAppOutput = schema.new({
             name = "RoleArn",
             target_id = prelude.String.id,
         }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "DescribeMlflowAppOutput", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+        }),
         Status = schema.new({
             id = id.from(_N, "DescribeMlflowAppOutput", "Status"),
             type = "string",
@@ -34676,6 +34711,28 @@ M.ErrorInfo = schema.new({
     },
 })
 
+M.IdcConfigOutput = schema.new({
+    id = id.from(_N, "IdcConfigOutput"),
+    type = "structure",
+    members = {
+        InstanceArn = schema.new({
+            id = id.from(_N, "IdcConfigOutput", "InstanceArn"),
+            type = "string",
+            name = "InstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationArn = schema.new({
+            id = id.from(_N, "IdcConfigOutput", "ApplicationArn"),
+            type = "string",
+            name = "ApplicationArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DescribePartnerAppOutput = schema.new({
     id = id.from(_N, "DescribePartnerAppResponse"),
     type = "structure",
@@ -34797,6 +34854,13 @@ M.DescribePartnerAppOutput = schema.new({
             name = "AvailableUpgrade",
             target_id = id.from(_N, "AvailableUpgrade"),
             target = M.AvailableUpgrade,
+        }),
+        IdcConfig = schema.new({
+            id = id.from(_N, "DescribePartnerAppOutput", "IdcConfig"),
+            type = "structure",
+            name = "IdcConfig",
+            target_id = id.from(_N, "IdcConfigOutput"),
+            target = M.IdcConfigOutput,
         }),
     },
 })
@@ -56657,6 +56721,19 @@ M.UpdatePartnerAppInput = schema.new({
             name = "ApplicationConfig",
             target_id = id.from(_N, "PartnerAppConfig"),
             target = M.PartnerAppConfig,
+        }),
+        IdcConfig = schema.new({
+            id = id.from(_N, "UpdatePartnerAppInput", "IdcConfig"),
+            type = "structure",
+            name = "IdcConfig",
+            target_id = id.from(_N, "IdcConfigInput"),
+            target = M.IdcConfigInput,
+        }),
+        AuthType = schema.new({
+            id = id.from(_N, "UpdatePartnerAppInput", "AuthType"),
+            type = "string",
+            name = "AuthType",
+            target_id = prelude.String.id,
         }),
         EnableIamSessionBasedIdentity = schema.new({
             id = id.from(_N, "UpdatePartnerAppInput", "EnableIamSessionBasedIdentity"),

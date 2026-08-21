@@ -343,6 +343,126 @@ local record M
         userdataType: string
     end
 
+    -- The infrastructure optimization configuration for an Amazon ECS Managed Instances capacity
+    -- provider. Specifies the idle-instance scale-in behavior.
+    record InfrastructureOptimization
+        -- The number of seconds an instance can remain idle before it is terminated. Valid
+        -- values are -1 or 0 to 3600. Use -1 as a
+        -- special value to disable scale-in (instances are never terminated for being idle). If not
+        -- specified, a default value applies.
+        scaleInAfter: number
+    end
+
+    -- The capacity reservation configuration for Amazon ECS Managed Instances. Use this to target
+    -- On-Demand Capacity Reservations or Reserved Instances.
+    record CapacityReservationRequest
+        -- The Amazon Resource Name (ARN) of the capacity reservation group to target.
+        reservationGroupArn: string
+        -- The capacity reservation preference. Valid values:
+        -- RESERVATIONS_ONLY — Use only capacity reservations.
+        -- RESERVATIONS_FIRST — Prefer capacity reservations but fall back to
+        -- On-Demand if unavailable.
+        -- RESERVATIONS_EXCLUDED — Do not use capacity reservations.
+        reservationPreference: string
+    end
+
+    -- The instance type requirements for the Amazon ECS Managed Instances capacity provider. Use this
+    -- to specify which Amazon EC2 instance types or instance families Amazon ECS can launch.
+    record InstanceRequirementsRequest
+        -- A list of specific instance types or instance families that Amazon ECS can launch (for example,
+        -- m5.large or g5). When specified, only these instance types are
+        -- used.
+        allowedInstanceTypes: {string}
+    end
+
+    -- The local storage configuration for Amazon ECS Managed Instances.
+    record ManagedInstancesLocalStorageConfiguration
+        -- Specifies whether instance store volumes (local NVMe SSDs) are available to containers.
+        -- When enabled, containers can use the instance store for high-performance temporary
+        -- storage.
+        useLocalStorage: boolean
+    end
+
+    -- The network configuration for Amazon ECS Managed Instances. Specifies the VPC subnets and
+    -- security groups where instances are launched.
+    record ManagedInstancesNetworkConfiguration
+        -- The VPC subnets where managed instances are launched. If your subnets don't provide public
+        -- IP addresses, they must have a NAT gateway for outbound internet access.
+        subnets: {string}
+        -- The VPC security groups to associate with the managed instances.
+        securityGroups: {string}
+    end
+
+    -- The storage configuration for Amazon ECS Managed Instances.
+    record ManagedInstancesStorageConfiguration
+        -- The size of the root EBS volume in GiB for the managed instances.
+        storageSizeGiB: number
+    end
+
+    -- The instance launch configuration for an Amazon ECS Managed Instances capacity provider.
+    -- Specifies the instance profile, networking, instance selection constraints, capacity pricing
+    -- model, storage, and monitoring settings.
+    record InstanceLaunchTemplate
+        -- The Amazon Resource Name (ARN) of the Amazon EC2 instance profile for the managed instances. The instance profile
+        -- must use the AmazonECSInstanceRolePolicyForManagedInstances managed policy with a
+        -- trust policy for ec2.amazonaws.com.
+        ec2InstanceProfileArn: string
+        -- The network configuration for the managed instances. Specifies the VPC subnets and security
+        -- groups where instances are launched.
+        networkConfiguration: ManagedInstancesNetworkConfiguration
+        -- The instance type requirements for the capacity provider. Use this to constrain which Amazon EC2
+        -- instance types Amazon ECS can launch. If not specified, all available instance types are
+        -- eligible.
+        instanceRequirements: InstanceRequirementsRequest
+        -- The capacity pricing model for the managed instances. Valid values:
+        -- ON_DEMAND (default) — On-Demand pricing.
+        -- SPOT — Spot Instances, which can provide significant cost savings
+        -- for fault-tolerant workloads.
+        capacityOptionType: string
+        -- The storage configuration for the managed instances. Configures the root EBS volume size.
+        -- If not specified, the service uses the default EBS volume size for the instance type.
+        storageConfiguration: ManagedInstancesStorageConfiguration
+        -- The level of CloudWatch monitoring for the managed instances. Valid values are
+        -- BASIC and DETAILED.
+        monitoring: string
+        -- Specifies whether FIPS 140-2 validated cryptographic modules are enabled on the managed
+        -- instances. Not available in all Regions.
+        fipsEnabled: boolean
+        -- The capacity reservation configuration for the managed instances. Use this to target
+        -- On-Demand Capacity Reservations or Reserved Instances for predictable capacity and cost
+        -- optimization.
+        capacityReservations: CapacityReservationRequest
+        -- Specifies whether instance tags are accessible from the instance metadata service (IMDS).
+        -- If not specified, instance tags are not accessible from IMDS.
+        instanceMetadataTagsPropagation: boolean
+        -- The local storage configuration for the managed instances. If not specified, instance store
+        -- volumes are not available to containers.
+        localStorageConfiguration: ManagedInstancesLocalStorageConfiguration
+    end
+
+    -- The configuration for an Amazon ECS Managed Instances capacity provider. This object is required
+    -- when creating a compute environment with computeResources.type set to
+    -- ECS_MANAGED_INSTANCES.
+    record ManagedInstancesProvider
+        -- Specifies whether tags on the capacity provider are propagated to the Amazon EC2 instances it
+        -- launches. Valid values:
+        -- CAPACITY_PROVIDER — Propagates tags to instances.
+        -- NONE (default) — Does not propagate tags to instances.
+        propagateTags: string
+        -- The Amazon Resource Name (ARN) of the IAM role that Amazon ECS assumes to manage Amazon EC2 instances on your behalf.
+        -- This role must have a trust policy for ecs.amazonaws.com. You must have the
+        -- iam:PassRole permission for this role with the condition
+        -- iam:PassedToService: ecs.amazonaws.com.
+        infrastructureRoleArn: string
+        -- The instance launch configuration for the Amazon ECS Managed Instances capacity provider.
+        -- Contains networking, instance profile, instance requirements, capacity type, storage, and
+        -- monitoring configuration.
+        instanceLaunchTemplate: InstanceLaunchTemplate
+        -- The infrastructure optimization configuration for the capacity provider. Specifies the
+        -- idle-instance scale-in behavior.
+        infrastructureOptimization: InfrastructureOptimization
+    end
+
     -- An object that represents a scaling policy for a compute environment.
     record ComputeScalingPolicy
         -- The minimum time (in minutes) that Batch keeps instances running in the compute environment
@@ -363,6 +483,7 @@ local record M
         "SPOT"
         "FARGATE"
         "FARGATE_SPOT"
+        "ECS_MANAGED_INSTANCES"
     end
 
     -- An object that represents an Batch compute resource. For more information, see Compute environments in
@@ -581,6 +702,21 @@ local record M
         -- The scaling policy configuration for the compute environment.
         -- This parameter isn't applicable to jobs that are running on Fargate resources. Don't specify it.
         scalingPolicy: ComputeScalingPolicy
+        -- The configuration for the Amazon ECS Managed Instances capacity provider. This parameter is
+        -- required when computeResources.type is ECS_MANAGED_INSTANCES and must
+        -- not be specified for other compute environment types.
+        -- For more information, see Amazon ECS
+        -- Managed Instances compute environments in the
+        -- Batch User Guide.
+        managedInstancesProvider: ManagedInstancesProvider
+        -- The tags to apply to the Amazon ECS capacity provider and Amazon EC2 instances launched by the
+        -- compute environment. These tags are separate from the compute environment resource tags (the
+        -- top-level tags parameter). Use capacityTags for cost allocation and
+        -- organization of the underlying infrastructure resources.
+        -- This parameter is only valid for ECS_MANAGED_INSTANCES compute environments.
+        -- You must have the batch:SetCapacityTags permission on the
+        -- compute environment resource to use this parameter.
+        capacityTags: {string : string}
     end
 
     enum ContainerInsights
@@ -762,6 +898,7 @@ local record M
         "ECS"
         "ECS_FARGATE"
         "SAGEMAKER_TRAINING"
+        "ECS_MANAGED_INSTANCES"
     end
 
     enum JobStateTimeLimitActionsAction
@@ -2236,16 +2373,31 @@ local record M
         -- information, see PID settings in the Docker run reference.
         pidMode: string
         -- The network configuration for jobs that are running on Fargate resources. Jobs that are
-        -- running on Amazon EC2 resources must not specify this parameter.
+        -- running on Amazon EC2 resources or Amazon ECS Managed Instances must not specify this parameter.
         networkConfiguration: NetworkConfiguration
         -- An object that represents the compute environment architecture for Batch jobs on
-        -- Fargate.
+        -- Fargate or Amazon ECS Managed Instances. Use this to specify the operating system family
+        -- (operatingSystemFamily) and CPU architecture
+        -- (cpuArchitecture).
+        -- For Amazon ECS Managed Instances, the valid value for operatingSystemFamily is
+        -- LINUX (default). The valid values for cpuArchitecture are
+        -- X86_64 and ARM64.
         runtimePlatform: RuntimePlatform
         -- A list of volumes that are associated with the job.
         volumes: {Volume}
         -- Determines whether execute command functionality is turned on for this task. If true, execute
         -- command functionality is turned on all the containers in the task.
         enableExecuteCommand: boolean
+        -- The network mode to use for the task. Valid values: host. When not specified,
+        -- the default is host.
+        -- With host mode, the container shares the host instance's network stack
+        -- directly. When running tasks that use the host network mode, do not run containers
+        -- using the root user (UID 0). Running as root grants unrestricted access to host resources and
+        -- increases the attack surface.
+        -- This parameter only applies to jobs running on Amazon ECS Managed Instances
+        -- (MANAGED_INSTANCES platform capability). It cannot be specified for Fargate or
+        -- Amazon EC2 platform job definitions.
+        networkMode: string
     end
 
     -- An object that contains the properties for the Amazon ECS resources of a job.
@@ -2658,6 +2810,7 @@ local record M
     enum PlatformCapability
         "EC2"
         "FARGATE"
+        "MANAGED_INSTANCES"
     end
 
     enum RetryAction
@@ -2763,7 +2916,8 @@ local record M
         propagateTags: boolean
         -- The platform capabilities required by the job definition. If no value is specified, it
         -- defaults to EC2. Jobs run on Fargate resources specify
-        -- FARGATE.
+        -- FARGATE. Jobs run on Amazon ECS Managed Instances specify
+        -- MANAGED_INSTANCES.
         platformCapabilities: {string}
         -- An object that contains the properties for the Amazon ECS resources of a job.When
         -- ecsProperties is used in the job definition, it can't be used in addition to
@@ -3226,13 +3380,18 @@ local record M
         -- running on Amazon EC2 resources must not specify this parameter.
         networkConfiguration: NetworkConfiguration
         -- An object that represents the compute environment architecture for Batch jobs on
-        -- Fargate.
+        -- Fargate or Amazon ECS Managed Instances. Contains the operating system family and CPU architecture
+        -- of the task.
         runtimePlatform: RuntimePlatform
         -- A list of data volumes used in a job.
         volumes: {Volume}
         -- Determines whether execute command functionality is turned on for this task. If true, execute
         -- command functionality is turned on all the containers in the task.
         enableExecuteCommand: boolean
+        -- The network mode configured for the task. This field is populated for jobs running on Amazon ECS
+        -- Managed Instances (MANAGED_INSTANCES platform capability) and always returns
+        -- host.
+        networkMode: string
     end
 
     -- An object that contains the details for the Amazon ECS resources of a job.
@@ -3491,7 +3650,8 @@ local record M
         propagateTags: boolean
         -- The platform capabilities required by the job definition. If no value is specified, it
         -- defaults to EC2. Jobs run on Fargate resources specify
-        -- FARGATE.
+        -- FARGATE. Jobs run on Amazon ECS Managed Instances specify
+        -- MANAGED_INSTANCES.
         platformCapabilities: {string}
         -- An object with various properties that are specific to Amazon EKS based jobs.
         eksProperties: EksPropertiesDetail
@@ -4479,7 +4639,11 @@ local record M
         tags: {string : string}
         -- The platform capabilities required by the job definition. If no value is specified, it
         -- defaults to EC2. To run the job on Fargate resources, specify
-        -- FARGATE.
+        -- FARGATE. To run the job on Amazon ECS Managed Instances, specify
+        -- MANAGED_INSTANCES.
+        -- Jobs with the MANAGED_INSTANCES platform capability must use
+        -- ecsProperties (not containerProperties) and do not support
+        -- multi-node parallel jobs.
         -- If the job runs on Amazon EKS resources, then you must not specify
         -- platformCapabilities.
         platformCapabilities: {string}
@@ -4873,6 +5037,49 @@ local record M
         "SPOT_CAPACITY_OPTIMIZED_PRIORITIZED"
     end
 
+    -- The instance launch configuration for updating an Amazon ECS Managed Instances capacity
+    -- provider. You cannot change capacityOptionType or fipsEnabled after
+    -- the compute environment is created.
+    record InstanceLaunchTemplateUpdate
+        -- The updated Amazon Resource Name (ARN) of the Amazon EC2 instance profile for the managed instances.
+        ec2InstanceProfileArn: string
+        -- The updated network configuration for the managed instances.
+        networkConfiguration: ManagedInstancesNetworkConfiguration
+        -- The updated instance type requirements for the capacity provider.
+        instanceRequirements: InstanceRequirementsRequest
+        -- The updated storage configuration for the managed instances.
+        storageConfiguration: ManagedInstancesStorageConfiguration
+        -- The updated monitoring level. Valid values are BASIC and
+        -- DETAILED.
+        monitoring: string
+        -- The updated capacity reservation configuration.
+        capacityReservations: CapacityReservationRequest
+        -- Specifies whether instance tags are accessible from the instance metadata service
+        -- (IMDS).
+        instanceMetadataTagsPropagation: boolean
+        -- The updated local storage configuration.
+        localStorageConfiguration: ManagedInstancesLocalStorageConfiguration
+    end
+
+    -- The configuration for updating an Amazon ECS Managed Instances capacity provider. Used in
+    -- UpdateComputeEnvironment requests. The capacityOptionType and
+    -- fipsEnabled fields cannot be changed on update.
+    record UpdateManagedInstancesProviderConfiguration
+        -- Specifies whether tags on the capacity provider are propagated to the Amazon EC2 instances it
+        -- launches. Valid values:
+        -- CAPACITY_PROVIDER — Propagates tags to instances.
+        -- NONE — Does not propagate tags to instances.
+        propagateTags: string
+        -- The updated Amazon Resource Name (ARN) of the IAM role that Amazon ECS assumes to manage Amazon EC2 instances on
+        -- your behalf.
+        infrastructureRoleArn: string
+        -- The updated instance launch configuration for the Amazon ECS Managed Instances capacity
+        -- provider.
+        instanceLaunchTemplate: InstanceLaunchTemplateUpdate
+        -- The updated infrastructure optimization configuration.
+        infrastructureOptimization: InfrastructureOptimization
+    end
+
     -- An object that represents the attributes of a compute environment that can be updated. For
     -- more information, see Updating compute environments in the
     -- Batch User Guide.
@@ -5127,6 +5334,15 @@ local record M
         -- The scaling policy configuration for the compute environment.
         -- This parameter isn't applicable to jobs that are running on Fargate resources. Don't specify it.
         scalingPolicy: ComputeScalingPolicy
+        -- The updated configuration for the Amazon ECS Managed Instances capacity provider. This parameter
+        -- is only valid when the compute environment type is ECS_MANAGED_INSTANCES. You
+        -- cannot change capacityOptionType or fipsEnabled on update.
+        managedInstancesProvider: UpdateManagedInstancesProviderConfiguration
+        -- The updated tags to apply to the Amazon ECS capacity provider and Amazon EC2 instances. This
+        -- parameter is only valid for ECS_MANAGED_INSTANCES compute environments. You must
+        -- have the batch:SetCapacityTags permission on the compute environment resource to
+        -- use this parameter.
+        capacityTags: {string : string}
     end
 
     -- Contains the parameters for UpdateComputeEnvironment.

@@ -2026,7 +2026,7 @@ local record M
         TargetTagAssociations: {CustomTagKeyValueRequestPair}
         -- The IDs of the instances to associate with the application status check.
         InstanceIds: {string}
-        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see Ensuring idempotency.
         ClientToken: string
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
@@ -4365,7 +4365,7 @@ local record M
         InitializationGracePeriodSeconds: number
         -- The tags to apply to the application status check.
         TagSpecifications: {TagSpecification}
-        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see Ensuring idempotency.
         ClientToken: string
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
@@ -15859,6 +15859,7 @@ local record M
     end
 
     record CreateTransitGatewayPolicyTableEntryOutput
+        -- Describes a transit gateway policy table entry
         TransitGatewayPolicyTableEntry: TransitGatewayPolicyTableEntry
     end
 
@@ -17950,7 +17951,7 @@ local record M
     record DeleteApplicationStatusCheckInput
         -- The ID of the application status check to delete.
         ApplicationStatusCheckId: string
-        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see Ensuring idempotency.
         ClientToken: string
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
@@ -19211,6 +19212,7 @@ local record M
     end
 
     record DeleteTransitGatewayPolicyTableEntryOutput
+        -- Describes a transit gateway policy table entry
         TransitGatewayPolicyTableEntry: TransitGatewayPolicyTableEntry
     end
 
@@ -32967,7 +32969,7 @@ local record M
     record DisableApplicationStatusCheckSuppressionInput
         -- The IDs of the instances for which to disable application status check suppression.
         InstanceIds: {string}
-        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see Ensuring idempotency.
         ClientToken: string
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
@@ -33445,7 +33447,7 @@ local record M
         TargetTagAssociations: {CustomTagKeyValueRequestPair}
         -- The IDs of the instances to disassociate from the application status check.
         InstanceIds: {string}
-        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see Ensuring idempotency.
         ClientToken: string
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
@@ -33771,7 +33773,7 @@ local record M
         InstanceIds: {string}
         -- The duration, in seconds, for which to suppress application status checks. If omitted, the application status check is suppressed indefinitely until you call DisableApplicationStatusCheckSuppression.
         DurationSeconds: number
-        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see Ensuring idempotency.
         ClientToken: string
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
@@ -38358,7 +38360,7 @@ local record M
         StatusCodeMatcher: string
         -- The number of seconds to wait before starting health checks after an instance is launched. Valid values: 1 to 600.
         InitializationGracePeriodSeconds: number
-        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you retry a request with the same token, the service ignores the request but does not return an error. For more information, see Ensuring idempotency.
         ClientToken: string
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
@@ -40332,6 +40334,7 @@ local record M
     end
 
     record ModifyTransitGatewayPolicyTableEntryOutput
+        -- Describes a transit gateway policy table entry
         TransitGatewayPolicyTableEntry: TransitGatewayPolicyTableEntry
     end
 

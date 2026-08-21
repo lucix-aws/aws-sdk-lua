@@ -61,7 +61,7 @@ local record M
         status: string
         -- A human-readable explanation of the current status, present when additional context is available.
         statusReason: string
-        -- The ARNs of the AWS resources covered by this subscription.
+        -- The ARNs of the resources covered by this subscription.
         resourceArns: {string}
         -- The date and time when the subscription was created, in ISO 8601 format.
         createdAt: number
@@ -164,9 +164,9 @@ local record M
         planTier: string
         -- The usage level within the plan tier. Specify DEFAULT for the base configuration, or a higher level if your plan tier supports it.
         usageLevel: string
-        -- The ARNs of the AWS resources to include in the subscription. Specify one or more supported resources. For subscriptions in the CloudFront plan family, the resources must include exactly one Amazon CloudFront distribution and exactly one AWS WAF web ACL. You can also include other supported resources, such as Amazon Route 53 hosted zones and CloudFront KeyValueStores.
+        -- The ARNs of the resources to include in the subscription. Specify one or more supported resources. For subscriptions in the CloudFront plan family, the resources must include exactly one Amazon CloudFront distribution and exactly one WAF web ACL. You can also include other supported resources, such as Amazon Route 53 hosted zones and CloudFront KeyValueStores.
         resourceArns: {string}
-        -- Determines whether the subscription requires explicit approval before billing starts. Set to MANUAL to require a separate ApprovePaidSubscription call, or IMMEDIATE to activate the subscription right away. Defaults to IMMEDIATE if not specified.
+        -- Determines whether the subscription requires explicit approval before billing starts. Set to MANUAL to require a separate ApprovePaidSubscription call, or IMMEDIATE to activate the subscription right away. For paid tier plans, this defaults to MANUAL if not specified. For the FREE plan tier, only IMMEDIATE is supported, and it is the default.
         approvalMode: string
         -- A unique, case-sensitive identifier that you provide to ensure that the request is handled only once. If you send the same request with the same client token, the API returns the original response without creating a duplicate subscription.
         clientToken: string
@@ -235,7 +235,7 @@ local record M
         status: string
         -- A human-readable explanation of the current status, present when additional context is available.
         statusReason: string
-        -- The ARNs of the AWS resources covered by this subscription.
+        -- The ARNs of the resources covered by this subscription.
         resourceArns: {string}
         -- The date and time when the subscription was created, in ISO 8601 format.
         createdAt: number

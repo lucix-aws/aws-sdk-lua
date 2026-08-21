@@ -1890,6 +1890,65 @@ M.RdsPromoteReadReplicaConfiguration = schema.new({
     },
 })
 
+M.RdsUngraceful = schema.new({
+    id = id.from(_N, "RdsUngraceful"),
+    type = "structure",
+    members = {
+        ungraceful = schema.new({
+            id = id.from(_N, "RdsUngraceful", "ungraceful"),
+            type = "string",
+            name = "ungraceful",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RdsSwitchoverReadReplicaConfiguration = schema.new({
+    id = id.from(_N, "RdsSwitchoverReadReplicaConfiguration"),
+    type = "structure",
+    members = {
+        timeoutMinutes = schema.new({
+            id = id.from(_N, "RdsSwitchoverReadReplicaConfiguration", "timeoutMinutes"),
+            type = "integer",
+            name = "timeoutMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 60 },
+            },
+        }),
+        crossAccountRole = schema.new({
+            id = id.from(_N, "RdsSwitchoverReadReplicaConfiguration", "crossAccountRole"),
+            type = "string",
+            name = "crossAccountRole",
+            target_id = prelude.String.id,
+        }),
+        externalId = schema.new({
+            id = id.from(_N, "RdsSwitchoverReadReplicaConfiguration", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+        }),
+        dbInstanceArnMap = schema.new({
+            id = id.from(_N, "RdsSwitchoverReadReplicaConfiguration", "dbInstanceArnMap"),
+            type = "map",
+            name = "dbInstanceArnMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ungraceful = schema.new({
+            id = id.from(_N, "RdsSwitchoverReadReplicaConfiguration", "ungraceful"),
+            type = "structure",
+            name = "ungraceful",
+            target_id = id.from(_N, "RdsUngraceful"),
+            target = M.RdsUngraceful,
+        }),
+    },
+})
+
 M.RegionSwitchPlanConfiguration = schema.new({
     id = id.from(_N, "RegionSwitchPlanConfiguration"),
     type = "structure",
@@ -3025,6 +3084,13 @@ M.ExecutionBlockConfiguration = schema.new({
             name = "neptuneGlobalDatabaseConfig",
             target_id = id.from(_N, "NeptuneGlobalDatabaseConfiguration"),
             target = M.NeptuneGlobalDatabaseConfiguration,
+        }),
+        rdsSwitchoverReadReplicaConfig = schema.new({
+            id = id.from(_N, "ExecutionBlockConfiguration", "rdsSwitchoverReadReplicaConfig"),
+            type = "structure",
+            name = "rdsSwitchoverReadReplicaConfig",
+            target_id = id.from(_N, "RdsSwitchoverReadReplicaConfiguration"),
+            target = M.RdsSwitchoverReadReplicaConfiguration,
         }),
     },
 })

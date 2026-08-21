@@ -8166,6 +8166,8 @@ local record M
         ArtifactStoreUri: string
         -- The Amazon Resource Name (ARN) for an IAM role in your account that the MLflow App uses to access the artifact store in Amazon S3. The role should have the AmazonS3FullAccess permission.
         RoleArn: string
+        -- The ID of the Amazon Web Services KMS key used to encrypt the data at rest associated with the MLflow App. If you don't specify a value, the MLflow App is not encrypted with a customer-managed key.
+        KmsKeyId: string
         -- Whether to enable or disable automatic registration of new MLflow models to the SageMaker Model Registry. To enable automatic model registration, set this value to AutoModelRegistrationEnabled. To disable automatic model registration, set this value to AutoModelRegistrationDisabled. If not specified, AutomaticModelRegistration defaults to AutoModelRegistrationDisabled.
         ModelRegistrationMode: string
         -- The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time that weekly maintenance updates are scheduled. For example: TUE:03:30.
@@ -9311,6 +9313,13 @@ local record M
 
     enum PartnerAppAuthType
         "IAM"
+        "IDC"
+    end
+
+    -- Specifies the Amazon Web Services IAM Identity Center configuration to use for a SageMaker Partner AI App that uses IDC authorization.
+    record IdcConfigInput
+        -- The ARN of the Amazon Web Services IAM Identity Center instance that the SageMaker Partner AI App uses to authenticate users.
+        InstanceArn: string
     end
 
     -- Maintenance configuration settings for the SageMaker Partner AI App.
@@ -9341,7 +9350,9 @@ local record M
         Tier: string
         -- Configuration settings for the SageMaker Partner AI App.
         ApplicationConfig: PartnerAppConfig
-        -- The authorization type that users use to access the SageMaker Partner AI App.
+        -- Specifies the Amazon Web Services IAM Identity Center configuration for the SageMaker Partner AI App. Specify this parameter when AuthType is IDC. Apps that use IAM authorization don't use this parameter.
+        IdcConfig: IdcConfigInput
+        -- The authorization type that users use to access the SageMaker Partner AI App. Valid values: IAM: Users access the SageMaker Partner AI App with their Amazon Web Services IAM identity. IDC: Users access the SageMaker Partner AI App with their Amazon Web Services IAM Identity Center identity. Specify the Identity Center instance to use in IdcConfig.
         AuthType: string
         -- When set to TRUE, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user.
         EnableIamSessionBasedIdentity: boolean
@@ -13332,6 +13343,8 @@ local record M
         MlflowVersion: string
         -- The Amazon Resource Name (ARN) for an IAM role in your account that the MLflow App uses to access the artifact store in Amazon S3.
         RoleArn: string
+        -- The ID of the Amazon Web Services KMS key used to encrypt the data at rest associated with the MLflow App. This field is absent if the MLflow App is not encrypted with a customer-managed key.
+        KmsKeyId: string
         -- The current creation status of the described MLflow App.
         Status: string
         -- Whether automatic registration of new MLflow models to the SageMaker Model Registry is enabled.
@@ -13976,6 +13989,14 @@ local record M
         Reason: string
     end
 
+    -- Contains the Amazon Web Services IAM Identity Center configuration of a SageMaker Partner AI App that uses IDC authorization.
+    record IdcConfigOutput
+        -- The ARN of the Amazon Web Services IAM Identity Center instance that the SageMaker Partner AI App uses to authenticate users.
+        InstanceArn: string
+        -- The ARN of the Amazon Web Services IAM Identity Center application that SageMaker creates for the SageMaker Partner AI App.
+        ApplicationArn: string
+    end
+
     enum PartnerAppStatus
         "Creating"
         "Updating"
@@ -14013,7 +14034,7 @@ local record M
         Version: string
         -- Configuration settings for the SageMaker Partner AI App.
         ApplicationConfig: PartnerAppConfig
-        -- The authorization type that users use to access the SageMaker Partner AI App.
+        -- The authorization type that users use to access the SageMaker Partner AI App. Valid values: IAM: Users access the SageMaker Partner AI App with their Amazon Web Services IAM identity. IDC: Users access the SageMaker Partner AI App with their Amazon Web Services IAM Identity Center identity.
         AuthType: string
         -- When set to TRUE, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user.
         EnableIamSessionBasedIdentity: boolean
@@ -14025,6 +14046,8 @@ local record M
         CurrentVersionEolDate: number
         -- A map of available minor version upgrades for the SageMaker Partner AI App. The key is the semantic version number, and the value is a list of release notes for that version. A null value indicates no upgrades are available.
         AvailableUpgrade: AvailableUpgrade
+        -- Contains the Amazon Web Services IAM Identity Center configuration for the SageMaker Partner AI App, including the Identity Center instance and the Identity Center application that SageMaker creates for the app. The service returns this field for apps that use IDC authorization.
+        IdcConfig: IdcConfigOutput
     end
 
     record DescribePipelineInput
@@ -21702,6 +21725,10 @@ local record M
         Tier: string
         -- Configuration settings for the SageMaker Partner AI App.
         ApplicationConfig: PartnerAppConfig
+        -- Specifies the Amazon Web Services IAM Identity Center configuration for the SageMaker Partner AI App. Specify this parameter when AuthType is IDC. Apps that use IAM authorization don't use this parameter.
+        IdcConfig: IdcConfigInput
+        -- The authorization type that users use to access the SageMaker Partner AI App. Use this parameter to migrate an existing SageMaker Partner AI App from IAM authorization to IDC authorization. Valid values: IAM: Users access the SageMaker Partner AI App with their Amazon Web Services IAM identity. IDC: Users access the SageMaker Partner AI App with their Amazon Web Services IAM Identity Center identity. Specify the Identity Center instance to use in IdcConfig.
+        AuthType: string
         -- When set to TRUE, the SageMaker Partner AI App sets the Amazon Web Services IAM session name or the authenticated IAM user as the identity of the SageMaker Partner AI App user.
         EnableIamSessionBasedIdentity: boolean
         -- When set to TRUE, the SageMaker Partner AI App is automatically upgraded to the latest minor version during the next scheduled maintenance window, if one is available.

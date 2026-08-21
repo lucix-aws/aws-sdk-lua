@@ -708,6 +708,30 @@ local record M
         dbInstanceArnMap: {string : string}
     end
 
+    enum RdsUngracefulBehavior
+        "promoteReadReplica"
+    end
+
+    -- The ungraceful execution settings for an Amazon RDS switchover read replica execution block.
+    record RdsUngraceful
+        -- The ungraceful behavior to perform if switching to ungraceful execution.
+        ungraceful: string
+    end
+
+    -- Configuration for switching over an Amazon RDS read replica to become the new primary database instance during a Region switch.
+    record RdsSwitchoverReadReplicaConfiguration
+        -- The timeout value specified for the configuration.
+        timeoutMinutes: number
+        -- The cross-account role for the configuration.
+        crossAccountRole: string
+        -- The external ID (secret key) for the configuration.
+        externalId: string
+        -- A map of database instance ARNs for each Region in the plan.
+        dbInstanceArnMap: {string : string}
+        -- The ungraceful execution settings for the configuration.
+        ungraceful: RdsUngraceful
+    end
+
     -- Configuration for nested Region switch plans. This allows one Region switch plan to trigger another plan as part of its execution.
     record RegionSwitchPlanConfiguration
         -- The cross account role for the configuration.
@@ -760,6 +784,7 @@ local record M
         "AuroraServerlessScaling"
         "AuroraProvisionedScaling"
         "NeptuneGlobalDatabase"
+        "RdsSwitchoverReadReplica"
     end
 
     enum StepStatus
@@ -1142,6 +1167,8 @@ local record M
         auroraProvisionedScalingConfig: AuroraProvisionedScalingConfiguration
         -- A Neptune global database execution block.
         neptuneGlobalDatabaseConfig: NeptuneGlobalDatabaseConfiguration
+        -- An Amazon RDS switchover read replica execution block.
+        rdsSwitchoverReadReplicaConfig: RdsSwitchoverReadReplicaConfiguration
     end
 
     -- Configuration for steps that should be executed in parallel during a Region switch.

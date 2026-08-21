@@ -1812,6 +1812,34 @@ M.DeleteFunctionEventInvokeConfigInput = schema.new({
 
 M.DeleteFunctionEventInvokeConfigOutput = prelude.Unit
 
+M.DeleteResourcePolicyInput = schema.new({
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RevisionId = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "RevisionId"),
+            type = "string",
+            name = "RevisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "RevisionId" },
+            },
+        }),
+    },
+})
+
+M.DeleteResourcePolicyOutput = prelude.Unit
+
 M.CallbackOptions = schema.new({
     id = id.from(_N, "CallbackOptions"),
     type = "structure",
@@ -11329,6 +11357,42 @@ M.GetFunctionEventInvokeConfigOutput = schema.new({
     },
 })
 
+M.GetResourcePolicyInput = schema.new({
+    id = id.from(_N, "GetResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "GetResourcePolicyInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetResourcePolicyOutput = schema.new({
+    id = id.from(_N, "GetResourcePolicyResponse"),
+    type = "structure",
+    members = {
+        Policy = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+        RevisionId = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "RevisionId"),
+            type = "string",
+            name = "RevisionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListLayersInput = schema.new({
     id = id.from(_N, "ListLayersRequest"),
     type = "structure",
@@ -12509,6 +12573,57 @@ M.PutFunctionEventInvokeConfigOutput = schema.new({
     },
 })
 
+M.PutResourcePolicyInput = schema.new({
+    id = id.from(_N, "PutResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RevisionId = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "RevisionId"),
+            type = "string",
+            name = "RevisionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutResourcePolicyOutput = schema.new({
+    id = id.from(_N, "PutResourcePolicyResponse"),
+    type = "structure",
+    members = {
+        Policy = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+        RevisionId = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "RevisionId"),
+            type = "string",
+            name = "RevisionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CallbackTimeoutException = schema.new({
     id = id.from(_N, "CallbackTimeoutException"),
     type = "structure",
@@ -13024,6 +13139,18 @@ M.DeleteProvisionedConcurrencyConfig = schema.operation({
     },
 })
 
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lambda", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2026-07-09/resource-policy/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetAccountSettings = schema.operation({
     id = id.from("com.amazonaws.lambda", "GetAccountSettings"),
     input = M.GetAccountSettingsInput,
@@ -13270,6 +13397,18 @@ M.GetProvisionedConcurrencyConfig = schema.operation({
     output = M.GetProvisionedConcurrencyConfigOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2019-09-30/functions/{FunctionName}/provisioned-concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lambda", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2026-07-09/resource-policy/{ResourceArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -13595,6 +13734,18 @@ M.PutProvisionedConcurrencyConfig = schema.operation({
     output = M.PutProvisionedConcurrencyConfigOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/2019-09-30/functions/{FunctionName}/provisioned-concurrency" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lambda", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2026-07-09/resource-policy/{ResourceArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -978,6 +978,39 @@ M.ConcurrentModificationException = schema.new({
     },
 })
 
+M.TrackingConfigurationOverrides = schema.new({
+    id = id.from(_N, "TrackingConfigurationOverrides"),
+    type = "structure",
+    members = {
+        OpenTrackingEnabled = schema.new({
+            id = id.from(_N, "TrackingConfigurationOverrides", "OpenTrackingEnabled"),
+            type = "string",
+            name = "OpenTrackingEnabled",
+            target_id = prelude.String.id,
+        }),
+        ClickTrackingEnabled = schema.new({
+            id = id.from(_N, "TrackingConfigurationOverrides", "ClickTrackingEnabled"),
+            type = "string",
+            name = "ClickTrackingEnabled",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConfigurationOverrides = schema.new({
+    id = id.from(_N, "ConfigurationOverrides"),
+    type = "structure",
+    members = {
+        Tracking = schema.new({
+            id = id.from(_N, "ConfigurationOverrides", "Tracking"),
+            type = "structure",
+            name = "Tracking",
+            target_id = id.from(_N, "TrackingConfigurationOverrides"),
+            target = M.TrackingConfigurationOverrides,
+        }),
+    },
+})
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",
@@ -7972,6 +8005,13 @@ M.SendBulkEmailInput = schema.new({
             name = "TenantName",
             target_id = prelude.String.id,
         }),
+        ConfigurationOverrides = schema.new({
+            id = id.from(_N, "SendBulkEmailInput", "ConfigurationOverrides"),
+            type = "structure",
+            name = "ConfigurationOverrides",
+            target_id = id.from(_N, "ConfigurationOverrides"),
+            target = M.ConfigurationOverrides,
+        }),
     },
 })
 
@@ -8119,6 +8159,13 @@ M.SendEmailInput = schema.new({
             name = "ListManagementOptions",
             target_id = id.from(_N, "ListManagementOptions"),
             target = M.ListManagementOptions,
+        }),
+        ConfigurationOverrides = schema.new({
+            id = id.from(_N, "SendEmailInput", "ConfigurationOverrides"),
+            type = "structure",
+            name = "ConfigurationOverrides",
+            target_id = id.from(_N, "ConfigurationOverrides"),
+            target = M.ConfigurationOverrides,
         }),
     },
 })

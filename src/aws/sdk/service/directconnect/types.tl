@@ -247,6 +247,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     record AllocateHostedConnectionInput
@@ -329,6 +337,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     -- A tag key was specified more than once.
@@ -555,6 +571,10 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The number of inbound IPv4 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 600Mbps, 700Mbps, 800Mbps, 900Mbps, 1Gbps, 1.2Gbps, 1.5Gbps, 1.8Gbps, 2Gbps, 2.1Gbps, 2.4Gbps, 2.7Gbps, 3Gbps, 3.2Gbps, 3.6Gbps, 4Gbps, 5Gbps, 6Gbps, 7Gbps, 8Gbps, 9Gbps, 10Gbps, 12Gbps, 15Gbps, 18Gbps, 20Gbps, 21Gbps, 24Gbps, 27Gbps, 30Gbps, 32Gbps, 36Gbps, 40Gbps, 50Gbps, 60Gbps, 70Gbps, 80Gbps, 100Gbps, 120Gbps, 150Gbps, 180Gbps, 200Gbps, 210Gbps, 240Gbps, 270Gbps, 300Gbps, 320Gbps, 360Gbps, 400Gbps, 450Gbps, 480Gbps, 500Gbps, 540Gbps, 600Gbps, 700Gbps, 800Gbps, 900Gbps, 1Tbps, 1.1Tbps, 1.2Tbps, 1.3Tbps, 1.4Tbps, 1.5Tbps, 1.6Tbps.
         rateLimit: string
     end
@@ -699,6 +719,10 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The number of inbound IPv4 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 600Mbps, 700Mbps, 800Mbps, 900Mbps, 1Gbps, 1.2Gbps, 1.5Gbps, 1.8Gbps, 2Gbps, 2.1Gbps, 2.4Gbps, 2.7Gbps, 3Gbps, 3.2Gbps, 3.6Gbps, 4Gbps, 5Gbps, 6Gbps, 7Gbps, 8Gbps, 9Gbps, 10Gbps, 12Gbps, 15Gbps, 18Gbps, 20Gbps, 21Gbps, 24Gbps, 27Gbps, 30Gbps, 32Gbps, 36Gbps, 40Gbps, 50Gbps, 60Gbps, 70Gbps, 80Gbps, 100Gbps, 120Gbps, 150Gbps, 180Gbps, 200Gbps, 210Gbps, 240Gbps, 270Gbps, 300Gbps, 320Gbps, 360Gbps, 400Gbps, 450Gbps, 480Gbps, 500Gbps, 540Gbps, 600Gbps, 700Gbps, 800Gbps, 900Gbps, 1Tbps, 1.1Tbps, 1.2Tbps, 1.3Tbps, 1.4Tbps, 1.5Tbps, 1.6Tbps.
         rateLimit: string
     end
@@ -838,6 +862,10 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The number of inbound IPv4 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 600Mbps, 700Mbps, 800Mbps, 900Mbps, 1Gbps, 1.2Gbps, 1.5Gbps, 1.8Gbps, 2Gbps, 2.1Gbps, 2.4Gbps, 2.7Gbps, 3Gbps, 3.2Gbps, 3.6Gbps, 4Gbps, 5Gbps, 6Gbps, 7Gbps, 8Gbps, 9Gbps, 10Gbps, 12Gbps, 15Gbps, 18Gbps, 20Gbps, 21Gbps, 24Gbps, 27Gbps, 30Gbps, 32Gbps, 36Gbps, 40Gbps, 50Gbps, 60Gbps, 70Gbps, 80Gbps, 100Gbps, 120Gbps, 150Gbps, 180Gbps, 200Gbps, 210Gbps, 240Gbps, 270Gbps, 300Gbps, 320Gbps, 360Gbps, 400Gbps, 450Gbps, 480Gbps, 500Gbps, 540Gbps, 600Gbps, 700Gbps, 800Gbps, 900Gbps, 1Tbps, 1.1Tbps, 1.2Tbps, 1.3Tbps, 1.4Tbps, 1.5Tbps, 1.6Tbps.
         rateLimit: string
     end
@@ -930,6 +958,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     record AssociateHostedConnectionInput
@@ -1001,6 +1037,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     record AssociateMacSecKeyInput
@@ -1120,6 +1164,10 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The number of inbound IPv4 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 600Mbps, 700Mbps, 800Mbps, 900Mbps, 1Gbps, 1.2Gbps, 1.5Gbps, 1.8Gbps, 2Gbps, 2.1Gbps, 2.4Gbps, 2.7Gbps, 3Gbps, 3.2Gbps, 3.6Gbps, 4Gbps, 5Gbps, 6Gbps, 7Gbps, 8Gbps, 9Gbps, 10Gbps, 12Gbps, 15Gbps, 18Gbps, 20Gbps, 21Gbps, 24Gbps, 27Gbps, 30Gbps, 32Gbps, 36Gbps, 40Gbps, 50Gbps, 60Gbps, 70Gbps, 80Gbps, 100Gbps, 120Gbps, 150Gbps, 180Gbps, 200Gbps, 210Gbps, 240Gbps, 270Gbps, 300Gbps, 320Gbps, 360Gbps, 400Gbps, 450Gbps, 480Gbps, 500Gbps, 540Gbps, 600Gbps, 700Gbps, 800Gbps, 900Gbps, 1Tbps, 1.1Tbps, 1.2Tbps, 1.3Tbps, 1.4Tbps, 1.5Tbps, 1.6Tbps.
         rateLimit: string
     end
@@ -1281,6 +1329,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     -- Information about a new BGP peer.
@@ -1391,6 +1447,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     record CreateDirectConnectGatewayInput
@@ -1429,6 +1493,8 @@ local record M
         directConnectGatewayState: string
         -- The error message if the state of an object failed to advance.
         stateChangeError: string
+        -- The total number of inbound route prefixes allocated to the attachments on the Direct Connect gateway. The count combines the IPv4 and IPv6 address families.
+        totalPrefixPoolAllocations: number
         -- Information about a tag.
         tags: {Tag}
     end
@@ -1673,6 +1739,14 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the LAG.
         macSecKeys: {MacSecKey}
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolUnallocatedCountIpv6: number
         -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
         rateLimiterStatus: RateLimiterStatus
     end
@@ -1722,6 +1796,10 @@ local record M
         tags: {Tag}
         -- Indicates whether to enable or disable SiteLink.
         enableSiteLink: boolean
+        -- The number of inbound IPv4 route prefixes to allocate to the virtual interface.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes to allocate to the virtual interface.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) to apply to the virtual interface. The rate limit restricts the maximum bandwidth that the virtual interface can use on the parent connection.
         rateLimit: string
     end
@@ -1816,6 +1894,10 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The number of inbound IPv4 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 600Mbps, 700Mbps, 800Mbps, 900Mbps, 1Gbps, 1.2Gbps, 1.5Gbps, 1.8Gbps, 2Gbps, 2.1Gbps, 2.4Gbps, 2.7Gbps, 3Gbps, 3.2Gbps, 3.6Gbps, 4Gbps, 5Gbps, 6Gbps, 7Gbps, 8Gbps, 9Gbps, 10Gbps, 12Gbps, 15Gbps, 18Gbps, 20Gbps, 21Gbps, 24Gbps, 27Gbps, 30Gbps, 32Gbps, 36Gbps, 40Gbps, 50Gbps, 60Gbps, 70Gbps, 80Gbps, 100Gbps, 120Gbps, 150Gbps, 180Gbps, 200Gbps, 210Gbps, 240Gbps, 270Gbps, 300Gbps, 320Gbps, 360Gbps, 400Gbps, 450Gbps, 480Gbps, 500Gbps, 540Gbps, 600Gbps, 700Gbps, 800Gbps, 900Gbps, 1Tbps, 1.1Tbps, 1.2Tbps, 1.3Tbps, 1.4Tbps, 1.5Tbps, 1.6Tbps.
         rateLimit: string
     end
@@ -1952,6 +2034,10 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The number of inbound IPv4 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 600Mbps, 700Mbps, 800Mbps, 900Mbps, 1Gbps, 1.2Gbps, 1.5Gbps, 1.8Gbps, 2Gbps, 2.1Gbps, 2.4Gbps, 2.7Gbps, 3Gbps, 3.2Gbps, 3.6Gbps, 4Gbps, 5Gbps, 6Gbps, 7Gbps, 8Gbps, 9Gbps, 10Gbps, 12Gbps, 15Gbps, 18Gbps, 20Gbps, 21Gbps, 24Gbps, 27Gbps, 30Gbps, 32Gbps, 36Gbps, 40Gbps, 50Gbps, 60Gbps, 70Gbps, 80Gbps, 100Gbps, 120Gbps, 150Gbps, 180Gbps, 200Gbps, 210Gbps, 240Gbps, 270Gbps, 300Gbps, 320Gbps, 360Gbps, 400Gbps, 450Gbps, 480Gbps, 500Gbps, 540Gbps, 600Gbps, 700Gbps, 800Gbps, 900Gbps, 1Tbps, 1.1Tbps, 1.2Tbps, 1.3Tbps, 1.4Tbps, 1.5Tbps, 1.6Tbps.
         rateLimit: string
     end
@@ -1998,6 +2084,10 @@ local record M
         tags: {Tag}
         -- Indicates whether to enable or disable SiteLink.
         enableSiteLink: boolean
+        -- The number of inbound IPv4 route prefixes to allocate to the virtual interface.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes to allocate to the virtual interface.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) to apply to the virtual interface. The rate limit restricts the maximum bandwidth that the virtual interface can use on the parent connection.
         rateLimit: string
     end
@@ -2115,6 +2205,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     record DeleteDirectConnectGatewayInput
@@ -2231,6 +2329,14 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the LAG.
         macSecKeys: {MacSecKey}
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolUnallocatedCountIpv6: number
         -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
         rateLimiterStatus: RateLimiterStatus
     end
@@ -2628,6 +2734,14 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the LAG.
         macSecKeys: {MacSecKey}
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolUnallocatedCountIpv6: number
         -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
         rateLimiterStatus: RateLimiterStatus
     end
@@ -2844,6 +2958,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     record DisassociateMacSecKeyInput
@@ -3091,6 +3213,14 @@ local record M
         rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the connection. Not applicable to hosted connections or interconnects.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
+        prefixPoolUnallocatedCountIpv6: number
     end
 
     record UpdateDirectConnectGatewayInput
@@ -3188,6 +3318,14 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the LAG.
         macSecKeys: {MacSecKey}
+        -- The total number of inbound IPv4 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolSizeIpv4: number
+        -- The total number of inbound IPv6 route prefixes you can allocate across the virtual interfaces on the LAG. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolSizeIpv6: number
+        -- The number of inbound IPv4 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolUnallocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes in the LAG prefix pool not yet allocated to a virtual interface. Not applicable to LAGs that are interconnects and support hosted connections.
+        prefixPoolUnallocatedCountIpv6: number
         -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
         rateLimiterStatus: RateLimiterStatus
     end
@@ -3201,6 +3339,10 @@ local record M
         enableSiteLink: boolean
         -- The name of the virtual private interface.
         virtualInterfaceName: string
+        -- The number of inbound IPv4 route prefixes to allocate to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes to allocate to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) to apply to the virtual interface. Use this to update the bandwidth allocation on an existing virtual interface.
         rateLimit: string
     end
@@ -3288,6 +3430,10 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The number of inbound IPv4 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv4: number
+        -- The number of inbound IPv6 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.
+        prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 600Mbps, 700Mbps, 800Mbps, 900Mbps, 1Gbps, 1.2Gbps, 1.5Gbps, 1.8Gbps, 2Gbps, 2.1Gbps, 2.4Gbps, 2.7Gbps, 3Gbps, 3.2Gbps, 3.6Gbps, 4Gbps, 5Gbps, 6Gbps, 7Gbps, 8Gbps, 9Gbps, 10Gbps, 12Gbps, 15Gbps, 18Gbps, 20Gbps, 21Gbps, 24Gbps, 27Gbps, 30Gbps, 32Gbps, 36Gbps, 40Gbps, 50Gbps, 60Gbps, 70Gbps, 80Gbps, 100Gbps, 120Gbps, 150Gbps, 180Gbps, 200Gbps, 210Gbps, 240Gbps, 270Gbps, 300Gbps, 320Gbps, 360Gbps, 400Gbps, 450Gbps, 480Gbps, 500Gbps, 540Gbps, 600Gbps, 700Gbps, 800Gbps, 900Gbps, 1Tbps, 1.1Tbps, 1.2Tbps, 1.3Tbps, 1.4Tbps, 1.5Tbps, 1.6Tbps.
         rateLimit: string
     end

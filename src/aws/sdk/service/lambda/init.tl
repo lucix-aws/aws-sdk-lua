@@ -38,6 +38,7 @@ local record Client
     deleteFunctionUrlConfig: function(Client, types.DeleteFunctionUrlConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFunctionUrlConfigOutput>
     deleteLayerVersion: function(Client, types.DeleteLayerVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLayerVersionOutput>
     deleteProvisionedConcurrencyConfig: function(Client, types.DeleteProvisionedConcurrencyConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProvisionedConcurrencyConfigOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
     getAlias: function(Client, types.GetAliasInput, ? base_client.InvokeOptions): async.Operation<types.GetAliasOutput>
     getCapacityProvider: function(Client, types.GetCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityProviderOutput>
@@ -59,6 +60,7 @@ local record Client
     getLayerVersionPolicy: function(Client, types.GetLayerVersionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetLayerVersionPolicyOutput>
     getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
     getProvisionedConcurrencyConfig: function(Client, types.GetProvisionedConcurrencyConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetProvisionedConcurrencyConfigOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     getRuntimeManagementConfig: function(Client, types.GetRuntimeManagementConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetRuntimeManagementConfigOutput>
     invoke: function(Client, types.InvokeInput, ? base_client.InvokeOptions): async.Operation<types.InvokeOutput>
     invokeAsync: function(Client, types.InvokeAsyncInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAsyncOutput>
@@ -86,6 +88,7 @@ local record Client
     putFunctionRecursionConfig: function(Client, types.PutFunctionRecursionConfigInput, ? base_client.InvokeOptions): async.Operation<types.PutFunctionRecursionConfigOutput>
     putFunctionScalingConfig: function(Client, types.PutFunctionScalingConfigInput, ? base_client.InvokeOptions): async.Operation<types.PutFunctionScalingConfigOutput>
     putProvisionedConcurrencyConfig: function(Client, types.PutProvisionedConcurrencyConfigInput, ? base_client.InvokeOptions): async.Operation<types.PutProvisionedConcurrencyConfigOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
     putRuntimeManagementConfig: function(Client, types.PutRuntimeManagementConfigInput, ? base_client.InvokeOptions): async.Operation<types.PutRuntimeManagementConfigOutput>
     removeLayerVersionPermission: function(Client, types.RemoveLayerVersionPermissionInput, ? base_client.InvokeOptions): async.Operation<types.RemoveLayerVersionPermissionOutput>
     removePermission: function(Client, types.RemovePermissionInput, ? base_client.InvokeOptions): async.Operation<types.RemovePermissionOutput>
@@ -227,6 +230,10 @@ function C:deleteProvisionedConcurrencyConfig(input: types.DeleteProvisionedConc
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProvisionedConcurrencyConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteProvisionedConcurrencyConfigOutput>
 end
 
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+end
+
 function C:getAccountSettings(input: types.GetAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingsOutput>
 end
@@ -309,6 +316,10 @@ end
 
 function C:getProvisionedConcurrencyConfig(input: types.GetProvisionedConcurrencyConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetProvisionedConcurrencyConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProvisionedConcurrencyConfig as schema.OperationSchema, input, options) as async.Operation<types.GetProvisionedConcurrencyConfigOutput>
+end
+
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
 function C:getRuntimeManagementConfig(input: types.GetRuntimeManagementConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuntimeManagementConfigOutput>
@@ -417,6 +428,10 @@ end
 
 function C:putProvisionedConcurrencyConfig(input: types.PutProvisionedConcurrencyConfigInput, options?: base_client.InvokeOptions): async.Operation<types.PutProvisionedConcurrencyConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProvisionedConcurrencyConfig as schema.OperationSchema, input, options) as async.Operation<types.PutProvisionedConcurrencyConfigOutput>
+end
+
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
 function C:putRuntimeManagementConfig(input: types.PutRuntimeManagementConfigInput, options?: base_client.InvokeOptions): async.Operation<types.PutRuntimeManagementConfigOutput>
