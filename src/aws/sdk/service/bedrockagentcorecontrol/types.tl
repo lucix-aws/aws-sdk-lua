@@ -2143,7 +2143,7 @@ local record M
     enum DatasetSchemaType
         "AGENTCORE_EVALUATION_PREDEFINED_V1"
         "AGENTCORE_EVALUATION_SIMULATED_V1"
-        "GENERIC_EVALUATION_PREDEFINED_V1"
+        "THIRD_PARTY_EVALUATION_V1"
     end
 
     record CreateDatasetInput
@@ -3663,12 +3663,19 @@ local record M
         "CUSTOM"
     end
 
+    enum StaticQueryParameterConflictResolution
+        "CLIENT_OVERRIDE"
+        "STATIC_OVERRIDE"
+    end
+
     -- The configuration for session-sticky routing to a target. Session stickiness routes requests that share a session identifier to the same target.
     record StickinessConfiguration
         -- The expression that identifies where to extract the session identifier from the request (for example, $context.header.x-session-id).
         identifier: string
         -- The session stickiness timeout, in seconds. After this duration of inactivity, the session affinity expires. Valid values range from 1 to 86400.
         timeout: number
+        -- Additional headers to include in session affinity routing. When set, requests are only considered part of the same session if both the identifier and all composite identifier values match.
+        compositeIdentifier: {string}
     end
 
     -- The configuration for an HTTP passthrough target. A passthrough target forwards requests directly to an external HTTP endpoint.
@@ -3681,6 +3688,10 @@ local record M
         schema: HttpApiSchemaConfiguration
         -- The session stickiness configuration for the passthrough target. This configuration routes requests within the same session to the same target.
         stickinessConfiguration: StickinessConfiguration
+        -- A map of static query parameters that the gateway always appends to the outbound URL when forwarding requests to the target. The total outbound URL length, which includes the endpoint and the percent-encoded query parameters, is enforced by the service.
+        staticQueryParameters: {string : string}
+        -- Controls precedence when a client request supplies a query parameter whose name matches a configured static query parameter. If not set, defaults to CLIENT_OVERRIDE: CLIENT_OVERRIDE - The client-supplied value overrides the configured static value for that parameter name. STATIC_OVERRIDE - The configured static value is retained, overriding the client-supplied value for that parameter name.
+        staticQueryParameterConflictResolution: string
     end
 
     -- The HTTP target configuration for a gateway target. Contains the configuration for HTTP-based target endpoints.
@@ -5665,7 +5676,7 @@ local record M
         memoryStrategies: ModifyMemoryStrategies
         -- Additional metadata keys to index. Previously indexed keys cannot be removed.
         addIndexedKeys: {IndexedKey}
-        -- The namespace variable key definitions with validation rules for this memory. Use this parameter to update existing namespaceKey validation rules or add new keys when namespace templates change.
+        -- The namespace variable key definitions with validation rules for this memory. This value fully replaces the existing set — any key you omit is removed. Any referenced namespaceKey omission will throw ValidationException.
         namespaceKeys: {NamespaceKeyEntry}
         -- Configuration for streaming memory record data to external resources.
         streamDeliveryResources: StreamDeliveryResources

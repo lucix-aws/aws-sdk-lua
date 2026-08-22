@@ -632,7 +632,7 @@ local record M
         -- The data blob. The data in the blob is both opaque and immutable to Kinesis Data
         -- Streams, which does not inspect, interpret, or change the data in the blob in any way.
         -- When the data blob (the payload before base64-encoding) is added to the partition key
-        -- size, the total size must not exceed the maximum record size (1 MiB).
+        -- size, the total size must not exceed the maximum record size (10 MiB).
         Data: string
         -- Identifies which shard in the stream the data record is assigned to.
         PartitionKey: string

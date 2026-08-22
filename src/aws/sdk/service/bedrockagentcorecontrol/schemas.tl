@@ -244,6 +244,8 @@ M.EnabledConnectors = schema.new({ type = "list", list_member = prelude.String }
 
 M.ConnectorConfigurations = schema.new({ type = "list", list_member = M.ConnectorConfiguration })
 
+M.StaticQueryParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.HttpConnectorParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.InferenceOperationConfigurations = schema.new({ type = "list", list_member = M.InferenceOperationConfiguration })
@@ -269,6 +271,8 @@ M.ToolDefinitions = schema.new({ type = "list", list_member = M.ToolDefinition }
 M.ApiGatewayToolOverrides = schema.new({ type = "list", list_member = M.ApiGatewayToolOverride })
 
 M.ApiGatewayToolFilters = schema.new({ type = "list", list_member = M.ApiGatewayToolFilter })
+
+M.CompositeIdentifierList = schema.new({ type = "list", list_member = prelude.String })
 
 M.OAuthScopes = schema.new({ type = "list", list_member = prelude.String })
 
@@ -12028,6 +12032,13 @@ M.StickinessConfiguration = schema.new({
             name = "timeout",
             target_id = prelude.Integer.id,
         }),
+        compositeIdentifier = schema.new({
+            id = id.from(_N, "StickinessConfiguration", "compositeIdentifier"),
+            type = "list",
+            name = "compositeIdentifier",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -12066,6 +12077,20 @@ M.PassthroughTargetConfiguration = schema.new({
             name = "stickinessConfiguration",
             target_id = id.from(_N, "StickinessConfiguration"),
             target = M.StickinessConfiguration,
+        }),
+        staticQueryParameters = schema.new({
+            id = id.from(_N, "PassthroughTargetConfiguration", "staticQueryParameters"),
+            type = "map",
+            name = "staticQueryParameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        staticQueryParameterConflictResolution = schema.new({
+            id = id.from(_N, "PassthroughTargetConfiguration", "staticQueryParameterConflictResolution"),
+            type = "string",
+            name = "staticQueryParameterConflictResolution",
+            target_id = prelude.String.id,
         }),
     },
 })

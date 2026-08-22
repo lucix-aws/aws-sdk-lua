@@ -3132,6 +3132,9 @@ M.CreateStream = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3216,6 +3219,9 @@ M.DescribeAccountSettings = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
     },
 })
 
@@ -3226,6 +3232,9 @@ M.DescribeLimits = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3436,6 +3445,9 @@ M.ListStreams = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })
@@ -3700,6 +3712,9 @@ M.UpdateAccountSettings = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
         },
     },
 })

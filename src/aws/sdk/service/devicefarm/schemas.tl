@@ -82,6 +82,8 @@ M.AuxiliaryAppArnList = schema.new({ type = "list", list_member = prelude.String
 
 M.AmazonResourceNames = schema.new({ type = "list", list_member = prelude.String })
 
+M.RemoteAccessParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
@@ -1047,6 +1049,14 @@ M.CreateRemoteAccessSessionConfiguration = schema.new({
             name = "deviceProxy",
             target_id = id.from(_N, "DeviceProxy"),
             target = M.DeviceProxy,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "CreateRemoteAccessSessionConfiguration", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })

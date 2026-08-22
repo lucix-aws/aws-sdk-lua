@@ -514,6 +514,12 @@ local record M
         vpceConfigurationArns: {string}
         -- The device proxy to be configured on the device for the remote access session.
         deviceProxy: DeviceProxy
+        -- The name-value string pairs that specify additional settings for the remote access
+        -- session.
+        -- appium:version: The major version of the Appium server to use for
+        -- the session (for example, 2 or 3). The service may reject the selected version
+        -- if it is not available for the selected device.
+        parameters: {string : string}
     end
 
     enum InteractionMode
@@ -819,10 +825,10 @@ local record M
     end
 
     record CreateTestGridUrlOutput
-        -- A signed URL, expiring in CreateTestGridUrlRequest$expiresInSeconds seconds, to be passed
+        -- A signed URL, expiring in the time specified by the CreateTestGridUrlRequest, to be passed
         -- to a RemoteWebDriver.
         url: string
-        -- The number of seconds the URL from CreateTestGridUrlResult$url stays active.
+        -- The number of seconds the URL stays active from creation.
         expires: number
     end
 
@@ -1213,18 +1219,6 @@ local record M
         filter: string
         -- The test's parameters, such as test framework parameters and fixture settings.
         -- Parameters are represented by name-value pairs of strings.
-        -- For all tests:
-        -- app_performance_monitoring: Performance monitoring is enabled by default.
-        -- Set this parameter to false to disable it.
-        -- For Appium tests (all types):
-        -- appium_version: The Appium version. Currently supported values are 1.6.5
-        -- (and later), latest, and default.
-        -- latest runs the latest Appium version supported by Device
-        -- Farm (1.9.1).
-        -- For default, Device Farm selects a compatible version of
-        -- Appium for the device. The current behavior is to run 1.7.2 on Android
-        -- devices and iOS 9 and earlier and 1.7.2 for iOS 10 and later.
-        -- This behavior is subject to change.
         -- For fuzz tests (Android only):
         -- event_count: The number of events, between 1 and 10000, that the UI fuzz
         -- test should perform.
@@ -2337,6 +2331,7 @@ local record M
     end
 
     -- Represents a sample of performance data.
+    -- Device Farm does not support performance data samples during test executions.
     record Sample
         -- The sample's ARN.
         arn: string

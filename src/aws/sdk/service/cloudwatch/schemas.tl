@@ -1668,6 +1668,28 @@ M.ScheduledQueryConfiguration = schema.new({
     },
 })
 
+M.WarmUpConfiguration = schema.new({
+    id = id.from(_N, "WarmUpConfiguration"),
+    type = "structure",
+    members = {
+        WarmUpPeriodDurationInMinutes = schema.new({
+            id = id.from(_N, "WarmUpConfiguration", "WarmUpPeriodDurationInMinutes"),
+            type = "integer",
+            name = "WarmUpPeriodDurationInMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OnlyStartEvaluatingAfterWarmUpPeriodEnds = schema.new({
+            id = id.from(_N, "WarmUpConfiguration", "OnlyStartEvaluatingAfterWarmUpPeriodEnds"),
+            type = "boolean",
+            name = "OnlyStartEvaluatingAfterWarmUpPeriodEnds",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.LogAlarm = schema.new({
     id = id.from(_N, "LogAlarm"),
     type = "structure",
@@ -1807,6 +1829,13 @@ M.LogAlarm = schema.new({
             type = "string",
             name = "ActionLogLineRoleArn",
             target_id = prelude.String.id,
+        }),
+        WarmUpConfiguration = schema.new({
+            id = id.from(_N, "LogAlarm", "WarmUpConfiguration"),
+            type = "structure",
+            name = "WarmUpConfiguration",
+            target_id = id.from(_N, "WarmUpConfiguration"),
+            target = M.WarmUpConfiguration,
         }),
     },
 })
@@ -2053,6 +2082,13 @@ M.MetricAlarm = schema.new({
             name = "EvaluationWindow",
             target_id = id.from(_N, "EvaluationWindow"),
             target = M.EvaluationWindow,
+        }),
+        WarmUpConfiguration = schema.new({
+            id = id.from(_N, "MetricAlarm", "WarmUpConfiguration"),
+            type = "structure",
+            name = "WarmUpConfiguration",
+            target_id = id.from(_N, "WarmUpConfiguration"),
+            target = M.WarmUpConfiguration,
         }),
         EvaluationCriteria = schema.new({
             id = id.from(_N, "MetricAlarm", "EvaluationCriteria"),
@@ -4442,6 +4478,13 @@ M.PutLogAlarmInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        WarmUpConfiguration = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "WarmUpConfiguration"),
+            type = "structure",
+            name = "WarmUpConfiguration",
+            target_id = id.from(_N, "WarmUpConfiguration"),
+            target = M.WarmUpConfiguration,
+        }),
     },
 })
 
@@ -4661,6 +4704,13 @@ M.PutMetricAlarmInput = schema.new({
             name = "EvaluationWindow",
             target_id = id.from(_N, "EvaluationWindow"),
             target = M.EvaluationWindow,
+        }),
+        WarmUpConfiguration = schema.new({
+            id = id.from(_N, "PutMetricAlarmInput", "WarmUpConfiguration"),
+            type = "structure",
+            name = "WarmUpConfiguration",
+            target_id = id.from(_N, "WarmUpConfiguration"),
+            target = M.WarmUpConfiguration,
         }),
         EvaluationCriteria = schema.new({
             id = id.from(_N, "PutMetricAlarmInput", "EvaluationCriteria"),

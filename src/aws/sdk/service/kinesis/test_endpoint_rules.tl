@@ -2416,4 +2416,782 @@ describe("endpoint rules", function()
         assert.are.equal("https://123.control-kinesis.us-west-2.amazonaws.com", result.url)
     end)
 
+    it("AccountId test: Account Id present", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "data",
+            AccountId = "012345678901",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://012345678901.data-kinesis.us-west-2.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("AccountId test: Account Id present with fips", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123",
+            AccountIdEndpointMode = "required",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123.control-kinesis-fips.us-west-2.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("AccountId test: Account Id present with dual stack", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123.control-kinesis.us-west-2.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("AccountId test: Account Id present with fips and dual stack", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123.control-kinesis-fips.us-west-2.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("Account Id present with streamId", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            StreamId = "af4lwng4k01746835071-xyz",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://af4lwng4k01746835071.xyz.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id present with stream ARN", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            StreamARN = "arn:aws:kinesis:us-east-1:123:stream/test-stream",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id present with consumer ARN", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ConsumerARN = "arn:aws:kinesis:us-west-2:123:stream/testStream/consumer/test-consumer:1525898737",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id present with resource ARN", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-west-2:123:stream/testStream/consumer/test-consumer:1525898737",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id present and stream ARN with different accountId", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-west-2:456:stream/testStream",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://456.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id present and consumer ARN with different accountId", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-west-2:456:stream/testStream/consumer/test-consumer:1525898737",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://456.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id, streamId and resource ARN with different accountId", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            StreamId = "af4lwng4k01746835071-xyz",
+            ResourceARN = "arn:aws:kinesis:us-west-2:456:stream/testStream/consumer/test-consumer:1525898737",
+            AccountId = "123",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://af4lwng4k01746835071.xyz.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id with account id endpoint mode disabled", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id and StreamArn with account id endpoint mode disabled", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            StreamARN = "arn:aws:kinesis:us-west-2:456:stream/testStream",
+            AccountId = "123",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://456.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id missing with account id endpoint mode required", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountIdEndpointMode = "required",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("Account Id missing with account id endpoint mode required, fips and dual stack enabled", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountIdEndpointMode = "required",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("Account Id missing with account id endpoint mode required in ADC region", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountIdEndpointMode = "required",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("Account Id present with account id endpoint mode required in ADC region", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "required",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition", err)
+    end)
+
+    it("Account Id present with account id endpoint mode preferred in ADC region", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("Account Id missing with account id endpoint mode required and endpoint override", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            Endpoint = "https://kinesis-pod1.us-west-2.amazonaws.com",
+            AccountIdEndpointMode = "required",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis-pod1.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id missing with StreamArn and account id endpoint mode required", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            StreamARN = "arn:aws:kinesis:us-west-2:456:stream/testStream",
+            AccountIdEndpointMode = "required",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://456.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id missing with StreamId and account id endpoint mode required", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            StreamId = "af4lwng4k01746835071-xyz",
+            AccountIdEndpointMode = "required",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://af4lwng4k01746835071.xyz.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id missing with account id endpoint mode preferred", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("Account Id missing with account id endpoint mode disabled", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("CreateStream: control operation type with AccountId", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("CreateStream: control operation type with FIPS and AccountId", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis-fips.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("ListStreams: control operation type with AccountId", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis.us-west-2.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("ListStreams: control operation type with FIPS and DualStack", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis-fips.us-west-2.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("DescribeLimits: control operation type with AccountId", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("DescribeLimits: control operation type with FIPS", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis-fips.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("DescribeAccountSettings: control operation type with AccountId", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis.us-west-2.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("DescribeAccountSettings: control operation type with FIPS and DualStack", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis-fips.us-west-2.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("UpdateAccountSettings: control operation type with AccountId", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("UpdateAccountSettings: control operation type with FIPS", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis-fips.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("CreateStream: account id endpoint mode disabled falls back to regional endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("ListStreams: account id endpoint mode disabled falls back to regional endpoint", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("DescribeLimits: account id endpoint mode disabled falls back to regional endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("DescribeAccountSettings: account id endpoint mode disabled falls back to regional endpoint", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("UpdateAccountSettings: account id endpoint mode disabled falls back to regional endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("CreateStream: account id endpoint mode disabled with FIPS falls back to regional FIPS endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("CreateStream: account id endpoint mode disabled with DualStack falls back to regional DualStack endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-east-1.api.aws", result.url)
+    end)
+
+    it("CreateStream: account id endpoint mode disabled with FIPS and DualStack falls back to regional FIPS DualStack endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis-fips.us-east-1.api.aws", result.url)
+    end)
+
 end)

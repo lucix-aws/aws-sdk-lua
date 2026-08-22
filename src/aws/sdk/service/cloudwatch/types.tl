@@ -895,6 +895,28 @@ local record M
         Tags: {Tag}
     end
 
+    -- The configuration settings that define the warm-up behavior for an alarm. Use these
+    -- settings to delay alarm evaluation after you create or update the alarm, which reduces
+    -- alarm noise while a new resource or service starts publishing data.
+    -- During the warm-up period, the alarm stays in INSUFFICIENT_DATA and
+    -- does not perform alarm actions.
+    record WarmUpConfiguration
+        -- The length of the warm-up period, in minutes. After you create or update the alarm,
+        -- the alarm stays in INSUFFICIENT_DATA for this duration. During this time,
+        -- the alarm does not perform alarm actions.
+        -- You can change this value at any time, including after the warm-up period ends. If
+        -- you change it after the warm-up period ends, the new value does not restart the
+        -- warm-up period.
+        WarmUpPeriodDurationInMinutes: number
+        -- Specifies whether the alarm waits for the full warm-up period before it starts
+        -- to evaluate. The default is false. If true, the alarm waits
+        -- the entire WarmUpPeriodDurationInMinutes before it starts to evaluate, even
+        -- if metric data arrives earlier. If false, the alarm ends the warm-up period
+        -- early. Evaluation begins as soon as the alarm has enough metric data to fill its
+        -- evaluation window.
+        OnlyStartEvaluatingAfterWarmUpPeriodEnds: boolean
+    end
+
     -- The details about a log alarm.
     record LogAlarm
         -- The name of the alarm.
@@ -943,6 +965,12 @@ local record M
         ActionLogLineCount: number
         -- The Amazon Resource Name (ARN) of the IAM role that CloudWatch assumes to retrieve log events for inclusion in alarm action notifications. Set when ActionLogLineCount is greater than 0.
         ActionLogLineRoleArn: string
+        -- The warm-up configuration for the alarm. A warm-up period delays alarm evaluation
+        -- after you create or update the alarm. During the warm-up period, the alarm stays in
+        -- INSUFFICIENT_DATA and does not perform alarm actions.
+        -- For more information, see Alarm warm-up
+        -- periods in the Amazon CloudWatch User Guide.
+        WarmUpConfiguration: WarmUpConfiguration
     end
 
     -- The evaluation criteria for an alarm. This is a union type that currently supports
@@ -1109,6 +1137,12 @@ local record M
         -- evaluation windows in the CloudWatch User
         -- Guide.
         EvaluationWindow: EvaluationWindow
+        -- The warm-up configuration for the alarm. A warm-up period delays alarm evaluation
+        -- after you create or update the alarm. During the warm-up period, the alarm stays in
+        -- INSUFFICIENT_DATA and does not perform alarm actions.
+        -- For more information, see Alarm warm-up
+        -- periods in the Amazon CloudWatch User Guide.
+        WarmUpConfiguration: WarmUpConfiguration
         -- The evaluation criteria for the alarm.
         EvaluationCriteria: EvaluationCriteria
         -- The frequency, in seconds, at which the alarm is evaluated.
@@ -2586,6 +2620,12 @@ local record M
         TreatMissingData: string
         -- A list of key-value pairs to associate with the alarm. You can use tags to categorize and manage your alarms.
         Tags: {Tag}
+        -- The warm-up configuration for the alarm. A warm-up period delays alarm evaluation
+        -- after you create or update the alarm. The warm-up period reduces alarm noise from
+        -- missing data while a new resource or service starts publishing data.
+        -- For more information, see Alarm warm-up
+        -- periods in the Amazon CloudWatch User Guide.
+        WarmUpConfiguration: WarmUpConfiguration
     end
 
     record PutLogAlarmOutput
@@ -2879,6 +2919,12 @@ local record M
         -- evaluation windows in the CloudWatch User
         -- Guide.
         EvaluationWindow: EvaluationWindow
+        -- The warm-up configuration for the alarm. A warm-up period delays alarm evaluation
+        -- after you create or update the alarm. The warm-up period reduces alarm noise from
+        -- missing data while a new resource or service starts publishing metrics.
+        -- For more information, see Alarm warm-up
+        -- periods in the Amazon CloudWatch User Guide.
+        WarmUpConfiguration: WarmUpConfiguration
         -- The evaluation criteria for the alarm. For each PutMetricAlarm
         -- operation, you must specify either MetricName, a Metrics
         -- array, or an EvaluationCriteria.
