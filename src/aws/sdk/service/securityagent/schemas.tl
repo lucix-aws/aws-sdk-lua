@@ -164,6 +164,8 @@ M.SourceCodeRepositoryList = schema.new({ type = "list", list_member = M.SourceC
 
 M.IntegratedRepositoryList = schema.new({ type = "list", list_member = M.IntegratedRepository })
 
+M.TrustedCaCertificateList = schema.new({ type = "list", list_member = M.TrustedCaCertificate })
+
 M.SecurityGroupArns = schema.new({ type = "list", list_member = prelude.String })
 
 M.SubnetArns = schema.new({ type = "list", list_member = prelude.String })
@@ -1523,6 +1525,48 @@ M.SourceCodeRepository = schema.new({
     },
 })
 
+M.CaCertificateSource = schema.new({
+    id = id.from(_N, "CaCertificateSource"),
+    type = "union",
+    members = {
+        inlinePem = schema.new({
+            id = id.from(_N, "CaCertificateSource", "inlinePem"),
+            type = "string",
+            name = "inlinePem",
+            target_id = prelude.String.id,
+        }),
+        artifactId = schema.new({
+            id = id.from(_N, "CaCertificateSource", "artifactId"),
+            type = "string",
+            name = "artifactId",
+            target_id = prelude.String.id,
+        }),
+        s3Location = schema.new({
+            id = id.from(_N, "CaCertificateSource", "s3Location"),
+            type = "string",
+            name = "s3Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TrustedCaCertificate = schema.new({
+    id = id.from(_N, "TrustedCaCertificate"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "TrustedCaCertificate", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "CaCertificateSource"),
+            target = M.CaCertificateSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.Assets = schema.new({
     id = id.from(_N, "Assets"),
     type = "structure",
@@ -1561,6 +1605,13 @@ M.Assets = schema.new({
             name = "integratedRepositories",
             target_id = prelude.Document.id,
             list_member = M.IntegratedRepository,
+        }),
+        trustedCaCertificates = schema.new({
+            id = id.from(_N, "Assets", "trustedCaCertificates"),
+            type = "list",
+            name = "trustedCaCertificates",
+            target_id = prelude.Document.id,
+            list_member = M.TrustedCaCertificate,
         }),
     },
 })
@@ -3419,6 +3470,13 @@ M.PentestJob = schema.new({
             name = "integratedRepositories",
             target_id = prelude.Document.id,
             list_member = M.IntegratedRepository,
+        }),
+        trustedCaCertificates = schema.new({
+            id = id.from(_N, "PentestJob", "trustedCaCertificates"),
+            type = "list",
+            name = "trustedCaCertificates",
+            target_id = prelude.Document.id,
+            list_member = M.TrustedCaCertificate,
         }),
         codeRemediationStrategy = schema.new({
             id = id.from(_N, "PentestJob", "codeRemediationStrategy"),

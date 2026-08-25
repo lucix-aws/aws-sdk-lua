@@ -2,6 +2,22 @@
 
 local record M
 
+    -- The deployment must be initiated from a delegated administrator account for the specified service principal.
+    record DelegatedAdminConstraint
+        -- The service principal for which the account must be a delegated administrator. For example, `stacksets.cloudformation.amazonaws.com`.
+        servicePrincipal: string
+    end
+
+    -- The deployment must be initiated from the AWS Organizations management account.
+    record ManagementAccountConstraint
+    end
+
+    -- A constraint on which AWS account a deployment can be initiated from. Specify one of the supported constraint types.
+    record AccountConstraint
+        managementAccount: ManagementAccountConstraint
+        delegatedAdmin: DelegatedAdminConstraint
+    end
+
     record CreateDeploymentInput
         -- The name of the workload. You can use the ListWorkloads operation to discover supported values for this parameter.
         workloadName: string
@@ -103,6 +119,7 @@ local record M
         statusReason: string
         -- The timestamp of the deployment event.
         timestamp: number
+        metadata: {string : string}
     end
 
     record ListDeploymentEventsOutput
@@ -321,6 +338,8 @@ local record M
         displayName: string
         -- The status of a workload. You can list deployments in the DISABLED status.
         status: string
+        -- Optional list of constraints describing what kind of AWS account is allowed to deploy this workload or deployment pattern. Within a single list the semantics are OR: an account satisfies the list if it satisfies any entry. Workload-level and pattern-level lists combine with AND at deployment time. An absent or empty list at this level means no constraint at this level.
+        accountConstraints: {AccountConstraint}
         -- The description of a workload.
         description: string
         -- The URL of a workload document.
@@ -368,6 +387,8 @@ local record M
         status: string
         -- The status message of the deployment pattern.
         statusMessage: string
+        -- Optional list of constraints describing what kind of AWS account is allowed to deploy this workload or deployment pattern. Within a single list the semantics are OR: an account satisfies the list if it satisfies any entry. Workload-level and pattern-level lists combine with AND at deployment time. An absent or empty list at this level means no constraint at this level.
+        accountConstraints: {AccountConstraint}
         -- The settings specified for the deployment. These settings define how to deploy and configure your resources created by the deployment. For more information about the specifications required for creating a deployment for a SAP workload, see SAP deployment specifications. To retrieve the specifications required to create a deployment for other workloads, use the GetWorkloadDeploymentPattern operation.
         specifications: {DeploymentSpecificationsField}
     end
@@ -422,6 +443,8 @@ local record M
         displayName: string
         -- The status of the workload.
         status: string
+        -- Optional list of constraints describing what kind of AWS account is allowed to deploy this workload or deployment pattern. Within a single list the semantics are OR: an account satisfies the list if it satisfies any entry. Workload-level and pattern-level lists combine with AND at deployment time. An absent or empty list at this level means no constraint at this level.
+        accountConstraints: {AccountConstraint}
     end
 
     record ListWorkloadsOutput
@@ -458,6 +481,8 @@ local record M
         status: string
         -- A message about a workload deployment pattern's status.
         statusMessage: string
+        -- Optional list of constraints describing what kind of AWS account is allowed to deploy this workload or deployment pattern. Within a single list the semantics are OR: an account satisfies the list if it satisfies any entry. Workload-level and pattern-level lists combine with AND at deployment time. An absent or empty list at this level means no constraint at this level.
+        accountConstraints: {AccountConstraint}
     end
 
     record ListWorkloadDeploymentPatternsOutput

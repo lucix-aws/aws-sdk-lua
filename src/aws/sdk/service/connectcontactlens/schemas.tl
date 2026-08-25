@@ -18,6 +18,8 @@ M.MatchedCategories = schema.new({ type = "list", list_member = prelude.String }
 
 M.MatchedDetails = schema.new({ type = "map", map_key = prelude.String, map_value = M.CategoryDetails })
 
+M.ExtractedInformationValues = schema.new({ type = "list", list_member = M.ExtractedInformationValue })
+
 M.PointsOfInterest = schema.new({ type = "list", list_member = M.PointOfInterest })
 
 M.AccessDeniedException = schema.new({
@@ -174,6 +176,76 @@ M.Categories = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.ExtractedInformationValue = schema.new({
+    id = id.from(_N, "ExtractedInformationValue"),
+    type = "structure",
+    members = {
+        Content = schema.new({
+            id = id.from(_N, "ExtractedInformationValue", "Content"),
+            type = "string",
+            name = "Content",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PointsOfInterest = schema.new({
+            id = id.from(_N, "ExtractedInformationValue", "PointsOfInterest"),
+            type = "list",
+            name = "PointsOfInterest",
+            target_id = prelude.Document.id,
+            list_member = M.PointOfInterest,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExtractedInformation = schema.new({
+    id = id.from(_N, "ExtractedInformation"),
+    type = "structure",
+    members = {
+        ExtractionDefinitionId = schema.new({
+            id = id.from(_N, "ExtractedInformation", "ExtractionDefinitionId"),
+            type = "string",
+            name = "ExtractionDefinitionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionName = schema.new({
+            id = id.from(_N, "ExtractedInformation", "ExtractionDefinitionName"),
+            type = "string",
+            name = "ExtractionDefinitionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionDisplayLabel = schema.new({
+            id = id.from(_N, "ExtractedInformation", "ExtractionDefinitionDisplayLabel"),
+            type = "string",
+            name = "ExtractionDefinitionDisplayLabel",
+            target_id = prelude.String.id,
+        }),
+        ExtractedValues = schema.new({
+            id = id.from(_N, "ExtractedInformation", "ExtractedValues"),
+            type = "list",
+            name = "ExtractedValues",
+            target_id = prelude.Document.id,
+            list_member = M.ExtractedInformationValue,
+        }),
+        FailureCode = schema.new({
+            id = id.from(_N, "ExtractedInformation", "FailureCode"),
+            type = "string",
+            name = "FailureCode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -346,6 +418,13 @@ M.RealtimeContactAnalysisSegment = schema.new({
             name = "PostContactSummary",
             target_id = id.from(_N, "PostContactSummary"),
             target = M.PostContactSummary,
+        }),
+        ExtractedInformation = schema.new({
+            id = id.from(_N, "RealtimeContactAnalysisSegment", "ExtractedInformation"),
+            type = "structure",
+            name = "ExtractedInformation",
+            target_id = id.from(_N, "ExtractedInformation"),
+            target = M.ExtractedInformation,
         }),
     },
 })

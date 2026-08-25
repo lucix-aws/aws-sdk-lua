@@ -1307,6 +1307,9 @@ local record M
     -- Specifies the infrastructure update policy for the Amazon EC2 compute environment. For more information
     -- about infrastructure updates, see Updating compute environments in the
     -- Batch User Guide.
+    -- The updatePolicy property applies only to Amazon EC2 managed compute environments.
+    -- Batch doesn't support updatePolicy for Fargate compute environments. If you
+    -- specify it for a Fargate compute environment, Batch ignores it.
     record UpdatePolicy
         -- Specifies whether jobs are automatically terminated when the compute environment
         -- infrastructure is updated. The default value is false.

@@ -456,6 +456,22 @@ local record M
         s3Location: string
     end
 
+    -- The source of a trusted CA certificate. Exactly one member must be set.
+    record CaCertificateSource
+        -- A PEM-encoded X.509 certificate supplied inline.
+        inlinePem: string
+        -- The artifact ID of an uploaded certificate file.
+        artifactId: string
+        -- The Amazon S3 location URI of a customer-staged certificate.
+        s3Location: string
+    end
+
+    -- A trust anchor used when validating a target endpoint's TLS certificate.
+    record TrustedCaCertificate
+        -- The source that AWS Security Agent reads the certificate from.
+        source: CaCertificateSource
+    end
+
     -- The collection of assets used in a pentest configuration, including endpoints, actors, documents, source code repositories, and integrated repositories.
     record Assets
         -- The list of endpoints to test during the pentest.
@@ -468,6 +484,8 @@ local record M
         sourceCode: {SourceCodeRepository}
         -- The list of integrated repositories associated with the pentest.
         integratedRepositories: {IntegratedRepository}
+        -- The trust anchors used to validate target endpoint TLS certificates. Provide these for endpoints served by a private or internal certificate authority (CA), an intermediate CA, or a self-signed certificate.
+        trustedCaCertificates: {TrustedCaCertificate}
     end
 
     -- Contains information about a successfully created security requirement.
@@ -1219,6 +1237,8 @@ local record M
         errorInformation: ErrorInformation
         -- The list of integrated repositories associated with the pentest job.
         integratedRepositories: {IntegratedRepository}
+        -- The trust anchors used to validate target endpoint TLS certificates during the pentest job.
+        trustedCaCertificates: {TrustedCaCertificate}
         -- The code remediation strategy for the pentest job.
         codeRemediationStrategy: string
         -- Strategy for cleaning up resources after pentest job completion.

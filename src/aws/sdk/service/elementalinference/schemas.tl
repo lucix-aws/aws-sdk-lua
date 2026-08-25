@@ -10,6 +10,8 @@ local _N = "com.amazonaws.elementalinference"
 
 local M: {string:any} = {}
 
+M.CompetitorList = schema.new({ type = "list", list_member = M.Competitor })
+
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.SearchFilterList = schema.new({ type = "list", list_member = M.SearchFilter })
@@ -33,8 +35,6 @@ M.GetOutputList = schema.new({ type = "list", list_member = M.GetOutput })
 M.UpdateOutputList = schema.new({ type = "list", list_member = M.UpdateOutput })
 
 M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
-
-M.CompetitorList = schema.new({ type = "list", list_member = M.Competitor })
 
 M.TemplateGroupList = schema.new({ type = "list", list_member = M.TemplateGroup })
 
@@ -728,6 +728,12 @@ M.CreateFeedOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        accessRoleArn = schema.new({
+            id = id.from(_N, "CreateFeedOutput", "accessRoleArn"),
+            type = "string",
+            name = "accessRoleArn",
+            target_id = prelude.String.id,
+        }),
         status = schema.new({
             id = id.from(_N, "CreateFeedOutput", "status"),
             type = "string",
@@ -1302,6 +1308,12 @@ M.GetFeedOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        accessRoleArn = schema.new({
+            id = id.from(_N, "GetFeedOutput", "accessRoleArn"),
+            type = "string",
+            name = "accessRoleArn",
+            target_id = prelude.String.id,
+        }),
         status = schema.new({
             id = id.from(_N, "GetFeedOutput", "status"),
             type = "string",
@@ -1567,6 +1579,12 @@ M.UpdateFeedOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        accessRoleArn = schema.new({
+            id = id.from(_N, "UpdateFeedOutput", "accessRoleArn"),
+            type = "string",
+            name = "accessRoleArn",
+            target_id = prelude.String.id,
+        }),
         status = schema.new({
             id = id.from(_N, "UpdateFeedOutput", "status"),
             type = "string",
@@ -1590,6 +1608,120 @@ M.UpdateFeedOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+    },
+})
+
+M.GatewayTimedOutException = schema.new({
+    id = id.from(_N, "GatewayTimedOutException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "GatewayTimedOutException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetFixtureInput = schema.new({
+    id = id.from(_N, "GetFixtureRequest"),
+    type = "structure",
+    members = {
+        fixtureId = schema.new({
+            id = id.from(_N, "GetFixtureInput", "fixtureId"),
+            type = "string",
+            name = "fixtureId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetFixtureOutput = schema.new({
+    id = id.from(_N, "GetFixtureResponse"),
+    type = "structure",
+    members = {
+        fixtureId = schema.new({
+            id = id.from(_N, "GetFixtureOutput", "fixtureId"),
+            type = "string",
+            name = "fixtureId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetFixtureOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fixtureGroup = schema.new({
+            id = id.from(_N, "GetFixtureOutput", "fixtureGroup"),
+            type = "string",
+            name = "fixtureGroup",
+            target_id = prelude.String.id,
+        }),
+        scheduledStart = schema.new({
+            id = id.from(_N, "GetFixtureOutput", "scheduledStart"),
+            type = "timestamp",
+            name = "scheduledStart",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetFixtureOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        competitors = schema.new({
+            id = id.from(_N, "GetFixtureOutput", "competitors"),
+            type = "list",
+            name = "competitors",
+            target_id = prelude.Document.id,
+            list_member = M.Competitor,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -1622,25 +1754,6 @@ M.ListTagsForResourceOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
-        }),
-    },
-})
-
-M.GatewayTimedOutException = schema.new({
-    id = id.from(_N, "GatewayTimedOutException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "GatewayTimedOutException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -1799,25 +1912,6 @@ M.SearchFixturesOutput = schema.new({
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ServiceUnavailableException = schema.new({
-    id = id.from(_N, "ServiceUnavailableException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceUnavailableException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -2009,6 +2103,18 @@ M.GetFeed = schema.operation({
     output = M.GetFeedOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/feed/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFixture = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "GetFixture"),
+    input = M.GetFixtureInput,
+    output = M.GetFixtureOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/fixtures/{fixtureId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

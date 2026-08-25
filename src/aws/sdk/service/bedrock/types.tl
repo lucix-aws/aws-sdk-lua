@@ -159,7 +159,7 @@ local record M
 
     -- Contains the configuration for a model used in an advanced prompt optimization job, including the model ID and inference parameters.
     record ModelConfiguration
-        -- The ID of the model to use for optimization.
+        -- The model to use for optimization. The value depends on the resource that you use: If you use a base model, specify the model ID or its ARN. For a list of model IDs, see Models at a glance in the Amazon Bedrock User Guide. If you use a cross-Region (system-defined) inference profile, specify the inference profile ID or its ARN. For a list of inference profile IDs, see Supported Regions and models for inference profiles in the Amazon Bedrock User Guide. If you use an application inference profile, specify its full ARN, including the account ID and Region.
         modelId: string
         -- The inference configuration for the model, including parameters such as maximum tokens, temperature, and top-p.
         inferenceConfig: InferenceConfiguration

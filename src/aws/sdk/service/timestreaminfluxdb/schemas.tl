@@ -1595,6 +1595,12 @@ M.GetDbClusterOutput = schema.new({
             name = "dbParameterGroupIdentifier",
             target_id = prelude.String.id,
         }),
+        effectiveDbParameterGroupIdentifier = schema.new({
+            id = id.from(_N, "GetDbClusterOutput", "effectiveDbParameterGroupIdentifier"),
+            type = "string",
+            name = "effectiveDbParameterGroupIdentifier",
+            target_id = prelude.String.id,
+        }),
         logDeliveryConfiguration = schema.new({
             id = id.from(_N, "GetDbClusterOutput", "logDeliveryConfiguration"),
             type = "structure",

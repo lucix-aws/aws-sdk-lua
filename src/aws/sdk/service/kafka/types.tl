@@ -776,6 +776,61 @@ local record M
         SecretArn: string
     end
 
+    -- Details for SASL/OAUTHBEARER using standard client_credentials grant.
+    record KafkaClusterOAuthClientCredentials
+        -- The Amazon Resource Name (ARN) of the Secrets Manager secret containing the OAuth client credentials.
+        TokenRequestSecretArn: string
+    end
+
+    enum JwtSigningAlgorithm
+        "RS256"
+        "ES384"
+    end
+
+    -- Details for SASL/OAUTHBEARER using client credentials grant with JWT client assertion.
+    record KafkaClusterOAuthClientCredentialsAssertion
+        -- The audience for the JWT client assertion.
+        Audience: string
+        -- The signing algorithm for the JWT client assertion.
+        SigningAlgorithm: string
+        -- The Amazon Resource Name (ARN) of the Secrets Manager secret containing the signing key.
+        TokenRequestSecretArn: string
+    end
+
+    -- Details for SASL/OAUTHBEARER using JWT Bearer assertion grant.
+    record KafkaClusterOAuthIamJwtBearer
+        -- The audience for the JWT Bearer assertion.
+        Audience: string
+        -- The signing algorithm for the JWT Bearer assertion.
+        SigningAlgorithm: string
+        -- The Amazon Resource Name (ARN) of the Secrets Manager secret containing the signing key.
+        TokenRequestSecretArn: string
+    end
+
+    enum TokenEndpointAuthenticationMethod
+        "POST"
+        "BASIC"
+        "NONE"
+    end
+
+    -- Details for SASL/OAUTHBEARER client authentication.
+    record KafkaClusterSaslOAuthBearerAuthentication
+        -- The HTTPS URL of the OAuth token endpoint that vends OAuth Bearer tokens per RFC 6749.
+        TokenEndpointUrl: string
+        -- Details for SASL/OAUTHBEARER using standard client_credentials grant.
+        ClientCredentials: KafkaClusterOAuthClientCredentials
+        -- Details for SASL/OAUTHBEARER using JWT Bearer assertion grant (RFC 7523).
+        IamJwtBearer: KafkaClusterOAuthIamJwtBearer
+        -- Details for SASL/OAUTHBEARER using client credentials grant with JWT client assertion.
+        ClientCredentialsAssertion: KafkaClusterOAuthClientCredentialsAssertion
+        -- How client credentials are sent to the identity provider. Valid values are POST, BASIC, or NONE.
+        TokenEndpointAuthenticationMethod: string
+        -- OAuth scope to request.
+        Scope: string
+        -- Secrets Manager ARN containing a custom CA certificate for the identity provider.
+        TokenEndpointTlsCertificateArn: string
+    end
+
     enum KafkaClusterSaslScramMechanism
         "SHA256"
         "SHA512"
@@ -795,6 +850,8 @@ local record M
         SaslScram: KafkaClusterSaslScramAuthentication
         -- Details for mTLS client authentication.
         MTLS: KafkaClusterMTLSAuthentication
+        -- Details for SASL/OAUTHBEARER client authentication.
+        SaslOAuthBearer: KafkaClusterSaslOAuthBearerAuthentication
     end
 
     enum KafkaClusterEncryptionInTransitType

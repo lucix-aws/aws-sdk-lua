@@ -253,6 +253,8 @@ local record M
         dataEndpoints: {string}
         -- Repeats the outputs that you specified in the request.
         outputs: {GetOutput}
+        -- The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that you specified in the request. This property is absent if you didn't specify an IAM role.
+        accessRoleArn: string
         -- The current status of the feed. After creation of the feed has succeeded, the status will be AVAILABLE.
         status: string
         -- The association for this feed. When you create the feed, this property is empty. You must associate a resource with the feed using AssociateFeed or UpdateFeed.
@@ -414,6 +416,8 @@ local record M
         dataEndpoints: {string}
         -- An array of the outputs in the feed.
         outputs: {GetOutput}
+        -- The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that Elemental Inference assumes. Elemental Inference uses this role to access resources in your account on your behalf. This property is absent if the feed doesn't have an IAM role.
+        accessRoleArn: string
         -- The status of the feed.
         status: string
         -- Information about the resource that is associated with the feed. It's possible that there is no associated resource. This is not an error.
@@ -486,12 +490,44 @@ local record M
         dataEndpoints: {string}
         -- The array of outputs in the feed. You might have left this array unchanged, or you might have changed it.
         outputs: {GetOutput}
+        -- The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role for the feed, after the update. This property is absent if the feed doesn't have an IAM role.
+        accessRoleArn: string
         -- The status of the feed.
         status: string
         -- Information about the resource that is associated with the feed, if any.
         association: FeedAssociation
         -- The tags associated with the feed.
         tags: {string : string}
+    end
+
+    -- The request timed out before the service returned a response. This is a temporary condition. Retry the request. If the problem persists, contact AWS Support.
+    record GatewayTimedOutException
+        message: string
+    end
+
+    record GetFixtureInput
+        -- The ID of the fixture to retrieve, as returned by SearchFixtures.
+        fixtureId: string
+    end
+
+    record GetFixtureOutput
+        -- The ID that you specified in the request.
+        fixtureId: string
+        -- The name of the fixture, as provided by the data source. For example, the names of the two competing teams.
+        name: string
+        -- The group that the fixture belongs to, such as the competition, league, or tournament. The data source doesn't provide this information for every fixture.
+        fixtureGroup: string
+        -- The scheduled start time of the fixture, as provided by the data source. The actual start time might differ.
+        scheduledStart: number
+        -- The status of the fixture in its lifecycle, as provided by the data source. For example, Scheduled or Completed.
+        status: string
+        -- An array of the competitors (the teams or individuals) in the fixture.
+        competitors: {Competitor}
+    end
+
+    -- The service is temporarily unable to handle the request. Retry the request. If the problem persists, contact AWS Support.
+    record ServiceUnavailableException
+        message: string
     end
 
     record ListTagsForResourceInput
@@ -502,11 +538,6 @@ local record M
     record ListTagsForResourceOutput
         -- A list of the tags that belong to this resource.
         tags: {string : string}
-    end
-
-    -- The request timed out before the service returned a response. This is a temporary condition. Retry the request. If the problem persists, contact AWS Support.
-    record GatewayTimedOutException
-        message: string
     end
 
     enum FilterName
@@ -557,11 +588,6 @@ local record M
         fixtures: {FixtureSummary}
         -- The token that identifies the next batch of results. To see the next batch, submit the SearchFixtures request again, with the same search criteria, and specify this value in nextToken. This parameter is absent when there are no more results to return.
         nextToken: string
-    end
-
-    -- The service is temporarily unable to handle the request. Retry the request. If the problem persists, contact AWS Support.
-    record ServiceUnavailableException
-        message: string
     end
 
     record TagResourceInput

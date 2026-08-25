@@ -654,6 +654,8 @@ M.RealTimeContactAnalysisIssuesDetected = schema.new({ type = "list", list_membe
 
 M.RealTimeContactAnalysisAttachments = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisAttachment })
 
+M.RealTimeContactAnalysisExtractedInformationValues = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisExtractedInformationValue })
+
 M.ContactEvaluationAttributeConditionList = schema.new({ type = "list", list_member = M.ContactEvaluationAttributeCondition })
 
 M.TranscriptCriteriaList = schema.new({ type = "list", list_member = M.TranscriptCriteria })
@@ -696,6 +698,8 @@ M.RealTimeContactAnalysisPointsOfInterest = schema.new({ type = "list", list_mem
 
 M.RealTimeContactAnalysisTranscriptItemsWithContent = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisTranscriptItemWithContent })
 
+M.RealTimeContactAnalysisTranscriptItemsWithCharacterOffsets = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisTranscriptItemWithCharacterOffsets })
+
 M.EvaluationFormSingleSelectQuestionAutomationOptionList = schema.new({ type = "list", list_member = M.EvaluationFormSingleSelectQuestionAutomationOption })
 
 M.EvaluationFormMultiSelectQuestionAutomationOptionList = schema.new({ type = "list", list_member = M.EvaluationFormMultiSelectQuestionAutomationOption })
@@ -709,8 +713,6 @@ M.StringValueList = schema.new({ type = "list", list_member = prelude.String })
 M.EvaluationTranscriptPointsOfInterest = schema.new({ type = "list", list_member = M.EvaluationTranscriptPointOfInterest })
 
 M.EvaluationAutomationRuleCategoryList = schema.new({ type = "list", list_member = M.EvaluationAutomationRuleCategory })
-
-M.RealTimeContactAnalysisTranscriptItemsWithCharacterOffsets = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisTranscriptItemWithCharacterOffsets })
 
 M.AgentIds = schema.new({ type = "list", list_member = prelude.String })
 
@@ -26880,6 +26882,76 @@ M.RealTimeContactAnalysisSegmentEvent = schema.new({
     },
 })
 
+M.RealTimeContactAnalysisExtractedInformationValue = schema.new({
+    id = id.from(_N, "RealTimeContactAnalysisExtractedInformationValue"),
+    type = "structure",
+    members = {
+        Content = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisExtractedInformationValue", "Content"),
+            type = "string",
+            name = "Content",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PointsOfInterest = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisExtractedInformationValue", "PointsOfInterest"),
+            type = "list",
+            name = "PointsOfInterest",
+            target_id = prelude.Document.id,
+            list_member = M.RealTimeContactAnalysisTranscriptItemWithCharacterOffsets,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RealTimeContactAnalysisSegmentExtractedInformation = schema.new({
+    id = id.from(_N, "RealTimeContactAnalysisSegmentExtractedInformation"),
+    type = "structure",
+    members = {
+        ExtractionDefinitionId = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisSegmentExtractedInformation", "ExtractionDefinitionId"),
+            type = "string",
+            name = "ExtractionDefinitionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionName = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisSegmentExtractedInformation", "ExtractionDefinitionName"),
+            type = "string",
+            name = "ExtractionDefinitionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExtractionDefinitionDisplayLabel = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisSegmentExtractedInformation", "ExtractionDefinitionDisplayLabel"),
+            type = "string",
+            name = "ExtractionDefinitionDisplayLabel",
+            target_id = prelude.String.id,
+        }),
+        ExtractedValues = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisSegmentExtractedInformation", "ExtractedValues"),
+            type = "list",
+            name = "ExtractedValues",
+            target_id = prelude.Document.id,
+            list_member = M.RealTimeContactAnalysisExtractedInformationValue,
+        }),
+        FailureCode = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisSegmentExtractedInformation", "FailureCode"),
+            type = "string",
+            name = "FailureCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RealTimeContactAnalysisTranscriptItemWithContent = schema.new({
     id = id.from(_N, "RealTimeContactAnalysisTranscriptItemWithContent"),
     type = "structure",
@@ -27108,6 +27180,13 @@ M.RealtimeContactAnalysisSegment = schema.new({
             name = "PostContactSummary",
             target_id = id.from(_N, "RealTimeContactAnalysisSegmentPostContactSummary"),
             target = M.RealTimeContactAnalysisSegmentPostContactSummary,
+        }),
+        ExtractedInformation = schema.new({
+            id = id.from(_N, "RealtimeContactAnalysisSegment", "ExtractedInformation"),
+            type = "structure",
+            name = "ExtractedInformation",
+            target_id = id.from(_N, "RealTimeContactAnalysisSegmentExtractedInformation"),
+            target = M.RealTimeContactAnalysisSegmentExtractedInformation,
         }),
     },
 })

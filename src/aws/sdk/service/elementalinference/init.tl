@@ -27,6 +27,7 @@ local record Client
     exportDictionaryEntries: function(Client, types.ExportDictionaryEntriesInput, ? base_client.InvokeOptions): async.Operation<types.ExportDictionaryEntriesOutput>
     getDictionary: function(Client, types.GetDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.GetDictionaryOutput>
     getFeed: function(Client, types.GetFeedInput, ? base_client.InvokeOptions): async.Operation<types.GetFeedOutput>
+    getFixture: function(Client, types.GetFixtureInput, ? base_client.InvokeOptions): async.Operation<types.GetFixtureOutput>
     listDictionaries: function(Client, types.ListDictionariesInput, ? base_client.InvokeOptions): async.Operation<types.ListDictionariesOutput>
     listFeeds: function(Client, types.ListFeedsInput, ? base_client.InvokeOptions): async.Operation<types.ListFeedsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -113,6 +114,10 @@ end
 
 function C:getFeed(input: types.GetFeedInput, options?: base_client.InvokeOptions): async.Operation<types.GetFeedOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFeed as schema.OperationSchema, input, options) as async.Operation<types.GetFeedOutput>
+end
+
+function C:getFixture(input: types.GetFixtureInput, options?: base_client.InvokeOptions): async.Operation<types.GetFixtureOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFixture as schema.OperationSchema, input, options) as async.Operation<types.GetFixtureOutput>
 end
 
 function C:listDictionaries(input: types.ListDictionariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDictionariesOutput>

@@ -29,11 +29,11 @@ local record M
         NextToken: string
     end
 
-    -- The section of the contact audio where that category rule was detected.
+    -- The section of the contact audio where a match was detected.
     record PointOfInterest
-        -- The beginning offset in milliseconds where the category rule was detected.
+        -- The beginning offset (in milliseconds) where the match was detected.
         BeginOffsetMillis: number
-        -- The ending offset in milliseconds where the category rule was detected.
+        -- The ending offset (in milliseconds) where the match was detected.
         EndOffsetMillis: number
     end
 
@@ -50,6 +50,50 @@ local record M
         MatchedCategories: {string}
         -- The category rule that was matched and when it occurred in the transcript.
         MatchedDetails: {string : CategoryDetails}
+    end
+
+    -- An individual value extracted from the conversation, including its content and the
+    -- locations where it was found.
+    record ExtractedInformationValue
+        -- The text content of the extracted value.
+        Content: string
+        -- The sections in the conversation that indicate where the extracted value was
+        -- found.
+        PointsOfInterest: {PointOfInterest}
+    end
+
+    enum ExtractedInformationFailureCode
+        "QUOTA_EXCEEDED"
+        "INSUFFICIENT_CONVERSATION_CONTENT"
+        "FAILED_SAFETY_GUIDELINES"
+        "INTERNAL_ERROR"
+        "MAX_PACKAGE_FEATURE_ONLY"
+    end
+
+    -- Segment containing information extracted from the conversation. Each segment
+    -- represents the results for a single extraction definition.
+    record ExtractedInformation
+        -- The identifier of the extraction definition that produced this result.
+        ExtractionDefinitionId: string
+        -- The name of the extraction definition that produced this result.
+        ExtractionDefinitionName: string
+        -- The display label of the extraction definition that produced this result.
+        ExtractionDefinitionDisplayLabel: string
+        -- The list of values extracted from the conversation for this extraction definition.
+        -- This field is empty when a FailureCode is present.
+        ExtractedValues: {ExtractedInformationValue}
+        -- If the information failed to be extracted, one of the following failure codes
+        -- occurs:
+        -- QUOTA_EXCEEDED: The number of concurrent analytics jobs reached
+        -- your service quota.
+        -- INSUFFICIENT_CONVERSATION_CONTENT: Information extraction requires a
+        -- conversation with at least one turn from each participant.
+        -- FAILED_SAFETY_GUIDELINES: The extracted information cannot be
+        -- provided because it failed to meet system safety guidelines.
+        -- INTERNAL_ERROR: Internal system error.
+        -- MAX_PACKAGE_FEATURE_ONLY: Information extraction is only available
+        -- in Amazon Connect Customer instances.
+        FailureCode: string
     end
 
     enum PostContactSummaryFailureCode
@@ -81,9 +125,8 @@ local record M
         -- FAILED_SAFETY_GUIDELINES: The generated summary cannot be
         -- provided because it failed to meet system safety guidelines.
         -- INVALID_ANALYSIS_CONFIGURATION: This code occurs when, for
-        -- example, you're using a
-        -- language
-        -- that isn't supported by generative AI-powered post-contact summaries.
+        -- example, you're using a language that isn't supported by generative AI-powered post-contact
+        -- summaries.
         -- INTERNAL_ERROR: Internal system error.
         FailureCode: string
     end
@@ -138,6 +181,8 @@ local record M
         Categories: Categories
         -- Information about the post-contact summary.
         PostContactSummary: PostContactSummary
+        -- The extracted information from the conversation.
+        ExtractedInformation: ExtractedInformation
     end
 
     record ListRealtimeContactAnalysisSegmentsOutput

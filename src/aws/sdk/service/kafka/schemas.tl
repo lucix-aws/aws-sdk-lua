@@ -2619,6 +2619,170 @@ M.KafkaClusterMTLSAuthentication = schema.new({
     },
 })
 
+M.KafkaClusterOAuthClientCredentials = schema.new({
+    id = id.from(_N, "KafkaClusterOAuthClientCredentials"),
+    type = "structure",
+    members = {
+        TokenRequestSecretArn = schema.new({
+            id = id.from(_N, "KafkaClusterOAuthClientCredentials", "TokenRequestSecretArn"),
+            type = "string",
+            name = "TokenRequestSecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tokenRequestSecretArn" },
+            },
+        }),
+    },
+})
+
+M.KafkaClusterOAuthClientCredentialsAssertion = schema.new({
+    id = id.from(_N, "KafkaClusterOAuthClientCredentialsAssertion"),
+    type = "structure",
+    members = {
+        Audience = schema.new({
+            id = id.from(_N, "KafkaClusterOAuthClientCredentialsAssertion", "Audience"),
+            type = "string",
+            name = "Audience",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "audience" },
+            },
+        }),
+        SigningAlgorithm = schema.new({
+            id = id.from(_N, "KafkaClusterOAuthClientCredentialsAssertion", "SigningAlgorithm"),
+            type = "string",
+            name = "SigningAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "signingAlgorithm" },
+            },
+        }),
+        TokenRequestSecretArn = schema.new({
+            id = id.from(_N, "KafkaClusterOAuthClientCredentialsAssertion", "TokenRequestSecretArn"),
+            type = "string",
+            name = "TokenRequestSecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tokenRequestSecretArn" },
+            },
+        }),
+    },
+})
+
+M.KafkaClusterOAuthIamJwtBearer = schema.new({
+    id = id.from(_N, "KafkaClusterOAuthIamJwtBearer"),
+    type = "structure",
+    members = {
+        Audience = schema.new({
+            id = id.from(_N, "KafkaClusterOAuthIamJwtBearer", "Audience"),
+            type = "string",
+            name = "Audience",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "audience" },
+            },
+        }),
+        SigningAlgorithm = schema.new({
+            id = id.from(_N, "KafkaClusterOAuthIamJwtBearer", "SigningAlgorithm"),
+            type = "string",
+            name = "SigningAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "signingAlgorithm" },
+            },
+        }),
+        TokenRequestSecretArn = schema.new({
+            id = id.from(_N, "KafkaClusterOAuthIamJwtBearer", "TokenRequestSecretArn"),
+            type = "string",
+            name = "TokenRequestSecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tokenRequestSecretArn" },
+            },
+        }),
+    },
+})
+
+M.KafkaClusterSaslOAuthBearerAuthentication = schema.new({
+    id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication"),
+    type = "structure",
+    members = {
+        TokenEndpointUrl = schema.new({
+            id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication", "TokenEndpointUrl"),
+            type = "string",
+            name = "TokenEndpointUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tokenEndpointUrl" },
+            },
+        }),
+        ClientCredentials = schema.new({
+            id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication", "ClientCredentials"),
+            type = "structure",
+            name = "ClientCredentials",
+            target_id = id.from(_N, "KafkaClusterOAuthClientCredentials"),
+            target = M.KafkaClusterOAuthClientCredentials,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientCredentials" },
+            },
+        }),
+        IamJwtBearer = schema.new({
+            id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication", "IamJwtBearer"),
+            type = "structure",
+            name = "IamJwtBearer",
+            target_id = id.from(_N, "KafkaClusterOAuthIamJwtBearer"),
+            target = M.KafkaClusterOAuthIamJwtBearer,
+            traits = {
+                [traits.JSON_NAME] = { name = "iamJwtBearer" },
+            },
+        }),
+        ClientCredentialsAssertion = schema.new({
+            id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication", "ClientCredentialsAssertion"),
+            type = "structure",
+            name = "ClientCredentialsAssertion",
+            target_id = id.from(_N, "KafkaClusterOAuthClientCredentialsAssertion"),
+            target = M.KafkaClusterOAuthClientCredentialsAssertion,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientCredentialsAssertion" },
+            },
+        }),
+        TokenEndpointAuthenticationMethod = schema.new({
+            id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication", "TokenEndpointAuthenticationMethod"),
+            type = "string",
+            name = "TokenEndpointAuthenticationMethod",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tokenEndpointAuthenticationMethod" },
+            },
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "scope" },
+            },
+        }),
+        TokenEndpointTlsCertificateArn = schema.new({
+            id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication", "TokenEndpointTlsCertificateArn"),
+            type = "string",
+            name = "TokenEndpointTlsCertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tokenEndpointTlsCertificateArn" },
+            },
+        }),
+    },
+})
+
 M.KafkaClusterSaslScramAuthentication = schema.new({
     id = id.from(_N, "KafkaClusterSaslScramAuthentication"),
     type = "structure",
@@ -2668,6 +2832,16 @@ M.KafkaClusterClientAuthentication = schema.new({
             target = M.KafkaClusterMTLSAuthentication,
             traits = {
                 [traits.JSON_NAME] = { name = "mTLS" },
+            },
+        }),
+        SaslOAuthBearer = schema.new({
+            id = id.from(_N, "KafkaClusterClientAuthentication", "SaslOAuthBearer"),
+            type = "structure",
+            name = "SaslOAuthBearer",
+            target_id = id.from(_N, "KafkaClusterSaslOAuthBearerAuthentication"),
+            target = M.KafkaClusterSaslOAuthBearerAuthentication,
+            traits = {
+                [traits.JSON_NAME] = { name = "saslOAuthBearer" },
             },
         }),
     },

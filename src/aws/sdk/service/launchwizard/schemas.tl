@@ -30,15 +30,61 @@ M.FilterList = schema.new({ type = "list", list_member = M.DeploymentPatternVers
 
 M.DeploymentPatternVersionDataSummaryList = schema.new({ type = "list", list_member = M.DeploymentPatternVersionDataSummary })
 
+M.AccountConstraintsList = schema.new({ type = "list", list_member = M.AccountConstraint })
+
 M.DeploymentSpecificationsData = schema.new({ type = "list", list_member = M.DeploymentSpecificationsField })
 
 M.DeploymentFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeploymentEventMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.DeploymentPatternVersionFilterValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.AllowedValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.SpecificationsConditionalData = schema.new({ type = "list", list_member = M.DeploymentConditionalField })
+
+M.DelegatedAdminConstraint = schema.new({
+    id = id.from(_N, "DelegatedAdminConstraint"),
+    type = "structure",
+    members = {
+        servicePrincipal = schema.new({
+            id = id.from(_N, "DelegatedAdminConstraint", "servicePrincipal"),
+            type = "string",
+            name = "servicePrincipal",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ManagementAccountConstraint = schema.new({
+    id = id.from(_N, "ManagementAccountConstraint"),
+    type = "structure",
+})
+
+M.AccountConstraint = schema.new({
+    id = id.from(_N, "AccountConstraint"),
+    type = "union",
+    members = {
+        managementAccount = schema.new({
+            id = id.from(_N, "AccountConstraint", "managementAccount"),
+            type = "structure",
+            name = "managementAccount",
+            target_id = id.from(_N, "ManagementAccountConstraint"),
+            target = M.ManagementAccountConstraint,
+        }),
+        delegatedAdmin = schema.new({
+            id = id.from(_N, "AccountConstraint", "delegatedAdmin"),
+            type = "structure",
+            name = "delegatedAdmin",
+            target_id = id.from(_N, "DelegatedAdminConstraint"),
+            target = M.DelegatedAdminConstraint,
+        }),
+    },
+})
 
 M.CreateDeploymentInput = schema.new({
     id = id.from(_N, "CreateDeploymentInput"),
@@ -278,6 +324,14 @@ M.DeploymentEventDataSummary = schema.new({
             type = "timestamp",
             name = "timestamp",
             target_id = prelude.Timestamp.id,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "DeploymentEventDataSummary", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -884,6 +938,13 @@ M.WorkloadData = schema.new({
             name = "status",
             target_id = prelude.String.id,
         }),
+        accountConstraints = schema.new({
+            id = id.from(_N, "WorkloadData", "accountConstraints"),
+            type = "list",
+            name = "accountConstraints",
+            target_id = prelude.Document.id,
+            list_member = M.AccountConstraint,
+        }),
         description = schema.new({
             id = id.from(_N, "WorkloadData", "description"),
             type = "string",
@@ -1001,6 +1062,13 @@ M.WorkloadDeploymentPatternData = schema.new({
             type = "string",
             name = "statusMessage",
             target_id = prelude.String.id,
+        }),
+        accountConstraints = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "accountConstraints"),
+            type = "list",
+            name = "accountConstraints",
+            target_id = prelude.Document.id,
+            list_member = M.AccountConstraint,
         }),
         specifications = schema.new({
             id = id.from(_N, "WorkloadDeploymentPatternData", "specifications"),
@@ -1168,6 +1236,13 @@ M.WorkloadDataSummary = schema.new({
             name = "status",
             target_id = prelude.String.id,
         }),
+        accountConstraints = schema.new({
+            id = id.from(_N, "WorkloadDataSummary", "accountConstraints"),
+            type = "list",
+            name = "accountConstraints",
+            target_id = prelude.Document.id,
+            list_member = M.AccountConstraint,
+        }),
     },
 })
 
@@ -1273,6 +1348,13 @@ M.WorkloadDeploymentPatternDataSummary = schema.new({
             type = "string",
             name = "statusMessage",
             target_id = prelude.String.id,
+        }),
+        accountConstraints = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "accountConstraints"),
+            type = "list",
+            name = "accountConstraints",
+            target_id = prelude.Document.id,
+            list_member = M.AccountConstraint,
         }),
     },
 })

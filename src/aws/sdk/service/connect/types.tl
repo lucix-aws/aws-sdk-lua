@@ -11689,6 +11689,7 @@ local record M
         "Event"
         "Attachments"
         "PostContactSummary"
+        "ExtractedInformation"
     end
 
     record ListRealtimeContactAnalysisSegmentsV2Input
@@ -11809,6 +11810,46 @@ local record M
         Time: RealTimeContactAnalysisTimeData
     end
 
+    -- An individual value extracted from the conversation, including its content and the locations where it
+    -- was found.
+    record RealTimeContactAnalysisExtractedInformationValue
+        -- The text content of the extracted value.
+        Content: string
+        -- The sections in the conversation that indicate where the extracted value was found.
+        PointsOfInterest: {RealTimeContactAnalysisTranscriptItemWithCharacterOffsets}
+    end
+
+    enum RealTimeContactAnalysisExtractedInformationFailureCode
+        "QUOTA_EXCEEDED"
+        "INSUFFICIENT_CONVERSATION_CONTENT"
+        "FAILED_SAFETY_GUIDELINES"
+        "INTERNAL_ERROR"
+        "MAX_PACKAGE_FEATURE_ONLY"
+    end
+
+    -- Segment containing information extracted from the conversation. Each segment represents the results for a
+    -- single extraction definition.
+    record RealTimeContactAnalysisSegmentExtractedInformation
+        -- The identifier of the extraction definition that produced this result.
+        ExtractionDefinitionId: string
+        -- The name of the extraction definition that produced this result.
+        ExtractionDefinitionName: string
+        -- The display label of the extraction definition that produced this result.
+        ExtractionDefinitionDisplayLabel: string
+        -- The list of values extracted from the conversation for this extraction definition. This field is empty when a
+        -- FailureCode is present.
+        ExtractedValues: {RealTimeContactAnalysisExtractedInformationValue}
+        -- If the information failed to be extracted, one of the following failure codes occurs:
+        -- QUOTA_EXCEEDED: The number of concurrent analytics jobs reached your service quota.
+        -- INSUFFICIENT_CONVERSATION_CONTENT: Information extraction requires a conversation with at least
+        -- one turn from each participant.
+        -- FAILED_SAFETY_GUIDELINES: The extracted information cannot be provided because it failed to meet
+        -- system safety guidelines.
+        -- INTERNAL_ERROR: Internal system error.
+        -- MAX_PACKAGE_FEATURE_ONLY: Information extraction is only available in Amazon Connect Customer instances.
+        FailureCode: string
+    end
+
     -- Transcript representation containing Id, Content and list of character intervals that are associated with
     -- analysis data. For example, this object within an issue detected would describe both content that contains identified
     -- issue and intervals where that content is taken from.
@@ -11910,6 +11951,8 @@ local record M
         Attachments: RealTimeContactAnalysisSegmentAttachments
         -- Information about the post-contact summary.
         PostContactSummary: RealTimeContactAnalysisSegmentPostContactSummary
+        -- The extracted information from the conversation.
+        ExtractedInformation: RealTimeContactAnalysisSegmentExtractedInformation
     end
 
     enum RealTimeContactAnalysisStatus
