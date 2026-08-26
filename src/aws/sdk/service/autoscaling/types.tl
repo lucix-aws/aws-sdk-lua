@@ -501,9 +501,35 @@ local record M
         RoleARN: string
     end
 
-    -- Use this structure to specify the distribution of On-Demand Instances and Spot
-    -- Instances and the allocation strategies used to fulfill On-Demand and Spot capacities
-    -- for a mixed instances policy.
+    enum TargetCapacityType
+        "on-demand-capacity-reservation"
+        "capacity-block"
+        "interruptible-capacity-reservation"
+        "on-demand"
+    end
+
+    -- Use this structure to specify the capacity types that Amazon EC2 Auto Scaling prioritizes when it
+    -- launches instances.
+    record DistributionSegment
+        -- The capacity types to prioritize, in order. Amazon EC2 Auto Scaling attempts to launch instances in
+        -- the priority order of the capacity types, and within each capacity type, in the order of
+        -- instance types listed in your launch template Overrides.
+        -- The following lists the valid values:
+        -- on-demand-capacity-reservation
+        -- On-Demand Capacity Reservations.
+        -- capacity-block
+        -- Capacity Blocks.
+        -- interruptible-capacity-reservation
+        -- Interruptible Capacity Reservations.
+        -- on-demand
+        -- On-Demand capacity. Include this value to allow the group to fall back to
+        -- On-Demand capacity when the preceding capacity types are unavailable.
+        TargetCapacityTypes: {string}
+    end
+
+    -- Use this structure to specify how a mixed instances policy distributes capacity across
+    -- On-Demand, Spot, and supported Capacity Reservation types, and to specify the allocation
+    -- strategies that are used to fulfill the capacity.
     record InstancesDistribution
         -- The allocation strategy to apply to your On-Demand Instances when they are launched.
         -- Possible instance types are determined by the launch template overrides that you
@@ -585,6 +611,12 @@ local record M
         -- than if you do not specify one.
         -- Valid Range: Minimum value of 0.001
         SpotMaxPrice: string
+        -- The Distribution Segments configuration. Each segment contains an ordered list of
+        -- capacity types to prioritize.
+        -- For more information, see Use Distribution
+        -- Segments to target multiple capacity types in the
+        -- Amazon EC2 Auto Scaling User Guide.
+        DistributionSegments: {DistributionSegment}
     end
 
     enum BareMetal
@@ -1019,15 +1051,20 @@ local record M
         Overrides: {LaunchTemplateOverrides}
     end
 
-    -- Use this structure to launch multiple instance types and On-Demand Instances and Spot
-    -- Instances within a single Auto Scaling group.
+    -- Use this structure to launch multiple instance types and configure how capacity is
+    -- distributed across On-Demand, Spot, and supported Capacity Reservation types within a
+    -- single Auto Scaling group.
     -- A mixed instances policy contains information that Amazon EC2 Auto Scaling can use to launch
-    -- instances and help optimize your costs. For more information, see Auto Scaling
+    -- instances, prioritize capacity types, and help optimize your costs. For more
+    -- information, see Auto Scaling
     -- groups with multiple instance types and purchase options in the
+    -- Amazon EC2 Auto Scaling User Guide. To learn how to prioritize multiple capacity
+    -- types, see Use Distribution
+    -- Segments to target multiple capacity types in the
     -- Amazon EC2 Auto Scaling User Guide.
     record MixedInstancesPolicy
         -- One or more launch templates and the instance types (overrides) that are used to
-        -- launch EC2 instances to fulfill On-Demand and Spot capacities.
+        -- launch EC2 instances to fulfill the configured capacities.
         LaunchTemplate: LaunchTemplate
         -- The instances distribution.
         InstancesDistribution: InstancesDistribution
@@ -1080,6 +1117,9 @@ local record M
         LaunchTemplate: LaunchTemplateSpecification
         -- The mixed instances policy. For more information, see Auto Scaling
         -- groups with multiple instance types and purchase options in the
+        -- Amazon EC2 Auto Scaling User Guide. To learn how to prioritize multiple capacity
+        -- types, see Use Distribution
+        -- Segments to target multiple capacity types in the
         -- Amazon EC2 Auto Scaling User Guide.
         MixedInstancesPolicy: MixedInstancesPolicy
         -- The ID of the instance used to base the launch configuration on. If specified, Amazon EC2 Auto Scaling uses the configuration values from the specified instance to create a
@@ -2099,10 +2139,12 @@ local record M
         -- uses to launch Amazon EC2 instances. For more information about launch templates, see Launch
         -- templates in the Amazon EC2 Auto Scaling User Guide.
         LaunchTemplate: LaunchTemplateSpecification
-        -- Use this structure to launch multiple instance types and On-Demand Instances and Spot
-        -- Instances within a single Auto Scaling group.
+        -- Use this structure to launch multiple instance types and configure how capacity is
+        -- distributed across On-Demand, Spot, and supported Capacity Reservation types within a
+        -- single Auto Scaling group.
         -- A mixed instances policy contains information that Amazon EC2 Auto Scaling can use to launch
-        -- instances and help optimize your costs. For more information, see Auto Scaling
+        -- instances, prioritize capacity types, and help optimize your costs. For more
+        -- information, see Auto Scaling
         -- groups with multiple instance types and purchase options in the
         -- Amazon EC2 Auto Scaling User Guide.
         MixedInstancesPolicy: MixedInstancesPolicy
@@ -4279,6 +4321,10 @@ local record M
         -- The mixed instances policy. For more information, see Auto Scaling
         -- groups with multiple instance types and purchase options in the
         -- Amazon EC2 Auto Scaling User Guide.
+        -- You can remove the Distribution Segments configuration by specifying
+        -- OnDemandBaseCapacity or
+        -- OnDemandPercentageAboveBaseCapacity. You can also remove it explicitly
+        -- by specifying an empty list for DistributionSegments.
         MixedInstancesPolicy: MixedInstancesPolicy
         -- The minimum size of the Auto Scaling group.
         MinSize: number

@@ -42,6 +42,8 @@ M.AssetIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AgentSpacePreferences = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Boolean })
+
 M.AgentSpaceList = schema.new({ type = "list", list_member = M.AgentSpace })
 
 M.PrivateConnectionSummaryList = schema.new({ type = "list", list_member = M.PrivateConnectionSummary })
@@ -53,6 +55,8 @@ M.PriorityList = schema.new({ type = "list", list_member = prelude.String })
 M.TaskStatusList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TaskTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApprovalArgumentPins = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.AssociationCapabilities = schema.new({ type = "map", map_key = prelude.String, map_value = M.CapabilityConfiguration })
 
@@ -79,6 +83,8 @@ M.AssistantMessage = schema.new({ type = "list", list_member = M.AssistantMessag
 M.DynatraceResourceList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ServiceNowAuthenticationScopeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MCPToolDetailsList = schema.new({ type = "list", list_member = M.MCPToolDetail })
 
 M.MCPToolsList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -772,6 +778,14 @@ M.AgentSpace = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        preferences = schema.new({
+            id = id.from(_N, "AgentSpace", "preferences"),
+            type = "map",
+            name = "preferences",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Boolean,
+        }),
     },
 })
 
@@ -818,6 +832,18 @@ M.AWSConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        agentElevatedRoleArn = schema.new({
+            id = id.from(_N, "AWSConfiguration", "agentElevatedRoleArn"),
+            type = "string",
+            name = "agentElevatedRoleArn",
+            target_id = prelude.String.id,
+        }),
+        agentElevatedRoleArnStatus = schema.new({
+            id = id.from(_N, "AWSConfiguration", "agentElevatedRoleArnStatus"),
+            type = "string",
+            name = "agentElevatedRoleArnStatus",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -992,6 +1018,28 @@ M.GitLabConfiguration = schema.new({
     },
 })
 
+M.MCPToolDetail = schema.new({
+    id = id.from(_N, "MCPToolDetail"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "MCPToolDetail", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        toolClassification = schema.new({
+            id = id.from(_N, "MCPToolDetail", "toolClassification"),
+            type = "string",
+            name = "toolClassification",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.MCPServerConfiguration = schema.new({
     id = id.from(_N, "MCPServerConfiguration"),
     type = "structure",
@@ -1006,12 +1054,28 @@ M.MCPServerConfiguration = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        toolDetails = schema.new({
+            id = id.from(_N, "MCPServerConfiguration", "toolDetails"),
+            type = "list",
+            name = "toolDetails",
+            target_id = prelude.Document.id,
+            list_member = M.MCPToolDetail,
+        }),
     },
 })
 
 M.MCPServerDatadogConfiguration = schema.new({
     id = id.from(_N, "MCPServerDatadogConfiguration"),
     type = "structure",
+    members = {
+        enabledElevatedTools = schema.new({
+            id = id.from(_N, "MCPServerDatadogConfiguration", "enabledElevatedTools"),
+            type = "list",
+            name = "enabledElevatedTools",
+            target_id = prelude.Document.id,
+            list_member = M.MCPToolDetail,
+        }),
+    },
 })
 
 M.MCPServerGrafanaConfiguration = schema.new({
@@ -1039,6 +1103,13 @@ M.MCPServerGrafanaConfiguration = schema.new({
             name = "tools",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        enabledElevatedTools = schema.new({
+            id = id.from(_N, "MCPServerGrafanaConfiguration", "enabledElevatedTools"),
+            type = "list",
+            name = "enabledElevatedTools",
+            target_id = prelude.Document.id,
+            list_member = M.MCPToolDetail,
         }),
     },
 })
@@ -1081,6 +1152,13 @@ M.MCPServerSigV4Configuration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        toolDetails = schema.new({
+            id = id.from(_N, "MCPServerSigV4Configuration", "toolDetails"),
+            type = "list",
+            name = "toolDetails",
+            target_id = prelude.Document.id,
+            list_member = M.MCPToolDetail,
         }),
     },
 })
@@ -1262,6 +1340,18 @@ M.SourceAwsConfiguration = schema.new({
             id = id.from(_N, "SourceAwsConfiguration", "externalId"),
             type = "string",
             name = "externalId",
+            target_id = prelude.String.id,
+        }),
+        agentElevatedRoleArn = schema.new({
+            id = id.from(_N, "SourceAwsConfiguration", "agentElevatedRoleArn"),
+            type = "string",
+            name = "agentElevatedRoleArn",
+            target_id = prelude.String.id,
+        }),
+        agentElevatedRoleArnStatus = schema.new({
+            id = id.from(_N, "SourceAwsConfiguration", "agentElevatedRoleArnStatus"),
+            type = "string",
+            name = "agentElevatedRoleArnStatus",
             target_id = prelude.String.id,
         }),
     },
@@ -2132,6 +2222,14 @@ M.CreateAgentSpaceInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        preferences = schema.new({
+            id = id.from(_N, "CreateAgentSpaceInput", "preferences"),
+            type = "map",
+            name = "preferences",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Boolean,
+        }),
     },
 })
 
@@ -2664,6 +2762,14 @@ M.UpdateAgentSpaceInput = schema.new({
             name = "locale",
             target_id = prelude.String.id,
         }),
+        preferences = schema.new({
+            id = id.from(_N, "UpdateAgentSpaceInput", "preferences"),
+            type = "map",
+            name = "preferences",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Boolean,
+        }),
     },
 })
 
@@ -2726,6 +2832,70 @@ M.UpdateOperatorAppIdpConfigOutput = schema.new({
             name = "idp",
             target_id = id.from(_N, "IdpAuthConfiguration"),
             target = M.IdpAuthConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ApprovalAction = schema.new({
+    id = id.from(_N, "ApprovalAction"),
+    type = "structure",
+    members = {
+        toolUseId = schema.new({
+            id = id.from(_N, "ApprovalAction", "toolUseId"),
+            type = "string",
+            name = "toolUseId",
+            target_id = prelude.String.id,
+        }),
+        interruptId = schema.new({
+            id = id.from(_N, "ApprovalAction", "interruptId"),
+            type = "string",
+            name = "interruptId",
+            target_id = prelude.String.id,
+        }),
+        approvalId = schema.new({
+            id = id.from(_N, "ApprovalAction", "approvalId"),
+            type = "string",
+            name = "approvalId",
+            target_id = prelude.String.id,
+        }),
+        buttonText = schema.new({
+            id = id.from(_N, "ApprovalAction", "buttonText"),
+            type = "string",
+            name = "buttonText",
+            target_id = prelude.String.id,
+        }),
+        action = schema.new({
+            id = id.from(_N, "ApprovalAction", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ApprovalPattern = schema.new({
+    id = id.from(_N, "ApprovalPattern"),
+    type = "structure",
+    members = {
+        tool = schema.new({
+            id = id.from(_N, "ApprovalPattern", "tool"),
+            type = "string",
+            name = "tool",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        argumentPins = schema.new({
+            id = id.from(_N, "ApprovalPattern", "argumentPins"),
+            type = "map",
+            name = "argumentPins",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -6579,6 +6749,13 @@ M.SendMessageContext = schema.new({
             name = "userActionResponse",
             target_id = prelude.String.id,
         }),
+        approvalAction = schema.new({
+            id = id.from(_N, "SendMessageContext", "approvalAction"),
+            type = "structure",
+            name = "approvalAction",
+            target_id = id.from(_N, "ApprovalAction"),
+            target = M.ApprovalAction,
+        }),
     },
 })
 
@@ -6633,6 +6810,12 @@ M.SendMessageInput = schema.new({
             name = "assetIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        modelTier = schema.new({
+            id = id.from(_N, "SendMessageInput", "modelTier"),
+            type = "string",
+            name = "modelTier",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -7091,6 +7274,26 @@ M.RegisteredService = schema.new({
             type = "string",
             name = "privateConnectionName",
             target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "RegisteredService", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "RegisteredService", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })
@@ -8498,6 +8701,98 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateApprovalActionInput = schema.new({
+    id = id.from(_N, "UpdateApprovalActionRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "UpdateApprovalActionInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        approvalId = schema.new({
+            id = id.from(_N, "UpdateApprovalActionInput", "approvalId"),
+            type = "string",
+            name = "approvalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "UpdateApprovalActionInput", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        finalPattern = schema.new({
+            id = id.from(_N, "UpdateApprovalActionInput", "finalPattern"),
+            type = "structure",
+            name = "finalPattern",
+            target_id = id.from(_N, "ApprovalPattern"),
+            target = M.ApprovalPattern,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "UpdateApprovalActionInput", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+        ttlSeconds = schema.new({
+            id = id.from(_N, "UpdateApprovalActionInput", "ttlSeconds"),
+            type = "integer",
+            name = "ttlSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        singleUse = schema.new({
+            id = id.from(_N, "UpdateApprovalActionInput", "singleUse"),
+            type = "boolean",
+            name = "singleUse",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateApprovalActionOutput = schema.new({
+    id = id.from(_N, "UpdateApprovalActionResponse"),
+    type = "structure",
+    members = {
+        approvalId = schema.new({
+            id = id.from(_N, "UpdateApprovalActionOutput", "approvalId"),
+            type = "string",
+            name = "approvalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateApprovalActionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expiresAt = schema.new({
+            id = id.from(_N, "UpdateApprovalActionOutput", "expiresAt"),
+            type = "timestamp",
+            name = "expiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.UpdateAssetInput = schema.new({
     id = id.from(_N, "UpdateAssetRequest"),
     type = "structure",
@@ -9543,6 +9838,18 @@ M.UpdateAgentSpace = schema.operation({
     output = M.UpdateAgentSpaceOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/v1/agentspaces/{agentSpaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateApprovalAction = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateApprovalAction"),
+    input = M.UpdateApprovalActionInput,
+    output = M.UpdateApprovalActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agents/agent-space/{agentSpaceId}/approvals/{approvalId}/update-action" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -126,6 +126,8 @@ M.CheckpointPercentages = schema.new({ type = "list", list_member = prelude.Inte
 
 M.Overrides = schema.new({ type = "list", list_member = M.LaunchTemplateOverrides })
 
+M.DistributionSegments = schema.new({ type = "list", list_member = M.DistributionSegment })
+
 M.CapacityReservationIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.CapacityReservationResourceGroupArns = schema.new({ type = "list", list_member = prelude.String })
@@ -141,6 +143,8 @@ M.MetricDimensions = schema.new({ type = "list", list_member = M.MetricDimension
 M.TargetTrackingMetricDataQueries = schema.new({ type = "list", list_member = M.TargetTrackingMetricDataQuery })
 
 M.AlarmList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TargetCapacityTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.MetricDataQueries = schema.new({ type = "list", list_member = M.MetricDataQuery })
 
@@ -1039,6 +1043,20 @@ M.LifecycleHookSpecification = schema.new({
     },
 })
 
+M.DistributionSegment = schema.new({
+    id = id.from(_N, "DistributionSegment"),
+    type = "structure",
+    members = {
+        TargetCapacityTypes = schema.new({
+            id = id.from(_N, "DistributionSegment", "TargetCapacityTypes"),
+            type = "list",
+            name = "TargetCapacityTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.InstancesDistribution = schema.new({
     id = id.from(_N, "InstancesDistribution"),
     type = "structure",
@@ -1078,6 +1096,13 @@ M.InstancesDistribution = schema.new({
             type = "string",
             name = "SpotMaxPrice",
             target_id = prelude.String.id,
+        }),
+        DistributionSegments = schema.new({
+            id = id.from(_N, "InstancesDistribution", "DistributionSegments"),
+            type = "list",
+            name = "DistributionSegments",
+            target_id = prelude.Document.id,
+            list_member = M.DistributionSegment,
         }),
     },
 })

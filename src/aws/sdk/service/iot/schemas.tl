@@ -298,6 +298,8 @@ M.ClientProperties = schema.new({ type = "map", map_key = prelude.String, map_va
 
 M.KafkaHeaders = schema.new({ type = "list", list_member = M.KafkaActionHeader })
 
+M.InfluxDBTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.FleetIndexingApiList = schema.new({ type = "list", list_member = prelude.String })
 
 M.Cidrs = schema.new({ type = "list", list_member = prelude.String })
@@ -1009,6 +1011,110 @@ M.HttpAction = schema.new({
             name = "batchConfig",
             target_id = id.from(_N, "BatchConfig"),
             target = M.BatchConfig,
+        }),
+    },
+})
+
+M.InfluxDBBatchConfig = schema.new({
+    id = id.from(_N, "InfluxDBBatchConfig"),
+    type = "structure",
+    members = {
+        maxBatchSize = schema.new({
+            id = id.from(_N, "InfluxDBBatchConfig", "maxBatchSize"),
+            type = "integer",
+            name = "maxBatchSize",
+            target_id = prelude.Integer.id,
+        }),
+        maxBatchOpenMs = schema.new({
+            id = id.from(_N, "InfluxDBBatchConfig", "maxBatchOpenMs"),
+            type = "integer",
+            name = "maxBatchOpenMs",
+            target_id = prelude.Integer.id,
+        }),
+        maxBatchSizeBytes = schema.new({
+            id = id.from(_N, "InfluxDBBatchConfig", "maxBatchSizeBytes"),
+            type = "integer",
+            name = "maxBatchSizeBytes",
+            target_id = prelude.Integer.id,
+        }),
+        batchAcrossTopics = schema.new({
+            id = id.from(_N, "InfluxDBBatchConfig", "batchAcrossTopics"),
+            type = "boolean",
+            name = "batchAcrossTopics",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.InfluxDBAction = schema.new({
+    id = id.from(_N, "InfluxDBAction"),
+    type = "structure",
+    members = {
+        destinationArn = schema.new({
+            id = id.from(_N, "InfluxDBAction", "destinationArn"),
+            type = "string",
+            name = "destinationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "InfluxDBAction", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        databaseName = schema.new({
+            id = id.from(_N, "InfluxDBAction", "databaseName"),
+            type = "string",
+            name = "databaseName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableName = schema.new({
+            id = id.from(_N, "InfluxDBAction", "tableName"),
+            type = "string",
+            name = "tableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organization = schema.new({
+            id = id.from(_N, "InfluxDBAction", "organization"),
+            type = "string",
+            name = "organization",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "InfluxDBAction", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        timestampUnit = schema.new({
+            id = id.from(_N, "InfluxDBAction", "timestampUnit"),
+            type = "string",
+            name = "timestampUnit",
+            target_id = prelude.String.id,
+        }),
+        batchConfig = schema.new({
+            id = id.from(_N, "InfluxDBAction", "batchConfig"),
+            type = "structure",
+            name = "batchConfig",
+            target_id = id.from(_N, "InfluxDBBatchConfig"),
+            target = M.InfluxDBBatchConfig,
         }),
     },
 })
@@ -2024,6 +2130,13 @@ M.Action = schema.new({
             name = "location",
             target_id = id.from(_N, "LocationAction"),
             target = M.LocationAction,
+        }),
+        influxDB = schema.new({
+            id = id.from(_N, "Action", "influxDB"),
+            type = "structure",
+            name = "influxDB",
+            target_id = id.from(_N, "InfluxDBAction"),
+            target = M.InfluxDBAction,
         }),
     },
 })
@@ -7950,6 +8063,52 @@ M.HttpUrlDestinationConfiguration = schema.new({
     },
 })
 
+M.InfluxDBDestinationConfiguration = schema.new({
+    id = id.from(_N, "InfluxDBDestinationConfiguration"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "InfluxDBDestinationConfiguration", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        influxDBVersion = schema.new({
+            id = id.from(_N, "InfluxDBDestinationConfiguration", "influxDBVersion"),
+            type = "string",
+            name = "influxDBVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        secretId = schema.new({
+            id = id.from(_N, "InfluxDBDestinationConfiguration", "secretId"),
+            type = "string",
+            name = "secretId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        secretType = schema.new({
+            id = id.from(_N, "InfluxDBDestinationConfiguration", "secretType"),
+            type = "string",
+            name = "secretType",
+            target_id = prelude.String.id,
+        }),
+        secretKey = schema.new({
+            id = id.from(_N, "InfluxDBDestinationConfiguration", "secretKey"),
+            type = "string",
+            name = "secretKey",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.VpcDestinationConfiguration = schema.new({
     id = id.from(_N, "VpcDestinationConfiguration"),
     type = "structure",
@@ -8010,6 +8169,13 @@ M.TopicRuleDestinationConfiguration = schema.new({
             target_id = id.from(_N, "VpcDestinationConfiguration"),
             target = M.VpcDestinationConfiguration,
         }),
+        influxDBConfiguration = schema.new({
+            id = id.from(_N, "TopicRuleDestinationConfiguration", "influxDBConfiguration"),
+            type = "structure",
+            name = "influxDBConfiguration",
+            target_id = id.from(_N, "InfluxDBDestinationConfiguration"),
+            target = M.InfluxDBDestinationConfiguration,
+        }),
     },
 })
 
@@ -8038,6 +8204,43 @@ M.HttpUrlDestinationProperties = schema.new({
             id = id.from(_N, "HttpUrlDestinationProperties", "confirmationUrl"),
             type = "string",
             name = "confirmationUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InfluxDBDestinationProperties = schema.new({
+    id = id.from(_N, "InfluxDBDestinationProperties"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "InfluxDBDestinationProperties", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+        }),
+        influxDBVersion = schema.new({
+            id = id.from(_N, "InfluxDBDestinationProperties", "influxDBVersion"),
+            type = "string",
+            name = "influxDBVersion",
+            target_id = prelude.String.id,
+        }),
+        secretId = schema.new({
+            id = id.from(_N, "InfluxDBDestinationProperties", "secretId"),
+            type = "string",
+            name = "secretId",
+            target_id = prelude.String.id,
+        }),
+        secretType = schema.new({
+            id = id.from(_N, "InfluxDBDestinationProperties", "secretType"),
+            type = "string",
+            name = "secretType",
+            target_id = prelude.String.id,
+        }),
+        secretKey = schema.new({
+            id = id.from(_N, "InfluxDBDestinationProperties", "secretKey"),
+            type = "string",
+            name = "secretKey",
             target_id = prelude.String.id,
         }),
     },
@@ -8123,6 +8326,13 @@ M.TopicRuleDestination = schema.new({
             name = "vpcProperties",
             target_id = id.from(_N, "VpcDestinationProperties"),
             target = M.VpcDestinationProperties,
+        }),
+        influxDBProperties = schema.new({
+            id = id.from(_N, "TopicRuleDestination", "influxDBProperties"),
+            type = "structure",
+            name = "influxDBProperties",
+            target_id = id.from(_N, "InfluxDBDestinationProperties"),
+            target = M.InfluxDBDestinationProperties,
         }),
     },
 })
@@ -19455,6 +19665,43 @@ M.HttpUrlDestinationSummary = schema.new({
     },
 })
 
+M.InfluxDBDestinationSummary = schema.new({
+    id = id.from(_N, "InfluxDBDestinationSummary"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "InfluxDBDestinationSummary", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+        }),
+        influxDBVersion = schema.new({
+            id = id.from(_N, "InfluxDBDestinationSummary", "influxDBVersion"),
+            type = "string",
+            name = "influxDBVersion",
+            target_id = prelude.String.id,
+        }),
+        secretId = schema.new({
+            id = id.from(_N, "InfluxDBDestinationSummary", "secretId"),
+            type = "string",
+            name = "secretId",
+            target_id = prelude.String.id,
+        }),
+        secretType = schema.new({
+            id = id.from(_N, "InfluxDBDestinationSummary", "secretType"),
+            type = "string",
+            name = "secretType",
+            target_id = prelude.String.id,
+        }),
+        secretKey = schema.new({
+            id = id.from(_N, "InfluxDBDestinationSummary", "secretKey"),
+            type = "string",
+            name = "secretKey",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.VpcDestinationSummary = schema.new({
     id = id.from(_N, "VpcDestinationSummary"),
     type = "structure",
@@ -19535,6 +19782,13 @@ M.TopicRuleDestinationSummary = schema.new({
             name = "vpcDestinationSummary",
             target_id = id.from(_N, "VpcDestinationSummary"),
             target = M.VpcDestinationSummary,
+        }),
+        influxDBSummary = schema.new({
+            id = id.from(_N, "TopicRuleDestinationSummary", "influxDBSummary"),
+            type = "structure",
+            name = "influxDBSummary",
+            target_id = id.from(_N, "InfluxDBDestinationSummary"),
+            target = M.InfluxDBDestinationSummary,
         }),
     },
 })

@@ -2399,10 +2399,30 @@ M.HorizontalPodAutoscalerControllerConfigRequest = schema.new({
     },
 })
 
+M.PodGcControllerConfigRequest = schema.new({
+    id = id.from(_N, "PodGcControllerConfigRequest"),
+    type = "structure",
+    members = {
+        terminatedPodGcThreshold = schema.new({
+            id = id.from(_N, "PodGcControllerConfigRequest", "terminatedPodGcThreshold"),
+            type = "integer",
+            name = "terminatedPodGcThreshold",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.KubeControllerManagerConfigRequest = schema.new({
     id = id.from(_N, "KubeControllerManagerConfigRequest"),
     type = "structure",
     members = {
+        podGcControllerConfig = schema.new({
+            id = id.from(_N, "KubeControllerManagerConfigRequest", "podGcControllerConfig"),
+            type = "structure",
+            name = "podGcControllerConfig",
+            target_id = id.from(_N, "PodGcControllerConfigRequest"),
+            target = M.PodGcControllerConfigRequest,
+        }),
         horizontalPodAutoscalerControllerConfig = schema.new({
             id = id.from(_N, "KubeControllerManagerConfigRequest", "horizontalPodAutoscalerControllerConfig"),
             type = "structure",
@@ -3130,10 +3150,30 @@ M.HorizontalPodAutoscalerControllerConfigResponse = schema.new({
     },
 })
 
+M.PodGcControllerConfigResponse = schema.new({
+    id = id.from(_N, "PodGcControllerConfigResponse"),
+    type = "structure",
+    members = {
+        terminatedPodGcThreshold = schema.new({
+            id = id.from(_N, "PodGcControllerConfigResponse", "terminatedPodGcThreshold"),
+            type = "integer",
+            name = "terminatedPodGcThreshold",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.KubeControllerManagerConfigResponse = schema.new({
     id = id.from(_N, "KubeControllerManagerConfigResponse"),
     type = "structure",
     members = {
+        podGcControllerConfig = schema.new({
+            id = id.from(_N, "KubeControllerManagerConfigResponse", "podGcControllerConfig"),
+            type = "structure",
+            name = "podGcControllerConfig",
+            target_id = id.from(_N, "PodGcControllerConfigResponse"),
+            target = M.PodGcControllerConfigResponse,
+        }),
         horizontalPodAutoscalerControllerConfig = schema.new({
             id = id.from(_N, "KubeControllerManagerConfigResponse", "horizontalPodAutoscalerControllerConfig"),
             type = "structure",
@@ -5980,10 +6020,70 @@ M.HorizontalPodAutoscalerControllerVersionConfig = schema.new({
     },
 })
 
+M.IntegerConstraints = schema.new({
+    id = id.from(_N, "IntegerConstraints"),
+    type = "structure",
+    members = {
+        min = schema.new({
+            id = id.from(_N, "IntegerConstraints", "min"),
+            type = "integer",
+            name = "min",
+            target_id = prelude.Integer.id,
+        }),
+        max = schema.new({
+            id = id.from(_N, "IntegerConstraints", "max"),
+            type = "integer",
+            name = "max",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.IntegerParameterConfig = schema.new({
+    id = id.from(_N, "IntegerParameterConfig"),
+    type = "structure",
+    members = {
+        defaultValue = schema.new({
+            id = id.from(_N, "IntegerParameterConfig", "defaultValue"),
+            type = "integer",
+            name = "defaultValue",
+            target_id = prelude.Integer.id,
+        }),
+        constraints = schema.new({
+            id = id.from(_N, "IntegerParameterConfig", "constraints"),
+            type = "structure",
+            name = "constraints",
+            target_id = id.from(_N, "IntegerConstraints"),
+            target = M.IntegerConstraints,
+        }),
+    },
+})
+
+M.PodGcControllerVersionConfig = schema.new({
+    id = id.from(_N, "PodGcControllerVersionConfig"),
+    type = "structure",
+    members = {
+        terminatedPodGcThreshold = schema.new({
+            id = id.from(_N, "PodGcControllerVersionConfig", "terminatedPodGcThreshold"),
+            type = "structure",
+            name = "terminatedPodGcThreshold",
+            target_id = id.from(_N, "IntegerParameterConfig"),
+            target = M.IntegerParameterConfig,
+        }),
+    },
+})
+
 M.KubeControllerManagerVersionConfig = schema.new({
     id = id.from(_N, "KubeControllerManagerVersionConfig"),
     type = "structure",
     members = {
+        podGcControllerConfig = schema.new({
+            id = id.from(_N, "KubeControllerManagerVersionConfig", "podGcControllerConfig"),
+            type = "structure",
+            name = "podGcControllerConfig",
+            target_id = id.from(_N, "PodGcControllerVersionConfig"),
+            target = M.PodGcControllerVersionConfig,
+        }),
         horizontalPodAutoscalerControllerConfig = schema.new({
             id = id.from(_N, "KubeControllerManagerVersionConfig", "horizontalPodAutoscalerControllerConfig"),
             type = "structure",

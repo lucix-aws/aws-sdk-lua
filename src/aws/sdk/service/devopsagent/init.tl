@@ -70,6 +70,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAgentSpace: function(Client, types.UpdateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
+    updateApprovalAction: function(Client, types.UpdateApprovalActionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApprovalActionOutput>
     updateAsset: function(Client, types.UpdateAssetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetOutput>
     updateAssetFile: function(Client, types.UpdateAssetFileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetFileOutput>
     updateAssociation: function(Client, types.UpdateAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssociationOutput>
@@ -330,6 +331,10 @@ end
 
 function C:updateAgentSpace(input: types.UpdateAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentSpaceOutput>
+end
+
+function C:updateApprovalAction(input: types.UpdateApprovalActionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApprovalActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApprovalAction as schema.OperationSchema, input, options) as async.Operation<types.UpdateApprovalActionOutput>
 end
 
 function C:updateAsset(input: types.UpdateAssetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssetOutput>

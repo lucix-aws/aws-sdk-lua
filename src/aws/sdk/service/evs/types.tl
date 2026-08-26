@@ -176,6 +176,7 @@ local record M
     enum InstanceType
         "i4i.metal"
         "i7i.metal-24xl"
+        "i7i.metal-48xl"
     end
 
     -- An object that represents a host. You cannot use dedicatedHostId and placementGroupId together in the same HostInfoForCreateobject. This results in a ValidationException response.

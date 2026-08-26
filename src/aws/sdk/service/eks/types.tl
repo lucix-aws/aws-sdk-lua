@@ -1252,8 +1252,16 @@ local record M
         horizontalPodAutoscalerSyncPeriod: string
     end
 
+    -- The pod garbage collection controller configuration for the Kubernetes controller manager.
+    record PodGcControllerConfigRequest
+        -- The number of terminated pods that can exist before the garbage collector starts deleting them.
+        terminatedPodGcThreshold: number
+    end
+
     -- The configuration for the Kubernetes controller manager on an Amazon EKS cluster.
     record KubeControllerManagerConfigRequest
+        -- The pod garbage collection controller configuration.
+        podGcControllerConfig: PodGcControllerConfigRequest
         -- The horizontal pod autoscaler controller configuration.
         horizontalPodAutoscalerControllerConfig: HorizontalPodAutoscalerControllerConfigRequest
     end
@@ -1852,8 +1860,16 @@ local record M
         horizontalPodAutoscalerSyncPeriod: string
     end
 
+    -- The pod garbage collection controller configuration for the Kubernetes controller manager.
+    record PodGcControllerConfigResponse
+        -- The number of terminated pods that can exist before the garbage collector starts deleting them.
+        terminatedPodGcThreshold: number
+    end
+
     -- The Kubernetes controller manager configuration for an Amazon EKS cluster.
     record KubeControllerManagerConfigResponse
+        -- The pod garbage collection controller configuration.
+        podGcControllerConfig: PodGcControllerConfigResponse
         -- The horizontal pod autoscaler controller configuration.
         horizontalPodAutoscalerControllerConfig: HorizontalPodAutoscalerControllerConfigResponse
     end
@@ -3448,8 +3464,32 @@ local record M
         horizontalPodAutoscalerSyncPeriod: DurationParameterConfig
     end
 
+    -- Constraints for an integer parameter specifying allowed range.
+    record IntegerConstraints
+        -- The minimum allowed value.
+        min: number
+        -- The maximum allowed value.
+        max: number
+    end
+
+    -- An integer parameter configuration with default value and constraints.
+    record IntegerParameterConfig
+        -- The default value for the integer parameter.
+        defaultValue: number
+        -- The constraints for the integer parameter.
+        constraints: IntegerConstraints
+    end
+
+    -- The pod garbage collection controller version configuration.
+    record PodGcControllerVersionConfig
+        -- The terminated pod garbage collection threshold configuration with default value and constraints.
+        terminatedPodGcThreshold: IntegerParameterConfig
+    end
+
     -- The Kubernetes controller manager version-specific configuration defaults and constraints.
     record KubeControllerManagerVersionConfig
+        -- The pod garbage collection controller configuration with default value and constraints.
+        podGcControllerConfig: PodGcControllerVersionConfig
         -- The horizontal pod autoscaler controller configuration with default value and constraints.
         horizontalPodAutoscalerControllerConfig: HorizontalPodAutoscalerControllerVersionConfig
     end

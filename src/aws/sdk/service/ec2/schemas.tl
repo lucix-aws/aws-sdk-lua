@@ -1260,6 +1260,10 @@ M.PriceScheduleList = schema.new({ type = "list", list_member = M.PriceSchedule 
 
 M.HealthCheckPathDestinationRequestSet = schema.new({ type = "list", list_member = M.HealthCheckPathDestinationRequestObject })
 
+M.CapacityReservationResourceGroupArnSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReservedCapacityFallbackMarketTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.FleetLaunchTemplateOverridesListRequest = schema.new({ type = "list", list_member = M.FleetLaunchTemplateOverridesRequest })
 
 M.InstanceIdsSet = schema.new({ type = "list", list_member = prelude.String })
@@ -18463,10 +18467,60 @@ M.OnDemandOptionsRequest = schema.new({
     },
 })
 
+M.FleetCapacityReservationTargetRequest = schema.new({
+    id = id.from(_N, "FleetCapacityReservationTargetRequest"),
+    type = "structure",
+    members = {
+        CapacityReservationIds = schema.new({
+            id = id.from(_N, "FleetCapacityReservationTargetRequest", "CapacityReservationIds"),
+            type = "list",
+            name = "CapacityReservationIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "CapacityReservationId" },
+            },
+        }),
+        CapacityReservationResourceGroupArns = schema.new({
+            id = id.from(_N, "FleetCapacityReservationTargetRequest", "CapacityReservationResourceGroupArns"),
+            type = "list",
+            name = "CapacityReservationResourceGroupArns",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "CapacityReservationResourceGroupArn" },
+            },
+        }),
+    },
+})
+
+M.ReservedCapacityFallbackOptionsRequest = schema.new({
+    id = id.from(_N, "ReservedCapacityFallbackOptionsRequest"),
+    type = "structure",
+    members = {
+        MarketTypes = schema.new({
+            id = id.from(_N, "ReservedCapacityFallbackOptionsRequest", "MarketTypes"),
+            type = "list",
+            name = "MarketTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "MarketType" },
+            },
+        }),
+    },
+})
+
 M.ReservedCapacityOptionsRequest = schema.new({
     id = id.from(_N, "ReservedCapacityOptionsRequest"),
     type = "structure",
     members = {
+        AllocationStrategy = schema.new({
+            id = id.from(_N, "ReservedCapacityOptionsRequest", "AllocationStrategy"),
+            type = "string",
+            name = "AllocationStrategy",
+            target_id = prelude.String.id,
+        }),
         ReservationTypes = schema.new({
             id = id.from(_N, "ReservedCapacityOptionsRequest", "ReservationTypes"),
             type = "list",
@@ -18476,6 +18530,20 @@ M.ReservedCapacityOptionsRequest = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "ReservationType" },
             },
+        }),
+        CapacityReservationTarget = schema.new({
+            id = id.from(_N, "ReservedCapacityOptionsRequest", "CapacityReservationTarget"),
+            type = "structure",
+            name = "CapacityReservationTarget",
+            target_id = id.from(_N, "FleetCapacityReservationTargetRequest"),
+            target = M.FleetCapacityReservationTargetRequest,
+        }),
+        ReservedCapacityFallbackOptions = schema.new({
+            id = id.from(_N, "ReservedCapacityOptionsRequest", "ReservedCapacityFallbackOptions"),
+            type = "structure",
+            name = "ReservedCapacityFallbackOptions",
+            target_id = id.from(_N, "ReservedCapacityFallbackOptionsRequest"),
+            target = M.ReservedCapacityFallbackOptionsRequest,
         }),
     },
 })
@@ -55281,10 +55349,38 @@ M.OnDemandOptions = schema.new({
     },
 })
 
+M.ReservedCapacityFallbackOptions = schema.new({
+    id = id.from(_N, "ReservedCapacityFallbackOptions"),
+    type = "structure",
+    members = {
+        MarketTypes = schema.new({
+            id = id.from(_N, "ReservedCapacityFallbackOptions", "MarketTypes"),
+            type = "list",
+            name = "MarketTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "marketTypeSet" },
+                [traits.EC2_QUERY_NAME] = { name = "MarketTypeSet" },
+            },
+        }),
+    },
+})
+
 M.ReservedCapacityOptions = schema.new({
     id = id.from(_N, "ReservedCapacityOptions"),
     type = "structure",
     members = {
+        AllocationStrategy = schema.new({
+            id = id.from(_N, "ReservedCapacityOptions", "AllocationStrategy"),
+            type = "string",
+            name = "AllocationStrategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "allocationStrategy" },
+                [traits.EC2_QUERY_NAME] = { name = "AllocationStrategy" },
+            },
+        }),
         ReservationTypes = schema.new({
             id = id.from(_N, "ReservedCapacityOptions", "ReservationTypes"),
             type = "list",
@@ -55294,6 +55390,17 @@ M.ReservedCapacityOptions = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "reservationTypeSet" },
                 [traits.EC2_QUERY_NAME] = { name = "ReservationTypeSet" },
+            },
+        }),
+        ReservedCapacityFallbackOptions = schema.new({
+            id = id.from(_N, "ReservedCapacityOptions", "ReservedCapacityFallbackOptions"),
+            type = "structure",
+            name = "ReservedCapacityFallbackOptions",
+            target_id = id.from(_N, "ReservedCapacityFallbackOptions"),
+            target = M.ReservedCapacityFallbackOptions,
+            traits = {
+                [traits.XML_NAME] = { name = "reservedCapacityFallbackOptions" },
+                [traits.EC2_QUERY_NAME] = { name = "ReservedCapacityFallbackOptions" },
             },
         }),
     },
