@@ -243,10 +243,31 @@ local record M
         "RELEASE_READINESS_REVIEW_AUTOMATED_TESTING"
     end
 
+    enum TriggerEvent
+        "PULL_REQUEST_READY_FOR_REVIEW"
+        "PULL_REQUEST_DRAFT"
+    end
+
+    -- A regex-based match condition. Passes when the value matches any pattern.
+    record PatternFilter
+        -- Anchored full-match regex patterns. The condition passes when the value matches at least one pattern.
+        patterns: {string}
+    end
+
+    -- A group of trigger conditions. The group matches when ALL present conditions pass. A group cannot be empty: at least one condition must be present.
+    record TriggerFilterGroup
+        -- Passes when the webhook event is one of the listed events.
+        events: {string}
+        -- Passes when the change request target branch matches. Applicable to RELEASE_READINESS_REVIEW only.
+        targetBranches: PatternFilter
+    end
+
     -- Capability configuration for the AWS DevOps Agent.
     record CapabilityConfiguration
         -- Whether the capability is enabled.
         enabled: boolean
+        -- Optional trigger filter groups. Evaluated only when enabled=true; retained while the capability is disabled, so re-enabling restores the prior trigger behavior.
+        triggerFilterGroups: {TriggerFilterGroup}
     end
 
     enum MonitorAccountType

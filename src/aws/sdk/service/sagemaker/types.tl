@@ -9151,6 +9151,12 @@ local record M
         "ml.g7e.12xlarge"
         "ml.g7e.24xlarge"
         "ml.g7e.48xlarge"
+        "ml.g7.2xlarge"
+        "ml.g7.4xlarge"
+        "ml.g7.8xlarge"
+        "ml.g7.12xlarge"
+        "ml.g7.24xlarge"
+        "ml.g7.48xlarge"
     end
 
     -- The access configuration settings for the source ML model for an optimization job, where you can accept the model end-user license agreement (EULA).

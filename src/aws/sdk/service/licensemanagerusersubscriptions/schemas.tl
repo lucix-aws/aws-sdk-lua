@@ -1201,6 +1201,12 @@ M.ProductUserSummary = schema.new({
             name = "SubscriptionEndDate",
             target_id = prelude.String.id,
         }),
+        LicenseExpirationDate = schema.new({
+            id = id.from(_N, "ProductUserSummary", "LicenseExpirationDate"),
+            type = "string",
+            name = "LicenseExpirationDate",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

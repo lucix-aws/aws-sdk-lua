@@ -7187,6 +7187,7 @@ local record M
     enum VpcState
         "pending"
         "available"
+        "deleting"
     end
 
     -- Describes a VPC.
@@ -9075,6 +9076,7 @@ local record M
         "spot"
         "on-demand"
         "interruptible-capacity-reservation"
+        "capacity-block"
     end
 
     -- Describes the instances that could not be launched by the fleet.

@@ -90,6 +90,8 @@ M.MCPToolsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.PagerDutyServicesList = schema.new({ type = "list", list_member = prelude.String })
 
+M.TriggerFilterGroups = schema.new({ type = "list", list_member = M.TriggerFilterGroup })
+
 M.CustomHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.PagerDutyScopesList = schema.new({ type = "list", list_member = prelude.String })
@@ -103,6 +105,10 @@ M.NewRelicApplicationIds = schema.new({ type = "list", list_member = prelude.Str
 M.NewRelicEntityGuids = schema.new({ type = "list", list_member = prelude.String })
 
 M.NewRelicAlertPolicyIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerEventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerRegexPatternList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -789,6 +795,44 @@ M.AgentSpace = schema.new({
     },
 })
 
+M.PatternFilter = schema.new({
+    id = id.from(_N, "PatternFilter"),
+    type = "structure",
+    members = {
+        patterns = schema.new({
+            id = id.from(_N, "PatternFilter", "patterns"),
+            type = "list",
+            name = "patterns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TriggerFilterGroup = schema.new({
+    id = id.from(_N, "TriggerFilterGroup"),
+    type = "structure",
+    members = {
+        events = schema.new({
+            id = id.from(_N, "TriggerFilterGroup", "events"),
+            type = "list",
+            name = "events",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        targetBranches = schema.new({
+            id = id.from(_N, "TriggerFilterGroup", "targetBranches"),
+            type = "structure",
+            name = "targetBranches",
+            target_id = id.from(_N, "PatternFilter"),
+            target = M.PatternFilter,
+        }),
+    },
+})
+
 M.CapabilityConfiguration = schema.new({
     id = id.from(_N, "CapabilityConfiguration"),
     type = "structure",
@@ -798,6 +842,13 @@ M.CapabilityConfiguration = schema.new({
             type = "boolean",
             name = "enabled",
             target_id = prelude.Boolean.id,
+        }),
+        triggerFilterGroups = schema.new({
+            id = id.from(_N, "CapabilityConfiguration", "triggerFilterGroups"),
+            type = "list",
+            name = "triggerFilterGroups",
+            target_id = prelude.Document.id,
+            list_member = M.TriggerFilterGroup,
         }),
     },
 })

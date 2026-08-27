@@ -242,7 +242,7 @@ local record M
     record DeregisterIdentityProviderInput
         -- An object that specifies details for the Active Directory identity provider.
         IdentityProvider: IdentityProvider
-        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | REMOTE_DESKTOP_SERVICES
+        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | OFFICE_STANDARD | REMOTE_DESKTOP_SERVICES
         Product: string
         -- The Amazon Resource Name (ARN) that identifies the identity provider to deregister.
         IdentityProviderArn: string
@@ -374,7 +374,7 @@ local record M
     end
 
     record ListProductSubscriptionsInput
-        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | REMOTE_DESKTOP_SERVICES
+        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | OFFICE_STANDARD | REMOTE_DESKTOP_SERVICES
         Product: string
         -- An object that specifies details for the identity provider.
         IdentityProvider: IdentityProvider
@@ -406,6 +406,8 @@ local record M
         SubscriptionStartDate: string
         -- The end date of a subscription.
         SubscriptionEndDate: string
+        -- The expiration date of the license associated with this subscription, in ISO 8601 UTC format (for example, 2025-03-15T00:00:00Z). This field applies only to subscriptions that use license server endpoints, such as Remote Desktop Services (RDS) Subscriber Access License (SAL). It returns null for products that don't use license-based subscriptions.
+        LicenseExpirationDate: string
     end
 
     record ListProductSubscriptionsOutput
@@ -448,7 +450,7 @@ local record M
     record RegisterIdentityProviderInput
         -- An object that specifies details for the identity provider to register.
         IdentityProvider: IdentityProvider
-        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | REMOTE_DESKTOP_SERVICES
+        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | OFFICE_STANDARD | REMOTE_DESKTOP_SERVICES
         Product: string
         -- The registered identity provider’s product related configuration settings such as the subnets to provision VPC endpoints.
         Settings: Settings
@@ -466,7 +468,7 @@ local record M
         Username: string
         -- An object that specifies details for the identity provider.
         IdentityProvider: IdentityProvider
-        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | REMOTE_DESKTOP_SERVICES
+        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | OFFICE_STANDARD | REMOTE_DESKTOP_SERVICES
         Product: string
         -- The domain name of the Active Directory that contains the user for whom to start the product subscription.
         Domain: string
@@ -484,7 +486,7 @@ local record M
         Username: string
         -- An object that specifies details for the identity provider.
         IdentityProvider: IdentityProvider
-        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | REMOTE_DESKTOP_SERVICES
+        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | OFFICE_STANDARD | REMOTE_DESKTOP_SERVICES
         Product: string
         -- The Amazon Resource Name (ARN) of the product user.
         ProductUserArn: string
@@ -529,7 +531,7 @@ local record M
 
     record UpdateIdentityProviderSettingsInput
         IdentityProvider: IdentityProvider
-        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | REMOTE_DESKTOP_SERVICES
+        -- The name of the user-based subscription product. Valid values: VISUAL_STUDIO_ENTERPRISE | VISUAL_STUDIO_PROFESSIONAL | OFFICE_PROFESSIONAL_PLUS | OFFICE_STANDARD | REMOTE_DESKTOP_SERVICES
         Product: string
         -- The Amazon Resource Name (ARN) of the identity provider to update.
         IdentityProviderArn: string

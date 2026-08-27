@@ -761,6 +761,7 @@ local record M
         "PROVISIONING"
         "DELETING"
         "READY"
+        "FAILED"
     end
 
     enum PerObjectSyncStatus
