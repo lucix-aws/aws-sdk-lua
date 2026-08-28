@@ -2442,6 +2442,12 @@ M.DBSnapshot = schema.new({
             name = "SnapshotAvailabilityZone",
             target_id = prelude.String.id,
         }),
+        FullSnapshotSizeInBytes = schema.new({
+            id = id.from(_N, "DBSnapshot", "FullSnapshotSizeInBytes"),
+            type = "long",
+            name = "FullSnapshotSizeInBytes",
+            target_id = prelude.Long.id,
+        }),
     },
 })
 

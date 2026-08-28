@@ -36,7 +36,7 @@ local record M
 
     -- Contains the location of the code artifact for a MicroVM image.
     record CodeArtifact
-        -- The URI of the code artifact, such as an Amazon S3 path or Amazon ECR image URI.
+        -- The URI of the code artifact in Amazon S3.
         uri: string
     end
 
@@ -511,6 +511,11 @@ local record M
         tags: {string : string}
     end
 
+    -- There is insufficient capacity to fulfill the request. Retry the request later.
+    record InsufficientCapacityException
+        message: string
+    end
+
     -- One of the parameters in the request is not valid.
     record InvalidParameterValueException
         -- The exception type.
@@ -542,6 +547,138 @@ local record M
         items: {ManagedMicrovmImageSummary}
     end
 
+    record ListTagsInput
+        -- The ARN of the resource to list tags for.
+        Resource: string
+    end
+
+    record ListTagsOutput
+        -- The key-value pairs of tags associated with the resource.
+        Tags: {string : string}
+    end
+
+    -- The AWS Lambda MicroVMs service encountered an internal error.
+    record ServiceException
+        -- The exception type.
+        Type: string
+        message: string
+    end
+
+    -- The request throughput limit was exceeded. Retry the request later.
+    record TooManyRequestsException
+        -- The exception type.
+        Type: string
+        message: string
+    end
+
+    record ListMicrovmsInput
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- The pagination token from a previous call. Use this token to retrieve the next page of results.
+        nextToken: string
+        -- Optional filter to list only MicroVMs running the specified image.
+        imageIdentifier: string
+        -- Optional filter to list only MicroVMs running the specified image version.
+        imageVersion: string
+    end
+
+    -- Contains summary information about a MicroVM instance.
+    record MicrovmItem
+        -- The unique identifier of the MicroVM.
+        microvmId: string
+        -- The current lifecycle state of the MicroVM.
+        state: string
+        -- The ARN of the MicroVM image used to run this MicroVM.
+        imageArn: string
+        -- The version of the MicroVM image used to run this MicroVM.
+        imageVersion: string
+        -- The timestamp when the MicroVM started.
+        startedAt: number
+    end
+
+    record ListMicrovmsOutput
+        -- The pagination token to use in a subsequent request to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
+        -- The list of MicroVMs.
+        items: {MicrovmItem}
+    end
+
+    record ResumeMicrovmInput
+        -- The ID of the MicroVM to resume.
+        microvmIdentifier: string
+    end
+
+    record ResumeMicrovmOutput
+    end
+
+    record RunMicrovmInput
+        -- The list of ingress network connectors to configure for the MicroVM.
+        ingressNetworkConnectors: {string}
+        -- The list of egress network connectors to configure for the MicroVM.
+        egressNetworkConnectors: {string}
+        -- The identifier (ARN or ID) of the MicroVM image to run.
+        imageIdentifier: string
+        -- The version of the MicroVM image to run.
+        imageVersion: string
+        -- The ARN of the IAM role to be assumed by the MicroVM during execution.
+        executionRoleArn: string
+        -- Configuration to control auto-suspend and auto-resume behavior.
+        idlePolicy: IdlePolicy
+        -- The logging configuration for this MicroVM instance. Specify {"cloudWatch": {"logGroup": "..."}} to stream application logs to a custom CloudWatch log group, or {"disabled": {}} to turn off logging.
+        logging: Logging
+        -- Per-MicroVM initialization data delivered as the request body of the /run lifecycle hook. Use to pass tenant-specific configuration such as session IDs or secret references. Maximum: 16,384 bytes.
+        runHookPayload: string
+        -- The maximum duration in seconds that the MicroVM can exist before being terminated by the platform. Valid range: 1–28,800 (8 hours).
+        maximumDurationInSeconds: number
+        -- A unique, case-sensitive identifier you provide to ensure the idempotency of the request.
+        clientToken: string
+    end
+
+    record RunMicrovmOutput
+        -- The unique identifier of the MicroVM.
+        microvmId: string
+        -- The current lifecycle state of the MicroVM.
+        state: string
+        -- The HTTPS endpoint URL for communicating with the MicroVM. Include a valid authentication token in the X-aws-proxy-auth header when sending requests.
+        endpoint: string
+        -- The ARN of the MicroVM image used to run this MicroVM.
+        imageArn: string
+        -- The version of the MicroVM image used to run this MicroVM.
+        imageVersion: string
+        -- The ARN of the IAM execution role assumed by the MicroVM.
+        executionRoleArn: string
+        -- The idle policy configuration of the MicroVM.
+        idlePolicy: IdlePolicy
+        -- The maximum duration in seconds that the MicroVM can exist.
+        maximumDurationInSeconds: number
+        -- The timestamp when the MicroVM first started.
+        startedAt: number
+        -- The timestamp when the MicroVM terminated.
+        terminatedAt: number
+        -- The reason for why the MicroVM is in the current state.
+        stateReason: string
+        -- The list of ingress network connectors configured for the MicroVM.
+        ingressNetworkConnectors: {string}
+        -- The list of egress network connectors configured for the MicroVM.
+        egressNetworkConnectors: {string}
+    end
+
+    record SuspendMicrovmInput
+        -- The ID of the MicroVM to suspend.
+        microvmIdentifier: string
+    end
+
+    record SuspendMicrovmOutput
+    end
+
+    record TerminateMicrovmInput
+        -- The ID of the MicroVM to terminate.
+        microvmIdentifier: string
+    end
+
+    record TerminateMicrovmOutput
+    end
+
     record ListManagedMicrovmImageVersionsInput
         -- The maximum number of results to return in a single call.
         maxResults: number
@@ -551,12 +688,19 @@ local record M
         imageIdentifier: string
     end
 
+    enum ManagedMicrovmImageVersionStatus
+        "AVAILABLE"
+        "DEPRECATED"
+    end
+
     -- Contains version information for a managed MicroVM image.
     record ManagedMicrovmImageVersion
         -- The ARN of the managed MicroVM image.
         imageArn: string
         -- The version of the managed MicroVM image.
         imageVersion: string
+        -- The lifecycle status of the managed MicroVM image version. Valid values: AVAILABLE (the version is available for use) or DEPRECATED (the version is deprecated; do not use it for new MicroVM images).
+        status: string
         -- The timestamp when the version was created.
         createdAt: number
         -- The timestamp when the version was last updated.
@@ -707,165 +851,6 @@ local record M
         items: {MicrovmImageVersionSummary}
     end
 
-    record ListTagsInput
-        -- The ARN of the resource to list tags for.
-        Resource: string
-    end
-
-    record ListTagsOutput
-        -- The key-value pairs of tags associated with the resource.
-        Tags: {string : string}
-    end
-
-    -- The AWS Lambda MicroVMs service encountered an internal error.
-    record ServiceException
-        -- The exception type.
-        Type: string
-        message: string
-    end
-
-    -- The request throughput limit was exceeded. Retry the request later.
-    record TooManyRequestsException
-        -- The exception type.
-        Type: string
-        message: string
-    end
-
-    record ListMicrovmsInput
-        -- The maximum number of results to return in a single call.
-        maxResults: number
-        -- The pagination token from a previous call. Use this token to retrieve the next page of results.
-        nextToken: string
-        -- Optional filter to list only MicroVMs running the specified image.
-        imageIdentifier: string
-        -- Optional filter to list only MicroVMs running the specified image version.
-        imageVersion: string
-    end
-
-    -- Contains summary information about a MicroVM instance.
-    record MicrovmItem
-        -- The unique identifier of the MicroVM.
-        microvmId: string
-        -- The current lifecycle state of the MicroVM.
-        state: string
-        -- The ARN of the MicroVM image used to run this MicroVM.
-        imageArn: string
-        -- The version of the MicroVM image used to run this MicroVM.
-        imageVersion: string
-        -- The timestamp when the MicroVM started.
-        startedAt: number
-    end
-
-    record ListMicrovmsOutput
-        -- The pagination token to use in a subsequent request to retrieve the next page of results. This value is null when there are no more results to return.
-        nextToken: string
-        -- The list of MicroVMs.
-        items: {MicrovmItem}
-    end
-
-    record ResumeMicrovmInput
-        -- The ID of the MicroVM to resume.
-        microvmIdentifier: string
-    end
-
-    record ResumeMicrovmOutput
-    end
-
-    record RunMicrovmInput
-        -- The list of ingress network connectors to configure for the MicroVM.
-        ingressNetworkConnectors: {string}
-        -- The list of egress network connectors to configure for the MicroVM.
-        egressNetworkConnectors: {string}
-        -- The identifier (ARN or ID) of the MicroVM image to run.
-        imageIdentifier: string
-        -- The version of the MicroVM image to run.
-        imageVersion: string
-        -- The ARN of the IAM role to be assumed by the MicroVM during execution.
-        executionRoleArn: string
-        -- Configuration to control auto-suspend and auto-resume behavior.
-        idlePolicy: IdlePolicy
-        -- The logging configuration for this MicroVM instance. Specify {"cloudWatch": {"logGroup": "..."}} to stream application logs to a custom CloudWatch log group, or {"disabled": {}} to turn off logging.
-        logging: Logging
-        -- Per-MicroVM initialization data delivered as the request body of the /run lifecycle hook. Use to pass tenant-specific configuration such as session IDs or secret references. Maximum: 16,384 bytes.
-        runHookPayload: string
-        -- The maximum duration in seconds that the MicroVM can exist before being terminated by the platform. Valid range: 1–28,800 (8 hours).
-        maximumDurationInSeconds: number
-        -- A unique, case-sensitive identifier you provide to ensure the idempotency of the request.
-        clientToken: string
-    end
-
-    record RunMicrovmOutput
-        -- The unique identifier of the MicroVM.
-        microvmId: string
-        -- The current lifecycle state of the MicroVM.
-        state: string
-        -- The HTTPS endpoint URL for communicating with the MicroVM. Include a valid authentication token in the X-aws-proxy-auth header when sending requests.
-        endpoint: string
-        -- The ARN of the MicroVM image used to run this MicroVM.
-        imageArn: string
-        -- The version of the MicroVM image used to run this MicroVM.
-        imageVersion: string
-        -- The ARN of the IAM execution role assumed by the MicroVM.
-        executionRoleArn: string
-        -- The idle policy configuration of the MicroVM.
-        idlePolicy: IdlePolicy
-        -- The maximum duration in seconds that the MicroVM can exist.
-        maximumDurationInSeconds: number
-        -- The timestamp when the MicroVM first started.
-        startedAt: number
-        -- The timestamp when the MicroVM terminated.
-        terminatedAt: number
-        -- The reason for why the MicroVM is in the current state.
-        stateReason: string
-        -- The list of ingress network connectors configured for the MicroVM.
-        ingressNetworkConnectors: {string}
-        -- The list of egress network connectors configured for the MicroVM.
-        egressNetworkConnectors: {string}
-    end
-
-    record SuspendMicrovmInput
-        -- The ID of the MicroVM to suspend.
-        microvmIdentifier: string
-    end
-
-    record SuspendMicrovmOutput
-    end
-
-    record TerminateMicrovmInput
-        -- The ID of the MicroVM to terminate.
-        microvmIdentifier: string
-    end
-
-    record TerminateMicrovmOutput
-    end
-
-    -- The resource already exists, or another operation is in progress.
-    record ResourceConflictException
-        -- The exception type.
-        Type: string
-        message: string
-    end
-
-    record TagResourceInput
-        -- The ARN of the resource to tag.
-        Resource: string
-        -- The key-value pairs of tags to add to the resource.
-        Tags: {string : string}
-    end
-
-    record TagResourceOutput
-    end
-
-    record UntagResourceInput
-        -- The ARN of the resource to remove tags from.
-        Resource: string
-        -- The list of tag keys to remove from the resource.
-        TagKeys: {string}
-    end
-
-    record UntagResourceOutput
-    end
-
     record UpdateMicrovmImageInput
         -- The ARN of the base MicroVM image.
         baseImageArn: string
@@ -987,6 +972,33 @@ local record M
         stateReason: string
         -- Key-value pairs associated with the version.
         tags: {string : string}
+    end
+
+    -- The resource already exists, or another operation is in progress.
+    record ResourceConflictException
+        -- The exception type.
+        Type: string
+        message: string
+    end
+
+    record TagResourceInput
+        -- The ARN of the resource to tag.
+        Resource: string
+        -- The key-value pairs of tags to add to the resource.
+        Tags: {string : string}
+    end
+
+    record TagResourceOutput
+    end
+
+    record UntagResourceInput
+        -- The ARN of the resource to remove tags from.
+        Resource: string
+        -- The list of tag keys to remove from the resource.
+        TagKeys: {string}
+    end
+
+    record UntagResourceOutput
     end
 
 end

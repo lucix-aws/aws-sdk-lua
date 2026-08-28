@@ -28,6 +28,8 @@ M.DataProductItems = schema.new({ type = "list", list_member = M.DataProductItem
 
 M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.FailureReasonsList = schema.new({ type = "list", list_member = M.FailureReason })
+
 M.DomainUnitOwners = schema.new({ type = "list", list_member = M.DomainUnitOwnerProperties })
 
 M.DomainUnitIds = schema.new({ type = "list", list_member = prelude.String })
@@ -16633,6 +16635,15 @@ M.DeleteDomainInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "skipDeletionCheck" },
             },
         }),
+        cascadeDelete = schema.new({
+            id = id.from(_N, "DeleteDomainInput", "cascadeDelete"),
+            type = "boolean",
+            name = "cascadeDelete",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "cascadeDelete" },
+            },
+        }),
     },
 })
 
@@ -16648,6 +16659,38 @@ M.DeleteDomainOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.DeleteProgress = schema.new({
+    id = id.from(_N, "DeleteProgress"),
+    type = "structure",
+    members = {
+        successfullyDeletedProjectCount = schema.new({
+            id = id.from(_N, "DeleteProgress", "successfullyDeletedProjectCount"),
+            type = "integer",
+            name = "successfullyDeletedProjectCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.FailureReason = schema.new({
+    id = id.from(_N, "FailureReason"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "FailureReason", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "FailureReason", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -16774,6 +16817,20 @@ M.GetDomainOutput = schema.new({
             type = "string",
             name = "serviceRole",
             target_id = prelude.String.id,
+        }),
+        failureReasons = schema.new({
+            id = id.from(_N, "GetDomainOutput", "failureReasons"),
+            type = "list",
+            name = "failureReasons",
+            target_id = prelude.Document.id,
+            list_member = M.FailureReason,
+        }),
+        deleteProgress = schema.new({
+            id = id.from(_N, "GetDomainOutput", "deleteProgress"),
+            type = "structure",
+            name = "deleteProgress",
+            target_id = id.from(_N, "DeleteProgress"),
+            target = M.DeleteProgress,
         }),
     },
 })

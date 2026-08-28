@@ -711,6 +711,27 @@ local record M
         InviteMessageTemplate: MessageTemplateType
     end
 
+    record AdminDeleteSoftwareTokenInput
+        -- The ID of the user pool where you want to delete the user's software
+        -- token.
+        UserPoolId: string
+        -- The name of the user that you want to query or modify. The value of this parameter
+        -- is typically your user's username, but it can be any of their alias attributes. If
+        -- username isn't an alias attribute in your user pool, this value
+        -- must be the sub of a local user or the username of a user from a
+        -- third-party IdP.
+        Username: string
+    end
+
+    record AdminDeleteSoftwareTokenOutput
+    end
+
+    -- This exception is thrown when a user isn't confirmed successfully.
+    record UserNotConfirmedException
+        -- The message returned when a user isn't confirmed successfully.
+        message: string
+    end
+
     -- Represents the request to delete a user as an administrator.
     record AdminDeleteUserInput
         -- The ID of the user pool where you want to delete the user.
@@ -1309,12 +1330,6 @@ local record M
         message: string
     end
 
-    -- This exception is thrown when a user isn't confirmed successfully.
-    record UserNotConfirmedException
-        -- The message returned when a user isn't confirmed successfully.
-        message: string
-    end
-
     record AdminLinkProviderForUserInput
         -- The ID of the user pool where you want to link a federated identity.
         UserPoolId: string
@@ -1330,9 +1345,6 @@ local record M
         -- ignored.
         -- The ProviderName should be set to Cognito for users in
         -- Cognito user pools.
-        -- All attributes in the DestinationUser profile must be mutable. If you have
-        -- assigned the user any immutable custom attributes, the operation won't
-        -- succeed.
         DestinationUser: ProviderUserIdentifierType
         -- An external IdP account for a user who doesn't exist yet in the user pool. This user
         -- must be a federated user (for example, a SAML or Facebook user), not another native

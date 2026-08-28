@@ -1224,6 +1224,10 @@ M.Phase2DHGroupNumbersRequestList = schema.new({ type = "list", list_member = M.
 
 M.IKEVersionsRequestList = schema.new({ type = "list", list_member = M.IKEVersionsRequestListValue })
 
+M.SupportedInstanceTypeRequestSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.UnsupportedInstanceTypeRequestSet = schema.new({ type = "list", list_member = prelude.String })
+
 M.LaunchSpecsList = schema.new({ type = "list", list_member = M.SpotFleetLaunchSpecification })
 
 M.RequestSpotLaunchSpecificationSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
@@ -1435,6 +1439,10 @@ M.ThroughResourcesStatementList = schema.new({ type = "list", list_member = M.Th
 M.ReservationTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AvailableInstanceCapacityList = schema.new({ type = "list", list_member = M.InstanceCapacity })
+
+M.SupportedInstanceTypeSet = schema.new({ type = "list", list_member = M.InstanceTypeItem })
+
+M.UnsupportedInstanceTypeSet = schema.new({ type = "list", list_member = M.InstanceTypeItem })
 
 M.InstanceStatusDetailsList = schema.new({ type = "list", list_member = M.InstanceStatusDetails })
 
@@ -58170,6 +58178,52 @@ M.ImageWatermark = schema.new({
     },
 })
 
+M.InstanceTypeItem = schema.new({
+    id = id.from(_N, "InstanceTypeItem"),
+    type = "structure",
+    members = {
+        InstanceType = schema.new({
+            id = id.from(_N, "InstanceTypeItem", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceType" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceType" },
+            },
+        }),
+    },
+})
+
+M.InstanceTypeSpecification = schema.new({
+    id = id.from(_N, "InstanceTypeSpecification"),
+    type = "structure",
+    members = {
+        SupportedInstanceTypes = schema.new({
+            id = id.from(_N, "InstanceTypeSpecification", "SupportedInstanceTypes"),
+            type = "list",
+            name = "SupportedInstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.InstanceTypeItem, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "supportedInstanceTypeSet" },
+                [traits.EC2_QUERY_NAME] = { name = "SupportedInstanceTypeSet" },
+            },
+        }),
+        UnsupportedInstanceTypes = schema.new({
+            id = id.from(_N, "InstanceTypeSpecification", "UnsupportedInstanceTypes"),
+            type = "list",
+            name = "UnsupportedInstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.InstanceTypeItem, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "unsupportedInstanceTypeSet" },
+                [traits.EC2_QUERY_NAME] = { name = "UnsupportedInstanceTypeSet" },
+            },
+        }),
+    },
+})
+
 M.Image = schema.new({
     id = id.from(_N, "Image"),
     type = "structure",
@@ -58446,6 +58500,17 @@ M.Image = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "imageWatermarkSet" },
                 [traits.EC2_QUERY_NAME] = { name = "ImageWatermarkSet" },
+            },
+        }),
+        InstanceTypeSpecification = schema.new({
+            id = id.from(_N, "Image", "InstanceTypeSpecification"),
+            type = "structure",
+            name = "InstanceTypeSpecification",
+            target_id = id.from(_N, "InstanceTypeSpecification"),
+            target = M.InstanceTypeSpecification,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceTypeSpecification" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceTypeSpecification" },
             },
         }),
         ImageId = schema.new({
@@ -105557,6 +105622,79 @@ M.ReplaceImageCriteriaInAllowedImagesSettingsOutput = schema.new({
     },
 })
 
+M.InstanceTypeSpecificationRequest = schema.new({
+    id = id.from(_N, "InstanceTypeSpecificationRequest"),
+    type = "structure",
+    members = {
+        SupportedInstanceTypes = schema.new({
+            id = id.from(_N, "InstanceTypeSpecificationRequest", "SupportedInstanceTypes"),
+            type = "list",
+            name = "SupportedInstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "SupportedInstanceType" },
+            },
+        }),
+        UnsupportedInstanceTypes = schema.new({
+            id = id.from(_N, "InstanceTypeSpecificationRequest", "UnsupportedInstanceTypes"),
+            type = "list",
+            name = "UnsupportedInstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "UnsupportedInstanceType" },
+            },
+        }),
+    },
+})
+
+M.ReplaceImageInstanceTypeSpecificationInput = schema.new({
+    id = id.from(_N, "ReplaceImageInstanceTypeSpecificationRequest"),
+    type = "structure",
+    members = {
+        ImageId = schema.new({
+            id = id.from(_N, "ReplaceImageInstanceTypeSpecificationInput", "ImageId"),
+            type = "string",
+            name = "ImageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceTypeSpecification = schema.new({
+            id = id.from(_N, "ReplaceImageInstanceTypeSpecificationInput", "InstanceTypeSpecification"),
+            type = "structure",
+            name = "InstanceTypeSpecification",
+            target_id = id.from(_N, "InstanceTypeSpecificationRequest"),
+            target = M.InstanceTypeSpecificationRequest,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "ReplaceImageInstanceTypeSpecificationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ReplaceImageInstanceTypeSpecificationOutput = schema.new({
+    id = id.from(_N, "ReplaceImageInstanceTypeSpecificationResult"),
+    type = "structure",
+    members = {
+        ReturnValue = schema.new({
+            id = id.from(_N, "ReplaceImageInstanceTypeSpecificationOutput", "ReturnValue"),
+            type = "boolean",
+            name = "ReturnValue",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "returnValue" },
+                [traits.EC2_QUERY_NAME] = { name = "ReturnValue" },
+            },
+        }),
+    },
+})
+
 M.ReplaceNetworkAclAssociationInput = schema.new({
     id = id.from(_N, "ReplaceNetworkAclAssociationRequest"),
     type = "structure",
@@ -118702,6 +118840,17 @@ M.ReplaceImageCriteriaInAllowedImagesSettings = schema.operation({
     id = id.from("com.amazonaws.ec2", "ReplaceImageCriteriaInAllowedImagesSettings"),
     input = M.ReplaceImageCriteriaInAllowedImagesSettingsInput,
     output = M.ReplaceImageCriteriaInAllowedImagesSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReplaceImageInstanceTypeSpecification = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ReplaceImageInstanceTypeSpecification"),
+    input = M.ReplaceImageInstanceTypeSpecificationInput,
+    output = M.ReplaceImageInstanceTypeSpecificationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -6027,6 +6027,15 @@ M.QueryStatistics = schema.new({
                 [traits.DEFAULT] = { value = 0 },
             },
         }),
+        resultCount = schema.new({
+            id = id.from(_N, "QueryStatistics", "resultCount"),
+            type = "double",
+            name = "resultCount",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
     },
 })
 

@@ -2817,6 +2817,22 @@ M.InvalidTagsToAddException = schema.new({
     },
 })
 
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateDeploymentInput = schema.new({
     id = id.from(_N, "CreateDeploymentInput"),
     type = "structure",
@@ -2891,6 +2907,12 @@ M.CreateDeploymentInput = schema.new({
             id = id.from(_N, "CreateDeploymentInput", "fileExistsBehavior"),
             type = "string",
             name = "fileExistsBehavior",
+            target_id = prelude.String.id,
+        }),
+        deploymentMode = schema.new({
+            id = id.from(_N, "CreateDeploymentInput", "deploymentMode"),
+            type = "string",
+            name = "deploymentMode",
             target_id = prelude.String.id,
         }),
         overrideAlarmConfiguration = schema.new({
@@ -3028,6 +3050,22 @@ M.InvalidDeploymentConfigNameException = schema.new({
     },
 })
 
+M.InvalidECSServiceException = schema.new({
+    id = id.from(_N, "InvalidECSServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidECSServiceException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InvalidFileExistsBehaviorException = schema.new({
     id = id.from(_N, "InvalidFileExistsBehaviorException"),
     type = "structure",
@@ -3069,6 +3107,22 @@ M.InvalidIgnoreApplicationStopFailuresValueException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InvalidIgnoreApplicationStopFailuresValueException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidInputException = schema.new({
+    id = id.from(_N, "InvalidInputException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidInputException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -3165,22 +3219,6 @@ M.RevisionDoesNotExistException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "RevisionDoesNotExistException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ThrottlingException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -3732,38 +3770,6 @@ M.InvalidEC2TagException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InvalidEC2TagException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidECSServiceException = schema.new({
-    id = id.from(_N, "InvalidECSServiceException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InvalidECSServiceException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidInputException = schema.new({
-    id = id.from(_N, "InvalidInputException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InvalidInputException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,

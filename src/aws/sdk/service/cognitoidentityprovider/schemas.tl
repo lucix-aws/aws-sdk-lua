@@ -1194,6 +1194,52 @@ M.AdminCreateUserConfigType = schema.new({
     },
 })
 
+M.AdminDeleteSoftwareTokenInput = schema.new({
+    id = id.from(_N, "AdminDeleteSoftwareTokenRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "AdminDeleteSoftwareTokenInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Username = schema.new({
+            id = id.from(_N, "AdminDeleteSoftwareTokenInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AdminDeleteSoftwareTokenOutput = schema.new({
+    id = id.from(_N, "AdminDeleteSoftwareTokenResponse"),
+    type = "structure",
+})
+
+M.UserNotConfirmedException = schema.new({
+    id = id.from(_N, "UserNotConfirmedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "UserNotConfirmedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AdminDeleteUserInput = schema.new({
     id = id.from(_N, "AdminDeleteUserRequest"),
     type = "structure",
@@ -2006,22 +2052,6 @@ M.UnsupportedOperationException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "UnsupportedOperationException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.UserNotConfirmedException = schema.new({
-    id = id.from(_N, "UserNotConfirmedException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "UserNotConfirmedException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -11250,6 +11280,17 @@ M.AdminCreateUser = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "AdminCreateUser"),
     input = M.AdminCreateUserInput,
     output = M.AdminCreateUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminDeleteSoftwareToken = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminDeleteSoftwareToken"),
+    input = M.AdminDeleteSoftwareTokenInput,
+    output = M.AdminDeleteSoftwareTokenOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -23,6 +23,7 @@ local record Client
     adminAddUserToGroup: function(Client, types.AdminAddUserToGroupInput, ? base_client.InvokeOptions): async.Operation<types.AdminAddUserToGroupOutput>
     adminConfirmSignUp: function(Client, types.AdminConfirmSignUpInput, ? base_client.InvokeOptions): async.Operation<types.AdminConfirmSignUpOutput>
     adminCreateUser: function(Client, types.AdminCreateUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminCreateUserOutput>
+    adminDeleteSoftwareToken: function(Client, types.AdminDeleteSoftwareTokenInput, ? base_client.InvokeOptions): async.Operation<types.AdminDeleteSoftwareTokenOutput>
     adminDeleteUser: function(Client, types.AdminDeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminDeleteUserOutput>
     adminDeleteUserAttributes: function(Client, types.AdminDeleteUserAttributesInput, ? base_client.InvokeOptions): async.Operation<types.AdminDeleteUserAttributesOutput>
     adminDisableProviderForUser: function(Client, types.AdminDisableProviderForUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminDisableProviderForUserOutput>
@@ -209,6 +210,10 @@ end
 
 function C:adminCreateUser(input: types.AdminCreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminCreateUserOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminCreateUser as schema.OperationSchema, input, options) as async.Operation<types.AdminCreateUserOutput>
+end
+
+function C:adminDeleteSoftwareToken(input: types.AdminDeleteSoftwareTokenInput, options?: base_client.InvokeOptions): async.Operation<types.AdminDeleteSoftwareTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminDeleteSoftwareToken as schema.OperationSchema, input, options) as async.Operation<types.AdminDeleteSoftwareTokenOutput>
 end
 
 function C:adminDeleteUser(input: types.AdminDeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminDeleteUserOutput>

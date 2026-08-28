@@ -768,6 +768,7 @@ local record Client
     releaseIpamPoolAllocation: function(Client, types.ReleaseIpamPoolAllocationInput, ? base_client.InvokeOptions): async.Operation<types.ReleaseIpamPoolAllocationOutput>
     replaceIamInstanceProfileAssociation: function(Client, types.ReplaceIamInstanceProfileAssociationInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceIamInstanceProfileAssociationOutput>
     replaceImageCriteriaInAllowedImagesSettings: function(Client, types.ReplaceImageCriteriaInAllowedImagesSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
+    replaceImageInstanceTypeSpecification: function(Client, types.ReplaceImageInstanceTypeSpecificationInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceImageInstanceTypeSpecificationOutput>
     replaceNetworkAclAssociation: function(Client, types.ReplaceNetworkAclAssociationInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceNetworkAclAssociationOutput>
     replaceNetworkAclEntry: function(Client, types.ReplaceNetworkAclEntryInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceNetworkAclEntryOutput>
     replaceRoute: function(Client, types.ReplaceRouteInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceRouteOutput>
@@ -3860,6 +3861,10 @@ end
 
 function C:replaceImageCriteriaInAllowedImagesSettings(input: types.ReplaceImageCriteriaInAllowedImagesSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceImageCriteriaInAllowedImagesSettings as schema.OperationSchema, input, options) as async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
+end
+
+function C:replaceImageInstanceTypeSpecification(input: types.ReplaceImageInstanceTypeSpecificationInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceImageInstanceTypeSpecificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceImageInstanceTypeSpecification as schema.OperationSchema, input, options) as async.Operation<types.ReplaceImageInstanceTypeSpecificationOutput>
 end
 
 function C:replaceNetworkAclAssociation(input: types.ReplaceNetworkAclAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceNetworkAclAssociationOutput>

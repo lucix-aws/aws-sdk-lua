@@ -1557,6 +1557,17 @@ local record M
         message: string
     end
 
+    -- An API function was called too frequently.
+    record ThrottlingException
+        -- The message that corresponds to the exception thrown by CodeDeploy.
+        message: string
+    end
+
+    enum DeploymentMode
+        "STANDARD"
+        "RESTART"
+    end
+
     -- Represents the input of a CreateDeployment operation.
     record CreateDeploymentInput
         -- The name of an CodeDeploy application associated with the user or Amazon Web Services account.
@@ -1616,6 +1627,8 @@ local record M
         -- RETAIN: The version of the file already on the instance is kept and used as
         -- part of the new deployment.
         fileExistsBehavior: string
+        -- The deployment mode to use for the deployment. When set to STANDARD (the default), the deployment runs the standard set of deployment lifecycle events. When set to RESTART, an EC2/On-premises in-place deployment runs a shortened set of lifecycle events to quickly restart the application on the target instances.
+        deploymentMode: string
         -- Allows you to specify information about alarms associated with a deployment. The alarm
         -- configuration that you specify here will override the alarm configuration at the
         -- deployment group level. Consider overriding the alarm configuration if you have set up
@@ -1688,6 +1701,12 @@ local record M
         message: string
     end
 
+    -- The Amazon ECS service identifier is not valid.
+    record InvalidECSServiceException
+        -- The message that corresponds to the exception thrown by CodeDeploy.
+        message: string
+    end
+
     -- An invalid fileExistsBehavior option was specified to determine how CodeDeploy handles files or directories that already exist in a deployment
     -- target location, but weren't part of the previous successful deployment. Valid values
     -- include "DISALLOW," "OVERWRITE," and "RETAIN."
@@ -1706,6 +1725,12 @@ local record M
     -- deployments, false is expected. For EC2/On-premises deployments,
     -- true or false is expected.
     record InvalidIgnoreApplicationStopFailuresValueException
+        -- The message that corresponds to the exception thrown by CodeDeploy.
+        message: string
+    end
+
+    -- The input was specified in an invalid format.
+    record InvalidInputException
         -- The message that corresponds to the exception thrown by CodeDeploy.
         message: string
     end
@@ -1752,12 +1777,6 @@ local record M
 
     -- The named revision does not exist with the user or Amazon Web Services account.
     record RevisionDoesNotExistException
-        -- The message that corresponds to the exception thrown by CodeDeploy.
-        message: string
-    end
-
-    -- An API function was called too frequently.
-    record ThrottlingException
         -- The message that corresponds to the exception thrown by CodeDeploy.
         message: string
     end
@@ -2071,18 +2090,6 @@ local record M
 
     -- The tag was specified in an invalid format.
     record InvalidEC2TagException
-        -- The message that corresponds to the exception thrown by CodeDeploy.
-        message: string
-    end
-
-    -- The Amazon ECS service identifier is not valid.
-    record InvalidECSServiceException
-        -- The message that corresponds to the exception thrown by CodeDeploy.
-        message: string
-    end
-
-    -- The input was specified in an invalid format.
-    record InvalidInputException
         -- The message that corresponds to the exception thrown by CodeDeploy.
         message: string
     end

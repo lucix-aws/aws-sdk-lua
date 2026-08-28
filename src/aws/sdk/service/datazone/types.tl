@@ -5569,13 +5569,29 @@ local record M
         identifier: string
         -- A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.
         clientToken: string
-        -- Specifies the optional flag to delete all child entities within the domain.
+        -- Specifies whether to skip the check that prevents deletion of a domain that still contains resources. When you use this parameter, Amazon DataZone deletes the domain but might not remove its associated resources, which can leave orphaned resources behind. To delete a domain and fully clean up its associated resources, use cascadeDelete instead. You can't use this parameter together with cascadeDelete.
         skipDeletionCheck: boolean
+        -- Specifies whether to delete the domain along with all of its associated resources. When you use this parameter, Amazon DataZone deletes the domain and cleanly removes its associated resources without leaving orphaned resources behind. Amazon DataZone reports deletion progress in the deleteProgress field. Amazon DataZone reports any resources that it can't delete in the failureReasons field of the GetDomain response. You can't use this parameter together with skipDeletionCheck. If you don't specify a value, the default is false.
+        cascadeDelete: boolean
     end
 
     record DeleteDomainOutput
         -- The status of the domain.
         status: string
+    end
+
+    -- The progress of a domain deletion, including the number of projects that Amazon DataZone successfully deleted. Amazon DataZone returns this structure in the response to a GetDomain request while a cascade deletion is in progress.
+    record DeleteProgress
+        -- The number of projects that Amazon DataZone successfully deleted during the domain deletion.
+        successfullyDeletedProjectCount: number
+    end
+
+    -- The details of a resource deletion failure during a cascade deletion of the domain.
+    record FailureReason
+        -- The identifier of the resource that failed to delete.
+        id: string
+        -- The error message associated with the resource that failed to delete.
+        message: string
     end
 
     record GetDomainInput
@@ -5614,6 +5630,10 @@ local record M
         domainVersion: string
         -- The service role of the domain.
         serviceRole: string
+        -- The list of failure reasons for resources that Amazon DataZone could not delete during a cascade deletion of the domain.
+        failureReasons: {FailureReason}
+        -- The progress of the current domain deletion, including the number of projects that Amazon DataZone successfully deleted.
+        deleteProgress: DeleteProgress
     end
 
     record ListDomainsInput

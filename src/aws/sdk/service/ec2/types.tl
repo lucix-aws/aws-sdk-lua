@@ -23652,6 +23652,8 @@ local record M
         -- | st1 | standard).
         -- block-device-mapping.encrypted - A Boolean that indicates whether the Amazon EBS
         -- volume is encrypted.
+        -- boot-mode – The boot mode of the image (legacy-bios |
+        -- uefi | uefi-preferred).
         -- creation-date - The time when the image was created, in the ISO 8601
         -- format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), for example,
         -- 2021-09-29T11:04:43.305Z. You can use a wildcard (*), for
@@ -23690,6 +23692,14 @@ local record M
         -- 123456789012:approvedAmi).
         -- image-type - The image type (machine | kernel |
         -- ramdisk).
+        -- instance-type-specification.supported-instance-type – The instance
+        -- types that are compatible with the AMI, as specified by the AMI owner. Values can be
+        -- individual instance types (for example, t3.micro) or wildcard patterns that
+        -- match multiple instance types (for example, t3.*).
+        -- instance-type-specification.unsupported-instance-type – The instance
+        -- types that are not compatible with the AMI, as specified by the AMI owner. Values can be
+        -- individual instance types (for example, t3.micro) or wildcard patterns that
+        -- match multiple instance types (for example, t3.*).
         -- is-public - A Boolean that indicates whether the image is public.
         -- kernel-id - The kernel ID.
         -- manifest-location - The location of the image manifest.
@@ -23781,6 +23791,22 @@ local record M
 
     enum ImdsSupportValues
         "v2.0"
+    end
+
+    -- An instance type name or wildcard pattern in an instance type specification.
+    record InstanceTypeItem
+        -- The instance type or wildcard pattern (for example, t3.* or
+        -- m5.large).
+        InstanceType: string
+    end
+
+    -- Describes the instance type compatibility rules for an AMI, including lists of supported
+    -- and unsupported instance type patterns.
+    record InstanceTypeSpecification
+        -- The instance types that the AMI supports.
+        SupportedInstanceTypes: {InstanceTypeItem}
+        -- The instance types that the AMI does not support.
+        UnsupportedInstanceTypes: {InstanceTypeItem}
     end
 
     enum DeviceType
@@ -23898,6 +23924,9 @@ local record M
         PublicSsmParameterName: string
         -- The watermarks attached to the AMI.
         ImageWatermarks: {ImageWatermark}
+        -- The instance type specification for the AMI, which defines which instance types are
+        -- compatible with this image.
+        InstanceTypeSpecification: InstanceTypeSpecification
         -- The ID of the AMI.
         ImageId: string
         -- The location of the AMI.
@@ -42144,6 +42173,40 @@ local record M
     end
 
     record ReplaceImageCriteriaInAllowedImagesSettingsOutput
+        -- Returns true if the request succeeds; otherwise, it returns an error.
+        ReturnValue: boolean
+    end
+
+    -- The instance type specification for an AMI, which contains lists of supported and
+    -- unsupported instance types that define which instance types are compatible with the AMI.
+    record InstanceTypeSpecificationRequest
+        -- The instance types that the AMI supports. You can specify instance type names or use
+        -- wildcard patterns (for example, t3.*).
+        -- Constraints: Maximum 100 entries. Each entry must be 1-24 characters and match the pattern
+        -- ^[A-Za-z0-9_.*-]+$. Consecutive wildcard characters (**) are not
+        -- allowed. Entries must be unique within each list and across both lists; duplicate entries cause the request to fail.
+        SupportedInstanceTypes: {string}
+        -- The instance types that the AMI does not support. You can specify instance type names or
+        -- use wildcard patterns (for example, t3.*).
+        -- Constraints: Maximum 100 entries. Each entry must be 1-24 characters and match the pattern
+        -- ^[A-Za-z0-9_.*-]+$. Consecutive wildcard characters (**) are not
+        -- allowed. Entries must be unique within each list and across both lists; duplicate entries cause the request to fail.
+        UnsupportedInstanceTypes: {string}
+    end
+
+    record ReplaceImageInstanceTypeSpecificationInput
+        -- The ID of the AMI.
+        ImageId: string
+        -- The instance type specification to set on the AMI. Omit this parameter to remove the
+        -- existing instance type specification.
+        InstanceTypeSpecification: InstanceTypeSpecificationRequest
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ReplaceImageInstanceTypeSpecificationOutput
         -- Returns true if the request succeeds; otherwise, it returns an error.
         ReturnValue: boolean
     end

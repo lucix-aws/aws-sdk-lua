@@ -24,14 +24,6 @@ M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelud
 
 M.ManagedMicrovmImageSummaryList = schema.new({ type = "list", list_member = M.ManagedMicrovmImageSummary })
 
-M.ManagedMicrovmImageVersionList = schema.new({ type = "list", list_member = M.ManagedMicrovmImageVersion })
-
-M.MicrovmImageBuildSummaries = schema.new({ type = "list", list_member = M.MicrovmImageBuildSummary })
-
-M.MicrovmImageSummaries = schema.new({ type = "list", list_member = M.MicrovmImageSummary })
-
-M.MicrovmImageVersionSummaryList = schema.new({ type = "list", list_member = M.MicrovmImageVersionSummary })
-
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MicrovmItemList = schema.new({ type = "list", list_member = M.MicrovmItem })
@@ -39,6 +31,14 @@ M.MicrovmItemList = schema.new({ type = "list", list_member = M.MicrovmItem })
 M.ListOfPortSpecification = schema.new({ type = "list", list_member = M.PortSpecification })
 
 M.TokenParts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.MicrovmImageSummaries = schema.new({ type = "list", list_member = M.MicrovmImageSummary })
+
+M.ManagedMicrovmImageVersionList = schema.new({ type = "list", list_member = M.ManagedMicrovmImageVersion })
+
+M.MicrovmImageBuildSummaries = schema.new({ type = "list", list_member = M.MicrovmImageBuildSummary })
+
+M.MicrovmImageVersionSummaryList = schema.new({ type = "list", list_member = M.MicrovmImageVersionSummary })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -1607,6 +1607,25 @@ M.GetMicrovmImageVersionOutput = schema.new({
     },
 })
 
+M.InsufficientCapacityException = schema.new({
+    id = id.from(_N, "InsufficientCapacityException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InsufficientCapacityException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.InvalidParameterValueException = schema.new({
     id = id.from(_N, "InvalidParameterValueException"),
     type = "structure",
@@ -1708,6 +1727,452 @@ M.ListManagedMicrovmImagesOutput = schema.new({
     },
 })
 
+M.ListTagsInput = schema.new({
+    id = id.from(_N, "ListTagsRequest"),
+    type = "structure",
+    members = {
+        Resource = schema.new({
+            id = id.from(_N, "ListTagsInput", "Resource"),
+            type = "string",
+            name = "Resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsOutput = schema.new({
+    id = id.from(_N, "ListTagsResponse"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ServiceException = schema.new({
+    id = id.from(_N, "ServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ServiceException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "ServiceException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TooManyRequestsException = schema.new({
+    id = id.from(_N, "TooManyRequestsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "TooManyRequestsException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "TooManyRequestsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListMicrovmsInput = schema.new({
+    id = id.from(_N, "ListMicrovmsRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListMicrovmsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListMicrovmsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        imageIdentifier = schema.new({
+            id = id.from(_N, "ListMicrovmsInput", "imageIdentifier"),
+            type = "string",
+            name = "imageIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "imageIdentifier" },
+            },
+        }),
+        imageVersion = schema.new({
+            id = id.from(_N, "ListMicrovmsInput", "imageVersion"),
+            type = "string",
+            name = "imageVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "imageVersion" },
+            },
+        }),
+    },
+})
+
+M.MicrovmItem = schema.new({
+    id = id.from(_N, "MicrovmItem"),
+    type = "structure",
+    members = {
+        microvmId = schema.new({
+            id = id.from(_N, "MicrovmItem", "microvmId"),
+            type = "string",
+            name = "microvmId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "MicrovmItem", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        imageArn = schema.new({
+            id = id.from(_N, "MicrovmItem", "imageArn"),
+            type = "string",
+            name = "imageArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        imageVersion = schema.new({
+            id = id.from(_N, "MicrovmItem", "imageVersion"),
+            type = "string",
+            name = "imageVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "MicrovmItem", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListMicrovmsOutput = schema.new({
+    id = id.from(_N, "ListMicrovmsResponse"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListMicrovmsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        items = schema.new({
+            id = id.from(_N, "ListMicrovmsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.MicrovmItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResumeMicrovmInput = schema.new({
+    id = id.from(_N, "ResumeMicrovmRequest"),
+    type = "structure",
+    members = {
+        microvmIdentifier = schema.new({
+            id = id.from(_N, "ResumeMicrovmInput", "microvmIdentifier"),
+            type = "string",
+            name = "microvmIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ResumeMicrovmOutput = schema.new({
+    id = id.from(_N, "ResumeMicrovmResponse"),
+    type = "structure",
+})
+
+M.RunMicrovmInput = schema.new({
+    id = id.from(_N, "RunMicrovmRequest"),
+    type = "structure",
+    members = {
+        ingressNetworkConnectors = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "ingressNetworkConnectors"),
+            type = "list",
+            name = "ingressNetworkConnectors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        egressNetworkConnectors = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "egressNetworkConnectors"),
+            type = "list",
+            name = "egressNetworkConnectors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        imageIdentifier = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "imageIdentifier"),
+            type = "string",
+            name = "imageIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        imageVersion = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "imageVersion"),
+            type = "string",
+            name = "imageVersion",
+            target_id = prelude.String.id,
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+        }),
+        idlePolicy = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "idlePolicy"),
+            type = "structure",
+            name = "idlePolicy",
+            target_id = id.from(_N, "IdlePolicy"),
+            target = M.IdlePolicy,
+        }),
+        logging = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "logging"),
+            type = "union",
+            name = "logging",
+            target_id = id.from(_N, "Logging"),
+            target = M.Logging,
+        }),
+        runHookPayload = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "runHookPayload"),
+            type = "string",
+            name = "runHookPayload",
+            target_id = prelude.String.id,
+        }),
+        maximumDurationInSeconds = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "maximumDurationInSeconds"),
+            type = "integer",
+            name = "maximumDurationInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "RunMicrovmInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.RunMicrovmOutput = schema.new({
+    id = id.from(_N, "RunMicrovmResponse"),
+    type = "structure",
+    members = {
+        microvmId = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "microvmId"),
+            type = "string",
+            name = "microvmId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpoint = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        imageArn = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "imageArn"),
+            type = "string",
+            name = "imageArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        imageVersion = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "imageVersion"),
+            type = "string",
+            name = "imageVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+        }),
+        idlePolicy = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "idlePolicy"),
+            type = "structure",
+            name = "idlePolicy",
+            target_id = id.from(_N, "IdlePolicy"),
+            target = M.IdlePolicy,
+        }),
+        maximumDurationInSeconds = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "maximumDurationInSeconds"),
+            type = "integer",
+            name = "maximumDurationInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        terminatedAt = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "terminatedAt"),
+            type = "timestamp",
+            name = "terminatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+        }),
+        ingressNetworkConnectors = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "ingressNetworkConnectors"),
+            type = "list",
+            name = "ingressNetworkConnectors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        egressNetworkConnectors = schema.new({
+            id = id.from(_N, "RunMicrovmOutput", "egressNetworkConnectors"),
+            type = "list",
+            name = "egressNetworkConnectors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SuspendMicrovmInput = schema.new({
+    id = id.from(_N, "SuspendMicrovmRequest"),
+    type = "structure",
+    members = {
+        microvmIdentifier = schema.new({
+            id = id.from(_N, "SuspendMicrovmInput", "microvmIdentifier"),
+            type = "string",
+            name = "microvmIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.SuspendMicrovmOutput = schema.new({
+    id = id.from(_N, "SuspendMicrovmResponse"),
+    type = "structure",
+})
+
+M.TerminateMicrovmInput = schema.new({
+    id = id.from(_N, "TerminateMicrovmRequest"),
+    type = "structure",
+    members = {
+        microvmIdentifier = schema.new({
+            id = id.from(_N, "TerminateMicrovmInput", "microvmIdentifier"),
+            type = "string",
+            name = "microvmIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.TerminateMicrovmOutput = schema.new({
+    id = id.from(_N, "TerminateMicrovmResponse"),
+    type = "structure",
+})
+
 M.ListManagedMicrovmImageVersionsInput = schema.new({
     id = id.from(_N, "ListManagedMicrovmImageVersionsInput"),
     type = "structure",
@@ -1764,6 +2229,12 @@ M.ManagedMicrovmImageVersion = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ManagedMicrovmImageVersion", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "ManagedMicrovmImageVersion", "createdAt"),
@@ -2318,534 +2789,6 @@ M.ListMicrovmImageVersionsOutput = schema.new({
     },
 })
 
-M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsRequest"),
-    type = "structure",
-    members = {
-        Resource = schema.new({
-            id = id.from(_N, "ListTagsInput", "Resource"),
-            type = "string",
-            name = "Resource",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-    },
-})
-
-M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsResponse"),
-    type = "structure",
-    members = {
-        Tags = schema.new({
-            id = id.from(_N, "ListTagsOutput", "Tags"),
-            type = "map",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-        }),
-    },
-})
-
-M.ServiceException = schema.new({
-    id = id.from(_N, "ServiceException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Type = schema.new({
-            id = id.from(_N, "ServiceException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        message = schema.new({
-            id = id.from(_N, "ServiceException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.TooManyRequestsException = schema.new({
-    id = id.from(_N, "TooManyRequestsException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Type = schema.new({
-            id = id.from(_N, "TooManyRequestsException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        message = schema.new({
-            id = id.from(_N, "TooManyRequestsException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ListMicrovmsInput = schema.new({
-    id = id.from(_N, "ListMicrovmsRequest"),
-    type = "structure",
-    members = {
-        maxResults = schema.new({
-            id = id.from(_N, "ListMicrovmsInput", "maxResults"),
-            type = "integer",
-            name = "maxResults",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "maxResults" },
-            },
-        }),
-        nextToken = schema.new({
-            id = id.from(_N, "ListMicrovmsInput", "nextToken"),
-            type = "string",
-            name = "nextToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "nextToken" },
-            },
-        }),
-        imageIdentifier = schema.new({
-            id = id.from(_N, "ListMicrovmsInput", "imageIdentifier"),
-            type = "string",
-            name = "imageIdentifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "imageIdentifier" },
-            },
-        }),
-        imageVersion = schema.new({
-            id = id.from(_N, "ListMicrovmsInput", "imageVersion"),
-            type = "string",
-            name = "imageVersion",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "imageVersion" },
-            },
-        }),
-    },
-})
-
-M.MicrovmItem = schema.new({
-    id = id.from(_N, "MicrovmItem"),
-    type = "structure",
-    members = {
-        microvmId = schema.new({
-            id = id.from(_N, "MicrovmItem", "microvmId"),
-            type = "string",
-            name = "microvmId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        state = schema.new({
-            id = id.from(_N, "MicrovmItem", "state"),
-            type = "string",
-            name = "state",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        imageArn = schema.new({
-            id = id.from(_N, "MicrovmItem", "imageArn"),
-            type = "string",
-            name = "imageArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        imageVersion = schema.new({
-            id = id.from(_N, "MicrovmItem", "imageVersion"),
-            type = "string",
-            name = "imageVersion",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        startedAt = schema.new({
-            id = id.from(_N, "MicrovmItem", "startedAt"),
-            type = "timestamp",
-            name = "startedAt",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ListMicrovmsOutput = schema.new({
-    id = id.from(_N, "ListMicrovmsResponse"),
-    type = "structure",
-    members = {
-        nextToken = schema.new({
-            id = id.from(_N, "ListMicrovmsOutput", "nextToken"),
-            type = "string",
-            name = "nextToken",
-            target_id = prelude.String.id,
-        }),
-        items = schema.new({
-            id = id.from(_N, "ListMicrovmsOutput", "items"),
-            type = "list",
-            name = "items",
-            target_id = prelude.Document.id,
-            list_member = M.MicrovmItem,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ResumeMicrovmInput = schema.new({
-    id = id.from(_N, "ResumeMicrovmRequest"),
-    type = "structure",
-    members = {
-        microvmIdentifier = schema.new({
-            id = id.from(_N, "ResumeMicrovmInput", "microvmIdentifier"),
-            type = "string",
-            name = "microvmIdentifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-    },
-})
-
-M.ResumeMicrovmOutput = schema.new({
-    id = id.from(_N, "ResumeMicrovmResponse"),
-    type = "structure",
-})
-
-M.RunMicrovmInput = schema.new({
-    id = id.from(_N, "RunMicrovmRequest"),
-    type = "structure",
-    members = {
-        ingressNetworkConnectors = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "ingressNetworkConnectors"),
-            type = "list",
-            name = "ingressNetworkConnectors",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        egressNetworkConnectors = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "egressNetworkConnectors"),
-            type = "list",
-            name = "egressNetworkConnectors",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        imageIdentifier = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "imageIdentifier"),
-            type = "string",
-            name = "imageIdentifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        imageVersion = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "imageVersion"),
-            type = "string",
-            name = "imageVersion",
-            target_id = prelude.String.id,
-        }),
-        executionRoleArn = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "executionRoleArn"),
-            type = "string",
-            name = "executionRoleArn",
-            target_id = prelude.String.id,
-        }),
-        idlePolicy = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "idlePolicy"),
-            type = "structure",
-            name = "idlePolicy",
-            target_id = id.from(_N, "IdlePolicy"),
-            target = M.IdlePolicy,
-        }),
-        logging = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "logging"),
-            type = "union",
-            name = "logging",
-            target_id = id.from(_N, "Logging"),
-            target = M.Logging,
-        }),
-        runHookPayload = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "runHookPayload"),
-            type = "string",
-            name = "runHookPayload",
-            target_id = prelude.String.id,
-        }),
-        maximumDurationInSeconds = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "maximumDurationInSeconds"),
-            type = "integer",
-            name = "maximumDurationInSeconds",
-            target_id = prelude.Integer.id,
-        }),
-        clientToken = schema.new({
-            id = id.from(_N, "RunMicrovmInput", "clientToken"),
-            type = "string",
-            name = "clientToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.IDEMPOTENCY_TOKEN] = {},
-            },
-        }),
-    },
-})
-
-M.RunMicrovmOutput = schema.new({
-    id = id.from(_N, "RunMicrovmResponse"),
-    type = "structure",
-    members = {
-        microvmId = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "microvmId"),
-            type = "string",
-            name = "microvmId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        state = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "state"),
-            type = "string",
-            name = "state",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        endpoint = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "endpoint"),
-            type = "string",
-            name = "endpoint",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        imageArn = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "imageArn"),
-            type = "string",
-            name = "imageArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        imageVersion = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "imageVersion"),
-            type = "string",
-            name = "imageVersion",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        executionRoleArn = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "executionRoleArn"),
-            type = "string",
-            name = "executionRoleArn",
-            target_id = prelude.String.id,
-        }),
-        idlePolicy = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "idlePolicy"),
-            type = "structure",
-            name = "idlePolicy",
-            target_id = id.from(_N, "IdlePolicy"),
-            target = M.IdlePolicy,
-        }),
-        maximumDurationInSeconds = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "maximumDurationInSeconds"),
-            type = "integer",
-            name = "maximumDurationInSeconds",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        startedAt = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "startedAt"),
-            type = "timestamp",
-            name = "startedAt",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        terminatedAt = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "terminatedAt"),
-            type = "timestamp",
-            name = "terminatedAt",
-            target_id = prelude.Timestamp.id,
-        }),
-        stateReason = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "stateReason"),
-            type = "string",
-            name = "stateReason",
-            target_id = prelude.String.id,
-        }),
-        ingressNetworkConnectors = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "ingressNetworkConnectors"),
-            type = "list",
-            name = "ingressNetworkConnectors",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        egressNetworkConnectors = schema.new({
-            id = id.from(_N, "RunMicrovmOutput", "egressNetworkConnectors"),
-            type = "list",
-            name = "egressNetworkConnectors",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-    },
-})
-
-M.SuspendMicrovmInput = schema.new({
-    id = id.from(_N, "SuspendMicrovmRequest"),
-    type = "structure",
-    members = {
-        microvmIdentifier = schema.new({
-            id = id.from(_N, "SuspendMicrovmInput", "microvmIdentifier"),
-            type = "string",
-            name = "microvmIdentifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-    },
-})
-
-M.SuspendMicrovmOutput = schema.new({
-    id = id.from(_N, "SuspendMicrovmResponse"),
-    type = "structure",
-})
-
-M.TerminateMicrovmInput = schema.new({
-    id = id.from(_N, "TerminateMicrovmRequest"),
-    type = "structure",
-    members = {
-        microvmIdentifier = schema.new({
-            id = id.from(_N, "TerminateMicrovmInput", "microvmIdentifier"),
-            type = "string",
-            name = "microvmIdentifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-    },
-})
-
-M.TerminateMicrovmOutput = schema.new({
-    id = id.from(_N, "TerminateMicrovmResponse"),
-    type = "structure",
-})
-
-M.ResourceConflictException = schema.new({
-    id = id.from(_N, "ResourceConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Type = schema.new({
-            id = id.from(_N, "ResourceConflictException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        message = schema.new({
-            id = id.from(_N, "ResourceConflictException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceRequest"),
-    type = "structure",
-    members = {
-        Resource = schema.new({
-            id = id.from(_N, "TagResourceInput", "Resource"),
-            type = "string",
-            name = "Resource",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "TagResourceInput", "Tags"),
-            type = "map",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.TagResourceOutput = prelude.Unit
-
-M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceRequest"),
-    type = "structure",
-    members = {
-        Resource = schema.new({
-            id = id.from(_N, "UntagResourceInput", "Resource"),
-            type = "string",
-            name = "Resource",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        TagKeys = schema.new({
-            id = id.from(_N, "UntagResourceInput", "TagKeys"),
-            type = "list",
-            name = "TagKeys",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Key" } } }),
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_QUERY] = { name = "tagKeys" },
-            },
-        }),
-    },
-})
-
-M.UntagResourceOutput = prelude.Unit
-
 M.UpdateMicrovmImageInput = schema.new({
     id = id.from(_N, "UpdateMicrovmImageRequest"),
     type = "structure",
@@ -3322,6 +3265,88 @@ M.UpdateMicrovmImageVersionOutput = schema.new({
         }),
     },
 })
+
+M.ResourceConflictException = schema.new({
+    id = id.from(_N, "ResourceConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ResourceConflictException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "ResourceConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceRequest"),
+    type = "structure",
+    members = {
+        Resource = schema.new({
+            id = id.from(_N, "TagResourceInput", "Resource"),
+            type = "string",
+            name = "Resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = prelude.Unit
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceRequest"),
+    type = "structure",
+    members = {
+        Resource = schema.new({
+            id = id.from(_N, "UntagResourceInput", "Resource"),
+            type = "string",
+            name = "Resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Key" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do

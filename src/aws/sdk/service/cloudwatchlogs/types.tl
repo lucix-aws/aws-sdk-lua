@@ -2982,6 +2982,12 @@ local record M
         estimatedBytesSkipped: number
         -- The number of log groups that were scanned by this query.
         logGroupsScanned: number
+        -- The number of rows in the final query result set. This value represents the total number
+        -- of output rows across all pages. For queries that include post-aggregation filters (such as
+        -- stats count(*) by field | filter count > threshold), this value might be less
+        -- than recordsMatched. It reflects only the rows that survived all operations in
+        -- the query.
+        resultCount: number
     end
 
     record GetQueryResultsOutput
