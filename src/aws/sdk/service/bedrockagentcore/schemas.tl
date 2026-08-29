@@ -146,6 +146,8 @@ M.EvaluationStringList = schema.new({ type = "list", list_member = prelude.Strin
 
 M.ToolDescriptionResultList = schema.new({ type = "list", list_member = M.ToolDescriptionOutput })
 
+M.IngestPayloadList = schema.new({ type = "list", list_member = M.IngestPayloadType })
+
 M.LinkedAccountList = schema.new({ type = "list", list_member = M.LinkedAccount })
 
 M.WwwAuthenticateHeaderList = schema.new({ type = "list", list_member = prelude.String })
@@ -10954,6 +10956,149 @@ M.GetMemoryRecordOutput = schema.new({
     },
 })
 
+M.IngestPayloadType = schema.new({
+    id = id.from(_N, "IngestPayloadType"),
+    type = "union",
+    members = {
+        conversational = schema.new({
+            id = id.from(_N, "IngestPayloadType", "conversational"),
+            type = "structure",
+            name = "conversational",
+            target_id = id.from(_N, "Conversational"),
+            target = M.Conversational,
+        }),
+        json = schema.new({
+            id = id.from(_N, "IngestPayloadType", "json"),
+            type = "structure",
+            name = "json",
+            target_id = id.from(_N, "MemoryJsonData"),
+            target = M.MemoryJsonData,
+        }),
+    },
+})
+
+M.InlineMemoryContent = schema.new({
+    id = id.from(_N, "InlineMemoryContent"),
+    type = "structure",
+    members = {
+        payload = schema.new({
+            id = id.from(_N, "InlineMemoryContent", "payload"),
+            type = "list",
+            name = "payload",
+            target_id = prelude.Document.id,
+            list_member = M.IngestPayloadType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContentSource = schema.new({
+    id = id.from(_N, "ContentSource"),
+    type = "union",
+    members = {
+        inline = schema.new({
+            id = id.from(_N, "ContentSource", "inline"),
+            type = "structure",
+            name = "inline",
+            target_id = id.from(_N, "InlineMemoryContent"),
+            target = M.InlineMemoryContent,
+        }),
+    },
+})
+
+M.IngestDataInput = schema.new({
+    id = id.from(_N, "IngestDataInput"),
+    type = "structure",
+    members = {
+        memoryId = schema.new({
+            id = id.from(_N, "IngestDataInput", "memoryId"),
+            type = "string",
+            name = "memoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "IngestDataInput", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "ContentSource"),
+            target = M.ContentSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contentTimestamp = schema.new({
+            id = id.from(_N, "IngestDataInput", "contentTimestamp"),
+            type = "timestamp",
+            name = "contentTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        actorId = schema.new({
+            id = id.from(_N, "IngestDataInput", "actorId"),
+            type = "string",
+            name = "actorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sessionId = schema.new({
+            id = id.from(_N, "IngestDataInput", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+        }),
+        extractionConfig = schema.new({
+            id = id.from(_N, "IngestDataInput", "extractionConfig"),
+            type = "structure",
+            name = "extractionConfig",
+            target_id = id.from(_N, "ExtractionConfig"),
+            target = M.ExtractionConfig,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "IngestDataInput", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.MetadataValue,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "IngestDataInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.IngestDataOutput = schema.new({
+    id = id.from(_N, "IngestDataOutput"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "IngestDataOutput", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListActorsInput = schema.new({
     id = id.from(_N, "ListActorsInput"),
     type = "structure",
@@ -14298,6 +14443,18 @@ M.GetWorkloadAccessTokenForUserId = schema.operation({
     output = M.GetWorkloadAccessTokenForUserIdOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/identities/GetWorkloadAccessTokenForUserId" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.IngestData = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "IngestData"),
+    input = M.IngestDataInput,
+    output = M.IngestDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memories/{memoryId}/ingest" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

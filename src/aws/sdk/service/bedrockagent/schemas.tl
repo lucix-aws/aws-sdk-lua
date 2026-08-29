@@ -3615,6 +3615,97 @@ M.MediaExtractionConfiguration = schema.new({
     },
 })
 
+M.DailySchedule = schema.new({
+    id = id.from(_N, "DailySchedule"),
+    type = "structure",
+})
+
+M.LastDayOfMonth = schema.new({
+    id = id.from(_N, "LastDayOfMonth"),
+    type = "structure",
+})
+
+M.DayOfMonth = schema.new({
+    id = id.from(_N, "DayOfMonth"),
+    type = "union",
+    members = {
+        dayNumber = schema.new({
+            id = id.from(_N, "DayOfMonth", "dayNumber"),
+            type = "integer",
+            name = "dayNumber",
+            target_id = prelude.Integer.id,
+        }),
+        lastDayOfMonth = schema.new({
+            id = id.from(_N, "DayOfMonth", "lastDayOfMonth"),
+            type = "structure",
+            name = "lastDayOfMonth",
+            target_id = id.from(_N, "LastDayOfMonth"),
+            target = M.LastDayOfMonth,
+        }),
+    },
+})
+
+M.MonthlySchedule = schema.new({
+    id = id.from(_N, "MonthlySchedule"),
+    type = "structure",
+    members = {
+        dayOfMonth = schema.new({
+            id = id.from(_N, "MonthlySchedule", "dayOfMonth"),
+            type = "union",
+            name = "dayOfMonth",
+            target_id = id.from(_N, "DayOfMonth"),
+            target = M.DayOfMonth,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WeeklySchedule = schema.new({
+    id = id.from(_N, "WeeklySchedule"),
+    type = "structure",
+    members = {
+        dayOfWeek = schema.new({
+            id = id.from(_N, "WeeklySchedule", "dayOfWeek"),
+            type = "string",
+            name = "dayOfWeek",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SyncSchedule = schema.new({
+    id = id.from(_N, "SyncSchedule"),
+    type = "union",
+    members = {
+        daily = schema.new({
+            id = id.from(_N, "SyncSchedule", "daily"),
+            type = "structure",
+            name = "daily",
+            target_id = id.from(_N, "DailySchedule"),
+            target = M.DailySchedule,
+        }),
+        weekly = schema.new({
+            id = id.from(_N, "SyncSchedule", "weekly"),
+            type = "structure",
+            name = "weekly",
+            target_id = id.from(_N, "WeeklySchedule"),
+            target = M.WeeklySchedule,
+        }),
+        monthly = schema.new({
+            id = id.from(_N, "SyncSchedule", "monthly"),
+            type = "structure",
+            name = "monthly",
+            target_id = id.from(_N, "MonthlySchedule"),
+            target = M.MonthlySchedule,
+        }),
+    },
+})
+
 M.ManagedKnowledgeBaseConnectorConfiguration = schema.new({
     id = id.from(_N, "ManagedKnowledgeBaseConnectorConfiguration"),
     type = "structure",
@@ -3638,6 +3729,13 @@ M.ManagedKnowledgeBaseConnectorConfiguration = schema.new({
             type = "document",
             name = "connectorParameters",
             target_id = prelude.Document.id,
+        }),
+        syncSchedule = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConnectorConfiguration", "syncSchedule"),
+            type = "union",
+            name = "syncSchedule",
+            target_id = id.from(_N, "SyncSchedule"),
+            target = M.SyncSchedule,
         }),
     },
 })

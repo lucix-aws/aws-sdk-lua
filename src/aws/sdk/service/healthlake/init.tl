@@ -35,6 +35,7 @@ local record Client
     listFHIRImportJobs: function(Client, types.ListFHIRImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListFHIRImportJobsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     publishDataTransformationProfile: function(Client, types.PublishDataTransformationProfileInput, ? base_client.InvokeOptions): async.Operation<types.PublishDataTransformationProfileOutput>
+    restoreFHIRDatastore: function(Client, types.RestoreFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.RestoreFHIRDatastoreOutput>
     startDataTransformationJob: function(Client, types.StartDataTransformationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartDataTransformationJobOutput>
     startFHIRExportJob: function(Client, types.StartFHIRExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartFHIRExportJobOutput>
     startFHIRImportJob: function(Client, types.StartFHIRImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartFHIRImportJobOutput>
@@ -153,6 +154,10 @@ end
 
 function C:publishDataTransformationProfile(input: types.PublishDataTransformationProfileInput, options?: base_client.InvokeOptions): async.Operation<types.PublishDataTransformationProfileOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishDataTransformationProfile as schema.OperationSchema, input, options) as async.Operation<types.PublishDataTransformationProfileOutput>
+end
+
+function C:restoreFHIRDatastore(input: types.RestoreFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreFHIRDatastoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreFHIRDatastore as schema.OperationSchema, input, options) as async.Operation<types.RestoreFHIRDatastoreOutput>
 end
 
 function C:startDataTransformationJob(input: types.StartDataTransformationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartDataTransformationJobOutput>

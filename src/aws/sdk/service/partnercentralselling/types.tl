@@ -541,6 +541,7 @@ local record M
         "PDM"
         "PSM"
         "ISVSM"
+        "Signatory"
     end
 
     -- An object that contains a Customer Partner's contact details.
@@ -945,6 +946,25 @@ local record M
         "Partner Referral"
     end
 
+    -- Specifies payments details.
+    record MonetaryValue
+        -- Specifies the payment amount.
+        Amount: string
+        -- Specifies the payment currency. Accepted values are USD (US Dollars) and EUR (Euros). If the AWS Partition is aws-eusc (AWS European Sovereign Cloud), the currency code must be EUR.
+        CurrencyCode: string
+    end
+
+    -- Seller-provided PARC deal terms for the opportunity, including commitment value, discount percentage, and contract dates.
+    record AwsSoftwareRevenue
+        Value: MonetaryValue
+        -- Discount percentage offered on the software revenue. Percent convention: 15.00 means 15%.
+        Discount: string
+        -- Contract effective (start) date in YYYY-MM-DD format.
+        EffectiveDate: string
+        -- Contract expiration (end) date in YYYY-MM-DD format.
+        ExpirationDate: string
+    end
+
     enum Visibility
         "Full"
         "Limited"
@@ -971,6 +991,8 @@ local record M
         Project: AwsOpportunityProject
         -- Engagement classification for this opportunity. Read-only. Null before scoring. Known values: AWS Field-engaged, Agent-engaged, Partner-led.
         CosellMotion: string
+        -- Seller-provided PARC deal terms: commitment value, discount, and contract dates.
+        SoftwareRevenue: AwsSoftwareRevenue
     end
 
     -- Contains details about the customer associated with the Engagement Invitation, including company information and industry.
@@ -2105,14 +2127,6 @@ local record M
         "Subscription"
     end
 
-    -- Specifies payments details.
-    record MonetaryValue
-        -- Specifies the payment amount.
-        Amount: string
-        -- Specifies the payment currency. Accepted values are USD (US Dollars) and EUR (Euros). If the AWS Partition is aws-eusc (AWS European Sovereign Cloud), the currency code must be EUR.
-        CurrencyCode: string
-    end
-
     -- Specifies a customer's procurement terms details. Required only for partners in eligible programs.
     record SoftwareRevenue
         -- Specifies the customer's intended payment type agreement or procurement method to acquire the solution or service outlined in the Opportunity.
@@ -2211,6 +2225,8 @@ local record M
         Project: AwsOpportunityProject
         -- Engagement classification for this opportunity. Read-only. Null before scoring. Known values: AWS Field-engaged, Agent-engaged, Partner-led.
         CosellMotion: string
+        -- Seller-provided PARC deal terms: commitment value, discount, and contract dates.
+        SoftwareRevenue: AwsSoftwareRevenue
         -- Specifies the catalog in which the AWS Opportunity exists. This is the environment (e.g., AWS or Sandbox) where the opportunity is being managed.
         Catalog: string
     end

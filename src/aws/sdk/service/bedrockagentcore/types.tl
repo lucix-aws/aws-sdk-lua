@@ -3509,6 +3509,50 @@ local record M
         memoryRecord: MemoryRecord
     end
 
+    -- A single content payload item to ingest. A payload item contains either conversational or JSON content.
+    record IngestPayloadType
+        -- The conversational content for this payload item.
+        conversational: Conversational
+        -- The JSON content for this payload item.
+        json: MemoryJsonData
+    end
+
+    -- The content included directly in the request as one or more payload items.
+    record InlineMemoryContent
+        -- The list of content payload items to ingest.
+        payload: {IngestPayloadType}
+    end
+
+    -- The source of the content to ingest. Only inline content is supported.
+    record ContentSource
+        -- The content included directly in the request.
+        inline: InlineMemoryContent
+    end
+
+    record IngestDataInput
+        -- The identifier of the AgentCore Memory resource to ingest content into.
+        memoryId: string
+        -- The content to ingest. Only inline content is supported.
+        source: ContentSource
+        -- The timestamp of when the content occurred.
+        contentTimestamp: number
+        -- The identifier of the actor associated with this content. An actor represents an entity that participates in sessions and generates content.
+        actorId: string
+        -- The identifier of the session that the content belongs to. If not provided, a session identifier is generated and returned in the response.
+        sessionId: string
+        -- The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.
+        extractionConfig: ExtractionConfig
+        -- The key-value metadata to attach to the content.
+        metadata: {string : MetadataValue}
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.
+        clientToken: string
+    end
+
+    record IngestDataOutput
+        -- The identifier of the session that the service ingested the content into. This value echoes the session identifier from the request, or the identifier that the service generated when you did not provide one.
+        sessionId: string
+    end
+
     record ListActorsInput
         -- The identifier of the AgentCore Memory resource for which to list actors.
         memoryId: string

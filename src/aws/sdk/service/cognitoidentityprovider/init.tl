@@ -83,12 +83,14 @@ local record Client
     describeResourceServer: function(Client, types.DescribeResourceServerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourceServerOutput>
     describeRiskConfiguration: function(Client, types.DescribeRiskConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRiskConfigurationOutput>
     describeTerms: function(Client, types.DescribeTermsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTermsOutput>
+    describeTermsByClient: function(Client, types.DescribeTermsByClientInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTermsByClientOutput>
     describeUserImportJob: function(Client, types.DescribeUserImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserImportJobOutput>
     describeUserPool: function(Client, types.DescribeUserPoolInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserPoolOutput>
     describeUserPoolClient: function(Client, types.DescribeUserPoolClientInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserPoolClientOutput>
     describeUserPoolDomain: function(Client, types.DescribeUserPoolDomainInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserPoolDomainOutput>
     forgetDevice: function(Client, types.ForgetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.ForgetDeviceOutput>
     forgotPassword: function(Client, types.ForgotPasswordInput, ? base_client.InvokeOptions): async.Operation<types.ForgotPasswordOutput>
+    getClientToken: function(Client, types.GetClientTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetClientTokenOutput>
     getCSVHeader: function(Client, types.GetCSVHeaderInput, ? base_client.InvokeOptions): async.Operation<types.GetCSVHeaderOutput>
     getDevice: function(Client, types.GetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
     getGroup: function(Client, types.GetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
@@ -452,6 +454,10 @@ function C:describeTerms(input: types.DescribeTermsInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTerms as schema.OperationSchema, input, options) as async.Operation<types.DescribeTermsOutput>
 end
 
+function C:describeTermsByClient(input: types.DescribeTermsByClientInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTermsByClientOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTermsByClient as schema.OperationSchema, input, options) as async.Operation<types.DescribeTermsByClientOutput>
+end
+
 function C:describeUserImportJob(input: types.DescribeUserImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserImportJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUserImportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserImportJobOutput>
 end
@@ -474,6 +480,10 @@ end
 
 function C:forgotPassword(input: types.ForgotPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.ForgotPasswordOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ForgotPassword as schema.OperationSchema, input, options) as async.Operation<types.ForgotPasswordOutput>
+end
+
+function C:getClientToken(input: types.GetClientTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetClientTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetClientToken as schema.OperationSchema, input, options) as async.Operation<types.GetClientTokenOutput>
 end
 
 function C:getCSVHeader(input: types.GetCSVHeaderInput, options?: base_client.InvokeOptions): async.Operation<types.GetCSVHeaderOutput>

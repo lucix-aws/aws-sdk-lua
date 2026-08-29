@@ -2363,7 +2363,7 @@ local record M
         containerPort: number
         -- The port number on the container instance to reserve for your container. If you specify a containerPortRange, leave this field empty and the value of the hostPort is set as follows: For containers in a task with the awsvpc network mode, the hostPort is set to the same value as the containerPort. This is a static mapping strategy. For containers in a task with the bridge network mode, the Amazon ECS agent finds open ports on the host and automatically binds them to the container ports. This is a dynamic mapping strategy. If you use containers in a task with the awsvpc or host network mode, the hostPort can either be left blank or set to the same value as the containerPort. If you use containers in a task with the bridge network mode, you can specify a non-reserved host port for your container port mapping, or you can omit the hostPort (or set it to 0) while specifying a containerPort and your container automatically receives a port in the ephemeral port range for your container instance operating system and Docker version. The default ephemeral port range for Docker version 1.6.0 and later is listed on the instance under /proc/sys/net/ipv4/ip_local_port_range. If this kernel parameter is unavailable, the default ephemeral port range from 49153 through 65535 (Linux) or 49152 through 65535 (Windows) is used. Do not attempt to specify a host port in the ephemeral port range as these are reserved for automatic assignment. In general, ports below 32768 are outside of the ephemeral port range. The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS container agent ports 51678-51680. Any host port that was previously specified in a running task is also reserved while the task is running. That is, after a task stops, the host port is released. The current reserved ports are displayed in the remainingResources of DescribeContainerInstances output. A container instance can have up to 100 reserved ports at a time. This number includes the default reserved ports. Automatically assigned ports aren't included in the 100 reserved ports quota.
         hostPort: number
-        -- The protocol used for the port mapping. Valid values are tcp and udp. The default is tcp. protocol is immutable in a Service Connect service. Updating this field requires a service deletion and redeployment.
+        -- The protocol that's used for the port mapping. Valid values are tcp and udp (case-sensitive). The default is tcp. Amazon ECS treats any other specified value as tcp. protocol is immutable in a Service Connect service. To update this field, you must delete and redeploy the service.
         protocol: string
         -- The name that's used for the port mapping. This parameter is the name that you use in the serviceConnectConfiguration and the vpcLatticeConfigurations of a service. The name can include up to 64 characters. The characters can include lowercase letters, numbers, underscores (_), and hyphens (-). The name can't start with a hyphen.
         name: string
@@ -2938,6 +2938,21 @@ local record M
         thresholdConfiguration: ThresholdConfiguration
     end
 
+    enum ServiceRevisionCleanup
+        "BLOCKING"
+        "DEFERRED"
+    end
+
+    -- You can use early success criteria only with rolling deployment strategy. The configuration that determines when a rolling update deployment is considered successful. Early success criteria defines the percentage of tasks that must be healthy before a deployment completes. It also controls whether Amazon ECS must remove the previous tasks before a deployment completes.
+    record DeploymentEarlySuccessCriteria
+        -- Specifies whether to use the early success criteria for the service deployment. When set to false, the deployment uses the default behavior, where Amazon ECS considers the deployment successful when the target service revision fully stabilizes and the previous tasks are removed. The default value is false. When set to true, Amazon ECS monitors the deployment to meet early success criteria. You must also specify healthyPercent and sourceServiceRevisionCleanup.
+        enable: boolean
+        -- The percentage of healthy tasks that the target service revision must reach before Amazon ECS considers the deployment successful. This percentage is relative to the service's desiredCount and must be an integer between 0 and 100. This value must be greater than or equal to the minimumHealthyPercent value. After this percentage of tasks is healthy and the bake time elapses, Amazon ECS completes the deployment. Amazon ECS continues to scale the target service revision to 100 percent in the background.
+        healthyPercent: number
+        -- The time when Amazon ECS removes the source revisions' tasks relative to deployment completion. The valid values are: BLOCKING—Amazon ECS removes the previous tasks before it marks the deployment as successful. DEFERRED—Amazon ECS marks the deployment successful, and then removes the previous tasks in the background.
+        sourceServiceRevisionCleanup: string
+    end
+
     enum DeploymentLifecycleHookStage
         "RECONCILE_SERVICE"
         "PRE_SCALE_UP"
@@ -3013,6 +3028,8 @@ local record M
         linearConfiguration: LinearConfiguration
         -- Configuration for canary deployment strategy. Only valid when the deployment strategy is CANARY. This configuration enables shifting a fixed percentage of traffic for testing, followed by shifting the remaining traffic after a bake period.
         canaryConfiguration: CanaryConfiguration
+        -- The early success criteria configuration for a rolling deployment. With early success criteria, you can configure an Amazon ECS deployment to complete faster. Amazon ECS declares a deployment successful once a target percentage of tasks are healthy, instead of waiting for the service to fully stabilize.
+        earlySuccessCriteria: DeploymentEarlySuccessCriteria
     end
 
     enum DeploymentLifecycleHookStatus

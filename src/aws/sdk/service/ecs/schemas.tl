@@ -7654,6 +7654,35 @@ M.DeploymentCircuitBreaker = schema.new({
     },
 })
 
+M.DeploymentEarlySuccessCriteria = schema.new({
+    id = id.from(_N, "DeploymentEarlySuccessCriteria"),
+    type = "structure",
+    members = {
+        enable = schema.new({
+            id = id.from(_N, "DeploymentEarlySuccessCriteria", "enable"),
+            type = "boolean",
+            name = "enable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        healthyPercent = schema.new({
+            id = id.from(_N, "DeploymentEarlySuccessCriteria", "healthyPercent"),
+            type = "integer",
+            name = "healthyPercent",
+            target_id = prelude.Integer.id,
+        }),
+        sourceServiceRevisionCleanup = schema.new({
+            id = id.from(_N, "DeploymentEarlySuccessCriteria", "sourceServiceRevisionCleanup"),
+            type = "string",
+            name = "sourceServiceRevisionCleanup",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeploymentLifecycleHookTimeoutConfiguration = schema.new({
     id = id.from(_N, "DeploymentLifecycleHookTimeoutConfiguration"),
     type = "structure",
@@ -7805,6 +7834,13 @@ M.DeploymentConfiguration = schema.new({
             name = "canaryConfiguration",
             target_id = id.from(_N, "CanaryConfiguration"),
             target = M.CanaryConfiguration,
+        }),
+        earlySuccessCriteria = schema.new({
+            id = id.from(_N, "DeploymentConfiguration", "earlySuccessCriteria"),
+            type = "structure",
+            name = "earlySuccessCriteria",
+            target_id = id.from(_N, "DeploymentEarlySuccessCriteria"),
+            target = M.DeploymentEarlySuccessCriteria,
         }),
     },
 })

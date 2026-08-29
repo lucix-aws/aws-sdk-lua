@@ -1125,6 +1125,54 @@ local record M
         videoExtractionConfiguration: VideoExtractionConfiguration
     end
 
+    -- A daily sync. The run time is system-chosen (off-peak) and not configurable.
+    record DailySchedule
+    end
+
+    -- The option to run the monthly sync on the last calendar day of each month.
+    record LastDayOfMonth
+    end
+
+    -- The day of the month on which a monthly sync runs. Specify exactly one of dayNumber or lastDayOfMonth.
+    record DayOfMonth
+        -- A specific day of the month, from 1 to 28. Values are capped at 28, so a monthly sync runs in every month, including February.
+        dayNumber: number
+        -- Set this option to run the monthly sync on the last calendar day of each month.
+        lastDayOfMonth: LastDayOfMonth
+    end
+
+    -- A monthly sync on a specified day of the month.
+    record MonthlySchedule
+        -- The day of the month on which the monthly sync runs.
+        dayOfMonth: DayOfMonth
+    end
+
+    enum DayOfWeek
+        "SUNDAY"
+        "MONDAY"
+        "TUESDAY"
+        "WEDNESDAY"
+        "THURSDAY"
+        "FRIDAY"
+        "SATURDAY"
+    end
+
+    -- A weekly sync on a specified day of the week.
+    record WeeklySchedule
+        -- The day of the week on which the weekly sync runs.
+        dayOfWeek: string
+    end
+
+    -- The recurring schedule on which a managed knowledge base connector automatically syncs its data source. Specify exactly one of daily, weekly, or monthly.
+    record SyncSchedule
+        -- A daily sync that runs once a day at a system-chosen off-peak time. The run time is not configurable.
+        daily: DailySchedule
+        -- A weekly sync that runs once a week on the specified day of the week.
+        weekly: WeeklySchedule
+        -- A monthly sync that runs once a month on the specified day of the month.
+        monthly: MonthlySchedule
+    end
+
     -- Configuration for managed knowledge base connector data sources.
     record ManagedKnowledgeBaseConnectorConfiguration
         -- A safeguard against accidental bulk deletion of indexed content.
@@ -1133,6 +1181,8 @@ local record M
         mediaExtractionConfiguration: MediaExtractionConfiguration
         -- Connector-specific parameters. For more information, see Connect a data source.
         connectorParameters: any
+        -- The recurring schedule on which the connector automatically syncs this data source. If not specified, the data source is not synced automatically and you start each sync yourself. Not supported for the Custom connector.
+        syncSchedule: SyncSchedule
     end
 
     -- The configuration information to connect to Amazon S3 as your data source for self-managed knowledge bases. To configure this data source for managed knowledge bases, use managedKnowledgeBaseConnectorConfiguration.

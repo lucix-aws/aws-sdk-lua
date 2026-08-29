@@ -1352,6 +1352,53 @@ M.AnalyticsConfiguration = schema.new({
     },
 })
 
+M.BackupConfiguration = schema.new({
+    id = id.from(_N, "BackupConfiguration"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "BackupConfiguration", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        BackupType = schema.new({
+            id = id.from(_N, "BackupConfiguration", "BackupType"),
+            type = "string",
+            name = "BackupType",
+            target_id = prelude.String.id,
+        }),
+        RetentionPeriodInDays = schema.new({
+            id = id.from(_N, "BackupConfiguration", "RetentionPeriodInDays"),
+            type = "integer",
+            name = "RetentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        BackupTagsEnabled = schema.new({
+            id = id.from(_N, "BackupConfiguration", "BackupTagsEnabled"),
+            type = "boolean",
+            name = "BackupTagsEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.ContinuousBackupRestoreConfiguration = schema.new({
+    id = id.from(_N, "ContinuousBackupRestoreConfiguration"),
+    type = "structure",
+    members = {
+        RestorePointTime = schema.new({
+            id = id.from(_N, "ContinuousBackupRestoreConfiguration", "RestorePointTime"),
+            type = "timestamp",
+            name = "RestorePointTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.IdentityProviderConfiguration = schema.new({
     id = id.from(_N, "IdentityProviderConfiguration"),
     type = "structure",
@@ -1573,6 +1620,13 @@ M.CreateFHIRDatastoreInput = schema.new({
             target_id = id.from(_N, "ProfileConfiguration"),
             target = M.ProfileConfiguration,
         }),
+        BackupConfiguration = schema.new({
+            id = id.from(_N, "CreateFHIRDatastoreInput", "BackupConfiguration"),
+            type = "structure",
+            name = "BackupConfiguration",
+            target_id = id.from(_N, "BackupConfiguration"),
+            target = M.BackupConfiguration,
+        }),
     },
 })
 
@@ -1615,6 +1669,44 @@ M.CreateFHIRDatastoreOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.DatastoreBackupStatus = schema.new({
+    id = id.from(_N, "DatastoreBackupStatus"),
+    type = "structure",
+    members = {
+        Configuration = schema.new({
+            id = id.from(_N, "DatastoreBackupStatus", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "BackupConfiguration"),
+            target = M.BackupConfiguration,
+        }),
+        BackupEnabledAt = schema.new({
+            id = id.from(_N, "DatastoreBackupStatus", "BackupEnabledAt"),
+            type = "timestamp",
+            name = "BackupEnabledAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        EarliestRestorePoint = schema.new({
+            id = id.from(_N, "DatastoreBackupStatus", "EarliestRestorePoint"),
+            type = "timestamp",
+            name = "EarliestRestorePoint",
+            target_id = prelude.Timestamp.id,
+        }),
+        LatestRestorePoint = schema.new({
+            id = id.from(_N, "DatastoreBackupStatus", "LatestRestorePoint"),
+            type = "timestamp",
+            name = "LatestRestorePoint",
+            target_id = prelude.Timestamp.id,
+        }),
+        ScheduledPermanentDeletionTime = schema.new({
+            id = id.from(_N, "DatastoreBackupStatus", "ScheduledPermanentDeletionTime"),
+            type = "timestamp",
+            name = "ScheduledPermanentDeletionTime",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -1778,6 +1870,13 @@ M.DatastoreProperties = schema.new({
             name = "ProfileConfiguration",
             target_id = id.from(_N, "ProfileConfiguration"),
             target = M.ProfileConfiguration,
+        }),
+        BackupStatusInfo = schema.new({
+            id = id.from(_N, "DatastoreProperties", "BackupStatusInfo"),
+            type = "structure",
+            name = "BackupStatusInfo",
+            target_id = id.from(_N, "DatastoreBackupStatus"),
+            target = M.DatastoreBackupStatus,
         }),
     },
 })
@@ -2869,6 +2968,146 @@ M.ListTagsForResourceOutput = schema.new({
     },
 })
 
+M.RestoreConfiguration = schema.new({
+    id = id.from(_N, "RestoreConfiguration"),
+    type = "union",
+    members = {
+        ContinuousBackupRestoreConfiguration = schema.new({
+            id = id.from(_N, "RestoreConfiguration", "ContinuousBackupRestoreConfiguration"),
+            type = "structure",
+            name = "ContinuousBackupRestoreConfiguration",
+            target_id = id.from(_N, "ContinuousBackupRestoreConfiguration"),
+            target = M.ContinuousBackupRestoreConfiguration,
+        }),
+    },
+})
+
+M.RestoreFHIRDatastoreInput = schema.new({
+    id = id.from(_N, "RestoreFHIRDatastoreRequest"),
+    type = "structure",
+    members = {
+        SourceDatastoreId = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "SourceDatastoreId"),
+            type = "string",
+            name = "SourceDatastoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RestoreConfiguration = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "RestoreConfiguration"),
+            type = "union",
+            name = "RestoreConfiguration",
+            target_id = id.from(_N, "RestoreConfiguration"),
+            target = M.RestoreConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DatastoreName = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "DatastoreName"),
+            type = "string",
+            name = "DatastoreName",
+            target_id = prelude.String.id,
+        }),
+        SseConfiguration = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "SseConfiguration"),
+            type = "structure",
+            name = "SseConfiguration",
+            target_id = id.from(_N, "SseConfiguration"),
+            target = M.SseConfiguration,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        IdentityProviderConfiguration = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "IdentityProviderConfiguration"),
+            type = "structure",
+            name = "IdentityProviderConfiguration",
+            target_id = id.from(_N, "IdentityProviderConfiguration"),
+            target = M.IdentityProviderConfiguration,
+        }),
+        AnalyticsConfiguration = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "AnalyticsConfiguration"),
+            type = "structure",
+            name = "AnalyticsConfiguration",
+            target_id = id.from(_N, "AnalyticsConfiguration"),
+            target = M.AnalyticsConfiguration,
+        }),
+        NlpConfiguration = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "NlpConfiguration"),
+            type = "structure",
+            name = "NlpConfiguration",
+            target_id = id.from(_N, "NlpConfiguration"),
+            target = M.NlpConfiguration,
+        }),
+        ProfileConfiguration = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreInput", "ProfileConfiguration"),
+            type = "structure",
+            name = "ProfileConfiguration",
+            target_id = id.from(_N, "ProfileConfiguration"),
+            target = M.ProfileConfiguration,
+        }),
+    },
+})
+
+M.RestoreFHIRDatastoreOutput = schema.new({
+    id = id.from(_N, "RestoreFHIRDatastoreResponse"),
+    type = "structure",
+    members = {
+        DatastoreId = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreOutput", "DatastoreId"),
+            type = "string",
+            name = "DatastoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DatastoreArn = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreOutput", "DatastoreArn"),
+            type = "string",
+            name = "DatastoreArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DatastoreStatus = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreOutput", "DatastoreStatus"),
+            type = "string",
+            name = "DatastoreStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DatastoreEndpoint = schema.new({
+            id = id.from(_N, "RestoreFHIRDatastoreOutput", "DatastoreEndpoint"),
+            type = "string",
+            name = "DatastoreEndpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.StartFHIRExportJobInput = schema.new({
     id = id.from(_N, "StartFHIRExportJobRequest"),
     type = "structure",
@@ -3186,6 +3425,13 @@ M.UpdateFHIRDatastoreInput = schema.new({
             target_id = id.from(_N, "IdentityProviderConfiguration"),
             target = M.IdentityProviderConfiguration,
         }),
+        BackupConfiguration = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "BackupConfiguration"),
+            type = "structure",
+            name = "BackupConfiguration",
+            target_id = id.from(_N, "BackupConfiguration"),
+            target = M.BackupConfiguration,
+        }),
     },
 })
 
@@ -3420,6 +3666,17 @@ M.PublishDataTransformationProfile = schema.operation({
     output = M.PublishDataTransformationProfileOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/data-transformation-profile/{ProfileId}/publish" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreFHIRDatastore = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "RestoreFHIRDatastore"),
+    input = M.RestoreFHIRDatastoreInput,
+    output = M.RestoreFHIRDatastoreOutput,
+    traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -52,6 +52,7 @@ local record Client
     getWorkloadAccessToken: function(Client, types.GetWorkloadAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenOutput>
     getWorkloadAccessTokenForJWT: function(Client, types.GetWorkloadAccessTokenForJWTInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForJWTOutput>
     getWorkloadAccessTokenForUserId: function(Client, types.GetWorkloadAccessTokenForUserIdInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
+    ingestData: function(Client, types.IngestDataInput, ? base_client.InvokeOptions): async.Operation<types.IngestDataOutput>
     invokeAgentRuntime: function(Client, types.InvokeAgentRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAgentRuntimeOutput>
     invokeAgentRuntimeCommand: function(Client, types.InvokeAgentRuntimeCommandInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAgentRuntimeCommandOutput>
     invokeBrowser: function(Client, types.InvokeBrowserInput, ? base_client.InvokeOptions): async.Operation<types.InvokeBrowserOutput>
@@ -262,6 +263,10 @@ end
 
 function C:getWorkloadAccessTokenForUserId(input: types.GetWorkloadAccessTokenForUserIdInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkloadAccessTokenForUserId as schema.OperationSchema, input, options) as async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
+end
+
+function C:ingestData(input: types.IngestDataInput, options?: base_client.InvokeOptions): async.Operation<types.IngestDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IngestData as schema.OperationSchema, input, options) as async.Operation<types.IngestDataOutput>
 end
 
 function C:invokeAgentRuntime(input: types.InvokeAgentRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeAgentRuntimeOutput>

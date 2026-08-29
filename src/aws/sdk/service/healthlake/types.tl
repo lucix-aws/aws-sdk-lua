@@ -81,7 +81,7 @@ local record M
         SourceFormat: string
         -- The source for the initial profile content. Specify a built-in starter profile, an existing profile version to clone, raw profile content for CI/CD workflows, or a sample data file in Amazon S3.
         Source: CreateDataTransformationProfileSource
-        -- The AWS Key Management Service (AWS KMS) key identifier used to encrypt the profile content at rest.
+        -- The Amazon Web Services Key Management Service (Amazon Web Services KMS) key identifier used to encrypt the profile content at rest.
         KmsKeyId: string
         -- A human-readable description of the profile's purpose.
         ProfileDescription: string
@@ -275,15 +275,15 @@ local record M
 
     -- The Amazon S3 output configuration for a data transformation job, including the output location and encryption settings.
     record DataTransformationS3Configuration
-        -- The Amazon S3 URI where AWS HealthLake writes the converted output files.
+        -- The Amazon S3 URI where HealthLake writes the converted output files.
         S3Uri: string
-        -- The AWS Key Management Service (AWS KMS) key identifier used to encrypt the transformation job output written to Amazon S3.
+        -- The Amazon Web Services Key Management Service (Amazon Web Services KMS) key identifier used to encrypt the transformation job output written to Amazon S3.
         KmsKeyId: string
     end
 
     -- The Amazon S3 output location and encryption configuration for a transformation job.
     record TransformationOutputDataConfig
-        -- The Amazon S3 output location and AWS Key Management Service (AWS KMS) encryption configuration.
+        -- The Amazon S3 output location and Amazon Web Services Key Management Service (Amazon Web Services KMS) encryption configuration.
         S3Configuration: DataTransformationS3Configuration
     end
 
@@ -291,9 +291,9 @@ local record M
     record StartDataTransformationJobInput
         -- The Amazon S3 location and format of the source files to transform.
         InputDataConfig: TransformationInputDataConfig
-        -- The Amazon S3 output location and AWS Key Management Service (AWS KMS) encryption configuration.
+        -- The Amazon S3 output location and Amazon Web Services Key Management Service (Amazon Web Services KMS) encryption configuration.
         OutputDataConfig: TransformationOutputDataConfig
-        -- The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that AWS HealthLake assumes to read from and write to the specified Amazon S3 locations.
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role that HealthLake assumes to read from and write to the specified Amazon S3 locations.
         DataAccessRoleArn: string
         -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.
         ClientToken: string
@@ -301,7 +301,7 @@ local record M
         JobName: string
         -- The unique identifier of the data transformation profile to use for conversion.
         ProfileId: string
-        -- Specifies whether drift detection is enabled for this job. When enabled, AWS HealthLake writes a drift report to the output Amazon S3 location alongside the converted files.
+        -- Specifies whether drift detection is enabled for this job. When enabled, HealthLake writes a drift report to the output Amazon S3 location alongside the converted files.
         DriftDetectionEnabled: boolean
         -- Specifies whether FHIR R4 Provenance resource generation is enabled for this transformation job. When provenance is enabled, the service also generates related DocumentReference and Device resources. If you don't specify a value, the default is true. To disable provenance output, set this parameter to false.
         ProvenanceEnabled: boolean
@@ -363,7 +363,7 @@ local record M
         Message: string
     end
 
-    -- You are not authorized to make this request. Verify that your AWS credentials are valid and that you have the required permissions.
+    -- You are not authorized to make this request. Verify that your Amazon Web Services credentials are valid and that you have the required permissions.
     record UnauthorizedException
         Message: string
     end
@@ -447,9 +447,36 @@ local record M
         "AWS_AUTH"
     end
 
+    enum BackupType
+        "CONTINUOUS"
+    end
+
+    enum BackupStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- The backup configuration for the data store.
+    record BackupConfiguration
+        -- The backup status of the data store.
+        Status: string
+        -- The type of backup.
+        BackupType: string
+        -- The number of days backup data is retained.
+        RetentionPeriodInDays: number
+        -- Specifies whether tags are included in backups.
+        BackupTagsEnabled: boolean
+    end
+
     enum CmkType
         "CUSTOMER_MANAGED_KMS_KEY"
         "AWS_OWNED_KMS_KEY"
+    end
+
+    -- Configuration for continuous backup (point-in-time) restore.
+    record ContinuousBackupRestoreConfiguration
+        -- The point in time to restore the data store to, specified as a UTC timestamp.
+        RestorePointTime: number
     end
 
     enum FHIRVersion
@@ -458,7 +485,7 @@ local record M
 
     -- The identity provider configuration selected when the data store was created.
     record IdentityProviderConfiguration
-        -- The authorization strategy selected when the HealthLake data store is created. HealthLake provides support for both SMART on FHIR V1 and V2 as described below. SMART_ON_FHIR_V1 – Support for only SMART on FHIR V1, which includes read (read/search) and write (create/update/delete) permissions. SMART_ON_FHIR – Support for both SMART on FHIR V1 and V2, which includes create, read, update, delete, and search permissions. AWS_AUTH – The default HealthLake authorization strategy; not affiliated with SMART on FHIR.
+        -- The authorization strategy selected when the HealthLake data store is created. HealthLake provides support for both SMART on FHIR V1 and V2 as described below. SMART_ON_FHIR_V1 – Support for only SMART on FHIR V1, which includes read (read/search) and write (create/update/delete) permissions. SMART_ON_FHIR – Support for both SMART on FHIR V1 and V2, which includes create, read, update, delete, and search permissions. Amazon Web Services_AUTH – The default HealthLake authorization strategy; not affiliated with SMART on FHIR.
         AuthorizationStrategy: string
         -- The parameter to enable SMART on FHIR fine-grained authorization for the data store.
         FineGrainedAuthorizationEnabled: boolean
@@ -497,7 +524,7 @@ local record M
         DefaultProfiles: {string}
     end
 
-    -- The customer-managed-key (CMK) used when creating a data store. If a customer-owned key is not specified, an AWS-owned key is used for encryption.
+    -- The customer-managed-key (CMK) used when creating a data store. If a customer-owned key is not specified, an Amazon Web Services-owned key is used for encryption.
     record KmsEncryptionConfig
         -- The type of customer-managed-key (CMK) used for encryption.
         CmkType: string
@@ -540,6 +567,8 @@ local record M
         NlpConfiguration: NlpConfiguration
         -- The profile configuration for the data store.
         ProfileConfiguration: ProfileConfiguration
+        -- The backup configuration for the data store.
+        BackupConfiguration: BackupConfiguration
     end
 
     enum DatastoreStatus
@@ -559,8 +588,22 @@ local record M
         DatastoreArn: string
         -- The data store status.
         DatastoreStatus: string
-        -- The AWS endpoint created for the data store.
+        -- The Amazon Web Services endpoint created for the data store.
         DatastoreEndpoint: string
+    end
+
+    -- The backup status information for the data store.
+    record DatastoreBackupStatus
+        -- The backup configuration for the data store.
+        Configuration: BackupConfiguration
+        -- The time backup was enabled on the data store.
+        BackupEnabledAt: number
+        -- The earliest point in time the data store can be restored to.
+        EarliestRestorePoint: number
+        -- The latest point in time the data store can be restored to.
+        LatestRestorePoint: number
+        -- The time the retained backup data is scheduled for permanent deletion.
+        ScheduledPermanentDeletionTime: number
     end
 
     -- The filters applied to a data store query.
@@ -602,7 +645,7 @@ local record M
         CreatedAt: number
         -- The FHIR release version supported by the data store. Current support is for version R4.
         DatastoreTypeVersion: string
-        -- The AWS endpoint for the data store.
+        -- The Amazon Web Services endpoint for the data store.
         DatastoreEndpoint: string
         -- The server-side encryption key configuration for a customer provided encryption key.
         SseConfiguration: SseConfiguration
@@ -618,21 +661,23 @@ local record M
         AnalyticsConfiguration: AnalyticsConfiguration
         -- The profile configuration for the data store.
         ProfileConfiguration: ProfileConfiguration
+        -- The backup status information for the data store.
+        BackupStatusInfo: DatastoreBackupStatus
     end
 
     record DeleteFHIRDatastoreInput
-        -- The AWS-generated identifier for the data store to be deleted.
+        -- The Amazon Web Services-generated identifier for the data store to be deleted.
         DatastoreId: string
     end
 
     record DeleteFHIRDatastoreOutput
-        -- The AWS-generated ID for the deleted data store.
+        -- The Amazon Web Services-generated ID for the deleted data store.
         DatastoreId: string
-        -- The Amazon Resource Name (ARN) that grants access permission to AWS HealthLake.
+        -- The Amazon Resource Name (ARN) that grants access permission to HealthLake.
         DatastoreArn: string
         -- The data store status.
         DatastoreStatus: string
-        -- The AWS endpoint of the data store to be deleted.
+        -- The Amazon Web Services endpoint of the data store to be deleted.
         DatastoreEndpoint: string
     end
 
@@ -664,7 +709,7 @@ local record M
         InputDataConfig: TransformationInputDataConfig
         -- The Amazon S3 location and encryption configuration for the converted output.
         OutputDataConfig: TransformationOutputDataConfig
-        -- The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants AWS HealthLake access to the specified Amazon S3 locations. AWS HealthLake assumes this role to read input files and write output files.
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role that grants HealthLake access to the specified Amazon S3 locations. HealthLake assumes this role to read input files and write output files.
         DataAccessRoleArn: string
         -- The timestamp when the job was submitted.
         SubmitTime: number
@@ -678,7 +723,7 @@ local record M
         ProfileVersion: number
         -- The timestamp when the job completed or failed.
         EndTime: number
-        -- Specifies whether drift detection is enabled for this job. When enabled, AWS HealthLake writes a drift report to the output Amazon S3 location alongside the converted files.
+        -- Specifies whether drift detection is enabled for this job. When enabled, HealthLake writes a drift report to the output Amazon S3 location alongside the converted files.
         DriftDetectionEnabled: boolean
         -- Specifies whether FHIR R4 Provenance resource generation is enabled for this transformation job. When provenance is enabled, the service also generates related DocumentReference and Device resources.
         ProvenanceEnabled: boolean
@@ -724,11 +769,11 @@ local record M
         "CANCEL_FAILED"
     end
 
-    -- The configuration of the S3 bucket for either an import or export job. This includes assigning access permissions.
+    -- The configuration of the Amazon S3 bucket for either an import or export job. This includes assigning access permissions.
     record S3Configuration
-        -- The S3Uri is the user-specified S3 location of the FHIR data to be imported into AWS HealthLake.
+        -- The S3Uri is the user-specified Amazon S3 location of the FHIR data to be imported into HealthLake.
         S3Uri: string
-        -- The Key Management Service (KMS) key ID used to access the S3 bucket.
+        -- The Key Management Service (KMS) key ID used to access the Amazon S3 bucket.
         KmsKeyId: string
     end
 
@@ -774,50 +819,45 @@ local record M
 
     -- The import job input properties.
     record InputDataConfig
-        -- The S3Uri is the user-specified S3 location of the FHIR data to be imported into AWS HealthLake.
+        -- The S3Uri is the user-specified Amazon S3 location of the FHIR data to be imported into HealthLake.
         S3Uri: string
     end
 
     -- The progress report for the import job.
     record JobProgressReport
-        -- The number of files scanned from the S3 input bucket.
+        -- The number of files scanned from the Amazon S3 input bucket.
         TotalNumberOfScannedFiles: number
-        -- The size (in MB) of files scanned from the S3 input bucket.
+        -- The size (in MB) of files scanned from the Amazon S3 input bucket.
         TotalSizeOfScannedFilesInMB: number
         -- The number of files imported.
         TotalNumberOfImportedFiles: number
-        -- The number of resources scanned from the S3 input bucket.
+        -- The number of resources scanned from the Amazon S3 input bucket.
         TotalNumberOfResourcesScanned: number
         -- The number of resources imported.
         TotalNumberOfResourcesImported: number
         -- The number of resources that failed due to customer error.
         TotalNumberOfResourcesWithCustomerError: number
-        -- The number of files that failed to be read from the S3 input bucket due to customer error.
+        -- The number of files that failed to be read from the Amazon S3 input bucket due to customer error.
         TotalNumberOfFilesReadWithCustomerError: number
-        -- The number of non-FHIR files scanned from the S3 input bucket.
+        -- The number of non-FHIR files scanned from the Amazon S3 input bucket.
         TotalNumberOfScannedNonFhirFiles: number
-        -- The size (in MB) of non-FHIR files scanned from the S3 input bucket.
+        -- The size (in MB) of non-FHIR files scanned from the Amazon S3 input bucket.
         TotalSizeOfScannedNonFhirFilesInMB: number
         -- The number of non-FHIR files imported.
         TotalNumberOfImportedNonFhirFiles: number
-        -- The number of non-FHIR resources scanned from the S3 input bucket.
+        -- The number of non-FHIR resources scanned from the Amazon S3 input bucket.
         TotalNumberOfNonFhirResourcesScanned: number
         -- The number of non-FHIR resources imported.
         TotalNumberOfNonFhirResourcesImported: number
         -- The number of non-FHIR resources that failed due to customer error.
         TotalNumberOfNonFhirResourcesWithCustomerError: number
-        -- The number of non-FHIR files that failed to be read from the S3 input bucket due to customer error.
+        -- The number of non-FHIR files that failed to be read from the Amazon S3 input bucket due to customer error.
         TotalNumberOfNonFhirFilesReadWithCustomerError: number
         -- The transaction rate the import job is processed at.
         Throughput: number
-        -- Number of CCDA files successfully transformed during the import's
-        -- transformation phase. Populated only for import jobs that use the
-        -- two-Step-Function (transformation + ingestion) flow; null for legacy
-        -- single-SF imports and for pure FHIR imports that skip transformation.
+        -- Number of CCDA files successfully transformed during the import's transformation phase. Populated only for import jobs that use the two-Step-Function (transformation + ingestion) flow; null for legacy single-SF imports and for pure FHIR imports that skip transformation.
         TotalFilesConverted: number
-        -- Number of FHIR resources produced by the transformation phase.
-        -- Populated only for import jobs that use the two-Step-Function flow;
-        -- null for legacy single-SF imports and for pure FHIR imports.
+        -- Number of FHIR resources produced by the transformation phase. Populated only for import jobs that use the two-Step-Function flow; null for legacy single-SF imports and for pure FHIR imports.
         TotalResourcesGenerated: number
     end
 
@@ -846,7 +886,7 @@ local record M
         JobOutputDataConfig: OutputDataConfig
         -- Displays the progress of the import job, including total resources scanned, total resources imported, and total size of data imported.
         JobProgressReport: JobProgressReport
-        -- The Amazon Resource Name (ARN) that grants AWS HealthLake access to the input data.
+        -- The Amazon Resource Name (ARN) that grants HealthLake access to the input data.
         DataAccessRoleArn: string
         -- An explanation of any errors that might have occurred during the FHIR import job.
         Message: string
@@ -979,6 +1019,46 @@ local record M
         Tags: {Tag}
     end
 
+    -- Specifies the type and parameters for the restore operation.
+    record RestoreConfiguration
+        -- Configuration for restoring from continuous backup to a specific point in time.
+        ContinuousBackupRestoreConfiguration: ContinuousBackupRestoreConfiguration
+    end
+
+    record RestoreFHIRDatastoreInput
+        -- The identifier of the source data store to restore from.
+        SourceDatastoreId: string
+        -- The restore configuration specifying the type and parameters for the restore.
+        RestoreConfiguration: RestoreConfiguration
+        -- The name for the restored data store.
+        DatastoreName: string
+        -- The server-side encryption key configuration for the restored data store.
+        SseConfiguration: SseConfiguration
+        -- An optional user-provided token to ensure API idempotency of the restore.
+        ClientToken: string
+        -- The resource tags applied to the restored data store.
+        Tags: {Tag}
+        -- The identity provider configuration for the restored data store.
+        IdentityProviderConfiguration: IdentityProviderConfiguration
+        -- The analytics configuration for the restored data store.
+        AnalyticsConfiguration: AnalyticsConfiguration
+        -- The NLP configuration for the restored data store.
+        NlpConfiguration: NlpConfiguration
+        -- The profile configuration for the restored data store.
+        ProfileConfiguration: ProfileConfiguration
+    end
+
+    record RestoreFHIRDatastoreOutput
+        -- The restored data store identifier.
+        DatastoreId: string
+        -- The Amazon Resource Name (ARN) for the restored data store.
+        DatastoreArn: string
+        -- The restored data store status.
+        DatastoreStatus: string
+        -- The AWS endpoint for the restored data store.
+        DatastoreEndpoint: string
+    end
+
     record StartFHIRExportJobInput
         -- The export job name.
         JobName: string
@@ -1009,14 +1089,17 @@ local record M
         JobOutputDataConfig: OutputDataConfig
         -- The data store identifier.
         DatastoreId: string
-        -- The Amazon Resource Name (ARN) that grants access permission to AWS HealthLake.
+        -- The Amazon Resource Name (ARN) that grants access permission to HealthLake.
         DataAccessRoleArn: string
         -- The optional user-provided token used for ensuring API idempotency.
         ClientToken: string
         -- The validation level of the import job.
         ValidationLevel: string
+        -- The data transformation profile identifier to use for the import job.
         ProfileId: string
+        -- The input format of the data to be imported.
         InputFormat: string
+        -- Specifies whether to enable drift detection for the import job.
         DriftDetectionEnabled: boolean
         -- Specifies whether to enable provenance for the import job.
         ProvenanceEnabled: boolean
@@ -1064,6 +1147,8 @@ local record M
         ProfileConfiguration: ProfileConfiguration
         -- The identity provider configuration for the data store.
         IdentityProviderConfiguration: IdentityProviderConfiguration
+        -- The backup configuration for the data store.
+        BackupConfiguration: BackupConfiguration
     end
 
     record UpdateFHIRDatastoreOutput

@@ -7044,6 +7044,54 @@ M.DescribeTermsOutput = schema.new({
     },
 })
 
+M.DescribeTermsByClientInput = schema.new({
+    id = id.from(_N, "DescribeTermsByClientRequest"),
+    type = "structure",
+    members = {
+        ClientId = schema.new({
+            id = id.from(_N, "DescribeTermsByClientInput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UserPoolId = schema.new({
+            id = id.from(_N, "DescribeTermsByClientInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TermsName = schema.new({
+            id = id.from(_N, "DescribeTermsByClientInput", "TermsName"),
+            type = "string",
+            name = "TermsName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeTermsByClientOutput = schema.new({
+    id = id.from(_N, "DescribeTermsByClientResponse"),
+    type = "structure",
+    members = {
+        Terms = schema.new({
+            id = id.from(_N, "DescribeTermsByClientOutput", "Terms"),
+            type = "structure",
+            name = "Terms",
+            target_id = id.from(_N, "TermsType"),
+            target = M.TermsType,
+        }),
+    },
+})
+
 M.DescribeUserImportJobInput = schema.new({
     id = id.from(_N, "DescribeUserImportJobRequest"),
     type = "structure",
@@ -7363,6 +7411,88 @@ M.ForgotPasswordOutput = schema.new({
             name = "CodeDeliveryDetails",
             target_id = id.from(_N, "CodeDeliveryDetailsType"),
             target = M.CodeDeliveryDetailsType,
+        }),
+    },
+})
+
+M.GetClientTokenInput = schema.new({
+    id = id.from(_N, "GetClientTokenRequest"),
+    type = "structure",
+    members = {
+        ClientId = schema.new({
+            id = id.from(_N, "GetClientTokenInput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Secret = schema.new({
+            id = id.from(_N, "GetClientTokenInput", "Secret"),
+            type = "string",
+            name = "Secret",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "GetClientTokenInput", "Scopes"),
+            type = "list",
+            name = "Scopes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ClientMetadata = schema.new({
+            id = id.from(_N, "GetClientTokenInput", "ClientMetadata"),
+            type = "map",
+            name = "ClientMetadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ClientAuthenticationResultType = schema.new({
+    id = id.from(_N, "ClientAuthenticationResultType"),
+    type = "structure",
+    members = {
+        AccessToken = schema.new({
+            id = id.from(_N, "ClientAuthenticationResultType", "AccessToken"),
+            type = "string",
+            name = "AccessToken",
+            target_id = prelude.String.id,
+        }),
+        ExpiresIn = schema.new({
+            id = id.from(_N, "ClientAuthenticationResultType", "ExpiresIn"),
+            type = "integer",
+            name = "ExpiresIn",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        TokenType = schema.new({
+            id = id.from(_N, "ClientAuthenticationResultType", "TokenType"),
+            type = "string",
+            name = "TokenType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetClientTokenOutput = schema.new({
+    id = id.from(_N, "GetClientTokenResponse"),
+    type = "structure",
+    members = {
+        ClientAuthenticationResult = schema.new({
+            id = id.from(_N, "GetClientTokenOutput", "ClientAuthenticationResult"),
+            type = "structure",
+            name = "ClientAuthenticationResult",
+            target_id = id.from(_N, "ClientAuthenticationResultType"),
+            target = M.ClientAuthenticationResultType,
         }),
     },
 })
@@ -11947,6 +12077,17 @@ M.DescribeTerms = schema.operation({
     },
 })
 
+M.DescribeTermsByClient = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeTermsByClient"),
+    input = M.DescribeTermsByClientInput,
+    output = M.DescribeTermsByClientOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeUserImportJob = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "DescribeUserImportJob"),
     input = M.DescribeUserImportJobInput,
@@ -12009,6 +12150,17 @@ M.ForgotPassword = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
+M.GetClientToken = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetClientToken"),
+    input = M.GetClientTokenInput,
+    output = M.GetClientTokenOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
         },
     },
 })

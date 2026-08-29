@@ -1149,6 +1149,63 @@ M.AwsTeamMember = schema.new({
     },
 })
 
+M.MonetaryValue = schema.new({
+    id = id.from(_N, "MonetaryValue"),
+    type = "structure",
+    members = {
+        Amount = schema.new({
+            id = id.from(_N, "MonetaryValue", "Amount"),
+            type = "string",
+            name = "Amount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CurrencyCode = schema.new({
+            id = id.from(_N, "MonetaryValue", "CurrencyCode"),
+            type = "string",
+            name = "CurrencyCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AwsSoftwareRevenue = schema.new({
+    id = id.from(_N, "AwsSoftwareRevenue"),
+    type = "structure",
+    members = {
+        Value = schema.new({
+            id = id.from(_N, "AwsSoftwareRevenue", "Value"),
+            type = "structure",
+            name = "Value",
+            target_id = id.from(_N, "MonetaryValue"),
+            target = M.MonetaryValue,
+        }),
+        Discount = schema.new({
+            id = id.from(_N, "AwsSoftwareRevenue", "Discount"),
+            type = "string",
+            name = "Discount",
+            target_id = prelude.String.id,
+        }),
+        EffectiveDate = schema.new({
+            id = id.from(_N, "AwsSoftwareRevenue", "EffectiveDate"),
+            type = "string",
+            name = "EffectiveDate",
+            target_id = prelude.String.id,
+        }),
+        ExpirationDate = schema.new({
+            id = id.from(_N, "AwsSoftwareRevenue", "ExpirationDate"),
+            type = "string",
+            name = "ExpirationDate",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AwsOpportunitySummaryFullView = schema.new({
     id = id.from(_N, "AwsOpportunitySummaryFullView"),
     type = "structure",
@@ -1230,6 +1287,13 @@ M.AwsOpportunitySummaryFullView = schema.new({
             type = "string",
             name = "CosellMotion",
             target_id = prelude.String.id,
+        }),
+        SoftwareRevenue = schema.new({
+            id = id.from(_N, "AwsOpportunitySummaryFullView", "SoftwareRevenue"),
+            type = "structure",
+            name = "SoftwareRevenue",
+            target_id = id.from(_N, "AwsSoftwareRevenue"),
+            target = M.AwsSoftwareRevenue,
         }),
     },
 })
@@ -4171,31 +4235,6 @@ M.Project = schema.new({
     },
 })
 
-M.MonetaryValue = schema.new({
-    id = id.from(_N, "MonetaryValue"),
-    type = "structure",
-    members = {
-        Amount = schema.new({
-            id = id.from(_N, "MonetaryValue", "Amount"),
-            type = "string",
-            name = "Amount",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        CurrencyCode = schema.new({
-            id = id.from(_N, "MonetaryValue", "CurrencyCode"),
-            type = "string",
-            name = "CurrencyCode",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.SoftwareRevenue = schema.new({
     id = id.from(_N, "SoftwareRevenue"),
     type = "structure",
@@ -4516,6 +4555,13 @@ M.GetAwsOpportunitySummaryOutput = schema.new({
             type = "string",
             name = "CosellMotion",
             target_id = prelude.String.id,
+        }),
+        SoftwareRevenue = schema.new({
+            id = id.from(_N, "GetAwsOpportunitySummaryOutput", "SoftwareRevenue"),
+            type = "structure",
+            name = "SoftwareRevenue",
+            target_id = id.from(_N, "AwsSoftwareRevenue"),
+            target = M.AwsSoftwareRevenue,
         }),
         Catalog = schema.new({
             id = id.from(_N, "GetAwsOpportunitySummaryOutput", "Catalog"),
