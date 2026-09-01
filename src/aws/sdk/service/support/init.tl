@@ -20,8 +20,10 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     addAttachmentsToSet: function(Client, types.AddAttachmentsToSetInput, ? base_client.InvokeOptions): async.Operation<types.AddAttachmentsToSetOutput>
     addCommunicationToCase: function(Client, types.AddCommunicationToCaseInput, ? base_client.InvokeOptions): async.Operation<types.AddCommunicationToCaseOutput>
+    completeAttachmentUpload: function(Client, types.CompleteAttachmentUploadInput, ? base_client.InvokeOptions): async.Operation<types.CompleteAttachmentUploadOutput>
     createCase: function(Client, types.CreateCaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateCaseOutput>
     describeAttachment: function(Client, types.DescribeAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAttachmentOutput>
+    describeAttachmentUploadStatus: function(Client, types.DescribeAttachmentUploadStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAttachmentUploadStatusOutput>
     describeCases: function(Client, types.DescribeCasesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCasesOutput>
     describeCommunications: function(Client, types.DescribeCommunicationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCommunicationsOutput>
     describeCreateCaseOptions: function(Client, types.DescribeCreateCaseOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCreateCaseOptionsOutput>
@@ -32,6 +34,8 @@ local record Client
     describeTrustedAdvisorCheckResult: function(Client, types.DescribeTrustedAdvisorCheckResultInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrustedAdvisorCheckResultOutput>
     describeTrustedAdvisorChecks: function(Client, types.DescribeTrustedAdvisorChecksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrustedAdvisorChecksOutput>
     describeTrustedAdvisorCheckSummaries: function(Client, types.DescribeTrustedAdvisorCheckSummariesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrustedAdvisorCheckSummariesOutput>
+    getAttachmentDownloadLink: function(Client, types.GetAttachmentDownloadLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetAttachmentDownloadLinkOutput>
+    getAttachmentUploadLinks: function(Client, types.GetAttachmentUploadLinksInput, ? base_client.InvokeOptions): async.Operation<types.GetAttachmentUploadLinksOutput>
     refreshTrustedAdvisorCheck: function(Client, types.RefreshTrustedAdvisorCheckInput, ? base_client.InvokeOptions): async.Operation<types.RefreshTrustedAdvisorCheckOutput>
     resolveCase: function(Client, types.ResolveCaseInput, ? base_client.InvokeOptions): async.Operation<types.ResolveCaseOutput>
 end
@@ -86,12 +90,20 @@ function C:addCommunicationToCase(input: types.AddCommunicationToCaseInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddCommunicationToCase as schema.OperationSchema, input, options) as async.Operation<types.AddCommunicationToCaseOutput>
 end
 
+function C:completeAttachmentUpload(input: types.CompleteAttachmentUploadInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteAttachmentUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteAttachmentUpload as schema.OperationSchema, input, options) as async.Operation<types.CompleteAttachmentUploadOutput>
+end
+
 function C:createCase(input: types.CreateCaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCaseOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCase as schema.OperationSchema, input, options) as async.Operation<types.CreateCaseOutput>
 end
 
 function C:describeAttachment(input: types.DescribeAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAttachmentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAttachment as schema.OperationSchema, input, options) as async.Operation<types.DescribeAttachmentOutput>
+end
+
+function C:describeAttachmentUploadStatus(input: types.DescribeAttachmentUploadStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAttachmentUploadStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAttachmentUploadStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeAttachmentUploadStatusOutput>
 end
 
 function C:describeCases(input: types.DescribeCasesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCasesOutput>
@@ -132,6 +144,14 @@ end
 
 function C:describeTrustedAdvisorCheckSummaries(input: types.DescribeTrustedAdvisorCheckSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrustedAdvisorCheckSummariesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrustedAdvisorCheckSummaries as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrustedAdvisorCheckSummariesOutput>
+end
+
+function C:getAttachmentDownloadLink(input: types.GetAttachmentDownloadLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetAttachmentDownloadLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAttachmentDownloadLink as schema.OperationSchema, input, options) as async.Operation<types.GetAttachmentDownloadLinkOutput>
+end
+
+function C:getAttachmentUploadLinks(input: types.GetAttachmentUploadLinksInput, options?: base_client.InvokeOptions): async.Operation<types.GetAttachmentUploadLinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAttachmentUploadLinks as schema.OperationSchema, input, options) as async.Operation<types.GetAttachmentUploadLinksOutput>
 end
 
 function C:refreshTrustedAdvisorCheck(input: types.RefreshTrustedAdvisorCheckInput, options?: base_client.InvokeOptions): async.Operation<types.RefreshTrustedAdvisorCheckOutput>

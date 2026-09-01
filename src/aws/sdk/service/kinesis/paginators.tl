@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listChannels.
+function M.pages_list_channels(client, input)
+    return paginator.pages(client, "listChannels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ChannelSummaries",
+    })
+end
+
+--- Returns an item iterator for listChannels.
+function M.items_list_channels(client, input)
+    return paginator.items(client, "listChannels", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ChannelSummaries",
+    })
+end
+
 --- Returns a page iterator for listStreamConsumers.
 function M.pages_list_stream_consumers(client, input)
     return paginator.pages(client, "listStreamConsumers", input, {

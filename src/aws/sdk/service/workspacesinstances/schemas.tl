@@ -496,6 +496,12 @@ M.CpuOptionsRequest = schema.new({
             name = "ThreadsPerCore",
             target_id = prelude.Integer.id,
         }),
+        NestedVirtualization = schema.new({
+            id = id.from(_N, "CpuOptionsRequest", "NestedVirtualization"),
+            type = "string",
+            name = "NestedVirtualization",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

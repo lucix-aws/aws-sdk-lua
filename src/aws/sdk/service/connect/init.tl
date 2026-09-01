@@ -191,6 +191,7 @@ local record Client
     getAttachedFile: function(Client, types.GetAttachedFileInput, ? base_client.InvokeOptions): async.Operation<types.GetAttachedFileOutput>
     getContactAttributes: function(Client, types.GetContactAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetContactAttributesOutput>
     getContactMetrics: function(Client, types.GetContactMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetContactMetricsOutput>
+    getCrossRegionRouting: function(Client, types.GetCrossRegionRoutingInput, ? base_client.InvokeOptions): async.Operation<types.GetCrossRegionRoutingOutput>
     getCurrentMetricData: function(Client, types.GetCurrentMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetCurrentMetricDataOutput>
     getCurrentUserData: function(Client, types.GetCurrentUserDataInput, ? base_client.InvokeOptions): async.Operation<types.GetCurrentUserDataOutput>
     getEffectiveHoursOfOperations: function(Client, types.GetEffectiveHoursOfOperationsInput, ? base_client.InvokeOptions): async.Operation<types.GetEffectiveHoursOfOperationsOutput>
@@ -358,6 +359,7 @@ local record Client
     updateContactRoutingData: function(Client, types.UpdateContactRoutingDataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactRoutingDataOutput>
     updateContactSchedule: function(Client, types.UpdateContactScheduleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactScheduleOutput>
     updateContactTaskTemplate: function(Client, types.UpdateContactTaskTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactTaskTemplateOutput>
+    updateCrossRegionRouting: function(Client, types.UpdateCrossRegionRoutingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCrossRegionRoutingOutput>
     updateDataTableAttribute: function(Client, types.UpdateDataTableAttributeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataTableAttributeOutput>
     updateDataTableMetadata: function(Client, types.UpdateDataTableMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataTableMetadataOutput>
     updateDataTablePrimaryValues: function(Client, types.UpdateDataTablePrimaryValuesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataTablePrimaryValuesOutput>
@@ -1147,6 +1149,10 @@ function C:getContactMetrics(input: types.GetContactMetricsInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContactMetrics as schema.OperationSchema, input, options) as async.Operation<types.GetContactMetricsOutput>
 end
 
+function C:getCrossRegionRouting(input: types.GetCrossRegionRoutingInput, options?: base_client.InvokeOptions): async.Operation<types.GetCrossRegionRoutingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCrossRegionRouting as schema.OperationSchema, input, options) as async.Operation<types.GetCrossRegionRoutingOutput>
+end
+
 function C:getCurrentMetricData(input: types.GetCurrentMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetCurrentMetricDataOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCurrentMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetCurrentMetricDataOutput>
 end
@@ -1813,6 +1819,10 @@ end
 
 function C:updateContactTaskTemplate(input: types.UpdateContactTaskTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactTaskTemplateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContactTaskTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateContactTaskTemplateOutput>
+end
+
+function C:updateCrossRegionRouting(input: types.UpdateCrossRegionRoutingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCrossRegionRoutingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCrossRegionRouting as schema.OperationSchema, input, options) as async.Operation<types.UpdateCrossRegionRoutingOutput>
 end
 
 function C:updateDataTableAttribute(input: types.UpdateDataTableAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataTableAttributeOutput>

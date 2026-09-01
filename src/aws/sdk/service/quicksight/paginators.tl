@@ -94,6 +94,24 @@ function M.items_list_approval_policies(client, input)
     })
 end
 
+--- Returns a page iterator for listApps.
+function M.pages_list_apps(client, input)
+    return paginator.pages(client, "listApps", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AppSummaryList",
+    })
+end
+
+--- Returns an item iterator for listApps.
+function M.items_list_apps(client, input)
+    return paginator.items(client, "listApps", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AppSummaryList",
+    })
+end
+
 --- Returns a page iterator for listAssetBundleExportJobs.
 function M.pages_list_asset_bundle_export_jobs(client, input)
     return paginator.pages(client, "listAssetBundleExportJobs", input, {
@@ -701,6 +719,24 @@ function M.items_search_analyses(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "AnalysisSummaryList",
+    })
+end
+
+--- Returns a page iterator for searchApps.
+function M.pages_search_apps(client, input)
+    return paginator.pages(client, "searchApps", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AppSummaryList",
+    })
+end
+
+--- Returns an item iterator for searchApps.
+function M.items_search_apps(client, input)
+    return paginator.items(client, "searchApps", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AppSummaryList",
     })
 end
 

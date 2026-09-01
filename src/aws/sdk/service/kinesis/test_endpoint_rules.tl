@@ -1374,7 +1374,7 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_nil(result, "expected error but got result")
         assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid ARN: Kinesis ARNs don't support `accesspoint` arn types.", err)
+        assert.are.equal("Invalid ARN: Unsupported resource type `accesspoint`. Expected: stream or channel", err)
     end)
 
     it("ResourceARN as StreamARN test: OperationType not set", function()
@@ -1702,7 +1702,7 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_nil(result, "expected error but got result")
         assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid ARN: Kinesis ARNs don't support `accesspoint` arn types.", err)
+        assert.are.equal("Invalid ARN: Unsupported resource type `accesspoint`. Expected: stream or channel", err)
     end)
 
     it("ResourceARN as ConsumerARN test: OperationType not set", function()
@@ -1925,6 +1925,220 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://kinesis-fips.us-isob-east-1.sc2s.sgov.gov", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: Invalid ARN: unsupported resource type", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:accesspoint/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: Unsupported resource type `accesspoint`. Expected: stream or channel", err)
+    end)
+
+    it("ResourceARN as ChannelARN test: Invalid ARN: Not Kinesis", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:s3:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: The ARN was not for the Kinesis service, found: s3.", err)
+    end)
+
+    it("ResourceARN as ChannelARN test: Invalid ARN: partitions mismatch", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-west-2:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Partition: aws from ARN doesn't match with partition name: aws-us-gov.", err)
+    end)
+
+    it("ResourceARN as ChannelARN test: OperationType not set", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Operation Type is not set. Please contact service team for resolution.", err)
+    end)
+
+    it("ResourceARN as ChannelARN test: Missing channel id", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:channel",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: Missing channel id.", err)
+    end)
+
+    it("ResourceARN as ChannelARN test: Invalid channel id (subdomains not allowed)", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8.ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: Invalid channel id.", err)
+    end)
+
+    it("ResourceARN as ChannelARN test: Custom Endpoint is specified", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: endpoint targeting control operation type", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: endpoint with fips targeting control operation type", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: endpoint with Dual Stack enabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.api.aws", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: endpoint with Dual Stack and FIPS enabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: RegionMismatch: client region should be used for endpoint region", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws:kinesis:us-west-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: Account endpoint with FIPS enabled for cn regions", function()
+        local params = {
+            Region = "cn-northwest-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws-cn:kinesis:cn-northwest-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: Account endpoint with FIPS and DualStack enabled for cn regions", function()
+        local params = {
+            Region = "cn-northwest-1",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            ResourceARN = "arn:aws-cn:kinesis:cn-northwest-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: Account endpoint targeting control operation type in ADC regions", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws-iso:kinesis:us-iso-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("ResourceARN as ChannelARN test: Account endpoint with fips targeting control operation type in ADC regions", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            ResourceARN = "arn:aws-iso:kinesis:us-iso-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis-fips.us-iso-east-1.c2s.ic.gov", result.url)
     end)
 
     it("StreamId test: OperationType not set with StreamId", function()
@@ -2414,6 +2628,197 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://123.control-kinesis.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("ChannelARN: endpoint targeting control operation type", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("ChannelARN: endpoint with FIPS targeting control operation type", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("ChannelARN: endpoint with DualStack targeting control operation type", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+            OperationType = "control",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis.us-east-1.api.aws", result.url)
+    end)
+
+    it("ChannelARN: endpoint with FIPS and DualStack targeting control operation type", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://apu0zt8ge6utbndxe.control-kinesis-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("Invalid ChannelARN: ChannelARN only supports channel arn types", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "data",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:stream/test-stream",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: ChannelARN only supports `channel` arn types, found: `stream`.", err)
+    end)
+
+    it("Invalid ChannelARN: ARN was not for the Kinesis service", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "data",
+            ChannelARN = "arn:aws:s3:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: The ARN was not for the Kinesis service, found: s3.", err)
+    end)
+
+    it("Invalid ChannelARN: OperationType not set", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Operation Type is not set. Please contact service team for resolution.", err)
+    end)
+
+    it("Invalid ChannelARN: partitions mismatch", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "data",
+            ChannelARN = "arn:aws:kinesis:us-west-2:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Partition: aws from ARN doesn't match with partition name: aws-us-gov.", err)
+    end)
+
+    it("Invalid ChannelARN: missing channel id", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "data",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: Missing channel id.", err)
+    end)
+
+    it("Invalid ChannelARN: channel id contains a period (subdomains not allowed)", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8.ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: Invalid channel id.", err)
+    end)
+
+    it("Invalid ChannelARN: channel id exceeds 63 character host label limit", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: Invalid channel id.", err)
+    end)
+
+    it("Invalid ChannelARN: channel id starts with a hyphen", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/-pu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: Invalid channel id.", err)
+    end)
+
+    it("Invalid ChannelARN: channel id contains an invalid character", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8_ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid ARN: Invalid channel id.", err)
+    end)
+
+    it("Invalid ChannelARN: data operation type is not supported for channel", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "data",
+            ChannelARN = "arn:aws:kinesis:us-east-1:298091445058:channel/apu0zt8ge6utbndxe",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("ChannelARN does not support the `data` operation type.", err)
     end)
 
     it("AccountId test: Account Id present", function()
@@ -3192,6 +3597,244 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://kinesis-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("CreateChannel: control operation type with AccountId", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("CreateChannel: control operation type with FIPS and AccountId", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis-fips.us-east-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("CreateChannel: control operation type with DualStack and AccountId", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("CreateChannel: control operation type with FIPS and DualStack and AccountId", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis-fips.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("CreateChannel: account id endpoint mode disabled falls back to regional endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("CreateChannel: account id endpoint mode disabled with FIPS falls back to regional FIPS endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("CreateChannel: account id endpoint mode disabled with DualStack falls back to regional DualStack endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-east-1.api.aws", result.url)
+    end)
+
+    it("CreateChannel: account id endpoint mode disabled with FIPS and DualStack falls back to regional FIPS DualStack endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("ListChannels: control operation type with AccountId", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis.us-west-2.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("ListChannels: control operation type with FIPS and DualStack", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = true,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "preferred",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://123456789012.control-kinesis-fips.us-west-2.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            metricValues = {
+            "O",
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("ListChannels: account id endpoint mode disabled falls back to regional endpoint", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+            OperationType = "control",
+            AccountId = "123456789012",
+            AccountIdEndpointMode = "disabled",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://kinesis.us-west-2.amazonaws.com", result.url)
     end)
 
 end)

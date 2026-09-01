@@ -353,6 +353,46 @@ local record M
         LogGroupArn: string
     end
 
+    -- Per-rule validation constraints that override the field's default validation when the containing rule matches. All fields are optional; only the constraints that need to differ from the field's default validation are provided.
+    record ConditionalValidation
+        -- The minimum length for the field value when this rule applies.
+        MinLength: number
+        -- The maximum length for the field value when this rule applies.
+        MaxLength: number
+        -- A regular expression that the field value must match when this rule applies.
+        Pattern: string
+        -- The allowed values for a select field when this rule applies. A subset of the field's full option list.
+        AllowedValues: {string}
+    end
+
+    -- A single condition on a dependency field's value. Conditions are combined into a ConditionalRule and evaluated together with logical AND.
+    record FieldCondition
+        -- The path of the field whose value determines this condition, for example companyInfo.businessType.
+        DependsOnFieldPath: string
+        -- The comparison operator to apply between the dependency field's value and Values. Valid values are EQUALS, NOT_EQUALS, IN, NOT_IN, HAS_VALUE, and NO_VALUE. Operators not in this list are treated as evaluating to false, which causes the containing rule to be skipped. This allows forward-compatible additions of new operators without breaking older SDK clients.
+        Operator: string
+        -- The values to compare the dependency field's value against. Required for the EQUALS, NOT_EQUALS, IN, and NOT_IN operators. Omitted for HAS_VALUE and NO_VALUE, which test only presence.
+        Values: {string}
+    end
+
+    -- A single conditional rule that resolves to a field behavior when all of its conditions evaluate to true. Conditions within a rule are combined with logical AND: all conditions must match for the rule to fire.
+    record ConditionalRule
+        -- The conditions that must all evaluate to true for this rule to match. Conditions are combined with logical AND. Use multiple rules with the same RuleBehavior to express logical OR.
+        Conditions: {FieldCondition}
+        -- The field behavior that applies when all conditions in this rule match. Valid values are REQUIRED, OPTIONAL, and DISALLOWED.
+        RuleBehavior: string
+        -- Optional per-rule validation constraints (minimum length, maximum length, regex pattern, allowed select values) that override the field's default validation when this rule matches.
+        ConditionalValidation: ConditionalValidation
+    end
+
+    -- The set of conditional rules that determine a field's resolved requirement based on the values of other fields in the same registration form. Attached to fields whose FieldRequirement is CONDITIONAL. Evaluation proceeds top-to-bottom through Rules. The first rule whose conditions all evaluate to true wins and its behavior is returned. If no rule matches, the DefaultBehavior is returned.
+    record ConditionalBehavior
+        -- An ordered list of conditional rules. Rules are evaluated top-to-bottom and the first rule whose conditions all evaluate to true determines the field's behavior. Rules whose conditions do not all match are skipped and evaluation continues to the next rule.
+        Rules: {ConditionalRule}
+        -- The field behavior that applies when no conditional rule in Rules matches. Valid values are REQUIRED, OPTIONAL, and DISALLOWED.
+        DefaultBehavior: string
+    end
+
     enum ConfigurationSetFilterName
         "event-destination-name"
         "matching-event-types"
@@ -867,7 +907,7 @@ local record M
     end
 
     record CreateRegistrationAttachmentInput
-        -- The registration file to upload. The maximum file size is 500KB and valid file extensions are PDF, JPEG and PNG.
+        -- The registration file to upload. The maximum file size is 5MB and valid file extensions are PDF, JPEG and PNG.
         AttachmentBody: string
         -- Registration files have to be stored in an Amazon S3 bucket. The URI to use when sending is in the format s3://BucketName/FileName.
         AttachmentUrl: string
@@ -2268,6 +2308,8 @@ local record M
         TextValidation: TextValidation
         -- An array of RegistrationFieldDisplayHints objects for the field.
         DisplayHints: RegistrationFieldDisplayHints
+        -- The conditional behavior rules for this field. Only present when FieldRequirement is CONDITIONAL. Rules are evaluated in order and the first matching rule determines the field's resolved requirement. If no rule matches, the DefaultBehavior applies.
+        ConditionalBehavior: ConditionalBehavior
     end
 
     record DescribeRegistrationFieldDefinitionsOutput

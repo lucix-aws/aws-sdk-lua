@@ -108,7 +108,10 @@ local record M
     record ProfileDimension
         -- The action to segment on.
         DimensionType: string
-        -- The values to apply the DimensionType on.
+        -- The values to apply the DimensionType on. To reference a calculated attribute or profile
+        -- attribute as a dynamic value, use handlebar notation:
+        -- {{_profile.ProfileAttributeName}} or
+        -- {{_calculated_attribute.CalculatedAttributeName}}.
         Values: {string}
     end
 
@@ -529,6 +532,49 @@ local record M
         LastUpdatedAt: number
     end
 
+    enum EventSubscriptionSegmentStatus
+        "STARTING"
+        "RUNNING"
+        "STOPPED"
+        "FAILED"
+    end
+
+    -- Represents a segment associated with a membership event stream.
+    record AssociatedSegment
+        -- The unique name of the segment definition.
+        SegmentName: string
+        -- The subscription status of the segment. The following are valid values:
+        -- STARTING: The segment is being prepared to publish
+        -- membership events.
+        -- RUNNING: The segment is actively publishing
+        -- membership events to the stream.
+        -- STOPPED: The segment has stopped publishing
+        -- membership events.
+        -- FAILED: The segment failed to publish membership
+        -- events.
+        Status: string
+        -- An optional message providing context, such as a failure reason.
+        Message: string
+    end
+
+    record AssociateStreamForSegmentsInput
+        -- The unique name of the domain.
+        DomainName: string
+        -- The Amazon Resource Name (ARN) of the Amazon Kinesis data stream to deliver segment membership events to.
+        -- For example, arn:aws:kinesis:region:account-id:stream/stream-name.
+        DestinationArn: string
+        -- The Amazon Resource Name (ARN) of the IAM role that allows Customer Profiles service principal to assume the role for
+        -- conducting AWS Key Management Service (KMS) and Amazon Kinesis operations. The role must grant the following
+        -- Amazon Kinesis permissions to deliver segment membership events to the stream:
+        -- kinesis:PutRecord
+        -- kinesis:PutRecords
+        -- kinesis:DescribeStream
+        DestinationRoleArn: string
+    end
+
+    record AssociateStreamForSegmentsOutput
+    end
+
     -- The details of a single attribute item specified in the mathematical expression.
     record AttributeItem
         -- The name of an attribute defined in a profile object type.
@@ -562,13 +608,18 @@ local record M
         "GREATER_THAN_OR_EQUAL"
         "LESS_THAN_OR_EQUAL"
         "EQUAL"
+        "LIST_CONTAINS"
+        "LIST_CONTAINS_ALL"
     end
 
     -- Object that segments on various Customer Profile's fields.
     record AttributeDimension
         -- The action to segment with.
         DimensionType: string
-        -- The values to apply the DimensionType on.
+        -- The values to apply the DimensionType on. To reference a calculated attribute or profile
+        -- attribute as a dynamic value, use handlebar notation:
+        -- {{_profile.ProfileAttributeName}} or
+        -- {{_calculated_attribute.CalculatedAttributeName}}.
         Values: {string}
     end
 
@@ -1011,7 +1062,10 @@ local record M
     record CalculatedAttributeDimension
         -- The action to segment with.
         DimensionType: string
-        -- The values to apply the DimensionType with.
+        -- The values to apply the DimensionType with. To reference a calculated attribute or
+        -- profile attribute as a dynamic value, use handlebar notation:
+        -- {{_profile.ProfileAttributeName}} or
+        -- {{_calculated_attribute.CalculatedAttributeName}}.
         Values: {string}
         -- Applies the given condition over the initial Calculated Attribute's definition.
         ConditionOverrides: ConditionOverrides
@@ -1198,6 +1252,7 @@ local record M
         "MAXIMUM"
         "AVERAGE"
         "MAX_OCCURRENCE"
+        "RECENT_OCCURRENCES"
     end
 
     record CreateCalculatedAttributeDefinitionInput
@@ -1938,7 +1993,10 @@ local record M
     record ExtraLengthValueProfileDimension
         -- The action to segment with.
         DimensionType: string
-        -- The values to apply the DimensionType on.
+        -- The values to apply the DimensionType on. To reference a calculated attribute or profile
+        -- attribute as a dynamic value, use handlebar notation:
+        -- {{_profile.ProfileAttributeName}} or
+        -- {{_calculated_attribute.CalculatedAttributeName}}.
         Values: {string}
     end
 
@@ -1954,7 +2012,10 @@ local record M
     record DateDimension
         -- The action to segment with.
         DimensionType: string
-        -- The values to apply the DimensionType on.
+        -- The values to apply the DimensionType on. To reference a calculated attribute or profile
+        -- attribute as a dynamic value, use handlebar notation:
+        -- {{_profile.ProfileAttributeName}} or
+        -- {{_calculated_attribute.CalculatedAttributeName}}.
         Values: {string}
     end
 
@@ -2402,6 +2463,18 @@ local record M
         Message: string
     end
 
+    record DeleteSegmentSubscriptionInput
+        -- The unique name of the domain.
+        DomainName: string
+        -- The unique name of the segment definition.
+        SegmentDefinitionName: string
+    end
+
+    record DeleteSegmentSubscriptionOutput
+        -- A confirmation message indicating the subscription was deleted successfully.
+        Message: string
+    end
+
     record DeleteWorkflowInput
         -- The unique name of the domain.
         DomainName: string
@@ -2474,6 +2547,16 @@ local record M
         -- Detected ProfileObjectType mappings from given objects. A maximum of one
         -- mapping is supported.
         DetectedProfileObjectTypes: {DetectedProfileObjectType}
+    end
+
+    record DisassociateStreamForSegmentsInput
+        -- The unique name of the domain.
+        DomainName: string
+    end
+
+    record DisassociateStreamForSegmentsOutput
+        -- A confirmation message indicating the stream was disassociated successfully.
+        Message: string
     end
 
     record GetAutoMergingPreviewInput
@@ -3435,6 +3518,61 @@ local record M
         DestinationUri: string
     end
 
+    record GetSegmentSubscriptionInput
+        -- The unique name of the domain.
+        DomainName: string
+        -- The unique name of the segment definition.
+        SegmentDefinitionName: string
+    end
+
+    enum ScheduleConfigurationUnit
+        "HOURLY"
+    end
+
+    -- Configuration for scheduled segment membership event notifications.
+    record ScheduleConfiguration
+        -- The interval between scheduled executions.
+        Interval: number
+        -- The unit for the interval. The following are valid values:
+        -- HOURLY: The interval is measured in hours.
+        Unit: string
+    end
+
+    -- Information about scheduled execution timestamps.
+    record ScheduledExecutions
+        -- The timestamp of the next scheduled execution.
+        NextExecutedAt: number
+        -- The timestamp of the last successful scheduled execution.
+        LastExecutedAt: number
+    end
+
+    enum SegmentSubscriptionStatus
+        "STARTING"
+        "RUNNING"
+        "STOPPED"
+        "FAILED"
+    end
+
+    record GetSegmentSubscriptionOutput
+        -- The current lifecycle status of the subscription. The following are valid values:
+        -- STARTING: Initial snapshot is in progress.
+        -- RUNNING: Notifications are active and running.
+        -- STOPPED: Notifications have been stopped.
+        -- FAILED: Notifications failed (for example, the
+        -- Amazon Kinesis data stream became inaccessible).
+        Status: string
+        -- A status message providing additional context, such as a failure reason.
+        Message: string
+        -- The schedule configuration for periodic membership event notifications.
+        ScheduleConfiguration: ScheduleConfiguration
+        -- Information about scheduled execution timestamps.
+        ScheduledExecutions: ScheduledExecutions
+        -- The timestamp of when the subscription was first started.
+        StartedAt: number
+        -- The timestamp of the most recent configuration change.
+        LastUpdatedAt: number
+    end
+
     enum MatchType
         "RULE_BASED_MATCHING"
         "ML_BASED_MATCHING"
@@ -3475,6 +3613,42 @@ local record M
         ConfidenceScore: number
         -- The pagination token from the previous GetSimilarProfiles API call.
         NextToken: string
+    end
+
+    record GetStreamForSegmentsInput
+        -- The unique name of the domain.
+        DomainName: string
+    end
+
+    enum EventSubscriptionState
+        "RUNNING"
+        "UNHEALTHY"
+        "STOPPED"
+    end
+
+    record GetStreamForSegmentsOutput
+        -- The timestamp of when the stream was associated.
+        AssociatedAt: number
+        -- A list of segments currently associated with the stream and their subscription status.
+        AssociatedSegments: {AssociatedSegment}
+        -- The unique name of the domain.
+        DomainName: string
+        -- The Amazon Resource Name (ARN) of the Amazon Kinesis data stream receiving segment membership events.
+        DestinationArn: string
+        -- The Amazon Resource Name (ARN) of the IAM role used for Amazon Kinesis and AWS Key Management Service (KMS) operations.
+        DestinationRoleArn: string
+        -- The operational state of the destination stream. The following are valid values:
+        -- RUNNING: The stream is associated and healthy.
+        -- Segment membership events are being published.
+        -- UNHEALTHY: The stream is associated but events
+        -- cannot currently be published. See FailureReason for details.
+        -- STOPPED: The stream is no longer publishing
+        -- segment membership events.
+        State: string
+        -- The timestamp of when the stream was disassociated.
+        DisassociatedAt: number
+        -- The reason why the stream is in an unhealthy state, if applicable.
+        FailureReason: string
     end
 
     record GetUploadJobInput
@@ -4370,6 +4544,52 @@ local record M
         Items: {SegmentDefinitionItem}
     end
 
+    record ListSegmentSubscriptionEventsInput
+        -- The unique name of the domain.
+        DomainName: string
+        -- The unique name of the segment definition.
+        SegmentDefinitionName: string
+        -- The maximum number of events to return per page.
+        MaxResults: number
+        -- The pagination token from the previous call to retrieve the next page of results.
+        NextToken: string
+    end
+
+    enum SubscriptionEvent
+        "JOINED"
+        "LEFT"
+    end
+
+    enum SubscriptionEventType
+        "LIVE"
+        "SCHEDULE"
+    end
+
+    -- Represents a single segment membership event.
+    record SubscriptionEventItem
+        -- The unique identifier of a customer profile.
+        ProfileId: string
+        -- The timestamp of when the membership change was detected.
+        UpdatedAt: number
+        -- The type of event that triggered the membership change. The following are valid values:
+        -- LIVE: Real-time event triggered by a profile or
+        -- calculated attribute change (Classic segments only).
+        -- SCHEDULE: Event generated during a scheduled
+        -- execution.
+        EventType: string
+        -- Whether the profile joined or left the segment. The following are valid values:
+        -- JOINED: The profile joined the segment.
+        -- LEFT: The profile left the segment.
+        Event: string
+    end
+
+    record ListSegmentSubscriptionEventsOutput
+        -- A list of segment membership events.
+        Events: {SubscriptionEventItem}
+        -- The pagination token to use to retrieve the next page of results.
+        NextToken: string
+    end
+
     record ListTagsForResourceInput
         -- The ARN of the resource for which you want to view tags.
         resourceArn: string
@@ -4705,6 +4925,30 @@ local record M
         LastUpdatedAt: number
         -- The tags used to organize, track, or control access for this resource.
         Tags: {string : string}
+    end
+
+    record PutSegmentSubscriptionInput
+        -- The unique name of the domain.
+        DomainName: string
+        -- The unique name of the segment definition.
+        SegmentDefinitionName: string
+        -- The optional schedule configuration that controls how often membership snapshots are run.
+        -- If not provided, the subscription defaults to a 24-hour interval.
+        ScheduleConfiguration: ScheduleConfiguration
+    end
+
+    record PutSegmentSubscriptionOutput
+        -- The current lifecycle status of the subscription. The following are valid values:
+        -- STARTING: Initial snapshot is in progress.
+        -- RUNNING: Notifications are active and running.
+        -- STOPPED: Notifications have been stopped.
+        -- FAILED: Notifications failed (for example, the
+        -- Amazon Kinesis data stream became inaccessible).
+        Status: string
+        -- The schedule configuration for the subscription, if configured.
+        ScheduleConfiguration: ScheduleConfiguration
+        -- The timestamp of when the subscription was started.
+        StartedAt: number
     end
 
     enum logicalOperator

@@ -25,6 +25,11 @@ local record M
         -- base64-encoded string. The value for fileName is the name of the
         -- attachment, such as troubleshoot-screenshot.png.
         attachments: {Attachment}
+        -- Specifies whether to validate the request without actually adding the attachments. When set
+        -- to true, the request is validated but no attachments are stored, and the operation
+        -- returns a DryRunOperationException. When omitted or set to false, the
+        -- request runs normally.
+        dryRun: boolean
     end
 
     -- The ID and expiry time of the attachment set returned by the AddAttachmentsToSet operation.
@@ -68,6 +73,12 @@ local record M
         message: string
     end
 
+    -- The request was valid, but the operation wasn't performed because dryRun was
+    -- set to true.
+    record DryRunOperationException
+        message: string
+    end
+
     -- An internal server error occurred.
     record InternalServerError
         -- An internal server error occurred.
@@ -77,15 +88,28 @@ local record M
     record AddCommunicationToCaseInput
         -- The support case ID requested or returned in the call. The case ID is an alphanumeric
         -- string formatted as shown in this example:
-        -- case-12345678910-2013-c4c1d2bf33c5cf47
+        -- case-12345678910-exen-2025-c4c1d2bf33c5cf47
         caseId: string
         -- The body of an email communication to add to the support case.
         communicationBody: string
         -- The email addresses in the CC line of an email to be added to the support case.
         ccEmailAddresses: {string}
         -- The ID of a set of one or more attachments for the communication to add to the case.
-        -- Create the set by calling AddAttachmentsToSet
+        -- Create the set by calling AddAttachmentsToSet. Each attachment in the
+        -- set must be 5 MB or smaller. To attach files larger than 5 MB, use uploadIds.
         attachmentSetId: string
+        -- A list of upload IDs that identify attachments to add to the case. Each
+        -- uploadId is returned by the GetAttachmentUploadLinks
+        -- operation. The upload must reach the attachment-ready state by calling CompleteAttachmentUpload before it can be passed here.
+        -- Use
+        -- uploadIds to attach files of any supported size, including files larger than
+        -- 5 MB.
+        uploadIds: {string}
+        -- Specifies whether to validate the request without actually adding the communication to the
+        -- case. When set to true, the request is validated but the communication isn't
+        -- added, and the operation returns a DryRunOperationException. When omitted or set
+        -- to false, the request runs normally.
+        dryRun: boolean
     end
 
     -- The result of the AddCommunicationToCase operation.
@@ -113,6 +137,46 @@ local record M
     -- An attachment with the specified ID could not be found.
     record AttachmentIdNotFound
         -- An attachment with the specified ID could not be found.
+        message: string
+    end
+
+    -- Identifies a single uploaded part of a multipart attachment upload. Pass a list of
+    -- CompletedUpload objects to CompleteAttachmentUpload to
+    -- finalize the upload.
+    record CompletedUpload
+        -- The index of the uploaded part. This is the same partIndex value returned for the corresponding entry in the uploadUrls field of the GetAttachmentUploadLinks response.
+        partIndex: number
+        -- The ETag returned in the response headers when the part was uploaded to Amazon S3. The ETag value identifies the part contents.
+        eTag: string
+    end
+
+    record CompleteAttachmentUploadInput
+        -- The identifier associated with the upload to complete.
+        uploadId: string
+        -- The list of parts being reported as completed in this call. Each entry must contain the partIndex of an uploaded part and the ETag returned by Amazon S3 when that part was uploaded.
+        completedUploads: {CompletedUpload}
+        -- Specifies whether to validate the request without actually completing the upload. When set
+        -- to true, the request is validated but the upload isn't finalized, and the
+        -- operation returns a DryRunOperationException. When omitted or set to
+        -- false, the request runs normally.
+        dryRun: boolean
+    end
+
+    enum UploadStatus
+        "attachment-ready"
+        "attachment-not-ready"
+        "failed"
+    end
+
+    record CompleteAttachmentUploadOutput
+        -- The status of the multipart upload after the operation finalizes the
+        -- attachment. Valid values: attachment-ready, attachment-not-ready,
+        -- and failed.
+        uploadStatus: string
+    end
+
+    -- The specified uploadId couldn't be located.
+    record UploadIdNotFound
         message: string
     end
 
@@ -148,7 +212,7 @@ local record M
         -- an HTTP POST method or use the Amazon Web Services SDKs.
         ccEmailAddresses: {string}
         -- The language in which Amazon Web Services Support handles the case. Amazon Web Services Support
-        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") and Korean (“ko”). You must specify the ISO 639-1
+        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") , Chinese ("zh"), Spanish ("es"), Portuguese ("pt"), French ("fr"), Korean (“ko”), and Turkish ("tr"). You must specify the ISO 639-1
         -- code for the language parameter if you want support in that language.
         language: string
         -- The type of issue for the case. You can specify customer-service or
@@ -156,21 +220,42 @@ local record M
         -- technical.
         issueType: string
         -- The ID of a set of one or more attachments for the case. Create the set by using the
-        -- AddAttachmentsToSet operation.
+        -- AddAttachmentsToSet operation. Each attachment in the set must be 5
+        -- MB or smaller. To attach files larger than 5 MB, use uploadIds.
         attachmentSetId: string
+        -- A list of upload IDs that identify attachments to add to the case. Each
+        -- uploadId is returned by the GetAttachmentUploadLinks
+        -- operation. The upload must reach the attachment-ready state by calling CompleteAttachmentUpload before it can be passed here.
+        -- Use
+        -- uploadIds to attach files of any supported size, including files larger than
+        -- 5 MB.
+        uploadIds: {string}
+        -- Specifies whether to validate the request without actually creating the case. When set to
+        -- true, the request is validated but no case is created, and the operation
+        -- returns a DryRunOperationException. When omitted or set to false, the
+        -- request runs normally.
+        dryRun: boolean
     end
 
     -- The support case ID returned by a successful completion of the CreateCase operation.
     record CreateCaseOutput
         -- The support case ID requested or returned in the call. The case ID is an alphanumeric
         -- string in the following format:
-        -- case-12345678910-2013-c4c1d2bf33c5cf47
+        -- case-12345678910-exen-2025-c4c1d2bf33c5cf47
         caseId: string
     end
 
     record DescribeAttachmentInput
         -- The ID of the attachment to return. Attachment IDs are returned by the DescribeCommunications operation.
+        -- If the specified attachment is larger than 5 MB, this operation returns
+        -- InvalidParameterValueException. To download attachments larger than 5
+        -- MB, use GetAttachmentDownloadLink.
         attachmentId: string
+        -- Specifies whether to validate the request without actually retrieving the attachment. When
+        -- set to true, the request is validated but no attachment content is returned, and
+        -- the operation returns a DryRunOperationException. When omitted or set to
+        -- false, the request runs normally.
+        dryRun: boolean
     end
 
     -- The limit for the number of DescribeAttachment requests in a short
@@ -191,6 +276,36 @@ local record M
         attachment: Attachment
     end
 
+    record DescribeAttachmentUploadStatusInput
+        -- The unique identifier for the upload. The uploadId is returned by
+        -- GetAttachmentUploadLinks when you initiate the upload.
+        uploadId: string
+        -- Specifies whether to validate the request without actually returning upload status. When
+        -- set to true, the request is validated but no status is returned, and the operation
+        -- returns a DryRunOperationException. When omitted or set to false, the
+        -- request runs normally.
+        dryRun: boolean
+    end
+
+    -- The progress of a multipart attachment upload, returned by DescribeAttachmentUploadStatus.
+    record UploadProgress
+        -- The total number of parts that the file is split into.
+        totalParts: number
+        -- The number of parts that have been successfully uploaded.
+        completedPartsCount: number
+    end
+
+    record DescribeAttachmentUploadStatusOutput
+        -- The current status of the multipart upload. Valid values: attachment-ready,
+        -- attachment-not-ready, and failed.
+        uploadStatus: string
+        -- The name of the file being uploaded, including the file extension.
+        fileName: string
+        -- The progress of the multipart upload, including the total number of parts and the number
+        -- of parts that have been successfully uploaded.
+        uploadProgress: UploadProgress
+    end
+
     record DescribeCasesInput
         -- A list of ID numbers of the support cases you want returned. The maximum number of
         -- cases is 100.
@@ -198,10 +313,10 @@ local record M
         -- The ID displayed for a case in the Amazon Web Services Support Center user interface.
         displayId: string
         -- The start date for a filtered date search on support case communications. Case
-        -- communications are available for 12 months after creation.
+        -- communications are available for 24 months after creation.
         afterTime: string
         -- The end date for a filtered date search on support case communications. Case
-        -- communications are available for 12 months after creation.
+        -- communications are available for 24 months after creation.
         beforeTime: string
         -- Specifies whether to include resolved support cases in the DescribeCases
         -- response. By default, resolved cases aren't included.
@@ -211,12 +326,17 @@ local record M
         -- The maximum number of results to return before paginating.
         maxResults: number
         -- The language in which Amazon Web Services Support handles the case. Amazon Web Services Support
-        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") and Korean (“ko”). You must specify the ISO 639-1
+        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") , Chinese ("zh"), Spanish ("es"), Portuguese ("pt"), French ("fr"), Korean (“ko”), and Turkish ("tr"). You must specify the ISO 639-1
         -- code for the language parameter if you want support in that language.
         language: string
         -- Specifies whether to include communications in the DescribeCases
         -- response. By default, communications are included.
         includeCommunications: boolean
+        -- Specifies whether to validate the request without actually returning case data. When set
+        -- to true, the request is validated but no cases are returned, and the operation
+        -- returns a DryRunOperationException. When omitted or set to false, the
+        -- request runs normally.
+        dryRun: boolean
     end
 
     -- A communication associated with a support case. The communication consists of the case
@@ -225,7 +345,7 @@ local record M
     record Communication
         -- The support case ID requested or returned in the call. The case ID is an alphanumeric
         -- string formatted as shown in this example:
-        -- case-12345678910-2013-c4c1d2bf33c5cf47
+        -- case-12345678910-exen-2025-c4c1d2bf33c5cf47
         caseId: string
         -- The text of the communication between the customer and Amazon Web Services Support.
         body: string
@@ -236,7 +356,13 @@ local record M
         submittedBy: string
         -- The time the communication was created.
         timeCreated: string
-        -- Information about the attachments to the case communication.
+        -- Information about all attachments on the case communication. This includes attachments added through AddAttachmentsToSet and attachments uploaded through GetAttachmentUploadLinks.
+        -- Use this field to enumerate every attachment on the communication. To download an attachment listed in this field, use GetAttachmentDownloadLink. GetAttachmentDownloadLink returns a presigned URL that works for attachments of any size.
+        attachments: {AttachmentDetails}
+        -- Information about the attachments to the case communication that are 5 MB or smaller.
+        -- This field doesn't include attachments larger than 5 MB. To enumerate every attachment on
+        -- the communication, including attachments larger than 5 MB, use the
+        -- attachments field instead.
         attachmentSet: {AttachmentDetails}
     end
 
@@ -253,14 +379,14 @@ local record M
     -- caseId - The support case ID requested
     -- or returned in the call. The case ID is an alphanumeric string formatted as
     -- shown in this example:
-    -- case-12345678910-2013-c4c1d2bf33c5cf47.
+    -- case-12345678910-exen-2025-c4c1d2bf33c5cf47.
     -- categoryCode - The category of problem
     -- for the support case. Corresponds to the CategoryCode values
     -- returned by a call to DescribeServices.
     -- displayId - The identifier for the case
     -- on pages in the Amazon Web Services Support Center.
     -- language - The language in which Amazon Web Services Support handles the case. Amazon Web Services Support
-    -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") and Korean (“ko”). You must specify the ISO 639-1
+    -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") , Chinese ("zh"), Spanish ("es"), Portuguese ("pt"), French ("fr"), Korean (“ko”), and Turkish ("tr"). You must specify the ISO 639-1
     -- code for the language parameter if you want support in that language.
     -- nextToken - A resumption point for
     -- pagination.
@@ -292,7 +418,7 @@ local record M
     record CaseDetails
         -- The support case ID requested or returned in the call. The case ID is an alphanumeric
         -- string formatted as shown in this example:
-        -- case-12345678910-2013-c4c1d2bf33c5cf47
+        -- case-12345678910-exen-2025-c4c1d2bf33c5cf47
         caseId: string
         -- The ID displayed for the case in the Amazon Web Services Support Center. This is a numeric
         -- string.
@@ -328,7 +454,7 @@ local record M
         -- The email addresses that receive copies of communication about the case.
         ccEmailAddresses: {string}
         -- The language in which Amazon Web Services Support handles the case. Amazon Web Services Support
-        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") and Korean (“ko”). You must specify the ISO 639-1
+        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") , Chinese ("zh"), Spanish ("es"), Portuguese ("pt"), French ("fr"), Korean (“ko”), and Turkish ("tr"). You must specify the ISO 639-1
         -- code for the language parameter if you want support in that language.
         language: string
     end
@@ -346,18 +472,23 @@ local record M
     record DescribeCommunicationsInput
         -- The support case ID requested or returned in the call. The case ID is an alphanumeric
         -- string formatted as shown in this example:
-        -- case-12345678910-2013-c4c1d2bf33c5cf47
+        -- case-12345678910-exen-2025-c4c1d2bf33c5cf47
         caseId: string
         -- The end date for a filtered date search on support case communications. Case
-        -- communications are available for 12 months after creation.
+        -- communications are available for 24 months after creation.
         beforeTime: string
         -- The start date for a filtered date search on support case communications. Case
-        -- communications are available for 12 months after creation.
+        -- communications are available for 24 months after creation.
         afterTime: string
         -- A resumption point for pagination.
         nextToken: string
         -- The maximum number of results to return before paginating.
         maxResults: number
+        -- Specifies whether to validate the request without actually returning communications. When
+        -- set to true, the request is validated but no communications are returned, and the
+        -- operation returns a DryRunOperationException. When omitted or set to
+        -- false, the request runs normally.
+        dryRun: boolean
     end
 
     -- The communications returned by the DescribeCommunications
@@ -378,12 +509,17 @@ local record M
         -- operation to get the possible serviceCode values.
         serviceCode: string
         -- The language in which Amazon Web Services Support handles the case. Amazon Web Services Support
-        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") and Korean (“ko”). You must specify the ISO 639-1
+        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") , Chinese ("zh"), Spanish ("es"), Portuguese ("pt"), French ("fr"), Korean (“ko”), and Turkish ("tr"). You must specify the ISO 639-1
         -- code for the language parameter if you want support in that language.
         language: string
         -- The category of problem for the support case. You also use the DescribeServices operation to get the category code for a service. Each
         -- Amazon Web Services service defines its own set of category codes.
         categoryCode: string
+        -- Specifies whether to validate the request without actually returning case option data.
+        -- When set to true, the request is validated but no options are returned, and the
+        -- operation returns a DryRunOperationException. When omitted or set to
+        -- false, the request runs normally.
+        dryRun: boolean
     end
 
     -- Date and time (UTC) format in RFC 3339 : 'yyyy-MM-dd'T'HH:mm:ss.SSSZZ'.
@@ -432,18 +568,33 @@ local record M
         communicationTypes: {CommunicationTypeOptions}
     end
 
+    -- Information about why a request was throttled.
+    record ThrottlingReason
+        -- The reason that the request was throttled.
+        reason: string
+        -- The resource that caused the request to be throttled.
+        resource: string
+    end
+
     -- You have exceeded the maximum allowed TPS (Transactions Per Second) for the operations.
     record ThrottlingException
         message: string
+        -- A list of one or more reasons that the request was throttled.
+        throttlingReasons: {ThrottlingReason}
     end
 
     record DescribeServicesInput
         -- A JSON-formatted list of service codes available for Amazon Web Services services.
         serviceCodeList: {string}
         -- The language in which Amazon Web Services Support handles the case. Amazon Web Services Support
-        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") and Korean (“ko”). You must specify the ISO 639-1
+        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") , Chinese ("zh"), Spanish ("es"), Portuguese ("pt"), French ("fr"), Korean (“ko”), and Turkish ("tr"). You must specify the ISO 639-1
         -- code for the language parameter if you want support in that language.
         language: string
+        -- Specifies whether to validate the request without actually returning the list of services.
+        -- When set to true, the request is validated but no services are returned, and the
+        -- operation returns a DryRunOperationException. When omitted or set to
+        -- false, the request runs normally.
+        dryRun: boolean
     end
 
     -- A JSON-formatted name/value pair that represents the category name and category code
@@ -480,9 +631,14 @@ local record M
 
     record DescribeSeverityLevelsInput
         -- The language in which Amazon Web Services Support handles the case. Amazon Web Services Support
-        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") and Korean (“ko”). You must specify the ISO 639-1
+        -- currently supports Chinese (“zh”), English ("en"), Japanese ("ja") , Chinese ("zh"), Spanish ("es"), Portuguese ("pt"), French ("fr"), Korean (“ko”), and Turkish ("tr"). You must specify the ISO 639-1
         -- code for the language parameter if you want support in that language.
         language: string
+        -- Specifies whether to validate the request without actually returning severity levels. When
+        -- set to true, the request is validated but no severity levels are returned, and the
+        -- operation returns a DryRunOperationException. When omitted or set to
+        -- false, the request runs normally.
+        dryRun: boolean
     end
 
     -- A code and name pair that represents the severity level of a support case. The
@@ -527,6 +683,11 @@ local record M
         -- The category of problem for the support case. You also use the DescribeServices operation to get the category code for a service. Each
         -- Amazon Web Services service defines its own set of category codes.
         categoryCode: string
+        -- Specifies whether to validate the request without actually returning supported languages.
+        -- When set to true, the request is validated but no languages are returned, and the
+        -- operation returns a DryRunOperationException. When omitted or set to
+        -- false, the request runs normally.
+        dryRun: boolean
     end
 
     -- A JSON-formatted object that contains the available ISO 639-1 language code,
@@ -742,6 +903,116 @@ local record M
         summaries: {TrustedAdvisorCheckSummary}
     end
 
+    record GetAttachmentDownloadLinkInput
+        -- The unique identifier of the attachment for which to retrieve a download link. Attachment
+        -- IDs are returned in the AttachmentDetails objects in the attachments
+        -- field of a Communication returned by DescribeCommunications
+        -- or DescribeCases.
+        attachmentId: string
+        -- Specifies whether to validate the request without actually returning a download link. When
+        -- set to true, the request is validated but no URL is returned, and the operation
+        -- returns a DryRunOperationException. When omitted or set to false, the
+        -- request runs normally.
+        dryRun: boolean
+    end
+
+    -- A presigned URL for downloading an attachment, along with the date and time the URL
+    -- expires. Returned by GetAttachmentDownloadLink.
+    record DownloadUrl
+        -- The presigned HTTPS URL that you can use to download the attachment. Download URLs are
+        -- served from downloadv1.attachments.support.{region}.amazonaws.com. The
+        -- downloadv1 prefix is subject to change.
+        url: string
+        -- The date and time, in ISO-8601 format, when the presigned URL expires. Download the
+        -- attachment before this time.
+        expiryDate: string
+    end
+
+    record GetAttachmentDownloadLinkOutput
+        -- The name of the attachment file, including the file extension.
+        fileName: string
+        -- The presigned download URL and the date and time the URL expires.
+        downloadUrl: DownloadUrl
+    end
+
+    -- The range of part indexes for which to return presigned upload URLs from GetAttachmentUploadLinks.
+    record UploadRange
+        -- The starting part index of the range, inclusive. Part indexes start at 1.
+        startIndex: number
+        -- The ending part index of the range, exclusive. The range is half-open:
+        -- startIndex is inclusive and endIndex is exclusive. For example,
+        -- a range with startIndex of 1 and endIndex of 4 requests URLs for
+        -- parts 1, 2, and 3. The range size (endIndex - startIndex)
+        -- must not exceed 10. If you omit endIndex, the service defaults to
+        -- startIndex + 10, capped by the total number of parts.
+        endIndex: number
+    end
+
+    record GetAttachmentUploadLinksInput
+        -- The name of the file to upload, including the file extension. This value is required when
+        -- you initiate a new upload.
+        fileName: string
+        -- The total size of the file in bytes. The service uses this value to calculate the total
+        -- number of parts and the size of each part. Required when you initiate a new upload (when
+        -- uploadId isn't provided). Valid range: 1 to 157,286,400 bytes (approximately
+        -- 150 MB).
+        fileSizeBytes: number
+        -- The unique identifier of an in-progress multipart upload, returned by a previous call to
+        -- GetAttachmentUploadLinks. Specify uploadId to retrieve additional
+        -- presigned upload URLs for an upload that has already been initiated. Required when
+        -- fileSizeBytes isn't provided. Length: 1 to 2,048 characters.
+        uploadId: string
+        -- The range of part indexes for which to return presigned upload URLs. Use this parameter
+        -- to page through the upload URLs for a large file across multiple calls. If you omit this
+        -- parameter, the service determines the range to return.
+        uploadRange: UploadRange
+        -- Specifies whether to validate the request without actually generating upload URLs. When
+        -- set to true, the request is validated but no URLs are returned, and the operation
+        -- returns a DryRunOperationException. When omitted or set to false, the
+        -- request runs normally.
+        dryRun: boolean
+    end
+
+    -- A presigned URL for uploading a single part of a multipart attachment upload, along with
+    -- the part index and the date and time the URL expires. Returned by GetAttachmentUploadLinks.
+    record UploadUrl
+        -- The presigned HTTPS URL that you use to upload a single part with HTTP
+        -- PUT. Upload URLs are served from
+        -- uploadv1.attachments.support.{region}.amazonaws.com. The
+        -- uploadv1 prefix is subject to change.
+        url: string
+        -- The index of the part that this URL uploads.
+        partIndex: number
+        -- The date and time, in ISO-8601 format, when the presigned URL expires. Upload the part
+        -- before this time.
+        expiryDate: string
+    end
+
+    record GetAttachmentUploadLinksOutput
+        -- The unique identifier for the multipart upload. Use this value in subsequent calls to
+        -- GetAttachmentUploadLinks, DescribeAttachmentUploadStatus,
+        -- and CompleteAttachmentUpload, and to attach the upload to a case through the
+        -- uploadIds parameter on CreateCase or AddCommunicationToCase.
+        uploadId: string
+        -- The size, in bytes, of each part. Split the file into parts of this size before you upload
+        -- them to the presigned URLs. For an upload with n total parts, parts 1 through
+        -- n - 1 are exactly this size; the last part may be smaller. Maximum:
+        -- 104,857,600 bytes (approximately 100 MB).
+        partSizeBytes: number
+        -- The total number of parts that the file is split into. Upload one part to each presigned
+        -- URL.
+        totalParts: number
+        -- The next part index to request presigned URLs for. If all upload URLs for the file have
+        -- been returned, this field is null. Use this value as the startIndex in
+        -- uploadRange on a subsequent call to GetAttachmentUploadLinks to
+        -- retrieve the next batch of upload URLs.
+        nextIndex: number
+        -- The list of presigned upload URLs for the requested range of parts. The list contains at
+        -- most 10 URLs per call. Upload each part to its corresponding URL by using HTTP
+        -- PUT before the URL expires.
+        uploadUrls: {UploadUrl}
+    end
+
     record RefreshTrustedAdvisorCheckInput
         -- The unique identifier for the Trusted Advisor check to refresh.
         -- Specifying the check ID of a check that is automatically refreshed causes an
@@ -759,8 +1030,13 @@ local record M
     record ResolveCaseInput
         -- The support case ID requested or returned in the call. The case ID is an alphanumeric
         -- string formatted as shown in this example:
-        -- case-12345678910-2013-c4c1d2bf33c5cf47
+        -- case-12345678910-exen-2025-c4c1d2bf33c5cf47
         caseId: string
+        -- Specifies whether to validate the request without actually resolving the case. When set
+        -- to true, the request is validated but the case isn't resolved, and the operation
+        -- returns a DryRunOperationException. When omitted or set to false, the
+        -- request runs normally.
+        dryRun: boolean
     end
 
     -- The status of the case returned by the ResolveCase operation.

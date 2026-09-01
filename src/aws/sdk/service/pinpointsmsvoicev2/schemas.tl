@@ -200,9 +200,15 @@ M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SelectOptionDescriptionsList = schema.new({ type = "list", list_member = M.SelectOptionDescription })
 
+M.ConditionalRuleList = schema.new({ type = "list", list_member = M.ConditionalRule })
+
 M.RcsCarouselCardContentList = schema.new({ type = "list", list_member = M.RcsCarouselCardContent })
 
 M.RcsCardSuggestedActionList = schema.new({ type = "list", list_member = M.RcsSuggestedAction })
+
+M.FieldConditionList = schema.new({ type = "list", list_member = M.FieldCondition })
+
+M.ConditionValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -727,6 +733,129 @@ M.CloudWatchLogsDestination = schema.new({
             id = id.from(_N, "CloudWatchLogsDestination", "LogGroupArn"),
             type = "string",
             name = "LogGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConditionalValidation = schema.new({
+    id = id.from(_N, "ConditionalValidation"),
+    type = "structure",
+    members = {
+        MinLength = schema.new({
+            id = id.from(_N, "ConditionalValidation", "MinLength"),
+            type = "integer",
+            name = "MinLength",
+            target_id = prelude.Integer.id,
+        }),
+        MaxLength = schema.new({
+            id = id.from(_N, "ConditionalValidation", "MaxLength"),
+            type = "integer",
+            name = "MaxLength",
+            target_id = prelude.Integer.id,
+        }),
+        Pattern = schema.new({
+            id = id.from(_N, "ConditionalValidation", "Pattern"),
+            type = "string",
+            name = "Pattern",
+            target_id = prelude.String.id,
+        }),
+        AllowedValues = schema.new({
+            id = id.from(_N, "ConditionalValidation", "AllowedValues"),
+            type = "list",
+            name = "AllowedValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.FieldCondition = schema.new({
+    id = id.from(_N, "FieldCondition"),
+    type = "structure",
+    members = {
+        DependsOnFieldPath = schema.new({
+            id = id.from(_N, "FieldCondition", "DependsOnFieldPath"),
+            type = "string",
+            name = "DependsOnFieldPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "FieldCondition", "Operator"),
+            type = "string",
+            name = "Operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "FieldCondition", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ConditionalRule = schema.new({
+    id = id.from(_N, "ConditionalRule"),
+    type = "structure",
+    members = {
+        Conditions = schema.new({
+            id = id.from(_N, "ConditionalRule", "Conditions"),
+            type = "list",
+            name = "Conditions",
+            target_id = prelude.Document.id,
+            list_member = M.FieldCondition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleBehavior = schema.new({
+            id = id.from(_N, "ConditionalRule", "RuleBehavior"),
+            type = "string",
+            name = "RuleBehavior",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConditionalValidation = schema.new({
+            id = id.from(_N, "ConditionalRule", "ConditionalValidation"),
+            type = "structure",
+            name = "ConditionalValidation",
+            target_id = id.from(_N, "ConditionalValidation"),
+            target = M.ConditionalValidation,
+        }),
+    },
+})
+
+M.ConditionalBehavior = schema.new({
+    id = id.from(_N, "ConditionalBehavior"),
+    type = "structure",
+    members = {
+        Rules = schema.new({
+            id = id.from(_N, "ConditionalBehavior", "Rules"),
+            type = "list",
+            name = "Rules",
+            target_id = prelude.Document.id,
+            list_member = M.ConditionalRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DefaultBehavior = schema.new({
+            id = id.from(_N, "ConditionalBehavior", "DefaultBehavior"),
+            type = "string",
+            name = "DefaultBehavior",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -5982,6 +6111,13 @@ M.RegistrationFieldDefinition = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ConditionalBehavior = schema.new({
+            id = id.from(_N, "RegistrationFieldDefinition", "ConditionalBehavior"),
+            type = "structure",
+            name = "ConditionalBehavior",
+            target_id = id.from(_N, "ConditionalBehavior"),
+            target = M.ConditionalBehavior,
         }),
     },
 })

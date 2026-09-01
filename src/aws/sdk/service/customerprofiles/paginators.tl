@@ -220,6 +220,24 @@ function M.items_list_segment_definitions(client, input)
     })
 end
 
+--- Returns a page iterator for listSegmentSubscriptionEvents.
+function M.pages_list_segment_subscription_events(client, input)
+    return paginator.pages(client, "listSegmentSubscriptionEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Events",
+    })
+end
+
+--- Returns an item iterator for listSegmentSubscriptionEvents.
+function M.items_list_segment_subscription_events(client, input)
+    return paginator.items(client, "listSegmentSubscriptionEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Events",
+    })
+end
+
 --- Returns a page iterator for listUploadJobs.
 function M.pages_list_upload_jobs(client, input)
     return paginator.pages(client, "listUploadJobs", input, {

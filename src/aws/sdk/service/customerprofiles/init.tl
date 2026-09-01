@@ -19,6 +19,7 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     addProfileKey: function(Client, types.AddProfileKeyInput, ? base_client.InvokeOptions): async.Operation<types.AddProfileKeyOutput>
+    associateStreamForSegments: function(Client, types.AssociateStreamForSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateStreamForSegmentsOutput>
     batchGetCalculatedAttributeForProfile: function(Client, types.BatchGetCalculatedAttributeForProfileInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
     batchGetProfile: function(Client, types.BatchGetProfileInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetProfileOutput>
     batchPutProfileObject: function(Client, types.BatchPutProfileObjectInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutProfileObjectOutput>
@@ -51,8 +52,10 @@ local record Client
     deleteRecommenderFilter: function(Client, types.DeleteRecommenderFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommenderFilterOutput>
     deleteRecommenderSchema: function(Client, types.DeleteRecommenderSchemaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommenderSchemaOutput>
     deleteSegmentDefinition: function(Client, types.DeleteSegmentDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSegmentDefinitionOutput>
+    deleteSegmentSubscription: function(Client, types.DeleteSegmentSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSegmentSubscriptionOutput>
     deleteWorkflow: function(Client, types.DeleteWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
     detectProfileObjectType: function(Client, types.DetectProfileObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.DetectProfileObjectTypeOutput>
+    disassociateStreamForSegments: function(Client, types.DisassociateStreamForSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateStreamForSegmentsOutput>
     getAutoMergingPreview: function(Client, types.GetAutoMergingPreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetAutoMergingPreviewOutput>
     getCalculatedAttributeDefinition: function(Client, types.GetCalculatedAttributeDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetCalculatedAttributeDefinitionOutput>
     getCalculatedAttributeForProfile: function(Client, types.GetCalculatedAttributeForProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetCalculatedAttributeForProfileOutput>
@@ -76,7 +79,9 @@ local record Client
     getSegmentEstimate: function(Client, types.GetSegmentEstimateInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentEstimateOutput>
     getSegmentMembership: function(Client, types.GetSegmentMembershipInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentMembershipOutput>
     getSegmentSnapshot: function(Client, types.GetSegmentSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentSnapshotOutput>
+    getSegmentSubscription: function(Client, types.GetSegmentSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentSubscriptionOutput>
     getSimilarProfiles: function(Client, types.GetSimilarProfilesInput, ? base_client.InvokeOptions): async.Operation<types.GetSimilarProfilesOutput>
+    getStreamForSegments: function(Client, types.GetStreamForSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamForSegmentsOutput>
     getUploadJob: function(Client, types.GetUploadJobInput, ? base_client.InvokeOptions): async.Operation<types.GetUploadJobOutput>
     getUploadJobPath: function(Client, types.GetUploadJobPathInput, ? base_client.InvokeOptions): async.Operation<types.GetUploadJobPathOutput>
     getWorkflow: function(Client, types.GetWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
@@ -104,6 +109,7 @@ local record Client
     listRecommenderSchemas: function(Client, types.ListRecommenderSchemasInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommenderSchemasOutput>
     listRuleBasedMatches: function(Client, types.ListRuleBasedMatchesInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleBasedMatchesOutput>
     listSegmentDefinitions: function(Client, types.ListSegmentDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSegmentDefinitionsOutput>
+    listSegmentSubscriptionEvents: function(Client, types.ListSegmentSubscriptionEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListSegmentSubscriptionEventsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listUploadJobs: function(Client, types.ListUploadJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListUploadJobsOutput>
     listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
@@ -112,6 +118,7 @@ local record Client
     putIntegration: function(Client, types.PutIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.PutIntegrationOutput>
     putProfileObject: function(Client, types.PutProfileObjectInput, ? base_client.InvokeOptions): async.Operation<types.PutProfileObjectOutput>
     putProfileObjectType: function(Client, types.PutProfileObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutProfileObjectTypeOutput>
+    putSegmentSubscription: function(Client, types.PutSegmentSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.PutSegmentSubscriptionOutput>
     searchProfiles: function(Client, types.SearchProfilesInput, ? base_client.InvokeOptions): async.Operation<types.SearchProfilesOutput>
     startRecommender: function(Client, types.StartRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.StartRecommenderOutput>
     startUploadJob: function(Client, types.StartUploadJobInput, ? base_client.InvokeOptions): async.Operation<types.StartUploadJobOutput>
@@ -171,6 +178,10 @@ end
 
 function C:addProfileKey(input: types.AddProfileKeyInput, options?: base_client.InvokeOptions): async.Operation<types.AddProfileKeyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddProfileKey as schema.OperationSchema, input, options) as async.Operation<types.AddProfileKeyOutput>
+end
+
+function C:associateStreamForSegments(input: types.AssociateStreamForSegmentsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateStreamForSegmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateStreamForSegments as schema.OperationSchema, input, options) as async.Operation<types.AssociateStreamForSegmentsOutput>
 end
 
 function C:batchGetCalculatedAttributeForProfile(input: types.BatchGetCalculatedAttributeForProfileInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
@@ -301,12 +312,20 @@ function C:deleteSegmentDefinition(input: types.DeleteSegmentDefinitionInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSegmentDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteSegmentDefinitionOutput>
 end
 
+function C:deleteSegmentSubscription(input: types.DeleteSegmentSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSegmentSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSegmentSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteSegmentSubscriptionOutput>
+end
+
 function C:deleteWorkflow(input: types.DeleteWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowOutput>
 end
 
 function C:detectProfileObjectType(input: types.DetectProfileObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DetectProfileObjectTypeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectProfileObjectType as schema.OperationSchema, input, options) as async.Operation<types.DetectProfileObjectTypeOutput>
+end
+
+function C:disassociateStreamForSegments(input: types.DisassociateStreamForSegmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateStreamForSegmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateStreamForSegments as schema.OperationSchema, input, options) as async.Operation<types.DisassociateStreamForSegmentsOutput>
 end
 
 function C:getAutoMergingPreview(input: types.GetAutoMergingPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutoMergingPreviewOutput>
@@ -401,8 +420,16 @@ function C:getSegmentSnapshot(input: types.GetSegmentSnapshotInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSegmentSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetSegmentSnapshotOutput>
 end
 
+function C:getSegmentSubscription(input: types.GetSegmentSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSegmentSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSegmentSubscription as schema.OperationSchema, input, options) as async.Operation<types.GetSegmentSubscriptionOutput>
+end
+
 function C:getSimilarProfiles(input: types.GetSimilarProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.GetSimilarProfilesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSimilarProfiles as schema.OperationSchema, input, options) as async.Operation<types.GetSimilarProfilesOutput>
+end
+
+function C:getStreamForSegments(input: types.GetStreamForSegmentsInput, options?: base_client.InvokeOptions): async.Operation<types.GetStreamForSegmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStreamForSegments as schema.OperationSchema, input, options) as async.Operation<types.GetStreamForSegmentsOutput>
 end
 
 function C:getUploadJob(input: types.GetUploadJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetUploadJobOutput>
@@ -513,6 +540,10 @@ function C:listSegmentDefinitions(input: types.ListSegmentDefinitionsInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSegmentDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListSegmentDefinitionsOutput>
 end
 
+function C:listSegmentSubscriptionEvents(input: types.ListSegmentSubscriptionEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSegmentSubscriptionEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSegmentSubscriptionEvents as schema.OperationSchema, input, options) as async.Operation<types.ListSegmentSubscriptionEventsOutput>
+end
+
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
@@ -543,6 +574,10 @@ end
 
 function C:putProfileObjectType(input: types.PutProfileObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PutProfileObjectTypeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProfileObjectType as schema.OperationSchema, input, options) as async.Operation<types.PutProfileObjectTypeOutput>
+end
+
+function C:putSegmentSubscription(input: types.PutSegmentSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.PutSegmentSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSegmentSubscription as schema.OperationSchema, input, options) as async.Operation<types.PutSegmentSubscriptionOutput>
 end
 
 function C:searchProfiles(input: types.SearchProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchProfilesOutput>

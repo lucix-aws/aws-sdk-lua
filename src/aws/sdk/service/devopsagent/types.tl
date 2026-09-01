@@ -433,6 +433,14 @@ local record M
         authScopes: {string}
     end
 
+    -- Configuration for bidirectional Slack communication.
+    record SlackBidirectionalConfiguration
+        -- IAM role ARN that AWS DevOps Agent assumes to exchange messages with your Slack workspace on behalf of this association.
+        roleArn: string
+        -- Whether bidirectional communication is enabled for this association. When you set this value to true, you can mention the agent in a configured Slack channel and it responds in that channel. When you omit this value or set it to false, the agent ignores mentions and only sends notifications.
+        enabled: boolean
+    end
+
     -- Represents a Slack channel with its ID and optional name.
     record SlackChannel
         -- Slack channel name
@@ -457,6 +465,8 @@ local record M
         workspaceName: string
         -- Transmission targets for agent notifications
         transmissionTarget: SlackTransmissionTarget
+        -- Optional bidirectional communication configuration. Supply this configuration and set enabled to true so you can interact with the agent directly from Slack.
+        bidirectional: SlackBidirectionalConfiguration
     end
 
     enum SourceAccountType

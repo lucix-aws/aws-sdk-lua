@@ -33,6 +33,7 @@ local record Client
     listCustomPlugins: function(Client, types.ListCustomPluginsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomPluginsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listWorkerConfigurations: function(Client, types.ListWorkerConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkerConfigurationsOutput>
+    restartConnector: function(Client, types.RestartConnectorInput, ? base_client.InvokeOptions): async.Operation<types.RestartConnectorOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateConnector: function(Client, types.UpdateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
@@ -138,6 +139,10 @@ end
 
 function C:listWorkerConfigurations(input: types.ListWorkerConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkerConfigurationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkerConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListWorkerConfigurationsOutput>
+end
+
+function C:restartConnector(input: types.RestartConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.RestartConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestartConnector as schema.OperationSchema, input, options) as async.Operation<types.RestartConnectorOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

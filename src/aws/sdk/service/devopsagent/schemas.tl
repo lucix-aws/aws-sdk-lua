@@ -1275,6 +1275,28 @@ M.ServiceNowConfiguration = schema.new({
     },
 })
 
+M.SlackBidirectionalConfiguration = schema.new({
+    id = id.from(_N, "SlackBidirectionalConfiguration"),
+    type = "structure",
+    members = {
+        roleArn = schema.new({
+            id = id.from(_N, "SlackBidirectionalConfiguration", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        enabled = schema.new({
+            id = id.from(_N, "SlackBidirectionalConfiguration", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.SlackChannel = schema.new({
     id = id.from(_N, "SlackChannel"),
     type = "structure",
@@ -1352,6 +1374,13 @@ M.SlackConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        bidirectional = schema.new({
+            id = id.from(_N, "SlackConfiguration", "bidirectional"),
+            type = "structure",
+            name = "bidirectional",
+            target_id = id.from(_N, "SlackBidirectionalConfiguration"),
+            target = M.SlackBidirectionalConfiguration,
         }),
     },
 })

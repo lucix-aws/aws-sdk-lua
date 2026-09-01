@@ -34,6 +34,9 @@ local record M
         "ROLLBACK_IN_PROGRESS"
         "ROLLBACK_FAILED"
         "ROLLBACK_COMPLETE"
+        "RESTART_IN_PROGRESS"
+        "RESTART_COMPLETE"
+        "RESTART_FAILED"
     end
 
     enum ConnectorOperationType
@@ -41,6 +44,7 @@ local record M
         "UPDATE_CONNECTOR_CONFIGURATION"
         "ISOLATE_CONNECTOR"
         "RESTORE_CONNECTOR"
+        "RESTART_CONNECTOR"
     end
 
     -- Summary of a connector operation.
@@ -107,6 +111,7 @@ local record M
         "UPDATING"
         "DELETING"
         "FAILED"
+        "RESTARTING"
     end
 
     -- The description of the VPC in which the connector resides.
@@ -941,6 +946,20 @@ local record M
         nextToken: string
         -- An array of worker configuration descriptions.
         workerConfigurations: {WorkerConfigurationSummary}
+    end
+
+    record RestartConnectorInput
+        -- The Amazon Resource Name (ARN) of the connector that you want to restart.
+        connectorArn: string
+        -- Specifies whether to restart only the connector's failed tasks. If true, the operation restarts only the tasks that are currently in a failed state, and healthy tasks continue running. If false or not specified, the operation restarts the connector and all of its tasks.
+        onlyFailedTasks: boolean
+    end
+
+    record RestartConnectorOutput
+        -- The Amazon Resource Name (ARN) of the connector.
+        connectorArn: string
+        -- The Amazon Resource Name (ARN) of the connector operation created to perform the restart.
+        connectorOperationArn: string
     end
 
     record TagResourceInput

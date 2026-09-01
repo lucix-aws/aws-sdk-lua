@@ -14,6 +14,10 @@ M.Attachments = schema.new({ type = "list", list_member = M.Attachment })
 
 M.CcEmailAddressList = schema.new({ type = "list", list_member = prelude.String })
 
+M.UploadIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompletedUploadList = schema.new({ type = "list", list_member = M.CompletedUpload })
+
 M.CaseIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.CaseList = schema.new({ type = "list", list_member = M.CaseDetails })
@@ -21,6 +25,8 @@ M.CaseList = schema.new({ type = "list", list_member = M.CaseDetails })
 M.CommunicationList = schema.new({ type = "list", list_member = M.Communication })
 
 M.CommunicationTypeOptionsList = schema.new({ type = "list", list_member = M.CommunicationTypeOptions })
+
+M.ThrottlingReasonList = schema.new({ type = "list", list_member = M.ThrottlingReason })
 
 M.ServiceCodeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -37,6 +43,8 @@ M.TrustedAdvisorCheckRefreshStatusList = schema.new({ type = "list", list_member
 M.TrustedAdvisorCheckList = schema.new({ type = "list", list_member = M.TrustedAdvisorCheckDescription })
 
 M.TrustedAdvisorCheckSummaryList = schema.new({ type = "list", list_member = M.TrustedAdvisorCheckSummary })
+
+M.UploadUrlList = schema.new({ type = "list", list_member = M.UploadUrl })
 
 M.TrustedAdvisorResourceDetailList = schema.new({ type = "list", list_member = M.TrustedAdvisorResourceDetail })
 
@@ -86,6 +94,12 @@ M.AddAttachmentsToSetInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "AddAttachmentsToSetInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -173,6 +187,22 @@ M.AttachmentSetSizeLimitExceeded = schema.new({
     },
 })
 
+M.DryRunOperationException = schema.new({
+    id = id.from(_N, "DryRunOperationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "DryRunOperationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InternalServerError = schema.new({
     id = id.from(_N, "InternalServerError"),
     type = "structure",
@@ -220,6 +250,19 @@ M.AddCommunicationToCaseInput = schema.new({
             type = "string",
             name = "attachmentSetId",
             target_id = prelude.String.id,
+        }),
+        uploadIds = schema.new({
+            id = id.from(_N, "AddCommunicationToCaseInput", "uploadIds"),
+            type = "list",
+            name = "uploadIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "AddCommunicationToCaseInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -284,6 +327,95 @@ M.AttachmentIdNotFound = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "AttachmentIdNotFound", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CompletedUpload = schema.new({
+    id = id.from(_N, "CompletedUpload"),
+    type = "structure",
+    members = {
+        partIndex = schema.new({
+            id = id.from(_N, "CompletedUpload", "partIndex"),
+            type = "integer",
+            name = "partIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eTag = schema.new({
+            id = id.from(_N, "CompletedUpload", "eTag"),
+            type = "string",
+            name = "eTag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CompleteAttachmentUploadInput = schema.new({
+    id = id.from(_N, "CompleteAttachmentUploadRequest"),
+    type = "structure",
+    members = {
+        uploadId = schema.new({
+            id = id.from(_N, "CompleteAttachmentUploadInput", "uploadId"),
+            type = "string",
+            name = "uploadId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        completedUploads = schema.new({
+            id = id.from(_N, "CompleteAttachmentUploadInput", "completedUploads"),
+            type = "list",
+            name = "completedUploads",
+            target_id = prelude.Document.id,
+            list_member = M.CompletedUpload,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "CompleteAttachmentUploadInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CompleteAttachmentUploadOutput = schema.new({
+    id = id.from(_N, "CompleteAttachmentUploadResponse"),
+    type = "structure",
+    members = {
+        uploadStatus = schema.new({
+            id = id.from(_N, "CompleteAttachmentUploadOutput", "uploadStatus"),
+            type = "string",
+            name = "uploadStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UploadIdNotFound = schema.new({
+    id = id.from(_N, "UploadIdNotFound"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "UploadIdNotFound", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -372,6 +504,19 @@ M.CreateCaseInput = schema.new({
             name = "attachmentSetId",
             target_id = prelude.String.id,
         }),
+        uploadIds = schema.new({
+            id = id.from(_N, "CreateCaseInput", "uploadIds"),
+            type = "list",
+            name = "uploadIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "CreateCaseInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -400,6 +545,12 @@ M.DescribeAttachmentInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "DescribeAttachmentInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -430,6 +581,79 @@ M.DescribeAttachmentOutput = schema.new({
             name = "attachment",
             target_id = id.from(_N, "Attachment"),
             target = M.Attachment,
+        }),
+    },
+})
+
+M.DescribeAttachmentUploadStatusInput = schema.new({
+    id = id.from(_N, "DescribeAttachmentUploadStatusRequest"),
+    type = "structure",
+    members = {
+        uploadId = schema.new({
+            id = id.from(_N, "DescribeAttachmentUploadStatusInput", "uploadId"),
+            type = "string",
+            name = "uploadId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "DescribeAttachmentUploadStatusInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UploadProgress = schema.new({
+    id = id.from(_N, "UploadProgress"),
+    type = "structure",
+    members = {
+        totalParts = schema.new({
+            id = id.from(_N, "UploadProgress", "totalParts"),
+            type = "integer",
+            name = "totalParts",
+            target_id = prelude.Integer.id,
+        }),
+        completedPartsCount = schema.new({
+            id = id.from(_N, "UploadProgress", "completedPartsCount"),
+            type = "integer",
+            name = "completedPartsCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DescribeAttachmentUploadStatusOutput = schema.new({
+    id = id.from(_N, "DescribeAttachmentUploadStatusResponse"),
+    type = "structure",
+    members = {
+        uploadStatus = schema.new({
+            id = id.from(_N, "DescribeAttachmentUploadStatusOutput", "uploadStatus"),
+            type = "string",
+            name = "uploadStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileName = schema.new({
+            id = id.from(_N, "DescribeAttachmentUploadStatusOutput", "fileName"),
+            type = "string",
+            name = "fileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        uploadProgress = schema.new({
+            id = id.from(_N, "DescribeAttachmentUploadStatusOutput", "uploadProgress"),
+            type = "structure",
+            name = "uploadProgress",
+            target_id = id.from(_N, "UploadProgress"),
+            target = M.UploadProgress,
         }),
     },
 })
@@ -496,6 +720,12 @@ M.DescribeCasesInput = schema.new({
             name = "includeCommunications",
             target_id = prelude.Boolean.id,
         }),
+        dryRun = schema.new({
+            id = id.from(_N, "DescribeCasesInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -526,6 +756,13 @@ M.Communication = schema.new({
             type = "string",
             name = "timeCreated",
             target_id = prelude.String.id,
+        }),
+        attachments = schema.new({
+            id = id.from(_N, "Communication", "attachments"),
+            type = "list",
+            name = "attachments",
+            target_id = prelude.Document.id,
+            list_member = M.AttachmentDetails,
         }),
         attachmentSet = schema.new({
             id = id.from(_N, "Communication", "attachmentSet"),
@@ -695,6 +932,12 @@ M.DescribeCommunicationsInput = schema.new({
             name = "maxResults",
             target_id = prelude.Integer.id,
         }),
+        dryRun = schema.new({
+            id = id.from(_N, "DescribeCommunicationsInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -757,6 +1000,12 @@ M.DescribeCreateCaseOptionsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "DescribeCreateCaseOptionsInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -846,6 +1095,25 @@ M.DescribeCreateCaseOptionsOutput = schema.new({
     },
 })
 
+M.ThrottlingReason = schema.new({
+    id = id.from(_N, "ThrottlingReason"),
+    type = "structure",
+    members = {
+        reason = schema.new({
+            id = id.from(_N, "ThrottlingReason", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+        resource = schema.new({
+            id = id.from(_N, "ThrottlingReason", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ThrottlingException = schema.new({
     id = id.from(_N, "ThrottlingException"),
     type = "structure",
@@ -859,6 +1127,13 @@ M.ThrottlingException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+        throttlingReasons = schema.new({
+            id = id.from(_N, "ThrottlingException", "throttlingReasons"),
+            type = "list",
+            name = "throttlingReasons",
+            target_id = prelude.Document.id,
+            list_member = M.ThrottlingReason,
         }),
     },
 })
@@ -879,6 +1154,12 @@ M.DescribeServicesInput = schema.new({
             type = "string",
             name = "language",
             target_id = prelude.String.id,
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "DescribeServicesInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -952,6 +1233,12 @@ M.DescribeSeverityLevelsInput = schema.new({
             name = "language",
             target_id = prelude.String.id,
         }),
+        dryRun = schema.new({
+            id = id.from(_N, "DescribeSeverityLevelsInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -1018,6 +1305,12 @@ M.DescribeSupportedLanguagesInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "DescribeSupportedLanguagesInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1551,6 +1844,231 @@ M.DescribeTrustedAdvisorCheckSummariesOutput = schema.new({
     },
 })
 
+M.GetAttachmentDownloadLinkInput = schema.new({
+    id = id.from(_N, "GetAttachmentDownloadLinkRequest"),
+    type = "structure",
+    members = {
+        attachmentId = schema.new({
+            id = id.from(_N, "GetAttachmentDownloadLinkInput", "attachmentId"),
+            type = "string",
+            name = "attachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "GetAttachmentDownloadLinkInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DownloadUrl = schema.new({
+    id = id.from(_N, "DownloadUrl"),
+    type = "structure",
+    members = {
+        url = schema.new({
+            id = id.from(_N, "DownloadUrl", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expiryDate = schema.new({
+            id = id.from(_N, "DownloadUrl", "expiryDate"),
+            type = "string",
+            name = "expiryDate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAttachmentDownloadLinkOutput = schema.new({
+    id = id.from(_N, "GetAttachmentDownloadLinkResponse"),
+    type = "structure",
+    members = {
+        fileName = schema.new({
+            id = id.from(_N, "GetAttachmentDownloadLinkOutput", "fileName"),
+            type = "string",
+            name = "fileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        downloadUrl = schema.new({
+            id = id.from(_N, "GetAttachmentDownloadLinkOutput", "downloadUrl"),
+            type = "structure",
+            name = "downloadUrl",
+            target_id = id.from(_N, "DownloadUrl"),
+            target = M.DownloadUrl,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UploadRange = schema.new({
+    id = id.from(_N, "UploadRange"),
+    type = "structure",
+    members = {
+        startIndex = schema.new({
+            id = id.from(_N, "UploadRange", "startIndex"),
+            type = "integer",
+            name = "startIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endIndex = schema.new({
+            id = id.from(_N, "UploadRange", "endIndex"),
+            type = "integer",
+            name = "endIndex",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.GetAttachmentUploadLinksInput = schema.new({
+    id = id.from(_N, "GetAttachmentUploadLinksRequest"),
+    type = "structure",
+    members = {
+        fileName = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksInput", "fileName"),
+            type = "string",
+            name = "fileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileSizeBytes = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksInput", "fileSizeBytes"),
+            type = "long",
+            name = "fileSizeBytes",
+            target_id = prelude.Long.id,
+        }),
+        uploadId = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksInput", "uploadId"),
+            type = "string",
+            name = "uploadId",
+            target_id = prelude.String.id,
+        }),
+        uploadRange = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksInput", "uploadRange"),
+            type = "structure",
+            name = "uploadRange",
+            target_id = id.from(_N, "UploadRange"),
+            target = M.UploadRange,
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UploadUrl = schema.new({
+    id = id.from(_N, "UploadUrl"),
+    type = "structure",
+    members = {
+        url = schema.new({
+            id = id.from(_N, "UploadUrl", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        partIndex = schema.new({
+            id = id.from(_N, "UploadUrl", "partIndex"),
+            type = "integer",
+            name = "partIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        expiryDate = schema.new({
+            id = id.from(_N, "UploadUrl", "expiryDate"),
+            type = "string",
+            name = "expiryDate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAttachmentUploadLinksOutput = schema.new({
+    id = id.from(_N, "GetAttachmentUploadLinksResponse"),
+    type = "structure",
+    members = {
+        uploadId = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksOutput", "uploadId"),
+            type = "string",
+            name = "uploadId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        partSizeBytes = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksOutput", "partSizeBytes"),
+            type = "long",
+            name = "partSizeBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalParts = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksOutput", "totalParts"),
+            type = "integer",
+            name = "totalParts",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        nextIndex = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksOutput", "nextIndex"),
+            type = "integer",
+            name = "nextIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        uploadUrls = schema.new({
+            id = id.from(_N, "GetAttachmentUploadLinksOutput", "uploadUrls"),
+            type = "list",
+            name = "uploadUrls",
+            target_id = prelude.Document.id,
+            list_member = M.UploadUrl,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RefreshTrustedAdvisorCheckInput = schema.new({
     id = id.from(_N, "RefreshTrustedAdvisorCheckRequest"),
     type = "structure",
@@ -1593,6 +2111,12 @@ M.ResolveCaseInput = schema.new({
             type = "string",
             name = "caseId",
             target_id = prelude.String.id,
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "ResolveCaseInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1663,6 +2187,17 @@ M.AddCommunicationToCase = schema.operation({
     },
 })
 
+M.CompleteAttachmentUpload = schema.operation({
+    id = id.from("com.amazonaws.support", "CompleteAttachmentUpload"),
+    input = M.CompleteAttachmentUploadInput,
+    output = M.CompleteAttachmentUploadOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateCase = schema.operation({
     id = id.from("com.amazonaws.support", "CreateCase"),
     input = M.CreateCaseInput,
@@ -1678,6 +2213,17 @@ M.DescribeAttachment = schema.operation({
     id = id.from("com.amazonaws.support", "DescribeAttachment"),
     input = M.DescribeAttachmentInput,
     output = M.DescribeAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAttachmentUploadStatus = schema.operation({
+    id = id.from("com.amazonaws.support", "DescribeAttachmentUploadStatus"),
+    input = M.DescribeAttachmentUploadStatusInput,
+    output = M.DescribeAttachmentUploadStatusOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -1788,6 +2334,28 @@ M.DescribeTrustedAdvisorCheckSummaries = schema.operation({
     id = id.from("com.amazonaws.support", "DescribeTrustedAdvisorCheckSummaries"),
     input = M.DescribeTrustedAdvisorCheckSummariesInput,
     output = M.DescribeTrustedAdvisorCheckSummariesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAttachmentDownloadLink = schema.operation({
+    id = id.from("com.amazonaws.support", "GetAttachmentDownloadLink"),
+    input = M.GetAttachmentDownloadLinkInput,
+    output = M.GetAttachmentDownloadLinkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAttachmentUploadLinks = schema.operation({
+    id = id.from("com.amazonaws.support", "GetAttachmentUploadLinks"),
+    input = M.GetAttachmentUploadLinksInput,
+    output = M.GetAttachmentUploadLinksOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

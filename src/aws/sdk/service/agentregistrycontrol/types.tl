@@ -2,13 +2,13 @@
 
 local record M
 
-    -- The configuration for an IAM role credential provider that signs requests to a registry record's source with AWS Signature Version 4 (SigV4).
+    -- The configuration for an IAM role credential provider that signs requests to a registry record's source with Amazon Web Services Signature Version 4 (SigV4).
     record RegistryRecordIamCredentialProvider
-        -- The &ARN; of the IAM role to assume for request signing.
+        -- The Amazon Resource Name (ARN) of the IAM role to assume for request signing.
         roleArn: string
         -- The service name to use for request signing, such as execute-api.
         service: string
-        -- The AWS Region to use for request signing. If not specified, the Region is derived from the source URL hostname, falling back to the Region of the registry.
+        -- The Amazon Web Services Region to use for request signing. If not specified, the Region is derived from the source URL hostname, falling back to the Region of the registry.
         region: string
     end
 
@@ -18,7 +18,7 @@ local record M
 
     -- The configuration for an OAuth 2.0 credential provider that authenticates requests to a registry record's source.
     record RegistryRecordOAuthCredentialProvider
-        -- The &ARN; of the OAuth 2.0 credential provider resource in Amazon Bedrock AgentCore Identity.
+        -- The Amazon Resource Name (ARN) of the OAuth 2.0 credential provider resource in Amazon Bedrock AgentCore Identity.
         providerArn: string
         -- The OAuth 2.0 grant type used to obtain access tokens.
         grantType: string
@@ -78,16 +78,160 @@ local record M
         message: string
     end
 
+    enum AgentCoreGatewayProtocolType
+        "MCP"
+    end
+
+    enum ClaimMatchOperatorType
+        "EQUALS"
+        "CONTAINS"
+        "CONTAINS_ANY"
+    end
+
+    -- The expected value used to match a claim. Exactly one member is set.
+    record ClaimMatchValueType
+        -- A single string value to match the claim against.
+        matchValueString: string
+        -- A list of string values to match the claim against.
+        matchValueStringList: {string}
+    end
+
+    -- The value and match operator used to authorize a claim during JWT validation.
+    record AuthorizingClaimMatchValueType
+        -- The expected value or values that the claim is compared against.
+        claimMatchValue: ClaimMatchValueType
+        -- The operator used to compare the claim value against the expected value.
+        claimMatchOperator: string
+    end
+
+    enum InboundTokenClaimValueType
+        "STRING"
+        "STRING_ARRAY"
+    end
+
+    -- A validation rule applied to a single claim of an inbound JWT.
+    record CustomClaimValidationType
+        -- The name of the claim in the inbound token to validate.
+        inboundTokenClaimName: string
+        -- The value type of the claim in the inbound token, either a string or an array of strings.
+        inboundTokenClaimValueType: string
+        -- The value and match operator used to authorize the claim.
+        authorizingClaimMatchValue: AuthorizingClaimMatchValueType
+    end
+
+    enum EndpointIpAddressType
+        "IPV4"
+        "IPV6"
+    end
+
+    -- A service-managed private endpoint provisioned within a customer VPC.
+    record ManagedVpcResource
+        -- The identifier of the VPC in which the private endpoint is provisioned.
+        vpcIdentifier: string
+        -- The identifiers of the subnets in which the private endpoint network interfaces are placed.
+        subnetIds: {string}
+        -- The IP address type used by the private endpoint, either IPV4 or IPV6.
+        endpointIpAddressType: string
+        -- The identifiers of the security groups associated with the private endpoint network interfaces.
+        securityGroupIds: {string}
+        -- The tags applied to the service-managed VPC resource.
+        tags: {string : string}
+        -- The routing domain used to resolve traffic through the private endpoint.
+        routingDomain: string
+    end
+
+    -- A self-managed private endpoint backed by a VPC Lattice resource configuration. Exactly one member is set.
+    record SelfManagedLatticeResource
+        -- The identifier of the VPC Lattice resource configuration, specified as a resource configuration ID or ARN.
+        resourceConfigurationIdentifier: string
+    end
+
+    -- A private network endpoint used to reach a resource over a private path. Exactly one member is set.
+    record PrivateEndpoint
+        -- A private endpoint backed by a self-managed VPC Lattice resource configuration.
+        selfManagedLatticeResource: SelfManagedLatticeResource
+        -- A private endpoint backed by a service-managed VPC resource.
+        managedVpcResource: ManagedVpcResource
+    end
+
+    -- A mapping of a domain to the private endpoint used to reach it.
+    record PrivateEndpointOverride
+        -- The domain name to which this private endpoint override applies.
+        domain: string
+        -- The private endpoint used to reach the specified domain.
+        privateEndpoint: PrivateEndpoint
+    end
+
+    -- Configuration for a custom JWT authorizer that validates inbound bearer tokens against an OpenID Connect identity provider.
+    record CustomJWTAuthorizerConfiguration
+        -- The OpenID Connect discovery URL used to retrieve the identity provider's metadata and signing keys.
+        discoveryUrl: string
+        -- The audience values accepted during JWT validation. A token is rejected if none of its audience claims match.
+        allowedAudience: {string}
+        -- The client identifiers accepted during JWT validation. A token is rejected if it was not issued to one of these clients.
+        allowedClients: {string}
+        -- The scopes accepted during JWT validation. A token is rejected if it does not carry one of these scopes.
+        allowedScopes: {string}
+        -- Additional custom claim validations applied to the inbound JWT.
+        customClaims: {CustomClaimValidationType}
+        -- The private endpoint used to reach the identity provider's discovery URL over a private network path.
+        privateEndpoint: PrivateEndpoint
+        -- Per-domain private endpoint overrides that route specific identity provider domains through distinct private endpoints.
+        privateEndpointOverrides: {PrivateEndpointOverride}
+    end
+
+    -- The authorizer configuration for a registry. Exactly one member is set.
+    record AuthorizerConfiguration
+        -- Configuration for a custom JWT authorizer.
+        customJWTAuthorizer: CustomJWTAuthorizerConfiguration
+    end
+
+    -- Workload identity details associated with a source resource.
+    record WorkloadIdentityDetails
+        -- The Amazon Resource Name (ARN) of the workload identity associated with the source resource.
+        workloadIdentityArn: string
+    end
+
+    -- Source details for a record auto-detected from an AgentCore Gateway resource.
+    record AgentCoreGatewaySourceDetails
+        protocolType: string
+        -- The type of authorizer configured on the AgentCore Gateway resource that the registry record was detected from.
+        authorizerType: string
+        authorizerConfiguration: AuthorizerConfiguration
+        workloadIdentityDetails: WorkloadIdentityDetails
+    end
+
+    enum AgentCoreRuntimeServerProtocol
+        "HTTP"
+        "A2A"
+        "MCP"
+        "AGUI"
+    end
+
+    -- Protocol configuration for an AgentCore Runtime.
+    record AgentCoreRuntimeProtocolConfiguration
+        serverProtocol: string
+    end
+
+    -- Source details for a record auto-detected from an AgentCore Runtime resource.
+    record AgentCoreRuntimeSourceDetails
+        protocolConfiguration: AgentCoreRuntimeProtocolConfiguration
+        authorizerConfiguration: AuthorizerConfiguration
+        workloadIdentityDetails: WorkloadIdentityDetails
+    end
+
     -- The request failed due to an unexpected internal error; the caller may retry.
     record InternalServerException
         message: string
     end
 
     record ListTagsForResourceInput
+        -- The Amazon Resource Name (ARN) of the resource to list tags for. Supported resources include registries and registry records.
         resourceArn: string
     end
 
     record ListTagsForResourceOutput
+        -- The tags currently associated with the resource, as a map of tag keys to tag values.
         tags: {string : string}
     end
 
@@ -157,19 +301,33 @@ local record M
         additionalData: AgentSkillsAdditionalData
     end
 
+    -- A registry record descriptor for the AG-UI (Agent-User Interaction) protocol.
+    record AgUiDescriptor
+        source: DescriptorSource
+    end
+
     -- Custom descriptor for user-defined content
     record CustomDescriptor
+        -- The custom descriptor content, serialized as descriptor payload data.
         data: string
+    end
+
+    -- A registry record descriptor for the HTTP protocol. This descriptor is source-only: its content is synchronized from the configured source URL rather than supplied inline.
+    record HttpDescriptor
+        source: DescriptorSource
     end
 
     -- MCP tools descriptor containing tool definitions
     record McpToolsDescriptor
+        -- The MCP tools descriptor content, serialized as descriptor payload data.
         data: string
+        -- The schema version of the descriptor payload.
         dataSchemaVersion: string
     end
 
     -- Additional data for an MCP server descriptor
     record McpServerAdditionalData
+        -- The MCP tools descriptor that defines the tools exposed by the MCP server.
         tools: McpToolsDescriptor
     end
 
@@ -195,6 +353,36 @@ local record M
         agentSkillsDefinition: AgentSkillsDefinitionDescriptor
         -- The custom descriptor, populated when the record type is CUSTOM.
         custom: CustomDescriptor
+        -- The HTTP descriptor, populated for records detected from an HTTP protocol source.
+        http: HttpDescriptor
+        -- The AG-UI descriptor, populated for records detected from an AG-UI protocol source.
+        agui: AgUiDescriptor
+    end
+
+    enum ProvenanceRelation
+        "DETECTED_FROM"
+    end
+
+    -- The details about the upstream source from which a registry record was detected. Exactly one member is populated, corresponding to the source type.
+    record SourceDetails
+        agentcoreRuntime: AgentCoreRuntimeSourceDetails
+        agentcoreGateway: AgentCoreGatewaySourceDetails
+    end
+
+    enum SourceType
+        "AWS::BedrockAgentCore::Runtime"
+        "AWS::BedrockAgentCore::Gateway"
+    end
+
+    -- One provenance entry describing the lineage of a registry record.
+    record Provenance
+        relation: string
+        -- The identifier of the upstream source that the registry record was detected from.
+        sourceId: string
+        -- The type of the upstream source that the registry record was detected from.
+        sourceType: string
+        -- Additional details about the upstream source that the registry record was detected from, such as the AgentCore Gateway or Runtime configuration. The populated member corresponds to the source type.
+        sourceDetails: SourceDetails
     end
 
     enum RecordType
@@ -202,6 +390,7 @@ local record M
         "AGENT"
         "CUSTOM"
         "SKILL"
+        "GATEWAY"
     end
 
     record CreateRegistryRecordInput
@@ -221,6 +410,7 @@ local record M
         recordVersion: string
         -- Client token for idempotency
         clientToken: string
+        provenance: {Provenance}
         -- Tags to associate with the registry record
         tags: {string : string}
     end
@@ -270,9 +460,9 @@ local record M
 
     -- Response structure for retrieving a registry record
     record GetRegistryRecordOutput
-        -- The &ARN; of the parent registry that owns the record.
+        -- The Amazon Resource Name (ARN) of the parent registry that owns the record.
         registryArn: string
-        -- The &ARN; of the registry record.
+        -- The Amazon Resource Name (ARN) of the registry record.
         recordArn: string
         -- The unique identifier of the registry record.
         recordId: string
@@ -296,6 +486,11 @@ local record M
         updatedAt: number
         -- The reason for the current status. Typically populated when the status indicates a failure state.
         statusReason: string
+        provenance: {Provenance}
+        -- Specifies whether the registry record was created by auto-detection. true indicates the record was automatically created by the service based on the registry's auto-detection configuration; false indicates the record was created through a control-plane API call.
+        createdByAutoDetection: boolean
+        -- The ID of the Amazon Web Services account that created the registry record.
+        createdBy: string
     end
 
     enum RegistryRecordFilterName
@@ -323,11 +518,21 @@ local record M
         filters: {RegistryRecordFilter}
     end
 
+    -- Condensed provenance entry for list results — the key triple only (no sourceDetails union).
+    -- Enough to display and client-side-filter lineage without the full-read config payload.
+    record ProvenanceSummary
+        relation: string
+        -- The identifier of the upstream source that the registry record was detected from.
+        sourceId: string
+        -- The type of the upstream source that the registry record was detected from.
+        sourceType: string
+    end
+
     -- A summary of a registry record returned by list operations. Contains identifying and lifecycle fields but omits descriptor content.
     record RegistryRecordSummary
-        -- The &ARN; of the parent registry that owns the record.
+        -- The Amazon Resource Name (ARN) of the parent registry that owns the record.
         registryArn: string
-        -- The &ARN; of the registry record.
+        -- The Amazon Resource Name (ARN) of the registry record.
         recordArn: string
         -- The unique identifier of the registry record.
         recordId: string
@@ -347,6 +552,11 @@ local record M
         createdAt: number
         -- The timestamp when the registry record was last updated.
         updatedAt: number
+        -- Specifies whether the registry record was created by auto-detection. true indicates the record was automatically created by the service based on the registry's auto-detection configuration; false indicates the record was created through a control-plane API call.
+        createdByAutoDetection: boolean
+        -- The ID of the Amazon Web Services account that created the registry record.
+        createdBy: string
+        provenanceSummaryList: {ProvenanceSummary}
     end
 
     -- Response structure for listing registry records
@@ -380,6 +590,7 @@ local record M
 
     -- Wrapper for updating an optional Description field with PATCH semantics
     record UpdatedDescription
+        -- The value to set for this field. Omit the wrapper to leave the field unchanged.
         optionalValue: string
     end
 
@@ -461,6 +672,18 @@ local record M
         optionalValue: UpdatedAgentSkillsDefinitionDescriptorFields
     end
 
+    -- The set of AG-UI descriptor fields that can be individually updated.
+    record UpdatedAgUiDescriptorFields
+        -- The patch for the descriptor's source field.
+        source: UpdatedDescriptorSource
+    end
+
+    -- The AG-UI descriptor patch wrapper. Omit to leave the descriptor unchanged; supply an empty object to remove it; supply optionalValue to patch its fields.
+    record UpdatedAgUiDescriptor
+        -- The value to set for this field. Omit the wrapper to leave the field unchanged.
+        optionalValue: UpdatedAgUiDescriptorFields
+    end
+
     -- The set of custom descriptor fields that can be individually updated.
     record UpdatedCustomDescriptorFields
         -- The patch for the descriptor's data field.
@@ -471,6 +694,18 @@ local record M
     record UpdatedCustomDescriptor
         -- The value to set for this field. Omit the wrapper to leave the field unchanged.
         optionalValue: UpdatedCustomDescriptorFields
+    end
+
+    -- The set of HTTP descriptor fields that can be individually updated.
+    record UpdatedHttpDescriptorFields
+        -- The patch for the descriptor's source field.
+        source: UpdatedDescriptorSource
+    end
+
+    -- The HTTP descriptor patch wrapper. Omit to leave the descriptor unchanged; supply an empty object to remove it; supply optionalValue to patch its fields.
+    record UpdatedHttpDescriptor
+        -- The value to set for this field. Omit the wrapper to leave the field unchanged.
+        optionalValue: UpdatedHttpDescriptorFields
     end
 
     -- The set of MCP tools descriptor fields that can be individually updated.
@@ -527,6 +762,10 @@ local record M
         agentSkillsDefinition: UpdatedAgentSkillsDefinitionDescriptor
         -- The patch for the custom descriptor.
         custom: UpdatedCustomDescriptor
+        -- The patch for the HTTP descriptor.
+        http: UpdatedHttpDescriptor
+        -- The patch for the AG-UI descriptor.
+        agui: UpdatedAgUiDescriptor
     end
 
     -- The top-level descriptors patch wrapper used in UpdateRegistryRecord. Omit to leave the current descriptors unchanged; supply an empty object to clear them; supply optionalValue to apply a per-field patch.
@@ -560,13 +799,14 @@ local record M
         recordVersion: string
         -- Whether to trigger synchronization of the record's descriptor content from its source
         triggerSynchronization: boolean
+        provenance: {Provenance}
     end
 
     -- Response structure for updating a registry record
     record UpdateRegistryRecordOutput
-        -- The &ARN; of the parent registry that owns the record.
+        -- The Amazon Resource Name (ARN) of the parent registry that owns the record.
         registryArn: string
-        -- The &ARN; of the registry record.
+        -- The Amazon Resource Name (ARN) of the registry record.
         recordArn: string
         -- The unique identifier of the registry record.
         recordId: string
@@ -590,6 +830,11 @@ local record M
         updatedAt: number
         -- The reason for the current status. Typically populated when the status indicates a failure state.
         statusReason: string
+        provenance: {Provenance}
+        -- Specifies whether the registry record was created by auto-detection. true indicates the record was automatically created by the service based on the registry's auto-detection configuration; false indicates the record was created through a control-plane API call.
+        createdByAutoDetection: boolean
+        -- The ID of the Amazon Web Services account that created the registry record.
+        createdBy: string
     end
 
     record UpdateRegistryRecordStatusInput
@@ -629,107 +874,16 @@ local record M
         autoApprovalRules: {string}
     end
 
-    enum ClaimMatchOperatorType
-        "EQUALS"
-        "CONTAINS"
-        "CONTAINS_ANY"
+    enum AutoDetectionScope
+        "ORGANIZATION"
     end
 
-    -- The expected value used to match a claim. Exactly one member is set.
-    record ClaimMatchValueType
-        -- A single string value to match the claim against.
-        matchValueString: string
-        -- A list of string values to match the claim against.
-        matchValueStringList: {string}
-    end
-
-    -- The value and match operator used to authorize a claim during JWT validation.
-    record AuthorizingClaimMatchValueType
-        -- The expected value or values that the claim is compared against.
-        claimMatchValue: ClaimMatchValueType
-        -- The operator used to compare the claim value against the expected value.
-        claimMatchOperator: string
-    end
-
-    enum InboundTokenClaimValueType
-        "STRING"
-        "STRING_ARRAY"
-    end
-
-    -- A validation rule applied to a single claim of an inbound JWT.
-    record CustomClaimValidationType
-        -- The name of the claim in the inbound token to validate.
-        inboundTokenClaimName: string
-        -- The value type of the claim in the inbound token, either a string or an array of strings.
-        inboundTokenClaimValueType: string
-        -- The value and match operator used to authorize the claim.
-        authorizingClaimMatchValue: AuthorizingClaimMatchValueType
-    end
-
-    enum EndpointIpAddressType
-        "IPV4"
-        "IPV6"
-    end
-
-    -- A service-managed private endpoint provisioned within a customer VPC.
-    record ManagedVpcResource
-        -- The identifier of the VPC in which the private endpoint is provisioned.
-        vpcIdentifier: string
-        -- The identifiers of the subnets in which the private endpoint network interfaces are placed.
-        subnetIds: {string}
-        -- The IP address type used by the private endpoint, either IPV4 or IPV6.
-        endpointIpAddressType: string
-        -- The identifiers of the security groups associated with the private endpoint network interfaces.
-        securityGroupIds: {string}
-        tags: {string : string}
-        -- The routing domain used to resolve traffic through the private endpoint.
-        routingDomain: string
-    end
-
-    -- A self-managed private endpoint backed by a VPC Lattice resource configuration. Exactly one member is set.
-    record SelfManagedLatticeResource
-        -- The identifier of the VPC Lattice resource configuration, specified as a resource configuration ID or ARN.
-        resourceConfigurationIdentifier: string
-    end
-
-    -- A private network endpoint used to reach a resource over a private path. Exactly one member is set.
-    record PrivateEndpoint
-        -- A private endpoint backed by a self-managed VPC Lattice resource configuration.
-        selfManagedLatticeResource: SelfManagedLatticeResource
-        -- A private endpoint backed by a service-managed VPC resource.
-        managedVpcResource: ManagedVpcResource
-    end
-
-    -- A mapping of a domain to the private endpoint used to reach it.
-    record PrivateEndpointOverride
-        -- The domain name to which this private endpoint override applies.
-        domain: string
-        -- The private endpoint used to reach the specified domain.
-        privateEndpoint: PrivateEndpoint
-    end
-
-    -- Configuration for a custom JWT authorizer that validates inbound bearer tokens against an OpenID Connect identity provider.
-    record CustomJWTAuthorizerConfiguration
-        -- The OpenID Connect discovery URL used to retrieve the identity provider's metadata and signing keys.
-        discoveryUrl: string
-        -- The audience values accepted during JWT validation. A token is rejected if none of its audience claims match.
-        allowedAudience: {string}
-        -- The client identifiers accepted during JWT validation. A token is rejected if it was not issued to one of these clients.
-        allowedClients: {string}
-        -- The scopes accepted during JWT validation. A token is rejected if it does not carry one of these scopes.
-        allowedScopes: {string}
-        -- Additional custom claim validations applied to the inbound JWT.
-        customClaims: {CustomClaimValidationType}
-        -- The private endpoint used to reach the identity provider's discovery URL over a private network path.
-        privateEndpoint: PrivateEndpoint
-        -- Per-domain private endpoint overrides that route specific identity provider domains through distinct private endpoints.
-        privateEndpointOverrides: {PrivateEndpointOverride}
-    end
-
-    -- The authorizer configuration for a registry. Exactly one member is set.
-    record AuthorizerConfiguration
-        -- Configuration for a custom JWT authorizer.
-        customJWTAuthorizer: CustomJWTAuthorizerConfiguration
+    -- The customer-defined auto-detection settings for a registry.
+    record AutoDetectionConfiguration
+        -- The source from which resources are detected. For example, ORGANIZATION sources resources from all member accounts of an Amazon Web Services organization.
+        scope: string
+        -- Specifies whether auto-detection is requested for the registry. Setting this to true is necessary but not sufficient for auto-detection to become active; the preconditions of the configured scope must also be met.
+        enabled: boolean
     end
 
     enum RegistryAuthorizerType
@@ -745,20 +899,30 @@ local record M
         authorizerType: string
     end
 
+    -- The server-side encryption configuration for a registry. Specifies a customer-managed Amazon Web Services KMS key used to encrypt the registry's content.
+    record EncryptionConfiguration
+        -- The Amazon Resource Name (ARN) of the customer-managed Amazon Web Services KMS key used to encrypt the registry's content. The key must be a symmetric encryption key in the same Amazon Web Services account and Region as the registry.
+        kmsKeyArn: string
+    end
+
     -- Request structure for creating a registry
     record CreateRegistryInput
         -- The name of the registry
         name: string
         -- The description of the registry
         description: string
+        -- The optional server-side encryption configuration for the registry. When you provide this field, the specified customer-managed Amazon Web Services KMS key encrypts the registry's content. Omit this field to use an Amazon Web Services-owned encryption key. You cannot change the encryption configuration after registry creation.
+        encryptionConfiguration: EncryptionConfiguration
         -- Discovery configuration for the registry
         discoveryConfiguration: DiscoveryConfiguration
-        -- Client token for idempotency
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.
         clientToken: string
         -- Tags to associate with the registry
         tags: {string : string}
         -- Approval configuration for registry records
         approvalConfiguration: ApprovalConfiguration
+        -- The optional auto-detection configuration for the registry. When provided, the registry is automatically populated with resources discovered according to the configuration. Omit this field for registries whose records are managed exclusively through the Agent Registry Control API.
+        autoDetectionConfiguration: AutoDetectionConfiguration
     end
 
     -- Response structure for creating a registry
@@ -795,6 +959,21 @@ local record M
         registryId: string
     end
 
+    enum AutoDetectionStatus
+        "ACTIVE"
+        "INACTIVE"
+    end
+
+    -- The auto-detection properties for a registry, including the requested configuration and the current detection status. When auto-detection is enabled and the scope preconditions are met, the registry is automatically populated with discovered resources.
+    record AutoDetection
+        -- The auto-detection settings that control how resources are discovered for the registry.
+        configuration: AutoDetectionConfiguration
+        -- The current auto-detection status. ACTIVE indicates that the registry is actively being populated with detected resources. INACTIVE indicates that the preconditions required at the configured scope are not currently met.
+        status: string
+        -- A human-readable explanation of the current auto-detection status. Typically populated when the status requires additional context.
+        statusReason: string
+    end
+
     -- Response structure for getting a registry
     record GetRegistryOutput
         -- The name of the registry
@@ -807,12 +986,16 @@ local record M
         registryArn: string
         -- Discovery configuration for the registry
         discoveryConfiguration: DiscoveryConfiguration
+        -- The server-side encryption configuration for the registry. Appears only when a customer-managed Amazon Web Services KMS key encrypts the registry.
+        encryptionConfiguration: EncryptionConfiguration
         -- Approval configuration for registry records
         approvalConfiguration: ApprovalConfiguration
         -- Current status of the registry
         status: string
         -- The reason for the current status. Typically populated when the status indicates a failure state.
         statusReason: string
+        -- The registry's auto-detection properties, including the requested configuration and the current detection status. Present only when auto-detection was configured for the registry.
+        autoDetection: AutoDetection
         -- The timestamp when the registry was created
         createdAt: number
         -- The timestamp when the registry was last updated
@@ -858,6 +1041,8 @@ local record M
         status: string
         -- The reason for the current status. Typically populated when the status indicates a failure state.
         statusReason: string
+        -- The registry's auto-detection properties, including the requested configuration and the current detection status. Present only when auto-detection was configured for the registry.
+        autoDetection: AutoDetection
         -- The timestamp when the registry was created
         createdAt: number
         -- The timestamp when the registry was last updated
@@ -876,6 +1061,12 @@ local record M
     record UpdatedApprovalConfiguration
         -- The value to set for this field. Omit the wrapper to leave the field unchanged.
         optionalValue: ApprovalConfiguration
+    end
+
+    -- A wrapper for updating the auto-detection configuration of a registry with PATCH semantics. Include this wrapper to replace the auto-detection configuration with the specified value. Omit it to leave the auto-detection configuration unchanged. To clear the configuration, include the wrapper with a null optionalValue.
+    record UpdatedAutoDetectionConfiguration
+        -- The value to set for this field. Omit the wrapper to leave the field unchanged.
+        optionalValue: AutoDetectionConfiguration
     end
 
     -- Wrapper for updating an optional authorizer configuration with PATCH semantics.
@@ -902,6 +1093,8 @@ local record M
         discoveryConfiguration: UpdatedDiscoveryConfiguration
         -- The updated approval configuration. The change applies only to records that move to PENDING_APPROVAL after the update; records already in PENDING_APPROVAL are unaffected.
         approvalConfiguration: UpdatedApprovalConfiguration
+        -- The updated auto-detection configuration for the registry, with PATCH semantics. Omit this field to leave the current configuration unchanged. Supply an empty wrapper to unset it. Supply optionalValue to replace it.
+        autoDetectionConfiguration: UpdatedAutoDetectionConfiguration
     end
 
     -- Response structure for updating a registry
@@ -916,12 +1109,16 @@ local record M
         registryArn: string
         -- Discovery configuration for the registry
         discoveryConfiguration: DiscoveryConfiguration
+        -- The server-side encryption configuration for the registry. Appears only when a customer-managed Amazon Web Services KMS key encrypts the registry.
+        encryptionConfiguration: EncryptionConfiguration
         -- Approval configuration for registry records
         approvalConfiguration: ApprovalConfiguration
         -- Current status of the registry
         status: string
         -- The reason for the current status. Typically populated when the status indicates a failure state.
         statusReason: string
+        -- The registry's auto-detection properties, including the requested configuration and the current detection status. Present only when auto-detection was configured for the registry.
+        autoDetection: AutoDetection
         -- The timestamp when the registry was created
         createdAt: number
         -- The timestamp when the registry was last updated
@@ -929,7 +1126,9 @@ local record M
     end
 
     record TagResourceInput
+        -- The Amazon Resource Name (ARN) of the resource to tag. Supported resources include registries and registry records.
         resourceArn: string
+        -- The tags to apply to the resource, as a map of tag keys to tag values. Tag keys must be unique within the request.
         tags: {string : string}
     end
 
@@ -937,7 +1136,9 @@ local record M
     end
 
     record UntagResourceInput
+        -- The Amazon Resource Name (ARN) of the resource to remove tags from. Supported resources include registries and registry records.
         resourceArn: string
+        -- The keys of the tags to remove from the resource. Tags with keys not included in this list remain on the resource.
         tagKeys: {string}
     end
 

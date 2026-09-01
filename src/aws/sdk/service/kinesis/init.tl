@@ -19,12 +19,15 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     addTagsToStream: function(Client, types.AddTagsToStreamInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsToStreamOutput>
+    createChannel: function(Client, types.CreateChannelInput, ? base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
     createStream: function(Client, types.CreateStreamInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamOutput>
     decreaseStreamRetentionPeriod: function(Client, types.DecreaseStreamRetentionPeriodInput, ? base_client.InvokeOptions): async.Operation<types.DecreaseStreamRetentionPeriodOutput>
+    deleteChannel: function(Client, types.DeleteChannelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     deleteStream: function(Client, types.DeleteStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamOutput>
     deregisterStreamConsumer: function(Client, types.DeregisterStreamConsumerInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterStreamConsumerOutput>
     describeAccountSettings: function(Client, types.DescribeAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountSettingsOutput>
+    describeChannel: function(Client, types.DescribeChannelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChannelOutput>
     describeLimits: function(Client, types.DescribeLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLimitsOutput>
     describeStream: function(Client, types.DescribeStreamInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStreamOutput>
     describeStreamConsumer: function(Client, types.DescribeStreamConsumerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStreamConsumerOutput>
@@ -35,6 +38,7 @@ local record Client
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     getShardIterator: function(Client, types.GetShardIteratorInput, ? base_client.InvokeOptions): async.Operation<types.GetShardIteratorOutput>
     increaseStreamRetentionPeriod: function(Client, types.IncreaseStreamRetentionPeriodInput, ? base_client.InvokeOptions): async.Operation<types.IncreaseStreamRetentionPeriodOutput>
+    listChannels: function(Client, types.ListChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
     listShards: function(Client, types.ListShardsInput, ? base_client.InvokeOptions): async.Operation<types.ListShardsOutput>
     listStreamConsumers: function(Client, types.ListStreamConsumersInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamConsumersOutput>
     listStreams: function(Client, types.ListStreamsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamsOutput>
@@ -53,6 +57,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    updateChannel: function(Client, types.UpdateChannelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
     updateMaxRecordSize: function(Client, types.UpdateMaxRecordSizeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMaxRecordSizeOutput>
     updateShardCount: function(Client, types.UpdateShardCountInput, ? base_client.InvokeOptions): async.Operation<types.UpdateShardCountOutput>
     updateStreamMode: function(Client, types.UpdateStreamModeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamModeOutput>
@@ -105,12 +110,20 @@ function C:addTagsToStream(input: types.AddTagsToStreamInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTagsToStream as schema.OperationSchema, input, options) as async.Operation<types.AddTagsToStreamOutput>
 end
 
+function C:createChannel(input: types.CreateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChannel as schema.OperationSchema, input, options) as async.Operation<types.CreateChannelOutput>
+end
+
 function C:createStream(input: types.CreateStreamInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStream as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamOutput>
 end
 
 function C:decreaseStreamRetentionPeriod(input: types.DecreaseStreamRetentionPeriodInput, options?: base_client.InvokeOptions): async.Operation<types.DecreaseStreamRetentionPeriodOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DecreaseStreamRetentionPeriod as schema.OperationSchema, input, options) as async.Operation<types.DecreaseStreamRetentionPeriodOutput>
+end
+
+function C:deleteChannel(input: types.DeleteChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChannel as schema.OperationSchema, input, options) as async.Operation<types.DeleteChannelOutput>
 end
 
 function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
@@ -127,6 +140,10 @@ end
 
 function C:describeAccountSettings(input: types.DescribeAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountSettingsOutput>
+end
+
+function C:describeChannel(input: types.DescribeChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChannel as schema.OperationSchema, input, options) as async.Operation<types.DescribeChannelOutput>
 end
 
 function C:describeLimits(input: types.DescribeLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLimitsOutput>
@@ -167,6 +184,10 @@ end
 
 function C:increaseStreamRetentionPeriod(input: types.IncreaseStreamRetentionPeriodInput, options?: base_client.InvokeOptions): async.Operation<types.IncreaseStreamRetentionPeriodOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IncreaseStreamRetentionPeriod as schema.OperationSchema, input, options) as async.Operation<types.IncreaseStreamRetentionPeriodOutput>
+end
+
+function C:listChannels(input: types.ListChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannels as schema.OperationSchema, input, options) as async.Operation<types.ListChannelsOutput>
 end
 
 function C:listShards(input: types.ListShardsInput, options?: base_client.InvokeOptions): async.Operation<types.ListShardsOutput>
@@ -239,6 +260,10 @@ end
 
 function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
+end
+
+function C:updateChannel(input: types.UpdateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChannel as schema.OperationSchema, input, options) as async.Operation<types.UpdateChannelOutput>
 end
 
 function C:updateMaxRecordSize(input: types.UpdateMaxRecordSizeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMaxRecordSizeOutput>

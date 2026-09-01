@@ -28,6 +28,8 @@ M.RegistryRecordIdList = schema.new({ type = "list", list_member = prelude.Strin
 
 M.DiscoverableFilterValues = schema.new({ type = "list", list_member = prelude.String })
 
+M.DescriptorTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.DescriptorSourceFromUrl = schema.new({
     id = id.from(_N, "DescriptorSourceFromUrl"),
     type = "structure",
@@ -249,6 +251,20 @@ M.AgentSkillsDefinitionDescriptor = schema.new({
     },
 })
 
+M.AgUiDescriptor = schema.new({
+    id = id.from(_N, "AgUiDescriptor"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "AgUiDescriptor", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "DescriptorSource"),
+            target = M.DescriptorSource,
+        }),
+    },
+})
+
 M.CustomDescriptor = schema.new({
     id = id.from(_N, "CustomDescriptor"),
     type = "structure",
@@ -258,6 +274,20 @@ M.CustomDescriptor = schema.new({
             type = "string",
             name = "data",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HttpDescriptor = schema.new({
+    id = id.from(_N, "HttpDescriptor"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "HttpDescriptor", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "DescriptorSource"),
+            target = M.DescriptorSource,
         }),
     },
 })
@@ -359,6 +389,20 @@ M.Descriptors = schema.new({
             name = "custom",
             target_id = id.from(_N, "CustomDescriptor"),
             target = M.CustomDescriptor,
+        }),
+        http = schema.new({
+            id = id.from(_N, "Descriptors", "http"),
+            type = "structure",
+            name = "http",
+            target_id = id.from(_N, "HttpDescriptor"),
+            target = M.HttpDescriptor,
+        }),
+        agui = schema.new({
+            id = id.from(_N, "Descriptors", "agui"),
+            type = "structure",
+            name = "agui",
+            target_id = id.from(_N, "AgUiDescriptor"),
+            target = M.AgUiDescriptor,
         }),
     },
 })
@@ -799,6 +843,13 @@ M.DiscoverableRegistryRecordSummary = schema.new({
             direct_traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        descriptorTypes = schema.new({
+            id = id.from(_N, "DiscoverableRegistryRecordSummary", "descriptorTypes"),
+            type = "list",
+            name = "descriptorTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

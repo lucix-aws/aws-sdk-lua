@@ -340,6 +340,10 @@ local record M
         -- Valid values: VOICE_ISOLATION | NOISE_SUPPRESSION | NONE.
         -- A value of null indicates this mode has not yet been set for this user.
         VoiceEnhancementMode: string
+        -- The Region where the agent was active when they handled the contact. For Amazon Connect Global Resiliency
+        -- instances enabled for global routing, this indicates the Region in which the agent's session was established
+        -- at the time of the contact.
+        ActiveRegion: string
     end
 
     -- Contains information for score and potential quality issues for Audio
@@ -7923,6 +7927,18 @@ local record M
         Arn: string
     end
 
+    record GetCrossRegionRoutingInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+    end
+
+    record GetCrossRegionRoutingOutput
+        -- The list of Regions for which cross-region routing is currently disabled (isolated). When a Region
+        -- appears in this list, contacts originating in that Region will not be routed to agents in other Regions,
+        -- and agents in that Region will not receive contacts from other Regions.
+        IsolatedRegions: {string}
+    end
+
     enum CurrentMetricName
         "AGENTS_ONLINE"
         "AGENTS_AVAILABLE"
@@ -12457,7 +12473,7 @@ local record M
         Arn: string
         -- The name of the traffic distribution group.
         Name: string
-        -- The Amazon Resource Name (ARN) of the traffic distribution group.
+        -- The Amazon Resource Name (ARN) of the instance.
         InstanceArn: string
         -- The status of the traffic distribution group.
         -- CREATION_IN_PROGRESS means the previous CreateTrafficDistributionGroup
@@ -15640,6 +15656,17 @@ local record M
     end
 
     record UpdateContactTaskTemplateOutput
+    end
+
+    record UpdateCrossRegionRoutingInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- Set to true to disable cross-region routing for all Regions associated with this instance.
+        -- Set to false to re-enable cross-region routing.
+        IsolatedAll: boolean
+    end
+
+    record UpdateCrossRegionRoutingOutput
     end
 
     record UpdateDataTableAttributeInput

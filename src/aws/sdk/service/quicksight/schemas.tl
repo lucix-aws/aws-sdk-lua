@@ -122,6 +122,8 @@ M.AnalysisSummaryList = schema.new({ type = "list", list_member = M.AnalysisSumm
 
 M.ApprovalPolicyList = schema.new({ type = "list", list_member = M.ApprovalPolicy })
 
+M.AppSummaryList = schema.new({ type = "list", list_member = M.AppSummary })
+
 M.AssetBundleExportJobSummaryList = schema.new({ type = "list", list_member = M.AssetBundleExportJobSummary })
 
 M.AssetBundleImportJobSummaryList = schema.new({ type = "list", list_member = M.AssetBundleImportJobSummary })
@@ -213,6 +215,8 @@ M.AgentSearchFilterList = schema.new({ type = "list", list_member = M.AgentSearc
 M.AgentSummaryList = schema.new({ type = "list", list_member = M.AgentSummary })
 
 M.AnalysisSearchFilterList = schema.new({ type = "list", list_member = M.AnalysisSearchFilter })
+
+M.SearchAppsFilterList = schema.new({ type = "list", list_member = M.SearchAppsFilter })
 
 M.DashboardSearchFilterList = schema.new({ type = "list", list_member = M.DashboardSearchFilter })
 
@@ -21636,6 +21640,49 @@ M.ApprovalPolicy = schema.new({
     },
 })
 
+M.AppSummary = schema.new({
+    id = id.from(_N, "AppSummary"),
+    type = "structure",
+    members = {
+        AppId = schema.new({
+            id = id.from(_N, "AppSummary", "AppId"),
+            type = "string",
+            name = "AppId",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "AppSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "AppSummary", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "AppSummary", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Visibility = schema.new({
+            id = id.from(_N, "AppSummary", "Visibility"),
+            type = "string",
+            name = "Visibility",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AssetBundleExportJobAnalysisOverrideProperties = schema.new({
     id = id.from(_N, "AssetBundleExportJobAnalysisOverrideProperties"),
     type = "structure",
@@ -39716,6 +39763,68 @@ M.DeleteAnalysisOutput = schema.new({
     },
 })
 
+M.DeleteAppInput = schema.new({
+    id = id.from(_N, "DeleteAppRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DeleteAppInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AppId = schema.new({
+            id = id.from(_N, "DeleteAppInput", "AppId"),
+            type = "string",
+            name = "AppId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAppOutput = schema.new({
+    id = id.from(_N, "DeleteAppResponse"),
+    type = "structure",
+    members = {
+        RequestId = schema.new({
+            id = id.from(_N, "DeleteAppOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidParameterException = schema.new({
+    id = id.from(_N, "InvalidParameterException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidParameterException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "InvalidParameterException", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteApprovalPolicyInput = schema.new({
     id = id.from(_N, "DeleteApprovalPolicyRequest"),
     type = "structure",
@@ -42552,6 +42661,115 @@ M.DescribeAnalysisPermissionsOutput = schema.new({
         }),
         RequestId = schema.new({
             id = id.from(_N, "DescribeAnalysisPermissionsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeAppInput = schema.new({
+    id = id.from(_N, "DescribeAppRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeAppInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AppId = schema.new({
+            id = id.from(_N, "DescribeAppInput", "AppId"),
+            type = "string",
+            name = "AppId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAppOutput = schema.new({
+    id = id.from(_N, "DescribeAppResponse"),
+    type = "structure",
+    members = {
+        App = schema.new({
+            id = id.from(_N, "DescribeAppOutput", "App"),
+            type = "structure",
+            name = "App",
+            target_id = id.from(_N, "AppSummary"),
+            target = M.AppSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeAppOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeAppPermissionsInput = schema.new({
+    id = id.from(_N, "DescribeAppPermissionsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeAppPermissionsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AppId = schema.new({
+            id = id.from(_N, "DescribeAppPermissionsInput", "AppId"),
+            type = "string",
+            name = "AppId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAppPermissionsOutput = schema.new({
+    id = id.from(_N, "DescribeAppPermissionsResponse"),
+    type = "structure",
+    members = {
+        AppId = schema.new({
+            id = id.from(_N, "DescribeAppPermissionsOutput", "AppId"),
+            type = "string",
+            name = "AppId",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "DescribeAppPermissionsOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "DescribeAppPermissionsOutput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeAppPermissionsOutput", "RequestId"),
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
@@ -46629,28 +46847,6 @@ M.DescribeSelfUpgradeConfigurationOutput = schema.new({
     },
 })
 
-M.InvalidParameterException = schema.new({
-    id = id.from(_N, "InvalidParameterException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "InvalidParameterException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-        RequestId = schema.new({
-            id = id.from(_N, "InvalidParameterException", "RequestId"),
-            type = "string",
-            name = "RequestId",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.DescribeSpaceInput = schema.new({
     id = id.from(_N, "DescribeSpaceRequest"),
     type = "structure",
@@ -50639,6 +50835,70 @@ M.ListApprovalPoliciesOutput = schema.new({
             id = id.from(_N, "ListApprovalPoliciesOutput", "NextToken"),
             type = "string",
             name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAppsInput = schema.new({
+    id = id.from(_N, "ListAppsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "ListAppsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAppsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListAppsOutput = schema.new({
+    id = id.from(_N, "ListAppsResponse"),
+    type = "structure",
+    members = {
+        AppSummaryList = schema.new({
+            id = id.from(_N, "ListAppsOutput", "AppSummaryList"),
+            type = "list",
+            name = "AppSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.AppSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "ListAppsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
             target_id = prelude.String.id,
         }),
     },
@@ -55107,6 +55367,108 @@ M.SearchAnalysesOutput = schema.new({
     },
 })
 
+M.SearchAppsFilter = schema.new({
+    id = id.from(_N, "SearchAppsFilter"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "SearchAppsFilter", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "SearchAppsFilter", "Operator"),
+            type = "string",
+            name = "Operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "SearchAppsFilter", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SearchAppsInput = schema.new({
+    id = id.from(_N, "SearchAppsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "SearchAppsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "SearchAppsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.SearchAppsFilter,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchAppsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchAppsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchAppsOutput = schema.new({
+    id = id.from(_N, "SearchAppsResponse"),
+    type = "structure",
+    members = {
+        AppSummaryList = schema.new({
+            id = id.from(_N, "SearchAppsOutput", "AppSummaryList"),
+            type = "list",
+            name = "AppSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.AppSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchAppsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "SearchAppsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SearchDashboardsInput = schema.new({
     id = id.from(_N, "SearchDashboardsRequest"),
     type = "structure",
@@ -57456,6 +57818,91 @@ M.UpdateApplicationWithTokenExchangeGrantOutput = schema.new({
         }),
         RequestId = schema.new({
             id = id.from(_N, "UpdateApplicationWithTokenExchangeGrantOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAppPermissionsInput = schema.new({
+    id = id.from(_N, "UpdateAppPermissionsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AppId = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsInput", "AppId"),
+            type = "string",
+            name = "AppId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        GrantPermissions = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsInput", "GrantPermissions"),
+            type = "list",
+            name = "GrantPermissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        RevokePermissions = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsInput", "RevokePermissions"),
+            type = "list",
+            name = "RevokePermissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        Visibility = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsInput", "Visibility"),
+            type = "string",
+            name = "Visibility",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAppPermissionsOutput = schema.new({
+    id = id.from(_N, "UpdateAppPermissionsResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        AppId = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsOutput", "AppId"),
+            type = "string",
+            name = "AppId",
+            target_id = prelude.String.id,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsOutput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        Visibility = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsOutput", "Visibility"),
+            type = "string",
+            name = "Visibility",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateAppPermissionsOutput", "RequestId"),
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
@@ -62689,6 +63136,18 @@ M.DeleteAnalysis = schema.operation({
     },
 })
 
+M.DeleteApp = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteApp"),
+    input = M.DeleteAppInput,
+    output = M.DeleteAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/apps/{AppId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteApprovalPolicy = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DeleteApprovalPolicy"),
     input = M.DeleteApprovalPolicyInput,
@@ -63247,6 +63706,30 @@ M.DescribeAnalysisPermissions = schema.operation({
     output = M.DescribeAnalysisPermissionsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/analyses/{AnalysisId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApp = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeApp"),
+    input = M.DescribeAppInput,
+    output = M.DescribeAppOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/apps/{AppId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAppPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAppPermissions"),
+    input = M.DescribeAppPermissionsInput,
+    output = M.DescribeAppPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/apps/{AppId}/permissions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -64093,6 +64576,18 @@ M.ListApprovalPolicies = schema.operation({
     },
 })
 
+M.ListApps = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListApps"),
+    input = M.ListAppsInput,
+    output = M.ListAppsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/apps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListAssetBundleExportJobs = schema.operation({
     id = id.from("com.amazonaws.quicksight", "ListAssetBundleExportJobs"),
     input = M.ListAssetBundleExportJobsInput,
@@ -64693,6 +65188,18 @@ M.SearchAnalyses = schema.operation({
     },
 })
 
+M.SearchApps = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchApps"),
+    input = M.SearchAppsInput,
+    output = M.SearchAppsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/apps" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.SearchDashboards = schema.operation({
     id = id.from("com.amazonaws.quicksight", "SearchDashboards"),
     input = M.SearchDashboardsInput,
@@ -65011,6 +65518,18 @@ M.UpdateApplicationWithTokenExchangeGrant = schema.operation({
     output = M.UpdateApplicationWithTokenExchangeGrantOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/application-with-token-exchange-grant" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAppPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateAppPermissions"),
+    input = M.UpdateAppPermissionsInput,
+    output = M.UpdateAppPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/apps/{AppId}/permissions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

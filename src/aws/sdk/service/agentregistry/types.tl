@@ -2,19 +2,23 @@
 
 local record M
 
-    -- Base mixin for descriptor source from URL
+    -- A URL-based descriptor source that identifies where descriptor content is retrieved from.
     record DescriptorSourceFromUrl
+        -- The URL from which the descriptor content is retrieved.
         url: string
     end
 
     -- The source location from which a descriptor's content was retrieved.
     record DescriptorSource
+        -- The URL-based descriptor source, populated when descriptor content is synchronized from a URL.
         fromUrl: DescriptorSourceFromUrl
     end
 
-    -- Base mixin for A2A agent card descriptor content
+    -- Descriptor that defines the content of an A2A (Agent-to-Agent) agent card registry record. The content is validated against the A2A protocol schema.
     record A2aAgentCardDescriptor
+        -- The A2A agent card content, serialized as descriptor payload data.
         data: string
+        -- The schema version of the descriptor payload.
         dataSchemaVersion: string
         -- The source location from which the A2A (Agent-to-Agent) agent card descriptor content was retrieved.
         source: DescriptorSource
@@ -27,6 +31,7 @@ local record M
 
     -- Binds one registry to the record IDs requested from it.
     record RegistryRecordsEntry
+        -- The identifier of the registry to retrieve the records from. You can provide either the full Amazon Resource Name (ARN) or the registry ID.
         registryId: string
         -- The record IDs to retrieve from the registry. You can specify 1 through 100 record IDs.
         recordIds: {string}
@@ -45,7 +50,9 @@ local record M
 
     -- Describes why a requested record could not be retrieved.
     record BatchGetDiscoverableRegistryRecordError
+        -- The identifier of the registry the record was requested from, echoed from the request.
         registryId: string
+        -- The identifier of the record that could not be retrieved, echoed from the request in the same format that you supplied (ARN or record ID).
         recordId: string
         -- The machine-readable reason that the record could not be retrieved.
         errorCode: string
@@ -53,9 +60,11 @@ local record M
         message: string
     end
 
-    -- Base mixin for agent skills markdown descriptor content
+    -- Markdown-format descriptor containing an agent skills document.
     record AgentSkillsMdDescriptor
+        -- The agent skills markdown content, serialized as descriptor payload data.
         data: string
+        -- The schema version of the descriptor payload.
         dataSchemaVersion: string
         -- The source location from which the agent skills markdown content was retrieved.
         source: DescriptorSource
@@ -63,37 +72,59 @@ local record M
 
     -- Additional data for an agent skills definition descriptor.
     record AgentSkillsAdditionalData
+        -- The agent skills markdown descriptor associated with the agent skills definition.
         skillMd: AgentSkillsMdDescriptor
     end
 
-    -- Base mixin for agent skills definition descriptor content
+    -- Descriptor that defines an agent skills registry record and its associated content.
     record AgentSkillsDefinitionDescriptor
+        -- The agent skills definition content, serialized as descriptor payload data.
         data: string
+        -- The schema version of the descriptor payload.
         dataSchemaVersion: string
         -- Additional data for the agent skills definition, such as the skills markdown descriptor.
         additionalData: AgentSkillsAdditionalData
     end
 
+    -- A descriptor for a registry record that exposes an AG-UI protocol endpoint. This descriptor is source-only: it identifies where the endpoint is located and carries no descriptor payload data or schema version.
+    record AgUiDescriptor
+        -- The source location of the AG-UI protocol endpoint.
+        source: DescriptorSource
+    end
+
     -- Custom descriptor for user-defined content
     record CustomDescriptor
+        -- The custom descriptor content, serialized as descriptor payload data.
         data: string
+    end
+
+    -- A descriptor for a registry record that exposes an HTTP endpoint. This descriptor is source-only: it identifies where the endpoint is located and carries no descriptor payload data or schema version.
+    record HttpDescriptor
+        -- The source location of the HTTP endpoint.
+        source: DescriptorSource
     end
 
     -- MCP tools descriptor containing tool definitions
     record McpToolsDescriptor
+        -- The MCP tools descriptor content, serialized as descriptor payload data.
         data: string
+        -- The schema version of the descriptor payload.
         dataSchemaVersion: string
     end
 
     -- Additional data for an MCP server descriptor
     record McpServerAdditionalData
+        -- The MCP tools descriptor that defines the tools exposed by the MCP server.
         tools: McpToolsDescriptor
     end
 
-    -- Base mixin for MCP server descriptor content
+    -- Descriptor that defines the content of an MCP (Model Context Protocol) server registry record, including the server definition and its tool definitions. The content is validated against the MCP protocol schema.
     record McpServerDescriptor
+        -- The MCP server descriptor content, serialized as descriptor payload data.
         data: string
+        -- The schema version of the descriptor payload.
         dataSchemaVersion: string
+        -- Additional data associated with the MCP server descriptor, such as tool definitions.
         additionalData: McpServerAdditionalData
         -- The source location from which the MCP (Model Context Protocol) server descriptor content was retrieved.
         source: DescriptorSource
@@ -101,10 +132,18 @@ local record M
 
     -- The protocol-specific descriptors that describe how to connect to and use the registry record.
     record Descriptors
+        -- The MCP server descriptor, populated when the record type is MCP.
         mcpServer: McpServerDescriptor
+        -- The A2A agent card descriptor, populated when the record type is AGENT.
         a2aAgentCard: A2aAgentCardDescriptor
+        -- The agent skills definition descriptor, populated when the record type is SKILL.
         agentSkillsDefinition: AgentSkillsDefinitionDescriptor
+        -- The custom descriptor, populated when the record type is CUSTOM.
         custom: CustomDescriptor
+        -- The HTTP descriptor, populated when the record exposes an HTTP endpoint.
+        http: HttpDescriptor
+        -- The AG-UI descriptor, populated when the record exposes an AG-UI protocol endpoint.
+        agui: AgUiDescriptor
     end
 
     enum RecordType
@@ -112,6 +151,7 @@ local record M
         "AGENT"
         "CUSTOM"
         "SKILL"
+        "GATEWAY"
     end
 
     enum RegistryRecordStatus
@@ -128,18 +168,29 @@ local record M
 
     -- Summary information about a registry record, including its descriptors.
     record RegistryRecordSummary
+        -- The Amazon Resource Name (ARN) of the parent registry that owns the record.
         registryArn: string
+        -- The Amazon Resource Name (ARN) of the registry record.
         recordArn: string
+        -- The unique identifier of the registry record.
         recordId: string
+        -- The name of the registry record. Names are unique within a registry.
         name: string
+        -- A human-readable description of the registry record. Use this field to explain the record's purpose or content to consumers discovering it in the registry.
         description: string
+        -- The human-readable display name of the registry record.
         displayName: string
+        -- The type of the registry record. MCP is a Model Context Protocol server record, AGENT is an Agent-to-Agent (A2A) agent card record, SKILL is an agent skills definition record, and CUSTOM is a record with a custom descriptor.
         recordType: string
         -- The protocol-specific descriptors that describe how to connect to and use the record.
         descriptors: Descriptors
+        -- The version identifier of the registry record.
         recordVersion: string
+        -- The lifecycle status of the registry record. A record is DRAFT before it is submitted, PENDING_APPROVAL while awaiting curator review, and APPROVED once it is approved and discoverable. REJECTED and DEPRECATED records are not discoverable. The CREATING, UPDATING, CREATE_FAILED, and UPDATE_FAILED values reflect the state of an in-progress or failed asynchronous change.
         status: string
+        -- The timestamp when the registry record was created.
         createdAt: number
+        -- The timestamp when the registry record was last updated.
         updatedAt: number
     end
 
@@ -209,6 +260,7 @@ local record M
     end
 
     record ListDiscoverableRegistryRecordsInput
+        -- The identifier of the registry whose discoverable records are listed. You can provide either the full Amazon Resource Name (ARN) or the registry ID.
         registryId: string
         -- The maximum number of records to return in a single page. Valid values are 1 through 100.
         maxResults: number
@@ -220,17 +272,30 @@ local record M
 
     -- Summary information about a discoverable registry record returned by ListDiscoverableRegistryRecords. This summary does not include descriptors.
     record DiscoverableRegistryRecordSummary
+        -- The Amazon Resource Name (ARN) of the parent registry that owns the record.
         registryArn: string
+        -- The Amazon Resource Name (ARN) of the registry record.
         recordArn: string
+        -- The unique identifier of the registry record.
         recordId: string
+        -- The name of the registry record. Names are unique within a registry.
         name: string
+        -- A human-readable description of the registry record. Use this field to explain the record's purpose or content to consumers discovering it in the registry.
         description: string
+        -- The human-readable display name of the registry record.
         displayName: string
+        -- The type of the registry record. MCP is a Model Context Protocol server record, AGENT is an Agent-to-Agent (A2A) agent card record, SKILL is an agent skills definition record, and CUSTOM is a record with a custom descriptor.
         recordType: string
+        -- The version identifier of the registry record.
         recordVersion: string
+        -- The lifecycle status of the registry record. A record is DRAFT before it is submitted, PENDING_APPROVAL while awaiting curator review, and APPROVED once it is approved and discoverable. REJECTED and DEPRECATED records are not discoverable. The CREATING, UPDATING, CREATE_FAILED, and UPDATE_FAILED values reflect the state of an in-progress or failed asynchronous change.
         status: string
+        -- The timestamp when the registry record was created.
         createdAt: number
+        -- The timestamp when the registry record was last updated.
         updatedAt: number
+        -- The descriptor types that are present on this registry record. Each value corresponds to a descriptor entry key on the approved record.
+        descriptorTypes: {string}
     end
 
     record ListDiscoverableRegistryRecordsOutput

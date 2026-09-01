@@ -12,11 +12,17 @@ local M: {string:any} = {}
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.ChannelStreamConfigurationList = schema.new({ type = "list", list_member = M.ChannelStreamConfiguration })
+
 M.MetricsNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RecordList = schema.new({ type = "list", list_member = M.Record })
 
 M.ChildShardList = schema.new({ type = "list", list_member = M.ChildShard })
+
+M.StreamFilterList = schema.new({ type = "list", list_member = M.StreamFilter })
+
+M.ChannelSummaryList = schema.new({ type = "list", list_member = M.ChannelSummary })
 
 M.ShardList = schema.new({ type = "list", list_member = M.Shard })
 
@@ -34,9 +40,17 @@ M.PutRecordsResultEntryList = schema.new({ type = "list", list_member = M.PutRec
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.S3TablesConfigurationList = schema.new({ type = "list", list_member = M.S3TablesConfiguration })
+
+M.ChannelStreamDescriptionList = schema.new({ type = "list", list_member = M.ChannelStreamDescription })
+
 M.EnhancedMonitoringList = schema.new({ type = "list", list_member = M.EnhancedMetrics })
 
 M.ShardIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ChannelStreamIdentifierList = schema.new({ type = "list", list_member = M.ChannelStreamIdentifier })
+
+M.PartitionFieldList = schema.new({ type = "list", list_member = M.PartitionField })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -152,6 +166,655 @@ M.ResourceNotFoundException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChannelEncryptionConfiguration = schema.new({
+    id = id.from(_N, "ChannelEncryptionConfiguration"),
+    type = "structure",
+    members = {
+        EncryptionType = schema.new({
+            id = id.from(_N, "ChannelEncryptionConfiguration", "EncryptionType"),
+            type = "string",
+            name = "EncryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyId = schema.new({
+            id = id.from(_N, "ChannelEncryptionConfiguration", "KeyId"),
+            type = "string",
+            name = "KeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CloudWatchLogs = schema.new({
+    id = id.from(_N, "CloudWatchLogs"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "CloudWatchLogs", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LogGroupName = schema.new({
+            id = id.from(_N, "CloudWatchLogs", "LogGroupName"),
+            type = "string",
+            name = "LogGroupName",
+            target_id = prelude.String.id,
+        }),
+        LogStreamName = schema.new({
+            id = id.from(_N, "CloudWatchLogs", "LogStreamName"),
+            type = "string",
+            name = "LogStreamName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChannelLoggingConfiguration = schema.new({
+    id = id.from(_N, "ChannelLoggingConfiguration"),
+    type = "structure",
+    members = {
+        CloudWatchLogs = schema.new({
+            id = id.from(_N, "ChannelLoggingConfiguration", "CloudWatchLogs"),
+            type = "structure",
+            name = "CloudWatchLogs",
+            target_id = id.from(_N, "CloudWatchLogs"),
+            target = M.CloudWatchLogs,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeadLetterQueueS3Configuration = schema.new({
+    id = id.from(_N, "DeadLetterQueueS3Configuration"),
+    type = "structure",
+    members = {
+        BucketARN = schema.new({
+            id = id.from(_N, "DeadLetterQueueS3Configuration", "BucketARN"),
+            type = "string",
+            name = "BucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "DeadLetterQueueS3Configuration", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ErrorOutputPrefix = schema.new({
+            id = id.from(_N, "DeadLetterQueueS3Configuration", "ErrorOutputPrefix"),
+            type = "string",
+            name = "ErrorOutputPrefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.S3StorageConfiguration = schema.new({
+    id = id.from(_N, "S3StorageConfiguration"),
+    type = "structure",
+    members = {
+        BucketARN = schema.new({
+            id = id.from(_N, "S3StorageConfiguration", "BucketARN"),
+            type = "string",
+            name = "BucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "S3StorageConfiguration", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutputKeyTemplate = schema.new({
+            id = id.from(_N, "S3StorageConfiguration", "OutputKeyTemplate"),
+            type = "string",
+            name = "OutputKeyTemplate",
+            target_id = prelude.String.id,
+        }),
+        StorageClass = schema.new({
+            id = id.from(_N, "S3StorageConfiguration", "StorageClass"),
+            type = "string",
+            name = "StorageClass",
+            target_id = prelude.String.id,
+        }),
+        CompressionType = schema.new({
+            id = id.from(_N, "S3StorageConfiguration", "CompressionType"),
+            type = "string",
+            name = "CompressionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3DestinationDescription = schema.new({
+    id = id.from(_N, "S3DestinationDescription"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "S3DestinationDescription", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeadLetterQueueS3Configuration = schema.new({
+            id = id.from(_N, "S3DestinationDescription", "DeadLetterQueueS3Configuration"),
+            type = "structure",
+            name = "DeadLetterQueueS3Configuration",
+            target_id = id.from(_N, "DeadLetterQueueS3Configuration"),
+            target = M.DeadLetterQueueS3Configuration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StorageConfiguration = schema.new({
+            id = id.from(_N, "S3DestinationDescription", "StorageConfiguration"),
+            type = "structure",
+            name = "StorageConfiguration",
+            target_id = id.from(_N, "S3StorageConfiguration"),
+            target = M.S3StorageConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PartitionField = schema.new({
+    id = id.from(_N, "PartitionField"),
+    type = "structure",
+    members = {
+        Transform = schema.new({
+            id = id.from(_N, "PartitionField", "Transform"),
+            type = "string",
+            name = "Transform",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceName = schema.new({
+            id = id.from(_N, "PartitionField", "SourceName"),
+            type = "string",
+            name = "SourceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PartitionSpec = schema.new({
+    id = id.from(_N, "PartitionSpec"),
+    type = "structure",
+    members = {
+        PartitionFields = schema.new({
+            id = id.from(_N, "PartitionSpec", "PartitionFields"),
+            type = "list",
+            name = "PartitionFields",
+            target_id = prelude.Document.id,
+            list_member = M.PartitionField,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3TablesConfiguration = schema.new({
+    id = id.from(_N, "S3TablesConfiguration"),
+    type = "structure",
+    members = {
+        TableBucketARN = schema.new({
+            id = id.from(_N, "S3TablesConfiguration", "TableBucketARN"),
+            type = "string",
+            name = "TableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Namespace = schema.new({
+            id = id.from(_N, "S3TablesConfiguration", "Namespace"),
+            type = "string",
+            name = "Namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TableName = schema.new({
+            id = id.from(_N, "S3TablesConfiguration", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CompressionType = schema.new({
+            id = id.from(_N, "S3TablesConfiguration", "CompressionType"),
+            type = "string",
+            name = "CompressionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PartitionSpec = schema.new({
+            id = id.from(_N, "S3TablesConfiguration", "PartitionSpec"),
+            type = "structure",
+            name = "PartitionSpec",
+            target_id = id.from(_N, "PartitionSpec"),
+            target = M.PartitionSpec,
+        }),
+    },
+})
+
+M.S3TablesDestinationDescription = schema.new({
+    id = id.from(_N, "S3TablesDestinationDescription"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "S3TablesDestinationDescription", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeadLetterQueueS3Configuration = schema.new({
+            id = id.from(_N, "S3TablesDestinationDescription", "DeadLetterQueueS3Configuration"),
+            type = "structure",
+            name = "DeadLetterQueueS3Configuration",
+            target_id = id.from(_N, "DeadLetterQueueS3Configuration"),
+            target = M.DeadLetterQueueS3Configuration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3TablesConfigurationList = schema.new({
+            id = id.from(_N, "S3TablesDestinationDescription", "S3TablesConfigurationList"),
+            type = "list",
+            name = "S3TablesConfigurationList",
+            target_id = prelude.Document.id,
+            list_member = M.S3TablesConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RecordConfiguration = schema.new({
+    id = id.from(_N, "RecordConfiguration"),
+    type = "structure",
+    members = {
+        RecordFormatType = schema.new({
+            id = id.from(_N, "RecordConfiguration", "RecordFormatType"),
+            type = "string",
+            name = "RecordFormatType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GSRSchemaARN = schema.new({
+            id = id.from(_N, "RecordConfiguration", "GSRSchemaARN"),
+            type = "string",
+            name = "GSRSchemaARN",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChannelStreamDescription = schema.new({
+    id = id.from(_N, "ChannelStreamDescription"),
+    type = "structure",
+    members = {
+        StreamARN = schema.new({
+            id = id.from(_N, "ChannelStreamDescription", "StreamARN"),
+            type = "string",
+            name = "StreamARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamCreationTimestamp = schema.new({
+            id = id.from(_N, "ChannelStreamDescription", "StreamCreationTimestamp"),
+            type = "timestamp",
+            name = "StreamCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordConfiguration = schema.new({
+            id = id.from(_N, "ChannelStreamDescription", "RecordConfiguration"),
+            type = "structure",
+            name = "RecordConfiguration",
+            target_id = id.from(_N, "RecordConfiguration"),
+            target = M.RecordConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChannelDescription = schema.new({
+    id = id.from(_N, "ChannelDescription"),
+    type = "structure",
+    members = {
+        ChannelName = schema.new({
+            id = id.from(_N, "ChannelDescription", "ChannelName"),
+            type = "string",
+            name = "ChannelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelARN = schema.new({
+            id = id.from(_N, "ChannelDescription", "ChannelARN"),
+            type = "string",
+            name = "ChannelARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelId = schema.new({
+            id = id.from(_N, "ChannelDescription", "ChannelId"),
+            type = "string",
+            name = "ChannelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelStatus = schema.new({
+            id = id.from(_N, "ChannelDescription", "ChannelStatus"),
+            type = "string",
+            name = "ChannelStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelStatusReason = schema.new({
+            id = id.from(_N, "ChannelDescription", "ChannelStatusReason"),
+            type = "string",
+            name = "ChannelStatusReason",
+            target_id = prelude.String.id,
+        }),
+        ChannelCreationTimestamp = schema.new({
+            id = id.from(_N, "ChannelDescription", "ChannelCreationTimestamp"),
+            type = "timestamp",
+            name = "ChannelCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceExecutionRoleARN = schema.new({
+            id = id.from(_N, "ChannelDescription", "ServiceExecutionRoleARN"),
+            type = "string",
+            name = "ServiceExecutionRoleARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamConfigurationList = schema.new({
+            id = id.from(_N, "ChannelDescription", "StreamConfigurationList"),
+            type = "list",
+            name = "StreamConfigurationList",
+            target_id = prelude.Document.id,
+            list_member = M.ChannelStreamDescription,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3DestinationConfiguration = schema.new({
+            id = id.from(_N, "ChannelDescription", "S3DestinationConfiguration"),
+            type = "structure",
+            name = "S3DestinationConfiguration",
+            target_id = id.from(_N, "S3DestinationDescription"),
+            target = M.S3DestinationDescription,
+        }),
+        S3TablesDestinationConfiguration = schema.new({
+            id = id.from(_N, "ChannelDescription", "S3TablesDestinationConfiguration"),
+            type = "structure",
+            name = "S3TablesDestinationConfiguration",
+            target_id = id.from(_N, "S3TablesDestinationDescription"),
+            target = M.S3TablesDestinationDescription,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "ChannelDescription", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "ChannelEncryptionConfiguration"),
+            target = M.ChannelEncryptionConfiguration,
+        }),
+        LoggingConfiguration = schema.new({
+            id = id.from(_N, "ChannelDescription", "LoggingConfiguration"),
+            type = "structure",
+            name = "LoggingConfiguration",
+            target_id = id.from(_N, "ChannelLoggingConfiguration"),
+            target = M.ChannelLoggingConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CloudWatchLogsUpdateInput = schema.new({
+    id = id.from(_N, "CloudWatchLogsUpdateInput"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "CloudWatchLogsUpdateInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LogGroupName = schema.new({
+            id = id.from(_N, "CloudWatchLogsUpdateInput", "LogGroupName"),
+            type = "string",
+            name = "LogGroupName",
+            target_id = prelude.String.id,
+        }),
+        LogStreamName = schema.new({
+            id = id.from(_N, "CloudWatchLogsUpdateInput", "LogStreamName"),
+            type = "string",
+            name = "LogStreamName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChannelLoggingUpdateInput = schema.new({
+    id = id.from(_N, "ChannelLoggingUpdateInput"),
+    type = "structure",
+    members = {
+        CloudWatchLogs = schema.new({
+            id = id.from(_N, "ChannelLoggingUpdateInput", "CloudWatchLogs"),
+            type = "structure",
+            name = "CloudWatchLogs",
+            target_id = id.from(_N, "CloudWatchLogsUpdateInput"),
+            target = M.CloudWatchLogsUpdateInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChannelStreamConfiguration = schema.new({
+    id = id.from(_N, "ChannelStreamConfiguration"),
+    type = "structure",
+    members = {
+        StreamARN = schema.new({
+            id = id.from(_N, "ChannelStreamConfiguration", "StreamARN"),
+            type = "string",
+            name = "StreamARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordConfiguration = schema.new({
+            id = id.from(_N, "ChannelStreamConfiguration", "RecordConfiguration"),
+            type = "structure",
+            name = "RecordConfiguration",
+            target_id = id.from(_N, "RecordConfiguration"),
+            target = M.RecordConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChannelStreamIdentifier = schema.new({
+    id = id.from(_N, "ChannelStreamIdentifier"),
+    type = "structure",
+    members = {
+        StreamARN = schema.new({
+            id = id.from(_N, "ChannelStreamIdentifier", "StreamARN"),
+            type = "string",
+            name = "StreamARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamCreationTimestamp = schema.new({
+            id = id.from(_N, "ChannelStreamIdentifier", "StreamCreationTimestamp"),
+            type = "timestamp",
+            name = "StreamCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChannelSummary = schema.new({
+    id = id.from(_N, "ChannelSummary"),
+    type = "structure",
+    members = {
+        ChannelName = schema.new({
+            id = id.from(_N, "ChannelSummary", "ChannelName"),
+            type = "string",
+            name = "ChannelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelARN = schema.new({
+            id = id.from(_N, "ChannelSummary", "ChannelARN"),
+            type = "string",
+            name = "ChannelARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelId = schema.new({
+            id = id.from(_N, "ChannelSummary", "ChannelId"),
+            type = "string",
+            name = "ChannelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelStatus = schema.new({
+            id = id.from(_N, "ChannelSummary", "ChannelStatus"),
+            type = "string",
+            name = "ChannelStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelStatusReason = schema.new({
+            id = id.from(_N, "ChannelSummary", "ChannelStatusReason"),
+            type = "string",
+            name = "ChannelStatusReason",
+            target_id = prelude.String.id,
+        }),
+        ChannelCreationTimestamp = schema.new({
+            id = id.from(_N, "ChannelSummary", "ChannelCreationTimestamp"),
+            type = "timestamp",
+            name = "ChannelCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChannelDestinationType = schema.new({
+            id = id.from(_N, "ChannelSummary", "ChannelDestinationType"),
+            type = "string",
+            name = "ChannelDestinationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Streams = schema.new({
+            id = id.from(_N, "ChannelSummary", "Streams"),
+            type = "list",
+            name = "Streams",
+            target_id = prelude.Document.id,
+            list_member = M.ChannelStreamIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -312,6 +975,269 @@ M.ConsumerDescription = schema.new({
     },
 })
 
+M.S3DestinationConfiguration = schema.new({
+    id = id.from(_N, "S3DestinationConfiguration"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "S3DestinationConfiguration", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        DeadLetterQueueS3Configuration = schema.new({
+            id = id.from(_N, "S3DestinationConfiguration", "DeadLetterQueueS3Configuration"),
+            type = "structure",
+            name = "DeadLetterQueueS3Configuration",
+            target_id = id.from(_N, "DeadLetterQueueS3Configuration"),
+            target = M.DeadLetterQueueS3Configuration,
+        }),
+        StorageConfiguration = schema.new({
+            id = id.from(_N, "S3DestinationConfiguration", "StorageConfiguration"),
+            type = "structure",
+            name = "StorageConfiguration",
+            target_id = id.from(_N, "S3StorageConfiguration"),
+            target = M.S3StorageConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3TablesDestinationConfiguration = schema.new({
+    id = id.from(_N, "S3TablesDestinationConfiguration"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "S3TablesDestinationConfiguration", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        DeadLetterQueueS3Configuration = schema.new({
+            id = id.from(_N, "S3TablesDestinationConfiguration", "DeadLetterQueueS3Configuration"),
+            type = "structure",
+            name = "DeadLetterQueueS3Configuration",
+            target_id = id.from(_N, "DeadLetterQueueS3Configuration"),
+            target = M.DeadLetterQueueS3Configuration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3TablesConfigurationList = schema.new({
+            id = id.from(_N, "S3TablesDestinationConfiguration", "S3TablesConfigurationList"),
+            type = "list",
+            name = "S3TablesConfigurationList",
+            target_id = prelude.Document.id,
+            list_member = M.S3TablesConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateChannelInput = schema.new({
+    id = id.from(_N, "CreateChannelInput"),
+    type = "structure",
+    members = {
+        ChannelName = schema.new({
+            id = id.from(_N, "CreateChannelInput", "ChannelName"),
+            type = "string",
+            name = "ChannelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceExecutionRoleARN = schema.new({
+            id = id.from(_N, "CreateChannelInput", "ServiceExecutionRoleARN"),
+            type = "string",
+            name = "ServiceExecutionRoleARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamConfigurationList = schema.new({
+            id = id.from(_N, "CreateChannelInput", "StreamConfigurationList"),
+            type = "list",
+            name = "StreamConfigurationList",
+            target_id = prelude.Document.id,
+            list_member = M.ChannelStreamConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3DestinationConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelInput", "S3DestinationConfiguration"),
+            type = "structure",
+            name = "S3DestinationConfiguration",
+            target_id = id.from(_N, "S3DestinationConfiguration"),
+            target = M.S3DestinationConfiguration,
+        }),
+        S3TablesDestinationConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelInput", "S3TablesDestinationConfiguration"),
+            type = "structure",
+            name = "S3TablesDestinationConfiguration",
+            target_id = id.from(_N, "S3TablesDestinationConfiguration"),
+            target = M.S3TablesDestinationConfiguration,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "ChannelEncryptionConfiguration"),
+            target = M.ChannelEncryptionConfiguration,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateChannelInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        LoggingConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelInput", "LoggingConfiguration"),
+            type = "structure",
+            name = "LoggingConfiguration",
+            target_id = id.from(_N, "ChannelLoggingConfiguration"),
+            target = M.ChannelLoggingConfiguration,
+        }),
+    },
+})
+
+M.CreateChannelOutput = schema.new({
+    id = id.from(_N, "CreateChannelOutput"),
+    type = "structure",
+    members = {
+        ChannelDescription = schema.new({
+            id = id.from(_N, "CreateChannelOutput", "ChannelDescription"),
+            type = "structure",
+            name = "ChannelDescription",
+            target_id = id.from(_N, "ChannelDescription"),
+            target = M.ChannelDescription,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.KMSAccessDeniedException = schema.new({
+    id = id.from(_N, "KMSAccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KMSAccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KMSDisabledException = schema.new({
+    id = id.from(_N, "KMSDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KMSDisabledException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KMSInvalidStateException = schema.new({
+    id = id.from(_N, "KMSInvalidStateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KMSInvalidStateException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KMSNotFoundException = schema.new({
+    id = id.from(_N, "KMSNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KMSNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KMSOptInRequired = schema.new({
+    id = id.from(_N, "KMSOptInRequired"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KMSOptInRequired", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KMSThrottlingException = schema.new({
+    id = id.from(_N, "KMSThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KMSThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.StreamModeDetails = schema.new({
     id = id.from(_N, "StreamModeDetails"),
     type = "structure",
@@ -379,22 +1305,6 @@ M.CreateStreamInput = schema.new({
 
 M.CreateStreamOutput = prelude.Unit
 
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ValidationException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.DecreaseStreamRetentionPeriodInput = schema.new({
     id = id.from(_N, "DecreaseStreamRetentionPeriodInput"),
     type = "structure",
@@ -430,6 +1340,24 @@ M.DecreaseStreamRetentionPeriodInput = schema.new({
 })
 
 M.DecreaseStreamRetentionPeriodOutput = prelude.Unit
+
+M.DeleteChannelInput = schema.new({
+    id = id.from(_N, "DeleteChannelInput"),
+    type = "structure",
+    members = {
+        ChannelARN = schema.new({
+            id = id.from(_N, "DeleteChannelInput", "ChannelARN"),
+            type = "string",
+            name = "ChannelARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteChannelOutput = prelude.Unit
 
 M.DeleteResourcePolicyInput = schema.new({
     id = id.from(_N, "DeleteResourcePolicyInput"),
@@ -574,6 +1502,39 @@ M.DescribeAccountSettingsOutput = schema.new({
     },
 })
 
+M.DescribeChannelInput = schema.new({
+    id = id.from(_N, "DescribeChannelInput"),
+    type = "structure",
+    members = {
+        ChannelARN = schema.new({
+            id = id.from(_N, "DescribeChannelInput", "ChannelARN"),
+            type = "string",
+            name = "ChannelARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeChannelOutput = schema.new({
+    id = id.from(_N, "DescribeChannelOutput"),
+    type = "structure",
+    members = {
+        ChannelDescription = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "ChannelDescription"),
+            type = "structure",
+            name = "ChannelDescription",
+            target_id = id.from(_N, "ChannelDescription"),
+            target = M.ChannelDescription,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DescribeLimitsInput = schema.new({
     id = id.from(_N, "DescribeLimitsInput"),
     type = "structure",
@@ -618,6 +1579,18 @@ M.DescribeLimitsOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ChannelCount = schema.new({
+            id = id.from(_N, "DescribeLimitsOutput", "ChannelCount"),
+            type = "integer",
+            name = "ChannelCount",
+            target_id = prelude.Integer.id,
+        }),
+        ChannelCountLimit = schema.new({
+            id = id.from(_N, "DescribeLimitsOutput", "ChannelCountLimit"),
+            type = "integer",
+            name = "ChannelCountLimit",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -1064,6 +2037,12 @@ M.StreamDescriptionSummary = schema.new({
             name = "MaxRecordSizeInKiB",
             target_id = prelude.Integer.id,
         }),
+        ChannelCount = schema.new({
+            id = id.from(_N, "StreamDescriptionSummary", "ChannelCount"),
+            type = "integer",
+            name = "ChannelCount",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -1384,102 +2363,6 @@ M.InternalFailureException = schema.new({
     },
 })
 
-M.KMSAccessDeniedException = schema.new({
-    id = id.from(_N, "KMSAccessDeniedException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "KMSAccessDeniedException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KMSDisabledException = schema.new({
-    id = id.from(_N, "KMSDisabledException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "KMSDisabledException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KMSInvalidStateException = schema.new({
-    id = id.from(_N, "KMSInvalidStateException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "KMSInvalidStateException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KMSNotFoundException = schema.new({
-    id = id.from(_N, "KMSNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "KMSNotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KMSOptInRequired = schema.new({
-    id = id.from(_N, "KMSOptInRequired"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "KMSOptInRequired", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KMSThrottlingException = schema.new({
-    id = id.from(_N, "KMSThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "KMSThrottlingException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.ProvisionedThroughputExceededException = schema.new({
     id = id.from(_N, "ProvisionedThroughputExceededException"),
     type = "structure",
@@ -1637,6 +2520,77 @@ M.IncreaseStreamRetentionPeriodInput = schema.new({
 })
 
 M.IncreaseStreamRetentionPeriodOutput = prelude.Unit
+
+M.StreamFilter = schema.new({
+    id = id.from(_N, "StreamFilter"),
+    type = "structure",
+    members = {
+        StreamARN = schema.new({
+            id = id.from(_N, "StreamFilter", "StreamARN"),
+            type = "string",
+            name = "StreamARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamCreationTimestamp = schema.new({
+            id = id.from(_N, "StreamFilter", "StreamCreationTimestamp"),
+            type = "timestamp",
+            name = "StreamCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListChannelsInput = schema.new({
+    id = id.from(_N, "ListChannelsInput"),
+    type = "structure",
+    members = {
+        StreamFilter = schema.new({
+            id = id.from(_N, "ListChannelsInput", "StreamFilter"),
+            type = "list",
+            name = "StreamFilter",
+            target_id = prelude.Document.id,
+            list_member = M.StreamFilter,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListChannelsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListChannelsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListChannelsOutput = schema.new({
+    id = id.from(_N, "ListChannelsOutput"),
+    type = "structure",
+    members = {
+        ChannelSummaries = schema.new({
+            id = id.from(_N, "ListChannelsOutput", "ChannelSummaries"),
+            type = "list",
+            name = "ChannelSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ChannelSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListChannelsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
 
 M.ShardFilter = schema.new({
     id = id.from(_N, "ShardFilter"),
@@ -2877,6 +3831,92 @@ M.UpdateAccountSettingsOutput = schema.new({
     },
 })
 
+M.S3DestinationUpdateInput = schema.new({
+    id = id.from(_N, "S3DestinationUpdateInput"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "S3DestinationUpdateInput", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3TablesDestinationUpdateInput = schema.new({
+    id = id.from(_N, "S3TablesDestinationUpdateInput"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "S3TablesDestinationUpdateInput", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateChannelInput = schema.new({
+    id = id.from(_N, "UpdateChannelInput"),
+    type = "structure",
+    members = {
+        ChannelARN = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "ChannelARN"),
+            type = "string",
+            name = "ChannelARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3DestinationConfiguration = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "S3DestinationConfiguration"),
+            type = "structure",
+            name = "S3DestinationConfiguration",
+            target_id = id.from(_N, "S3DestinationUpdateInput"),
+            target = M.S3DestinationUpdateInput,
+        }),
+        S3TablesDestinationConfiguration = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "S3TablesDestinationConfiguration"),
+            type = "structure",
+            name = "S3TablesDestinationConfiguration",
+            target_id = id.from(_N, "S3TablesDestinationUpdateInput"),
+            target = M.S3TablesDestinationUpdateInput,
+        }),
+        LoggingConfiguration = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "LoggingConfiguration"),
+            type = "structure",
+            name = "LoggingConfiguration",
+            target_id = id.from(_N, "ChannelLoggingUpdateInput"),
+            target = M.ChannelLoggingUpdateInput,
+        }),
+    },
+})
+
+M.UpdateChannelOutput = schema.new({
+    id = id.from(_N, "UpdateChannelOutput"),
+    type = "structure",
+    members = {
+        ChannelDescription = schema.new({
+            id = id.from(_N, "UpdateChannelOutput", "ChannelDescription"),
+            type = "structure",
+            name = "ChannelDescription",
+            target_id = id.from(_N, "ChannelDescription"),
+            target = M.ChannelDescription,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateMaxRecordSizeInput = schema.new({
     id = id.from(_N, "UpdateMaxRecordSizeInput"),
     type = "structure",
@@ -3124,6 +4164,20 @@ M.AddTagsToStream = schema.operation({
     },
 })
 
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
+    },
+})
+
 M.CreateStream = schema.operation({
     id = id.from("com.amazonaws.kinesis", "CreateStream"),
     input = M.CreateStreamInput,
@@ -3149,6 +4203,23 @@ M.DecreaseStreamRetentionPeriod = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
+    },
+})
+
+M.DeleteChannel = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DeleteChannel"),
+    input = M.DeleteChannelInput,
+    output = M.DeleteChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ChannelARN = "ChannelARN",
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             OperationType = { value = "control" },
@@ -3218,6 +4289,23 @@ M.DescribeAccountSettings = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
+    },
+})
+
+M.DescribeChannel = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "DescribeChannel"),
+    input = M.DescribeChannelInput,
+    output = M.DescribeChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ChannelARN = "ChannelARN",
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             OperationType = { value = "control" },
@@ -3395,6 +4483,20 @@ M.IncreaseStreamRetentionPeriod = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             StreamARN = "StreamARN",
             StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             OperationType = { value = "control" },
@@ -3712,6 +4814,23 @@ M.UpdateAccountSettings = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ChannelARN = "ChannelARN",
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             OperationType = { value = "control" },

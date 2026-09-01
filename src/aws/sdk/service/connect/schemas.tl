@@ -148,6 +148,8 @@ M.ContactMetrics = schema.new({ type = "list", list_member = M.ContactMetricInfo
 
 M.ContactMetricResults = schema.new({ type = "list", list_member = M.ContactMetricResult })
 
+M.IsolatedRegionsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.Groupings = schema.new({ type = "list", list_member = prelude.String })
 
 M.CurrentMetrics = schema.new({ type = "list", list_member = M.CurrentMetric })
@@ -1418,6 +1420,12 @@ M.AgentInfo = schema.new({
             id = id.from(_N, "AgentInfo", "VoiceEnhancementMode"),
             type = "string",
             name = "VoiceEnhancementMode",
+            target_id = prelude.String.id,
+        }),
+        ActiveRegion = schema.new({
+            id = id.from(_N, "AgentInfo", "ActiveRegion"),
+            type = "string",
+            name = "ActiveRegion",
             target_id = prelude.String.id,
         }),
     },
@@ -19963,6 +19971,37 @@ M.GetContactMetricsOutput = schema.new({
     },
 })
 
+M.GetCrossRegionRoutingInput = schema.new({
+    id = id.from(_N, "GetCrossRegionRoutingRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "GetCrossRegionRoutingInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetCrossRegionRoutingOutput = schema.new({
+    id = id.from(_N, "GetCrossRegionRoutingResponse"),
+    type = "structure",
+    members = {
+        IsolatedRegions = schema.new({
+            id = id.from(_N, "GetCrossRegionRoutingOutput", "IsolatedRegions"),
+            type = "list",
+            name = "IsolatedRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.CurrentMetric = schema.new({
     id = id.from(_N, "CurrentMetric"),
     type = "structure",
@@ -36981,6 +37020,38 @@ M.UpdateContactTaskTemplateOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateCrossRegionRoutingInput = schema.new({
+    id = id.from(_N, "UpdateCrossRegionRoutingRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "UpdateCrossRegionRoutingInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IsolatedAll = schema.new({
+            id = id.from(_N, "UpdateCrossRegionRoutingInput", "IsolatedAll"),
+            type = "boolean",
+            name = "IsolatedAll",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.UpdateCrossRegionRoutingOutput = schema.new({
+    id = id.from(_N, "UpdateCrossRegionRoutingResponse"),
+    type = "structure",
+})
+
 M.UpdateDataTableAttributeInput = schema.new({
     id = id.from(_N, "UpdateDataTableAttributeRequest"),
     type = "structure",
@@ -46034,6 +46105,18 @@ M.GetContactMetrics = schema.operation({
     },
 })
 
+M.GetCrossRegionRouting = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetCrossRegionRouting"),
+    input = M.GetCrossRegionRoutingInput,
+    output = M.GetCrossRegionRoutingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/cross-region-routing/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetCurrentMetricData = schema.operation({
     id = id.from("com.amazonaws.connect", "GetCurrentMetricData"),
     input = M.GetCurrentMetricDataInput,
@@ -48032,6 +48115,18 @@ M.UpdateContactTaskTemplate = schema.operation({
     output = M.UpdateContactTaskTemplateOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/contact/task-template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCrossRegionRouting = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateCrossRegionRouting"),
+    input = M.UpdateCrossRegionRoutingInput,
+    output = M.UpdateCrossRegionRoutingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cross-region-routing/{InstanceId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

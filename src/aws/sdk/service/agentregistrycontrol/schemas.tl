@@ -22,6 +22,8 @@ M.RegistryRecordFilterList = schema.new({ type = "list", list_member = M.Registr
 
 M.RegistryRecordSummaryList = schema.new({ type = "list", list_member = M.RegistryRecordSummary })
 
+M.ProvenanceList = schema.new({ type = "list", list_member = M.Provenance })
+
 M.RegistryFilterList = schema.new({ type = "list", list_member = M.RegistryFilter })
 
 M.RegistrySummaryList = schema.new({ type = "list", list_member = M.RegistrySummary })
@@ -29,6 +31,8 @@ M.RegistrySummaryList = schema.new({ type = "list", list_member = M.RegistrySumm
 M.AutoApprovalRuleList = schema.new({ type = "list", list_member = prelude.String })
 
 M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProvenanceSummaryList = schema.new({ type = "list", list_member = M.ProvenanceSummary })
 
 M.AllowedAudienceList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -236,6 +240,365 @@ M.AccessDeniedException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ClaimMatchValueType = schema.new({
+    id = id.from(_N, "ClaimMatchValueType"),
+    type = "union",
+    members = {
+        matchValueString = schema.new({
+            id = id.from(_N, "ClaimMatchValueType", "matchValueString"),
+            type = "string",
+            name = "matchValueString",
+            target_id = prelude.String.id,
+        }),
+        matchValueStringList = schema.new({
+            id = id.from(_N, "ClaimMatchValueType", "matchValueStringList"),
+            type = "list",
+            name = "matchValueStringList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AuthorizingClaimMatchValueType = schema.new({
+    id = id.from(_N, "AuthorizingClaimMatchValueType"),
+    type = "structure",
+    members = {
+        claimMatchValue = schema.new({
+            id = id.from(_N, "AuthorizingClaimMatchValueType", "claimMatchValue"),
+            type = "union",
+            name = "claimMatchValue",
+            target_id = id.from(_N, "ClaimMatchValueType"),
+            target = M.ClaimMatchValueType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        claimMatchOperator = schema.new({
+            id = id.from(_N, "AuthorizingClaimMatchValueType", "claimMatchOperator"),
+            type = "string",
+            name = "claimMatchOperator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomClaimValidationType = schema.new({
+    id = id.from(_N, "CustomClaimValidationType"),
+    type = "structure",
+    members = {
+        inboundTokenClaimName = schema.new({
+            id = id.from(_N, "CustomClaimValidationType", "inboundTokenClaimName"),
+            type = "string",
+            name = "inboundTokenClaimName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        inboundTokenClaimValueType = schema.new({
+            id = id.from(_N, "CustomClaimValidationType", "inboundTokenClaimValueType"),
+            type = "string",
+            name = "inboundTokenClaimValueType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authorizingClaimMatchValue = schema.new({
+            id = id.from(_N, "CustomClaimValidationType", "authorizingClaimMatchValue"),
+            type = "structure",
+            name = "authorizingClaimMatchValue",
+            target_id = id.from(_N, "AuthorizingClaimMatchValueType"),
+            target = M.AuthorizingClaimMatchValueType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ManagedVpcResource = schema.new({
+    id = id.from(_N, "ManagedVpcResource"),
+    type = "structure",
+    members = {
+        vpcIdentifier = schema.new({
+            id = id.from(_N, "ManagedVpcResource", "vpcIdentifier"),
+            type = "string",
+            name = "vpcIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subnetIds = schema.new({
+            id = id.from(_N, "ManagedVpcResource", "subnetIds"),
+            type = "list",
+            name = "subnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointIpAddressType = schema.new({
+            id = id.from(_N, "ManagedVpcResource", "endpointIpAddressType"),
+            type = "string",
+            name = "endpointIpAddressType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        securityGroupIds = schema.new({
+            id = id.from(_N, "ManagedVpcResource", "securityGroupIds"),
+            type = "list",
+            name = "securityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "ManagedVpcResource", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        routingDomain = schema.new({
+            id = id.from(_N, "ManagedVpcResource", "routingDomain"),
+            type = "string",
+            name = "routingDomain",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SelfManagedLatticeResource = schema.new({
+    id = id.from(_N, "SelfManagedLatticeResource"),
+    type = "union",
+    members = {
+        resourceConfigurationIdentifier = schema.new({
+            id = id.from(_N, "SelfManagedLatticeResource", "resourceConfigurationIdentifier"),
+            type = "string",
+            name = "resourceConfigurationIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PrivateEndpoint = schema.new({
+    id = id.from(_N, "PrivateEndpoint"),
+    type = "union",
+    members = {
+        selfManagedLatticeResource = schema.new({
+            id = id.from(_N, "PrivateEndpoint", "selfManagedLatticeResource"),
+            type = "union",
+            name = "selfManagedLatticeResource",
+            target_id = id.from(_N, "SelfManagedLatticeResource"),
+            target = M.SelfManagedLatticeResource,
+        }),
+        managedVpcResource = schema.new({
+            id = id.from(_N, "PrivateEndpoint", "managedVpcResource"),
+            type = "structure",
+            name = "managedVpcResource",
+            target_id = id.from(_N, "ManagedVpcResource"),
+            target = M.ManagedVpcResource,
+        }),
+    },
+})
+
+M.PrivateEndpointOverride = schema.new({
+    id = id.from(_N, "PrivateEndpointOverride"),
+    type = "structure",
+    members = {
+        domain = schema.new({
+            id = id.from(_N, "PrivateEndpointOverride", "domain"),
+            type = "string",
+            name = "domain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        privateEndpoint = schema.new({
+            id = id.from(_N, "PrivateEndpointOverride", "privateEndpoint"),
+            type = "union",
+            name = "privateEndpoint",
+            target_id = id.from(_N, "PrivateEndpoint"),
+            target = M.PrivateEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomJWTAuthorizerConfiguration = schema.new({
+    id = id.from(_N, "CustomJWTAuthorizerConfiguration"),
+    type = "structure",
+    members = {
+        discoveryUrl = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "discoveryUrl"),
+            type = "string",
+            name = "discoveryUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        allowedAudience = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "allowedAudience"),
+            type = "list",
+            name = "allowedAudience",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        allowedClients = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "allowedClients"),
+            type = "list",
+            name = "allowedClients",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        allowedScopes = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "allowedScopes"),
+            type = "list",
+            name = "allowedScopes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        customClaims = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "customClaims"),
+            type = "list",
+            name = "customClaims",
+            target_id = prelude.Document.id,
+            list_member = M.CustomClaimValidationType,
+        }),
+        privateEndpoint = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "privateEndpoint"),
+            type = "union",
+            name = "privateEndpoint",
+            target_id = id.from(_N, "PrivateEndpoint"),
+            target = M.PrivateEndpoint,
+        }),
+        privateEndpointOverrides = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "privateEndpointOverrides"),
+            type = "list",
+            name = "privateEndpointOverrides",
+            target_id = prelude.Document.id,
+            list_member = M.PrivateEndpointOverride,
+        }),
+    },
+})
+
+M.AuthorizerConfiguration = schema.new({
+    id = id.from(_N, "AuthorizerConfiguration"),
+    type = "union",
+    members = {
+        customJWTAuthorizer = schema.new({
+            id = id.from(_N, "AuthorizerConfiguration", "customJWTAuthorizer"),
+            type = "structure",
+            name = "customJWTAuthorizer",
+            target_id = id.from(_N, "CustomJWTAuthorizerConfiguration"),
+            target = M.CustomJWTAuthorizerConfiguration,
+        }),
+    },
+})
+
+M.WorkloadIdentityDetails = schema.new({
+    id = id.from(_N, "WorkloadIdentityDetails"),
+    type = "structure",
+    members = {
+        workloadIdentityArn = schema.new({
+            id = id.from(_N, "WorkloadIdentityDetails", "workloadIdentityArn"),
+            type = "string",
+            name = "workloadIdentityArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentCoreGatewaySourceDetails = schema.new({
+    id = id.from(_N, "AgentCoreGatewaySourceDetails"),
+    type = "structure",
+    members = {
+        protocolType = schema.new({
+            id = id.from(_N, "AgentCoreGatewaySourceDetails", "protocolType"),
+            type = "string",
+            name = "protocolType",
+            target_id = prelude.String.id,
+        }),
+        authorizerType = schema.new({
+            id = id.from(_N, "AgentCoreGatewaySourceDetails", "authorizerType"),
+            type = "string",
+            name = "authorizerType",
+            target_id = prelude.String.id,
+        }),
+        authorizerConfiguration = schema.new({
+            id = id.from(_N, "AgentCoreGatewaySourceDetails", "authorizerConfiguration"),
+            type = "union",
+            name = "authorizerConfiguration",
+            target_id = id.from(_N, "AuthorizerConfiguration"),
+            target = M.AuthorizerConfiguration,
+        }),
+        workloadIdentityDetails = schema.new({
+            id = id.from(_N, "AgentCoreGatewaySourceDetails", "workloadIdentityDetails"),
+            type = "structure",
+            name = "workloadIdentityDetails",
+            target_id = id.from(_N, "WorkloadIdentityDetails"),
+            target = M.WorkloadIdentityDetails,
+        }),
+    },
+})
+
+M.AgentCoreRuntimeProtocolConfiguration = schema.new({
+    id = id.from(_N, "AgentCoreRuntimeProtocolConfiguration"),
+    type = "structure",
+    members = {
+        serverProtocol = schema.new({
+            id = id.from(_N, "AgentCoreRuntimeProtocolConfiguration", "serverProtocol"),
+            type = "string",
+            name = "serverProtocol",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgentCoreRuntimeSourceDetails = schema.new({
+    id = id.from(_N, "AgentCoreRuntimeSourceDetails"),
+    type = "structure",
+    members = {
+        protocolConfiguration = schema.new({
+            id = id.from(_N, "AgentCoreRuntimeSourceDetails", "protocolConfiguration"),
+            type = "structure",
+            name = "protocolConfiguration",
+            target_id = id.from(_N, "AgentCoreRuntimeProtocolConfiguration"),
+            target = M.AgentCoreRuntimeProtocolConfiguration,
+        }),
+        authorizerConfiguration = schema.new({
+            id = id.from(_N, "AgentCoreRuntimeSourceDetails", "authorizerConfiguration"),
+            type = "union",
+            name = "authorizerConfiguration",
+            target_id = id.from(_N, "AuthorizerConfiguration"),
+            target = M.AuthorizerConfiguration,
+        }),
+        workloadIdentityDetails = schema.new({
+            id = id.from(_N, "AgentCoreRuntimeSourceDetails", "workloadIdentityDetails"),
+            type = "structure",
+            name = "workloadIdentityDetails",
+            target_id = id.from(_N, "WorkloadIdentityDetails"),
+            target = M.WorkloadIdentityDetails,
         }),
     },
 })
@@ -463,6 +826,20 @@ M.AgentSkillsDefinitionDescriptor = schema.new({
     },
 })
 
+M.AgUiDescriptor = schema.new({
+    id = id.from(_N, "AgUiDescriptor"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "AgUiDescriptor", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "DescriptorSource"),
+            target = M.DescriptorSource,
+        }),
+    },
+})
+
 M.CustomDescriptor = schema.new({
     id = id.from(_N, "CustomDescriptor"),
     type = "structure",
@@ -472,6 +849,20 @@ M.CustomDescriptor = schema.new({
             type = "string",
             name = "data",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HttpDescriptor = schema.new({
+    id = id.from(_N, "HttpDescriptor"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "HttpDescriptor", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "DescriptorSource"),
+            target = M.DescriptorSource,
         }),
     },
 })
@@ -574,6 +965,79 @@ M.Descriptors = schema.new({
             target_id = id.from(_N, "CustomDescriptor"),
             target = M.CustomDescriptor,
         }),
+        http = schema.new({
+            id = id.from(_N, "Descriptors", "http"),
+            type = "structure",
+            name = "http",
+            target_id = id.from(_N, "HttpDescriptor"),
+            target = M.HttpDescriptor,
+        }),
+        agui = schema.new({
+            id = id.from(_N, "Descriptors", "agui"),
+            type = "structure",
+            name = "agui",
+            target_id = id.from(_N, "AgUiDescriptor"),
+            target = M.AgUiDescriptor,
+        }),
+    },
+})
+
+M.SourceDetails = schema.new({
+    id = id.from(_N, "SourceDetails"),
+    type = "union",
+    members = {
+        agentcoreRuntime = schema.new({
+            id = id.from(_N, "SourceDetails", "agentcoreRuntime"),
+            type = "structure",
+            name = "agentcoreRuntime",
+            target_id = id.from(_N, "AgentCoreRuntimeSourceDetails"),
+            target = M.AgentCoreRuntimeSourceDetails,
+        }),
+        agentcoreGateway = schema.new({
+            id = id.from(_N, "SourceDetails", "agentcoreGateway"),
+            type = "structure",
+            name = "agentcoreGateway",
+            target_id = id.from(_N, "AgentCoreGatewaySourceDetails"),
+            target = M.AgentCoreGatewaySourceDetails,
+        }),
+    },
+})
+
+M.Provenance = schema.new({
+    id = id.from(_N, "Provenance"),
+    type = "structure",
+    members = {
+        relation = schema.new({
+            id = id.from(_N, "Provenance", "relation"),
+            type = "string",
+            name = "relation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceId = schema.new({
+            id = id.from(_N, "Provenance", "sourceId"),
+            type = "string",
+            name = "sourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceType = schema.new({
+            id = id.from(_N, "Provenance", "sourceType"),
+            type = "string",
+            name = "sourceType",
+            target_id = prelude.String.id,
+        }),
+        sourceDetails = schema.new({
+            id = id.from(_N, "Provenance", "sourceDetails"),
+            type = "union",
+            name = "sourceDetails",
+            target_id = id.from(_N, "SourceDetails"),
+            target = M.SourceDetails,
+        }),
     },
 })
 
@@ -645,6 +1109,13 @@ M.CreateRegistryRecordInput = schema.new({
             traits = {
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
+        }),
+        provenance = schema.new({
+            id = id.from(_N, "CreateRegistryRecordInput", "provenance"),
+            type = "list",
+            name = "provenance",
+            target_id = prelude.Document.id,
+            list_member = M.Provenance,
         }),
         tags = schema.new({
             id = id.from(_N, "CreateRegistryRecordInput", "tags"),
@@ -872,6 +1343,25 @@ M.GetRegistryRecordOutput = schema.new({
             name = "statusReason",
             target_id = prelude.String.id,
         }),
+        provenance = schema.new({
+            id = id.from(_N, "GetRegistryRecordOutput", "provenance"),
+            type = "list",
+            name = "provenance",
+            target_id = prelude.Document.id,
+            list_member = M.Provenance,
+        }),
+        createdByAutoDetection = schema.new({
+            id = id.from(_N, "GetRegistryRecordOutput", "createdByAutoDetection"),
+            type = "boolean",
+            name = "createdByAutoDetection",
+            target_id = prelude.Boolean.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "GetRegistryRecordOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -933,6 +1423,37 @@ M.ListRegistryRecordsInput = schema.new({
             name = "filters",
             target_id = prelude.Document.id,
             list_member = M.RegistryRecordFilter,
+        }),
+    },
+})
+
+M.ProvenanceSummary = schema.new({
+    id = id.from(_N, "ProvenanceSummary"),
+    type = "structure",
+    members = {
+        relation = schema.new({
+            id = id.from(_N, "ProvenanceSummary", "relation"),
+            type = "string",
+            name = "relation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceId = schema.new({
+            id = id.from(_N, "ProvenanceSummary", "sourceId"),
+            type = "string",
+            name = "sourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceType = schema.new({
+            id = id.from(_N, "ProvenanceSummary", "sourceType"),
+            type = "string",
+            name = "sourceType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1041,6 +1562,25 @@ M.RegistryRecordSummary = schema.new({
             direct_traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        createdByAutoDetection = schema.new({
+            id = id.from(_N, "RegistryRecordSummary", "createdByAutoDetection"),
+            type = "boolean",
+            name = "createdByAutoDetection",
+            target_id = prelude.Boolean.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "RegistryRecordSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        provenanceSummaryList = schema.new({
+            id = id.from(_N, "RegistryRecordSummary", "provenanceSummaryList"),
+            type = "list",
+            name = "provenanceSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.ProvenanceSummary,
         }),
     },
 })
@@ -1358,6 +1898,34 @@ M.UpdatedAgentSkillsDefinitionDescriptor = schema.new({
     },
 })
 
+M.UpdatedAgUiDescriptorFields = schema.new({
+    id = id.from(_N, "UpdatedAgUiDescriptorFields"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "UpdatedAgUiDescriptorFields", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "UpdatedDescriptorSource"),
+            target = M.UpdatedDescriptorSource,
+        }),
+    },
+})
+
+M.UpdatedAgUiDescriptor = schema.new({
+    id = id.from(_N, "UpdatedAgUiDescriptor"),
+    type = "structure",
+    members = {
+        optionalValue = schema.new({
+            id = id.from(_N, "UpdatedAgUiDescriptor", "optionalValue"),
+            type = "structure",
+            name = "optionalValue",
+            target_id = id.from(_N, "UpdatedAgUiDescriptorFields"),
+            target = M.UpdatedAgUiDescriptorFields,
+        }),
+    },
+})
+
 M.UpdatedCustomDescriptorFields = schema.new({
     id = id.from(_N, "UpdatedCustomDescriptorFields"),
     type = "structure",
@@ -1382,6 +1950,34 @@ M.UpdatedCustomDescriptor = schema.new({
             name = "optionalValue",
             target_id = id.from(_N, "UpdatedCustomDescriptorFields"),
             target = M.UpdatedCustomDescriptorFields,
+        }),
+    },
+})
+
+M.UpdatedHttpDescriptorFields = schema.new({
+    id = id.from(_N, "UpdatedHttpDescriptorFields"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "UpdatedHttpDescriptorFields", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "UpdatedDescriptorSource"),
+            target = M.UpdatedDescriptorSource,
+        }),
+    },
+})
+
+M.UpdatedHttpDescriptor = schema.new({
+    id = id.from(_N, "UpdatedHttpDescriptor"),
+    type = "structure",
+    members = {
+        optionalValue = schema.new({
+            id = id.from(_N, "UpdatedHttpDescriptor", "optionalValue"),
+            type = "structure",
+            name = "optionalValue",
+            target_id = id.from(_N, "UpdatedHttpDescriptorFields"),
+            target = M.UpdatedHttpDescriptorFields,
         }),
     },
 })
@@ -1530,6 +2126,20 @@ M.UpdatedDescriptorsFields = schema.new({
             target_id = id.from(_N, "UpdatedCustomDescriptor"),
             target = M.UpdatedCustomDescriptor,
         }),
+        http = schema.new({
+            id = id.from(_N, "UpdatedDescriptorsFields", "http"),
+            type = "structure",
+            name = "http",
+            target_id = id.from(_N, "UpdatedHttpDescriptor"),
+            target = M.UpdatedHttpDescriptor,
+        }),
+        agui = schema.new({
+            id = id.from(_N, "UpdatedDescriptorsFields", "agui"),
+            type = "structure",
+            name = "agui",
+            target_id = id.from(_N, "UpdatedAgUiDescriptor"),
+            target = M.UpdatedAgUiDescriptor,
+        }),
     },
 })
 
@@ -1628,6 +2238,13 @@ M.UpdateRegistryRecordInput = schema.new({
             type = "boolean",
             name = "triggerSynchronization",
             target_id = prelude.Boolean.id,
+        }),
+        provenance = schema.new({
+            id = id.from(_N, "UpdateRegistryRecordInput", "provenance"),
+            type = "list",
+            name = "provenance",
+            target_id = prelude.Document.id,
+            list_member = M.Provenance,
         }),
     },
 })
@@ -1745,6 +2362,25 @@ M.UpdateRegistryRecordOutput = schema.new({
             id = id.from(_N, "UpdateRegistryRecordOutput", "statusReason"),
             type = "string",
             name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        provenance = schema.new({
+            id = id.from(_N, "UpdateRegistryRecordOutput", "provenance"),
+            type = "list",
+            name = "provenance",
+            target_id = prelude.Document.id,
+            list_member = M.Provenance,
+        }),
+        createdByAutoDetection = schema.new({
+            id = id.from(_N, "UpdateRegistryRecordOutput", "createdByAutoDetection"),
+            type = "boolean",
+            name = "createdByAutoDetection",
+            target_id = prelude.Boolean.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "UpdateRegistryRecordOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
             target_id = prelude.String.id,
         }),
     },
@@ -1874,271 +2510,27 @@ M.ApprovalConfiguration = schema.new({
     },
 })
 
-M.ClaimMatchValueType = schema.new({
-    id = id.from(_N, "ClaimMatchValueType"),
-    type = "union",
-    members = {
-        matchValueString = schema.new({
-            id = id.from(_N, "ClaimMatchValueType", "matchValueString"),
-            type = "string",
-            name = "matchValueString",
-            target_id = prelude.String.id,
-        }),
-        matchValueStringList = schema.new({
-            id = id.from(_N, "ClaimMatchValueType", "matchValueStringList"),
-            type = "list",
-            name = "matchValueStringList",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-    },
-})
-
-M.AuthorizingClaimMatchValueType = schema.new({
-    id = id.from(_N, "AuthorizingClaimMatchValueType"),
+M.AutoDetectionConfiguration = schema.new({
+    id = id.from(_N, "AutoDetectionConfiguration"),
     type = "structure",
     members = {
-        claimMatchValue = schema.new({
-            id = id.from(_N, "AuthorizingClaimMatchValueType", "claimMatchValue"),
-            type = "union",
-            name = "claimMatchValue",
-            target_id = id.from(_N, "ClaimMatchValueType"),
-            target = M.ClaimMatchValueType,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        claimMatchOperator = schema.new({
-            id = id.from(_N, "AuthorizingClaimMatchValueType", "claimMatchOperator"),
+        scope = schema.new({
+            id = id.from(_N, "AutoDetectionConfiguration", "scope"),
             type = "string",
-            name = "claimMatchOperator",
+            name = "scope",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-    },
-})
-
-M.CustomClaimValidationType = schema.new({
-    id = id.from(_N, "CustomClaimValidationType"),
-    type = "structure",
-    members = {
-        inboundTokenClaimName = schema.new({
-            id = id.from(_N, "CustomClaimValidationType", "inboundTokenClaimName"),
-            type = "string",
-            name = "inboundTokenClaimName",
-            target_id = prelude.String.id,
+        enabled = schema.new({
+            id = id.from(_N, "AutoDetectionConfiguration", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        inboundTokenClaimValueType = schema.new({
-            id = id.from(_N, "CustomClaimValidationType", "inboundTokenClaimValueType"),
-            type = "string",
-            name = "inboundTokenClaimValueType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        authorizingClaimMatchValue = schema.new({
-            id = id.from(_N, "CustomClaimValidationType", "authorizingClaimMatchValue"),
-            type = "structure",
-            name = "authorizingClaimMatchValue",
-            target_id = id.from(_N, "AuthorizingClaimMatchValueType"),
-            target = M.AuthorizingClaimMatchValueType,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ManagedVpcResource = schema.new({
-    id = id.from(_N, "ManagedVpcResource"),
-    type = "structure",
-    members = {
-        vpcIdentifier = schema.new({
-            id = id.from(_N, "ManagedVpcResource", "vpcIdentifier"),
-            type = "string",
-            name = "vpcIdentifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        subnetIds = schema.new({
-            id = id.from(_N, "ManagedVpcResource", "subnetIds"),
-            type = "list",
-            name = "subnetIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        endpointIpAddressType = schema.new({
-            id = id.from(_N, "ManagedVpcResource", "endpointIpAddressType"),
-            type = "string",
-            name = "endpointIpAddressType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        securityGroupIds = schema.new({
-            id = id.from(_N, "ManagedVpcResource", "securityGroupIds"),
-            type = "list",
-            name = "securityGroupIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        tags = schema.new({
-            id = id.from(_N, "ManagedVpcResource", "tags"),
-            type = "map",
-            name = "tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-        }),
-        routingDomain = schema.new({
-            id = id.from(_N, "ManagedVpcResource", "routingDomain"),
-            type = "string",
-            name = "routingDomain",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.SelfManagedLatticeResource = schema.new({
-    id = id.from(_N, "SelfManagedLatticeResource"),
-    type = "union",
-    members = {
-        resourceConfigurationIdentifier = schema.new({
-            id = id.from(_N, "SelfManagedLatticeResource", "resourceConfigurationIdentifier"),
-            type = "string",
-            name = "resourceConfigurationIdentifier",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.PrivateEndpoint = schema.new({
-    id = id.from(_N, "PrivateEndpoint"),
-    type = "union",
-    members = {
-        selfManagedLatticeResource = schema.new({
-            id = id.from(_N, "PrivateEndpoint", "selfManagedLatticeResource"),
-            type = "union",
-            name = "selfManagedLatticeResource",
-            target_id = id.from(_N, "SelfManagedLatticeResource"),
-            target = M.SelfManagedLatticeResource,
-        }),
-        managedVpcResource = schema.new({
-            id = id.from(_N, "PrivateEndpoint", "managedVpcResource"),
-            type = "structure",
-            name = "managedVpcResource",
-            target_id = id.from(_N, "ManagedVpcResource"),
-            target = M.ManagedVpcResource,
-        }),
-    },
-})
-
-M.PrivateEndpointOverride = schema.new({
-    id = id.from(_N, "PrivateEndpointOverride"),
-    type = "structure",
-    members = {
-        domain = schema.new({
-            id = id.from(_N, "PrivateEndpointOverride", "domain"),
-            type = "string",
-            name = "domain",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        privateEndpoint = schema.new({
-            id = id.from(_N, "PrivateEndpointOverride", "privateEndpoint"),
-            type = "union",
-            name = "privateEndpoint",
-            target_id = id.from(_N, "PrivateEndpoint"),
-            target = M.PrivateEndpoint,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CustomJWTAuthorizerConfiguration = schema.new({
-    id = id.from(_N, "CustomJWTAuthorizerConfiguration"),
-    type = "structure",
-    members = {
-        discoveryUrl = schema.new({
-            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "discoveryUrl"),
-            type = "string",
-            name = "discoveryUrl",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        allowedAudience = schema.new({
-            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "allowedAudience"),
-            type = "list",
-            name = "allowedAudience",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        allowedClients = schema.new({
-            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "allowedClients"),
-            type = "list",
-            name = "allowedClients",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        allowedScopes = schema.new({
-            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "allowedScopes"),
-            type = "list",
-            name = "allowedScopes",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        customClaims = schema.new({
-            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "customClaims"),
-            type = "list",
-            name = "customClaims",
-            target_id = prelude.Document.id,
-            list_member = M.CustomClaimValidationType,
-        }),
-        privateEndpoint = schema.new({
-            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "privateEndpoint"),
-            type = "union",
-            name = "privateEndpoint",
-            target_id = id.from(_N, "PrivateEndpoint"),
-            target = M.PrivateEndpoint,
-        }),
-        privateEndpointOverrides = schema.new({
-            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "privateEndpointOverrides"),
-            type = "list",
-            name = "privateEndpointOverrides",
-            target_id = prelude.Document.id,
-            list_member = M.PrivateEndpointOverride,
-        }),
-    },
-})
-
-M.AuthorizerConfiguration = schema.new({
-    id = id.from(_N, "AuthorizerConfiguration"),
-    type = "union",
-    members = {
-        customJWTAuthorizer = schema.new({
-            id = id.from(_N, "AuthorizerConfiguration", "customJWTAuthorizer"),
-            type = "structure",
-            name = "customJWTAuthorizer",
-            target_id = id.from(_N, "CustomJWTAuthorizerConfiguration"),
-            target = M.CustomJWTAuthorizerConfiguration,
         }),
     },
 })
@@ -2163,6 +2555,22 @@ M.DiscoveryConfiguration = schema.new({
     },
 })
 
+M.EncryptionConfiguration = schema.new({
+    id = id.from(_N, "EncryptionConfiguration"),
+    type = "structure",
+    members = {
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "EncryptionConfiguration", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateRegistryInput = schema.new({
     id = id.from(_N, "CreateRegistryRequest"),
     type = "structure",
@@ -2181,6 +2589,13 @@ M.CreateRegistryInput = schema.new({
             type = "string",
             name = "description",
             target_id = prelude.String.id,
+        }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "CreateRegistryInput", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
         }),
         discoveryConfiguration = schema.new({
             id = id.from(_N, "CreateRegistryInput", "discoveryConfiguration"),
@@ -2212,6 +2627,13 @@ M.CreateRegistryInput = schema.new({
             name = "approvalConfiguration",
             target_id = id.from(_N, "ApprovalConfiguration"),
             target = M.ApprovalConfiguration,
+        }),
+        autoDetectionConfiguration = schema.new({
+            id = id.from(_N, "CreateRegistryInput", "autoDetectionConfiguration"),
+            type = "structure",
+            name = "autoDetectionConfiguration",
+            target_id = id.from(_N, "AutoDetectionConfiguration"),
+            target = M.AutoDetectionConfiguration,
         }),
     },
 })
@@ -2282,6 +2704,38 @@ M.GetRegistryInput = schema.new({
     },
 })
 
+M.AutoDetection = schema.new({
+    id = id.from(_N, "AutoDetection"),
+    type = "structure",
+    members = {
+        configuration = schema.new({
+            id = id.from(_N, "AutoDetection", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "AutoDetectionConfiguration"),
+            target = M.AutoDetectionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AutoDetection", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "AutoDetection", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetRegistryOutput = schema.new({
     id = id.from(_N, "GetRegistryResponse"),
     type = "structure",
@@ -2326,6 +2780,13 @@ M.GetRegistryOutput = schema.new({
             target_id = id.from(_N, "DiscoveryConfiguration"),
             target = M.DiscoveryConfiguration,
         }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "GetRegistryOutput", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
         approvalConfiguration = schema.new({
             id = id.from(_N, "GetRegistryOutput", "approvalConfiguration"),
             type = "structure",
@@ -2347,6 +2808,13 @@ M.GetRegistryOutput = schema.new({
             type = "string",
             name = "statusReason",
             target_id = prelude.String.id,
+        }),
+        autoDetection = schema.new({
+            id = id.from(_N, "GetRegistryOutput", "autoDetection"),
+            type = "structure",
+            name = "autoDetection",
+            target_id = id.from(_N, "AutoDetection"),
+            target = M.AutoDetection,
         }),
         createdAt = schema.new({
             id = id.from(_N, "GetRegistryOutput", "createdAt"),
@@ -2488,6 +2956,13 @@ M.RegistrySummary = schema.new({
             name = "statusReason",
             target_id = prelude.String.id,
         }),
+        autoDetection = schema.new({
+            id = id.from(_N, "RegistrySummary", "autoDetection"),
+            type = "structure",
+            name = "autoDetection",
+            target_id = id.from(_N, "AutoDetection"),
+            target = M.AutoDetection,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "RegistrySummary", "createdAt"),
             type = "timestamp",
@@ -2550,6 +3025,20 @@ M.UpdatedApprovalConfiguration = schema.new({
             name = "optionalValue",
             target_id = id.from(_N, "ApprovalConfiguration"),
             target = M.ApprovalConfiguration,
+        }),
+    },
+})
+
+M.UpdatedAutoDetectionConfiguration = schema.new({
+    id = id.from(_N, "UpdatedAutoDetectionConfiguration"),
+    type = "structure",
+    members = {
+        optionalValue = schema.new({
+            id = id.from(_N, "UpdatedAutoDetectionConfiguration", "optionalValue"),
+            type = "structure",
+            name = "optionalValue",
+            target_id = id.from(_N, "AutoDetectionConfiguration"),
+            target = M.AutoDetectionConfiguration,
         }),
     },
 })
@@ -2623,6 +3112,13 @@ M.UpdateRegistryInput = schema.new({
             target_id = id.from(_N, "UpdatedApprovalConfiguration"),
             target = M.UpdatedApprovalConfiguration,
         }),
+        autoDetectionConfiguration = schema.new({
+            id = id.from(_N, "UpdateRegistryInput", "autoDetectionConfiguration"),
+            type = "structure",
+            name = "autoDetectionConfiguration",
+            target_id = id.from(_N, "UpdatedAutoDetectionConfiguration"),
+            target = M.UpdatedAutoDetectionConfiguration,
+        }),
     },
 })
 
@@ -2670,6 +3166,13 @@ M.UpdateRegistryOutput = schema.new({
             target_id = id.from(_N, "DiscoveryConfiguration"),
             target = M.DiscoveryConfiguration,
         }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "UpdateRegistryOutput", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
         approvalConfiguration = schema.new({
             id = id.from(_N, "UpdateRegistryOutput", "approvalConfiguration"),
             type = "structure",
@@ -2691,6 +3194,13 @@ M.UpdateRegistryOutput = schema.new({
             type = "string",
             name = "statusReason",
             target_id = prelude.String.id,
+        }),
+        autoDetection = schema.new({
+            id = id.from(_N, "UpdateRegistryOutput", "autoDetection"),
+            type = "structure",
+            name = "autoDetection",
+            target_id = id.from(_N, "AutoDetection"),
+            target = M.AutoDetection,
         }),
         createdAt = schema.new({
             id = id.from(_N, "UpdateRegistryOutput", "createdAt"),

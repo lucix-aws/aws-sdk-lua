@@ -51,6 +51,271 @@ local record M
         message: string
     end
 
+    enum ChannelStatus
+        "CREATING"
+        "ACTIVE"
+        "UPDATING"
+        "DELETING"
+        "FAILED"
+    end
+
+    enum ChannelEncryptionType
+        "KMS"
+    end
+
+    -- The server-side encryption configuration for a channel.
+    record ChannelEncryptionConfiguration
+        -- The encryption type. The only valid value is KMS.
+        EncryptionType: string
+        -- The identifier of the customer managed Amazon Web Services KMS key. You cannot use the Amazon Kinesis Data Streams service key (aws/kinesis).
+        KeyId: string
+    end
+
+    -- The Amazon CloudWatch Logs settings for channel logging.
+    record CloudWatchLogs
+        -- Specifies whether logging to Amazon CloudWatch Logs is enabled.
+        Enabled: boolean
+        -- The name of the Amazon CloudWatch Logs log group. Defaults to /aws/kinesis/{channelName}/{channelId}.
+        LogGroupName: string
+        -- The name of the Amazon CloudWatch Logs log stream. Defaults to DestinationDelivery.
+        LogStreamName: string
+    end
+
+    -- The Amazon CloudWatch Logs configuration for a channel.
+    record ChannelLoggingConfiguration
+        -- The Amazon CloudWatch Logs settings for the channel.
+        CloudWatchLogs: CloudWatchLogs
+    end
+
+    -- The Amazon S3 dead-letter queue configuration for records that cannot be delivered.
+    record DeadLetterQueueS3Configuration
+        -- The Amazon Resource Name (ARN) of the dead-letter queue Amazon S3 bucket.
+        BucketARN: string
+        -- The Amazon Web Services account ID of the expected owner of the dead-letter queue bucket.
+        ExpectedBucketOwner: string
+        -- The Amazon S3 key prefix for error records.
+        ErrorOutputPrefix: string
+    end
+
+    enum S3CompressionType
+        "NONE"
+        "GZIP"
+        "ZSTD"
+    end
+
+    enum S3StorageClass
+        "STANDARD"
+        "INTELLIGENT_TIERING"
+        "GLACIER_IR"
+    end
+
+    -- The Amazon S3 storage settings for a general purpose Amazon S3 destination.
+    record S3StorageConfiguration
+        -- The Amazon Resource Name (ARN) of the destination Amazon S3 bucket.
+        BucketARN: string
+        -- The Amazon Web Services account ID of the expected owner of the destination bucket. This value helps prevent delivery to an unintended bucket if ownership changes.
+        ExpectedBucketOwner: string
+        -- The template used to construct the Amazon S3 object key for delivered objects. If not specified, a default template is used.
+        OutputKeyTemplate: string
+        -- The Amazon S3 storage class for delivered objects. Valid values:
+        -- STANDARD (default)
+        -- INTELLIGENT_TIERING
+        -- GLACIER_IR
+        StorageClass: string
+        -- The compression applied to delivered objects. Valid values:
+        -- NONE - No compression.
+        -- GZIP - gzip compression.
+        -- ZSTD - Zstandard compression.
+        CompressionType: string
+    end
+
+    -- The configuration for delivery to a general purpose Amazon S3 bucket. Returned in ChannelDescription.
+    record S3DestinationDescription
+        -- The maximum age, in seconds, of undelivered data.
+        DataFreshnessInSeconds: number
+        -- The dead-letter queue configuration for records that cannot be delivered.
+        DeadLetterQueueS3Configuration: DeadLetterQueueS3Configuration
+        -- The Amazon S3 storage configuration for the channel.
+        StorageConfiguration: S3StorageConfiguration
+    end
+
+    enum S3TablesCompressionType
+        "NONE"
+        "ZSTD"
+        "SNAPPY"
+    end
+
+    enum PartitionTransform
+        "TIME_HOUR"
+    end
+
+    -- Specifies a single partition field.
+    record PartitionField
+        -- The partition transform to apply. The only valid value is TIME_HOUR.
+        Transform: string
+        -- The name of the source column used for partitioning. This column must be of the timestamptz type.
+        SourceName: string
+    end
+
+    -- Specifies how the destination table is partitioned.
+    record PartitionSpec
+        -- The list of partition fields.
+        PartitionFields: {PartitionField}
+    end
+
+    -- Specifies a destination streaming table on Apache Iceberg.
+    record S3TablesConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon S3 table bucket.
+        TableBucketARN: string
+        -- The namespace (database) of the destination table.
+        Namespace: string
+        -- The name of the destination table. Amazon Kinesis Data Streams creates this table in the specified table bucket.
+        TableName: string
+        -- The compression applied to Parquet data files. Valid values:
+        -- NONE - No compression.
+        -- ZSTD - Zstandard compression.
+        -- SNAPPY - Snappy compression.
+        CompressionType: string
+        -- The partitioning specification for the destination table.
+        PartitionSpec: PartitionSpec
+    end
+
+    -- The configuration for delivery to streaming tables on Apache Iceberg. Returned in ChannelDescription.
+    record S3TablesDestinationDescription
+        -- The maximum age, in seconds, of undelivered data.
+        DataFreshnessInSeconds: number
+        -- The dead-letter queue configuration for records that cannot be delivered.
+        DeadLetterQueueS3Configuration: DeadLetterQueueS3Configuration
+        -- The list of streaming table configurations.
+        S3TablesConfigurationList: {S3TablesConfiguration}
+    end
+
+    enum RecordFormatType
+        "GSR_JSON"
+        "JSON"
+        "STRING"
+        "BYTE_ARRAY"
+    end
+
+    -- Specifies the format of records read from the source stream.
+    record RecordConfiguration
+        -- The format of records on the source stream. Valid values:
+        -- GSR_JSON - Supported only for streaming table (Amazon S3 Tables) destinations.
+        -- JSON - Supported for both general purpose Amazon S3 and streaming table destinations.
+        -- STRING - Supported only for general purpose Amazon S3 destinations.
+        -- BYTE_ARRAY - Supported only for general purpose Amazon S3 destinations.
+        RecordFormatType: string
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Glue Schema Registry schema used to validate records. Required when the channel destination is a streaming table (Amazon S3 Tables), for both the JSON and GSR_JSON record formats.
+        GSRSchemaARN: string
+    end
+
+    -- Describes the source stream of a channel.
+    record ChannelStreamDescription
+        -- The Amazon Resource Name (ARN) of the source Kinesis data stream.
+        StreamARN: string
+        -- The time at which the source stream was created.
+        StreamCreationTimestamp: number
+        -- The record format configuration for the source stream.
+        RecordConfiguration: RecordConfiguration
+    end
+
+    -- Describes the configuration and current status of a channel.
+    record ChannelDescription
+        -- The name of the channel.
+        ChannelName: string
+        -- The Amazon Resource Name (ARN) of the channel.
+        ChannelARN: string
+        -- The unique identifier of the channel.
+        ChannelId: string
+        -- The current status of the channel. Valid values:
+        -- CREATING
+        -- ACTIVE
+        -- UPDATING
+        -- DELETING
+        -- FAILED - See ChannelStatusReason for the failure cause.
+        ChannelStatus: string
+        -- A message describing the reason for a FAILED status.
+        ChannelStatusReason: string
+        -- The time at which the channel was created.
+        ChannelCreationTimestamp: number
+        -- The Amazon Resource Name (ARN) of the IAM role that Amazon Kinesis Data Streams assumes to write records to the destination.
+        ServiceExecutionRoleARN: string
+        -- The source stream configuration for the channel.
+        StreamConfigurationList: {ChannelStreamDescription}
+        -- The configuration for delivery to a general purpose Amazon S3 bucket. Present only when the channel destination is a general purpose Amazon S3 bucket.
+        S3DestinationConfiguration: S3DestinationDescription
+        -- The configuration for delivery to streaming tables on Apache Iceberg in Amazon S3 Tables. Present only when the channel destination is a streaming table.
+        S3TablesDestinationConfiguration: S3TablesDestinationDescription
+        -- The server-side encryption configuration for the channel.
+        EncryptionConfiguration: ChannelEncryptionConfiguration
+        -- The Amazon CloudWatch Logs configuration for the channel.
+        LoggingConfiguration: ChannelLoggingConfiguration
+    end
+
+    enum ChannelDestinationType
+        "S3"
+        "S3_TABLES"
+    end
+
+    -- The updated Amazon CloudWatch Logs settings for a channel.
+    record CloudWatchLogsUpdateInput
+        -- Specifies whether logging to Amazon CloudWatch Logs is enabled.
+        Enabled: boolean
+        -- The name of the Amazon CloudWatch Logs log group.
+        LogGroupName: string
+        -- The name of the Amazon CloudWatch Logs log stream.
+        LogStreamName: string
+    end
+
+    -- The updated Amazon CloudWatch Logs configuration for a channel. Used in UpdateChannel.
+    record ChannelLoggingUpdateInput
+        -- The updated Amazon CloudWatch Logs settings for the channel.
+        CloudWatchLogs: CloudWatchLogsUpdateInput
+    end
+
+    -- Specifies the source stream and record configuration when creating a channel.
+    record ChannelStreamConfiguration
+        -- The Amazon Resource Name (ARN) of the source Kinesis data stream.
+        StreamARN: string
+        -- The record format configuration for the source stream.
+        RecordConfiguration: RecordConfiguration
+    end
+
+    -- Identifies a source stream associated with a channel.
+    record ChannelStreamIdentifier
+        -- The Amazon Resource Name (ARN) of the source Kinesis data stream.
+        StreamARN: string
+        -- The time at which the source stream was created.
+        StreamCreationTimestamp: number
+    end
+
+    -- A summary of a channel, returned by ListChannels.
+    record ChannelSummary
+        -- The name of the channel.
+        ChannelName: string
+        -- The Amazon Resource Name (ARN) of the channel.
+        ChannelARN: string
+        -- The unique identifier of the channel.
+        ChannelId: string
+        -- The current status of the channel. Valid values:
+        -- CREATING
+        -- ACTIVE
+        -- UPDATING
+        -- DELETING
+        -- FAILED - See ChannelStatusReason for the failure cause.
+        ChannelStatus: string
+        -- A message describing the reason for a FAILED status.
+        ChannelStatusReason: string
+        -- The time at which the channel was created.
+        ChannelCreationTimestamp: number
+        -- The destination type of the channel. Valid values:
+        -- S3 - Delivery to a general purpose Amazon S3 bucket.
+        -- S3_TABLES - Delivery to streaming tables on Apache Iceberg.
+        ChannelDestinationType: string
+        -- The source streams associated with the channel.
+        Streams: {ChannelStreamIdentifier}
+    end
+
     -- The range of possible hash key values for the shard, which is a set of ordered
     -- contiguous positive integers.
     record HashKeyRange
@@ -114,6 +379,102 @@ local record M
         StreamARN: string
     end
 
+    -- The configuration for delivery to a general purpose Amazon S3 bucket. Used in CreateChannel.
+    record S3DestinationConfiguration
+        -- The maximum age, in seconds, of undelivered data. Valid range is 300 to 900 seconds (5 to 15 minutes). The default value is 300 seconds.
+        DataFreshnessInSeconds: number
+        -- The dead-letter queue configuration for records that cannot be delivered. Optional for general purpose Amazon S3 destinations. If not specified, it defaults to the destination bucket with an error prefix.
+        DeadLetterQueueS3Configuration: DeadLetterQueueS3Configuration
+        -- The Amazon S3 storage configuration for the channel.
+        StorageConfiguration: S3StorageConfiguration
+    end
+
+    -- The configuration for delivery to streaming tables on Apache Iceberg. Used in CreateChannel.
+    record S3TablesDestinationConfiguration
+        -- The maximum age, in seconds, of undelivered data. Valid range is 300 to 900 seconds (5 to 15 minutes). The default value is 300 seconds.
+        DataFreshnessInSeconds: number
+        -- The dead-letter queue configuration for records that cannot be delivered. Required for streaming table destinations.
+        DeadLetterQueueS3Configuration: DeadLetterQueueS3Configuration
+        -- The list of streaming table configurations. Currently, one table is supported per channel.
+        S3TablesConfigurationList: {S3TablesConfiguration}
+    end
+
+    record CreateChannelInput
+        -- The name of the channel. The name is unique within your Amazon Web Services account and Amazon Web Services Region.
+        ChannelName: string
+        -- The Amazon Resource Name (ARN) of the IAM role that Amazon Kinesis Data Streams assumes to write records to the destination.
+        ServiceExecutionRoleARN: string
+        -- The source stream configuration for the channel. Currently, one stream is supported per channel.
+        StreamConfigurationList: {ChannelStreamConfiguration}
+        -- The configuration for delivery to a general purpose Amazon S3 bucket. You must specify either S3DestinationConfiguration or S3TablesDestinationConfiguration, but not both.
+        S3DestinationConfiguration: S3DestinationConfiguration
+        -- The configuration for delivery to streaming tables on Apache Iceberg in Amazon S3 Tables. You must specify either S3DestinationConfiguration or S3TablesDestinationConfiguration, but not both.
+        S3TablesDestinationConfiguration: S3TablesDestinationConfiguration
+        -- The server-side encryption configuration that uses an Amazon Web Services KMS key to encrypt data delivered to the destination.
+        EncryptionConfiguration: ChannelEncryptionConfiguration
+        -- A set of key-value pairs to assign to the channel. A tag consists of a required key and an optional value.
+        Tags: {string : string}
+        -- The Amazon CloudWatch Logs configuration for the channel.
+        LoggingConfiguration: ChannelLoggingConfiguration
+    end
+
+    record CreateChannelOutput
+        -- The configuration and current status of the channel.
+        ChannelDescription: ChannelDescription
+    end
+
+    -- The ciphertext references a key that doesn't exist or that you don't have access
+    -- to.
+    record KMSAccessDeniedException
+        -- A message that provides information about the error.
+        message: string
+    end
+
+    -- The request was rejected because the specified customer master key (CMK) isn't
+    -- enabled.
+    record KMSDisabledException
+        -- A message that provides information about the error.
+        message: string
+    end
+
+    -- The request was rejected because the state of the specified resource isn't valid for
+    -- this request. For more information, see How Key State Affects Use of a
+    -- Customer Master Key in the Amazon Web Services Key Management
+    -- Service Developer Guide.
+    record KMSInvalidStateException
+        -- A message that provides information about the error.
+        message: string
+    end
+
+    -- The request was rejected because the specified entity or resource can't be
+    -- found.
+    record KMSNotFoundException
+        -- A message that provides information about the error.
+        message: string
+    end
+
+    -- The Amazon Web Services access key ID needs a subscription for the service.
+    record KMSOptInRequired
+        -- A message that provides information about the error.
+        message: string
+    end
+
+    -- The request was denied due to request throttling. For more information about
+    -- throttling, see Limits in
+    -- the Amazon Web Services Key Management Service Developer
+    -- Guide.
+    record KMSThrottlingException
+        -- A message that provides information about the error.
+        message: string
+    end
+
+    -- Specifies that you tried to invoke this API for a data stream with the on-demand
+    -- capacity mode. This API is only supported for data streams with the provisioned capacity
+    -- mode.
+    record ValidationException
+        message: string
+    end
+
     enum StreamMode
         "PROVISIONED"
         "ON_DEMAND"
@@ -154,13 +515,6 @@ local record M
     record CreateStreamOutput
     end
 
-    -- Specifies that you tried to invoke this API for a data stream with the on-demand
-    -- capacity mode. This API is only supported for data streams with the provisioned capacity
-    -- mode.
-    record ValidationException
-        message: string
-    end
-
     -- Represents the input for DecreaseStreamRetentionPeriod.
     record DecreaseStreamRetentionPeriodInput
         -- The name of the stream to modify.
@@ -175,6 +529,14 @@ local record M
     end
 
     record DecreaseStreamRetentionPeriodOutput
+    end
+
+    record DeleteChannelInput
+        -- The Amazon Resource Name (ARN) of the channel to delete.
+        ChannelARN: string
+    end
+
+    record DeleteChannelOutput
     end
 
     record DeleteResourcePolicyInput
@@ -250,6 +612,16 @@ local record M
         MinimumThroughputBillingCommitment: MinimumThroughputBillingCommitmentOutput
     end
 
+    record DescribeChannelInput
+        -- The Amazon Resource Name (ARN) of the channel to describe.
+        ChannelARN: string
+    end
+
+    record DescribeChannelOutput
+        -- The configuration and current status of the channel.
+        ChannelDescription: ChannelDescription
+    end
+
     record DescribeLimitsInput
     end
 
@@ -262,6 +634,10 @@ local record M
         OnDemandStreamCount: number
         -- The maximum number of data streams with the on-demand capacity mode.
         OnDemandStreamCountLimit: number
+        -- The number of channels in the account.
+        ChannelCount: number
+        -- The maximum number of channels allowed in the account.
+        ChannelCountLimit: number
     end
 
     -- Represents the input for DescribeStream.
@@ -509,6 +885,8 @@ local record M
         WarmThroughput: WarmThroughputObject
         -- The maximum record size of a single record in kibibyte (KiB) that you can write to, and read from a stream.
         MaxRecordSizeInKiB: number
+        -- The number of channels associated with the stream.
+        ChannelCount: number
     end
 
     record DescribeStreamSummaryOutput
@@ -668,51 +1046,6 @@ local record M
         message: string
     end
 
-    -- The ciphertext references a key that doesn't exist or that you don't have access
-    -- to.
-    record KMSAccessDeniedException
-        -- A message that provides information about the error.
-        message: string
-    end
-
-    -- The request was rejected because the specified customer master key (CMK) isn't
-    -- enabled.
-    record KMSDisabledException
-        -- A message that provides information about the error.
-        message: string
-    end
-
-    -- The request was rejected because the state of the specified resource isn't valid for
-    -- this request. For more information, see How Key State Affects Use of a
-    -- Customer Master Key in the Amazon Web Services Key Management
-    -- Service Developer Guide.
-    record KMSInvalidStateException
-        -- A message that provides information about the error.
-        message: string
-    end
-
-    -- The request was rejected because the specified entity or resource can't be
-    -- found.
-    record KMSNotFoundException
-        -- A message that provides information about the error.
-        message: string
-    end
-
-    -- The Amazon Web Services access key ID needs a subscription for the service.
-    record KMSOptInRequired
-        -- A message that provides information about the error.
-        message: string
-    end
-
-    -- The request was denied due to request throttling. For more information about
-    -- throttling, see Limits in
-    -- the Amazon Web Services Key Management Service Developer
-    -- Guide.
-    record KMSThrottlingException
-        -- A message that provides information about the error.
-        message: string
-    end
-
     -- The request rate for the stream is too high, or the requested data is too large for
     -- the available throughput. Reduce the frequency or size of your requests. For more
     -- information, see Streams Limits in the
@@ -804,6 +1137,30 @@ local record M
     end
 
     record IncreaseStreamRetentionPeriodOutput
+    end
+
+    -- Filters ListChannels results by source stream.
+    record StreamFilter
+        -- The Amazon Resource Name (ARN) of the source stream to filter by.
+        StreamARN: string
+        -- The creation timestamp of the source stream.
+        StreamCreationTimestamp: number
+    end
+
+    record ListChannelsInput
+        -- Filters the results to channels associated with the specified streams.
+        StreamFilter: {StreamFilter}
+        -- The maximum number of channels to return in a single call. The default value is 100. If you specify a value greater than 100, at most 100 results are returned.
+        MaxResults: number
+        -- The pagination token returned by a previous call. Specify this token to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
+    end
+
+    record ListChannelsOutput
+        -- A list of channel summaries.
+        ChannelSummaries: {ChannelSummary}
+        -- The pagination token to use in a subsequent call to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
     end
 
     enum ShardFilterType
@@ -1484,6 +1841,34 @@ local record M
     record UpdateAccountSettingsOutput
         -- The updated configuration of the minimum throughput billing commitment for your account.
         MinimumThroughputBillingCommitment: MinimumThroughputBillingCommitmentOutput
+    end
+
+    -- The updated configuration for a general purpose Amazon S3 destination. Used in UpdateChannel. Only DataFreshnessInSeconds can be updated.
+    record S3DestinationUpdateInput
+        -- The maximum age, in seconds, of undelivered data. Valid range is 300 to 900 seconds (5 to 15 minutes).
+        DataFreshnessInSeconds: number
+    end
+
+    -- The updated configuration for a streaming table destination. Used in UpdateChannel. Only DataFreshnessInSeconds can be updated.
+    record S3TablesDestinationUpdateInput
+        -- The maximum age, in seconds, of undelivered data. Valid range is 300 to 900 seconds (5 to 15 minutes).
+        DataFreshnessInSeconds: number
+    end
+
+    record UpdateChannelInput
+        -- The Amazon Resource Name (ARN) of the channel to update.
+        ChannelARN: string
+        -- The updated configuration for a general purpose Amazon S3 destination. Only DataFreshnessInSeconds can be updated.
+        S3DestinationConfiguration: S3DestinationUpdateInput
+        -- The updated configuration for a streaming table destination. Only DataFreshnessInSeconds can be updated.
+        S3TablesDestinationConfiguration: S3TablesDestinationUpdateInput
+        -- The updated Amazon CloudWatch Logs configuration for the channel.
+        LoggingConfiguration: ChannelLoggingUpdateInput
+    end
+
+    record UpdateChannelOutput
+        -- The configuration and current status of the updated channel.
+        ChannelDescription: ChannelDescription
     end
 
     record UpdateMaxRecordSizeInput

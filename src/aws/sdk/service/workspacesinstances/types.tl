@@ -193,6 +193,11 @@ local record M
         "unlimited"
     end
 
+    enum NestedVirtualizationEnum
+        "enabled"
+        "disabled"
+    end
+
     -- Configures CPU-specific settings for WorkSpace Instance.
     record CpuOptionsRequest
         -- AMD Secure Encrypted Virtualization configuration.
@@ -201,6 +206,8 @@ local record M
         CoreCount: number
         -- Number of threads per CPU core.
         ThreadsPerCore: number
+        -- Specifies whether to enable or disable nested virtualization.
+        NestedVirtualization: string
     end
 
     enum ResourceTypeEnum

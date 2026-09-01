@@ -74,6 +74,8 @@ M.Failures = schema.new({ type = "list", list_member = M.ProfileQueryFailures })
 
 M.ProfileIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AssociatedSegmentsList = schema.new({ type = "list", list_member = M.AssociatedSegment })
+
 M.WorkflowStepsList = schema.new({ type = "list", list_member = M.WorkflowStepItem })
 
 M.IntegrationList = schema.new({ type = "list", list_member = M.ListIntegrationItem })
@@ -119,6 +121,8 @@ M.RecommenderSchemaSummaryList = schema.new({ type = "list", list_member = M.Rec
 M.MatchIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SegmentDefinitionsList = schema.new({ type = "list", list_member = M.SegmentDefinitionItem })
+
+M.SubscriptionEventsList = schema.new({ type = "list", list_member = M.SubscriptionEventItem })
 
 M.UploadJobsList = schema.new({ type = "list", list_member = M.UploadJobItem })
 
@@ -1187,6 +1191,80 @@ M.AppflowIntegrationWorkflowStep = schema.new({
             },
         }),
     },
+})
+
+M.AssociatedSegment = schema.new({
+    id = id.from(_N, "AssociatedSegment"),
+    type = "structure",
+    members = {
+        SegmentName = schema.new({
+            id = id.from(_N, "AssociatedSegment", "SegmentName"),
+            type = "string",
+            name = "SegmentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "SegmentName" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AssociatedSegment", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Status" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "AssociatedSegment", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Message" },
+            },
+        }),
+    },
+})
+
+M.AssociateStreamForSegmentsInput = schema.new({
+    id = id.from(_N, "AssociateStreamForSegmentsRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "AssociateStreamForSegmentsInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DestinationArn = schema.new({
+            id = id.from(_N, "AssociateStreamForSegmentsInput", "DestinationArn"),
+            type = "string",
+            name = "DestinationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationRoleArn = schema.new({
+            id = id.from(_N, "AssociateStreamForSegmentsInput", "DestinationRoleArn"),
+            type = "string",
+            name = "DestinationRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateStreamForSegmentsOutput = schema.new({
+    id = id.from(_N, "AssociateStreamForSegmentsResponse"),
+    type = "structure",
 })
 
 M.AttributeItem = schema.new({
@@ -5876,6 +5954,49 @@ M.DeleteSegmentDefinitionOutput = schema.new({
     },
 })
 
+M.DeleteSegmentSubscriptionInput = schema.new({
+    id = id.from(_N, "DeleteSegmentSubscriptionRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "DeleteSegmentSubscriptionInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SegmentDefinitionName = schema.new({
+            id = id.from(_N, "DeleteSegmentSubscriptionInput", "SegmentDefinitionName"),
+            type = "string",
+            name = "SegmentDefinitionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSegmentSubscriptionOutput = schema.new({
+    id = id.from(_N, "DeleteSegmentSubscriptionResponse"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "DeleteSegmentSubscriptionOutput", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Message" },
+            },
+        }),
+    },
+})
+
 M.DeleteWorkflowInput = schema.new({
     id = id.from(_N, "DeleteWorkflowRequest"),
     type = "structure",
@@ -5995,6 +6116,39 @@ M.DetectProfileObjectTypeOutput = schema.new({
             name = "DetectedProfileObjectTypes",
             target_id = prelude.Document.id,
             list_member = M.DetectedProfileObjectType,
+        }),
+    },
+})
+
+M.DisassociateStreamForSegmentsInput = schema.new({
+    id = id.from(_N, "DisassociateStreamForSegmentsRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "DisassociateStreamForSegmentsInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateStreamForSegmentsOutput = schema.new({
+    id = id.from(_N, "DisassociateStreamForSegmentsResponse"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "DisassociateStreamForSegmentsOutput", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Message" },
+            },
         }),
     },
 })
@@ -8799,6 +8953,147 @@ M.GetSegmentSnapshotOutput = schema.new({
     },
 })
 
+M.GetSegmentSubscriptionInput = schema.new({
+    id = id.from(_N, "GetSegmentSubscriptionRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "GetSegmentSubscriptionInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SegmentDefinitionName = schema.new({
+            id = id.from(_N, "GetSegmentSubscriptionInput", "SegmentDefinitionName"),
+            type = "string",
+            name = "SegmentDefinitionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ScheduleConfiguration = schema.new({
+    id = id.from(_N, "ScheduleConfiguration"),
+    type = "structure",
+    members = {
+        Interval = schema.new({
+            id = id.from(_N, "ScheduleConfiguration", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "Interval" },
+            },
+        }),
+        Unit = schema.new({
+            id = id.from(_N, "ScheduleConfiguration", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Unit" },
+            },
+        }),
+    },
+})
+
+M.ScheduledExecutions = schema.new({
+    id = id.from(_N, "ScheduledExecutions"),
+    type = "structure",
+    members = {
+        NextExecutedAt = schema.new({
+            id = id.from(_N, "ScheduledExecutions", "NextExecutedAt"),
+            type = "timestamp",
+            name = "NextExecutedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "NextExecutedAt" },
+            },
+        }),
+        LastExecutedAt = schema.new({
+            id = id.from(_N, "ScheduledExecutions", "LastExecutedAt"),
+            type = "timestamp",
+            name = "LastExecutedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "LastExecutedAt" },
+            },
+        }),
+    },
+})
+
+M.GetSegmentSubscriptionOutput = schema.new({
+    id = id.from(_N, "GetSegmentSubscriptionResponse"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "GetSegmentSubscriptionOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Status" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "GetSegmentSubscriptionOutput", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Message" },
+            },
+        }),
+        ScheduleConfiguration = schema.new({
+            id = id.from(_N, "GetSegmentSubscriptionOutput", "ScheduleConfiguration"),
+            type = "structure",
+            name = "ScheduleConfiguration",
+            target_id = id.from(_N, "ScheduleConfiguration"),
+            target = M.ScheduleConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "ScheduleConfiguration" },
+            },
+        }),
+        ScheduledExecutions = schema.new({
+            id = id.from(_N, "GetSegmentSubscriptionOutput", "ScheduledExecutions"),
+            type = "structure",
+            name = "ScheduledExecutions",
+            target_id = id.from(_N, "ScheduledExecutions"),
+            target = M.ScheduledExecutions,
+            traits = {
+                [traits.JSON_NAME] = { name = "ScheduledExecutions" },
+            },
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "GetSegmentSubscriptionOutput", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "StartedAt" },
+            },
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "GetSegmentSubscriptionOutput", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "LastUpdatedAt" },
+            },
+        }),
+    },
+})
+
 M.GetSimilarProfilesInput = schema.new({
     id = id.from(_N, "GetSimilarProfilesRequest"),
     type = "structure",
@@ -8901,6 +9196,103 @@ M.GetSimilarProfilesOutput = schema.new({
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetStreamForSegmentsInput = schema.new({
+    id = id.from(_N, "GetStreamForSegmentsRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetStreamForSegmentsOutput = schema.new({
+    id = id.from(_N, "GetStreamForSegmentsResponse"),
+    type = "structure",
+    members = {
+        AssociatedAt = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsOutput", "AssociatedAt"),
+            type = "timestamp",
+            name = "AssociatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "AssociatedAt" },
+            },
+        }),
+        AssociatedSegments = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsOutput", "AssociatedSegments"),
+            type = "list",
+            name = "AssociatedSegments",
+            target_id = prelude.Document.id,
+            list_member = M.AssociatedSegment,
+            traits = {
+                [traits.JSON_NAME] = { name = "AssociatedSegments" },
+            },
+        }),
+        DomainName = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsOutput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "DomainName" },
+            },
+        }),
+        DestinationArn = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsOutput", "DestinationArn"),
+            type = "string",
+            name = "DestinationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "DestinationArn" },
+            },
+        }),
+        DestinationRoleArn = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsOutput", "DestinationRoleArn"),
+            type = "string",
+            name = "DestinationRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "DestinationRoleArn" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "State" },
+            },
+        }),
+        DisassociatedAt = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsOutput", "DisassociatedAt"),
+            type = "timestamp",
+            name = "DisassociatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "DisassociatedAt" },
+            },
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "GetStreamForSegmentsOutput", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "FailureReason" },
+            },
         }),
     },
 })
@@ -11664,6 +12056,120 @@ M.ListSegmentDefinitionsOutput = schema.new({
     },
 })
 
+M.ListSegmentSubscriptionEventsInput = schema.new({
+    id = id.from(_N, "ListSegmentSubscriptionEventsRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "ListSegmentSubscriptionEventsInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SegmentDefinitionName = schema.new({
+            id = id.from(_N, "ListSegmentSubscriptionEventsInput", "SegmentDefinitionName"),
+            type = "string",
+            name = "SegmentDefinitionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSegmentSubscriptionEventsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSegmentSubscriptionEventsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.SubscriptionEventItem = schema.new({
+    id = id.from(_N, "SubscriptionEventItem"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "SubscriptionEventItem", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ProfileId" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "SubscriptionEventItem", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "UpdatedAt" },
+            },
+        }),
+        EventType = schema.new({
+            id = id.from(_N, "SubscriptionEventItem", "EventType"),
+            type = "string",
+            name = "EventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "EventType" },
+            },
+        }),
+        Event = schema.new({
+            id = id.from(_N, "SubscriptionEventItem", "Event"),
+            type = "string",
+            name = "Event",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Event" },
+            },
+        }),
+    },
+})
+
+M.ListSegmentSubscriptionEventsOutput = schema.new({
+    id = id.from(_N, "ListSegmentSubscriptionEventsResponse"),
+    type = "structure",
+    members = {
+        Events = schema.new({
+            id = id.from(_N, "ListSegmentSubscriptionEventsOutput", "Events"),
+            type = "list",
+            name = "Events",
+            target_id = prelude.Document.id,
+            list_member = M.SubscriptionEventItem,
+            traits = {
+                [traits.JSON_NAME] = { name = "Events" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSegmentSubscriptionEventsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -12709,6 +13215,75 @@ M.PutProfileObjectTypeOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+    },
+})
+
+M.PutSegmentSubscriptionInput = schema.new({
+    id = id.from(_N, "PutSegmentSubscriptionRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "PutSegmentSubscriptionInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SegmentDefinitionName = schema.new({
+            id = id.from(_N, "PutSegmentSubscriptionInput", "SegmentDefinitionName"),
+            type = "string",
+            name = "SegmentDefinitionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ScheduleConfiguration = schema.new({
+            id = id.from(_N, "PutSegmentSubscriptionInput", "ScheduleConfiguration"),
+            type = "structure",
+            name = "ScheduleConfiguration",
+            target_id = id.from(_N, "ScheduleConfiguration"),
+            target = M.ScheduleConfiguration,
+        }),
+    },
+})
+
+M.PutSegmentSubscriptionOutput = schema.new({
+    id = id.from(_N, "PutSegmentSubscriptionResponse"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "PutSegmentSubscriptionOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Status" },
+            },
+        }),
+        ScheduleConfiguration = schema.new({
+            id = id.from(_N, "PutSegmentSubscriptionOutput", "ScheduleConfiguration"),
+            type = "structure",
+            name = "ScheduleConfiguration",
+            target_id = id.from(_N, "ScheduleConfiguration"),
+            target = M.ScheduleConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "ScheduleConfiguration" },
+            },
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "PutSegmentSubscriptionOutput", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "StartedAt" },
+            },
         }),
     },
 })
@@ -13890,6 +14465,18 @@ M.AddProfileKey = schema.operation({
     },
 })
 
+M.AssociateStreamForSegments = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "AssociateStreamForSegments"),
+    input = M.AssociateStreamForSegmentsInput,
+    output = M.AssociateStreamForSegmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/segment-streams" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BatchGetCalculatedAttributeForProfile = schema.operation({
     id = id.from("com.amazonaws.customerprofiles", "BatchGetCalculatedAttributeForProfile"),
     input = M.BatchGetCalculatedAttributeForProfileInput,
@@ -14274,6 +14861,18 @@ M.DeleteSegmentDefinition = schema.operation({
     },
 })
 
+M.DeleteSegmentSubscription = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DeleteSegmentSubscription"),
+    input = M.DeleteSegmentSubscriptionInput,
+    output = M.DeleteSegmentSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteWorkflow = schema.operation({
     id = id.from("com.amazonaws.customerprofiles", "DeleteWorkflow"),
     input = M.DeleteWorkflowInput,
@@ -14292,6 +14891,18 @@ M.DetectProfileObjectType = schema.operation({
     output = M.DetectProfileObjectTypeOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/detect/object-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateStreamForSegments = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "DisassociateStreamForSegments"),
+    input = M.DisassociateStreamForSegmentsInput,
+    output = M.DisassociateStreamForSegmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/domains/{DomainName}/segment-streams" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14574,12 +15185,36 @@ M.GetSegmentSnapshot = schema.operation({
     },
 })
 
+M.GetSegmentSubscription = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetSegmentSubscription"),
+    input = M.GetSegmentSubscriptionInput,
+    output = M.GetSegmentSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetSimilarProfiles = schema.operation({
     id = id.from("com.amazonaws.customerprofiles", "GetSimilarProfiles"),
     input = M.GetSimilarProfilesInput,
     output = M.GetSimilarProfilesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/matches" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetStreamForSegments = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "GetStreamForSegments"),
+    input = M.GetStreamForSegmentsInput,
+    output = M.GetStreamForSegmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/segment-streams" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14910,6 +15545,18 @@ M.ListSegmentDefinitions = schema.operation({
     },
 })
 
+M.ListSegmentSubscriptionEvents = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "ListSegmentSubscriptionEvents"),
+    input = M.ListSegmentSubscriptionEventsInput,
+    output = M.ListSegmentSubscriptionEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}/subscription-events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTagsForResource = schema.operation({
     id = id.from("com.amazonaws.customerprofiles", "ListTagsForResource"),
     input = M.ListTagsForResourceInput,
@@ -15000,6 +15647,18 @@ M.PutProfileObjectType = schema.operation({
     output = M.PutProfileObjectTypeOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/object-types/{ObjectTypeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSegmentSubscription = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "PutSegmentSubscription"),
+    input = M.PutSegmentSubscriptionInput,
+    output = M.PutSegmentSubscriptionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}/subscriptions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

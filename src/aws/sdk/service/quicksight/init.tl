@@ -63,6 +63,7 @@ local record Client
     deleteActionConnector: function(Client, types.DeleteActionConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteActionConnectorOutput>
     deleteAgent: function(Client, types.DeleteAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
     deleteAnalysis: function(Client, types.DeleteAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnalysisOutput>
+    deleteApp: function(Client, types.DeleteAppInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppOutput>
     deleteApprovalPolicy: function(Client, types.DeleteApprovalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApprovalPolicyOutput>
     deleteBrand: function(Client, types.DeleteBrandInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrandOutput>
     deleteBrandAssignment: function(Client, types.DeleteBrandAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrandAssignmentOutput>
@@ -110,6 +111,8 @@ local record Client
     describeAnalysis: function(Client, types.DescribeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisOutput>
     describeAnalysisDefinition: function(Client, types.DescribeAnalysisDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisDefinitionOutput>
     describeAnalysisPermissions: function(Client, types.DescribeAnalysisPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisPermissionsOutput>
+    describeApp: function(Client, types.DescribeAppInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppOutput>
+    describeAppPermissions: function(Client, types.DescribeAppPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppPermissionsOutput>
     describeApprovalPolicy: function(Client, types.DescribeApprovalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApprovalPolicyOutput>
     describeAssetBundleExportJob: function(Client, types.DescribeAssetBundleExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetBundleExportJobOutput>
     describeAssetBundleImportJob: function(Client, types.DescribeAssetBundleImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetBundleImportJobOutput>
@@ -180,6 +183,7 @@ local record Client
     listAgents: function(Client, types.ListAgentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentsOutput>
     listAnalyses: function(Client, types.ListAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysesOutput>
     listApprovalPolicies: function(Client, types.ListApprovalPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListApprovalPoliciesOutput>
+    listApps: function(Client, types.ListAppsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppsOutput>
     listAssetBundleExportJobs: function(Client, types.ListAssetBundleExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetBundleExportJobsOutput>
     listAssetBundleImportJobs: function(Client, types.ListAssetBundleImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetBundleImportJobsOutput>
     listBrands: function(Client, types.ListBrandsInput, ? base_client.InvokeOptions): async.Operation<types.ListBrandsOutput>
@@ -230,6 +234,7 @@ local record Client
     searchActionConnectors: function(Client, types.SearchActionConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.SearchActionConnectorsOutput>
     searchAgents: function(Client, types.SearchAgentsInput, ? base_client.InvokeOptions): async.Operation<types.SearchAgentsOutput>
     searchAnalyses: function(Client, types.SearchAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.SearchAnalysesOutput>
+    searchApps: function(Client, types.SearchAppsInput, ? base_client.InvokeOptions): async.Operation<types.SearchAppsOutput>
     searchDashboards: function(Client, types.SearchDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.SearchDashboardsOutput>
     searchDataSets: function(Client, types.SearchDataSetsInput, ? base_client.InvokeOptions): async.Operation<types.SearchDataSetsOutput>
     searchDataSources: function(Client, types.SearchDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.SearchDataSourcesOutput>
@@ -257,6 +262,7 @@ local record Client
     updateAnalysis: function(Client, types.UpdateAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnalysisOutput>
     updateAnalysisPermissions: function(Client, types.UpdateAnalysisPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnalysisPermissionsOutput>
     updateApplicationWithTokenExchangeGrant: function(Client, types.UpdateApplicationWithTokenExchangeGrantInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationWithTokenExchangeGrantOutput>
+    updateAppPermissions: function(Client, types.UpdateAppPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppPermissionsOutput>
     updateApprovalPolicy: function(Client, types.UpdateApprovalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApprovalPolicyOutput>
     updateBrand: function(Client, types.UpdateBrandInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrandOutput>
     updateBrandAssignment: function(Client, types.UpdateBrandAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrandAssignmentOutput>
@@ -535,6 +541,10 @@ function C:deleteAnalysis(input: types.DeleteAnalysisInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnalysis as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnalysisOutput>
 end
 
+function C:deleteApp(input: types.DeleteAppInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApp as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppOutput>
+end
+
 function C:deleteApprovalPolicy(input: types.DeleteApprovalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApprovalPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApprovalPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteApprovalPolicyOutput>
 end
@@ -721,6 +731,14 @@ end
 
 function C:describeAnalysisPermissions(input: types.DescribeAnalysisPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAnalysisPermissionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAnalysisPermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAnalysisPermissionsOutput>
+end
+
+function C:describeApp(input: types.DescribeAppInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApp as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppOutput>
+end
+
+function C:describeAppPermissions(input: types.DescribeAppPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAppPermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppPermissionsOutput>
 end
 
 function C:describeApprovalPolicy(input: types.DescribeApprovalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApprovalPolicyOutput>
@@ -1003,6 +1021,10 @@ function C:listApprovalPolicies(input: types.ListApprovalPoliciesInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApprovalPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListApprovalPoliciesOutput>
 end
 
+function C:listApps(input: types.ListAppsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApps as schema.OperationSchema, input, options) as async.Operation<types.ListAppsOutput>
+end
+
 function C:listAssetBundleExportJobs(input: types.ListAssetBundleExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetBundleExportJobsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetBundleExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListAssetBundleExportJobsOutput>
 end
@@ -1203,6 +1225,10 @@ function C:searchAnalyses(input: types.SearchAnalysesInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchAnalyses as schema.OperationSchema, input, options) as async.Operation<types.SearchAnalysesOutput>
 end
 
+function C:searchApps(input: types.SearchAppsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchAppsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchApps as schema.OperationSchema, input, options) as async.Operation<types.SearchAppsOutput>
+end
+
 function C:searchDashboards(input: types.SearchDashboardsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchDashboardsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchDashboards as schema.OperationSchema, input, options) as async.Operation<types.SearchDashboardsOutput>
 end
@@ -1309,6 +1335,10 @@ end
 
 function C:updateApplicationWithTokenExchangeGrant(input: types.UpdateApplicationWithTokenExchangeGrantInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationWithTokenExchangeGrantOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplicationWithTokenExchangeGrant as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationWithTokenExchangeGrantOutput>
+end
+
+function C:updateAppPermissions(input: types.UpdateAppPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAppPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAppPermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateAppPermissionsOutput>
 end
 
 function C:updateApprovalPolicy(input: types.UpdateApprovalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApprovalPolicyOutput>

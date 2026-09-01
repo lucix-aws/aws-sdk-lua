@@ -4,6 +4,66 @@ local waiter = require("smithy.waiter")
 
 local M = {}
 
+--- Wait until ChannelActive.
+function M.wait_until_channel_active(client, input, options)
+    return waiter.wait(client, "describeChannel", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ChannelDescription.ChannelStatus",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "ChannelDescription.ChannelStatus",
+                        expected = "CREATING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "ChannelDescription.ChannelStatus",
+                        expected = "UPDATING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ChannelDescription.ChannelStatus",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ChannelDescription.ChannelStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
 --- Wait until StreamExists.
 function M.wait_until_stream_exists(client, input, options)
     return waiter.wait(client, "describeStream", input, {
