@@ -38952,7 +38952,9 @@ local record M
         Enabled: boolean
     end
 
-    record BlobAttributeValue
+    -- Describes a value for a resource attribute that is a Base64-encoded binary data object.
+    record SecureBlobAttributeValue
+        -- The attribute value.
         Value: string
     end
 
@@ -39022,7 +39024,7 @@ local record M
         -- Changes the instance's user data to the specified value. User data must be base64-encoded.
         -- Depending on the tool or SDK that you're using, the base64-encoding might be performed for you.
         -- For more information, see Work with instance user data.
-        UserData: BlobAttributeValue
+        UserData: SecureBlobAttributeValue
         -- Specifies whether an instance stops or terminates when you initiate shutdown from the
         -- instance (using the operating system command for system shutdown).
         InstanceInitiatedShutdownBehavior: AttributeValue

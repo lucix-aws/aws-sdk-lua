@@ -9773,6 +9773,65 @@ M.GetOperationsForResourceOutput = schema.new({
     },
 })
 
+M.GetProfileInput = schema.new({
+    id = id.from(_N, "GetProfileRequest"),
+    type = "structure",
+})
+
+M.PartnerInfo = schema.new({
+    id = id.from(_N, "PartnerInfo"),
+    type = "structure",
+    members = {
+        enrolledAt = schema.new({
+            id = id.from(_N, "PartnerInfo", "enrolledAt"),
+            type = "timestamp",
+            name = "enrolledAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tierName = schema.new({
+            id = id.from(_N, "PartnerInfo", "tierName"),
+            type = "string",
+            name = "tierName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "PartnerInfo", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetProfileOutput = schema.new({
+    id = id.from(_N, "GetProfileResult"),
+    type = "structure",
+    members = {
+        profileType = schema.new({
+            id = id.from(_N, "GetProfileOutput", "profileType"),
+            type = "string",
+            name = "profileType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        partner = schema.new({
+            id = id.from(_N, "GetProfileOutput", "partner"),
+            type = "structure",
+            name = "partner",
+            target_id = id.from(_N, "PartnerInfo"),
+            target = M.PartnerInfo,
+        }),
+    },
+})
+
 M.GetRegionsInput = schema.new({
     id = id.from(_N, "GetRegionsRequest"),
     type = "structure",
@@ -14150,6 +14209,18 @@ M.GetOperationsForResource = schema.operation({
     output = M.GetOperationsForResourceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetOperationsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetProfile = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetProfile"),
+    input = M.GetProfileInput,
+    output = M.GetProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/ls/api/2016-11-28/GetProfile" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

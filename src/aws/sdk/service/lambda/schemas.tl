@@ -5608,6 +5608,19 @@ M.EphemeralStorage = schema.new({
     },
 })
 
+M.S3FilesConfig = schema.new({
+    id = id.from(_N, "S3FilesConfig"),
+    type = "structure",
+    members = {
+        DirectS3Read = schema.new({
+            id = id.from(_N, "S3FilesConfig", "DirectS3Read"),
+            type = "string",
+            name = "DirectS3Read",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.FileSystemConfig = schema.new({
     id = id.from(_N, "FileSystemConfig"),
     type = "structure",
@@ -5629,6 +5642,13 @@ M.FileSystemConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        S3FilesConfig = schema.new({
+            id = id.from(_N, "FileSystemConfig", "S3FilesConfig"),
+            type = "structure",
+            name = "S3FilesConfig",
+            target_id = id.from(_N, "S3FilesConfig"),
+            target = M.S3FilesConfig,
         }),
     },
 })

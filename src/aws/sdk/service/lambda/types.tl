@@ -1965,12 +1965,26 @@ local record M
         Size: number
     end
 
-    -- Details about the connection between a Lambda function and an Amazon EFS file system or an Amazon S3 Files file system.
+    enum DirectS3Read
+        "ENABLED"
+        "DISABLED"
+        "AUTO"
+    end
+
+    -- Setting controls how your function accesses data from an Amazon S3 file system.
+    record S3FilesConfig
+        -- Specifies if a function reads from the file system for the lowest latency, or through Amazon S3 Files feature "direct Amazon S3 bucket reads" for the highest throughput. Valid values: AUTO (default) – Direct reads are active for functions you configure with 512 MB or more of memory. ENABLED – Enforces all reads are directly from the Amazon S3 bucket, regardless of available memory (less than 512 MB). DISABLED – Routes all reads through the file system, regardless of memory configuration. To use direct reads, you must grant the execution role the s3:GetObject and s3:GetObjectVersion permissions. If a direct read fails, Lambda automatically falls back to reading through the file system.
+        DirectS3Read: string
+    end
+
+    -- Details about the connection between a Lambda function and an Amazon EFS file system or an Amazon S3 file system.
     record FileSystemConfig
         -- The Amazon Resource Name (ARN) of the Amazon EFS or Amazon S3 Files access point that provides access to the file system.
         Arn: string
         -- The path where the function can access the file system, starting with /mnt/.
         LocalMountPath: string
+        -- The configuration for how your function accesses data on an Amazon S3 file system. Valid only when the file system access point ARN is an Amazon S3 Files access point. If you specify a different access point type (for example, Amazon Elastic File System), the operation returns an InvalidParameterException.
+        S3FilesConfig: S3FilesConfig
     end
 
     -- Configuration values that override the container image Dockerfile settings. For more information, see Container image settings.
@@ -2397,7 +2411,7 @@ local record M
         LastUpdateStatusReason: string
         -- The reason code for the last update that was performed on the function.
         LastUpdateStatusReasonCode: string
-        -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
+        -- Connection settings for an Amazon EFS file system or an Amazon S3 file system.
         FileSystemConfigs: {FileSystemConfig}
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
@@ -2617,7 +2631,7 @@ local record M
         LastUpdateStatusReason: string
         -- The reason code for the last update that was performed on the function.
         LastUpdateStatusReasonCode: string
-        -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
+        -- Connection settings for an Amazon EFS file system or an Amazon S3 file system.
         FileSystemConfigs: {FileSystemConfig}
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
@@ -2751,7 +2765,7 @@ local record M
         LastUpdateStatusReason: string
         -- The reason code for the last update that was performed on the function.
         LastUpdateStatusReasonCode: string
-        -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
+        -- Connection settings for an Amazon EFS file system or an Amazon S3 file system.
         FileSystemConfigs: {FileSystemConfig}
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
@@ -3528,7 +3542,7 @@ local record M
         LastUpdateStatusReason: string
         -- The reason code for the last update that was performed on the function.
         LastUpdateStatusReasonCode: string
-        -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
+        -- Connection settings for an Amazon EFS file system or an Amazon S3 file system.
         FileSystemConfigs: {FileSystemConfig}
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
@@ -3657,7 +3671,7 @@ local record M
         LastUpdateStatusReason: string
         -- The reason code for the last update that was performed on the function.
         LastUpdateStatusReasonCode: string
-        -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
+        -- Connection settings for an Amazon EFS file system or an Amazon S3 file system.
         FileSystemConfigs: {FileSystemConfig}
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
@@ -3911,7 +3925,7 @@ local record M
         LastUpdateStatusReason: string
         -- The reason code for the last update that was performed on the function.
         LastUpdateStatusReasonCode: string
-        -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
+        -- Connection settings for an Amazon EFS file system or an Amazon S3 file system.
         FileSystemConfigs: {FileSystemConfig}
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string

@@ -128,6 +128,7 @@ local record Client
     getOperation: function(Client, types.GetOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationOutput>
     getOperations: function(Client, types.GetOperationsInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationsOutput>
     getOperationsForResource: function(Client, types.GetOperationsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationsForResourceOutput>
+    getProfile: function(Client, types.GetProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileOutput>
     getRegions: function(Client, types.GetRegionsInput, ? base_client.InvokeOptions): async.Operation<types.GetRegionsOutput>
     getRelationalDatabase: function(Client, types.GetRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseOutput>
     getRelationalDatabaseBlueprints: function(Client, types.GetRelationalDatabaseBlueprintsInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseBlueprintsOutput>
@@ -661,6 +662,10 @@ end
 
 function C:getOperationsForResource(input: types.GetOperationsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetOperationsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOperationsForResource as schema.OperationSchema, input, options) as async.Operation<types.GetOperationsForResourceOutput>
+end
+
+function C:getProfile(input: types.GetProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfile as schema.OperationSchema, input, options) as async.Operation<types.GetProfileOutput>
 end
 
 function C:getRegions(input: types.GetRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegionsOutput>

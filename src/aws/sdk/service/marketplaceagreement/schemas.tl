@@ -54,6 +54,8 @@ M.EntitlementList = schema.new({ type = "list", list_member = M.Entitlement })
 
 M.DocumentList = schema.new({ type = "list", list_member = M.DocumentItem })
 
+M.TermTemplateList = schema.new({ type = "list", list_member = M.TermTemplate })
+
 M.UsageBasedRateCardList = schema.new({ type = "list", list_member = M.UsageBasedRateCardItem })
 
 M.ConfigurableUpfrontRateCardList = schema.new({ type = "list", list_member = M.ConfigurableUpfrontRateCardItem })
@@ -65,6 +67,8 @@ M.GrantList = schema.new({ type = "list", list_member = M.GrantItem })
 M.DimensionList = schema.new({ type = "list", list_member = M.Dimension })
 
 M.RateCardList = schema.new({ type = "list", list_member = M.RateCardItem })
+
+M.PaymentScheduleEntryList = schema.new({ type = "list", list_member = M.PaymentScheduleEntry })
 
 M.AcceptAgreementCancellationRequestInput = schema.new({
     id = id.from(_N, "AcceptAgreementCancellationRequestInput"),
@@ -975,6 +979,118 @@ M.RenewalTermConfiguration = schema.new({
     },
 })
 
+M.FixedPercentage = schema.new({
+    id = id.from(_N, "FixedPercentage"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "FixedPercentage", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PercentageRange = schema.new({
+    id = id.from(_N, "PercentageRange"),
+    type = "structure",
+    members = {
+        minValue = schema.new({
+            id = id.from(_N, "PercentageRange", "minValue"),
+            type = "string",
+            name = "minValue",
+            target_id = prelude.String.id,
+        }),
+        maxValue = schema.new({
+            id = id.from(_N, "PercentageRange", "maxValue"),
+            type = "string",
+            name = "maxValue",
+            target_id = prelude.String.id,
+        }),
+        defaultValue = schema.new({
+            id = id.from(_N, "PercentageRange", "defaultValue"),
+            type = "string",
+            name = "defaultValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PriceIncrease = schema.new({
+    id = id.from(_N, "PriceIncrease"),
+    type = "union",
+    members = {
+        fixedPercentage = schema.new({
+            id = id.from(_N, "PriceIncrease", "fixedPercentage"),
+            type = "structure",
+            name = "fixedPercentage",
+            target_id = id.from(_N, "FixedPercentage"),
+            target = M.FixedPercentage,
+        }),
+        percentageRange = schema.new({
+            id = id.from(_N, "PriceIncrease", "percentageRange"),
+            type = "structure",
+            name = "percentageRange",
+            target_id = id.from(_N, "PercentageRange"),
+            target = M.PercentageRange,
+        }),
+    },
+})
+
+M.PaymentScheduleEntry = schema.new({
+    id = id.from(_N, "PaymentScheduleEntry"),
+    type = "structure",
+    members = {
+        chargeDateOffset = schema.new({
+            id = id.from(_N, "PaymentScheduleEntry", "chargeDateOffset"),
+            type = "string",
+            name = "chargeDateOffset",
+            target_id = prelude.String.id,
+        }),
+        chargePercentage = schema.new({
+            id = id.from(_N, "PaymentScheduleEntry", "chargePercentage"),
+            type = "string",
+            name = "chargePercentage",
+            target_id = prelude.String.id,
+        }),
+        dayOfMonth = schema.new({
+            id = id.from(_N, "PaymentScheduleEntry", "dayOfMonth"),
+            type = "integer",
+            name = "dayOfMonth",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PaymentScheduleTermTemplate = schema.new({
+    id = id.from(_N, "PaymentScheduleTermTemplate"),
+    type = "structure",
+    members = {
+        schedule = schema.new({
+            id = id.from(_N, "PaymentScheduleTermTemplate", "schedule"),
+            type = "list",
+            name = "schedule",
+            target_id = prelude.Document.id,
+            list_member = M.PaymentScheduleEntry,
+        }),
+    },
+})
+
+M.TermTemplate = schema.new({
+    id = id.from(_N, "TermTemplate"),
+    type = "union",
+    members = {
+        paymentScheduleTermTemplate = schema.new({
+            id = id.from(_N, "TermTemplate", "paymentScheduleTermTemplate"),
+            type = "structure",
+            name = "paymentScheduleTermTemplate",
+            target_id = id.from(_N, "PaymentScheduleTermTemplate"),
+            target = M.PaymentScheduleTermTemplate,
+        }),
+    },
+})
+
 M.RenewalTerm = schema.new({
     id = id.from(_N, "RenewalTerm"),
     type = "structure",
@@ -997,6 +1113,38 @@ M.RenewalTerm = schema.new({
             name = "configuration",
             target_id = id.from(_N, "RenewalTermConfiguration"),
             target = M.RenewalTermConfiguration,
+        }),
+        lockoutPeriod = schema.new({
+            id = id.from(_N, "RenewalTerm", "lockoutPeriod"),
+            type = "string",
+            name = "lockoutPeriod",
+            target_id = prelude.String.id,
+        }),
+        maxRenewals = schema.new({
+            id = id.from(_N, "RenewalTerm", "maxRenewals"),
+            type = "integer",
+            name = "maxRenewals",
+            target_id = prelude.Integer.id,
+        }),
+        adjustmentDeadline = schema.new({
+            id = id.from(_N, "RenewalTerm", "adjustmentDeadline"),
+            type = "string",
+            name = "adjustmentDeadline",
+            target_id = prelude.String.id,
+        }),
+        priceIncrease = schema.new({
+            id = id.from(_N, "RenewalTerm", "priceIncrease"),
+            type = "union",
+            name = "priceIncrease",
+            target_id = id.from(_N, "PriceIncrease"),
+            target = M.PriceIncrease,
+        }),
+        termTemplates = schema.new({
+            id = id.from(_N, "RenewalTerm", "termTemplates"),
+            type = "list",
+            name = "termTemplates",
+            target_id = prelude.Document.id,
+            list_member = M.TermTemplate,
         }),
     },
 })
@@ -1599,6 +1747,12 @@ M.AgreementViewSummary = schema.new({
             name = "endTime",
             target_id = prelude.Timestamp.id,
         }),
+        lastUpdateTime = schema.new({
+            id = id.from(_N, "AgreementViewSummary", "lastUpdateTime"),
+            type = "timestamp",
+            name = "lastUpdateTime",
+            target_id = prelude.Timestamp.id,
+        }),
         agreementType = schema.new({
             id = id.from(_N, "AgreementViewSummary", "agreementType"),
             type = "string",
@@ -1638,6 +1792,24 @@ M.AgreementViewSummary = schema.new({
             name = "entitlements",
             target_id = prelude.Document.id,
             list_member = M.Entitlement,
+        }),
+        initialAgreementId = schema.new({
+            id = id.from(_N, "AgreementViewSummary", "initialAgreementId"),
+            type = "string",
+            name = "initialAgreementId",
+            target_id = prelude.String.id,
+        }),
+        endTimeBehaviorType = schema.new({
+            id = id.from(_N, "AgreementViewSummary", "endTimeBehaviorType"),
+            type = "string",
+            name = "endTimeBehaviorType",
+            target_id = prelude.String.id,
+        }),
+        endTimeBehaviorReasonCode = schema.new({
+            id = id.from(_N, "AgreementViewSummary", "endTimeBehaviorReasonCode"),
+            type = "string",
+            name = "endTimeBehaviorReasonCode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2390,6 +2562,48 @@ M.DescribeAgreementInput = schema.new({
     },
 })
 
+M.RenewalSummary = schema.new({
+    id = id.from(_N, "RenewalSummary"),
+    type = "structure",
+    members = {
+        offerId = schema.new({
+            id = id.from(_N, "RenewalSummary", "offerId"),
+            type = "string",
+            name = "offerId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EndTimeBehavior = schema.new({
+    id = id.from(_N, "EndTimeBehavior"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "EndTimeBehavior", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reasonCode = schema.new({
+            id = id.from(_N, "EndTimeBehavior", "reasonCode"),
+            type = "string",
+            name = "reasonCode",
+            target_id = prelude.String.id,
+        }),
+        renewalSummary = schema.new({
+            id = id.from(_N, "EndTimeBehavior", "renewalSummary"),
+            type = "structure",
+            name = "renewalSummary",
+            target_id = id.from(_N, "RenewalSummary"),
+            target = M.RenewalSummary,
+        }),
+    },
+})
+
 M.EstimatedCharges = schema.new({
     id = id.from(_N, "EstimatedCharges"),
     type = "structure",
@@ -2476,6 +2690,19 @@ M.DescribeAgreementOutput = schema.new({
             type = "string",
             name = "status",
             target_id = prelude.String.id,
+        }),
+        initialAgreementId = schema.new({
+            id = id.from(_N, "DescribeAgreementOutput", "initialAgreementId"),
+            type = "string",
+            name = "initialAgreementId",
+            target_id = prelude.String.id,
+        }),
+        endTimeBehavior = schema.new({
+            id = id.from(_N, "DescribeAgreementOutput", "endTimeBehavior"),
+            type = "structure",
+            name = "endTimeBehavior",
+            target_id = id.from(_N, "EndTimeBehavior"),
+            target = M.EndTimeBehavior,
         }),
     },
 })

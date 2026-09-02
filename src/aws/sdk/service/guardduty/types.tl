@@ -613,6 +613,49 @@ local record M
     record ArchiveFindingsOutput
     end
 
+    enum AssociationMode
+        "LIVE"
+        "DRY_RUN"
+    end
+
+    -- Contains the full details of a custom detection rule association.
+    record AssociationDetail
+        -- The unique identifier for the association.
+        AssociationId: string
+        -- The Amazon Resource Name (ARN) of the association.
+        Arn: string
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The Amazon Web Services account ID associated with this rule association.
+        AccountId: string
+        -- The rule execution mode. Valid values: LIVE | DRY_RUN.
+        Mode: string
+        -- The timestamp when the association was created.
+        CreatedAt: number
+        -- The timestamp when the association was last updated.
+        UpdatedAt: number
+        -- The timestamp when the association expires.
+        ExpiresAt: number
+    end
+
+    -- Contains summary information about a custom detection rule association.
+    record AssociationSummary
+        -- The unique identifier for the association.
+        AssociationId: string
+        -- The Amazon Resource Name (ARN) of the association.
+        Arn: string
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The rule execution mode. Valid values: LIVE | DRY_RUN.
+        Mode: string
+        -- The timestamp when the association was created.
+        CreatedAt: number
+        -- The timestamp when the association was last updated.
+        UpdatedAt: number
+        -- The timestamp when the association expires.
+        ExpiresAt: number
+    end
+
     enum AutoEnableMembers
         "NEW"
         "ALL"
@@ -1027,6 +1070,46 @@ local record M
     enum CoverageStatisticsType
         "COUNT_BY_RESOURCE_TYPE"
         "COUNT_BY_COVERAGE_STATUS"
+    end
+
+    record CreateCustomDetectionRuleAssociationInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The rule execution mode. Valid values: LIVE | DRY_RUN.
+        Mode: string
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. Maximum 64 characters.
+        ClientToken: string
+        -- The tags to be added to the new custom detection rule association resource.
+        Tags: {string : string}
+    end
+
+    record CreateCustomDetectionRuleAssociationOutput
+        -- The details of the newly created custom detection rule association.
+        RuleAssociation: AssociationDetail
+    end
+
+    -- The requested resource can't be found.
+    record ResourceNotFoundException
+        -- The error message.
+        Message: string
+        -- The error type.
+        Type: string
+    end
+
+    record CreateCustomDetectionRuleOrgConfigurationInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The execution mode of the organization configuration. Valid values: LIVE | DRY_RUN.
+        Mode: string
+        -- The account IDs to include in the organization configuration. Mutually exclusive with ExcludeAccountIds.
+        IncludeAccountIds: {string}
+        -- The account IDs to exclude from the organization configuration. Mutually exclusive with IncludeAccountIds.
+        ExcludeAccountIds: {string}
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time.
+        ClientToken: string
+    end
+
+    record CreateCustomDetectionRuleOrgConfigurationOutput
     end
 
     -- Describes whether Kubernetes audit logs are enabled as a data source.
@@ -1550,6 +1633,26 @@ local record M
         KmsMasterKeyArn: string
     end
 
+    record DeleteCustomDetectionRuleAssociationInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The unique identifier for the association to delete.
+        AssociationId: string
+    end
+
+    record DeleteCustomDetectionRuleAssociationOutput
+    end
+
+    record DeleteCustomDetectionRuleOrgConfigurationInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The execution mode of the organization configuration to delete. Valid values: LIVE | DRY_RUN.
+        Mode: string
+    end
+
+    record DeleteCustomDetectionRuleOrgConfigurationOutput
+    end
+
     record DeleteDetectorInput
         -- The unique ID of the detector that you want to delete. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API.
         DetectorId: string
@@ -1594,14 +1697,6 @@ local record M
     end
 
     record DeleteMalwareProtectionPlanOutput
-    end
-
-    -- The requested resource can't be found.
-    record ResourceNotFoundException
-        -- The error message.
-        Message: string
-        -- The error type.
-        Type: string
     end
 
     record DeleteMembersInput
@@ -2407,6 +2502,88 @@ local record M
         Anomaly: Anomaly
         -- The details about the attack sequence.
         Sequence: Sequence
+    end
+
+    enum DetectionRuleConfigurationStatus
+        "ACTIVE"
+        "PROCESSING"
+        "FAILED"
+    end
+
+    enum DetectionRuleDataSource
+        "CloudTrailManagementEvent"
+    end
+
+    enum DetectionRuleFilterCondition
+        "EQUALS"
+        "CONTAINS"
+    end
+
+    enum FilterFieldName
+        "name"
+        "description"
+        "dataSource"
+        "severity"
+        "tactic"
+        "technique"
+        "service"
+    end
+
+    -- Contains filter criteria for listing custom detection rules or associations.
+    record DetectionRuleFilter
+        -- The name of the field to filter by.
+        Name: string
+        -- The values to match against the specified filter name.
+        Values: {string}
+        -- The condition to apply to the filter. For example, EQUALS or CONTAINS.
+        Condition: string
+    end
+
+    -- Contains the organization-level configuration for a custom detection rule.
+    record DetectionRuleOrgConfiguration
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The execution mode of the organization configuration. Valid values: LIVE | DRY_RUN.
+        Mode: string
+        -- The configuration status. Valid values: ACTIVE | PROCESSING | FAILED.
+        Status: string
+        -- The reason for the current configuration status.
+        StatusReason: string
+        -- A list of member account IDs included in the organization configuration. Mutually exclusive with ExcludeAccountIds.
+        IncludeAccountIds: {string}
+        -- A list of member account IDs excluded from the organization configuration. Mutually exclusive with IncludeAccountIds.
+        ExcludeAccountIds: {string}
+        -- The timestamp when the organization configuration was created.
+        CreatedAt: number
+        -- The timestamp when the organization configuration was last updated.
+        UpdatedAt: number
+        -- The timestamp when the organization configuration expires.
+        ExpiresAt: number
+    end
+
+    -- Contains summary information about an organization-level configuration for a custom detection rule.
+    record DetectionRuleOrgConfigurationSummary
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The rule execution mode.
+        Mode: string
+        -- The configuration status.
+        Status: string
+        -- The reason for the current configuration status.
+        StatusReason: string
+        -- The timestamp when the organization configuration was created.
+        CreatedAt: number
+        -- The timestamp when the organization configuration was last updated.
+        UpdatedAt: number
+        -- The timestamp when the organization configuration expires.
+        ExpiresAt: number
+    end
+
+    enum DetectionRuleSeverity
+        "CRITICAL"
+        "HIGH"
+        "MEDIUM"
+        "LOW"
     end
 
     enum DetectionSource
@@ -3382,6 +3559,88 @@ local record M
         CoverageStatistics: CoverageStatistics
     end
 
+    record GetCustomDetectionRuleInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+    end
+
+    -- Contains the detection logic for a custom detection rule.
+    record RuleDefinition
+        -- The detection logic expression for the rule.
+        Expression: string
+    end
+
+    enum RuleLanguage
+        "SQL"
+    end
+
+    enum RuleSchema
+        "CloudTrail"
+    end
+
+    -- Contains the full details of a custom detection rule, including its detection logic.
+    record RuleDetail
+        -- The unique identifier for the rule.
+        RuleId: string
+        -- The Amazon Resource Name (ARN) of the rule.
+        Arn: string
+        -- The display name of the rule.
+        Name: string
+        -- A description of what the rule detects.
+        Description: string
+        -- The severity level assigned to findings generated by this rule.
+        Severity: string
+        -- The data source that the rule analyzes.
+        DataSource: string
+        -- The MITRE ATT&CK tactic associated with the rule.
+        Tactic: string
+        -- The MITRE ATT&CK technique associated with the rule.
+        Technique: string
+        -- The Amazon Web Services service associated with the rule.
+        Service: string
+        -- The detection logic definition for the rule.
+        Definition: RuleDefinition
+        -- The language used for the detection logic expression.
+        Language: string
+        -- The schema version used by the rule definition.
+        Schema: string
+        -- The timestamp when the rule was created.
+        CreatedAt: number
+        -- The timestamp when the rule was last updated.
+        UpdatedAt: number
+    end
+
+    record GetCustomDetectionRuleOutput
+        -- The details of the custom detection rule.
+        Rule: RuleDetail
+    end
+
+    record GetCustomDetectionRuleAssociationInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The unique identifier for the association.
+        AssociationId: string
+    end
+
+    record GetCustomDetectionRuleAssociationOutput
+        -- The details of the custom detection rule association.
+        RuleAssociation: AssociationDetail
+        -- The tags associated with the custom detection rule association resource.
+        Tags: {string : string}
+    end
+
+    record GetCustomDetectionRuleOrgConfigurationInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The execution mode of the organization configuration to retrieve. Valid values: LIVE | DRY_RUN.
+        Mode: string
+    end
+
+    record GetCustomDetectionRuleOrgConfigurationOutput
+        -- The details of the organization configuration.
+        Configuration: DetectionRuleOrgConfiguration
+    end
+
     record GetDetectorInput
         -- The unique ID of the detector that you want to get. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API.
         DetectorId: string
@@ -4267,6 +4526,86 @@ local record M
         NextToken: string
     end
 
+    record ListCustomDetectionRuleAssociationsInput
+        -- The maximum number of results to return in a single page. Minimum value of 1, maximum value of 100.
+        MaxResults: number
+        -- A pagination token from a previous response. Use this token to retrieve the next page of results.
+        NextToken: string
+        -- The unique identifier for the custom detection rule to filter associations by.
+        RuleId: string
+        -- The rule execution mode to filter associations by.
+        Mode: string
+    end
+
+    record ListCustomDetectionRuleAssociationsOutput
+        -- A list of custom detection rule association summaries.
+        RuleAssociations: {AssociationSummary}
+        -- A pagination token to retrieve the next page of results. If this field is empty, there are no additional results.
+        NextToken: string
+    end
+
+    record ListCustomDetectionRuleOrgConfigurationsInput
+        -- The maximum number of results to return in a single page. Minimum value of 1, maximum value of 100.
+        MaxResults: number
+        -- A pagination token from a previous response. Use this token to retrieve the next page of results.
+        NextToken: string
+        -- The configuration status to filter by.
+        Status: string
+    end
+
+    record ListCustomDetectionRuleOrgConfigurationsOutput
+        -- A list of organization configurations for custom detection rules.
+        Configurations: {DetectionRuleOrgConfigurationSummary}
+        -- A pagination token to retrieve the next page of results. If this field is empty, there are no additional results.
+        NextToken: string
+    end
+
+    record ListCustomDetectionRulesInput
+        -- The maximum number of results to return in a single page. Minimum value of 1, maximum value of 100.
+        MaxResults: number
+        -- A pagination token from a previous response. Use this token to retrieve the next page of results.
+        NextToken: string
+        -- A list of filter criteria to apply when listing custom detection rules.
+        Filters: {DetectionRuleFilter}
+    end
+
+    -- Contains summary information about a custom detection rule.
+    record RuleSummary
+        -- The unique identifier for the rule.
+        RuleId: string
+        -- The Amazon Resource Name (ARN) of the rule.
+        Arn: string
+        -- The display name of the rule.
+        Name: string
+        -- A description of what the rule detects.
+        Description: string
+        -- The severity level assigned to findings generated by this rule.
+        Severity: string
+        -- The data source that the rule analyzes.
+        DataSource: string
+        -- The MITRE ATT&CK tactic associated with the rule.
+        Tactic: string
+        -- The MITRE ATT&CK technique associated with the rule.
+        Technique: string
+        -- The Amazon Web Services service associated with the rule.
+        Service: string
+        -- The language used for the detection logic expression.
+        Language: string
+        -- The schema version used by the rule definition.
+        Schema: string
+        -- The timestamp when the rule was created.
+        CreatedAt: number
+        -- The timestamp when the rule was last updated.
+        UpdatedAt: number
+    end
+
+    record ListCustomDetectionRulesOutput
+        -- A list of custom detection rule summaries.
+        Rules: {RuleSummary}
+        -- A pagination token to retrieve the next page of results. If this field is empty, there are no additional results.
+        NextToken: string
+    end
+
     record ListDetectorsInput
         -- You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.
         MaxResults: number
@@ -4704,6 +5043,32 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateCustomDetectionRuleAssociationInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The unique identifier for the association to update.
+        AssociationId: string
+        -- The rule execution mode. Valid values: LIVE | DRY_RUN.
+        Mode: string
+    end
+
+    record UpdateCustomDetectionRuleAssociationOutput
+    end
+
+    record UpdateCustomDetectionRuleOrgConfigurationInput
+        -- The unique identifier for the custom detection rule.
+        RuleId: string
+        -- The execution mode of the organization configuration. Valid values: LIVE | DRY_RUN.
+        Mode: string
+        -- The account IDs to include in the organization configuration. Mutually exclusive with ExcludeAccountIds.
+        IncludeAccountIds: {string}
+        -- The account IDs to exclude from the organization configuration. Mutually exclusive with IncludeAccountIds.
+        ExcludeAccountIds: {string}
+    end
+
+    record UpdateCustomDetectionRuleOrgConfigurationOutput
     end
 
     record UpdateDetectorInput

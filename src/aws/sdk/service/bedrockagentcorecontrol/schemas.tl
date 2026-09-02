@@ -7063,6 +7063,9 @@ M.UpdateConfigurationBundleInput = schema.new({
             name = "parentVersionIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
         branchName = schema.new({
             id = id.from(_N, "UpdateConfigurationBundleInput", "branchName"),

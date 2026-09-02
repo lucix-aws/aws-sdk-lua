@@ -337,6 +337,15 @@ M.AacSettings = schema.new({
                 [traits.JSON_NAME] = { name = "loudnessMeasurementMode" },
             },
         }),
+        PassthroughControl = schema.new({
+            id = id.from(_N, "AacSettings", "PassthroughControl"),
+            type = "string",
+            name = "PassthroughControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "passthroughControl" },
+            },
+        }),
         RapInterval = schema.new({
             id = id.from(_N, "AacSettings", "RapInterval"),
             type = "integer",
@@ -2377,6 +2386,69 @@ M.TtmlDestinationSettings = schema.new({
     id = id.from(_N, "TtmlDestinationSettings"),
     type = "structure",
     members = {
+        BackgroundColor = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "BackgroundColor"),
+            type = "string",
+            name = "BackgroundColor",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "backgroundColor" },
+            },
+        }),
+        BackgroundOpacity = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "BackgroundOpacity"),
+            type = "integer",
+            name = "BackgroundOpacity",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "backgroundOpacity" },
+            },
+        }),
+        FontColor = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "FontColor"),
+            type = "string",
+            name = "FontColor",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "fontColor" },
+            },
+        }),
+        FontOpacity = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "FontOpacity"),
+            type = "integer",
+            name = "FontOpacity",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "fontOpacity" },
+            },
+        }),
+        FontSize = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "FontSize"),
+            type = "integer",
+            name = "FontSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "fontSize" },
+            },
+        }),
+        FontStyle = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "FontStyle"),
+            type = "string",
+            name = "FontStyle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "fontStyle" },
+            },
+        }),
+        FontWeight = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "FontWeight"),
+            type = "string",
+            name = "FontWeight",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "fontWeight" },
+            },
+        }),
         StylePassthrough = schema.new({
             id = id.from(_N, "TtmlDestinationSettings", "StylePassthrough"),
             type = "string",
@@ -2384,6 +2456,15 @@ M.TtmlDestinationSettings = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "stylePassthrough" },
+            },
+        }),
+        TextDecoration = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "TextDecoration"),
+            type = "string",
+            name = "TextDecoration",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "textDecoration" },
             },
         }),
     },
@@ -11381,6 +11462,15 @@ M.XavcHdIntraCbgProfileSettings = schema.new({
     id = id.from(_N, "XavcHdIntraCbgProfileSettings"),
     type = "structure",
     members = {
+        InterlaceMode = schema.new({
+            id = id.from(_N, "XavcHdIntraCbgProfileSettings", "InterlaceMode"),
+            type = "string",
+            name = "InterlaceMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "interlaceMode" },
+            },
+        }),
         XavcClass = schema.new({
             id = id.from(_N, "XavcHdIntraCbgProfileSettings", "XavcClass"),
             type = "string",
@@ -13894,6 +13984,15 @@ M.AudioProperties = schema.new({
                 [traits.JSON_NAME] = { name = "bitRate" },
             },
         }),
+        ChannelLayout = schema.new({
+            id = id.from(_N, "AudioProperties", "ChannelLayout"),
+            type = "string",
+            name = "ChannelLayout",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "channelLayout" },
+            },
+        }),
         Channels = schema.new({
             id = id.from(_N, "AudioProperties", "Channels"),
             type = "integer",
@@ -14044,6 +14143,15 @@ M.CodecMetadata = schema.new({
                 [traits.JSON_NAME] = { name = "fieldOrder" },
             },
         }),
+        Hdr10PlusPresence = schema.new({
+            id = id.from(_N, "CodecMetadata", "Hdr10PlusPresence"),
+            type = "string",
+            name = "Hdr10PlusPresence",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "hdr10PlusPresence" },
+            },
+        }),
         Height = schema.new({
             id = id.from(_N, "CodecMetadata", "Height"),
             type = "integer",
@@ -14114,6 +14222,31 @@ M.CodecMetadata = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "width" },
+            },
+        }),
+    },
+})
+
+M.AspectRatio = schema.new({
+    id = id.from(_N, "AspectRatio"),
+    type = "structure",
+    members = {
+        Denominator = schema.new({
+            id = id.from(_N, "AspectRatio", "Denominator"),
+            type = "integer",
+            name = "Denominator",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "denominator" },
+            },
+        }),
+        Numerator = schema.new({
+            id = id.from(_N, "AspectRatio", "Numerator"),
+            type = "integer",
+            name = "Numerator",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "numerator" },
             },
         }),
     },
@@ -14284,6 +14417,16 @@ M.VideoProperties = schema.new({
                 [traits.JSON_NAME] = { name = "colorPrimaries" },
             },
         }),
+        DisplayAspectRatio = schema.new({
+            id = id.from(_N, "VideoProperties", "DisplayAspectRatio"),
+            type = "structure",
+            name = "DisplayAspectRatio",
+            target_id = id.from(_N, "AspectRatio"),
+            target = M.AspectRatio,
+            traits = {
+                [traits.JSON_NAME] = { name = "displayAspectRatio" },
+            },
+        }),
         FrameRate = schema.new({
             id = id.from(_N, "VideoProperties", "FrameRate"),
             type = "structure",
@@ -14329,6 +14472,16 @@ M.VideoProperties = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "rotation" },
+            },
+        }),
+        SampleAspectRatio = schema.new({
+            id = id.from(_N, "VideoProperties", "SampleAspectRatio"),
+            type = "structure",
+            name = "SampleAspectRatio",
+            target_id = id.from(_N, "AspectRatio"),
+            target = M.AspectRatio,
+            traits = {
+                [traits.JSON_NAME] = { name = "sampleAspectRatio" },
             },
         }),
         TransferCharacteristics = schema.new({

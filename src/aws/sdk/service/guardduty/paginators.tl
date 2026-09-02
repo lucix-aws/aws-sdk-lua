@@ -56,6 +56,60 @@ function M.items_list_coverage(client, input)
     })
 end
 
+--- Returns a page iterator for listCustomDetectionRuleAssociations.
+function M.pages_list_custom_detection_rule_associations(client, input)
+    return paginator.pages(client, "listCustomDetectionRuleAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RuleAssociations",
+    })
+end
+
+--- Returns an item iterator for listCustomDetectionRuleAssociations.
+function M.items_list_custom_detection_rule_associations(client, input)
+    return paginator.items(client, "listCustomDetectionRuleAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RuleAssociations",
+    })
+end
+
+--- Returns a page iterator for listCustomDetectionRuleOrgConfigurations.
+function M.pages_list_custom_detection_rule_org_configurations(client, input)
+    return paginator.pages(client, "listCustomDetectionRuleOrgConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Configurations",
+    })
+end
+
+--- Returns an item iterator for listCustomDetectionRuleOrgConfigurations.
+function M.items_list_custom_detection_rule_org_configurations(client, input)
+    return paginator.items(client, "listCustomDetectionRuleOrgConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Configurations",
+    })
+end
+
+--- Returns a page iterator for listCustomDetectionRules.
+function M.pages_list_custom_detection_rules(client, input)
+    return paginator.pages(client, "listCustomDetectionRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Rules",
+    })
+end
+
+--- Returns an item iterator for listCustomDetectionRules.
+function M.items_list_custom_detection_rules(client, input)
+    return paginator.items(client, "listCustomDetectionRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Rules",
+    })
+end
+
 --- Returns a page iterator for listDetectors.
 function M.pages_list_detectors(client, input)
     return paginator.pages(client, "listDetectors", input, {

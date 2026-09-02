@@ -399,6 +399,7 @@ local record M
         "PRIVATE_PRICING"
         "FUTURE_DATED"
         "REPLACEMENT_OFFER"
+        "AUTO_RENEW"
     end
 
     -- A badge indicating a special attribute of a purchase option, such as private pricing or future dated.
@@ -679,10 +680,66 @@ local record M
         price: string
     end
 
+    -- A single fixed price increase percentage applied at each renewal cycle.
+    record FixedPercentage
+        -- The percentage value applied at each renewal cycle.
+        percentageValue: string
+    end
+
+    -- A price increase percentage range with minimum, maximum, and default values.
+    record PercentageRange
+        -- The minimum percentage by which the price can increase at each renewal cycle.
+        minimumValue: string
+        -- The maximum percentage by which the price can increase at each renewal cycle.
+        maximumValue: string
+        -- The percentage increase applied by default when no other value is finalized before the adjustment deadline. Falls between minimumValue and maximumValue.
+        defaultValue: string
+    end
+
+    -- The pricing adjustment that applies at each renewal cycle, expressed as either a fixed percentage or a percentage range. Exactly one variant is present.
+    record PriceIncrease
+        -- A single fixed percentage applied uniformly at every renewal cycle.
+        fixedPercentage: FixedPercentage
+        -- A percentage band with minimum, maximum, and default values that bound the price increase at each renewal cycle.
+        percentageRange: PercentageRange
+    end
+
+    -- A single installment entry in the renewal payment schedule.
+    record PaymentScheduleEntry
+        -- The relative offset from the renewal agreement start date when this installment is due, in ISO 8601 duration format. The offset uses months only or days only (for example, P1M or P30D); mixed units are not supported, and every offset in a schedule uses the same unit.
+        chargeDateOffset: string
+        -- The percentage of the increased TCV to charge in this installment. All entries in a schedule sum to 100.00.
+        chargePercentage: string
+        -- The optional calendar day of month on which the charge occurs. When absent, the charge day is derived from chargeDateOffset, and this field does not apply when chargeDateOffset is expressed in days. For months with fewer days than the specified day, the charge occurs on the last day of the month. For example, if dayOfMonth is 31, the charge in April occurs on April 30.
+        dayOfMonth: number
+    end
+
+    -- A template for the payment schedule term on the renewal offer.
+    record PaymentScheduleTermTemplate
+        -- An ordered list of installment entries for the renewal payment schedule.
+        schedule: {PaymentScheduleEntry}
+    end
+
+    -- A structural template defining how a specific term type is reshaped on each renewal cycle. Exactly one variant is present.
+    record TermTemplate
+        -- The installment schedule used to structure payments on the renewal offer.
+        paymentScheduleTermTemplate: PaymentScheduleTermTemplate
+    end
+
     -- Defines a renewal term that enables automatic agreement renewal.
     record RenewalTerm
         -- The unique identifier of the term.
         id: string
+        -- The maximum number of renewals allowed on this offer. Absent means unlimited renewals.
+        maxRenewals: number
+        -- The duration before the agreement end date when the lockout window begins, in ISO 8601 format (for example, P30D). Absent means no lockout.
+        lockoutPeriod: string
+        -- The duration before the agreement end date by which the renewal price is finalized, represented in ISO 8601 format (for example, P30D). Only applicable with PercentageRange.
+        adjustmentDeadline: string
+        -- The price increase applied at each renewal cycle. Absent means identical pricing on renewal.
+        priceIncrease: PriceIncrease
+        -- Structural templates defining how specific terms are reshaped on each renewal cycle. Absent for upfront-only offers.
+        termTemplates: {TermTemplate}
     end
 
     -- Defines a support term that includes the refund policy for the offer.

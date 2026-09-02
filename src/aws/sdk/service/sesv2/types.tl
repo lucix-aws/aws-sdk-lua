@@ -78,6 +78,41 @@ local record M
         ArchiveArn: string
     end
 
+    -- A request to associate an S/MIME certificate with an email identity.
+    record AssociateEmailIdentityCertificateInput
+        -- The email identity, either an email address or a domain, to associate the certificate
+        -- with.
+        EmailIdentity: string
+        -- The email address that the certificate applies to. This value is required when the
+        -- email identity is a domain, and the address must belong to that domain or one of its
+        -- subdomains. When the email identity is an email address, this value is optional. If you
+        -- specify it, it must exactly match the email identity.
+        FromAddress: string
+        -- The Amazon Resource Name (ARN) of the Certificate Manager (ACM) certificate to
+        -- associate with the email identity.
+        CertificateArn: string
+    end
+
+    -- An HTTP 200 response if the request succeeds, or an error message if the request
+    -- fails.
+    record AssociateEmailIdentityCertificateOutput
+    end
+
+    -- The input you provided is invalid.
+    record BadRequestException
+        message: string
+    end
+
+    -- The resource you attempted to access doesn't exist.
+    record NotFoundException
+        message: string
+    end
+
+    -- Too many requests have been made to the operation.
+    record TooManyRequestsException
+        message: string
+    end
+
     enum AttachmentContentDisposition
         "ATTACHMENT"
         "INLINE"
@@ -113,11 +148,6 @@ local record M
         -- The MIME type of the attachment.
         -- Example: application/pdf, image/jpeg
         ContentType: string
-    end
-
-    -- The input you provided is invalid.
-    record BadRequestException
-        message: string
     end
 
     enum MetricDimensionName
@@ -235,16 +265,6 @@ local record M
 
     -- The request couldn't be processed because an error occurred with the Amazon SES API v2.
     record InternalServiceErrorException
-        message: string
-    end
-
-    -- The resource you attempted to access doesn't exist.
-    record NotFoundException
-        message: string
-    end
-
-    -- Too many requests have been made to the operation.
-    record TooManyRequestsException
         message: string
     end
 
@@ -727,6 +747,44 @@ local record M
         MaxDeliverySeconds: number
     end
 
+    -- Specifies the default signing scheme, in which Amazon SES API v2 doesn't apply S/MIME signing to
+    -- messages sent with the configuration set.
+    record DefaultSigningScheme
+    end
+
+    enum SignatureFormat
+        "DETACHED"
+    end
+
+    -- Specifies that Amazon SES API v2 signs messages sent with the configuration set using
+    -- S/MIME.
+    record SmimeSigningScheme
+        -- The format of the S/MIME signature that Amazon SES API v2 applies to messages.
+        SignatureFormat: string
+    end
+
+    -- Specifies the signing scheme to apply to messages sent with a configuration set. This
+    -- is a union type, so you specify exactly one of its members.
+    record SigningScheme
+        -- Use the default signing behavior. When you select this option, Amazon SES API v2 doesn't add an
+        -- S/MIME signature to messages sent with the configuration set.
+        DefaultScheme: DefaultSigningScheme
+        -- Sign messages sent with the configuration set using S/MIME. For signing to apply, the
+        -- email identity used to send a message must have an active S/MIME certificate
+        -- association.
+        SmimeScheme: SmimeSigningScheme
+    end
+
+    -- An object that defines the message-level security options that apply to messages that
+    -- you send using the configuration set. Currently, these options determine whether Amazon SES API v2
+    -- adds an S/MIME signature to your messages and, if so, the format of that
+    -- signature.
+    record MessageSecurityOptions
+        -- The signing scheme that Amazon SES API v2 applies to messages sent with the configuration
+        -- set.
+        SigningScheme: SigningScheme
+    end
+
     -- Enable or disable collection of reputation metrics for emails that you send using this
     -- configuration set in the current Amazon Web Services Region.
     record ReputationOptions
@@ -928,6 +986,9 @@ local record M
         -- An object that defines the MailManager archiving options for emails that you send
         -- using the configuration set.
         ArchivingOptions: ArchivingOptions
+        -- The message security options to apply to the configuration set, such as the signing
+        -- scheme used for messages that you send with the configuration set.
+        MessageSecurityOptions: MessageSecurityOptions
     end
 
     -- An HTTP 200 response if the request succeeds, or an error message if the request
@@ -1648,6 +1709,8 @@ local record M
         -- Filters for results to be excluded from the export file.
         Exclude: MessageInsightsFilters
         -- The maximum number of results.
+        -- If you don't specify MaxResults, the export returns a maximum of
+        -- 1,000 results.
         MaxResults: number
     end
 
@@ -2189,6 +2252,22 @@ local record M
         DeliverabilityTestStatus: string
     end
 
+    -- A request to remove the association between an S/MIME certificate and an email
+    -- identity.
+    record DisassociateEmailIdentityCertificateInput
+        -- The email identity whose certificate association you want to remove.
+        EmailIdentity: string
+        -- The email address whose certificate association you want to remove. This value is
+        -- required when the email identity is a domain. When the email identity is an email
+        -- address, this value is optional.
+        FromAddress: string
+    end
+
+    -- An HTTP 200 response if the request succeeds, or an error message if the request
+    -- fails.
+    record DisassociateEmailIdentityCertificateOutput
+    end
+
     -- An object that contains the deliverability data for a specific campaign. This data is
     -- available for a campaign only if the campaign sent email by using a domain that the
     -- Deliverability dashboard is enabled for (PutDeliverabilityDashboardOption
@@ -2643,6 +2722,9 @@ local record M
         -- An object that defines the MailManager archive where sent emails are archived that you send
         -- using the configuration set.
         ArchivingOptions: ArchivingOptions
+        -- The message security options that are applied to the configuration set, such as the
+        -- signing scheme used for messages that you send with the configuration set.
+        MessageSecurityOptions: MessageSecurityOptions
     end
 
     -- A request to obtain information about the event destinations for a configuration
@@ -3406,6 +3488,29 @@ local record M
         Tenant: Tenant
     end
 
+    enum IdentityCertificateStatus
+        "PROVISIONING"
+        "INACTIVE"
+        "DEPROVISIONING"
+        "ACTIVE"
+        "FAILED"
+    end
+
+    -- An object that contains information about an S/MIME certificate that's associated with
+    -- an email identity.
+    record IdentityCertificate
+        -- The email address that the certificate applies to.
+        FromAddress: string
+        -- The status of the certificate association. A status of ACTIVE indicates
+        -- that the certificate is ready to use for signing.
+        Status: string
+        -- The Amazon Resource Name (ARN) of the Certificate Manager (ACM) certificate that's
+        -- associated with the email identity.
+        CertificateArn: string
+        -- The timestamp after which the certificate is no longer valid.
+        CertificateExpiryTime: number
+    end
+
     -- Information about an email identity.
     record IdentityInfo
         -- The email identity type. Note: the MANAGED_DOMAIN type is not supported
@@ -3687,6 +3792,35 @@ local record M
         -- additional configuration sets, issue another request to
         -- ListEmailIdentities, and pass this token in the NextToken
         -- parameter.
+        NextToken: string
+    end
+
+    -- A request to list the S/MIME certificates that are associated with an email
+    -- identity.
+    record ListEmailIdentityCertificatesInput
+        -- The email identity whose certificate associations you want to list.
+        EmailIdentity: string
+        -- A token returned from a previous call to ListEmailIdentityCertificates to
+        -- indicate the position in the list of certificates.
+        NextToken: string
+        -- The number of results to show in a single call to
+        -- ListEmailIdentityCertificates. If the number of results is larger than the
+        -- number you specified in this parameter, then the response includes a
+        -- NextToken element, which you can use to obtain additional results.
+        PageSize: number
+    end
+
+    -- Information about the S/MIME certificates that are associated with an email
+    -- identity.
+    record ListEmailIdentityCertificatesOutput
+        -- An array that contains the certificate associations for the email identity. Each entry
+        -- includes the from address, the certificate's status, its Amazon Resource Name (ARN),
+        -- and its expiry time.
+        Certificates: {IdentityCertificate}
+        -- A token that indicates that there are additional certificates to list. To view
+        -- additional certificates, issue another request to
+        -- ListEmailIdentityCertificates, and pass this token in the
+        -- NextToken parameter.
         NextToken: string
     end
 
@@ -4790,6 +4924,20 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    -- A request to update the configuration of an existing configuration set.
+    record UpdateConfigurationSetInput
+        -- The name of the configuration set to update.
+        ConfigurationSetName: string
+        -- The security options that apply to the MIME message itself for messages sent with the
+        -- configuration set.
+        MessageSecurityOptions: MessageSecurityOptions
+    end
+
+    -- An HTTP 200 response if the request succeeds, or an error message if the request
+    -- fails.
+    record UpdateConfigurationSetOutput
     end
 
     -- A request to change the settings for an event destination for a configuration

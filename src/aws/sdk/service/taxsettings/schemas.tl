@@ -341,6 +341,12 @@ M.FranceAdditionalInfo = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        eInvoiceRoutingCode = schema.new({
+            id = id.from(_N, "FranceAdditionalInfo", "eInvoiceRoutingCode"),
+            type = "string",
+            name = "eInvoiceRoutingCode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -514,6 +520,22 @@ M.MalaysiaAdditionalInfo = schema.new({
             type = "string",
             name = "businessRegistrationNumber",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MonacoAdditionalInfo = schema.new({
+    id = id.from(_N, "MonacoAdditionalInfo"),
+    type = "structure",
+    members = {
+        businessNumber = schema.new({
+            id = id.from(_N, "MonacoAdditionalInfo", "businessNumber"),
+            type = "string",
+            name = "businessNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -911,6 +933,13 @@ M.AdditionalInfoResponse = schema.new({
             target_id = id.from(_N, "FranceAdditionalInfo"),
             target = M.FranceAdditionalInfo,
         }),
+        monacoAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "monacoAdditionalInfo"),
+            type = "structure",
+            name = "monacoAdditionalInfo",
+            target_id = id.from(_N, "MonacoAdditionalInfo"),
+            target = M.MonacoAdditionalInfo,
+        }),
     },
 })
 
@@ -1216,6 +1245,13 @@ M.AdditionalInfoRequest = schema.new({
             name = "franceAdditionalInfo",
             target_id = id.from(_N, "FranceAdditionalInfo"),
             target = M.FranceAdditionalInfo,
+        }),
+        monacoAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "monacoAdditionalInfo"),
+            type = "structure",
+            name = "monacoAdditionalInfo",
+            target_id = id.from(_N, "MonacoAdditionalInfo"),
+            target = M.MonacoAdditionalInfo,
         }),
     },
 })

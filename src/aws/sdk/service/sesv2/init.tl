@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateEmailIdentityCertificate: function(Client, types.AssociateEmailIdentityCertificateInput, ? base_client.InvokeOptions): async.Operation<types.AssociateEmailIdentityCertificateOutput>
     batchGetMetricData: function(Client, types.BatchGetMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetMetricDataOutput>
     cancelExportJob: function(Client, types.CancelExportJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelExportJobOutput>
     createConfigurationSet: function(Client, types.CreateConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
@@ -48,6 +49,7 @@ local record Client
     deleteSuppressedDestination: function(Client, types.DeleteSuppressedDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSuppressedDestinationOutput>
     deleteTenant: function(Client, types.DeleteTenantInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTenantOutput>
     deleteTenantResourceAssociation: function(Client, types.DeleteTenantResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTenantResourceAssociationOutput>
+    disassociateEmailIdentityCertificate: function(Client, types.DisassociateEmailIdentityCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateEmailIdentityCertificateOutput>
     getAccount: function(Client, types.GetAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountOutput>
     getBlacklistReports: function(Client, types.GetBlacklistReportsInput, ? base_client.InvokeOptions): async.Operation<types.GetBlacklistReportsOutput>
     getConfigurationSet: function(Client, types.GetConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationSetOutput>
@@ -81,6 +83,7 @@ local record Client
     listDeliverabilityTestReports: function(Client, types.ListDeliverabilityTestReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeliverabilityTestReportsOutput>
     listDomainDeliverabilityCampaigns: function(Client, types.ListDomainDeliverabilityCampaignsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainDeliverabilityCampaignsOutput>
     listEmailIdentities: function(Client, types.ListEmailIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListEmailIdentitiesOutput>
+    listEmailIdentityCertificates: function(Client, types.ListEmailIdentityCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListEmailIdentityCertificatesOutput>
     listEmailTemplates: function(Client, types.ListEmailTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListEmailTemplatesOutput>
     listExportJobs: function(Client, types.ListExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportJobsOutput>
     listImportJobs: function(Client, types.ListImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportJobsOutput>
@@ -122,6 +125,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     testRenderEmailTemplate: function(Client, types.TestRenderEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.TestRenderEmailTemplateOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConfigurationSet: function(Client, types.UpdateConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetOutput>
     updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
     updateContact: function(Client, types.UpdateContactInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactOutput>
     updateContactList: function(Client, types.UpdateContactListInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactListOutput>
@@ -172,6 +176,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     sdk_defaults.resolve_identity_resolver(c)
     local self = setmetatable(base_client.new(c) as Client, Client_mt)
     return self
+end
+
+function C:associateEmailIdentityCertificate(input: types.AssociateEmailIdentityCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateEmailIdentityCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateEmailIdentityCertificate as schema.OperationSchema, input, options) as async.Operation<types.AssociateEmailIdentityCertificateOutput>
 end
 
 function C:batchGetMetricData(input: types.BatchGetMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetMetricDataOutput>
@@ -292,6 +300,10 @@ end
 
 function C:deleteTenantResourceAssociation(input: types.DeleteTenantResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTenantResourceAssociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTenantResourceAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteTenantResourceAssociationOutput>
+end
+
+function C:disassociateEmailIdentityCertificate(input: types.DisassociateEmailIdentityCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateEmailIdentityCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateEmailIdentityCertificate as schema.OperationSchema, input, options) as async.Operation<types.DisassociateEmailIdentityCertificateOutput>
 end
 
 function C:getAccount(input: types.GetAccountInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountOutput>
@@ -424,6 +436,10 @@ end
 
 function C:listEmailIdentities(input: types.ListEmailIdentitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEmailIdentitiesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEmailIdentities as schema.OperationSchema, input, options) as async.Operation<types.ListEmailIdentitiesOutput>
+end
+
+function C:listEmailIdentityCertificates(input: types.ListEmailIdentityCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEmailIdentityCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEmailIdentityCertificates as schema.OperationSchema, input, options) as async.Operation<types.ListEmailIdentityCertificatesOutput>
 end
 
 function C:listEmailTemplates(input: types.ListEmailTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEmailTemplatesOutput>
@@ -588,6 +604,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateConfigurationSet(input: types.UpdateConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationSetOutput>
 end
 
 function C:updateConfigurationSetEventDestination(input: types.UpdateConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>

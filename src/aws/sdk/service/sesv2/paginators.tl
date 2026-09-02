@@ -76,6 +76,24 @@ function M.pages_list_email_identities(client, input)
     })
 end
 
+--- Returns a page iterator for listEmailIdentityCertificates.
+function M.pages_list_email_identity_certificates(client, input)
+    return paginator.pages(client, "listEmailIdentityCertificates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Certificates",
+    })
+end
+
+--- Returns an item iterator for listEmailIdentityCertificates.
+function M.items_list_email_identity_certificates(client, input)
+    return paginator.items(client, "listEmailIdentityCertificates", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Certificates",
+    })
+end
+
 --- Returns a page iterator for listEmailTemplates.
 function M.pages_list_email_templates(client, input)
     return paginator.pages(client, "listEmailTemplates", input, {

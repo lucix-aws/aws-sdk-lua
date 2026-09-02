@@ -138,6 +138,11 @@ local record M
         "ANCHOR"
     end
 
+    enum AacPassthroughControl
+        "WHEN_POSSIBLE"
+        "NO_PASSTHROUGH"
+    end
+
     enum AacRateControlMode
         "CBR"
         "VBR"
@@ -172,6 +177,8 @@ local record M
         CodingMode: string
         -- Choose the loudness measurement mode for your audio content. For music or advertisements: We recommend that you keep the default value, Program. For speech or other content: We recommend that you choose Anchor. When you do, MediaConvert optimizes the loudness of your output for clarify by applying speech gates.
         LoudnessMeasurementMode: string
+        -- When set to WHEN_POSSIBLE, input AAC audio will be passed through if it is present on the input. This detection is dynamic over the life of the transcode. Inputs that alternate between AAC and non-AAC content will have a consistent AAC output as the system alternates between passthrough and encoding.
+        PassthroughControl: string
         -- Specify the RAP (Random Access Point) interval for your xHE-AAC audio output. A RAP allows a decoder to decode audio data mid-stream, without the need to reference previous audio frames, and perform adaptive audio bitrate switching. To specify the RAP interval: Enter an integer from 2000 to 30000, in milliseconds. Smaller values allow for better seeking and more frequent stream switching, while large values improve compression efficiency. To have MediaConvert automatically determine the RAP interval: Leave blank.
         RapInterval: number
         -- Specify the AAC rate control mode. For a constant bitrate: Choose CBR. Your AAC output bitrate will be equal to the value that you choose for Bitrate. For a variable bitrate: Choose VBR. Your AAC output bitrate will vary according to your audio content and the value that you choose for Bitrate quality.
@@ -677,7 +684,7 @@ local record M
         Ac4Settings: Ac4Settings
         -- Required when you set Codec to the value AIFF.
         AiffSettings: AiffSettings
-        -- Choose the audio codec for this output. Note that the option Dolby Digital passthrough applies only to Dolby Digital and Dolby Digital Plus audio inputs. Make sure that you choose a codec that's supported with your output container: https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers.html#reference-codecs-containers-output-audio For audio-only outputs, make sure that both your input audio codec and your output audio codec are supported for audio-only workflows. For more information, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers-input.html#reference-codecs-containers-input-audio-only and https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers.html#audio-only-output
+        -- Choose the audio codec for this output. Note that the option passthrough applies only to Dolby Digital, Dolby Digital Plus, AAC LC, AAC HEV1, and AAC HEV2 audio inputs. Make sure that you choose a codec that's supported with your output container: https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers.html#reference-codecs-containers-output-audio For audio-only outputs, make sure that both your input audio codec and your output audio codec are supported for audio-only workflows. For more information, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers-input.html#reference-codecs-containers-input-audio-only and https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers.html#audio-only-output
         Codec: string
         -- Required when you set Codec to the value EAC3_ATMOS.
         Eac3AtmosSettings: Eac3AtmosSettings
@@ -1361,15 +1368,63 @@ local record M
         PageTypes: {string}
     end
 
+    enum TtmlBackgroundColor
+        "NONE"
+        "BLACK"
+        "WHITE"
+        "AUTO"
+    end
+
+    enum TtmlFontColor
+        "WHITE"
+        "BLACK"
+        "YELLOW"
+        "RED"
+        "GREEN"
+        "BLUE"
+        "AUTO"
+    end
+
+    enum TtmlFontStyle
+        "NORMAL"
+        "ITALIC"
+    end
+
+    enum TtmlFontWeight
+        "NORMAL"
+        "BOLD"
+    end
+
     enum TtmlStylePassthrough
         "ENABLED"
         "DISABLED"
     end
 
+    enum TtmlTextDecoration
+        "NONE"
+        "UNDERLINE"
+    end
+
     -- Settings related to TTML captions. TTML is a sidecar format that holds captions in a file that is separate from the video container. Set up sidecar captions in the same output group, but different output from your video. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/ttml-and-webvtt-output-captions.html.
     record TtmlDestinationSettings
+        -- Specify the color of the rectangle behind the captions. If Style passthrough is set to enabled, leave blank or set to Auto to pass through the background color from your input captions. If Style passthrough is set to disabled, leave blank or set to Auto to use the default black.
+        BackgroundColor: string
+        -- Specify the opacity of the background rectangle. Enter a value from 0 to 255, where 0 is transparent and 255 is opaque. If Style passthrough is set to enabled, leave blank to pass through the background style information in your input captions to your output captions. If Style passthrough is set to disabled and backgroundColor is set, leave blank to use a value of 255 (opaque).
+        BackgroundOpacity: number
+        -- Specify the color of the captions text. If Style passthrough is set to enabled, leave blank or set to Auto to pass through the font color from your input captions. If Style passthrough is set to disabled, leave blank or set to Auto to use the default white.
+        FontColor: string
+        -- Specify the opacity of the captions. Enter a value from 0 to 255, where 0 is transparent and 255 is opaque. If Style passthrough is set to enabled, leave blank to pass through the font opacity information in your input captions to your output captions. If Style passthrough is set to disabled and fontColor is set, leave blank to use a value of 255 (opaque).
+        FontOpacity: number
+        -- Specify the Font size in pixels. Must be a positive integer. Set to 0, or leave blank, for automatic font size.
+        FontSize: number
+        -- Specify the font style of the caption text. If Style passthrough is set to enabled, leave blank to pass through the font style from your input captions. If Style passthrough is set to disabled, leave blank to use the default normal style.
+        FontStyle: string
+        -- Specify the font weight of the caption text. If Style passthrough is set to enabled, leave blank to pass through the font weight from your input captions. If Style passthrough is set to disabled, leave blank to use the default normal weight.
+        FontWeight: string
         -- Pass through style and position information from a TTML-like input source (TTML, IMSC, SMPTE-TT) to the TTML output.
         StylePassthrough: string
+        -- Specify the text decoration of the caption text. If Style passthrough is set to enabled, leave blank to pass through the text decoration from your input captions. If Style passthrough is set to disabled, leave blank to use the default of none.
+        TextDecoration: string
     end
 
     enum WebvttAccessibilitySubs
@@ -2968,6 +3023,7 @@ local record M
     enum DashIsoPlaybackDeviceCompatibility
         "CENC_V1"
         "UNENCRYPTED_SEI"
+        "CENC_V1_UNENCRYPTED_HEADERS"
     end
 
     -- If your output group type is HLS, DASH, or Microsoft Smooth, use these settings when doing DRM encryption with a SPEKE-compliant key provider. If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.
@@ -2986,7 +3042,7 @@ local record M
 
     -- Specifies DRM settings for DASH outputs.
     record DashIsoEncryptionSettings
-        -- This setting can improve the compatibility of your output with video players on obsolete devices. It applies only to DASH H.264 outputs with DRM encryption. Choose Unencrypted SEI only to correct problems with playback on older devices. Otherwise, keep the default setting CENC v1. If you choose Unencrypted SEI, for that output, the service will exclude the access unit delimiter and will leave the SEI NAL units unencrypted.
+        -- This setting can improve the compatibility of your output with video players on obsolete devices. It applies only to DASH outputs with DRM encryption. Choose Unencrypted SEI only to correct problems with playback on older H.264 devices. Choose CENC v1 unencrypted headers to leave NAL unit headers and slice headers unencrypted for H.265 outputs, improving compatibility with strict HEVC decoders. Otherwise, keep the default setting CENC v1.
         PlaybackDeviceCompatibility: string
         -- If your output group type is HLS, DASH, or Microsoft Smooth, use these settings when doing DRM encryption with a SPEKE-compliant key provider. If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.
         SpekeKeyProvider: SpekeKeyProvider
@@ -3450,6 +3506,7 @@ local record M
     enum CmfcScte35Source
         "PASSTHROUGH"
         "NONE"
+        "MANIFEST_CUES"
     end
 
     enum CmfcTimedMetadata
@@ -3486,7 +3543,7 @@ local record M
         ManifestMetadataSignaling: string
         -- Use this setting only when you specify SCTE-35 markers from ESAM. Choose INSERT to put SCTE-35 markers in this output at the insertion points that you specify in an ESAM XML document. Provide the document in the setting SCC XML.
         Scte35Esam: string
-        -- Ignore this setting unless you have SCTE-35 markers in your input video file. Choose Passthrough if you want SCTE-35 markers that appear in your input to also appear in this output. Choose None if you don't want those SCTE-35 markers in this output.
+        -- Ignore this setting unless you have SCTE-35 markers in your input video file. Choose Passthrough if you want SCTE-35 markers that appear in your input to also appear in this output. Choose None if you don't want those SCTE-35 markers in this output. When your input is an HLS manifest, choose Manifest cues to pass through CUE markers in your HLS manifest as segment boundaries and SCTE-35 markers in this output at each EXT-X-CUE-OUT splice point in the input manifest.
         Scte35Source: string
         -- Specify the ID or ARN of the AWS KMS key used to sign the C2PA manifest in your MP4 output. Provide a valid KMS key ARN. Note that your MediaConvert service role must allow access to this key.
         SigningKmsKey: string
@@ -3646,6 +3703,7 @@ local record M
     enum M2tsScte35Source
         "PASSTHROUGH"
         "NONE"
+        "MANIFEST_CUES"
     end
 
     enum M2tsSegmentationMarkers
@@ -3736,7 +3794,7 @@ local record M
         Scte35Esam: M2tsScte35Esam
         -- Specify the packet identifier (PID) of the SCTE-35 stream in the transport stream.
         Scte35Pid: number
-        -- For SCTE-35 markers from your input-- Choose Passthrough if you want SCTE-35 markers that appear in your input to also appear in this output. Choose None if you don't want SCTE-35 markers in this output. For SCTE-35 markers from an ESAM XML document-- Choose None. Also provide the ESAM XML as a string in the setting Signal processing notification XML. Also enable ESAM SCTE-35 (include the property scte35Esam).
+        -- For SCTE-35 markers from your input-- Choose Passthrough if you want SCTE-35 markers that appear in your input to also appear in this output. Choose None if you don't want SCTE-35 markers in this output. When your input is an HLS manifest, choose Manifest cues to pass through CUE markers in your HLS manifest as segment boundaries and SCTE-35 markers in this output at each EXT-X-CUE-OUT splice point in the input manifest. For SCTE-35 markers from an ESAM XML document-- Choose None. Also provide the ESAM XML as a string in the setting Signal processing notification XML. Also enable ESAM SCTE-35 (include the property scte35Esam).
         Scte35Source: string
         -- Inserts segmentation markers at each segmentation_time period. rai_segstart sets the Random Access Indicator bit in the adaptation field. rai_adapt sets the RAI bit and adds the current timecode in the private data bytes. psi_segstart inserts PAT and PMT tables at the start of segments. ebp adds Encoder Boundary Point information to the adaptation field as per OpenCable specification OC-SP-EBP-I01-130118. ebp_legacy adds Encoder Boundary Point information to the adaptation field using a legacy proprietary format.
         SegmentationMarkers: string
@@ -3775,6 +3833,7 @@ local record M
     enum M3u8Scte35Source
         "PASSTHROUGH"
         "NONE"
+        "MANIFEST_CUES"
     end
 
     enum TimedMetadata
@@ -3818,7 +3877,7 @@ local record M
         PtsOffsetMode: string
         -- Packet Identifier (PID) of the SCTE-35 stream in the transport stream.
         Scte35Pid: number
-        -- For SCTE-35 markers from your input-- Choose Passthrough if you want SCTE-35 markers that appear in your input to also appear in this output. Choose None if you don't want SCTE-35 markers in this output. For SCTE-35 markers from an ESAM XML document-- Choose None if you don't want manifest conditioning. Choose Passthrough and choose Ad markers if you do want manifest conditioning. In both cases, also provide the ESAM XML as a string in the setting Signal processing notification XML.
+        -- For SCTE-35 markers from your input-- Choose Passthrough if you want SCTE-35 markers that appear in your input to also appear in this output. Choose None if you don't want SCTE-35 markers in this output. For SCTE-35 markers from an ESAM XML document-- Choose None if you don't want manifest conditioning. Choose Passthrough and choose Ad markers if you do want manifest conditioning. In both cases, also provide the ESAM XML as a string in the setting Signal processing notification XML. For SCTE-35 markers from your input HLS manifest-- Choose Manifest cues to pass through CUE markers in your HLS manifest as segment boundaries and SCTE-35 markers in this output at each EXT-X-CUE-OUT splice point in the input manifest.
         Scte35Source: string
         -- Set ID3 metadata to Passthrough to include ID3 metadata in this output. This includes ID3 metadata from the following features: ID3 timestamp period, and Custom ID3 metadata inserter. To exclude this ID3 metadata in this output: set ID3 metadata to None or leave blank.
         TimedMetadata: string
@@ -3951,6 +4010,7 @@ local record M
     enum MpdScte35Source
         "PASSTHROUGH"
         "NONE"
+        "MANIFEST_CUES"
     end
 
     enum MpdTimedMetadata
@@ -3981,7 +4041,7 @@ local record M
         ManifestMetadataSignaling: string
         -- Use this setting only when you specify SCTE-35 markers from ESAM. Choose INSERT to put SCTE-35 markers in this output at the insertion points that you specify in an ESAM XML document. Provide the document in the setting SCC XML.
         Scte35Esam: string
-        -- Ignore this setting unless you have SCTE-35 markers in your input video file. Choose Passthrough if you want SCTE-35 markers that appear in your input to also appear in this output. Choose None if you don't want those SCTE-35 markers in this output.
+        -- Ignore this setting unless you have SCTE-35 markers in your input video file. Choose Passthrough if you want SCTE-35 markers that appear in your input to also appear in this output. Choose None if you don't want those SCTE-35 markers in this output. When your input is an HLS manifest, choose Manifest cues to pass through CUE markers in your HLS manifest as segment boundaries and SCTE-35 markers in this output at each EXT-X-CUE-OUT splice point in the input manifest.
         Scte35Source: string
         -- Specify the ID or ARN of the AWS KMS key used to sign the C2PA manifest in your MP4 output. Provide a valid KMS key ARN. Note that your MediaConvert service role must allow access to this key.
         SigningKmsKey: string
@@ -5589,6 +5649,14 @@ local record M
         Slices: number
     end
 
+    enum XavcInterlaceMode
+        "PROGRESSIVE"
+        "TOP_FIELD"
+        "BOTTOM_FIELD"
+        "FOLLOW_TOP_FIELD"
+        "FOLLOW_BOTTOM_FIELD"
+    end
+
     enum XavcHdIntraCbgProfileClass
         "CLASS_50"
         "CLASS_100"
@@ -5597,6 +5665,8 @@ local record M
 
     -- Required when you set Profile to the value XAVC_HD_INTRA_CBG.
     record XavcHdIntraCbgProfileSettings
+        -- Choose the scan line type for the output. Keep the default value, Progressive to create a progressive output, regardless of the scan type of your input. Use Top field first or Bottom field first to create an output that's interlaced with the same field polarity throughout. Use Follow, default top or Follow, default bottom to produce outputs with the same field polarity as the source. For jobs that have multiple inputs, the output field polarity might change over the course of the output. Follow behavior depends on the input scan type. If the source is interlaced, the output will be interlaced with the same polarity as the source. If the source is progressive, the output will be interlaced with top field bottom field first, depending on which of the Follow options you choose.
+        InterlaceMode: string
         -- Specify the XAVC Intra HD (CBG) Class to set the bitrate of your output. Outputs of the same class have similar image quality over the operating points that are valid for that class.
         XavcClass: string
     end
@@ -5605,14 +5675,6 @@ local record M
         "BITRATE_CLASS_25"
         "BITRATE_CLASS_35"
         "BITRATE_CLASS_50"
-    end
-
-    enum XavcInterlaceMode
-        "PROGRESSIVE"
-        "TOP_FIELD"
-        "BOTTOM_FIELD"
-        "FOLLOW_TOP_FIELD"
-        "FOLLOW_BOTTOM_FIELD"
     end
 
     enum XavcHdProfileQualityTuningLevel
@@ -6315,11 +6377,12 @@ local record M
         "jobEngineVersionUsed"
         "audioCodec"
         "videoCodec"
+        "errorCode"
     end
 
     -- Provide one or more JobsQueryFilter objects, each containing a Key with an associated Values array. Note that MediaConvert queries jobs using OR logic.
     record JobsQueryFilter
-        -- Specify job details to filter for while performing a jobs query. You specify these filters as part of a key-value pair within the JobsQueryFilter array. The following list describes which keys are available and their possible values: * queue - Your Queue's name or ARN. * status - Your job's status. (SUBMITTED | PROGRESSING | COMPLETE | CANCELED | ERROR) * fileInput - Your input file URL, or partial input file name. * jobEngineVersionRequested - The Job engine version that you requested for your job. Valid versions are in a YYYY-MM-DD format. * jobEngineVersionUsed - The Job engine version that your job used. This may differ from the version that you requested. Valid versions are in a YYYY-MM-DD format. * audioCodec - Your output's audio codec. (AAC | MP2 | MP3 | WAV | AIFF | AC3| EAC3 | EAC3_ATMOS | VORBIS | OPUS | PASSTHROUGH | FLAC) * videoCodec - Your output's video codec. (AV1 | AVC_INTRA | FRAME_CAPTURE | H_264 | H_265 | MPEG2 | PASSTHROUGH | PRORES | UNCOMPRESSED | VC3 | VP8 | VP9 | XAVC)
+        -- Specify job details to filter for while performing a jobs query. You specify these filters as part of a key-value pair within the JobsQueryFilter array. The following list describes which keys are available and their possible values: * queue - Your Queue's name or ARN. * status - Your job's status. (SUBMITTED | PROGRESSING | COMPLETE | CANCELED | ERROR) * fileInput - Your input file URL, or partial input file name. * jobEngineVersionRequested - The Job engine version that you requested for your job. Valid versions are in a YYYY-MM-DD format. * jobEngineVersionUsed - The Job engine version that your job used. This may differ from the version that you requested. Valid versions are in a YYYY-MM-DD format. * audioCodec - Your output's audio codec. (AAC | MP2 | MP3 | WAV | AIFF | AC3| EAC3 | EAC3_ATMOS | VORBIS | OPUS | PASSTHROUGH | FLAC) * videoCodec - Your output's video codec. (AV1 | AVC_INTRA | FRAME_CAPTURE | H_264 | H_265 | MPEG2 | PASSTHROUGH | PRORES | UNCOMPRESSED | VC3 | VP8 | VP9 | XAVC) * errorCode - The error code that your job failed with. For example, 1010. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/mediaconvert_error_codes.html
         Key: string
         -- A list of values associated with a JobsQueryFilterKey.
         Values: {string}
@@ -6441,6 +6504,9 @@ local record M
         "mpegts"
         "mpegps"
         "mp3"
+        "flac"
+        "asf"
+        "ogg"
     end
 
     -- The frame rate of the video or audio track, expressed as a fraction with numerator and denominator values.
@@ -6457,6 +6523,8 @@ local record M
         BitDepth: number
         -- The bit rate of the audio track, in bits per second.
         BitRate: number
+        -- The audio channel layout of the track, such as "mono", "stereo", "5.1", or "7.1". Object-based or immersive audio is reported as "5.1.4" or "7.1.4".
+        ChannelLayout: string
         -- The number of audio channels in the audio track.
         Channels: number
         -- The frame rate of the video or audio track, expressed as a fraction with numerator and denominator values.
@@ -6473,6 +6541,7 @@ local record M
         "UNKNOWN"
         "AAC"
         "AC3"
+        "AMR"
         "EAC3"
         "FLAC"
         "MP2"
@@ -6480,8 +6549,13 @@ local record M
         "OPUS"
         "PCM"
         "VORBIS"
+        "WMA"
+        "WMA2"
+        "WMAPRO"
         "AV1"
         "AVC"
+        "DV"
+        "H263"
         "HEVC"
         "JPEG2000"
         "MJPEG"
@@ -6492,6 +6566,8 @@ local record M
         "QTRLE"
         "THEORA"
         "UNCOMPRESSED"
+        "VC1"
+        "VC3"
         "VFW"
         "VP8"
         "VP9"
@@ -6537,6 +6613,10 @@ local record M
         MaxContentLightLevel: number
         -- Maximum frame-average light level (MaxFALL), in cd/m².
         MaxFrameAverageLightLevel: number
+    end
+
+    enum Hdr10PlusPresence
+        "PRESENT"
     end
 
     enum MatrixCoefficients
@@ -6596,6 +6676,8 @@ local record M
         ContentLightLevel: ContentLightLevel
         -- The field order of interlaced video, which indicates whether the top or bottom field is displayed first. Use this to select the correct deinterlacing behavior. One of "TopFieldFirst" or "BottomFieldFirst". This field is present only for interlaced video; it is omitted for progressive video and when the field order is not indicated by the source.
         FieldOrder: string
+        -- Indicates that HDR10+ (SMPTE ST 2094-40) dynamic metadata was detected in the HEVC bitstream. Present only when detected.
+        Hdr10PlusPresence: string
         -- The height in pixels as coded by the codec. This represents the actual encoded video height as specified in the video stream headers.
         Height: number
         -- The codec level or tier that specifies the maximum processing requirements and capabilities. Levels define constraints such as maximum bit rate, frame rate, and resolution.
@@ -6612,6 +6694,14 @@ local record M
         TransferCharacteristics: string
         -- The width in pixels as coded by the codec. This represents the actual encoded video width as specified in the video stream headers.
         Width: number
+    end
+
+    -- An aspect ratio expressed as a fraction with numerator and denominator values, reduced to lowest terms. Used for the sample (pixel) aspect ratio and the display aspect ratio of a video track. For example, a 720x576 anamorphic track has a sample aspect ratio of 64 / 45 and a display aspect ratio of 16 / 9.
+    record AspectRatio
+        -- The denominator, or bottom number, in the fractional aspect ratio. For example, for a display aspect ratio of 16 / 9, the denominator would be 9.
+        Denominator: number
+        -- The numerator, or top number, in the fractional aspect ratio. For example, for a display aspect ratio of 16 / 9, the numerator would be 16.
+        Numerator: number
     end
 
     -- Mastering display color volume metadata (SMPTE ST 2086). Describes the color volume of the display used to master the content. Chromaticity coordinates are in units of 0.00002. Luminance values are in units of 0.0001 cd/m².
@@ -6656,6 +6746,8 @@ local record M
         CodecMetadata: CodecMetadata
         -- The color space primaries of the video track, defining the red, green, and blue color coordinates used for the video. This information helps ensure accurate color reproduction during playback and transcoding.
         ColorPrimaries: string
+        -- An aspect ratio expressed as a fraction with numerator and denominator values, reduced to lowest terms. Used for the sample (pixel) aspect ratio and the display aspect ratio of a video track. For example, a 720x576 anamorphic track has a sample aspect ratio of 64 / 45 and a display aspect ratio of 16 / 9.
+        DisplayAspectRatio: AspectRatio
         -- The frame rate of the video or audio track, expressed as a fraction with numerator and denominator values.
         FrameRate: FrameRate
         -- HDR (High Dynamic Range) metadata extracted from the container, including mastering display color volume and content light level information. This metadata is present in HDR10 and similar HDR content.
@@ -6666,6 +6758,8 @@ local record M
         MatrixCoefficients: string
         -- The clockwise rotation angle of the video track, in degrees, as derived from container-level metadata (e.g. the MP4 tkhd transformation matrix or the Matroska ProjectionPoseRoll element). Common values are 90, 180, and 270. This field is null when no rotation metadata is present or when the rotation is 0 degrees. For MP4, non-standard transformation matrices also yield null.
         Rotation: number
+        -- An aspect ratio expressed as a fraction with numerator and denominator values, reduced to lowest terms. Used for the sample (pixel) aspect ratio and the display aspect ratio of a video track. For example, a 720x576 anamorphic track has a sample aspect ratio of 64 / 45 and a display aspect ratio of 16 / 9.
+        SampleAspectRatio: AspectRatio
         -- The color space transfer characteristics of the video track, defining the relationship between linear light values and the encoded signal values. This affects brightness and contrast reproduction.
         TransferCharacteristics: string
         -- The width of the video track, in pixels.
@@ -6696,7 +6790,7 @@ local record M
         BitRate: number
         -- The total duration of your media file, in seconds.
         Duration: number
-        -- The format of your media file. For example: MP4, QuickTime (MOV), Matroska (MKV), WebM, MXF, Wave, AVI, MPEG-TS, MPEG-PS, or MP3. Note that this will be blank if your media file has a format that the MediaConvert Probe operation does not recognize.
+        -- The format of your media file. For example: MP4, QuickTime (MOV), Matroska (MKV), WebM, MXF, Wave, AVI, MPEG-TS, MPEG-PS, MP3, FLAC, ASF (Windows Media / WMA), OGG. Note that this will be blank if your media file has a format that the MediaConvert Probe operation does not recognize.
         Format: string
         -- The start timecode of the media file, in HH:MM:SS:FF format (or HH:MM:SS;FF for drop frame timecode). Note that this field is null when the container does not include an embedded start timecode.
         StartTimecode: string

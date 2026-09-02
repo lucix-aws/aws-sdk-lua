@@ -63,7 +63,7 @@ local record M
         "KMS"
     end
 
-    -- The server-side encryption configuration for a channel.
+    -- Specifies the Amazon Web Services KMS key that Amazon Kinesis Data Streams uses to encrypt data delivered to the channel's destination.
     record ChannelEncryptionConfiguration
         -- The encryption type. The only valid value is KMS.
         EncryptionType: string
@@ -118,9 +118,9 @@ local record M
         -- The template used to construct the Amazon S3 object key for delivered objects. If not specified, a default template is used.
         OutputKeyTemplate: string
         -- The Amazon S3 storage class for delivered objects. Valid values:
-        -- STANDARD (default)
-        -- INTELLIGENT_TIERING
-        -- GLACIER_IR
+        -- STANDARD - Default storage class for frequently accessed data. (default)
+        -- INTELLIGENT_TIERING - Automatically moves objects to the most cost-effective access tier based on usage patterns.
+        -- GLACIER_IR - Low-cost storage for rarely accessed data that requires millisecond retrieval.
         StorageClass: string
         -- The compression applied to delivered objects. Valid values:
         -- NONE - No compression.
@@ -228,10 +228,10 @@ local record M
         -- The unique identifier of the channel.
         ChannelId: string
         -- The current status of the channel. Valid values:
-        -- CREATING
-        -- ACTIVE
-        -- UPDATING
-        -- DELETING
+        -- CREATING - The channel is being created.
+        -- ACTIVE - The channel is ready to deliver records.
+        -- UPDATING - The channel configuration is being updated.
+        -- DELETING - The channel is being deleted.
         -- FAILED - See ChannelStatusReason for the failure cause.
         ChannelStatus: string
         -- A message describing the reason for a FAILED status.
@@ -298,10 +298,10 @@ local record M
         -- The unique identifier of the channel.
         ChannelId: string
         -- The current status of the channel. Valid values:
-        -- CREATING
-        -- ACTIVE
-        -- UPDATING
-        -- DELETING
+        -- CREATING - The channel is being created.
+        -- ACTIVE - The channel is ready to deliver records.
+        -- UPDATING - The channel configuration is being updated.
+        -- DELETING - The channel is being deleted.
         -- FAILED - See ChannelStatusReason for the failure cause.
         ChannelStatus: string
         -- A message describing the reason for a FAILED status.
@@ -934,6 +934,11 @@ local record M
         StreamARN: string
     end
 
+    -- The request was rejected because the DryRun parameter was specified.
+    record DryRunOperationException
+        message: string
+    end
+
     -- Represents the input for EnableEnhancedMonitoring.
     record EnableEnhancedMonitoringInput
         -- The name of the stream for which to enable enhanced monitoring.
@@ -998,6 +1003,9 @@ local record M
         StreamARN: string
         -- Not Implemented. Reserved for future use.
         StreamId: string
+        -- Checks if your request will succeed. DryRun is an optional
+        -- parameter.
+        DryRun: boolean
     end
 
     -- The unit of data of the Kinesis data stream, which is composed of a sequence number, a
@@ -1113,6 +1121,9 @@ local record M
         StreamARN: string
         -- Not Implemented. Reserved for future use.
         StreamId: string
+        -- Checks if your request will succeed. DryRun is an optional
+        -- parameter.
+        DryRun: boolean
     end
 
     -- Represents the output for GetShardIterator.
@@ -1493,6 +1504,9 @@ local record M
         StreamARN: string
         -- Not Implemented. Reserved for future use.
         StreamId: string
+        -- Checks if your request will succeed. DryRun is an optional
+        -- parameter.
+        DryRun: boolean
     end
 
     -- Represents the output for PutRecord.
@@ -1541,6 +1555,9 @@ local record M
         StreamARN: string
         -- Not Implemented. Reserved for future use.
         StreamId: string
+        -- Checks if your request will succeed. DryRun is an optional
+        -- parameter.
+        DryRun: boolean
     end
 
     -- Represents the result of an individual record from a PutRecords request.
@@ -1748,6 +1765,9 @@ local record M
         ShardId: string
         -- The starting position in the data stream from which to start streaming.
         StartingPosition: StartingPosition
+        -- Checks if your request will succeed. DryRun is an optional
+        -- parameter.
+        DryRun: boolean
     end
 
     -- After you call SubscribeToShard, Kinesis Data Streams sends events

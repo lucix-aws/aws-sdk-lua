@@ -2988,7 +2988,7 @@ local record M
 
     -- The configuration for a policy engine associated with a gateway. A policy engine is a collection of policies that evaluates and authorizes agent tool calls. When associated with a gateway, the policy engine intercepts all agent requests and determines whether to allow or deny each action based on the defined policies.
     record GatewayPolicyEngineConfiguration
-        -- The ARN of the policy engine. The policy engine contains Cedar policies that define fine-grained authorization rules specifying who can perform what actions on which resources as agents interact through the gateway.
+        -- The ARN of the policy engine. The policy engine contains Cedar or Dogwood policies that define fine-grained authorization rules specifying who can perform what actions on which resources as agents interact through the gateway.
         arn: string
         -- The enforcement mode for the policy engine. Valid values include: LOG_ONLY - The policy engine evaluates each action against your policies and adds traces on whether tool calls would be allowed or denied, but does not enforce the decision. Use this mode to test and validate policies before enabling enforcement. ENFORCE - The policy engine evaluates actions against your policies and enforces decisions by allowing or denying agent operations. Test and validate policies in LOG_ONLY mode before enabling enforcement to avoid unintended denials or adversely affecting production traffic.
         mode: string
@@ -7335,13 +7335,13 @@ local record M
         statement: string
     end
 
-    -- An AgentCore policy statement, which supports plain Cedar policies as well as guardrails definitions.
+    -- An AgentCore Cedar or Dogwood policy statement, which supports plain Cedar policies, temporal policies, and guardrails definitions.
     record PolicyStatement
-        -- The body of the AgentCore policy statement. Contains the policy logic, which can be a Cedar policy or a guardrails definition.
+        -- The body of the AgentCore Cedar or Dogwood policy statement. Contains the policy logic, which can be a Cedar policy, a temporal policy, or a guardrails definition.
         statement: string
     end
 
-    -- Represents the information identifying a generated policy asset from the AI-powered policy generation process within the AgentCore Policy system. Each asset contains a Cedar policy statement generated from natural language input, along with associated metadata and analysis findings to help users evaluate and select the most appropriate policy option.
+    -- Represents the information identifying a generated policy asset from the AI-powered policy generation process within the AgentCore Policy system. Each asset contains a Dogwood policy statement generated from natural language input, along with associated metadata and analysis findings to help users evaluate and select the most appropriate policy option.
     record PolicyGenerationDetails
         -- The unique identifier for this policy generation request.
         policyGenerationId: string
@@ -7353,9 +7353,9 @@ local record M
     record PolicyDefinition
         -- The Cedar policy definition within the policy definition structure. This contains the Cedar policy statement that defines the authorization logic using Cedar's human-readable, analyzable policy language. Cedar policies specify principals (who can access), actions (what operations are allowed), resources (what can be accessed), and optional conditions for fine-grained control. Cedar provides a formal policy language designed for authorization with deterministic evaluation, making policies testable, reviewable, and auditable. All Cedar policies follow a default-deny model where actions are denied unless explicitly permitted, and forbid policies always override permit policies.
         cedar: CedarPolicy
-        -- The generated policy asset information within the policy definition structure. This contains information identifying a generated policy asset from the AI-powered policy generation process within the AgentCore Policy system. Each asset contains a Cedar policy statement generated from natural language input, along with associated metadata and analysis findings to help users evaluate and select the most appropriate policy option.
+        -- The generated policy asset information within the policy definition structure. This contains information identifying a generated policy asset from the AI-powered policy generation process within the AgentCore Policy system. Each asset contains a Dogwood policy statement generated from natural language input, along with associated metadata and analysis findings to help users evaluate and select the most appropriate policy option.
         policyGeneration: PolicyGenerationDetails
-        -- An AgentCore policy statement that defines the access control rules. The statement can be a Cedar policy or a guardrails definition.
+        -- The Dogwood policy statement that defines the access control rules. This policy definition can include Dogwood policies and supports temporal conditions and information providers such as guardrails.
         policy: PolicyStatement
     end
 
@@ -7375,19 +7375,19 @@ local record M
         description: string
     end
 
-    -- Represents a generated policy asset from the AI-powered policy generation process within the AgentCore Policy system. Each asset contains a Cedar policy statement generated from natural language input, along with associated metadata and analysis findings to help users evaluate and select the most appropriate policy option.
+    -- Represents a generated policy asset from the AI-powered policy generation process within the AgentCore Policy system. Each asset contains a Dogwood policy statement generated from natural language input, along with associated metadata and analysis findings to help users evaluate and select the most appropriate policy option.
     record PolicyGenerationAsset
         -- The unique identifier for this generated policy asset within the policy generation request. This ID can be used to reference specific generated policy options when creating actual policies from the generation results.
         policyGenerationAssetId: string
         definition: PolicyDefinition
-        -- The portion of the original natural language input that this generated policy asset addresses. This helps users understand which part of their policy description was translated into this specific Cedar policy statement, enabling better policy selection and refinement. When a single natural language input describes multiple authorization requirements, the generation process creates separate policy assets for each requirement, with each asset's rawTextFragment showing which requirement it addresses. Use this mapping to verify that all parts of your natural language input were correctly translated into Cedar policies.
+        -- The portion of the original natural language input that this generated policy asset addresses. This helps users understand which part of their policy description was translated into this specific Dogwood policy statement, enabling better policy selection and refinement. When a single natural language input describes multiple authorization requirements, the generation process creates separate policy assets for each requirement, with each asset's rawTextFragment showing which requirement it addresses. Use this mapping to verify that all parts of your natural language input were correctly translated into Dogwood policies.
         rawTextFragment: string
         -- Analysis findings and insights related to this specific generated policy asset. These findings may include validation results, potential issues, or recommendations for improvement to help users evaluate the quality and appropriateness of the generated policy.
         findings: {Finding}
     end
 
     record ListPolicyGenerationAssetsOutput
-        -- An array of generated policy assets including Cedar policies and related artifacts from the AI-powered policy generation process. Each asset represents a different policy option or variation generated from the original natural language input.
+        -- An array of generated policy assets including Dogwood policies and related artifacts from the AI-powered policy generation process. Each asset represents a different policy option or variation generated from the original natural language input.
         policyGenerationAssets: {PolicyGenerationAsset}
         -- A pagination token that can be used in subsequent ListPolicyGenerationAssets calls to retrieve additional assets. This token is only present when there are more generated policy assets available beyond the current response.
         nextToken: string
@@ -7402,7 +7402,7 @@ local record M
         policyEngineId: string
     end
 
-    -- Represents a policy generation request within the AgentCore Policy system. Tracks the AI-powered conversion of natural language descriptions into Cedar policy statements, enabling users to author policies by describing authorization requirements in plain English. The generation process analyzes the natural language input along with the Gateway's tool context and Cedar schema to produce one or more validated policy options. Each generation request tracks the status of the conversion process and maintains findings about the generated policies, including validation results and potential issues. Generated policy assets remain available for one week after successful generation, allowing time to review and create policies from the generated options.
+    -- Represents a policy generation request within the AgentCore Policy system. Tracks the AI-powered conversion of natural language descriptions into Dogwood policy statements, enabling users to author policies by describing authorization requirements in plain English. The generation process analyzes the natural language input along with the Gateway's tool context and Cedar schema to produce one or more validated policy options. Each generation request tracks the status of the conversion process and maintains findings about the generated policies, including validation results and potential issues. Generated policy assets remain available for one week after successful generation, allowing time to review and create policies from the generated options.
     record PolicyGeneration
         -- The identifier of the policy engine associated with this generation request.
         policyEngineId: string
@@ -7473,7 +7473,7 @@ local record M
 
     -- Represents content input for policy generation operations. This structure encapsulates the natural language descriptions or other content formats that are used as input for AI-powered policy generation.
     record Content
-        -- The raw text content containing natural language descriptions of desired policy behavior. This text is processed by AI to generate corresponding Cedar policy statements that match the described intent.
+        -- The raw text content containing natural language descriptions of desired policy behavior. This text is processed by AI to generate corresponding Dogwood policy statements that match the described intent.
         rawText: string
     end
 
@@ -7482,7 +7482,7 @@ local record M
         policyEngineId: string
         -- The resource information that provides context for policy generation. This helps the AI understand the target resources and generate appropriate access control rules.
         resource: Resource
-        -- The natural language description of the desired policy behavior. This content is processed by AI to generate corresponding Cedar policy statements that match the described intent.
+        -- The natural language description of the desired policy behavior. This content is processed by AI to generate corresponding Dogwood policy statements that match the described intent.
         content: Content
         -- A customer-assigned name for the policy generation request. This helps track and identify generation operations, especially when running multiple generations simultaneously.
         name: string
@@ -7526,7 +7526,7 @@ local record M
     record CreatePolicyInput
         -- The customer-assigned immutable name for the policy. Must be unique within the account. This name is used for policy identification and cannot be changed after creation.
         name: string
-        -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic written in Cedar policy language, specifying effect (permit or forbid), principals, actions, resources, and conditions for agent behavior control.
+        -- The Cedar or Dogwood policy statement that defines the access control rules. This contains the actual policy logic written in Cedar or Dogwood, specifying effect (permit or forbid), principals, actions, resources, and conditions for agent behavior control.
         definition: PolicyDefinition
         -- A human-readable description of the policy's purpose and functionality (1-4,096 characters). This helps policy administrators understand the policy's intent, business rules, and operational scope. Use this field to document why the policy exists, what business requirement it addresses, and any special considerations for maintenance. Clear descriptions are essential for policy governance, auditing, and troubleshooting.
         description: string
@@ -7567,7 +7567,7 @@ local record M
         status: string
         -- The enforcement mode of the created policy.
         enforcementMode: string
-        -- The Cedar policy statement that was created. This is the validated policy definition that will be used for agent behavior control and access decisions.
+        -- The Cedar or Dogwood policy statement that was created. This is the validated policy definition that will be used for agent behavior control and access decisions.
         definition: PolicyDefinition
         -- The human-readable description of the policy's purpose and functionality. This helps administrators understand and manage the policy.
         description: string
@@ -7630,7 +7630,7 @@ local record M
         status: string
         -- The current enforcement mode of the policy.
         enforcementMode: string
-        -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
+        -- The Cedar or Dogwood policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
         definition: PolicyDefinition
         -- The human-readable description of the policy's purpose and functionality. This helps administrators understand and manage the policy.
         description: string
@@ -7675,7 +7675,7 @@ local record M
         targetResourceScope: string
     end
 
-    -- Represents a complete policy resource within the AgentCore Policy system. Policies are ARN-able resources that contain Cedar policy statements and associated metadata for controlling agent behavior and access decisions. Each policy belongs to a policy engine and defines fine-grained authorization rules that are evaluated in real-time as agents interact with tools through Gateway. Policies use the Cedar policy language to specify who (principals based on OAuth claims like username, role, or scope) can perform what actions (tool calls) on which resources (Gateways), with optional conditions for attribute-based access control. Multiple policies can apply to a single request, with Cedar's forbid-wins semantics ensuring that security restrictions are never accidentally overridden.
+    -- Represents a complete policy resource within the AgentCore Policy system. Policies are ARN-able resources that contain Cedar or Dogwood policy statements and associated metadata for controlling agent behavior and access decisions. Each policy belongs to a policy engine and defines fine-grained authorization rules that are evaluated in real-time as agents interact with tools through Gateway. Policies use Cedar or Dogwood to specify who (principals based on OAuth claims like username, role, or scope) can perform what actions (tool calls) on which resources (Gateways), with optional conditions for attribute-based access control. Multiple policies can apply to a single request, with forbid-wins semantics ensuring that security restrictions are never accidentally overridden.
     record Policy
         -- The unique identifier for the policy. This system-generated identifier consists of the user name plus a 10-character generated suffix and serves as the primary key for policy operations.
         policyId: string
@@ -7693,7 +7693,7 @@ local record M
         status: string
         -- The current enforcement mode of the policy.
         enforcementMode: string
-        -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
+        -- The Cedar or Dogwood policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
         definition: PolicyDefinition
         -- A human-readable description of the policy's purpose and functionality. Limited to 4,096 characters, this helps administrators understand and manage the policy.
         description: string
@@ -7753,7 +7753,7 @@ local record M
         policyId: string
         -- The new human-readable description for the policy. This optional field allows updating the policy's documentation while keeping the same policy logic.
         description: UpdatedDescription
-        -- The new Cedar policy statement that defines the access control rules. This replaces the existing policy definition with new logic while maintaining the policy's identity.
+        -- The new Cedar or Dogwood policy statement that defines the access control rules. This replaces the existing policy definition with new logic while maintaining the policy's identity.
         definition: PolicyDefinition
         -- The validation mode for the policy update. Determines how Cedar analyzer validation results are handled during policy updates. FAIL_ON_ANY_FINDINGS runs the Cedar analyzer and fails the update if validation issues are detected, ensuring the policy conforms to the Cedar schema and tool context. IGNORE_ALL_FINDINGS runs the Cedar analyzer but allows updates despite validation warnings. Use FAIL_ON_ANY_FINDINGS to ensure policy correctness during updates, especially when modifying policy logic or conditions.
         validationMode: string
@@ -7778,7 +7778,7 @@ local record M
         status: string
         -- The current enforcement mode of the updated policy.
         enforcementMode: string
-        -- The updated Cedar policy statement.
+        -- The updated Cedar or Dogwood policy statement.
         definition: PolicyDefinition
         -- The updated description of the policy.
         description: string

@@ -99,7 +99,7 @@ local record M
     record ChileAdditionalInfo
         -- The type of tax document. For Chile, this can be Invoice or Receipt.
         documentType: string
-        -- The business activity of the taxpayer in Chile.
+        -- The business activity code of the taxpayer in Chile. This must be the activity code shown on your SII (Servicio de Impuestos Internos) tax profile. For the list of valid activity codes, see SII activity codes.
         businessActivity: string
     end
 
@@ -121,6 +121,8 @@ local record M
     record FranceAdditionalInfo
         -- The SIREN number for the company in France. Must be a 9-digit number.
         sirenNumber: string
+        -- The routing code used for electronic invoicing (e-invoicing) for the company in France.
+        eInvoiceRoutingCode: string
     end
 
     enum PersonType
@@ -222,6 +224,12 @@ local record M
         taxInformationNumber: string
         -- The tax registration number (TRN) in Malaysia. For individual, you can specify the taxInformationNumber in MalaysiaAdditionalInfo with NRIC type, and a valid MyKad or NRIC number. For business, you must specify a businessRegistrationNumber in MalaysiaAdditionalInfo with a TIN type and tax identification number. For business resellers, you must specify a businessRegistrationNumber and taxInformationNumber in MalaysiaAdditionalInfo with a sales and service tax (SST) type and a valid SST number. For business resellers with service codes, you must specify businessRegistrationNumber, taxInformationNumber, and distinct serviceTaxCodes in MalaysiaAdditionalInfo with a SST type and valid sales and service tax (SST) number. By using this API operation, Amazon Web Services registers your self-declaration that you’re an authorized business reseller registered with the Royal Malaysia Customs Department (RMCD), and have a valid SST number.
         businessRegistrationNumber: string
+    end
+
+    -- Additional tax information associated with your TRN in Monaco.
+    record MonacoAdditionalInfo
+        -- The business number for the company in Monaco. Can be up to 12 alphanumeric characters.
+        businessNumber: string
     end
 
     -- Additional tax information associated with your TRN in the Philippines.
@@ -399,6 +407,8 @@ local record M
         chileAdditionalInfo: ChileAdditionalInfo
         -- Additional tax information associated with your TRN in France.
         franceAdditionalInfo: FranceAdditionalInfo
+        -- Additional tax information associated with your TRN in Monaco.
+        monacoAdditionalInfo: MonacoAdditionalInfo
     end
 
     enum TaxRegistrationType
@@ -515,6 +525,8 @@ local record M
         chileAdditionalInfo: ChileAdditionalInfo
         -- Additional tax information to specify for a TRN in France.
         franceAdditionalInfo: FranceAdditionalInfo
+        -- Additional tax information to specify for a TRN in Monaco.
+        monacoAdditionalInfo: MonacoAdditionalInfo
     end
 
     -- Failed to upload the tax exemption document to Amazon Web Services Support case.

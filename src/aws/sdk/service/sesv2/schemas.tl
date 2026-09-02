@@ -60,6 +60,8 @@ M.DomainDeliverabilityCampaignList = schema.new({ type = "list", list_member = M
 
 M.IdentityInfoList = schema.new({ type = "list", list_member = M.IdentityInfo })
 
+M.IdentityCertificateList = schema.new({ type = "list", list_member = M.IdentityCertificate })
+
 M.EmailTemplateMetadataList = schema.new({ type = "list", list_member = M.EmailTemplateMetadata })
 
 M.ExportJobSummaryList = schema.new({ type = "list", list_member = M.ExportJobSummary })
@@ -255,6 +257,90 @@ M.ArchivingOptions = schema.new({
     },
 })
 
+M.AssociateEmailIdentityCertificateInput = schema.new({
+    id = id.from(_N, "AssociateEmailIdentityCertificateRequest"),
+    type = "structure",
+    members = {
+        EmailIdentity = schema.new({
+            id = id.from(_N, "AssociateEmailIdentityCertificateInput", "EmailIdentity"),
+            type = "string",
+            name = "EmailIdentity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FromAddress = schema.new({
+            id = id.from(_N, "AssociateEmailIdentityCertificateInput", "FromAddress"),
+            type = "string",
+            name = "FromAddress",
+            target_id = prelude.String.id,
+        }),
+        CertificateArn = schema.new({
+            id = id.from(_N, "AssociateEmailIdentityCertificateInput", "CertificateArn"),
+            type = "string",
+            name = "CertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateEmailIdentityCertificateOutput = schema.new({
+    id = id.from(_N, "AssociateEmailIdentityCertificateResponse"),
+    type = "structure",
+})
+
+M.BadRequestException = schema.new({
+    id = id.from(_N, "BadRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "BadRequestException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NotFoundException = schema.new({
+    id = id.from(_N, "NotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "NotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TooManyRequestsException = schema.new({
+    id = id.from(_N, "TooManyRequestsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TooManyRequestsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Attachment = schema.new({
     id = id.from(_N, "Attachment"),
     type = "structure",
@@ -305,22 +391,6 @@ M.Attachment = schema.new({
             id = id.from(_N, "Attachment", "ContentType"),
             type = "string",
             name = "ContentType",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.BadRequestException = schema.new({
-    id = id.from(_N, "BadRequestException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "BadRequestException", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -485,38 +555,6 @@ M.InternalServiceErrorException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InternalServiceErrorException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.NotFoundException = schema.new({
-    id = id.from(_N, "NotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "NotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.TooManyRequestsException = schema.new({
-    id = id.from(_N, "TooManyRequestsException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "TooManyRequestsException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -1163,6 +1201,59 @@ M.DeliveryOptions = schema.new({
     },
 })
 
+M.DefaultSigningScheme = schema.new({
+    id = id.from(_N, "DefaultSigningScheme"),
+    type = "structure",
+})
+
+M.SmimeSigningScheme = schema.new({
+    id = id.from(_N, "SmimeSigningScheme"),
+    type = "structure",
+    members = {
+        SignatureFormat = schema.new({
+            id = id.from(_N, "SmimeSigningScheme", "SignatureFormat"),
+            type = "string",
+            name = "SignatureFormat",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SigningScheme = schema.new({
+    id = id.from(_N, "SigningScheme"),
+    type = "union",
+    members = {
+        DefaultScheme = schema.new({
+            id = id.from(_N, "SigningScheme", "DefaultScheme"),
+            type = "structure",
+            name = "DefaultScheme",
+            target_id = id.from(_N, "DefaultSigningScheme"),
+            target = M.DefaultSigningScheme,
+        }),
+        SmimeScheme = schema.new({
+            id = id.from(_N, "SigningScheme", "SmimeScheme"),
+            type = "structure",
+            name = "SmimeScheme",
+            target_id = id.from(_N, "SmimeSigningScheme"),
+            target = M.SmimeSigningScheme,
+        }),
+    },
+})
+
+M.MessageSecurityOptions = schema.new({
+    id = id.from(_N, "MessageSecurityOptions"),
+    type = "structure",
+    members = {
+        SigningScheme = schema.new({
+            id = id.from(_N, "MessageSecurityOptions", "SigningScheme"),
+            type = "union",
+            name = "SigningScheme",
+            target_id = id.from(_N, "SigningScheme"),
+            target = M.SigningScheme,
+        }),
+    },
+})
+
 M.ReputationOptions = schema.new({
     id = id.from(_N, "ReputationOptions"),
     type = "structure",
@@ -1446,6 +1537,13 @@ M.CreateConfigurationSetInput = schema.new({
             name = "ArchivingOptions",
             target_id = id.from(_N, "ArchivingOptions"),
             target = M.ArchivingOptions,
+        }),
+        MessageSecurityOptions = schema.new({
+            id = id.from(_N, "CreateConfigurationSetInput", "MessageSecurityOptions"),
+            type = "structure",
+            name = "MessageSecurityOptions",
+            target_id = id.from(_N, "MessageSecurityOptions"),
+            target = M.MessageSecurityOptions,
         }),
     },
 })
@@ -3474,6 +3572,33 @@ M.DeliverabilityTestReport = schema.new({
     },
 })
 
+M.DisassociateEmailIdentityCertificateInput = schema.new({
+    id = id.from(_N, "DisassociateEmailIdentityCertificateRequest"),
+    type = "structure",
+    members = {
+        EmailIdentity = schema.new({
+            id = id.from(_N, "DisassociateEmailIdentityCertificateInput", "EmailIdentity"),
+            type = "string",
+            name = "EmailIdentity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FromAddress = schema.new({
+            id = id.from(_N, "DisassociateEmailIdentityCertificateInput", "FromAddress"),
+            type = "string",
+            name = "FromAddress",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DisassociateEmailIdentityCertificateOutput = schema.new({
+    id = id.from(_N, "DisassociateEmailIdentityCertificateResponse"),
+    type = "structure",
+})
+
 M.DomainDeliverabilityCampaign = schema.new({
     id = id.from(_N, "DomainDeliverabilityCampaign"),
     type = "structure",
@@ -4247,6 +4372,13 @@ M.GetConfigurationSetOutput = schema.new({
             name = "ArchivingOptions",
             target_id = id.from(_N, "ArchivingOptions"),
             target = M.ArchivingOptions,
+        }),
+        MessageSecurityOptions = schema.new({
+            id = id.from(_N, "GetConfigurationSetOutput", "MessageSecurityOptions"),
+            type = "structure",
+            name = "MessageSecurityOptions",
+            target_id = id.from(_N, "MessageSecurityOptions"),
+            target = M.MessageSecurityOptions,
         }),
     },
 })
@@ -5837,6 +5969,37 @@ M.GetTenantOutput = schema.new({
     },
 })
 
+M.IdentityCertificate = schema.new({
+    id = id.from(_N, "IdentityCertificate"),
+    type = "structure",
+    members = {
+        FromAddress = schema.new({
+            id = id.from(_N, "IdentityCertificate", "FromAddress"),
+            type = "string",
+            name = "FromAddress",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "IdentityCertificate", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CertificateArn = schema.new({
+            id = id.from(_N, "IdentityCertificate", "CertificateArn"),
+            type = "string",
+            name = "CertificateArn",
+            target_id = prelude.String.id,
+        }),
+        CertificateExpiryTime = schema.new({
+            id = id.from(_N, "IdentityCertificate", "CertificateExpiryTime"),
+            type = "timestamp",
+            name = "CertificateExpiryTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.IdentityInfo = schema.new({
     id = id.from(_N, "IdentityInfo"),
     type = "structure",
@@ -6373,6 +6536,54 @@ M.ListEmailIdentitiesOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListEmailIdentitiesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListEmailIdentityCertificatesInput = schema.new({
+    id = id.from(_N, "ListEmailIdentityCertificatesRequest"),
+    type = "structure",
+    members = {
+        EmailIdentity = schema.new({
+            id = id.from(_N, "ListEmailIdentityCertificatesInput", "EmailIdentity"),
+            type = "string",
+            name = "EmailIdentity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListEmailIdentityCertificatesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        PageSize = schema.new({
+            id = id.from(_N, "ListEmailIdentityCertificatesInput", "PageSize"),
+            type = "integer",
+            name = "PageSize",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListEmailIdentityCertificatesOutput = schema.new({
+    id = id.from(_N, "ListEmailIdentityCertificatesResponse"),
+    type = "structure",
+    members = {
+        Certificates = schema.new({
+            id = id.from(_N, "ListEmailIdentityCertificatesOutput", "Certificates"),
+            type = "list",
+            name = "Certificates",
+            target_id = prelude.Document.id,
+            list_member = M.IdentityCertificate,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListEmailIdentityCertificatesOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -8289,6 +8500,34 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateConfigurationSetInput = schema.new({
+    id = id.from(_N, "UpdateConfigurationSetRequest"),
+    type = "structure",
+    members = {
+        ConfigurationSetName = schema.new({
+            id = id.from(_N, "UpdateConfigurationSetInput", "ConfigurationSetName"),
+            type = "string",
+            name = "ConfigurationSetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MessageSecurityOptions = schema.new({
+            id = id.from(_N, "UpdateConfigurationSetInput", "MessageSecurityOptions"),
+            type = "structure",
+            name = "MessageSecurityOptions",
+            target_id = id.from(_N, "MessageSecurityOptions"),
+            target = M.MessageSecurityOptions,
+        }),
+    },
+})
+
+M.UpdateConfigurationSetOutput = schema.new({
+    id = id.from(_N, "UpdateConfigurationSetResponse"),
+    type = "structure",
+})
+
 M.UpdateConfigurationSetEventDestinationInput = schema.new({
     id = id.from(_N, "UpdateConfigurationSetEventDestinationRequest"),
     type = "structure",
@@ -8667,6 +8906,18 @@ M.Service = schema.service({
     },
 })
 
+M.AssociateEmailIdentityCertificate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "AssociateEmailIdentityCertificate"),
+    input = M.AssociateEmailIdentityCertificateInput,
+    output = M.AssociateEmailIdentityCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/identity/certificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BatchGetMetricData = schema.operation({
     id = id.from("com.amazonaws.sesv2", "BatchGetMetricData"),
     input = M.BatchGetMetricDataInput,
@@ -9021,6 +9272,18 @@ M.DeleteTenantResourceAssociation = schema.operation({
     output = M.DeleteTenantResourceAssociationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v2/email/tenants/resources/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateEmailIdentityCertificate = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "DisassociateEmailIdentityCertificate"),
+    input = M.DisassociateEmailIdentityCertificateInput,
+    output = M.DisassociateEmailIdentityCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/identity/certificates/delete" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9417,6 +9680,18 @@ M.ListEmailIdentities = schema.operation({
     output = M.ListEmailIdentitiesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v2/email/identities" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEmailIdentityCertificates = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "ListEmailIdentityCertificates"),
+    input = M.ListEmailIdentityCertificatesInput,
+    output = M.ListEmailIdentityCertificatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/identity/certificates/list" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9915,6 +10190,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v2/email/tags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConfigurationSet = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "UpdateConfigurationSet"),
+    input = M.UpdateConfigurationSetInput,
+    output = M.UpdateConfigurationSetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/update-configuration-sets" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

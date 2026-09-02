@@ -2131,6 +2131,22 @@ M.DisableEnhancedMonitoringOutput = schema.new({
     },
 })
 
+M.DryRunOperationException = schema.new({
+    id = id.from(_N, "DryRunOperationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "DryRunOperationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EnableEnhancedMonitoringInput = schema.new({
     id = id.from(_N, "EnableEnhancedMonitoringInput"),
     type = "structure",
@@ -2261,6 +2277,12 @@ M.GetRecordsInput = schema.new({
             type = "string",
             name = "StreamId",
             target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "GetRecordsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -2468,6 +2490,12 @@ M.GetShardIteratorInput = schema.new({
             type = "string",
             name = "StreamId",
             target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "GetShardIteratorInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -3085,6 +3113,12 @@ M.PutRecordInput = schema.new({
             name = "StreamId",
             target_id = prelude.String.id,
         }),
+        DryRun = schema.new({
+            id = id.from(_N, "PutRecordInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -3181,6 +3215,12 @@ M.PutRecordsInput = schema.new({
             type = "string",
             name = "StreamId",
             target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "PutRecordsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -3571,6 +3611,12 @@ M.SubscribeToShardInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "SubscribeToShardInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

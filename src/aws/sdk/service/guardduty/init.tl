@@ -21,6 +21,8 @@ local record Client
     acceptAdministratorInvitation: function(Client, types.AcceptAdministratorInvitationInput, ? base_client.InvokeOptions): async.Operation<types.AcceptAdministratorInvitationOutput>
     acceptInvitation: function(Client, types.AcceptInvitationInput, ? base_client.InvokeOptions): async.Operation<types.AcceptInvitationOutput>
     archiveFindings: function(Client, types.ArchiveFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ArchiveFindingsOutput>
+    createCustomDetectionRuleAssociation: function(Client, types.CreateCustomDetectionRuleAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomDetectionRuleAssociationOutput>
+    createCustomDetectionRuleOrgConfiguration: function(Client, types.CreateCustomDetectionRuleOrgConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomDetectionRuleOrgConfigurationOutput>
     createDetector: function(Client, types.CreateDetectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateDetectorOutput>
     createFilter: function(Client, types.CreateFilterInput, ? base_client.InvokeOptions): async.Operation<types.CreateFilterOutput>
     createInvestigation: function(Client, types.CreateInvestigationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvestigationOutput>
@@ -33,6 +35,8 @@ local record Client
     createThreatIntelSet: function(Client, types.CreateThreatIntelSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateThreatIntelSetOutput>
     createTrustedEntitySet: function(Client, types.CreateTrustedEntitySetInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrustedEntitySetOutput>
     declineInvitations: function(Client, types.DeclineInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.DeclineInvitationsOutput>
+    deleteCustomDetectionRuleAssociation: function(Client, types.DeleteCustomDetectionRuleAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomDetectionRuleAssociationOutput>
+    deleteCustomDetectionRuleOrgConfiguration: function(Client, types.DeleteCustomDetectionRuleOrgConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomDetectionRuleOrgConfigurationOutput>
     deleteDetector: function(Client, types.DeleteDetectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDetectorOutput>
     deleteFilter: function(Client, types.DeleteFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFilterOutput>
     deleteInvitations: function(Client, types.DeleteInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInvitationsOutput>
@@ -53,6 +57,9 @@ local record Client
     enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.EnableOrganizationAdminAccountOutput>
     getAdministratorAccount: function(Client, types.GetAdministratorAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetAdministratorAccountOutput>
     getCoverageStatistics: function(Client, types.GetCoverageStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetCoverageStatisticsOutput>
+    getCustomDetectionRule: function(Client, types.GetCustomDetectionRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomDetectionRuleOutput>
+    getCustomDetectionRuleAssociation: function(Client, types.GetCustomDetectionRuleAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomDetectionRuleAssociationOutput>
+    getCustomDetectionRuleOrgConfiguration: function(Client, types.GetCustomDetectionRuleOrgConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomDetectionRuleOrgConfigurationOutput>
     getDetector: function(Client, types.GetDetectorInput, ? base_client.InvokeOptions): async.Operation<types.GetDetectorOutput>
     getFilter: function(Client, types.GetFilterInput, ? base_client.InvokeOptions): async.Operation<types.GetFilterOutput>
     getFindings: function(Client, types.GetFindingsInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsOutput>
@@ -74,6 +81,9 @@ local record Client
     getUsageStatistics: function(Client, types.GetUsageStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetUsageStatisticsOutput>
     inviteMembers: function(Client, types.InviteMembersInput, ? base_client.InvokeOptions): async.Operation<types.InviteMembersOutput>
     listCoverage: function(Client, types.ListCoverageInput, ? base_client.InvokeOptions): async.Operation<types.ListCoverageOutput>
+    listCustomDetectionRuleAssociations: function(Client, types.ListCustomDetectionRuleAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomDetectionRuleAssociationsOutput>
+    listCustomDetectionRuleOrgConfigurations: function(Client, types.ListCustomDetectionRuleOrgConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomDetectionRuleOrgConfigurationsOutput>
+    listCustomDetectionRules: function(Client, types.ListCustomDetectionRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomDetectionRulesOutput>
     listDetectors: function(Client, types.ListDetectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListDetectorsOutput>
     listFilters: function(Client, types.ListFiltersInput, ? base_client.InvokeOptions): async.Operation<types.ListFiltersOutput>
     listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
@@ -96,6 +106,8 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     unarchiveFindings: function(Client, types.UnarchiveFindingsInput, ? base_client.InvokeOptions): async.Operation<types.UnarchiveFindingsOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCustomDetectionRuleAssociation: function(Client, types.UpdateCustomDetectionRuleAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomDetectionRuleAssociationOutput>
+    updateCustomDetectionRuleOrgConfiguration: function(Client, types.UpdateCustomDetectionRuleOrgConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomDetectionRuleOrgConfigurationOutput>
     updateDetector: function(Client, types.UpdateDetectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDetectorOutput>
     updateFilter: function(Client, types.UpdateFilterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFilterOutput>
     updateFindingsFeedback: function(Client, types.UpdateFindingsFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFindingsFeedbackOutput>
@@ -164,6 +176,14 @@ function C:archiveFindings(input: types.ArchiveFindingsInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ArchiveFindings as schema.OperationSchema, input, options) as async.Operation<types.ArchiveFindingsOutput>
 end
 
+function C:createCustomDetectionRuleAssociation(input: types.CreateCustomDetectionRuleAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomDetectionRuleAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomDetectionRuleAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomDetectionRuleAssociationOutput>
+end
+
+function C:createCustomDetectionRuleOrgConfiguration(input: types.CreateCustomDetectionRuleOrgConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomDetectionRuleOrgConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomDetectionRuleOrgConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomDetectionRuleOrgConfigurationOutput>
+end
+
 function C:createDetector(input: types.CreateDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDetectorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDetector as schema.OperationSchema, input, options) as async.Operation<types.CreateDetectorOutput>
 end
@@ -210,6 +230,14 @@ end
 
 function C:declineInvitations(input: types.DeclineInvitationsInput, options?: base_client.InvokeOptions): async.Operation<types.DeclineInvitationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeclineInvitations as schema.OperationSchema, input, options) as async.Operation<types.DeclineInvitationsOutput>
+end
+
+function C:deleteCustomDetectionRuleAssociation(input: types.DeleteCustomDetectionRuleAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomDetectionRuleAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomDetectionRuleAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomDetectionRuleAssociationOutput>
+end
+
+function C:deleteCustomDetectionRuleOrgConfiguration(input: types.DeleteCustomDetectionRuleOrgConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomDetectionRuleOrgConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomDetectionRuleOrgConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomDetectionRuleOrgConfigurationOutput>
 end
 
 function C:deleteDetector(input: types.DeleteDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDetectorOutput>
@@ -290,6 +318,18 @@ end
 
 function C:getCoverageStatistics(input: types.GetCoverageStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoverageStatisticsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoverageStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetCoverageStatisticsOutput>
+end
+
+function C:getCustomDetectionRule(input: types.GetCustomDetectionRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomDetectionRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomDetectionRule as schema.OperationSchema, input, options) as async.Operation<types.GetCustomDetectionRuleOutput>
+end
+
+function C:getCustomDetectionRuleAssociation(input: types.GetCustomDetectionRuleAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomDetectionRuleAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomDetectionRuleAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetCustomDetectionRuleAssociationOutput>
+end
+
+function C:getCustomDetectionRuleOrgConfiguration(input: types.GetCustomDetectionRuleOrgConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomDetectionRuleOrgConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomDetectionRuleOrgConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetCustomDetectionRuleOrgConfigurationOutput>
 end
 
 function C:getDetector(input: types.GetDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.GetDetectorOutput>
@@ -374,6 +414,18 @@ end
 
 function C:listCoverage(input: types.ListCoverageInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoverageOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoverage as schema.OperationSchema, input, options) as async.Operation<types.ListCoverageOutput>
+end
+
+function C:listCustomDetectionRuleAssociations(input: types.ListCustomDetectionRuleAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomDetectionRuleAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomDetectionRuleAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCustomDetectionRuleAssociationsOutput>
+end
+
+function C:listCustomDetectionRuleOrgConfigurations(input: types.ListCustomDetectionRuleOrgConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomDetectionRuleOrgConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomDetectionRuleOrgConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListCustomDetectionRuleOrgConfigurationsOutput>
+end
+
+function C:listCustomDetectionRules(input: types.ListCustomDetectionRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomDetectionRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomDetectionRules as schema.OperationSchema, input, options) as async.Operation<types.ListCustomDetectionRulesOutput>
 end
 
 function C:listDetectors(input: types.ListDetectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDetectorsOutput>
@@ -462,6 +514,14 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateCustomDetectionRuleAssociation(input: types.UpdateCustomDetectionRuleAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomDetectionRuleAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomDetectionRuleAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomDetectionRuleAssociationOutput>
+end
+
+function C:updateCustomDetectionRuleOrgConfiguration(input: types.UpdateCustomDetectionRuleOrgConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomDetectionRuleOrgConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomDetectionRuleOrgConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomDetectionRuleOrgConfigurationOutput>
 end
 
 function C:updateDetector(input: types.UpdateDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDetectorOutput>

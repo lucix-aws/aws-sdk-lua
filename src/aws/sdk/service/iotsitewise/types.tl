@@ -2770,6 +2770,51 @@ local record M
         projectArn: string
     end
 
+    enum StorageClass
+        "STANDARD_1"
+        "STANDARD_2"
+        "THROUGHPUT_1"
+        "THROUGHPUT_2"
+    end
+
+    -- Configuration for ephemeral storage attached to the container task.
+    record EphemeralStorageConfiguration
+        -- Storage type that determines I/O performance family and level.
+        storageClass: string
+        -- Storage volume size in GiB.
+        storageSizeInGiB: number
+    end
+
+    -- Configures a mount that reads from an Amazon S3 access point.
+    record S3AccessPointSource
+        -- The Amazon Resource Name (ARN) of the S3 access point.
+        accessPointArn: string
+        -- An optional key prefix to scope the mount to a subset of objects at the access point.
+        prefix: string
+    end
+
+    -- The data source configuration for a mount. Specify exactly one of the following.
+    record MountSource
+        -- Configuration for a mount that reads from an Amazon S3 access point.
+        s3AccessPoint: S3AccessPointSource
+    end
+
+    enum MountStorageType
+        "SHARED_STORAGE"
+    end
+
+    -- Attaches a data source to the container filesystem for a task at a customer-supplied relative path under the service-owned mount root.
+    record Mount
+        -- A unique name for the mount within the task.
+        name: string
+        -- The relative path under the service-owned mount root where this mount is attached inside the container.
+        relativePath: string
+        -- The data source for the mount.
+        source: MountSource
+        -- The type of storage used for the mount.
+        storageType: string
+    end
+
     enum ProcessingType
         "GENERIC_COMPUTE_PROCESSING"
         "HARDWARE_ACCELERATED_PROCESSING"
@@ -2802,12 +2847,19 @@ local record M
         processingType: string
         -- The processing unit allocation that determines the vCPU, memory, and GPU resources.
         processingUnit: string
+        -- Ephemeral storage configuration for the container task.
+        ephemeralStorageConfiguration: EphemeralStorageConfiguration
         -- The command to execute in the container.
         command: {string}
         -- The timeout in seconds for task execution. Default: 3600 (1 hour).
         timeoutSeconds: number
         -- Environment variables passed to the container at runtime.
         environmentVariables: {string : string}
+        -- Mounts attached to the container filesystem. Each mount exposes an external
+        -- data source as a local directory inside the container. The service assigns each mount
+        -- a container path based on the mount name. The container reads files through that path
+        -- as if the data were on the local filesystem.
+        mounts: {Mount}
     end
 
     -- The task execution configuration. Specify a containerTaskConfiguration for a custom container workload.
@@ -4091,6 +4143,11 @@ local record M
         endTime: number
         -- The fully resolved environment variables used for this compute node execution.
         executionEnvironmentVariables: {string : string}
+        -- The fully resolved mounts used for this compute node execution, after merging
+        -- task-defined mounts with any execution-level mount overrides. Each mount attaches an
+        -- external data source to the container filesystem at a relative path under the
+        -- service-owned mount root.
+        executionMounts: {Mount}
     end
 
     -- Environment variables provided as input for a pipeline execution.
@@ -4099,6 +4156,12 @@ local record M
         global: {string : string}
         -- Per-compute-node environment variable overrides. Each entry maps a compute node name to its environment variable overrides.
         computeNodes: {string : {string : string}}
+    end
+
+    -- Runtime mount overrides applied to a single pipeline execution. Overrides are transient — they do not modify the stored task configuration.
+    record MountOverrides
+        -- The mount overrides for each compute node, keyed by compute node name.
+        computeNodes: {string : {Mount}}
     end
 
     enum PipelineErrorCode
@@ -4144,6 +4207,8 @@ local record M
         endTime: number
         -- The environment variables provided as input for the pipeline execution.
         requestEnvironmentVariables: ExecutionEnvironmentVariables
+        -- The mount overrides provided as input for the pipeline execution. Present when mount overrides were supplied at execution time.
+        requestMountOverrides: MountOverrides
         -- Scheduling priority for the execution. When not specified, defaults to lowest priority.
         executionPriority: number
         -- A list of compute node execution details within this pipeline execution.
@@ -6389,6 +6454,11 @@ local record M
         -- that apply to all compute nodes and computeNodes for per-node overrides. These take the highest
         -- priority in the environment variable hierarchy.
         executionEnvironmentVariableOverrides: ExecutionEnvironmentVariables
+        -- Runtime mount overrides for the execution. Overrides are merged by mount name into
+        -- each listed compute node's task-defined mounts: a matching name replaces the task-defined
+        -- mount, a new name adds a mount, and task-defined mounts not referenced remain unchanged.
+        -- Compute nodes not listed use their task-defined mounts as-is.
+        executionMountOverrides: MountOverrides
         -- Scheduling priority for the execution. Lower values indicate higher priority. Defaults to 2 when not specified.
         executionPriority: number
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.

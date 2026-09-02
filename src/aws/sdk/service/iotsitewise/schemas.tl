@@ -212,6 +212,8 @@ M.AssetPropertyPath = schema.new({ type = "list", list_member = M.AssetPropertyP
 
 M.ComputeNodeEnvironmentVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EnvironmentVariablesMap })
 
+M.ComputeNodeMountsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MountList })
+
 M.Result = schema.new({ type = "list", list_member = prelude.String })
 
 M.SearchStatusFilterList = schema.new({ type = "list", list_member = prelude.String })
@@ -241,6 +243,8 @@ M.ComputeNodeNameList = schema.new({ type = "list", list_member = prelude.String
 M.PortalTools = schema.new({ type = "list", list_member = prelude.String })
 
 M.CommandList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MountList = schema.new({ type = "list", list_member = M.Mount })
 
 M.AssetModelPropertyPath = schema.new({ type = "list", list_member = M.AssetModelPropertyPathSegment })
 
@@ -6852,6 +6856,111 @@ M.CreateProjectOutput = schema.new({
     },
 })
 
+M.EphemeralStorageConfiguration = schema.new({
+    id = id.from(_N, "EphemeralStorageConfiguration"),
+    type = "structure",
+    members = {
+        storageClass = schema.new({
+            id = id.from(_N, "EphemeralStorageConfiguration", "storageClass"),
+            type = "string",
+            name = "storageClass",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        storageSizeInGiB = schema.new({
+            id = id.from(_N, "EphemeralStorageConfiguration", "storageSizeInGiB"),
+            type = "integer",
+            name = "storageSizeInGiB",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3AccessPointSource = schema.new({
+    id = id.from(_N, "S3AccessPointSource"),
+    type = "structure",
+    members = {
+        accessPointArn = schema.new({
+            id = id.from(_N, "S3AccessPointSource", "accessPointArn"),
+            type = "string",
+            name = "accessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        prefix = schema.new({
+            id = id.from(_N, "S3AccessPointSource", "prefix"),
+            type = "string",
+            name = "prefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MountSource = schema.new({
+    id = id.from(_N, "MountSource"),
+    type = "union",
+    members = {
+        s3AccessPoint = schema.new({
+            id = id.from(_N, "MountSource", "s3AccessPoint"),
+            type = "structure",
+            name = "s3AccessPoint",
+            target_id = id.from(_N, "S3AccessPointSource"),
+            target = M.S3AccessPointSource,
+        }),
+    },
+})
+
+M.Mount = schema.new({
+    id = id.from(_N, "Mount"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "Mount", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        relativePath = schema.new({
+            id = id.from(_N, "Mount", "relativePath"),
+            type = "string",
+            name = "relativePath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "Mount", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "MountSource"),
+            target = M.MountSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        storageType = schema.new({
+            id = id.from(_N, "Mount", "storageType"),
+            type = "string",
+            name = "storageType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ContainerTaskConfiguration = schema.new({
     id = id.from(_N, "ContainerTaskConfiguration"),
     type = "structure",
@@ -6892,6 +7001,13 @@ M.ContainerTaskConfiguration = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        ephemeralStorageConfiguration = schema.new({
+            id = id.from(_N, "ContainerTaskConfiguration", "ephemeralStorageConfiguration"),
+            type = "structure",
+            name = "ephemeralStorageConfiguration",
+            target_id = id.from(_N, "EphemeralStorageConfiguration"),
+            target = M.EphemeralStorageConfiguration,
+        }),
         command = schema.new({
             id = id.from(_N, "ContainerTaskConfiguration", "command"),
             type = "list",
@@ -6912,6 +7028,13 @@ M.ContainerTaskConfiguration = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        mounts = schema.new({
+            id = id.from(_N, "ContainerTaskConfiguration", "mounts"),
+            type = "list",
+            name = "mounts",
+            target_id = prelude.Document.id,
+            list_member = M.Mount,
         }),
     },
 })
@@ -10721,6 +10844,13 @@ M.ComputeNodeExecutionDetails = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        executionMounts = schema.new({
+            id = id.from(_N, "ComputeNodeExecutionDetails", "executionMounts"),
+            type = "list",
+            name = "executionMounts",
+            target_id = prelude.Document.id,
+            list_member = M.Mount,
+        }),
     },
 })
 
@@ -10743,6 +10873,24 @@ M.ExecutionEnvironmentVariables = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
+        }),
+    },
+})
+
+M.MountOverrides = schema.new({
+    id = id.from(_N, "MountOverrides"),
+    type = "structure",
+    members = {
+        computeNodes = schema.new({
+            id = id.from(_N, "MountOverrides", "computeNodes"),
+            type = "map",
+            name = "computeNodes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = M.Mount }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -10870,6 +11018,13 @@ M.DescribePipelineExecutionOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        requestMountOverrides = schema.new({
+            id = id.from(_N, "DescribePipelineExecutionOutput", "requestMountOverrides"),
+            type = "structure",
+            name = "requestMountOverrides",
+            target_id = id.from(_N, "MountOverrides"),
+            target = M.MountOverrides,
         }),
         executionPriority = schema.new({
             id = id.from(_N, "DescribePipelineExecutionOutput", "executionPriority"),
@@ -17408,6 +17563,13 @@ M.StartPipelineExecutionInput = schema.new({
             name = "executionEnvironmentVariableOverrides",
             target_id = id.from(_N, "ExecutionEnvironmentVariables"),
             target = M.ExecutionEnvironmentVariables,
+        }),
+        executionMountOverrides = schema.new({
+            id = id.from(_N, "StartPipelineExecutionInput", "executionMountOverrides"),
+            type = "structure",
+            name = "executionMountOverrides",
+            target_id = id.from(_N, "MountOverrides"),
+            target = M.MountOverrides,
         }),
         executionPriority = schema.new({
             id = id.from(_N, "StartPipelineExecutionInput", "executionPriority"),

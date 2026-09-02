@@ -347,6 +347,8 @@ local record M
         "FreeStorageSpace"
         "NetworkReceiveThroughput"
         "NetworkTransmitThroughput"
+        "FreeableMemory"
+        "SwapUsage"
         "BurstCapacityTime"
         "BurstCapacityPercentage"
     end
@@ -623,6 +625,7 @@ local record M
         "StartGUISession"
         "StopGUISession"
         "SetupInstanceHttps"
+        "GetProfile"
     end
 
     enum OperationStatus
@@ -6204,6 +6207,57 @@ local record M
         nextPageToken: string
     end
 
+    record GetProfileInput
+    end
+
+    enum PartnerStatus
+        "Active"
+        "Suspended"
+    end
+
+    enum TierName
+        "Essential"
+        "Growth"
+        "Accelerate"
+        "Premier"
+    end
+
+    -- An object that contains information about the Lightsail partner program membership of an
+    -- Amazon Lightsail account.
+    record PartnerInfo
+        -- The timestamp when the account was enrolled in the Lightsail partner program.
+        enrolledAt: number
+        -- The tier of the partner membership.
+        tierName: string
+        -- The status of the partner membership.
+        -- The following statuses are possible:
+        -- Active – The membership is active, and the benefits of the current tier
+        -- are available to the account.
+        -- Suspended – The membership is suspended, and the benefits of the tier are
+        -- not available to the account.
+        status: string
+    end
+
+    enum ProfileType
+        "Lightsailor"
+        "LightsailPartner"
+    end
+
+    record GetProfileOutput
+        -- The type of the profile.
+        -- The following profile types are possible:
+        -- Lightsailor – The account is not enrolled in the Lightsail partner
+        -- program.
+        -- LightsailPartner – The account is enrolled in the Lightsail partner
+        -- program.
+        profileType: string
+        -- An object that describes the partner membership of the account, such as the tier of the
+        -- membership, its status, and when the account was enrolled.
+        -- This parameter is returned only for accounts that have a profileType of
+        -- LightsailPartner.
+        partner: PartnerInfo
+    end
+
     record GetRegionsInput
         -- A Boolean value indicating whether to also include Availability Zones in your get regions
         -- request. Availability Zones are indicated with a letter: us-east-2a.
@@ -6576,6 +6630,8 @@ local record M
         "FreeStorageSpace"
         "NetworkReceiveThroughput"
         "NetworkTransmitThroughput"
+        "FreeableMemory"
+        "SwapUsage"
     end
 
     record GetRelationalDatabaseMetricDataInput

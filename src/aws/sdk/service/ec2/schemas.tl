@@ -97591,12 +97591,12 @@ M.EnclaveOptionsRequest = schema.new({
     },
 })
 
-M.BlobAttributeValue = schema.new({
-    id = id.from(_N, "BlobAttributeValue"),
+M.SecureBlobAttributeValue = schema.new({
+    id = id.from(_N, "SecureBlobAttributeValue"),
     type = "structure",
     members = {
         Value = schema.new({
-            id = id.from(_N, "BlobAttributeValue", "Value"),
+            id = id.from(_N, "SecureBlobAttributeValue", "Value"),
             type = "blob",
             name = "Value",
             target_id = prelude.Blob.id,
@@ -97733,8 +97733,8 @@ M.ModifyInstanceAttributeInput = schema.new({
             id = id.from(_N, "ModifyInstanceAttributeInput", "UserData"),
             type = "structure",
             name = "UserData",
-            target_id = id.from(_N, "BlobAttributeValue"),
-            target = M.BlobAttributeValue,
+            target_id = id.from(_N, "SecureBlobAttributeValue"),
+            target = M.SecureBlobAttributeValue,
             traits = {
                 [traits.XML_NAME] = { name = "userData" },
                 [traits.EC2_QUERY_NAME] = { name = "UserData" },

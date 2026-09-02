@@ -14,6 +14,8 @@ M.FindingIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.DetectionRuleAccountIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.DetectorFeatureConfigurations = schema.new({ type = "list", list_member = M.DetectorFeatureConfiguration })
 
 M.AccountDetails = schema.new({ type = "list", list_member = M.AccountDetail })
@@ -47,6 +49,14 @@ M.Members = schema.new({ type = "list", list_member = M.Member })
 M.AccountFreeTrialInfos = schema.new({ type = "list", list_member = M.AccountFreeTrialInfo })
 
 M.CoverageResources = schema.new({ type = "list", list_member = M.CoverageResource })
+
+M.AssociationSummaryList = schema.new({ type = "list", list_member = M.AssociationSummary })
+
+M.DetectionRuleOrgConfigurationSummaryList = schema.new({ type = "list", list_member = M.DetectionRuleOrgConfigurationSummary })
+
+M.DetectionRuleFilterList = schema.new({ type = "list", list_member = M.DetectionRuleFilter })
+
+M.RuleSummaryList = schema.new({ type = "list", list_member = M.RuleSummary })
 
 M.DetectorIds = schema.new({ type = "list", list_member = prelude.String })
 
@@ -137,6 +147,8 @@ M.MemberFeaturesConfigurationsResults = schema.new({ type = "list", list_member 
 M.OrganizationFeatureStatisticsResults = schema.new({ type = "list", list_member = M.OrganizationFeatureStatistics })
 
 M.FreeTrialFeatureConfigurationsResults = schema.new({ type = "list", list_member = M.FreeTrialFeatureConfigurationResult })
+
+M.DetectionRuleFilterValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.MemberAdditionalConfigurations = schema.new({ type = "list", list_member = M.MemberAdditionalConfiguration })
 
@@ -2315,6 +2327,168 @@ M.ArchiveFindingsOutput = schema.new({
     type = "structure",
 })
 
+M.AssociationDetail = schema.new({
+    id = id.from(_N, "AssociationDetail"),
+    type = "structure",
+    members = {
+        AssociationId = schema.new({
+            id = id.from(_N, "AssociationDetail", "AssociationId"),
+            type = "string",
+            name = "AssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "associationId" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "AssociationDetail", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        RuleId = schema.new({
+            id = id.from(_N, "AssociationDetail", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleId" },
+            },
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "AssociationDetail", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "AssociationDetail", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mode" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AssociationDetail", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AssociationDetail", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "AssociationDetail", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "expiresAt" },
+            },
+        }),
+    },
+})
+
+M.AssociationSummary = schema.new({
+    id = id.from(_N, "AssociationSummary"),
+    type = "structure",
+    members = {
+        AssociationId = schema.new({
+            id = id.from(_N, "AssociationSummary", "AssociationId"),
+            type = "string",
+            name = "AssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "associationId" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "AssociationSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        RuleId = schema.new({
+            id = id.from(_N, "AssociationSummary", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleId" },
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "AssociationSummary", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mode" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AssociationSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AssociationSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "AssociationSummary", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "expiresAt" },
+            },
+        }),
+    },
+})
+
 M.AutonomousSystem = schema.new({
     id = id.from(_N, "AutonomousSystem"),
     type = "structure",
@@ -3387,6 +3561,162 @@ M.CoverageStatistics = schema.new({
             },
         }),
     },
+})
+
+M.CreateCustomDetectionRuleAssociationInput = schema.new({
+    id = id.from(_N, "CreateCustomDetectionRuleAssociationRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleAssociationInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleId" },
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleAssociationInput", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mode" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleAssociationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleAssociationInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.CreateCustomDetectionRuleAssociationOutput = schema.new({
+    id = id.from(_N, "CreateCustomDetectionRuleAssociationResponse"),
+    type = "structure",
+    members = {
+        RuleAssociation = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleAssociationOutput", "RuleAssociation"),
+            type = "structure",
+            name = "RuleAssociation",
+            target_id = id.from(_N, "AssociationDetail"),
+            target = M.AssociationDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleAssociation" },
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+    },
+})
+
+M.CreateCustomDetectionRuleOrgConfigurationInput = schema.new({
+    id = id.from(_N, "CreateCustomDetectionRuleOrgConfigurationRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleOrgConfigurationInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleId" },
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleOrgConfigurationInput", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mode" },
+            },
+        }),
+        IncludeAccountIds = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleOrgConfigurationInput", "IncludeAccountIds"),
+            type = "list",
+            name = "IncludeAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "includeAccountIds" },
+            },
+        }),
+        ExcludeAccountIds = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleOrgConfigurationInput", "ExcludeAccountIds"),
+            type = "list",
+            name = "ExcludeAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "excludeAccountIds" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateCustomDetectionRuleOrgConfigurationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateCustomDetectionRuleOrgConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateCustomDetectionRuleOrgConfigurationResponse"),
+    type = "structure",
 })
 
 M.KubernetesAuditLogsConfiguration = schema.new({
@@ -4958,6 +5288,70 @@ M.DefaultServerSideEncryption = schema.new({
     },
 })
 
+M.DeleteCustomDetectionRuleAssociationInput = schema.new({
+    id = id.from(_N, "DeleteCustomDetectionRuleAssociationRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "DeleteCustomDetectionRuleAssociationInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AssociationId = schema.new({
+            id = id.from(_N, "DeleteCustomDetectionRuleAssociationInput", "AssociationId"),
+            type = "string",
+            name = "AssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCustomDetectionRuleAssociationOutput = schema.new({
+    id = id.from(_N, "DeleteCustomDetectionRuleAssociationResponse"),
+    type = "structure",
+})
+
+M.DeleteCustomDetectionRuleOrgConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteCustomDetectionRuleOrgConfigurationRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "DeleteCustomDetectionRuleOrgConfigurationInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "DeleteCustomDetectionRuleOrgConfigurationInput", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "mode" },
+            },
+        }),
+    },
+})
+
+M.DeleteCustomDetectionRuleOrgConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteCustomDetectionRuleOrgConfigurationResponse"),
+    type = "structure",
+})
+
 M.DeleteDetectorInput = schema.new({
     id = id.from(_N, "DeleteDetectorRequest"),
     type = "structure",
@@ -5098,34 +5492,6 @@ M.DeleteMalwareProtectionPlanInput = schema.new({
 })
 
 M.DeleteMalwareProtectionPlanOutput = prelude.Unit
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.JSON_NAME] = { name = "message" },
-            },
-        }),
-        Type = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.JSON_NAME] = { name = "type" },
-            },
-        }),
-    },
-})
 
 M.DeleteMembersInput = schema.new({
     id = id.from(_N, "DeleteMembersRequest"),
@@ -7576,6 +7942,215 @@ M.Detection = schema.new({
             target = M.Sequence,
             traits = {
                 [traits.JSON_NAME] = { name = "sequence" },
+            },
+        }),
+    },
+})
+
+M.DetectionRuleFilter = schema.new({
+    id = id.from(_N, "DetectionRuleFilter"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DetectionRuleFilter", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "DetectionRuleFilter", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "values" },
+            },
+        }),
+        Condition = schema.new({
+            id = id.from(_N, "DetectionRuleFilter", "Condition"),
+            type = "string",
+            name = "Condition",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "condition" },
+            },
+        }),
+    },
+})
+
+M.DetectionRuleOrgConfiguration = schema.new({
+    id = id.from(_N, "DetectionRuleOrgConfiguration"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleId" },
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mode" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "statusReason" },
+            },
+        }),
+        IncludeAccountIds = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "IncludeAccountIds"),
+            type = "list",
+            name = "IncludeAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "includeAccountIds" },
+            },
+        }),
+        ExcludeAccountIds = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "ExcludeAccountIds"),
+            type = "list",
+            name = "ExcludeAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "excludeAccountIds" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfiguration", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "expiresAt" },
+            },
+        }),
+    },
+})
+
+M.DetectionRuleOrgConfigurationSummary = schema.new({
+    id = id.from(_N, "DetectionRuleOrgConfigurationSummary"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfigurationSummary", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleId" },
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfigurationSummary", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mode" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfigurationSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfigurationSummary", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "statusReason" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfigurationSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfigurationSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "DetectionRuleOrgConfigurationSummary", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "expiresAt" },
             },
         }),
     },
@@ -11146,6 +11721,304 @@ M.GetCoverageStatisticsOutput = schema.new({
     },
 })
 
+M.GetCustomDetectionRuleInput = schema.new({
+    id = id.from(_N, "GetCustomDetectionRuleRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.RuleDefinition = schema.new({
+    id = id.from(_N, "RuleDefinition"),
+    type = "structure",
+    members = {
+        Expression = schema.new({
+            id = id.from(_N, "RuleDefinition", "Expression"),
+            type = "string",
+            name = "Expression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "expression" },
+            },
+        }),
+    },
+})
+
+M.RuleDetail = schema.new({
+    id = id.from(_N, "RuleDetail"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "RuleDetail", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleId" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "RuleDetail", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RuleDetail", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RuleDetail", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        Severity = schema.new({
+            id = id.from(_N, "RuleDetail", "Severity"),
+            type = "string",
+            name = "Severity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "severity" },
+            },
+        }),
+        DataSource = schema.new({
+            id = id.from(_N, "RuleDetail", "DataSource"),
+            type = "string",
+            name = "DataSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "dataSource" },
+            },
+        }),
+        Tactic = schema.new({
+            id = id.from(_N, "RuleDetail", "Tactic"),
+            type = "string",
+            name = "Tactic",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tactic" },
+            },
+        }),
+        Technique = schema.new({
+            id = id.from(_N, "RuleDetail", "Technique"),
+            type = "string",
+            name = "Technique",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "technique" },
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "RuleDetail", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "service" },
+            },
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "RuleDetail", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "RuleDefinition"),
+            target = M.RuleDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "definition" },
+            },
+        }),
+        Language = schema.new({
+            id = id.from(_N, "RuleDetail", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "language" },
+            },
+        }),
+        Schema = schema.new({
+            id = id.from(_N, "RuleDetail", "Schema"),
+            type = "string",
+            name = "Schema",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "schema" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "RuleDetail", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "RuleDetail", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+    },
+})
+
+M.GetCustomDetectionRuleOutput = schema.new({
+    id = id.from(_N, "GetCustomDetectionRuleResponse"),
+    type = "structure",
+    members = {
+        Rule = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleOutput", "Rule"),
+            type = "structure",
+            name = "Rule",
+            target_id = id.from(_N, "RuleDetail"),
+            target = M.RuleDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "rule" },
+            },
+        }),
+    },
+})
+
+M.GetCustomDetectionRuleAssociationInput = schema.new({
+    id = id.from(_N, "GetCustomDetectionRuleAssociationRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleAssociationInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AssociationId = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleAssociationInput", "AssociationId"),
+            type = "string",
+            name = "AssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetCustomDetectionRuleAssociationOutput = schema.new({
+    id = id.from(_N, "GetCustomDetectionRuleAssociationResponse"),
+    type = "structure",
+    members = {
+        RuleAssociation = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleAssociationOutput", "RuleAssociation"),
+            type = "structure",
+            name = "RuleAssociation",
+            target_id = id.from(_N, "AssociationDetail"),
+            target = M.AssociationDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleAssociation" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleAssociationOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.GetCustomDetectionRuleOrgConfigurationInput = schema.new({
+    id = id.from(_N, "GetCustomDetectionRuleOrgConfigurationRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleOrgConfigurationInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleOrgConfigurationInput", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "mode" },
+            },
+        }),
+    },
+})
+
+M.GetCustomDetectionRuleOrgConfigurationOutput = schema.new({
+    id = id.from(_N, "GetCustomDetectionRuleOrgConfigurationResponse"),
+    type = "structure",
+    members = {
+        Configuration = schema.new({
+            id = id.from(_N, "GetCustomDetectionRuleOrgConfigurationOutput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "DetectionRuleOrgConfiguration"),
+            target = M.DetectionRuleOrgConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+    },
+})
+
 M.GetDetectorInput = schema.new({
     id = id.from(_N, "GetDetectorRequest"),
     type = "structure",
@@ -14040,6 +14913,333 @@ M.ListCoverageOutput = schema.new({
     },
 })
 
+M.ListCustomDetectionRuleAssociationsInput = schema.new({
+    id = id.from(_N, "ListCustomDetectionRuleAssociationsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleAssociationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleAssociationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        RuleId = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleAssociationsInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "ruleId" },
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleAssociationsInput", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "mode" },
+            },
+        }),
+    },
+})
+
+M.ListCustomDetectionRuleAssociationsOutput = schema.new({
+    id = id.from(_N, "ListCustomDetectionRuleAssociationsResponse"),
+    type = "structure",
+    members = {
+        RuleAssociations = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleAssociationsOutput", "RuleAssociations"),
+            type = "list",
+            name = "RuleAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.AssociationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleAssociations" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleAssociationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListCustomDetectionRuleOrgConfigurationsInput = schema.new({
+    id = id.from(_N, "ListCustomDetectionRuleOrgConfigurationsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleOrgConfigurationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleOrgConfigurationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleOrgConfigurationsInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.ListCustomDetectionRuleOrgConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListCustomDetectionRuleOrgConfigurationsResponse"),
+    type = "structure",
+    members = {
+        Configurations = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleOrgConfigurationsOutput", "Configurations"),
+            type = "list",
+            name = "Configurations",
+            target_id = prelude.Document.id,
+            list_member = M.DetectionRuleOrgConfigurationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "configurations" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomDetectionRuleOrgConfigurationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListCustomDetectionRulesInput = schema.new({
+    id = id.from(_N, "ListCustomDetectionRulesRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCustomDetectionRulesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomDetectionRulesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListCustomDetectionRulesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.DetectionRuleFilter,
+            traits = {
+                [traits.JSON_NAME] = { name = "filters" },
+            },
+        }),
+    },
+})
+
+M.RuleSummary = schema.new({
+    id = id.from(_N, "RuleSummary"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "RuleSummary", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ruleId" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "RuleSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RuleSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RuleSummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        Severity = schema.new({
+            id = id.from(_N, "RuleSummary", "Severity"),
+            type = "string",
+            name = "Severity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "severity" },
+            },
+        }),
+        DataSource = schema.new({
+            id = id.from(_N, "RuleSummary", "DataSource"),
+            type = "string",
+            name = "DataSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "dataSource" },
+            },
+        }),
+        Tactic = schema.new({
+            id = id.from(_N, "RuleSummary", "Tactic"),
+            type = "string",
+            name = "Tactic",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tactic" },
+            },
+        }),
+        Technique = schema.new({
+            id = id.from(_N, "RuleSummary", "Technique"),
+            type = "string",
+            name = "Technique",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "technique" },
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "RuleSummary", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "service" },
+            },
+        }),
+        Language = schema.new({
+            id = id.from(_N, "RuleSummary", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "language" },
+            },
+        }),
+        Schema = schema.new({
+            id = id.from(_N, "RuleSummary", "Schema"),
+            type = "string",
+            name = "Schema",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "schema" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "RuleSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "RuleSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+    },
+})
+
+M.ListCustomDetectionRulesOutput = schema.new({
+    id = id.from(_N, "ListCustomDetectionRulesResponse"),
+    type = "structure",
+    members = {
+        Rules = schema.new({
+            id = id.from(_N, "ListCustomDetectionRulesOutput", "Rules"),
+            type = "list",
+            name = "Rules",
+            target_id = prelude.Document.id,
+            list_member = M.RuleSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "rules" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomDetectionRulesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
 M.ListDetectorsInput = schema.new({
     id = id.from(_N, "ListDetectorsRequest"),
     type = "structure",
@@ -15598,6 +16798,100 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateCustomDetectionRuleAssociationInput = schema.new({
+    id = id.from(_N, "UpdateCustomDetectionRuleAssociationRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "UpdateCustomDetectionRuleAssociationInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AssociationId = schema.new({
+            id = id.from(_N, "UpdateCustomDetectionRuleAssociationInput", "AssociationId"),
+            type = "string",
+            name = "AssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "UpdateCustomDetectionRuleAssociationInput", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mode" },
+            },
+        }),
+    },
+})
+
+M.UpdateCustomDetectionRuleAssociationOutput = schema.new({
+    id = id.from(_N, "UpdateCustomDetectionRuleAssociationResponse"),
+    type = "structure",
+})
+
+M.UpdateCustomDetectionRuleOrgConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateCustomDetectionRuleOrgConfigurationRequest"),
+    type = "structure",
+    members = {
+        RuleId = schema.new({
+            id = id.from(_N, "UpdateCustomDetectionRuleOrgConfigurationInput", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "UpdateCustomDetectionRuleOrgConfigurationInput", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mode" },
+            },
+        }),
+        IncludeAccountIds = schema.new({
+            id = id.from(_N, "UpdateCustomDetectionRuleOrgConfigurationInput", "IncludeAccountIds"),
+            type = "list",
+            name = "IncludeAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "includeAccountIds" },
+            },
+        }),
+        ExcludeAccountIds = schema.new({
+            id = id.from(_N, "UpdateCustomDetectionRuleOrgConfigurationInput", "ExcludeAccountIds"),
+            type = "list",
+            name = "ExcludeAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "excludeAccountIds" },
+            },
+        }),
+    },
+})
+
+M.UpdateCustomDetectionRuleOrgConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateCustomDetectionRuleOrgConfigurationResponse"),
+    type = "structure",
+})
+
 M.UpdateDetectorInput = schema.new({
     id = id.from(_N, "UpdateDetectorRequest"),
     type = "structure",
@@ -16674,6 +17968,30 @@ M.ArchiveFindings = schema.operation({
     },
 })
 
+M.CreateCustomDetectionRuleAssociation = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateCustomDetectionRuleAssociation"),
+    input = M.CreateCustomDetectionRuleAssociationInput,
+    output = M.CreateCustomDetectionRuleAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-detection-rule/association" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCustomDetectionRuleOrgConfiguration = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateCustomDetectionRuleOrgConfiguration"),
+    input = M.CreateCustomDetectionRuleOrgConfigurationInput,
+    output = M.CreateCustomDetectionRuleOrgConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-detection-rule/org-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateDetector = schema.operation({
     id = id.from("com.amazonaws.guardduty", "CreateDetector"),
     input = M.CreateDetectorInput,
@@ -16812,6 +18130,30 @@ M.DeclineInvitations = schema.operation({
     output = M.DeclineInvitationsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/invitation/decline" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomDetectionRuleAssociation = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteCustomDetectionRuleAssociation"),
+    input = M.DeleteCustomDetectionRuleAssociationInput,
+    output = M.DeleteCustomDetectionRuleAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/custom-detection-rule/rule/{RuleId}/association/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCustomDetectionRuleOrgConfiguration = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "DeleteCustomDetectionRuleOrgConfiguration"),
+    input = M.DeleteCustomDetectionRuleOrgConfigurationInput,
+    output = M.DeleteCustomDetectionRuleOrgConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/custom-detection-rule/org-configuration/{RuleId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -17052,6 +18394,42 @@ M.GetCoverageStatistics = schema.operation({
     output = M.GetCoverageStatisticsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/coverage/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomDetectionRule = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetCustomDetectionRule"),
+    input = M.GetCustomDetectionRuleInput,
+    output = M.GetCustomDetectionRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-detection-rule/rule/{RuleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomDetectionRuleAssociation = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetCustomDetectionRuleAssociation"),
+    input = M.GetCustomDetectionRuleAssociationInput,
+    output = M.GetCustomDetectionRuleAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-detection-rule/rule/{RuleId}/association/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCustomDetectionRuleOrgConfiguration = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetCustomDetectionRuleOrgConfiguration"),
+    input = M.GetCustomDetectionRuleOrgConfigurationInput,
+    output = M.GetCustomDetectionRuleOrgConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-detection-rule/org-configuration/{RuleId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -17304,6 +18682,42 @@ M.ListCoverage = schema.operation({
     output = M.ListCoverageOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/coverage" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomDetectionRuleAssociations = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListCustomDetectionRuleAssociations"),
+    input = M.ListCustomDetectionRuleAssociationsInput,
+    output = M.ListCustomDetectionRuleAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-detection-rule/association" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomDetectionRuleOrgConfigurations = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListCustomDetectionRuleOrgConfigurations"),
+    input = M.ListCustomDetectionRuleOrgConfigurationsInput,
+    output = M.ListCustomDetectionRuleOrgConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/custom-detection-rule/org-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCustomDetectionRules = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListCustomDetectionRules"),
+    input = M.ListCustomDetectionRulesInput,
+    output = M.ListCustomDetectionRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/custom-detection-rule/rule" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -17568,6 +18982,30 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomDetectionRuleAssociation = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateCustomDetectionRuleAssociation"),
+    input = M.UpdateCustomDetectionRuleAssociationInput,
+    output = M.UpdateCustomDetectionRuleAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/custom-detection-rule/rule/{RuleId}/association/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCustomDetectionRuleOrgConfiguration = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "UpdateCustomDetectionRuleOrgConfiguration"),
+    input = M.UpdateCustomDetectionRuleOrgConfigurationInput,
+    output = M.UpdateCustomDetectionRuleOrgConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/custom-detection-rule/org-configuration/{RuleId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
