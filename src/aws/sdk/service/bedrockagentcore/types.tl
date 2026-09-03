@@ -1622,7 +1622,7 @@ local record M
     record CloudWatchLogsSource
         -- The list of agent service names to filter traces within the specified log groups.
         serviceNames: {string}
-        -- The list of CloudWatch log group names to read agent traces from. Maximum of 5 log groups.
+        -- The list of CloudWatch log group names to read agent traces from. Maximum of 10 log groups.
         logGroupNames: {string}
         -- Optional filter configuration to narrow down which sessions to evaluate.
         filterConfig: CloudWatchFilterConfig

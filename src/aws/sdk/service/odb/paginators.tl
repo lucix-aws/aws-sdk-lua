@@ -274,6 +274,24 @@ function M.items_list_exascale_db_storage_vaults(client, input)
     })
 end
 
+--- Returns a page iterator for listFlexComponents.
+function M.pages_list_flex_components(client, input)
+    return paginator.pages(client, "listFlexComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flexComponents",
+    })
+end
+
+--- Returns an item iterator for listFlexComponents.
+function M.items_list_flex_components(client, input)
+    return paginator.items(client, "listFlexComponents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flexComponents",
+    })
+end
+
 --- Returns a page iterator for listGiMinorVersions.
 function M.pages_list_gi_minor_versions(client, input)
     return paginator.pages(client, "listGiMinorVersions", input, {

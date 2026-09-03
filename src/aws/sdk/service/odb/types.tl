@@ -2942,9 +2942,9 @@ local record M
         dataCollectionOptions: DataCollectionOptions
         -- The Oracle license model to apply to the Exascale VM cluster.
         licenseModel: string
-        -- The port number for TCP connections to the single client access name (SCAN) listener.
+        -- The port number for TCP connections to the Single Client Access Name (SCAN) listener.
         scanListenerPortTcp: number
-        -- The port number for TCP connections with SSL to the single client access name (SCAN) listener.
+        -- The port number for TCP connections with SSL to the Single Client Access Name (SCAN) listener.
         scanListenerPortTcpSsl: number
         -- The shape attribute for the Exascale VM cluster.
         shapeAttribute: string
@@ -2954,7 +2954,7 @@ local record M
         tags: {string : string}
         -- The time zone for the Exascale VM cluster.
         timeZone: string
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, the Amazon Web Services SDK automatically generates one and uses it for the request to ensure idempotency. The client token is valid for up to 24 hours after it's first used.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you submit the same request twice with the same client token, the service ignores the second request and returns the result of the first. If you don't specify a client token, the AWS SDK automatically generates one. The client token is valid for up to 24 hours after it's first used.
         clientToken: string
     end
 
@@ -2990,7 +2990,7 @@ local record M
         tags: {string : string}
         -- The time zone for the Exascale storage vault.
         timeZone: string
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, the Amazon Web Services SDK automatically generates one and uses it for the request to ensure idempotency. The client token is valid for up to 24 hours after it's first used.
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If you submit the same request twice with the same client token, the service ignores the second request and returns the result of the first. If you don't specify a client token, the AWS SDK automatically generates one. The client token is valid for up to 24 hours after it's first used.
         clientToken: string
     end
 
@@ -3513,9 +3513,9 @@ local record M
         scanDnsRecordId: string
         -- The OCID of the SCAN IP addresses that are associated with the Exascale VM cluster.
         scanIpIds: {string}
-        -- The port number for TCP connections to the single client access name (SCAN) listener for the Exascale VM cluster.
+        -- The port number for TCP connections to the Single Client Access Name (SCAN) listener for the Exascale VM cluster.
         scanListenerPortTcp: number
-        -- The port number for TCP connections with SSL to the single client access name (SCAN) listener for the Exascale VM cluster.
+        -- The port number for TCP connections with SSL to the Single Client Access Name (SCAN) listener for the Exascale VM cluster.
         scanListenerPortTcpSsl: number
         -- The hardware model name of the Exadata infrastructure that's running the Exascale VM cluster.
         shape: string
@@ -3605,9 +3605,9 @@ local record M
         scanDnsRecordId: string
         -- The OCID of the SCAN IP addresses that are associated with the Exascale VM cluster.
         scanIpIds: {string}
-        -- The port number for TCP connections to the single client access name (SCAN) listener for the Exascale VM cluster.
+        -- The port number for TCP connections to the Single Client Access Name (SCAN) listener for the Exascale VM cluster.
         scanListenerPortTcp: number
-        -- The port number for TCP connections with SSL to the single client access name (SCAN) listener for the Exascale VM cluster.
+        -- The port number for TCP connections with SSL to the Single Client Access Name (SCAN) listener for the Exascale VM cluster.
         scanListenerPortTcpSsl: number
         -- The hardware model name of the Exadata infrastructure that's running the Exascale VM cluster.
         shape: string
@@ -3858,6 +3858,37 @@ local record M
         statusReason: string
         -- The unique identifier of the Exascale storage vault.
         exascaleDbStorageVaultId: string
+    end
+
+    enum HardwareType
+        "COMPUTE"
+        "CELL"
+    end
+
+    -- Information about a flex component that's available for an Exadata infrastructure. A flex component defines the hardware resources, such as CPU cores, memory, and storage, that can be allocated to a shape.
+    record FlexComponentSummary
+        -- The maximum number of CPU cores that can be enabled for the flex component.
+        availableCoreCount: number
+        -- The maximum amount of database storage, in gigabytes (GB), that can be enabled for the flex component.
+        availableDbStorageInGBs: number
+        -- The maximum amount of local storage, in gigabytes (GB), that can be enabled for the flex component.
+        availableLocalStorageInGBs: number
+        -- The maximum amount of memory, in gigabytes (GB), that can be enabled for the flex component.
+        availableMemoryInGBs: number
+        -- The OCI model compute model used when you create or clone an instance: ECPU or OCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers. An OCPU is a legacy physical measure of compute resources. OCPUs are based on the physical core of a processor with hyper-threading enabled.
+        computeModel: string
+        -- A summary description of the flex component.
+        descriptionSummary: string
+        -- The type of hardware for the flex component. Valid values are COMPUTE for compute servers and CELL for storage servers.
+        hardwareType: string
+        -- The minimum number of CPU cores that can be enabled for the flex component.
+        minimumCoreCount: number
+        -- The name of the flex component.
+        name: string
+        -- The runtime minimum number of CPU cores that can be enabled for the flex component.
+        runtimeMinimumCoreCount: number
+        -- The shape that uses the flex component.
+        shape: string
     end
 
     record GetOciOnboardingStatusInput
@@ -4206,6 +4237,22 @@ local record M
         nextToken: string
         -- The list of shapes and their properties.
         dbSystemShapes: {DbSystemShapeSummary}
+    end
+
+    record ListFlexComponentsInput
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+        -- The shape to return flex components for. For a list of valid shapes, use the ListDbSystemShapes operation.
+        shape: string
+    end
+
+    record ListFlexComponentsOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of flex components along with their properties.
+        flexComponents: {FlexComponentSummary}
     end
 
     record ListGiMinorVersionsInput

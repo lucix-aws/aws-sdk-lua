@@ -51716,6 +51716,12 @@ M.OnlineStoreConfigUpdate = schema.new({
             target_id = id.from(_N, "TtlDuration"),
             target = M.TtlDuration,
         }),
+        StorageType = schema.new({
+            id = id.from(_N, "OnlineStoreConfigUpdate", "StorageType"),
+            type = "string",
+            name = "StorageType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

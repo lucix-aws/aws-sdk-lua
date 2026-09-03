@@ -4689,6 +4689,11 @@ local record M
         "failed"
     end
 
+    enum ZeroSizePreference
+        "retain"
+        "default"
+    end
+
     -- Represents the allocation of capacity from a source reservation to an interruptible reservation, tracking current and target instance counts for allocation management.
     record InterruptibleCapacityAllocation
         -- The current number of instances allocated to the interruptible reservation.
@@ -4701,6 +4706,8 @@ local record M
         InterruptibleCapacityReservationId: string
         -- The type of interruption policy applied to the interruptible reservation.
         InterruptionType: string
+        -- Specifies how Amazon EC2 handles the interruptible Capacity Reservation when you reduce its allocation to zero instances. A value of retain keeps the interruptible Capacity Reservation active at zero capacity so that you can allocate instances to it again later. A value of default cancels the interruptible Capacity Reservation and returns the capacity to your source Capacity Reservation.
+        ZeroSizePreference: string
     end
 
     -- Contains information about how and when instances in an interruptible reservation can be terminated when capacity is reclaimed.
@@ -4864,6 +4871,8 @@ local record M
         InterruptibleCapacityAllocation: InterruptibleCapacityAllocation
         -- Information about the interruption configuration and association with the source reservation for interruptible Capacity Reservations.
         InterruptionInfo: InterruptionInfo
+        -- The zero-size preference configured for the interruptible Capacity Reservation. A value of retain keeps the interruptible Capacity Reservation active at zero capacity when you reduce its allocation to zero. A value of default cancels the interruptible Capacity Reservation when you reduce its allocation to zero.
+        ZeroSizePreference: string
     end
 
     record CreateCapacityReservationOutput
@@ -9885,6 +9894,8 @@ local record M
         DryRun: boolean
         -- The tags to apply to the interruptible Capacity Reservation during creation.
         TagSpecifications: {TagSpecification}
+        -- Specifies the behavior for the interruptible Capacity Reservation when you reduce its allocation to zero instances. Specify retain to keep the interruptible Capacity Reservation active at zero capacity so that you can allocate instances to it again later. Specify default to cancel the interruptible Capacity Reservation and return the capacity to your source Capacity Reservation. The default value is default.
+        ZeroSizePreference: string
     end
 
     record CreateInterruptibleCapacityReservationAllocationOutput
@@ -10128,6 +10139,8 @@ local record M
         Description: string
         -- The state of the internet registry association. Valid values: pending-activation | pending-enable | create-in-progress | create-failed | enable-in-progress | enable-complete | enable-failed | delete-in-progress | delete-complete | delete-failed.
         State: string
+        -- A message describing the current state of the internet registry association, including additional details such as the reason for a failure.
+        StateMessage: string
         -- The XML content for the child request to be submitted to the internet registry to complete the BPKI setup.
         ChildRequestXml: string
         -- The tags assigned to the internet registry association.
@@ -25925,7 +25938,7 @@ local record M
         -- Reports impaired functionality that stems from an attached Amazon EBS volume that is
         -- unreachable and unable to complete I/O operations.
         AttachedEbsStatus: EbsStatusSummary
-        -- Reports impaired functionality that stems from issues with applications running on the instance.
+        -- Reports the application-level health status for the instance.
         ApplicationStatus: ApplicationStatusSummary
     end
 
@@ -44019,6 +44032,8 @@ local record M
         TargetInstanceCount: number
         -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response.
         DryRun: boolean
+        -- Specifies the updated behavior for the interruptible Capacity Reservation when you reduce its allocation to zero instances. Specify retain to keep the interruptible Capacity Reservation active at zero capacity so that you can allocate instances to it again later. Specify default to cancel the interruptible Capacity Reservation and return the capacity to your source Capacity Reservation.
+        ZeroSizePreference: string
     end
 
     record UpdateInterruptibleCapacityReservationAllocationOutput

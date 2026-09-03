@@ -7055,6 +7055,7 @@ local record M
 
     enum StorageType
         "Standard"
+        "Standard_V2"
         "InMemory"
     end
 
@@ -7082,7 +7083,7 @@ local record M
         EnableOnlineStore: boolean
         -- Time to live duration, where the record is hard deleted after the expiration time is reached; ExpiresAt = EventTime + TtlDuration. For information on HardDelete, see the DeleteRecord API in the Amazon SageMaker API Reference guide.
         TtlDuration: TtlDuration
-        -- Option for different tiers of low latency storage for real-time data retrieval. Standard: A managed low latency data store for feature groups. InMemory: A managed data store for feature groups that supports very low latency retrieval.
+        -- Option for different tiers of low latency storage for real-time data retrieval. Standard: A managed low latency data store for feature groups. Standard_V2: A managed low latency data store for feature groups that supports partial updates to individual features using the UpdateRecord operation. Choose this storage type at feature group creation time if your use case requires updating specific feature values without rewriting the entire record. InMemory: A managed data store for feature groups that supports very low latency retrieval.
         StorageType: string
     end
 
@@ -20125,6 +20126,8 @@ local record M
     record OnlineStoreConfigUpdate
         -- Time to live duration, where the record is hard deleted after the expiration time is reached; ExpiresAt = EventTime + TtlDuration. For information on HardDelete, see the DeleteRecord API in the Amazon SageMaker API Reference guide.
         TtlDuration: TtlDuration
+        -- The online store storage type to migrate the feature group to. Use this parameter to migrate an existing feature group from Standard to Standard_V2 storage format, enabling support for the UpdateRecord operation. Migration is a one-way operation and cannot be reversed.
+        StorageType: string
     end
 
     -- The trial that a trial component is associated with and the experiment the trial is part of. A component might not be associated with a trial. A component can be associated with multiple trials.

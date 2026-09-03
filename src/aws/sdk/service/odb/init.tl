@@ -73,6 +73,7 @@ local record Client
     listDbSystemShapes: function(Client, types.ListDbSystemShapesInput, ? base_client.InvokeOptions): async.Operation<types.ListDbSystemShapesOutput>
     listExadbVmClusters: function(Client, types.ListExadbVmClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListExadbVmClustersOutput>
     listExascaleDbStorageVaults: function(Client, types.ListExascaleDbStorageVaultsInput, ? base_client.InvokeOptions): async.Operation<types.ListExascaleDbStorageVaultsOutput>
+    listFlexComponents: function(Client, types.ListFlexComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlexComponentsOutput>
     listGiMinorVersions: function(Client, types.ListGiMinorVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListGiMinorVersionsOutput>
     listGiVersions: function(Client, types.ListGiVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListGiVersionsOutput>
     listOdbNetworks: function(Client, types.ListOdbNetworksInput, ? base_client.InvokeOptions): async.Operation<types.ListOdbNetworksOutput>
@@ -359,6 +360,10 @@ end
 
 function C:listExascaleDbStorageVaults(input: types.ListExascaleDbStorageVaultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExascaleDbStorageVaultsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExascaleDbStorageVaults as schema.OperationSchema, input, options) as async.Operation<types.ListExascaleDbStorageVaultsOutput>
+end
+
+function C:listFlexComponents(input: types.ListFlexComponentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlexComponentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlexComponents as schema.OperationSchema, input, options) as async.Operation<types.ListFlexComponentsOutput>
 end
 
 function C:listGiMinorVersions(input: types.ListGiMinorVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGiMinorVersionsOutput>

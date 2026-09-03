@@ -14308,6 +14308,16 @@ M.InterruptibleCapacityAllocation = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "InterruptionType" },
             },
         }),
+        ZeroSizePreference = schema.new({
+            id = id.from(_N, "InterruptibleCapacityAllocation", "ZeroSizePreference"),
+            type = "string",
+            name = "ZeroSizePreference",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "zeroSizePreference" },
+                [traits.EC2_QUERY_NAME] = { name = "ZeroSizePreference" },
+            },
+        }),
     },
 })
 
@@ -14655,6 +14665,16 @@ M.CapacityReservation = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "interruptionInfo" },
                 [traits.EC2_QUERY_NAME] = { name = "InterruptionInfo" },
+            },
+        }),
+        ZeroSizePreference = schema.new({
+            id = id.from(_N, "CapacityReservation", "ZeroSizePreference"),
+            type = "string",
+            name = "ZeroSizePreference",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "zeroSizePreference" },
+                [traits.EC2_QUERY_NAME] = { name = "ZeroSizePreference" },
             },
         }),
     },
@@ -21400,6 +21420,12 @@ M.CreateInterruptibleCapacityReservationAllocationInput = schema.new({
                 [traits.XML_NAME] = { name = "TagSpecification" },
             },
         }),
+        ZeroSizePreference = schema.new({
+            id = id.from(_N, "CreateInterruptibleCapacityReservationAllocationInput", "ZeroSizePreference"),
+            type = "string",
+            name = "ZeroSizePreference",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -22074,6 +22100,16 @@ M.IpamInternetRegistryAssociation = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "state" },
                 [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+        StateMessage = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "StateMessage"),
+            type = "string",
+            name = "StateMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "stateMessage" },
+                [traits.EC2_QUERY_NAME] = { name = "StateMessage" },
             },
         }),
         ChildRequestXml = schema.new({
@@ -110315,15 +110351,18 @@ M.UpdateInterruptibleCapacityReservationAllocationInput = schema.new({
             type = "integer",
             name = "TargetInstanceCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         DryRun = schema.new({
             id = id.from(_N, "UpdateInterruptibleCapacityReservationAllocationInput", "DryRun"),
             type = "boolean",
             name = "DryRun",
             target_id = prelude.Boolean.id,
+        }),
+        ZeroSizePreference = schema.new({
+            id = id.from(_N, "UpdateInterruptibleCapacityReservationAllocationInput", "ZeroSizePreference"),
+            type = "string",
+            name = "ZeroSizePreference",
+            target_id = prelude.String.id,
         }),
     },
 })

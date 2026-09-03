@@ -273,6 +273,39 @@ local record M
     record PutRecordOutput
     end
 
+    -- The service rejected the update because the provided EventTime is
+    -- older than the record's current EventTime. To persist the update, retrieve
+    -- the record's latest EventTime and resubmit the request with an
+    -- EventTime that is equal to or newer than the current value.
+    record ConflictException
+        Message: string
+    end
+
+    record UpdateRecordInput
+        -- The identifier for the feature group that contains the record to update. You can
+        -- specify one of the following:
+        -- The feature group name.
+        -- The feature group Amazon Resource Name (ARN).
+        FeatureGroupName: string
+        -- The value that uniquely identifies the record in the feature group. This must
+        -- match the value defined by the feature group's record identifier feature.
+        RecordIdentifierValueAsString: string
+        -- The feature values to write to the record.
+        Features: {FeatureValue}
+        -- The target stores for the record update. By default, Amazon SageMaker Feature
+        -- Store updates the record in all stores associated with the
+        -- FeatureGroup.
+        TargetStores: {string}
+        -- The time-to-live (TTL) duration for the record. Amazon SageMaker Feature Store
+        -- deletes the record when EventTime + TtlDuration
+        -- elapses. If you omit this parameter, the record's existing TTL setting remains
+        -- unchanged. For information about HardDelete, see the DeleteRecord operation in the Amazon SageMaker API Reference.
+        TtlDuration: TtlDuration
+    end
+
+    record UpdateRecordOutput
+    end
+
 end
 
 return M

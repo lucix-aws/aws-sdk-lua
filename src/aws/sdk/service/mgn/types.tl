@@ -2,7 +2,7 @@
 
 local record M
 
-    -- Operating denied due to a file permission or access check error.
+    -- Operation denied due to a file permission or access check error.
     record AccessDeniedException
         message: string
         code: string
@@ -137,7 +137,7 @@ local record M
         resourceType: string
     end
 
-    -- The request could not be completed because its exceeded the service quota.
+    -- The request could not be completed because it exceeded the service quota.
     record ServiceQuotaExceededException
         message: string
         code: string
@@ -557,7 +557,7 @@ local record M
         s3Key: string
         -- Start export request s3 bucket owner.
         s3BucketOwner: string
-        -- Start import request tags.
+        -- Start export request tags.
         tags: {string : string}
     end
 
@@ -667,11 +667,11 @@ local record M
         modifiedCount: number
     end
 
-    -- Import task summery waves.
+    -- Import task summary waves.
     record ImportTaskSummaryWaves
-        -- Import task summery waves created count.
+        -- Import task summary waves created count.
         createdCount: number
-        -- Import task summery waves modified count.
+        -- Import task summary waves modified count.
         modifiedCount: number
     end
 
@@ -894,11 +894,11 @@ local record M
 
     -- Launch Status of the Job Post Launch Actions.
     record JobPostLaunchActionsLaunchStatus
-        -- AWS Systems Manager's Document of the of the Job Post Launch Actions.
+        -- AWS Systems Manager's Document of the Job Post Launch Actions.
         ssmDocument: SsmDocument
         -- AWS Systems Manager Document type.
         ssmDocumentType: string
-        -- AWS Systems Manager Document's execution ID of the of the Job Post Launch Actions.
+        -- AWS Systems Manager Document's execution ID of the Job Post Launch Actions.
         executionID: string
         -- AWS Systems Manager Document's execution status.
         executionStatus: string
@@ -1007,7 +1007,7 @@ local record M
         "TEST_ONLY"
     end
 
-    -- Post Launch Actions to executed on the Test or Cutover instance.
+    -- Post Launch Actions to be executed on the Test or Cutover instance.
     record PostLaunchActions
         -- Deployment type in which AWS Systems Manager Documents will be executed.
         deployment: string
@@ -1481,6 +1481,14 @@ local record M
         retryAfterSeconds: string
     end
 
+    -- Maps a source CIDR range to the corresponding target CIDR range to use in the target network.
+    record CidrMapping
+        -- The original CIDR range in the source network.
+        originalCidr: string
+        -- The updated CIDR range to use in the target network.
+        updatedCidr: string
+    end
+
     enum SourceEnvironment
         "NSX"
         "VSPHERE"
@@ -1540,6 +1548,11 @@ local record M
         s3BucketOwner: string
     end
 
+    enum VpcProvisioningStrategy
+        "CREATE_NEW"
+        "USE_EXISTING"
+    end
+
     record CreateNetworkMigrationDefinitionInput
         -- The name of the network migration definition.
         name: string
@@ -1553,6 +1566,10 @@ local record M
         targetNetwork: TargetNetwork
         -- The target deployment configuration for the migrated network.
         targetDeployment: string
+        -- Specifies whether to create new target VPCs or use existing ones. Set to CREATE_NEW to provision new target VPCs as part of the migration, or USE_EXISTING to migrate into existing VPCs in the target account.
+        vpcProvisioningStrategy: string
+        -- A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when vpcProvisioningStrategy is set to USE_EXISTING.
+        cidrMappings: {CidrMapping}
         -- Tags to assign to the network migration definition.
         tags: {string : string}
         -- Scope tags for the network migration definition to control access and organization.
@@ -1576,6 +1593,10 @@ local record M
         targetNetwork: TargetNetwork
         -- The target deployment configuration for the migrated network.
         targetDeployment: string
+        -- Indicates whether the migration creates new target VPCs or uses existing ones. CREATE_NEW provisions new target VPCs; USE_EXISTING migrates into existing VPCs in the target account.
+        vpcProvisioningStrategy: string
+        -- A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings apply only when vpcProvisioningStrategy is set to USE_EXISTING.
+        cidrMappings: {CidrMapping}
         -- The timestamp when the network migration definition was created.
         createdAt: number
         -- The timestamp when the network migration definition was last updated.
@@ -1616,6 +1637,10 @@ local record M
         targetNetwork: TargetNetwork
         -- The target deployment configuration for the migrated network.
         targetDeployment: string
+        -- Indicates whether the migration creates new target VPCs or uses existing ones. CREATE_NEW provisions new target VPCs; USE_EXISTING migrates into existing VPCs in the target account.
+        vpcProvisioningStrategy: string
+        -- A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings apply only when vpcProvisioningStrategy is set to USE_EXISTING.
+        cidrMappings: {CidrMapping}
         -- The timestamp when the network migration definition was created.
         createdAt: number
         -- The timestamp when the network migration definition was last updated.
@@ -1897,7 +1922,7 @@ local record M
     record NetworkMigrationCodeGenerationArtifact
         -- The unique identifier of the artifact.
         artifactID: string
-        -- The type of the artifact, such as CLOUDFORMATION_TEMPLATE or TERRAFORM_MODULE.
+        -- The type of the generated artifact.
         artifactType: string
         -- The sub-type of the artifact for further classification.
         artifactSubType: string
@@ -2221,7 +2246,7 @@ local record M
         networkMigrationDefinitionID: string
         -- The unique identifier of the segment.
         segmentID: string
-        -- The type of the segment, such as VPC, subnet, or security group.
+        -- The category of the network migration segment. A segment groups the network constructs (such as VPCs, subnets, and security groups) that are migrated together. Valid values: WORKLOAD, APPLIANCE.
         segmentType: string
         -- The name of the segment.
         name: string
@@ -2523,6 +2548,10 @@ local record M
         targetNetwork: TargetNetworkUpdate
         -- The updated target deployment configuration.
         targetDeployment: string
+        -- Updates whether the migration creates new target VPCs or uses existing ones. Set to USE_EXISTING to migrate into existing VPCs in the target account, or to CREATE_NEW to provision new target VPCs.
+        vpcProvisioningStrategy: string
+        -- The updated list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when vpcProvisioningStrategy is set to USE_EXISTING.
+        cidrMappings: {CidrMapping}
         -- The updated scope tags for the network migration definition.
         scopeTags: {string : string}
     end
@@ -2544,6 +2573,10 @@ local record M
         targetNetwork: TargetNetwork
         -- The target deployment configuration for the migrated network.
         targetDeployment: string
+        -- Indicates whether the migration creates new target VPCs or uses existing ones. CREATE_NEW provisions new target VPCs; USE_EXISTING migrates into existing VPCs in the target account.
+        vpcProvisioningStrategy: string
+        -- A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings apply only when vpcProvisioningStrategy is set to USE_EXISTING.
+        cidrMappings: {CidrMapping}
         -- The timestamp when the network migration definition was created.
         createdAt: number
         -- The timestamp when the network migration definition was last updated.
@@ -2574,7 +2607,7 @@ local record M
         networkMigrationDefinitionID: string
         -- The unique identifier of the segment.
         segmentID: string
-        -- The type of the segment, such as VPC, subnet, or security group.
+        -- The category of the network migration segment. A segment groups the network constructs (such as VPCs, subnets, and security groups) that are migrated together. Valid values: WORKLOAD, APPLIANCE.
         segmentType: string
         -- The name of the segment.
         name: string
@@ -3086,7 +3119,7 @@ local record M
 
     -- Lifecycle last Test finalized.
     record LifeCycleLastTestFinalized
-        -- Lifecycle Test failed API call date and time.
+        -- Lifecycle Test finalized API call date and time.
         apiCallDateTime: string
     end
 
@@ -3129,7 +3162,7 @@ local record M
 
     -- Lifecycle.
     record LifeCycle
-        -- Lifecycle added to service data and time.
+        -- Lifecycle added to service date and time.
         addedToServiceDateTime: string
         -- Lifecycle replication initiation date and time.
         firstByteDateTime: string
@@ -3278,7 +3311,7 @@ local record M
         maxResults: number
         -- Request to filter Source Servers list by next token.
         nextToken: string
-        -- Request to filter Source Servers list by Accoun ID.
+        -- Request to filter Source Servers list by Account ID.
         accountID: string
     end
 
@@ -3314,9 +3347,9 @@ local record M
     end
 
     record DescribeSourceServersOutput
-        -- Request to filter Source Servers list by item.
+        -- The list of returned Source Servers.
         items: {SourceServer}
-        -- Request to filter Source Servers next token.
+        -- The token of the next Source Server to retrieve.
         nextToken: string
     end
 

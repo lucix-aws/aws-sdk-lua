@@ -886,6 +886,16 @@ M.DeleteApplicationInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        Force = schema.new({
+            id = id.from(_N, "DeleteApplicationInput", "Force"),
+            type = "boolean",
+            name = "Force",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+                [traits.HTTP_QUERY] = { name = "force" },
+            },
+        }),
     },
 })
 
@@ -1896,6 +1906,22 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.UpdateApplicationInput = schema.new({

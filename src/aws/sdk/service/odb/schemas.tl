@@ -22,6 +22,8 @@ M.AutonomousDatabaseVersionList = schema.new({ type = "list", list_member = M.Au
 
 M.DbSystemShapeList = schema.new({ type = "list", list_member = M.DbSystemShapeSummary })
 
+M.FlexComponentList = schema.new({ type = "list", list_member = M.FlexComponentSummary })
+
 M.GiMinorVersionList = schema.new({ type = "list", list_member = M.GiMinorVersionSummary })
 
 M.GiVersionList = schema.new({ type = "list", list_member = M.GiVersionSummary })
@@ -11117,6 +11119,79 @@ M.UpdateExascaleDbStorageVaultOutput = schema.new({
     },
 })
 
+M.FlexComponentSummary = schema.new({
+    id = id.from(_N, "FlexComponentSummary"),
+    type = "structure",
+    members = {
+        availableCoreCount = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "availableCoreCount"),
+            type = "integer",
+            name = "availableCoreCount",
+            target_id = prelude.Integer.id,
+        }),
+        availableDbStorageInGBs = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "availableDbStorageInGBs"),
+            type = "integer",
+            name = "availableDbStorageInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        availableLocalStorageInGBs = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "availableLocalStorageInGBs"),
+            type = "integer",
+            name = "availableLocalStorageInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        availableMemoryInGBs = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "availableMemoryInGBs"),
+            type = "integer",
+            name = "availableMemoryInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        computeModel = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "computeModel"),
+            type = "string",
+            name = "computeModel",
+            target_id = prelude.String.id,
+        }),
+        descriptionSummary = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "descriptionSummary"),
+            type = "string",
+            name = "descriptionSummary",
+            target_id = prelude.String.id,
+        }),
+        hardwareType = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "hardwareType"),
+            type = "string",
+            name = "hardwareType",
+            target_id = prelude.String.id,
+        }),
+        minimumCoreCount = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "minimumCoreCount"),
+            type = "integer",
+            name = "minimumCoreCount",
+            target_id = prelude.Integer.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        runtimeMinimumCoreCount = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "runtimeMinimumCoreCount"),
+            type = "integer",
+            name = "runtimeMinimumCoreCount",
+            target_id = prelude.Integer.id,
+        }),
+        shape = schema.new({
+            id = id.from(_N, "FlexComponentSummary", "shape"),
+            type = "string",
+            name = "shape",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetOciOnboardingStatusInput = schema.new({
     id = id.from(_N, "GetOciOnboardingStatusInput"),
     type = "structure",
@@ -12035,6 +12110,60 @@ M.ListDbSystemShapesOutput = schema.new({
             name = "dbSystemShapes",
             target_id = prelude.Document.id,
             list_member = M.DbSystemShapeSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListFlexComponentsInput = schema.new({
+    id = id.from(_N, "ListFlexComponentsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListFlexComponentsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListFlexComponentsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        shape = schema.new({
+            id = id.from(_N, "ListFlexComponentsInput", "shape"),
+            type = "string",
+            name = "shape",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFlexComponentsOutput = schema.new({
+    id = id.from(_N, "ListFlexComponentsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListFlexComponentsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        flexComponents = schema.new({
+            id = id.from(_N, "ListFlexComponentsOutput", "flexComponents"),
+            type = "list",
+            name = "flexComponents",
+            target_id = prelude.Document.id,
+            list_member = M.FlexComponentSummary,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -13504,6 +13633,17 @@ M.ListExascaleDbStorageVaults = schema.operation({
     id = id.from("com.amazonaws.odb", "ListExascaleDbStorageVaults"),
     input = M.ListExascaleDbStorageVaultsInput,
     output = M.ListExascaleDbStorageVaultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFlexComponents = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListFlexComponents"),
+    input = M.ListFlexComponentsInput,
+    output = M.ListFlexComponentsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

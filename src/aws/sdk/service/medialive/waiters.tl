@@ -262,6 +262,32 @@ function M.wait_until_channel_stopped(client, input, options)
                     errorType = "InternalServerErrorException",
                 },
             },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "NotFoundException",
+                },
+            },
         },
     }, options)
 end

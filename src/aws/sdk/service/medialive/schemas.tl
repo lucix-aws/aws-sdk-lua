@@ -232,6 +232,8 @@ M.__listOfInputChannelLevel = schema.new({ type = "list", list_member = M.InputC
 
 M.__listOfMediaPackageAdditionalDestinations = schema.new({ type = "list", list_member = M.MediaPackageAdditionalDestinations })
 
+M.__listOfOutputLocationRef = schema.new({ type = "list", list_member = M.OutputLocationRef })
+
 M.__listOfAudioPid = schema.new({ type = "list", list_member = M.AudioPid })
 
 M.__listOfAudioTrack = schema.new({ type = "list", list_member = M.AudioTrack })
@@ -9465,6 +9467,145 @@ M.ArchiveGroupSettings = schema.new({
     },
 })
 
+M.AbWatermarkingCustomProfile = schema.new({
+    id = id.from(_N, "AbWatermarkingCustomProfile"),
+    type = "structure",
+    members = {
+        EmbeddingFrequency = schema.new({
+            id = id.from(_N, "AbWatermarkingCustomProfile", "EmbeddingFrequency"),
+            type = "double",
+            name = "EmbeddingFrequency",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "embeddingFrequency" },
+            },
+        }),
+        SceneCut = schema.new({
+            id = id.from(_N, "AbWatermarkingCustomProfile", "SceneCut"),
+            type = "double",
+            name = "SceneCut",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sceneCut" },
+            },
+        }),
+        TargetPsnr = schema.new({
+            id = id.from(_N, "AbWatermarkingCustomProfile", "TargetPsnr"),
+            type = "double",
+            name = "TargetPsnr",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "targetPsnr" },
+            },
+        }),
+    },
+})
+
+M.CmafIngestAbWatermarkerIrdetoSettings = schema.new({
+    id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings"),
+    type = "structure",
+    members = {
+        AdditionalDestinationsAlternateDestinations = schema.new({
+            id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings", "AdditionalDestinationsAlternateDestinations"),
+            type = "list",
+            name = "AdditionalDestinationsAlternateDestinations",
+            target_id = prelude.Document.id,
+            list_member = M.OutputLocationRef,
+            traits = {
+                [traits.JSON_NAME] = { name = "additionalDestinationsAlternateDestinations" },
+            },
+        }),
+        AlternateDestination = schema.new({
+            id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings", "AlternateDestination"),
+            type = "structure",
+            name = "AlternateDestination",
+            target_id = id.from(_N, "OutputLocationRef"),
+            target = M.OutputLocationRef,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "alternateDestination" },
+            },
+        }),
+        CustomProfile = schema.new({
+            id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings", "CustomProfile"),
+            type = "structure",
+            name = "CustomProfile",
+            target_id = id.from(_N, "AbWatermarkingCustomProfile"),
+            target = M.AbWatermarkingCustomProfile,
+            traits = {
+                [traits.JSON_NAME] = { name = "customProfile" },
+            },
+        }),
+        License = schema.new({
+            id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings", "License"),
+            type = "string",
+            name = "License",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "license" },
+            },
+        }),
+        OperatorId = schema.new({
+            id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings", "OperatorId"),
+            type = "integer",
+            name = "OperatorId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "operatorId" },
+            },
+        }),
+        PolyPeriod = schema.new({
+            id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings", "PolyPeriod"),
+            type = "integer",
+            name = "PolyPeriod",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "polyPeriod" },
+            },
+        }),
+        Profile = schema.new({
+            id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings", "Profile"),
+            type = "string",
+            name = "Profile",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "profile" },
+            },
+        }),
+        WatermarkIdLength = schema.new({
+            id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings", "WatermarkIdLength"),
+            type = "string",
+            name = "WatermarkIdLength",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "watermarkIdLength" },
+            },
+        }),
+    },
+})
+
+M.CmafIngestWatermarkingSettings = schema.new({
+    id = id.from(_N, "CmafIngestWatermarkingSettings"),
+    type = "structure",
+    members = {
+        CmafIngestAbWatermarkerIrdetoSettings = schema.new({
+            id = id.from(_N, "CmafIngestWatermarkingSettings", "CmafIngestAbWatermarkerIrdetoSettings"),
+            type = "structure",
+            name = "CmafIngestAbWatermarkerIrdetoSettings",
+            target_id = id.from(_N, "CmafIngestAbWatermarkerIrdetoSettings"),
+            target = M.CmafIngestAbWatermarkerIrdetoSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "cmafIngestAbWatermarkerIrdetoSettings" },
+            },
+        }),
+    },
+})
+
 M.CmafIngestGroupSettings = schema.new({
     id = id.from(_N, "CmafIngestGroupSettings"),
     type = "structure",
@@ -9624,6 +9765,16 @@ M.CmafIngestGroupSettings = schema.new({
             list_member = M.AdditionalDestinations,
             traits = {
                 [traits.JSON_NAME] = { name = "additionalDestinations" },
+            },
+        }),
+        WatermarkingSettings = schema.new({
+            id = id.from(_N, "CmafIngestGroupSettings", "WatermarkingSettings"),
+            type = "structure",
+            name = "WatermarkingSettings",
+            target_id = id.from(_N, "CmafIngestWatermarkingSettings"),
+            target = M.CmafIngestWatermarkingSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "watermarkingSettings" },
             },
         }),
     },
@@ -10441,6 +10592,108 @@ M.MediaConnectRouterGroupSettings = schema.new({
     },
 })
 
+M.MediaPackageV2AbWatermarkerIrdetoSettings = schema.new({
+    id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings"),
+    type = "structure",
+    members = {
+        AdditionalDestinationsAlternateDestinations = schema.new({
+            id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings", "AdditionalDestinationsAlternateDestinations"),
+            type = "list",
+            name = "AdditionalDestinationsAlternateDestinations",
+            target_id = prelude.Document.id,
+            list_member = M.OutputLocationRef,
+            traits = {
+                [traits.JSON_NAME] = { name = "additionalDestinationsAlternateDestinations" },
+            },
+        }),
+        AlternateDestination = schema.new({
+            id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings", "AlternateDestination"),
+            type = "structure",
+            name = "AlternateDestination",
+            target_id = id.from(_N, "OutputLocationRef"),
+            target = M.OutputLocationRef,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "alternateDestination" },
+            },
+        }),
+        CustomProfile = schema.new({
+            id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings", "CustomProfile"),
+            type = "structure",
+            name = "CustomProfile",
+            target_id = id.from(_N, "AbWatermarkingCustomProfile"),
+            target = M.AbWatermarkingCustomProfile,
+            traits = {
+                [traits.JSON_NAME] = { name = "customProfile" },
+            },
+        }),
+        License = schema.new({
+            id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings", "License"),
+            type = "string",
+            name = "License",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "license" },
+            },
+        }),
+        OperatorId = schema.new({
+            id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings", "OperatorId"),
+            type = "integer",
+            name = "OperatorId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "operatorId" },
+            },
+        }),
+        PolyPeriod = schema.new({
+            id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings", "PolyPeriod"),
+            type = "integer",
+            name = "PolyPeriod",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "polyPeriod" },
+            },
+        }),
+        Profile = schema.new({
+            id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings", "Profile"),
+            type = "string",
+            name = "Profile",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "profile" },
+            },
+        }),
+        WatermarkIdLength = schema.new({
+            id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings", "WatermarkIdLength"),
+            type = "string",
+            name = "WatermarkIdLength",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "watermarkIdLength" },
+            },
+        }),
+    },
+})
+
+M.MediaPackageV2WatermarkingSettings = schema.new({
+    id = id.from(_N, "MediaPackageV2WatermarkingSettings"),
+    type = "structure",
+    members = {
+        MediaPackageV2AbWatermarkerIrdetoSettings = schema.new({
+            id = id.from(_N, "MediaPackageV2WatermarkingSettings", "MediaPackageV2AbWatermarkerIrdetoSettings"),
+            type = "structure",
+            name = "MediaPackageV2AbWatermarkerIrdetoSettings",
+            target_id = id.from(_N, "MediaPackageV2AbWatermarkerIrdetoSettings"),
+            target = M.MediaPackageV2AbWatermarkerIrdetoSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "mediaPackageV2AbWatermarkerIrdetoSettings" },
+            },
+        }),
+    },
+})
+
 M.MediaPackageV2GroupSettings = schema.new({
     id = id.from(_N, "MediaPackageV2GroupSettings"),
     type = "structure",
@@ -10544,6 +10797,16 @@ M.MediaPackageV2GroupSettings = schema.new({
             list_member = M.MediaPackageAdditionalDestinations,
             traits = {
                 [traits.JSON_NAME] = { name = "additionalDestinations" },
+            },
+        }),
+        WatermarkingSettings = schema.new({
+            id = id.from(_N, "MediaPackageV2GroupSettings", "WatermarkingSettings"),
+            type = "structure",
+            name = "WatermarkingSettings",
+            target_id = id.from(_N, "MediaPackageV2WatermarkingSettings"),
+            target = M.MediaPackageV2WatermarkingSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "watermarkingSettings" },
             },
         }),
     },

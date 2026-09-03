@@ -56,6 +56,8 @@ M.NetworkMigrationDefinitionSummariesList = schema.new({ type = "list", list_mem
 
 M.SourceConfigurationList = schema.new({ type = "list", list_member = M.SourceConfiguration })
 
+M.CidrMappingsList = schema.new({ type = "list", list_member = M.CidrMapping })
+
 M.ScopeTagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.NetworkMigrationAnalysesList = schema.new({ type = "list", list_member = M.NetworkMigrationAnalysisJobDetails })
@@ -4152,6 +4154,31 @@ M.ThrottlingException = schema.new({
     },
 })
 
+M.CidrMapping = schema.new({
+    id = id.from(_N, "CidrMapping"),
+    type = "structure",
+    members = {
+        originalCidr = schema.new({
+            id = id.from(_N, "CidrMapping", "originalCidr"),
+            type = "string",
+            name = "originalCidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedCidr = schema.new({
+            id = id.from(_N, "CidrMapping", "updatedCidr"),
+            type = "string",
+            name = "updatedCidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SourceS3Configuration = schema.new({
     id = id.from(_N, "SourceS3Configuration"),
     type = "structure",
@@ -4323,6 +4350,19 @@ M.CreateNetworkMigrationDefinitionInput = schema.new({
             name = "targetDeployment",
             target_id = prelude.String.id,
         }),
+        vpcProvisioningStrategy = schema.new({
+            id = id.from(_N, "CreateNetworkMigrationDefinitionInput", "vpcProvisioningStrategy"),
+            type = "string",
+            name = "vpcProvisioningStrategy",
+            target_id = prelude.String.id,
+        }),
+        cidrMappings = schema.new({
+            id = id.from(_N, "CreateNetworkMigrationDefinitionInput", "cidrMappings"),
+            type = "list",
+            name = "cidrMappings",
+            target_id = prelude.Document.id,
+            list_member = M.CidrMapping,
+        }),
         tags = schema.new({
             id = id.from(_N, "CreateNetworkMigrationDefinitionInput", "tags"),
             type = "map",
@@ -4396,6 +4436,19 @@ M.CreateNetworkMigrationDefinitionOutput = schema.new({
             type = "string",
             name = "targetDeployment",
             target_id = prelude.String.id,
+        }),
+        vpcProvisioningStrategy = schema.new({
+            id = id.from(_N, "CreateNetworkMigrationDefinitionOutput", "vpcProvisioningStrategy"),
+            type = "string",
+            name = "vpcProvisioningStrategy",
+            target_id = prelude.String.id,
+        }),
+        cidrMappings = schema.new({
+            id = id.from(_N, "CreateNetworkMigrationDefinitionOutput", "cidrMappings"),
+            type = "list",
+            name = "cidrMappings",
+            target_id = prelude.Document.id,
+            list_member = M.CidrMapping,
         }),
         createdAt = schema.new({
             id = id.from(_N, "CreateNetworkMigrationDefinitionOutput", "createdAt"),
@@ -4519,6 +4572,19 @@ M.GetNetworkMigrationDefinitionOutput = schema.new({
             type = "string",
             name = "targetDeployment",
             target_id = prelude.String.id,
+        }),
+        vpcProvisioningStrategy = schema.new({
+            id = id.from(_N, "GetNetworkMigrationDefinitionOutput", "vpcProvisioningStrategy"),
+            type = "string",
+            name = "vpcProvisioningStrategy",
+            target_id = prelude.String.id,
+        }),
+        cidrMappings = schema.new({
+            id = id.from(_N, "GetNetworkMigrationDefinitionOutput", "cidrMappings"),
+            type = "list",
+            name = "cidrMappings",
+            target_id = prelude.Document.id,
+            list_member = M.CidrMapping,
         }),
         createdAt = schema.new({
             id = id.from(_N, "GetNetworkMigrationDefinitionOutput", "createdAt"),
@@ -6886,6 +6952,19 @@ M.UpdateNetworkMigrationDefinitionInput = schema.new({
             name = "targetDeployment",
             target_id = prelude.String.id,
         }),
+        vpcProvisioningStrategy = schema.new({
+            id = id.from(_N, "UpdateNetworkMigrationDefinitionInput", "vpcProvisioningStrategy"),
+            type = "string",
+            name = "vpcProvisioningStrategy",
+            target_id = prelude.String.id,
+        }),
+        cidrMappings = schema.new({
+            id = id.from(_N, "UpdateNetworkMigrationDefinitionInput", "cidrMappings"),
+            type = "list",
+            name = "cidrMappings",
+            target_id = prelude.Document.id,
+            list_member = M.CidrMapping,
+        }),
         scopeTags = schema.new({
             id = id.from(_N, "UpdateNetworkMigrationDefinitionInput", "scopeTags"),
             type = "map",
@@ -6951,6 +7030,19 @@ M.UpdateNetworkMigrationDefinitionOutput = schema.new({
             type = "string",
             name = "targetDeployment",
             target_id = prelude.String.id,
+        }),
+        vpcProvisioningStrategy = schema.new({
+            id = id.from(_N, "UpdateNetworkMigrationDefinitionOutput", "vpcProvisioningStrategy"),
+            type = "string",
+            name = "vpcProvisioningStrategy",
+            target_id = prelude.String.id,
+        }),
+        cidrMappings = schema.new({
+            id = id.from(_N, "UpdateNetworkMigrationDefinitionOutput", "cidrMappings"),
+            type = "list",
+            name = "cidrMappings",
+            target_id = prelude.Document.id,
+            list_member = M.CidrMapping,
         }),
         createdAt = schema.new({
             id = id.from(_N, "UpdateNetworkMigrationDefinitionOutput", "createdAt"),

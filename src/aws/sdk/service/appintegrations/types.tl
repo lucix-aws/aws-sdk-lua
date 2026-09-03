@@ -299,6 +299,13 @@ local record M
     record DeleteApplicationInput
         -- The Amazon Resource Name (ARN) of the Application.
         Arn: string
+        -- Specifies whether to delete the application even if it still has application associations.
+        -- If true, the operation removes the application and its associations. If
+        -- false or absent, the delete fails when associations exist.
+        -- Setting this parameter to true permanently removes all of the
+        -- application's associations. Doing so might impact other resources that rely on and
+        -- reference the application. This action can't be undone.
+        Force: boolean
     end
 
     record DeleteApplicationOutput
@@ -638,6 +645,11 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    -- The request conflicts with the current state of the resource. Verify the application's current state and retry the request.
+    record ConflictException
+        Message: string
     end
 
     record UpdateApplicationInput

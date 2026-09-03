@@ -24,6 +24,7 @@ local record Client
     getRecord: function(Client, types.GetRecordInput, ? base_client.InvokeOptions): async.Operation<types.GetRecordOutput>
     listRecords: function(Client, types.ListRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecordsOutput>
     putRecord: function(Client, types.PutRecordInput, ? base_client.InvokeOptions): async.Operation<types.PutRecordOutput>
+    updateRecord: function(Client, types.UpdateRecordInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecordOutput>
 end
 
 local record M
@@ -90,6 +91,10 @@ end
 
 function C:putRecord(input: types.PutRecordInput, options?: base_client.InvokeOptions): async.Operation<types.PutRecordOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRecord as schema.OperationSchema, input, options) as async.Operation<types.PutRecordOutput>
+end
+
+function C:updateRecord(input: types.UpdateRecordInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecord as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecordOutput>
 end
 
 return M

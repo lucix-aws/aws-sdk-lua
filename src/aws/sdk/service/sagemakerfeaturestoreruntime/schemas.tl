@@ -698,6 +698,74 @@ M.PutRecordInput = schema.new({
 
 M.PutRecordOutput = prelude.Unit
 
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRecordInput = schema.new({
+    id = id.from(_N, "UpdateRecordRequest"),
+    type = "structure",
+    members = {
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "UpdateRecordInput", "FeatureGroupName"),
+            type = "string",
+            name = "FeatureGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RecordIdentifierValueAsString = schema.new({
+            id = id.from(_N, "UpdateRecordInput", "RecordIdentifierValueAsString"),
+            type = "string",
+            name = "RecordIdentifierValueAsString",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Features = schema.new({
+            id = id.from(_N, "UpdateRecordInput", "Features"),
+            type = "list",
+            name = "Features",
+            target_id = prelude.Document.id,
+            list_member = M.FeatureValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetStores = schema.new({
+            id = id.from(_N, "UpdateRecordInput", "TargetStores"),
+            type = "list",
+            name = "TargetStores",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TtlDuration = schema.new({
+            id = id.from(_N, "UpdateRecordInput", "TtlDuration"),
+            type = "structure",
+            name = "TtlDuration",
+            target_id = id.from(_N, "TtlDuration"),
+            target = M.TtlDuration,
+        }),
+    },
+})
+
+M.UpdateRecordOutput = prelude.Unit
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -789,6 +857,18 @@ M.PutRecord = schema.operation({
     output = M.PutRecordOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/FeatureGroup/{FeatureGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRecord = schema.operation({
+    id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "UpdateRecord"),
+    input = M.UpdateRecordInput,
+    output = M.UpdateRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/FeatureGroup/{FeatureGroupName}/Record" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

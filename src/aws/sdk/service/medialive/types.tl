@@ -3658,6 +3658,56 @@ local record M
         "ENABLED"
     end
 
+    -- The vendor-specified custom profile options
+    record AbWatermarkingCustomProfile
+        -- The frequency with which watermarks will be embedded, in milliseconds.
+        EmbeddingFrequency: number
+        -- The number of frames after scene-cut to embed the watermark.
+        SceneCut: number
+        -- The target PSNR of the watermarked frame
+        TargetPsnr: number
+    end
+
+    enum AbWatermarkingProfile
+        "CAMCORDING"
+        "CUSTOM"
+        "DEFAULT"
+        "HQ"
+        "MEZZANINE"
+        "ROBUST"
+    end
+
+    enum AbWatermarkerIdLength
+        "ID_2048"
+        "ID_512"
+    end
+
+    -- A/B Watermarker settings for CMAF Ingest output groups.
+    record CmafIngestAbWatermarkerIrdetoSettings
+        -- The "B" pipeline renditions for the additional destinations.
+        AdditionalDestinationsAlternateDestinations: {OutputLocationRef}
+        -- The "B" pipeline renditions for the main destination.
+        AlternateDestination: OutputLocationRef
+        -- The vendor-provided custom profile values.
+        CustomProfile: AbWatermarkingCustomProfile
+        -- The name of the Secrets Manager secret containing the license file.
+        License: string
+        -- The vendor-provided Operator ID.
+        OperatorId: number
+        -- The number of segments per watermarking bit. The total duration of the watermarking bit
+        -- should be the LCM (least common multiple) of all segments sizes emitted by the downstream packager.
+        PolyPeriod: number
+        -- The vendor-provided profile choice.
+        Profile: string
+        -- The number of bits that compose the watermarking identifier to be embedded.
+        WatermarkIdLength: string
+    end
+
+    -- A/B Watermarker settings for CMAF Ingest output groups.
+    record CmafIngestWatermarkingSettings
+        CmafIngestAbWatermarkerIrdetoSettings: CmafIngestAbWatermarkerIrdetoSettings
+    end
+
     -- Cmaf Ingest Group Settings
     record CmafIngestGroupSettings
         -- A HTTP destination for the tracks
@@ -3694,6 +3744,8 @@ local record M
         TimedMetadataPassthrough: string
         -- Optional an array of additional destinational HTTP destinations for the OutputGroup outputs
         AdditionalDestinations: {AdditionalDestinations}
+        -- Specifies the type of watermarking technology to use.
+        WatermarkingSettings: CmafIngestWatermarkingSettings
     end
 
     -- Frame Capture S3 Settings
@@ -4050,6 +4102,32 @@ local record M
         AvailabilityZones: {string}
     end
 
+    -- A/B Watermarker settings for MediaPackage V2 output groups.
+    record MediaPackageV2AbWatermarkerIrdetoSettings
+        -- The "B" pipeline renditions for the additional destinations.
+        AdditionalDestinationsAlternateDestinations: {OutputLocationRef}
+        -- The "B" pipeline renditions for the main destination.
+        AlternateDestination: OutputLocationRef
+        -- The vendor-provided custom profile values.
+        CustomProfile: AbWatermarkingCustomProfile
+        -- The name of the Secrets Manager secret containing the license file.
+        License: string
+        -- The vendor-provided Operator ID.
+        OperatorId: number
+        -- The number of segments per watermarking bit. The total duration of the watermarking bit
+        -- should be the LCM (least common multiple) of all segments sizes emitted by the downstream packager.
+        PolyPeriod: number
+        -- The vendor-provided profile choice.
+        Profile: string
+        -- The number of bits that compose the watermarking identifier to be embedded.
+        WatermarkIdLength: string
+    end
+
+    -- A/B Watermarker settings for MediaPackage V2 output groups.
+    record MediaPackageV2WatermarkingSettings
+        MediaPackageV2AbWatermarkerIrdetoSettings: MediaPackageV2AbWatermarkerIrdetoSettings
+    end
+
     -- Media Package V2 Group Settings
     record MediaPackageV2GroupSettings
         -- Mapping of up to 4 caption channels to caption languages.
@@ -4074,6 +4152,8 @@ local record M
         TimedMetadataPassthrough: string
         -- Optional an array of additional destinational HTTP destinations for the OutputGroup outputs
         AdditionalDestinations: {MediaPackageAdditionalDestinations}
+        -- Specifies the type of watermarking technology to use.
+        WatermarkingSettings: MediaPackageV2WatermarkingSettings
     end
 
     -- Media Package Group Settings
