@@ -229,6 +229,12 @@ local record M
         publish: boolean
         -- The ID of an existing Flow within the same WhatsApp Business Account to clone.
         cloneFlowId: string
+        -- Optional HTTPS endpoint for a dynamic Flow, registered with Meta as the
+        -- Flow's endpoint_uri and called by Meta directly. When omitted, the Flow
+        -- has no endpoint (static Flow). Meta only calls the endpoint when the
+        -- Flow JSON also declares data_api_version. To verify that requests
+        -- originate from Meta, attach your own Meta app via UpdateWhatsAppFlow.
+        endpointUri: string
     end
 
     record CreateWhatsAppFlowOutput
@@ -468,6 +474,18 @@ local record M
         -- The WABA identifier linked to the phone number, formatted as
         -- waba-01234567890123456789012345678901.
         linkedWhatsAppBusinessAccountId: string
+    end
+
+    record GetWhatsAppBusinessPublicKeyInput
+        -- The unique identifier of the phone number whose business public key to retrieve.
+        originationPhoneNumberId: string
+    end
+
+    record GetWhatsAppBusinessPublicKeyOutput
+        -- The stored RSA business public key (PEM), if present.
+        businessPublicKey: string
+        -- Meta's signing status: "VALID" | "MISMATCH".
+        businessPublicKeySignatureStatus: string
     end
 
     record GetWhatsAppFlowInput
@@ -851,6 +869,19 @@ local record M
         flowName: string
         -- The updated categories for the Flow.
         categories: {string}
+        -- Optional HTTPS endpoint for a dynamic Flow, registered with Meta as the
+        -- Flow's endpoint_uri and called by Meta directly. When omitted, the
+        -- Flow's endpoint is unchanged.
+        endpointUri: string
+        -- Optional Meta app ID to attach to the Flow. Meta signs data-exchange
+        -- requests with the attached app's secret, so attaching your own app is
+        -- what enables X-Hub-Signature-256 and flow_token_signature verification
+        -- at your endpoint. Meta requires the app to be owned by the same business
+        -- that owns the WABA. Attaching your own app is one-way: the service's
+        -- app cannot be re-attached afterwards. When omitted, the attached app is
+        -- unchanged. (Set via update because Meta ignores application_id at
+        -- creation time.)
+        metaAppId: string
     end
 
     record UpdateWhatsAppFlowOutput
@@ -907,6 +938,18 @@ local record M
     record PostWhatsAppMessageMediaOutput
         -- The unique identifier of the posted WhatsApp message.
         mediaId: string
+    end
+
+    record PutWhatsAppBusinessPublicKeyInput
+        -- The unique identifier of the phone number to associate with the business public key.
+        originationPhoneNumberId: string
+        -- PEM-encoded RSA public key. Mutually exclusive with kmsKeyArn.
+        businessPublicKey: string
+        -- Customer-managed KMS asymmetric RSA key ARN. Mutually exclusive with businessPublicKey.
+        kmsKeyArn: string
+    end
+
+    record PutWhatsAppBusinessPublicKeyOutput
     end
 
     record SendWhatsAppMessageInput

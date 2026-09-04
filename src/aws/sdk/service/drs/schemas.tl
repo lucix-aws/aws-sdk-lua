@@ -1436,6 +1436,12 @@ M.SourceProperties = schema.new({
             name = "supportsNitroInstances",
             target_id = prelude.Boolean.id,
         }),
+        architecture = schema.new({
+            id = id.from(_N, "SourceProperties", "architecture"),
+            type = "string",
+            name = "architecture",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

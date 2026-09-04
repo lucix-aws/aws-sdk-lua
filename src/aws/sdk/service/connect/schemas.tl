@@ -416,6 +416,8 @@ M.CalculationComponentList = schema.new({ type = "list", list_member = M.Calcula
 
 M.PredefinedAttributeStringValuesList = schema.new({ type = "list", list_member = prelude.String })
 
+M.PreEvaluationFilterList = schema.new({ type = "list", list_member = M.PreEvaluationFilter })
+
 M.RequiredTaskTemplateFields = schema.new({ type = "list", list_member = M.RequiredFieldInfo })
 
 M.ReadOnlyTaskTemplateFields = schema.new({ type = "list", list_member = M.ReadOnlyFieldInfo })
@@ -9437,6 +9439,72 @@ M.RuleAction = schema.new({
     },
 })
 
+M.PreEvaluationFilter = schema.new({
+    id = id.from(_N, "PreEvaluationFilter"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "PreEvaluationFilter", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterType = schema.new({
+            id = id.from(_N, "PreEvaluationFilter", "FilterType"),
+            type = "string",
+            name = "FilterType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterKey = schema.new({
+            id = id.from(_N, "PreEvaluationFilter", "FilterKey"),
+            type = "string",
+            name = "FilterKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterValue = schema.new({
+            id = id.from(_N, "PreEvaluationFilter", "FilterValue"),
+            type = "string",
+            name = "FilterValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "PreEvaluationFilter", "Operator"),
+            type = "string",
+            name = "Operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PreEvaluationFilters = schema.new({
+    id = id.from(_N, "PreEvaluationFilters"),
+    type = "structure",
+    members = {
+        AndConditions = schema.new({
+            id = id.from(_N, "PreEvaluationFilters", "AndConditions"),
+            type = "list",
+            name = "AndConditions",
+            target_id = prelude.Document.id,
+            list_member = M.PreEvaluationFilter,
+        }),
+    },
+})
+
 M.RuleTriggerEventSource = schema.new({
     id = id.from(_N, "RuleTriggerEventSource"),
     type = "structure",
@@ -9520,6 +9588,13 @@ M.CreateRuleInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        PreEvaluationFilters = schema.new({
+            id = id.from(_N, "CreateRuleInput", "PreEvaluationFilters"),
+            type = "structure",
+            name = "PreEvaluationFilters",
+            target_id = id.from(_N, "PreEvaluationFilters"),
+            target = M.PreEvaluationFilters,
+        }),
         ClientToken = schema.new({
             id = id.from(_N, "CreateRuleInput", "ClientToken"),
             type = "string",
@@ -9528,6 +9603,14 @@ M.CreateRuleInput = schema.new({
             traits = {
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateRuleInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -17501,6 +17584,13 @@ M.Rule = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        PreEvaluationFilters = schema.new({
+            id = id.from(_N, "Rule", "PreEvaluationFilters"),
+            type = "structure",
+            name = "PreEvaluationFilters",
+            target_id = id.from(_N, "PreEvaluationFilters"),
+            target = M.PreEvaluationFilters,
         }),
         CreatedTime = schema.new({
             id = id.from(_N, "Rule", "CreatedTime"),
@@ -32555,6 +32645,13 @@ M.RuleSearchSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        PreEvaluationFilters = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "PreEvaluationFilters"),
+            type = "structure",
+            name = "PreEvaluationFilters",
+            target_id = id.from(_N, "PreEvaluationFilters"),
+            target = M.PreEvaluationFilters,
+        }),
         CreatedTime = schema.new({
             id = id.from(_N, "RuleSearchSummary", "CreatedTime"),
             type = "timestamp",
@@ -38800,6 +38897,13 @@ M.UpdateRuleInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        PreEvaluationFilters = schema.new({
+            id = id.from(_N, "UpdateRuleInput", "PreEvaluationFilters"),
+            type = "structure",
+            name = "PreEvaluationFilters",
+            target_id = id.from(_N, "PreEvaluationFilters"),
+            target = M.PreEvaluationFilters,
         }),
     },
 })

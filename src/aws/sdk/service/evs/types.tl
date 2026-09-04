@@ -2,6 +2,14 @@
 
 local record M
 
+    -- A regional account-level EVS setting, represented as a name and value pair.
+    record AccountSetting
+        -- The name of the EVS setting. Valid values are: vcfPortedCoreCount (type: numeric string) - The total number of VCF license cores ported to Amazon EVS for the account in that Region. The maximum value is 1,000,000 cores. This setting value is shared with Broadcom for record-keeping.
+        name: string
+        -- The value of the EVS setting.
+        value: string
+    end
+
     record AssociateEipToVlanInput
         -- This parameter is not used in Amazon EVS currently. If you supply input for this parameter, it will have no effect. A unique, case-sensitive identifier that you provide to ensure the idempotency of the environment creation request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.
         clientToken: string
@@ -748,6 +756,22 @@ local record M
         connector: Connector
     end
 
+    -- The request for the GetAccountSettings operation.
+    record GetAccountSettingsInput
+    end
+
+    -- The response for the GetAccountSettings operation.
+    record GetAccountSettingsOutput
+        -- A list of regional account-level EVS settings for the account. EVS settings that have never been explicitly set are omitted from the response.
+        settings: {AccountSetting}
+    end
+
+    -- An internal server error occurred. Retry your request.
+    record InternalServerException
+        -- Describes the error encountered.
+        message: string
+    end
+
     record GetVersionsInput
     end
 
@@ -778,12 +802,6 @@ local record M
         instanceTypeEsxVersions: {InstanceTypeEsxVersionsInfo}
     end
 
-    -- An internal server error occurred. Retry your request.
-    record InternalServerException
-        -- Describes the error encountered.
-        message: string
-    end
-
     record ListTagsForResourceInput
         -- The Amazon Resource Name (ARN) that identifies the resource to list tags for.
         resourceArn: string
@@ -792,6 +810,18 @@ local record M
     record ListTagsForResourceOutput
         -- The tags for the resource.
         tags: {string : string}
+    end
+
+    -- The request for the PutAccountSettings operation.
+    record PutAccountSettingsInput
+        -- A list of regional account-level EVS settings to create or update. Only the settings included in this list are modified.
+        settings: {AccountSetting}
+    end
+
+    -- The response for the PutAccountSettings operation.
+    record PutAccountSettingsOutput
+        -- A list of regional account-level EVS settings, and their values, that were modified in this request.
+        settings: {AccountSetting}
     end
 
     -- The number of one or more Amazon EVS resources exceeds the maximum allowed. For a list of Amazon EVS quotas, see Amazon EVS endpoints and quotas in the Amazon EVS User Guide. Delete some resources or request an increase in your service quota. To request an increase, see Amazon Web Services Service Quotas in the Amazon Web Services General Reference Guide.

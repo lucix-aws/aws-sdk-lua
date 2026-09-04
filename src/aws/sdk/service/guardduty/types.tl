@@ -457,6 +457,30 @@ local record M
         RdsLoginAttemptAction: RdsLoginAttemptAction
     end
 
+    -- Contains information about an API call that was observed as part of an activity.
+    record ApiCall
+        -- The name of the API operation that was invoked.
+        Operation: string
+        -- The service that the API operation was invoked against.
+        Service: string
+        -- The error code that was returned, if the API call failed.
+        Error: string
+        -- User agent in the request to the API operation
+        UserAgent: string
+    end
+
+    enum ActivityType
+        "API_CALL"
+    end
+
+    -- Contains information about an activity, such as an API call, that was observed for a signal.
+    record Activity
+        -- The type of the observed activity.
+        Type: string
+        -- Contains information about the API call that was observed, when the activity type is API_CALL.
+        Api: ApiCall
+    end
+
     -- Contains information about a process involved in a GuardDuty finding, including process identification, execution details, and file information.
     record ActorProcess
         -- The name of the process as it appears in the system.
@@ -2474,6 +2498,8 @@ local record M
         EndpointIds: {string}
         -- Contains information about the indicators associated with the signals.
         SignalIndicators: {Indicator}
+        -- Contains information about the activities, such as API calls, that were observed for this signal.
+        Activities: {Activity}
     end
 
     -- Contains information about the GuardDuty attack sequence finding.

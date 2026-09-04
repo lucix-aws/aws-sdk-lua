@@ -505,6 +505,8 @@ local record M
         TrustedHostKeys: {string}
         -- Specify the number of concurrent connections that your connector creates to the remote server. The default value is 1. The maximum values is 5. If you are using the Amazon Web Services Management Console, the default value is 5. This parameter specifies the number of active connections that your connector can establish with the remote server at the same time. Increasing this value can enhance connector performance when transferring large file batches by enabling parallel operations.
         MaxConcurrentConnections: number
+        -- An ordered list of Amazon Web Services Secrets Manager version stages (staging labels, such as AWSCURRENT and AWSPREVIOUS) for the secret identified by UserSecretId. When establishing a connection, the connector attempts to retrieve the SFTP user's credentials from each version stage in the order listed, and uses the first version it can successfully retrieve. This lets you rotate the user secret without interrupting connector operations.
+        OrderedUserSecretVersionStages: {string}
     end
 
     record CreateConnectorInput

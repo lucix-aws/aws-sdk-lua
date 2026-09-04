@@ -31,6 +31,7 @@ local record Client
     disassociateWhatsAppBusinessAccount: function(Client, types.DisassociateWhatsAppBusinessAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWhatsAppBusinessAccountOutput>
     getLinkedWhatsAppBusinessAccount: function(Client, types.GetLinkedWhatsAppBusinessAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkedWhatsAppBusinessAccountOutput>
     getLinkedWhatsAppBusinessAccountPhoneNumber: function(Client, types.GetLinkedWhatsAppBusinessAccountPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput>
+    getWhatsAppBusinessPublicKey: function(Client, types.GetWhatsAppBusinessPublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetWhatsAppBusinessPublicKeyOutput>
     getWhatsAppFlow: function(Client, types.GetWhatsAppFlowInput, ? base_client.InvokeOptions): async.Operation<types.GetWhatsAppFlowOutput>
     getWhatsAppFlowPreview: function(Client, types.GetWhatsAppFlowPreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetWhatsAppFlowPreviewOutput>
     getWhatsAppMessageMedia: function(Client, types.GetWhatsAppMessageMediaInput, ? base_client.InvokeOptions): async.Operation<types.GetWhatsAppMessageMediaOutput>
@@ -44,6 +45,7 @@ local record Client
     postWhatsAppMessageMedia: function(Client, types.PostWhatsAppMessageMediaInput, ? base_client.InvokeOptions): async.Operation<types.PostWhatsAppMessageMediaOutput>
     publishWhatsAppFlow: function(Client, types.PublishWhatsAppFlowInput, ? base_client.InvokeOptions): async.Operation<types.PublishWhatsAppFlowOutput>
     putWhatsAppBusinessAccountEventDestinations: function(Client, types.PutWhatsAppBusinessAccountEventDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
+    putWhatsAppBusinessPublicKey: function(Client, types.PutWhatsAppBusinessPublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.PutWhatsAppBusinessPublicKeyOutput>
     sendWhatsAppConversionEvent: function(Client, types.SendWhatsAppConversionEventInput, ? base_client.InvokeOptions): async.Operation<types.SendWhatsAppConversionEventOutput>
     sendWhatsAppMessage: function(Client, types.SendWhatsAppMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendWhatsAppMessageOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -147,6 +149,10 @@ function C:getLinkedWhatsAppBusinessAccountPhoneNumber(input: types.GetLinkedWha
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLinkedWhatsAppBusinessAccountPhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput>
 end
 
+function C:getWhatsAppBusinessPublicKey(input: types.GetWhatsAppBusinessPublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetWhatsAppBusinessPublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWhatsAppBusinessPublicKey as schema.OperationSchema, input, options) as async.Operation<types.GetWhatsAppBusinessPublicKeyOutput>
+end
+
 function C:getWhatsAppFlow(input: types.GetWhatsAppFlowInput, options?: base_client.InvokeOptions): async.Operation<types.GetWhatsAppFlowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWhatsAppFlow as schema.OperationSchema, input, options) as async.Operation<types.GetWhatsAppFlowOutput>
 end
@@ -197,6 +203,10 @@ end
 
 function C:putWhatsAppBusinessAccountEventDestinations(input: types.PutWhatsAppBusinessAccountEventDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutWhatsAppBusinessAccountEventDestinations as schema.OperationSchema, input, options) as async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
+end
+
+function C:putWhatsAppBusinessPublicKey(input: types.PutWhatsAppBusinessPublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.PutWhatsAppBusinessPublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutWhatsAppBusinessPublicKey as schema.OperationSchema, input, options) as async.Operation<types.PutWhatsAppBusinessPublicKeyOutput>
 end
 
 function C:sendWhatsAppConversionEvent(input: types.SendWhatsAppConversionEventInput, options?: base_client.InvokeOptions): async.Operation<types.SendWhatsAppConversionEventOutput>

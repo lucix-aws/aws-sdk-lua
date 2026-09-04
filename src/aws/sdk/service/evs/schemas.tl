@@ -10,6 +10,10 @@ local _N = "com.amazonaws.evs"
 
 local M: {string:any} = {}
 
+M.AccountSettingList = schema.new({ type = "list", list_member = M.AccountSetting })
+
+M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
 M.VcfVersionList = schema.new({ type = "list", list_member = M.VcfVersionInfo })
 
 M.InstanceTypeEsxVersionsList = schema.new({ type = "list", list_member = M.InstanceTypeEsxVersionsInfo })
@@ -23,8 +27,6 @@ M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
 M.EnvironmentStateList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EnvironmentSummaryList = schema.new({ type = "list", list_member = M.EnvironmentSummary })
-
-M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
 
 M.LicenseInfoList = schema.new({ type = "list", list_member = M.LicenseInfo })
 
@@ -57,6 +59,31 @@ M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInte
 M.InstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EsxVersionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountSetting = schema.new({
+    id = id.from(_N, "AccountSetting"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "AccountSetting", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "AccountSetting", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
 
 M.AssociateEipToVlanInput = schema.new({
     id = id.from(_N, "AssociateEipToVlanRequest"),
@@ -2238,6 +2265,44 @@ M.UpdateEnvironmentConnectorOutput = schema.new({
     },
 })
 
+M.GetAccountSettingsInput = schema.new({
+    id = id.from(_N, "GetAccountSettingsRequest"),
+    type = "structure",
+})
+
+M.GetAccountSettingsOutput = schema.new({
+    id = id.from(_N, "GetAccountSettingsResponse"),
+    type = "structure",
+    members = {
+        settings = schema.new({
+            id = id.from(_N, "GetAccountSettingsOutput", "settings"),
+            type = "list",
+            name = "settings",
+            target_id = prelude.Document.id,
+            list_member = M.AccountSetting,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetVersionsInput = schema.new({
     id = id.from(_N, "GetVersionsRequest"),
     type = "structure",
@@ -2340,25 +2405,6 @@ M.GetVersionsOutput = schema.new({
     },
 })
 
-M.InternalServerException = schema.new({
-    id = id.from(_N, "InternalServerException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InternalServerException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -2386,6 +2432,37 @@ M.ListTagsForResourceOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+    },
+})
+
+M.PutAccountSettingsInput = schema.new({
+    id = id.from(_N, "PutAccountSettingsRequest"),
+    type = "structure",
+    members = {
+        settings = schema.new({
+            id = id.from(_N, "PutAccountSettingsInput", "settings"),
+            type = "list",
+            name = "settings",
+            target_id = prelude.Document.id,
+            list_member = M.AccountSetting,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAccountSettingsOutput = schema.new({
+    id = id.from(_N, "PutAccountSettingsResponse"),
+    type = "structure",
+    members = {
+        settings = schema.new({
+            id = id.from(_N, "PutAccountSettingsOutput", "settings"),
+            type = "list",
+            name = "settings",
+            target_id = prelude.Document.id,
+            list_member = M.AccountSetting,
         }),
     },
 })
@@ -2645,6 +2722,17 @@ M.DisassociateEipFromVlan = schema.operation({
     },
 })
 
+M.GetAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.evs", "GetAccountSettings"),
+    input = M.GetAccountSettingsInput,
+    output = M.GetAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetDepotUrl = schema.operation({
     id = id.from("com.amazonaws.evs", "GetDepotUrl"),
     input = M.GetDepotUrlInput,
@@ -2737,6 +2825,17 @@ M.ListVmEntitlements = schema.operation({
     id = id.from("com.amazonaws.evs", "ListVmEntitlements"),
     input = M.ListVmEntitlementsInput,
     output = M.ListVmEntitlementsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.evs", "PutAccountSettings"),
+    input = M.PutAccountSettingsInput,
+    output = M.PutAccountSettingsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

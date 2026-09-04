@@ -143,9 +143,7 @@ local record M
     end
 
     record CreateActivityInput
-        -- The name of the activity to create. This name must be unique for your Amazon Web Services account and region for 90 days. For more information,
-        -- see
-        -- Limits Related to State Machine Executions in the Step Functions Developer Guide.
+        -- The name of the activity to create. This name must be unique for your Amazon Web Services account and region.
         -- A name must not contain:
         -- white space
         -- brackets { } [ ]
@@ -1627,8 +1625,10 @@ local record M
         -- that you start with an alias ARN with that alias and the state machine version used for
         -- that execution.
         stateMachineArn: string
-        -- Optional name of the execution. This name must be unique for your Amazon Web Services account, Region, and state machine for 90 days. For more information,
-        -- see
+        -- Optional name of the execution. For STANDARD workflows, this name must be unique for your Amazon Web Services account, region, and state machine.
+        -- If a previous execution with the same name exists, you can reuse the name 90 days after it closes. For EXPRESS workflows, execution names
+        -- can be reused immediately.
+        -- For more information, see
         -- Limits Related to State Machine Executions in the Step Functions Developer Guide.
         -- If you don't provide a name for the execution, Step Functions automatically generates a universally unique identifier (UUID) as the execution name.
         -- A name must not contain:

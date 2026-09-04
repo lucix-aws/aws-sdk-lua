@@ -2140,6 +2140,191 @@ local record M
         updatedAt: number
     end
 
+    -- The identity provider configuration used to authenticate end users to the consent portal.
+    record ConsentPortalIdpConfig
+        -- The Amazon Resource Name (ARN) of the OAuth2 credential provider used to authenticate end users to the consent portal.
+        credentialProviderArn: string
+        -- The OAuth2 scopes that the consent portal requests when authenticating end users.
+        scopes: {string}
+        -- The audience value that the consent portal includes when requesting tokens from the identity provider.
+        audience: string
+    end
+
+    enum ConsentPortalSourceType
+        "agentcore-gateway"
+    end
+
+    -- A resource served by the consent portal.
+    record ConsentPortalSource
+        -- The identifier of the source resource. For an agentcore-gateway source, this is the gateway ID or its Amazon Resource Name (ARN).
+        identifier: string
+    end
+
+    enum ConsentPortalStatus
+        "CREATING"
+        "ACTIVE"
+        "UPDATING"
+        "UPDATE_FAILED"
+        "DELETING"
+        "FAILED"
+    end
+
+    record CreateConsentPortalInput
+        -- The Amazon Resource Name (ARN) of the IAM role that the consent portal assumes to access the resources defined in its sources.
+        executionRoleArn: string
+        -- The identity provider configuration that the consent portal uses to authenticate end users.
+        idpConfig: ConsentPortalIdpConfig
+        -- The name of the consent portal. The name must be unique within your account.
+        name: string
+        -- The resources served by the consent portal. Currently, we only support type agentcore-gateway.
+        sources: {ConsentPortalSource}
+        -- The description of the consent portal.
+        description: string
+        -- A map of tag keys and values to assign to the consent portal. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
+        tags: {string : string}
+    end
+
+    record CreateConsentPortalOutput
+        -- The resources served by the consent portal.
+        sources: {ConsentPortalSource}
+        -- The Amazon Resource Name (ARN) of the consent portal.
+        consentPortalArn: string
+        -- The unique identifier of the consent portal.
+        consentPortalId: string
+        -- The timestamp for when the consent portal was created.
+        createdAt: number
+        -- The description of the consent portal.
+        description: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the consent portal assumes to access the resources defined in its sources.
+        executionRoleArn: string
+        -- The identity provider configuration that the consent portal uses to authenticate end users.
+        idpConfig: ConsentPortalIdpConfig
+        -- The name of the consent portal.
+        name: string
+        -- The URL used to access the consent portal.
+        portalUrl: string
+        -- The current status of the consent portal.
+        status: string
+        -- A message that provides additional information about the current status of the consent portal.
+        statusReason: string
+        -- The timestamp for when the consent portal was last updated.
+        updatedAt: number
+    end
+
+    record DeleteConsentPortalInput
+        -- The identifier of the consent portal. You can specify either the consent portal ID or its Amazon Resource Name (ARN).
+        consentPortalIdentifier: string
+    end
+
+    record DeleteConsentPortalOutput
+    end
+
+    record GetConsentPortalInput
+        -- The identifier of the consent portal. You can specify either the consent portal ID or its Amazon Resource Name (ARN).
+        consentPortalIdentifier: string
+    end
+
+    record GetConsentPortalOutput
+        -- The resources served by the consent portal.
+        sources: {ConsentPortalSource}
+        -- The Amazon Resource Name (ARN) of the consent portal.
+        consentPortalArn: string
+        -- The unique identifier of the consent portal.
+        consentPortalId: string
+        -- The timestamp for when the consent portal was created.
+        createdAt: number
+        -- The description of the consent portal.
+        description: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the consent portal assumes to access the resources defined in its sources.
+        executionRoleArn: string
+        -- The identity provider configuration that the consent portal uses to authenticate end users.
+        idpConfig: ConsentPortalIdpConfig
+        -- The name of the consent portal.
+        name: string
+        -- The URL used to access the consent portal.
+        portalUrl: string
+        -- The current status of the consent portal.
+        status: string
+        -- A message that provides additional information about the current status of the consent portal.
+        statusReason: string
+        -- The timestamp for when the consent portal was last updated.
+        updatedAt: number
+    end
+
+    record ListConsentPortalsInput
+        -- The maximum number of consent portals to return in a single call.
+        maxResults: number
+        -- A token to retrieve the next page of results. Use the value returned in a previous response to request the next page.
+        nextToken: string
+    end
+
+    -- Summary information about a consent portal.
+    record ConsentPortalSummary
+        -- The resources served by the consent portal.
+        sources: {ConsentPortalSource}
+        -- The Amazon Resource Name (ARN) of the consent portal.
+        consentPortalArn: string
+        -- The unique identifier of the consent portal.
+        consentPortalId: string
+        -- The timestamp for when the consent portal was created.
+        createdAt: number
+        -- The description of the consent portal.
+        description: string
+        -- The name of the consent portal.
+        name: string
+        -- The URL used to access the consent portal.
+        portalUrl: string
+        -- The current status of the consent portal.
+        status: string
+        -- The timestamp for when the consent portal was last updated.
+        updatedAt: number
+    end
+
+    record ListConsentPortalsOutput
+        -- The list of consent portals.
+        consentPortals: {ConsentPortalSummary}
+        -- The token to use in a subsequent request to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
+    end
+
+    record UpdateConsentPortalInput
+        -- The identifier of the consent portal. You can specify either the consent portal ID or its Amazon Resource Name (ARN).
+        consentPortalIdentifier: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the consent portal assumes to access the resources defined in its sources.
+        executionRoleArn: string
+        -- The identity provider configuration that the consent portal uses to authenticate end users.
+        idpConfig: ConsentPortalIdpConfig
+        -- The description of the consent portal.
+        description: string
+    end
+
+    record UpdateConsentPortalOutput
+        -- The resources served by the consent portal.
+        sources: {ConsentPortalSource}
+        -- The Amazon Resource Name (ARN) of the consent portal.
+        consentPortalArn: string
+        -- The unique identifier of the consent portal.
+        consentPortalId: string
+        -- The timestamp for when the consent portal was created.
+        createdAt: number
+        -- The description of the consent portal.
+        description: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the consent portal assumes to access the resources defined in its sources.
+        executionRoleArn: string
+        -- The identity provider configuration that the consent portal uses to authenticate end users.
+        idpConfig: ConsentPortalIdpConfig
+        -- The name of the consent portal.
+        name: string
+        -- The URL used to access the consent portal.
+        portalUrl: string
+        -- The current status of the consent portal.
+        status: string
+        -- A message that provides additional information about the current status of the consent portal.
+        statusReason: string
+        -- The timestamp for when the consent portal was last updated.
+        updatedAt: number
+    end
+
     enum DatasetSchemaType
         "AGENTCORE_EVALUATION_PREDEFINED_V1"
         "AGENTCORE_EVALUATION_SIMULATED_V1"
@@ -6203,6 +6388,8 @@ local record M
     record CloudWatchLogsInputConfig
         -- The list of CloudWatch log group names to monitor for agent traces.
         logGroupNames: {string}
+        -- The list of CloudWatch log group name prefixes to monitor for agent traces. Specify this instead of logGroupNames to match log groups by prefix. Specify either logGroupNames or logGroupNamePrefixes, not both. One of the two is required.
+        logGroupNamePrefixes: {string}
         -- The list of service names to filter traces within the specified log groups. Used to identify relevant agent sessions.
         serviceNames: {string}
     end
@@ -6223,6 +6410,27 @@ local record M
     record Insight
         -- The unique identifier of the insight to run.
         insightId: string
+    end
+
+    enum ResultDestination
+        "DEDICATED_LOG_GROUP"
+        "SOURCE_LOG_GROUP"
+    end
+
+    -- The configuration for writing evaluation results to CloudWatch logs with embedded metric format (EMF) for monitoring.
+    record CloudWatchOutputConfig
+        -- The name of the CloudWatch log group where evaluation results will be written. An existing log group is used as-is; otherwise the service creates it, which requires the evaluation execution role to grant logs:CreateLogGroup on the log group. Don't specify this value when resultDestination is SOURCE_LOG_GROUP. The name can't be under the service-reserved /aws/bedrock-agentcore/evaluations/ namespace, apart from this configuration's own service-managed default group.
+        logGroupName: string
+        -- The CloudWatch metrics namespace where evaluation result metrics are published. If you omit this value, the service publishes metrics to Bedrock-AgentCore/Evaluations. This value can't begin with AWS/.
+        metricsNamespace: string
+        -- The destination where evaluation results are written. Valid values: DEDICATED_LOG_GROUP (default) – Writes results to a dedicated result log group. SOURCE_LOG_GROUP – Writes results back to the log group that the agent traces were read from. If you use this value, don't specify logGroupName.
+        resultDestination: string
+    end
+
+    -- The configuration that specifies where evaluation results should be written for monitoring and analysis.
+    record OutputConfig
+        -- The CloudWatch configuration for writing evaluation results to CloudWatch logs with embedded metric format.
+        cloudWatchConfig: CloudWatchOutputConfig
     end
 
     enum FilterOperator
@@ -6295,6 +6503,7 @@ local record M
         insights: {Insight}
         -- Configuration for periodic batch evaluation clustering of insight results.
         clusteringConfig: ClusteringConfig
+        outputConfig: OutputConfig
         -- The Amazon Resource Name (ARN) of the IAM role that grants permissions to read from CloudWatch logs, write evaluation results, and invoke Amazon Bedrock models for evaluation. If the configuration references evaluators encrypted with a customer managed KMS key, this role must also have kms:Decrypt permission on the KMS key. The service validates this permission at configuration creation time. For more information, see Encryption at rest for AgentCore Evaluations.
         evaluationExecutionRoleArn: string
         -- Whether to enable the online evaluation configuration immediately upon creation. If true, evaluation begins automatically.
@@ -6306,18 +6515,6 @@ local record M
     enum OnlineEvaluationExecutionStatus
         "ENABLED"
         "DISABLED"
-    end
-
-    -- The configuration for writing evaluation results to CloudWatch logs with embedded metric format (EMF) for monitoring.
-    record CloudWatchOutputConfig
-        -- The name of the CloudWatch log group where evaluation results will be written. The log group will be created if it doesn't exist.
-        logGroupName: string
-    end
-
-    -- The configuration that specifies where evaluation results should be written for monitoring and analysis.
-    record OutputConfig
-        -- The CloudWatch configuration for writing evaluation results to CloudWatch logs with embedded metric format.
-        cloudWatchConfig: CloudWatchOutputConfig
     end
 
     enum OnlineEvaluationConfigStatus
@@ -6457,6 +6654,7 @@ local record M
         insights: {Insight}
         -- The updated clustering configuration for periodic batch evaluation.
         clusteringConfig: ClusteringConfig
+        outputConfig: OutputConfig
         -- The updated Amazon Resource Name (ARN) of the IAM role used for evaluation execution.
         evaluationExecutionRoleArn: string
         -- The updated execution status to enable or disable the online evaluation.

@@ -767,6 +767,9 @@ local record M
 
     -- The encryption configuration for the cluster.
     record EncryptionConfig
+        -- Amazon EKS encrypts all Kubernetes API data with envelope encryption by default for
+        -- clusters running Kubernetes version 1.28 or higher, so this field no longer affects which
+        -- resources are encrypted.
         -- Specifies the resources to be encrypted. The only supported value is
         -- secrets.
         resources: {string}

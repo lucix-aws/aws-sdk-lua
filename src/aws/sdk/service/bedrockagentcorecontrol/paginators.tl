@@ -202,6 +202,24 @@ function M.items_list_configuration_bundles(client, input)
     })
 end
 
+--- Returns a page iterator for listConsentPortals.
+function M.pages_list_consent_portals(client, input)
+    return paginator.pages(client, "listConsentPortals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "consentPortals",
+    })
+end
+
+--- Returns an item iterator for listConsentPortals.
+function M.items_list_consent_portals(client, input)
+    return paginator.items(client, "listConsentPortals", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "consentPortals",
+    })
+end
+
 --- Returns a page iterator for listDatasetExamples.
 function M.pages_list_dataset_examples(client, input)
     return paginator.pages(client, "listDatasetExamples", input, {

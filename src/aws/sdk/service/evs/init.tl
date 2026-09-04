@@ -28,6 +28,7 @@ local record Client
     deleteEnvironmentConnector: function(Client, types.DeleteEnvironmentConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentConnectorOutput>
     deleteEnvironmentHost: function(Client, types.DeleteEnvironmentHostInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentHostOutput>
     disassociateEipFromVlan: function(Client, types.DisassociateEipFromVlanInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateEipFromVlanOutput>
+    getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
     getDepotUrl: function(Client, types.GetDepotUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetDepotUrlOutput>
     getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
     getVersions: function(Client, types.GetVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetVersionsOutput>
@@ -37,6 +38,7 @@ local record Client
     listEnvironmentVlans: function(Client, types.ListEnvironmentVlansInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentVlansOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listVmEntitlements: function(Client, types.ListVmEntitlementsInput, ? base_client.InvokeOptions): async.Operation<types.ListVmEntitlementsOutput>
+    putAccountSettings: function(Client, types.PutAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingsOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateEnvironmentConnector: function(Client, types.UpdateEnvironmentConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentConnectorOutput>
@@ -124,6 +126,10 @@ function C:disassociateEipFromVlan(input: types.DisassociateEipFromVlanInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateEipFromVlan as schema.OperationSchema, input, options) as async.Operation<types.DisassociateEipFromVlanOutput>
 end
 
+function C:getAccountSettings(input: types.GetAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingsOutput>
+end
+
 function C:getDepotUrl(input: types.GetDepotUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetDepotUrlOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDepotUrl as schema.OperationSchema, input, options) as async.Operation<types.GetDepotUrlOutput>
 end
@@ -158,6 +164,10 @@ end
 
 function C:listVmEntitlements(input: types.ListVmEntitlementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVmEntitlementsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVmEntitlements as schema.OperationSchema, input, options) as async.Operation<types.ListVmEntitlementsOutput>
+end
+
+function C:putAccountSettings(input: types.PutAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSettingsOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

@@ -144,6 +144,10 @@ M.IgnoredReferenceInputFields = schema.new({ type = "list", list_member = prelud
 
 M.EvaluationStringList = schema.new({ type = "list", list_member = prelude.String })
 
+M.LogGroupNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogGroupNamePrefixList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ToolDescriptionResultList = schema.new({ type = "list", list_member = M.ToolDescriptionOutput })
 
 M.IngestPayloadList = schema.new({ type = "list", list_member = M.IngestPayloadType })
@@ -5223,8 +5227,15 @@ M.CloudWatchLogsSource = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
+        }),
+        logGroupNamePrefixes = schema.new({
+            id = id.from(_N, "CloudWatchLogsSource", "logGroupNamePrefixes"),
+            type = "list",
+            name = "logGroupNamePrefixes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
         filterConfig = schema.new({
             id = id.from(_N, "CloudWatchLogsSource", "filterConfig"),
@@ -5700,7 +5711,7 @@ M.CloudWatchOutputConfig = schema.new({
             name = "logGroupName",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         logStreamName = schema.new({
@@ -5709,7 +5720,22 @@ M.CloudWatchOutputConfig = schema.new({
             name = "logStreamName",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
+            },
+        }),
+        metricsNamespace = schema.new({
+            id = id.from(_N, "CloudWatchOutputConfig", "metricsNamespace"),
+            type = "string",
+            name = "metricsNamespace",
+            target_id = prelude.String.id,
+        }),
+        resultDestination = schema.new({
+            id = id.from(_N, "CloudWatchOutputConfig", "resultDestination"),
+            type = "string",
+            name = "resultDestination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "DEDICATED_LOG_GROUP" },
             },
         }),
     },
@@ -7063,6 +7089,13 @@ M.StartBatchEvaluationInput = schema.new({
             type = "string",
             name = "description",
             target_id = prelude.String.id,
+        }),
+        outputConfig = schema.new({
+            id = id.from(_N, "StartBatchEvaluationInput", "outputConfig"),
+            type = "union",
+            name = "outputConfig",
+            target_id = id.from(_N, "OutputConfig"),
+            target = M.OutputConfig,
         }),
     },
 })

@@ -28,6 +28,7 @@ local record Client
     createCapacityProvider: function(Client, types.CreateCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityProviderOutput>
     createCodeInterpreter: function(Client, types.CreateCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeInterpreterOutput>
     createConfigurationBundle: function(Client, types.CreateConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationBundleOutput>
+    createConsentPortal: function(Client, types.CreateConsentPortalInput, ? base_client.InvokeOptions): async.Operation<types.CreateConsentPortalOutput>
     createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
     createDatasetVersion: function(Client, types.CreateDatasetVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetVersionOutput>
     createEvaluator: function(Client, types.CreateEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.CreateEvaluatorOutput>
@@ -56,6 +57,7 @@ local record Client
     deleteCapacityProvider: function(Client, types.DeleteCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityProviderOutput>
     deleteCodeInterpreter: function(Client, types.DeleteCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCodeInterpreterOutput>
     deleteConfigurationBundle: function(Client, types.DeleteConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationBundleOutput>
+    deleteConsentPortal: function(Client, types.DeleteConsentPortalInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConsentPortalOutput>
     deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
     deleteDatasetExamples: function(Client, types.DeleteDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetExamplesOutput>
     deleteEvaluator: function(Client, types.DeleteEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEvaluatorOutput>
@@ -86,6 +88,7 @@ local record Client
     getCodeInterpreter: function(Client, types.GetCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeInterpreterOutput>
     getConfigurationBundle: function(Client, types.GetConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationBundleOutput>
     getConfigurationBundleVersion: function(Client, types.GetConfigurationBundleVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationBundleVersionOutput>
+    getConsentPortal: function(Client, types.GetConsentPortalInput, ? base_client.InvokeOptions): async.Operation<types.GetConsentPortalOutput>
     getDataset: function(Client, types.GetDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
     getEvaluator: function(Client, types.GetEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.GetEvaluatorOutput>
     getGateway: function(Client, types.GetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayOutput>
@@ -122,6 +125,7 @@ local record Client
     listCodeInterpreters: function(Client, types.ListCodeInterpretersInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeInterpretersOutput>
     listConfigurationBundles: function(Client, types.ListConfigurationBundlesInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationBundlesOutput>
     listConfigurationBundleVersions: function(Client, types.ListConfigurationBundleVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationBundleVersionsOutput>
+    listConsentPortals: function(Client, types.ListConsentPortalsInput, ? base_client.InvokeOptions): async.Operation<types.ListConsentPortalsOutput>
     listDatasetExamples: function(Client, types.ListDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetExamplesOutput>
     listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
     listDatasetVersions: function(Client, types.ListDatasetVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetVersionsOutput>
@@ -162,6 +166,7 @@ local record Client
     updateApiKeyCredentialProvider: function(Client, types.UpdateApiKeyCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApiKeyCredentialProviderOutput>
     updateCapacityProvider: function(Client, types.UpdateCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCapacityProviderOutput>
     updateConfigurationBundle: function(Client, types.UpdateConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationBundleOutput>
+    updateConsentPortal: function(Client, types.UpdateConsentPortalInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConsentPortalOutput>
     updateDataset: function(Client, types.UpdateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
     updateDatasetExamples: function(Client, types.UpdateDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetExamplesOutput>
     updateEvaluator: function(Client, types.UpdateEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEvaluatorOutput>
@@ -265,6 +270,10 @@ end
 
 function C:createConfigurationBundle(input: types.CreateConfigurationBundleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationBundleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationBundle as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationBundleOutput>
+end
+
+function C:createConsentPortal(input: types.CreateConsentPortalInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConsentPortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConsentPortal as schema.OperationSchema, input, options) as async.Operation<types.CreateConsentPortalOutput>
 end
 
 function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
@@ -377,6 +386,10 @@ end
 
 function C:deleteConfigurationBundle(input: types.DeleteConfigurationBundleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationBundleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationBundle as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationBundleOutput>
+end
+
+function C:deleteConsentPortal(input: types.DeleteConsentPortalInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConsentPortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConsentPortal as schema.OperationSchema, input, options) as async.Operation<types.DeleteConsentPortalOutput>
 end
 
 function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
@@ -497,6 +510,10 @@ end
 
 function C:getConfigurationBundleVersion(input: types.GetConfigurationBundleVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationBundleVersionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfigurationBundleVersion as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationBundleVersionOutput>
+end
+
+function C:getConsentPortal(input: types.GetConsentPortalInput, options?: base_client.InvokeOptions): async.Operation<types.GetConsentPortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConsentPortal as schema.OperationSchema, input, options) as async.Operation<types.GetConsentPortalOutput>
 end
 
 function C:getDataset(input: types.GetDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
@@ -641,6 +658,10 @@ end
 
 function C:listConfigurationBundleVersions(input: types.ListConfigurationBundleVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationBundleVersionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationBundleVersions as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationBundleVersionsOutput>
+end
+
+function C:listConsentPortals(input: types.ListConsentPortalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConsentPortalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConsentPortals as schema.OperationSchema, input, options) as async.Operation<types.ListConsentPortalsOutput>
 end
 
 function C:listDatasetExamples(input: types.ListDatasetExamplesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetExamplesOutput>
@@ -801,6 +822,10 @@ end
 
 function C:updateConfigurationBundle(input: types.UpdateConfigurationBundleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationBundleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationBundle as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationBundleOutput>
+end
+
+function C:updateConsentPortal(input: types.UpdateConsentPortalInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConsentPortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConsentPortal as schema.OperationSchema, input, options) as async.Operation<types.UpdateConsentPortalOutput>
 end
 
 function C:updateDataset(input: types.UpdateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>

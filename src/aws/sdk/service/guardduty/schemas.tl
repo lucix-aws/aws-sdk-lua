@@ -268,6 +268,8 @@ M.ActorIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.EndpointIds = schema.new({ type = "list", list_member = prelude.String })
 
+M.Activities = schema.new({ type = "list", list_member = M.Activity })
+
 M.IndicatorValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.FilePaths = schema.new({ type = "list", list_member = M.ScanFilePath })
@@ -1865,6 +1867,76 @@ M.Action = schema.new({
             target = M.RdsLoginAttemptAction,
             traits = {
                 [traits.JSON_NAME] = { name = "rdsLoginAttemptAction" },
+            },
+        }),
+    },
+})
+
+M.ApiCall = schema.new({
+    id = id.from(_N, "ApiCall"),
+    type = "structure",
+    members = {
+        Operation = schema.new({
+            id = id.from(_N, "ApiCall", "Operation"),
+            type = "string",
+            name = "Operation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "operation" },
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "ApiCall", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "service" },
+            },
+        }),
+        Error = schema.new({
+            id = id.from(_N, "ApiCall", "Error"),
+            type = "string",
+            name = "Error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "error" },
+            },
+        }),
+        UserAgent = schema.new({
+            id = id.from(_N, "ApiCall", "UserAgent"),
+            type = "string",
+            name = "UserAgent",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "userAgent" },
+            },
+        }),
+    },
+})
+
+M.Activity = schema.new({
+    id = id.from(_N, "Activity"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "Activity", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+        Api = schema.new({
+            id = id.from(_N, "Activity", "Api"),
+            type = "structure",
+            name = "Api",
+            target_id = id.from(_N, "ApiCall"),
+            target = M.ApiCall,
+            traits = {
+                [traits.JSON_NAME] = { name = "api" },
             },
         }),
     },
@@ -7827,6 +7899,16 @@ M.Signal = schema.new({
             list_member = M.Indicator,
             traits = {
                 [traits.JSON_NAME] = { name = "signalIndicators" },
+            },
+        }),
+        Activities = schema.new({
+            id = id.from(_N, "Signal", "Activities"),
+            type = "list",
+            name = "Activities",
+            target_id = prelude.Document.id,
+            list_member = M.Activity,
+            traits = {
+                [traits.JSON_NAME] = { name = "activities" },
             },
         }),
     },

@@ -630,6 +630,12 @@ M.CreateWhatsAppFlowInput = schema.new({
             name = "cloneFlowId",
             target_id = prelude.String.id,
         }),
+        endpointUri = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowInput", "endpointUri"),
+            type = "string",
+            name = "endpointUri",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1361,6 +1367,42 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput = schema.new({
             id = id.from(_N, "GetLinkedWhatsAppBusinessAccountPhoneNumberOutput", "linkedWhatsAppBusinessAccountId"),
             type = "string",
             name = "linkedWhatsAppBusinessAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetWhatsAppBusinessPublicKeyInput = schema.new({
+    id = id.from(_N, "GetWhatsAppBusinessPublicKeyInput"),
+    type = "structure",
+    members = {
+        originationPhoneNumberId = schema.new({
+            id = id.from(_N, "GetWhatsAppBusinessPublicKeyInput", "originationPhoneNumberId"),
+            type = "string",
+            name = "originationPhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "originationPhoneNumberId" },
+            },
+        }),
+    },
+})
+
+M.GetWhatsAppBusinessPublicKeyOutput = schema.new({
+    id = id.from(_N, "GetWhatsAppBusinessPublicKeyOutput"),
+    type = "structure",
+    members = {
+        businessPublicKey = schema.new({
+            id = id.from(_N, "GetWhatsAppBusinessPublicKeyOutput", "businessPublicKey"),
+            type = "string",
+            name = "businessPublicKey",
+            target_id = prelude.String.id,
+        }),
+        businessPublicKeySignatureStatus = schema.new({
+            id = id.from(_N, "GetWhatsAppBusinessPublicKeyOutput", "businessPublicKeySignatureStatus"),
+            type = "string",
+            name = "businessPublicKeySignatureStatus",
             target_id = prelude.String.id,
         }),
     },
@@ -2622,6 +2664,18 @@ M.UpdateWhatsAppFlowInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        endpointUri = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowInput", "endpointUri"),
+            type = "string",
+            name = "endpointUri",
+            target_id = prelude.String.id,
+        }),
+        metaAppId = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowInput", "metaAppId"),
+            type = "string",
+            name = "metaAppId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2782,6 +2836,39 @@ M.PostWhatsAppMessageMediaOutput = schema.new({
             target_id = prelude.String.id,
         }),
     },
+})
+
+M.PutWhatsAppBusinessPublicKeyInput = schema.new({
+    id = id.from(_N, "PutWhatsAppBusinessPublicKeyInput"),
+    type = "structure",
+    members = {
+        originationPhoneNumberId = schema.new({
+            id = id.from(_N, "PutWhatsAppBusinessPublicKeyInput", "originationPhoneNumberId"),
+            type = "string",
+            name = "originationPhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        businessPublicKey = schema.new({
+            id = id.from(_N, "PutWhatsAppBusinessPublicKeyInput", "businessPublicKey"),
+            type = "string",
+            name = "businessPublicKey",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "PutWhatsAppBusinessPublicKeyInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutWhatsAppBusinessPublicKeyOutput = schema.new({
+    id = id.from(_N, "PutWhatsAppBusinessPublicKeyOutput"),
+    type = "structure",
 })
 
 M.SendWhatsAppMessageInput = schema.new({
@@ -3127,6 +3214,18 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumber = schema.operation({
     },
 })
 
+M.GetWhatsAppBusinessPublicKey = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "GetWhatsAppBusinessPublicKey"),
+    input = M.GetWhatsAppBusinessPublicKeyInput,
+    output = M.GetWhatsAppBusinessPublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/business-public-key" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetWhatsAppFlow = schema.operation({
     id = id.from("com.amazonaws.socialmessaging", "GetWhatsAppFlow"),
     input = M.GetWhatsAppFlowInput,
@@ -3277,6 +3376,18 @@ M.PutWhatsAppBusinessAccountEventDestinations = schema.operation({
     output = M.PutWhatsAppBusinessAccountEventDestinationsOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/v1/whatsapp/waba/eventdestinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutWhatsAppBusinessPublicKey = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "PutWhatsAppBusinessPublicKey"),
+    input = M.PutWhatsAppBusinessPublicKeyInput,
+    output = M.PutWhatsAppBusinessPublicKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/whatsapp/business-public-key" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

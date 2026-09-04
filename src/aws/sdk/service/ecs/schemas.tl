@@ -4028,6 +4028,12 @@ M.DaemonDeploymentCapacityProvider = schema.new({
             name = "runningInstanceCount",
             target_id = prelude.Integer.id,
         }),
+        withoutDaemonInstanceCount = schema.new({
+            id = id.from(_N, "DaemonDeploymentCapacityProvider", "withoutDaemonInstanceCount"),
+            type = "integer",
+            name = "withoutDaemonInstanceCount",
+            target_id = prelude.Integer.id,
+        }),
         drainingInstanceCount = schema.new({
             id = id.from(_N, "DaemonDeploymentCapacityProvider", "drainingInstanceCount"),
             type = "integer",
@@ -4058,6 +4064,12 @@ M.DaemonDeploymentRevisionDetail = schema.new({
             id = id.from(_N, "DaemonDeploymentRevisionDetail", "totalRunningInstanceCount"),
             type = "integer",
             name = "totalRunningInstanceCount",
+            target_id = prelude.Integer.id,
+        }),
+        totalWithoutDaemonInstanceCount = schema.new({
+            id = id.from(_N, "DaemonDeploymentRevisionDetail", "totalWithoutDaemonInstanceCount"),
+            type = "integer",
+            name = "totalWithoutDaemonInstanceCount",
             target_id = prelude.Integer.id,
         }),
         totalDrainingInstanceCount = schema.new({
@@ -4269,6 +4281,12 @@ M.CreateDaemonInput = schema.new({
             name = "clientToken",
             target_id = prelude.String.id,
         }),
+        critical = schema.new({
+            id = id.from(_N, "CreateDaemonInput", "critical"),
+            type = "boolean",
+            name = "critical",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -4439,6 +4457,15 @@ M.DaemonCapacityProvider = schema.new({
                 [traits.DEFAULT] = { value = 0 },
             },
         }),
+        withoutDaemonCount = schema.new({
+            id = id.from(_N, "DaemonCapacityProvider", "withoutDaemonCount"),
+            type = "integer",
+            name = "withoutDaemonCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
     },
 })
 
@@ -4463,6 +4490,15 @@ M.DaemonRevisionDetail = schema.new({
             id = id.from(_N, "DaemonRevisionDetail", "totalRunningCount"),
             type = "integer",
             name = "totalRunningCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        totalWithoutDaemonCount = schema.new({
+            id = id.from(_N, "DaemonRevisionDetail", "totalWithoutDaemonCount"),
+            type = "integer",
+            name = "totalWithoutDaemonCount",
             target_id = prelude.Integer.id,
             traits = {
                 [traits.DEFAULT] = { value = 0 },
@@ -4829,6 +4865,12 @@ M.UpdateDaemonInput = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        critical = schema.new({
+            id = id.from(_N, "UpdateDaemonInput", "critical"),
+            type = "boolean",
+            name = "critical",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -4968,6 +5010,12 @@ M.DaemonRevision = schema.new({
             id = id.from(_N, "DaemonRevision", "enableExecuteCommand"),
             type = "boolean",
             name = "enableExecuteCommand",
+            target_id = prelude.Boolean.id,
+        }),
+        critical = schema.new({
+            id = id.from(_N, "DaemonRevision", "critical"),
+            type = "boolean",
+            name = "critical",
             target_id = prelude.Boolean.id,
         }),
     },

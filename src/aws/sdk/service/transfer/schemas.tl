@@ -62,6 +62,8 @@ M.SecurityPolicyProtocols = schema.new({ type = "list", list_member = prelude.St
 
 M.SftpConnectorTrustedHostKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.SecretVersionStageList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ServiceManagedEgressIpAddresses = schema.new({ type = "list", list_member = prelude.String })
 
 M.AddressAllocationIds = schema.new({ type = "list", list_member = prelude.String })
@@ -1385,6 +1387,13 @@ M.SftpConnectorConfig = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 1 },
             },
+        }),
+        OrderedUserSecretVersionStages = schema.new({
+            id = id.from(_N, "SftpConnectorConfig", "OrderedUserSecretVersionStages"),
+            type = "list",
+            name = "OrderedUserSecretVersionStages",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

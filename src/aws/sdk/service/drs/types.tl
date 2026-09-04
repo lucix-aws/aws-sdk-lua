@@ -533,6 +533,11 @@ local record M
         sourceOutpostArn: string
     end
 
+    enum SourceServerArchitecture
+        "x86_64"
+        "arm64"
+    end
+
     -- An object representing a data storage device on a server.
     record Disk
         -- The disk or device name.
@@ -589,6 +594,8 @@ local record M
         os: OS
         -- Are EC2 nitro instance types supported when recovering the Source Server.
         supportsNitroInstances: boolean
+        -- The architecture of the Source Server.
+        architecture: string
     end
 
     enum ExtensionStatus

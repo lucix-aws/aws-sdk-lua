@@ -1624,6 +1624,8 @@ local record M
         serviceNames: {string}
         -- The list of CloudWatch log group names to read agent traces from. Maximum of 10 log groups.
         logGroupNames: {string}
+        -- The list of CloudWatch log group name prefixes to read agent traces from. Specify this instead of logGroupNames to match log groups by prefix. Maximum of 5 prefixes. Specify either logGroupNames or logGroupNamePrefixes, not both. One of the two is required.
+        logGroupNamePrefixes: {string}
         -- Optional filter configuration to narrow down which sessions to evaluate.
         filterConfig: CloudWatchFilterConfig
     end
@@ -1770,12 +1772,21 @@ local record M
         insightId: string
     end
 
+    enum ResultDestination
+        "DEDICATED_LOG_GROUP"
+        "SOURCE_LOG_GROUP"
+    end
+
     -- CloudWatch Logs destination for batch evaluation results.
     record CloudWatchOutputConfig
-        -- The name of the CloudWatch log group where evaluation results will be written.
+        -- The name of the CloudWatch log group where evaluation results will be written. This value doesn't apply when resultDestination is SOURCE_LOG_GROUP, because results are written back to the trace source log group. The name can't be under the service-reserved /aws/bedrock-agentcore/evaluations/ namespace, apart from the service-managed default group.
         logGroupName: string
         -- The name of the CloudWatch log stream where evaluation results will be written.
         logStreamName: string
+        -- The CloudWatch metrics namespace where evaluation result metrics are published. If you omit this value, the service publishes metrics to Bedrock-AgentCore/Evaluations. This value can't begin with AWS/.
+        metricsNamespace: string
+        -- The destination where evaluation results are written. Valid values: DEDICATED_LOG_GROUP (default) – Writes results to a dedicated result log group. SOURCE_LOG_GROUP – Writes results back to the log group that the agent traces were read from. If you use this value, don't specify logGroupName.
+        resultDestination: string
     end
 
     -- Output destination configuration.
@@ -2193,6 +2204,7 @@ local record M
         kmsKeyArn: string
         -- The description of the batch evaluation.
         description: string
+        outputConfig: OutputConfig
     end
 
     record StartBatchEvaluationOutput

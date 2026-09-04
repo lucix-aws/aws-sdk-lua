@@ -10,6 +10,8 @@ local _N = "com.amazonaws.bedrockagentcorecontrol"
 
 local M: {string:any} = {}
 
+M.ConsentPortalSources = schema.new({ type = "list", list_member = M.ConsentPortalSource })
+
 M.ResourceOauth2ReturnUrlListType = schema.new({ type = "list", list_member = prelude.String })
 
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
@@ -17,6 +19,8 @@ M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.Val
 M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedScopesType = schema.new({ type = "list", list_member = prelude.String })
 
 M.AgentRuntimeEndpoints = schema.new({ type = "list", list_member = M.AgentRuntimeEndpoint })
 
@@ -51,6 +55,8 @@ M.ComponentConfigurationMap = schema.new({ type = "map", map_key = prelude.Strin
 M.ConfigurationBundleVersionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ConfigurationBundleVersionSummaryList = schema.new({ type = "list", list_member = M.ConfigurationBundleVersionSummary })
+
+M.ConsentPortalSummaries = schema.new({ type = "list", list_member = M.ConsentPortalSummary })
 
 M.DatasetSummaryList = schema.new({ type = "list", list_member = M.DatasetSummary })
 
@@ -186,8 +192,6 @@ M.AllowedAudienceList = schema.new({ type = "list", list_member = prelude.String
 
 M.AllowedClientsList = schema.new({ type = "list", list_member = prelude.String })
 
-M.AllowedScopesType = schema.new({ type = "list", list_member = prelude.String })
-
 M.AdvertisedScopeMappingType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.CustomClaimValidationsType = schema.new({ type = "list", list_member = M.CustomClaimValidationType })
@@ -211,6 +215,8 @@ M.HarnessAgentCoreMemoryRetrievalConfigs = schema.new({ type = "map", map_key = 
 M.HarnessManagedMemoryStrategyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LogGroupNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LogGroupNamePrefixList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ServiceNamesList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -7128,6 +7134,643 @@ M.UpdateConfigurationBundleOutput = schema.new({
         }),
         updatedAt = schema.new({
             id = id.from(_N, "UpdateConfigurationBundleOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConsentPortalIdpConfig = schema.new({
+    id = id.from(_N, "ConsentPortalIdpConfig"),
+    type = "structure",
+    members = {
+        credentialProviderArn = schema.new({
+            id = id.from(_N, "ConsentPortalIdpConfig", "credentialProviderArn"),
+            type = "string",
+            name = "credentialProviderArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scopes = schema.new({
+            id = id.from(_N, "ConsentPortalIdpConfig", "scopes"),
+            type = "list",
+            name = "scopes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        audience = schema.new({
+            id = id.from(_N, "ConsentPortalIdpConfig", "audience"),
+            type = "string",
+            name = "audience",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConsentPortalSource = schema.new({
+    id = id.from(_N, "ConsentPortalSource"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "ConsentPortalSource", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "ConsentPortalSource", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateConsentPortalInput = schema.new({
+    id = id.from(_N, "CreateConsentPortalRequest"),
+    type = "structure",
+    members = {
+        executionRoleArn = schema.new({
+            id = id.from(_N, "CreateConsentPortalInput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        idpConfig = schema.new({
+            id = id.from(_N, "CreateConsentPortalInput", "idpConfig"),
+            type = "structure",
+            name = "idpConfig",
+            target_id = id.from(_N, "ConsentPortalIdpConfig"),
+            target = M.ConsentPortalIdpConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateConsentPortalInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sources = schema.new({
+            id = id.from(_N, "CreateConsentPortalInput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.ConsentPortalSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateConsentPortalInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateConsentPortalInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateConsentPortalOutput = schema.new({
+    id = id.from(_N, "CreateConsentPortalResponse"),
+    type = "structure",
+    members = {
+        sources = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.ConsentPortalSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consentPortalArn = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "consentPortalArn"),
+            type = "string",
+            name = "consentPortalArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consentPortalId = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "consentPortalId"),
+            type = "string",
+            name = "consentPortalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        idpConfig = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "idpConfig"),
+            type = "structure",
+            name = "idpConfig",
+            target_id = id.from(_N, "ConsentPortalIdpConfig"),
+            target = M.ConsentPortalIdpConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        portalUrl = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "portalUrl"),
+            type = "string",
+            name = "portalUrl",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CreateConsentPortalOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteConsentPortalInput = schema.new({
+    id = id.from(_N, "DeleteConsentPortalRequest"),
+    type = "structure",
+    members = {
+        consentPortalIdentifier = schema.new({
+            id = id.from(_N, "DeleteConsentPortalInput", "consentPortalIdentifier"),
+            type = "string",
+            name = "consentPortalIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteConsentPortalOutput = schema.new({
+    id = id.from(_N, "DeleteConsentPortalResponse"),
+    type = "structure",
+})
+
+M.GetConsentPortalInput = schema.new({
+    id = id.from(_N, "GetConsentPortalRequest"),
+    type = "structure",
+    members = {
+        consentPortalIdentifier = schema.new({
+            id = id.from(_N, "GetConsentPortalInput", "consentPortalIdentifier"),
+            type = "string",
+            name = "consentPortalIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetConsentPortalOutput = schema.new({
+    id = id.from(_N, "GetConsentPortalResponse"),
+    type = "structure",
+    members = {
+        sources = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.ConsentPortalSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consentPortalArn = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "consentPortalArn"),
+            type = "string",
+            name = "consentPortalArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consentPortalId = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "consentPortalId"),
+            type = "string",
+            name = "consentPortalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        idpConfig = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "idpConfig"),
+            type = "structure",
+            name = "idpConfig",
+            target_id = id.from(_N, "ConsentPortalIdpConfig"),
+            target = M.ConsentPortalIdpConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        portalUrl = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "portalUrl"),
+            type = "string",
+            name = "portalUrl",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetConsentPortalOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListConsentPortalsInput = schema.new({
+    id = id.from(_N, "ListConsentPortalsRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListConsentPortalsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListConsentPortalsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConsentPortalSummary = schema.new({
+    id = id.from(_N, "ConsentPortalSummary"),
+    type = "structure",
+    members = {
+        sources = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.ConsentPortalSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consentPortalArn = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "consentPortalArn"),
+            type = "string",
+            name = "consentPortalArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consentPortalId = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "consentPortalId"),
+            type = "string",
+            name = "consentPortalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        portalUrl = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "portalUrl"),
+            type = "string",
+            name = "portalUrl",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "ConsentPortalSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListConsentPortalsOutput = schema.new({
+    id = id.from(_N, "ListConsentPortalsResponse"),
+    type = "structure",
+    members = {
+        consentPortals = schema.new({
+            id = id.from(_N, "ListConsentPortalsOutput", "consentPortals"),
+            type = "list",
+            name = "consentPortals",
+            target_id = prelude.Document.id,
+            list_member = M.ConsentPortalSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListConsentPortalsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateConsentPortalInput = schema.new({
+    id = id.from(_N, "UpdateConsentPortalRequest"),
+    type = "structure",
+    members = {
+        consentPortalIdentifier = schema.new({
+            id = id.from(_N, "UpdateConsentPortalInput", "consentPortalIdentifier"),
+            type = "string",
+            name = "consentPortalIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "UpdateConsentPortalInput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+        }),
+        idpConfig = schema.new({
+            id = id.from(_N, "UpdateConsentPortalInput", "idpConfig"),
+            type = "structure",
+            name = "idpConfig",
+            target_id = id.from(_N, "ConsentPortalIdpConfig"),
+            target = M.ConsentPortalIdpConfig,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateConsentPortalInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateConsentPortalOutput = schema.new({
+    id = id.from(_N, "UpdateConsentPortalResponse"),
+    type = "structure",
+    members = {
+        sources = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.ConsentPortalSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consentPortalArn = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "consentPortalArn"),
+            type = "string",
+            name = "consentPortalArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consentPortalId = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "consentPortalId"),
+            type = "string",
+            name = "consentPortalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        executionRoleArn = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        idpConfig = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "idpConfig"),
+            type = "structure",
+            name = "idpConfig",
+            target_id = id.from(_N, "ConsentPortalIdpConfig"),
+            target = M.ConsentPortalIdpConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        portalUrl = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "portalUrl"),
+            type = "string",
+            name = "portalUrl",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "UpdateConsentPortalOutput", "updatedAt"),
             type = "timestamp",
             name = "updatedAt",
             target_id = prelude.Timestamp.id,
@@ -19327,8 +19970,15 @@ M.CloudWatchLogsInputConfig = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
+        }),
+        logGroupNamePrefixes = schema.new({
+            id = id.from(_N, "CloudWatchLogsInputConfig", "logGroupNamePrefixes"),
+            type = "list",
+            name = "logGroupNamePrefixes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
         serviceNames = schema.new({
             id = id.from(_N, "CloudWatchLogsInputConfig", "serviceNames"),
@@ -19379,6 +20029,54 @@ M.Insight = schema.new({
             type = "string",
             name = "insightId",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CloudWatchOutputConfig = schema.new({
+    id = id.from(_N, "CloudWatchOutputConfig"),
+    type = "structure",
+    members = {
+        logGroupName = schema.new({
+            id = id.from(_N, "CloudWatchOutputConfig", "logGroupName"),
+            type = "string",
+            name = "logGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "" },
+            },
+        }),
+        metricsNamespace = schema.new({
+            id = id.from(_N, "CloudWatchOutputConfig", "metricsNamespace"),
+            type = "string",
+            name = "metricsNamespace",
+            target_id = prelude.String.id,
+        }),
+        resultDestination = schema.new({
+            id = id.from(_N, "CloudWatchOutputConfig", "resultDestination"),
+            type = "string",
+            name = "resultDestination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "DEDICATED_LOG_GROUP" },
+            },
+        }),
+    },
+})
+
+M.OutputConfig = schema.new({
+    id = id.from(_N, "OutputConfig"),
+    type = "structure",
+    members = {
+        cloudWatchConfig = schema.new({
+            id = id.from(_N, "OutputConfig", "cloudWatchConfig"),
+            type = "structure",
+            name = "cloudWatchConfig",
+            target_id = id.from(_N, "CloudWatchOutputConfig"),
+            target = M.CloudWatchOutputConfig,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -19578,6 +20276,13 @@ M.CreateOnlineEvaluationConfigInput = schema.new({
             target_id = id.from(_N, "ClusteringConfig"),
             target = M.ClusteringConfig,
         }),
+        outputConfig = schema.new({
+            id = id.from(_N, "CreateOnlineEvaluationConfigInput", "outputConfig"),
+            type = "structure",
+            name = "outputConfig",
+            target_id = id.from(_N, "OutputConfig"),
+            target = M.OutputConfig,
+        }),
         evaluationExecutionRoleArn = schema.new({
             id = id.from(_N, "CreateOnlineEvaluationConfigInput", "evaluationExecutionRoleArn"),
             type = "string",
@@ -19603,39 +20308,6 @@ M.CreateOnlineEvaluationConfigInput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
-        }),
-    },
-})
-
-M.CloudWatchOutputConfig = schema.new({
-    id = id.from(_N, "CloudWatchOutputConfig"),
-    type = "structure",
-    members = {
-        logGroupName = schema.new({
-            id = id.from(_N, "CloudWatchOutputConfig", "logGroupName"),
-            type = "string",
-            name = "logGroupName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.OutputConfig = schema.new({
-    id = id.from(_N, "OutputConfig"),
-    type = "structure",
-    members = {
-        cloudWatchConfig = schema.new({
-            id = id.from(_N, "OutputConfig", "cloudWatchConfig"),
-            type = "structure",
-            name = "cloudWatchConfig",
-            target_id = id.from(_N, "CloudWatchOutputConfig"),
-            target = M.CloudWatchOutputConfig,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -20119,6 +20791,13 @@ M.UpdateOnlineEvaluationConfigInput = schema.new({
             name = "clusteringConfig",
             target_id = id.from(_N, "ClusteringConfig"),
             target = M.ClusteringConfig,
+        }),
+        outputConfig = schema.new({
+            id = id.from(_N, "UpdateOnlineEvaluationConfigInput", "outputConfig"),
+            type = "structure",
+            name = "outputConfig",
+            target_id = id.from(_N, "OutputConfig"),
+            target = M.OutputConfig,
         }),
         evaluationExecutionRoleArn = schema.new({
             id = id.from(_N, "UpdateOnlineEvaluationConfigInput", "evaluationExecutionRoleArn"),
@@ -28504,6 +29183,18 @@ M.CreateConfigurationBundle = schema.operation({
     },
 })
 
+M.CreateConsentPortal = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateConsentPortal"),
+    input = M.CreateConsentPortalInput,
+    output = M.CreateConsentPortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/CreateConsentPortal" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateDataset = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateDataset"),
     input = M.CreateDatasetInput,
@@ -28834,6 +29525,18 @@ M.DeleteConfigurationBundle = schema.operation({
     output = M.DeleteConfigurationBundleOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/configuration-bundles/{bundleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConsentPortal = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteConsentPortal"),
+    input = M.DeleteConsentPortalInput,
+    output = M.DeleteConsentPortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/DeleteConsentPortal" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -29194,6 +29897,18 @@ M.GetConfigurationBundleVersion = schema.operation({
     output = M.GetConfigurationBundleVersionOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/configuration-bundles/{bundleId}/versions/{versionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConsentPortal = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetConsentPortal"),
+    input = M.GetConsentPortalInput,
+    output = M.GetConsentPortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/GetConsentPortal" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -29626,6 +30341,18 @@ M.ListConfigurationBundleVersions = schema.operation({
     output = M.ListConfigurationBundleVersionsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/configuration-bundles/{bundleId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConsentPortals = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListConsentPortals"),
+    input = M.ListConsentPortalsInput,
+    output = M.ListConsentPortalsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/ListConsentPortals" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -30106,6 +30833,18 @@ M.UpdateConfigurationBundle = schema.operation({
     output = M.UpdateConfigurationBundleOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/configuration-bundles/{bundleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConsentPortal = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateConsentPortal"),
+    input = M.UpdateConsentPortalInput,
+    output = M.UpdateConsentPortalOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/UpdateConsentPortal" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

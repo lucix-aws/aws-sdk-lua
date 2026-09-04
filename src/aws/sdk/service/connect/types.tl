@@ -3710,6 +3710,42 @@ local record M
         ExtractInformationAction: ExtractInformationActionDefinition
     end
 
+    enum PreEvaluationFilterType
+        "TAG"
+    end
+
+    enum PreEvaluationFilterOperator
+        "EQUALS"
+    end
+
+    enum PreEvaluationFilterResourceType
+        "CONTACT"
+    end
+
+    -- A single pre-evaluation filter condition. Specifies a resource type, filter type, key, value, and operator
+    -- to match against a resource attribute.
+    record PreEvaluationFilter
+        -- The type of resource to filter on. Valid values: CONTACT.
+        ResourceType: string
+        -- The type of filter to apply. Valid values: TAG.
+        FilterType: string
+        -- The key of the attribute to filter on. For tag filters, this is the tag key.
+        FilterKey: string
+        -- The value to match against. For tag filters, this is the tag value.
+        FilterValue: string
+        -- The comparison operator for the filter condition. Valid values: EQUALS.
+        Operator: string
+    end
+
+    -- The pre-evaluation filters for a rule, that restrict a rule to be applied to only certain resources based on
+    -- the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before
+    -- rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.
+    record PreEvaluationFilters
+        -- A list of conditions that the rule evaluates together using AND logic. All conditions must be met for
+        -- the event to be evaluated by the rule.
+        AndConditions: {PreEvaluationFilter}
+    end
+
     enum RulePublishStatus
         "DRAFT"
         "PUBLISHED"
@@ -3760,11 +3796,17 @@ local record M
         Actions: {RuleAction}
         -- The publish status of the rule.
         PublishStatus: string
+        -- The pre-evaluation filters for the rule, that restrict the rule to be applied to only certain resources based
+        -- on the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before
+        -- rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.
+        PreEvaluationFilters: PreEvaluationFilters
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services
         -- SDK populates this field. For more information about idempotency, see
         -- Making retries safe with idempotent APIs.
         ClientToken: string
+        -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
+        Tags: {string : string}
     end
 
     record CreateRuleOutput
@@ -7066,6 +7108,10 @@ local record M
         Actions: {RuleAction}
         -- The publish status of the rule.
         PublishStatus: string
+        -- The pre-evaluation filters for the rule, that restrict the rule to be applied to only certain resources based
+        -- on the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before
+        -- rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.
+        PreEvaluationFilters: PreEvaluationFilters
         -- The timestamp for when the rule was created.
         CreatedTime: number
         -- The timestamp for the when the rule was last updated.
@@ -13919,6 +13965,10 @@ local record M
         RuleCapabilityTiers: {string}
         -- The publish status of the rule.
         PublishStatus: string
+        -- The pre-evaluation filters for the rule, that restrict the rule to be applied to only certain resources based
+        -- on the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before
+        -- rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.
+        PreEvaluationFilters: PreEvaluationFilters
         -- The timestamp for when the rule was created.
         CreatedTime: number
         -- The timestamp for when the rule was last updated.
@@ -16269,6 +16319,10 @@ local record M
         Actions: {RuleAction}
         -- The publish status of the rule.
         PublishStatus: string
+        -- The pre-evaluation filters for the rule, that restrict the rule to be applied to only certain resources based
+        -- on the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before
+        -- rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.
+        PreEvaluationFilters: PreEvaluationFilters
     end
 
     record UpdateRuleOutput
