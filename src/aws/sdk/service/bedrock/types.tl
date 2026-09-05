@@ -2291,6 +2291,7 @@ local record M
     enum DataRetentionMode
         "default"
         "none"
+        "aws_review"
         "provider_data_share"
         "inherit"
     end

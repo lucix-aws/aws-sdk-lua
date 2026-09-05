@@ -110571,6 +110571,47 @@ M.UpdateSecurityGroupRuleDescriptionsIngressOutput = schema.new({
     },
 })
 
+M.ValidateSecurityGroupQuotasForInterfaceInput = schema.new({
+    id = id.from(_N, "ValidateSecurityGroupQuotasForInterfaceRequest"),
+    type = "structure",
+    members = {
+        SecurityGroupIds = schema.new({
+            id = id.from(_N, "ValidateSecurityGroupQuotasForInterfaceInput", "SecurityGroupIds"),
+            type = "list",
+            name = "SecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "SecurityGroupId" },
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "ValidateSecurityGroupQuotasForInterfaceInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ValidateSecurityGroupQuotasForInterfaceOutput = schema.new({
+    id = id.from(_N, "ValidateSecurityGroupQuotasForInterfaceResult"),
+    type = "structure",
+    members = {
+        Valid = schema.new({
+            id = id.from(_N, "ValidateSecurityGroupQuotasForInterfaceOutput", "Valid"),
+            type = "boolean",
+            name = "Valid",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "valid" },
+                [traits.EC2_QUERY_NAME] = { name = "Valid" },
+            },
+        }),
+    },
+})
+
 M.WithdrawByoipCidrInput = schema.new({
     id = id.from(_N, "WithdrawByoipCidrRequest"),
     type = "structure",
@@ -119429,6 +119470,17 @@ M.UpdateSecurityGroupRuleDescriptionsIngress = schema.operation({
     id = id.from("com.amazonaws.ec2", "UpdateSecurityGroupRuleDescriptionsIngress"),
     input = M.UpdateSecurityGroupRuleDescriptionsIngressInput,
     output = M.UpdateSecurityGroupRuleDescriptionsIngressOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateSecurityGroupQuotasForInterface = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ValidateSecurityGroupQuotasForInterface"),
+    input = M.ValidateSecurityGroupQuotasForInterfaceInput,
+    output = M.ValidateSecurityGroupQuotasForInterfaceOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

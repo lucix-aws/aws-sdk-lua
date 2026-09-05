@@ -7,6 +7,12 @@ local record M
         Message: string
     end
 
+    enum AdjustableAtLevelEnum
+        "ACCOUNT"
+        "PER_RESOURCE"
+        "ALL"
+    end
+
     enum AppliedLevelEnum
         "ACCOUNT"
         "RESOURCE"
@@ -233,6 +239,11 @@ local record M
         ContextScopeType: string
         -- Specifies the resource, or resources, to which the quota applies. The value for this field is either an Amazon Resource Name (ARN) or *. If the value is an ARN, the quota value applies to that resource. If the value is *, then the quota value applies to all resources listed in the ContextScopeType field. The quota value applies to all resources for which you haven’t previously applied a quota value, and any new resources you create in your Amazon Web Services account.
         ContextId: string
+        -- Specifies the level at which you can request an increase for this quota:
+        -- ACCOUNT – You can request an increase only at the account level.
+        -- PER_RESOURCE – You can request an increase only for an individual resource.
+        -- ALL – You can request an increase at either the account level or for an individual resource.
+        AdjustableAtLevel: string
     end
 
     -- Information about the CloudWatch metric that reflects quota usage.
@@ -366,6 +377,11 @@ local record M
         -- A detailed error message describing the failure when the report status is FAILED.
         -- This field is only present when the status is FAILED.
         ErrorMessage: string
+    end
+
+    -- Invalid input was provided.
+    record InvalidPaginationTokenException
+        Message: string
     end
 
     record GetRequestedServiceQuotaChangeInput
@@ -516,11 +532,6 @@ local record M
         -- and 256 characters. Valid characters include a-z, A-Z, 0-9, space, and the special
         -- characters _ - . : / = + @.
         Value: string
-    end
-
-    -- Invalid input was provided.
-    record InvalidPaginationTokenException
-        Message: string
     end
 
     record ListAWSDefaultServiceQuotasInput

@@ -818,6 +818,7 @@ local record Client
     updateInterruptibleCapacityReservationAllocation: function(Client, types.UpdateInterruptibleCapacityReservationAllocationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInterruptibleCapacityReservationAllocationOutput>
     updateSecurityGroupRuleDescriptionsEgress: function(Client, types.UpdateSecurityGroupRuleDescriptionsEgressInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupRuleDescriptionsEgressOutput>
     updateSecurityGroupRuleDescriptionsIngress: function(Client, types.UpdateSecurityGroupRuleDescriptionsIngressInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
+    validateSecurityGroupQuotasForInterface: function(Client, types.ValidateSecurityGroupQuotasForInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.ValidateSecurityGroupQuotasForInterfaceOutput>
     withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.WithdrawByoipCidrOutput>
 end
 
@@ -4061,6 +4062,10 @@ end
 
 function C:updateSecurityGroupRuleDescriptionsIngress(input: types.UpdateSecurityGroupRuleDescriptionsIngressInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurityGroupRuleDescriptionsIngress as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
+end
+
+function C:validateSecurityGroupQuotasForInterface(input: types.ValidateSecurityGroupQuotasForInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateSecurityGroupQuotasForInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateSecurityGroupQuotasForInterface as schema.OperationSchema, input, options) as async.Operation<types.ValidateSecurityGroupQuotasForInterfaceOutput>
 end
 
 function C:withdrawByoipCidr(input: types.WithdrawByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.WithdrawByoipCidrOutput>

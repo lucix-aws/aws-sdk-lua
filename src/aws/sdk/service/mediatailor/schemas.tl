@@ -904,6 +904,71 @@ M.SequentialExecutorConfiguration = schema.new({
     },
 })
 
+M.VastRequestConfiguration = schema.new({
+    id = id.from(_N, "VastRequestConfiguration"),
+    type = "structure",
+    members = {
+        Runtime = schema.new({
+            id = id.from(_N, "VastRequestConfiguration", "Runtime"),
+            type = "string",
+            name = "Runtime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Output = schema.new({
+            id = id.from(_N, "VastRequestConfiguration", "Output"),
+            type = "map",
+            name = "Output",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        MethodType = schema.new({
+            id = id.from(_N, "VastRequestConfiguration", "MethodType"),
+            type = "string",
+            name = "MethodType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestTimeoutMilliseconds = schema.new({
+            id = id.from(_N, "VastRequestConfiguration", "RequestTimeoutMilliseconds"),
+            type = "integer",
+            name = "RequestTimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "VastRequestConfiguration", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Body = schema.new({
+            id = id.from(_N, "VastRequestConfiguration", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+        }),
+        Headers = schema.new({
+            id = id.from(_N, "VastRequestConfiguration", "Headers"),
+            type = "map",
+            name = "Headers",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.Function = schema.new({
     id = id.from(_N, "Function"),
     type = "structure",
@@ -959,6 +1024,13 @@ M.Function = schema.new({
             name = "SequentialExecutorConfiguration",
             target_id = id.from(_N, "SequentialExecutorConfiguration"),
             target = M.SequentialExecutorConfiguration,
+        }),
+        VastRequestConfiguration = schema.new({
+            id = id.from(_N, "Function", "VastRequestConfiguration"),
+            type = "structure",
+            name = "VastRequestConfiguration",
+            target_id = id.from(_N, "VastRequestConfiguration"),
+            target = M.VastRequestConfiguration,
         }),
         Tags = schema.new({
             id = id.from(_N, "Function", "Tags"),
@@ -1505,6 +1577,49 @@ M.ManifestProcessingRules = schema.new({
     },
 })
 
+M.YieldOptimizationConfiguration = schema.new({
+    id = id.from(_N, "YieldOptimizationConfiguration"),
+    type = "structure",
+    members = {
+        MinimumUnfilledDuration = schema.new({
+            id = id.from(_N, "YieldOptimizationConfiguration", "MinimumUnfilledDuration"),
+            type = "integer",
+            name = "MinimumUnfilledDuration",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PublisherId = schema.new({
+            id = id.from(_N, "YieldOptimizationConfiguration", "PublisherId"),
+            type = "string",
+            name = "PublisherId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Region = schema.new({
+            id = id.from(_N, "YieldOptimizationConfiguration", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OpenRtbTemplate = schema.new({
+            id = id.from(_N, "YieldOptimizationConfiguration", "OpenRtbTemplate"),
+            type = "string",
+            name = "OpenRtbTemplate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PlaybackConfiguration = schema.new({
     id = id.from(_N, "PlaybackConfiguration"),
     type = "structure",
@@ -1672,6 +1787,13 @@ M.PlaybackConfiguration = schema.new({
             name = "AdDecisionServerConfiguration",
             target_id = id.from(_N, "AdDecisionServerConfiguration"),
             target = M.AdDecisionServerConfiguration,
+        }),
+        YieldOptimizationConfiguration = schema.new({
+            id = id.from(_N, "PlaybackConfiguration", "YieldOptimizationConfiguration"),
+            type = "structure",
+            name = "YieldOptimizationConfiguration",
+            target_id = id.from(_N, "YieldOptimizationConfiguration"),
+            target = M.YieldOptimizationConfiguration,
         }),
         FunctionMapping = schema.new({
             id = id.from(_N, "PlaybackConfiguration", "FunctionMapping"),
@@ -4929,6 +5051,13 @@ M.GetFunctionOutput = schema.new({
             target_id = id.from(_N, "SequentialExecutorConfiguration"),
             target = M.SequentialExecutorConfiguration,
         }),
+        VastRequestConfiguration = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "VastRequestConfiguration"),
+            type = "structure",
+            name = "VastRequestConfiguration",
+            target_id = id.from(_N, "VastRequestConfiguration"),
+            target = M.VastRequestConfiguration,
+        }),
         Tags = schema.new({
             id = id.from(_N, "GetFunctionOutput", "Tags"),
             type = "map",
@@ -5051,6 +5180,13 @@ M.PutFunctionInput = schema.new({
             target_id = id.from(_N, "SequentialExecutorConfiguration"),
             target = M.SequentialExecutorConfiguration,
         }),
+        VastRequestConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionInput", "VastRequestConfiguration"),
+            type = "structure",
+            name = "VastRequestConfiguration",
+            target_id = id.from(_N, "VastRequestConfiguration"),
+            target = M.VastRequestConfiguration,
+        }),
         Tags = schema.new({
             id = id.from(_N, "PutFunctionInput", "Tags"),
             type = "map",
@@ -5120,6 +5256,13 @@ M.PutFunctionOutput = schema.new({
             name = "SequentialExecutorConfiguration",
             target_id = id.from(_N, "SequentialExecutorConfiguration"),
             target = M.SequentialExecutorConfiguration,
+        }),
+        VastRequestConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "VastRequestConfiguration"),
+            type = "structure",
+            name = "VastRequestConfiguration",
+            target_id = id.from(_N, "VastRequestConfiguration"),
+            target = M.VastRequestConfiguration,
         }),
         Tags = schema.new({
             id = id.from(_N, "PutFunctionOutput", "Tags"),
@@ -5325,6 +5468,13 @@ M.GetPlaybackConfigurationOutput = schema.new({
             name = "AdDecisionServerConfiguration",
             target_id = id.from(_N, "AdDecisionServerConfiguration"),
             target = M.AdDecisionServerConfiguration,
+        }),
+        YieldOptimizationConfiguration = schema.new({
+            id = id.from(_N, "GetPlaybackConfigurationOutput", "YieldOptimizationConfiguration"),
+            type = "structure",
+            name = "YieldOptimizationConfiguration",
+            target_id = id.from(_N, "YieldOptimizationConfiguration"),
+            target = M.YieldOptimizationConfiguration,
         }),
         FunctionMapping = schema.new({
             id = id.from(_N, "GetPlaybackConfigurationOutput", "FunctionMapping"),
@@ -6023,6 +6173,13 @@ M.PutPlaybackConfigurationInput = schema.new({
             target_id = id.from(_N, "AdDecisionServerConfiguration"),
             target = M.AdDecisionServerConfiguration,
         }),
+        YieldOptimizationConfiguration = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationInput", "YieldOptimizationConfiguration"),
+            type = "structure",
+            name = "YieldOptimizationConfiguration",
+            target_id = id.from(_N, "YieldOptimizationConfiguration"),
+            target = M.YieldOptimizationConfiguration,
+        }),
         FunctionMapping = schema.new({
             id = id.from(_N, "PutPlaybackConfigurationInput", "FunctionMapping"),
             type = "map",
@@ -6215,6 +6372,13 @@ M.PutPlaybackConfigurationOutput = schema.new({
             name = "AdDecisionServerConfiguration",
             target_id = id.from(_N, "AdDecisionServerConfiguration"),
             target = M.AdDecisionServerConfiguration,
+        }),
+        YieldOptimizationConfiguration = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationOutput", "YieldOptimizationConfiguration"),
+            type = "structure",
+            name = "YieldOptimizationConfiguration",
+            target_id = id.from(_N, "YieldOptimizationConfiguration"),
+            target = M.YieldOptimizationConfiguration,
         }),
         FunctionMapping = schema.new({
             id = id.from(_N, "PutPlaybackConfigurationOutput", "FunctionMapping"),

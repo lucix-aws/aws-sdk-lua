@@ -490,6 +490,12 @@ M.QuotaContextInfo = schema.new({
             name = "ContextId",
             target_id = prelude.String.id,
         }),
+        AdjustableAtLevel = schema.new({
+            id = id.from(_N, "QuotaContextInfo", "AdjustableAtLevel"),
+            type = "string",
+            name = "AdjustableAtLevel",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -790,6 +796,22 @@ M.GetQuotaUtilizationReportOutput = schema.new({
             id = id.from(_N, "GetQuotaUtilizationReportOutput", "ErrorMessage"),
             type = "string",
             name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidPaginationTokenException = schema.new({
+    id = id.from(_N, "InvalidPaginationTokenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidPaginationTokenException", "Message"),
+            type = "string",
+            name = "Message",
             target_id = prelude.String.id,
         }),
     },
@@ -1110,22 +1132,6 @@ M.Tag = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-    },
-})
-
-M.InvalidPaginationTokenException = schema.new({
-    id = id.from(_N, "InvalidPaginationTokenException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "InvalidPaginationTokenException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
         }),
     },
 })

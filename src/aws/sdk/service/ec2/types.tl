@@ -44111,6 +44111,25 @@ local record M
         Return: boolean
     end
 
+    record ValidateSecurityGroupQuotasForInterfaceInput
+        -- The IDs of the security groups to validate for association with a single network
+        -- interface. You must specify at least one ID, and each ID must be unique. The number
+        -- of IDs cannot exceed the maximum number of security groups allowed per network
+        -- interface.
+        SecurityGroupIds: {string}
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ValidateSecurityGroupQuotasForInterfaceOutput
+        -- The operation returns true if the specified security groups can be
+        -- associated with a single network interface without exceeding the quotas. It returns
+        -- an error if associating the security groups would exceed a quota.
+        Valid: boolean
+    end
+
     record WithdrawByoipCidrInput
         -- The address range, in CIDR notation.
         Cidr: string
