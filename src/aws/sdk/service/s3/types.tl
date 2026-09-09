@@ -479,6 +479,11 @@ local record M
         "REPLACE"
     end
 
+    enum ObjectLockEventHold
+        "ON"
+        "OFF"
+    end
+
     enum ObjectLockLegalHoldStatus
         "ON"
         "OFF"
@@ -892,6 +897,16 @@ local record M
         -- Specifies whether you want to apply a legal hold to the object copy.
         -- This functionality is not supported for directory buckets.
         ObjectLockLegalHoldStatus: string
+        -- The event hold status to apply to the object copy. Set to ON to enable or
+        -- OFF to disable.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHold: string
+        -- The event hold duration in days to apply to the object copy.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationDays: number
+        -- The event hold duration in years to apply to the object copy.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationYears: number
         -- The account ID of the expected destination bucket owner. If the account ID that you provide does not match the actual owner of the destination bucket, the request fails with the HTTP status code 403 Forbidden (access denied).
         ExpectedBucketOwner: string
         -- The account ID of the expected source bucket owner. If the account ID that you provide does not match the actual owner of the source bucket, the request fails with the HTTP status code 403 Forbidden (access denied).
@@ -909,7 +924,7 @@ local record M
         -- Checking
         -- object integrity in the Amazon S3 User Guide.
         ChecksumType: string
-        -- The Base64 encoded, 32-bit CRC32 checksum of the object. This checksum is only present if the object was uploaded
+        -- The Base64 encoded, 32-bit CRC32 checksum of the object. This checksum is only present if the checksum was uploaded
         -- with the object. For more information, see
         -- Checking object integrity in the Amazon S3 User Guide.
         ChecksumCRC32: string
@@ -1594,6 +1609,16 @@ local record M
         -- Specifies whether you want to apply a legal hold to the uploaded object.
         -- This functionality is not supported for directory buckets.
         ObjectLockLegalHoldStatus: string
+        -- Specifies the event hold status to apply to the uploaded object. Set to ON to enable
+        -- or OFF to disable.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHold: string
+        -- Specifies the event hold duration in days to apply to the uploaded object.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationDays: number
+        -- Specifies the event hold duration in years to apply to the uploaded object.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationYears: number
         -- The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code 403 Forbidden (access denied).
         ExpectedBucketOwner: string
         -- Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object. For more information, see
@@ -3100,6 +3125,8 @@ local record M
         "ObjectLockRetainUntilDate"
         "ObjectLockMode"
         "ObjectLockLegalHoldStatus"
+        "ObjectLockEventHoldStatus"
+        "ObjectLockEventHoldDuration"
         "IntelligentTieringAccessTier"
         "BucketKeyStatus"
         "ChecksumAlgorithm"
@@ -3888,6 +3915,7 @@ local record M
         "s3:ObjectAnnotation:*"
         "s3:ObjectAnnotation:Put"
         "s3:ObjectAnnotation:Delete"
+        "s3:ObjectRetention:Put"
     end
 
     enum FilterRuleName
@@ -4659,7 +4687,7 @@ local record M
         -- An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a
         -- resource found at a URL.
         ETag: string
-        -- The Base64 encoded, 32-bit CRC32 checksum of the object. This checksum is only present if the object was uploaded
+        -- The Base64 encoded, 32-bit CRC32 checksum of the object. This checksum is only present if the checksum was uploaded
         -- with the object. For more information, see
         -- Checking object integrity in the Amazon S3 User Guide.
         ChecksumCRC32: string
@@ -4782,6 +4810,18 @@ local record M
         -- permission to view an object's legal hold status.
         -- This functionality is not supported for directory buckets.
         ObjectLockLegalHoldStatus: string
+        -- The event hold status for this object. This header is only returned if the requester has the
+        -- s3:GetObjectRetention permission.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHold: string
+        -- The event hold duration in days for this object. Only returned when the event hold is
+        -- enabled.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationDays: number
+        -- The event hold duration in years for this object. Only returned when the event hold is
+        -- enabled.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationYears: number
     end
 
     -- Object is archived and inaccessible until restored.
@@ -5146,6 +5186,16 @@ local record M
         "Enabled"
     end
 
+    -- Contains the event hold duration configuration, specified in either days or years.
+    record EventHoldDuration
+        -- The number of days for the event hold duration. The minimum value is 1 and the maximum value is
+        -- 36,500.
+        Days: number
+        -- The number of years for the event hold duration. The minimum value is 1 and the maximum value is
+        -- 100.
+        Years: number
+    end
+
     enum ObjectLockRetentionMode
         "GOVERNANCE"
         "COMPLIANCE"
@@ -5167,6 +5217,9 @@ local record M
         -- The number of years that you want to specify for the default retention period. Must be used with
         -- Mode.
         Years: number
+        -- The default event hold duration to be applied to new objects placed in the specified bucket. When
+        -- configured, new objects will automatically have an event hold enabled with this duration.
+        DefaultEventHold: EventHoldDuration
     end
 
     -- The container element for an Object Lock rule.
@@ -5214,6 +5267,12 @@ local record M
         Mode: string
         -- The date on which this Object Lock Retention will expire.
         RetainUntilDate: number
+        -- The event hold status for the object. Set to ON to enable an event hold or
+        -- OFF to disable it.
+        EventHold: string
+        -- The event hold duration for the object. Specifies how long the object remains protected after the
+        -- event hold is released.
+        EventHoldDuration: EventHoldDuration
     end
 
     record GetObjectRetentionOutput
@@ -5653,6 +5712,18 @@ local record M
         -- Lock.
         -- This functionality is not supported for directory buckets.
         ObjectLockLegalHoldStatus: string
+        -- The event hold status for this object. This header is only returned if the requester has the
+        -- s3:GetObjectRetention permission.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHold: string
+        -- The event hold duration in days for this object. Only returned when the event hold is
+        -- enabled.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationDays: number
+        -- The event hold duration in years for this object. Only returned when the event hold is
+        -- enabled.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationYears: number
     end
 
     record ListBucketAnalyticsConfigurationsInput
@@ -7564,6 +7635,16 @@ local record M
         -- the Amazon S3 User Guide.
         -- This functionality is not supported for directory buckets.
         ObjectLockLegalHoldStatus: string
+        -- Specifies the event hold status to apply to this object. Set to ON to enable or
+        -- OFF to disable.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHold: string
+        -- Specifies the event hold duration in days to apply to this object.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationDays: number
+        -- Specifies the event hold duration in years to apply to this object.
+        -- This functionality is not supported for directory buckets.
+        ObjectLockEventHoldDurationYears: number
         -- The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code 403 Forbidden (access denied).
         ExpectedBucketOwner: string
     end

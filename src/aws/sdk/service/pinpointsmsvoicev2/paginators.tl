@@ -418,6 +418,24 @@ function M.items_describe_verified_destination_numbers(client, input)
     })
 end
 
+--- Returns a page iterator for listAvailablePhoneNumbers.
+function M.pages_list_available_phone_numbers(client, input)
+    return paginator.pages(client, "listAvailablePhoneNumbers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AvailablePhoneNumbers",
+    })
+end
+
+--- Returns an item iterator for listAvailablePhoneNumbers.
+function M.items_list_available_phone_numbers(client, input)
+    return paginator.items(client, "listAvailablePhoneNumbers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AvailablePhoneNumbers",
+    })
+end
+
 --- Returns a page iterator for listNotifyCountries.
 function M.pages_list_notify_countries(client, input)
     return paginator.pages(client, "listNotifyCountries", input, {

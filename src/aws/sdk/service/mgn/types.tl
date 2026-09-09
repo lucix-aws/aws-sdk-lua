@@ -988,6 +988,10 @@ local record M
         iops: number
         -- Launch template disk throughput configuration.
         throughput: number
+        -- Launch template disk volume initialization rate configuration.
+        volumeInitializationRate: number
+        -- Launch template disk delete on termination configuration.
+        deleteOnTermination: boolean
     end
 
     enum LaunchDisposition

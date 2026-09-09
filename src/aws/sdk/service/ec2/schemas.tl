@@ -1562,6 +1562,8 @@ M.InstanceSecondaryInterfacePrivateIpAddressList = schema.new({ type = "list", l
 
 M.ProtocolIntList = schema.new({ type = "list", list_member = prelude.Integer })
 
+M.NetworkCardInterfaceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.WorkloadsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RuleOptionList = schema.new({ type = "list", list_member = M.RuleOption })
@@ -64468,6 +64470,17 @@ M.NetworkCardInfo = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "maximumEnaQueueCountPerInterface" },
                 [traits.EC2_QUERY_NAME] = { name = "MaximumEnaQueueCountPerInterface" },
+            },
+        }),
+        InterfaceTypes = schema.new({
+            id = id.from(_N, "NetworkCardInfo", "InterfaceTypes"),
+            type = "list",
+            name = "InterfaceTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "interfaceTypeSet" },
+                [traits.EC2_QUERY_NAME] = { name = "InterfaceTypeSet" },
             },
         }),
     },

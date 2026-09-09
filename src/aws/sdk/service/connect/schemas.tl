@@ -554,6 +554,8 @@ M.MonthDayList = schema.new({ type = "list", list_member = prelude.Integer })
 
 M.WeekdayOccurrenceList = schema.new({ type = "list", list_member = prelude.Integer })
 
+M.WorkloadTypeConcurrencies = schema.new({ type = "list", list_member = M.WorkloadTypeConcurrency })
+
 M.ApplicationPermissions = schema.new({ type = "list", list_member = prelude.String })
 
 M.SingleSelectOptions = schema.new({ type = "list", list_member = prelude.String })
@@ -8848,6 +8850,51 @@ M.CrossChannelBehavior = schema.new({
     },
 })
 
+M.CrossChannelWorkloadBehavior = schema.new({
+    id = id.from(_N, "CrossChannelWorkloadBehavior"),
+    type = "structure",
+    members = {
+        ChannelWorkloadBehaviorType = schema.new({
+            id = id.from(_N, "CrossChannelWorkloadBehavior", "ChannelWorkloadBehaviorType"),
+            type = "string",
+            name = "ChannelWorkloadBehaviorType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WorkloadTypeConcurrency = schema.new({
+    id = id.from(_N, "WorkloadTypeConcurrency"),
+    type = "structure",
+    members = {
+        WorkloadType = schema.new({
+            id = id.from(_N, "WorkloadTypeConcurrency", "WorkloadType"),
+            type = "string",
+            name = "WorkloadType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Concurrency = schema.new({
+            id = id.from(_N, "WorkloadTypeConcurrency", "Concurrency"),
+            type = "integer",
+            name = "Concurrency",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CrossChannelWorkloadBehavior = schema.new({
+            id = id.from(_N, "WorkloadTypeConcurrency", "CrossChannelWorkloadBehavior"),
+            type = "structure",
+            name = "CrossChannelWorkloadBehavior",
+            target_id = id.from(_N, "CrossChannelWorkloadBehavior"),
+            target = M.CrossChannelWorkloadBehavior,
+        }),
+    },
+})
+
 M.MediaConcurrency = schema.new({
     id = id.from(_N, "MediaConcurrency"),
     type = "structure",
@@ -8867,7 +8914,7 @@ M.MediaConcurrency = schema.new({
             name = "Concurrency",
             target_id = prelude.Integer.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
             },
         }),
         CrossChannelBehavior = schema.new({
@@ -8876,6 +8923,13 @@ M.MediaConcurrency = schema.new({
             name = "CrossChannelBehavior",
             target_id = id.from(_N, "CrossChannelBehavior"),
             target = M.CrossChannelBehavior,
+        }),
+        WorkloadTypeConcurrencies = schema.new({
+            id = id.from(_N, "MediaConcurrency", "WorkloadTypeConcurrencies"),
+            type = "list",
+            name = "WorkloadTypeConcurrencies",
+            target_id = prelude.Document.id,
+            list_member = M.WorkloadTypeConcurrency,
         }),
     },
 })

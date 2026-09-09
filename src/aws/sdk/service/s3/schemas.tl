@@ -1224,6 +1224,33 @@ M.CopyObjectInput = schema.new({
                 [traits.HTTP_HEADER] = { name = "x-amz-object-lock-legal-hold" },
             },
         }),
+        ObjectLockEventHold = schema.new({
+            id = id.from(_N, "CopyObjectInput", "ObjectLockEventHold"),
+            type = "string",
+            name = "ObjectLockEventHold",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold" },
+            },
+        }),
+        ObjectLockEventHoldDurationDays = schema.new({
+            id = id.from(_N, "CopyObjectInput", "ObjectLockEventHoldDurationDays"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-days" },
+            },
+        }),
+        ObjectLockEventHoldDurationYears = schema.new({
+            id = id.from(_N, "CopyObjectInput", "ObjectLockEventHoldDurationYears"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationYears",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-years" },
+            },
+        }),
         ExpectedBucketOwner = schema.new({
             id = id.from(_N, "CopyObjectInput", "ExpectedBucketOwner"),
             type = "string",
@@ -2263,6 +2290,33 @@ M.CreateMultipartUploadInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_HEADER] = { name = "x-amz-object-lock-legal-hold" },
+            },
+        }),
+        ObjectLockEventHold = schema.new({
+            id = id.from(_N, "CreateMultipartUploadInput", "ObjectLockEventHold"),
+            type = "string",
+            name = "ObjectLockEventHold",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold" },
+            },
+        }),
+        ObjectLockEventHoldDurationDays = schema.new({
+            id = id.from(_N, "CreateMultipartUploadInput", "ObjectLockEventHoldDurationDays"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-days" },
+            },
+        }),
+        ObjectLockEventHoldDurationYears = schema.new({
+            id = id.from(_N, "CreateMultipartUploadInput", "ObjectLockEventHoldDurationYears"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationYears",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-years" },
             },
         }),
         ExpectedBucketOwner = schema.new({
@@ -7549,6 +7603,33 @@ M.GetObjectOutput = schema.new({
                 [traits.HTTP_HEADER] = { name = "x-amz-object-lock-legal-hold" },
             },
         }),
+        ObjectLockEventHold = schema.new({
+            id = id.from(_N, "GetObjectOutput", "ObjectLockEventHold"),
+            type = "string",
+            name = "ObjectLockEventHold",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold" },
+            },
+        }),
+        ObjectLockEventHoldDurationDays = schema.new({
+            id = id.from(_N, "GetObjectOutput", "ObjectLockEventHoldDurationDays"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-days" },
+            },
+        }),
+        ObjectLockEventHoldDurationYears = schema.new({
+            id = id.from(_N, "GetObjectOutput", "ObjectLockEventHoldDurationYears"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationYears",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-years" },
+            },
+        }),
     },
 })
 
@@ -8431,6 +8512,25 @@ M.GetObjectLockConfigurationInput = schema.new({
     },
 })
 
+M.EventHoldDuration = schema.new({
+    id = id.from(_N, "EventHoldDuration"),
+    type = "structure",
+    members = {
+        Days = schema.new({
+            id = id.from(_N, "EventHoldDuration", "Days"),
+            type = "integer",
+            name = "Days",
+            target_id = prelude.Integer.id,
+        }),
+        Years = schema.new({
+            id = id.from(_N, "EventHoldDuration", "Years"),
+            type = "integer",
+            name = "Years",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.DefaultRetention = schema.new({
     id = id.from(_N, "DefaultRetention"),
     type = "structure",
@@ -8452,6 +8552,13 @@ M.DefaultRetention = schema.new({
             type = "integer",
             name = "Years",
             target_id = prelude.Integer.id,
+        }),
+        DefaultEventHold = schema.new({
+            id = id.from(_N, "DefaultRetention", "DefaultEventHold"),
+            type = "structure",
+            name = "DefaultEventHold",
+            target_id = id.from(_N, "EventHoldDuration"),
+            target = M.EventHoldDuration,
         }),
     },
 })
@@ -8579,6 +8686,19 @@ M.ObjectLockRetention = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        EventHold = schema.new({
+            id = id.from(_N, "ObjectLockRetention", "EventHold"),
+            type = "string",
+            name = "EventHold",
+            target_id = prelude.String.id,
+        }),
+        EventHoldDuration = schema.new({
+            id = id.from(_N, "ObjectLockRetention", "EventHoldDuration"),
+            type = "structure",
+            name = "EventHoldDuration",
+            target_id = id.from(_N, "EventHoldDuration"),
+            target = M.EventHoldDuration,
         }),
     },
 })
@@ -9529,6 +9649,33 @@ M.HeadObjectOutput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_HEADER] = { name = "x-amz-object-lock-legal-hold" },
+            },
+        }),
+        ObjectLockEventHold = schema.new({
+            id = id.from(_N, "HeadObjectOutput", "ObjectLockEventHold"),
+            type = "string",
+            name = "ObjectLockEventHold",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold" },
+            },
+        }),
+        ObjectLockEventHoldDurationDays = schema.new({
+            id = id.from(_N, "HeadObjectOutput", "ObjectLockEventHoldDurationDays"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-days" },
+            },
+        }),
+        ObjectLockEventHoldDurationYears = schema.new({
+            id = id.from(_N, "HeadObjectOutput", "ObjectLockEventHoldDurationYears"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationYears",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-years" },
             },
         }),
     },
@@ -13369,6 +13516,33 @@ M.PutObjectInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_HEADER] = { name = "x-amz-object-lock-legal-hold" },
+            },
+        }),
+        ObjectLockEventHold = schema.new({
+            id = id.from(_N, "PutObjectInput", "ObjectLockEventHold"),
+            type = "string",
+            name = "ObjectLockEventHold",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold" },
+            },
+        }),
+        ObjectLockEventHoldDurationDays = schema.new({
+            id = id.from(_N, "PutObjectInput", "ObjectLockEventHoldDurationDays"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-days" },
+            },
+        }),
+        ObjectLockEventHoldDurationYears = schema.new({
+            id = id.from(_N, "PutObjectInput", "ObjectLockEventHoldDurationYears"),
+            type = "integer",
+            name = "ObjectLockEventHoldDurationYears",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-lock-event-hold-duration-years" },
             },
         }),
         ExpectedBucketOwner = schema.new({

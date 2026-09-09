@@ -2702,6 +2702,18 @@ M.LaunchTemplateDiskConf = schema.new({
             name = "throughput",
             target_id = prelude.Long.id,
         }),
+        volumeInitializationRate = schema.new({
+            id = id.from(_N, "LaunchTemplateDiskConf", "volumeInitializationRate"),
+            type = "long",
+            name = "volumeInitializationRate",
+            target_id = prelude.Long.id,
+        }),
+        deleteOnTermination = schema.new({
+            id = id.from(_N, "LaunchTemplateDiskConf", "deleteOnTermination"),
+            type = "boolean",
+            name = "deleteOnTermination",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 

@@ -1638,6 +1638,12 @@ M.ConnectorOAuthRequest = schema.new({
             name = "redirectUri",
             target_id = prelude.String.id,
         }),
+        codeVerifier = schema.new({
+            id = id.from(_N, "ConnectorOAuthRequest", "codeVerifier"),
+            type = "string",
+            name = "codeVerifier",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3036,9 +3042,12 @@ M.SnowflakeConnectorProfileCredentials = schema.new({
             type = "string",
             name = "password",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        privateKey = schema.new({
+            id = id.from(_N, "SnowflakeConnectorProfileCredentials", "privateKey"),
+            type = "string",
+            name = "privateKey",
+            target_id = prelude.String.id,
         }),
     },
 })

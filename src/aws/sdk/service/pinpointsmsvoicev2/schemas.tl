@@ -146,6 +146,12 @@ M.VerifiedDestinationNumberInformationList = schema.new({ type = "list", list_me
 
 M.ProtectConfigurationCountryRuleSet = schema.new({ type = "map", map_key = prelude.String, map_value = M.ProtectConfigurationCountryRuleSetInformation })
 
+M.NumberCapabilityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NumberPreferenceList = schema.new({ type = "list", list_member = M.NumberPreferenceItem })
+
+M.AvailablePhoneNumberList = schema.new({ type = "list", list_member = prelude.String })
+
 M.NotifyUseCaseList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NotifyCountryInformationList = schema.new({ type = "list", list_member = M.NotifyCountryInformation })
@@ -161,8 +167,6 @@ M.ProtectConfigurationRuleSetNumberOverrideList = schema.new({ type = "list", li
 M.RegistrationAssociationFilterList = schema.new({ type = "list", list_member = M.RegistrationAssociationFilter })
 
 M.RegistrationAssociationMetadataList = schema.new({ type = "list", list_member = M.RegistrationAssociationMetadata })
-
-M.NumberCapabilityList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MessageTypeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -194,7 +198,13 @@ M.SupportedAssociationList = schema.new({ type = "list", list_member = M.Support
 
 M.RegistrationDeniedReasonInformationList = schema.new({ type = "list", list_member = M.RegistrationDeniedReasonInformation })
 
+M.PreferenceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NumberFilterList = schema.new({ type = "list", list_member = prelude.String })
+
 M.NotifyTierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LongMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
 
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -4868,6 +4878,29 @@ M.DescribePhoneNumbersInput = schema.new({
     },
 })
 
+M.MessagingLimits = schema.new({
+    id = id.from(_N, "MessagingLimits"),
+    type = "structure",
+    members = {
+        RateLimits = schema.new({
+            id = id.from(_N, "MessagingLimits", "RateLimits"),
+            type = "map",
+            name = "RateLimits",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Long,
+        }),
+        DailyMessageCaps = schema.new({
+            id = id.from(_N, "MessagingLimits", "DailyMessageCaps"),
+            type = "map",
+            name = "DailyMessageCaps",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Long,
+        }),
+    },
+})
+
 M.PhoneNumberInformation = schema.new({
     id = id.from(_N, "PhoneNumberInformation"),
     type = "structure",
@@ -5022,6 +5055,13 @@ M.PhoneNumberInformation = schema.new({
             type = "string",
             name = "RegistrationId",
             target_id = prelude.String.id,
+        }),
+        MessagingLimits = schema.new({
+            id = id.from(_N, "PhoneNumberInformation", "MessagingLimits"),
+            type = "structure",
+            name = "MessagingLimits",
+            target_id = id.from(_N, "MessagingLimits"),
+            target = M.MessagingLimits,
         }),
         CreatedTimestamp = schema.new({
             id = id.from(_N, "PhoneNumberInformation", "CreatedTimestamp"),
@@ -5687,6 +5727,13 @@ M.RcsAgentInformation = schema.new({
             name = "TestingAgent",
             target_id = id.from(_N, "TestingAgentInformation"),
             target = M.TestingAgentInformation,
+        }),
+        MessagingLimits = schema.new({
+            id = id.from(_N, "RcsAgentInformation", "MessagingLimits"),
+            type = "structure",
+            name = "MessagingLimits",
+            target_id = id.from(_N, "MessagingLimits"),
+            target = M.MessagingLimits,
         }),
     },
 })
@@ -7158,6 +7205,13 @@ M.SenderIdInformation = schema.new({
             name = "RegistrationId",
             target_id = prelude.String.id,
         }),
+        MessagingLimits = schema.new({
+            id = id.from(_N, "SenderIdInformation", "MessagingLimits"),
+            type = "structure",
+            name = "MessagingLimits",
+            target_id = id.from(_N, "MessagingLimits"),
+            target = M.MessagingLimits,
+        }),
     },
 })
 
@@ -7750,6 +7804,116 @@ M.GetResourcePolicyOutput = schema.new({
             type = "timestamp",
             name = "CreatedTimestamp",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.NumberPreferenceItem = schema.new({
+    id = id.from(_N, "NumberPreferenceItem"),
+    type = "structure",
+    members = {
+        PreferenceType = schema.new({
+            id = id.from(_N, "NumberPreferenceItem", "PreferenceType"),
+            type = "list",
+            name = "PreferenceType",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "NumberPreferenceItem", "Filter"),
+            type = "list",
+            name = "Filter",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAvailablePhoneNumbersInput = schema.new({
+    id = id.from(_N, "ListAvailablePhoneNumbersRequest"),
+    type = "structure",
+    members = {
+        IsoCountryCode = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersInput", "IsoCountryCode"),
+            type = "string",
+            name = "IsoCountryCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NumberCapabilities = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersInput", "NumberCapabilities"),
+            type = "list",
+            name = "NumberCapabilities",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NumberType = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersInput", "NumberType"),
+            type = "string",
+            name = "NumberType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RegistrationId = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersInput", "RegistrationId"),
+            type = "string",
+            name = "RegistrationId",
+            target_id = prelude.String.id,
+        }),
+        NumberPreference = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersInput", "NumberPreference"),
+            type = "list",
+            name = "NumberPreference",
+            target_id = prelude.Document.id,
+            list_member = M.NumberPreferenceItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListAvailablePhoneNumbersOutput = schema.new({
+    id = id.from(_N, "ListAvailablePhoneNumbersResult"),
+    type = "structure",
+    members = {
+        AvailablePhoneNumbers = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersOutput", "AvailablePhoneNumbers"),
+            type = "list",
+            name = "AvailablePhoneNumbers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAvailablePhoneNumbersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -9098,6 +9262,13 @@ M.RequestPhoneNumberInput = schema.new({
             type = "string",
             name = "RegistrationId",
             target_id = prelude.String.id,
+        }),
+        NumberPreference = schema.new({
+            id = id.from(_N, "RequestPhoneNumberInput", "NumberPreference"),
+            type = "list",
+            name = "NumberPreference",
+            target_id = prelude.Document.id,
+            list_member = M.NumberPreferenceItem,
         }),
         InternationalSendingEnabled = schema.new({
             id = id.from(_N, "RequestPhoneNumberInput", "InternationalSendingEnabled"),
@@ -13061,6 +13232,17 @@ M.GetResourcePolicy = schema.operation({
     id = id.from("com.amazonaws.pinpointsmsvoicev2", "GetResourcePolicy"),
     input = M.GetResourcePolicyInput,
     output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAvailablePhoneNumbers = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "ListAvailablePhoneNumbers"),
+    input = M.ListAvailablePhoneNumbersInput,
+    output = M.ListAvailablePhoneNumbersOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

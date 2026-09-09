@@ -200,8 +200,7 @@ local record M
         Delimiter: string
         -- The max depth of the selection criteria
         MaxDepth: number
-        -- The minimum number of storage bytes percentage whose metrics will be selected.
-        -- You must choose a value greater than or equal to 1.0.
+        -- The minimum percentage of total bucket storage that a prefix must hold for its metrics to be included.
         MinStorageBytesPercentage: number
     end
 
@@ -957,8 +956,8 @@ local record M
 
     -- The container for the service that will create the S3 manifest.
     record S3JobManifestGenerator
-        -- The Amazon Web Services account ID that owns the bucket the generated manifest is written to. If
-        -- provided the generated manifest bucket's owner Amazon Web Services account ID must match this value, else
+        -- The Amazon Web Services account ID that owns the source bucket specified in SourceBucket. If
+        -- provided, the manifest source bucket owner's Amazon Web Services account ID must match this value, else
         -- the job fails.
         ExpectedBucketOwner: string
         -- The ARN of the source bucket used by the ManifestGenerator.
@@ -1137,6 +1136,11 @@ local record M
         AccessControlPolicy: S3AccessControlPolicy
     end
 
+    enum S3AnnotationDirective
+        "COPY"
+        "EXCLUDE"
+    end
+
     enum S3ChecksumAlgorithm
         "CRC32"
         "CRC32C"
@@ -1188,6 +1192,22 @@ local record M
         Value: string
     end
 
+    enum S3ObjectLockEventHold
+        "ON"
+        "OFF"
+    end
+
+    -- Contains the duration configuration for an event hold, specified in either days or
+    -- years.
+    record S3ObjectLockEventHoldDuration
+        -- The number of days for the event hold duration. The minimum value is 1 and the maximum
+        -- value is 36,500.
+        Days: number
+        -- The number of years for the event hold duration. The minimum value is 1 and the maximum
+        -- value is 100.
+        Years: number
+    end
+
     enum S3ObjectLockLegalHoldStatus
         "OFF"
         "ON"
@@ -1224,6 +1244,12 @@ local record M
         -- This functionality is not supported by directory buckets.
         AccessControlGrants: {S3Grant}
         MetadataDirective: string
+        -- Specifies whether the Batch Operations copy job copies object annotations from the source
+        -- object or skips them. If this property isn't specified, COPY is the default
+        -- behavior.
+        -- Valid Values: COPY | EXCLUDE
+        -- This functionality is not supported by directory buckets.
+        AnnotationDirective: string
         ModifiedSinceConstraint: number
         -- If you don't provide this parameter, Amazon S3 copies all the metadata from the original
         -- objects. If you specify an empty set, the new objects will have no tags. Otherwise, Amazon S3
@@ -1292,6 +1318,15 @@ local record M
         -- see Checking object
         -- integrity in the Amazon S3 User Guide.
         ChecksumAlgorithm: string
+        -- The event hold status to be applied to all objects in the Batch Operations copy job. Set to
+        -- ON to enable an event hold or OFF to disable it.
+        -- This functionality is not supported by directory buckets.
+        ObjectLockEventHold: string
+        -- The event hold duration to be applied to all objects in the Batch Operations copy job. The
+        -- duration specifies how long the object remains protected after the event hold is
+        -- released.
+        -- This functionality is not supported by directory buckets.
+        ObjectLockEventHoldDuration: S3ObjectLockEventHoldDuration
     end
 
     -- Whether S3 Object Lock legal hold will be applied to objects in an S3 Batch Operations
@@ -1317,6 +1352,22 @@ local record M
         LegalHold: S3ObjectLockLegalHold
     end
 
+    enum S3ObjectLockRetentionEventHold
+        "ON"
+        "OFF"
+    end
+
+    -- Contains the duration configuration for an event hold, specified in either days or
+    -- years.
+    record S3ObjectLockRetentionEventHoldDuration
+        -- The number of days for the event hold duration. The minimum value is 1 and the maximum
+        -- value is 36,500.
+        Days: number
+        -- The number of years for the event hold duration. The minimum value is 1 and the maximum
+        -- value is 100.
+        Years: number
+    end
+
     enum S3ObjectLockRetentionMode
         "COMPLIANCE"
         "GOVERNANCE"
@@ -1334,6 +1385,12 @@ local record M
         -- The Object Lock retention mode to be applied to all objects in the Batch Operations
         -- job.
         Mode: string
+        -- The event hold status to be applied to all objects in the Batch Operations job. Set to
+        -- ON to enable an event hold or OFF to disable it.
+        EventHold: string
+        -- The event hold duration to be applied to all objects in the Batch Operations job. The duration
+        -- specifies how long the object remains protected after the event hold is released.
+        EventHoldDuration: S3ObjectLockRetentionEventHoldDuration
     end
 
     -- Contains the configuration parameters for the Object Lock retention action for an

@@ -84,6 +84,7 @@ local record Client
     discardRegistrationVersion: function(Client, types.DiscardRegistrationVersionInput, ? base_client.InvokeOptions): async.Operation<types.DiscardRegistrationVersionOutput>
     getProtectConfigurationCountryRuleSet: function(Client, types.GetProtectConfigurationCountryRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.GetProtectConfigurationCountryRuleSetOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    listAvailablePhoneNumbers: function(Client, types.ListAvailablePhoneNumbersInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailablePhoneNumbersOutput>
     listNotifyCountries: function(Client, types.ListNotifyCountriesInput, ? base_client.InvokeOptions): async.Operation<types.ListNotifyCountriesOutput>
     listPoolOriginationIdentities: function(Client, types.ListPoolOriginationIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoolOriginationIdentitiesOutput>
     listProtectConfigurationRuleSetNumberOverrides: function(Client, types.ListProtectConfigurationRuleSetNumberOverridesInput, ? base_client.InvokeOptions): async.Operation<types.ListProtectConfigurationRuleSetNumberOverridesOutput>
@@ -433,6 +434,10 @@ end
 
 function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
+end
+
+function C:listAvailablePhoneNumbers(input: types.ListAvailablePhoneNumbersInput, options?: base_client.InvokeOptions): async.Operation<types.ListAvailablePhoneNumbersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAvailablePhoneNumbers as schema.OperationSchema, input, options) as async.Operation<types.ListAvailablePhoneNumbersOutput>
 end
 
 function C:listNotifyCountries(input: types.ListNotifyCountriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotifyCountriesOutput>

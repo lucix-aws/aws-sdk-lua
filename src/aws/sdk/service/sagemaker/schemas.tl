@@ -510,6 +510,8 @@ M.TrainingContainerArguments = schema.new({ type = "list", list_member = prelude
 
 M.InstanceGroups = schema.new({ type = "list", list_member = M.InstanceGroup })
 
+M.InstancePreferenceList = schema.new({ type = "list", list_member = M.InstancePreference })
+
 M.HookParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.CollectionConfigurations = schema.new({ type = "list", list_member = M.CollectionConfiguration })
@@ -646,6 +648,8 @@ M.MetricsEndpointList = schema.new({ type = "list", list_member = M.MetricsEndpo
 
 M.MonitoringInputs = schema.new({ type = "list", list_member = M.MonitoringInput })
 
+M.ProcessingInstancePreferenceList = schema.new({ type = "list", list_member = M.ProcessingInstancePreference })
+
 M.PlacementSpecifications = schema.new({ type = "list", list_member = M.PlacementSpecification })
 
 M.RuleParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -711,6 +715,8 @@ M.RecommendationJobSupportedContentTypes = schema.new({ type = "list", list_memb
 M.GroupPatternsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.CfnStackCreateParameters = schema.new({ type = "list", list_member = M.CfnStackCreateParameter })
+
+M.TrainingPlanArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.CollectionParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -3064,6 +3070,35 @@ M.InstancePlacementConfig = schema.new({
     },
 })
 
+M.InstancePreference = schema.new({
+    id = id.from(_N, "InstancePreference"),
+    type = "structure",
+    members = {
+        InstanceType = schema.new({
+            id = id.from(_N, "InstancePreference", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceCount = schema.new({
+            id = id.from(_N, "InstancePreference", "InstanceCount"),
+            type = "integer",
+            name = "InstanceCount",
+            target_id = prelude.Integer.id,
+        }),
+        TrainingPlanArns = schema.new({
+            id = id.from(_N, "InstancePreference", "TrainingPlanArns"),
+            type = "list",
+            name = "TrainingPlanArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.ResourceConfig = schema.new({
     id = id.from(_N, "ResourceConfig"),
     type = "structure",
@@ -3117,6 +3152,25 @@ M.ResourceConfig = schema.new({
             name = "InstancePlacementConfig",
             target_id = id.from(_N, "InstancePlacementConfig"),
             target = M.InstancePlacementConfig,
+        }),
+        InstancePreferences = schema.new({
+            id = id.from(_N, "ResourceConfig", "InstancePreferences"),
+            type = "list",
+            name = "InstancePreferences",
+            target_id = prelude.Document.id,
+            list_member = M.InstancePreference,
+        }),
+        SelectedInstanceType = schema.new({
+            id = id.from(_N, "ResourceConfig", "SelectedInstanceType"),
+            type = "string",
+            name = "SelectedInstanceType",
+            target_id = prelude.String.id,
+        }),
+        SelectedInstanceCount = schema.new({
+            id = id.from(_N, "ResourceConfig", "SelectedInstanceCount"),
+            type = "integer",
+            name = "SelectedInstanceCount",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -21960,6 +22014,28 @@ M.ProcessingOutputConfig = schema.new({
     },
 })
 
+M.ProcessingInstancePreference = schema.new({
+    id = id.from(_N, "ProcessingInstancePreference"),
+    type = "structure",
+    members = {
+        InstanceType = schema.new({
+            id = id.from(_N, "ProcessingInstancePreference", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceCount = schema.new({
+            id = id.from(_N, "ProcessingInstancePreference", "InstanceCount"),
+            type = "integer",
+            name = "InstanceCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.ProcessingClusterConfig = schema.new({
     id = id.from(_N, "ProcessingClusterConfig"),
     type = "structure",
@@ -21990,6 +22066,25 @@ M.ProcessingClusterConfig = schema.new({
             type = "string",
             name = "VolumeKmsKeyId",
             target_id = prelude.String.id,
+        }),
+        InstancePreferences = schema.new({
+            id = id.from(_N, "ProcessingClusterConfig", "InstancePreferences"),
+            type = "list",
+            name = "InstancePreferences",
+            target_id = prelude.Document.id,
+            list_member = M.ProcessingInstancePreference,
+        }),
+        SelectedInstanceType = schema.new({
+            id = id.from(_N, "ProcessingClusterConfig", "SelectedInstanceType"),
+            type = "string",
+            name = "SelectedInstanceType",
+            target_id = prelude.String.id,
+        }),
+        SelectedInstanceCount = schema.new({
+            id = id.from(_N, "ProcessingClusterConfig", "SelectedInstanceCount"),
+            type = "integer",
+            name = "SelectedInstanceCount",
+            target_id = prelude.Integer.id,
         }),
     },
 })

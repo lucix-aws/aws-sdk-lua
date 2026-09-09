@@ -1782,6 +1782,16 @@ local record M
         PlacementSpecifications: {PlacementSpecification}
     end
 
+    -- A candidate instance type preference in an InstancePreferences list.
+    record InstancePreference
+        -- The ML compute instance type. An instance type can appear only once in an InstancePreferences list.
+        InstanceType: string
+        -- The number of instances to launch if this instance type is selected. Specify the instance count for the training job in one of the following two ways: Per preference – Set InstanceCount on every preference in the InstancePreferences list and don't set ResourceConfig$InstanceCount. Use this when each instance type needs a different number of instances to deliver equivalent compute. One count for the job – Set ResourceConfig$InstanceCount and omit it from every preference. SageMaker applies this to all instance types in the list. For example, in a list of five preferences, either all five specify InstanceCount or none of them do. SageMaker rejects requests that set InstanceCount on only some preferences, that set it both per preference and in ResourceConfig, or that omit it in both places.
+        InstanceCount: number
+        -- The Amazon Resource Name (ARN) of a training plan to use if this instance type is selected. The plan's instance type must match InstanceType. A preference with a training plan uses that plan's reserved capacity; a preference without one uses on-demand capacity. Per-preference TrainingPlanArns is mutually exclusive with the job-level TrainingPlanArn in ResourceConfig.
+        TrainingPlanArns: {string}
+    end
+
     -- Describes the resources, including machine learning (ML) compute instances and ML storage volumes, to use for model training.
     record ResourceConfig
         -- The ML compute instance type.
@@ -1800,6 +1810,12 @@ local record M
         TrainingPlanArn: string
         -- Configuration for how training job instances are placed and allocated within UltraServers. Only applicable for UltraServer capacity.
         InstancePlacementConfig: InstancePlacementConfig
+        -- An ordered list of ML compute instance types for the training job, in priority order. SageMaker launches the training job on the first instance type in the list that has available capacity. If capacity is insufficient, SageMaker evaluates the next instance type in the preferred list. Exactly one instance type is selected for the job. InstancePreferences is mutually exclusive with InstanceType, InstanceGroups, InstancePlacementConfig, and EnableManagedSpotTraining, and supports only Flexible Training Plans (FTP) and On-Demand capacity.
+        InstancePreferences: {InstancePreference}
+        -- The instance type that SageMaker selected for the job from the provided InstancePreferences. The job is billed for this instance type and count. Returned by DescribeTrainingJob after an instance type is selected. This field is read-only and isn't accepted in CreateTrainingJob requests.
+        SelectedInstanceType: string
+        -- The number of instances of SelectedInstanceType that the training job launched with. The job is billed for this instance type and count. Returned by DescribeTrainingJob after an instance type is selected. This field is read-only and isn't accepted in CreateTrainingJob requests.
+        SelectedInstanceCount: number
     end
 
     -- Specifies a limit to how long a job can run. When the job reaches the time limit, SageMaker ends the job. Use this API to cap costs. To stop a training job, SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms can use this 120-second window to save the model artifacts, so the results of training are not lost. The training algorithms provided by SageMaker automatically save the intermediate results of a model training job when possible. This attempt to save artifacts is only a best effort case as model might not be in a state from which it can be saved. For example, if training has just started, the model might not be ready to save. When saved, this intermediate data is a valid model artifact. You can use it to create a model with CreateModel. The Neural Topic Model (NTM) currently does not support saving intermediate model artifacts. When training NTMs, make sure that the maximum runtime is sufficient for the training job to complete.
@@ -1808,7 +1824,7 @@ local record M
         MaxRuntimeInSeconds: number
         -- The maximum length of time, in seconds, that a managed Spot training job has to complete. It is the amount of time spent waiting for Spot capacity plus the amount of time the job can run. It must be equal to or greater than MaxRuntimeInSeconds. If the job does not complete during this time, SageMaker ends the job. When RetryStrategy is specified in the job request, MaxWaitTimeInSeconds specifies the maximum time for all of the attempts in total, not each individual attempt.
         MaxWaitTimeInSeconds: number
-        -- The maximum length of time, in seconds, that a training or compilation job can be pending before it is stopped. When working with training jobs that use capacity from training plans, not all Pending job states count against the MaxPendingTimeInSeconds limit. The following scenarios do not increment the MaxPendingTimeInSeconds counter: The plan is in a Scheduled state: Jobs queued (in Pending status) before a plan's start date (waiting for scheduled start time) Between capacity reservations: Jobs temporarily back to Pending status between two capacity reservation periods MaxPendingTimeInSeconds only increments when jobs are actively waiting for capacity in an Active plan.
+        -- The maximum length of time, in seconds, that a training or compilation job can be pending before it is stopped. When working with training jobs that use capacity from training plans, not all Pending job states count against the MaxPendingTimeInSeconds limit. The following scenarios do not increment the MaxPendingTimeInSeconds counter: The plan is in a Scheduled state: Jobs queued (in Pending status) before a plan's start date (waiting for scheduled start time) Between capacity reservations: Jobs temporarily back to Pending status between two capacity reservation periods MaxPendingTimeInSeconds only increments when jobs are actively waiting for capacity in an Active plan. MaxPendingTimeInSeconds takes effect only for jobs that request accelerated computing instance types, such as instances in the ml.p, ml.g, and ml.trn families. It has no effect on jobs that request CPU-only instance types. If the job specifies InstancePreferences, MaxPendingTimeInSeconds bounds the total time SageMaker spends working through your list of instance types. It is not applied per instance type preference, and takes effect only when the list includes at least one accelerated computing instance type.
         MaxPendingTimeInSeconds: number
     end
 
@@ -9637,6 +9653,14 @@ local record M
         KmsKeyId: string
     end
 
+    -- A candidate instance type preference in a processing InstancePreferences list.
+    record ProcessingInstancePreference
+        -- The ML compute instance type. An instance type can appear only once in an InstancePreferences list.
+        InstanceType: string
+        -- The number of instances to launch if this instance type is selected. Specify the instance count for the processing job in one of the following two ways: Per preference – Set InstanceCount on every preference in the InstancePreferences list and don't set ProcessingClusterConfig$InstanceCount. Use this when each instance type needs a different number of instances to deliver equivalent compute. One count for the job – Set ProcessingClusterConfig$InstanceCount and omit it from every preference. Amazon SageMaker applies this to all instance types in the list. For example, in a list of five preferences, either all five specify InstanceCount or none of them do. Amazon SageMaker rejects requests that set InstanceCount on only some preferences, that set it both per preference and in ProcessingClusterConfig, or that omit it in both places.
+        InstanceCount: number
+    end
+
     -- Configuration for the cluster used to run a processing job.
     record ProcessingClusterConfig
         -- The number of ML compute instances to use in the processing job. For distributed processing jobs, specify a value greater than 1. The default value is 1.
@@ -9647,6 +9671,12 @@ local record M
         VolumeSizeInGB: number
         -- The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the processing job. Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a VolumeKmsKeyId when using an instance type with local storage. For a list of instance types that support local instance storage, see Instance Store Volumes. For more information about local instance storage encryption, see SSD Instance Store Volumes.
         VolumeKmsKeyId: string
+        -- An ordered list of ML compute instance types for the processing job, in priority order. Amazon SageMaker launches the job on the first instance type in the list that has available capacity. If capacity is insufficient, Amazon SageMaker evaluates the next instance type in the list. Exactly one instance type is selected for the job. InstancePreferences is mutually exclusive with InstanceType.
+        InstancePreferences: {ProcessingInstancePreference}
+        -- The instance type that Amazon SageMaker selected for the job from InstancePreferences. Returned by DescribeProcessingJob after an instance type is selected. This field is read-only and isn't accepted in CreateProcessingJob requests.
+        SelectedInstanceType: string
+        -- The number of instances of SelectedInstanceType that the job launched with. The job is billed for this instance type and count. Returned by DescribeProcessingJob after an instance type is selected. This field is read-only and isn't accepted in CreateProcessingJob requests.
+        SelectedInstanceCount: number
     end
 
     -- Identifies the resources, ML compute instances, and ML storage volumes to deploy for a processing job. In distributed training, you specify more than one instance.

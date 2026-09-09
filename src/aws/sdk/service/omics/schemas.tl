@@ -4752,6 +4752,12 @@ M.DefaultRunSetting = schema.new({
             name = "configurationName",
             target_id = prelude.String.id,
         }),
+        sessionPolicy = schema.new({
+            id = id.from(_N, "DefaultRunSetting", "sessionPolicy"),
+            type = "string",
+            name = "sessionPolicy",
+            target_id = prelude.String.id,
+        }),
         engineSettings = schema.new({
             id = id.from(_N, "DefaultRunSetting", "engineSettings"),
             type = "document",
@@ -7089,6 +7095,12 @@ M.GetRunOutput = schema.new({
             type = "document",
             name = "engineSettings",
             target_id = prelude.Document.id,
+        }),
+        sessionPolicy = schema.new({
+            id = id.from(_N, "GetRunOutput", "sessionPolicy"),
+            type = "string",
+            name = "sessionPolicy",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -11987,6 +11999,12 @@ M.StartRunInput = schema.new({
             id = id.from(_N, "StartRunInput", "configurationName"),
             type = "string",
             name = "configurationName",
+            target_id = prelude.String.id,
+        }),
+        sessionPolicy = schema.new({
+            id = id.from(_N, "StartRunInput", "sessionPolicy"),
+            type = "string",
+            name = "sessionPolicy",
             target_id = prelude.String.id,
         }),
         engineSettings = schema.new({

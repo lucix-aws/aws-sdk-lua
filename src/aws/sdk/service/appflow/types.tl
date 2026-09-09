@@ -770,6 +770,8 @@ local record M
         -- The URL to which the authentication server redirects the browser after authorization has
         -- been granted.
         redirectUri: string
+        -- The code verifier used in the PKCE (Proof Key for Code Exchange) OAuth flow.
+        codeVerifier: string
     end
 
     enum DatadogConnectorOperator
@@ -1614,6 +1616,9 @@ local record M
         username: string
         -- The password that corresponds to the user name.
         password: string
+        -- The RSA private key used for key pair authentication with Snowflake. Provide this
+        -- instead of a password when your Snowflake account uses key pair authentication.
+        privateKey: string
     end
 
     -- The connector-specific profile credentials required when using Trend Micro.

@@ -26491,6 +26491,13 @@ local record M
         "supported"
     end
 
+    enum NetworkCardInterfaceType
+        "interface"
+        "efa"
+        "efa-only"
+        "secondary"
+    end
+
     -- Describes the network card support of the instance type.
     record NetworkCardInfo
         -- The index of the network card.
@@ -26513,6 +26520,8 @@ local record M
         MaximumEnaQueueCount: number
         -- The maximum number of the ENA queues for each interface.
         MaximumEnaQueueCountPerInterface: number
+        -- The supported interface types for the network card.
+        InterfaceTypes: {string}
     end
 
     -- Describes the networking features of the instance type.

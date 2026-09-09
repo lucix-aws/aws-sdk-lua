@@ -1676,6 +1676,12 @@ M.CreateTrailInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        RecursiveLogging = schema.new({
+            id = id.from(_N, "CreateTrailInput", "RecursiveLogging"),
+            type = "boolean",
+            name = "RecursiveLogging",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -1759,6 +1765,12 @@ M.CreateTrailOutput = schema.new({
             id = id.from(_N, "CreateTrailOutput", "IsOrganizationTrail"),
             type = "boolean",
             name = "IsOrganizationTrail",
+            target_id = prelude.Boolean.id,
+        }),
+        RecursiveLogging = schema.new({
+            id = id.from(_N, "CreateTrailOutput", "RecursiveLogging"),
+            type = "boolean",
+            name = "RecursiveLogging",
             target_id = prelude.Boolean.id,
         }),
     },
@@ -2501,6 +2513,12 @@ M.Trail = schema.new({
             id = id.from(_N, "Trail", "IsOrganizationTrail"),
             type = "boolean",
             name = "IsOrganizationTrail",
+            target_id = prelude.Boolean.id,
+        }),
+        RecursiveLogging = schema.new({
+            id = id.from(_N, "Trail", "RecursiveLogging"),
+            type = "boolean",
+            name = "RecursiveLogging",
             target_id = prelude.Boolean.id,
         }),
     },
@@ -6326,6 +6344,12 @@ M.UpdateTrailInput = schema.new({
             name = "IsOrganizationTrail",
             target_id = prelude.Boolean.id,
         }),
+        RecursiveLogging = schema.new({
+            id = id.from(_N, "UpdateTrailInput", "RecursiveLogging"),
+            type = "boolean",
+            name = "RecursiveLogging",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -6409,6 +6433,12 @@ M.UpdateTrailOutput = schema.new({
             id = id.from(_N, "UpdateTrailOutput", "IsOrganizationTrail"),
             type = "boolean",
             name = "IsOrganizationTrail",
+            target_id = prelude.Boolean.id,
+        }),
+        RecursiveLogging = schema.new({
+            id = id.from(_N, "UpdateTrailOutput", "RecursiveLogging"),
+            type = "boolean",
+            name = "RecursiveLogging",
             target_id = prelude.Boolean.id,
         }),
     },

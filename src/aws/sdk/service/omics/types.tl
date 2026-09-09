@@ -47,7 +47,7 @@ local record M
         message: string
     end
 
-    -- The input fails to satisfy the constraints specified by an AWS service.
+    -- The input fails to satisfy the constraints specified by an Amazon Web Services service.
     record ValidationException
         message: string
     end
@@ -775,6 +775,7 @@ local record M
         "FAILED"
         "PROCESSED"
         "RUNS_DELETING"
+        "RUNS_DELETE_FAILED"
         "RUNS_DELETED"
     end
 
@@ -806,9 +807,9 @@ local record M
         priority: number
         -- Per-run workflow parameters. Merged with defaultRunSetting.parameters; values in this object take precedence when keys overlap.
         parameters: any
-        -- The expected AWS account ID of the owner of the output S3 bucket for this run.
+        -- The expected Amazon Web Services account ID of the owner of the output S3 bucket for this run.
         outputBucketOwnerId: string
-        -- Per-run AWS tags. Merged with defaultRunSetting.runTags; values in this object take precedence when keys overlap.
+        -- Per-run Amazon Web Services tags. Merged with defaultRunSetting.runTags; values in this object take precedence when keys overlap.
         runTags: {string : string}
         -- Per-run engine-specific settings. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles). Overrides defaultRunSetting.engineSettings for this run.
         engineSettings: any
@@ -1520,7 +1521,7 @@ local record M
         workflowId: string
         -- The type of the originating workflow. Batch runs are not supported with READY2RUN workflows.
         workflowType: string
-        -- The IAM role ARN that grants HealthOmics permissions to access required AWS resources such as Amazon S3 and CloudWatch. The role must have the same permissions required for individual StartRun calls.
+        -- The IAM role ARN that grants HealthOmics permissions to access required Amazon Web Services resources such as Amazon S3 and CloudWatch. The role must have the same permissions required for individual StartRun calls.
         roleArn: string
         -- An optional user-friendly name applied to each workflow run. Can be overridden per run.
         name: string
@@ -1540,15 +1541,15 @@ local record M
         outputUri: string
         -- The verbosity level for CloudWatch Logs emitted during each run.
         logLevel: string
-        -- AWS tags to associate with each workflow run. Merged with per-run runTags; run-specific values take precedence when keys overlap.
+        -- Amazon Web Services tags to associate with each workflow run. Merged with per-run runTags; run-specific values take precedence when keys overlap.
         runTags: {string : string}
         -- The retention behavior for runs after completion.
         retentionMode: string
         -- The storage type for the workflow runs.
         storageType: string
-        -- The AWS account ID of the workflow owner, used for cross-account workflow sharing.
+        -- The Amazon Web Services account ID of the workflow owner, used for cross-account workflow sharing.
         workflowOwnerId: string
-        -- The expected AWS account ID of the owner of the output S3 bucket. Can be overridden per run.
+        -- The expected Amazon Web Services account ID of the owner of the output S3 bucket. Can be overridden per run.
         outputBucketOwnerId: string
         -- The version name of the specified workflow.
         workflowVersionName: string
@@ -1556,6 +1557,8 @@ local record M
         networkingMode: string
         -- Optional configuration name to use for the workflow run.
         configurationName: string
+        -- Optional inline policy json for scoping down permissions via a session policy on the IAM role provided in the roleArn parameter.
+        sessionPolicy: string
         -- Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).
         engineSettings: any
         -- Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If not specified, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.
@@ -1855,9 +1858,9 @@ local record M
         uuid: string
         -- The optional user-friendly name of the batch.
         name: string
-        -- The current status of the run batch. Possible values: CREATING (initial setup), PENDING (ready to submit runs), SUBMITTING (submitting runs), INPROGRESS (runs executing), STOPPING (cancellation in progress), PROCESSED (all runs completed), CANCELLED (batch cancelled), FAILED (batch failed), RUNS_DELETING (deleting runs), RUNS_DELETED (runs deleted).
+        -- The current status of the run batch. Possible values: CREATING (initial setup), PENDING (ready to submit runs), SUBMITTING (submitting runs), INPROGRESS (runs executing), STOPPING (cancellation in progress), PROCESSED (all runs completed), CANCELLED (batch cancelled), FAILED (batch failed), RUNS_DELETING (deleting runs), RUNS_DELETE_FAILED (run deletion failed for some or all runs), RUNS_DELETED (runs deleted).
         status: string
-        -- AWS tags associated with the run batch.
+        -- Amazon Web Services tags associated with the run batch.
         tags: {string : string}
         -- The total number of runs in the batch.
         totalRuns: number
@@ -2382,6 +2385,8 @@ local record M
         vpcConfig: VpcConfigResponse
         -- The engine-specific settings for the workflow run.
         engineSettings: any
+        -- Inline policy json for scoping down permissions via a session policy on the IAM role.
+        sessionPolicy: string
     end
 
     record GetRunCacheInput
@@ -3730,7 +3735,7 @@ local record M
         batchName: string
         -- A client token used to deduplicate retry requests and prevent duplicate batches from being created.
         requestId: string
-        -- AWS tags to associate with the batch resource. These tags are not inherited by individual runs. To tag individual runs, use defaultRunSetting.runTags.
+        -- Amazon Web Services tags to associate with the batch resource. These tags are not inherited by individual runs. To tag individual runs, use defaultRunSetting.runTags.
         tags: {string : string}
         -- Shared configuration applied to all runs in the batch. See DefaultRunSetting.
         defaultRunSetting: DefaultRunSetting
@@ -3747,7 +3752,7 @@ local record M
         status: string
         -- The universally unique identifier (UUID) for the run batch.
         uuid: string
-        -- AWS tags associated with the run batch.
+        -- Amazon Web Services tags associated with the run batch.
         tags: {string : string}
     end
 
@@ -3790,7 +3795,7 @@ local record M
         workflowType: string
         -- The ID of a run to duplicate.
         runId: string
-        -- A service role for the run. The roleArn requires access to Amazon Web Services HealthOmics, S3, Cloudwatch logs, and EC2. An example roleArn is arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ. In this example, the AWS account ID is 123456789012 and the role name is omics-service-role-serviceRole-W8O1XMPL7QZ.
+        -- A service role for the run. The roleArn requires access to Amazon Web Services HealthOmics, S3, Cloudwatch logs, and EC2. An example roleArn is arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ. In this example, the Amazon Web Services account ID is 123456789012 and the role name is omics-service-role-serviceRole-W8O1XMPL7QZ.
         roleArn: string
         -- A name for the run. This is recommended to view and organize runs in the Amazon Web Services HealthOmics console and CloudWatch logs.
         name: string
@@ -3828,6 +3833,8 @@ local record M
         scratchStorageMode: string
         -- Optional configuration name to use for the workflow run.
         configurationName: string
+        -- Optional inline policy json for scoping down permissions via a session policy on the IAM role provided in the roleArn parameter.
+        sessionPolicy: string
         -- Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).
         engineSettings: any
     end

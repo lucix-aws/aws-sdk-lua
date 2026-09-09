@@ -2538,6 +2538,25 @@ M.S3Tag = schema.new({
     },
 })
 
+M.S3ObjectLockEventHoldDuration = schema.new({
+    id = id.from(_N, "S3ObjectLockEventHoldDuration"),
+    type = "structure",
+    members = {
+        Days = schema.new({
+            id = id.from(_N, "S3ObjectLockEventHoldDuration", "Days"),
+            type = "integer",
+            name = "Days",
+            target_id = prelude.Integer.id,
+        }),
+        Years = schema.new({
+            id = id.from(_N, "S3ObjectLockEventHoldDuration", "Years"),
+            type = "integer",
+            name = "Years",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.S3CopyObjectOperation = schema.new({
     id = id.from(_N, "S3CopyObjectOperation"),
     type = "structure",
@@ -2565,6 +2584,12 @@ M.S3CopyObjectOperation = schema.new({
             id = id.from(_N, "S3CopyObjectOperation", "MetadataDirective"),
             type = "string",
             name = "MetadataDirective",
+            target_id = prelude.String.id,
+        }),
+        AnnotationDirective = schema.new({
+            id = id.from(_N, "S3CopyObjectOperation", "AnnotationDirective"),
+            type = "string",
+            name = "AnnotationDirective",
             target_id = prelude.String.id,
         }),
         ModifiedSinceConstraint = schema.new({
@@ -2659,6 +2684,19 @@ M.S3CopyObjectOperation = schema.new({
             name = "ChecksumAlgorithm",
             target_id = prelude.String.id,
         }),
+        ObjectLockEventHold = schema.new({
+            id = id.from(_N, "S3CopyObjectOperation", "ObjectLockEventHold"),
+            type = "string",
+            name = "ObjectLockEventHold",
+            target_id = prelude.String.id,
+        }),
+        ObjectLockEventHoldDuration = schema.new({
+            id = id.from(_N, "S3CopyObjectOperation", "ObjectLockEventHoldDuration"),
+            type = "structure",
+            name = "ObjectLockEventHoldDuration",
+            target_id = id.from(_N, "S3ObjectLockEventHoldDuration"),
+            target = M.S3ObjectLockEventHoldDuration,
+        }),
     },
 })
 
@@ -2695,6 +2733,25 @@ M.S3SetObjectLegalHoldOperation = schema.new({
     },
 })
 
+M.S3ObjectLockRetentionEventHoldDuration = schema.new({
+    id = id.from(_N, "S3ObjectLockRetentionEventHoldDuration"),
+    type = "structure",
+    members = {
+        Days = schema.new({
+            id = id.from(_N, "S3ObjectLockRetentionEventHoldDuration", "Days"),
+            type = "integer",
+            name = "Days",
+            target_id = prelude.Integer.id,
+        }),
+        Years = schema.new({
+            id = id.from(_N, "S3ObjectLockRetentionEventHoldDuration", "Years"),
+            type = "integer",
+            name = "Years",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.S3Retention = schema.new({
     id = id.from(_N, "S3Retention"),
     type = "structure",
@@ -2710,6 +2767,19 @@ M.S3Retention = schema.new({
             type = "string",
             name = "Mode",
             target_id = prelude.String.id,
+        }),
+        EventHold = schema.new({
+            id = id.from(_N, "S3Retention", "EventHold"),
+            type = "string",
+            name = "EventHold",
+            target_id = prelude.String.id,
+        }),
+        EventHoldDuration = schema.new({
+            id = id.from(_N, "S3Retention", "EventHoldDuration"),
+            type = "structure",
+            name = "EventHoldDuration",
+            target_id = id.from(_N, "S3ObjectLockRetentionEventHoldDuration"),
+            target = M.S3ObjectLockRetentionEventHoldDuration,
         }),
     },
 })

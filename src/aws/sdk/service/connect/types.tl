@@ -3452,6 +3452,35 @@ local record M
         BehaviorType: string
     end
 
+    enum ChannelWorkloadBehaviorType
+        "ROUTE_CURRENT_CHANNEL_CURRENT_WORKLOADTYPE_ONLY"
+        "ROUTE_CURRENT_CHANNEL_ANY_WORKLOADTYPE_ONLY"
+        "ROUTE_ANY_CHANNEL_ANY_WORKLOAD_TYPE"
+    end
+
+    -- Defines the cross-channel and workload type routing behavior that allows an agent working on a contact to be
+    -- offered a contact from a different channel or workload type.
+    record CrossChannelWorkloadBehavior
+        -- Specifies the routing behavior for an agent handling their current channel and workload type.
+        ChannelWorkloadBehaviorType: string
+    end
+
+    -- Defines the maximum number of contacts an agent can handle simultaneously for a specific channel and workload
+    -- type combination.
+    record WorkloadTypeConcurrency
+        -- The value of the workload type.
+        WorkloadType: string
+        -- The maximum number of contacts an agent can handle simultaneously for a specific channel and workload type
+        -- combination.
+        -- Valid Range for VOICE: Minimum value of 1. Maximum value of 1.
+        -- Valid Range for CHAT: Minimum value of 1. Maximum value of 10.
+        -- Valid Range for TASK: Minimum value of 1. Maximum value of 10.
+        Concurrency: number
+        -- Defines the cross-channel and workload type routing behavior for each channel and workload type combination
+        -- that is enabled for this Routing Profile.
+        CrossChannelWorkloadBehavior: CrossChannelWorkloadBehavior
+    end
+
     -- Contains information about which channels are supported, and how many contacts an agent can have on a channel
     -- simultaneously.
     record MediaConcurrency
@@ -3466,6 +3495,9 @@ local record M
         -- example, this allows you to offer an agent a different contact from another channel when they are currently working
         -- with a contact from a Voice channel.
         CrossChannelBehavior: CrossChannelBehavior
+        -- Defines the list of workload type concurrency configurations for a channel. When provided, enables granular
+        -- concurrency control based on workload type values.
+        WorkloadTypeConcurrencies: {WorkloadTypeConcurrency}
     end
 
     record CreateRoutingProfileInput

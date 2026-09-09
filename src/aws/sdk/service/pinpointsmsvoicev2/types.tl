@@ -1881,6 +1881,14 @@ local record M
         Owner: string
     end
 
+    -- The messaging limits that apply to an origination identity, such as a phone number, sender ID, or RCS agent. Includes the per-capability send rates and, for supported origination identities, advisory per-provider daily message caps.
+    record MessagingLimits
+        -- The maximum send rate for each supported capability, in messages per second. The map is keyed by capability, such as SMS, MMS, VOICE, or RCS.
+        RateLimits: {string : number}
+        -- The advisory maximum number of messages that can be sent per day, keyed by provider (for example, T-MOBILE). Applies to 10DLC phone numbers and is omitted when no daily cap applies.
+        DailyMessageCaps: {string : number}
+    end
+
     enum NumberType
         "SHORT_CODE"
         "LONG_CODE"
@@ -1935,6 +1943,8 @@ local record M
         PoolId: string
         -- The unique identifier for the registration.
         RegistrationId: string
+        -- The messaging limits that apply to the phone number, including the per-capability send rates and any advisory per-provider daily message caps.
+        MessagingLimits: MessagingLimits
         -- The time when the phone number was created, in UNIX epoch time format.
         CreatedTimestamp: number
     end
@@ -2162,6 +2172,8 @@ local record M
         TwoWayRcsEventsEnabled: {string}
         -- The testing agent information associated with the RCS agent.
         TestingAgent: TestingAgentInformation
+        -- The messaging limits that apply to the RCS agent, including the per-capability send rates.
+        MessagingLimits: MessagingLimits
     end
 
     record DescribeRcsAgentsOutput
@@ -2658,6 +2670,8 @@ local record M
         Registered: boolean
         -- The unique identifier for the registration.
         RegistrationId: string
+        -- The messaging limits that apply to the sender ID, including the per-capability send rates.
+        MessagingLimits: MessagingLimits
     end
 
     record DescribeSenderIdsOutput
@@ -2874,6 +2888,50 @@ local record M
         "PT_BR"
         "ZH_CN"
         "ZH_TW"
+    end
+
+    enum PreferenceType
+        "StartsWith"
+        "EndsWith"
+        "Contains"
+        "ExactMatch"
+    end
+
+    -- A single number preference — specifies a pattern type and filter value.
+    record NumberPreferenceItem
+        -- The type of match to apply to the filter values. StartsWith: Returns numbers that begin with the filter value. EndsWith: Returns numbers that end with the filter value. Contains: Returns numbers that contain the filter value. ExactMatch: Returns the number that exactly matches the filter value.
+        PreferenceType: {string}
+        -- The digit pattern values to match against available phone numbers, using the specified preference type.
+        Filter: {string}
+    end
+
+    enum SearchableNumberType
+        "TEN_DLC"
+    end
+
+    record ListAvailablePhoneNumbersInput
+        -- The two-character code, in ISO 3166-1 alpha-2 format, for the country or region in which to search for available phone numbers. This operation currently supports only US.
+        IsoCountryCode: string
+        -- The capabilities to filter by, such as SMS. Only phone numbers that support all of the specified capabilities are returned.
+        NumberCapabilities: {string}
+        -- The type of phone number to search for.
+        NumberType: string
+        -- The registration associated with the request. A registration is required for regulated number types. You can specify either: The unique identifier of the registration. The Amazon Resource Name (ARN) of the registration.
+        RegistrationId: string
+        -- Optional. If omitted, returns unfiltered available numbers.
+        -- Max 1 element for List API.
+        NumberPreference: {NumberPreferenceItem}
+        -- The token returned from a previous request to retrieve the next page of results.
+        NextToken: string
+        -- The maximum number of results to return per page. If you don't specify a value, the default is 10.
+        MaxResults: number
+    end
+
+    record ListAvailablePhoneNumbersOutput
+        -- An array of phone numbers, in E.164 format, that are available to request based on the specified filters.
+        AvailablePhoneNumbers: {string}
+        -- The token to include in the next request to retrieve the next page of results. This value is null when there are no more results.
+        NextToken: string
     end
 
     record ListNotifyCountriesInput
@@ -3303,6 +3361,8 @@ local record M
         PoolId: string
         -- Use this field to attach your phone number for an external registration process.
         RegistrationId: string
+        -- An optional selection preference used to request a specific phone number, such as a number that starts with, ends with, or contains a particular digit pattern. You can specify at most one preference. Number preferences apply only to TEN_DLC requests in the US.
+        NumberPreference: {NumberPreferenceItem}
         -- By default this is set to false. When set to true the international sending of phone number is Enabled.
         InternationalSendingEnabled: boolean
         -- By default this is set to false. When set to true the phone number can't be deleted.
