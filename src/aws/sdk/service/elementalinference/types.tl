@@ -29,6 +29,17 @@ local record M
         dataSourceConfiguration: DataSourceConfiguration
     end
 
+    enum SummaryGenerationMode
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- The output configuration settings for the contextual metadata feature. Use this structure when the feed output generates metadata that describes the media content.
+    record ContextualMetadataConfig
+        -- Specifies whether Elemental Inference generates a descriptive summary of the media content for this output. Valid values: ENABLED (default) – Elemental Inference generates a descriptive summary along with IAB taxonomy and GARM suitability classifications. DISABLED – No descriptive summary is generated.
+        summaryGeneration: string
+    end
+
     -- A named set of graphics-compositing templates used by the crop feature, specified in the templateGroups array of a CroppingConfig.
     record TemplateGroup
         -- A name for the template group.
@@ -81,6 +92,8 @@ local record M
         clipping: ClippingConfig
         -- The output config type that applies to the smart subtitling feature.
         subtitling: SubtitlingConfig
+        -- The output config type that applies to the contextual metadata feature.
+        contextualMetadata: ContextualMetadataConfig
     end
 
     enum OutputStatus
@@ -296,6 +309,14 @@ local record M
         status: string
     end
 
+    record DeleteFeedPolicyInput
+        -- The ID of the feed whose policy you want to delete.
+        id: string
+    end
+
+    record DeleteFeedPolicyOutput
+    end
+
     record ExportDictionaryEntriesInput
         -- The ID of the dictionary whose entries you want to export.
         id: string
@@ -426,6 +447,16 @@ local record M
         tags: {string : string}
     end
 
+    record GetFeedPolicyInput
+        -- The ID of the feed whose policy you want to retrieve.
+        id: string
+    end
+
+    record GetFeedPolicyOutput
+        -- The resource-based policy document attached to the feed.
+        policy: string
+    end
+
     record ListFeedsInput
         -- The maximum number of results to return per API request. For example, you submit a list request with MaxResults set at 5. Although 20 items match your request, the service returns no more than the first 5 items. (The service also returns a NextToken value that you can use to fetch the next batch of results.) The service might return fewer results than the MaxResults value. If MaxResults is not included in the request, the service defaults to pagination with a maximum of 10 results per page. Valid Range: Minimum value of 1. Maximum value of 1000.
         maxResults: number
@@ -452,6 +483,16 @@ local record M
         feeds: {FeedSummary}
         -- The token that identifies the batch of results that you want to see. For example, you submit a list request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the list request a second time and specify the NextToken value.
         nextToken: string
+    end
+
+    record PutFeedPolicyInput
+        -- The ID of the feed to attach the policy to.
+        id: string
+        -- The resource-based policy document to attach to the feed.
+        policy: string
+    end
+
+    record PutFeedPolicyOutput
     end
 
     -- Contains configuration information about one output in a feed. It is used in the UpdateFeed action.

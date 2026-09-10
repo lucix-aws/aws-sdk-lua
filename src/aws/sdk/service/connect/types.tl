@@ -2285,6 +2285,24 @@ local record M
         "AND"
     end
 
+    enum EvaluationFormMetricType
+        "BUSINESS_OUTCOME"
+    end
+
+    -- Information about the metric configuration for an evaluation form question. Use this to associate a
+    -- business outcome metric with a question.
+    record EvaluationFormMetricConfiguration
+        -- The type of metric. Currently, only BUSINESS_OUTCOME is supported.
+        MetricType: string
+        -- The name of the metric. Valid values are:
+        -- SALE_SUCCESS – Sale success.
+        -- CSAT – Customer satisfaction.
+        -- CHURN_PROPENSITY – Churn propensity.
+        -- SELF_SERVICE_SUCCESS – Self-service success.
+        -- PARTIAL_SELF_SERVICE_SUCCESS – Partial self-service success.
+        MetricName: string
+    end
+
     enum EvaluationFormQuestionType
         "TEXT"
         "SINGLESELECT"
@@ -11091,6 +11109,55 @@ local record M
         NextToken: string
     end
 
+    record ListEvaluationFormAIVersionsInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The contact interaction type for the evaluation form.
+        ContactInteractionType: string
+        -- The maximum number of results to return per page.
+        MaxResults: number
+        -- The token for the next set of results. Use the value returned in the previous
+        -- response in the next request to retrieve the next set of results.
+        NextToken: string
+    end
+
+    enum EvaluationFormAIVersionStatus
+        "LATEST"
+        "PREVIEW"
+        "ACTIVE"
+        "DEPRECATED"
+    end
+
+    -- Contains the status and availability dates for an AI version, indicating when the version became active and when it reaches end of life.
+    record EvaluationFormAIVersionLifecycle
+        -- The status of the AI version. Valid values:
+        -- Latest - The most recent AI version.
+        -- Preview - An AI version available for preview.
+        -- Active - An AI version that is currently available.
+        -- Deprecated - An AI version that is no longer recommended for use.
+        -- Removed - An AI version that is no longer available.
+        Status: string
+        -- The timestamp for when this AI version became available.
+        StartOfLifeTime: number
+        -- The timestamp when this AI version reaches or reached end of life.
+        EndOfLifeTime: number
+    end
+
+    -- Contains the name and lifecycle information for an AI version that you can use when creating or updating an evaluation form.
+    record EvaluationFormAIVersionSummary
+        -- The name of the AI version.
+        AIVersionName: string
+        -- The lifecycle information for this AI version, including its status and availability dates.
+        AIVersionLifecycle: EvaluationFormAIVersionLifecycle
+    end
+
+    record ListEvaluationFormAIVersionsOutput
+        -- The list of AI version summaries.
+        AIVersionSummaries: {EvaluationFormAIVersionSummary}
+        -- If there are additional results, this is the token for the next set of results.
+        NextToken: string
+    end
+
     record ListEvaluationFormsInput
         -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -13707,6 +13774,8 @@ local record M
         ContactInteractionType: string
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
         Tags: {string : string}
+        -- The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.
+        AIVersion: string
     end
 
     record SearchEvaluationFormsOutput
@@ -17126,6 +17195,9 @@ local record M
         Weight: number
         -- The scoring configuration of the question.
         ScoringConfiguration: EvaluationFormQuestionScoringConfiguration
+        -- The metric configuration for the question. Use this to associate a business outcome metric with the
+        -- question.
+        MetricConfiguration: EvaluationFormMetricConfiguration
     end
 
     -- Step defines the list of agents to be routed or route based on the agent requirements such as ProficiencyLevel,
@@ -17949,6 +18021,8 @@ local record M
         TargetConfiguration: EvaluationFormTargetConfiguration
         -- Configuration for language settings of the evaluation form.
         LanguageConfiguration: EvaluationFormLanguageConfiguration
+        -- The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.
+        AIVersion: string
     end
 
     -- Information about the evaluation form.
@@ -17994,6 +18068,8 @@ local record M
         LatestValidationStatus: string
         -- The timestamp when the most recent validation was started for this evaluation form.
         LastValidationTime: number
+        -- The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.
+        AIVersion: string
     end
 
     -- Information about an evaluation form used in a contact evaluation.
@@ -18020,6 +18096,8 @@ local record M
         LanguageConfiguration: EvaluationFormLanguageConfiguration
         -- Configuration for evaluation review settings of this evaluation form content.
         ReviewConfiguration: EvaluationReviewConfiguration
+        -- The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.
+        AIVersion: string
     end
 
     record UpdateContactRoutingDataInput
@@ -18071,6 +18149,8 @@ local record M
         TargetConfiguration: EvaluationFormTargetConfiguration
         -- Configuration for language settings of the evaluation form.
         LanguageConfiguration: EvaluationFormLanguageConfiguration
+        -- The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.
+        AIVersion: string
     end
 
     record DescribeContactEvaluationOutput

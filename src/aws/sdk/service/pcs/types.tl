@@ -136,6 +136,8 @@ local record M
         scaleDownIdleTimeInSeconds: number
         -- Additional Slurm-specific configuration that directly maps to Slurm settings.
         slurmCustomSettings: {SlurmCustomSetting}
+        -- The additional Slurm gres.conf records for the compute node group. Each item is a map of gres.conf attribute names to values that describes one gres.conf record, such as a GPU topology, MIG, MPS, or custom GRES entry. PCS adds the NodeName= prefix and merges these records with the GPU record it derives from the instance type.
+        gresCustomSettings: {{string : string}}
     end
 
     enum SpotAllocationStrategy
@@ -209,6 +211,8 @@ local record M
         scaleDownIdleTimeInSeconds: number
         -- Additional Slurm-specific configuration that directly maps to Slurm settings.
         slurmCustomSettings: {SlurmCustomSetting}
+        -- The additional Slurm gres.conf records for the compute node group. Each item is a map of gres.conf attribute names to values that describes one gres.conf record, such as a GPU topology, MIG, MPS, or custom GRES entry. PCS adds the NodeName= prefix and merges these records with the GPU record it derives from the instance type.
+        gresCustomSettings: {{string : string}}
     end
 
     enum ComputeNodeGroupStatus
@@ -394,6 +398,8 @@ local record M
         scaleDownIdleTimeInSeconds: number
         -- Additional Slurm-specific configuration that directly maps to Slurm settings.
         slurmCustomSettings: {SlurmCustomSetting}
+        -- The additional Slurm gres.conf records for the compute node group. Each item is a map of gres.conf attribute names to values that describes one gres.conf record, such as a GPU topology, MIG, MPS, or custom GRES entry. PCS adds the NodeName= prefix and merges these records with the GPU record it derives from the instance type.
+        gresCustomSettings: {{string : string}}
     end
 
     record UpdateComputeNodeGroupInput
@@ -446,7 +452,7 @@ local record M
 
     -- The cluster management and job scheduling software associated with the cluster.
     record SchedulerRequest
-        -- The version of the specified scheduling software that PCS uses to manage cluster scaling and job scheduling. For more information, see Slurm versions in PCS in the PCS User Guide. Valid Values: 24.11 | 25.05 | 25.11
+        -- The version of the specified scheduling software that PCS uses to manage cluster scaling and job scheduling. For more information, see Slurm versions in PCS in the PCS User Guide. Valid Values: 24.11 | 25.05 | 25.11 | 26.05
         version: string
     end
 
@@ -546,7 +552,7 @@ local record M
 
     -- The cluster management and job scheduling software associated with the cluster.
     record Scheduler
-        -- The version of the specified scheduling software that PCS uses to manage cluster scaling and job scheduling. You can update this version using the UpdateCluster API action. For more information, see Updating the scheduler version on a cluster and Slurm versions in PCS in the PCS User Guide. Valid Values: 23.11 | 24.05 | 24.11 | 25.05 | 25.11
+        -- The version of the specified scheduling software that PCS uses to manage cluster scaling and job scheduling. You can update this version using the UpdateCluster API action. For more information, see Updating the scheduler version on a cluster and Slurm versions in PCS in the PCS User Guide. Valid Values: 23.11 | 24.05 | 24.11 | 25.05 | 25.11 | 26.05
         version: string
     end
 
@@ -872,7 +878,7 @@ local record M
 
     -- The scheduler configuration for updating a cluster. Use this to specify the scheduler version to update to.
     record UpdateSchedulerRequest
-        -- The scheduler version to update the cluster to. You can only update to a newer version. For more information about supported versions and update paths, see Updating the scheduler version on a cluster in the PCS User Guide. Valid Values: 24.05 | 24.11 | 25.05 | 25.11
+        -- The scheduler version to update the cluster to. You can only update to a newer version. For more information about supported versions and update paths, see Updating the scheduler version on a cluster in the PCS User Guide. Valid Values: 24.05 | 24.11 | 25.05 | 25.11 | 26.05
         version: string
     end
 

@@ -150,6 +150,8 @@ M.__listOfVideoDescription = schema.new({ type = "list", list_member = M.VideoDe
 
 M.__listOfAudioFeedInput = schema.new({ type = "list", list_member = M.AudioFeedInput })
 
+M.__listOfEnrichmentMethod = schema.new({ type = "list", list_member = prelude.String })
+
 M.__listOfInterfaceMappingCreateRequest = schema.new({ type = "list", list_member = M.InterfaceMappingCreateRequest })
 
 M.__listOfInterfaceMapping = schema.new({ type = "list", list_member = M.InterfaceMapping })
@@ -237,6 +239,8 @@ M.__listOfOutputLocationRef = schema.new({ type = "list", list_member = M.Output
 M.__listOfAudioPid = schema.new({ type = "list", list_member = M.AudioPid })
 
 M.__listOfAudioTrack = schema.new({ type = "list", list_member = M.AudioTrack })
+
+M.__listOfOutputUsage = schema.new({ type = "list", list_member = prelude.String })
 
 M.OutputLocationRef = schema.new({
     id = id.from(_N, "OutputLocationRef"),
@@ -2143,9 +2147,46 @@ M.EbuTtDDestinationSettings = schema.new({
     },
 })
 
+M.EmbeddedCaptionPositionSettings = schema.new({
+    id = id.from(_N, "EmbeddedCaptionPositionSettings"),
+    type = "structure",
+    members = {
+        YPositionLine = schema.new({
+            id = id.from(_N, "EmbeddedCaptionPositionSettings", "YPositionLine"),
+            type = "integer",
+            name = "YPositionLine",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "yPositionLine" },
+            },
+        }),
+    },
+})
+
 M.EmbeddedDestinationSettings = schema.new({
     id = id.from(_N, "EmbeddedDestinationSettings"),
     type = "structure",
+    members = {
+        Position = schema.new({
+            id = id.from(_N, "EmbeddedDestinationSettings", "Position"),
+            type = "structure",
+            name = "Position",
+            target_id = id.from(_N, "EmbeddedCaptionPositionSettings"),
+            target = M.EmbeddedCaptionPositionSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "position" },
+            },
+        }),
+        StyleControl = schema.new({
+            id = id.from(_N, "EmbeddedDestinationSettings", "StyleControl"),
+            type = "string",
+            name = "StyleControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "styleControl" },
+            },
+        }),
+    },
 })
 
 M.EmbeddedPlusScte20DestinationSettings = schema.new({
@@ -2178,6 +2219,22 @@ M.TeletextDestinationSettings = schema.new({
     type = "structure",
 })
 
+M.TextCaptionPositionSettings = schema.new({
+    id = id.from(_N, "TextCaptionPositionSettings"),
+    type = "structure",
+    members = {
+        YPositionPercentage = schema.new({
+            id = id.from(_N, "TextCaptionPositionSettings", "YPositionPercentage"),
+            type = "integer",
+            name = "YPositionPercentage",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "yPositionPercentage" },
+            },
+        }),
+    },
+})
+
 M.TtmlDestinationSettings = schema.new({
     id = id.from(_N, "TtmlDestinationSettings"),
     type = "structure",
@@ -2189,6 +2246,16 @@ M.TtmlDestinationSettings = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "styleControl" },
+            },
+        }),
+        Position = schema.new({
+            id = id.from(_N, "TtmlDestinationSettings", "Position"),
+            type = "structure",
+            name = "Position",
+            target_id = id.from(_N, "TextCaptionPositionSettings"),
+            target = M.TextCaptionPositionSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "position" },
             },
         }),
     },
@@ -2205,6 +2272,16 @@ M.WebvttDestinationSettings = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "styleControl" },
+            },
+        }),
+        Position = schema.new({
+            id = id.from(_N, "WebvttDestinationSettings", "Position"),
+            type = "structure",
+            name = "Position",
+            target_id = id.from(_N, "TextCaptionPositionSettings"),
+            target = M.TextCaptionPositionSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "position" },
             },
         }),
     },
@@ -3294,6 +3371,16 @@ M.DescribeInferenceSettings = schema.new({
             list_member = M.AudioFeedInput,
             traits = {
                 [traits.JSON_NAME] = { name = "audioFeedInputs" },
+            },
+        }),
+        EnrichmentMethods = schema.new({
+            id = id.from(_N, "DescribeInferenceSettings", "EnrichmentMethods"),
+            type = "list",
+            name = "EnrichmentMethods",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "enrichmentMethods" },
             },
         }),
     },
@@ -8799,6 +8886,16 @@ M.MediaPackageV2DestinationSettings = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "hlsDefault" },
+            },
+        }),
+        OutputUsage = schema.new({
+            id = id.from(_N, "MediaPackageV2DestinationSettings", "OutputUsage"),
+            type = "list",
+            name = "OutputUsage",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "outputUsage" },
             },
         }),
     },
@@ -14994,6 +15091,15 @@ M.VideoDescription = schema.new({
                 [traits.JSON_NAME] = { name = "outputPositionRectangle" },
             },
         }),
+        Border = schema.new({
+            id = id.from(_N, "VideoDescription", "Border"),
+            type = "integer",
+            name = "Border",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "border" },
+            },
+        }),
     },
 })
 
@@ -16734,6 +16840,16 @@ M.InferenceSettings = schema.new({
             list_member = M.AudioFeedInput,
             traits = {
                 [traits.JSON_NAME] = { name = "audioFeedInputs" },
+            },
+        }),
+        EnrichmentMethods = schema.new({
+            id = id.from(_N, "InferenceSettings", "EnrichmentMethods"),
+            type = "list",
+            name = "EnrichmentMethods",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "enrichmentMethods" },
             },
         }),
     },

@@ -120,6 +120,19 @@ M.ClippingConfig = schema.new({
     },
 })
 
+M.ContextualMetadataConfig = schema.new({
+    id = id.from(_N, "ContextualMetadataConfig"),
+    type = "structure",
+    members = {
+        summaryGeneration = schema.new({
+            id = id.from(_N, "ContextualMetadataConfig", "summaryGeneration"),
+            type = "string",
+            name = "summaryGeneration",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.TemplateGroup = schema.new({
     id = id.from(_N, "TemplateGroup"),
     type = "structure",
@@ -219,6 +232,13 @@ M.OutputConfig = schema.new({
             name = "subtitling",
             target_id = id.from(_N, "SubtitlingConfig"),
             target = M.SubtitlingConfig,
+        }),
+        contextualMetadata = schema.new({
+            id = id.from(_N, "OutputConfig", "contextualMetadata"),
+            type = "structure",
+            name = "contextualMetadata",
+            target_id = id.from(_N, "ContextualMetadataConfig"),
+            target = M.ContextualMetadataConfig,
         }),
     },
 })
@@ -863,6 +883,25 @@ M.DeleteFeedOutput = schema.new({
     },
 })
 
+M.DeleteFeedPolicyInput = schema.new({
+    id = id.from(_N, "DeleteFeedPolicyRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteFeedPolicyInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFeedPolicyOutput = prelude.Unit
+
 M.ExportDictionaryEntriesInput = schema.new({
     id = id.from(_N, "ExportDictionaryEntriesRequest"),
     type = "structure",
@@ -1341,6 +1380,39 @@ M.GetFeedOutput = schema.new({
     },
 })
 
+M.GetFeedPolicyInput = schema.new({
+    id = id.from(_N, "GetFeedPolicyRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetFeedPolicyInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetFeedPolicyOutput = schema.new({
+    id = id.from(_N, "GetFeedPolicyResponse"),
+    type = "structure",
+    members = {
+        policy = schema.new({
+            id = id.from(_N, "GetFeedPolicyOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListFeedsInput = schema.new({
     id = id.from(_N, "ListFeedsRequest"),
     type = "structure",
@@ -1437,6 +1509,37 @@ M.ListFeedsOutput = schema.new({
             target_id = prelude.String.id,
         }),
     },
+})
+
+M.PutFeedPolicyInput = schema.new({
+    id = id.from(_N, "PutFeedPolicyRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "PutFeedPolicyInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "PutFeedPolicyInput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutFeedPolicyOutput = schema.new({
+    id = id.from(_N, "PutFeedPolicyResponse"),
+    type = "structure",
 })
 
 M.UpdateOutput = schema.new({
@@ -2061,6 +2164,18 @@ M.DeleteFeed = schema.operation({
     },
 })
 
+M.DeleteFeedPolicy = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "DeleteFeedPolicy"),
+    input = M.DeleteFeedPolicyInput,
+    output = M.DeleteFeedPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/feed/{id}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisassociateFeed = schema.operation({
     id = id.from("com.amazonaws.elementalinference", "DisassociateFeed"),
     input = M.DisassociateFeedInput,
@@ -2109,6 +2224,18 @@ M.GetFeed = schema.operation({
     },
 })
 
+M.GetFeedPolicy = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "GetFeedPolicy"),
+    input = M.GetFeedPolicyInput,
+    output = M.GetFeedPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/feed/{id}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetFixture = schema.operation({
     id = id.from("com.amazonaws.elementalinference", "GetFixture"),
     input = M.GetFixtureInput,
@@ -2151,6 +2278,18 @@ M.ListTagsForResource = schema.operation({
     output = M.ListTagsForResourceOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFeedPolicy = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "PutFeedPolicy"),
+    input = M.PutFeedPolicyInput,
+    output = M.PutFeedPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/feed/{id}/policy" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

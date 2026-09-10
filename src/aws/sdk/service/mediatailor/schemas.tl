@@ -717,6 +717,89 @@ M.FunctionRef = schema.new({
     },
 })
 
+M.AwsServiceRequestConfiguration = schema.new({
+    id = id.from(_N, "AwsServiceRequestConfiguration"),
+    type = "structure",
+    members = {
+        Runtime = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "Runtime"),
+            type = "string",
+            name = "Runtime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Output = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "Output"),
+            type = "map",
+            name = "Output",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        MethodType = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "MethodType"),
+            type = "string",
+            name = "MethodType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestTimeoutMilliseconds = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "RequestTimeoutMilliseconds"),
+            type = "integer",
+            name = "RequestTimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Body = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+        }),
+        Headers = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "Headers"),
+            type = "map",
+            name = "Headers",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        TargetService = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "TargetService"),
+            type = "string",
+            name = "TargetService",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetRegion = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "TargetRegion"),
+            type = "string",
+            name = "TargetRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ConcurrentExecutorConfiguration = schema.new({
     id = id.from(_N, "ConcurrentExecutorConfiguration"),
     type = "structure",
@@ -1003,6 +1086,13 @@ M.Function = schema.new({
             name = "HttpRequestConfiguration",
             target_id = id.from(_N, "HttpRequestConfiguration"),
             target = M.HttpRequestConfiguration,
+        }),
+        AwsServiceRequestConfiguration = schema.new({
+            id = id.from(_N, "Function", "AwsServiceRequestConfiguration"),
+            type = "structure",
+            name = "AwsServiceRequestConfiguration",
+            target_id = id.from(_N, "AwsServiceRequestConfiguration"),
+            target = M.AwsServiceRequestConfiguration,
         }),
         CustomOutputConfiguration = schema.new({
             id = id.from(_N, "Function", "CustomOutputConfiguration"),
@@ -5030,6 +5120,13 @@ M.GetFunctionOutput = schema.new({
             target_id = id.from(_N, "HttpRequestConfiguration"),
             target = M.HttpRequestConfiguration,
         }),
+        AwsServiceRequestConfiguration = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "AwsServiceRequestConfiguration"),
+            type = "structure",
+            name = "AwsServiceRequestConfiguration",
+            target_id = id.from(_N, "AwsServiceRequestConfiguration"),
+            target = M.AwsServiceRequestConfiguration,
+        }),
         CustomOutputConfiguration = schema.new({
             id = id.from(_N, "GetFunctionOutput", "CustomOutputConfiguration"),
             type = "structure",
@@ -5159,6 +5256,13 @@ M.PutFunctionInput = schema.new({
             target_id = id.from(_N, "HttpRequestConfiguration"),
             target = M.HttpRequestConfiguration,
         }),
+        AwsServiceRequestConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionInput", "AwsServiceRequestConfiguration"),
+            type = "structure",
+            name = "AwsServiceRequestConfiguration",
+            target_id = id.from(_N, "AwsServiceRequestConfiguration"),
+            target = M.AwsServiceRequestConfiguration,
+        }),
         CustomOutputConfiguration = schema.new({
             id = id.from(_N, "PutFunctionInput", "CustomOutputConfiguration"),
             type = "structure",
@@ -5235,6 +5339,13 @@ M.PutFunctionOutput = schema.new({
             name = "HttpRequestConfiguration",
             target_id = id.from(_N, "HttpRequestConfiguration"),
             target = M.HttpRequestConfiguration,
+        }),
+        AwsServiceRequestConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "AwsServiceRequestConfiguration"),
+            type = "structure",
+            name = "AwsServiceRequestConfiguration",
+            target_id = id.from(_N, "AwsServiceRequestConfiguration"),
+            target = M.AwsServiceRequestConfiguration,
         }),
         CustomOutputConfiguration = schema.new({
             id = id.from(_N, "PutFunctionOutput", "CustomOutputConfiguration"),

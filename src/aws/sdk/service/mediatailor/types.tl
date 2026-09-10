@@ -296,8 +296,35 @@ local record M
         Alias: string
     end
 
+    enum MethodType
+        "GET"
+        "POST"
+    end
+
     enum RuntimeType
         "JSONATA"
+    end
+
+    -- The configuration for an AWS_SERVICE_REQUEST function. Contains the target service, target Region, and request parameters that the function uses to call an AWS service API. For more information, see AWS_SERVICE_REQUEST in the MediaTailor User Guide.
+    record AwsServiceRequestConfiguration
+        -- The expression language used to evaluate expressions in the function configuration. The only supported value is JSONata.
+        Runtime: string
+        -- A map of output bindings. Each key is a namespaced output path, such as player_params.device_type. Each value is an expression that MediaTailor evaluates at runtime and can reference the response object from the target service. For more information, see JSONata expression reference in the MediaTailor User Guide.
+        Output: {string : string}
+        -- Specifies how the function sends the request to the target service. The value must match what the target service operation requires. Valid values: GET – Retrieves data from the target service. POST – Submits a request body to the target service.
+        MethodType: string
+        -- The maximum time, in milliseconds, that MediaTailor waits for a response from the AWS service. If the call exceeds this timeout, MediaTailor sets the response status code to null and proceeds with output expression evaluation. Valid values: 100 to 2000.
+        RequestTimeoutMilliseconds: number
+        -- An expression that evaluates to the endpoint URL for the target AWS service API operation. Use {%...%} delimiters for dynamic expressions. The URL must correspond to a valid endpoint for the service specified in TargetService. The maximum length after evaluation is 2,048 characters.
+        Url: string
+        -- An expression that evaluates to the request body for the AWS service API call. The body must conform to the input format that the target service operation expects. Applies only when the target operation accepts a request body. The maximum size after evaluation is 64 KB.
+        Body: string
+        -- A map of HTTP header names to expression values. MediaTailor evaluates each header value expression at runtime and includes the result in the outbound request to the AWS service. Use this to pass any headers required by the target service operation. You can include a maximum of 50 headers.
+        Headers: {string : string}
+        -- The AWS service to call. Valid value: elemental-inference (AWS Elemental Inference).
+        TargetService: string
+        -- The AWS Region for the target service. Specify a static Region code (for example, us-east-1) or a JSONata expression that resolves to a Region code at runtime (for example, {%inference.region%}).
+        TargetRegion: string
     end
 
     -- The configuration for a CONCURRENT_EXECUTOR function. A CONCURRENT_EXECUTOR runs a set of child functions in parallel, up to a maximum concurrency, and combines their output when all functions complete. For more information about functions, see Working with functions in the MediaTailor User Guide.
@@ -324,15 +351,11 @@ local record M
 
     enum FunctionType
         "HTTP_REQUEST"
+        "AWS_SERVICE_REQUEST"
         "CUSTOM_OUTPUT"
         "CONCURRENT_EXECUTOR"
         "SEQUENTIAL_EXECUTOR"
         "VAST_REQUEST"
-    end
-
-    enum MethodType
-        "GET"
-        "POST"
     end
 
     -- The configuration for an HTTP_REQUEST function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions for the request. For more information, see HTTP_REQUEST in the MediaTailor User Guide.
@@ -375,9 +398,9 @@ local record M
         MethodType: string
         -- The maximum time, in milliseconds, that MediaTailor waits for a response from the VAST endpoint. The timeout covers the entire response, including any wrapper redirects that MediaTailor follows. If the call exceeds this timeout, MediaTailor proceeds with an empty ad list and continues output expression evaluation. Valid values: 100 to 2000.
         RequestTimeoutMilliseconds: number
-        -- An expression that evaluates to the VAST endpoint URL. Use {%...%} delimiters for dynamic expressions. A literal value must be an https:// URL. The maximum length is 25,000 characters.
+        -- An expression that evaluates to the VAST endpoint URL. Use {%...%} delimiters for dynamic expressions. A literal value must be an https:// URL. The expression can be up to 25,000 characters, and the URL after evaluation can be up to 2,048 characters.
         Url: string
-        -- An expression that evaluates to the request body. Used with POST requests, for example to send an OpenRTB bid request. The maximum length is 100,000 characters.
+        -- An expression that evaluates to the request body, for example to send an OpenRTB bid request. The expression can be up to 100,000 characters, and the body after evaluation can be up to 64 KB.
         Body: string
         -- A map of HTTP header names to expression values. MediaTailor evaluates each header value expression at runtime and includes the result in the outbound request. Headers beginning with X-Amz- are reserved by the service, and method override headers are not allowed.
         Headers: {string : string}
@@ -393,6 +416,8 @@ local record M
         Description: string
         -- The configuration for an HTTP_REQUEST function.
         HttpRequestConfiguration: HttpRequestConfiguration
+        -- The configuration for an AWS_SERVICE_REQUEST function. Specifies the target service, target Region, and request parameters.
+        AwsServiceRequestConfiguration: AwsServiceRequestConfiguration
         -- The configuration for a CUSTOM_OUTPUT function.
         CustomOutputConfiguration: CustomOutputConfiguration
         -- The configuration for a CONCURRENT_EXECUTOR function.
@@ -1773,6 +1798,8 @@ local record M
         Description: string
         -- The configuration for an HTTP_REQUEST function.
         HttpRequestConfiguration: HttpRequestConfiguration
+        -- The configuration for an AWS_SERVICE_REQUEST function. Specifies the target service, target Region, and request parameters.
+        AwsServiceRequestConfiguration: AwsServiceRequestConfiguration
         -- The configuration for a CUSTOM_OUTPUT function.
         CustomOutputConfiguration: CustomOutputConfiguration
         -- The configuration for a CONCURRENT_EXECUTOR function.
@@ -1805,12 +1832,14 @@ local record M
     record PutFunctionInput
         -- The identifier of the function. The identifier must be unique within your account.
         FunctionId: string
-        -- The type of the function. The function type determines what the function can do at runtime. Valid values: CUSTOM_OUTPUT evaluates expressions and produces output bindings with no external calls. HTTP_REQUEST makes an HTTP call to an external service and evaluates output expressions that can reference the response. VAST_REQUEST calls a VAST endpoint, parses the response as VAST, and makes the parsed ads available to output expressions. SEQUENTIAL_EXECUTOR runs a sequence of child functions in order, passing data between steps through temporary data. CONCURRENT_EXECUTOR runs a set of child functions in parallel, up to a maximum concurrency, and combines their output when all functions complete. For more information, see Function types and composition in the MediaTailor User Guide.
+        -- The type of the function, which determines what the function can do at runtime. Valid values: CUSTOM_OUTPUT – Evaluates expressions and produces output bindings with no external calls. HTTP_REQUEST – Makes an HTTP call to an external service and evaluates output expressions that can reference the response. AWS_SERVICE_REQUEST – Makes an authenticated request to a supported AWS service API and evaluates output expressions that can reference the response. VAST_REQUEST – Calls a VAST endpoint, parses the response as VAST, and makes the parsed ads available to output expressions. SEQUENTIAL_EXECUTOR – Runs a sequence of child functions in order, passing data between steps through temporary data. CONCURRENT_EXECUTOR – Runs a set of child functions in parallel, up to a maximum concurrency, and combines their output when all functions complete. For more information, see Function types and composition in the MediaTailor User Guide.
         FunctionType: string
         -- A description of the function.
         Description: string
         -- The configuration for an HTTP_REQUEST function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions. Required when FunctionType is HTTP_REQUEST.
         HttpRequestConfiguration: HttpRequestConfiguration
+        -- The configuration for an AWS_SERVICE_REQUEST function. You must specify this parameter when FunctionType is AWS_SERVICE_REQUEST.
+        AwsServiceRequestConfiguration: AwsServiceRequestConfiguration
         -- The configuration for a CUSTOM_OUTPUT function. Specifies the runtime and output expressions. Required when FunctionType is CUSTOM_OUTPUT.
         CustomOutputConfiguration: CustomOutputConfiguration
         -- The configuration for a CONCURRENT_EXECUTOR function. Specifies the list of child functions to run in parallel, the maximum concurrency, an optional output block, and a timeout. Required when FunctionType is CONCURRENT_EXECUTOR.
@@ -1833,6 +1862,8 @@ local record M
         Description: string
         -- The configuration for an HTTP_REQUEST function.
         HttpRequestConfiguration: HttpRequestConfiguration
+        -- The configuration for an AWS_SERVICE_REQUEST function. Specifies the target service, target Region, and request parameters.
+        AwsServiceRequestConfiguration: AwsServiceRequestConfiguration
         -- The configuration for a CUSTOM_OUTPUT function.
         CustomOutputConfiguration: CustomOutputConfiguration
         -- The configuration for a CONCURRENT_EXECUTOR function.

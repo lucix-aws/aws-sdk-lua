@@ -951,8 +951,25 @@ local record M
         DefaultLineHeight: number
     end
 
+    -- Embedded Caption Position Settings
+    record EmbeddedCaptionPositionSettings
+        -- Specifies the vertical position of the caption as a row counted from the top of the output. Row 1 is the topmost row. Acceptable values are 1 through 15.
+        YPositionLine: number
+    end
+
+    enum EmbeddedDestinationStyleControl
+        "MANUAL"
+        "PASSTHROUGH"
+    end
+
     -- Embedded Destination Settings
     record EmbeddedDestinationSettings
+        -- Specifies the position of the output captions. Applies only when styleControl is set to manual.
+        Position: EmbeddedCaptionPositionSettings
+        -- Controls the source of position and style information for the output captions.
+        -- - "passthrough": Carry the caption position and style from the source captions. When the source captions are embedded, SCTE-20, or ancillary, the position and style are preserved exactly. When the source captions are another format, the position and any supported style are carried over.
+        -- - "manual": Applies the specified styling and positioning. All other styling and positioning is given default values.
+        StyleControl: string
     end
 
     -- Embedded Plus Scte20 Destination Settings
@@ -979,26 +996,38 @@ local record M
     record TeletextDestinationSettings
     end
 
+    -- Text Caption Position Settings
+    record TextCaptionPositionSettings
+        -- Specifies the vertical position of the top edge of the caption relative to the top of the output as a percentage. A value of 0 places the caption at the top of the output and 100 at the bottom.
+        YPositionPercentage: number
+    end
+
     enum TtmlDestinationStyleControl
         "PASSTHROUGH"
         "USE_CONFIGURED"
+        "MANUAL"
     end
 
     -- Ttml Destination Settings
     record TtmlDestinationSettings
-        -- This field is not currently supported and will not affect the output styling. Leave the default value.
+        -- Controls the source of style and position information for the output captions. PASSTHROUGH - Preserve the style and position from the source captions. USE_CONFIGURED - Don't pass through the style. The output captions will use the default styling. MANUAL - Applies the specified styling and positioning. All other styling and positioning is given default values.
         StyleControl: string
+        -- Specifies the position of the output captions. Applies only when styleControl is set to manual.
+        Position: TextCaptionPositionSettings
     end
 
     enum WebvttDestinationStyleControl
         "NO_STYLE_DATA"
         "PASSTHROUGH"
+        "MANUAL"
     end
 
     -- Webvtt Destination Settings
     record WebvttDestinationSettings
-        -- Controls whether the color and position of the source captions is passed through to the WebVTT output captions. PASSTHROUGH - Valid only if the source captions are EMBEDDED or TELETEXT. NO_STYLE_DATA - Don't pass through the style. The output captions will not contain any font styling information.
+        -- Controls whether the color and position of the source captions is passed through to the WebVTT output captions. PASSTHROUGH - Valid only if the source captions are EMBEDDED, TELETEXT, or SMART SUBTITLES. NO_STYLE_DATA - Don't pass through the style. The output captions will not contain any font styling information. MANUAL - Applies the specified styling and positioning. All other styling and positioning is given default values.
         StyleControl: string
+        -- Specifies the position of the output captions. Applies only when styleControl is set to manual.
+        Position: TextCaptionPositionSettings
     end
 
     -- Caption Destination Settings
@@ -1352,12 +1381,18 @@ local record M
         MediaConnectRouterSettings: {MediaConnectRouterOutputDestinationSettings}
     end
 
+    enum EnrichmentMethod
+        "SCTE35_ELEMENTAL_INFERENCE_QUERY_PARAMS"
+    end
+
     -- Configures Elemental Inference features in a channel.
     record DescribeInferenceSettings
         -- The ARN of the feed resource that is associated with this channel. The feed is a resource in the Elemental Inference service.
         FeedArn: string
         -- A list of audio feed inputs that map audio selectors in the channel to feed inputs on the associated Elemental Inference feed.
         AudioFeedInputs: {AudioFeedInput}
+        -- The set of Contextual Metadata Enrichment methods enabled for this channel. Each method represents a specific way the channel uses the inference feed to augment its output with contextual metadata.
+        EnrichmentMethods: {string}
     end
 
     -- Placeholder documentation for AudioSilenceFailoverSettings
@@ -3420,6 +3455,12 @@ local record M
         "YES"
     end
 
+    enum OutputUsage
+        "MULTIVIEW_EQUAL_SIZE_VIEW"
+        "MULTIVIEW_PRIMARY_VIEW"
+        "MULTIVIEW_SECONDARY_VIEW"
+    end
+
     -- Media Package V2 Destination Settings
     record MediaPackageV2DestinationSettings
         -- Applies only to an output that contains audio. If you want to put several audio encodes into one audio rendition group, decide on a name (ID) for the group. Then in every audio output that you want to belong to that group, enter that ID in this field. Note that this information is part of the HLS specification (not the CMAF specification), but if you include it then MediaPackage will include it in the manifest it creates for the video player.
@@ -3432,6 +3473,8 @@ local record M
         -- Specifies whether MediaPackage should set this output as the default rendition in the HLS manifest. YES means this must be the default. NO means this should never be the default. OMIT means MediaPackage decides what to set on this rendition.
         -- When you consider all the renditions, follow these guidelines. You can set zero or one renditions to YES. You can set zero or more renditions to NO, but you can't set all renditions to NO. You can set zero, some, or all to OMIT.
         HlsDefault: string
+        -- List of usage tags declaring how this MediaPackage V2 output is used. Currently these are all multiview-related (multiviewPrimaryView, multiviewSecondaryView, multiviewEqualSizeView) and enable multiview validations and augmentations to help ensure proper multiview configuration and compatibility with MediaPackage. Leave empty (the default) if this output has no multiview role. If any video-carrying MediaPackage V2 output in an output group specifies a multiview value, every video-carrying MediaPackage V2 output in the group must also specify a multiview value; place standalone video outputs in a separate output group.
+        OutputUsage: {string}
     end
 
     -- Media Package Output Settings
@@ -5990,6 +6033,12 @@ local record M
         -- When used, both {@link width} and {@link height} of the VideoDescription must be
         -- explicitly specified so that the rectangle can be validated against the output frame.
         OutputPositionRectangle: VideoPositionRectangle
+        -- Specifies the number of pixels of black border that will be inserted around the edge
+        -- of the encoded picture. Must be an even integer from 0 (no border, the default) up
+        -- to 100. The width and height of the VideoDescription must each be greater than twice
+        -- this value. Cannot be used together with {@link outputPositionRectangle} -- both
+        -- govern the position of the encoded content within the output frame.
+        Border: number
     end
 
     enum AcceptHeader
@@ -6591,6 +6640,8 @@ local record M
         FeedArn: string
         -- A list of audio feed inputs that map audio selectors in the channel to feed inputs on the associated Elemental Inference feed.
         AudioFeedInputs: {AudioFeedInput}
+        -- The set of Contextual Metadata Enrichment methods enabled for this channel. Each method represents a specific way the channel will use the inference feed to augment its output with contextual metadata. An empty array (or omitting the field) disables enrichment. Order is not significant; duplicate values are not permitted.
+        EnrichmentMethods: {string}
     end
 
     -- Settings for a follower channel in a linked pair

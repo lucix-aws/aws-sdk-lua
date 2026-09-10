@@ -178,6 +178,30 @@ local record M
         "NON_EPOCH_LOCKED_WITH_FORCE_ENDPOINT_ERROR_CONFIGURATION"
         "ONLY_HLS_INPUT_TYPE_ALLOW_STREAM_NAME_OUTPUT_MODE"
         "STREAM_NAME_OUTPUT_MODE_IMMUTABLE"
+        "MULTIVIEW_CONFIGURATION_REQUIRED"
+        "MULTIVIEW_CONFIGURATION_NOT_ALLOWED"
+        "MULTIVIEW_SOURCE_NOT_FOUND"
+        "MULTIVIEW_SOURCE_INVALID_INPUT_TYPE"
+        "MULTIVIEW_CHANNEL_POLICY_NOT_ALLOWED"
+        "MULTIVIEW_INPUT_TYPE_WITH_LL_HLS_MANIFEST"
+        "MULTIVIEW_INPUT_TYPE_WITH_MSS_MANIFEST"
+        "MULTIVIEW_INPUT_TYPE_WITH_ISM_CONTAINER"
+        "MULTIVIEW_INPUT_TYPE_WITH_FILTER_CONFIGURATION"
+        "MULTIVIEW_INPUT_TYPE_WITH_START_TAG"
+        "MULTIVIEW_INPUT_TYPE_WITH_HARVEST_JOB"
+        "MULTIVIEW_RESET_NOT_ALLOWED"
+        "MULTIVIEW_DUPLICATE_SOURCE"
+        "MULTIVIEW_DUPLICATE_LAYOUT"
+        "MULTIVIEW_INPUT_SWITCH_NOT_ALLOWED"
+        "MULTIVIEW_OUTPUT_HEADER_NOT_ALLOWED"
+        "MULTIVIEW_STARTOVER_WINDOW_NOT_ALLOWED"
+        "MULTIVIEW_INVALID_TIME_DELAY_SECONDS"
+        "MULTIVIEW_MANIFEST_WINDOW_TOO_LONG"
+        "MULTIVIEW_INPUT_TYPE_WITH_IFRAME_ONLY_STREAMS"
+        "MULTIVIEW_INPUT_TYPE_WITH_NON_EPOCH_LOCKED"
+        "MULTIVIEW_INPUT_TYPE_WITH_SEGMENT_DURATION"
+        "MULTIVIEW_SOURCE_NON_EPOCH_LOCKED"
+        "MULTIVIEW_SCTE_REQUIRES_AVAILS_PERIOD_TRIGGER"
     end
 
     -- The input failed to meet the constraints specified by the AWS service.
@@ -258,6 +282,24 @@ local record M
     enum InputType
         "HLS"
         "CMAF"
+        "MULTIVIEW"
+    end
+
+    enum MultiviewLayoutType
+        "LAYOUT_2EH"
+        "LAYOUT_2PL"
+        "LAYOUT_3EL"
+        "LAYOUT_3PL"
+        "LAYOUT_4E"
+        "LAYOUT_4PL"
+    end
+
+    -- The multiview configuration for a channel. A multiview channel composites video from several source channels into a single tiled output stream. Players receive one standard HLS or DASH stream instead of several separate streams. This setting is required when InputType is MULTIVIEW, and can't be set for any other input type.
+    record MultiviewConfiguration
+        -- The channels that players can use as tiles in this multiview channel's output. Each source channel must be in the same channel group as the multiview channel, and must have an InputType of CMAF. Only the channels that you list here are available as tiles.
+        AvailableSources: {string}
+        -- The tile layouts that players can request from this multiview channel's origin endpoints. Only the layouts that you list here are available. Each layout must appear at most once.
+        AvailableLayouts: {string}
     end
 
     -- The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN.
@@ -278,7 +320,7 @@ local record M
         ChannelName: string
         -- A unique, case-sensitive token that you provide to ensure the idempotency of the request.
         ClientToken: string
-        -- The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).
+        -- The input type is an immutable field. It defines whether the channel allows CMAF ingest, HLS ingest, or server-side multiview output. Multiview channels receive no ingest of their own. If unprovided, the value defaults to HLS. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests). MULTIVIEW – Server-side multiview. The channel receives no ingest of its own. Instead, it composites video from the source channels in its MultiviewConfiguration into a single tiled output stream.
         InputType: string
         -- Enter any descriptive text that helps you to identify the channel.
         Description: string
@@ -286,6 +328,8 @@ local record M
         InputSwitchConfiguration: InputSwitchConfiguration
         -- The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when InputType is CMAF.
         OutputHeaderConfiguration: OutputHeaderConfiguration
+        -- The multiview configuration for the channel. This setting is required when InputType is MULTIVIEW, and can't be set for any other input type.
+        MultiviewConfiguration: MultiviewConfiguration
         -- The output locking mode for the channel. This setting is only valid when InputType is CMAF. This value is immutable after channel creation. If you don't specify a value, the default is EPOCH_LOCKED. The allowed values are: EPOCH_LOCKED - The channel uses epoch-locked behavior with deterministic sequence numbering and fixed segment boundaries aligned to epoch time. This mode supports cross-region synchronization and failover. NON_EPOCH_LOCKED - The channel uses non-epoch-locked behavior with duration-based segment combining and monotonically increasing sequence numbers starting from 0. This mode does not support cross-region synchronization or failover.
         OutputLockingMode: string
         -- A comma-separated list of tag key:value pairs that you define. For example: "Key1": "Value1", "Key2": "Value2"
@@ -301,6 +345,10 @@ local record M
     end
 
     record CreateChannelOutput
+        -- The multiview configuration for the channel. This is present only when InputType is MULTIVIEW.
+        MultiviewConfiguration: MultiviewConfiguration
+        -- The multiview channels, in the same channel group, that list this channel as an available source. This is a read-only field. You can't delete a channel while any multiview channel still lists it as a source. Use this field to find the multiview channels that you need to update first.
+        AttachedMultiviewChannels: {string}
         -- The Amazon Resource Name (ARN) associated with the resource.
         Arn: string
         -- The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.
@@ -314,7 +362,7 @@ local record M
         -- The description for your channel.
         Description: string
         IngestEndpoints: {IngestEndpoint}
-        -- The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).
+        -- The input type is an immutable field. It defines whether the channel allows CMAF ingest, HLS ingest, or server-side multiview output. Multiview channels receive no ingest of their own. If unprovided, the value defaults to HLS. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests). MULTIVIEW – Server-side multiview. The channel receives no ingest of its own. Instead, it composites video from the source channels in its MultiviewConfiguration into a single tiled output stream.
         InputType: string
         -- The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.
         ETag: string
@@ -351,6 +399,10 @@ local record M
     end
 
     record GetChannelOutput
+        -- The multiview configuration for the channel. This is present only when InputType is MULTIVIEW.
+        MultiviewConfiguration: MultiviewConfiguration
+        -- The multiview channels, in the same channel group, that list this channel as an available source. This is a read-only field. You can't delete a channel while any multiview channel still lists it as a source. Use this field to find the multiview channels that you need to update first.
+        AttachedMultiviewChannels: {string}
         -- The Amazon Resource Name (ARN) associated with the resource.
         Arn: string
         -- The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.
@@ -366,7 +418,7 @@ local record M
         -- The description for your channel.
         Description: string
         IngestEndpoints: {IngestEndpoint}
-        -- The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).
+        -- The input type is an immutable field. It defines whether the channel allows CMAF ingest, HLS ingest, or server-side multiview output. Multiview channels receive no ingest of their own. If unprovided, the value defaults to HLS. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests). MULTIVIEW – Server-side multiview. The channel receives no ingest of its own. Instead, it composites video from the source channels in its MultiviewConfiguration into a single tiled output stream.
         InputType: string
         -- The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.
         ETag: string
@@ -403,10 +455,14 @@ local record M
         ModifiedAt: number
         -- Any descriptive information that you want to add to the channel for future identification purposes.
         Description: string
-        -- The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).
+        -- The input type is an immutable field. It defines whether the channel allows CMAF ingest, HLS ingest, or server-side multiview output. Multiview channels receive no ingest of their own. If unprovided, the value defaults to HLS. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests). MULTIVIEW – Server-side multiview. The channel receives no ingest of its own. Instead, it composites video from the source channels in its MultiviewConfiguration into a single tiled output stream.
         InputType: string
         -- The output locking mode configured for the channel. The allowed values are: EPOCH_LOCKED - The channel uses epoch-locked behavior with deterministic sequence numbering and fixed segment boundaries aligned to epoch time. NON_EPOCH_LOCKED - The channel uses non-epoch-locked behavior with duration-based segment combining and monotonically increasing sequence numbers starting from 0.
         OutputLockingMode: string
+        -- The multiview configuration for the channel. This is present only when InputType is MULTIVIEW.
+        MultiviewConfiguration: MultiviewConfiguration
+        -- The multiview channels, in the same channel group, that list this channel as an available source. This is a read-only field.
+        AttachedMultiviewChannels: {string}
     end
 
     record ListChannelsOutput
@@ -1378,9 +1434,15 @@ local record M
         InputSwitchConfiguration: InputSwitchConfiguration
         -- The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when InputType is CMAF.
         OutputHeaderConfiguration: OutputHeaderConfiguration
+        -- The multiview configuration for the channel. This setting is required when the channel's InputType is MULTIVIEW, and can't be set for any other input type. Because InputType is immutable, you can change a multiview channel's sources and layouts. You can't add or remove the multiview configuration itself.
+        MultiviewConfiguration: MultiviewConfiguration
     end
 
     record UpdateChannelOutput
+        -- The multiview configuration for the channel. This is present only when InputType is MULTIVIEW.
+        MultiviewConfiguration: MultiviewConfiguration
+        -- The multiview channels, in the same channel group, that list this channel as an available source. This is a read-only field. You can't delete a channel while any multiview channel still lists it as a source. Use this field to find the multiview channels that you need to update first.
+        AttachedMultiviewChannels: {string}
         -- The Amazon Resource Name (ARN) associated with the resource.
         Arn: string
         -- The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.
@@ -1394,7 +1456,7 @@ local record M
         -- The description for your channel.
         Description: string
         IngestEndpoints: {IngestEndpoint}
-        -- The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).
+        -- The input type is an immutable field. It defines whether the channel allows CMAF ingest, HLS ingest, or server-side multiview output. Multiview channels receive no ingest of their own. If unprovided, the value defaults to HLS. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests). MULTIVIEW – Server-side multiview. The channel receives no ingest of its own. Instead, it composites video from the source channels in its MultiviewConfiguration into a single tiled output stream.
         InputType: string
         -- The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.
         ETag: string

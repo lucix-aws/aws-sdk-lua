@@ -228,6 +228,7 @@ local record Client
     listDataTableValues: function(Client, types.ListDataTableValuesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataTableValuesOutput>
     listDefaultVocabularies: function(Client, types.ListDefaultVocabulariesInput, ? base_client.InvokeOptions): async.Operation<types.ListDefaultVocabulariesOutput>
     listEntitySecurityProfiles: function(Client, types.ListEntitySecurityProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListEntitySecurityProfilesOutput>
+    listEvaluationFormAIVersions: function(Client, types.ListEvaluationFormAIVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEvaluationFormAIVersionsOutput>
     listEvaluationForms: function(Client, types.ListEvaluationFormsInput, ? base_client.InvokeOptions): async.Operation<types.ListEvaluationFormsOutput>
     listEvaluationFormVersions: function(Client, types.ListEvaluationFormVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEvaluationFormVersionsOutput>
     listExtractionDefinitions: function(Client, types.ListExtractionDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExtractionDefinitionsOutput>
@@ -1295,6 +1296,10 @@ end
 
 function C:listEntitySecurityProfiles(input: types.ListEntitySecurityProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEntitySecurityProfilesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEntitySecurityProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListEntitySecurityProfilesOutput>
+end
+
+function C:listEvaluationFormAIVersions(input: types.ListEvaluationFormAIVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEvaluationFormAIVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEvaluationFormAIVersions as schema.OperationSchema, input, options) as async.Operation<types.ListEvaluationFormAIVersionsOutput>
 end
 
 function C:listEvaluationForms(input: types.ListEvaluationFormsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEvaluationFormsOutput>

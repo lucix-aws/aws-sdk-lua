@@ -23,14 +23,17 @@ local record Client
     createFeed: function(Client, types.CreateFeedInput, ? base_client.InvokeOptions): async.Operation<types.CreateFeedOutput>
     deleteDictionary: function(Client, types.DeleteDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDictionaryOutput>
     deleteFeed: function(Client, types.DeleteFeedInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFeedOutput>
+    deleteFeedPolicy: function(Client, types.DeleteFeedPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFeedPolicyOutput>
     disassociateFeed: function(Client, types.DisassociateFeedInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFeedOutput>
     exportDictionaryEntries: function(Client, types.ExportDictionaryEntriesInput, ? base_client.InvokeOptions): async.Operation<types.ExportDictionaryEntriesOutput>
     getDictionary: function(Client, types.GetDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.GetDictionaryOutput>
     getFeed: function(Client, types.GetFeedInput, ? base_client.InvokeOptions): async.Operation<types.GetFeedOutput>
+    getFeedPolicy: function(Client, types.GetFeedPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetFeedPolicyOutput>
     getFixture: function(Client, types.GetFixtureInput, ? base_client.InvokeOptions): async.Operation<types.GetFixtureOutput>
     listDictionaries: function(Client, types.ListDictionariesInput, ? base_client.InvokeOptions): async.Operation<types.ListDictionariesOutput>
     listFeeds: function(Client, types.ListFeedsInput, ? base_client.InvokeOptions): async.Operation<types.ListFeedsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putFeedPolicy: function(Client, types.PutFeedPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutFeedPolicyOutput>
     searchFixtures: function(Client, types.SearchFixturesInput, ? base_client.InvokeOptions): async.Operation<types.SearchFixturesOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
@@ -100,6 +103,10 @@ function C:deleteFeed(input: types.DeleteFeedInput, options?: base_client.Invoke
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFeed as schema.OperationSchema, input, options) as async.Operation<types.DeleteFeedOutput>
 end
 
+function C:deleteFeedPolicy(input: types.DeleteFeedPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFeedPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFeedPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteFeedPolicyOutput>
+end
+
 function C:disassociateFeed(input: types.DisassociateFeedInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateFeedOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateFeed as schema.OperationSchema, input, options) as async.Operation<types.DisassociateFeedOutput>
 end
@@ -116,6 +123,10 @@ function C:getFeed(input: types.GetFeedInput, options?: base_client.InvokeOption
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFeed as schema.OperationSchema, input, options) as async.Operation<types.GetFeedOutput>
 end
 
+function C:getFeedPolicy(input: types.GetFeedPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetFeedPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFeedPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetFeedPolicyOutput>
+end
+
 function C:getFixture(input: types.GetFixtureInput, options?: base_client.InvokeOptions): async.Operation<types.GetFixtureOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFixture as schema.OperationSchema, input, options) as async.Operation<types.GetFixtureOutput>
 end
@@ -130,6 +141,10 @@ end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
+end
+
+function C:putFeedPolicy(input: types.PutFeedPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutFeedPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutFeedPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutFeedPolicyOutput>
 end
 
 function C:searchFixtures(input: types.SearchFixturesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchFixturesOutput>

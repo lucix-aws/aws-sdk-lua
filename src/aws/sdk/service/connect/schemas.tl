@@ -232,6 +232,8 @@ M.DefaultVocabularyList = schema.new({ type = "list", list_member = M.DefaultVoc
 
 M.SecurityProfiles100 = schema.new({ type = "list", list_member = M.SecurityProfileItem })
 
+M.EvaluationFormAIVersionSummaryList = schema.new({ type = "list", list_member = M.EvaluationFormAIVersionSummary })
+
 M.EvaluationFormSummaryList = schema.new({ type = "list", list_member = M.EvaluationFormSummary })
 
 M.EvaluationFormVersionSummaryList = schema.new({ type = "list", list_member = M.EvaluationFormVersionSummary })
@@ -6181,6 +6183,31 @@ M.EvaluationFormItemEnablementExpression = schema.new({
             id = id.from(_N, "EvaluationFormItemEnablementExpression", "Comparator"),
             type = "string",
             name = "Comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EvaluationFormMetricConfiguration = schema.new({
+    id = id.from(_N, "EvaluationFormMetricConfiguration"),
+    type = "structure",
+    members = {
+        MetricType = schema.new({
+            id = id.from(_N, "EvaluationFormMetricConfiguration", "MetricType"),
+            type = "string",
+            name = "MetricType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricName = schema.new({
+            id = id.from(_N, "EvaluationFormMetricConfiguration", "MetricName"),
+            type = "string",
+            name = "MetricName",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -24600,6 +24627,131 @@ M.ListEntitySecurityProfilesOutput = schema.new({
     },
 })
 
+M.ListEvaluationFormAIVersionsInput = schema.new({
+    id = id.from(_N, "ListEvaluationFormAIVersionsRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "ListEvaluationFormAIVersionsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactInteractionType = schema.new({
+            id = id.from(_N, "ListEvaluationFormAIVersionsInput", "ContactInteractionType"),
+            type = "string",
+            name = "ContactInteractionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "contactInteractionType" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListEvaluationFormAIVersionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListEvaluationFormAIVersionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.EvaluationFormAIVersionLifecycle = schema.new({
+    id = id.from(_N, "EvaluationFormAIVersionLifecycle"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "EvaluationFormAIVersionLifecycle", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartOfLifeTime = schema.new({
+            id = id.from(_N, "EvaluationFormAIVersionLifecycle", "StartOfLifeTime"),
+            type = "timestamp",
+            name = "StartOfLifeTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndOfLifeTime = schema.new({
+            id = id.from(_N, "EvaluationFormAIVersionLifecycle", "EndOfLifeTime"),
+            type = "timestamp",
+            name = "EndOfLifeTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.EvaluationFormAIVersionSummary = schema.new({
+    id = id.from(_N, "EvaluationFormAIVersionSummary"),
+    type = "structure",
+    members = {
+        AIVersionName = schema.new({
+            id = id.from(_N, "EvaluationFormAIVersionSummary", "AIVersionName"),
+            type = "string",
+            name = "AIVersionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AIVersionLifecycle = schema.new({
+            id = id.from(_N, "EvaluationFormAIVersionSummary", "AIVersionLifecycle"),
+            type = "structure",
+            name = "AIVersionLifecycle",
+            target_id = id.from(_N, "EvaluationFormAIVersionLifecycle"),
+            target = M.EvaluationFormAIVersionLifecycle,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListEvaluationFormAIVersionsOutput = schema.new({
+    id = id.from(_N, "ListEvaluationFormAIVersionsResponse"),
+    type = "structure",
+    members = {
+        AIVersionSummaries = schema.new({
+            id = id.from(_N, "ListEvaluationFormAIVersionsOutput", "AIVersionSummaries"),
+            type = "list",
+            name = "AIVersionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.EvaluationFormAIVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListEvaluationFormAIVersionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListEvaluationFormsInput = schema.new({
     id = id.from(_N, "ListEvaluationFormsRequest"),
     type = "structure",
@@ -31969,6 +32121,12 @@ M.EvaluationFormSearchSummary = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        AIVersion = schema.new({
+            id = id.from(_N, "EvaluationFormSearchSummary", "AIVersion"),
+            type = "string",
+            name = "AIVersion",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -41168,6 +41326,13 @@ M.EvaluationFormQuestion = schema.new({
             target_id = id.from(_N, "EvaluationFormQuestionScoringConfiguration"),
             target = M.EvaluationFormQuestionScoringConfiguration,
         }),
+        MetricConfiguration = schema.new({
+            id = id.from(_N, "EvaluationFormQuestion", "MetricConfiguration"),
+            type = "structure",
+            name = "MetricConfiguration",
+            target_id = id.from(_N, "EvaluationFormMetricConfiguration"),
+            target = M.EvaluationFormMetricConfiguration,
+        }),
     },
 })
 
@@ -43197,6 +43362,12 @@ M.CreateEvaluationFormInput = schema.new({
             target_id = id.from(_N, "EvaluationFormLanguageConfiguration"),
             target = M.EvaluationFormLanguageConfiguration,
         }),
+        AIVersion = schema.new({
+            id = id.from(_N, "CreateEvaluationFormInput", "AIVersion"),
+            type = "string",
+            name = "AIVersion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -43367,6 +43538,12 @@ M.EvaluationForm = schema.new({
             name = "LastValidationTime",
             target_id = prelude.Timestamp.id,
         }),
+        AIVersion = schema.new({
+            id = id.from(_N, "EvaluationForm", "AIVersion"),
+            type = "string",
+            name = "AIVersion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -43461,6 +43638,12 @@ M.EvaluationFormContent = schema.new({
             name = "ReviewConfiguration",
             target_id = id.from(_N, "EvaluationReviewConfiguration"),
             target = M.EvaluationReviewConfiguration,
+        }),
+        AIVersion = schema.new({
+            id = id.from(_N, "EvaluationFormContent", "AIVersion"),
+            type = "string",
+            name = "AIVersion",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -43631,6 +43814,12 @@ M.UpdateEvaluationFormInput = schema.new({
             name = "LanguageConfiguration",
             target_id = id.from(_N, "EvaluationFormLanguageConfiguration"),
             target = M.EvaluationFormLanguageConfiguration,
+        }),
+        AIVersion = schema.new({
+            id = id.from(_N, "UpdateEvaluationFormInput", "AIVersion"),
+            type = "string",
+            name = "AIVersion",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -46701,6 +46890,18 @@ M.ListEntitySecurityProfiles = schema.operation({
     output = M.ListEntitySecurityProfilesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/entity-security-profiles-summary/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListEvaluationFormAIVersions = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListEvaluationFormAIVersions"),
+    input = M.ListEvaluationFormAIVersionsInput,
+    output = M.ListEvaluationFormAIVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instances/{InstanceId}/evaluation-form-ai-versions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

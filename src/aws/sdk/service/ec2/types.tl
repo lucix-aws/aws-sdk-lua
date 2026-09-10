@@ -4177,6 +4177,19 @@ local record M
         -- request. For more information, see
         -- Ensure Idempotency.
         ClientToken: string
+        -- Indicates whether to encrypt the volume copy. If the source volume is encrypted, the
+        -- service always encrypts the copy regardless of this value. Set to true to
+        -- encrypt a copy of an unencrypted source volume during the copy operation. If you set
+        -- Encrypted to true but do not specify KmsKeyId, the
+        -- service uses the default KMS key for EBS encryption in your account.
+        Encrypted: boolean
+        -- The identifier of the KMS key to use for encryption of the volume copy. Specify a
+        -- symmetric encryption KMS key. You can specify a KMS key using the key ID, key ARN, alias
+        -- name, or alias ARN. If you set Encrypted to true but do not
+        -- specify this parameter, the service uses the default KMS key for EBS encryption in your
+        -- account. For cross-account volume copies, this must be a KMS key in the calling
+        -- account.
+        KmsKeyId: string
     end
 
     -- Describes volume attachment details.
@@ -4269,6 +4282,10 @@ local record M
         -- The Amazon EBS Provisioned Rate for Volume Initialization (volume initialization rate) specified for the volume during creation,
         -- in MiB/s. If no volume initialization rate was specified, the value is null.
         VolumeInitializationRate: number
+        -- The Amazon Resource Name (ARN) of the volume.
+        VolumeArn: string
+        -- The ID of the Amazon Web Services account that owns the volume.
+        OwnerId: string
         -- The ID of the volume.
         VolumeId: string
         -- The size of the volume, in GiBs.
@@ -16756,6 +16773,10 @@ local record M
         -- The Amazon EBS Provisioned Rate for Volume Initialization (volume initialization rate) specified for the volume during creation,
         -- in MiB/s. If no volume initialization rate was specified, the value is null.
         VolumeInitializationRate: number
+        -- The Amazon Resource Name (ARN) of the volume.
+        VolumeArn: string
+        -- The ID of the Amazon Web Services account that owns the volume.
+        OwnerId: string
         -- The ID of the volume.
         VolumeId: string
         -- The size of the volume, in GiBs.

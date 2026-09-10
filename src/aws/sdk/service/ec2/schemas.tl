@@ -13040,6 +13040,18 @@ M.CopyVolumesInput = schema.new({
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
         }),
+        Encrypted = schema.new({
+            id = id.from(_N, "CopyVolumesInput", "Encrypted"),
+            type = "boolean",
+            name = "Encrypted",
+            target_id = prelude.Boolean.id,
+        }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "CopyVolumesInput", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -13301,6 +13313,26 @@ M.Volume = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "volumeInitializationRate" },
                 [traits.EC2_QUERY_NAME] = { name = "VolumeInitializationRate" },
+            },
+        }),
+        VolumeArn = schema.new({
+            id = id.from(_N, "Volume", "VolumeArn"),
+            type = "string",
+            name = "VolumeArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "volumeArn" },
+                [traits.EC2_QUERY_NAME] = { name = "VolumeArn" },
+            },
+        }),
+        OwnerId = schema.new({
+            id = id.from(_N, "Volume", "OwnerId"),
+            type = "string",
+            name = "OwnerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ownerId" },
+                [traits.EC2_QUERY_NAME] = { name = "OwnerId" },
             },
         }),
         VolumeId = schema.new({
@@ -39763,6 +39795,26 @@ M.CreateVolumeOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "volumeInitializationRate" },
                 [traits.EC2_QUERY_NAME] = { name = "VolumeInitializationRate" },
+            },
+        }),
+        VolumeArn = schema.new({
+            id = id.from(_N, "CreateVolumeOutput", "VolumeArn"),
+            type = "string",
+            name = "VolumeArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "volumeArn" },
+                [traits.EC2_QUERY_NAME] = { name = "VolumeArn" },
+            },
+        }),
+        OwnerId = schema.new({
+            id = id.from(_N, "CreateVolumeOutput", "OwnerId"),
+            type = "string",
+            name = "OwnerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ownerId" },
+                [traits.EC2_QUERY_NAME] = { name = "OwnerId" },
             },
         }),
         VolumeId = schema.new({

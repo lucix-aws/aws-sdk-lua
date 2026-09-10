@@ -18,6 +18,8 @@ M.ChannelGroupsList = schema.new({ type = "list", list_member = M.ChannelGroupLi
 
 M.ChannelList = schema.new({ type = "list", list_member = M.ChannelListConfiguration })
 
+M.AttachedMultiviewChannelList = schema.new({ type = "list", list_member = prelude.String })
+
 M.IngestEndpointList = schema.new({ type = "list", list_member = M.IngestEndpoint })
 
 M.HarvestJobsList = schema.new({ type = "list", list_member = M.HarvestJob })
@@ -39,6 +41,10 @@ M.GetLowLatencyHlsManifests = schema.new({ type = "list", list_member = M.GetLow
 M.GetDashManifests = schema.new({ type = "list", list_member = M.GetDashManifestConfiguration })
 
 M.GetMssManifests = schema.new({ type = "list", list_member = M.GetMssManifestConfiguration })
+
+M.MultiviewSourceList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MultiviewLayoutList = schema.new({ type = "list", list_member = prelude.String })
 
 M.HarvestedHlsManifestsList = schema.new({ type = "list", list_member = M.HarvestedHlsManifest })
 
@@ -475,6 +481,33 @@ M.InputSwitchConfiguration = schema.new({
     },
 })
 
+M.MultiviewConfiguration = schema.new({
+    id = id.from(_N, "MultiviewConfiguration"),
+    type = "structure",
+    members = {
+        AvailableSources = schema.new({
+            id = id.from(_N, "MultiviewConfiguration", "AvailableSources"),
+            type = "list",
+            name = "AvailableSources",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AvailableLayouts = schema.new({
+            id = id.from(_N, "MultiviewConfiguration", "AvailableLayouts"),
+            type = "list",
+            name = "AvailableLayouts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.OutputHeaderConfiguration = schema.new({
     id = id.from(_N, "OutputHeaderConfiguration"),
     type = "structure",
@@ -547,6 +580,13 @@ M.CreateChannelInput = schema.new({
             target_id = id.from(_N, "OutputHeaderConfiguration"),
             target = M.OutputHeaderConfiguration,
         }),
+        MultiviewConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelInput", "MultiviewConfiguration"),
+            type = "structure",
+            name = "MultiviewConfiguration",
+            target_id = id.from(_N, "MultiviewConfiguration"),
+            target = M.MultiviewConfiguration,
+        }),
         OutputLockingMode = schema.new({
             id = id.from(_N, "CreateChannelInput", "OutputLockingMode"),
             type = "string",
@@ -590,6 +630,20 @@ M.CreateChannelOutput = schema.new({
     id = id.from(_N, "CreateChannelResponse"),
     type = "structure",
     members = {
+        MultiviewConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelOutput", "MultiviewConfiguration"),
+            type = "structure",
+            name = "MultiviewConfiguration",
+            target_id = id.from(_N, "MultiviewConfiguration"),
+            target = M.MultiviewConfiguration,
+        }),
+        AttachedMultiviewChannels = schema.new({
+            id = id.from(_N, "CreateChannelOutput", "AttachedMultiviewChannels"),
+            type = "list",
+            name = "AttachedMultiviewChannels",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         Arn = schema.new({
             id = id.from(_N, "CreateChannelOutput", "Arn"),
             type = "string",
@@ -770,6 +824,20 @@ M.GetChannelOutput = schema.new({
     id = id.from(_N, "GetChannelResponse"),
     type = "structure",
     members = {
+        MultiviewConfiguration = schema.new({
+            id = id.from(_N, "GetChannelOutput", "MultiviewConfiguration"),
+            type = "structure",
+            name = "MultiviewConfiguration",
+            target_id = id.from(_N, "MultiviewConfiguration"),
+            target = M.MultiviewConfiguration,
+        }),
+        AttachedMultiviewChannels = schema.new({
+            id = id.from(_N, "GetChannelOutput", "AttachedMultiviewChannels"),
+            type = "list",
+            name = "AttachedMultiviewChannels",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         Arn = schema.new({
             id = id.from(_N, "GetChannelOutput", "Arn"),
             type = "string",
@@ -979,6 +1047,20 @@ M.ChannelListConfiguration = schema.new({
             type = "string",
             name = "OutputLockingMode",
             target_id = prelude.String.id,
+        }),
+        MultiviewConfiguration = schema.new({
+            id = id.from(_N, "ChannelListConfiguration", "MultiviewConfiguration"),
+            type = "structure",
+            name = "MultiviewConfiguration",
+            target_id = id.from(_N, "MultiviewConfiguration"),
+            target = M.MultiviewConfiguration,
+        }),
+        AttachedMultiviewChannels = schema.new({
+            id = id.from(_N, "ChannelListConfiguration", "AttachedMultiviewChannels"),
+            type = "list",
+            name = "AttachedMultiviewChannels",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -3696,6 +3778,13 @@ M.UpdateChannelInput = schema.new({
             target_id = id.from(_N, "OutputHeaderConfiguration"),
             target = M.OutputHeaderConfiguration,
         }),
+        MultiviewConfiguration = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "MultiviewConfiguration"),
+            type = "structure",
+            name = "MultiviewConfiguration",
+            target_id = id.from(_N, "MultiviewConfiguration"),
+            target = M.MultiviewConfiguration,
+        }),
     },
 })
 
@@ -3703,6 +3792,20 @@ M.UpdateChannelOutput = schema.new({
     id = id.from(_N, "UpdateChannelResponse"),
     type = "structure",
     members = {
+        MultiviewConfiguration = schema.new({
+            id = id.from(_N, "UpdateChannelOutput", "MultiviewConfiguration"),
+            type = "structure",
+            name = "MultiviewConfiguration",
+            target_id = id.from(_N, "MultiviewConfiguration"),
+            target = M.MultiviewConfiguration,
+        }),
+        AttachedMultiviewChannels = schema.new({
+            id = id.from(_N, "UpdateChannelOutput", "AttachedMultiviewChannels"),
+            type = "list",
+            name = "AttachedMultiviewChannels",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         Arn = schema.new({
             id = id.from(_N, "UpdateChannelOutput", "Arn"),
             type = "string",

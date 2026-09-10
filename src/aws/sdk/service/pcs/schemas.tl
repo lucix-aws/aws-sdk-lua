@@ -44,7 +44,11 @@ M.CgroupCustomSettings = schema.new({ type = "list", list_member = M.CgroupCusto
 
 M.ErrorInfoList = schema.new({ type = "list", list_member = M.ErrorInfo })
 
+M.GresCustomSettings = schema.new({ type = "list", list_member = M.GresCustomSettingMap })
+
 M.NodeLifecycleScriptList = schema.new({ type = "list", list_member = M.NodeLifecycleScript })
+
+M.GresCustomSettingMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.NodeLifecycleScriptArguments = schema.new({ type = "list", list_member = prelude.String })
 
@@ -381,6 +385,13 @@ M.ComputeNodeGroupSlurmConfigurationRequest = schema.new({
             target_id = prelude.Document.id,
             list_member = M.SlurmCustomSetting,
         }),
+        gresCustomSettings = schema.new({
+            id = id.from(_N, "ComputeNodeGroupSlurmConfigurationRequest", "gresCustomSettings"),
+            type = "list",
+            name = "gresCustomSettings",
+            target_id = prelude.Document.id,
+            list_member = M.GresCustomSettingMap,
+        }),
     },
 })
 
@@ -609,6 +620,13 @@ M.ComputeNodeGroupSlurmConfiguration = schema.new({
             name = "slurmCustomSettings",
             target_id = prelude.Document.id,
             list_member = M.SlurmCustomSetting,
+        }),
+        gresCustomSettings = schema.new({
+            id = id.from(_N, "ComputeNodeGroupSlurmConfiguration", "gresCustomSettings"),
+            type = "list",
+            name = "gresCustomSettings",
+            target_id = prelude.Document.id,
+            list_member = M.GresCustomSettingMap,
         }),
     },
 })
@@ -1224,6 +1242,13 @@ M.UpdateComputeNodeGroupSlurmConfigurationRequest = schema.new({
             name = "slurmCustomSettings",
             target_id = prelude.Document.id,
             list_member = M.SlurmCustomSetting,
+        }),
+        gresCustomSettings = schema.new({
+            id = id.from(_N, "UpdateComputeNodeGroupSlurmConfigurationRequest", "gresCustomSettings"),
+            type = "list",
+            name = "gresCustomSettings",
+            target_id = prelude.Document.id,
+            list_member = M.GresCustomSettingMap,
         }),
     },
 })
