@@ -1503,11 +1503,12 @@ local record M
         "BEDROCK_FOUNDATION_MODEL"
         "BEDROCK_DATA_AUTOMATION"
         "SMART_PARSING"
+        "MULTI_MODAL_EMBEDDINGS"
     end
 
     -- Settings for parsing document contents. If you exclude this field, the default parser converts the contents of each document into text before splitting it into chunks. Specify the parsing strategy to use in the parsingStrategy field and include the relevant configuration, or omit it to use the Amazon Bedrock default parser. For more information, see Parsing options for your data source. If you specify BEDROCK_DATA_AUTOMATION or BEDROCK_FOUNDATION_MODEL and it fails to parse a file, the Amazon Bedrock default parser will be used instead.
     record ParsingConfiguration
-        -- The parsing strategy for the data source. Only SMART_PARSING can be selected for managed knowledge bases. For more information, see Customize ingestion for managed knowledge bases.
+        -- The parsing strategy for the data source. For managed knowledge bases, the strategy that you can select depends on the embedding model that your knowledge base uses: If your knowledge base uses a native multimodal embedding model, specify MULTI_MODAL_EMBEDDINGS. With this strategy, files are sent directly to the embedding model instead of being parsed into text. This is the only strategy that is supported for these knowledge bases. Otherwise, specify SMART_PARSING. For more information, see Customize ingestion for managed knowledge bases.
         parsingStrategy: string
         -- If you specify BEDROCK_FOUNDATION_MODEL as the parsing strategy for ingesting your data source, use this object to modify configurations for using a foundation model to parse documents.
         bedrockFoundationModelConfiguration: BedrockFoundationModelConfiguration
@@ -1996,7 +1997,7 @@ local record M
         description: string
         -- The input schema for the tool.
         inputSchema: ToolInputSchema
-        -- Whether to enforce strict JSON schema adherence for the tool input
+        -- Whether the tool schema is strictly enforced.
         strict: boolean
     end
 
@@ -3332,10 +3333,12 @@ local record M
         dimensions: number
         -- The data type for the vectors when using a model to convert text into vector embeddings. The model must support the specified data type for vector embeddings. Floating-point (float32) is the default data type, and is supported by most models for vector embeddings. See Supported embeddings models for information on the available models and their vector data types.
         embeddingDataType: string
-        -- Configuration settings for processing audio content in multimodal knowledge bases.
+        -- Configuration settings for processing audio content in multimodal knowledge bases. This field is deprecated. Use modelConfiguration instead.
         audio: {AudioConfiguration}
-        -- Configuration settings for processing video content in multimodal knowledge bases.
+        -- Configuration settings for processing video content in multimodal knowledge bases. This field is deprecated. Use modelConfiguration instead.
         video: {VideoConfiguration}
+        -- Model-specific configuration for the embedding model, provided as a JSON object. Use this field to specify settings that apply to the embedding model that you selected, such as how audio and video files are divided into segments. The fields that this object accepts depend on the embedding model. For the settings that each model accepts, see the documentation for that model.
+        modelConfiguration: any
     end
 
     -- The configuration details for the embeddings model.
@@ -3349,13 +3352,34 @@ local record M
         "MANAGED"
     end
 
+    enum SupplementalDataStorageLocationType
+        "S3"
+    end
+
+    -- Contains information about a storage location for multimedia content (images, audio, and video) extracted from multimodal documents in your data source.
+    record SupplementalDataStorageLocation
+        -- Contains information about the Amazon S3 location for the extracted multimedia content.
+        s3Location: S3Location
+    end
+
+    -- Specifies configurations for the storage location of multimedia content (images, audio, and video) extracted from multimodal documents in your data source. This content can be retrieved and returned to the end user with timestamp references for audio and video segments.
+    record SupplementalDataStorageConfiguration
+        -- A list of objects specifying storage locations for multimedia content (images, audio, and video) extracted from multimodal documents in your data source.
+        storageLocations: {SupplementalDataStorageLocation}
+    end
+
     -- Configurations for a managed knowledge base.
     record ManagedKnowledgeBaseConfiguration
+        -- Choose CUSTOM to provide your own Bedrock embedding model ARN. Choose MANAGED to use a service-managed embedding model.
         embeddingModelType: string
         -- The ARN for the embeddings model.
         embeddingModelArn: string
+        -- The configuration details for the embeddings model. Not required when choosing the MANAGED embeddingModelType.
         embeddingModelConfiguration: EmbeddingModelConfiguration
+        -- Contains the configuration for server-side encryption for your managed knowledge base.
         serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration
+        -- Use this object to specify the Amazon S3 location that the knowledge base uses to process and ingest multimodal content. This field is required when you use a native multimodal embedding model.
+        supplementalDataStorageConfiguration: SupplementalDataStorageConfiguration
     end
 
     enum RedshiftProvisionedAuthType
@@ -3515,22 +3539,6 @@ local record M
         "MANAGED"
     end
 
-    enum SupplementalDataStorageLocationType
-        "S3"
-    end
-
-    -- Contains information about a storage location for multimedia content (images, audio, and video) extracted from multimodal documents in your data source.
-    record SupplementalDataStorageLocation
-        -- Contains information about the Amazon S3 location for the extracted multimedia content.
-        s3Location: S3Location
-    end
-
-    -- Specifies configurations for the storage location of multimedia content (images, audio, and video) extracted from multimodal documents in your data source. This content can be retrieved and returned to the end user with timestamp references for audio and video segments.
-    record SupplementalDataStorageConfiguration
-        -- A list of objects specifying storage locations for multimedia content (images, audio, and video) extracted from multimodal documents in your data source.
-        storageLocations: {SupplementalDataStorageLocation}
-    end
-
     -- Contains details about the model used to create vector embeddings for the knowledge base.
     record VectorKnowledgeBaseConfiguration
         -- The Amazon Resource Name (ARN) of the model used to create vector embeddings for the knowledge base.
@@ -3545,6 +3553,7 @@ local record M
     record KnowledgeBaseConfiguration
         -- Contains details about the model that's used to convert the data source into vector embeddings.
         vectorKnowledgeBaseConfiguration: VectorKnowledgeBaseConfiguration
+        -- Contains configuration details for a knowledge base that uses a vector store fully managed by Amazon Bedrock. Specify this object when the knowledge base type is MANAGED.
         managedKnowledgeBaseConfiguration: ManagedKnowledgeBaseConfiguration
         -- Settings for an Amazon Kendra knowledge base.
         kendraKnowledgeBaseConfiguration: KendraKnowledgeBaseConfiguration

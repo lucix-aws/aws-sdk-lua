@@ -64,9 +64,13 @@ M.SystemEventList = schema.new({ type = "list", list_member = M.SystemEvent })
 
 M.SystemSummaryList = schema.new({ type = "list", list_member = M.SystemSummary })
 
+M.TestRunDependencySummaryList = schema.new({ type = "list", list_member = M.TestRunDependencySummary })
+
 M.TestRunEventList = schema.new({ type = "list", list_member = M.TestRunEvent })
 
 M.TestRunSummaryList = schema.new({ type = "list", list_member = M.TestRunSummary })
+
+M.TestRunSourceEventList = schema.new({ type = "list", list_member = M.TestRunSourceEvent })
 
 M.TestRunSourceSummaryList = schema.new({ type = "list", list_member = M.TestRunSourceSummary })
 
@@ -116,9 +120,15 @@ M.TestRunEventAttributes = schema.new({ type = "map", map_key = prelude.String, 
 
 M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
 
+M.EksLabelMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EksLabelSelectorRequirementList = schema.new({ type = "list", list_member = M.EksLabelSelectorRequirement })
+
 M.SuggestedChangesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.QueryDataPointList = schema.new({ type = "list", list_member = M.QueryDataPoint })
+
+M.EksLabelValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -173,6 +183,34 @@ M.Achievability = schema.new({
             id = id.from(_N, "Achievability", "dataRecoveryTimeBetweenBackups"),
             type = "string",
             name = "dataRecoveryTimeBetweenBackups",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AlarmStateChangeDetail = schema.new({
+    id = id.from(_N, "AlarmStateChangeDetail"),
+    type = "structure",
+    members = {
+        state = schema.new({
+            id = id.from(_N, "AlarmStateChangeDetail", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        previousState = schema.new({
+            id = id.from(_N, "AlarmStateChangeDetail", "previousState"),
+            type = "string",
+            name = "previousState",
+            target_id = prelude.String.id,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "AlarmStateChangeDetail", "reason"),
+            type = "string",
+            name = "reason",
             target_id = prelude.String.id,
         }),
     },
@@ -634,6 +672,60 @@ M.ValidationException = schema.new({
     },
 })
 
+M.EksLabelSelectorRequirement = schema.new({
+    id = id.from(_N, "EksLabelSelectorRequirement"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "EksLabelSelectorRequirement", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operator = schema.new({
+            id = id.from(_N, "EksLabelSelectorRequirement", "operator"),
+            type = "string",
+            name = "operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "EksLabelSelectorRequirement", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.EksLabelSelector = schema.new({
+    id = id.from(_N, "EksLabelSelector"),
+    type = "structure",
+    members = {
+        matchLabels = schema.new({
+            id = id.from(_N, "EksLabelSelector", "matchLabels"),
+            type = "map",
+            name = "matchLabels",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        matchExpressions = schema.new({
+            id = id.from(_N, "EksLabelSelector", "matchExpressions"),
+            type = "list",
+            name = "matchExpressions",
+            target_id = prelude.Document.id,
+            list_member = M.EksLabelSelectorRequirement,
+        }),
+    },
+})
+
 M.EksSource = schema.new({
     id = id.from(_N, "EksSource"),
     type = "structure",
@@ -656,6 +748,13 @@ M.EksSource = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        labelSelector = schema.new({
+            id = id.from(_N, "EksSource", "labelSelector"),
+            type = "structure",
+            name = "labelSelector",
+            target_id = id.from(_N, "EksLabelSelector"),
+            target = M.EksLabelSelector,
         }),
     },
 })
@@ -6848,6 +6947,143 @@ M.ListTagsForResourceOutput = schema.new({
     },
 })
 
+M.ListTestRunDependenciesInput = schema.new({
+    id = id.from(_N, "ListTestRunDependenciesRequest"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "ListTestRunDependenciesInput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "ListTestRunDependenciesInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTestRunDependenciesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunDependenciesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.TestRunDependencySummary = schema.new({
+    id = id.from(_N, "TestRunDependencySummary"),
+    type = "structure",
+    members = {
+        dependencyId = schema.new({
+            id = id.from(_N, "TestRunDependencySummary", "dependencyId"),
+            type = "string",
+            name = "dependencyId",
+            target_id = prelude.String.id,
+        }),
+        dependencyName = schema.new({
+            id = id.from(_N, "TestRunDependencySummary", "dependencyName"),
+            type = "string",
+            name = "dependencyName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dnsName = schema.new({
+            id = id.from(_N, "TestRunDependencySummary", "dnsName"),
+            type = "string",
+            name = "dnsName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        criticality = schema.new({
+            id = id.from(_N, "TestRunDependencySummary", "criticality"),
+            type = "string",
+            name = "criticality",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "TestRunDependencySummary", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        location = schema.new({
+            id = id.from(_N, "TestRunDependencySummary", "location"),
+            type = "string",
+            name = "location",
+            target_id = prelude.String.id,
+        }),
+        sourceRegions = schema.new({
+            id = id.from(_N, "TestRunDependencySummary", "sourceRegions"),
+            type = "list",
+            name = "sourceRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        provider = schema.new({
+            id = id.from(_N, "TestRunDependencySummary", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTestRunDependenciesOutput = schema.new({
+    id = id.from(_N, "ListTestRunDependenciesResponse"),
+    type = "structure",
+    members = {
+        dependencies = schema.new({
+            id = id.from(_N, "ListTestRunDependenciesOutput", "dependencies"),
+            type = "list",
+            name = "dependencies",
+            target_id = prelude.Document.id,
+            list_member = M.TestRunDependencySummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunDependenciesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTestRunEventsInput = schema.new({
     id = id.from(_N, "ListTestRunEventsRequest"),
     type = "structure",
@@ -7114,6 +7350,175 @@ M.ListTestRunsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListTestRunsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTestRunSourceEventsInput = schema.new({
+    id = id.from(_N, "ListTestRunSourceEventsRequest"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "ListTestRunSourceEventsInput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "ListTestRunSourceEventsInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+        sourceArn = schema.new({
+            id = id.from(_N, "ListTestRunSourceEventsInput", "sourceArn"),
+            type = "string",
+            name = "sourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "sourceArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTestRunSourceEventsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunSourceEventsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.TestRunSourceEventError = schema.new({
+    id = id.from(_N, "TestRunSourceEventError"),
+    type = "structure",
+    members = {
+        errorCode = schema.new({
+            id = id.from(_N, "TestRunSourceEventError", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "TestRunSourceEventError", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TestRunSourceEventDetail = schema.new({
+    id = id.from(_N, "TestRunSourceEventDetail"),
+    type = "union",
+    members = {
+        alarmStateChange = schema.new({
+            id = id.from(_N, "TestRunSourceEventDetail", "alarmStateChange"),
+            type = "structure",
+            name = "alarmStateChange",
+            target_id = id.from(_N, "AlarmStateChangeDetail"),
+            target = M.AlarmStateChangeDetail,
+        }),
+        error = schema.new({
+            id = id.from(_N, "TestRunSourceEventDetail", "error"),
+            type = "structure",
+            name = "error",
+            target_id = id.from(_N, "TestRunSourceEventError"),
+            target = M.TestRunSourceEventError,
+        }),
+    },
+})
+
+M.TestRunSourceEvent = schema.new({
+    id = id.from(_N, "TestRunSourceEvent"),
+    type = "structure",
+    members = {
+        timestamp = schema.new({
+            id = id.from(_N, "TestRunSourceEvent", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceArn = schema.new({
+            id = id.from(_N, "TestRunSourceEvent", "sourceArn"),
+            type = "string",
+            name = "sourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "TestRunSourceEvent", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        detail = schema.new({
+            id = id.from(_N, "TestRunSourceEvent", "detail"),
+            type = "union",
+            name = "detail",
+            target_id = id.from(_N, "TestRunSourceEventDetail"),
+            target = M.TestRunSourceEventDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTestRunSourceEventsOutput = schema.new({
+    id = id.from(_N, "ListTestRunSourceEventsResponse"),
+    type = "structure",
+    members = {
+        testRunSourceEvents = schema.new({
+            id = id.from(_N, "ListTestRunSourceEventsOutput", "testRunSourceEvents"),
+            type = "list",
+            name = "testRunSourceEvents",
+            target_id = prelude.Document.id,
+            list_member = M.TestRunSourceEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunSourceEventsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -9220,6 +9625,18 @@ M.ListTagsForResource = schema.operation({
     },
 })
 
+M.ListTestRunDependencies = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListTestRunDependencies"),
+    input = M.ListTestRunDependenciesInput,
+    output = M.ListTestRunDependenciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/test-runs/{testRunId}/dependencies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTestRunEvents = schema.operation({
     id = id.from("com.amazonaws.resiliencehubv2", "ListTestRunEvents"),
     input = M.ListTestRunEventsInput,
@@ -9238,6 +9655,18 @@ M.ListTestRuns = schema.operation({
     output = M.ListTestRunsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v2/list-test-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestRunSourceEvents = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListTestRunSourceEvents"),
+    input = M.ListTestRunSourceEventsInput,
+    output = M.ListTestRunSourceEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/test-runs/{testRunId}/source-events" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

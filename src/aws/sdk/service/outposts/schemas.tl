@@ -745,6 +745,12 @@ M.CatalogItem = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        RackScalingType = schema.new({
+            id = id.from(_N, "CatalogItem", "RackScalingType"),
+            type = "string",
+            name = "RackScalingType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1194,6 +1200,18 @@ M.Outpost = schema.new({
             id = id.from(_N, "Outpost", "SupportedHardwareType"),
             type = "string",
             name = "SupportedHardwareType",
+            target_id = prelude.String.id,
+        }),
+        Generation = schema.new({
+            id = id.from(_N, "Outpost", "Generation"),
+            type = "string",
+            name = "Generation",
+            target_id = prelude.String.id,
+        }),
+        RackScalingType = schema.new({
+            id = id.from(_N, "Outpost", "RackScalingType"),
+            type = "string",
+            name = "RackScalingType",
             target_id = prelude.String.id,
         }),
     },

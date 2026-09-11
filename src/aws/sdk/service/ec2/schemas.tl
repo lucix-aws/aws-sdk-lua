@@ -20393,6 +20393,12 @@ M.CreateImageInput = schema.new({
             name = "SnapshotLocation",
             target_id = prelude.String.id,
         }),
+        BootModeOverride = schema.new({
+            id = id.from(_N, "CreateImageInput", "BootModeOverride"),
+            type = "string",
+            name = "BootModeOverride",
+            target_id = prelude.String.id,
+        }),
         DryRun = schema.new({
             id = id.from(_N, "CreateImageInput", "DryRun"),
             type = "boolean",

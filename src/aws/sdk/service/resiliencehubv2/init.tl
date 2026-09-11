@@ -64,8 +64,10 @@ local record Client
     listSystemEvents: function(Client, types.ListSystemEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListSystemEventsOutput>
     listSystems: function(Client, types.ListSystemsInput, ? base_client.InvokeOptions): async.Operation<types.ListSystemsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTestRunDependencies: function(Client, types.ListTestRunDependenciesInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRunDependenciesOutput>
     listTestRunEvents: function(Client, types.ListTestRunEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRunEventsOutput>
     listTestRuns: function(Client, types.ListTestRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRunsOutput>
+    listTestRunSourceEvents: function(Client, types.ListTestRunSourceEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRunSourceEventsOutput>
     listTestRunSources: function(Client, types.ListTestRunSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRunSourcesOutput>
     listTests: function(Client, types.ListTestsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestsOutput>
     listTestSources: function(Client, types.ListTestSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListTestSourcesOutput>
@@ -314,12 +316,20 @@ function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
+function C:listTestRunDependencies(input: types.ListTestRunDependenciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRunDependenciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestRunDependencies as schema.OperationSchema, input, options) as async.Operation<types.ListTestRunDependenciesOutput>
+end
+
 function C:listTestRunEvents(input: types.ListTestRunEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRunEventsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestRunEvents as schema.OperationSchema, input, options) as async.Operation<types.ListTestRunEventsOutput>
 end
 
 function C:listTestRuns(input: types.ListTestRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRunsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestRuns as schema.OperationSchema, input, options) as async.Operation<types.ListTestRunsOutput>
+end
+
+function C:listTestRunSourceEvents(input: types.ListTestRunSourceEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRunSourceEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestRunSourceEvents as schema.OperationSchema, input, options) as async.Operation<types.ListTestRunSourceEventsOutput>
 end
 
 function C:listTestRunSources(input: types.ListTestRunSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRunSourcesOutput>

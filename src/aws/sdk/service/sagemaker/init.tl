@@ -21,6 +21,7 @@ local record Client
     addAssociation: function(Client, types.AddAssociationInput, ? base_client.InvokeOptions): async.Operation<types.AddAssociationOutput>
     addTags: function(Client, types.AddTagsInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
     associateTrialComponent: function(Client, types.AssociateTrialComponentInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTrialComponentOutput>
+    attachClusterNodeNetworkInterface: function(Client, types.AttachClusterNodeNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AttachClusterNodeNetworkInterfaceOutput>
     attachClusterNodeVolume: function(Client, types.AttachClusterNodeVolumeInput, ? base_client.InvokeOptions): async.Operation<types.AttachClusterNodeVolumeOutput>
     batchAddClusterNodes: function(Client, types.BatchAddClusterNodesInput, ? base_client.InvokeOptions): async.Operation<types.BatchAddClusterNodesOutput>
     batchDeleteClusterNodes: function(Client, types.BatchDeleteClusterNodesInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteClusterNodesOutput>
@@ -475,6 +476,10 @@ end
 
 function C:associateTrialComponent(input: types.AssociateTrialComponentInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTrialComponentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTrialComponent as schema.OperationSchema, input, options) as async.Operation<types.AssociateTrialComponentOutput>
+end
+
+function C:attachClusterNodeNetworkInterface(input: types.AttachClusterNodeNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.AttachClusterNodeNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachClusterNodeNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.AttachClusterNodeNetworkInterfaceOutput>
 end
 
 function C:attachClusterNodeVolume(input: types.AttachClusterNodeVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.AttachClusterNodeVolumeOutput>

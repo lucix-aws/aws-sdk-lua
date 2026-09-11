@@ -9906,6 +9906,12 @@ M.BedrockEmbeddingModelConfiguration = schema.new({
             target_id = prelude.Document.id,
             list_member = M.VideoConfiguration,
         }),
+        modelConfiguration = schema.new({
+            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "modelConfiguration"),
+            type = "document",
+            name = "modelConfiguration",
+            target_id = prelude.Document.id,
+        }),
     },
 })
 
@@ -9919,6 +9925,46 @@ M.EmbeddingModelConfiguration = schema.new({
             name = "bedrockEmbeddingModelConfiguration",
             target_id = id.from(_N, "BedrockEmbeddingModelConfiguration"),
             target = M.BedrockEmbeddingModelConfiguration,
+        }),
+    },
+})
+
+M.SupplementalDataStorageLocation = schema.new({
+    id = id.from(_N, "SupplementalDataStorageLocation"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "SupplementalDataStorageLocation", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        s3Location = schema.new({
+            id = id.from(_N, "SupplementalDataStorageLocation", "s3Location"),
+            type = "structure",
+            name = "s3Location",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+    },
+})
+
+M.SupplementalDataStorageConfiguration = schema.new({
+    id = id.from(_N, "SupplementalDataStorageConfiguration"),
+    type = "structure",
+    members = {
+        storageLocations = schema.new({
+            id = id.from(_N, "SupplementalDataStorageConfiguration", "storageLocations"),
+            type = "list",
+            name = "storageLocations",
+            target_id = prelude.Document.id,
+            list_member = M.SupplementalDataStorageLocation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -9952,6 +9998,13 @@ M.ManagedKnowledgeBaseConfiguration = schema.new({
             name = "serverSideEncryptionConfiguration",
             target_id = id.from(_N, "ServerSideEncryptionConfiguration"),
             target = M.ServerSideEncryptionConfiguration,
+        }),
+        supplementalDataStorageConfiguration = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConfiguration", "supplementalDataStorageConfiguration"),
+            type = "structure",
+            name = "supplementalDataStorageConfiguration",
+            target_id = id.from(_N, "SupplementalDataStorageConfiguration"),
+            target = M.SupplementalDataStorageConfiguration,
         }),
     },
 })
@@ -10330,46 +10383,6 @@ M.SqlKnowledgeBaseConfiguration = schema.new({
             name = "redshiftConfiguration",
             target_id = id.from(_N, "RedshiftConfiguration"),
             target = M.RedshiftConfiguration,
-        }),
-    },
-})
-
-M.SupplementalDataStorageLocation = schema.new({
-    id = id.from(_N, "SupplementalDataStorageLocation"),
-    type = "structure",
-    members = {
-        type = schema.new({
-            id = id.from(_N, "SupplementalDataStorageLocation", "type"),
-            type = "string",
-            name = "type",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        s3Location = schema.new({
-            id = id.from(_N, "SupplementalDataStorageLocation", "s3Location"),
-            type = "structure",
-            name = "s3Location",
-            target_id = id.from(_N, "S3Location"),
-            target = M.S3Location,
-        }),
-    },
-})
-
-M.SupplementalDataStorageConfiguration = schema.new({
-    id = id.from(_N, "SupplementalDataStorageConfiguration"),
-    type = "structure",
-    members = {
-        storageLocations = schema.new({
-            id = id.from(_N, "SupplementalDataStorageConfiguration", "storageLocations"),
-            type = "list",
-            name = "storageLocations",
-            target_id = prelude.Document.id,
-            list_member = M.SupplementalDataStorageLocation,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })

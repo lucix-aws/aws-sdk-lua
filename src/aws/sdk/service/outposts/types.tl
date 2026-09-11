@@ -300,6 +300,11 @@ local record M
         "DISCONTINUED"
     end
 
+    enum RackScalingType
+        "SINGLE_RACK"
+        "MULTI_RACK"
+    end
+
     enum SupportedStorageEnum
         "EBS"
         "S3"
@@ -321,6 +326,9 @@ local record M
         SupportedUplinkGbps: {number}
         -- The supported storage options for the catalog item.
         SupportedStorage: {string}
+        -- The rack scaling type supported by the catalog item. Valid values are
+        -- SINGLE_RACK and MULTI_RACK.
+        RackScalingType: string
     end
 
     enum CatalogItemClass
@@ -518,6 +526,11 @@ local record M
         SupportedHardwareType: string
     end
 
+    enum OutpostGeneration
+        "GENERATION_2"
+        "GENERATION_1"
+    end
+
     -- Information about an Outpost.
     record Outpost
         -- The ID of the Outpost.
@@ -535,6 +548,13 @@ local record M
         SiteArn: string
         -- The hardware type.
         SupportedHardwareType: string
+        -- The Outpost generation. Valid values are GENERATION_1 for first-generation
+        -- rack deployments and GENERATION_2 for second-generation rack deployments.
+        Generation: string
+        -- The rack scaling type. Valid values are SINGLE_RACK for single-rack
+        -- Outposts and MULTI_RACK for multi-rack Outposts that can expand across
+        -- multiple racks.
+        RackScalingType: string
     end
 
     record CreateOutpostOutput
@@ -596,12 +616,14 @@ local record M
         "RACK_MAXIMUM"
         "RACK_MAX_POWER_KVA"
         "RACK_MAX_WEIGHT_LBS"
+        "RACK_SPACE_CONSTRAINED"
     end
 
     -- A physical constraint for a quote.
     record QuoteConstraint
         -- The type of constraint. Valid values are RACK_MAXIMUM,
-        -- RACK_MAX_POWER_KVA, and RACK_MAX_WEIGHT_LBS.
+        -- RACK_MAX_POWER_KVA, RACK_MAX_WEIGHT_LBS, and
+        -- RACK_SPACE_CONSTRAINED.
         QuoteConstraintType: string
         -- The value of the constraint.
         Value: string
@@ -1093,11 +1115,6 @@ local record M
     enum FormFactor
         "RACK"
         "SERVER"
-    end
-
-    enum OutpostGeneration
-        "GENERATION_2"
-        "GENERATION_1"
     end
 
     -- A supported form factor and Outpost generation configuration for an instance type.

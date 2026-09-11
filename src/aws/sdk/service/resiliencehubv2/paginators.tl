@@ -274,6 +274,24 @@ function M.items_list_systems(client, input)
     })
 end
 
+--- Returns a page iterator for listTestRunDependencies.
+function M.pages_list_test_run_dependencies(client, input)
+    return paginator.pages(client, "listTestRunDependencies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dependencies",
+    })
+end
+
+--- Returns an item iterator for listTestRunDependencies.
+function M.items_list_test_run_dependencies(client, input)
+    return paginator.items(client, "listTestRunDependencies", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dependencies",
+    })
+end
+
 --- Returns a page iterator for listTestRunEvents.
 function M.pages_list_test_run_events(client, input)
     return paginator.pages(client, "listTestRunEvents", input, {
@@ -289,6 +307,24 @@ function M.items_list_test_run_events(client, input)
         input_token = "nextToken",
         output_token = "nextToken",
         items = "events",
+    })
+end
+
+--- Returns a page iterator for listTestRunSourceEvents.
+function M.pages_list_test_run_source_events(client, input)
+    return paginator.pages(client, "listTestRunSourceEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testRunSourceEvents",
+    })
+end
+
+--- Returns an item iterator for listTestRunSourceEvents.
+function M.items_list_test_run_source_events(client, input)
+    return paginator.items(client, "listTestRunSourceEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testRunSourceEvents",
     })
 end
 

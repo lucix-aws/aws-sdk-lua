@@ -2491,6 +2491,26 @@ local record M
         OutputCompression: string
     end
 
+    record AttachClusterNodeNetworkInterfaceInput
+        -- The name or Amazon Resource Name (ARN) of the SageMaker HyperPod cluster that contains the target node.
+        ClusterName: string
+        -- The unique identifier of the cluster node to which you want to attach the network interface. The node must belong to your specified HyperPod cluster and cannot be part of a Restricted Instance Group (RIG).
+        NodeId: string
+        -- The unique identifier of the elastic network interface (ENI) to attach.
+        NetworkInterfaceId: string
+    end
+
+    record AttachClusterNodeNetworkInterfaceOutput
+        -- The Amazon Resource Name (ARN) of your SageMaker HyperPod cluster where the network interface attachment operation was performed.
+        ClusterArn: string
+        -- The unique identifier of the cluster node where your network interface was attached.
+        NodeId: string
+        -- The unique identifier of the elastic network interface (ENI) that was attached.
+        NetworkInterfaceId: string
+        -- The unique identifier of the network interface attachment. Use this value to reference or detach the network interface later.
+        AttachmentId: string
+    end
+
     record AttachClusterNodeVolumeInput
         -- The Amazon Resource Name (ARN) of your SageMaker HyperPod cluster containing the target node. Your cluster must use EKS as the orchestration and be in the InService state.
         ClusterArn: string

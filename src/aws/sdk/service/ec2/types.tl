@@ -9480,6 +9480,10 @@ local record M
         VirtualName: string
     end
 
+    enum BootModeOverrideValues
+        "uefi"
+    end
+
     enum SnapshotLocationEnum
         "regional"
         "local"
@@ -9512,6 +9516,18 @@ local record M
         -- InvalidParameterValue error.
         -- Default: regional (for instances in Local Zones only)
         SnapshotLocation: string
+        -- The boot mode of the new image, which overrides the default boot mode. By default,
+        -- if you do not specify this parameter, the new image inherits
+        -- the boot-mode from the source instance.
+        -- A value of uefi indicates that the image only supports UEFI boot mode. You can
+        -- specify this parameter only if the current-instance-boot-mode of the source instance is
+        -- uefi. To find the boot-mode or current-instance-boot-mode of
+        -- an instance, see DescribeInstances.
+        -- The operating system contained in the AMI must be configured to support the specified
+        -- boot mode.
+        -- For more information, see Instance launch behavior with Amazon EC2 boot modes in
+        -- the Amazon EC2 User Guide.
+        BootModeOverride: string
         -- Checks whether you have the required permissions for the action, without actually making the request,
         -- and provides an error response. If you have the required permissions, the error response is
         -- DryRunOperation. Otherwise, it is UnauthorizedOperation.

@@ -34,6 +34,22 @@ local record M
         "SYSTEM"
     end
 
+    enum AlarmState
+        "OK"
+        "ALARM"
+        "INSUFFICIENT_DATA"
+    end
+
+    -- Details about a CloudWatch alarm state change observed during a test run.
+    record AlarmStateChangeDetail
+        -- The state the alarm transitioned to.
+        state: string
+        -- The state the alarm transitioned from. Absent on the initial event, which records the alarm's state when collection began.
+        previousState: string
+        -- A human-readable explanation of the state change, as reported by CloudWatch.
+        reason: string
+    end
+
     enum AssertionSource
         "AI_GENERATED"
         "USER"
@@ -223,11 +239,38 @@ local record M
         fieldList: {ValidationExceptionField}
     end
 
+    enum EksLabelSelectorOperator
+        "IN"
+        "NOT_IN"
+        "EXISTS"
+        "DOES_NOT_EXIST"
+    end
+
+    -- A single label requirement in a label selector, expressed as a key, an operator, and an optional list of values.
+    record EksLabelSelectorRequirement
+        -- The label key that the requirement applies to.
+        key: string
+        -- The operator that relates the label key to the values.
+        operator: string
+        -- The label values to compare against. Specify values when the operator is IN or NOT_IN. Leave this empty when the operator is EXISTS or DOES_NOT_EXIST.
+        values: {string}
+    end
+
+    -- A label selector that filters the Kubernetes objects discovered from an Amazon EKS input source. An object must satisfy both matchLabels and matchExpressions to match the selector. A selector with neither matches every object. The selector must render to 2,048 characters or fewer in Kubernetes label selector syntax.
+    record EksLabelSelector
+        -- The label key-value pairs that an object must have. All pairs must match for the object to be selected.
+        matchLabels: {string : string}
+        -- The label requirements that an object must satisfy. All requirements in the list must match for the object to be selected.
+        matchExpressions: {EksLabelSelectorRequirement}
+    end
+
     -- Defines an Amazon EKS cluster and its namespaces as an input source for resource discovery.
     record EksSource
         clusterArn: string
         -- The list of Kubernetes namespaces within the EKS cluster.
         namespaces: {string}
+        -- Filters discovery to the Kubernetes objects whose labels match the selector. When omitted, all supported objects in the specified namespaces are discovered.
+        labelSelector: EksLabelSelector
     end
 
     -- A tag key-value pair used for resource discovery.
@@ -1275,7 +1318,7 @@ local record M
         permissionModel: PermissionModel
         -- The Regions snapshotted from the service when the run was started.
         regions: {string}
-        -- Indicates whether this test run targets a single account or multiple accounts.
+        -- Indicates whether the test run targets resources in a single AWS account or across multiple accounts.
         accountTargeting: string
     end
 
@@ -2149,6 +2192,46 @@ local record M
         tags: {string : string}
     end
 
+    record ListTestRunDependenciesInput
+        -- The identifier of the test run to list dependencies for.
+        testRunId: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+        maxResults: number
+        nextToken: string
+    end
+
+    enum TestRunDependencySource
+        "DISCOVERED"
+        "MANUAL"
+    end
+
+    -- Contains summary information about a dependency that a test run blocked, as captured when the run started.
+    record TestRunDependencySummary
+        -- The unique identifier of the dependency. Absent when the dependency was entered manually and was not part of dependency discovery.
+        dependencyId: string
+        -- The name of the dependency.
+        dependencyName: string
+        -- The DNS name of the dependency that the test run blocked.
+        dnsName: string
+        -- The criticality classification of the dependency when the run started. A dependency that was not discovered has the UNKNOWN criticality.
+        criticality: string
+        -- The origin of the dependency. A discovered dependency was found by dependency discovery; a manual dependency was entered when the run started.
+        source: string
+        -- The location of the dependency.
+        location: string
+        -- The source Regions from which the dependency was detected.
+        sourceRegions: {string}
+        -- The provider of the dependency.
+        provider: string
+    end
+
+    record ListTestRunDependenciesOutput
+        -- The list of dependencies the test run blocked.
+        dependencies: {TestRunDependencySummary}
+        nextToken: string
+    end
+
     record ListTestRunEventsInput
         -- The identifier of the test run to list events for.
         testRunId: string
@@ -2207,13 +2290,67 @@ local record M
         serviceArn: string
         -- A human-readable reason for test run failure. Only present when the status is FAILED or ERROR.
         errorMessage: string
-        -- Indicates whether this test run targets a single account or multiple accounts.
+        -- Indicates whether the test run targets resources in a single AWS account or across multiple accounts.
         accountTargeting: string
     end
 
     record ListTestRunsOutput
         -- The list of test run summaries.
         testRuns: {TestRunSummary}
+        nextToken: string
+    end
+
+    record ListTestRunSourceEventsInput
+        -- The identifier of the test run to list source events for.
+        testRunId: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+        -- The ARN of the monitoring source to list events for, such as the ARN of a CloudWatch alarm. If the source was not monitored during the test run, the response is an empty list.
+        sourceArn: string
+        maxResults: number
+        nextToken: string
+    end
+
+    enum TestRunSourceEventErrorCode
+        "ACCESS_DENIED"
+        "INTERNAL_ERROR"
+    end
+
+    -- Describes an error that prevented event collection from a test run monitoring source.
+    record TestRunSourceEventError
+        -- The error code.
+        errorCode: string
+        -- A human-readable description of the error.
+        errorMessage: string
+    end
+
+    -- The payload of a test run source event. Exactly one member is set.
+    record TestRunSourceEventDetail
+        -- A CloudWatch alarm state change.
+        alarmStateChange: AlarmStateChangeDetail
+        -- An error that prevented event collection from the source.
+        error: TestRunSourceEventError
+    end
+
+    enum TestRunSourceEventType
+        "ALARM"
+    end
+
+    -- A state-change event observed for a test run monitoring source.
+    record TestRunSourceEvent
+        -- The timestamp when the event occurred.
+        timestamp: number
+        -- The ARN of the monitoring source the event belongs to.
+        sourceArn: string
+        -- The type of the event. ALARM indicates an event from a CloudWatch alarm source; the detail member carries either the alarm state change or a collection error.
+        eventType: string
+        -- The event payload.
+        detail: TestRunSourceEventDetail
+    end
+
+    record ListTestRunSourceEventsOutput
+        -- The list of source events, in chronological order.
+        testRunSourceEvents: {TestRunSourceEvent}
         nextToken: string
     end
 

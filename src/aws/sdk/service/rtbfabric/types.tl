@@ -246,7 +246,7 @@ local record M
         gatewayId: string
         -- The Amazon Resource Name (ARN) of the ACM certificate to associate.
         acmCertificateArn: string
-        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same ClientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
     end
 
@@ -319,8 +319,13 @@ local record M
         updatedAt: number
     end
 
+    enum ClientRoutingPolicy
+        "AVAILABILITY_ZONE_AFFINITY"
+        "ANY_AVAILABILITY_ZONE"
+    end
+
     record CreateInboundExternalLinkInput
-        -- The unique client token.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
         -- The unique identifier of the gateway.
         gatewayId: string
@@ -354,7 +359,7 @@ local record M
         httpResponderAllowed: boolean
         -- A map of the key-value pairs of the tag or tags to assign to the resource.
         tags: {string : string}
-        -- Settings for the application logs.
+        -- Application log settings for the link. This value is required. Under applicationLogs.sampling, the errorLog and filterLog fields set the percentage of eligible events to log. Valid values range from 0 through 100. To turn off application logs, set both fields to 0, as in {"applicationLogs":{"sampling":{"errorLog":0,"filterLog":0}}}.
         logSettings: LinkLogSettings
         -- The timeout value in milliseconds.
         timeoutInMillis: number
@@ -413,7 +418,7 @@ local record M
     end
 
     record CreateLinkRoutingRuleInput
-        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same ClientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
         -- The unique identifier of the gateway.
         gatewayId: string
@@ -446,7 +451,7 @@ local record M
     end
 
     record CreateOutboundExternalLinkInput
-        -- The unique client token.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
         -- The unique identifier of the gateway.
         gatewayId: string
@@ -476,7 +481,7 @@ local record M
         subnetIds: {string}
         -- The unique identifiers of the security groups.
         securityGroupIds: {string}
-        -- The unique client token.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
         -- An optional description for the requester gateway.
         description: string
@@ -549,7 +554,7 @@ local record M
     record CreateResponderGatewayInput
         -- The unique identifier of the Virtual Private Cloud (VPC).
         vpcId: string
-        -- The unique identifiers of the subnets.
+        -- Unique identifiers of the subnets. A service quota for your account sets the number of Availability Zones that your subnets can span. By default, this quota is one Availability Zone. To span more Availability Zones, request a quota increase.
         subnetIds: {string}
         -- The unique identifiers of the security groups.
         securityGroupIds: {string}
@@ -564,7 +569,7 @@ local record M
         trustStoreConfiguration: TrustStoreConfiguration
         -- The configuration for the managed endpoint.
         managedEndpointConfiguration: ManagedEndpointConfiguration
-        -- The unique client token.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
         -- An optional description for the responder gateway.
         description: string
@@ -572,6 +577,8 @@ local record M
         tags: {string : string}
         -- The type of gateway. Valid values are EXTERNAL or INTERNAL.
         gatewayType: string
+        -- The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. Valid values are the following: AVAILABILITY_ZONE_AFFINITY: RTB Fabric routes each requester's traffic to gateway capacity in the requester's own Availability Zone when the gateway has capacity available there. Otherwise, RTB Fabric routes the traffic to gateway capacity in the other Availability Zones of the gateway. ANY_AVAILABILITY_ZONE: RTB Fabric routes each requester's traffic to gateway capacity in every Availability Zone that the subnets of the gateway span. The Availability Zone that the requester is in does not change this. If you don't specify a value, RTB Fabric uses AVAILABILITY_ZONE_AFFINITY. To get the behavior of ANY_AVAILABILITY_ZONE, create the gateway with subnets in more than one Availability Zone. RTB Fabric does not support partial Availability Zone affinity, so PARTIAL_AVAILABILITY_ZONE_AFFINITY is not a valid value. For more information, see Configuring Availability Zone affinity in the Amazon Web Services RTB Fabric User Guide.
+        clientRoutingPolicy: string
     end
 
     enum ResponderGatewayStatus
@@ -595,6 +602,8 @@ local record M
         listenerConfig: ListenerConfig
         -- The external inbound endpoint for the responder gateway.
         externalInboundEndpoint: string
+        -- The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. For more information, see Configuring Availability Zone affinity in the Amazon Web Services RTB Fabric User Guide.
+        clientRoutingPolicy: string
     end
 
     record DeleteInboundExternalLinkInput
@@ -920,7 +929,7 @@ local record M
     end
 
     record UpdateLinkModuleFlowInput
-        -- The unique client token.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
         -- The unique identifier of the gateway.
         gatewayId: string
@@ -1104,6 +1113,8 @@ local record M
         gatewayType: string
         -- The external inbound endpoint for the responder gateway.
         externalInboundEndpoint: string
+        -- The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. RTB Fabric omits this member if the gateway has never had a client routing policy. An omitted value means that the gateway uses AVAILABILITY_ZONE_AFFINITY. For more information, see Configuring Availability Zone affinity in the Amazon Web Services RTB Fabric User Guide.
+        clientRoutingPolicy: string
     end
 
     record ListCertificateAssociationsInput
@@ -1161,7 +1172,7 @@ local record M
     end
 
     record UpdateRequesterGatewayInput
-        -- The unique client token.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
         -- The unique identifier of the gateway.
         gatewayId: string
@@ -1177,11 +1188,11 @@ local record M
     end
 
     record UpdateResponderGatewayInput
-        -- The domain name for the responder gateway.
+        -- Domain name for the responder gateway. This operation does not change the domain name of an existing gateway. To use a different domain name, delete the gateway and create a new one.
         domainName: string
-        -- The networking port to use.
+        -- Networking port to use. This operation does not change the port of an existing gateway. To use a different port, delete the gateway and create a new one.
         port: number
-        -- The networking protocol to use.
+        -- Networking protocol to use. This operation does not change the protocol of an existing gateway. To use a different protocol, delete the gateway and create a new one.
         protocol: string
         -- The listener configuration for the responder gateway.
         listenerConfig: ListenerConfig
@@ -1189,12 +1200,14 @@ local record M
         trustStoreConfiguration: TrustStoreConfiguration
         -- The configuration for the managed endpoint.
         managedEndpointConfiguration: ManagedEndpointConfiguration
-        -- The unique client token.
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same clientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
         clientToken: string
         -- The unique identifier of the gateway.
         gatewayId: string
         -- An optional description for the responder gateway.
         description: string
+        -- The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. Valid values are the following: AVAILABILITY_ZONE_AFFINITY: RTB Fabric routes each requester's traffic to gateway capacity in the requester's own Availability Zone when the gateway has capacity available there. Otherwise, RTB Fabric routes the traffic to gateway capacity in the other Availability Zones of the gateway. ANY_AVAILABILITY_ZONE: RTB Fabric routes each requester's traffic to gateway capacity in every Availability Zone that the subnets of the gateway span. The Availability Zone that the requester is in does not change this. If you don't specify a value, the gateway keeps its current client routing policy. Changing the policy sets the gateway status to PENDING_UPDATE until the change is complete. RTB Fabric does not support partial Availability Zone affinity, so PARTIAL_AVAILABILITY_ZONE_AFFINITY is not a valid value. For more information, see Configuring Availability Zone affinity in the Amazon Web Services RTB Fabric User Guide.
+        clientRoutingPolicy: string
     end
 
     record UpdateResponderGatewayOutput
@@ -1202,6 +1215,8 @@ local record M
         gatewayId: string
         -- The status of the request.
         status: string
+        -- The client routing policy of the gateway. If the operation changed this policy, the gateway uses the new policy after its status returns to ACTIVE. For more information, see Configuring Availability Zone affinity in the Amazon Web Services RTB Fabric User Guide.
+        clientRoutingPolicy: string
     end
 
     record TagResourceInput

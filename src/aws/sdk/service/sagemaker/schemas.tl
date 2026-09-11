@@ -4382,6 +4382,83 @@ M.AthenaDatasetDefinition = schema.new({
     },
 })
 
+M.AttachClusterNodeNetworkInterfaceInput = schema.new({
+    id = id.from(_N, "AttachClusterNodeNetworkInterfaceRequest"),
+    type = "structure",
+    members = {
+        ClusterName = schema.new({
+            id = id.from(_N, "AttachClusterNodeNetworkInterfaceInput", "ClusterName"),
+            type = "string",
+            name = "ClusterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NodeId = schema.new({
+            id = id.from(_N, "AttachClusterNodeNetworkInterfaceInput", "NodeId"),
+            type = "string",
+            name = "NodeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NetworkInterfaceId = schema.new({
+            id = id.from(_N, "AttachClusterNodeNetworkInterfaceInput", "NetworkInterfaceId"),
+            type = "string",
+            name = "NetworkInterfaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttachClusterNodeNetworkInterfaceOutput = schema.new({
+    id = id.from(_N, "AttachClusterNodeNetworkInterfaceResponse"),
+    type = "structure",
+    members = {
+        ClusterArn = schema.new({
+            id = id.from(_N, "AttachClusterNodeNetworkInterfaceOutput", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NodeId = schema.new({
+            id = id.from(_N, "AttachClusterNodeNetworkInterfaceOutput", "NodeId"),
+            type = "string",
+            name = "NodeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NetworkInterfaceId = schema.new({
+            id = id.from(_N, "AttachClusterNodeNetworkInterfaceOutput", "NetworkInterfaceId"),
+            type = "string",
+            name = "NetworkInterfaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttachmentId = schema.new({
+            id = id.from(_N, "AttachClusterNodeNetworkInterfaceOutput", "AttachmentId"),
+            type = "string",
+            name = "AttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AttachClusterNodeVolumeInput = schema.new({
     id = id.from(_N, "AttachClusterNodeVolumeRequest"),
     type = "structure",
@@ -57711,6 +57788,17 @@ M.AssociateTrialComponent = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "AssociateTrialComponent"),
     input = M.AssociateTrialComponentInput,
     output = M.AssociateTrialComponentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AttachClusterNodeNetworkInterface = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "AttachClusterNodeNetworkInterface"),
+    input = M.AttachClusterNodeNetworkInterfaceInput,
+    output = M.AttachClusterNodeNetworkInterfaceOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

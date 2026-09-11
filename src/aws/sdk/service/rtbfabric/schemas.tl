@@ -1745,6 +1745,12 @@ M.CreateResponderGatewayInput = schema.new({
             name = "gatewayType",
             target_id = prelude.String.id,
         }),
+        clientRoutingPolicy = schema.new({
+            id = id.from(_N, "CreateResponderGatewayInput", "clientRoutingPolicy"),
+            type = "string",
+            name = "clientRoutingPolicy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1781,6 +1787,12 @@ M.CreateResponderGatewayOutput = schema.new({
             id = id.from(_N, "CreateResponderGatewayOutput", "externalInboundEndpoint"),
             type = "string",
             name = "externalInboundEndpoint",
+            target_id = prelude.String.id,
+        }),
+        clientRoutingPolicy = schema.new({
+            id = id.from(_N, "CreateResponderGatewayOutput", "clientRoutingPolicy"),
+            type = "string",
+            name = "clientRoutingPolicy",
             target_id = prelude.String.id,
         }),
     },
@@ -3692,6 +3704,12 @@ M.GetResponderGatewayOutput = schema.new({
             name = "externalInboundEndpoint",
             target_id = prelude.String.id,
         }),
+        clientRoutingPolicy = schema.new({
+            id = id.from(_N, "GetResponderGatewayOutput", "clientRoutingPolicy"),
+            type = "string",
+            name = "clientRoutingPolicy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4011,6 +4029,12 @@ M.UpdateResponderGatewayInput = schema.new({
             name = "description",
             target_id = prelude.String.id,
         }),
+        clientRoutingPolicy = schema.new({
+            id = id.from(_N, "UpdateResponderGatewayInput", "clientRoutingPolicy"),
+            type = "string",
+            name = "clientRoutingPolicy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4035,6 +4059,12 @@ M.UpdateResponderGatewayOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        clientRoutingPolicy = schema.new({
+            id = id.from(_N, "UpdateResponderGatewayOutput", "clientRoutingPolicy"),
+            type = "string",
+            name = "clientRoutingPolicy",
+            target_id = prelude.String.id,
         }),
     },
 })
