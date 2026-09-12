@@ -437,6 +437,20 @@ local record M
         BillingEntity: string
     end
 
+    -- Specifies the supported document types and attachment types for invoice delivery to a procurement portal.
+    record InvoiceConfiguration
+        -- The e-invoice document types supported by the procurement portal.
+        DocumentTypes: {string}
+        -- The attachment types supported by the procurement portal for e-invoice delivery.
+        AttachmentTypes: {string}
+    end
+
+    -- Contains the default feature configuration settings for a procurement portal.
+    record FeatureConfigurations
+        -- The invoice configuration settings for the procurement portal.
+        InvoiceConfiguration: InvoiceConfiguration
+    end
+
     -- An optional input to the list API. If multiple filters are specified, the returned list will be a configuration that match all of the provided filters. Supported filter types are InvoiceReceivers, Names, and Accounts.
     record Filters
         -- An optional input to the list API. You can specify a list of invoice unit names inside filters to return invoice units that match only the specified invoice unit names. If multiple names are provided, the result is an OR condition (match any) of the specified invoice unit names.
@@ -806,6 +820,65 @@ local record M
     record ListProcurementPortalPreferencesOutput
         -- The list of procurement portal preferences associated with the Amazon Web Services account.
         ProcurementPortalPreferences: {ProcurementPortalPreferenceSummary}
+        -- The token to use to retrieve the next set of results, or null if there are no more results.
+        NextToken: string
+    end
+
+    record ListProcurementPortalsInput
+        -- The token for the next set of results. You received this token from a previous call.
+        NextToken: string
+        -- The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value. Default is 100.
+        MaxResults: number
+    end
+
+    -- Contains metadata for a procurement portal, including the portal identifier, name, and default feature configurations.
+    record ProcurementPortal
+        -- The unique identifier of the procurement portal.
+        PortalIdentifier: string
+        -- The name of the procurement portal.
+        PortalName: string
+        -- The display name of the procurement portal.
+        PortalDisplayName: string
+        -- The default feature configurations for the procurement portal.
+        DefaultFeatureConfigurations: FeatureConfigurations
+    end
+
+    record ListProcurementPortalsOutput
+        -- The list of procurement portals available for configuration.
+        ProcurementPortals: {ProcurementPortal}
+        -- The token to use to retrieve the next set of results, or null if there are no more results.
+        NextToken: string
+    end
+
+    record ListProcurementPortalSuppliersInput
+        -- The unique identifier of the procurement portal for which to list suppliers. Use the PortalIdentifier value returned by ListProcurementPortals.
+        PortalIdentifier: string
+        -- The token for the next set of results. You received this token from a previous call.
+        NextToken: string
+        -- The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value. Default is 100.
+        MaxResults: number
+    end
+
+    enum ProcurementPortalEnv
+        "PROD"
+        "TEST"
+    end
+
+    -- Contains metadata for a supplier configured within a procurement portal.
+    record ProcurementPortalSupplier
+        -- The unique identifier of the supplier within the procurement portal.
+        SupplierIdentifier: string
+        -- The Amazon Web Services seller of record associated with the supplier—the Amazon Web Services legal entity that issues invoices for the account (for example, AWS_INC or AWS_EUROPE).
+        SellerOfRecord: string
+        -- The two-letter ISO 3166-1 alpha-2 country code associated with the supplier.
+        CountryCode: string
+        -- The environment identifier for the supplier in the procurement portal. PROD for production env, or TEST for sandbox/test env.
+        Environment: string
+    end
+
+    record ListProcurementPortalSuppliersOutput
+        -- The list of suppliers configured for the specified procurement portal.
+        ProcurementPortalSuppliers: {ProcurementPortalSupplier}
         -- The token to use to retrieve the next set of results, or null if there are no more results.
         NextToken: string
     end

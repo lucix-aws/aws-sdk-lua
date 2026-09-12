@@ -127,10 +127,10 @@ local record M
     record CancelJobInput
         -- The Batch job ID of the job to cancel.
         jobId: string
-        -- A message to attach to the job that explains the reason for canceling it. This message is
+        -- A message to attach to the job that explains the reason for cancelling it. This message is
         -- returned by future DescribeJobs operations on the job. It is also
         -- recorded in the Batch activity logs.
-        -- This parameter has as limit of 1024 characters.
+        -- This parameter has a limit of 1024 characters.
         reason: string
     end
 
@@ -147,6 +147,44 @@ local record M
     -- These errors are usually caused by a server issue.
     record ServerException
         message: string
+    end
+
+    -- Specifies the jobs to cancel and the reason for the cancellation.
+    record CancelJobsInput
+        -- An array of up to 50 Batch job IDs of the jobs to cancel.
+        jobs: {string}
+        -- A message to attach to the job that explains the reason for cancelling it. This message is
+        -- returned by future DescribeJobs operations on the job. It is also
+        -- recorded in the Batch activity logs.
+        -- This parameter has a limit of 1024 characters.
+        reason: string
+    end
+
+    -- An object that contains the details of a job that couldn't be cancelled by a
+    -- CancelJobs operation.
+    record CancelJobsErrorDetail
+        -- The Batch job ID of the job that couldn't be cancelled.
+        job: string
+        -- An error code that identifies the reason the job couldn't be cancelled. Valid values are:
+        -- ValidationException – A job identifier in the request is malformed or isn't valid.
+        -- ClientException – The request failed because of a client error.
+        -- ThrottlingException – The request was throttled. Retry the request.
+        -- ServerException – An internal error occurred. Retry the request.
+        -- AccessDenied – The caller isn't authorized to perform the action on the specified job.
+        code: string
+        -- A message that describes the reason the job couldn't be cancelled.
+        message: string
+    end
+
+    -- The result of a CancelJobs request, including the jobs whose cancellation
+    -- request was accepted and the errors for jobs that couldn't be cancelled.
+    record CancelJobsOutput
+        -- A list of the job IDs whose cancellation request was accepted.
+        successful: {string}
+        -- A list of CancelJobsErrorDetail items, one for each job that couldn't be
+        -- cancelled. Each item includes the job ID along with a code and message that describe why the
+        -- job wasn't cancelled.
+        errors: {CancelJobsErrorDetail}
     end
 
     enum CRAllocationStrategy
@@ -3662,7 +3700,7 @@ local record M
         eksAttempts: {EksAttemptDetail}
         -- An object with properties that are specific to Amazon ECS-based jobs.
         ecsProperties: EcsPropertiesDetail
-        -- Indicates whether the job is canceled.
+        -- Indicates whether the job is cancelled.
         isCancelled: boolean
         -- Indicates whether the job is terminated.
         isTerminated: boolean
@@ -4296,6 +4334,10 @@ local record M
         nodeProperties: NodePropertiesSummary
         -- The Amazon Resource Name (ARN) of the job definition.
         jobDefinition: string
+        -- Indicates whether a cancellation request has been accepted for the job. This field is only present when the value is true.
+        isCancelled: boolean
+        -- Indicates whether a termination request has been accepted for the job. This field is only present when the value is true.
+        isTerminated: boolean
     end
 
     record ListJobsOutput
@@ -4562,6 +4604,8 @@ local record M
         startedAt: number
         -- The Unix timestamp (in milliseconds) for when the service job stopped running.
         stoppedAt: number
+        -- Indicates whether a termination request has been accepted for the service job. This field is only present when the value is true.
+        isTerminated: boolean
     end
 
     record ListServiceJobsOutput
@@ -5000,24 +5044,93 @@ local record M
     record TerminateJobInput
         -- The Batch job ID of the job to terminate.
         jobId: string
-        -- A message to attach to the job that explains the reason for canceling it. This message is
+        -- A message to attach to the job that explains the reason for terminating it. This message is
         -- returned by future DescribeJobs operations on the job. It is also
         -- recorded in the Batch activity logs.
-        -- This parameter has as limit of 1024 characters.
+        -- This parameter has a limit of 1024 characters.
         reason: string
     end
 
     record TerminateJobOutput
     end
 
+    -- Specifies the jobs to terminate and the reason for the termination.
+    record TerminateJobsInput
+        -- An array of up to 50 Batch job IDs of the jobs to terminate.
+        jobs: {string}
+        -- A message to attach to the job that explains the reason for terminating it. This message is
+        -- returned by future DescribeJobs operations on the job. It is also
+        -- recorded in the Batch activity logs.
+        -- This parameter has a limit of 1024 characters.
+        reason: string
+    end
+
+    -- An object that contains the details of a job that couldn't be terminated by a
+    -- TerminateJobs operation.
+    record TerminateJobsErrorDetail
+        -- The Batch job ID of the job that couldn't be terminated.
+        job: string
+        -- An error code that identifies the reason the job couldn't be terminated. Valid values are:
+        -- ValidationException – A job identifier in the request is malformed or isn't valid.
+        -- ClientException – The request failed because of a client error.
+        -- ThrottlingException – The request was throttled. Retry the request.
+        -- ServerException – An internal error occurred. Retry the request.
+        -- AccessDenied – The caller isn't authorized to perform the action on the specified job.
+        code: string
+        -- A message that describes the reason the job couldn't be terminated.
+        message: string
+    end
+
+    -- The result of a TerminateJobs request, including the jobs whose termination
+    -- request was accepted and the errors for jobs that couldn't be terminated.
+    record TerminateJobsOutput
+        -- A list of the job IDs whose termination request was accepted.
+        successful: {string}
+        -- A list of TerminateJobsErrorDetail items, one for each job that couldn't be
+        -- terminated. Each item includes the job ID along with a code and message that describe why the
+        -- job wasn't terminated.
+        errors: {TerminateJobsErrorDetail}
+    end
+
     record TerminateServiceJobInput
         -- The service job ID of the service job to terminate.
         jobId: string
-        -- A message to attach to the service job that explains the reason for canceling it. This message is returned by DescribeServiceJob operations on the service job.
+        -- A message to attach to the service job that explains the reason for terminating it. This message is returned by DescribeServiceJob operations on the service job.
         reason: string
     end
 
     record TerminateServiceJobOutput
+    end
+
+    -- Specifies the service jobs to terminate and the reason for the termination.
+    record TerminateServiceJobsInput
+        -- An array of up to 50 service job IDs of the service jobs to terminate.
+        jobs: {string}
+        -- A message to attach to the service job that explains the reason for terminating it. This message is returned by DescribeServiceJob operations on the service job.
+        reason: string
+    end
+
+    -- An object that contains the details of a service job that couldn't be terminated by a TerminateServiceJobs operation.
+    record TerminateServiceJobsErrorDetail
+        -- The service job ID of the service job that couldn't be terminated.
+        job: string
+        -- An error code that identifies the reason the service job couldn't be terminated. Valid values are:
+        -- ValidationException – A service job identifier in the request is malformed or isn't valid.
+        -- ClientException – The request failed because of a client error.
+        -- ThrottlingException – The request was throttled. Retry the request.
+        -- ServerException – An internal error occurred. Retry the request.
+        -- AccessDenied – The caller isn't authorized to perform the action on the specified service job.
+        code: string
+        -- A message that describes the reason the service job couldn't be terminated.
+        message: string
+    end
+
+    -- The result of a TerminateServiceJobs request, including the service jobs whose termination request was accepted and the errors for service jobs that couldn't be terminated.
+    record TerminateServiceJobsOutput
+        -- A list of the service job IDs whose termination request was accepted.
+        successful: {string}
+        -- A list of TerminateServiceJobsErrorDetail items, one for each service job that couldn't be terminated. Each item includes the service job ID along with a code and message that describe why the service job wasn't terminated.
+        errors: {TerminateServiceJobsErrorDetail}
     end
 
     -- Contains the parameters for UntagResource.

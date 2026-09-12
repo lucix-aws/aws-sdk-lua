@@ -19,6 +19,7 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     cancelJob: function(Client, types.CancelJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    cancelJobs: function(Client, types.CancelJobsInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobsOutput>
     createComputeEnvironment: function(Client, types.CreateComputeEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateComputeEnvironmentOutput>
     createConsumableResource: function(Client, types.CreateConsumableResourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateConsumableResourceOutput>
     createJobQueue: function(Client, types.CreateJobQueueInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobQueueOutput>
@@ -54,7 +55,9 @@ local record Client
     submitServiceJob: function(Client, types.SubmitServiceJobInput, ? base_client.InvokeOptions): async.Operation<types.SubmitServiceJobOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     terminateJob: function(Client, types.TerminateJobInput, ? base_client.InvokeOptions): async.Operation<types.TerminateJobOutput>
+    terminateJobs: function(Client, types.TerminateJobsInput, ? base_client.InvokeOptions): async.Operation<types.TerminateJobsOutput>
     terminateServiceJob: function(Client, types.TerminateServiceJobInput, ? base_client.InvokeOptions): async.Operation<types.TerminateServiceJobOutput>
+    terminateServiceJobs: function(Client, types.TerminateServiceJobsInput, ? base_client.InvokeOptions): async.Operation<types.TerminateServiceJobsOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateComputeEnvironment: function(Client, types.UpdateComputeEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateComputeEnvironmentOutput>
     updateConsumableResource: function(Client, types.UpdateConsumableResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConsumableResourceOutput>
@@ -109,6 +112,10 @@ end
 
 function C:cancelJob(input: types.CancelJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJob as schema.OperationSchema, input, options) as async.Operation<types.CancelJobOutput>
+end
+
+function C:cancelJobs(input: types.CancelJobsInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJobs as schema.OperationSchema, input, options) as async.Operation<types.CancelJobsOutput>
 end
 
 function C:createComputeEnvironment(input: types.CreateComputeEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComputeEnvironmentOutput>
@@ -251,8 +258,16 @@ function C:terminateJob(input: types.TerminateJobInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateJob as schema.OperationSchema, input, options) as async.Operation<types.TerminateJobOutput>
 end
 
+function C:terminateJobs(input: types.TerminateJobsInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateJobs as schema.OperationSchema, input, options) as async.Operation<types.TerminateJobsOutput>
+end
+
 function C:terminateServiceJob(input: types.TerminateServiceJobInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateServiceJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateServiceJob as schema.OperationSchema, input, options) as async.Operation<types.TerminateServiceJobOutput>
+end
+
+function C:terminateServiceJobs(input: types.TerminateServiceJobsInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateServiceJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateServiceJobs as schema.OperationSchema, input, options) as async.Operation<types.TerminateServiceJobsOutput>
 end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>

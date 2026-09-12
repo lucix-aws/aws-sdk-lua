@@ -8378,6 +8378,12 @@ M.CreateExpressGatewayServiceInput = schema.new({
             name = "memory",
             target_id = prelude.String.id,
         }),
+        cpuArchitecture = schema.new({
+            id = id.from(_N, "CreateExpressGatewayServiceInput", "cpuArchitecture"),
+            type = "string",
+            name = "cpuArchitecture",
+            target_id = prelude.String.id,
+        }),
         scalingTarget = schema.new({
             id = id.from(_N, "CreateExpressGatewayServiceInput", "scalingTarget"),
             type = "structure",
@@ -8464,6 +8470,12 @@ M.ExpressGatewayServiceConfiguration = schema.new({
             id = id.from(_N, "ExpressGatewayServiceConfiguration", "memory"),
             type = "string",
             name = "memory",
+            target_id = prelude.String.id,
+        }),
+        cpuArchitecture = schema.new({
+            id = id.from(_N, "ExpressGatewayServiceConfiguration", "cpuArchitecture"),
+            type = "string",
+            name = "cpuArchitecture",
             target_id = prelude.String.id,
         }),
         networkConfiguration = schema.new({
@@ -10650,6 +10662,12 @@ M.UpdateExpressGatewayServiceInput = schema.new({
             id = id.from(_N, "UpdateExpressGatewayServiceInput", "memory"),
             type = "string",
             name = "memory",
+            target_id = prelude.String.id,
+        }),
+        cpuArchitecture = schema.new({
+            id = id.from(_N, "UpdateExpressGatewayServiceInput", "cpuArchitecture"),
+            type = "string",
+            name = "cpuArchitecture",
             target_id = prelude.String.id,
         }),
         scalingTarget = schema.new({

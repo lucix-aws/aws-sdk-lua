@@ -29,6 +29,8 @@ local record Client
     listInvoiceSummaries: function(Client, types.ListInvoiceSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListInvoiceSummariesOutput>
     listInvoiceUnits: function(Client, types.ListInvoiceUnitsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvoiceUnitsOutput>
     listProcurementPortalPreferences: function(Client, types.ListProcurementPortalPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.ListProcurementPortalPreferencesOutput>
+    listProcurementPortals: function(Client, types.ListProcurementPortalsInput, ? base_client.InvokeOptions): async.Operation<types.ListProcurementPortalsOutput>
+    listProcurementPortalSuppliers: function(Client, types.ListProcurementPortalSuppliersInput, ? base_client.InvokeOptions): async.Operation<types.ListProcurementPortalSuppliersOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putProcurementPortalPreference: function(Client, types.PutProcurementPortalPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.PutProcurementPortalPreferenceOutput>
     sendProcurementPortalValidation: function(Client, types.SendProcurementPortalValidationInput, ? base_client.InvokeOptions): async.Operation<types.SendProcurementPortalValidationOutput>
@@ -123,6 +125,14 @@ end
 
 function C:listProcurementPortalPreferences(input: types.ListProcurementPortalPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProcurementPortalPreferencesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProcurementPortalPreferences as schema.OperationSchema, input, options) as async.Operation<types.ListProcurementPortalPreferencesOutput>
+end
+
+function C:listProcurementPortals(input: types.ListProcurementPortalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProcurementPortalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProcurementPortals as schema.OperationSchema, input, options) as async.Operation<types.ListProcurementPortalsOutput>
+end
+
+function C:listProcurementPortalSuppliers(input: types.ListProcurementPortalSuppliersInput, options?: base_client.InvokeOptions): async.Operation<types.ListProcurementPortalSuppliersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProcurementPortalSuppliers as schema.OperationSchema, input, options) as async.Operation<types.ListProcurementPortalSuppliersOutput>
 end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>

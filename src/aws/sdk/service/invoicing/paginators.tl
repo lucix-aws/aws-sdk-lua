@@ -58,4 +58,40 @@ function M.items_list_procurement_portal_preferences(client, input)
     })
 end
 
+--- Returns a page iterator for listProcurementPortalSuppliers.
+function M.pages_list_procurement_portal_suppliers(client, input)
+    return paginator.pages(client, "listProcurementPortalSuppliers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProcurementPortalSuppliers",
+    })
+end
+
+--- Returns an item iterator for listProcurementPortalSuppliers.
+function M.items_list_procurement_portal_suppliers(client, input)
+    return paginator.items(client, "listProcurementPortalSuppliers", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProcurementPortalSuppliers",
+    })
+end
+
+--- Returns a page iterator for listProcurementPortals.
+function M.pages_list_procurement_portals(client, input)
+    return paginator.pages(client, "listProcurementPortals", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProcurementPortals",
+    })
+end
+
+--- Returns an item iterator for listProcurementPortals.
+function M.items_list_procurement_portals(client, input)
+    return paginator.items(client, "listProcurementPortals", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProcurementPortals",
+    })
+end
+
 return M

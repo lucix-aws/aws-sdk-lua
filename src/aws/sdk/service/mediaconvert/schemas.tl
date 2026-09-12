@@ -14083,6 +14083,83 @@ M.ContentLightLevel = schema.new({
     },
 })
 
+M.AspectRatio = schema.new({
+    id = id.from(_N, "AspectRatio"),
+    type = "structure",
+    members = {
+        Denominator = schema.new({
+            id = id.from(_N, "AspectRatio", "Denominator"),
+            type = "integer",
+            name = "Denominator",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "denominator" },
+            },
+        }),
+        Numerator = schema.new({
+            id = id.from(_N, "AspectRatio", "Numerator"),
+            type = "integer",
+            name = "Numerator",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "numerator" },
+            },
+        }),
+    },
+})
+
+M.DolbyVisionMetadata = schema.new({
+    id = id.from(_N, "DolbyVisionMetadata"),
+    type = "structure",
+    members = {
+        BaseLayer = schema.new({
+            id = id.from(_N, "DolbyVisionMetadata", "BaseLayer"),
+            type = "string",
+            name = "BaseLayer",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "baseLayer" },
+            },
+        }),
+        EnhancementLayer = schema.new({
+            id = id.from(_N, "DolbyVisionMetadata", "EnhancementLayer"),
+            type = "string",
+            name = "EnhancementLayer",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "enhancementLayer" },
+            },
+        }),
+        Level = schema.new({
+            id = id.from(_N, "DolbyVisionMetadata", "Level"),
+            type = "integer",
+            name = "Level",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "level" },
+            },
+        }),
+        Profile = schema.new({
+            id = id.from(_N, "DolbyVisionMetadata", "Profile"),
+            type = "integer",
+            name = "Profile",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "profile" },
+            },
+        }),
+        Rpu = schema.new({
+            id = id.from(_N, "DolbyVisionMetadata", "Rpu"),
+            type = "string",
+            name = "Rpu",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "rpu" },
+            },
+        }),
+    },
+})
+
 M.CodecMetadata = schema.new({
     id = id.from(_N, "CodecMetadata"),
     type = "structure",
@@ -14132,6 +14209,26 @@ M.CodecMetadata = schema.new({
             target = M.ContentLightLevel,
             traits = {
                 [traits.JSON_NAME] = { name = "contentLightLevel" },
+            },
+        }),
+        DisplayAspectRatio = schema.new({
+            id = id.from(_N, "CodecMetadata", "DisplayAspectRatio"),
+            type = "structure",
+            name = "DisplayAspectRatio",
+            target_id = id.from(_N, "AspectRatio"),
+            target = M.AspectRatio,
+            traits = {
+                [traits.JSON_NAME] = { name = "displayAspectRatio" },
+            },
+        }),
+        DolbyVision = schema.new({
+            id = id.from(_N, "CodecMetadata", "DolbyVision"),
+            type = "structure",
+            name = "DolbyVision",
+            target_id = id.from(_N, "DolbyVisionMetadata"),
+            target = M.DolbyVisionMetadata,
+            traits = {
+                [traits.JSON_NAME] = { name = "dolbyVision" },
             },
         }),
         FieldOrder = schema.new({
@@ -14197,6 +14294,16 @@ M.CodecMetadata = schema.new({
                 [traits.JSON_NAME] = { name = "rotation" },
             },
         }),
+        SampleAspectRatio = schema.new({
+            id = id.from(_N, "CodecMetadata", "SampleAspectRatio"),
+            type = "structure",
+            name = "SampleAspectRatio",
+            target_id = id.from(_N, "AspectRatio"),
+            target = M.AspectRatio,
+            traits = {
+                [traits.JSON_NAME] = { name = "sampleAspectRatio" },
+            },
+        }),
         ScanType = schema.new({
             id = id.from(_N, "CodecMetadata", "ScanType"),
             type = "string",
@@ -14222,31 +14329,6 @@ M.CodecMetadata = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "width" },
-            },
-        }),
-    },
-})
-
-M.AspectRatio = schema.new({
-    id = id.from(_N, "AspectRatio"),
-    type = "structure",
-    members = {
-        Denominator = schema.new({
-            id = id.from(_N, "AspectRatio", "Denominator"),
-            type = "integer",
-            name = "Denominator",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.JSON_NAME] = { name = "denominator" },
-            },
-        }),
-        Numerator = schema.new({
-            id = id.from(_N, "AspectRatio", "Numerator"),
-            type = "integer",
-            name = "Numerator",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.JSON_NAME] = { name = "numerator" },
             },
         }),
     },
@@ -16573,6 +16655,25 @@ M.ProbeOutput = schema.new({
             list_member = M.ProbeResult,
             traits = {
                 [traits.JSON_NAME] = { name = "probeResults" },
+            },
+        }),
+    },
+})
+
+M.UnprocessableEntityException = schema.new({
+    id = id.from(_N, "UnprocessableEntityException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "UnprocessableEntityException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
             },
         }),
     },

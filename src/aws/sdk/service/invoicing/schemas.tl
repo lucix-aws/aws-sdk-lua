@@ -26,6 +26,10 @@ M.InvoiceUnits = schema.new({ type = "list", list_member = M.InvoiceUnit })
 
 M.ProcurementPortalPreferenceSummaries = schema.new({ type = "list", list_member = M.ProcurementPortalPreferenceSummary })
 
+M.ProcurementPortals = schema.new({ type = "list", list_member = M.ProcurementPortal })
+
+M.ProcurementPortalSuppliers = schema.new({ type = "list", list_member = M.ProcurementPortalSupplier })
+
 M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RuleAccountIdList = schema.new({ type = "list", list_member = prelude.String })
@@ -1174,6 +1178,41 @@ M.Entity = schema.new({
     },
 })
 
+M.InvoiceConfiguration = schema.new({
+    id = id.from(_N, "InvoiceConfiguration"),
+    type = "structure",
+    members = {
+        DocumentTypes = schema.new({
+            id = id.from(_N, "InvoiceConfiguration", "DocumentTypes"),
+            type = "list",
+            name = "DocumentTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AttachmentTypes = schema.new({
+            id = id.from(_N, "InvoiceConfiguration", "AttachmentTypes"),
+            type = "list",
+            name = "AttachmentTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.FeatureConfigurations = schema.new({
+    id = id.from(_N, "FeatureConfigurations"),
+    type = "structure",
+    members = {
+        InvoiceConfiguration = schema.new({
+            id = id.from(_N, "FeatureConfigurations", "InvoiceConfiguration"),
+            type = "structure",
+            name = "InvoiceConfiguration",
+            target_id = id.from(_N, "InvoiceConfiguration"),
+            target = M.InvoiceConfiguration,
+        }),
+    },
+})
+
 M.Filters = schema.new({
     id = id.from(_N, "Filters"),
     type = "structure",
@@ -2241,6 +2280,177 @@ M.ListProcurementPortalPreferencesOutput = schema.new({
     },
 })
 
+M.ListProcurementPortalsInput = schema.new({
+    id = id.from(_N, "ListProcurementPortalsRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListProcurementPortalsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListProcurementPortalsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+            },
+        }),
+    },
+})
+
+M.ProcurementPortal = schema.new({
+    id = id.from(_N, "ProcurementPortal"),
+    type = "structure",
+    members = {
+        PortalIdentifier = schema.new({
+            id = id.from(_N, "ProcurementPortal", "PortalIdentifier"),
+            type = "string",
+            name = "PortalIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PortalName = schema.new({
+            id = id.from(_N, "ProcurementPortal", "PortalName"),
+            type = "string",
+            name = "PortalName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PortalDisplayName = schema.new({
+            id = id.from(_N, "ProcurementPortal", "PortalDisplayName"),
+            type = "string",
+            name = "PortalDisplayName",
+            target_id = prelude.String.id,
+        }),
+        DefaultFeatureConfigurations = schema.new({
+            id = id.from(_N, "ProcurementPortal", "DefaultFeatureConfigurations"),
+            type = "structure",
+            name = "DefaultFeatureConfigurations",
+            target_id = id.from(_N, "FeatureConfigurations"),
+            target = M.FeatureConfigurations,
+        }),
+    },
+})
+
+M.ListProcurementPortalsOutput = schema.new({
+    id = id.from(_N, "ListProcurementPortalsResponse"),
+    type = "structure",
+    members = {
+        ProcurementPortals = schema.new({
+            id = id.from(_N, "ListProcurementPortalsOutput", "ProcurementPortals"),
+            type = "list",
+            name = "ProcurementPortals",
+            target_id = prelude.Document.id,
+            list_member = M.ProcurementPortal,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListProcurementPortalsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListProcurementPortalSuppliersInput = schema.new({
+    id = id.from(_N, "ListProcurementPortalSuppliersRequest"),
+    type = "structure",
+    members = {
+        PortalIdentifier = schema.new({
+            id = id.from(_N, "ListProcurementPortalSuppliersInput", "PortalIdentifier"),
+            type = "string",
+            name = "PortalIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListProcurementPortalSuppliersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListProcurementPortalSuppliersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+            },
+        }),
+    },
+})
+
+M.ProcurementPortalSupplier = schema.new({
+    id = id.from(_N, "ProcurementPortalSupplier"),
+    type = "structure",
+    members = {
+        SupplierIdentifier = schema.new({
+            id = id.from(_N, "ProcurementPortalSupplier", "SupplierIdentifier"),
+            type = "string",
+            name = "SupplierIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SellerOfRecord = schema.new({
+            id = id.from(_N, "ProcurementPortalSupplier", "SellerOfRecord"),
+            type = "string",
+            name = "SellerOfRecord",
+            target_id = prelude.String.id,
+        }),
+        CountryCode = schema.new({
+            id = id.from(_N, "ProcurementPortalSupplier", "CountryCode"),
+            type = "string",
+            name = "CountryCode",
+            target_id = prelude.String.id,
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "ProcurementPortalSupplier", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListProcurementPortalSuppliersOutput = schema.new({
+    id = id.from(_N, "ListProcurementPortalSuppliersResponse"),
+    type = "structure",
+    members = {
+        ProcurementPortalSuppliers = schema.new({
+            id = id.from(_N, "ListProcurementPortalSuppliersOutput", "ProcurementPortalSuppliers"),
+            type = "list",
+            name = "ProcurementPortalSuppliers",
+            target_id = prelude.Document.id,
+            list_member = M.ProcurementPortalSupplier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListProcurementPortalSuppliersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -2790,6 +3000,28 @@ M.ListProcurementPortalPreferences = schema.operation({
     id = id.from("com.amazonaws.invoicing", "ListProcurementPortalPreferences"),
     input = M.ListProcurementPortalPreferencesInput,
     output = M.ListProcurementPortalPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProcurementPortals = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "ListProcurementPortals"),
+    input = M.ListProcurementPortalsInput,
+    output = M.ListProcurementPortalsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListProcurementPortalSuppliers = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "ListProcurementPortalSuppliers"),
+    input = M.ListProcurementPortalSuppliersInput,
+    output = M.ListProcurementPortalSuppliersOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

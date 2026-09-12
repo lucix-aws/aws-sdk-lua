@@ -28,6 +28,8 @@ M.AddOnRequestList = schema.new({ type = "list", list_member = M.AddOnRequest })
 
 M.CacheBehaviorList = schema.new({ type = "list", list_member = M.CacheBehaviorPerPath })
 
+M.DistributionCustomErrorResponseList = schema.new({ type = "list", list_member = M.DistributionCustomErrorResponse })
+
 M.Sessions = schema.new({ type = "list", list_member = M.Session })
 
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
@@ -3757,6 +3759,37 @@ M.CreateDiskSnapshotOutput = schema.new({
     },
 })
 
+M.DistributionCustomErrorResponse = schema.new({
+    id = id.from(_N, "DistributionCustomErrorResponse"),
+    type = "structure",
+    members = {
+        errorCode = schema.new({
+            id = id.from(_N, "DistributionCustomErrorResponse", "errorCode"),
+            type = "integer",
+            name = "errorCode",
+            target_id = prelude.Integer.id,
+        }),
+        responseCode = schema.new({
+            id = id.from(_N, "DistributionCustomErrorResponse", "responseCode"),
+            type = "string",
+            name = "responseCode",
+            target_id = prelude.String.id,
+        }),
+        responsePagePath = schema.new({
+            id = id.from(_N, "DistributionCustomErrorResponse", "responsePagePath"),
+            type = "string",
+            name = "responsePagePath",
+            target_id = prelude.String.id,
+        }),
+        errorCachingMinTTL = schema.new({
+            id = id.from(_N, "DistributionCustomErrorResponse", "errorCachingMinTTL"),
+            type = "long",
+            name = "errorCachingMinTTL",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
 M.InputOrigin = schema.new({
     id = id.from(_N, "InputOrigin"),
     type = "structure",
@@ -3875,6 +3908,25 @@ M.CreateDistributionInput = schema.new({
             name = "viewerMinimumTlsProtocolVersion",
             target_id = prelude.String.id,
         }),
+        enablePrivateOriginAccess = schema.new({
+            id = id.from(_N, "CreateDistributionInput", "enablePrivateOriginAccess"),
+            type = "boolean",
+            name = "enablePrivateOriginAccess",
+            target_id = prelude.Boolean.id,
+        }),
+        defaultRootObject = schema.new({
+            id = id.from(_N, "CreateDistributionInput", "defaultRootObject"),
+            type = "string",
+            name = "defaultRootObject",
+            target_id = prelude.String.id,
+        }),
+        customErrorResponses = schema.new({
+            id = id.from(_N, "CreateDistributionInput", "customErrorResponses"),
+            type = "list",
+            name = "customErrorResponses",
+            target_id = prelude.Document.id,
+            list_member = M.DistributionCustomErrorResponse,
+        }),
     },
 })
 
@@ -3917,6 +3969,12 @@ M.Origin = schema.new({
             type = "string",
             name = "ipAddressType",
             target_id = prelude.String.id,
+        }),
+        isPrivateOriginAccessEnabled = schema.new({
+            id = id.from(_N, "Origin", "isPrivateOriginAccessEnabled"),
+            type = "boolean",
+            name = "isPrivateOriginAccessEnabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -4057,6 +4115,19 @@ M.LightsailDistribution = schema.new({
             type = "string",
             name = "viewerMinimumTlsProtocolVersion",
             target_id = prelude.String.id,
+        }),
+        defaultRootObject = schema.new({
+            id = id.from(_N, "LightsailDistribution", "defaultRootObject"),
+            type = "string",
+            name = "defaultRootObject",
+            target_id = prelude.String.id,
+        }),
+        customErrorResponses = schema.new({
+            id = id.from(_N, "LightsailDistribution", "customErrorResponses"),
+            type = "list",
+            name = "customErrorResponses",
+            target_id = prelude.Document.id,
+            list_member = M.DistributionCustomErrorResponse,
         }),
     },
 })
@@ -12547,6 +12618,25 @@ M.UpdateDistributionInput = schema.new({
             type = "boolean",
             name = "useDefaultCertificate",
             target_id = prelude.Boolean.id,
+        }),
+        enablePrivateOriginAccess = schema.new({
+            id = id.from(_N, "UpdateDistributionInput", "enablePrivateOriginAccess"),
+            type = "boolean",
+            name = "enablePrivateOriginAccess",
+            target_id = prelude.Boolean.id,
+        }),
+        defaultRootObject = schema.new({
+            id = id.from(_N, "UpdateDistributionInput", "defaultRootObject"),
+            type = "string",
+            name = "defaultRootObject",
+            target_id = prelude.String.id,
+        }),
+        customErrorResponses = schema.new({
+            id = id.from(_N, "UpdateDistributionInput", "customErrorResponses"),
+            type = "list",
+            name = "customErrorResponses",
+            target_id = prelude.Document.id,
+            list_member = M.DistributionCustomErrorResponse,
         }),
     },
 })

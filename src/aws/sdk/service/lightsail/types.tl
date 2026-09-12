@@ -2582,6 +2582,26 @@ local record M
         operations: {Operation}
     end
 
+    -- Describes a custom error response for a Lightsail distribution. A custom error response
+    -- specifies the page that the distribution returns to the viewer. It also specifies the HTTP
+    -- status code that the distribution sends when the origin responds with a given HTTP error code.
+    record DistributionCustomErrorResponse
+        -- The HTTP error code from the origin that triggers the custom error response (for example,
+        -- 403 or 404).
+        errorCode: number
+        -- The HTTP status code that the distribution returns to the viewer for the custom error
+        -- response.
+        responseCode: string
+        -- The path to the custom error page that the distribution returns to the viewer (for
+        -- example, /404.html). The path must begin with a forward slash (/)
+        -- and reference an object that is available from the origin.
+        responsePagePath: string
+        -- The minimum time, in seconds, that the distribution caches the custom error response
+        -- before requesting the object again from the origin. If you don't specify a value, the default
+        -- is 10 seconds.
+        errorCachingMinTTL: number
+    end
+
     enum IpAddressType
         "dualstack"
         "ipv4"
@@ -2662,6 +2682,23 @@ local record M
         certificateName: string
         -- The minimum TLS protocol version for the SSL/TLS certificate.
         viewerMinimumTlsProtocolVersion: string
+        -- Specifies whether to enable private origin access for the distribution. With private
+        -- origin access, the distribution can serve objects that aren't publicly accessible from a
+        -- Lightsail bucket.
+        -- Lightsail grants the distribution permission to read the bucket's objects. Enabling
+        -- private origin access doesn't change the bucket's access settings, and you can still
+        -- retrieve publicly accessible objects directly from the bucket's endpoint.
+        -- You can enable private origin access only when the distribution's origin is a
+        -- Lightsail bucket. If the origin is another resource type, the request fails.
+        enablePrivateOriginAccess: boolean
+        -- The object (for example, index.html) that the distribution returns when a
+        -- viewer requests the root URL of the distribution (/) instead of a specific
+        -- object. The object that you specify must be available from the origin.
+        defaultRootObject: string
+        -- An array of objects that describe the custom error responses for the distribution. With a
+        -- custom error response, you can specify the page to return when the origin responds with a
+        -- given HTTP error code. You can also specify the HTTP status code to send to the viewer.
+        customErrorResponses: {DistributionCustomErrorResponse}
     end
 
     -- Describes the origin resource of an Amazon Lightsail content delivery network (CDN)
@@ -2687,6 +2724,13 @@ local record M
         -- The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only,
         -- and dualstack for IPv4 and IPv6.
         ipAddressType: string
+        -- Specifies whether private origin access is enabled for the distribution's origin. With
+        -- private origin access, the distribution can serve objects that aren't publicly accessible
+        -- from a Lightsail bucket.
+        -- This applies when you set the bucket's getObject access rule to
+        -- private. It also applies when you set getObject to public
+        -- but set individual objects to private.
+        isPrivateOriginAccessEnabled: boolean
     end
 
     -- Describes an Amazon Lightsail content delivery network (CDN) distribution.
@@ -2748,6 +2792,13 @@ local record M
         -- The minimum TLS protocol version that the distribution can use to communicate with
         -- viewers.
         viewerMinimumTlsProtocolVersion: string
+        -- The object (for example, index.html) that the distribution returns when a
+        -- viewer requests the root URL of the distribution (/) instead of a specific
+        -- object.
+        defaultRootObject: string
+        -- An array of objects that describe the custom error responses configured for the
+        -- distribution.
+        customErrorResponses: {DistributionCustomErrorResponse}
     end
 
     record CreateDistributionOutput
@@ -7576,6 +7627,25 @@ local record M
         -- Set this value to false to attach a new certificate to the
         -- distribution.
         useDefaultCertificate: boolean
+        -- Specifies whether to enable private origin access for the distribution. With private
+        -- origin access, the distribution can serve objects that aren't publicly accessible from a
+        -- Lightsail bucket.
+        -- Lightsail grants the distribution permission to read the bucket's objects. Enabling
+        -- private origin access doesn't change the bucket's access settings, and you can still
+        -- retrieve publicly accessible objects directly from the bucket's endpoint.
+        -- When you include this parameter, you must also include the origin parameter
+        -- with the resource name, even if the origin is not changing.
+        -- You can enable private origin access only when the distribution's origin is a
+        -- Lightsail bucket. If the origin is another resource type, the request fails.
+        enablePrivateOriginAccess: boolean
+        -- The object (for example, index.html) that the distribution returns when a
+        -- viewer requests the root URL of the distribution (/) instead of a specific
+        -- object. The object that you specify must be available from the origin.
+        defaultRootObject: string
+        -- An array of objects that describe the custom error responses for the distribution. With a
+        -- custom error response, you can specify the page to return when the origin responds with a
+        -- given HTTP error code. You can also specify the HTTP status code to send to the viewer.
+        customErrorResponses: {DistributionCustomErrorResponse}
     end
 
     record UpdateDistributionOutput

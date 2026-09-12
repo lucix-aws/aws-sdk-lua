@@ -10,6 +10,10 @@ local _N = "com.amazonaws.batch"
 
 local M: {string:any} = {}
 
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CancelJobsErrorDetailList = schema.new({ type = "list", list_member = M.CancelJobsErrorDetail })
+
 M.TagrisTagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ComputeEnvironmentOrders = schema.new({ type = "list", list_member = M.ComputeEnvironmentOrder })
@@ -21,8 +25,6 @@ M.JobStateTimeLimitActions = schema.new({ type = "list", list_member = M.JobStat
 M.QuotaShareCapacityLimits = schema.new({ type = "list", list_member = M.QuotaShareCapacityLimit })
 
 M.CapacityLimits = schema.new({ type = "list", list_member = M.CapacityLimit })
-
-M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ComputeEnvironmentDetailList = schema.new({ type = "list", list_member = M.ComputeEnvironmentDetail })
 
@@ -63,6 +65,10 @@ M.ParametersMap = schema.new({ type = "map", map_key = prelude.String, map_value
 M.PlatformCapabilityList = schema.new({ type = "list", list_member = prelude.String })
 
 M.JobDependencyList = schema.new({ type = "list", list_member = M.JobDependency })
+
+M.TerminateJobsErrorDetailList = schema.new({ type = "list", list_member = M.TerminateJobsErrorDetail })
+
+M.TerminateServiceJobsErrorDetailList = schema.new({ type = "list", list_member = M.TerminateServiceJobsErrorDetail })
 
 M.TagKeysList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -487,6 +493,93 @@ M.ServerException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CancelJobsInput = schema.new({
+    id = id.from(_N, "CancelJobsRequest"),
+    type = "structure",
+    members = {
+        jobs = schema.new({
+            id = id.from(_N, "CancelJobsInput", "jobs"),
+            type = "list",
+            name = "jobs",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "CancelJobsInput", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CancelJobsErrorDetail = schema.new({
+    id = id.from(_N, "CancelJobsErrorDetail"),
+    type = "structure",
+    members = {
+        job = schema.new({
+            id = id.from(_N, "CancelJobsErrorDetail", "job"),
+            type = "string",
+            name = "job",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "CancelJobsErrorDetail", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "CancelJobsErrorDetail", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CancelJobsOutput = schema.new({
+    id = id.from(_N, "CancelJobsResponse"),
+    type = "structure",
+    members = {
+        successful = schema.new({
+            id = id.from(_N, "CancelJobsOutput", "successful"),
+            type = "list",
+            name = "successful",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errors = schema.new({
+            id = id.from(_N, "CancelJobsOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.CancelJobsErrorDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -6351,6 +6444,18 @@ M.JobSummary = schema.new({
             name = "jobDefinition",
             target_id = prelude.String.id,
         }),
+        isCancelled = schema.new({
+            id = id.from(_N, "JobSummary", "isCancelled"),
+            type = "boolean",
+            name = "isCancelled",
+            target_id = prelude.Boolean.id,
+        }),
+        isTerminated = schema.new({
+            id = id.from(_N, "JobSummary", "isTerminated"),
+            type = "boolean",
+            name = "isTerminated",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -6846,6 +6951,12 @@ M.ServiceJobSummary = schema.new({
             type = "long",
             name = "stoppedAt",
             target_id = prelude.Long.id,
+        }),
+        isTerminated = schema.new({
+            id = id.from(_N, "ServiceJobSummary", "isTerminated"),
+            type = "boolean",
+            name = "isTerminated",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -7671,6 +7782,93 @@ M.TerminateJobOutput = schema.new({
     type = "structure",
 })
 
+M.TerminateJobsInput = schema.new({
+    id = id.from(_N, "TerminateJobsRequest"),
+    type = "structure",
+    members = {
+        jobs = schema.new({
+            id = id.from(_N, "TerminateJobsInput", "jobs"),
+            type = "list",
+            name = "jobs",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "TerminateJobsInput", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TerminateJobsErrorDetail = schema.new({
+    id = id.from(_N, "TerminateJobsErrorDetail"),
+    type = "structure",
+    members = {
+        job = schema.new({
+            id = id.from(_N, "TerminateJobsErrorDetail", "job"),
+            type = "string",
+            name = "job",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "TerminateJobsErrorDetail", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "TerminateJobsErrorDetail", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TerminateJobsOutput = schema.new({
+    id = id.from(_N, "TerminateJobsResponse"),
+    type = "structure",
+    members = {
+        successful = schema.new({
+            id = id.from(_N, "TerminateJobsOutput", "successful"),
+            type = "list",
+            name = "successful",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errors = schema.new({
+            id = id.from(_N, "TerminateJobsOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.TerminateJobsErrorDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.TerminateServiceJobInput = schema.new({
     id = id.from(_N, "TerminateServiceJobRequest"),
     type = "structure",
@@ -7699,6 +7897,93 @@ M.TerminateServiceJobInput = schema.new({
 M.TerminateServiceJobOutput = schema.new({
     id = id.from(_N, "TerminateServiceJobResponse"),
     type = "structure",
+})
+
+M.TerminateServiceJobsInput = schema.new({
+    id = id.from(_N, "TerminateServiceJobsRequest"),
+    type = "structure",
+    members = {
+        jobs = schema.new({
+            id = id.from(_N, "TerminateServiceJobsInput", "jobs"),
+            type = "list",
+            name = "jobs",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "TerminateServiceJobsInput", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TerminateServiceJobsErrorDetail = schema.new({
+    id = id.from(_N, "TerminateServiceJobsErrorDetail"),
+    type = "structure",
+    members = {
+        job = schema.new({
+            id = id.from(_N, "TerminateServiceJobsErrorDetail", "job"),
+            type = "string",
+            name = "job",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "TerminateServiceJobsErrorDetail", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "TerminateServiceJobsErrorDetail", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TerminateServiceJobsOutput = schema.new({
+    id = id.from(_N, "TerminateServiceJobsResponse"),
+    type = "structure",
+    members = {
+        successful = schema.new({
+            id = id.from(_N, "TerminateServiceJobsOutput", "successful"),
+            type = "list",
+            name = "successful",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errors = schema.new({
+            id = id.from(_N, "TerminateServiceJobsOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.TerminateServiceJobsErrorDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.UntagResourceInput = schema.new({
@@ -8425,6 +8710,18 @@ M.CancelJob = schema.operation({
     },
 })
 
+M.CancelJobs = schema.operation({
+    id = id.from("com.amazonaws.batch", "CancelJobs"),
+    input = M.CancelJobsInput,
+    output = M.CancelJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/canceljobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateComputeEnvironment = schema.operation({
     id = id.from("com.amazonaws.batch", "CreateComputeEnvironment"),
     input = M.CreateComputeEnvironmentInput,
@@ -8845,12 +9142,36 @@ M.TerminateJob = schema.operation({
     },
 })
 
+M.TerminateJobs = schema.operation({
+    id = id.from("com.amazonaws.batch", "TerminateJobs"),
+    input = M.TerminateJobsInput,
+    output = M.TerminateJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/terminatejobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.TerminateServiceJob = schema.operation({
     id = id.from("com.amazonaws.batch", "TerminateServiceJob"),
     input = M.TerminateServiceJobInput,
     output = M.TerminateServiceJobOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/terminateservicejob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateServiceJobs = schema.operation({
+    id = id.from("com.amazonaws.batch", "TerminateServiceJobs"),
+    input = M.TerminateServiceJobsInput,
+    output = M.TerminateServiceJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/terminateservicejobs" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -901,10 +901,12 @@ local record M
         -- OFF to disable.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHold: string
-        -- The event hold duration in days to apply to the object copy.
+        -- The event hold duration in days to apply to the object copy. You cannot specify a duration
+        -- in both days and years.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHoldDurationDays: number
-        -- The event hold duration in years to apply to the object copy.
+        -- The event hold duration in years to apply to the object copy. You cannot specify a
+        -- duration in both days and years.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHoldDurationYears: number
         -- The account ID of the expected destination bucket owner. If the account ID that you provide does not match the actual owner of the destination bucket, the request fails with the HTTP status code 403 Forbidden (access denied).
@@ -1613,10 +1615,12 @@ local record M
         -- or OFF to disable.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHold: string
-        -- Specifies the event hold duration in days to apply to the uploaded object.
+        -- Specifies the event hold duration in days to apply to the uploaded object. You cannot
+        -- specify a duration in both days and years.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHoldDurationDays: number
-        -- Specifies the event hold duration in years to apply to the uploaded object.
+        -- Specifies the event hold duration in years to apply to the uploaded object. You cannot
+        -- specify a duration in both days and years.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHoldDurationYears: number
         -- The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code 403 Forbidden (access denied).
@@ -5224,10 +5228,12 @@ local record M
 
     -- The container element for an Object Lock rule.
     record ObjectLockRule
-        -- The default Object Lock retention mode and period that you want to apply to new objects placed in
-        -- the specified bucket. Bucket settings require both a mode and a period. The period can be either
-        -- Days or Years but you must select one. You cannot specify Days
-        -- and Years at the same time.
+        -- The default Object Lock retention settings for new objects in this bucket. You can
+        -- specify:
+        -- A default retention period, by using Days or Years.
+        -- A default event hold duration, by using DefaultEventHold. This setting also
+        -- uses days or years.
+        -- You can set one or both. You cannot use days and years in the same setting.
         DefaultRetention: DefaultRetention
     end
 
@@ -7639,10 +7645,12 @@ local record M
         -- OFF to disable.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHold: string
-        -- Specifies the event hold duration in days to apply to this object.
+        -- Specifies the event hold duration in days to apply to this object. You cannot specify a
+        -- duration in both days and years.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHoldDurationDays: number
-        -- Specifies the event hold duration in years to apply to this object.
+        -- Specifies the event hold duration in years to apply to this object. You cannot specify a
+        -- duration in both days and years.
         -- This functionality is not supported for directory buckets.
         ObjectLockEventHoldDurationYears: number
         -- The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code 403 Forbidden (access denied).
