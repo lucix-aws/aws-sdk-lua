@@ -188,6 +188,12 @@ M.AssumeRoleInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ProvidedContext,
         }),
+        MinimumSessionTokenSize = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "MinimumSessionTokenSize"),
+            type = "integer",
+            name = "MinimumSessionTokenSize",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -263,6 +269,18 @@ M.AssumeRoleOutput = schema.new({
             type = "string",
             name = "SourceIdentity",
             target_id = prelude.String.id,
+        }),
+        SessionTokenUtilization = schema.new({
+            id = id.from(_N, "AssumeRoleOutput", "SessionTokenUtilization"),
+            type = "integer",
+            name = "SessionTokenUtilization",
+            target_id = prelude.Integer.id,
+        }),
+        SessionTokenSize = schema.new({
+            id = id.from(_N, "AssumeRoleOutput", "SessionTokenSize"),
+            type = "integer",
+            name = "SessionTokenSize",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -385,6 +403,12 @@ M.AssumeRoleWithSAMLInput = schema.new({
             name = "DurationSeconds",
             target_id = prelude.Integer.id,
         }),
+        MinimumSessionTokenSize = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLInput", "MinimumSessionTokenSize"),
+            type = "integer",
+            name = "MinimumSessionTokenSize",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -447,6 +471,18 @@ M.AssumeRoleWithSAMLOutput = schema.new({
             type = "string",
             name = "SourceIdentity",
             target_id = prelude.String.id,
+        }),
+        SessionTokenUtilization = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "SessionTokenUtilization"),
+            type = "integer",
+            name = "SessionTokenUtilization",
+            target_id = prelude.Integer.id,
+        }),
+        SessionTokenSize = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "SessionTokenSize"),
+            type = "integer",
+            name = "SessionTokenSize",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -541,6 +577,12 @@ M.AssumeRoleWithWebIdentityInput = schema.new({
             name = "DurationSeconds",
             target_id = prelude.Integer.id,
         }),
+        MinimumSessionTokenSize = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityInput", "MinimumSessionTokenSize"),
+            type = "integer",
+            name = "MinimumSessionTokenSize",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -592,6 +634,18 @@ M.AssumeRoleWithWebIdentityOutput = schema.new({
             name = "SourceIdentity",
             target_id = prelude.String.id,
         }),
+        SessionTokenUtilization = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "SessionTokenUtilization"),
+            type = "integer",
+            name = "SessionTokenUtilization",
+            target_id = prelude.Integer.id,
+        }),
+        SessionTokenSize = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "SessionTokenSize"),
+            type = "integer",
+            name = "SessionTokenSize",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -641,6 +695,12 @@ M.AssumeRootInput = schema.new({
             name = "DurationSeconds",
             target_id = prelude.Integer.id,
         }),
+        MinimumSessionTokenSize = schema.new({
+            id = id.from(_N, "AssumeRootInput", "MinimumSessionTokenSize"),
+            type = "integer",
+            name = "MinimumSessionTokenSize",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -660,6 +720,18 @@ M.AssumeRootOutput = schema.new({
             type = "string",
             name = "SourceIdentity",
             target_id = prelude.String.id,
+        }),
+        SessionTokenUtilization = schema.new({
+            id = id.from(_N, "AssumeRootOutput", "SessionTokenUtilization"),
+            type = "integer",
+            name = "SessionTokenUtilization",
+            target_id = prelude.Integer.id,
+        }),
+        SessionTokenSize = schema.new({
+            id = id.from(_N, "AssumeRootOutput", "SessionTokenSize"),
+            type = "integer",
+            name = "SessionTokenSize",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -867,6 +939,12 @@ M.GetFederationTokenInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        MinimumSessionTokenSize = schema.new({
+            id = id.from(_N, "GetFederationTokenInput", "MinimumSessionTokenSize"),
+            type = "integer",
+            name = "MinimumSessionTokenSize",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -919,6 +997,18 @@ M.GetFederationTokenOutput = schema.new({
             name = "PackedPolicySize",
             target_id = prelude.Integer.id,
         }),
+        SessionTokenUtilization = schema.new({
+            id = id.from(_N, "GetFederationTokenOutput", "SessionTokenUtilization"),
+            type = "integer",
+            name = "SessionTokenUtilization",
+            target_id = prelude.Integer.id,
+        }),
+        SessionTokenSize = schema.new({
+            id = id.from(_N, "GetFederationTokenOutput", "SessionTokenSize"),
+            type = "integer",
+            name = "SessionTokenSize",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -944,6 +1034,12 @@ M.GetSessionTokenInput = schema.new({
             name = "TokenCode",
             target_id = prelude.String.id,
         }),
+        MinimumSessionTokenSize = schema.new({
+            id = id.from(_N, "GetSessionTokenInput", "MinimumSessionTokenSize"),
+            type = "integer",
+            name = "MinimumSessionTokenSize",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -957,6 +1053,18 @@ M.GetSessionTokenOutput = schema.new({
             name = "Credentials",
             target_id = id.from(_N, "Credentials"),
             target = M.Credentials,
+        }),
+        SessionTokenUtilization = schema.new({
+            id = id.from(_N, "GetSessionTokenOutput", "SessionTokenUtilization"),
+            type = "integer",
+            name = "SessionTokenUtilization",
+            target_id = prelude.Integer.id,
+        }),
+        SessionTokenSize = schema.new({
+            id = id.from(_N, "GetSessionTokenOutput", "SessionTokenSize"),
+            type = "integer",
+            name = "SessionTokenSize",
+            target_id = prelude.Integer.id,
         }),
     },
 })

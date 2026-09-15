@@ -1081,6 +1081,16 @@ local record M
         "SKU"
     end
 
+    -- A custom tier for the pricing rule. Each custom tier applies a rate to the usage that falls within the tier's range.
+    record CustomTier
+        -- The inclusive start of the usage range that this tier applies to.
+        BeginRangeInclusive: number
+        -- The exclusive end of the usage range that this tier applies to. If you don't specify a value, this tier applies to all usage that is greater than or equal to BeginRangeInclusive.
+        EndRangeExclusive: number
+        -- The rate that's applied to the usage that falls within this tier.
+        RateValue: number
+    end
+
     -- The possible Amazon Web Services Free Tier configurations.
     record CreateFreeTierConfig
         -- Activate or deactivate Amazon Web Services Free Tier.
@@ -1091,6 +1101,8 @@ local record M
     record CreateTieringInput
         -- The possible Amazon Web Services Free Tier configurations.
         FreeTier: CreateFreeTierConfig
+        -- The set of custom tiers for the pricing rule.
+        CustomTiers: {CustomTier}
     end
 
     enum PricingRuleType
@@ -1168,6 +1180,8 @@ local record M
     record Tiering
         -- The possible Amazon Web Services Free Tier configurations.
         FreeTier: FreeTierConfig
+        -- The set of custom tiers for the pricing rule.
+        CustomTiers: {CustomTier}
     end
 
     -- A representation of a pricing rule.
@@ -1243,6 +1257,8 @@ local record M
     record UpdateTieringInput
         -- The possible Amazon Web Services Free Tier configurations.
         FreeTier: UpdateFreeTierConfig
+        -- The set of custom tiers for the pricing rule.
+        CustomTiers: {CustomTier}
     end
 
     record UpdatePricingRuleInput

@@ -2021,6 +2021,12 @@ M.DeploymentInfo = schema.new({
             name = "fileExistsBehavior",
             target_id = prelude.String.id,
         }),
+        deploymentMode = schema.new({
+            id = id.from(_N, "DeploymentInfo", "deploymentMode"),
+            type = "string",
+            name = "deploymentMode",
+            target_id = prelude.String.id,
+        }),
         deploymentStatusMessages = schema.new({
             id = id.from(_N, "DeploymentInfo", "deploymentStatusMessages"),
             type = "list",

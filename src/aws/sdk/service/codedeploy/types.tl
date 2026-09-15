@@ -942,6 +942,11 @@ local record M
         "autoscalingTermination"
     end
 
+    enum DeploymentMode
+        "STANDARD"
+        "RESTART"
+    end
+
     -- Information about the deployment status of the instances in the deployment.
     record DeploymentOverview
         -- The number of instances in the deployment in a pending state.
@@ -1174,6 +1179,16 @@ local record M
         -- RETAIN: The version of the file already on the instance is kept
         -- and used as part of the new deployment.
         fileExistsBehavior: string
+        -- The deployment's type. Valid values are:
+        -- STANDARD: The deployment installed the specified revision.
+        -- RESTART: The deployment restarted the application on the target
+        -- instances using the revision from the deployment group's last successful
+        -- deployment, without downloading a new revision.
+        -- This field is absent for deployments created before deploymentMode
+        -- existed, and for STANDARD deployments. An absent value must not be
+        -- interpreted as STANDARD; it simply means no value was recorded either
+        -- way.
+        deploymentMode: string
         -- Messages that contain information about the status of a deployment.
         deploymentStatusMessages: {string}
         -- The destination platform type for the deployment (Lambda,
@@ -1563,11 +1578,6 @@ local record M
         message: string
     end
 
-    enum DeploymentMode
-        "STANDARD"
-        "RESTART"
-    end
-
     -- Represents the input of a CreateDeployment operation.
     record CreateDeploymentInput
         -- The name of an CodeDeploy application associated with the user or Amazon Web Services account.
@@ -1627,7 +1637,23 @@ local record M
         -- RETAIN: The version of the file already on the instance is kept and used as
         -- part of the new deployment.
         fileExistsBehavior: string
-        -- The deployment mode to use for the deployment. When set to STANDARD (the default), the deployment runs the standard set of deployment lifecycle events. When set to RESTART, an EC2/On-premises in-place deployment runs a shortened set of lifecycle events to quickly restart the application on the target instances.
+        -- The type of deployment to create. Valid values are:
+        -- STANDARD: Deploys the specified revision. This is the default
+        -- behavior if deploymentMode is not specified.
+        -- RESTART: Restarts the application on the target instances using
+        -- the revision from the deployment group's last successful deployment, without
+        -- downloading a new revision. RESTART is supported only for
+        -- EC2/On-premises in-place deployments.
+        -- When deploymentMode is RESTART, the following
+        -- apply:
+        -- The call is rejected for Amazon ECS and Lambda
+        -- deployments.
+        -- The revision parameter (including its
+        -- s3Location and gitHubLocation) must not be
+        -- specified, and is rejected if provided. The revision is resolved by the
+        -- service from the deployment group's last successful deployment.
+        -- The updateOutdatedInstancesOnly parameter must not be
+        -- set to true, and is rejected if provided.
         deploymentMode: string
         -- Allows you to specify information about alarms associated with a deployment. The alarm
         -- configuration that you specify here will override the alarm configuration at the

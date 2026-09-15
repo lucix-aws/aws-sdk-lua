@@ -227,6 +227,7 @@ local record Client
     listGlossaries: function(Client, types.ListGlossariesInput, ? base_client.InvokeOptions): async.Operation<types.ListGlossariesOutput>
     listGlossaryTerms: function(Client, types.ListGlossaryTermsInput, ? base_client.InvokeOptions): async.Operation<types.ListGlossaryTermsOutput>
     listIntegrationResourceProperties: function(Client, types.ListIntegrationResourcePropertiesInput, ? base_client.InvokeOptions): async.Operation<types.ListIntegrationResourcePropertiesOutput>
+    listIntegrationTableProperties: function(Client, types.ListIntegrationTablePropertiesInput, ? base_client.InvokeOptions): async.Operation<types.ListIntegrationTablePropertiesOutput>
     listIterableForms: function(Client, types.ListIterableFormsInput, ? base_client.InvokeOptions): async.Operation<types.ListIterableFormsOutput>
     listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
     listMaterializedViewRefreshTaskRuns: function(Client, types.ListMaterializedViewRefreshTaskRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListMaterializedViewRefreshTaskRunsOutput>
@@ -1195,6 +1196,10 @@ end
 
 function C:listIntegrationResourceProperties(input: types.ListIntegrationResourcePropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntegrationResourcePropertiesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntegrationResourceProperties as schema.OperationSchema, input, options) as async.Operation<types.ListIntegrationResourcePropertiesOutput>
+end
+
+function C:listIntegrationTableProperties(input: types.ListIntegrationTablePropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntegrationTablePropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntegrationTableProperties as schema.OperationSchema, input, options) as async.Operation<types.ListIntegrationTablePropertiesOutput>
 end
 
 function C:listIterableForms(input: types.ListIterableFormsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIterableFormsOutput>

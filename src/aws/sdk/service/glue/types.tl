@@ -5645,6 +5645,8 @@ local record M
         PartitionSpec: {IntegrationPartition}
         -- The optional name of a target table.
         TargetTableName: string
+        -- The ARN of the integration that owns this target table configuration.
+        IntegrationArn: string
     end
 
     record CreateIntegrationTablePropertiesInput
@@ -11471,6 +11473,42 @@ local record M
         -- A list of integration resource property meeting the filter criteria.
         IntegrationResourcePropertyList: {IntegrationResourceProperty}
         -- This is the pagination token for the next page.
+        Marker: string
+    end
+
+    -- A key-value filter used to narrow the list of integration table properties returned by ListIntegrationTableProperties. Specify a filter key and one or more values to match.
+    record IntegrationTablePropertiesFilter
+        -- The name of the filter. Supported filter keys are SourceArn, TargetArn, SourceTableName, and TargetTableName.
+        Name: string
+        -- A list of filter values.
+        Values: {string}
+    end
+
+    record ListIntegrationTablePropertiesInput
+        -- The pagination token for the next page of results. The initial value is null.
+        Marker: string
+        -- A list of filters. Supported filter keys are SourceArn, TargetArn, SourceTableName, and TargetTableName.
+        Filters: {IntegrationTablePropertiesFilter}
+        -- The maximum number of records to return in the response.
+        MaxRecords: number
+    end
+
+    -- The properties of a single integration table, including the resource ARN, the table name, and the source or target table configuration.
+    record IntegrationTableProperties
+        -- The connection ARN of the source, or the database ARN of the target.
+        ResourceArn: string
+        -- The name of the source table to be replicated.
+        TableName: string
+        -- A structure for the source table configuration.
+        SourceTableConfig: SourceTableConfig
+        -- A structure for the target table configuration.
+        TargetTableConfig: TargetTableConfig
+    end
+
+    record ListIntegrationTablePropertiesOutput
+        -- A list of integration table properties meeting the filter criteria.
+        IntegrationTablePropertiesList: {IntegrationTableProperties}
+        -- The pagination token for the next page. Returns null if there are no more results.
         Marker: string
     end
 

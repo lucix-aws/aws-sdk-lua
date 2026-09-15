@@ -68,6 +68,68 @@ local record M
         userDataOverride: string
     end
 
+    -- Contains details about the component that caused the image creation process to
+    -- fail. The details identify the first step that failed when the component ran.
+    record ComponentFailureContext
+        -- The Amazon Resource Name (ARN) of the component build version that failed.
+        componentArn: string
+        -- The name of the phase in the component document where the failure occurred, such
+        -- as build, validate, or test.
+        phaseName: string
+        -- The name of the step in the component document that failed.
+        stepName: string
+        -- The action that the failed step runs, for example ExecuteBash.
+        action: string
+        -- The error message from the step that failed. Image Builder truncates messages that are
+        -- longer than 1024 characters. The component log in Amazon CloudWatch Logs contains
+        -- the full output.
+        errorMessage: string
+    end
+
+    enum ImageConfigurationStep
+        "ASSOCIATE_LICENSES"
+        "UPDATE_LAUNCH_TEMPLATES"
+        "PUT_SSM_PARAMETERS"
+        "UPDATE_FAST_LAUNCH_CONFIGURATIONS"
+        "EXPORT_AMI"
+    end
+
+    enum RegionFailureStatus
+        "FAILED"
+        "CANCELLED"
+        "TIMED_OUT"
+    end
+
+    -- Contains details about a distribution or image configuration failure for a single
+    -- Region.
+    record RegionFailure
+        -- The Region where the failure occurred.
+        region: string
+        -- The failure status for the Region. Indicates whether the process failed, was
+        -- canceled, or timed out.
+        status: string
+        -- The image configuration step where the failure occurred. Image Builder sets this property
+        -- when the failure happened during post-distribution configuration, such as launch
+        -- template updates or virtual machine (VM) export. This property doesn't appear
+        -- for failures that occurred while Image Builder copied the image to the Region.
+        imageConfigurationStep: string
+        -- The error message for the failure in the Region.
+        errorMessage: string
+        -- The account ID of the account that the image was distributed to in the
+        -- Region.
+        targetAccountId: string
+    end
+
+    -- Contains details about a failure that occurred while Image Builder distributed the image
+    -- or applied configuration to the distributed image.
+    record DistributionFailureContext
+        -- The error message for the distribution failure.
+        errorMessage: string
+        -- The details about the failure for each Region where the image didn't finish
+        -- distribution or configuration.
+        regionFailures: {RegionFailure}
+    end
+
     enum ImageStatus
         "PENDING"
         "CREATING"
@@ -83,12 +145,42 @@ local record M
         "DISABLED"
     end
 
+    -- Contains details about the failure when the image creation process fails.
+    -- Properties appear in the failure context when the related information is available
+    -- for the failure.
+    record ImageFailureContext
+        -- The status that the image had when the failure occurred. This indicates the stage
+        -- of the image creation process where the image failed, for example
+        -- BUILDING or DISTRIBUTING.
+        imageStatus: string
+        -- The unique identifier of the workflow execution that was running when the image
+        -- failed.
+        workflowExecutionId: string
+        -- The Amazon Resource Name (ARN) of the workflow build version that was running when the image
+        -- failed.
+        workflowArn: string
+        -- The unique identifier of the workflow step execution that failed.
+        stepExecutionId: string
+        -- The name of the workflow step that failed, as it appears in the workflow
+        -- document.
+        failedStep: string
+        -- The details about the component that failed, if the failure occurred while a
+        -- component was running.
+        componentFailure: ComponentFailureContext
+        -- The details about the distribution failure, if the failure occurred while Image Builder
+        -- distributed or configured the image.
+        distributionFailure: DistributionFailureContext
+    end
+
     -- Image status and the reason for that status.
     record ImageState
         -- The status of the image.
         status: string
         -- The reason for the status of the image.
         reason: string
+        -- The details about the failure, for images that failed to complete. Image Builder only
+        -- sets this property when the image status is FAILED.
+        failureContext: ImageFailureContext
     end
 
     -- Details of an Amazon EC2 AMI.
@@ -171,8 +263,9 @@ local record M
         -- The Amazon Resource Name (ARN) of the image that you want to cancel creation
         -- for.
         imageBuildVersionArn: string
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -229,8 +322,9 @@ local record M
     record CancelLifecycleExecutionInput
         -- Identifies the specific runtime instance of the image lifecycle to cancel.
         lifecycleExecutionId: string
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -408,23 +502,22 @@ local record M
         -- The semantic version of the component.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
         -- a date, such as 2021.01.01.
-        -- Filtering: With semantic versioning, you have the flexibility to use wildcards (x)
-        -- to specify the most recent versions or nodes when selecting the base image or components for your
-        -- recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be
-        -- wildcards.
+        -- Filtering: You can use wildcards (x) to specify the most recent versions or nodes when
+        -- selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes
+        -- to the right of the first wildcard must also be wildcards.
         version: string
         -- The description of the component.
         description: string
         -- The platform of the component.
         platform: string
-        -- he operating system (OS) version supported by the component. If the OS information is
-        -- available, a prefix match is performed against the base image OS version during image
+        -- The operating system (OS) version supported by the component. If OS information is
+        -- available, Image Builder performs a prefix match against the base image OS version during image
         -- recipe creation.
         supportedOsVersions: {string}
         -- The owner of the component.
@@ -487,11 +580,11 @@ local record M
 
     -- Amazon EBS-specific block device mapping specifications.
     record EbsInstanceBlockDeviceSpecification
-        -- Use to configure device encryption.
+        -- Specifies whether to encrypt the device.
         encrypted: boolean
-        -- Use to configure delete on termination of the associated device.
+        -- Specifies whether to delete the associated device on termination.
         deleteOnTermination: boolean
-        -- Use to configure device IOPS.
+        -- The IOPS value for the device. Required only when volumeType is io1 or io2.
         iops: number
         -- The Amazon Resource Name (ARN) that uniquely identifies the KMS key to use when encrypting the device.
         -- This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
@@ -499,9 +592,9 @@ local record M
         kmsKeyId: string
         -- The snapshot that defines the device contents.
         snapshotId: string
-        -- Use to override the device's volume size.
+        -- Overrides the volume size for the device.
         volumeSize: number
-        -- Use to override the device's volume type.
+        -- Overrides the volume type for the device.
         volumeType: string
         -- For GP3 volumes only – The throughput in MiB/s
         -- that the volume supports.
@@ -512,11 +605,11 @@ local record M
     record InstanceBlockDeviceMapping
         -- The device to which these mappings apply.
         deviceName: string
-        -- Use to manage Amazon EBS-specific configuration for this mapping.
+        -- The Amazon EBS-specific configuration for this mapping.
         ebs: EbsInstanceBlockDeviceSpecification
-        -- Use to manage instance ephemeral devices.
+        -- The virtual device name for instance ephemeral devices.
         virtualName: string
-        -- Use to remove a mapping from the base image.
+        -- Specifies a mapping to remove from the base image.
         noDevice: string
     end
 
@@ -556,16 +649,15 @@ local record M
         -- The semantic version of the container recipe.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
         -- a date, such as 2021.01.01.
-        -- Filtering: With semantic versioning, you have the flexibility to use wildcards (x)
-        -- to specify the most recent versions or nodes when selecting the base image or components for your
-        -- recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be
-        -- wildcards.
+        -- Filtering: You can use wildcards (x) to specify the most recent versions or nodes when
+        -- selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes
+        -- to the right of the first wildcard must also be wildcards.
         version: string
         -- Build and test components that are included in the container recipe.
         -- Recipes require a minimum of one build component, and can
@@ -631,8 +723,8 @@ local record M
         -- syntax.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
@@ -655,7 +747,7 @@ local record M
         -- Amazon S3. However, you cannot specify both properties.
         data: string
         -- The uri of a YAML component document file. This must be an S3 URL
-        -- (s3://bucket/key), and the requester must have permission to access the
+        -- (s3://bucket/key), and you must have permission to access the
         -- S3 bucket it points to. If you use Amazon S3, you can specify component content up to your
         -- service quota.
         -- Alternatively, you can specify the YAML document inline, using the component
@@ -666,11 +758,12 @@ local record M
         kmsKeyId: string
         -- The tags that apply to the component.
         tags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions for the operation and the request parameters, without actually making the request, and provides an error response. Upon a successful request, the error response is DryRunOperationException.
+        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -731,8 +824,8 @@ local record M
         -- version syntax.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
@@ -745,7 +838,7 @@ local record M
         instanceConfiguration: InstanceConfiguration
         -- The Dockerfile template used to build your image as an inline data blob.
         dockerfileTemplateData: string
-        -- The Amazon S3 URI for the Dockerfile that will be used to build your container
+        -- The Amazon S3 URI for the Dockerfile that is used to build your container
         -- image.
         dockerfileTemplateUri: string
         -- Specifies the operating system platform when you use a custom base image.
@@ -764,10 +857,13 @@ local record M
         -- template. This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
         -- in the Key Management Service Developer Guide.
         kmsKeyId: string
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
+        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        dryRun: boolean
     end
 
     record CreateContainerRecipeOutput
@@ -882,8 +978,8 @@ local record M
         -- distribution creates the Parameter if it doesn't already exist. Otherwise, it updates
         -- the parameter.
         parameterName: string
-        -- The data type specifies what type of value the Parameter contains. We recommend that
-        -- you use data type aws:ec2:image.
+        -- The type of value the parameter contains.
+        -- We recommend the aws:ec2:image data type.
         dataType: string
     end
 
@@ -921,10 +1017,13 @@ local record M
         distributions: {Distribution}
         -- The tags of the distribution configuration.
         tags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
+        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        dryRun: boolean
     end
 
     record CreateDistributionConfigurationOutput
@@ -963,8 +1062,9 @@ local record M
     -- Configure image tests for your pipeline build. Tests run after building the image, to
     -- verify that the AMI or container image is valid before distributing it.
     record ImageTestsConfiguration
-        -- Determines if tests should run after building the image. Image Builder defaults to enable tests
-        -- to run following the image build, before image distribution.
+        -- Specifies whether tests run after building the image.
+        -- When enabled, tests run after the image build and before image distribution.
+        -- Defaults to true.
         imageTestsEnabled: boolean
         -- The maximum time in minutes that tests are permitted to run.
         -- The timeout property is not currently active. This value is
@@ -1027,14 +1127,14 @@ local record M
         infrastructureConfigurationArn: string
         -- The image tests configuration of the image.
         imageTestsConfiguration: ImageTestsConfiguration
-        -- Collects additional information about the image being created, including the operating
-        -- system (OS) version and package list. This information is used to enhance the overall
-        -- experience of using EC2 Image Builder. Enabled by default.
+        -- Specifies whether to collect additional information about the image being created, including the operating
+        -- system (OS) version and package list. Defaults to true.
         enhancedImageMetadataEnabled: boolean
         -- The tags of the image.
         tags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
         -- Contains settings for vulnerability scans.
@@ -1044,7 +1144,7 @@ local record M
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
         -- Image Builder access to perform workflow actions.
         executionRole: string
-        -- Define logging configuration for the image build process.
+        -- The logging configuration for the image build process.
         loggingConfiguration: ImageLoggingConfiguration
     end
 
@@ -1121,23 +1221,22 @@ local record M
         name: string
         -- The description of the image pipeline.
         description: string
-        -- The Amazon Resource Name (ARN) of the image recipe that will be used to configure
+        -- The Amazon Resource Name (ARN) of the image recipe that configures
         -- images created by this image pipeline.
         imageRecipeArn: string
         -- The Amazon Resource Name (ARN) of the container recipe that is used to configure
         -- images created by this container pipeline.
         containerRecipeArn: string
-        -- The Amazon Resource Name (ARN) of the infrastructure configuration that will be used
-        -- to build images created by this image pipeline.
+        -- The Amazon Resource Name (ARN) of the infrastructure configuration that
+        -- builds images created by this image pipeline.
         infrastructureConfigurationArn: string
-        -- The Amazon Resource Name (ARN) of the distribution configuration that will be used to
-        -- configure and distribute images created by this image pipeline.
+        -- The Amazon Resource Name (ARN) of the distribution configuration that configures and
+        -- distributes images created by this image pipeline.
         distributionConfigurationArn: string
         -- The image test configuration of the image pipeline.
         imageTestsConfiguration: ImageTestsConfiguration
-        -- Collects additional information about the image being created, including the operating
-        -- system (OS) version and package list. This information is used to enhance the overall
-        -- experience of using EC2 Image Builder. Enabled by default.
+        -- Specifies whether to collect additional information about the image being created, including the operating
+        -- system (OS) version and package list. Defaults to true.
         enhancedImageMetadataEnabled: boolean
         -- The schedule of the image pipeline.
         schedule: Schedule
@@ -1147,8 +1246,9 @@ local record M
         tags: {string : string}
         -- The tags to be applied to the images produced by this pipeline.
         imageTags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
         -- Contains settings for vulnerability scans.
@@ -1165,6 +1265,8 @@ local record M
         -- role. For custom log group names outside of this prefix, you must also
         -- provide an executionRole.
         loggingConfiguration: PipelineLoggingConfiguration
+        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        dryRun: boolean
     end
 
     record CreateImagePipelineOutput
@@ -1186,8 +1288,8 @@ local record M
         -- syntax.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
@@ -1211,7 +1313,7 @@ local record M
         tags: {string : string}
         -- The working directory used during build and test workflows.
         workingDirectory: string
-        -- Specify additional settings and launch scripts for your build instances.
+        -- The additional settings and launch scripts for your build instances.
         additionalInstanceConfiguration: AdditionalInstanceConfiguration
         -- Tags that are applied to the AMI that Image Builder creates during the Build phase
         -- prior to image distribution.
@@ -1223,10 +1325,13 @@ local record M
         -- AMI watermarks are supported only for image recipes. AMIs with
         -- watermarks cannot be made public.
         amiWatermarks: {string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
+        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        dryRun: boolean
     end
 
     record CreateImageRecipeOutput
@@ -1317,7 +1422,7 @@ local record M
         -- The description of the infrastructure configuration.
         description: string
         -- The instance types of the infrastructure configuration. You can specify one or more
-        -- instance types to use for this build. The service will pick one of these instance types
+        -- instance types to use for this build. Image Builder picks one of these instance types
         -- based on availability.
         instanceTypes: {string}
         -- The instance profile to associate with the instance used to customize your Amazon EC2
@@ -1333,12 +1438,11 @@ local record M
         -- The key pair of the infrastructure configuration. You can use this to log on to and
         -- debug the instance used to create your image.
         keyPair: string
-        -- The terminate instance on failure setting of the infrastructure configuration. Set to
+        -- Specifies whether to terminate the instance on failure. Set to
         -- false if you want Image Builder to retain the instance used to configure your AMI if the build or
-        -- test phase of your workflow fails.
+        -- test phase of your workflow fails. Defaults to true.
         terminateInstanceOnFailure: boolean
-        -- The Amazon Resource Name (ARN) for the SNS topic to which we send image build event
-        -- notifications.
+        -- The Amazon Resource Name (ARN) of the SNS topic to which Image Builder sends image build event notifications.
         -- EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys
         -- from other accounts. The key that is used to encrypt the SNS topic must reside in the
         -- account that the Image Builder service runs under.
@@ -1353,12 +1457,15 @@ local record M
         -- creates as output. Tags are formatted as key value pairs.
         tags: {string : string}
         -- The instance placement settings that define where the instances that are launched
-        -- from your image will run.
+        -- from your image run.
         placement: Placement
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
+        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        dryRun: boolean
     end
 
     record CreateInfrastructureConfigurationOutput
@@ -1514,10 +1621,13 @@ local record M
         resourceSelection: LifecyclePolicyResourceSelection
         -- Tags to apply to the lifecycle policy resource.
         tags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
+        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        dryRun: boolean
     end
 
     record CreateLifecyclePolicyOutput
@@ -1540,8 +1650,8 @@ local record M
         -- adheres to the following rules.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
@@ -1557,7 +1667,7 @@ local record M
         -- Amazon S3. However, you cannot specify both properties.
         data: string
         -- The uri of a YAML component document file. This must be an S3 URL
-        -- (s3://bucket/key), and the requester must have permission to access the
+        -- (s3://bucket/key), and you must have permission to access the
         -- S3 bucket it points to. If you use Amazon S3, you can specify component content up to your
         -- service quota.
         -- Alternatively, you can specify the YAML document inline, using the component
@@ -1569,11 +1679,12 @@ local record M
         kmsKeyId: string
         -- Tags that apply to the workflow resource.
         tags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions for the operation and the request parameters, without actually making the request, and provides an error response. Upon a successful request, the error response is DryRunOperationException.
+        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -1756,8 +1867,9 @@ local record M
         executionRole: string
         -- The tags to apply to the distributed image.
         tags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
         -- The logging configuration for the distribution.
@@ -1985,8 +2097,8 @@ local record M
         -- The terminate instance on failure configuration of the infrastructure
         -- configuration.
         terminateInstanceOnFailure: boolean
-        -- The Amazon Resource Name (ARN) for the SNS topic to which we send image build event
-        -- notifications.
+        -- The Amazon Resource Name (ARN) of the SNS topic to which Image Builder
+        -- sends image build event notifications.
         -- EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys
         -- from other accounts. The key that is used to encrypt the SNS topic must reside in the
         -- account that the Image Builder service runs under.
@@ -2002,7 +2114,7 @@ local record M
         -- The tags of the infrastructure configuration.
         tags: {string : string}
         -- The instance placement settings that define where the instances that are launched
-        -- from your image will run.
+        -- from your image run.
         placement: Placement
     end
 
@@ -2052,16 +2164,15 @@ local record M
         -- The semantic version of the image.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
         -- a date, such as 2021.01.01.
-        -- Filtering: With semantic versioning, you have the flexibility to use wildcards (x)
-        -- to specify the most recent versions or nodes when selecting the base image or components for your
-        -- recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be
-        -- wildcards.
+        -- Filtering: You can use wildcards (x) to specify the most recent versions or nodes when
+        -- selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes
+        -- to the right of the first wildcard must also be wildcards.
         version: string
         -- The image operating system platform, such as Linux or Windows.
         platform: string
@@ -2150,9 +2261,8 @@ local record M
         description: string
         -- The platform of the image pipeline.
         platform: string
-        -- Collects additional information about the image being created, including the operating
-        -- system (OS) version and package list. This information is used to enhance the overall
-        -- experience of using EC2 Image Builder. Enabled by default.
+        -- Specifies whether to collect additional information about the image being created, including the operating
+        -- system (OS) version and package list. Defaults to true.
         enhancedImageMetadataEnabled: boolean
         -- The Amazon Resource Name (ARN) of the image recipe associated with this image
         -- pipeline.
@@ -2275,7 +2385,7 @@ local record M
     end
 
     record GetLifecycleExecutionInput
-        -- Use the unique identifier for a runtime instance of the lifecycle policy to get runtime details.
+        -- The unique identifier for a runtime instance of the lifecycle policy.
         lifecycleExecutionId: string
     end
 
@@ -2577,6 +2687,13 @@ local record M
         onFailure: string
         -- The maximum duration in seconds for this step to complete its action.
         timeoutSeconds: number
+        -- The current attempt number for the specified runtime instance of the workflow
+        -- step. The first run is attempt one. The number increases by one for each retry.
+        attemptNumber: number
+        -- The maximum number of attempts allowed for the specified runtime instance of
+        -- the workflow step, based on the retry configuration in the workflow document.
+        -- If the step doesn't configure retries, the maximum is one attempt.
+        maxAttempts: number
     end
 
     -- Contains vulnerability counts for a specific image.
@@ -2595,10 +2712,9 @@ local record M
         -- syntax.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Filtering: With semantic versioning, you have the flexibility to use wildcards (x)
-        -- to specify the most recent versions or nodes when selecting the base image or components for your
-        -- recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be
-        -- wildcards.
+        -- Filtering: You can use wildcards (x) to specify the most recent versions or nodes when
+        -- selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes
+        -- to the right of the first wildcard must also be wildcards.
         semanticVersion: string
         -- The description of the component. Describes the contents of the component.
         description: string
@@ -2613,7 +2729,7 @@ local record M
         -- The data of the component. Used to specify the data inline. Either data
         -- or uri can be used to specify the data within the component.
         data: string
-        -- The uri of the component. Must be an Amazon S3 URL and the requester must have permission
+        -- The uri of the component. Must be an Amazon S3 URL and you must have permission
         -- to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content up to your
         -- service quota. Either data or uri can be used to specify the
         -- data within the component.
@@ -2623,8 +2739,9 @@ local record M
         kmsKeyId: string
         -- The tags of the component.
         tags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -2690,7 +2807,7 @@ local record M
         infrastructureConfigurationArn: string
         -- The uri of the ISO disk file that's stored in Amazon S3.
         uri: string
-        -- Define logging configuration for the image build process.
+        -- The logging configuration for the image build process.
         loggingConfiguration: ImageLoggingConfiguration
         -- Tags that are attached to image resources created from the import.
         tags: {string : string}
@@ -2699,8 +2816,9 @@ local record M
         registerImageOptions: RegisterImageOptions
         -- Specifies Windows settings for ISO imports.
         windowsConfiguration: WindowsConfiguration
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -2719,8 +2837,8 @@ local record M
         -- process. This version follows the semantic version syntax.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
@@ -2736,12 +2854,13 @@ local record M
         -- Amazon EC2 VM import process. Image Builder retrieves information from the import process to pull in
         -- the AMI that is created from the VM source as the base image for your recipe.
         vmImportTaskId: string
-        -- Define logging configuration for the image build process.
+        -- The logging configuration for the image build process.
         loggingConfiguration: ImageLoggingConfiguration
         -- Tags that are attached to the import resources.
         tags: {string : string}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -2765,9 +2884,9 @@ local record M
         -- The component version Amazon Resource Name (ARN) whose versions you want to
         -- list.
         componentVersionArn: string
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -2807,9 +2926,9 @@ local record M
         filters: {Filter}
         -- Returns the list of components for the specified name.
         byName: boolean
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -2838,9 +2957,9 @@ local record M
         -- parentImage
         -- platform
         filters: {Filter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -2859,9 +2978,9 @@ local record M
     record ListDistributionConfigurationsInput
         -- You can filter on name to streamline results.
         filters: {Filter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -2888,9 +3007,9 @@ local record M
         -- type
         -- version
         filters: {Filter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -2953,9 +3072,9 @@ local record M
     record ListImagePackagesInput
         -- Filter results for the ListImagePackages request by the Image Build Version ARN
         imageBuildVersionArn: string
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -2990,9 +3109,9 @@ local record M
         -- name
         -- version
         filters: {Filter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3017,9 +3136,9 @@ local record M
         -- name
         -- status
         filters: {Filter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3045,9 +3164,9 @@ local record M
         -- parentImage
         -- platform
         filters: {Filter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3083,10 +3202,8 @@ local record M
     end
 
     record ListImagesInput
-        -- The owner defines which images you want to list. By default, this request will only
-        -- show images owned by your account. You can use this field to specify if you want to view
-        -- images owned by yourself, by Amazon, or those images that have been shared with you by
-        -- other customers.
+        -- Filters the list to images owned by you, by Amazon, or shared with you by other accounts.
+        -- By default, only your account's images are returned.
         owner: string
         -- Use the following filters to streamline results:
         -- name
@@ -3097,9 +3214,9 @@ local record M
         filters: {Filter}
         -- Requests a list of images with a specific recipe name.
         byName: boolean
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
         -- Includes deprecated images in the response list.
@@ -3122,16 +3239,15 @@ local record M
         -- version syntax.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Assignment: For the first three nodes you can assign any positive integer value, including
-        -- zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
         -- build number to the fourth node.
         -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
         -- a date, such as 2021.01.01.
-        -- Filtering: With semantic versioning, you have the flexibility to use wildcards (x)
-        -- to specify the most recent versions or nodes when selecting the base image or components for your
-        -- recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be
-        -- wildcards.
+        -- Filtering: You can use wildcards (x) to specify the most recent versions or nodes when
+        -- selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes
+        -- to the right of the first wildcard must also be wildcards.
         version: string
         -- The operating system platform of the image version, for example "Windows" or
         -- "Linux".
@@ -3164,10 +3280,9 @@ local record M
         -- The list of image semantic versions.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Filtering: With semantic versioning, you have the flexibility to use wildcards (x)
-        -- to specify the most recent versions or nodes when selecting the base image or components for your
-        -- recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be
-        -- wildcards.
+        -- Filtering: You can use wildcards (x) to specify the most recent versions or nodes when
+        -- selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes
+        -- to the right of the first wildcard must also be wildcards.
         imageVersionList: {ImageVersion}
         -- The next token used for paginated responses. When this field isn't empty,
         -- there are additional elements that the service hasn't included in this request. Use this token
@@ -3177,7 +3292,7 @@ local record M
 
     record ListImageScanFindingAggregationsInput
         filter: Filter
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3254,9 +3369,9 @@ local record M
         -- severity
         -- If you don't request a filter, then all findings in your account are listed.
         filters: {ImageScanFindingsFilter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3385,9 +3500,9 @@ local record M
     record ListInfrastructureConfigurationsInput
         -- You can filter on name to streamline results.
         filters: {Filter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3413,7 +3528,7 @@ local record M
         -- The instance profile of the infrastructure configuration.
         instanceProfileName: string
         -- The instance placement settings that define where the instances that are launched
-        -- from your image will run.
+        -- from your image run.
         placement: Placement
     end
 
@@ -3429,16 +3544,16 @@ local record M
     end
 
     record ListLifecycleExecutionResourcesInput
-        -- Use the unique identifier for a runtime instance of the lifecycle policy to get runtime details.
+        -- The unique identifier for a runtime instance of the lifecycle policy.
         lifecycleExecutionId: string
         -- You can leave this empty to get a list of Image Builder resources that were identified for lifecycle actions.
         -- To get a list of associated resources that are impacted for an individual resource (the parent), specify
         -- its Amazon Resource Name (ARN). Associated resources are produced from your image and distributed when you run a build, such as
         -- AMIs or container images stored in ECR repositories.
         parentResourceId: string
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3527,9 +3642,9 @@ local record M
     end
 
     record ListLifecycleExecutionsInput
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
         -- The Amazon Resource Name (ARN) of the resource for which to get a list of lifecycle runtime instances.
@@ -3549,9 +3664,9 @@ local record M
         -- Streamline results based on one of the following values: Name,
         -- Status.
         filters: {Filter}
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3609,9 +3724,9 @@ local record M
     end
 
     record ListWaitingWorkflowStepsInput
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3650,9 +3765,9 @@ local record M
     record ListWorkflowBuildVersionsInput
         -- The Amazon Resource Name (ARN) of the workflow resource for which to get a list of build versions.
         workflowVersionArn: string
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3690,9 +3805,9 @@ local record M
     end
 
     record ListWorkflowExecutionsInput
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
         -- List all workflow runtime instances for the specified image build version
@@ -3754,9 +3869,9 @@ local record M
         filters: {Filter}
         -- Specify all or part of the workflow name to streamline results.
         byName: boolean
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
     end
@@ -3787,9 +3902,9 @@ local record M
     end
 
     record ListWorkflowStepExecutionsInput
-        -- Specify the maximum number of items to return in a request.
+        -- The maximum number of items to return in a single request.
         maxResults: number
-        -- A token to specify where to start paginating. This is the nextToken
+        -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
         -- The unique identifier that Image Builder assigned to keep track of runtime details
@@ -3821,6 +3936,13 @@ local record M
         startTime: string
         -- The timestamp when the workflow step finished.
         endTime: string
+        -- The current attempt number for the workflow step. The first run is attempt one.
+        -- The number increases by one for each retry.
+        attemptNumber: number
+        -- The maximum number of attempts allowed for the workflow step, based on the
+        -- retry configuration in the workflow document. If the step doesn't configure
+        -- retries, the maximum is one attempt.
+        maxAttempts: number
     end
 
     record ListWorkflowStepExecutionsOutput
@@ -3917,8 +4039,9 @@ local record M
     record RetryImageInput
         -- The source image Amazon Resource Name (ARN) to retry.
         imageBuildVersionArn: string
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -3951,8 +4074,9 @@ local record M
         -- execution record and is accessible in subsequent workflow steps
         -- via step output references.
         reason: string
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -3971,12 +4095,13 @@ local record M
         -- The Amazon Resource Name (ARN) of the image pipeline that you want to manually
         -- invoke.
         imagePipelineArn: string
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Specify tags for Image Builder to apply to the image resource that's created
-        -- When it starts pipeline execution.
+        -- The tags for Image Builder to apply to the image resource that's created
+        -- when pipeline execution starts.
         tags: {string : string}
     end
 
@@ -4049,8 +4174,9 @@ local record M
         -- effect. Use this parameter only when the target status is
         -- DEPRECATED. The value must be a future time.
         updateAt: number
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -4091,8 +4217,9 @@ local record M
         description: string
         -- The distributions of the distribution configuration.
         distributions: {Distribution}
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -4112,7 +4239,7 @@ local record M
         imagePipelineArn: string
         -- The description of the image pipeline.
         description: string
-        -- The Amazon Resource Name (ARN) of the image recipe that will be used to configure
+        -- The Amazon Resource Name (ARN) of the image recipe that configures
         -- images updated by this image pipeline.
         imageRecipeArn: string
         -- The Amazon Resource Name (ARN) of the container pipeline to update.
@@ -4125,16 +4252,16 @@ local record M
         distributionConfigurationArn: string
         -- The image test configuration of the image pipeline.
         imageTestsConfiguration: ImageTestsConfiguration
-        -- Collects additional information about the image being created, including the operating
-        -- system (OS) version and package list. This information is used to enhance the overall
-        -- experience of using EC2 Image Builder. Enabled by default.
+        -- Specifies whether to collect additional information about the image being created, including the operating
+        -- system (OS) version and package list. Defaults to true.
         enhancedImageMetadataEnabled: boolean
         -- The schedule of the image pipeline.
         schedule: Schedule
         -- The status of the image pipeline.
         status: string
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
         -- Contains settings for vulnerability scans.
@@ -4168,7 +4295,7 @@ local record M
         -- The description of the infrastructure configuration.
         description: string
         -- The instance types of the infrastructure configuration. You can specify one or more
-        -- instance types to use for this build. The service will pick one of these instance types
+        -- instance types to use for this build. Image Builder picks one of these instance types
         -- based on availability.
         instanceTypes: {string}
         -- The instance profile to associate with the instance used to customize your Amazon EC2
@@ -4184,12 +4311,12 @@ local record M
         -- The key pair of the infrastructure configuration. You can use this to log on to and
         -- debug the instance used to create your image.
         keyPair: string
-        -- The terminate instance on failure setting of the infrastructure configuration. Set to
+        -- Specifies whether to terminate the instance on failure. Set to
         -- false if you want Image Builder to retain the instance used to configure your AMI if the build or
-        -- test phase of your workflow fails.
+        -- test phase of your workflow fails. Defaults to true.
         terminateInstanceOnFailure: boolean
-        -- The Amazon Resource Name (ARN) for the SNS topic to which we send image build event
-        -- notifications.
+        -- The Amazon Resource Name (ARN) of the SNS topic to which Image Builder
+        -- sends image build event notifications.
         -- EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys
         -- from other accounts. The key that is used to encrypt the SNS topic must reside in the
         -- account that the Image Builder service runs under.
@@ -4207,10 +4334,11 @@ local record M
         -- for Windows instances.
         instanceMetadataOptions: InstanceMetadataOptions
         -- The instance placement settings that define where the instances that are launched
-        -- from your image will run.
+        -- from your image run.
         placement: Placement
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -4241,8 +4369,9 @@ local record M
         policyDetails: {LifecyclePolicyDetail}
         -- Selection criteria for resources that the lifecycle policy applies to.
         resourceSelection: LifecyclePolicyResourceSelection
-        -- Unique, case-sensitive identifier you provide to ensure
-        -- idempotency of the request. For more information, see Ensuring idempotency
+        -- A unique, case-sensitive identifier you provide to ensure
+        -- that the operation completes no more than one time. If this token matches a previous request,
+        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end

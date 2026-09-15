@@ -74,6 +74,8 @@ M.CustomLineItemArns = schema.new({ type = "list", list_member = prelude.String 
 
 M.LineItemFiltersList = schema.new({ type = "list", list_member = M.LineItemFilter })
 
+M.CustomTiersList = schema.new({ type = "list", list_member = M.CustomTier })
+
 M.AttributesList = schema.new({ type = "list", list_member = M.Attribute })
 
 M.CustomLineItemAssociationsList = schema.new({ type = "list", list_member = prelude.String })
@@ -2972,6 +2974,37 @@ M.UpdatePricingPlanOutput = schema.new({
     },
 })
 
+M.CustomTier = schema.new({
+    id = id.from(_N, "CustomTier"),
+    type = "structure",
+    members = {
+        BeginRangeInclusive = schema.new({
+            id = id.from(_N, "CustomTier", "BeginRangeInclusive"),
+            type = "double",
+            name = "BeginRangeInclusive",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndRangeExclusive = schema.new({
+            id = id.from(_N, "CustomTier", "EndRangeExclusive"),
+            type = "double",
+            name = "EndRangeExclusive",
+            target_id = prelude.Double.id,
+        }),
+        RateValue = schema.new({
+            id = id.from(_N, "CustomTier", "RateValue"),
+            type = "double",
+            name = "RateValue",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateFreeTierConfig = schema.new({
     id = id.from(_N, "CreateFreeTierConfig"),
     type = "structure",
@@ -2998,9 +3031,13 @@ M.CreateTieringInput = schema.new({
             name = "FreeTier",
             target_id = id.from(_N, "CreateFreeTierConfig"),
             target = M.CreateFreeTierConfig,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        CustomTiers = schema.new({
+            id = id.from(_N, "CreateTieringInput", "CustomTiers"),
+            type = "list",
+            name = "CustomTiers",
+            target_id = prelude.Document.id,
+            list_member = M.CustomTier,
         }),
     },
 })
@@ -3214,9 +3251,13 @@ M.Tiering = schema.new({
             name = "FreeTier",
             target_id = id.from(_N, "FreeTierConfig"),
             target = M.FreeTierConfig,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        CustomTiers = schema.new({
+            id = id.from(_N, "Tiering", "CustomTiers"),
+            type = "list",
+            name = "CustomTiers",
+            target_id = prelude.Document.id,
+            list_member = M.CustomTier,
         }),
     },
 })
@@ -3440,9 +3481,13 @@ M.UpdateTieringInput = schema.new({
             name = "FreeTier",
             target_id = id.from(_N, "UpdateFreeTierConfig"),
             target = M.UpdateFreeTierConfig,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        CustomTiers = schema.new({
+            id = id.from(_N, "UpdateTieringInput", "CustomTiers"),
+            type = "list",
+            name = "CustomTiers",
+            target_id = prelude.Document.id,
+            list_member = M.CustomTier,
         }),
     },
 })

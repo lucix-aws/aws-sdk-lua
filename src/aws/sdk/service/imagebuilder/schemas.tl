@@ -130,6 +130,8 @@ M.OrganizationArnList = schema.new({ type = "list", list_member = prelude.String
 
 M.OrganizationalUnitArnList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RegionFailureList = schema.new({ type = "list", list_member = M.RegionFailure })
+
 M.CvssScoreAdjustmentList = schema.new({ type = "list", list_member = M.CvssScoreAdjustment })
 
 M.AccessDeniedException = schema.new({
@@ -232,6 +234,151 @@ M.AdditionalInstanceConfiguration = schema.new({
     },
 })
 
+M.ComponentFailureContext = schema.new({
+    id = id.from(_N, "ComponentFailureContext"),
+    type = "structure",
+    members = {
+        componentArn = schema.new({
+            id = id.from(_N, "ComponentFailureContext", "componentArn"),
+            type = "string",
+            name = "componentArn",
+            target_id = prelude.String.id,
+        }),
+        phaseName = schema.new({
+            id = id.from(_N, "ComponentFailureContext", "phaseName"),
+            type = "string",
+            name = "phaseName",
+            target_id = prelude.String.id,
+        }),
+        stepName = schema.new({
+            id = id.from(_N, "ComponentFailureContext", "stepName"),
+            type = "string",
+            name = "stepName",
+            target_id = prelude.String.id,
+        }),
+        action = schema.new({
+            id = id.from(_N, "ComponentFailureContext", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "ComponentFailureContext", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegionFailure = schema.new({
+    id = id.from(_N, "RegionFailure"),
+    type = "structure",
+    members = {
+        region = schema.new({
+            id = id.from(_N, "RegionFailure", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "RegionFailure", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        imageConfigurationStep = schema.new({
+            id = id.from(_N, "RegionFailure", "imageConfigurationStep"),
+            type = "string",
+            name = "imageConfigurationStep",
+            target_id = prelude.String.id,
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "RegionFailure", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+        targetAccountId = schema.new({
+            id = id.from(_N, "RegionFailure", "targetAccountId"),
+            type = "string",
+            name = "targetAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DistributionFailureContext = schema.new({
+    id = id.from(_N, "DistributionFailureContext"),
+    type = "structure",
+    members = {
+        errorMessage = schema.new({
+            id = id.from(_N, "DistributionFailureContext", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+        regionFailures = schema.new({
+            id = id.from(_N, "DistributionFailureContext", "regionFailures"),
+            type = "list",
+            name = "regionFailures",
+            target_id = prelude.Document.id,
+            list_member = M.RegionFailure,
+        }),
+    },
+})
+
+M.ImageFailureContext = schema.new({
+    id = id.from(_N, "ImageFailureContext"),
+    type = "structure",
+    members = {
+        imageStatus = schema.new({
+            id = id.from(_N, "ImageFailureContext", "imageStatus"),
+            type = "string",
+            name = "imageStatus",
+            target_id = prelude.String.id,
+        }),
+        workflowExecutionId = schema.new({
+            id = id.from(_N, "ImageFailureContext", "workflowExecutionId"),
+            type = "string",
+            name = "workflowExecutionId",
+            target_id = prelude.String.id,
+        }),
+        workflowArn = schema.new({
+            id = id.from(_N, "ImageFailureContext", "workflowArn"),
+            type = "string",
+            name = "workflowArn",
+            target_id = prelude.String.id,
+        }),
+        stepExecutionId = schema.new({
+            id = id.from(_N, "ImageFailureContext", "stepExecutionId"),
+            type = "string",
+            name = "stepExecutionId",
+            target_id = prelude.String.id,
+        }),
+        failedStep = schema.new({
+            id = id.from(_N, "ImageFailureContext", "failedStep"),
+            type = "string",
+            name = "failedStep",
+            target_id = prelude.String.id,
+        }),
+        componentFailure = schema.new({
+            id = id.from(_N, "ImageFailureContext", "componentFailure"),
+            type = "structure",
+            name = "componentFailure",
+            target_id = id.from(_N, "ComponentFailureContext"),
+            target = M.ComponentFailureContext,
+        }),
+        distributionFailure = schema.new({
+            id = id.from(_N, "ImageFailureContext", "distributionFailure"),
+            type = "structure",
+            name = "distributionFailure",
+            target_id = id.from(_N, "DistributionFailureContext"),
+            target = M.DistributionFailureContext,
+        }),
+    },
+})
+
 M.ImageState = schema.new({
     id = id.from(_N, "ImageState"),
     type = "structure",
@@ -247,6 +394,13 @@ M.ImageState = schema.new({
             type = "string",
             name = "reason",
             target_id = prelude.String.id,
+        }),
+        failureContext = schema.new({
+            id = id.from(_N, "ImageState", "failureContext"),
+            type = "structure",
+            name = "failureContext",
+            target_id = id.from(_N, "ImageFailureContext"),
+            target = M.ImageFailureContext,
         }),
     },
 })
@@ -1753,6 +1907,15 @@ M.CreateContainerRecipeInput = schema.new({
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
         }),
+        dryRun = schema.new({
+            id = id.from(_N, "CreateContainerRecipeInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
     },
 })
 
@@ -2094,6 +2257,15 @@ M.CreateDistributionConfigurationInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "CreateDistributionConfigurationInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
             },
         }),
     },
@@ -2557,6 +2729,15 @@ M.CreateImagePipelineInput = schema.new({
             target_id = id.from(_N, "PipelineLoggingConfiguration"),
             target = M.PipelineLoggingConfiguration,
         }),
+        dryRun = schema.new({
+            id = id.from(_N, "CreateImagePipelineInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
     },
 })
 
@@ -2680,6 +2861,15 @@ M.CreateImageRecipeInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "CreateImageRecipeInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
             },
         }),
     },
@@ -2911,6 +3101,15 @@ M.CreateInfrastructureConfigurationInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "CreateInfrastructureConfigurationInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
             },
         }),
     },
@@ -3287,6 +3486,15 @@ M.CreateLifecyclePolicyInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
             },
         }),
     },
@@ -5841,6 +6049,18 @@ M.GetWorkflowStepExecutionOutput = schema.new({
             id = id.from(_N, "GetWorkflowStepExecutionOutput", "timeoutSeconds"),
             type = "integer",
             name = "timeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        attemptNumber = schema.new({
+            id = id.from(_N, "GetWorkflowStepExecutionOutput", "attemptNumber"),
+            type = "integer",
+            name = "attemptNumber",
+            target_id = prelude.Integer.id,
+        }),
+        maxAttempts = schema.new({
+            id = id.from(_N, "GetWorkflowStepExecutionOutput", "maxAttempts"),
+            type = "integer",
+            name = "maxAttempts",
             target_id = prelude.Integer.id,
         }),
     },
@@ -8687,6 +8907,18 @@ M.WorkflowStepMetadata = schema.new({
             type = "string",
             name = "endTime",
             target_id = prelude.String.id,
+        }),
+        attemptNumber = schema.new({
+            id = id.from(_N, "WorkflowStepMetadata", "attemptNumber"),
+            type = "integer",
+            name = "attemptNumber",
+            target_id = prelude.Integer.id,
+        }),
+        maxAttempts = schema.new({
+            id = id.from(_N, "WorkflowStepMetadata", "maxAttempts"),
+            type = "integer",
+            name = "maxAttempts",
+            target_id = prelude.Integer.id,
         }),
     },
 })

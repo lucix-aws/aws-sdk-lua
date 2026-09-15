@@ -280,6 +280,10 @@ M.IntegrationResourcePropertyFilterList = schema.new({ type = "list", list_membe
 
 M.IntegrationResourcePropertyList = schema.new({ type = "list", list_member = M.IntegrationResourceProperty })
 
+M.IntegrationTablePropertiesFilterList = schema.new({ type = "list", list_member = M.IntegrationTablePropertiesFilter })
+
+M.IntegrationTablePropertiesList = schema.new({ type = "list", list_member = M.IntegrationTableProperties })
+
 M.IterableFormListItemList = schema.new({ type = "list", list_member = M.IterableFormListItem })
 
 M.MaterializedViewRefreshTaskRunsList = schema.new({ type = "list", list_member = M.MaterializedViewRefreshTaskRun })
@@ -461,6 +465,8 @@ M.ReferenceDatasetsList = schema.new({ type = "list", list_member = prelude.Stri
 M.StatisticPropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.IntegrationResourcePropertyFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegrationTablePropertiesFilterValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.OtherMetadataValueList = schema.new({ type = "list", list_member = M.OtherMetadataValueListItem })
 
@@ -14450,6 +14456,12 @@ M.TargetTableConfig = schema.new({
             id = id.from(_N, "TargetTableConfig", "TargetTableName"),
             type = "string",
             name = "TargetTableName",
+            target_id = prelude.String.id,
+        }),
+        IntegrationArn = schema.new({
+            id = id.from(_N, "TargetTableConfig", "IntegrationArn"),
+            type = "string",
+            name = "IntegrationArn",
             target_id = prelude.String.id,
         }),
     },
@@ -29452,6 +29464,111 @@ M.ListIntegrationResourcePropertiesOutput = schema.new({
     },
 })
 
+M.IntegrationTablePropertiesFilter = schema.new({
+    id = id.from(_N, "IntegrationTablePropertiesFilter"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "IntegrationTablePropertiesFilter", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Values = schema.new({
+            id = id.from(_N, "IntegrationTablePropertiesFilter", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListIntegrationTablePropertiesInput = schema.new({
+    id = id.from(_N, "ListIntegrationTablePropertiesRequest"),
+    type = "structure",
+    members = {
+        Marker = schema.new({
+            id = id.from(_N, "ListIntegrationTablePropertiesInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListIntegrationTablePropertiesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.IntegrationTablePropertiesFilter,
+        }),
+        MaxRecords = schema.new({
+            id = id.from(_N, "ListIntegrationTablePropertiesInput", "MaxRecords"),
+            type = "integer",
+            name = "MaxRecords",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.IntegrationTableProperties = schema.new({
+    id = id.from(_N, "IntegrationTableProperties"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "IntegrationTableProperties", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TableName = schema.new({
+            id = id.from(_N, "IntegrationTableProperties", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceTableConfig = schema.new({
+            id = id.from(_N, "IntegrationTableProperties", "SourceTableConfig"),
+            type = "structure",
+            name = "SourceTableConfig",
+            target_id = id.from(_N, "SourceTableConfig"),
+            target = M.SourceTableConfig,
+        }),
+        TargetTableConfig = schema.new({
+            id = id.from(_N, "IntegrationTableProperties", "TargetTableConfig"),
+            type = "structure",
+            name = "TargetTableConfig",
+            target_id = id.from(_N, "TargetTableConfig"),
+            target = M.TargetTableConfig,
+        }),
+    },
+})
+
+M.ListIntegrationTablePropertiesOutput = schema.new({
+    id = id.from(_N, "ListIntegrationTablePropertiesResponse"),
+    type = "structure",
+    members = {
+        IntegrationTablePropertiesList = schema.new({
+            id = id.from(_N, "ListIntegrationTablePropertiesOutput", "IntegrationTablePropertiesList"),
+            type = "list",
+            name = "IntegrationTablePropertiesList",
+            target_id = prelude.Document.id,
+            list_member = M.IntegrationTableProperties,
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "ListIntegrationTablePropertiesOutput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListIterableFormsInput = schema.new({
     id = id.from(_N, "ListIterableFormsRequest"),
     type = "structure",
@@ -39798,6 +39915,17 @@ M.ListIntegrationResourceProperties = schema.operation({
     id = id.from("com.amazonaws.glue", "ListIntegrationResourceProperties"),
     input = M.ListIntegrationResourcePropertiesInput,
     output = M.ListIntegrationResourcePropertiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntegrationTableProperties = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListIntegrationTableProperties"),
+    input = M.ListIntegrationTablePropertiesInput,
+    output = M.ListIntegrationTablePropertiesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

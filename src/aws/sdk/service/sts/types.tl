@@ -224,6 +224,7 @@ local record M
         -- context assertion was generated.
         -- [{"ProviderArn":"arn:aws:iam::aws:contextProvider/IdentityCenter","ContextAssertion":"trusted-context-assertion"}]
         ProvidedContexts: {ProvidedContext}
+        MinimumSessionTokenSize: number
     end
 
     -- Amazon Web Services credentials for API authentication.
@@ -271,6 +272,8 @@ local record M
         -- and lower-case alphanumeric characters with no spaces. You can also include underscores or
         -- any of the following characters: =,.@-
         SourceIdentity: string
+        SessionTokenUtilization: number
+        SessionTokenSize: number
     end
 
     -- The web identity token that was passed is expired or is not valid. Get a new identity
@@ -378,6 +381,7 @@ local record M
         -- that Enables Federated Users to Access the Amazon Web Services Management Console in the
         -- IAM User Guide.
         DurationSeconds: number
+        MinimumSessionTokenSize: number
     end
 
     -- Contains the response to a successful AssumeRoleWithSAML request,
@@ -439,6 +443,8 @@ local record M
         -- consisting of upper- and lower-case alphanumeric characters with no spaces. You can
         -- also include underscores or any of the following characters: =,.@-
         SourceIdentity: string
+        SessionTokenUtilization: number
+        SessionTokenSize: number
     end
 
     -- The identity provider (IdP) reported that authentication failed. This might be because
@@ -553,6 +559,7 @@ local record M
         -- that Enables Federated Users to Access the Amazon Web Services Management Console in the
         -- IAM User Guide.
         DurationSeconds: number
+        MinimumSessionTokenSize: number
     end
 
     -- Contains the response to a successful AssumeRoleWithWebIdentity
@@ -607,6 +614,8 @@ local record M
         -- consisting of upper- and lower-case alphanumeric characters with no spaces. You can
         -- also include underscores or any of the following characters: =,.@-
         SourceIdentity: string
+        SessionTokenUtilization: number
+        SessionTokenSize: number
     end
 
     -- The request could not be fulfilled because the identity provider (IDP) that was asked
@@ -636,6 +645,7 @@ local record M
         -- higher than this setting, the operation fails.
         -- By default, the value is set to 900 seconds.
         DurationSeconds: number
+        MinimumSessionTokenSize: number
     end
 
     record AssumeRootOutput
@@ -654,6 +664,8 @@ local record M
         -- and lower-case alphanumeric characters with no spaces. You can also include underscores or
         -- any of the following characters: =,.@-
         SourceIdentity: string
+        SessionTokenUtilization: number
+        SessionTokenSize: number
     end
 
     record DecodeAuthorizationMessageInput
@@ -822,6 +834,7 @@ local record M
         -- and department are not saved as separate tags, and the session tag passed in
         -- the request takes precedence over the role tag.
         Tags: {Tag}
+        MinimumSessionTokenSize: number
     end
 
     -- Identifiers for the federated user that is associated with the credentials.
@@ -852,6 +865,8 @@ local record M
         -- tags combined passed in the request. The request fails if the packed size is greater than 100 percent,
         -- which means the policies and tags exceeded the allowed space.
         PackedPolicySize: number
+        SessionTokenUtilization: number
+        SessionTokenSize: number
     end
 
     record GetSessionTokenInput
@@ -878,6 +893,7 @@ local record M
         -- The format for this parameter, as described by its regex pattern, is a sequence of six
         -- numeric digits.
         TokenCode: string
+        MinimumSessionTokenSize: number
     end
 
     -- Contains the response to a successful GetSessionToken request,
@@ -888,6 +904,8 @@ local record M
         -- The size of the security token that STS API operations return is not fixed. We
         -- strongly recommend that you make no assumptions about the maximum size.
         Credentials: Credentials
+        SessionTokenUtilization: number
+        SessionTokenSize: number
     end
 
     record GetWebIdentityTokenInput
