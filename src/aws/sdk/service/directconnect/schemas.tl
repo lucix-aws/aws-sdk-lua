@@ -18,6 +18,10 @@ M.MacSecKeyList = schema.new({ type = "list", list_member = M.MacSecKey })
 
 M.BGPPeerList = schema.new({ type = "list", list_member = M.BGPPeer })
 
+M.ConnectionIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResiliencyGroupAssociationList = schema.new({ type = "list", list_member = M.ResiliencyGroupAssociation })
+
 M.ConnectionList = schema.new({ type = "list", list_member = M.Connection })
 
 M.AgreementList = schema.new({ type = "list", list_member = M.CustomerAgreement })
@@ -44,6 +48,8 @@ M.VirtualGatewayList = schema.new({ type = "list", list_member = M.VirtualGatewa
 
 M.VirtualInterfaceList = schema.new({ type = "list", list_member = M.VirtualInterface })
 
+M.ResiliencyGroupSummaryList = schema.new({ type = "list", list_member = M.ResiliencyGroupSummary })
+
 M.RouteList = schema.new({ type = "list", list_member = M.Route })
 
 M.BGPPeerIdList = schema.new({ type = "list", list_member = prelude.String })
@@ -51,6 +57,8 @@ M.BGPPeerIdList = schema.new({ type = "list", list_member = prelude.String })
 M.VirtualInterfaceTestHistoryList = schema.new({ type = "list", list_member = M.VirtualInterfaceTestHistory })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectionIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RouteFilterCidrStringList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -64,7 +72,11 @@ M.ProviderList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AvailableMacSecPortSpeeds = schema.new({ type = "list", list_member = prelude.String })
 
+M.AvailableBillingModeList = schema.new({ type = "list", list_member = M.AvailableBillingMode })
+
 M.AsPathSegmentList = schema.new({ type = "list", list_member = M.AsPathSegment })
+
+M.IncludedRegionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RouteFilterPrefix = schema.new({
     id = id.from(_N, "RouteFilterPrefix"),
@@ -641,6 +653,12 @@ M.AllocateConnectionOnInterconnectOutput = schema.new({
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
         }),
+        billingMode = schema.new({
+            id = id.from(_N, "AllocateConnectionOnInterconnectOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -881,6 +899,12 @@ M.AllocateHostedConnectionOutput = schema.new({
             type = "integer",
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "AllocateHostedConnectionOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1985,6 +2009,77 @@ M.AsPathSegment = schema.new({
     },
 })
 
+M.AssociateConnectionsToResiliencyGroupInput = schema.new({
+    id = id.from(_N, "AssociateConnectionsToResiliencyGroupRequest"),
+    type = "structure",
+    members = {
+        connectionIdentifiers = schema.new({
+            id = id.from(_N, "AssociateConnectionsToResiliencyGroupInput", "connectionIdentifiers"),
+            type = "list",
+            name = "connectionIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "AssociateConnectionsToResiliencyGroupInput", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "AssociateConnectionsToResiliencyGroupInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResiliencyGroupAssociation = schema.new({
+    id = id.from(_N, "ResiliencyGroupAssociation"),
+    type = "structure",
+    members = {
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "ResiliencyGroupAssociation", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+        }),
+        connectionArn = schema.new({
+            id = id.from(_N, "ResiliencyGroupAssociation", "connectionArn"),
+            type = "string",
+            name = "connectionArn",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "ResiliencyGroupAssociation", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateConnectionsToResiliencyGroupOutput = schema.new({
+    id = id.from(_N, "AssociateConnectionsToResiliencyGroupResult"),
+    type = "structure",
+    members = {
+        resiliencyGroupAssociations = schema.new({
+            id = id.from(_N, "AssociateConnectionsToResiliencyGroupOutput", "resiliencyGroupAssociations"),
+            type = "list",
+            name = "resiliencyGroupAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.ResiliencyGroupAssociation,
+        }),
+    },
+})
+
 M.AssociateConnectionWithLagInput = schema.new({
     id = id.from(_N, "AssociateConnectionWithLagRequest"),
     type = "structure",
@@ -2187,6 +2282,12 @@ M.AssociateConnectionWithLagOutput = schema.new({
             type = "integer",
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "AssociateConnectionWithLagOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2393,6 +2494,12 @@ M.AssociateHostedConnectionOutput = schema.new({
             type = "integer",
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "AssociateHostedConnectionOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2668,6 +2775,33 @@ M.AssociateVirtualInterfaceOutput = schema.new({
             type = "string",
             name = "rateLimit",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AvailableBillingMode = schema.new({
+    id = id.from(_N, "AvailableBillingMode"),
+    type = "structure",
+    members = {
+        billingMode = schema.new({
+            id = id.from(_N, "AvailableBillingMode", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
+        availablePortSpeeds = schema.new({
+            id = id.from(_N, "AvailableBillingMode", "availablePortSpeeds"),
+            type = "list",
+            name = "availablePortSpeeds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        includedRegions = schema.new({
+            id = id.from(_N, "AvailableBillingMode", "includedRegions"),
+            type = "list",
+            name = "includedRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -3013,6 +3147,12 @@ M.Connection = schema.new({
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
         }),
+        billingMode = schema.new({
+            id = id.from(_N, "Connection", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3151,6 +3291,12 @@ M.CreateConnectionInput = schema.new({
             type = "boolean",
             name = "requestMACSec",
             target_id = prelude.Boolean.id,
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "CreateConnectionInput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3332,6 +3478,12 @@ M.CreateConnectionOutput = schema.new({
             type = "integer",
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "CreateConnectionOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3853,6 +4005,12 @@ M.CreateLagInput = schema.new({
             name = "requestMACSec",
             target_id = prelude.Boolean.id,
         }),
+        billingMode = schema.new({
+            id = id.from(_N, "CreateLagInput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4028,6 +4186,12 @@ M.CreateLagOutput = schema.new({
             name = "rateLimiterStatus",
             target_id = id.from(_N, "RateLimiterStatus"),
             target = M.RateLimiterStatus,
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "CreateLagOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4675,6 +4839,108 @@ M.CreatePublicVirtualInterfaceOutput = schema.new({
     },
 })
 
+M.CreateResiliencyGroupInput = schema.new({
+    id = id.from(_N, "CreateResiliencyGroupRequest"),
+    type = "structure",
+    members = {
+        resiliencyGroupName = schema.new({
+            id = id.from(_N, "CreateResiliencyGroupInput", "resiliencyGroupName"),
+            type = "string",
+            name = "resiliencyGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        intendedResiliencyModel = schema.new({
+            id = id.from(_N, "CreateResiliencyGroupInput", "intendedResiliencyModel"),
+            type = "string",
+            name = "intendedResiliencyModel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateResiliencyGroupInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateResiliencyGroupInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.ResiliencyGroup = schema.new({
+    id = id.from(_N, "ResiliencyGroup"),
+    type = "structure",
+    members = {
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "ResiliencyGroup", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+        }),
+        resiliencyGroupArn = schema.new({
+            id = id.from(_N, "ResiliencyGroup", "resiliencyGroupArn"),
+            type = "string",
+            name = "resiliencyGroupArn",
+            target_id = prelude.String.id,
+        }),
+        resiliencyGroupName = schema.new({
+            id = id.from(_N, "ResiliencyGroup", "resiliencyGroupName"),
+            type = "string",
+            name = "resiliencyGroupName",
+            target_id = prelude.String.id,
+        }),
+        resiliencyGroupType = schema.new({
+            id = id.from(_N, "ResiliencyGroup", "resiliencyGroupType"),
+            type = "string",
+            name = "resiliencyGroupType",
+            target_id = prelude.String.id,
+        }),
+        ownerAccount = schema.new({
+            id = id.from(_N, "ResiliencyGroup", "ownerAccount"),
+            type = "string",
+            name = "ownerAccount",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "ResiliencyGroup", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "ResiliencyGroup", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateResiliencyGroupOutput = schema.new({
+    id = id.from(_N, "CreateResiliencyGroupResult"),
+    type = "structure",
+    members = {
+        resiliencyGroup = schema.new({
+            id = id.from(_N, "CreateResiliencyGroupOutput", "resiliencyGroup"),
+            type = "structure",
+            name = "resiliencyGroup",
+            target_id = id.from(_N, "ResiliencyGroup"),
+            target = M.ResiliencyGroup,
+        }),
+    },
+})
+
 M.NewTransitVirtualInterface = schema.new({
     id = id.from(_N, "NewTransitVirtualInterface"),
     type = "structure",
@@ -5067,6 +5333,12 @@ M.DeleteConnectionOutput = schema.new({
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
         }),
+        billingMode = schema.new({
+            id = id.from(_N, "DeleteConnectionOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5386,6 +5658,42 @@ M.DeleteLagOutput = schema.new({
             name = "rateLimiterStatus",
             target_id = id.from(_N, "RateLimiterStatus"),
             target = M.RateLimiterStatus,
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "DeleteLagOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteResiliencyGroupInput = schema.new({
+    id = id.from(_N, "DeleteResiliencyGroupRequest"),
+    type = "structure",
+    members = {
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "DeleteResiliencyGroupInput", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResiliencyGroupOutput = schema.new({
+    id = id.from(_N, "DeleteResiliencyGroupResult"),
+    type = "structure",
+    members = {
+        resiliencyGroup = schema.new({
+            id = id.from(_N, "DeleteResiliencyGroupOutput", "resiliencyGroup"),
+            type = "structure",
+            name = "resiliencyGroup",
+            target_id = id.from(_N, "ResiliencyGroup"),
+            target = M.ResiliencyGroup,
         }),
     },
 })
@@ -6304,6 +6612,12 @@ M.Lag = schema.new({
             target_id = id.from(_N, "RateLimiterStatus"),
             target = M.RateLimiterStatus,
         }),
+        billingMode = schema.new({
+            id = id.from(_N, "Lag", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -6418,6 +6732,13 @@ M.Location = schema.new({
             name = "availableMacSecPortSpeeds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        availableBillingModes = schema.new({
+            id = id.from(_N, "Location", "availableBillingModes"),
+            type = "list",
+            name = "availableBillingModes",
+            target_id = prelude.Document.id,
+            list_member = M.AvailableBillingMode,
         }),
     },
 })
@@ -6873,6 +7194,58 @@ M.DisassociateConnectionFromLagOutput = schema.new({
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
         }),
+        billingMode = schema.new({
+            id = id.from(_N, "DisassociateConnectionFromLagOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DisassociateConnectionsFromResiliencyGroupInput = schema.new({
+    id = id.from(_N, "DisassociateConnectionsFromResiliencyGroupRequest"),
+    type = "structure",
+    members = {
+        connectionIdentifiers = schema.new({
+            id = id.from(_N, "DisassociateConnectionsFromResiliencyGroupInput", "connectionIdentifiers"),
+            type = "list",
+            name = "connectionIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "DisassociateConnectionsFromResiliencyGroupInput", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DisassociateConnectionsFromResiliencyGroupInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DisassociateConnectionsFromResiliencyGroupOutput = schema.new({
+    id = id.from(_N, "DisassociateConnectionsFromResiliencyGroupResult"),
+    type = "structure",
+    members = {
+        resiliencyGroupAssociations = schema.new({
+            id = id.from(_N, "DisassociateConnectionsFromResiliencyGroupOutput", "resiliencyGroupAssociations"),
+            type = "list",
+            name = "resiliencyGroupAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.ResiliencyGroupAssociation,
+        }),
     },
 })
 
@@ -6917,6 +7290,166 @@ M.DisassociateMacSecKeyOutput = schema.new({
             name = "macSecKeys",
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
+        }),
+    },
+})
+
+M.GetResiliencyGroupInput = schema.new({
+    id = id.from(_N, "GetResiliencyGroupRequest"),
+    type = "structure",
+    members = {
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "GetResiliencyGroupInput", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetResiliencyGroupOutput = schema.new({
+    id = id.from(_N, "GetResiliencyGroupResult"),
+    type = "structure",
+    members = {
+        resiliencyGroup = schema.new({
+            id = id.from(_N, "GetResiliencyGroupOutput", "resiliencyGroup"),
+            type = "structure",
+            name = "resiliencyGroup",
+            target_id = id.from(_N, "ResiliencyGroup"),
+            target = M.ResiliencyGroup,
+        }),
+    },
+})
+
+M.ListResiliencyGroupAssociationsInput = schema.new({
+    id = id.from(_N, "ListResiliencyGroupAssociationsRequest"),
+    type = "structure",
+    members = {
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "ListResiliencyGroupAssociationsInput", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListResiliencyGroupAssociationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResiliencyGroupAssociationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResiliencyGroupAssociationsOutput = schema.new({
+    id = id.from(_N, "ListResiliencyGroupAssociationsResult"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListResiliencyGroupAssociationsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.ResiliencyGroupAssociation,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResiliencyGroupAssociationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResiliencyGroupsInput = schema.new({
+    id = id.from(_N, "ListResiliencyGroupsRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListResiliencyGroupsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResiliencyGroupsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResiliencyGroupSummary = schema.new({
+    id = id.from(_N, "ResiliencyGroupSummary"),
+    type = "structure",
+    members = {
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "ResiliencyGroupSummary", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+        }),
+        resiliencyGroupArn = schema.new({
+            id = id.from(_N, "ResiliencyGroupSummary", "resiliencyGroupArn"),
+            type = "string",
+            name = "resiliencyGroupArn",
+            target_id = prelude.String.id,
+        }),
+        resiliencyGroupName = schema.new({
+            id = id.from(_N, "ResiliencyGroupSummary", "resiliencyGroupName"),
+            type = "string",
+            name = "resiliencyGroupName",
+            target_id = prelude.String.id,
+        }),
+        resiliencyGroupType = schema.new({
+            id = id.from(_N, "ResiliencyGroupSummary", "resiliencyGroupType"),
+            type = "string",
+            name = "resiliencyGroupType",
+            target_id = prelude.String.id,
+        }),
+        ownerAccount = schema.new({
+            id = id.from(_N, "ResiliencyGroupSummary", "ownerAccount"),
+            type = "string",
+            name = "ownerAccount",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "ResiliencyGroupSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResiliencyGroupsOutput = schema.new({
+    id = id.from(_N, "ListResiliencyGroupsResult"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListResiliencyGroupsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.ResiliencyGroupSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResiliencyGroupsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -7531,6 +8064,58 @@ M.UpdateConnectionOutput = schema.new({
             name = "prefixPoolUnallocatedCountIpv6",
             target_id = prelude.Integer.id,
         }),
+        billingMode = schema.new({
+            id = id.from(_N, "UpdateConnectionOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateConnectionsBillingModeInput = schema.new({
+    id = id.from(_N, "UpdateConnectionsBillingModeRequest"),
+    type = "structure",
+    members = {
+        connectionIds = schema.new({
+            id = id.from(_N, "UpdateConnectionsBillingModeInput", "connectionIds"),
+            type = "list",
+            name = "connectionIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "UpdateConnectionsBillingModeInput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateConnectionsBillingModeOutput = schema.new({
+    id = id.from(_N, "UpdateConnectionsBillingModeResponse"),
+    type = "structure",
+    members = {
+        billingMode = schema.new({
+            id = id.from(_N, "UpdateConnectionsBillingModeOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
+        connections = schema.new({
+            id = id.from(_N, "UpdateConnectionsBillingModeOutput", "connections"),
+            type = "list",
+            name = "connections",
+            target_id = prelude.Document.id,
+            list_member = M.Connection,
+        }),
     },
 })
 
@@ -7823,6 +8408,57 @@ M.UpdateLagOutput = schema.new({
             name = "rateLimiterStatus",
             target_id = id.from(_N, "RateLimiterStatus"),
             target = M.RateLimiterStatus,
+        }),
+        billingMode = schema.new({
+            id = id.from(_N, "UpdateLagOutput", "billingMode"),
+            type = "string",
+            name = "billingMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateResiliencyGroupInput = schema.new({
+    id = id.from(_N, "UpdateResiliencyGroupRequest"),
+    type = "structure",
+    members = {
+        resiliencyGroupId = schema.new({
+            id = id.from(_N, "UpdateResiliencyGroupInput", "resiliencyGroupId"),
+            type = "string",
+            name = "resiliencyGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resiliencyGroupName = schema.new({
+            id = id.from(_N, "UpdateResiliencyGroupInput", "resiliencyGroupName"),
+            type = "string",
+            name = "resiliencyGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateResiliencyGroupInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateResiliencyGroupOutput = schema.new({
+    id = id.from(_N, "UpdateResiliencyGroupResult"),
+    type = "structure",
+    members = {
+        resiliencyGroup = schema.new({
+            id = id.from(_N, "UpdateResiliencyGroupOutput", "resiliencyGroup"),
+            type = "structure",
+            name = "resiliencyGroup",
+            target_id = id.from(_N, "ResiliencyGroup"),
+            target = M.ResiliencyGroup,
         }),
     },
 })
@@ -8166,6 +8802,17 @@ M.AllocateTransitVirtualInterface = schema.operation({
     },
 })
 
+M.AssociateConnectionsToResiliencyGroup = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "AssociateConnectionsToResiliencyGroup"),
+    input = M.AssociateConnectionsToResiliencyGroupInput,
+    output = M.AssociateConnectionsToResiliencyGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AssociateConnectionWithLag = schema.operation({
     id = id.from("com.amazonaws.directconnect", "AssociateConnectionWithLag"),
     input = M.AssociateConnectionWithLagInput,
@@ -8364,6 +9011,17 @@ M.CreatePublicVirtualInterface = schema.operation({
     },
 })
 
+M.CreateResiliencyGroup = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "CreateResiliencyGroup"),
+    input = M.CreateResiliencyGroupInput,
+    output = M.CreateResiliencyGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateTransitVirtualInterface = schema.operation({
     id = id.from("com.amazonaws.directconnect", "CreateTransitVirtualInterface"),
     input = M.CreateTransitVirtualInterfaceInput,
@@ -8445,6 +9103,17 @@ M.DeleteLag = schema.operation({
     id = id.from("com.amazonaws.directconnect", "DeleteLag"),
     input = M.DeleteLagInput,
     output = M.DeleteLagOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResiliencyGroup = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DeleteResiliencyGroup"),
+    input = M.DeleteResiliencyGroupInput,
+    output = M.DeleteResiliencyGroupOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -8672,10 +9341,54 @@ M.DisassociateConnectionFromLag = schema.operation({
     },
 })
 
+M.DisassociateConnectionsFromResiliencyGroup = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "DisassociateConnectionsFromResiliencyGroup"),
+    input = M.DisassociateConnectionsFromResiliencyGroupInput,
+    output = M.DisassociateConnectionsFromResiliencyGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisassociateMacSecKey = schema.operation({
     id = id.from("com.amazonaws.directconnect", "DisassociateMacSecKey"),
     input = M.DisassociateMacSecKeyInput,
     output = M.DisassociateMacSecKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResiliencyGroup = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "GetResiliencyGroup"),
+    input = M.GetResiliencyGroupInput,
+    output = M.GetResiliencyGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResiliencyGroupAssociations = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ListResiliencyGroupAssociations"),
+    input = M.ListResiliencyGroupAssociationsInput,
+    output = M.ListResiliencyGroupAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResiliencyGroups = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ListResiliencyGroups"),
+    input = M.ListResiliencyGroupsInput,
+    output = M.ListResiliencyGroupsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -8760,6 +9473,17 @@ M.UpdateConnection = schema.operation({
     },
 })
 
+M.UpdateConnectionsBillingMode = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "UpdateConnectionsBillingMode"),
+    input = M.UpdateConnectionsBillingModeInput,
+    output = M.UpdateConnectionsBillingModeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateDirectConnectGateway = schema.operation({
     id = id.from("com.amazonaws.directconnect", "UpdateDirectConnectGateway"),
     input = M.UpdateDirectConnectGatewayInput,
@@ -8786,6 +9510,17 @@ M.UpdateLag = schema.operation({
     id = id.from("com.amazonaws.directconnect", "UpdateLag"),
     input = M.UpdateLagInput,
     output = M.UpdateLagOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResiliencyGroup = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "UpdateResiliencyGroup"),
+    input = M.UpdateResiliencyGroupInput,
+    output = M.UpdateResiliencyGroupOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

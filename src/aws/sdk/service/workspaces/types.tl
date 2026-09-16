@@ -415,6 +415,10 @@ local record M
         "GRAPHICS_G6F_2XLARGE"
         "GRAPHICS_G6F_4XLARGE"
         "GRAPHICS_GR6F_4XLARGE"
+        "GRAPHICS_G7_2XLARGE"
+        "GRAPHICS_G7_4XLARGE"
+        "GRAPHICS_G7_8XLARGE"
+        "GRAPHICS_G7_12XLARGE"
     end
 
     -- Describes the compute type of the bundle.
@@ -991,7 +995,7 @@ local record M
         -- Only available for WorkSpaces created with PCoIP bundles.
         -- The Protocols property is case sensitive. Ensure you use PCOIP or DCV (formerly WSP).
         -- Unavailable for Windows 7 WorkSpaces and WorkSpaces using GPU-based bundles
-        -- (Graphics, GraphicsPro, Graphics.g4dn, GraphicsPro.g4dn, and Graphics.g6).
+        -- (Graphics, GraphicsPro, Graphics.g4dn, GraphicsPro.g4dn, Graphics.g6, and Graphics.g7).
         Protocols: {string}
         -- The name of the operating system.
         OperatingSystemName: string
@@ -2678,6 +2682,7 @@ local record M
         "BASE"
         "GRAPHICS_G4DN"
         "GRAPHICS_G6"
+        "GRAPHICS_G7"
     end
 
     -- The client branding attributes to import for iOS device types. These attributes are

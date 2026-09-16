@@ -2242,6 +2242,19 @@ M.IdentityProviderDetails = schema.new({
     },
 })
 
+M.ProxyConfig = schema.new({
+    id = id.from(_N, "ProxyConfig"),
+    type = "structure",
+    members = {
+        SftpMode = schema.new({
+            id = id.from(_N, "ProxyConfig", "SftpMode"),
+            type = "string",
+            name = "SftpMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ProtocolDetails = schema.new({
     id = id.from(_N, "ProtocolDetails"),
     type = "structure",
@@ -2270,6 +2283,13 @@ M.ProtocolDetails = schema.new({
             name = "As2Transports",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        ProxyConfig = schema.new({
+            id = id.from(_N, "ProtocolDetails", "ProxyConfig"),
+            type = "structure",
+            name = "ProxyConfig",
+            target_id = id.from(_N, "ProxyConfig"),
+            target = M.ProxyConfig,
         }),
     },
 })

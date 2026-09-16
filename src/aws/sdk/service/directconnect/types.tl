@@ -130,6 +130,20 @@ local record M
         vlan: number
     end
 
+    enum BillingMode
+        "PayAsYouGo"
+        "FlatRateTier1"
+        "FlatRateTier2"
+        "FlatRateTier3"
+        "FlatRateTier4"
+        "FlatRateTier5"
+        "PortPairFlatRateTier1"
+        "PortPairFlatRateTier2"
+        "PortPairFlatRateTier3"
+        "PortPairFlatRateTier4"
+        "PortPairFlatRateTier5"
+    end
+
     enum ConnectionState
         "ordering"
         "requested"
@@ -255,6 +269,8 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
     end
 
     record AllocateHostedConnectionInput
@@ -345,6 +361,8 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
     end
 
     -- A tag key was specified more than once.
@@ -889,6 +907,39 @@ local record M
         path: {number}
     end
 
+    record AssociateConnectionsToResiliencyGroupInput
+        -- The IDs or ARNs of the connections to associate with the resiliency group.
+        connectionIdentifiers: {string}
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request.
+        clientToken: string
+    end
+
+    enum ResiliencyGroupAssociationState
+        "associating"
+        "associated"
+        "disassociating"
+        "disassociated"
+    end
+
+    -- Information about an association between a connection and a resiliency group.
+    record ResiliencyGroupAssociation
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+        -- The Amazon Resource Name (ARN) of the associated connection.
+        connectionArn: string
+        -- The state of the association. The valid values are associating,
+        -- associated, disassociating, and disassociated.
+        state: string
+    end
+
+    record AssociateConnectionsToResiliencyGroupOutput
+        -- The connection associations for the resiliency group.
+        resiliencyGroupAssociations: {ResiliencyGroupAssociation}
+    end
+
     record AssociateConnectionWithLagInput
         -- The ID of the connection.
         connectionId: string
@@ -966,6 +1017,8 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
     end
 
     record AssociateHostedConnectionInput
@@ -1045,6 +1098,8 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
     end
 
     record AssociateMacSecKeyInput
@@ -1170,6 +1225,16 @@ local record M
         prefixPoolAllocatedCountIpv6: number
         -- The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 600Mbps, 700Mbps, 800Mbps, 900Mbps, 1Gbps, 1.2Gbps, 1.5Gbps, 1.8Gbps, 2Gbps, 2.1Gbps, 2.4Gbps, 2.7Gbps, 3Gbps, 3.2Gbps, 3.6Gbps, 4Gbps, 5Gbps, 6Gbps, 7Gbps, 8Gbps, 9Gbps, 10Gbps, 12Gbps, 15Gbps, 18Gbps, 20Gbps, 21Gbps, 24Gbps, 27Gbps, 30Gbps, 32Gbps, 36Gbps, 40Gbps, 50Gbps, 60Gbps, 70Gbps, 80Gbps, 100Gbps, 120Gbps, 150Gbps, 180Gbps, 200Gbps, 210Gbps, 240Gbps, 270Gbps, 300Gbps, 320Gbps, 360Gbps, 400Gbps, 450Gbps, 480Gbps, 500Gbps, 540Gbps, 600Gbps, 700Gbps, 800Gbps, 900Gbps, 1Tbps, 1.1Tbps, 1.2Tbps, 1.3Tbps, 1.4Tbps, 1.5Tbps, 1.6Tbps.
         rateLimit: string
+    end
+
+    -- Information about a billing mode available at an Direct Connect location.
+    record AvailableBillingMode
+        -- The billing mode.
+        billingMode: string
+        -- The port speeds available for the billing mode.
+        availablePortSpeeds: {string}
+        -- The Amazon Web Services Regions included with the billing mode.
+        includedRegions: {string}
     end
 
     record ConfirmConnectionInput
@@ -1337,6 +1402,8 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
     end
 
     -- Information about a new BGP peer.
@@ -1367,6 +1434,15 @@ local record M
         virtualInterface: VirtualInterface
     end
 
+    enum RequestBillingMode
+        "PayAsYouGo"
+        "FlatRateTier1"
+        "FlatRateTier2"
+        "FlatRateTier3"
+        "FlatRateTier4"
+        "FlatRateTier5"
+    end
+
     record CreateConnectionInput
         -- The location of the connection.
         location: string
@@ -1383,6 +1459,8 @@ local record M
         -- Indicates whether you want the connection to support MAC Security (MACsec).
         -- MAC Security (MACsec) is unavailable on hosted connections. For information about MAC Security (MACsec) prerequisites, see MAC Security in Direct Connect in the Direct Connect User Guide.
         requestMACSec: boolean
+        -- The billing mode for the connection.
+        billingMode: string
     end
 
     -- Information about an Direct Connect connection.
@@ -1455,6 +1533,8 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
     end
 
     record CreateDirectConnectGatewayInput
@@ -1670,6 +1750,8 @@ local record M
         -- Indicates whether the connection will support MAC Security (MACsec).
         -- All connections in the LAG must be capable of supporting MAC Security (MACsec). For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties in the Direct Connect User Guide.
         requestMACSec: boolean
+        -- The billing mode for the LAG.
+        billingMode: string
     end
 
     enum LagState
@@ -1749,6 +1831,8 @@ local record M
         prefixPoolUnallocatedCountIpv6: number
         -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
         rateLimiterStatus: RateLimiterStatus
+        -- The billing mode of the LAG.
+        billingMode: string
     end
 
     -- Information about a private virtual interface.
@@ -2042,6 +2126,61 @@ local record M
         rateLimit: string
     end
 
+    enum ResiliencyModel
+        "maximum-resiliency"
+        "high-resiliency"
+        "basic-resiliency"
+    end
+
+    record CreateResiliencyGroupInput
+        -- The name of the resiliency group.
+        resiliencyGroupName: string
+        -- The resiliency model that the resiliency group is intended to meet. The valid values are
+        -- maximum-resiliency, high-resiliency, and
+        -- basic-resiliency.
+        intendedResiliencyModel: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request.
+        clientToken: string
+        -- The tags to associate with the resiliency group.
+        tags: {Tag}
+    end
+
+    enum ResiliencyGroupType
+        "Managed"
+    end
+
+    enum ResiliencyGroupState
+        "pending"
+        "available"
+        "deleting"
+        "deleted"
+    end
+
+    -- Information about a resiliency group.
+    record ResiliencyGroup
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+        -- The Amazon Resource Name (ARN) of the resiliency group.
+        resiliencyGroupArn: string
+        -- The name of the resiliency group.
+        resiliencyGroupName: string
+        -- The type of the resiliency group. The valid value is Managed.
+        resiliencyGroupType: string
+        -- The ID of the Amazon Web Services account that owns the resiliency group.
+        ownerAccount: string
+        -- The state of the resiliency group. The valid values are pending,
+        -- available, deleting, and deleted.
+        state: string
+        -- The tags associated with the resiliency group.
+        tags: {Tag}
+    end
+
+    record CreateResiliencyGroupOutput
+        -- Information about the resiliency group.
+        resiliencyGroup: ResiliencyGroup
+    end
+
     -- Information about a transit virtual interface.
     record NewTransitVirtualInterface
         -- The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).
@@ -2213,6 +2352,8 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
     end
 
     record DeleteDirectConnectGatewayInput
@@ -2339,6 +2480,18 @@ local record M
         prefixPoolUnallocatedCountIpv6: number
         -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
         rateLimiterStatus: RateLimiterStatus
+        -- The billing mode of the LAG.
+        billingMode: string
+    end
+
+    record DeleteResiliencyGroupInput
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+    end
+
+    record DeleteResiliencyGroupOutput
+        -- Information about the resiliency group.
+        resiliencyGroup: ResiliencyGroup
     end
 
     record DeleteVirtualInterfaceInput
@@ -2744,6 +2897,8 @@ local record M
         prefixPoolUnallocatedCountIpv6: number
         -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
         rateLimiterStatus: RateLimiterStatus
+        -- The billing mode of the LAG.
+        billingMode: string
     end
 
     record DescribeLagsOutput
@@ -2788,6 +2943,9 @@ local record M
         availableProviders: {string}
         -- The available MAC Security (MACsec) port speeds for the location.
         availableMacSecPortSpeeds: {string}
+        -- The billing modes available at the location, including the port speeds and
+        -- Amazon Web Services Regions supported by each mode.
+        availableBillingModes: {AvailableBillingMode}
     end
 
     record DescribeLocationsOutput
@@ -2966,6 +3124,23 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
+    end
+
+    record DisassociateConnectionsFromResiliencyGroupInput
+        -- The IDs or ARNs of the connections to disassociate from the resiliency group.
+        connectionIdentifiers: {string}
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request.
+        clientToken: string
+    end
+
+    record DisassociateConnectionsFromResiliencyGroupOutput
+        -- The connection associations for the resiliency group.
+        resiliencyGroupAssociations: {ResiliencyGroupAssociation}
     end
 
     record DisassociateMacSecKeyInput
@@ -2982,6 +3157,68 @@ local record M
         connectionId: string
         -- The MAC Security (MACsec) security keys no longer associated with the connection.
         macSecKeys: {MacSecKey}
+    end
+
+    record GetResiliencyGroupInput
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+    end
+
+    record GetResiliencyGroupOutput
+        -- Information about the resiliency group.
+        resiliencyGroup: ResiliencyGroup
+    end
+
+    record ListResiliencyGroupAssociationsInput
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+        -- The maximum number of results to return with a single call.
+        -- To retrieve the remaining results, make another call with the returned nextToken value.
+        -- If MaxResults is given a value larger than 100, only 100 results are
+        -- returned.
+        maxResults: number
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    record ListResiliencyGroupAssociationsOutput
+        -- The connection associations for the resiliency group.
+        items: {ResiliencyGroupAssociation}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
+    end
+
+    record ListResiliencyGroupsInput
+        -- The maximum number of results to return with a single call.
+        -- To retrieve the remaining results, make another call with the returned nextToken value.
+        -- If MaxResults is given a value larger than 100, only 100 results are
+        -- returned.
+        maxResults: number
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    -- Summary information about a resiliency group.
+    record ResiliencyGroupSummary
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+        -- The Amazon Resource Name (ARN) of the resiliency group.
+        resiliencyGroupArn: string
+        -- The name of the resiliency group.
+        resiliencyGroupName: string
+        -- The type of the resiliency group. The valid value is Managed.
+        resiliencyGroupType: string
+        -- The ID of the Amazon Web Services account that owns the resiliency group.
+        ownerAccount: string
+        -- The state of the resiliency group.
+        state: string
+    end
+
+    record ListResiliencyGroupsOutput
+        -- Summary information about the resiliency groups.
+        items: {ResiliencyGroupSummary}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
     end
 
     enum RouteDirection
@@ -3221,6 +3458,25 @@ local record M
         prefixPoolUnallocatedCountIpv4: number
         -- The number of inbound IPv6 route prefixes in the connection prefix pool not yet allocated to a virtual interface. Not applicable to hosted connections or interconnects.
         prefixPoolUnallocatedCountIpv6: number
+        -- The billing mode of the connection.
+        billingMode: string
+    end
+
+    record UpdateConnectionsBillingModeInput
+        -- The IDs of the connections to update. You can specify from 1 to 200 connections.
+        connectionIds: {string}
+        -- The billing mode to apply to the specified connections. The valid values are
+        -- PayAsYouGo, FlatRateTier1, FlatRateTier2,
+        -- FlatRateTier3, FlatRateTier4, and
+        -- FlatRateTier5.
+        billingMode: string
+    end
+
+    record UpdateConnectionsBillingModeOutput
+        -- The billing mode applied to the connections.
+        billingMode: string
+        -- The connections with the updated billing mode.
+        connections: {Connection}
     end
 
     record UpdateDirectConnectGatewayInput
@@ -3328,6 +3584,23 @@ local record M
         prefixPoolUnallocatedCountIpv6: number
         -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
         rateLimiterStatus: RateLimiterStatus
+        -- The billing mode of the LAG.
+        billingMode: string
+    end
+
+    record UpdateResiliencyGroupInput
+        -- The ID of the resiliency group.
+        resiliencyGroupId: string
+        -- The new name of the resiliency group.
+        resiliencyGroupName: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request.
+        clientToken: string
+    end
+
+    record UpdateResiliencyGroupOutput
+        -- Information about the resiliency group.
+        resiliencyGroup: ResiliencyGroup
     end
 
     record UpdateVirtualInterfaceAttributesInput

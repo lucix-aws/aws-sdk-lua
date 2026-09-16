@@ -24,6 +24,7 @@ local record Client
     allocatePrivateVirtualInterface: function(Client, types.AllocatePrivateVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AllocatePrivateVirtualInterfaceOutput>
     allocatePublicVirtualInterface: function(Client, types.AllocatePublicVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AllocatePublicVirtualInterfaceOutput>
     allocateTransitVirtualInterface: function(Client, types.AllocateTransitVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AllocateTransitVirtualInterfaceOutput>
+    associateConnectionsToResiliencyGroup: function(Client, types.AssociateConnectionsToResiliencyGroupInput, ? base_client.InvokeOptions): async.Operation<types.AssociateConnectionsToResiliencyGroupOutput>
     associateConnectionWithLag: function(Client, types.AssociateConnectionWithLagInput, ? base_client.InvokeOptions): async.Operation<types.AssociateConnectionWithLagOutput>
     associateHostedConnection: function(Client, types.AssociateHostedConnectionInput, ? base_client.InvokeOptions): async.Operation<types.AssociateHostedConnectionOutput>
     associateMacSecKey: function(Client, types.AssociateMacSecKeyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateMacSecKeyOutput>
@@ -42,6 +43,7 @@ local record Client
     createLag: function(Client, types.CreateLagInput, ? base_client.InvokeOptions): async.Operation<types.CreateLagOutput>
     createPrivateVirtualInterface: function(Client, types.CreatePrivateVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateVirtualInterfaceOutput>
     createPublicVirtualInterface: function(Client, types.CreatePublicVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreatePublicVirtualInterfaceOutput>
+    createResiliencyGroup: function(Client, types.CreateResiliencyGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateResiliencyGroupOutput>
     createTransitVirtualInterface: function(Client, types.CreateTransitVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitVirtualInterfaceOutput>
     deleteBGPPeer: function(Client, types.DeleteBGPPeerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBGPPeerOutput>
     deleteConnection: function(Client, types.DeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
@@ -50,6 +52,7 @@ local record Client
     deleteDirectConnectGatewayAssociationProposal: function(Client, types.DeleteDirectConnectGatewayAssociationProposalInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDirectConnectGatewayAssociationProposalOutput>
     deleteInterconnect: function(Client, types.DeleteInterconnectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInterconnectOutput>
     deleteLag: function(Client, types.DeleteLagInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLagOutput>
+    deleteResiliencyGroup: function(Client, types.DeleteResiliencyGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResiliencyGroupOutput>
     deleteVirtualInterface: function(Client, types.DeleteVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVirtualInterfaceOutput>
     describeConnectionLoa: function(Client, types.DescribeConnectionLoaInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectionLoaOutput>
     describeConnections: function(Client, types.DescribeConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectionsOutput>
@@ -70,7 +73,11 @@ local record Client
     describeVirtualGateways: function(Client, types.DescribeVirtualGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualGatewaysOutput>
     describeVirtualInterfaces: function(Client, types.DescribeVirtualInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualInterfacesOutput>
     disassociateConnectionFromLag: function(Client, types.DisassociateConnectionFromLagInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateConnectionFromLagOutput>
+    disassociateConnectionsFromResiliencyGroup: function(Client, types.DisassociateConnectionsFromResiliencyGroupInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateConnectionsFromResiliencyGroupOutput>
     disassociateMacSecKey: function(Client, types.DisassociateMacSecKeyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMacSecKeyOutput>
+    getResiliencyGroup: function(Client, types.GetResiliencyGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetResiliencyGroupOutput>
+    listResiliencyGroupAssociations: function(Client, types.ListResiliencyGroupAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListResiliencyGroupAssociationsOutput>
+    listResiliencyGroups: function(Client, types.ListResiliencyGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListResiliencyGroupsOutput>
     listVirtualInterfaceRoutes: function(Client, types.ListVirtualInterfaceRoutesInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceRoutesOutput>
     listVirtualInterfaceTestHistory: function(Client, types.ListVirtualInterfaceTestHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceTestHistoryOutput>
     startBgpFailoverTest: function(Client, types.StartBgpFailoverTestInput, ? base_client.InvokeOptions): async.Operation<types.StartBgpFailoverTestOutput>
@@ -78,9 +85,11 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateConnection: function(Client, types.UpdateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
+    updateConnectionsBillingMode: function(Client, types.UpdateConnectionsBillingModeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionsBillingModeOutput>
     updateDirectConnectGateway: function(Client, types.UpdateDirectConnectGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayOutput>
     updateDirectConnectGatewayAssociation: function(Client, types.UpdateDirectConnectGatewayAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayAssociationOutput>
     updateLag: function(Client, types.UpdateLagInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLagOutput>
+    updateResiliencyGroup: function(Client, types.UpdateResiliencyGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResiliencyGroupOutput>
     updateVirtualInterfaceAttributes: function(Client, types.UpdateVirtualInterfaceAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVirtualInterfaceAttributesOutput>
 end
 
@@ -148,6 +157,10 @@ end
 
 function C:allocateTransitVirtualInterface(input: types.AllocateTransitVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.AllocateTransitVirtualInterfaceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocateTransitVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.AllocateTransitVirtualInterfaceOutput>
+end
+
+function C:associateConnectionsToResiliencyGroup(input: types.AssociateConnectionsToResiliencyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateConnectionsToResiliencyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateConnectionsToResiliencyGroup as schema.OperationSchema, input, options) as async.Operation<types.AssociateConnectionsToResiliencyGroupOutput>
 end
 
 function C:associateConnectionWithLag(input: types.AssociateConnectionWithLagInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateConnectionWithLagOutput>
@@ -222,6 +235,10 @@ function C:createPublicVirtualInterface(input: types.CreatePublicVirtualInterfac
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePublicVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.CreatePublicVirtualInterfaceOutput>
 end
 
+function C:createResiliencyGroup(input: types.CreateResiliencyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResiliencyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResiliencyGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateResiliencyGroupOutput>
+end
+
 function C:createTransitVirtualInterface(input: types.CreateTransitVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitVirtualInterfaceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitVirtualInterfaceOutput>
 end
@@ -252,6 +269,10 @@ end
 
 function C:deleteLag(input: types.DeleteLagInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLagOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLag as schema.OperationSchema, input, options) as async.Operation<types.DeleteLagOutput>
+end
+
+function C:deleteResiliencyGroup(input: types.DeleteResiliencyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResiliencyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResiliencyGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteResiliencyGroupOutput>
 end
 
 function C:deleteVirtualInterface(input: types.DeleteVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVirtualInterfaceOutput>
@@ -334,8 +355,24 @@ function C:disassociateConnectionFromLag(input: types.DisassociateConnectionFrom
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateConnectionFromLag as schema.OperationSchema, input, options) as async.Operation<types.DisassociateConnectionFromLagOutput>
 end
 
+function C:disassociateConnectionsFromResiliencyGroup(input: types.DisassociateConnectionsFromResiliencyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateConnectionsFromResiliencyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateConnectionsFromResiliencyGroup as schema.OperationSchema, input, options) as async.Operation<types.DisassociateConnectionsFromResiliencyGroupOutput>
+end
+
 function C:disassociateMacSecKey(input: types.DisassociateMacSecKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMacSecKeyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMacSecKey as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMacSecKeyOutput>
+end
+
+function C:getResiliencyGroup(input: types.GetResiliencyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetResiliencyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResiliencyGroup as schema.OperationSchema, input, options) as async.Operation<types.GetResiliencyGroupOutput>
+end
+
+function C:listResiliencyGroupAssociations(input: types.ListResiliencyGroupAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResiliencyGroupAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResiliencyGroupAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListResiliencyGroupAssociationsOutput>
+end
+
+function C:listResiliencyGroups(input: types.ListResiliencyGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResiliencyGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResiliencyGroups as schema.OperationSchema, input, options) as async.Operation<types.ListResiliencyGroupsOutput>
 end
 
 function C:listVirtualInterfaceRoutes(input: types.ListVirtualInterfaceRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceRoutesOutput>
@@ -366,6 +403,10 @@ function C:updateConnection(input: types.UpdateConnectionInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnection as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectionOutput>
 end
 
+function C:updateConnectionsBillingMode(input: types.UpdateConnectionsBillingModeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectionsBillingModeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectionsBillingMode as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectionsBillingModeOutput>
+end
+
 function C:updateDirectConnectGateway(input: types.UpdateDirectConnectGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDirectConnectGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateDirectConnectGatewayOutput>
 end
@@ -376,6 +417,10 @@ end
 
 function C:updateLag(input: types.UpdateLagInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLagOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLag as schema.OperationSchema, input, options) as async.Operation<types.UpdateLagOutput>
+end
+
+function C:updateResiliencyGroup(input: types.UpdateResiliencyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResiliencyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResiliencyGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateResiliencyGroupOutput>
 end
 
 function C:updateVirtualInterfaceAttributes(input: types.UpdateVirtualInterfaceAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVirtualInterfaceAttributesOutput>

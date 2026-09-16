@@ -2310,6 +2310,12 @@ M.CreateAgentRuntimeInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        platformVersion = schema.new({
+            id = id.from(_N, "CreateAgentRuntimeInput", "platformVersion"),
+            type = "string",
+            name = "platformVersion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2675,6 +2681,12 @@ M.GetAgentRuntimeOutput = schema.new({
             target_id = id.from(_N, "CapacityProviderConfiguration"),
             target = M.CapacityProviderConfiguration,
         }),
+        platformVersion = schema.new({
+            id = id.from(_N, "GetAgentRuntimeOutput", "platformVersion"),
+            type = "string",
+            name = "platformVersion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2960,6 +2972,12 @@ M.UpdateAgentRuntimeInput = schema.new({
             name = "capacityProviderConfiguration",
             target_id = id.from(_N, "CapacityProviderConfiguration"),
             target = M.CapacityProviderConfiguration,
+        }),
+        platformVersion = schema.new({
+            id = id.from(_N, "UpdateAgentRuntimeInput", "platformVersion"),
+            type = "string",
+            name = "platformVersion",
+            target_id = prelude.String.id,
         }),
         clientToken = schema.new({
             id = id.from(_N, "UpdateAgentRuntimeInput", "clientToken"),

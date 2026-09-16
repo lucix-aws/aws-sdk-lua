@@ -672,6 +672,8 @@ local record M
         capacityProviderConfiguration: CapacityProviderConfiguration
         -- A map of tag keys and values to assign to the agent runtime. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
         tags: {string : string}
+        -- The version of the runtime platform to use for the AgentCore Runtime.
+        platformVersion: string
     end
 
     enum AgentRuntimeStatus
@@ -777,6 +779,8 @@ local record M
         filesystemConfigurations: {FilesystemConfiguration}
         -- The capacity provider configuration for the AgentCore Runtime.
         capacityProviderConfiguration: CapacityProviderConfiguration
+        -- The version of the runtime platform used by the AgentCore Runtime.
+        platformVersion: string
     end
 
     record ListAgentRuntimesInput
@@ -853,6 +857,8 @@ local record M
         filesystemConfigurations: {FilesystemConfiguration}
         -- The updated capacity provider configuration for the AgentCore Runtime.
         capacityProviderConfiguration: CapacityProviderConfiguration
+        -- The updated version of the runtime platform to use for the AgentCore Runtime.
+        platformVersion: string
         -- A unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
     end
