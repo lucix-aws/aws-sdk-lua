@@ -425,6 +425,68 @@ M.ApplicationMetrics = schema.new({
     },
 })
 
+M.ImageBuildConfiguration = schema.new({
+    id = id.from(_N, "ImageBuildConfiguration"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ImageBuildConfiguration", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        DockerfileLocation = schema.new({
+            id = id.from(_N, "ImageBuildConfiguration", "DockerfileLocation"),
+            type = "string",
+            name = "DockerfileLocation",
+            target_id = prelude.String.id,
+        }),
+        Buildpack = schema.new({
+            id = id.from(_N, "ImageBuildConfiguration", "Buildpack"),
+            type = "string",
+            name = "Buildpack",
+            target_id = prelude.String.id,
+        }),
+        Architecture = schema.new({
+            id = id.from(_N, "ImageBuildConfiguration", "Architecture"),
+            type = "string",
+            name = "Architecture",
+            target_id = prelude.String.id,
+        }),
+        CodeBuildServiceRole = schema.new({
+            id = id.from(_N, "ImageBuildConfiguration", "CodeBuildServiceRole"),
+            type = "string",
+            name = "CodeBuildServiceRole",
+            target_id = prelude.String.id,
+        }),
+        ComputeType = schema.new({
+            id = id.from(_N, "ImageBuildConfiguration", "ComputeType"),
+            type = "string",
+            name = "ComputeType",
+            target_id = prelude.String.id,
+        }),
+        TimeoutInMinutes = schema.new({
+            id = id.from(_N, "ImageBuildConfiguration", "TimeoutInMinutes"),
+            type = "integer",
+            name = "TimeoutInMinutes",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ImageSource = schema.new({
+    id = id.from(_N, "ImageSource"),
+    type = "structure",
+    members = {
+        Uri = schema.new({
+            id = id.from(_N, "ImageSource", "Uri"),
+            type = "string",
+            name = "Uri",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SourceBuildInformation = schema.new({
     id = id.from(_N, "SourceBuildInformation"),
     type = "structure",
@@ -525,6 +587,26 @@ M.ApplicationVersionDescription = schema.new({
             name = "SourceBundle",
             target_id = id.from(_N, "S3Location"),
             target = M.S3Location,
+        }),
+        ImageSource = schema.new({
+            id = id.from(_N, "ApplicationVersionDescription", "ImageSource"),
+            type = "structure",
+            name = "ImageSource",
+            target_id = id.from(_N, "ImageSource"),
+            target = M.ImageSource,
+        }),
+        ImageBuildConfiguration = schema.new({
+            id = id.from(_N, "ApplicationVersionDescription", "ImageBuildConfiguration"),
+            type = "structure",
+            name = "ImageBuildConfiguration",
+            target_id = id.from(_N, "ImageBuildConfiguration"),
+            target = M.ImageBuildConfiguration,
+        }),
+        Process = schema.new({
+            id = id.from(_N, "ApplicationVersionDescription", "Process"),
+            type = "boolean",
+            name = "Process",
+            target_id = prelude.Boolean.id,
         }),
         DateCreated = schema.new({
             id = id.from(_N, "ApplicationVersionDescription", "DateCreated"),
@@ -1185,6 +1267,27 @@ M.BuildConfiguration = schema.new({
     },
 })
 
+M.ImageConfiguration = schema.new({
+    id = id.from(_N, "ImageConfiguration"),
+    type = "structure",
+    members = {
+        Source = schema.new({
+            id = id.from(_N, "ImageConfiguration", "Source"),
+            type = "structure",
+            name = "Source",
+            target_id = id.from(_N, "ImageSource"),
+            target = M.ImageSource,
+        }),
+        Build = schema.new({
+            id = id.from(_N, "ImageConfiguration", "Build"),
+            type = "structure",
+            name = "Build",
+            target_id = id.from(_N, "ImageBuildConfiguration"),
+            target = M.ImageBuildConfiguration,
+        }),
+    },
+})
+
 M.CreateApplicationVersionInput = schema.new({
     id = id.from(_N, "CreateApplicationVersionMessage"),
     type = "structure",
@@ -1252,6 +1355,13 @@ M.CreateApplicationVersionInput = schema.new({
             name = "Tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        ImageConfiguration = schema.new({
+            id = id.from(_N, "CreateApplicationVersionInput", "ImageConfiguration"),
+            type = "structure",
+            name = "ImageConfiguration",
+            target_id = id.from(_N, "ImageConfiguration"),
+            target = M.ImageConfiguration,
         }),
     },
 })
@@ -2974,6 +3084,19 @@ M.DescribeEnvironmentResourcesInput = schema.new({
     },
 })
 
+M.Cluster = schema.new({
+    id = id.from(_N, "Cluster"),
+    type = "structure",
+    members = {
+        ClusterArn = schema.new({
+            id = id.from(_N, "Cluster", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Instance = schema.new({
     id = id.from(_N, "Instance"),
     type = "structure",
@@ -3074,6 +3197,13 @@ M.EnvironmentResourceDescription = schema.new({
             name = "AutoScalingGroups",
             target_id = prelude.Document.id,
             list_member = M.AutoScalingGroup,
+        }),
+        Cluster = schema.new({
+            id = id.from(_N, "EnvironmentResourceDescription", "Cluster"),
+            type = "structure",
+            name = "Cluster",
+            target_id = id.from(_N, "Cluster"),
+            target = M.Cluster,
         }),
         Instances = schema.new({
             id = id.from(_N, "EnvironmentResourceDescription", "Instances"),

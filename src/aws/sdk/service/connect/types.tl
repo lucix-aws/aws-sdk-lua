@@ -10831,6 +10831,30 @@ local record M
         Arn: string
     end
 
+    enum AnalyticsMode
+        "PostContact"
+        "RealTime"
+        "ContactLens"
+        "AutomatedInteraction"
+    end
+
+    -- Information about a reference when the referenceType is CONTACT_ANALYSIS. Otherwise,
+    -- null.
+    record ContactAnalysisReference
+        -- Identifier of the contact analysis reference.
+        Name: string
+        -- The location path of the contact analysis reference.
+        Value: string
+        -- Status of the contact analysis reference type.
+        Status: string
+        -- The Amazon Resource Name (ARN) of the contact analysis reference.
+        Arn: string
+        -- The analytics mode of the contact analysis.
+        AnalyticsMode: string
+        -- Indicates whether sensitive data has been redacted from the contact analysis.
+        IsRedacted: boolean
+    end
+
     -- Information about a reference when the referenceType is DATE. Otherwise, null.
     record DateReference
         -- Identifier of the date reference.
@@ -10904,6 +10928,7 @@ local record M
         Date: DateReference
         -- Information about a reference when the referenceType is EMAIL. Otherwise, null.
         Email: EmailReference
+        ContactAnalysis: ContactAnalysisReference
     end
 
     record ListContactReferencesOutput
@@ -14899,13 +14924,6 @@ local record M
         SummaryConfiguration: SummaryConfiguration
         -- The rules configuration for conversational analytics.
         RulesConfiguration: RulesConfiguration
-    end
-
-    enum AnalyticsMode
-        "PostContact"
-        "RealTime"
-        "ContactLens"
-        "AutomatedInteraction"
     end
 
     record StartContactConversationalAnalyticsJobInput

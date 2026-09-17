@@ -23781,6 +23781,49 @@ M.AttachmentReference = schema.new({
     },
 })
 
+M.ContactAnalysisReference = schema.new({
+    id = id.from(_N, "ContactAnalysisReference"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ContactAnalysisReference", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ContactAnalysisReference", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ContactAnalysisReference", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "ContactAnalysisReference", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        AnalyticsMode = schema.new({
+            id = id.from(_N, "ContactAnalysisReference", "AnalyticsMode"),
+            type = "string",
+            name = "AnalyticsMode",
+            target_id = prelude.String.id,
+        }),
+        IsRedacted = schema.new({
+            id = id.from(_N, "ContactAnalysisReference", "IsRedacted"),
+            type = "boolean",
+            name = "IsRedacted",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.DateReference = schema.new({
     id = id.from(_N, "DateReference"),
     type = "structure",
@@ -23968,6 +24011,13 @@ M.ReferenceSummary = schema.new({
             name = "Email",
             target_id = id.from(_N, "EmailReference"),
             target = M.EmailReference,
+        }),
+        ContactAnalysis = schema.new({
+            id = id.from(_N, "ReferenceSummary", "ContactAnalysis"),
+            type = "structure",
+            name = "ContactAnalysis",
+            target_id = id.from(_N, "ContactAnalysisReference"),
+            target = M.ContactAnalysisReference,
         }),
     },
 })

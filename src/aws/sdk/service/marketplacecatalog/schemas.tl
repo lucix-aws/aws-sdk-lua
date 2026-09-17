@@ -114,6 +114,10 @@ M.ResaleAuthorizationOfferExtendedStatusFilterValueList = schema.new({ type = "l
 
 M.ResaleAuthorizationResellerRoleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ResaleAuthorizationSourceAuthorizationFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResaleAuthorizationIssuerAccountIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.MachineLearningProductEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MachineLearningProductTitleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
@@ -2519,6 +2523,20 @@ M.ResaleAuthorizationEntityIdFilter = schema.new({
     },
 })
 
+M.ResaleAuthorizationIssuerAccountIdFilter = schema.new({
+    id = id.from(_N, "ResaleAuthorizationIssuerAccountIdFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "ResaleAuthorizationIssuerAccountIdFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.ResaleAuthorizationLastModifiedDateFilterDateRange = schema.new({
     id = id.from(_N, "ResaleAuthorizationLastModifiedDateFilterDateRange"),
     type = "structure",
@@ -2720,6 +2738,20 @@ M.ResaleAuthorizationResellerRoleFilter = schema.new({
     },
 })
 
+M.ResaleAuthorizationSourceAuthorizationFilter = schema.new({
+    id = id.from(_N, "ResaleAuthorizationSourceAuthorizationFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "ResaleAuthorizationSourceAuthorizationFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.ResaleAuthorizationStatusFilter = schema.new({
     id = id.from(_N, "ResaleAuthorizationStatusFilter"),
     type = "structure",
@@ -2835,6 +2867,20 @@ M.ResaleAuthorizationFilters = schema.new({
             name = "ResellerRole",
             target_id = id.from(_N, "ResaleAuthorizationResellerRoleFilter"),
             target = M.ResaleAuthorizationResellerRoleFilter,
+        }),
+        SourceAuthorization = schema.new({
+            id = id.from(_N, "ResaleAuthorizationFilters", "SourceAuthorization"),
+            type = "structure",
+            name = "SourceAuthorization",
+            target_id = id.from(_N, "ResaleAuthorizationSourceAuthorizationFilter"),
+            target = M.ResaleAuthorizationSourceAuthorizationFilter,
+        }),
+        IssuerAccountId = schema.new({
+            id = id.from(_N, "ResaleAuthorizationFilters", "IssuerAccountId"),
+            type = "structure",
+            name = "IssuerAccountId",
+            target_id = id.from(_N, "ResaleAuthorizationIssuerAccountIdFilter"),
+            target = M.ResaleAuthorizationIssuerAccountIdFilter,
         }),
     },
 })
@@ -3535,6 +3581,18 @@ M.ResaleAuthorizationSummary = schema.new({
             id = id.from(_N, "ResaleAuthorizationSummary", "ResellerRole"),
             type = "string",
             name = "ResellerRole",
+            target_id = prelude.String.id,
+        }),
+        SourceAuthorization = schema.new({
+            id = id.from(_N, "ResaleAuthorizationSummary", "SourceAuthorization"),
+            type = "string",
+            name = "SourceAuthorization",
+            target_id = prelude.String.id,
+        }),
+        IssuerAccountId = schema.new({
+            id = id.from(_N, "ResaleAuthorizationSummary", "IssuerAccountId"),
+            type = "string",
+            name = "IssuerAccountId",
             target_id = prelude.String.id,
         }),
     },

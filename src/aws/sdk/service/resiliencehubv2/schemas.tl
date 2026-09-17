@@ -26,6 +26,8 @@ M.TestParameters = schema.new({ type = "map", map_key = prelude.String, map_valu
 
 M.TestSourceInputList = schema.new({ type = "list", list_member = M.TestSourceInput })
 
+M.DependencyInsightsList = schema.new({ type = "list", list_member = M.DependencyInsight })
+
 M.AssertionList = schema.new({ type = "list", list_member = M.Assertion })
 
 M.DependencySummaryList = schema.new({ type = "list", list_member = M.DependencySummary })
@@ -39,6 +41,10 @@ M.FindingsList = schema.new({ type = "list", list_member = M.FindingSummary })
 M.InputSourceSummaryList = schema.new({ type = "list", list_member = M.InputSourceSummary })
 
 M.PolicySummaryList = schema.new({ type = "list", list_member = M.PolicySummary })
+
+M.PolicyEventTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PolicyEventList = schema.new({ type = "list", list_member = M.PolicyEvent })
 
 M.ReportGenerationResultList = schema.new({ type = "list", list_member = M.ReportGenerationResult })
 
@@ -994,6 +1000,12 @@ M.CreatePolicyInput = schema.new({
             target_id = id.from(_N, "DataRecoveryTargets"),
             target = M.DataRecoveryTargets,
         }),
+        sharingEnabled = schema.new({
+            id = id.from(_N, "CreatePolicyInput", "sharingEnabled"),
+            type = "boolean",
+            name = "sharingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
         kmsKeyId = schema.new({
             id = id.from(_N, "CreatePolicyInput", "kmsKeyId"),
             type = "string",
@@ -1075,6 +1087,18 @@ M.Policy = schema.new({
             name = "dataRecovery",
             target_id = id.from(_N, "DataRecoveryTargets"),
             target = M.DataRecoveryTargets,
+        }),
+        sharingEnabled = schema.new({
+            id = id.from(_N, "Policy", "sharingEnabled"),
+            type = "boolean",
+            name = "sharingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        organizationId = schema.new({
+            id = id.from(_N, "Policy", "organizationId"),
+            type = "string",
+            name = "organizationId",
+            target_id = prelude.String.id,
         }),
         kmsKeyId = schema.new({
             id = id.from(_N, "Policy", "kmsKeyId"),
@@ -3083,6 +3107,31 @@ M.DeleteUserJourneyOutput = schema.new({
     },
 })
 
+M.DependencyInsight = schema.new({
+    id = id.from(_N, "DependencyInsight"),
+    type = "structure",
+    members = {
+        category = schema.new({
+            id = id.from(_N, "DependencyInsight", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "DependencyInsight", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.QueryDataPoint = schema.new({
     id = id.from(_N, "QueryDataPoint"),
     type = "structure",
@@ -3526,6 +3575,70 @@ M.FindingSummary = schema.new({
             type = "timestamp",
             name = "updatedAt",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetDependencyInsightsInput = schema.new({
+    id = id.from(_N, "GetDependencyInsightsRequest"),
+    type = "structure",
+    members = {
+        serviceArn = schema.new({
+            id = id.from(_N, "GetDependencyInsightsInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+    },
+})
+
+M.GetDependencyInsightsOutput = schema.new({
+    id = id.from(_N, "GetDependencyInsightsResponse"),
+    type = "structure",
+    members = {
+        overview = schema.new({
+            id = id.from(_N, "GetDependencyInsightsOutput", "overview"),
+            type = "string",
+            name = "overview",
+            target_id = prelude.String.id,
+        }),
+        insights = schema.new({
+            id = id.from(_N, "GetDependencyInsightsOutput", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.DependencyInsight,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetDependencyInsightsOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetDependencyInsightsOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "GetDependencyInsightsOutput", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "GetDependencyInsightsOutput", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4815,6 +4928,15 @@ M.ListPoliciesInput = schema.new({
     id = id.from(_N, "ListPoliciesRequest"),
     type = "structure",
     members = {
+        accountId = schema.new({
+            id = id.from(_N, "ListPoliciesInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "accountId" },
+            },
+        }),
         maxResults = schema.new({
             id = id.from(_N, "ListPoliciesInput", "maxResults"),
             type = "integer",
@@ -4887,6 +5009,18 @@ M.PolicySummary = schema.new({
             target_id = id.from(_N, "DataRecoveryTargets"),
             target = M.DataRecoveryTargets,
         }),
+        sharingEnabled = schema.new({
+            id = id.from(_N, "PolicySummary", "sharingEnabled"),
+            type = "boolean",
+            name = "sharingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        organizationId = schema.new({
+            id = id.from(_N, "PolicySummary", "organizationId"),
+            type = "string",
+            name = "organizationId",
+            target_id = prelude.String.id,
+        }),
         associatedServiceCount = schema.new({
             id = id.from(_N, "PolicySummary", "associatedServiceCount"),
             type = "integer",
@@ -4924,6 +5058,287 @@ M.ListPoliciesOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPoliciesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPolicyEventsInput = schema.new({
+    id = id.from(_N, "ListPolicyEventsRequest"),
+    type = "structure",
+    members = {
+        policyArn = schema.new({
+            id = id.from(_N, "ListPolicyEventsInput", "policyArn"),
+            type = "string",
+            name = "policyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "policyArn" },
+            },
+        }),
+        eventTypes = schema.new({
+            id = id.from(_N, "ListPolicyEventsInput", "eventTypes"),
+            type = "list",
+            name = "eventTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "eventTypes" },
+            },
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "ListPolicyEventsInput", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "startTime" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "ListPolicyEventsInput", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "endTime" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListPolicyEventsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPolicyEventsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.PolicyAttachedToServiceMetadata = schema.new({
+    id = id.from(_N, "PolicyAttachedToServiceMetadata"),
+    type = "structure",
+    members = {
+        serviceArn = schema.new({
+            id = id.from(_N, "PolicyAttachedToServiceMetadata", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "PolicyAttachedToServiceMetadata", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PolicyDeletedMetadata = schema.new({
+    id = id.from(_N, "PolicyDeletedMetadata"),
+    type = "structure",
+    members = {
+        affectedServiceCount = schema.new({
+            id = id.from(_N, "PolicyDeletedMetadata", "affectedServiceCount"),
+            type = "integer",
+            name = "affectedServiceCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PolicyDetachedFromServiceMetadata = schema.new({
+    id = id.from(_N, "PolicyDetachedFromServiceMetadata"),
+    type = "structure",
+    members = {
+        serviceArn = schema.new({
+            id = id.from(_N, "PolicyDetachedFromServiceMetadata", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "PolicyDetachedFromServiceMetadata", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PolicySharingRevokedMetadata = schema.new({
+    id = id.from(_N, "PolicySharingRevokedMetadata"),
+    type = "structure",
+    members = {
+        affectedServiceCount = schema.new({
+            id = id.from(_N, "PolicySharingRevokedMetadata", "affectedServiceCount"),
+            type = "integer",
+            name = "affectedServiceCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PolicyEventMetadata = schema.new({
+    id = id.from(_N, "PolicyEventMetadata"),
+    type = "union",
+    members = {
+        policyAttachedToService = schema.new({
+            id = id.from(_N, "PolicyEventMetadata", "policyAttachedToService"),
+            type = "structure",
+            name = "policyAttachedToService",
+            target_id = id.from(_N, "PolicyAttachedToServiceMetadata"),
+            target = M.PolicyAttachedToServiceMetadata,
+        }),
+        policyDetachedFromService = schema.new({
+            id = id.from(_N, "PolicyEventMetadata", "policyDetachedFromService"),
+            type = "structure",
+            name = "policyDetachedFromService",
+            target_id = id.from(_N, "PolicyDetachedFromServiceMetadata"),
+            target = M.PolicyDetachedFromServiceMetadata,
+        }),
+        policySharingRevoked = schema.new({
+            id = id.from(_N, "PolicyEventMetadata", "policySharingRevoked"),
+            type = "structure",
+            name = "policySharingRevoked",
+            target_id = id.from(_N, "PolicySharingRevokedMetadata"),
+            target = M.PolicySharingRevokedMetadata,
+        }),
+        policyDeleted = schema.new({
+            id = id.from(_N, "PolicyEventMetadata", "policyDeleted"),
+            type = "structure",
+            name = "policyDeleted",
+            target_id = id.from(_N, "PolicyDeletedMetadata"),
+            target = M.PolicyDeletedMetadata,
+        }),
+    },
+})
+
+M.PolicyEventDetails = schema.new({
+    id = id.from(_N, "PolicyEventDetails"),
+    type = "structure",
+    members = {
+        title = schema.new({
+            id = id.from(_N, "PolicyEventDetails", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "PolicyEventDetails", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventMetadata = schema.new({
+            id = id.from(_N, "PolicyEventDetails", "eventMetadata"),
+            type = "union",
+            name = "eventMetadata",
+            target_id = id.from(_N, "PolicyEventMetadata"),
+            target = M.PolicyEventMetadata,
+        }),
+    },
+})
+
+M.PolicyEvent = schema.new({
+    id = id.from(_N, "PolicyEvent"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "PolicyEvent", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "PolicyEvent", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "PolicyEvent", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyArn = schema.new({
+            id = id.from(_N, "PolicyEvent", "policyArn"),
+            type = "string",
+            name = "policyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        actor = schema.new({
+            id = id.from(_N, "PolicyEvent", "actor"),
+            type = "structure",
+            name = "actor",
+            target_id = id.from(_N, "EventActor"),
+            target = M.EventActor,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventDetails = schema.new({
+            id = id.from(_N, "PolicyEvent", "eventDetails"),
+            type = "structure",
+            name = "eventDetails",
+            target_id = id.from(_N, "PolicyEventDetails"),
+            target = M.PolicyEventDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListPolicyEventsOutput = schema.new({
+    id = id.from(_N, "ListPolicyEventsResponse"),
+    type = "structure",
+    members = {
+        events = schema.new({
+            id = id.from(_N, "ListPolicyEventsOutput", "events"),
+            type = "list",
+            name = "events",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPolicyEventsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -5528,6 +5943,18 @@ M.ServicePolicyAssociatedMetadata = schema.new({
             name = "policyArn",
             target_id = prelude.String.id,
         }),
+        policyOwnerAccountId = schema.new({
+            id = id.from(_N, "ServicePolicyAssociatedMetadata", "policyOwnerAccountId"),
+            type = "string",
+            name = "policyOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+        policySource = schema.new({
+            id = id.from(_N, "ServicePolicyAssociatedMetadata", "policySource"),
+            type = "string",
+            name = "policySource",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5545,6 +5972,24 @@ M.ServicePolicyDisassociatedMetadata = schema.new({
             id = id.from(_N, "ServicePolicyDisassociatedMetadata", "policyArn"),
             type = "string",
             name = "policyArn",
+            target_id = prelude.String.id,
+        }),
+        policyOwnerAccountId = schema.new({
+            id = id.from(_N, "ServicePolicyDisassociatedMetadata", "policyOwnerAccountId"),
+            type = "string",
+            name = "policyOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+        policySource = schema.new({
+            id = id.from(_N, "ServicePolicyDisassociatedMetadata", "policySource"),
+            type = "string",
+            name = "policySource",
+            target_id = prelude.String.id,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "ServicePolicyDisassociatedMetadata", "reason"),
+            type = "string",
+            name = "reason",
             target_id = prelude.String.id,
         }),
     },
@@ -8232,6 +8677,47 @@ M.PutTestSourcesOutput = schema.new({
     type = "structure",
 })
 
+M.StartDependencyInsightsInput = schema.new({
+    id = id.from(_N, "StartDependencyInsightsRequest"),
+    type = "structure",
+    members = {
+        serviceArn = schema.new({
+            id = id.from(_N, "StartDependencyInsightsInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartDependencyInsightsInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartDependencyInsightsOutput = schema.new({
+    id = id.from(_N, "StartDependencyInsightsResponse"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "StartDependencyInsightsOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.StartFailureModeAssessmentInput = schema.new({
     id = id.from(_N, "StartFailureModeAssessmentRequest"),
     type = "structure",
@@ -8713,6 +9199,12 @@ M.UpdatePolicyInput = schema.new({
             name = "dataRecovery",
             target_id = id.from(_N, "DataRecoveryTargets"),
             target = M.DataRecoveryTargets,
+        }),
+        sharingEnabled = schema.new({
+            id = id.from(_N, "UpdatePolicyInput", "sharingEnabled"),
+            type = "boolean",
+            name = "sharingEnabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -9313,6 +9805,18 @@ M.DeleteUserJourney = schema.operation({
     },
 })
 
+M.GetDependencyInsights = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "GetDependencyInsights"),
+    input = M.GetDependencyInsightsInput,
+    output = M.GetDependencyInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/get-dependency-insights" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetFailureModeFinding = schema.operation({
     id = id.from("com.amazonaws.resiliencehubv2", "GetFailureModeFinding"),
     input = M.GetFailureModeFindingInput,
@@ -9499,6 +10003,18 @@ M.ListPolicies = schema.operation({
     output = M.ListPoliciesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v2/list-policies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyEvents = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListPolicyEvents"),
+    input = M.ListPolicyEventsInput,
+    output = M.ListPolicyEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/list-policy-events" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9739,6 +10255,18 @@ M.PutTestSources = schema.operation({
     output = M.PutTestSourcesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v2/put-test-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDependencyInsights = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "StartDependencyInsights"),
+    input = M.StartDependencyInsightsInput,
+    output = M.StartDependencyInsightsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/start-dependency-insights" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -237,6 +237,7 @@ local record M
         "UPDATE_FAILED"
         "READY"
         "DELETING"
+        "DELETE_FAILED"
     end
 
     record CreateAgentRuntimeEndpointOutput
@@ -683,6 +684,7 @@ local record M
         "UPDATE_FAILED"
         "READY"
         "DELETING"
+        "DELETE_FAILED"
     end
 
     -- The information about the workload identity.

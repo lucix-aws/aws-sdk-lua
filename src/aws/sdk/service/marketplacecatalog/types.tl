@@ -1114,6 +1114,12 @@ local record M
         ValueList: {string}
     end
 
+    -- Allows filtering on the IssuerAccountId of a ResaleAuthorization.
+    record ResaleAuthorizationIssuerAccountIdFilter
+        -- Allows filtering on the IssuerAccountId of a ResaleAuthorization with list input.
+        ValueList: {string}
+    end
+
     -- Allows filtering on the LastModifiedDate of a ResaleAuthorization with date range as input.
     record ResaleAuthorizationLastModifiedDateFilterDateRange
         -- Allows filtering on the LastModifiedDate of a ResaleAuthorization after a date.
@@ -1201,6 +1207,12 @@ local record M
         ValueList: {string}
     end
 
+    -- Allows filtering on the SourceAuthorization of a ResaleAuthorization.
+    record ResaleAuthorizationSourceAuthorizationFilter
+        -- Allows filtering on the SourceAuthorization of a ResaleAuthorization with list input.
+        ValueList: {string}
+    end
+
     enum ResaleAuthorizationStatusString
         "Draft"
         "Active"
@@ -1243,6 +1255,10 @@ local record M
         LastModifiedDate: ResaleAuthorizationLastModifiedDateFilter
         -- Allows filtering on the ResellerRole of a ResaleAuthorization.
         ResellerRole: ResaleAuthorizationResellerRoleFilter
+        -- Allows filtering on the SourceAuthorization of a ResaleAuthorization.
+        SourceAuthorization: ResaleAuthorizationSourceAuthorizationFilter
+        -- Allows filtering on the IssuerAccountId of a ResaleAuthorization.
+        IssuerAccountId: ResaleAuthorizationIssuerAccountIdFilter
     end
 
     -- Object that allows filtering on entity id of a SaaS product.
@@ -1419,6 +1435,9 @@ local record M
         "CreatedDate"
         "AvailabilityEndDate"
         "LastModifiedDate"
+        "ResellerRole"
+        "SourceAuthorization"
+        "IssuerAccountId"
     end
 
     -- Allows to sort ResaleAuthorization.
@@ -1600,6 +1619,10 @@ local record M
         AvailabilityEndDate: string
         -- The reseller role of the ResaleAuthorization.
         ResellerRole: string
+        -- The source authorization of the ResaleAuthorization.
+        SourceAuthorization: string
+        -- The issuer account ID of the ResaleAuthorization.
+        IssuerAccountId: string
     end
 
     -- Object that contains summarized information about a SaaS product.

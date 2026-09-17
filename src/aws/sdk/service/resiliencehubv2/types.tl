@@ -356,6 +356,8 @@ local record M
         multiRegion: MultiRegionTargets
         -- The data recovery targets for the resilience policy.
         dataRecovery: DataRecoveryTargets
+        -- Specifies whether cross-account sharing is enabled for the policy. Only a delegated administrator or the management account can enable sharing.
+        sharingEnabled: boolean
         kmsKeyId: string
         tags: {string : string}
         clientToken: string
@@ -374,6 +376,10 @@ local record M
         multiRegion: MultiRegionTargets
         -- The data recovery targets defined in the policy.
         dataRecovery: DataRecoveryTargets
+        -- Specifies whether cross-account sharing is enabled.
+        sharingEnabled: boolean
+        -- The identifier of the organization this policy is shared with.
+        organizationId: string
         kmsKeyId: string
         tags: {string : string}
         -- The number of services associated with this policy.
@@ -1006,6 +1012,34 @@ local record M
         "UNKNOWN"
     end
 
+    enum InsightsCategory
+        "CROSS_REGION"
+        "NEW_DEPENDENCY"
+        "THIRD_PARTY"
+        "UNEVEN_USAGE"
+        "AWS_SERVICE"
+    end
+
+    -- Contains a single insight about a service's dependencies.
+    record DependencyInsight
+        -- The category of the insight. Valid values: CROSS_REGION - The insight relates to dependencies used across multiple Regions. NEW_DEPENDENCY - The insight relates to a recently detected dependency. THIRD_PARTY - The insight relates to a third-party dependency. UNEVEN_USAGE - The insight relates to a dependency with uneven usage across the service. AWS_SERVICE - The insight relates to a dependency on an Amazon Web Services service.
+        category: string
+        -- A human-readable explanation of the insight, describing the dependency behavior or condition that was detected.
+        description: string
+    end
+
+    enum DependencyInsightsErrorCode
+        "INSUFFICIENT_DATA"
+        "LLM_GENERATION_FAILED"
+        "INTERNAL_ERROR"
+    end
+
+    enum DependencyInsightsStatus
+        "IN_PROGRESS"
+        "COMPLETED"
+        "FAILED"
+    end
+
     -- A data point in a dependency query range.
     record QueryDataPoint
         -- The timestamp of the data point.
@@ -1183,6 +1217,25 @@ local record M
         policyComponent: string
         -- The timestamp when the finding was last updated.
         updatedAt: number
+    end
+
+    record GetDependencyInsightsInput
+        serviceArn: string
+    end
+
+    record GetDependencyInsightsOutput
+        -- A summary of the dependency insights for the service. This field is not returned until the status is COMPLETED.
+        overview: string
+        -- The list of dependency insights generated for the service. This field is not returned until the status is COMPLETED.
+        insights: {DependencyInsight}
+        -- The status of the dependency insights generation. Valid values: IN_PROGRESS - Insights generation is in progress. COMPLETED - Insights generation completed successfully. FAILED - Insights generation failed. See errorCode and errorMessage for details.
+        status: string
+        -- The timestamp when the dependency insights were generated.
+        createdAt: number
+        -- The error code returned when insights generation failed. Valid values: INSUFFICIENT_DATA - There was not enough dependency data to generate insights. LLM_GENERATION_FAILED - The insights could not be generated. INTERNAL_ERROR - An internal error occurred while generating insights.
+        errorCode: string
+        -- A message describing why insights generation failed.
+        errorMessage: string
     end
 
     record GetFailureModeFindingInput
@@ -1537,6 +1590,8 @@ local record M
     end
 
     record ListPoliciesInput
+        -- The identifier of the account that owns the policies to include in the results.
+        accountId: string
         maxResults: number
         nextToken: string
     end
@@ -1553,6 +1608,10 @@ local record M
         multiRegion: MultiRegionTargets
         -- The data recovery targets defined in the policy.
         dataRecovery: DataRecoveryTargets
+        -- Specifies whether cross-account sharing is enabled.
+        sharingEnabled: boolean
+        -- The identifier of the organization this policy is shared with.
+        organizationId: string
         -- The number of services associated with this policy.
         associatedServiceCount: number
         -- The timestamp when the policy was created.
@@ -1564,6 +1623,93 @@ local record M
     record ListPoliciesOutput
         -- The list of policy summaries.
         policySummaries: {PolicySummary}
+        nextToken: string
+    end
+
+    enum PolicyEventType
+        "POLICY_ATTACHED_TO_SERVICE"
+        "POLICY_DETACHED_FROM_SERVICE"
+        "POLICY_SHARING_REVOKED"
+        "POLICY_DELETED"
+    end
+
+    record ListPolicyEventsInput
+        policyArn: string
+        -- The type of events to include in the results.
+        eventTypes: {string}
+        -- The start time for filtering events.
+        startTime: number
+        -- The end time for filtering events.
+        endTime: number
+        maxResults: number
+        nextToken: string
+    end
+
+    -- Contains details about the service that started using the policy, such as the account that owns the service.
+    record PolicyAttachedToServiceMetadata
+        serviceArn: string
+        -- The account that owns the service.
+        accountId: string
+    end
+
+    -- Contains details about a policy that was deleted, including the number of services that were affected.
+    record PolicyDeletedMetadata
+        -- The number of services that were using the policy when it was deleted.
+        affectedServiceCount: number
+    end
+
+    -- Contains details about the service that stopped using the policy, such as the account that owns the service.
+    record PolicyDetachedFromServiceMetadata
+        serviceArn: string
+        -- The account that owns the service.
+        accountId: string
+    end
+
+    -- Contains details about a policy for which organization sharing was revoked, including the number of services that were affected.
+    record PolicySharingRevokedMetadata
+        -- The number of services that were using the policy when sharing was revoked.
+        affectedServiceCount: number
+    end
+
+    -- Contains the event-specific metadata for a policy event. Exactly one member is populated, according to the event type. policyAttachedToService — a service started using the policy. policyDetachedFromService — a service stopped using the policy. policySharingRevoked — cross-account sharing was disabled for the policy. policyDeleted — the policy was deleted.
+    record PolicyEventMetadata
+        -- Contains details about the service that started using the policy, such as the account that owns the service.
+        policyAttachedToService: PolicyAttachedToServiceMetadata
+        -- Contains details about the service that stopped using the policy, such as the account that owns the service.
+        policyDetachedFromService: PolicyDetachedFromServiceMetadata
+        -- Contains details about a policy for which organization sharing was revoked, including the number of services that were affected.
+        policySharingRevoked: PolicySharingRevokedMetadata
+        -- Contains details about a policy that was deleted, including the number of services that were affected.
+        policyDeleted: PolicyDeletedMetadata
+    end
+
+    -- Contains the title, description, and event-specific metadata for a single event on the timeline of a resilience policy.
+    record PolicyEventDetails
+        -- A short summary of the event.
+        title: string
+        -- A description of the event.
+        description: string
+        -- The event-specific metadata, with one member populated according to the event type.
+        eventMetadata: PolicyEventMetadata
+    end
+
+    -- An event on the timeline of a resilience policy.
+    record PolicyEvent
+        -- The identifier of the event.
+        eventId: string
+        -- The time the event occurred.
+        timestamp: number
+        -- The type of the event.
+        eventType: string
+        policyArn: string
+        actor: EventActor
+        -- The details of the event.
+        eventDetails: PolicyEventDetails
+    end
+
+    record ListPolicyEventsOutput
+        -- The list of policy events.
+        events: {PolicyEvent}
         nextToken: string
     end
 
@@ -1676,7 +1822,7 @@ local record M
 
     record ListServiceEventsInput
         serviceArn: string
-        -- Filter events by type.
+        -- The type of events to include in the results.
         eventTypes: {string}
         -- The start time for filtering events.
         startTime: number
@@ -1763,6 +1909,16 @@ local record M
         -- The name of the associated policy.
         policyName: string
         policyArn: string
+        -- The account that owns the policy.
+        policyOwnerAccountId: string
+        -- The source of the policy. SELF — the policy belongs to the account that owns the service. CROSS_ACCOUNT — the policy belongs to another account and was shared with the organization.
+        policySource: string
+    end
+
+    enum PolicyDisassociationReason
+        "REPLACED_BY_UPDATE"
+        "SHARING_REVOKED"
+        "POLICY_DELETED"
     end
 
     -- Metadata for a service policy disassociated event.
@@ -1770,6 +1926,12 @@ local record M
         -- The name of the disassociated policy.
         policyName: string
         policyArn: string
+        -- The account that owns the policy.
+        policyOwnerAccountId: string
+        -- The source of the policy. SELF — the policy belongs to the account that owns the service. CROSS_ACCOUNT — the policy belongs to another account and was shared with the organization.
+        policySource: string
+        -- The reason the policy was disassociated from the service.
+        reason: string
     end
 
     -- Metadata for a service resources associated event.
@@ -1992,7 +2154,7 @@ local record M
 
     record ListSystemEventsInput
         systemArn: string
-        -- Filter events by type.
+        -- The type of events to include in the results.
         eventTypes: {string}
         -- The start time for filtering events.
         startTime: number
@@ -2554,6 +2716,16 @@ local record M
     record PutTestSourcesOutput
     end
 
+    record StartDependencyInsightsInput
+        serviceArn: string
+        clientToken: string
+    end
+
+    record StartDependencyInsightsOutput
+        -- The status of the dependency insights generation. Valid values: IN_PROGRESS - Insights generation is in progress. COMPLETED - Insights generation completed successfully. FAILED - Insights generation failed. Call GetDependencyInsights for the error code and message.
+        status: string
+    end
+
     record StartFailureModeAssessmentInput
         serviceArn: string
         clientToken: string
@@ -2682,6 +2854,8 @@ local record M
         multiRegion: MultiRegionTargets
         -- The updated data recovery targets for the policy.
         dataRecovery: DataRecoveryTargets
+        -- Specifies whether cross-account sharing is enabled for the policy. Disabling sharing stops member services from using the policy.
+        sharingEnabled: boolean
     end
 
     record UpdatePolicyOutput

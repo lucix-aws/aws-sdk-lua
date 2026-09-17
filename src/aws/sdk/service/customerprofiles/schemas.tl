@@ -132,6 +132,8 @@ M.ProfileIdToBeMergedList = schema.new({ type = "list", list_member = prelude.St
 
 M.additionalSearchKeysList = schema.new({ type = "list", list_member = M.AdditionalSearchKey })
 
+M.KeyValuesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.UpdateAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -13375,6 +13377,151 @@ M.SearchProfilesOutput = schema.new({
     },
 })
 
+M.RecommendationMetadata = schema.new({
+    id = id.from(_N, "RecommendationMetadata"),
+    type = "structure",
+    members = {
+        Columns = schema.new({
+            id = id.from(_N, "RecommendationMetadata", "Columns"),
+            type = "list",
+            name = "Columns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.Recommender = schema.new({
+    id = id.from(_N, "Recommender"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "Recommender", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "Recommender", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.RecommenderFilter,
+        }),
+        PromotionalFilters = schema.new({
+            id = id.from(_N, "Recommender", "PromotionalFilters"),
+            type = "list",
+            name = "PromotionalFilters",
+            target_id = prelude.Document.id,
+            list_member = M.RecommenderPromotionalFilter,
+        }),
+    },
+})
+
+M.SearchRecommendationsInput = schema.new({
+    id = id.from(_N, "SearchRecommendationsRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        KeyName = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "KeyName"),
+            type = "string",
+            name = "KeyName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyValues = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "KeyValues"),
+            type = "list",
+            name = "KeyValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Recommender = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "Recommender"),
+            type = "structure",
+            name = "Recommender",
+            target_id = id.from(_N, "Recommender"),
+            target = M.Recommender,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CandidateIds = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "CandidateIds"),
+            type = "list",
+            name = "CandidateIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Context = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "Context"),
+            type = "map",
+            name = "Context",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        Diversity = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "Diversity"),
+            type = "structure",
+            name = "Diversity",
+            target_id = id.from(_N, "RecommendationDiversityConfig"),
+            target = M.RecommendationDiversityConfig,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "Metadata"),
+            type = "structure",
+            name = "Metadata",
+            target_id = id.from(_N, "RecommendationMetadata"),
+            target = M.RecommendationMetadata,
+        }),
+        MaxRecommendations = schema.new({
+            id = id.from(_N, "SearchRecommendationsInput", "MaxRecommendations"),
+            type = "integer",
+            name = "MaxRecommendations",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SearchRecommendationsOutput = schema.new({
+    id = id.from(_N, "SearchRecommendationsResponse"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "SearchRecommendationsOutput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+        }),
+        Recommendations = schema.new({
+            id = id.from(_N, "SearchRecommendationsOutput", "Recommendations"),
+            type = "list",
+            name = "Recommendations",
+            target_id = prelude.Document.id,
+            list_member = M.Recommendation,
+        }),
+    },
+})
+
 M.StartRecommenderInput = schema.new({
     id = id.from(_N, "StartRecommenderRequest"),
     type = "structure",
@@ -15671,6 +15818,18 @@ M.SearchProfiles = schema.operation({
     output = M.SearchProfilesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/profiles/search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchRecommendations = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "SearchRecommendations"),
+    input = M.SearchRecommendationsInput,
+    output = M.SearchRecommendationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/recommendations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

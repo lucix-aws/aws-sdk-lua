@@ -120,6 +120,7 @@ local record Client
     putProfileObjectType: function(Client, types.PutProfileObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutProfileObjectTypeOutput>
     putSegmentSubscription: function(Client, types.PutSegmentSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.PutSegmentSubscriptionOutput>
     searchProfiles: function(Client, types.SearchProfilesInput, ? base_client.InvokeOptions): async.Operation<types.SearchProfilesOutput>
+    searchRecommendations: function(Client, types.SearchRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.SearchRecommendationsOutput>
     startRecommender: function(Client, types.StartRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.StartRecommenderOutput>
     startUploadJob: function(Client, types.StartUploadJobInput, ? base_client.InvokeOptions): async.Operation<types.StartUploadJobOutput>
     stopRecommender: function(Client, types.StopRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.StopRecommenderOutput>
@@ -582,6 +583,10 @@ end
 
 function C:searchProfiles(input: types.SearchProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchProfilesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchProfiles as schema.OperationSchema, input, options) as async.Operation<types.SearchProfilesOutput>
+end
+
+function C:searchRecommendations(input: types.SearchRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchRecommendations as schema.OperationSchema, input, options) as async.Operation<types.SearchRecommendationsOutput>
 end
 
 function C:startRecommender(input: types.StartRecommenderInput, options?: base_client.InvokeOptions): async.Operation<types.StartRecommenderOutput>

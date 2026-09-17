@@ -38,6 +38,7 @@ local record Client
     deleteTest: function(Client, types.DeleteTestInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTestOutput>
     deleteTestSources: function(Client, types.DeleteTestSourcesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTestSourcesOutput>
     deleteUserJourney: function(Client, types.DeleteUserJourneyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserJourneyOutput>
+    getDependencyInsights: function(Client, types.GetDependencyInsightsInput, ? base_client.InvokeOptions): async.Operation<types.GetDependencyInsightsOutput>
     getFailureModeFinding: function(Client, types.GetFailureModeFindingInput, ? base_client.InvokeOptions): async.Operation<types.GetFailureModeFindingOutput>
     getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
     getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
@@ -54,6 +55,7 @@ local record Client
     listFailureModeFindings: function(Client, types.ListFailureModeFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFailureModeFindingsOutput>
     listInputSources: function(Client, types.ListInputSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListInputSourcesOutput>
     listPolicies: function(Client, types.ListPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
+    listPolicyEvents: function(Client, types.ListPolicyEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyEventsOutput>
     listReports: function(Client, types.ListReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportsOutput>
     listResolvedTestRunTargetResources: function(Client, types.ListResolvedTestRunTargetResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResolvedTestRunTargetResourcesOutput>
     listResources: function(Client, types.ListResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
@@ -74,6 +76,7 @@ local record Client
     listTestTemplates: function(Client, types.ListTestTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListTestTemplatesOutput>
     listUserJourneys: function(Client, types.ListUserJourneysInput, ? base_client.InvokeOptions): async.Operation<types.ListUserJourneysOutput>
     putTestSources: function(Client, types.PutTestSourcesInput, ? base_client.InvokeOptions): async.Operation<types.PutTestSourcesOutput>
+    startDependencyInsights: function(Client, types.StartDependencyInsightsInput, ? base_client.InvokeOptions): async.Operation<types.StartDependencyInsightsOutput>
     startFailureModeAssessment: function(Client, types.StartFailureModeAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.StartFailureModeAssessmentOutput>
     startTestRun: function(Client, types.StartTestRunInput, ? base_client.InvokeOptions): async.Operation<types.StartTestRunOutput>
     stopTestRun: function(Client, types.StopTestRunInput, ? base_client.InvokeOptions): async.Operation<types.StopTestRunOutput>
@@ -212,6 +215,10 @@ function C:deleteUserJourney(input: types.DeleteUserJourneyInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserJourney as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserJourneyOutput>
 end
 
+function C:getDependencyInsights(input: types.GetDependencyInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDependencyInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDependencyInsights as schema.OperationSchema, input, options) as async.Operation<types.GetDependencyInsightsOutput>
+end
+
 function C:getFailureModeFinding(input: types.GetFailureModeFindingInput, options?: base_client.InvokeOptions): async.Operation<types.GetFailureModeFindingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFailureModeFinding as schema.OperationSchema, input, options) as async.Operation<types.GetFailureModeFindingOutput>
 end
@@ -274,6 +281,10 @@ end
 
 function C:listPolicies(input: types.ListPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListPoliciesOutput>
+end
+
+function C:listPolicyEvents(input: types.ListPolicyEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyEvents as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyEventsOutput>
 end
 
 function C:listReports(input: types.ListReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReportsOutput>
@@ -354,6 +365,10 @@ end
 
 function C:putTestSources(input: types.PutTestSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.PutTestSourcesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTestSources as schema.OperationSchema, input, options) as async.Operation<types.PutTestSourcesOutput>
+end
+
+function C:startDependencyInsights(input: types.StartDependencyInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.StartDependencyInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDependencyInsights as schema.OperationSchema, input, options) as async.Operation<types.StartDependencyInsightsOutput>
 end
 
 function C:startFailureModeAssessment(input: types.StartFailureModeAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.StartFailureModeAssessmentOutput>

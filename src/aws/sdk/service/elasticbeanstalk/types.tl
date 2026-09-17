@@ -3,19 +3,16 @@
 local record M
 
     record AbortEnvironmentUpdateInput
-        -- This specifies the ID of the environment with the in-progress update that you want to
-        -- cancel.
+        -- This specifies the ID of the environment with the in-progress update that you want to cancel.
         EnvironmentId: string
-        -- This specifies the name of the environment with the in-progress update that you want to
-        -- cancel.
+        -- This specifies the name of the environment with the in-progress update that you want to cancel.
         EnvironmentName: string
     end
 
     record AbortEnvironmentUpdateOutput
     end
 
-    -- The specified account does not have sufficient privileges for one or more AWS
-    -- services.
+    -- The specified account does not have sufficient privileges for one or more Amazon Web Services services.
     record InsufficientPrivilegesException
         -- The exception error message.
         message: string
@@ -66,12 +63,10 @@ local record M
         DeleteSourceFromS3: boolean
     end
 
-    -- The application version lifecycle settings for an application. Defines the rules that
-    -- Elastic Beanstalk applies to an application's versions in order to avoid hitting the
-    -- per-region limit for application versions.
-    -- When Elastic Beanstalk deletes an application version from its database, you can no
-    -- longer deploy that version to an environment. The source bundle remains in S3 unless you
-    -- configure the rule to delete it.
+    -- The application version lifecycle settings for an application. Defines the rules that Elastic Beanstalk applies to an
+    -- application's versions in order to avoid hitting the per-region limit for application versions.
+    -- When Elastic Beanstalk deletes an application version from its database, you can no longer deploy that version to an
+    -- environment. The source bundle remains in S3 unless you configure the rule to delete it.
     record ApplicationVersionLifecycleConfig
         -- Specify a max count rule to restrict the number of application versions that are
         -- retained for an application.
@@ -82,12 +77,11 @@ local record M
     end
 
     -- The resource lifecycle configuration for an application. Defines lifecycle settings for
-    -- resources that belong to the application, and the service role that AWS Elastic Beanstalk assumes
+    -- resources that belong to the application, and the service role that Elastic Beanstalk assumes
     -- in order to apply lifecycle settings. The version lifecycle configuration defines lifecycle
     -- settings for application versions.
     record ApplicationResourceLifecycleConfig
-        -- The ARN of an IAM service role that Elastic Beanstalk has permission to
-        -- assume.
+        -- The ARN of an IAM service role that Elastic Beanstalk has permission to assume.
         -- The ServiceRole property is required the first time that you provide a
         -- VersionLifecycleConfig for the application in one of the supporting calls
         -- (CreateApplication or UpdateApplicationResourceLifecycle). After
@@ -167,7 +161,7 @@ local record M
         Status5xx: number
     end
 
-    -- Application request metrics for an AWS Elastic Beanstalk environment.
+    -- Application request metrics for an Elastic Beanstalk environment.
     record ApplicationMetrics
         -- The amount of time that the metrics cover (usually 10 seconds). For example, you might
         -- have 5 requests (request_count) within the most recent time slice of 10 seconds
@@ -182,6 +176,77 @@ local record M
         -- Represents the average latency for the slowest X percent of requests over the last 10
         -- seconds. Latencies are in seconds with one millisecond resolution.
         Latency: Latency
+    end
+
+    enum ArchitectureType
+        "amd64"
+        "arm64"
+    end
+
+    enum ComputeType
+        "BUILD_GENERAL1_SMALL"
+        "BUILD_GENERAL1_MEDIUM"
+        "BUILD_GENERAL1_LARGE"
+    end
+
+    enum ImageBuildType
+        "docker"
+        "buildpack"
+    end
+
+    -- Settings that Elastic Beanstalk uses to build a container image from the source bundle of an
+    -- application version.
+    record ImageBuildConfiguration
+        -- How Elastic Beanstalk builds the container image. Elastic Beanstalk rejects a Build that doesn't
+        -- specify it.
+        -- Valid values:
+        -- docker – Elastic Beanstalk builds the image from a Dockerfile in your source
+        -- bundle. Specify the Dockerfile with DockerfileLocation.
+        -- buildpack – Elastic Beanstalk builds the image with a Cloud Native Buildpacks
+        -- builder. Specify the builder with Buildpack.
+        Type: string
+        -- The path to the Dockerfile within the source bundle, relative to the root of the source
+        -- bundle. For example, backend/Dockerfile.
+        -- Elastic Beanstalk uses this member only when Type is docker. If you don't
+        -- specify it, Elastic Beanstalk uses the Dockerfile at the root of the source bundle.
+        DockerfileLocation: string
+        -- The Cloud Native Buildpacks builder image that Elastic Beanstalk uses to build the container image. For
+        -- example, paketobuildpacks/builder-jammy-base.
+        -- This member is required when Type is buildpack. Elastic Beanstalk doesn't
+        -- provide a default builder.
+        Buildpack: string
+        -- The processor architecture that Elastic Beanstalk builds the container image for. The architecture must
+        -- match the architecture of the instances in the environment that you deploy the application
+        -- version to.
+        -- Valid values:
+        -- amd64 – x86-64 instances. This is the default.
+        -- arm64 – Amazon Web Services Graviton instances.
+        Architecture: string
+        -- The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that CodeBuild assumes to run
+        -- the build in your Amazon Web Services account. Elastic Beanstalk rejects a Build that doesn't specify this
+        -- role.
+        CodeBuildServiceRole: string
+        -- The size of the compute resources that run the build. If you don't specify it, Elastic Beanstalk uses
+        -- BUILD_GENERAL1_MEDIUM.
+        -- Valid values:
+        -- BUILD_GENERAL1_SMALL – Use up to 3 GB memory and 2 vCPUs for
+        -- builds.
+        -- BUILD_GENERAL1_MEDIUM – Use up to 7 GB memory and 4 vCPUs for
+        -- builds.
+        -- BUILD_GENERAL1_LARGE – Use up to 15 GB memory and 8 vCPUs for
+        -- builds.
+        ComputeType: string
+        -- How long, in minutes from 5 to 480 (8 hours), Elastic Beanstalk waits before stopping a build that
+        -- hasn't completed. The default is 60 minutes.
+        TimeoutInMinutes: number
+    end
+
+    -- The location of a container image.
+    record ImageSource
+        -- The URI of the container image, including the registry, the repository, and the image tag
+        -- or digest. For example,
+        -- 111122223333.dkr.ecr.us-east-1.amazonaws.com/my-repository:latest.
+        Uri: string
     end
 
     enum SourceRepository
@@ -242,13 +307,26 @@ local record M
         Description: string
         -- A unique identifier for the application version.
         VersionLabel: string
-        -- If the version's source code was retrieved from AWS CodeCommit, the location of the
+        -- If the version's source code was retrieved from CodeCommit, the location of the
         -- source code for the application version.
         SourceBuildInformation: SourceBuildInformation
-        -- Reference to the artifact from the AWS CodeBuild build.
+        -- Reference to the artifact from the CodeBuild build.
         BuildArn: string
         -- The storage location of the application version's source bundle in Amazon S3.
         SourceBundle: S3Location
+        -- The location of the container image for the application version.
+        -- For an application version created from an image you provide, this is that image. For one
+        -- that Elastic Beanstalk builds from your source bundle, Elastic Beanstalk fills this in with the image it pushed after
+        -- the build succeeds.
+        ImageSource: ImageSource
+        -- The settings that Elastic Beanstalk uses to build a container image from the source bundle of the
+        -- application version. Not present for an application version created from an image you
+        -- provide.
+        ImageBuildConfiguration: ImageBuildConfiguration
+        -- Indicates whether Elastic Beanstalk pre-processed and validated the environment manifest
+        -- (env.yaml) and configuration files (*.config files in the
+        -- .ebextensions folder) in the source bundle of the application version.
+        Process: boolean
         -- The creation date of the application version.
         DateCreated: number
         -- The last modified date of the application version.
@@ -262,9 +340,9 @@ local record M
         -- Elastic Beanstalk will validate configuration files during deployment of the application version to an
         -- environment.
         -- Processing – Elastic Beanstalk is currently processing the application version.
-        -- Building – Application version is currently undergoing an AWS CodeBuild build.
+        -- Building – Application version is currently undergoing an CodeBuild build.
         -- Processed – Elastic Beanstalk was successfully pre-processed and validated.
-        -- Failed – Either the AWS CodeBuild build failed or configuration files didn't
+        -- Failed – Either the CodeBuild build failed or configuration files didn't
         -- pass validation. This application version isn't usable.
         Status: string
     end
@@ -307,8 +385,7 @@ local record M
     record AssociateEnvironmentOperationsRoleInput
         -- The name of the environment to which to set the operations role.
         EnvironmentName: string
-        -- The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's
-        -- operations role.
+        -- The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role.
         OperationsRole: string
     end
 
@@ -341,8 +418,7 @@ local record M
         -- true : The CNAME is available.
         -- false : The CNAME is not available.
         Available: boolean
-        -- The fully qualified CNAME to reserve when CreateEnvironment is called
-        -- with the provided prefix.
+        -- The fully qualified CNAME to reserve when CreateEnvironment is called with the provided prefix.
         FullyQualifiedCNAME: string
     end
 
@@ -350,15 +426,13 @@ local record M
     record ComposeEnvironmentsInput
         -- The name of the application to which the specified source bundles belong.
         ApplicationName: string
-        -- The name of the group to which the target environments belong. Specify a group name
-        -- only if the environment name defined in each target environment's manifest ends with a +
-        -- (plus) character. See Environment Manifest
-        -- (env.yaml) for details.
+        -- The name of the group to which the target environments belong. Specify a group name only if the environment name defined in each target environment's
+        -- manifest ends with a + (plus) character. See Environment
+        -- Manifest (env.yaml) for details.
         GroupName: string
-        -- A list of version labels, specifying one or more application source bundles that belong
-        -- to the target application. Each source bundle must include an environment manifest that
-        -- specifies the name of the environment and the name of the solution stack to use, and
-        -- optionally can specify environment links to create.
+        -- A list of version labels, specifying one or more application source bundles that belong to the target application. Each source bundle must include an
+        -- environment manifest that specifies the name of the environment and the name of the solution stack to use, and optionally can specify environment links to
+        -- create.
         VersionLabels: {string}
     end
 
@@ -410,7 +484,7 @@ local record M
         Listeners: {Listener}
     end
 
-    -- Describes the AWS resources in use by this environment. This data is not live
+    -- Describes the Amazon Web Services resources in use by this environment. This data is not live
     -- data.
     record EnvironmentResourcesDescription
         -- Describes the LoadBalancer.
@@ -432,13 +506,15 @@ local record M
     record EnvironmentTier
         -- The name of this environment tier.
         -- Valid values:
-        -- For Web server tier – WebServer
-        -- For Worker tier – Worker
+        -- For Standard-mode EC2-based web server – WebServer
+        -- For Standard-mode EC2-based backend application with Amazon SQS – Worker
+        -- For Cluster-mode Amazon EKS-based applications – Cluster
         Name: string
         -- The type of this environment tier.
         -- Valid values:
         -- For Web server tier – Standard
         -- For Worker tier – SQS/HTTP
+        -- For Cluster tier – EKS
         Type: string
         -- The version of this environment tier. When you don't set a value to it, Elastic Beanstalk uses the
         -- latest compatible worker tier version.
@@ -476,7 +552,14 @@ local record M
         -- The last modified date for this environment.
         DateUpdated: number
         -- The current operational status of the environment:
+        -- Aborting: Environment is in the process of aborting a deployment.
         -- Launching: Environment is in the process of initial deployment.
+        -- LinkingFrom: Environment is in the process of being linked to by another
+        -- environment. See Environment links
+        -- for details.
+        -- LinkingTo: Environment is in the process of linking to another environment.
+        -- See Environment links
+        -- for details.
         -- Updating: Environment is in the process of updating its configuration
         -- settings or application version.
         -- Ready: Environment is available to have an action performed on it, such as
@@ -489,7 +572,7 @@ local record M
         -- true: There is an update in progress.
         -- false: There are no updates currently in progress.
         AbortableOperationInProgress: boolean
-        -- Describes the health status of the environment. AWS Elastic Beanstalk indicates the
+        -- Describes the health status of the environment. Elastic Beanstalk indicates the
         -- failure levels for a running environment:
         -- Red: Indicates the environment is not responsive. Occurs when three or more
         -- consecutive failures occur for an environment.
@@ -505,7 +588,7 @@ local record M
         -- information, see Health Colors and
         -- Statuses.
         HealthStatus: string
-        -- The description of the AWS resources used by this environment.
+        -- The description of the Amazon Web Services resources used by this environment.
         Resources: EnvironmentResourcesDescription
         -- Describes the current tier of this environment.
         Tier: EnvironmentTier
@@ -513,8 +596,8 @@ local record M
         EnvironmentLinks: {EnvironmentLink}
         -- The environment's Amazon Resource Name (ARN), which can be used in other API requests that require an ARN.
         EnvironmentArn: string
-        -- The Amazon Resource Name (ARN) of the environment's operations role. For more information,
-        -- see Operations roles in the AWS Elastic Beanstalk Developer Guide.
+        -- The operations role feature of Elastic Beanstalk is in beta release and is subject to change.
+        -- The Amazon Resource Name (ARN) of the environment's operations role.
         OperationsRole: string
     end
 
@@ -522,8 +605,7 @@ local record M
     record ComposeEnvironmentsOutput
         -- Returns an EnvironmentDescription list.
         Environments: {EnvironmentDescription}
-        -- In a paginated request, the token that you can pass in a subsequent request to get the
-        -- next response page.
+        -- In a paginated request, the token that you can pass in a subsequent request to get the next response page.
         NextToken: string
     end
 
@@ -547,8 +629,8 @@ local record M
         ApplicationName: string
         -- Your description of the application.
         Description: string
-        -- Specifies an application resource lifecycle configuration to prevent your application
-        -- from accumulating too many versions.
+        -- Specifies an application resource lifecycle configuration to prevent your application from
+        -- accumulating too many versions.
         ResourceLifecycleConfig: ApplicationResourceLifecycleConfig
         -- Specifies the tags applied to the application.
         -- Elastic Beanstalk applies these tags only to the application. Environments that you create in the
@@ -568,27 +650,21 @@ local record M
         message: string
     end
 
-    -- AWS CodeBuild is not available in the specified region.
+    -- CodeBuild is not available in the specified region.
     record CodeBuildNotInServiceRegionException
         -- The exception error message.
         message: string
     end
 
-    enum ComputeType
-        "BUILD_GENERAL1_SMALL"
-        "BUILD_GENERAL1_MEDIUM"
-        "BUILD_GENERAL1_LARGE"
-    end
-
-    -- Settings for an AWS CodeBuild build.
+    -- Settings for an CodeBuild build.
     record BuildConfiguration
-        -- The name of the artifact of the CodeBuild build.
-        -- If provided, Elastic Beanstalk stores the build artifact in the S3 location
+        -- The name of the artifact of the CodeBuild build. If provided, Elastic Beanstalk stores the build artifact in the S3 location
         -- S3-bucket/resources/application-name/codebuild/codebuild-version-label-artifact-name.zip.
         -- If not provided, Elastic Beanstalk stores the build artifact in the S3 location
         -- S3-bucket/resources/application-name/codebuild/codebuild-version-label.zip.
         ArtifactName: string
-        -- The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.
+        -- The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that enables CodeBuild to interact with dependent
+        -- Amazon Web Services service on behalf of the Amazon Web Services account.
         CodeBuildServiceRole: string
         -- Information about the compute resources the build project will use.
         -- BUILD_GENERAL1_SMALL: Use up to 3 GB memory and 2 vCPUs for builds
@@ -597,54 +673,70 @@ local record M
         ComputeType: string
         -- The ID of the Docker image to use for this build project.
         Image: string
-        -- How long in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait until timing out any related build that does not get marked as completed. The default is 60 minutes.
+        -- How long in minutes, from 5 to 480 (8 hours), for CodeBuild to wait until timing out any related build that does not get marked as completed. The default is 60 minutes.
         TimeoutInMinutes: number
     end
 
+    -- The source of the container image for an application version: an image that you built and
+    -- pushed to a container registry yourself, or settings for Elastic Beanstalk to build one from your source
+    -- bundle.
+    record ImageConfiguration
+        -- The location of a container image that you built and pushed to a container registry
+        -- yourself. Elastic Beanstalk deploys the image without a build step.
+        -- If you specify Source, don't specify Build or the request's
+        -- SourceBundle parameter.
+        Source: ImageSource
+        -- Settings that Elastic Beanstalk uses to build a container image from the source bundle of the
+        -- application version.
+        -- If you specify Build, also specify the request's SourceBundle
+        -- parameter, and don't specify Source.
+        Build: ImageBuildConfiguration
+    end
+
     record CreateApplicationVersionInput
-        -- The name of the application. If no application is found with this name, and
-        -- AutoCreateApplication is false, returns an
+        -- The name of the application. If no application is found with this name, and AutoCreateApplication is false, returns an
         -- InvalidParameterValue error.
         ApplicationName: string
         -- A label identifying this version.
-        -- Constraint: Must be unique per application. If an application version already exists
-        -- with this label for the specified application, AWS Elastic Beanstalk returns an
-        -- InvalidParameterValue error.
+        -- Constraint: Must be unique per application. If an application version already exists with this label for the specified application, Elastic Beanstalk returns
+        -- an InvalidParameterValue error.
         VersionLabel: string
         -- A description of this application version.
         Description: string
-        -- Specify a commit in an AWS CodeCommit Git repository to use as the source code for the
-        -- application version.
+        -- Specify a commit in an CodeCommit Git repository to use as the source code for the application version.
         SourceBuildInformation: SourceBuildInformation
-        -- The Amazon S3 bucket and key that identify the location of the source bundle for this
-        -- version.
-        -- The Amazon S3 bucket must be in the same region as the
-        -- environment.
-        -- Specify a source bundle in S3 or a commit in an AWS CodeCommit repository (with
-        -- SourceBuildInformation), but not both. If neither SourceBundle nor
-        -- SourceBuildInformation are provided, Elastic Beanstalk uses a sample
-        -- application.
+        -- The Amazon S3 bucket and key that identify the location of the source bundle for this version.
+        -- The Amazon S3 bucket must be in the same region as the environment.
+        -- Unless you're specifying a source bundle in the bucket that Elastic Beanstalk manages in your account, you must assign a custom policy to your user, and grant
+        -- Allow permission to the s3:Get* actions on your S3 object resource, for example,
+        -- arn:aws:s3:::your-bucket/your-source-bundle-object.
+        -- Specify a source bundle in Amazon S3 or a commit in an CodeCommit repository (with SourceBuildInformation), but not both. If neither
+        -- SourceBundle nor SourceBuildInformation are provided, Elastic Beanstalk uses a sample application.
         SourceBundle: S3Location
-        -- Settings for an AWS CodeBuild build.
+        -- Settings for an CodeBuild build.
+        -- Don't specify BuildConfiguration together with
+        -- ImageConfiguration, which configures a container image build instead.
         BuildConfiguration: BuildConfiguration
-        -- Set to true to create an application with the specified name if it doesn't
-        -- already exist.
+        -- Set to true to create an application with the specified name if it doesn't already exist.
         AutoCreateApplication: boolean
-        -- Pre-processes and validates the environment manifest (env.yaml) and
-        -- configuration files (*.config files in the .ebextensions folder) in
-        -- the source bundle. Validating configuration files can identify issues prior to deploying the
-        -- application version to an environment.
-        -- You must turn processing on for application versions that you create using AWS
-        -- CodeBuild or AWS CodeCommit. For application versions built from a source bundle in Amazon S3,
-        -- processing is optional.
-        -- The Process option validates Elastic Beanstalk configuration files. It
-        -- doesn't validate your application's configuration files, like proxy server or Docker
-        -- configuration.
+        -- Pre-processes and validates the environment manifest (env.yaml) and configuration files (*.config files in the
+        -- .ebextensions folder) in the source bundle. Validating configuration files can identify issues prior to deploying the application version
+        -- to an environment.
+        -- You must turn processing on for application versions that you create using CodeBuild or CodeCommit. For application versions built from a source bundle
+        -- in Amazon S3, processing is optional.
+        -- The Process option validates Elastic Beanstalk configuration files. It doesn't validate your application's configuration files, like proxy server
+        -- or Docker configuration.
         Process: boolean
         -- Specifies the tags applied to the application version.
-        -- Elastic Beanstalk applies these tags only to the application version. Environments that use the
-        -- application version don't inherit the tags.
+        -- Elastic Beanstalk applies these tags only to the application version. Environments that use the application version don't inherit the tags.
         Tags: {Tag}
+        -- The source of the container image for this application version. You can specify an image
+        -- that you built and pushed to a container registry yourself, or settings for Elastic Beanstalk to build
+        -- one from your source bundle. Specify exactly one of the Source and
+        -- Build members.
+        -- Don't specify ImageConfiguration together with
+        -- BuildConfiguration, which configures an CodeBuild build instead.
+        ImageConfiguration: ImageConfiguration
     end
 
     -- Result message wrapping a single description of an application version.
@@ -671,11 +763,11 @@ local record M
 
     -- A specification identifying an individual configuration option along with its current
     -- value. For a list of possible namespaces and option values, see Option Values in the
-    -- AWS Elastic Beanstalk Developer Guide.
+    -- Elastic Beanstalk Developer Guide.
     record ConfigurationOptionSetting
         -- A unique resource name for the option setting. Use it for a time–based scaling configuration option.
         ResourceName: string
-        -- A unique namespace that identifies the option's associated AWS resource.
+        -- A unique namespace that identifies the option's associated Amazon Web Services resource.
         Namespace: string
         -- The name of the configuration option.
         OptionName: string
@@ -704,7 +796,7 @@ local record M
         -- specifies the operating system, runtime, and application server for a configuration template.
         -- It also determines the set of configuration options as well as the possible and default
         -- values. For more information, see Supported Platforms in the
-        -- AWS Elastic Beanstalk Developer Guide.
+        -- Elastic Beanstalk Developer Guide.
         -- You must specify SolutionStackName if you don't specify
         -- PlatformArn, EnvironmentId, or
         -- SourceConfiguration.
@@ -713,10 +805,8 @@ local record M
         -- API to obtain a list of available
         -- solution stacks.
         SolutionStackName: string
-        -- The Amazon Resource Name (ARN) of the custom platform. For more information, see Custom
-        -- Platforms in the AWS Elastic Beanstalk Developer Guide.
-        -- If you specify PlatformArn, then don't specify
-        -- SolutionStackName.
+        -- The Amazon Resource Name (ARN) of the custom platform. For more information, see Custom Platforms in the Elastic Beanstalk Developer Guide.
+        -- If you specify PlatformArn, then don't specify SolutionStackName.
         PlatformArn: string
         -- An Elastic Beanstalk configuration template to base this one on. If specified, Elastic Beanstalk uses the configuration values from the specified
         -- configuration template to create a new configuration.
@@ -739,7 +829,7 @@ local record M
         -- Option values for the Elastic Beanstalk configuration, such as the instance type. If specified, these
         -- values override the values obtained from the solution stack or the source configuration
         -- template. For a complete list of Elastic Beanstalk configuration options, see Option Values in the
-        -- AWS Elastic Beanstalk Developer Guide.
+        -- Elastic Beanstalk Developer Guide.
         OptionSettings: {ConfigurationOptionSetting}
         -- Specifies the tags applied to the configuration template.
         Tags: {Tag}
@@ -803,7 +893,7 @@ local record M
     record OptionSpecification
         -- A unique resource name for a time-based scaling configuration option.
         ResourceName: string
-        -- A unique namespace identifying the option's associated AWS resource.
+        -- A unique namespace identifying the option's associated Amazon Web Services resource.
         Namespace: string
         -- The name of the configuration option.
         OptionName: string
@@ -813,27 +903,23 @@ local record M
         -- The name of the application that is associated with this environment.
         ApplicationName: string
         -- A unique name for the environment.
-        -- Constraint: Must be from 4 to 40 characters in length. The name can contain only
-        -- letters, numbers, and hyphens. It can't start or end with a hyphen. This name must be unique
-        -- within a region in your account. If the specified name already exists in the region, Elastic Beanstalk returns an
+        -- Constraint: Must be from 4 to 40 characters in length. The name can contain only letters, numbers, and hyphens. It can't start or end with a hyphen.
+        -- This name must be unique within a region in your account. If the specified name already exists in the region, Elastic Beanstalk returns an
         -- InvalidParameterValue error.
-        -- If you don't specify the CNAMEPrefix parameter, the environment name becomes part of
-        -- the CNAME, and therefore part of the visible URL for your application.
+        -- If you don't specify the CNAMEPrefix parameter, the environment name becomes part of the CNAME, and therefore part of the visible URL for
+        -- your application.
         EnvironmentName: string
-        -- The name of the group to which the target environment belongs. Specify a group name
-        -- only if the environment's name is specified in an environment manifest and not with the
-        -- environment name parameter. See Environment Manifest
-        -- (env.yaml) for details.
+        -- The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment
+        -- manifest and not with the environment name parameter. See Environment Manifest (env.yaml) for details.
         GroupName: string
         -- Your description for this environment.
         Description: string
-        -- If specified, the environment attempts to use this value as the prefix for the CNAME in
-        -- your Elastic Beanstalk environment URL. If not specified, the CNAME is generated automatically by
-        -- appending a random alphanumeric string to the environment name.
+        -- If specified, the environment attempts to use this value as the prefix for the CNAME in your Elastic Beanstalk environment URL. If not specified, the CNAME is
+        -- generated automatically by appending a random alphanumeric string to the environment name.
         CNAMEPrefix: string
-        -- Specifies the tier to use in creating this environment. The environment tier that you
-        -- choose determines whether Elastic Beanstalk provisions resources to support a web application that handles
-        -- HTTP(S) requests or a web application that handles background-processing tasks.
+        -- Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources on
+        -- Amazon EC2 instances or on an Amazon EKS cluster, and, for Amazon EC2, whether the environment serves HTTP(S) requests or processes background tasks
+        -- from a queue.
         Tier: EnvironmentTier
         -- Specifies the tags applied to resources in the environment.
         Tags: {Tag}
@@ -841,35 +927,25 @@ local record M
         -- Default: If not specified, Elastic Beanstalk attempts to deploy the sample application.
         VersionLabel: string
         -- The name of the Elastic Beanstalk configuration template to use with the environment.
-        -- If you specify TemplateName, then don't specify
-        -- SolutionStackName.
+        -- If you specify TemplateName, then don't specify SolutionStackName.
         TemplateName: string
-        -- The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If
-        -- specified, Elastic Beanstalk sets the configuration values to the default values associated with the
-        -- specified solution stack. For a list of current solution stacks, see Elastic Beanstalk Supported Platforms in the AWS Elastic Beanstalk
+        -- The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If specified, Elastic Beanstalk sets the configuration values to the default
+        -- values associated with the specified solution stack. For a list of current solution stacks, see Elastic Beanstalk Supported Platforms in the Elastic Beanstalk
         -- Platforms guide.
-        -- If you specify SolutionStackName, don't specify PlatformArn or
-        -- TemplateName.
+        -- If you specify SolutionStackName, don't specify PlatformArn or TemplateName.
         SolutionStackName: string
-        -- The Amazon Resource Name (ARN) of the custom platform to use with the environment. For
-        -- more information, see Custom Platforms in the
-        -- AWS Elastic Beanstalk Developer Guide.
-        -- If you specify PlatformArn, don't specify
-        -- SolutionStackName.
+        -- The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see Custom Platforms in the Elastic Beanstalk Developer Guide.
+        -- If you specify PlatformArn, don't specify SolutionStackName.
         PlatformArn: string
-        -- If specified, AWS Elastic Beanstalk sets the specified configuration options to the
-        -- requested value in the configuration set for the new environment. These override the values
-        -- obtained from the solution stack or the configuration template.
+        -- If specified, Elastic Beanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These
+        -- override the values obtained from the solution stack or the configuration template.
         OptionSettings: {ConfigurationOptionSetting}
-        -- A list of custom user-defined configuration options to remove from the configuration
-        -- set for this new environment.
+        -- A list of custom user-defined configuration options to remove from the configuration set for this new environment.
         OptionsToRemove: {OptionSpecification}
-        -- The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's
-        -- operations role. If specified, Elastic Beanstalk uses the operations role for permissions to downstream
-        -- services during this call and during subsequent calls acting on this environment. To specify
-        -- an operations role, you must have the iam:PassRole permission for the role. For
-        -- more information, see Operations roles in the
-        -- AWS Elastic Beanstalk Developer Guide.
+        -- The operations role feature of Elastic Beanstalk is in beta release and is subject to change.
+        -- The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role. If specified, Elastic Beanstalk uses the operations role
+        -- for permissions to downstream services during this call and during subsequent calls acting on this environment. To specify an operations role, you must
+        -- have the iam:PassRole permission for the role.
         OperationsRole: string
     end
 
@@ -902,7 +978,14 @@ local record M
         -- The last modified date for this environment.
         DateUpdated: number
         -- The current operational status of the environment:
+        -- Aborting: Environment is in the process of aborting a deployment.
         -- Launching: Environment is in the process of initial deployment.
+        -- LinkingFrom: Environment is in the process of being linked to by another
+        -- environment. See Environment links
+        -- for details.
+        -- LinkingTo: Environment is in the process of linking to another environment.
+        -- See Environment links
+        -- for details.
         -- Updating: Environment is in the process of updating its configuration
         -- settings or application version.
         -- Ready: Environment is available to have an action performed on it, such as
@@ -915,7 +998,7 @@ local record M
         -- true: There is an update in progress.
         -- false: There are no updates currently in progress.
         AbortableOperationInProgress: boolean
-        -- Describes the health status of the environment. AWS Elastic Beanstalk indicates the
+        -- Describes the health status of the environment. Elastic Beanstalk indicates the
         -- failure levels for a running environment:
         -- Red: Indicates the environment is not responsive. Occurs when three or more
         -- consecutive failures occur for an environment.
@@ -931,7 +1014,7 @@ local record M
         -- information, see Health Colors and
         -- Statuses.
         HealthStatus: string
-        -- The description of the AWS resources used by this environment.
+        -- The description of the Amazon Web Services resources used by this environment.
         Resources: EnvironmentResourcesDescription
         -- Describes the current tier of this environment.
         Tier: EnvironmentTier
@@ -939,8 +1022,8 @@ local record M
         EnvironmentLinks: {EnvironmentLink}
         -- The environment's Amazon Resource Name (ARN), which can be used in other API requests that require an ARN.
         EnvironmentArn: string
-        -- The Amazon Resource Name (ARN) of the environment's operations role. For more information,
-        -- see Operations roles in the AWS Elastic Beanstalk Developer Guide.
+        -- The operations role feature of Elastic Beanstalk is in beta release and is subject to change.
+        -- The Amazon Resource Name (ARN) of the environment's operations role.
         OperationsRole: string
     end
 
@@ -980,7 +1063,7 @@ local record M
     record PlatformSummary
         -- The ARN of the platform version.
         PlatformArn: string
-        -- The AWS account ID of the person who created the platform version.
+        -- The Amazon Web Services account ID of the person who created the platform version.
         PlatformOwner: string
         -- The status of the platform version. You can create an environment from the platform
         -- version once it is ready.
@@ -1063,9 +1146,8 @@ local record M
         ApplicationName: string
         -- The label of the version to delete.
         VersionLabel: string
-        -- Set to true to delete the source bundle from your storage bucket.
-        -- Otherwise, the application version is deleted only from Elastic Beanstalk and the source
-        -- bundle remains in Amazon S3.
+        -- Set to true to delete the source bundle from your storage bucket. Otherwise, the application version is deleted only from Elastic
+        -- Beanstalk and the source bundle remains in Amazon S3.
         DeleteSourceBundle: boolean
     end
 
@@ -1120,38 +1202,38 @@ local record M
     record DescribeAccountAttributesInput
     end
 
-    -- The AWS Elastic Beanstalk quota information for a single resource type in an AWS account. It
+    -- The Elastic Beanstalk quota information for a single resource type in an Amazon Web Services account. It
     -- reflects the resource's limits for this account.
     record ResourceQuota
-        -- The maximum number of instances of this Elastic Beanstalk resource type that an AWS account can
+        -- The maximum number of instances of this Elastic Beanstalk resource type that an Amazon Web Services account can
         -- use.
         Maximum: number
     end
 
-    -- A set of per-resource AWS Elastic Beanstalk quotas associated with an AWS account. They reflect
+    -- A set of per-resource Elastic Beanstalk quotas associated with an Amazon Web Services account. They reflect
     -- Elastic Beanstalk resource limits for this account.
     record ResourceQuotas
-        -- The quota for applications in the AWS account.
+        -- The quota for applications in the Amazon Web Services account.
         ApplicationQuota: ResourceQuota
-        -- The quota for application versions in the AWS account.
+        -- The quota for application versions in the Amazon Web Services account.
         ApplicationVersionQuota: ResourceQuota
-        -- The quota for environments in the AWS account.
+        -- The quota for environments in the Amazon Web Services account.
         EnvironmentQuota: ResourceQuota
-        -- The quota for configuration templates in the AWS account.
+        -- The quota for configuration templates in the Amazon Web Services account.
         ConfigurationTemplateQuota: ResourceQuota
-        -- The quota for custom platforms in the AWS account.
+        -- The quota for custom platforms in the Amazon Web Services account.
         CustomPlatformQuota: ResourceQuota
     end
 
     record DescribeAccountAttributesOutput
-        -- The Elastic Beanstalk resource quotas associated with the calling AWS account.
+        -- The Elastic Beanstalk resource quotas associated with the calling Amazon Web Services account.
         ResourceQuotas: ResourceQuotas
     end
 
     -- Request to describe one or more applications.
     record DescribeApplicationsInput
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include
-        -- those with the specified names.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to only include those with the
+        -- specified names.
         ApplicationNames: {string}
     end
 
@@ -1163,29 +1245,24 @@ local record M
 
     -- Request to describe application versions.
     record DescribeApplicationVersionsInput
-        -- Specify an application name to show only application versions for that
-        -- application.
+        -- Specify an application name to show only application versions for that application.
         ApplicationName: string
         -- Specify a version label to show a specific application version.
         VersionLabels: {string}
-        -- For a paginated request. Specify a maximum number of application versions to include in
-        -- each response.
-        -- If no MaxRecords is specified, all available application versions are
-        -- retrieved in a single response.
+        -- For a paginated request. Specify a maximum number of application versions to include in each response.
+        -- If no MaxRecords is specified, all available application versions are retrieved in a single response.
         MaxRecords: number
-        -- For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other
-        -- parameter values must be identical to the ones specified in the initial request.
+        -- For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be
+        -- identical to the ones specified in the initial request.
         -- If no NextToken is specified, the first page is retrieved.
         NextToken: string
     end
 
     -- Result message wrapping a list of application version descriptions.
     record DescribeApplicationVersionsOutput
-        -- List of ApplicationVersionDescription objects sorted in order of
-        -- creation.
+        -- List of ApplicationVersionDescription objects sorted in order of creation.
         ApplicationVersions: {ApplicationVersionDescription}
-        -- In a paginated request, the token that you can pass in a subsequent request to get the
-        -- next response page.
+        -- In a paginated request, the token that you can pass in a subsequent request to get the next response page.
         NextToken: string
     end
 
@@ -1226,7 +1303,7 @@ local record M
 
     -- Describes the possible values for a configuration option.
     record ConfigurationOptionDescription
-        -- A unique namespace identifying the option's associated AWS resource.
+        -- A unique namespace identifying the option's associated Amazon Web Services resource.
         Namespace: string
         -- The name of the configuration option.
         Name: string
@@ -1236,12 +1313,10 @@ local record M
         -- changes:
         -- NoInterruption : There is no interruption to the environment or application
         -- availability.
-        -- RestartEnvironment : The environment is entirely restarted, all AWS resources
-        -- are deleted and recreated, and the environment is unavailable during the
-        -- process.
-        -- RestartApplicationServer : The environment is available the entire time.
-        -- However, a short application outage occurs when the application servers on the running
-        -- Amazon EC2 instances are restarted.
+        -- RestartEnvironment : The environment is entirely restarted, all A resources are deleted and recreated,
+        -- and the environment is unavailable during the process.
+        -- RestartApplicationServer : The environment is available the entire time. However, a short application
+        -- outage occurs when the application servers on the running Amazon EC2 instances are restarted.
         ChangeSeverity: string
         -- An indication of whether the user defined this configuration option:
         -- true : This configuration option was defined by the user. It is a valid
@@ -1297,14 +1372,14 @@ local record M
         ApplicationName: string
         -- The name of the configuration template to describe.
         -- Conditional: You must specify either this parameter or an EnvironmentName, but not
-        -- both. If you specify both, AWS Elastic Beanstalk returns an
-        -- InvalidParameterCombination error. If you do not specify either, AWS Elastic
-        -- Beanstalk returns a MissingRequiredParameter error.
+        -- both. If you specify both, Elastic Beanstalk returns an
+        -- InvalidParameterCombination error. If you do not specify either, Elastic Beanstalk
+        -- returns a MissingRequiredParameter error.
         TemplateName: string
         -- The name of the environment to describe.
         -- Condition: You must specify either this or a TemplateName, but not both. If you
-        -- specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination error.
-        -- If you do not specify either, AWS Elastic Beanstalk returns
+        -- specify both, Elastic Beanstalk returns an InvalidParameterCombination error.
+        -- If you do not specify either, Elastic Beanstalk returns
         -- MissingRequiredParameter error.
         EnvironmentName: string
     end
@@ -1371,19 +1446,18 @@ local record M
         -- Specify the environment by ID.
         -- You must specify either this or an EnvironmentName, or both.
         EnvironmentId: string
-        -- Specify the response elements to return. To retrieve all attributes, set to
-        -- All. If no attribute names are specified, returns the name of the
-        -- environment.
+        -- Specify the response elements to return. To retrieve all attributes, set to All. If no attribute names are specified, returns the name of
+        -- the environment.
         AttributeNames: {string}
     end
 
     -- Represents summary information about the health of an instance. For more information,
     -- see Health Colors and Statuses.
     record InstanceHealthSummary
-        -- Grey. AWS Elastic Beanstalk and the health agent are
+        -- Grey. Elastic Beanstalk and the health agent are
         -- reporting no data on an instance.
         NoData: number
-        -- Grey. AWS Elastic Beanstalk and the health agent are
+        -- Grey. Elastic Beanstalk and the health agent are
         -- reporting an insufficient amount of data on an instance.
         Unknown: number
         -- Grey. An operation is in progress on an instance within the
@@ -1405,21 +1479,19 @@ local record M
         Severe: number
     end
 
-    -- Health details for an AWS Elastic Beanstalk environment.
+    -- Health details for an Elastic Beanstalk environment.
     record DescribeEnvironmentHealthOutput
         -- The environment's name.
         EnvironmentName: string
-        -- The health status of the
-        -- environment. For example, Ok.
+        -- The health status of the environment. For example,
+        -- Ok.
         HealthStatus: string
-        -- The environment's operational status. Ready, Launching,
-        -- Updating, Terminating, or Terminated.
+        -- The environment's operational status. Ready, Launching, Updating, Terminating, or
+        -- Terminated.
         Status: string
-        -- The health color of the
-        -- environment.
+        -- The health color of the environment.
         Color: string
-        -- Descriptions of the data that contributed to the environment's current health
-        -- status.
+        -- Descriptions of the data that contributed to the environment's current health status.
         Causes: {string}
         -- Application request metrics for the environment.
         ApplicationMetrics: ApplicationMetrics
@@ -1482,8 +1554,7 @@ local record M
     record DescribeEnvironmentManagedActionHistoryOutput
         -- A list of completed and failed managed actions.
         ManagedActionHistoryItems: {ManagedActionHistoryItem}
-        -- A pagination token that you pass to DescribeEnvironmentManagedActionHistory to get the next page of
-        -- results.
+        -- A pagination token that you pass to DescribeEnvironmentManagedActionHistory to get the next page of results.
         NextToken: string
     end
 
@@ -1521,14 +1592,20 @@ local record M
 
     -- Request to describe the resources in an environment.
     record DescribeEnvironmentResourcesInput
-        -- The ID of the environment to retrieve AWS resource usage data.
-        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- The ID of the environment to retrieve Amazon Web Services resource usage data.
+        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentId: string
-        -- The name of the environment to retrieve AWS resource usage data.
-        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- The name of the environment to retrieve Amazon Web Services resource usage data.
+        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentName: string
+    end
+
+    -- Describes the Amazon EKS cluster that an environment runs on.
+    record Cluster
+        -- The Amazon Resource Name (ARN) of the Amazon EKS cluster.
+        ClusterArn: string
     end
 
     -- The description of an Amazon EC2 instance.
@@ -1569,12 +1646,15 @@ local record M
         Name: string
     end
 
-    -- Describes the AWS resources in use by this environment. This data is live.
+    -- Describes the Amazon Web Services resources in use by this environment. This data is live.
     record EnvironmentResourceDescription
         -- The name of the environment.
         EnvironmentName: string
         -- The AutoScalingGroups used by this environment.
         AutoScalingGroups: {AutoScalingGroup}
+        -- The Amazon EKS cluster that this environment runs on. This member is present only for
+        -- environments in the Cluster tier.
+        Cluster: Cluster
         -- The Amazon EC2 instances used by this environment.
         Instances: {Instance}
         -- The Auto Scaling launch configurations in use by this environment.
@@ -1597,33 +1677,25 @@ local record M
 
     -- Request to describe one or more environments.
     record DescribeEnvironmentsInput
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only
-        -- those that are associated with this application.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.
         ApplicationName: string
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only
-        -- those that are associated with this application version.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.
         VersionLabel: string
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only
-        -- those that have the specified IDs.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.
         EnvironmentIds: {string}
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only
-        -- those that have the specified names.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.
         EnvironmentNames: {string}
         -- Indicates whether to include deleted environments:
-        -- true: Environments that have been deleted after
-        -- IncludedDeletedBackTo are displayed.
+        -- true: Environments that have been deleted after IncludedDeletedBackTo are displayed.
         -- false: Do not include deleted environments.
         IncludeDeleted: boolean
-        -- If specified when IncludeDeleted is set to true, then
-        -- environments deleted after this date are displayed.
+        -- If specified when IncludeDeleted is set to true, then environments deleted after this date are displayed.
         IncludedDeletedBackTo: number
-        -- For a paginated request. Specify a maximum number of environments to include in
-        -- each response.
-        -- If no MaxRecords is specified, all available environments are
-        -- retrieved in a single response.
+        -- For a paginated request. Specify a maximum number of environments to include in each response.
+        -- If no MaxRecords is specified, all available environments are retrieved in a single response.
         MaxRecords: number
-        -- For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other
-        -- parameter values must be identical to the ones specified in the initial request.
+        -- For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be
+        -- identical to the ones specified in the initial request.
         -- If no NextToken is specified, the first page is retrieved.
         NextToken: string
     end
@@ -1632,8 +1704,7 @@ local record M
     record DescribeEnvironmentsOutput
         -- Returns an EnvironmentDescription list.
         Environments: {EnvironmentDescription}
-        -- In a paginated request, the token that you can pass in a subsequent request to get the
-        -- next response page.
+        -- In a paginated request, the token that you can pass in a subsequent request to get the next response page.
         NextToken: string
     end
 
@@ -1648,38 +1719,28 @@ local record M
 
     -- Request to retrieve a list of events for an environment.
     record DescribeEventsInput
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only
-        -- those associated with this application.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.
         ApplicationName: string
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to those
-        -- associated with this application version.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this application version.
         VersionLabel: string
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that
-        -- are associated with this environment configuration.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to those that are associated with this environment configuration.
         TemplateName: string
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to those
-        -- associated with this environment.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this environment.
         EnvironmentId: string
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to those
-        -- associated with this environment.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this environment.
         EnvironmentName: string
-        -- The ARN of a custom platform version. If specified, AWS Elastic Beanstalk restricts the
-        -- returned descriptions to those associated with this custom platform version.
+        -- The ARN of a custom platform version. If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this custom platform
+        -- version.
         PlatformArn: string
-        -- If specified, AWS Elastic Beanstalk restricts the described events to include only
-        -- those associated with this request ID.
+        -- If specified, Elastic Beanstalk restricts the described events to include only those associated with this request ID.
         RequestId: string
-        -- If specified, limits the events returned from this call to include only those with the
-        -- specified severity or higher.
+        -- If specified, limits the events returned from this call to include only those with the specified severity or higher.
         Severity: string
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that
-        -- occur on or after this time.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time.
         StartTime: number
-        -- If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that
-        -- occur up to, but not including, the EndTime.
+        -- If specified, Elastic Beanstalk restricts the returned descriptions to those that occur up to, but not including, the EndTime.
         EndTime: number
-        -- Specifies the maximum number of events that can be returned, beginning with the most
-        -- recent event.
+        -- Specifies the maximum number of events that can be returned, beginning with the most recent event.
         MaxRecords: number
         -- Pagination token. If specified, the events return the next batch of results.
         NextToken: string
@@ -1711,8 +1772,8 @@ local record M
     record DescribeEventsOutput
         -- A list of EventDescription.
         Events: {EventDescription}
-        -- If returned, this indicates that there are more results to obtain. Use this token in
-        -- the next DescribeEvents call to get the next batch of events.
+        -- If returned, this indicates that there are more results to obtain. Use this token in the next DescribeEvents call to get the next
+        -- batch of events.
         NextToken: string
     end
 
@@ -1732,13 +1793,12 @@ local record M
 
     -- Parameters for a call to DescribeInstancesHealth.
     record DescribeInstancesHealthInput
-        -- Specify the AWS Elastic Beanstalk environment by name.
+        -- Specify the Elastic Beanstalk environment by name.
         EnvironmentName: string
-        -- Specify the AWS Elastic Beanstalk environment by ID.
+        -- Specify the Elastic Beanstalk environment by ID.
         EnvironmentId: string
-        -- Specifies the response elements you wish to receive. To retrieve all attributes, set to
-        -- All. If no attribute names are specified, returns a list of
-        -- instances.
+        -- Specifies the response elements you wish to receive. To retrieve all attributes, set to All. If no attribute names are specified, returns
+        -- a list of instances.
         AttributeNames: {string}
         -- Specify the pagination token returned by a previous call.
         NextToken: string
@@ -1834,12 +1894,11 @@ local record M
         InstanceType: string
     end
 
-    -- Detailed health information about the Amazon EC2 instances in an AWS Elastic Beanstalk
-    -- environment.
+    -- Detailed health information about the Amazon EC2 instances in an Elastic Beanstalk environment.
     record DescribeInstancesHealthOutput
         -- Detailed health information about each instance.
-        -- The output differs slightly between Linux and Windows environments. There is a difference
-        -- in the members that are supported under the type.
+        -- The output differs slightly between Linux and Windows environments. There is a difference in the members that are supported under the
+        -- type.
         InstanceHealthList: {SingleInstanceHealth}
         -- The date and time that the health information was retrieved.
         RefreshedAt: number
@@ -1880,7 +1939,7 @@ local record M
     record PlatformDescription
         -- The ARN of the platform version.
         PlatformArn: string
-        -- The AWS account ID of the person who created the platform version.
+        -- The Amazon Web Services account ID of the person who created the platform version.
         PlatformOwner: string
         -- The name of the platform version.
         PlatformName: string
@@ -1945,7 +2004,7 @@ local record M
     record ListAvailableSolutionStacksInput
     end
 
-    -- A list of available AWS Elastic Beanstalk solution stacks.
+    -- A list of available Elastic Beanstalk solution stacks.
     record ListAvailableSolutionStacksOutput
         -- A list of available solution stacks.
         SolutionStacks: {string}
@@ -1976,36 +2035,29 @@ local record M
     end
 
     record ListPlatformBranchesInput
-        -- Criteria for restricting the resulting list of platform branches. The filter is evaluated
-        -- as a logical conjunction (AND) of the separate SearchFilter terms.
-        -- The following list shows valid attribute values for each of the SearchFilter
-        -- terms. Most operators take a single value. The in and not_in
-        -- operators can take multiple values.
+        -- Criteria for restricting the resulting list of platform branches. The filter is evaluated as a logical conjunction (AND) of the separate
+        -- SearchFilter terms.
+        -- The following list shows valid attribute values for each of the SearchFilter terms. Most operators take a single value. The
+        -- in and not_in operators can take multiple values.
         -- Attribute = BranchName:
-        -- Operator: = | != | begins_with
-        -- | ends_with | contains | in |
-        -- not_in
+        -- Operator: = | != | begins_with | ends_with | contains |
+        -- in | not_in
         -- Attribute = LifecycleState:
-        -- Operator: = | != | in |
-        -- not_in
-        -- Values: beta | supported |
-        -- deprecated | retired
+        -- Operator: = | != | in | not_in
+        -- Values: beta | supported | deprecated | retired
         -- Attribute = PlatformName:
-        -- Operator: = | != | begins_with
-        -- | ends_with | contains | in |
-        -- not_in
+        -- Operator: = | != | begins_with | ends_with | contains |
+        -- in | not_in
         -- Attribute = TierType:
         -- Operator: = | !=
         -- Values: WebServer/Standard | Worker/SQS/HTTP
         -- Array size: limited to 10 SearchFilter objects.
-        -- Within each SearchFilter item, the Values array is limited to 10
-        -- items.
+        -- Within each SearchFilter item, the Values array is limited to 10 items.
         Filters: {SearchFilter}
         -- The maximum number of platform branch values returned in one call.
         MaxRecords: number
-        -- For a paginated request. Specify a token from a previous response page to retrieve the
-        -- next response page. All other parameter values must be identical to the ones specified in the
-        -- initial request.
+        -- For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be
+        -- identical to the ones specified in the initial request.
         -- If no NextToken is specified, the first page is retrieved.
         NextToken: string
     end
@@ -2035,8 +2087,8 @@ local record M
     record ListPlatformBranchesOutput
         -- Summary information about the platform branches.
         PlatformBranchSummaryList: {PlatformBranchSummary}
-        -- In a paginated request, if this value isn't null, it's the token that you can
-        -- pass in a subsequent request to get the next response page.
+        -- In a paginated request, if this value isn't null, it's the token that you can pass in a subsequent request to get the next response
+        -- page.
         NextToken: string
     end
 
@@ -2071,15 +2123,13 @@ local record M
     end
 
     record ListPlatformVersionsInput
-        -- Criteria for restricting the resulting list of platform versions. The filter is
-        -- interpreted as a logical conjunction (AND) of the separate PlatformFilter
-        -- terms.
+        -- Criteria for restricting the resulting list of platform versions. The filter is interpreted as a logical conjunction (AND) of the separate
+        -- PlatformFilter terms.
         Filters: {PlatformFilter}
         -- The maximum number of platform version values returned in one call.
         MaxRecords: number
-        -- For a paginated request. Specify a token from a previous response page to retrieve the
-        -- next response page. All other parameter values must be identical to the ones specified in the
-        -- initial request.
+        -- For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be
+        -- identical to the ones specified in the initial request.
         -- If no NextToken is specified, the first page is retrieved.
         NextToken: string
     end
@@ -2087,8 +2137,8 @@ local record M
     record ListPlatformVersionsOutput
         -- Summary information about the platform versions.
         PlatformSummaryList: {PlatformSummary}
-        -- In a paginated request, if this value isn't null, it's the token that you can
-        -- pass in a subsequent request to get the next response page.
+        -- In a paginated request, if this value isn't null, it's the token that you can pass in a subsequent request to get the next response
+        -- page.
         NextToken: string
     end
 
@@ -2119,12 +2169,12 @@ local record M
 
     record RebuildEnvironmentInput
         -- The ID of the environment to rebuild.
-        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentId: string
         -- The name of the environment to rebuild.
-        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentName: string
     end
 
@@ -2137,20 +2187,17 @@ local record M
         "analyze"
     end
 
-    -- Request to retrieve logs from an environment and store them in your Elastic Beanstalk
-    -- storage bucket.
+    -- Request to retrieve logs from an environment and store them in your Elastic Beanstalk storage bucket.
     record RequestEnvironmentInfoInput
         -- The ID of the environment of the requested data.
-        -- If no such environment is found, RequestEnvironmentInfo returns an
-        -- InvalidParameterValue error.
-        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- If no such environment is found, RequestEnvironmentInfo returns an InvalidParameterValue error.
+        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentId: string
         -- The name of the environment of the requested data.
-        -- If no such environment is found, RequestEnvironmentInfo returns an
-        -- InvalidParameterValue error.
-        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- If no such environment is found, RequestEnvironmentInfo returns an InvalidParameterValue error.
+        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentName: string
         -- The type of information to request.
         InfoType: string
@@ -2161,12 +2208,12 @@ local record M
 
     record RestartAppServerInput
         -- The ID of the environment to restart the server for.
-        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentId: string
         -- The name of the environment to restart the server for.
-        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentName: string
     end
 
@@ -2176,16 +2223,14 @@ local record M
     -- Request to download logs retrieved with RequestEnvironmentInfo.
     record RetrieveEnvironmentInfoInput
         -- The ID of the data's environment.
-        -- If no such environment is found, returns an InvalidParameterValue
-        -- error.
-        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
-        -- error.
+        -- If no such environment is found, returns an InvalidParameterValue error.
+        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentId: string
         -- The name of the data's environment.
         -- If no such environment is found, returns an InvalidParameterValue error.
-        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentName: string
         -- The type of information to retrieve.
         InfoType: string
@@ -2215,26 +2260,20 @@ local record M
     -- Swaps the CNAMEs of two environments.
     record SwapEnvironmentCNAMEsInput
         -- The ID of the source environment.
-        -- Condition: You must specify at least the SourceEnvironmentID or the
-        -- SourceEnvironmentName. You may also specify both. If you specify the
-        -- SourceEnvironmentId, you must specify the
-        -- DestinationEnvironmentId.
+        -- Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName. You may also specify both. If
+        -- you specify the SourceEnvironmentId, you must specify the DestinationEnvironmentId.
         SourceEnvironmentId: string
         -- The name of the source environment.
-        -- Condition: You must specify at least the SourceEnvironmentID or the
-        -- SourceEnvironmentName. You may also specify both. If you specify the
-        -- SourceEnvironmentName, you must specify the
-        -- DestinationEnvironmentName.
+        -- Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName. You may also specify both. If
+        -- you specify the SourceEnvironmentName, you must specify the DestinationEnvironmentName.
         SourceEnvironmentName: string
         -- The ID of the destination environment.
-        -- Condition: You must specify at least the DestinationEnvironmentID or the
-        -- DestinationEnvironmentName. You may also specify both. You must specify the
-        -- SourceEnvironmentId with the DestinationEnvironmentId.
+        -- Condition: You must specify at least the DestinationEnvironmentID or the DestinationEnvironmentName. You may also specify
+        -- both. You must specify the SourceEnvironmentId with the DestinationEnvironmentId.
         DestinationEnvironmentId: string
         -- The name of the destination environment.
-        -- Condition: You must specify at least the DestinationEnvironmentID or the
-        -- DestinationEnvironmentName. You may also specify both. You must specify the
-        -- SourceEnvironmentName with the DestinationEnvironmentName.
+        -- Condition: You must specify at least the DestinationEnvironmentID or the DestinationEnvironmentName. You may also specify
+        -- both. You must specify the SourceEnvironmentName with the DestinationEnvironmentName.
         DestinationEnvironmentName: string
     end
 
@@ -2244,25 +2283,22 @@ local record M
     -- Request to terminate an environment.
     record TerminateEnvironmentInput
         -- The ID of the environment to terminate.
-        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentId: string
         -- The name of the environment to terminate.
-        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentName: string
-        -- Indicates whether the associated AWS resources should shut down when the environment is
-        -- terminated:
-        -- true: The specified environment as well as the associated AWS resources, such
-        -- as Auto Scaling group and LoadBalancer, are terminated.
-        -- false: AWS Elastic Beanstalk resource management is removed from the
-        -- environment, but the AWS resources continue to operate.
-        -- For more information, see the AWS Elastic Beanstalk User Guide.
+        -- Indicates whether the associated Amazon Web Services resources should shut down when the environment is terminated:
+        -- true: The specified environment as well as the associated Amazon Web Services resources, such as Auto Scaling group and LoadBalancer, are
+        -- terminated.
+        -- false: Elastic Beanstalk resource management is removed from the environment, but the Amazon Web Services resources continue to operate.
+        -- For more information, see the Elastic Beanstalk User Guide.
         -- Default: true
         -- Valid Values: true | false
         TerminateResources: boolean
-        -- Terminates the target environment even if another environment in the same group is
-        -- dependent on it.
+        -- Terminates the target environment even if another environment in the same group is dependent on it.
         ForceTerminate: boolean
     end
 
@@ -2295,7 +2331,14 @@ local record M
         -- The last modified date for this environment.
         DateUpdated: number
         -- The current operational status of the environment:
+        -- Aborting: Environment is in the process of aborting a deployment.
         -- Launching: Environment is in the process of initial deployment.
+        -- LinkingFrom: Environment is in the process of being linked to by another
+        -- environment. See Environment links
+        -- for details.
+        -- LinkingTo: Environment is in the process of linking to another environment.
+        -- See Environment links
+        -- for details.
         -- Updating: Environment is in the process of updating its configuration
         -- settings or application version.
         -- Ready: Environment is available to have an action performed on it, such as
@@ -2308,7 +2351,7 @@ local record M
         -- true: There is an update in progress.
         -- false: There are no updates currently in progress.
         AbortableOperationInProgress: boolean
-        -- Describes the health status of the environment. AWS Elastic Beanstalk indicates the
+        -- Describes the health status of the environment. Elastic Beanstalk indicates the
         -- failure levels for a running environment:
         -- Red: Indicates the environment is not responsive. Occurs when three or more
         -- consecutive failures occur for an environment.
@@ -2324,7 +2367,7 @@ local record M
         -- information, see Health Colors and
         -- Statuses.
         HealthStatus: string
-        -- The description of the AWS resources used by this environment.
+        -- The description of the Amazon Web Services resources used by this environment.
         Resources: EnvironmentResourcesDescription
         -- Describes the current tier of this environment.
         Tier: EnvironmentTier
@@ -2332,8 +2375,8 @@ local record M
         EnvironmentLinks: {EnvironmentLink}
         -- The environment's Amazon Resource Name (ARN), which can be used in other API requests that require an ARN.
         EnvironmentArn: string
-        -- The Amazon Resource Name (ARN) of the environment's operations role. For more information,
-        -- see Operations roles in the AWS Elastic Beanstalk Developer Guide.
+        -- The operations role feature of Elastic Beanstalk is in beta release and is subject to change.
+        -- The Amazon Resource Name (ARN) of the environment's operations role.
         OperationsRole: string
     end
 
@@ -2343,8 +2386,7 @@ local record M
         -- UpdateApplication returns an InvalidParameterValue error.
         ApplicationName: string
         -- A new description for the application.
-        -- Default: If not specified, AWS Elastic Beanstalk does not update the
-        -- description.
+        -- Default: If not specified, Elastic Beanstalk does not update the description.
         Description: string
     end
 
@@ -2370,12 +2412,10 @@ local record M
 
     record UpdateApplicationVersionInput
         -- The name of the application associated with this version.
-        -- If no application is found with this name, UpdateApplication returns an
-        -- InvalidParameterValue error.
+        -- If no application is found with this name, UpdateApplication returns an InvalidParameterValue error.
         ApplicationName: string
         -- The name of the version to update.
-        -- If no application version is found with this label, UpdateApplication
-        -- returns an InvalidParameterValue error.
+        -- If no application version is found with this label, UpdateApplication returns an InvalidParameterValue error.
         VersionLabel: string
         -- A new description for this version.
         Description: string
@@ -2450,47 +2490,36 @@ local record M
         -- The name of the application with which the environment is associated.
         ApplicationName: string
         -- The ID of the environment to update.
-        -- If no environment with this ID exists, AWS Elastic Beanstalk returns an
-        -- InvalidParameterValue error.
-        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- If no environment with this ID exists, Elastic Beanstalk returns an InvalidParameterValue error.
+        -- Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentId: string
-        -- The name of the environment to update. If no environment with this name exists, AWS
-        -- Elastic Beanstalk returns an InvalidParameterValue error.
-        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not
-        -- specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.
+        -- The name of the environment to update. If no environment with this name exists, Elastic Beanstalk returns an InvalidParameterValue error.
+        -- Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns
+        -- MissingRequiredParameter error.
         EnvironmentName: string
-        -- The name of the group to which the target environment belongs. Specify a group name
-        -- only if the environment's name is specified in an environment manifest and not with the
-        -- environment name or environment ID parameters. See Environment Manifest
-        -- (env.yaml) for details.
+        -- The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment
+        -- manifest and not with the environment name or environment ID parameters. See Environment Manifest (env.yaml) for details.
         GroupName: string
-        -- If this parameter is specified, AWS Elastic Beanstalk updates the description of this
-        -- environment.
+        -- If this parameter is specified, Elastic Beanstalk updates the description of this environment.
         Description: string
         -- This specifies the tier to use to update the environment.
-        -- Condition: At this time, if you change the tier version, name, or type, AWS Elastic
-        -- Beanstalk returns InvalidParameterValue error.
+        -- Condition: At this time, if you change the tier version, name, or type, Elastic Beanstalk returns InvalidParameterValue error.
         Tier: EnvironmentTier
-        -- If this parameter is specified, AWS Elastic Beanstalk deploys the named application
-        -- version to the environment. If no such application version is found, returns an
-        -- InvalidParameterValue error.
+        -- If this parameter is specified, Elastic Beanstalk deploys the named application version to the environment. If no such application version is found, returns
+        -- an InvalidParameterValue error.
         VersionLabel: string
-        -- If this parameter is specified, AWS Elastic Beanstalk deploys this configuration
-        -- template to the environment. If no such configuration template is found, AWS Elastic Beanstalk
-        -- returns an InvalidParameterValue error.
+        -- If this parameter is specified, Elastic Beanstalk deploys this configuration template to the environment. If no such configuration template is found,
+        -- Elastic Beanstalk returns an InvalidParameterValue error.
         TemplateName: string
-        -- This specifies the platform version that the environment will run after the environment
-        -- is updated.
+        -- This specifies the platform version that the environment will run after the environment is updated.
         SolutionStackName: string
         -- The ARN of the platform, if used.
         PlatformArn: string
-        -- If specified, AWS Elastic Beanstalk updates the configuration set associated with the
-        -- running environment and sets the specified configuration options to the requested
-        -- value.
+        -- If specified, Elastic Beanstalk updates the configuration set associated with the running environment and sets the specified configuration options to the
+        -- requested value.
         OptionSettings: {ConfigurationOptionSetting}
-        -- A list of custom user-defined configuration options to remove from the configuration
-        -- set for this environment.
+        -- A list of custom user-defined configuration options to remove from the configuration set for this environment.
         OptionsToRemove: {OptionSpecification}
     end
 
@@ -2523,7 +2552,14 @@ local record M
         -- The last modified date for this environment.
         DateUpdated: number
         -- The current operational status of the environment:
+        -- Aborting: Environment is in the process of aborting a deployment.
         -- Launching: Environment is in the process of initial deployment.
+        -- LinkingFrom: Environment is in the process of being linked to by another
+        -- environment. See Environment links
+        -- for details.
+        -- LinkingTo: Environment is in the process of linking to another environment.
+        -- See Environment links
+        -- for details.
         -- Updating: Environment is in the process of updating its configuration
         -- settings or application version.
         -- Ready: Environment is available to have an action performed on it, such as
@@ -2536,7 +2572,7 @@ local record M
         -- true: There is an update in progress.
         -- false: There are no updates currently in progress.
         AbortableOperationInProgress: boolean
-        -- Describes the health status of the environment. AWS Elastic Beanstalk indicates the
+        -- Describes the health status of the environment. Elastic Beanstalk indicates the
         -- failure levels for a running environment:
         -- Red: Indicates the environment is not responsive. Occurs when three or more
         -- consecutive failures occur for an environment.
@@ -2552,7 +2588,7 @@ local record M
         -- information, see Health Colors and
         -- Statuses.
         HealthStatus: string
-        -- The description of the AWS resources used by this environment.
+        -- The description of the Amazon Web Services resources used by this environment.
         Resources: EnvironmentResourcesDescription
         -- Describes the current tier of this environment.
         Tier: EnvironmentTier
@@ -2560,8 +2596,8 @@ local record M
         EnvironmentLinks: {EnvironmentLink}
         -- The environment's Amazon Resource Name (ARN), which can be used in other API requests that require an ARN.
         EnvironmentArn: string
-        -- The Amazon Resource Name (ARN) of the environment's operations role. For more information,
-        -- see Operations roles in the AWS Elastic Beanstalk Developer Guide.
+        -- The operations role feature of Elastic Beanstalk is in beta release and is subject to change.
+        -- The Amazon Resource Name (ARN) of the environment's operations role.
         OperationsRole: string
     end
 
@@ -2578,14 +2614,11 @@ local record M
         -- The Amazon Resource Name (ARN) of the resouce to be updated.
         -- Must be the ARN of an Elastic Beanstalk resource.
         ResourceArn: string
-        -- A list of tags to add or update. If a key of an existing tag is added, the tag's value is
-        -- updated.
-        -- Specify at least one of these parameters: TagsToAdd,
-        -- TagsToRemove.
+        -- A list of tags to add or update. If a key of an existing tag is added, the tag's value is updated.
+        -- Specify at least one of these parameters: TagsToAdd, TagsToRemove.
         TagsToAdd: {Tag}
         -- A list of tag keys to remove. If a tag key doesn't exist, it is silently ignored.
-        -- Specify at least one of these parameters: TagsToAdd,
-        -- TagsToRemove.
+        -- Specify at least one of these parameters: TagsToAdd, TagsToRemove.
         TagsToRemove: {string}
     end
 

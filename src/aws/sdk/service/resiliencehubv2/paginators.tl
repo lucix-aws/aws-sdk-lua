@@ -112,6 +112,24 @@ function M.items_list_policies(client, input)
     })
 end
 
+--- Returns a page iterator for listPolicyEvents.
+function M.pages_list_policy_events(client, input)
+    return paginator.pages(client, "listPolicyEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "events",
+    })
+end
+
+--- Returns an item iterator for listPolicyEvents.
+function M.items_list_policy_events(client, input)
+    return paginator.items(client, "listPolicyEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "events",
+    })
+end
+
 --- Returns a page iterator for listReports.
 function M.pages_list_reports(client, input)
     return paginator.pages(client, "listReports", input, {
