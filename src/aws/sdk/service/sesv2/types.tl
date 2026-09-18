@@ -154,6 +154,7 @@ local record M
         "EMAIL_IDENTITY"
         "CONFIGURATION_SET"
         "ISP"
+        "TENANT_NAME"
     end
 
     enum Metric
@@ -1688,6 +1689,8 @@ local record M
         -- The recipient's ISP (e.g., Gmail, Yahoo,
         -- etc.).
         Isp: {string}
+        -- The name of the tenant used when sending the message.
+        TenantName: {string}
         -- The last delivery-related event for the email, where the ordering is as follows:
         -- SEND BOUNCE DELIVERY COMPLAINT.
         LastDeliveryEvent: {string}

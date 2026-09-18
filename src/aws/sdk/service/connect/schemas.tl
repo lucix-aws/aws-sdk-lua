@@ -30364,9 +30364,6 @@ M.ReplicateInstanceInput = schema.new({
             type = "string",
             name = "ReplicaAlias",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })

@@ -32,6 +32,8 @@ M.MetaLibraryTemplatesList = schema.new({ type = "list", list_member = M.MetaLib
 
 M.WhatsAppBusinessAccountEventDestinations = schema.new({ type = "list", list_member = M.WhatsAppBusinessAccountEventDestination })
 
+M.WhatsAppCallPermissionActionList = schema.new({ type = "list", list_member = M.WhatsAppCallPermissionAction })
+
 M.WabaPhoneNumberSetupFinalizationList = schema.new({ type = "list", list_member = M.WabaPhoneNumberSetupFinalization })
 
 M.LinkedAccountWithIncompleteSetup = schema.new({ type = "map", map_key = prelude.String, map_value = M.LinkedWhatsAppBusinessAccountIdMetaData })
@@ -49,6 +51,12 @@ M.MetaIndustries = schema.new({ type = "list", list_member = prelude.String })
 M.MetaLibraryTemplateButtonList = schema.new({ type = "list", list_member = M.LibraryTemplateButtonList })
 
 M.MetaTemplateBodyExampleParams = schema.new({ type = "list", list_member = prelude.String })
+
+M.WhatsAppWeeklyOperatingHoursList = schema.new({ type = "list", list_member = M.WhatsAppWeeklyOperatingHoursEntry })
+
+M.WhatsAppHolidayScheduleList = schema.new({ type = "list", list_member = M.WhatsAppHolidayScheduleEntry })
+
+M.WhatsAppCallPermissionLimitList = schema.new({ type = "list", list_member = M.WhatsAppCallPermissionLimit })
 
 M.WhatsAppPhoneNumberDetailList = schema.new({ type = "list", list_member = M.WhatsAppPhoneNumberDetail })
 
@@ -509,6 +517,22 @@ M.ValidationException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -1352,6 +1376,180 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumberInput = schema.new({
     },
 })
 
+M.WhatsAppTimeOfDay = schema.new({
+    id = id.from(_N, "WhatsAppTimeOfDay"),
+    type = "structure",
+    members = {
+        hours = schema.new({
+            id = id.from(_N, "WhatsAppTimeOfDay", "hours"),
+            type = "integer",
+            name = "hours",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        minutes = schema.new({
+            id = id.from(_N, "WhatsAppTimeOfDay", "minutes"),
+            type = "integer",
+            name = "minutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WhatsAppHolidayScheduleEntry = schema.new({
+    id = id.from(_N, "WhatsAppHolidayScheduleEntry"),
+    type = "structure",
+    members = {
+        date = schema.new({
+            id = id.from(_N, "WhatsAppHolidayScheduleEntry", "date"),
+            type = "string",
+            name = "date",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "WhatsAppHolidayScheduleEntry", "startTime"),
+            type = "structure",
+            name = "startTime",
+            target_id = id.from(_N, "WhatsAppTimeOfDay"),
+            target = M.WhatsAppTimeOfDay,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "WhatsAppHolidayScheduleEntry", "endTime"),
+            type = "structure",
+            name = "endTime",
+            target_id = id.from(_N, "WhatsAppTimeOfDay"),
+            target = M.WhatsAppTimeOfDay,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WhatsAppWeeklyOperatingHoursEntry = schema.new({
+    id = id.from(_N, "WhatsAppWeeklyOperatingHoursEntry"),
+    type = "structure",
+    members = {
+        dayOfWeek = schema.new({
+            id = id.from(_N, "WhatsAppWeeklyOperatingHoursEntry", "dayOfWeek"),
+            type = "string",
+            name = "dayOfWeek",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        openTime = schema.new({
+            id = id.from(_N, "WhatsAppWeeklyOperatingHoursEntry", "openTime"),
+            type = "structure",
+            name = "openTime",
+            target_id = id.from(_N, "WhatsAppTimeOfDay"),
+            target = M.WhatsAppTimeOfDay,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        closeTime = schema.new({
+            id = id.from(_N, "WhatsAppWeeklyOperatingHoursEntry", "closeTime"),
+            type = "structure",
+            name = "closeTime",
+            target_id = id.from(_N, "WhatsAppTimeOfDay"),
+            target = M.WhatsAppTimeOfDay,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WhatsAppCallHours = schema.new({
+    id = id.from(_N, "WhatsAppCallHours"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "WhatsAppCallHours", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timezone = schema.new({
+            id = id.from(_N, "WhatsAppCallHours", "timezone"),
+            type = "string",
+            name = "timezone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        weeklyOperatingHours = schema.new({
+            id = id.from(_N, "WhatsAppCallHours", "weeklyOperatingHours"),
+            type = "list",
+            name = "weeklyOperatingHours",
+            target_id = prelude.Document.id,
+            list_member = M.WhatsAppWeeklyOperatingHoursEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        holidaySchedule = schema.new({
+            id = id.from(_N, "WhatsAppCallHours", "holidaySchedule"),
+            type = "list",
+            name = "holidaySchedule",
+            target_id = prelude.Document.id,
+            list_member = M.WhatsAppHolidayScheduleEntry,
+        }),
+    },
+})
+
+M.WhatsAppCallSettings = schema.new({
+    id = id.from(_N, "WhatsAppCallSettings"),
+    type = "structure",
+    members = {
+        callEnabled = schema.new({
+            id = id.from(_N, "WhatsAppCallSettings", "callEnabled"),
+            type = "boolean",
+            name = "callEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        callHours = schema.new({
+            id = id.from(_N, "WhatsAppCallSettings", "callHours"),
+            type = "structure",
+            name = "callHours",
+            target_id = id.from(_N, "WhatsAppCallHours"),
+            target = M.WhatsAppCallHours,
+        }),
+        callIconVisibility = schema.new({
+            id = id.from(_N, "WhatsAppCallSettings", "callIconVisibility"),
+            type = "string",
+            name = "callIconVisibility",
+            target_id = prelude.String.id,
+        }),
+        callbackPermissionStatus = schema.new({
+            id = id.from(_N, "WhatsAppCallSettings", "callbackPermissionStatus"),
+            type = "string",
+            name = "callbackPermissionStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput = schema.new({
     id = id.from(_N, "GetLinkedWhatsAppBusinessAccountPhoneNumberOutput"),
     type = "structure",
@@ -1368,6 +1566,13 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput = schema.new({
             type = "string",
             name = "linkedWhatsAppBusinessAccountId",
             target_id = prelude.String.id,
+        }),
+        callSettings = schema.new({
+            id = id.from(_N, "GetLinkedWhatsAppBusinessAccountPhoneNumberOutput", "callSettings"),
+            type = "structure",
+            name = "callSettings",
+            target_id = id.from(_N, "WhatsAppCallSettings"),
+            target = M.WhatsAppCallSettings,
         }),
     },
 })
@@ -1404,6 +1609,158 @@ M.GetWhatsAppBusinessPublicKeyOutput = schema.new({
             type = "string",
             name = "businessPublicKeySignatureStatus",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetWhatsAppCallPermissionInput = schema.new({
+    id = id.from(_N, "GetWhatsAppCallPermissionInput"),
+    type = "structure",
+    members = {
+        originationPhoneNumberId = schema.new({
+            id = id.from(_N, "GetWhatsAppCallPermissionInput", "originationPhoneNumberId"),
+            type = "string",
+            name = "originationPhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationPhoneNumber = schema.new({
+            id = id.from(_N, "GetWhatsAppCallPermissionInput", "destinationPhoneNumber"),
+            type = "string",
+            name = "destinationPhoneNumber",
+            target_id = prelude.String.id,
+        }),
+        endUserBsuid = schema.new({
+            id = id.from(_N, "GetWhatsAppCallPermissionInput", "endUserBsuid"),
+            type = "string",
+            name = "endUserBsuid",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WhatsAppCallPermissionLimit = schema.new({
+    id = id.from(_N, "WhatsAppCallPermissionLimit"),
+    type = "structure",
+    members = {
+        timePeriod = schema.new({
+            id = id.from(_N, "WhatsAppCallPermissionLimit", "timePeriod"),
+            type = "string",
+            name = "timePeriod",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxAllowed = schema.new({
+            id = id.from(_N, "WhatsAppCallPermissionLimit", "maxAllowed"),
+            type = "integer",
+            name = "maxAllowed",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        currentUsage = schema.new({
+            id = id.from(_N, "WhatsAppCallPermissionLimit", "currentUsage"),
+            type = "integer",
+            name = "currentUsage",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        limitExpirationTime = schema.new({
+            id = id.from(_N, "WhatsAppCallPermissionLimit", "limitExpirationTime"),
+            type = "timestamp",
+            name = "limitExpirationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.WhatsAppCallPermissionAction = schema.new({
+    id = id.from(_N, "WhatsAppCallPermissionAction"),
+    type = "structure",
+    members = {
+        actionName = schema.new({
+            id = id.from(_N, "WhatsAppCallPermissionAction", "actionName"),
+            type = "string",
+            name = "actionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        canPerformAction = schema.new({
+            id = id.from(_N, "WhatsAppCallPermissionAction", "canPerformAction"),
+            type = "boolean",
+            name = "canPerformAction",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        limits = schema.new({
+            id = id.from(_N, "WhatsAppCallPermissionAction", "limits"),
+            type = "list",
+            name = "limits",
+            target_id = prelude.Document.id,
+            list_member = M.WhatsAppCallPermissionLimit,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WhatsAppCallPermission = schema.new({
+    id = id.from(_N, "WhatsAppCallPermission"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "WhatsAppCallPermission", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expirationTime = schema.new({
+            id = id.from(_N, "WhatsAppCallPermission", "expirationTime"),
+            type = "timestamp",
+            name = "expirationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetWhatsAppCallPermissionOutput = schema.new({
+    id = id.from(_N, "GetWhatsAppCallPermissionOutput"),
+    type = "structure",
+    members = {
+        permission = schema.new({
+            id = id.from(_N, "GetWhatsAppCallPermissionOutput", "permission"),
+            type = "structure",
+            name = "permission",
+            target_id = id.from(_N, "WhatsAppCallPermission"),
+            target = M.WhatsAppCallPermission,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        actions = schema.new({
+            id = id.from(_N, "GetWhatsAppCallPermissionOutput", "actions"),
+            type = "list",
+            name = "actions",
+            target_id = prelude.Document.id,
+            list_member = M.WhatsAppCallPermissionAction,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -2871,6 +3228,56 @@ M.PutWhatsAppBusinessPublicKeyOutput = schema.new({
     type = "structure",
 })
 
+M.SendWhatsAppCallEventInput = schema.new({
+    id = id.from(_N, "SendWhatsAppCallEventInput"),
+    type = "structure",
+    members = {
+        originationPhoneNumberId = schema.new({
+            id = id.from(_N, "SendWhatsAppCallEventInput", "originationPhoneNumberId"),
+            type = "string",
+            name = "originationPhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metaApiVersion = schema.new({
+            id = id.from(_N, "SendWhatsAppCallEventInput", "metaApiVersion"),
+            type = "string",
+            name = "metaApiVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        callEvent = schema.new({
+            id = id.from(_N, "SendWhatsAppCallEventInput", "callEvent"),
+            type = "blob",
+            name = "callEvent",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SendWhatsAppCallEventOutput = schema.new({
+    id = id.from(_N, "SendWhatsAppCallEventOutput"),
+    type = "structure",
+    members = {
+        callId = schema.new({
+            id = id.from(_N, "SendWhatsAppCallEventOutput", "callId"),
+            type = "string",
+            name = "callId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SendWhatsAppMessageInput = schema.new({
     id = id.from(_N, "SendWhatsAppMessageInput"),
     type = "structure",
@@ -2914,6 +3321,49 @@ M.SendWhatsAppMessageOutput = schema.new({
             type = "string",
             name = "messageId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput = schema.new({
+    id = id.from(_N, "UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "id" },
+            },
+        }),
+        callSettings = schema.new({
+            id = id.from(_N, "UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput", "callSettings"),
+            type = "structure",
+            name = "callSettings",
+            target_id = id.from(_N, "WhatsAppCallSettings"),
+            target = M.WhatsAppCallSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput = schema.new({
+    id = id.from(_N, "UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput"),
+    type = "structure",
+    members = {
+        phoneNumberId = schema.new({
+            id = id.from(_N, "UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput", "phoneNumberId"),
+            type = "string",
+            name = "phoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -3226,6 +3676,18 @@ M.GetWhatsAppBusinessPublicKey = schema.operation({
     },
 })
 
+M.GetWhatsAppCallPermission = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "GetWhatsAppCallPermission"),
+    input = M.GetWhatsAppCallPermissionInput,
+    output = M.GetWhatsAppCallPermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/call/permission/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetWhatsAppFlow = schema.operation({
     id = id.from("com.amazonaws.socialmessaging", "GetWhatsAppFlow"),
     input = M.GetWhatsAppFlowInput,
@@ -3394,6 +3856,18 @@ M.PutWhatsAppBusinessPublicKey = schema.operation({
     },
 })
 
+M.SendWhatsAppCallEvent = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "SendWhatsAppCallEvent"),
+    input = M.SendWhatsAppCallEventInput,
+    output = M.SendWhatsAppCallEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/call/event" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.SendWhatsAppConversionEvent = schema.operation({
     id = id.from("com.amazonaws.socialmessaging", "SendWhatsAppConversionEvent"),
     input = M.SendWhatsAppConversionEventInput,
@@ -3436,6 +3910,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/tags/untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLinkedWhatsAppBusinessAccountPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "UpdateLinkedWhatsAppBusinessAccountPhoneNumber"),
+    input = M.UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput,
+    output = M.UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/whatsapp/waba/phone" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -183,6 +183,11 @@ local record M
         message: string
     end
 
+    -- Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.
+    record ConflictException
+        message: string
+    end
+
     record CreateWhatsAppDatasetInput
         -- The ID of the WhatsApp Business Account to create a dataset for, formatted as waba-01234567890123456789012345678901.
         id: string
@@ -229,11 +234,7 @@ local record M
         publish: boolean
         -- The ID of an existing Flow within the same WhatsApp Business Account to clone.
         cloneFlowId: string
-        -- Optional HTTPS endpoint for a dynamic Flow, registered with Meta as the
-        -- Flow's endpoint_uri and called by Meta directly. When omitted, the Flow
-        -- has no endpoint (static Flow). Meta only calls the endpoint when the
-        -- Flow JSON also declares data_api_version. To verify that requests
-        -- originate from Meta, attach your own Meta app via UpdateWhatsAppFlow.
+        -- The HTTPS endpoint that Meta calls for a data exchange Flow.
         endpointUri: string
     end
 
@@ -469,11 +470,75 @@ local record M
         id: string
     end
 
+    -- A time of day, expressed as an hour and minute.
+    record WhatsAppTimeOfDay
+        -- The hour of the day, from 0 to 23.
+        hours: number
+        -- The minute of the hour, from 0 to 59.
+        minutes: number
+    end
+
+    -- A date-specific override to the weekly operating hours, such as a holiday.
+    record WhatsAppHolidayScheduleEntry
+        -- The date that the override applies to, in ISO 8601 format (YYYY-MM-DD).
+        date: string
+        -- The time of day when the business begins accepting calls on the override date.
+        startTime: WhatsAppTimeOfDay
+        -- The time of day when the business stops accepting calls on the override date.
+        endTime: WhatsAppTimeOfDay
+    end
+
+    enum WhatsAppDayOfWeek
+        "MONDAY"
+        "TUESDAY"
+        "WEDNESDAY"
+        "THURSDAY"
+        "FRIDAY"
+        "SATURDAY"
+        "SUNDAY"
+    end
+
+    -- A single entry in a weekly calling schedule, defining the open and close times for one day of the week.
+    record WhatsAppWeeklyOperatingHoursEntry
+        -- The day of the week that the entry applies to.
+        dayOfWeek: string
+        -- The time of day when the business begins accepting calls.
+        openTime: WhatsAppTimeOfDay
+        -- The time of day when the business stops accepting calls.
+        closeTime: WhatsAppTimeOfDay
+    end
+
+    -- The operating hours during which a business phone number accepts WhatsApp calls, including the time zone, weekly schedule, and any holiday overrides.
+    record WhatsAppCallHours
+        -- Specifies whether call hours are enforced. When disabled, the business accepts calls at any time.
+        enabled: boolean
+        -- The IANA time zone in which the operating hours are interpreted, such as America/New_York.
+        timezone: string
+        -- The weekly schedule of hours during which the business accepts calls.
+        weeklyOperatingHours: {WhatsAppWeeklyOperatingHoursEntry}
+        -- Date-specific overrides to the weekly operating hours, such as holidays.
+        holidaySchedule: {WhatsAppHolidayScheduleEntry}
+    end
+
+    -- The calling configuration for a WhatsApp business phone number.
+    record WhatsAppCallSettings
+        -- Specifies whether calling is enabled for the phone number.
+        callEnabled: boolean
+        -- The hours during which the business accepts calls on the phone number.
+        callHours: WhatsAppCallHours
+        -- The visibility setting for the call icon shown to end users in WhatsApp.
+        callIconVisibility: string
+        -- The callback permission status for the phone number.
+        callbackPermissionStatus: string
+    end
+
     record GetLinkedWhatsAppBusinessAccountPhoneNumberOutput
         phoneNumber: WhatsAppPhoneNumberDetail
         -- The WABA identifier linked to the phone number, formatted as
         -- waba-01234567890123456789012345678901.
         linkedWhatsAppBusinessAccountId: string
+        -- The calling settings configured for the phone number. This value is absent when calling is not configured.
+        callSettings: WhatsAppCallSettings
     end
 
     record GetWhatsAppBusinessPublicKeyInput
@@ -482,10 +547,56 @@ local record M
     end
 
     record GetWhatsAppBusinessPublicKeyOutput
-        -- The stored RSA business public key (PEM), if present.
+        -- The stored PEM-encoded 2048-bit RSA public key.
         businessPublicKey: string
-        -- Meta's signing status: "VALID" | "MISMATCH".
+        -- The signature status of the stored business public key. Valid values are VALID and MISMATCH.
         businessPublicKeySignatureStatus: string
+    end
+
+    record GetWhatsAppCallPermissionInput
+        -- The unique identifier of the business phone number for which to retrieve the calling permission. The phone number identifiers are formatted as phone-number-id-01234567890123456789012345678901.
+        originationPhoneNumberId: string
+        -- The end user's phone number, in E.164 format, for which to retrieve the calling permission.
+        destinationPhoneNumber: string
+        -- The business-scoped user identifier (BSUID) of the end user for which to retrieve the calling permission.
+        endUserBsuid: string
+    end
+
+    -- A time-bound restriction on a calling action, such as the number of calls allowed within a time period.
+    record WhatsAppCallPermissionLimit
+        -- The time period over which the limit applies, as an ISO 8601 duration.
+        timePeriod: string
+        -- The maximum number of times the action is allowed within the time period.
+        maxAllowed: number
+        -- The number of times the action has been used within the current time period.
+        currentUsage: number
+        -- The time when the limit resets. This value is present only when the current usage has reached the maximum allowed.
+        limitExpirationTime: number
+    end
+
+    -- Describes a single calling action the business can take with an end user, including whether the action is currently allowed and any limits that apply to it. Returned as an item in the actions list from GetWhatsAppCallPermission.
+    record WhatsAppCallPermissionAction
+        -- The name of the calling action.
+        actionName: string
+        -- Specifies whether the business can currently perform the action.
+        canPerformAction: boolean
+        -- The time-bound limits that apply to the action.
+        limits: {WhatsAppCallPermissionLimit}
+    end
+
+    -- The current calling permission state for a business phone number and a specific WhatsApp end user.
+    record WhatsAppCallPermission
+        -- The permission status for the end user.
+        status: string
+        -- The time when a temporary permission expires. This value is absent for permanent permissions and when there is no permission.
+        expirationTime: number
+    end
+
+    record GetWhatsAppCallPermissionOutput
+        -- The current calling permission state for the end user.
+        permission: WhatsAppCallPermission
+        -- The calling actions the business can take with the end user, and any limits that apply to each action.
+        actions: {WhatsAppCallPermissionAction}
     end
 
     record GetWhatsAppFlowInput
@@ -560,7 +671,7 @@ local record M
         jsonVersion: string
         -- The data API version for data exchange endpoint Flows.
         dataApiVersion: string
-        -- The endpoint URI for data exchange Flows, if configured.
+        -- The HTTPS endpoint that Meta calls for a data exchange Flow.
         endpointUri: string
         -- The preview URL and its expiration timestamp for testing the Flow.
         preview: MetaFlowPreviewInfo
@@ -869,18 +980,9 @@ local record M
         flowName: string
         -- The updated categories for the Flow.
         categories: {string}
-        -- Optional HTTPS endpoint for a dynamic Flow, registered with Meta as the
-        -- Flow's endpoint_uri and called by Meta directly. When omitted, the
-        -- Flow's endpoint is unchanged.
+        -- The updated HTTPS endpoint for a data exchange Flow.
         endpointUri: string
-        -- Optional Meta app ID to attach to the Flow. Meta signs data-exchange
-        -- requests with the attached app's secret, so attaching your own app is
-        -- what enables X-Hub-Signature-256 and flow_token_signature verification
-        -- at your endpoint. Meta requires the app to be owned by the same business
-        -- that owns the WABA. Attaching your own app is one-way: the service's
-        -- app cannot be re-attached afterwards. When omitted, the attached app is
-        -- unchanged. (Set via update because Meta ignores application_id at
-        -- creation time.)
+        -- The ID of the Meta application to attach to the Flow.
         metaAppId: string
     end
 
@@ -943,13 +1045,27 @@ local record M
     record PutWhatsAppBusinessPublicKeyInput
         -- The unique identifier of the phone number to associate with the business public key.
         originationPhoneNumberId: string
-        -- PEM-encoded RSA public key. Mutually exclusive with kmsKeyArn.
+        -- The PEM-encoded 2048-bit RSA public key to set. Mutually exclusive with kmsKeyArn.
         businessPublicKey: string
-        -- Customer-managed KMS asymmetric RSA key ARN. Mutually exclusive with businessPublicKey.
+        -- The ARN of a customer managed asymmetric RSA key in Amazon Web Services KMS. Mutually exclusive with businessPublicKey.
         kmsKeyArn: string
     end
 
     record PutWhatsAppBusinessPublicKeyOutput
+    end
+
+    record SendWhatsAppCallEventInput
+        -- The unique identifier of the origination phone number for the call. The phone number identifiers are formatted as phone-number-id-01234567890123456789012345678901. Use GetLinkedWhatsAppBusinessAccount to find a phone number's ID.
+        originationPhoneNumberId: string
+        -- The version of the Meta Graph API to use for the request.
+        metaApiVersion: string
+        -- The call event payload to send, as a JSON blob in the format defined by the Meta calling API.
+        callEvent: string
+    end
+
+    record SendWhatsAppCallEventOutput
+        -- The unique identifier that Meta assigns to the call.
+        callId: string
     end
 
     record SendWhatsAppMessageInput
@@ -972,6 +1088,18 @@ local record M
     record SendWhatsAppMessageOutput
         -- The unique identifier of the message.
         messageId: string
+    end
+
+    record UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput
+        -- The unique identifier of the phone number to update. The phone number identifiers are formatted as phone-number-id-01234567890123456789012345678901.
+        id: string
+        -- The calling settings to apply to the phone number.
+        callSettings: WhatsAppCallSettings
+    end
+
+    record UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput
+        -- The unique identifier of the phone number that was updated.
+        phoneNumberId: string
     end
 
     record ListTagsForResourceInput

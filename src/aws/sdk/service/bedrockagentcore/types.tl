@@ -1602,6 +1602,14 @@ local record M
         batchEvaluationId: string
     end
 
+    -- A pairing of a session with the specific trace IDs to evaluate within that session. Use this to evaluate individual traces rather than an entire session.
+    record SessionTraceIds
+        -- The unique identifier of the session that contains the traces to evaluate.
+        sessionId: string
+        -- The list of trace IDs within the session to evaluate.
+        traceIds: {string}
+    end
+
     -- A time range filter for selecting sessions. Specifies the start and end times to narrow down which sessions are included.
     record SessionFilterConfig
         -- The start time of the time range. Only sessions with activity at or after this timestamp are included.
@@ -1616,6 +1624,8 @@ local record M
         sessionIds: {string}
         -- The time range filter for selecting sessions to evaluate.
         timeRange: SessionFilterConfig
+        -- A list of session and trace ID pairs that restrict evaluation to specific traces within a session. If specified, only the listed traces are evaluated instead of the entire session.
+        sessionTraceIds: {SessionTraceIds}
     end
 
     -- The configuration for reading agent traces from CloudWatch Logs.

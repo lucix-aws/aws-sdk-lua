@@ -56,6 +56,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateEventRule: function(Client, types.UpdateEventRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventRuleOutput>
+    updateManagedNotificationChannelAssociation: function(Client, types.UpdateManagedNotificationChannelAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateManagedNotificationChannelAssociationOutput>
     updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotificationConfigurationOutput>
 end
 
@@ -251,6 +252,10 @@ end
 
 function C:updateEventRule(input: types.UpdateEventRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventRuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventRuleOutput>
+end
+
+function C:updateManagedNotificationChannelAssociation(input: types.UpdateManagedNotificationChannelAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateManagedNotificationChannelAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateManagedNotificationChannelAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateManagedNotificationChannelAssociationOutput>
 end
 
 function C:updateNotificationConfiguration(input: types.UpdateNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotificationConfigurationOutput>

@@ -2727,6 +2727,40 @@ M.BedrockGuardrailDetails = schema.new({
     },
 })
 
+M.BedrockGuardrailResource = schema.new({
+    id = id.from(_N, "BedrockGuardrailResource"),
+    type = "structure",
+    members = {
+        Version = schema.new({
+            id = id.from(_N, "BedrockGuardrailResource", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "version" },
+            },
+        }),
+        GuardrailAction = schema.new({
+            id = id.from(_N, "BedrockGuardrailResource", "GuardrailAction"),
+            type = "string",
+            name = "GuardrailAction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "guardrailAction" },
+            },
+        }),
+        GuardrailSource = schema.new({
+            id = id.from(_N, "BedrockGuardrailResource", "GuardrailSource"),
+            type = "string",
+            name = "GuardrailSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "guardrailSource" },
+            },
+        }),
+    },
+})
+
 M.BucketPolicy = schema.new({
     id = id.from(_N, "BucketPolicy"),
     type = "structure",
@@ -7601,6 +7635,16 @@ M.ResourceData = schema.new({
             target = M.CloudformationStack,
             traits = {
                 [traits.JSON_NAME] = { name = "cloudformationStack" },
+            },
+        }),
+        BedrockGuardrail = schema.new({
+            id = id.from(_N, "ResourceData", "BedrockGuardrail"),
+            type = "structure",
+            name = "BedrockGuardrail",
+            target_id = id.from(_N, "BedrockGuardrailResource"),
+            target = M.BedrockGuardrailResource,
+            traits = {
+                [traits.JSON_NAME] = { name = "bedrockGuardrail" },
             },
         }),
     },

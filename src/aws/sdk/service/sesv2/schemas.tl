@@ -142,6 +142,8 @@ M.EmailSubjectFilterList = schema.new({ type = "list", list_member = prelude.Str
 
 M.IspFilterList = schema.new({ type = "list", list_member = prelude.String })
 
+M.TenantNameFilterList = schema.new({ type = "list", list_member = prelude.String })
+
 M.LastDeliveryEventList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LastEngagementEventList = schema.new({ type = "list", list_member = prelude.String })
@@ -2439,6 +2441,13 @@ M.MessageInsightsFilters = schema.new({
             id = id.from(_N, "MessageInsightsFilters", "Isp"),
             type = "list",
             name = "Isp",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TenantName = schema.new({
+            id = id.from(_N, "MessageInsightsFilters", "TenantName"),
+            type = "list",
+            name = "TenantName",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),

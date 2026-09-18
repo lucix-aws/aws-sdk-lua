@@ -68,6 +68,10 @@ M.PrivateDnsSpecifiedDomainsList = schema.new({ type = "list", list_member = pre
 
 M.WeightedTargetGroupList = schema.new({ type = "list", list_member = M.WeightedTargetGroup })
 
+M.CidrRangeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PayerResponsibilityList = schema.new({ type = "list", list_member = M.PayerResponsibilityEntry })
+
 M.HeaderMatchList = schema.new({ type = "list", list_member = M.HeaderMatch })
 
 M.AccessDeniedException = schema.new({
@@ -1139,6 +1143,20 @@ M.BatchUpdateRuleOutput = schema.new({
     },
 })
 
+M.CidrResource = schema.new({
+    id = id.from(_N, "CidrResource"),
+    type = "structure",
+    members = {
+        cidrRanges = schema.new({
+            id = id.from(_N, "CidrResource", "cidrRanges"),
+            type = "list",
+            name = "cidrRanges",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.CreateListenerInput = schema.new({
     id = id.from(_N, "CreateListenerRequest"),
     type = "structure",
@@ -1371,6 +1389,13 @@ M.ResourceConfigurationDefinition = schema.new({
             name = "arnResource",
             target_id = id.from(_N, "ArnResource"),
             target = M.ArnResource,
+        }),
+        cidrResource = schema.new({
+            id = id.from(_N, "ResourceConfigurationDefinition", "cidrResource"),
+            type = "structure",
+            name = "cidrResource",
+            target_id = id.from(_N, "CidrResource"),
+            target = M.CidrResource,
         }),
     },
 })
@@ -5221,6 +5246,25 @@ M.ListResourceEndpointAssociationsInput = schema.new({
     },
 })
 
+M.PayerResponsibilityEntry = schema.new({
+    id = id.from(_N, "PayerResponsibilityEntry"),
+    type = "structure",
+    members = {
+        scope = schema.new({
+            id = id.from(_N, "PayerResponsibilityEntry", "scope"),
+            type = "string",
+            name = "scope",
+            target_id = prelude.String.id,
+        }),
+        payerResponsibilityType = schema.new({
+            id = id.from(_N, "PayerResponsibilityEntry", "payerResponsibilityType"),
+            type = "string",
+            name = "payerResponsibilityType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ResourceEndpointAssociationSummary = schema.new({
     id = id.from(_N, "ResourceEndpointAssociationSummary"),
     type = "structure",
@@ -5281,6 +5325,13 @@ M.ResourceEndpointAssociationSummary = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        payerResponsibility = schema.new({
+            id = id.from(_N, "ResourceEndpointAssociationSummary", "payerResponsibility"),
+            type = "list",
+            name = "payerResponsibility",
+            target_id = prelude.Document.id,
+            list_member = M.PayerResponsibilityEntry,
         }),
     },
 })

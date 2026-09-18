@@ -46,6 +46,8 @@ M.OrganizationalUnits = schema.new({ type = "list", list_member = prelude.String
 
 M.TextParts = schema.new({ type = "map", map_key = prelude.String, map_value = M.TextPartValue })
 
+M.NotificationEventAttachmentList = schema.new({ type = "list", list_member = M.NotificationEventAttachment })
+
 M.Media = schema.new({ type = "list", list_member = M.MediaElement })
 
 M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
@@ -513,6 +515,12 @@ M.AssociateManagedNotificationAccountContactInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        isSensitiveEventsSubscribed = schema.new({
+            id = id.from(_N, "AssociateManagedNotificationAccountContactInput", "isSensitiveEventsSubscribed"),
+            type = "boolean",
+            name = "isSensitiveEventsSubscribed",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -543,6 +551,12 @@ M.AssociateManagedNotificationAdditionalChannelInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        isSensitiveEventsSubscribed = schema.new({
+            id = id.from(_N, "AssociateManagedNotificationAdditionalChannelInput", "isSensitiveEventsSubscribed"),
+            type = "boolean",
+            name = "isSensitiveEventsSubscribed",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1478,6 +1492,12 @@ M.MessageComponents = schema.new({
             name = "completeDescription",
             target_id = prelude.String.id,
         }),
+        markupDescription = schema.new({
+            id = id.from(_N, "MessageComponents", "markupDescription"),
+            type = "string",
+            name = "markupDescription",
+            target_id = prelude.String.id,
+        }),
         dimensions = schema.new({
             id = id.from(_N, "MessageComponents", "dimensions"),
             type = "list",
@@ -1780,6 +1800,37 @@ M.GetManagedNotificationEventInput = schema.new({
     },
 })
 
+M.NotificationEventAttachment = schema.new({
+    id = id.from(_N, "NotificationEventAttachment"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "NotificationEventAttachment", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attachmentDownloadUrl = schema.new({
+            id = id.from(_N, "NotificationEventAttachment", "attachmentDownloadUrl"),
+            type = "string",
+            name = "attachmentDownloadUrl",
+            target_id = prelude.String.id,
+        }),
+        contentType = schema.new({
+            id = id.from(_N, "NotificationEventAttachment", "contentType"),
+            type = "string",
+            name = "contentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ManagedNotificationEvent = schema.new({
     id = id.from(_N, "ManagedNotificationEvent"),
     type = "structure",
@@ -1886,6 +1937,13 @@ M.ManagedNotificationEvent = schema.new({
             type = "string",
             name = "organizationalUnitId",
             target_id = prelude.String.id,
+        }),
+        attachments = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "attachments"),
+            type = "list",
+            name = "attachments",
+            target_id = prelude.Document.id,
+            list_member = M.NotificationEventAttachment,
         }),
     },
 })
@@ -2487,6 +2545,12 @@ M.ManagedNotificationChannelAssociationSummary = schema.new({
             name = "overrideOption",
             target_id = prelude.String.id,
         }),
+        isSensitiveEventsSubscribed = schema.new({
+            id = id.from(_N, "ManagedNotificationChannelAssociationSummary", "isSensitiveEventsSubscribed"),
+            type = "boolean",
+            name = "isSensitiveEventsSubscribed",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -2968,6 +3032,15 @@ M.ListManagedNotificationEventsInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "relatedAccount" },
+            },
+        }),
+        includeSensitiveEvents = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "includeSensitiveEvents"),
+            type = "boolean",
+            name = "includeSensitiveEvents",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "includeSensitiveEvents" },
             },
         }),
     },
@@ -4066,6 +4139,42 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateManagedNotificationChannelAssociationInput = schema.new({
+    id = id.from(_N, "UpdateManagedNotificationChannelAssociationRequest"),
+    type = "structure",
+    members = {
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "UpdateManagedNotificationChannelAssociationInput", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelIdentifier = schema.new({
+            id = id.from(_N, "UpdateManagedNotificationChannelAssociationInput", "channelIdentifier"),
+            type = "string",
+            name = "channelIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        isSensitiveEventsSubscribed = schema.new({
+            id = id.from(_N, "UpdateManagedNotificationChannelAssociationInput", "isSensitiveEventsSubscribed"),
+            type = "boolean",
+            name = "isSensitiveEventsSubscribed",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateManagedNotificationChannelAssociationOutput = schema.new({
+    id = id.from(_N, "UpdateManagedNotificationChannelAssociationResponse"),
+    type = "structure",
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -4541,6 +4650,18 @@ M.UpdateEventRule = schema.operation({
     output = M.UpdateEventRuleOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/event-rules/{arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateManagedNotificationChannelAssociation = schema.operation({
+    id = id.from("com.amazonaws.notifications", "UpdateManagedNotificationChannelAssociation"),
+    input = M.UpdateManagedNotificationChannelAssociationInput,
+    output = M.UpdateManagedNotificationChannelAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/channels/update-managed-notification-channel-association" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

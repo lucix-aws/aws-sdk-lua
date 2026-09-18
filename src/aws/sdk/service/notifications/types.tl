@@ -161,6 +161,8 @@ local record M
         contactIdentifier: string
         -- The Amazon Resource Name (ARN) of the ManagedNotificationConfiguration to associate with the Account Contact.
         managedNotificationConfigurationArn: string
+        -- Specifies whether this contact is subscribed to sensitive events. The notifications:SubscribeSensitiveEvents permission controls access to sensitive events. Defaults to false.
+        isSensitiveEventsSubscribed: boolean
     end
 
     record AssociateManagedNotificationAccountContactOutput
@@ -171,6 +173,8 @@ local record M
         channelArn: string
         -- The Amazon Resource Name (ARN) of the ManagedNotificationConfiguration to associate with the additional Channel.
         managedNotificationConfigurationArn: string
+        -- Specifies whether this channel is subscribed to sensitive events. The notifications:SubscribeSensitiveEvents permission controls access to sensitive events. Defaults to false.
+        isSensitiveEventsSubscribed: boolean
     end
 
     record AssociateManagedNotificationAdditionalChannelOutput
@@ -304,7 +308,7 @@ local record M
     end
 
     record DeregisterNotificationHubInput
-        -- The NotificationConfiguration Region.
+        -- The NotificationHub Region.
         notificationHubRegion: string
     end
 
@@ -324,9 +328,9 @@ local record M
     end
 
     record DeregisterNotificationHubOutput
-        -- The NotificationConfiguration Region.
+        -- The NotificationHub Region.
         notificationHubRegion: string
-        -- NotificationConfiguration status information.
+        -- NotificationHub status information.
         statusSummary: NotificationHubStatusSummary
     end
 
@@ -500,6 +504,8 @@ local record M
         paragraphSummary: string
         -- A complete summary with all possible relevant information.
         completeDescription: string
+        -- A rich description in Portable Text format, which you can convert to markup formats such as HTML, Markdown, or plain text. Channels that don't support rich rendering ignore this field and use the plain text components instead.
+        markupDescription: string
         -- A list of properties in key-value pairs. Pairs are shown in order of importance from most important to least important. Channels may limit the number of dimensions shown to the notification viewer. Included dimensions, keys, and values are subject to change.
         dimensions: {Dimension}
     end
@@ -519,6 +525,7 @@ local record M
         "LOCALIZED_TEXT"
         "PLAIN_TEXT"
         "URL"
+        "PORTABLE_TEXT"
     end
 
     -- Describes text information objects containing fields that determine how text part objects are composed.
@@ -531,7 +538,7 @@ local record M
         url: string
     end
 
-    -- A ManagedNotificationChildEvent is a notification-focused representation of an event. They contain semantic information used to create aggregated or non-aggregated end-user notifications.
+    -- A notification-focused representation of an event. They contain semantic information used to create aggregated or non-aggregated end-user notifications.
     record ManagedNotificationChildEvent
         -- The schema version of the Managed Notification Child Event.
         schemaVersion: string
@@ -596,6 +603,16 @@ local record M
         locale: string
     end
 
+    -- A file attached to a notification event.
+    record NotificationEventAttachment
+        -- The name of the attachment that recipients see.
+        displayName: string
+        -- A temporary URL for downloading the attachment. The URL expires shortly after it's issued.
+        attachmentDownloadUrl: string
+        -- The MIME content type of the attachment, for example application/pdf.
+        contentType: string
+    end
+
     -- A notification-focused representation of an event. They contain semantic information used by AccountContacts or Additional Channels to create end-user notifications.
     record ManagedNotificationEvent
         -- Version of the ManagedNotificationEvent schema.
@@ -622,6 +639,8 @@ local record M
         textParts: {string : TextPartValue}
         -- The Organizational Unit Id that an Amazon Web Services account belongs to.
         organizationalUnitId: string
+        -- A list of files attached to the notification event.
+        attachments: {NotificationEventAttachment}
     end
 
     record GetManagedNotificationEventOutput
@@ -792,6 +811,8 @@ local record M
         channelType: string
         -- Controls whether users can modify channel associations for a notification configuration. Values: ENABLED Users can associate or disassociate channels with the notification configuration. DISABLED Users cannot associate or disassociate channels with the notification configuration.
         overrideOption: string
+        -- Specifies whether this channel association is subscribed to sensitive events. Defaults to false for associations created without the flag.
+        isSensitiveEventsSubscribed: boolean
     end
 
     record ListManagedNotificationChannelAssociationsOutput
@@ -919,6 +940,8 @@ local record M
         organizationalUnitId: string
         -- The Amazon Web Services account ID associated with the Managed Notification Events.
         relatedAccount: string
+        -- Specifies whether to include sensitive events in the result. By default, only non-sensitive events are returned. The notifications:AccessSensitiveEvents permission controls access to sensitive events.
+        includeSensitiveEvents: boolean
     end
 
     -- A short summary of a ManagedNotificationEvent. This is only used when listing managed notification events.
@@ -1195,7 +1218,7 @@ local record M
     record RegisterNotificationHubOutput
         -- The Region of the NotificationHub.
         notificationHubRegion: string
-        -- Provides additional information about the current NotificationConfiguration status information.
+        -- Provides additional information about the current NotificationHub status information.
         statusSummary: NotificationHubStatusSummary
         -- The date the resource was created.
         creationTime: number
@@ -1221,6 +1244,18 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateManagedNotificationChannelAssociationInput
+        -- The Amazon Resource Name (ARN) of the ManagedNotificationConfiguration whose Channel association property you want to update.
+        managedNotificationConfigurationArn: string
+        -- The identifier of the channel association to update. You can specify one of the following: An Account contact identifier. A Channel ARN.
+        channelIdentifier: string
+        -- Specifies whether the association is subscribed to sensitive events. The notifications:SubscribeSensitiveEvents permission controls access to sensitive events.
+        isSensitiveEventsSubscribed: boolean
+    end
+
+    record UpdateManagedNotificationChannelAssociationOutput
     end
 
 end

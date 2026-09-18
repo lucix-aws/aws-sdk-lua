@@ -214,8 +214,18 @@ local record M
         -- that the CreateTopic action uses:
         -- DeliveryPolicy – The policy that defines how Amazon SNS retries
         -- failed deliveries to HTTP/S endpoints.
-        -- DisplayName – The display name to use for a topic with SMS
-        -- subscriptions.
+        -- DisplayName – The display name to use for a topic with SMS,
+        -- email, and email-json subscriptions. For email and email-json subscriptions,
+        -- the display name is used as the sender name for regular notification messages.
+        -- Subscription confirmation and unsubscribe confirmation emails always use
+        -- "Amazon Web Services Notifications" as the sender name.
+        -- MaximumMessageSize – The maximum
+        -- size, in bytes, of a message that can be published to the topic. Valid values are
+        -- 1024 to 1048576 (1 MiB). The default is
+        -- 262144 (256 KiB).
+        -- A topic with a MaximumMessageSize above 256 KiB must have 100 or
+        -- fewer subscriptions, and each subscription must be an Amazon SQS, Amazon Data Firehose, or Lambda
+        -- subscription.
         -- Policy – The policy that defines who can access your
         -- topic. By default, only the topic owner can publish or subscribe to the
         -- topic.
@@ -319,6 +329,9 @@ local record M
         -- sns:CreateTopic and sns:TagResource
         -- permissions.
         Tags: {Tag}
+        -- Amazon SNS message data protection is no longer available to new customers.
+        -- For more information and guidance on alternatives, see
+        -- Amazon SNS message data protection availability change.
         -- The body of the policy document you want to use for this topic.
         -- You can only add one policy per topic.
         -- The policy must be in JSON string format.
@@ -561,9 +574,15 @@ local record M
         -- delivery policy.
         -- DisplayName – The human-readable name used in the
         -- From field for notifications to email and
-        -- email-json endpoints.
+        -- email-json endpoints. For subscription confirmation and
+        -- unsubscribe confirmation emails, the sender name is always
+        -- "Amazon Web Services Notifications" regardless of this attribute.
         -- EffectiveDeliveryPolicy – The JSON serialization of the
         -- effective delivery policy, taking system defaults into account.
+        -- MaximumMessageSize – The maximum size, in bytes, of a
+        -- message that can be published to the topic. Amazon SNS returns this attribute only if
+        -- you explicitly set it. If Amazon SNS doesn't return it, the topic uses the default of
+        -- 262144 (256 KiB).
         -- Owner – The Amazon Web Services account ID of the topic's owner.
         -- Policy – The JSON serialization of the topic's access
         -- control policy.
@@ -929,8 +948,10 @@ local record M
     -- Publish.
     -- Name, type, and value must not be empty or null. In addition, the message body should
     -- not be empty or null. All parts of the message attribute, including name, type, and
-    -- value, are included in the message size restriction, which is currently 256 KB (262,144
-    -- bytes). For more information, see Amazon SNS message attributes and
+    -- value, are included in the message size restriction, which is 256 KiB (262,144 bytes) by
+    -- default and is determined by the topic's MaximumMessageSize attribute. For
+    -- more information, see Large message payloads,
+    -- Amazon SNS message attributes and
     -- Publishing
     -- to a mobile phone in the Amazon SNS Developer Guide.
     record MessageAttributeValue
@@ -968,8 +989,16 @@ local record M
         -- MessageStructure parameter to json and use a JSON object
         -- for the Message parameter.
         -- Constraints:
-        -- With the exception of SMS, messages must be UTF-8 encoded strings and at most
-        -- 256 KB in size (262,144 bytes, not 262,144 characters).
+        -- With the exception of SMS, messages must be UTF-8 encoded strings. By default,
+        -- a message can be at most 256 KiB in size (262,144 bytes, not 262,144
+        -- characters).
+        -- When you publish to a topic, the maximum size is determined by the topic's
+        -- MaximumMessageSize attribute, which supports values up to 1 MiB
+        -- (1,048,576 bytes). Amazon SNS validates the combined size of the message body and
+        -- message attributes against this value and returns an
+        -- InvalidParameter error if the limit is exceeded.
+        -- For more information, see Large message
+        -- payloads in the Amazon SNS Developer Guide.
         -- For SMS, each message can contain up to 140 characters. This character limit
         -- depends on the encoding schema. For example, an SMS message can contain 160 GSM
         -- characters, 140 ASCII characters, or 70 UCS-2 characters.
@@ -1454,8 +1483,23 @@ local record M
         -- parameters that the SetTopicAttributes action uses:
         -- DeliveryPolicy – The policy that defines how Amazon SNS retries
         -- failed deliveries to HTTP/S endpoints.
-        -- DisplayName – The display name to use for a topic with SMS
-        -- subscriptions.
+        -- DisplayName – The display name to use for a topic with SMS,
+        -- email, and email-json subscriptions. For email and email-json subscriptions,
+        -- the display name is used as the sender name for regular notification messages.
+        -- Subscription confirmation and unsubscribe confirmation emails always use
+        -- "Amazon Web Services Notifications" as the sender name.
+        -- MaximumMessageSize – The maximum
+        -- size, in bytes, of a message that can be published to the topic. Valid values are
+        -- 1024 to 1048576 (1 MiB). The default is
+        -- 262144 (256 KiB).
+        -- A topic with a MaximumMessageSize above 256 KiB must have 100 or
+        -- fewer subscriptions, and each subscription must be an Amazon SQS, Amazon Data Firehose, or Lambda
+        -- subscription.
+        -- You can increase or decrease this value at any time. If the topic doesn't meet
+        -- these requirements when you set a value above 256 KiB, Amazon SNS returns an
+        -- InvalidParameter error. For more information, see Large
+        -- message payloads in the Amazon SNS Developer
+        -- Guide.
         -- Policy – The policy that defines who can access your
         -- topic. By default, only the topic owner can publish or subscribe to the
         -- topic.

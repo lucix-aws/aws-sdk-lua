@@ -164,6 +164,8 @@ M.EvaluationToolNames = schema.new({ type = "list", list_member = prelude.String
 
 M.VariantResultList = schema.new({ type = "list", list_member = M.VariantResult })
 
+M.SessionTraceIdsList = schema.new({ type = "list", list_member = M.SessionTraceIds })
+
 M.FailureSubCategoryClusterList = schema.new({ type = "list", list_member = M.FailureSubCategoryCluster })
 
 M.UserIntentAffectedSessionList = schema.new({ type = "list", list_member = M.UserIntentAffectedSession })
@@ -189,6 +191,8 @@ M.ToolDescriptionList = schema.new({ type = "list", list_member = M.ToolDescript
 M.ConfigurationBundleToolEntryList = schema.new({ type = "list", list_member = M.ConfigurationBundleToolEntry })
 
 M.HarnessToolResultContentBlocks = schema.new({ type = "list", list_member = M.HarnessToolResultContentBlock })
+
+M.TraceIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RootCauseClusterList = schema.new({ type = "list", list_member = M.RootCauseCluster })
 
@@ -5160,6 +5164,32 @@ M.GetBatchEvaluationInput = schema.new({
     },
 })
 
+M.SessionTraceIds = schema.new({
+    id = id.from(_N, "SessionTraceIds"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "SessionTraceIds", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        traceIds = schema.new({
+            id = id.from(_N, "SessionTraceIds", "traceIds"),
+            type = "list",
+            name = "traceIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SessionFilterConfig = schema.new({
     id = id.from(_N, "SessionFilterConfig"),
     type = "structure",
@@ -5202,6 +5232,13 @@ M.CloudWatchFilterConfig = schema.new({
             name = "timeRange",
             target_id = id.from(_N, "SessionFilterConfig"),
             target = M.SessionFilterConfig,
+        }),
+        sessionTraceIds = schema.new({
+            id = id.from(_N, "CloudWatchFilterConfig", "sessionTraceIds"),
+            type = "list",
+            name = "sessionTraceIds",
+            target_id = prelude.Document.id,
+            list_member = M.SessionTraceIds,
         }),
     },
 })

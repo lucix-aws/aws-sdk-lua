@@ -88,6 +88,8 @@ M.CdmaList = schema.new({ type = "list", list_member = M.CdmaObj })
 
 M.AssistPosition = schema.new({ type = "list", list_member = prelude.Float })
 
+M.GnssCaptures = schema.new({ type = "list", list_member = M.GnssCapture })
+
 M.DeviceCertificateList = schema.new({ type = "list", list_member = M.CertificateList })
 
 M.PrivateKeysList = schema.new({ type = "list", list_member = M.CertificateList })
@@ -5320,6 +5322,73 @@ M.Gnss = schema.new({
     },
 })
 
+M.GnssCapture = schema.new({
+    id = id.from(_N, "GnssCapture"),
+    type = "structure",
+    members = {
+        Payload = schema.new({
+            id = id.from(_N, "GnssCapture", "Payload"),
+            type = "string",
+            name = "Payload",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CaptureTime = schema.new({
+            id = id.from(_N, "GnssCapture", "CaptureTime"),
+            type = "float",
+            name = "CaptureTime",
+            target_id = prelude.Float.id,
+        }),
+    },
+})
+
+M.GnssMultiFrame = schema.new({
+    id = id.from(_N, "GnssMultiFrame"),
+    type = "structure",
+    members = {
+        Captures = schema.new({
+            id = id.from(_N, "GnssMultiFrame", "Captures"),
+            type = "list",
+            name = "Captures",
+            target_id = prelude.Document.id,
+            list_member = M.GnssCapture,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CaptureTimeAccuracy = schema.new({
+            id = id.from(_N, "GnssMultiFrame", "CaptureTimeAccuracy"),
+            type = "float",
+            name = "CaptureTimeAccuracy",
+            target_id = prelude.Float.id,
+        }),
+        AssistPosition = schema.new({
+            id = id.from(_N, "GnssMultiFrame", "AssistPosition"),
+            type = "list",
+            name = "AssistPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Float,
+        }),
+        AssistAltitude = schema.new({
+            id = id.from(_N, "GnssMultiFrame", "AssistAltitude"),
+            type = "float",
+            name = "AssistAltitude",
+            target_id = prelude.Float.id,
+        }),
+        Use2DSolver = schema.new({
+            id = id.from(_N, "GnssMultiFrame", "Use2DSolver"),
+            type = "boolean",
+            name = "Use2DSolver",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
 M.Ip = schema.new({
     id = id.from(_N, "Ip"),
     type = "structure",
@@ -5392,6 +5461,13 @@ M.GetPositionEstimateInput = schema.new({
             name = "Gnss",
             target_id = id.from(_N, "Gnss"),
             target = M.Gnss,
+        }),
+        GnssMultiFrame = schema.new({
+            id = id.from(_N, "GetPositionEstimateInput", "GnssMultiFrame"),
+            type = "structure",
+            name = "GnssMultiFrame",
+            target_id = id.from(_N, "GnssMultiFrame"),
+            target = M.GnssMultiFrame,
         }),
         Timestamp = schema.new({
             id = id.from(_N, "GetPositionEstimateInput", "Timestamp"),

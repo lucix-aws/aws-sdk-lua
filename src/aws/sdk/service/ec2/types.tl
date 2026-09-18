@@ -17045,6 +17045,7 @@ local record M
         "GatewayLoadBalancer"
         "Resource"
         "ServiceNetwork"
+        "Tunnel"
     end
 
     record CreateVpcEndpointInput
@@ -17156,11 +17157,13 @@ local record M
 
     enum PayerResponsibilityType
         "vpc-endpoint-account"
+        "resource-gateway-account"
         "vpc-endpoint-service-account"
     end
 
     enum PayerResponsibilityScope
         "vpc-endpoint-charges"
+        "resource-gateway-charges"
     end
 
     -- Describes a payer responsibility setting for a VPC endpoint.
@@ -44193,9 +44196,9 @@ local record M
     end
 
     record ValidateSecurityGroupQuotasForInterfaceOutput
-        -- The operation returns true if the specified security groups can be
-        -- associated with a single network interface without exceeding the quotas. It returns
-        -- an error if associating the security groups would exceed a quota.
+        -- Specifies whether the specified security groups can be associated with a single
+        -- network interface without exceeding the quotas. If associating the security groups
+        -- would exceed a quota, the operation returns an error.
         Valid: boolean
     end
 

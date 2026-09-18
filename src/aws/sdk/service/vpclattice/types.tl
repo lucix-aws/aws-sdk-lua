@@ -340,6 +340,12 @@ local record M
         unsuccessful: {RuleUpdateFailure}
     end
 
+    -- Describes a CIDR resource, which represents a network segment as one or more CIDR ranges.
+    record CidrResource
+        -- The CIDR ranges of the network segment, for example, 10.0.0.0/16.
+        cidrRanges: {string}
+    end
+
     enum ListenerProtocol
         "HTTP"
         "HTTPS"
@@ -397,6 +403,7 @@ local record M
 
     enum ProtocolType
         "TCP"
+        "TCP_UDP"
     end
 
     enum ResourceConfigurationIpAddressType
@@ -427,6 +434,8 @@ local record M
         ipResource: IpResource
         -- The Amazon Resource Name (ARN) of the resource.
         arnResource: ArnResource
+        -- The network segment for a resource configuration of type CIDR, specified as one or more CIDR ranges (cidrRanges). Resources whose IP addresses fall within these ranges are reachable through a Tunnel VPC endpoint.
+        cidrResource: CidrResource
     end
 
     enum ResourceConfigurationType
@@ -434,20 +443,21 @@ local record M
         "CHILD"
         "SINGLE"
         "ARN"
+        "CIDR"
     end
 
     record CreateResourceConfigurationInput
         -- The name of the resource configuration. The name must be unique within the account. The valid characters are a-z, 0-9, and hyphens (-). You can't use a hyphen as the first or last character, or immediately after another hyphen.
         name: string
-        -- (SINGLE, GROUP, CHILD) The TCP port ranges that a consumer can use to access a resource configuration (for example: 1-65535). You can separate port ranges using commas (for example: 1,2,22-30).
+        -- (SINGLE, GROUP, CHILD, CIDR) The port ranges that a consumer can use to access a resource configuration (for example: 1-65535). You can separate port ranges using commas (for example: 1,2,22-30). To resolve DNS through a CIDR resource configuration, include port 53 in the port ranges.
         portRanges: {string}
-        -- (SINGLE, GROUP) The protocol accepted by the resource configuration.
+        -- (SINGLE, GROUP, CIDR) The protocol accepted by the resource configuration. The default is TCP. TCP_UDP is supported only for CIDR resource configurations; specify it for a CIDR resource configuration to allow DNS resolution, which uses UDP.
         protocol: string
-        -- (SINGLE, GROUP, ARN) The ID or ARN of the resource gateway used to connect to the resource configuration. For a child resource configuration, this value is inherited from the parent resource configuration.
+        -- (SINGLE, GROUP, ARN, CIDR) The ID or ARN of the resource gateway used to connect to the resource configuration. For a child resource configuration, this value is inherited from the parent resource configuration. For a CIDR resource configuration, the associated resource gateway must have its DNS resolution set to IN_VPC so that DNS queries resolve in the context of your VPC.
         resourceGatewayIdentifier: string
         -- (CHILD) The ID or ARN of the parent resource configuration of type GROUP. This is used to associate a child resource configuration with a group resource configuration.
         resourceConfigurationGroupIdentifier: string
-        -- Identifies the resource configuration in one of the following ways: Amazon Resource Name (ARN) - Supported resource-types that are provisioned by Amazon Web Services services, such as RDS databases, can be identified by their ARN. Domain name - Any domain name that is publicly resolvable. IP address - For IPv4 and IPv6, only IP addresses in the VPC are supported.
+        -- Identifies the resource configuration in one of the following ways: Amazon Resource Name (ARN) - Supported resource-types that are provisioned by Amazon Web Services services, such as RDS databases, can be identified by their ARN. Domain name - Any domain name that is publicly resolvable. IP address - For IPv4 and IPv6, only IP addresses in the VPC are supported. CIDR range - For a resource configuration of type CIDR, specify a cidrResource with one or more cidrRanges (for example, 10.0.0.0/16) that cover the IP addresses of the resources you want to make accessible. You can specify up to 10 ranges, using IPv4, IPv6, or both, and each range must include a prefix length. To represent your entire network, specify 0.0.0.0/0 (IPv4) or ::/0 (IPv6) as the only range. You can't use reserved ranges such as 169.254.0.0/16, 100.64.0.0/10, 224.0.0.0/4, fe80::/10, or ff00::/8.
         resourceConfigurationDefinition: ResourceConfigurationDefinition
         -- (SINGLE, GROUP, ARN) Specifies whether the resource configuration can be associated with a sharable service network. The default is false.
         allowAssociationToShareableServiceNetwork: boolean
@@ -534,7 +544,7 @@ local record M
         ipAddressType: string
         -- The number of IPv4 addresses in each ENI for the resource gateway.
         ipv4AddressesPerEni: number
-        -- Indicates how DNS is resolved for resource configurations associated to this resource gateway. ResourceConfigDnsResolution is set at creation time and cannot be changed. IN_VPC - DNS resolution occurs privately within the resource gateway's VPC. DNS queries for resources behind this resource gateway resolve using the DNS resolvers defined in the VPC's DHCP option sets. Use this when your resource domain names are hosted in private Route 53 hosted zones or on-premises DNS servers reachable from the VPC. PUBLIC - DNS resolution occurs against public DNS resolvers. DNS queries for resources behind this resource gateway resolve using standard public DNS. Use this when your resource domain names are publicly resolvable.
+        -- Indicates how DNS is resolved for resource configurations associated with this resource gateway. This value is set when you create the resource gateway and can't be changed afterward. The default is PUBLIC. IN_VPC - DNS resolution occurs privately within the resource gateway's VPC. DNS queries for resources behind this resource gateway resolve using the DNS resolvers defined in the VPC's DHCP option sets. Use this when your resource domain names are hosted in private Route 53 hosted zones or on-premises DNS servers reachable from the VPC. A CIDR resource configuration requires a resource gateway that uses IN_VPC, and an IN_VPC resource gateway can't be used for ARN resource configurations, so a single resource gateway can't serve both ARN and CIDR resource configurations. PUBLIC - DNS resolution occurs against public DNS resolvers. DNS queries for resources behind this resource gateway resolve using standard public DNS. Use this when your resource domain names are publicly resolvable.
         resourceConfigDnsResolution: string
         -- The tags for the resource gateway.
         tags: {string : string}
@@ -1288,7 +1298,7 @@ local record M
         name: string
         -- The Amazon Resource Name (ARN) of the resource configuration.
         arn: string
-        -- The ID of the resource gateway used to connect to the resource configuration in a given VPC. You can specify the resource gateway identifier only for resource configurations with type SINGLE, GROUP, or ARN.
+        -- The ID of the resource gateway used to connect to the resource configuration in a given VPC. You can specify the resource gateway identifier only for resource configurations with type SINGLE, GROUP, ARN, or CIDR.
         resourceGatewayId: string
         -- The ID of the group resource configuration.
         resourceConfigurationGroupId: string
@@ -1492,7 +1502,7 @@ local record M
         failureCode: string
         -- The most recent date and time that the association was updated, in ISO-8601 format.
         lastUpdatedAt: number
-        -- The private DNS entry for the service.
+        -- The private DNS entry for the service. This entry includes only the domain name.
         privateDnsEntry: DnsEntry
         -- Indicates if private DNS is enabled in the service network resource association.
         privateDnsEnabled: boolean
@@ -1733,6 +1743,23 @@ local record M
         nextToken: string
     end
 
+    enum PayerResponsibilityPayer
+        "VpcEndpointAccount"
+        "ResourceGatewayAccount"
+    end
+
+    enum PayerResponsibilityScope
+        "ResourceGatewayCharges"
+    end
+
+    -- Specifies which account pays for a category of charges on a VPC endpoint association.
+    record PayerResponsibilityEntry
+        -- The category of charges that this entry applies to. ResourceGatewayCharges covers the resource gateway's data processing charge.
+        scope: string
+        -- The account that pays this category of charges. VpcEndpointAccount owns the VPC endpoint. ResourceGatewayAccount owns the resource gateway.
+        payerResponsibilityType: string
+    end
+
     -- Summary information about a VPC endpoint association.
     record ResourceEndpointAssociationSummary
         -- The ID of the VPC endpoint association.
@@ -1753,6 +1780,8 @@ local record M
         createdBy: string
         -- The date and time that the VPC endpoint association was created, in ISO-8601 format.
         createdAt: number
+        -- Who pays for each category of charges on the VPC endpoint association.
+        payerResponsibility: {PayerResponsibilityEntry}
     end
 
     record ListResourceEndpointAssociationsOutput
@@ -1879,7 +1908,7 @@ local record M
         serviceNetworkName: string
         -- The DNS entry for the service.
         dnsEntry: DnsEntry
-        -- The private DNS entry for the service.
+        -- The private DNS entry for the service. This entry includes only the domain name.
         privateDnsEntry: DnsEntry
         -- Specifies whether the association is managed by Amazon.
         isManagedAssociation: boolean

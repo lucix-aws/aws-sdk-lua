@@ -766,6 +766,16 @@ local record M
         ContentPolicyFilters: {ContentPolicyFilter}
     end
 
+    -- Contains details about an Amazon Bedrock guardrail evaluated during a model invocation.
+    record BedrockGuardrailResource
+        -- The version of the Amazon Bedrock guardrail. Valid values are a numeric version, DRAFT, or ENFORCED.
+        Version: string
+        -- Indicates whether the guardrail intervened during the model invocation.
+        GuardrailAction: string
+        -- Indicates whether the guardrail was applied on the input or output of the model invocation.
+        GuardrailSource: string
+    end
+
     -- Contains information on the current bucket policies for the S3 bucket.
     record BucketPolicy
         -- A value that indicates whether public read access for the bucket is enabled through a bucket policy.
@@ -2372,6 +2382,8 @@ local record M
         Ec2Image: Ec2Image
         -- Contains detailed information about the CloudFormation stack associated with the activity that prompted GuardDuty to generate a finding.
         CloudformationStack: CloudformationStack
+        -- Contains detailed information about the Amazon Bedrock guardrail associated with the activity that prompted GuardDuty to generate a finding.
+        BedrockGuardrail: BedrockGuardrailResource
     end
 
     enum FindingResourceType
@@ -2391,6 +2403,16 @@ local record M
         "EC2_LAUNCH_TEMPLATE"
         "EC2_VPC"
         "EC2_IMAGE"
+        "BEDROCK_CUSTOM_MODEL"
+        "BEDROCK_IMPORTED_MODEL"
+        "BEDROCK_PROVISIONED_MODEL"
+        "BEDROCK_CUSTOM_MODEL_DEPLOYMENT"
+        "BEDROCK_INFERENCE_PROFILE"
+        "BEDROCK_APPLICATION_INFERENCE_PROFILE"
+        "BEDROCK_PROMPT"
+        "BEDROCK_PROMPT_ROUTER"
+        "BEDROCK_GUARDRAIL"
+        "SAGEMAKER_ENDPOINT"
     end
 
     -- Contains information about a tag key-value pair.
