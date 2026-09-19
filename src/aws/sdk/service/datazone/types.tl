@@ -3830,6 +3830,11 @@ local record M
         status: string
     end
 
+    enum NotebookType
+        "DATA"
+        "SQL"
+    end
+
     record CreateNotebookInput
         -- The identifier of the Amazon SageMaker Unified Studio domain in which to create the notebook.
         domainIdentifier: string

@@ -22860,6 +22860,12 @@ M.GetDataQualityRuleRecommendationRunOutput = schema.new({
             target_id = id.from(_N, "DataQualityRuleRecommendationRunAdditionalRunOptions"),
             target = M.DataQualityRuleRecommendationRunAdditionalRunOptions,
         }),
+        RecommendationMode = schema.new({
+            id = id.from(_N, "GetDataQualityRuleRecommendationRunOutput", "RecommendationMode"),
+            type = "string",
+            name = "RecommendationMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -28463,6 +28469,12 @@ M.DataQualityRuleRecommendationRunDescription = schema.new({
             name = "CreatedRulesetName",
             target_id = prelude.String.id,
         }),
+        RecommendationMode = schema.new({
+            id = id.from(_N, "DataQualityRuleRecommendationRunDescription", "RecommendationMode"),
+            type = "string",
+            name = "RecommendationMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -32681,6 +32693,12 @@ M.StartDataQualityRuleRecommendationRunInput = schema.new({
             name = "AdditionalRunOptions",
             target_id = id.from(_N, "DataQualityRuleRecommendationRunAdditionalRunOptions"),
             target = M.DataQualityRuleRecommendationRunAdditionalRunOptions,
+        }),
+        RecommendationMode = schema.new({
+            id = id.from(_N, "StartDataQualityRuleRecommendationRunInput", "RecommendationMode"),
+            type = "string",
+            name = "RecommendationMode",
+            target_id = prelude.String.id,
         }),
     },
 })

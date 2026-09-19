@@ -952,6 +952,16 @@ local record M
         Message: string
     end
 
+    -- Encryption configuration for the invocation
+    record EncryptionConfiguration
+        -- A map of plain text, non-secret key:value pairs, known as encryption context pairs, that provide an added layer of security for your data. For more information, see KMS encryption context.
+        KMSEncryptionContext: {string : string}
+        -- The Amazon Resource Name (ARN) of the KMS key you want to use to encrypt your resource artifacts. Only full KMS key ARN format is supported.
+        -- KMS key ARNs have the format arn:partition:kms:region:account:key/key-id. For example: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
+        -- For more information, see KMS key ARNs.
+        KMSKey: string
+    end
+
     -- Contains the Amazon S3 location of the training data you want to use to create
     -- a new custom language model, and permissions to access this location.
     -- When using InputDataConfig, you must include these sub-parameters:
@@ -1015,6 +1025,8 @@ local record M
         -- of your tuning data. If you specify different Amazon S3 locations for training
         -- and tuning data, the ARN you use must have permissions to access both locations.
         InputDataConfig: InputDataConfig
+        -- Specifies the encryption configuration for your custom language model. Your model artifacts are encrypted with the specified KMS key or with an AWS-owned key if a key is not supplied.
+        EncryptionConfiguration: EncryptionConfiguration
         -- Adds one or more custom tags, each in the form of a key:value pair, to a new custom
         -- language model at the time you create this new model.
         -- To learn more about using tags with Amazon Transcribe, refer to Tagging
@@ -1139,14 +1151,17 @@ local record M
         Tags: {Tag}
         -- The Amazon Resource Name (ARN) of an IAM role that has permissions to
         -- access the Amazon S3 bucket that contains your input files (in this case, your custom
-        -- vocabulary). If the role that you specify doesn’t have the appropriate permissions to access
-        -- the specified Amazon S3 location, your request fails.
+        -- vocabulary). If you include EncryptionConfiguration in your request, this role
+        -- must also have permissions to access the specified KMS key. If the role that
+        -- you specify doesn’t have the appropriate permissions, your request fails.
         -- IAM role ARNs have the format
         -- arn:partition:iam::account:role/role-name-with-path. For example:
         -- arn:aws:iam::111122223333:role/Admin.
         -- For more information, see IAM
         -- ARNs.
         DataAccessRoleArn: string
+        -- Specifies the encryption configuration for your custom vocabulary. Your vocabulary artifacts are encrypted with the specified KMS key or with an AWS-owned key if a key is not supplied.
+        EncryptionConfiguration: EncryptionConfiguration
     end
 
     record CreateVocabularyOutput
@@ -1212,14 +1227,17 @@ local record M
         Tags: {Tag}
         -- The Amazon Resource Name (ARN) of an IAM role that has permissions to
         -- access the Amazon S3 bucket that contains your input files (in this case, your custom
-        -- vocabulary filter). If the role that you specify doesn’t have the appropriate permissions to access
-        -- the specified Amazon S3 location, your request fails.
+        -- vocabulary filter). If you include EncryptionConfiguration in your request, this role
+        -- must also have permissions to access the specified KMS key. If the role that
+        -- you specify doesn’t have the appropriate permissions, your request fails.
         -- IAM role ARNs have the format
         -- arn:partition:iam::account:role/role-name-with-path. For example:
         -- arn:aws:iam::111122223333:role/Admin.
         -- For more information, see IAM
         -- ARNs.
         DataAccessRoleArn: string
+        -- Specifies the encryption configuration for your custom vocabulary filter. Your vocabulary filter artifacts are encrypted with the specified KMS key or with an AWS-owned key if a key is not supplied.
+        EncryptionConfiguration: EncryptionConfiguration
     end
 
     record CreateVocabularyFilterOutput
@@ -1382,6 +1400,8 @@ local record M
         -- language model, in addition to the data access role ARN (Amazon Resource Name) that has
         -- permissions to access these data.
         InputDataConfig: InputDataConfig
+        -- The encryption configuration used for your custom language model.
+        EncryptionConfiguration: EncryptionConfiguration
     end
 
     record DescribeLanguageModelOutput
@@ -2131,6 +2151,12 @@ local record M
         -- The Amazon S3 location where the custom vocabulary is stored; use this URI to view or
         -- download the custom vocabulary.
         DownloadUri: string
+        -- The Amazon Resource Name (ARN) of the IAM role used to access the
+        -- Amazon S3 bucket that contains your input files and, if applicable, the
+        -- KMS key specified in EncryptionConfiguration.
+        DataAccessRoleArn: string
+        -- The encryption configuration used for your custom vocabulary.
+        EncryptionConfiguration: EncryptionConfiguration
     end
 
     record GetVocabularyFilterInput
@@ -2152,6 +2178,12 @@ local record M
         -- The Amazon S3 location where the custom vocabulary filter is stored; use this
         -- URI to view or download the custom vocabulary filter.
         DownloadUri: string
+        -- The Amazon Resource Name (ARN) of the IAM role used to access the
+        -- Amazon S3 bucket that contains your input files and, if applicable, the
+        -- KMS key specified in EncryptionConfiguration.
+        DataAccessRoleArn: string
+        -- The encryption configuration used for your custom vocabulary filter.
+        EncryptionConfiguration: EncryptionConfiguration
     end
 
     record ListCallAnalyticsCategoriesInput
@@ -3229,6 +3261,32 @@ local record M
         CategoryProperties: CategoryProperties
     end
 
+    record UpdateLanguageModelInput
+        -- The name of the custom language model you want to update. Model names are case sensitive.
+        ModelName: string
+        -- The Amazon Resource Name (ARN) of an IAM role. If you include
+        -- EncryptionConfiguration in your request, this role must have permissions to
+        -- access the specified KMS key. If the role that you specify doesn't have
+        -- the appropriate permissions, your request fails.
+        -- IAM role ARNs have the format
+        -- arn:partition:iam::account:role/role-name-with-path. For example:
+        -- arn:aws:iam::111122223333:role/Admin.
+        -- For more information, see IAM
+        -- ARNs.
+        DataAccessRoleArn: string
+        -- Specifies the new encryption configuration for your custom language model. The model artifacts are re-encrypted in place using the specified KMS key or with an AWS-owned key if a key is not supplied.
+        EncryptionConfiguration: EncryptionConfiguration
+    end
+
+    record UpdateLanguageModelOutput
+        -- The name of the custom language model that was updated.
+        ModelName: string
+        -- The status of the specified custom language model.
+        ModelStatus: string
+        -- The date and time the specified custom language model was last modified.
+        LastModifiedTime: number
+    end
+
     record UpdateMedicalVocabularyInput
         -- The name of the custom medical vocabulary you want to update. Custom medical
         -- vocabulary names are case sensitive.
@@ -3299,14 +3357,17 @@ local record M
         VocabularyFileUri: string
         -- The Amazon Resource Name (ARN) of an IAM role that has permissions to
         -- access the Amazon S3 bucket that contains your input files (in this case, your custom
-        -- vocabulary). If the role that you specify doesn’t have the appropriate permissions to access
-        -- the specified Amazon S3 location, your request fails.
+        -- vocabulary). If you include EncryptionConfiguration in your request, this role
+        -- must also have permissions to access the specified KMS key. If the role that
+        -- you specify doesn’t have the appropriate permissions, your request fails.
         -- IAM role ARNs have the format
         -- arn:partition:iam::account:role/role-name-with-path. For example:
         -- arn:aws:iam::111122223333:role/Admin.
         -- For more information, see IAM
         -- ARNs.
         DataAccessRoleArn: string
+        -- Specifies the new encryption configuration for your custom vocabulary. The vocabulary artifacts are re-encrypted in place using the specified KMS key or with an AWS-owned key if a key is not supplied.
+        EncryptionConfiguration: EncryptionConfiguration
     end
 
     record UpdateVocabularyOutput
@@ -3351,14 +3412,17 @@ local record M
         VocabularyFilterFileUri: string
         -- The Amazon Resource Name (ARN) of an IAM role that has permissions to
         -- access the Amazon S3 bucket that contains your input files (in this case, your custom
-        -- vocabulary filter). If the role that you specify doesn’t have the appropriate permissions to access
-        -- the specified Amazon S3 location, your request fails.
+        -- vocabulary filter). If you include EncryptionConfiguration in your request, this role
+        -- must also have permissions to access the specified KMS key. If the role that
+        -- you specify doesn’t have the appropriate permissions, your request fails.
         -- IAM role ARNs have the format
         -- arn:partition:iam::account:role/role-name-with-path. For example:
         -- arn:aws:iam::111122223333:role/Admin.
         -- For more information, see IAM
         -- ARNs.
         DataAccessRoleArn: string
+        -- Specifies the new encryption configuration for your custom vocabulary filter. The vocabulary filter artifacts are re-encrypted in place using the specified KMS key or with an AWS-owned key if a key is not supplied.
+        EncryptionConfiguration: EncryptionConfiguration
     end
 
     record UpdateVocabularyFilterOutput

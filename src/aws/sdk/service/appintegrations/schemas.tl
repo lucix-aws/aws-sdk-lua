@@ -126,6 +126,25 @@ M.ApplicationSourceConfig = schema.new({
     },
 })
 
+M.AuthConfig = schema.new({
+    id = id.from(_N, "AuthConfig"),
+    type = "structure",
+    members = {
+        AuthType = schema.new({
+            id = id.from(_N, "AuthConfig", "AuthType"),
+            type = "string",
+            name = "AuthType",
+            target_id = prelude.String.id,
+        }),
+        CredentialProviderIdentifier = schema.new({
+            id = id.from(_N, "AuthConfig", "CredentialProviderIdentifier"),
+            type = "string",
+            name = "CredentialProviderIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.IframeConfig = schema.new({
     id = id.from(_N, "IframeConfig"),
     type = "structure",
@@ -310,6 +329,13 @@ M.CreateApplicationInput = schema.new({
             type = "string",
             name = "ApplicationType",
             target_id = prelude.String.id,
+        }),
+        AuthConfig = schema.new({
+            id = id.from(_N, "CreateApplicationInput", "AuthConfig"),
+            type = "structure",
+            name = "AuthConfig",
+            target_id = id.from(_N, "AuthConfig"),
+            target = M.AuthConfig,
         }),
     },
 })
@@ -1081,6 +1107,13 @@ M.GetApplicationOutput = schema.new({
             type = "string",
             name = "ApplicationType",
             target_id = prelude.String.id,
+        }),
+        AuthConfig = schema.new({
+            id = id.from(_N, "GetApplicationOutput", "AuthConfig"),
+            type = "structure",
+            name = "AuthConfig",
+            target_id = id.from(_N, "AuthConfig"),
+            target = M.AuthConfig,
         }),
     },
 })
@@ -2012,6 +2045,13 @@ M.UpdateApplicationInput = schema.new({
             type = "string",
             name = "ApplicationType",
             target_id = prelude.String.id,
+        }),
+        AuthConfig = schema.new({
+            id = id.from(_N, "UpdateApplicationInput", "AuthConfig"),
+            type = "structure",
+            name = "AuthConfig",
+            target_id = id.from(_N, "AuthConfig"),
+            target = M.AuthConfig,
         }),
     },
 })

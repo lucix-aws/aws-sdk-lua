@@ -58,6 +58,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateCallAnalyticsCategory: function(Client, types.UpdateCallAnalyticsCategoryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCallAnalyticsCategoryOutput>
+    updateLanguageModel: function(Client, types.UpdateLanguageModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLanguageModelOutput>
     updateMedicalVocabulary: function(Client, types.UpdateMedicalVocabularyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMedicalVocabularyOutput>
     updateVocabulary: function(Client, types.UpdateVocabularyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVocabularyOutput>
     updateVocabularyFilter: function(Client, types.UpdateVocabularyFilterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVocabularyFilterOutput>
@@ -263,6 +264,10 @@ end
 
 function C:updateCallAnalyticsCategory(input: types.UpdateCallAnalyticsCategoryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCallAnalyticsCategoryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCallAnalyticsCategory as schema.OperationSchema, input, options) as async.Operation<types.UpdateCallAnalyticsCategoryOutput>
+end
+
+function C:updateLanguageModel(input: types.UpdateLanguageModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLanguageModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLanguageModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateLanguageModelOutput>
 end
 
 function C:updateMedicalVocabulary(input: types.UpdateMedicalVocabularyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMedicalVocabularyOutput>

@@ -11163,6 +11163,12 @@ M.CreateNotebookInput = schema.new({
             name = "description",
             target_id = prelude.String.id,
         }),
+        type = schema.new({
+            id = id.from(_N, "CreateNotebookInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
         metadata = schema.new({
             id = id.from(_N, "CreateNotebookInput", "metadata"),
             type = "map",
@@ -11369,6 +11375,12 @@ M.CreateNotebookOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        type = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
         }),
         description = schema.new({
             id = id.from(_N, "CreateNotebookOutput", "description"),
@@ -26221,6 +26233,12 @@ M.GetNotebookOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        type = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
         description = schema.new({
             id = id.from(_N, "GetNotebookOutput", "description"),
             type = "string",
@@ -26375,6 +26393,15 @@ M.ListNotebooksInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "status" },
             },
         }),
+        type = schema.new({
+            id = id.from(_N, "ListNotebooksInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "type" },
+            },
+        }),
         nextToken = schema.new({
             id = id.from(_N, "ListNotebooksInput", "nextToken"),
             type = "string",
@@ -26435,6 +26462,12 @@ M.NotebookSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        type = schema.new({
+            id = id.from(_N, "NotebookSummary", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
         }),
         description = schema.new({
             id = id.from(_N, "NotebookSummary", "description"),
@@ -26538,6 +26571,12 @@ M.UpdateNotebookInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.CellInformation,
         }),
+        type = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
         metadata = schema.new({
             id = id.from(_N, "UpdateNotebookInput", "metadata"),
             type = "map",
@@ -26631,6 +26670,12 @@ M.UpdateNotebookOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        type = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
         }),
         description = schema.new({
             id = id.from(_N, "UpdateNotebookOutput", "description"),

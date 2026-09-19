@@ -40113,6 +40113,169 @@ M.GitConfigForUpdate = schema.new({
     },
 })
 
+M.HubContent = schema.new({
+    id = id.from(_N, "HubContent"),
+    type = "structure",
+    members = {
+        HubContentName = schema.new({
+            id = id.from(_N, "HubContent", "HubContentName"),
+            type = "string",
+            name = "HubContentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HubContentArn = schema.new({
+            id = id.from(_N, "HubContent", "HubContentArn"),
+            type = "string",
+            name = "HubContentArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HubContentVersion = schema.new({
+            id = id.from(_N, "HubContent", "HubContentVersion"),
+            type = "string",
+            name = "HubContentVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HubContentType = schema.new({
+            id = id.from(_N, "HubContent", "HubContentType"),
+            type = "string",
+            name = "HubContentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DocumentSchemaVersion = schema.new({
+            id = id.from(_N, "HubContent", "DocumentSchemaVersion"),
+            type = "string",
+            name = "DocumentSchemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HubName = schema.new({
+            id = id.from(_N, "HubContent", "HubName"),
+            type = "string",
+            name = "HubName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HubArn = schema.new({
+            id = id.from(_N, "HubContent", "HubArn"),
+            type = "string",
+            name = "HubArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HubContentDisplayName = schema.new({
+            id = id.from(_N, "HubContent", "HubContentDisplayName"),
+            type = "string",
+            name = "HubContentDisplayName",
+            target_id = prelude.String.id,
+        }),
+        HubContentDescription = schema.new({
+            id = id.from(_N, "HubContent", "HubContentDescription"),
+            type = "string",
+            name = "HubContentDescription",
+            target_id = prelude.String.id,
+        }),
+        HubContentMarkdown = schema.new({
+            id = id.from(_N, "HubContent", "HubContentMarkdown"),
+            type = "string",
+            name = "HubContentMarkdown",
+            target_id = prelude.String.id,
+        }),
+        HubContentDocument = schema.new({
+            id = id.from(_N, "HubContent", "HubContentDocument"),
+            type = "string",
+            name = "HubContentDocument",
+            target_id = prelude.String.id,
+        }),
+        SageMakerPublicHubContentArn = schema.new({
+            id = id.from(_N, "HubContent", "SageMakerPublicHubContentArn"),
+            type = "string",
+            name = "SageMakerPublicHubContentArn",
+            target_id = prelude.String.id,
+        }),
+        ReferenceMinVersion = schema.new({
+            id = id.from(_N, "HubContent", "ReferenceMinVersion"),
+            type = "string",
+            name = "ReferenceMinVersion",
+            target_id = prelude.String.id,
+        }),
+        SupportStatus = schema.new({
+            id = id.from(_N, "HubContent", "SupportStatus"),
+            type = "string",
+            name = "SupportStatus",
+            target_id = prelude.String.id,
+        }),
+        HubContentSearchKeywords = schema.new({
+            id = id.from(_N, "HubContent", "HubContentSearchKeywords"),
+            type = "list",
+            name = "HubContentSearchKeywords",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        HubContentDependencies = schema.new({
+            id = id.from(_N, "HubContent", "HubContentDependencies"),
+            type = "list",
+            name = "HubContentDependencies",
+            target_id = prelude.Document.id,
+            list_member = M.HubContentDependency,
+        }),
+        HubContentStatus = schema.new({
+            id = id.from(_N, "HubContent", "HubContentStatus"),
+            type = "string",
+            name = "HubContentStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "HubContent", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "HubContent", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "HubContent", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "HubContent", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
 M.HubContentInfo = schema.new({
     id = id.from(_N, "HubContentInfo"),
     type = "structure",
@@ -53684,6 +53847,13 @@ M.SearchRecord = schema.new({
             name = "Job",
             target_id = id.from(_N, "Job"),
             target = M.Job,
+        }),
+        HubContent = schema.new({
+            id = id.from(_N, "SearchRecord", "HubContent"),
+            type = "structure",
+            name = "HubContent",
+            target_id = id.from(_N, "HubContent"),
+            target = M.HubContent,
         }),
     },
 })

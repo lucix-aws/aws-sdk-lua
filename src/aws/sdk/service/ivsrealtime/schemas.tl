@@ -982,6 +982,69 @@ M.CreateIngestConfigurationOutput = schema.new({
     id = id.from(_N, "CreateIngestConfigurationResponse"),
     type = "structure",
     members = {
+        accessControlAllowOrigin = schema.new({
+            id = id.from(_N, "CreateIngestConfigurationOutput", "accessControlAllowOrigin"),
+            type = "string",
+            name = "accessControlAllowOrigin",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Access-Control-Allow-Origin" },
+            },
+        }),
+        accessControlExposeHeaders = schema.new({
+            id = id.from(_N, "CreateIngestConfigurationOutput", "accessControlExposeHeaders"),
+            type = "string",
+            name = "accessControlExposeHeaders",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Access-Control-Expose-Headers" },
+            },
+        }),
+        cacheControl = schema.new({
+            id = id.from(_N, "CreateIngestConfigurationOutput", "cacheControl"),
+            type = "string",
+            name = "cacheControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Cache-Control" },
+            },
+        }),
+        contentSecurityPolicy = schema.new({
+            id = id.from(_N, "CreateIngestConfigurationOutput", "contentSecurityPolicy"),
+            type = "string",
+            name = "contentSecurityPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-Security-Policy" },
+            },
+        }),
+        strictTransportSecurity = schema.new({
+            id = id.from(_N, "CreateIngestConfigurationOutput", "strictTransportSecurity"),
+            type = "string",
+            name = "strictTransportSecurity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Strict-Transport-Security" },
+            },
+        }),
+        xContentTypeOptions = schema.new({
+            id = id.from(_N, "CreateIngestConfigurationOutput", "xContentTypeOptions"),
+            type = "string",
+            name = "xContentTypeOptions",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Content-Type-Options" },
+            },
+        }),
+        xFrameOptions = schema.new({
+            id = id.from(_N, "CreateIngestConfigurationOutput", "xFrameOptions"),
+            type = "string",
+            name = "xFrameOptions",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Frame-Options" },
+            },
+        }),
         ingestConfiguration = schema.new({
             id = id.from(_N, "CreateIngestConfigurationOutput", "ingestConfiguration"),
             type = "structure",
@@ -4212,6 +4275,69 @@ M.UpdateIngestConfigurationOutput = schema.new({
     id = id.from(_N, "UpdateIngestConfigurationResponse"),
     type = "structure",
     members = {
+        accessControlAllowOrigin = schema.new({
+            id = id.from(_N, "UpdateIngestConfigurationOutput", "accessControlAllowOrigin"),
+            type = "string",
+            name = "accessControlAllowOrigin",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Access-Control-Allow-Origin" },
+            },
+        }),
+        accessControlExposeHeaders = schema.new({
+            id = id.from(_N, "UpdateIngestConfigurationOutput", "accessControlExposeHeaders"),
+            type = "string",
+            name = "accessControlExposeHeaders",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Access-Control-Expose-Headers" },
+            },
+        }),
+        cacheControl = schema.new({
+            id = id.from(_N, "UpdateIngestConfigurationOutput", "cacheControl"),
+            type = "string",
+            name = "cacheControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Cache-Control" },
+            },
+        }),
+        contentSecurityPolicy = schema.new({
+            id = id.from(_N, "UpdateIngestConfigurationOutput", "contentSecurityPolicy"),
+            type = "string",
+            name = "contentSecurityPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-Security-Policy" },
+            },
+        }),
+        strictTransportSecurity = schema.new({
+            id = id.from(_N, "UpdateIngestConfigurationOutput", "strictTransportSecurity"),
+            type = "string",
+            name = "strictTransportSecurity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Strict-Transport-Security" },
+            },
+        }),
+        xContentTypeOptions = schema.new({
+            id = id.from(_N, "UpdateIngestConfigurationOutput", "xContentTypeOptions"),
+            type = "string",
+            name = "xContentTypeOptions",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Content-Type-Options" },
+            },
+        }),
+        xFrameOptions = schema.new({
+            id = id.from(_N, "UpdateIngestConfigurationOutput", "xFrameOptions"),
+            type = "string",
+            name = "xFrameOptions",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Frame-Options" },
+            },
+        }),
         ingestConfiguration = schema.new({
             id = id.from(_N, "UpdateIngestConfigurationOutput", "ingestConfiguration"),
             type = "structure",

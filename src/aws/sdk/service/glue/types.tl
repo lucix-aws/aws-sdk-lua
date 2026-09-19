@@ -8872,13 +8872,18 @@ local record M
         CustomLogGroupPrefix: string
     end
 
+    enum RecommendationMode
+        "BASIC"
+        "ADVANCED"
+    end
+
     -- The response for the Data Quality rule recommendation run.
     record GetDataQualityRuleRecommendationRunOutput
         -- The unique run identifier associated with this run.
         RunId: string
         -- The data source (an Glue table) associated with this run.
         DataSource: DataSource
-        -- An IAM role supplied to encrypt the results of the run.
+        -- The IAM role that Glue assumes to access resources for the run.
         Role: string
         -- The number of G.1X workers to be used in the run. The default is 5.
         NumberOfWorkers: number
@@ -8904,6 +8909,9 @@ local record M
         DataQualitySecurityConfiguration: string
         -- Additional run options you can specify for a recommendation run.
         AdditionalRunOptions: DataQualityRuleRecommendationRunAdditionalRunOptions
+        -- The mode that Glue Data Quality uses to recommend rules.
+        -- The default is BASIC.
+        RecommendationMode: string
     end
 
     record GetDataQualityRulesetInput
@@ -11121,6 +11129,9 @@ local record M
         DataSource: DataSource
         -- The name of the ruleset that was created by the recommendation run.
         CreatedRulesetName: string
+        -- The mode that Glue Data Quality uses to recommend rules.
+        -- The default is BASIC.
+        RecommendationMode: string
     end
 
     record ListDataQualityRuleRecommendationRunsOutput
@@ -12602,7 +12613,8 @@ local record M
     record StartDataQualityRuleRecommendationRunInput
         -- The data source (Glue table) associated with this run.
         DataSource: DataSource
-        -- An IAM role supplied to encrypt the results of the run.
+        -- The IAM role that Glue assumes to access resources for the run.
+        -- For more information, see Configure IAM permissions for Glue Data Quality.
         Role: string
         -- The number of G.1X workers to be used in the run. The default is 5.
         NumberOfWorkers: number
@@ -12616,6 +12628,9 @@ local record M
         ClientToken: string
         -- Additional run options you can specify for a recommendation run.
         AdditionalRunOptions: DataQualityRuleRecommendationRunAdditionalRunOptions
+        -- The mode that Glue Data Quality uses to recommend rules.
+        -- The default is BASIC.
+        RecommendationMode: string
     end
 
     record StartDataQualityRuleRecommendationRunOutput

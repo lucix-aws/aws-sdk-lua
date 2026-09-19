@@ -932,6 +932,30 @@ M.LimitExceededException = schema.new({
     },
 })
 
+M.EncryptionConfiguration = schema.new({
+    id = id.from(_N, "EncryptionConfiguration"),
+    type = "structure",
+    members = {
+        KMSEncryptionContext = schema.new({
+            id = id.from(_N, "EncryptionConfiguration", "KMSEncryptionContext"),
+            type = "map",
+            name = "KMSEncryptionContext",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        KMSKey = schema.new({
+            id = id.from(_N, "EncryptionConfiguration", "KMSKey"),
+            type = "string",
+            name = "KMSKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.InputDataConfig = schema.new({
     id = id.from(_N, "InputDataConfig"),
     type = "structure",
@@ -1004,6 +1028,13 @@ M.CreateLanguageModelInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "CreateLanguageModelInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateLanguageModelInput", "Tags"),
@@ -1181,6 +1212,13 @@ M.CreateVocabularyInput = schema.new({
             name = "DataAccessRoleArn",
             target_id = prelude.String.id,
         }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "CreateVocabularyInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
     },
 })
 
@@ -1269,6 +1307,13 @@ M.CreateVocabularyFilterInput = schema.new({
             type = "string",
             name = "DataAccessRoleArn",
             target_id = prelude.String.id,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "CreateVocabularyFilterInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
         }),
     },
 })
@@ -1566,6 +1611,13 @@ M.LanguageModel = schema.new({
             name = "InputDataConfig",
             target_id = id.from(_N, "InputDataConfig"),
             target = M.InputDataConfig,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "LanguageModel", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
         }),
     },
 })
@@ -2530,6 +2582,19 @@ M.GetVocabularyOutput = schema.new({
             name = "DownloadUri",
             target_id = prelude.String.id,
         }),
+        DataAccessRoleArn = schema.new({
+            id = id.from(_N, "GetVocabularyOutput", "DataAccessRoleArn"),
+            type = "string",
+            name = "DataAccessRoleArn",
+            target_id = prelude.String.id,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "GetVocabularyOutput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
     },
 })
 
@@ -2577,6 +2642,19 @@ M.GetVocabularyFilterOutput = schema.new({
             type = "string",
             name = "DownloadUri",
             target_id = prelude.String.id,
+        }),
+        DataAccessRoleArn = schema.new({
+            id = id.from(_N, "GetVocabularyFilterOutput", "DataAccessRoleArn"),
+            type = "string",
+            name = "DataAccessRoleArn",
+            target_id = prelude.String.id,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "GetVocabularyFilterOutput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
         }),
     },
 })
@@ -4106,6 +4184,61 @@ M.UpdateCallAnalyticsCategoryOutput = schema.new({
     },
 })
 
+M.UpdateLanguageModelInput = schema.new({
+    id = id.from(_N, "UpdateLanguageModelRequest"),
+    type = "structure",
+    members = {
+        ModelName = schema.new({
+            id = id.from(_N, "UpdateLanguageModelInput", "ModelName"),
+            type = "string",
+            name = "ModelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DataAccessRoleArn = schema.new({
+            id = id.from(_N, "UpdateLanguageModelInput", "DataAccessRoleArn"),
+            type = "string",
+            name = "DataAccessRoleArn",
+            target_id = prelude.String.id,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "UpdateLanguageModelInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
+    },
+})
+
+M.UpdateLanguageModelOutput = schema.new({
+    id = id.from(_N, "UpdateLanguageModelResponse"),
+    type = "structure",
+    members = {
+        ModelName = schema.new({
+            id = id.from(_N, "UpdateLanguageModelOutput", "ModelName"),
+            type = "string",
+            name = "ModelName",
+            target_id = prelude.String.id,
+        }),
+        ModelStatus = schema.new({
+            id = id.from(_N, "UpdateLanguageModelOutput", "ModelStatus"),
+            type = "string",
+            name = "ModelStatus",
+            target_id = prelude.String.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "UpdateLanguageModelOutput", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.UpdateMedicalVocabularyInput = schema.new({
     id = id.from(_N, "UpdateMedicalVocabularyRequest"),
     type = "structure",
@@ -4214,6 +4347,13 @@ M.UpdateVocabularyInput = schema.new({
             name = "DataAccessRoleArn",
             target_id = prelude.String.id,
         }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "UpdateVocabularyInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
     },
 })
 
@@ -4280,6 +4420,13 @@ M.UpdateVocabularyFilterInput = schema.new({
             type = "string",
             name = "DataAccessRoleArn",
             target_id = prelude.String.id,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "UpdateVocabularyFilterInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
         }),
     },
 })
@@ -4808,6 +4955,18 @@ M.UpdateCallAnalyticsCategory = schema.operation({
     output = M.UpdateCallAnalyticsCategoryOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/callanalyticscategories/{CategoryName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLanguageModel = schema.operation({
+    id = id.from("com.amazonaws.transcribe", "UpdateLanguageModel"),
+    input = M.UpdateLanguageModelInput,
+    output = M.UpdateLanguageModelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/languagemodels/{ModelName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

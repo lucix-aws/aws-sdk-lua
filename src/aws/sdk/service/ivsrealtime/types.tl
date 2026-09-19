@@ -2,6 +2,7 @@
 
 local record M
 
+    -- User does not have sufficient access to perform this action.
     record AccessDeniedException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -15,6 +16,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- Updating or deleting a resource can cause an inconsistent state.
     record ConflictException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -30,13 +32,9 @@ local record M
 
     -- Settings for video.
     record Video
-        -- Video-resolution width. This must be an even number. Note that the maximum value is
-        -- determined by width times height, such that the maximum total
-        -- pixels is 2073600 (1920x1080 or 1080x1920). Default: 1280.
+        -- Video-resolution width. This must be an even number. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 1280.
         width: number
-        -- Video-resolution height. This must be an even number. Note that the maximum value is
-        -- determined by width times height, such that the maximum total
-        -- pixels is 2073600 (1920x1080 or 1080x1920). Default: 720.
+        -- Video-resolution height. This must be an even number. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 720.
         height: number
         -- Video frame rate, in fps. Default: 30.
         framerate: number
@@ -47,14 +45,9 @@ local record M
     record CreateEncoderConfigurationInput
         -- Optional name to identify the resource.
         name: string
-        -- Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30
-        -- fps.
+        -- Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30 fps.
         video: Video
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies
-        -- in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -64,14 +57,9 @@ local record M
         arn: string
         -- Optional name to identify the resource.
         name: string
-        -- Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30
-        -- fps
+        -- Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30 fps
         video: Video
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -80,6 +68,7 @@ local record M
         encoderConfiguration: EncoderConfiguration
     end
 
+    -- Unexpected error during processing of request.
     record InternalServerException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -93,6 +82,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- Your account is pending verification.
     record PendingVerification
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -106,6 +96,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- Request references a resource which does not exist.
     record ResourceNotFoundException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -119,6 +110,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- Request would cause a service quota to be exceeded.
     record ServiceQuotaExceededException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -132,6 +124,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- The input fails to satisfy the constraints specified by an Amazon Web Services service.
     record ValidationException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -155,11 +148,9 @@ local record M
         name: string
         -- ARN of the stage with which the IngestConfiguration is associated.
         stageArn: string
-        -- Customer-assigned name to help identify the participant using the IngestConfiguration; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text.
-        -- This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
+        -- Customer-assigned name to help identify the participant using the IngestConfiguration; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
-        -- Application-provided attributes to store in the IngestConfiguration and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total.
-        -- This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
+        -- Application-provided attributes to store in the IngestConfiguration and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         attributes: {string : string}
         -- Type of ingest protocol that the user employs to broadcast. If this is set to RTMP, insecureIngest must be set to true.
         ingestProtocol: string
@@ -167,11 +158,7 @@ local record M
         insecureIngest: boolean
         -- Indicates whether redundant ingest is enabled for the ingest configuration. Default: false.
         redundantIngest: boolean
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies
-        -- in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -202,36 +189,35 @@ local record M
         stageArn: string
         -- ID of the participant within the stage.
         participantId: string
-        -- State of the ingest configuration. It is ACTIVE if a publisher currently is
-        -- publishing to the stage associated with the ingest configuration.
+        -- State of the ingest configuration. It is ACTIVE if a publisher currently is publishing to the stage associated with the ingest configuration.
         state: string
-        -- Customer-assigned name to help identify the participant using the IngestConfiguration;
-        -- this can be used to link a participant to a user in the customer’s own systems. This can be
-        -- any UTF-8 encoded text. This field is exposed to all stage participants and
-        -- should not be used for personally identifying, confidential, or sensitive
-        -- information.
+        -- Customer-assigned name to help identify the participant using the IngestConfiguration; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
         -- Indicates whether redundant ingest is enabled for the ingest configuration.
         redundantIngest: boolean
-        -- A list of redundant ingest credentials, present only when redundantIngest is set to true.
-        -- See Redundant Ingest in
-        -- IVS RTMP Publishing for details.
+        -- A list of redundant ingest credentials, present only when redundantIngest is set to true. See Redundant Ingest in IVS RTMP Publishing for details.
         redundantIngestCredentials: {RedundantIngestCredential}
-        -- Application-provided attributes to to store in the IngestConfiguration and attach to a
-        -- stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field
-        -- is 1 KB total. This field is exposed to all stage participants and should not be
-        -- used for personally identifying, confidential, or sensitive
-        -- information.
+        -- Application-provided attributes to to store in the IngestConfiguration and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         attributes: {string : string}
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
     record CreateIngestConfigurationOutput
+        -- See Access-Control-Allow-Origin in the MDN Web Docs.
+        accessControlAllowOrigin: string
+        -- See Access-Control-Expose-Headers in the MDN Web Docs.
+        accessControlExposeHeaders: string
+        -- See Cache-Control in the MDN Web Docs.
+        cacheControl: string
+        -- See Content-Security-Policy in the MDN Web Docs.
+        contentSecurityPolicy: string
+        -- See Strict-Transport-Security in the MDN Web Docs.
+        strictTransportSecurity: string
+        -- See X-Content-Type-Options in the MDN Web Docs.
+        xContentTypeOptions: string
+        -- See X-Frame-Options in the MDN Web Docs.
+        xFrameOptions: string
         -- The IngestConfiguration that was created.
         ingestConfiguration: IngestConfiguration
     end
@@ -246,42 +232,25 @@ local record M
         stageArn: string
         -- Duration (in minutes), after which the token expires. Default: 720 (12 hours).
         duration: number
-        -- Name that can be specified to help identify the token. This can be any UTF-8 encoded
-        -- text. This field is exposed to all stage participants and should not be used for
-        -- personally identifying, confidential, or sensitive information.
+        -- Name that can be specified to help identify the token. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
-        -- Application-provided attributes to encode into the token and attach to a stage. Map keys
-        -- and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total.
-        -- This field is exposed to all stage participants and should not be used for
-        -- personally identifying, confidential, or sensitive information.
+        -- Application-provided attributes to encode into the token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         attributes: {string : string}
-        -- Set of capabilities that the user is allowed to perform in the stage. Default:
-        -- PUBLISH, SUBSCRIBE.
+        -- Set of capabilities that the user is allowed to perform in the stage. Default: PUBLISH, SUBSCRIBE.
         capabilities: {string}
     end
 
-    -- Object specifying a participant token in a stage.
-    -- Important: Treat tokens as opaque; i.e., do not build
-    -- functionality based on token contents. The format of tokens could change in the
-    -- future.
+    -- Object specifying a participant token in a stage. Important: Treat tokens as opaque; i.e., do not build functionality based on token contents. The format of tokens could change in the future.
     record ParticipantToken
         -- Unique identifier for this participant token, assigned by IVS.
         participantId: string
         -- The issued client token, encrypted.
         token: string
-        -- Customer-assigned name to help identify the token; this can be used to link a
-        -- participant to a user in the customer’s own systems. This can be any UTF-8 encoded text.
-        -- This field is exposed to all stage participants and should not be used for
-        -- personally identifying, confidential, or sensitive information.
+        -- Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
-        -- Application-provided attributes to encode into the token and attach to a
-        -- stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field
-        -- is 1 KB total. This field is exposed to all stage participants and should not be
-        -- used for personally identifying, confidential, or sensitive
-        -- information.
+        -- Application-provided attributes to encode into the token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         attributes: {string : string}
-        -- Duration (in minutes), after which the participant token expires. Default: 720 (12
-        -- hours).
+        -- Duration (in minutes), after which the participant token expires. Default: 720 (12 hours).
         duration: number
         -- Set of capabilities that the user is allowed to perform in the stage.
         capabilities: {string}
@@ -296,9 +265,7 @@ local record M
 
     -- An object representing a configuration of participant HLS recordings for individual participant recording.
     record ParticipantRecordingHlsConfiguration
-        -- Defines the target duration for recorded segments generated when recording a stage participant.
-        -- Segments may have durations longer than the specified value when needed to ensure each segment begins with a keyframe.
-        -- Default: 6.
+        -- Defines the target duration for recorded segments generated when recording a stage participant. Segments may have durations longer than the specified value when needed to ensure each segment begins with a keyframe. Default: 6.
         targetSegmentDurationSeconds: number
     end
 
@@ -318,18 +285,11 @@ local record M
         "LATEST"
     end
 
-    -- An object representing a configuration of thumbnails for recorded video from an
-    -- individual participant.
+    -- An object representing a configuration of thumbnails for recorded video from an individual participant.
     record ParticipantThumbnailConfiguration
-        -- The targeted thumbnail-generation interval in seconds. This is configurable only if
-        -- recordingMode is INTERVAL. Default: 60.
+        -- The targeted thumbnail-generation interval in seconds. This is configurable only if recordingMode is INTERVAL. Default: 60.
         targetIntervalSeconds: number
-        -- Indicates the format in which thumbnails are recorded. SEQUENTIAL records
-        -- all generated thumbnails in a serial manner, to the media/thumbnails/high directory.
-        -- LATEST saves the latest thumbnail in media/latest_thumbnail/high/thumb.jpg
-        -- and overwrites it at the interval specified by targetIntervalSeconds. You can
-        -- enable both SEQUENTIAL and LATEST. Default:
-        -- SEQUENTIAL.
+        -- Indicates the format in which thumbnails are recorded. SEQUENTIAL records all generated thumbnails in a serial manner, to the media/thumbnails/high directory. LATEST saves the latest thumbnail in media/latest_thumbnail/high/thumb.jpg and overwrites it at the interval specified by targetIntervalSeconds. You can enable both SEQUENTIAL and LATEST. Default: SEQUENTIAL.
         storage: {string}
         -- Thumbnail recording mode. Default: DISABLED.
         recordingMode: string
@@ -337,45 +297,27 @@ local record M
 
     -- Object specifying a configuration for individual participant recording.
     record AutoParticipantRecordingConfiguration
-        -- ARN of the StorageConfiguration resource to use for individual
-        -- participant recording. Default: "" (empty string, no storage configuration is
-        -- specified). Individual participant recording cannot be started unless a storage
-        -- configuration is specified, when a Stage is created or updated. To
-        -- disable individual participant recording, set this to ""; other fields in this object will
-        -- get reset to their defaults when sending "".
+        -- ARN of the StorageConfiguration resource to use for individual participant recording. Default: "" (empty string, no storage configuration is specified). Individual participant recording cannot be started unless a storage configuration is specified, when a Stage is created or updated. To disable individual participant recording, set this to ""; other fields in this object will get reset to their defaults when sending "".
         storageConfigurationArn: string
         -- Types of media to be recorded. Default: AUDIO_VIDEO.
         mediaTypes: {string}
-        -- A complex type that allows you to enable/disable the recording of thumbnails for
-        -- individual participant recording and modify the interval at which thumbnails are generated
-        -- for the live session.
+        -- A complex type that allows you to enable/disable the recording of thumbnails for individual participant recording and modify the interval at which thumbnails are generated for the live session.
         thumbnailConfiguration: ParticipantThumbnailConfiguration
-        -- If a stage publisher disconnects and then reconnects within the specified interval,
-        -- the multiple recordings will be considered a single recording and merged together.
-        -- The default value is 0, which disables merging.
+        -- If a stage publisher disconnects and then reconnects within the specified interval, the multiple recordings will be considered a single recording and merged together. The default value is 0, which disables merging.
         recordingReconnectWindowSeconds: number
         -- HLS configuration object for individual participant recording.
         hlsConfiguration: ParticipantRecordingHlsConfiguration
-        -- Optional field to disable replica participant recording. If this is set to false when a
-        -- participant is a replica, replica participants are not recorded. Default: true.
+        -- Optional field to disable replica participant recording. If this is set to false when a participant is a replica, replica participants are not recorded. Default: true.
         recordParticipantReplicas: boolean
     end
 
     -- Object specifying a participant token configuration in a stage.
     record ParticipantTokenConfiguration
-        -- Duration (in minutes), after which the corresponding participant token expires. Default:
-        -- 720 (12 hours).
+        -- Duration (in minutes), after which the corresponding participant token expires. Default: 720 (12 hours).
         duration: number
-        -- Customer-assigned name to help identify the token; this can be used to link a
-        -- participant to a user in the customer’s own systems. This can be any UTF-8 encoded text.
-        -- This field is exposed to all stage participants and should not be used for
-        -- personally identifying, confidential, or sensitive information.
+        -- Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
-        -- Application-provided attributes to encode into the corresponding participant token and
-        -- attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length
-        -- of this field is 1 KB total. This field is exposed to all stage participants and
-        -- should not be used for personally identifying, confidential, or sensitive
-        -- information.
+        -- Application-provided attributes to encode into the corresponding participant token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         attributes: {string : string}
         -- Set of capabilities that the user is allowed to perform in the stage.
         capabilities: {string}
@@ -386,18 +328,13 @@ local record M
         name: string
         -- Array of participant token configuration objects to attach to the new stage.
         participantTokenConfigurations: {ParticipantTokenConfiguration}
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies
-        -- in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
         -- Configuration object for individual participant recording, to attach to the new stage.
         autoParticipantRecordingConfiguration: AutoParticipantRecordingConfiguration
     end
 
-    -- Summary information about various endpoints for a stage. We recommend that you cache
-    -- these values at stage creation; the values can be cached for up to 14 days.
+    -- Summary information about various endpoints for a stage. We recommend that you cache these values at stage creation; the values can be cached for up to 14 days.
     record StageEndpoints
         -- Events endpoint.
         events: string
@@ -417,11 +354,7 @@ local record M
         name: string
         -- ID of the active session within the stage.
         activeSessionId: string
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
         -- Configuration object for individual participant recording, attached to the stage.
         autoParticipantRecordingConfiguration: AutoParticipantRecordingConfiguration
@@ -432,16 +365,13 @@ local record M
     record CreateStageOutput
         -- The stage that was created.
         stage: Stage
-        -- Participant tokens attached to the stage. These correspond to the
-        -- participants in the request.
+        -- Participant tokens attached to the stage. These correspond to the participants in the request.
         participantTokens: {ParticipantToken}
     end
 
-    -- A complex type that describes an S3 location where recorded videos will be
-    -- stored.
+    -- A complex type that describes an S3 location where recorded videos will be stored.
     record S3StorageConfiguration
-        -- Location (S3 bucket name) where recorded videos will be stored. Note that the
-        -- StorageConfiguration and S3 bucket must be in the same region as the Composition.
+        -- Location (S3 bucket name) where recorded videos will be stored. Note that the StorageConfiguration and S3 bucket must be in the same region as the Composition.
         bucketName: string
     end
 
@@ -450,11 +380,7 @@ local record M
         name: string
         -- A complex type that contains a storage configuration for where recorded video will be stored.
         s3: S3StorageConfiguration
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies
-        -- in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -466,11 +392,7 @@ local record M
         name: string
         -- An S3 destination configuration where recorded videos will be stored.
         s3: S3StorageConfiguration
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -524,9 +446,7 @@ local record M
     record DisconnectParticipantInput
         -- ARN of the stage to which the participant is attached.
         stageArn: string
-        -- Identifier of the participant to be disconnected. IVS assigns this; it is returned
-        -- by CreateParticipantToken (for streams using WebRTC ingest) or CreateIngestConfiguration (for
-        -- streams using RTMP ingest).
+        -- Identifier of the participant to be disconnected. IVS assigns this; it is returned by CreateParticipantToken (for streams using WebRTC ingest) or CreateIngestConfiguration (for streams using RTMP ingest).
         participantId: string
         -- Description of why this participant is being disconnected.
         reason: string
@@ -542,11 +462,9 @@ local record M
 
     -- Object specifying a channel as a destination.
     record ChannelDestinationConfiguration
-        -- ARN of the channel to use for broadcasting. The channel and stage resources must be in
-        -- the same AWS account and region. The channel must be offline (not broadcasting).
+        -- ARN of the channel to use for broadcasting. The channel and stage resources must be in the same AWS account and region. The channel must be offline (not broadcasting).
         channelArn: string
-        -- ARN of the EncoderConfiguration resource. The encoder configuration
-        -- and stage resources must be in the same AWS account and region.
+        -- ARN of the EncoderConfiguration resource. The encoder configuration and stage resources must be in the same AWS account and region.
         encoderConfigurationArn: string
     end
 
@@ -572,32 +490,19 @@ local record M
     record CompositionThumbnailConfiguration
         -- The targeted thumbnail-generation interval in seconds. Default: 60.
         targetIntervalSeconds: number
-        -- Indicates the format in which thumbnails are recorded. SEQUENTIAL records
-        -- all generated thumbnails in a serial manner, to the media/thumbnails/(width)x(height)
-        -- directory, where (width) and (height) are the width and height of the thumbnail.
-        -- LATEST saves the latest thumbnail in
-        -- media/latest_thumbnail/(width)x(height)/thumb.jpg and overwrites it at the interval
-        -- specified by targetIntervalSeconds. You can enable both
-        -- SEQUENTIAL and LATEST. Default:
-        -- SEQUENTIAL.
+        -- Indicates the format in which thumbnails are recorded. SEQUENTIAL records all generated thumbnails in a serial manner, to the media/thumbnails/(width)x(height) directory, where (width) and (height) are the width and height of the thumbnail. LATEST saves the latest thumbnail in media/latest_thumbnail/(width)x(height)/thumb.jpg and overwrites it at the interval specified by targetIntervalSeconds. You can enable both SEQUENTIAL and LATEST. Default: SEQUENTIAL.
         storage: {string}
     end
 
-    -- A complex type that describes an S3 location where recorded videos will be
-    -- stored.
+    -- A complex type that describes an S3 location where recorded videos will be stored.
     record S3DestinationConfiguration
-        -- ARN of the StorageConfiguration where recorded videos will be
-        -- stored.
+        -- ARN of the StorageConfiguration where recorded videos will be stored.
         storageConfigurationArn: string
-        -- ARNs of the EncoderConfiguration resource. The encoder configuration
-        -- and stage resources must be in the same AWS account and region.
+        -- ARNs of the EncoderConfiguration resource. The encoder configuration and stage resources must be in the same AWS account and region.
         encoderConfigurationArns: {string}
-        -- Array of maps, each of the form string:string (key:value). This is an
-        -- optional customer specification, currently used only to specify the recording format for
-        -- storing a recording in Amazon S3.
+        -- Array of maps, each of the form string:string (key:value). This is an optional customer specification, currently used only to specify the recording format for storing a recording in Amazon S3.
         recordingConfiguration: RecordingConfiguration
-        -- A complex type that allows you to enable/disable the recording of thumbnails for a Composition and modify the interval at which thumbnails are generated for
-        -- the live session.
+        -- A complex type that allows you to enable/disable the recording of thumbnails for a Composition and modify the interval at which thumbnails are generated for the live session.
         thumbnailConfigurations: {CompositionThumbnailConfiguration}
     end
 
@@ -605,11 +510,9 @@ local record M
     record DestinationConfiguration
         -- Name that can be specified to help identify the destination.
         name: string
-        -- An IVS channel to be used for broadcasting, for server-side composition. Either a
-        -- channel or an s3 must be specified.
+        -- An IVS channel to be used for broadcasting, for server-side composition. Either a channel or an s3 must be specified.
         channel: ChannelDestinationConfiguration
-        -- An S3 storage configuration to be used for recording video data. Either a
-        -- channel or an s3 must be specified.
+        -- An S3 storage configuration to be used for recording video data. Either a channel or an s3 must be specified.
         s3: S3DestinationConfiguration
     end
 
@@ -640,11 +543,9 @@ local record M
         id: string
         -- State of the Composition Destination.
         state: string
-        -- UTC time of the destination start. This is an ISO 8601 timestamp; note that
-        -- this is returned as a string.
+        -- UTC time of the destination start. This is an ISO 8601 timestamp; note that this is returned as a string.
         startTime: number
-        -- UTC time of the destination end. This is an ISO 8601 timestamp; note that this
-        -- is returned as a string.
+        -- UTC time of the destination end. This is an ISO 8601 timestamp; note that this is returned as a string.
         endTime: number
         -- Configuration used to create this destination.
         configuration: DestinationConfiguration
@@ -665,32 +566,19 @@ local record M
         "CONTAIN"
     end
 
-    -- Configuration information specific to Grid layout, for server-side composition. See
-    -- "Layouts" in Server-Side
-    -- Composition.
+    -- Configuration information specific to Grid layout, for server-side composition. See "Layouts" in Server-Side Composition.
     record GridConfiguration
-        -- This attribute name identifies the featured slot. A participant with this attribute set
-        -- to "true" (as a string value) in ParticipantTokenConfiguration is placed in the featured slot. Default: "" (no featured
-        -- participant).
+        -- This attribute name identifies the featured slot. A participant with this attribute set to "true" (as a string value) in ParticipantTokenConfiguration is placed in the featured slot. Default: "" (no featured participant).
         featuredParticipantAttribute: string
-        -- Determines whether to omit participants with stopped video in the composition. Default:
-        -- false.
+        -- Determines whether to omit participants with stopped video in the composition. Default: false.
         omitStoppedVideo: boolean
-        -- Sets the non-featured participant display mode, to control the aspect ratio of video
-        -- tiles. VIDEO is 16:9, SQUARE is 1:1, and PORTRAIT is
-        -- 3:4. Default: VIDEO.
+        -- Sets the non-featured participant display mode, to control the aspect ratio of video tiles. VIDEO is 16:9, SQUARE is 1:1, and PORTRAIT is 3:4. Default: VIDEO.
         videoAspectRatio: string
-        -- Defines how video content fits within the participant tile: FILL
-        -- (stretched), COVER (cropped), or CONTAIN (letterboxed). When not
-        -- set, videoFillMode defaults to COVER fill mode for participants
-        -- in the grid and to CONTAIN fill mode for featured participants.
+        -- Defines how video content fits within the participant tile: FILL (stretched), COVER (cropped), or CONTAIN (letterboxed). When not set, videoFillMode defaults to COVER fill mode for participants in the grid and to CONTAIN fill mode for featured participants.
         videoFillMode: string
-        -- Specifies the spacing between participant tiles in pixels. Default:
-        -- 2.
+        -- Specifies the spacing between participant tiles in pixels. Default: 2.
         gridGap: number
-        -- Attribute name in ParticipantTokenConfiguration identifying the participant ordering key.
-        -- Participants with participantOrderAttribute set to "" or not specified are ordered based
-        -- on their arrival time into the stage.
+        -- Attribute name in ParticipantTokenConfiguration identifying the participant ordering key. Participants with participantOrderAttribute set to "" or not specified are ordered based on their arrival time into the stage.
         participantOrderAttribute: string
     end
 
@@ -708,44 +596,27 @@ local record M
 
     -- Configuration information specific to Picture-in-Picture (PiP) layout, for server-side composition.
     record PipConfiguration
-        -- This attribute name identifies the featured slot. A participant with this attribute set
-        -- to "true" (as a string value) in ParticipantTokenConfiguration is placed in the featured slot. Default: "" (no featured
-        -- participant).
+        -- This attribute name identifies the featured slot. A participant with this attribute set to "true" (as a string value) in ParticipantTokenConfiguration is placed in the featured slot. Default: "" (no featured participant).
         featuredParticipantAttribute: string
-        -- Determines whether to omit participants with stopped video in the composition. Default:
-        -- false.
+        -- Determines whether to omit participants with stopped video in the composition. Default: false.
         omitStoppedVideo: boolean
-        -- Defines how video content fits within the participant tile: FILL
-        -- (stretched), COVER (cropped), or CONTAIN (letterboxed). Default:
-        -- COVER.
+        -- Defines how video content fits within the participant tile: FILL (stretched), COVER (cropped), or CONTAIN (letterboxed). Default: COVER.
         videoFillMode: string
-        -- Specifies the spacing between participant tiles in pixels. Default:
-        -- 0.
+        -- Specifies the spacing between participant tiles in pixels. Default: 0.
         gridGap: number
-        -- Specifies the participant for the PiP window. A participant with this attribute set to
-        -- "true" (as a string value) in ParticipantTokenConfiguration is placed in the PiP slot. Default: "" (no PiP participant).
+        -- Specifies the participant for the PiP window. A participant with this attribute set to "true" (as a string value) in ParticipantTokenConfiguration is placed in the PiP slot. Default: "" (no PiP participant).
         pipParticipantAttribute: string
-        -- Defines PiP behavior when all participants have left: STATIC (maintains
-        -- original position/size) or DYNAMIC (expands to full composition). Default:
-        -- STATIC.
+        -- Defines PiP behavior when all participants have left: STATIC (maintains original position/size) or DYNAMIC (expands to full composition). Default: STATIC.
         pipBehavior: string
-        -- Sets the PiP window’s offset position in pixels from the closest edges determined by
-        -- PipPosition. Default: 0.
+        -- Sets the PiP window’s offset position in pixels from the closest edges determined by PipPosition. Default: 0.
         pipOffset: number
-        -- Determines the corner position of the PiP window. Default:
-        -- BOTTOM_RIGHT.
+        -- Determines the corner position of the PiP window. Default: BOTTOM_RIGHT.
         pipPosition: string
-        -- Specifies the width of the PiP window in pixels. When this is not set explicitly,
-        -- pipWidth’s value will be based on the size of the composition and the
-        -- aspect ratio of the participant’s video.
+        -- Specifies the width of the PiP window in pixels. When this is not set explicitly, pipWidth’s value will be based on the size of the composition and the aspect ratio of the participant’s video.
         pipWidth: number
-        -- Specifies the height of the PiP window in pixels. When this is not set explicitly,
-        -- pipHeight’s value will be based on the size of the composition and the
-        -- aspect ratio of the participant’s video.
+        -- Specifies the height of the PiP window in pixels. When this is not set explicitly, pipHeight’s value will be based on the size of the composition and the aspect ratio of the participant’s video.
         pipHeight: number
-        -- Attribute name in ParticipantTokenConfiguration identifying the participant ordering key.
-        -- Participants with participantOrderAttribute set to "" or not specified are ordered based
-        -- on their arrival time into the stage.
+        -- Attribute name in ParticipantTokenConfiguration identifying the participant ordering key. Participants with participantOrderAttribute set to "" or not specified are ordered based on their arrival time into the stage.
         participantOrderAttribute: string
     end
 
@@ -775,21 +646,13 @@ local record M
         state: string
         -- Layout object to configure composition parameters.
         layout: LayoutConfiguration
-        -- Array of Destination objects. A Composition can contain either one destination
-        -- (channel or s3) or two (one channel and one
-        -- s3).
+        -- Array of Destination objects. A Composition can contain either one destination (channel or s3) or two (one channel and one s3).
         destinations: {Destination}
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
-        -- UTC time of the Composition start. This is an ISO 8601 timestamp; note that
-        -- this is returned as a string.
+        -- UTC time of the Composition start. This is an ISO 8601 timestamp; note that this is returned as a string.
         startTime: number
-        -- UTC time of the Composition end. This is an ISO 8601 timestamp; note that this
-        -- is returned as a string.
+        -- UTC time of the Composition end. This is an ISO 8601 timestamp; note that this is returned as a string.
         endTime: number
     end
 
@@ -863,20 +726,13 @@ local record M
     record Participant
         -- Unique identifier for this participant, assigned by IVS.
         participantId: string
-        -- Customer-assigned name to help identify the token; this can be used to link a
-        -- participant to a user in the customer’s own systems. This can be any UTF-8 encoded text.
-        -- This field is exposed to all stage participants and should not be used for
-        -- personally identifying, confidential, or sensitive information.
+        -- Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
         -- Whether the participant is connected to or disconnected from the stage.
         state: string
-        -- ISO 8601 timestamp (returned as a string) when the participant first joined the stage
-        -- session.
+        -- ISO 8601 timestamp (returned as a string) when the participant first joined the stage session.
         firstJoinTime: number
-        -- Application-provided attributes to encode into the token and attach to a stage. Map keys
-        -- and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total.
-        -- This field is exposed to all stage participants and should not be used for
-        -- personally identifying, confidential, or sensitive information.
+        -- Application-provided attributes to encode into the token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         attributes: {string : string}
         -- Whether the participant ever published to the stage session.
         published: boolean
@@ -892,16 +748,9 @@ local record M
         browserVersion: string
         -- The participant’s SDK version.
         sdkVersion: string
-        -- Name of the S3 bucket to where the participant is being recorded, if individual
-        -- participant recording is enabled, or "" (empty string), if recording is not
-        -- enabled.
+        -- Name of the S3 bucket to where the participant is being recorded, if individual participant recording is enabled, or "" (empty string), if recording is not enabled.
         recordingS3BucketName: string
-        -- S3 prefix of the S3 bucket where the participant is being recorded, if individual
-        -- participant recording is enabled, or "" (empty string), if recording is not
-        -- enabled. If individual participant recording merge is enabled, and if a stage publisher
-        -- disconnects from a stage and then reconnects, IVS tries to record to the same S3 prefix as
-        -- the previous session. See
-        -- Merge Fragmented Individual Participant Recordings.
+        -- S3 prefix of the S3 bucket where the participant is being recorded, if individual participant recording is enabled, or "" (empty string), if recording is not enabled. If individual participant recording merge is enabled, and if a stage publisher disconnects from a stage and then reconnects, IVS tries to record to the same S3 prefix as the previous session. See Merge Fragmented Individual Participant Recordings.
         recordingS3Prefix: string
         -- The participant’s recording state.
         recordingState: string
@@ -939,14 +788,9 @@ local record M
         name: string
         -- Public key material.
         publicKeyMaterial: string
-        -- The public key fingerprint, a short string used to identify or verify the full public
-        -- key.
+        -- The public key fingerprint, a short string used to identify or verify the full public key.
         fingerprint: string
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -972,17 +816,13 @@ local record M
         sessionId: string
     end
 
-    -- A stage session begins when the first participant joins a stage and ends after the last
-    -- participant leaves the stage. A stage session helps with debugging stages by grouping
-    -- events and participants into shorter periods of time (i.e., a session), which is helpful
-    -- when stages are used over long periods of time.
+    -- A stage session begins when the first participant joins a stage and ends after the last participant leaves the stage. A stage session helps with debugging stages by grouping events and participants into shorter periods of time (i.e., a session), which is helpful when stages are used over long periods of time.
     record StageSession
         -- ID of the session within the stage.
         sessionId: string
         -- ISO 8601 timestamp (returned as a string) when this stage session began.
         startTime: number
-        -- ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if
-        -- the stage is active.
+        -- ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if the stage is active.
         endTime: number
     end
 
@@ -1006,11 +846,7 @@ local record M
         publicKeyMaterial: string
         -- Name of the public key to be imported.
         name: string
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies
-        -- in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -1022,11 +858,9 @@ local record M
     record ListCompositionsInput
         -- Filters the Composition list to match the specified Stage ARN.
         filterByStageArn: string
-        -- Filters the Composition list to match the specified EncoderConfiguration attached to at
-        -- least one of its output.
+        -- Filters the Composition list to match the specified EncoderConfiguration attached to at least one of its output.
         filterByEncoderConfigurationArn: string
-        -- The first Composition to retrieve. This is used for pagination; see the
-        -- nextToken response field.
+        -- The first Composition to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
         -- Maximum number of results to return. Default: 100.
         maxResults: number
@@ -1038,11 +872,9 @@ local record M
         id: string
         -- State of the Composition Destination.
         state: string
-        -- UTC time of the destination start. This is an ISO 8601 timestamp; note that
-        -- this is returned as a string.
+        -- UTC time of the destination start. This is an ISO 8601 timestamp; note that this is returned as a string.
         startTime: number
-        -- UTC time of the destination end. This is an ISO 8601 timestamp; note that this
-        -- is returned as a string.
+        -- UTC time of the destination end. This is an ISO 8601 timestamp; note that this is returned as a string.
         endTime: number
     end
 
@@ -1056,31 +888,23 @@ local record M
         destinations: {DestinationSummary}
         -- State of the Composition resource.
         state: string
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
-        -- UTC time of the Composition start. This is an ISO 8601 timestamp; note that
-        -- this is returned as a string.
+        -- UTC time of the Composition start. This is an ISO 8601 timestamp; note that this is returned as a string.
         startTime: number
-        -- UTC time of the Composition end. This is an ISO 8601 timestamp; note that this
-        -- is returned as a string.
+        -- UTC time of the Composition end. This is an ISO 8601 timestamp; note that this is returned as a string.
         endTime: number
     end
 
     record ListCompositionsOutput
         -- List of the matching Compositions (summary information only).
         compositions: {CompositionSummary}
-        -- If there are more compositions than maxResults, use nextToken
-        -- in the request to get the next set.
+        -- If there are more compositions than maxResults, use nextToken in the request to get the next set.
         nextToken: string
     end
 
     record ListEncoderConfigurationsInput
-        -- The first encoder configuration to retrieve. This is used for pagination; see the
-        -- nextToken response field.
+        -- The first encoder configuration to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
         -- Maximum number of results to return. Default: 100.
         maxResults: number
@@ -1092,19 +916,14 @@ local record M
         arn: string
         -- Optional name to identify the resource.
         name: string
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
     record ListEncoderConfigurationsOutput
         -- List of the matching EncoderConfigurations (summary information only).
         encoderConfigurations: {EncoderConfigurationSummary}
-        -- If there are more encoder configurations than maxResults, use
-        -- nextToken in the request to get the next set.
+        -- If there are more encoder configurations than maxResults, use nextToken in the request to get the next set.
         nextToken: string
     end
 
@@ -1131,14 +950,9 @@ local record M
         stageArn: string
         -- ID of the participant within the stage.
         participantId: string
-        -- State of the ingest configuration. It is ACTIVE if a publisher currently is
-        -- publishing to the stage associated with the ingest configuration.
+        -- State of the ingest configuration. It is ACTIVE if a publisher currently is publishing to the stage associated with the ingest configuration.
         state: string
-        -- Customer-assigned name to help identify the participant using the IngestConfiguration;
-        -- this can be used to link a participant to a user in the customer’s own systems. This can be
-        -- any UTF-8 encoded text. This field is exposed to all stage participants and
-        -- should not be used for personally identifying, confidential, or sensitive
-        -- information.
+        -- Customer-assigned name to help identify the participant using the IngestConfiguration; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
         -- Indicates whether redundant ingest is enabled for the ingest configuration.
         redundantIngest: boolean
@@ -1158,8 +972,7 @@ local record M
         sessionId: string
         -- Unique identifier for this participant. This is assigned by IVS and returned by CreateParticipantToken.
         participantId: string
-        -- The first participant event to retrieve. This is used for pagination; see the
-        -- nextToken response field.
+        -- The first participant event to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
         -- Maximum number of results to return. Default: 50.
         maxResults: number
@@ -1197,23 +1010,13 @@ local record M
         "TOKEN_EXCHANGED"
     end
 
-    -- Object specifying an exchanged participant token in a stage, created when an original participant token is updated.
-    -- Important: Treat tokens as opaque; i.e., do not build
-    -- functionality based on token contents. The format of tokens could change in the
-    -- future.
+    -- Object specifying an exchanged participant token in a stage, created when an original participant token is updated. Important: Treat tokens as opaque; i.e., do not build functionality based on token contents. The format of tokens could change in the future.
     record ExchangedParticipantToken
         -- Set of capabilities that the user is allowed to perform in the stage.
         capabilities: {string}
-        -- Application-provided attributes to encode into the token and attach to a
-        -- stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field
-        -- is 1 KB total. This field is exposed to all stage participants and should not be
-        -- used for personally identifying, confidential, or sensitive
-        -- information.
+        -- Application-provided attributes to encode into the token and attach to a stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         attributes: {string : string}
-        -- Customer-assigned name to help identify the token; this can be used to link a
-        -- participant to a user in the customer’s own systems. This can be any UTF-8 encoded text.
-        -- This field is exposed to all stage participants and should not be used for
-        -- personally identifying, confidential, or sensitive information.
+        -- Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
         -- ISO 8601 timestamp (returned as a string) for when this token expires.
         expirationTime: number
@@ -1223,65 +1026,19 @@ local record M
     record Event
         -- The name of the event.
         name: string
-        -- Unique identifier for the participant who triggered the event. This is assigned by
-        -- IVS.
+        -- Unique identifier for the participant who triggered the event. This is assigned by IVS.
         participantId: string
         -- ISO 8601 timestamp (returned as a string) for when the event occurred.
         eventTime: number
-        -- Unique identifier for the remote participant. For a subscribe event, this is the
-        -- publisher. For a publish or join event, this is null. This is assigned by IVS.
+        -- Unique identifier for the remote participant. For a subscribe event, this is the publisher. For a publish or join event, this is null. This is assigned by IVS.
         remoteParticipantId: string
-        -- If the event is an error event, the error code is provided to give insight into the
-        -- specific error that occurred. If the event is not an error event, this field is
-        -- null.
-        -- B_FRAME_PRESENT — The participant's stream includes B-frames.
-        -- For details, see IVS RTMP
-        -- Publishing.
-        -- BITRATE_EXCEEDED — The participant exceeded the maximum
-        -- supported bitrate. For details, see Service
-        -- Quotas.
-        -- INSUFFICIENT_CAPABILITIES — The participant tried to take an
-        -- action that the participant’s token is not allowed to do. For details on participant
-        -- capabilities, see the capabilities field in CreateParticipantToken.
-        -- INTERNAL_SERVER_EXCEPTION — The participant failed to publish
-        -- to the stage due to an internal server error.
-        -- INVALID_AUDIO_CODEC — The participant is using an invalid audio
-        -- codec. For details, see Stream
-        -- Ingest.
-        -- INVALID_INPUT — The participant is using an invalid input
-        -- stream.
-        -- INVALID_PROTOCOL — The participant's IngestConfiguration
-        -- resource is configured for RTMPS but they tried streaming with RTMP. For details, see
-        -- IVS RTMP
-        -- Publishing.
-        -- INVALID_STREAM_KEY — The participant is using an invalid stream
-        -- key. For details, see IVS RTMP
-        -- Publishing.
-        -- INVALID_VIDEO_CODEC — The participant is using an invalid video
-        -- codec. For details, see Stream
-        -- Ingest.
-        -- PUBLISHER_NOT_FOUND — The participant tried to subscribe to a
-        -- publisher that doesn’t exist.
-        -- QUOTA_EXCEEDED — The number of participants who want to
-        -- publish/subscribe to a stage exceeds the quota. For details, see
-        -- Service Quotas.
-        -- RESOLUTION_EXCEEDED — The participant exceeded the maximum
-        -- supported resolution. For details, see Service
-        -- Quotas.
-        -- REUSE_OF_STREAM_KEY — The participant tried to use a stream key
-        -- that is associated with another active stage session.
-        -- STREAM_DURATION_EXCEEDED — The participant exceeded the maximum
-        -- allowed stream duration. For details, see Service
-        -- Quotas.
+        -- If the event is an error event, the error code is provided to give insight into the specific error that occurred. If the event is not an error event, this field is null. B_FRAME_PRESENT — The participant's stream includes B-frames. For details, see IVS RTMP Publishing. BITRATE_EXCEEDED — The participant exceeded the maximum supported bitrate. For details, see Service Quotas. INSUFFICIENT_CAPABILITIES — The participant tried to take an action that the participant’s token is not allowed to do. For details on participant capabilities, see the capabilities field in CreateParticipantToken. INTERNAL_SERVER_EXCEPTION — The participant failed to publish to the stage due to an internal server error. INVALID_AUDIO_CODEC — The participant is using an invalid audio codec. For details, see Stream Ingest. INVALID_INPUT — The participant is using an invalid input stream. INVALID_PROTOCOL — The participant's IngestConfiguration resource is configured for RTMPS but they tried streaming with RTMP. For details, see IVS RTMP Publishing. INVALID_STREAM_KEY — The participant is using an invalid stream key. For details, see IVS RTMP Publishing. INVALID_VIDEO_CODEC — The participant is using an invalid video codec. For details, see Stream Ingest. PUBLISHER_NOT_FOUND — The participant tried to subscribe to a publisher that doesn’t exist. QUOTA_EXCEEDED — The number of participants who want to publish/subscribe to a stage exceeds the quota. For details, see Service Quotas. RESOLUTION_EXCEEDED — The participant exceeded the maximum supported resolution. For details, see Service Quotas. REUSE_OF_STREAM_KEY — The participant tried to use a stream key that is associated with another active stage session. STREAM_DURATION_EXCEEDED — The participant exceeded the maximum allowed stream duration. For details, see Service Quotas.
         errorCode: string
-        -- ARN of the stage where the participant is replicated. Applicable only if the event name is
-        -- REPLICATION_STARTED or REPLICATION_STOPPED.
+        -- ARN of the stage where the participant is replicated. Applicable only if the event name is REPLICATION_STARTED or REPLICATION_STOPPED.
         destinationStageArn: string
-        -- ID of the session within the destination stage. Applicable only if the event name is
-        -- REPLICATION_STARTED or REPLICATION_STOPPED.
+        -- ID of the session within the destination stage. Applicable only if the event name is REPLICATION_STARTED or REPLICATION_STOPPED.
         destinationSessionId: string
-        -- If true, this indicates the participantId is a replicated participant.
-        -- If this is a subscribe event, then this flag refers to remoteParticipantId. Default: false.
+        -- If true, this indicates the participantId is a replicated participant. If this is a subscribe event, then this flag refers to remoteParticipantId. Default: false.
         replica: boolean
         -- Source participant token for TOKEN_EXCHANGED event.
         previousToken: ExchangedParticipantToken
@@ -1292,17 +1049,14 @@ local record M
     record ListParticipantEventsOutput
         -- List of the matching events.
         events: {Event}
-        -- If there are more events than maxResults, use nextToken in the
-        -- request to get the next set.
+        -- If there are more events than maxResults, use nextToken in the request to get the next set.
         nextToken: string
     end
 
     record ListParticipantReplicasInput
         -- ARN of the stage where the participant is publishing.
         sourceStageArn: string
-        -- Participant ID of the publisher that has been replicated. This is assigned by IVS and returned by
-        -- CreateParticipantToken
-        -- or the jti (JWT ID) used to create a self signed token.
+        -- Participant ID of the publisher that has been replicated. This is assigned by IVS and returned by CreateParticipantToken or the jti (JWT ID) used to create a self signed token.
         participantId: string
         -- The first participant to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
@@ -1314,10 +1068,7 @@ local record M
     record ParticipantReplica
         -- ARN of the stage from which this participant is replicated.
         sourceStageArn: string
-        -- Participant ID of the publisher that will be replicated. This is assigned by IVS and returned by
-        -- CreateParticipantToken
-        -- or the jti (JWT ID) used to
-        -- create a self signed token.
+        -- Participant ID of the publisher that will be replicated. This is assigned by IVS and returned by CreateParticipantToken or the jti (JWT ID) used to create a self signed token.
         participantId: string
         -- ID of the session within the source stage.
         sourceSessionId: string
@@ -1349,29 +1100,17 @@ local record M
         stageArn: string
         -- ID of the session within the stage.
         sessionId: string
-        -- Filters the response list to match the specified user ID.
-        -- Only one of filterByUserId, filterByPublished,
-        -- filterByState, or filterByRecordingState can be provided per request.
-        -- A userId is a
-        -- customer-assigned name to help identify the token; this can be used to link a participant
-        -- to a user in the customer’s own systems.
+        -- Filters the response list to match the specified user ID. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request. A userId is a customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems.
         filterByUserId: string
-        -- Filters the response list to only show participants who published during the stage session.
-        -- Only one of filterByUserId, filterByPublished,
-        -- filterByState, or filterByRecordingState can be provided per request.
+        -- Filters the response list to only show participants who published during the stage session. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request.
         filterByPublished: boolean
-        -- Filters the response list to only show participants in the specified state.
-        -- Only one of filterByUserId, filterByPublished,
-        -- filterByState, or filterByRecordingState can be provided per request.
+        -- Filters the response list to only show participants in the specified state. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request.
         filterByState: string
-        -- The first participant to retrieve. This is used for pagination; see the
-        -- nextToken response field.
+        -- The first participant to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
         -- Maximum number of results to return. Default: 50.
         maxResults: number
-        -- Filters the response list to only show participants with the specified recording state.
-        -- Only one of filterByUserId, filterByPublished,
-        -- filterByState, or filterByRecordingState can be provided per request.
+        -- Filters the response list to only show participants with the specified recording state. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState can be provided per request.
         filterByRecordingState: string
     end
 
@@ -1379,10 +1118,7 @@ local record M
     record ParticipantSummary
         -- Unique identifier for this participant, assigned by IVS.
         participantId: string
-        -- Customer-assigned name to help identify the token; this can be used to link a
-        -- participant to a user in the customer’s own systems. This can be any UTF-8 encoded text.
-        -- This field is exposed to all stage participants and should not be used for
-        -- personally identifying, confidential, or sensitive information.
+        -- Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information.
         userId: string
         -- Whether the participant is connected to or disconnected from the stage.
         state: string
@@ -1409,8 +1145,7 @@ local record M
     record ListParticipantsOutput
         -- List of the matching participants (summary information only).
         participants: {ParticipantSummary}
-        -- If there are more participants than maxResults, use nextToken
-        -- in the request to get the next set.
+        -- If there are more participants than maxResults, use nextToken in the request to get the next set.
         nextToken: string
     end
 
@@ -1427,11 +1162,7 @@ local record M
         arn: string
         -- Public key name.
         name: string
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -1443,8 +1174,7 @@ local record M
     end
 
     record ListStagesInput
-        -- The first stage to retrieve. This is used for pagination; see the nextToken
-        -- response field.
+        -- The first stage to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
         -- Maximum number of results to return. Default: 50.
         maxResults: number
@@ -1458,27 +1188,21 @@ local record M
         name: string
         -- ID of the active session within the stage.
         activeSessionId: string
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
     record ListStagesOutput
         -- List of the matching stages (summary information only).
         stages: {StageSummary}
-        -- If there are more stages than maxResults, use nextToken in the
-        -- request to get the next set.
+        -- If there are more stages than maxResults, use nextToken in the request to get the next set.
         nextToken: string
     end
 
     record ListStageSessionsInput
         -- Stage ARN.
         stageArn: string
-        -- The first stage session to retrieve. This is used for pagination; see the
-        -- nextToken response field.
+        -- The first stage session to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
         -- Maximum number of results to return. Default: 50.
         maxResults: number
@@ -1490,25 +1214,21 @@ local record M
         sessionId: string
         -- ISO 8601 timestamp (returned as a string) when this stage session began.
         startTime: number
-        -- ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if
-        -- the stage is active.
+        -- ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if the stage is active.
         endTime: number
     end
 
     record ListStageSessionsOutput
         -- List of matching stage sessions.
         stageSessions: {StageSessionSummary}
-        -- If there are more stage sessions than maxResults, use
-        -- nextToken in the request to get the next set.
+        -- If there are more stage sessions than maxResults, use nextToken in the request to get the next set.
         nextToken: string
     end
 
     record ListStorageConfigurationsInput
-        -- The first storage configuration to retrieve. This is used for pagination;
-        -- see the nextToken response field.
+        -- The first storage configuration to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
-        -- Maximum number of storage configurations to return. Default: your service quota or 100,
-        -- whichever is smaller.
+        -- Maximum number of storage configurations to return. Default: your service quota or 100, whichever is smaller.
         maxResults: number
     end
 
@@ -1520,19 +1240,14 @@ local record M
         name: string
         -- An S3 destination configuration where recorded videos will be stored.
         s3: S3StorageConfiguration
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies in Tagging AWS Resources and Tag
-        -- Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
     record ListStorageConfigurationsOutput
         -- List of the matching storage configurations.
         storageConfigurations: {StorageConfigurationSummary}
-        -- If there are more storage configurations than maxResults, use nextToken
-        -- in the request to get the next set.
+        -- If there are more storage configurations than maxResults, use nextToken in the request to get the next set.
         nextToken: string
     end
 
@@ -1542,8 +1257,7 @@ local record M
     end
 
     record ListTagsForResourceOutput
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value).
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value).
         tags: {string : string}
     end
 
@@ -1556,11 +1270,7 @@ local record M
         layout: LayoutConfiguration
         -- Array of destination configuration.
         destinations: {DestinationConfiguration}
-        -- Tags attached to the resource. Array of maps, each of the form string:string
-        -- (key:value). See Best practices and strategies
-        -- in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Tags attached to the resource. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -1574,19 +1284,11 @@ local record M
         sourceStageArn: string
         -- ARN of the stage to which the participant will be replicated.
         destinationStageArn: string
-        -- Participant ID of the publisher that will be replicated. This is assigned by IVS and returned by
-        -- CreateParticipantToken
-        -- or the jti (JWT ID) used to create a self signed token.
+        -- Participant ID of the publisher that will be replicated. This is assigned by IVS and returned by CreateParticipantToken or the jti (JWT ID) used to create a self signed token.
         participantId: string
-        -- If the participant disconnects and then reconnects within the specified interval, replication will continue to be ACTIVE.
-        -- Default: 0.
+        -- If the participant disconnects and then reconnects within the specified interval, replication will continue to be ACTIVE. Default: 0.
         reconnectWindowSeconds: number
-        -- Application-provided attributes to set on the replicated participant in the destination stage.
-        -- Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total.
-        -- This field is exposed to all stage participants and should not be used for personally identifying,
-        -- confidential, or sensitive information.
-        -- These attributes are merged with any attributes set for this participant when creating the token.
-        -- If there is overlap in keys, the values in these attributes are replaced.
+        -- Application-provided attributes to set on the replicated participant in the destination stage. Map keys and values can contain UTF-8 encoded text. The maximum length of this field is 1 KB total. This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information. These attributes are merged with any attributes set for this participant when creating the token. If there is overlap in keys, the values in these attributes are replaced.
         attributes: {string : string}
     end
 
@@ -1620,10 +1322,7 @@ local record M
         sourceStageArn: string
         -- ARN of the stage where the participant has been replicated.
         destinationStageArn: string
-        -- Participant ID of the publisher that has been replicated. This is assigned by IVS and returned by
-        -- CreateParticipantToken
-        -- or the jti (JWT ID) used to
-        -- create a self signed token.
+        -- Participant ID of the publisher that has been replicated. This is assigned by IVS and returned by CreateParticipantToken or the jti (JWT ID) used to create a self signed token.
         participantId: string
     end
 
@@ -1647,11 +1346,7 @@ local record M
     record TagResourceInput
         -- The ARN of the resource to be tagged. The ARN must be URL-encoded.
         resourceArn: string
-        -- Array of tags to be added or updated. Array of maps, each of the form
-        -- string:string (key:value). See Best practices and strategies
-        -- in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Array of tags to be added or updated. Array of maps, each of the form string:string (key:value). See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tags: {string : string}
     end
 
@@ -1661,11 +1356,7 @@ local record M
     record UntagResourceInput
         -- The ARN of the resource to be untagged. The ARN must be URL-encoded.
         resourceArn: string
-        -- Array of tag keys (strings) for the tags to be removed.
-        -- See Best practices and strategies
-        -- in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming
-        -- limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented
-        -- there.
+        -- Array of tag keys (strings) for the tags to be removed. See Best practices and strategies in Tagging AWS Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no constraints on tags beyond what is documented there.
         tagKeys: {string}
     end
 
@@ -1682,6 +1373,20 @@ local record M
     end
 
     record UpdateIngestConfigurationOutput
+        -- See Access-Control-Allow-Origin in the MDN Web Docs.
+        accessControlAllowOrigin: string
+        -- See Access-Control-Expose-Headers in the MDN Web Docs.
+        accessControlExposeHeaders: string
+        -- See Cache-Control in the MDN Web Docs.
+        cacheControl: string
+        -- See Content-Security-Policy in the MDN Web Docs.
+        contentSecurityPolicy: string
+        -- See Strict-Transport-Security in the MDN Web Docs.
+        strictTransportSecurity: string
+        -- See X-Content-Type-Options in the MDN Web Docs.
+        xContentTypeOptions: string
+        -- See X-Frame-Options in the MDN Web Docs.
+        xFrameOptions: string
         -- The updated IngestConfiguration.
         ingestConfiguration: IngestConfiguration
     end

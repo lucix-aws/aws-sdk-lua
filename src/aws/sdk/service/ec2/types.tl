@@ -35456,6 +35456,7 @@ local record M
         "t3"
         "t3a"
         "t4g"
+        "t8i"
     end
 
     record GetDefaultCreditSpecificationInput

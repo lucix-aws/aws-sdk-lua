@@ -144,6 +144,10 @@ M.SuggestedMessagesList = schema.new({ type = "list", list_member = prelude.Stri
 
 M.ToolConfigurationList = schema.new({ type = "list", list_member = M.ToolConfiguration })
 
+M.MultiAgentConfigurationList = schema.new({ type = "list", list_member = M.MultiAgentConfiguration })
+
+M.JSONDocumentList = schema.new({ type = "list", list_member = prelude.Document })
+
 M.EmailHeaders = schema.new({ type = "list", list_member = M.EmailHeader })
 
 M.WhatsAppMessageTemplateComponents = schema.new({ type = "list", list_member = prelude.String })
@@ -185,6 +189,8 @@ M.DataSummaryList = schema.new({ type = "list", list_member = M.DataSummary })
 M.ToolExampleList = schema.new({ type = "list", list_member = prelude.String })
 
 M.GuardrailPolicyResultList = schema.new({ type = "list", list_member = M.GuardrailPolicyResult })
+
+M.MultiAgentExampleList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SpanCitationList = schema.new({ type = "list", list_member = M.SpanCitation })
 
@@ -358,6 +364,25 @@ M.AgentAttributes = schema.new({
             id = id.from(_N, "AgentAttributes", "lastName"),
             type = "string",
             name = "lastName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgentTarget = schema.new({
+    id = id.from(_N, "AgentTarget"),
+    type = "union",
+    members = {
+        aiAgentId = schema.new({
+            id = id.from(_N, "AgentTarget", "aiAgentId"),
+            type = "string",
+            name = "aiAgentId",
+            target_id = prelude.String.id,
+        }),
+        applicationId = schema.new({
+            id = id.from(_N, "AgentTarget", "applicationId"),
+            type = "string",
+            name = "applicationId",
             target_id = prelude.String.id,
         }),
     },
@@ -716,6 +741,107 @@ M.NoteTakingAIAgentConfiguration = schema.new({
     },
 })
 
+M.MultiAgentInstruction = schema.new({
+    id = id.from(_N, "MultiAgentInstruction"),
+    type = "structure",
+    members = {
+        instruction = schema.new({
+            id = id.from(_N, "MultiAgentInstruction", "instruction"),
+            type = "string",
+            name = "instruction",
+            target_id = prelude.String.id,
+        }),
+        examples = schema.new({
+            id = id.from(_N, "MultiAgentInstruction", "examples"),
+            type = "list",
+            name = "examples",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.DelegateAgentConfiguration = schema.new({
+    id = id.from(_N, "DelegateAgentConfiguration"),
+    type = "structure",
+    members = {
+        agentTarget = schema.new({
+            id = id.from(_N, "DelegateAgentConfiguration", "agentTarget"),
+            type = "union",
+            name = "agentTarget",
+            target_id = id.from(_N, "AgentTarget"),
+            target = M.AgentTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instruction = schema.new({
+            id = id.from(_N, "DelegateAgentConfiguration", "instruction"),
+            type = "structure",
+            name = "instruction",
+            target_id = id.from(_N, "MultiAgentInstruction"),
+            target = M.MultiAgentInstruction,
+        }),
+    },
+})
+
+M.HandoffAgentConfiguration = schema.new({
+    id = id.from(_N, "HandoffAgentConfiguration"),
+    type = "structure",
+    members = {
+        agentTarget = schema.new({
+            id = id.from(_N, "HandoffAgentConfiguration", "agentTarget"),
+            type = "union",
+            name = "agentTarget",
+            target_id = id.from(_N, "AgentTarget"),
+            target = M.AgentTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instruction = schema.new({
+            id = id.from(_N, "HandoffAgentConfiguration", "instruction"),
+            type = "structure",
+            name = "instruction",
+            target_id = id.from(_N, "MultiAgentInstruction"),
+            target = M.MultiAgentInstruction,
+        }),
+        audioStreamingEnabled = schema.new({
+            id = id.from(_N, "HandoffAgentConfiguration", "audioStreamingEnabled"),
+            type = "boolean",
+            name = "audioStreamingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        immediateHandoff = schema.new({
+            id = id.from(_N, "HandoffAgentConfiguration", "immediateHandoff"),
+            type = "boolean",
+            name = "immediateHandoff",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.MultiAgentConfiguration = schema.new({
+    id = id.from(_N, "MultiAgentConfiguration"),
+    type = "union",
+    members = {
+        delegateAgentConfiguration = schema.new({
+            id = id.from(_N, "MultiAgentConfiguration", "delegateAgentConfiguration"),
+            type = "structure",
+            name = "delegateAgentConfiguration",
+            target_id = id.from(_N, "DelegateAgentConfiguration"),
+            target = M.DelegateAgentConfiguration,
+        }),
+        handoffAgentConfiguration = schema.new({
+            id = id.from(_N, "MultiAgentConfiguration", "handoffAgentConfiguration"),
+            type = "structure",
+            name = "handoffAgentConfiguration",
+            target_id = id.from(_N, "HandoffAgentConfiguration"),
+            target = M.HandoffAgentConfiguration,
+        }),
+    },
+})
+
 M.Annotation = schema.new({
     id = id.from(_N, "Annotation"),
     type = "structure",
@@ -974,9 +1100,6 @@ M.OrchestrationAIAgentConfiguration = schema.new({
             type = "string",
             name = "orchestrationAIPromptId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         orchestrationAIGuardrailId = schema.new({
             id = id.from(_N, "OrchestrationAIAgentConfiguration", "orchestrationAIGuardrailId"),
@@ -991,6 +1114,13 @@ M.OrchestrationAIAgentConfiguration = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ToolConfiguration,
         }),
+        multiAgentConfigurations = schema.new({
+            id = id.from(_N, "OrchestrationAIAgentConfiguration", "multiAgentConfigurations"),
+            type = "list",
+            name = "multiAgentConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.MultiAgentConfiguration,
+        }),
         connectInstanceArn = schema.new({
             id = id.from(_N, "OrchestrationAIAgentConfiguration", "connectInstanceArn"),
             type = "string",
@@ -1002,6 +1132,20 @@ M.OrchestrationAIAgentConfiguration = schema.new({
             type = "string",
             name = "locale",
             target_id = prelude.String.id,
+        }),
+        inputSchemas = schema.new({
+            id = id.from(_N, "OrchestrationAIAgentConfiguration", "inputSchemas"),
+            type = "list",
+            name = "inputSchemas",
+            target_id = prelude.Document.id,
+            list_member = prelude.Document,
+        }),
+        outputSchemas = schema.new({
+            id = id.from(_N, "OrchestrationAIAgentConfiguration", "outputSchemas"),
+            type = "list",
+            name = "outputSchemas",
+            target_id = prelude.Document.id,
+            list_member = prelude.Document,
         }),
     },
 })
@@ -6689,6 +6833,12 @@ M.MessageData = schema.new({
             name = "toolUseResult",
             target_id = id.from(_N, "ToolUseResultData"),
             target = M.ToolUseResultData,
+        }),
+        data = schema.new({
+            id = id.from(_N, "MessageData", "data"),
+            type = "document",
+            name = "data",
+            target_id = prelude.Document.id,
         }),
     },
 })
@@ -14605,6 +14755,24 @@ M.SpanAttributes = schema.new({
             id = id.from(_N, "SpanAttributes", "aiAgentOrchestratorUseCase"),
             type = "string",
             name = "aiAgentOrchestratorUseCase",
+            target_id = prelude.String.id,
+        }),
+        interactionMode = schema.new({
+            id = id.from(_N, "SpanAttributes", "interactionMode"),
+            type = "string",
+            name = "interactionMode",
+            target_id = prelude.String.id,
+        }),
+        targetAgentId = schema.new({
+            id = id.from(_N, "SpanAttributes", "targetAgentId"),
+            type = "string",
+            name = "targetAgentId",
+            target_id = prelude.String.id,
+        }),
+        returnReason = schema.new({
+            id = id.from(_N, "SpanAttributes", "returnReason"),
+            type = "string",
+            name = "returnReason",
             target_id = prelude.String.id,
         }),
         requestModel = schema.new({

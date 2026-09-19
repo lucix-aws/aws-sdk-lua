@@ -15913,6 +15913,7 @@ local record M
         "ModelCard"
         "PipelineVersion"
         "Job"
+        "HubContent"
     end
 
     -- Part of the SuggestionQuery type. Specifies a hint for retrieving property names that begin with the specified text.
@@ -15949,6 +15950,52 @@ local record M
     record GitConfigForUpdate
         -- The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the credentials used to access the git repository. The secret must have a staging label of AWSCURRENT and must be in the following format: {"username": UserName, "password": Password}
         SecretArn: string
+    end
+
+    -- Contains information about a hub content resource, including its name, version, type, associated documents, dependencies, and status, as returned by a search result.
+    record HubContent
+        -- The name of the hub content.
+        HubContentName: string
+        -- The Amazon Resource Name (ARN) of the hub content.
+        HubContentArn: string
+        -- The version of the hub content.
+        HubContentVersion: string
+        -- The type of hub content.
+        HubContentType: string
+        -- The document schema version for the hub content.
+        DocumentSchemaVersion: string
+        -- The name of the hub that contains the content.
+        HubName: string
+        -- The Amazon Resource Name (ARN) of the hub that contains the content.
+        HubArn: string
+        -- The display name of the hub content.
+        HubContentDisplayName: string
+        -- A description of the hub content.
+        HubContentDescription: string
+        -- A string that provides a description of the hub content. This string can include links, tables, and standard markdown formatting.
+        HubContentMarkdown: string
+        -- The hub content document that describes information about the hub content such as type, associated containers, scripts, and more.
+        HubContentDocument: string
+        -- The Amazon Resource Name (ARN) of the public hub content.
+        SageMakerPublicHubContentArn: string
+        -- The minimum version of the hub content.
+        ReferenceMinVersion: string
+        -- The support status of the hub content.
+        SupportStatus: string
+        -- The searchable keywords for the hub content.
+        HubContentSearchKeywords: {string}
+        -- The location of any dependencies that the hub content has, such as scripts, model artifacts, datasets, or notebooks.
+        HubContentDependencies: {HubContentDependency}
+        -- The status of the hub content.
+        HubContentStatus: string
+        -- The failure reason if importing hub content failed.
+        FailureReason: string
+        -- The date and time that hub content was created.
+        CreationTime: number
+        -- The last modified time of the hub content.
+        LastModifiedTime: number
+        -- Any tags associated with the hub content.
+        Tags: {Tag}
     end
 
     -- Information about hub content.
@@ -20738,6 +20785,8 @@ local record M
         Model: ModelDashboardModel
         -- The properties of a job.
         Job: Job
+        -- The properties of a hub content resource.
+        HubContent: HubContent
     end
 
     -- Represents the total number of matching results and indicates how accurate that count is. The Value field provides the count, which may be exact or estimated. The Relation field indicates whether it's an exact figure or a lower bound. This helps understand the full scope of search results, especially when dealing with large result sets.

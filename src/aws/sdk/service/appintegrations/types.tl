@@ -42,6 +42,19 @@ local record M
         "STANDARD"
         "SERVICE"
         "MCP_SERVER"
+        "A2A_SERVER"
+    end
+
+    enum AuthType
+        "API_KEY"
+    end
+
+    -- Contains the authentication settings that Connect Customer uses to call an external application endpoint. The configuration includes the authentication type and credential location.
+    record AuthConfig
+        -- The type of authentication used when calling the external application.
+        AuthType: string
+        -- The ARN of the Secrets Manager secret that stores the credentials. The secret must be accessible to Connect Customer.
+        CredentialProviderIdentifier: string
     end
 
     -- The iframe configuration for the application.
@@ -102,6 +115,8 @@ local record M
         IframeConfig: IframeConfig
         -- The type of application.
         ApplicationType: string
+        -- The authentication settings that Connect Customer uses when calling the external application.
+        AuthConfig: AuthConfig
     end
 
     record CreateApplicationOutput
@@ -367,6 +382,8 @@ local record M
         IframeConfig: IframeConfig
         -- The type of application.
         ApplicationType: string
+        -- The authentication settings that Connect Customer uses when calling the external application.
+        AuthConfig: AuthConfig
     end
 
     record GetDataIntegrationInput
@@ -677,6 +694,8 @@ local record M
         IframeConfig: IframeConfig
         -- The type of application.
         ApplicationType: string
+        -- The authentication settings that Connect Customer uses when calling the external application.
+        AuthConfig: AuthConfig
     end
 
     record UpdateApplicationOutput

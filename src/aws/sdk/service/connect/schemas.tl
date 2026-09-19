@@ -112,6 +112,8 @@ M.HierarchyRestrictedResourceList = schema.new({ type = "list", list_member = pr
 
 M.AllowedFlowModules = schema.new({ type = "list", list_member = M.FlowModule })
 
+M.AllowedAIAgents = schema.new({ type = "list", list_member = M.AIAgent })
+
 M.TaskTemplateFields = schema.new({ type = "list", list_member = M.TaskTemplateField })
 
 M.PropertyValidationExceptionPropertyList = schema.new({ type = "list", list_member = M.PropertyValidationExceptionProperty })
@@ -1739,6 +1741,25 @@ M.AgentStatusSummary = schema.new({
             id = id.from(_N, "AgentStatusSummary", "LastModifiedRegion"),
             type = "string",
             name = "LastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AIAgent = schema.new({
+    id = id.from(_N, "AIAgent"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "AIAgent", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "AIAgent", "Type"),
+            type = "string",
+            name = "Type",
             target_id = prelude.String.id,
         }),
     },
@@ -9900,6 +9921,13 @@ M.CreateSecurityProfileInput = schema.new({
             name = "AllowedFlowModules",
             target_id = prelude.Document.id,
             list_member = M.FlowModule,
+        }),
+        AllowedAIAgents = schema.new({
+            id = id.from(_N, "CreateSecurityProfileInput", "AllowedAIAgents"),
+            type = "list",
+            name = "AllowedAIAgents",
+            target_id = prelude.Document.id,
+            list_member = M.AIAgent,
         }),
         GranularAccessControlConfiguration = schema.new({
             id = id.from(_N, "CreateSecurityProfileInput", "GranularAccessControlConfiguration"),
@@ -28227,6 +28255,83 @@ M.ListSecurityKeysOutput = schema.new({
     },
 })
 
+M.ListSecurityProfileAIAgentsInput = schema.new({
+    id = id.from(_N, "ListSecurityProfileAIAgentsRequest"),
+    type = "structure",
+    members = {
+        SecurityProfileId = schema.new({
+            id = id.from(_N, "ListSecurityProfileAIAgentsInput", "SecurityProfileId"),
+            type = "string",
+            name = "SecurityProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "ListSecurityProfileAIAgentsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSecurityProfileAIAgentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSecurityProfileAIAgentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListSecurityProfileAIAgentsOutput = schema.new({
+    id = id.from(_N, "ListSecurityProfileAIAgentsResponse"),
+    type = "structure",
+    members = {
+        AllowedAIAgents = schema.new({
+            id = id.from(_N, "ListSecurityProfileAIAgentsOutput", "AllowedAIAgents"),
+            type = "list",
+            name = "AllowedAIAgents",
+            target_id = prelude.Document.id,
+            list_member = M.AIAgent,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSecurityProfileAIAgentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "ListSecurityProfileAIAgentsOutput", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "ListSecurityProfileAIAgentsOutput", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListSecurityProfileApplicationsInput = schema.new({
     id = id.from(_N, "ListSecurityProfileApplicationsRequest"),
     type = "structure",
@@ -39248,6 +39353,13 @@ M.UpdateSecurityProfileInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FlowModule,
         }),
+        AllowedAIAgents = schema.new({
+            id = id.from(_N, "UpdateSecurityProfileInput", "AllowedAIAgents"),
+            type = "list",
+            name = "AllowedAIAgents",
+            target_id = prelude.Document.id,
+            list_member = M.AIAgent,
+        }),
         GranularAccessControlConfiguration = schema.new({
             id = id.from(_N, "UpdateSecurityProfileInput", "GranularAccessControlConfiguration"),
             type = "structure",
@@ -47285,6 +47397,18 @@ M.ListSecurityKeys = schema.operation({
     output = M.ListSecurityKeysOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/security-keys" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSecurityProfileAIAgents = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListSecurityProfileAIAgents"),
+    input = M.ListSecurityProfileAIAgentsInput,
+    output = M.ListSecurityProfileAIAgentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/security-profiles-ai-agents/{InstanceId}/{SecurityProfileId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

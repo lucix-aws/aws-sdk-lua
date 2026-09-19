@@ -257,6 +257,7 @@ local record Client
     listRoutingProfiles: function(Client, types.ListRoutingProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListRoutingProfilesOutput>
     listRules: function(Client, types.ListRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRulesOutput>
     listSecurityKeys: function(Client, types.ListSecurityKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityKeysOutput>
+    listSecurityProfileAIAgents: function(Client, types.ListSecurityProfileAIAgentsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityProfileAIAgentsOutput>
     listSecurityProfileApplications: function(Client, types.ListSecurityProfileApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityProfileApplicationsOutput>
     listSecurityProfileFlowModules: function(Client, types.ListSecurityProfileFlowModulesInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityProfileFlowModulesOutput>
     listSecurityProfilePermissions: function(Client, types.ListSecurityProfilePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityProfilePermissionsOutput>
@@ -1412,6 +1413,10 @@ end
 
 function C:listSecurityKeys(input: types.ListSecurityKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityKeysOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityKeys as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityKeysOutput>
+end
+
+function C:listSecurityProfileAIAgents(input: types.ListSecurityProfileAIAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityProfileAIAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityProfileAIAgents as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityProfileAIAgentsOutput>
 end
 
 function C:listSecurityProfileApplications(input: types.ListSecurityProfileApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityProfileApplicationsOutput>

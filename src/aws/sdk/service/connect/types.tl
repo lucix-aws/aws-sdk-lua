@@ -490,6 +490,18 @@ local record M
         LastModifiedRegion: string
     end
 
+    enum AIAgentType
+        "THIRD_PARTY"
+    end
+
+    -- Information about an AI agent that a security profile allows access to for Agent-to-Agent authorization.
+    record AIAgent
+        -- The Amazon Resource Name (ARN) of the AI agent.
+        Arn: string
+        -- The type of the AI agent. The valid value is THIRD_PARTY.
+        Type: string
+    end
+
     enum AiUseCase
         "AgentAssistance"
         "SelfService"
@@ -3937,6 +3949,8 @@ local record M
         AllowedAccessControlHierarchyGroupId: string
         -- A list of Flow Modules an AI Agent can invoke as a tool.
         AllowedFlowModules: {FlowModule}
+        -- A list of AI agents that the security profile will give access to.
+        AllowedAIAgents: {AIAgent}
         -- The granular access control configuration for the security profile, including data table permissions.
         GranularAccessControlConfiguration: GranularAccessControlConfiguration
     end
@@ -12346,6 +12360,29 @@ local record M
         NextToken: string
     end
 
+    record ListSecurityProfileAIAgentsInput
+        -- The identifier for the security profle.
+        SecurityProfileId: string
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The token for the next set of results. Use the value returned in the previous
+        -- response in the next request to retrieve the next set of results.
+        NextToken: string
+        -- The maximum number of results to return per page.
+        MaxResults: number
+    end
+
+    record ListSecurityProfileAIAgentsOutput
+        -- A list of the allowed AI agents and their types.
+        AllowedAIAgents: {AIAgent}
+        -- If there are additional results, this is the token for the next set of results.
+        NextToken: string
+        -- The timestamp when this resource was last modified.
+        LastModifiedTime: number
+        -- The Amazon Web Services Region where this resource was last modified.
+        LastModifiedRegion: string
+    end
+
     record ListSecurityProfileApplicationsInput
         -- The identifier for the security profle.
         SecurityProfileId: string
@@ -16469,6 +16506,8 @@ local record M
         AllowedAccessControlHierarchyGroupId: string
         -- A list of Flow Modules an AI Agent can invoke as a tool
         AllowedFlowModules: {FlowModule}
+        -- A list of AI agents that the security profile will give access to.
+        AllowedAIAgents: {AIAgent}
         -- The granular access control configuration for the security profile, including data table permissions.
         GranularAccessControlConfiguration: GranularAccessControlConfiguration
     end

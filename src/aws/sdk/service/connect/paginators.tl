@@ -844,6 +844,24 @@ function M.items_list_security_keys(client, input)
     })
 end
 
+--- Returns a page iterator for listSecurityProfileAIAgents.
+function M.pages_list_security_profile_a_i_agents(client, input)
+    return paginator.pages(client, "listSecurityProfileAIAgents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AllowedAIAgents",
+    })
+end
+
+--- Returns an item iterator for listSecurityProfileAIAgents.
+function M.items_list_security_profile_a_i_agents(client, input)
+    return paginator.items(client, "listSecurityProfileAIAgents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AllowedAIAgents",
+    })
+end
+
 --- Returns a page iterator for listSecurityProfileApplications.
 function M.pages_list_security_profile_applications(client, input)
     return paginator.pages(client, "listSecurityProfileApplications", input, {
