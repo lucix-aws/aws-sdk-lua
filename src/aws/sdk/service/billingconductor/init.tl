@@ -33,6 +33,7 @@ local record Client
     disassociateAccounts: function(Client, types.DisassociateAccountsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAccountsOutput>
     disassociatePricingRules: function(Client, types.DisassociatePricingRulesInput, ? base_client.InvokeOptions): async.Operation<types.DisassociatePricingRulesOutput>
     getBillingGroupCostReport: function(Client, types.GetBillingGroupCostReportInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingGroupCostReportOutput>
+    getBillingTransferPreference: function(Client, types.GetBillingTransferPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingTransferPreferenceOutput>
     listAccountAssociations: function(Client, types.ListAccountAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountAssociationsOutput>
     listBillingGroupCostReports: function(Client, types.ListBillingGroupCostReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingGroupCostReportsOutput>
     listBillingGroups: function(Client, types.ListBillingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingGroupsOutput>
@@ -47,6 +48,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateBillingGroup: function(Client, types.UpdateBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBillingGroupOutput>
+    updateBillingTransferPreference: function(Client, types.UpdateBillingTransferPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBillingTransferPreferenceOutput>
     updateCustomLineItem: function(Client, types.UpdateCustomLineItemInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomLineItemOutput>
     updatePricingPlan: function(Client, types.UpdatePricingPlanInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePricingPlanOutput>
     updatePricingRule: function(Client, types.UpdatePricingRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePricingRuleOutput>
@@ -154,6 +156,10 @@ function C:getBillingGroupCostReport(input: types.GetBillingGroupCostReportInput
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBillingGroupCostReport as schema.OperationSchema, input, options) as async.Operation<types.GetBillingGroupCostReportOutput>
 end
 
+function C:getBillingTransferPreference(input: types.GetBillingTransferPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.GetBillingTransferPreferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBillingTransferPreference as schema.OperationSchema, input, options) as async.Operation<types.GetBillingTransferPreferenceOutput>
+end
+
 function C:listAccountAssociations(input: types.ListAccountAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountAssociationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAccountAssociationsOutput>
 end
@@ -208,6 +214,10 @@ end
 
 function C:updateBillingGroup(input: types.UpdateBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBillingGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateBillingGroupOutput>
+end
+
+function C:updateBillingTransferPreference(input: types.UpdateBillingTransferPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBillingTransferPreferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBillingTransferPreference as schema.OperationSchema, input, options) as async.Operation<types.UpdateBillingTransferPreferenceOutput>
 end
 
 function C:updateCustomLineItem(input: types.UpdateCustomLineItemInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomLineItemOutput>

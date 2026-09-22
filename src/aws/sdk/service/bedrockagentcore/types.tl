@@ -2824,6 +2824,8 @@ local record M
         modelId: string
         -- The ARN of your OpenAI API key on AgentCore Identity.
         apiKeyArn: string
+        -- Optional custom endpoint URL for an OpenAI-compatible endpoint.
+        apiBase: string
         -- The maximum number of tokens to allow in the generated response per iteration.
         maxTokens: number
         -- The temperature to set when calling the model.
@@ -3126,6 +3128,30 @@ local record M
         contentBlockIndex: number
     end
 
+    enum HarnessHookDecision
+        "allow"
+        "deny"
+    end
+
+    enum HarnessHookEventType
+        "before_tool_call"
+        "after_tool_call"
+        "before_invocation"
+        "after_invocation"
+    end
+
+    -- A lifecycle hook event emitted in the invocation stream for visibility into hook decisions.
+    record HarnessHookEvent
+        -- The unique identifier for this hook event.
+        hookEventId: string
+        -- The name of the hook that ran.
+        name: string
+        -- The decision applied to the hook event. This field is present only for blocking Lambda targets.
+        decision: string
+        -- The optional reason for the applied decision.
+        reason: string
+    end
+
     -- Event indicating the start of a message.
     record HarnessMessageStartEvent
         -- The role of the message sender.
@@ -3147,6 +3173,7 @@ local record M
         "max_iterations_exceeded"
         "max_output_tokens_exceeded"
         "timeout_exceeded"
+        "hook_stopped"
     end
 
     -- Event indicating the end of a message.
@@ -3201,6 +3228,8 @@ local record M
         validationException: ValidationException
         -- An error returned by the runtime container during agent execution.
         runtimeClientError: RuntimeClientError
+        -- A lifecycle hook event emitted when a configured hook runs.
+        hookEvent: HarnessHookEvent
     end
 
     record InvokeHarnessOutput

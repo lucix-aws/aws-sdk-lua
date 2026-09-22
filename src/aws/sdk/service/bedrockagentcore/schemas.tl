@@ -8888,6 +8888,12 @@ M.HarnessOpenAiModelConfig = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        apiBase = schema.new({
+            id = id.from(_N, "HarnessOpenAiModelConfig", "apiBase"),
+            type = "string",
+            name = "apiBase",
+            target_id = prelude.String.id,
+        }),
         maxTokens = schema.new({
             id = id.from(_N, "HarnessOpenAiModelConfig", "maxTokens"),
             type = "integer",
@@ -9747,6 +9753,52 @@ M.HarnessContentBlockStopEvent = schema.new({
     },
 })
 
+M.HarnessHookEvent = schema.new({
+    id = id.from(_N, "HarnessHookEvent"),
+    type = "structure",
+    members = {
+        hookEventId = schema.new({
+            id = id.from(_N, "HarnessHookEvent", "hookEventId"),
+            type = "string",
+            name = "hookEventId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "HarnessHookEvent", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "HarnessHookEvent", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        decision = schema.new({
+            id = id.from(_N, "HarnessHookEvent", "decision"),
+            type = "string",
+            name = "decision",
+            target_id = prelude.String.id,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "HarnessHookEvent", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.HarnessMessageStartEvent = schema.new({
     id = id.from(_N, "HarnessMessageStartEvent"),
     type = "structure",
@@ -9934,6 +9986,13 @@ M.InvokeHarnessStreamOutput = schema.new({
             name = "runtimeClientError",
             target_id = id.from(_N, "RuntimeClientError"),
             target = M.RuntimeClientError,
+        }),
+        hookEvent = schema.new({
+            id = id.from(_N, "InvokeHarnessStreamOutput", "hookEvent"),
+            type = "structure",
+            name = "hookEvent",
+            target_id = id.from(_N, "HarnessHookEvent"),
+            target = M.HarnessHookEvent,
         }),
     },
 })

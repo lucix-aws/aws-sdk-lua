@@ -45,6 +45,7 @@ local record M
         "RESOURCE_NAME_CONFLICT"
         "PRICING_RULE_IN_PRICING_PLAN_CONFLICT"
         "PRICING_PLAN_ATTACHED_TO_BILLING_GROUP_DELETE_CONFLICT"
+        "PRICING_PLAN_REFERENCED_BY_PREFERENCE_DELETE_CONFLICT"
         "PRICING_RULE_ATTACHED_TO_PRICING_PLAN_DELETE_CONFLICT"
         "WRITE_CONFLICT_RETRY"
     end
@@ -224,6 +225,14 @@ local record M
         Key: string
         -- The value in a key-value pair that describes the margin summary.
         Value: string
+    end
+
+    -- The auto billing group creation preference for a billing transfer. When the preference is enabled, Billing Conductor automatically creates an indirect billing transfer billing group, with the specified pricing plan, for each account that transfers its bill to the bill source account of the billing transfer.
+    record AutoTransferBillingGroupCreationPreference
+        -- Specifies whether Billing Conductor automatically creates billing groups for the billing transfer. The preference is disabled by default.
+        Enabled: boolean
+        -- The Amazon Resource Name (ARN) of the pricing plan to apply to the automatically created billing groups. This value is required when Enabled is true, and must be omitted when Enabled is false.
+        PricingPlanArn: string
     end
 
     -- The preferences and settings that will be used to compute the Amazon Web Services charges for a billing group.
@@ -872,6 +881,20 @@ local record M
         NextToken: string
     end
 
+    record GetBillingTransferPreferenceInput
+        -- The Amazon Resource Name (ARN) of the billing transfer whose preference you want to retrieve.
+        ResponsibilityTransferArn: string
+    end
+
+    record GetBillingTransferPreferenceOutput
+        -- The Amazon Resource Name (ARN) of the billing transfer that the preference applies to.
+        ResponsibilityTransferArn: string
+        -- The auto billing group creation preference for the billing transfer.
+        AutoBillingTransferBillingGroupCreation: AutoTransferBillingGroupCreationPreference
+        -- The most recent time when the preference was modified. This value is empty if the preference has never been set for the billing transfer.
+        LastModifiedTime: number
+    end
+
     -- The filter on the account ID of the linked account, or any of the following: MONITORED: linked accounts that are associated to billing groups. UNMONITORED: linked accounts that are not associated to billing groups. Billing Group Arn: linked accounts that are associated to the provided Billing Group Arn.
     record ListAccountAssociationsFilter
         -- MONITORED: linked accounts that are associated to billing groups. UNMONITORED: linked accounts that are not associated to billing groups. Billing Group Arn: linked accounts that are associated to the provided Billing Group Arn.
@@ -1323,6 +1346,24 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateBillingTransferPreferenceInput
+        -- A unique, case-sensitive identifier that you specify to ensure idempotency of the request. Idempotency ensures that an API request completes no more than one time. With an idempotent request, if the original request completes successfully, any subsequent retries complete successfully without performing any further actions.
+        ClientToken: string
+        -- The Amazon Resource Name (ARN) of the billing transfer whose preference you want to set.
+        ResponsibilityTransferArn: string
+        -- The auto billing group creation preference to set for the billing transfer.
+        AutoBillingTransferBillingGroupCreation: AutoTransferBillingGroupCreationPreference
+    end
+
+    record UpdateBillingTransferPreferenceOutput
+        -- The Amazon Resource Name (ARN) of the billing transfer that the preference applies to.
+        ResponsibilityTransferArn: string
+        -- The updated auto billing group creation preference for the billing transfer.
+        AutoBillingTransferBillingGroupCreation: AutoTransferBillingGroupCreationPreference
+        -- The most recent time when the preference was modified.
+        LastModifiedTime: number
     end
 
 end

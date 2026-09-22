@@ -499,6 +499,8 @@ local record M
         -- For more information, see DocumentDB clusters in a VPC in the Amazon DocumentDB Developer Guide.
         -- Valid Values: IPV4 | DUAL
         NetworkType: string
+        -- Specifies whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.
+        CopyTagsToSnapshot: boolean
     end
 
     -- Describes an Identity and Access Management (IAM) role that is associated with a
@@ -665,6 +667,8 @@ local record M
         -- For more information, see DocumentDB clusters in a VPC in the Amazon DocumentDB Developer Guide.
         -- Valid Values: IPV4 | DUAL
         NetworkType: string
+        -- Specifies whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.
+        CopyTagsToSnapshot: boolean
     end
 
     record CreateDBClusterOutput
@@ -2333,6 +2337,8 @@ local record M
         -- For more information, see DocumentDB clusters in a VPC in the Amazon DocumentDB Developer Guide.
         -- Valid Values: IPV4 | DUAL
         NetworkType: string
+        -- Specifies whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.
+        CopyTagsToSnapshot: boolean
     end
 
     record ModifyDBClusterOutput
@@ -2701,6 +2707,8 @@ local record M
         -- For more information, see DocumentDB clusters in a VPC in the Amazon DocumentDB Developer Guide.
         -- Valid Values: IPV4 | DUAL
         NetworkType: string
+        -- Specifies whether to copy all tags from the restored DB cluster to snapshots of the restored DB cluster. The default is not to copy them.
+        CopyTagsToSnapshot: boolean
     end
 
     record RestoreDBClusterFromSnapshotOutput
@@ -2784,6 +2792,8 @@ local record M
         -- For more information, see DocumentDB clusters in a VPC in the Amazon DocumentDB Developer Guide.
         -- Valid Values: IPV4 | DUAL
         NetworkType: string
+        -- Specifies whether to copy all tags from the restored DB cluster to snapshots of the restored DB cluster. The default is not to copy them.
+        CopyTagsToSnapshot: boolean
     end
 
     record RestoreDBClusterToPointInTimeOutput

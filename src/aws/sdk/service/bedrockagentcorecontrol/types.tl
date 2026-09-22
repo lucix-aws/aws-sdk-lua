@@ -4380,6 +4380,87 @@ local record M
         containerConfiguration: ContainerConfiguration
     end
 
+    -- The configuration for an Amazon EventBridge hook target.
+    record HarnessHookEventBridgeTarget
+        -- The ARN of the Amazon EventBridge event bus to send hook events to.
+        arn: string
+    end
+
+    enum HarnessHookFailureMode
+        "allow"
+        "deny"
+    end
+
+    -- The configuration for an AWS Lambda hook target.
+    record HarnessHookLambdaTarget
+        -- The ARN of the Lambda function to invoke.
+        arn: string
+        -- The maximum number of seconds to wait for the Lambda function response. The default is 60 seconds.
+        timeoutSeconds: number
+        -- The behavior when the Lambda function times out, returns an error, or returns an invalid response. The default is DENY.
+        failureMode: string
+    end
+
+    -- The configuration for an Amazon SNS hook target.
+    record HarnessHookSnsTarget
+        -- The ARN of the Amazon SNS topic to publish hook events to.
+        arn: string
+    end
+
+    -- The target that receives lifecycle hook events. Specify one target type.
+    record HarnessHookTarget
+        -- A Lambda hook target that invokes an AWS Lambda function synchronously and waits for its response.
+        lambda: HarnessHookLambdaTarget
+        -- An Amazon SNS hook target that publishes the hook event without waiting for a response.
+        sns: HarnessHookSnsTarget
+        -- An Amazon EventBridge hook target that sends the hook event without waiting for a response.
+        eventBridge: HarnessHookEventBridgeTarget
+    end
+
+    -- The configuration for a hook that runs after an invocation completes.
+    record HarnessAfterInvocationHook
+        -- The name of the hook.
+        name: string
+        -- The target that receives the hook event.
+        target: HarnessHookTarget
+    end
+
+    -- The configuration for a hook that runs after a tool call completes.
+    record HarnessAfterToolCallHook
+        -- The name of the hook.
+        name: string
+        -- The target that receives the hook event.
+        target: HarnessHookTarget
+    end
+
+    -- The configuration for a hook that runs before an invocation begins.
+    record HarnessBeforeInvocationHook
+        -- The name of the hook.
+        name: string
+        -- The target that receives the hook event.
+        target: HarnessHookTarget
+    end
+
+    -- The configuration for a hook that runs before the agent calls a tool.
+    record HarnessBeforeToolCallHook
+        -- The name of the hook.
+        name: string
+        -- The target that receives the hook event.
+        target: HarnessHookTarget
+    end
+
+    -- A lifecycle hook configuration. Specify one hook type.
+    record HarnessHook
+        -- A hook that runs before an invocation begins.
+        beforeInvocation: HarnessBeforeInvocationHook
+        -- A hook that runs after an invocation completes.
+        afterInvocation: HarnessAfterInvocationHook
+        -- A hook that runs before the agent calls a tool.
+        beforeToolCall: HarnessBeforeToolCallHook
+        -- A hook that runs after a tool call completes.
+        afterToolCall: HarnessAfterToolCallHook
+    end
+
     -- Configuration for memory retrieval within a namespace.
     record HarnessAgentCoreMemoryRetrievalConfig
         -- The maximum number of memory entries to retrieve.
@@ -4504,6 +4585,8 @@ local record M
         modelId: string
         -- The ARN of your OpenAI API key on AgentCore Identity.
         apiKeyArn: string
+        -- Optional custom endpoint URL for an OpenAI-compatible endpoint.
+        apiBase: string
         -- The maximum number of tokens to allow in the generated response per model call.
         maxTokens: number
         -- The temperature to set when calling the model.
@@ -4721,6 +4804,8 @@ local record M
         memory: HarnessMemoryConfiguration
         -- The truncation configuration for managing conversation context when it exceeds model limits.
         truncation: HarnessTruncationConfiguration
+        -- The lifecycle hooks to run at defined points in the agent loop.
+        hooks: {HarnessHook}
         -- The maximum number of iterations the agent loop can execute per invocation.
         maxIterations: number
         -- The maximum total number of output tokens the agent can generate across all model calls within a single invocation.
@@ -4800,6 +4885,8 @@ local record M
         authorizerConfiguration: AuthorizerConfiguration
         -- AgentCore Memory instance configuration for short and long term memory.
         memory: HarnessMemoryConfiguration
+        -- The lifecycle hooks configured for the harness.
+        hooks: {HarnessHook}
         -- The maximum number of iterations in the agent loop allowed before exiting per invocation.
         maxIterations: number
         -- The maximum total number of output tokens the agent can generate across all model calls within a single invocation.
@@ -4955,6 +5042,8 @@ local record M
         memory: UpdatedHarnessMemoryConfiguration
         -- The truncation configuration for managing conversation context. If not specified, the existing value is retained.
         truncation: HarnessTruncationConfiguration
+        -- The lifecycle hooks to run at defined points in the agent loop. If specified, this replaces all existing hooks. If not specified, the existing hooks are retained.
+        hooks: {HarnessHook}
         -- The maximum number of iterations the agent loop can execute per invocation. If not specified, the existing value is retained.
         maxIterations: number
         -- The maximum total number of output tokens the agent can generate across all model calls within a single invocation. If not specified, the existing value is retained.

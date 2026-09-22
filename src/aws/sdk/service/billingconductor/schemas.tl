@@ -543,6 +543,28 @@ M.Attribute = schema.new({
     },
 })
 
+M.AutoTransferBillingGroupCreationPreference = schema.new({
+    id = id.from(_N, "AutoTransferBillingGroupCreationPreference"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "AutoTransferBillingGroupCreationPreference", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PricingPlanArn = schema.new({
+            id = id.from(_N, "AutoTransferBillingGroupCreationPreference", "PricingPlanArn"),
+            type = "string",
+            name = "PricingPlanArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ComputationPreference = schema.new({
     id = id.from(_N, "ComputationPreference"),
     type = "structure",
@@ -2372,6 +2394,57 @@ M.GetBillingGroupCostReportOutput = schema.new({
     },
 })
 
+M.GetBillingTransferPreferenceInput = schema.new({
+    id = id.from(_N, "GetBillingTransferPreferenceInput"),
+    type = "structure",
+    members = {
+        ResponsibilityTransferArn = schema.new({
+            id = id.from(_N, "GetBillingTransferPreferenceInput", "ResponsibilityTransferArn"),
+            type = "string",
+            name = "ResponsibilityTransferArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetBillingTransferPreferenceOutput = schema.new({
+    id = id.from(_N, "GetBillingTransferPreferenceOutput"),
+    type = "structure",
+    members = {
+        ResponsibilityTransferArn = schema.new({
+            id = id.from(_N, "GetBillingTransferPreferenceOutput", "ResponsibilityTransferArn"),
+            type = "string",
+            name = "ResponsibilityTransferArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AutoBillingTransferBillingGroupCreation = schema.new({
+            id = id.from(_N, "GetBillingTransferPreferenceOutput", "AutoBillingTransferBillingGroupCreation"),
+            type = "structure",
+            name = "AutoBillingTransferBillingGroupCreation",
+            target_id = id.from(_N, "AutoTransferBillingGroupCreationPreference"),
+            target = M.AutoTransferBillingGroupCreationPreference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "GetBillingTransferPreferenceOutput", "LastModifiedTime"),
+            type = "long",
+            name = "LastModifiedTime",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
 M.ListAccountAssociationsFilter = schema.new({
     id = id.from(_N, "ListAccountAssociationsFilter"),
     type = "structure",
@@ -3697,6 +3770,78 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateBillingTransferPreferenceInput = schema.new({
+    id = id.from(_N, "UpdateBillingTransferPreferenceInput"),
+    type = "structure",
+    members = {
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateBillingTransferPreferenceInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Client-Token" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        ResponsibilityTransferArn = schema.new({
+            id = id.from(_N, "UpdateBillingTransferPreferenceInput", "ResponsibilityTransferArn"),
+            type = "string",
+            name = "ResponsibilityTransferArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AutoBillingTransferBillingGroupCreation = schema.new({
+            id = id.from(_N, "UpdateBillingTransferPreferenceInput", "AutoBillingTransferBillingGroupCreation"),
+            type = "structure",
+            name = "AutoBillingTransferBillingGroupCreation",
+            target_id = id.from(_N, "AutoTransferBillingGroupCreationPreference"),
+            target = M.AutoTransferBillingGroupCreationPreference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateBillingTransferPreferenceOutput = schema.new({
+    id = id.from(_N, "UpdateBillingTransferPreferenceOutput"),
+    type = "structure",
+    members = {
+        ResponsibilityTransferArn = schema.new({
+            id = id.from(_N, "UpdateBillingTransferPreferenceOutput", "ResponsibilityTransferArn"),
+            type = "string",
+            name = "ResponsibilityTransferArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AutoBillingTransferBillingGroupCreation = schema.new({
+            id = id.from(_N, "UpdateBillingTransferPreferenceOutput", "AutoBillingTransferBillingGroupCreation"),
+            type = "structure",
+            name = "AutoBillingTransferBillingGroupCreation",
+            target_id = id.from(_N, "AutoTransferBillingGroupCreationPreference"),
+            target = M.AutoTransferBillingGroupCreationPreference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "UpdateBillingTransferPreferenceOutput", "LastModifiedTime"),
+            type = "long",
+            name = "LastModifiedTime",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -3902,6 +4047,18 @@ M.GetBillingGroupCostReport = schema.operation({
     },
 })
 
+M.GetBillingTransferPreference = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "GetBillingTransferPreference"),
+    input = M.GetBillingTransferPreferenceInput,
+    output = M.GetBillingTransferPreferenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-billing-transfer-preference" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListAccountAssociations = schema.operation({
     id = id.from("com.amazonaws.billingconductor", "ListAccountAssociations"),
     input = M.ListAccountAssociationsInput,
@@ -4064,6 +4221,18 @@ M.UpdateBillingGroup = schema.operation({
     output = M.UpdateBillingGroupOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/update-billing-group" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBillingTransferPreference = schema.operation({
+    id = id.from("com.amazonaws.billingconductor", "UpdateBillingTransferPreference"),
+    input = M.UpdateBillingTransferPreferenceInput,
+    output = M.UpdateBillingTransferPreferenceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/update-billing-transfer-preference" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

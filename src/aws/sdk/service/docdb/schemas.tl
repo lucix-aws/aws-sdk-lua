@@ -1076,6 +1076,12 @@ M.CreateDBClusterInput = schema.new({
             name = "NetworkType",
             target_id = prelude.String.id,
         }),
+        CopyTagsToSnapshot = schema.new({
+            id = id.from(_N, "CreateDBClusterInput", "CopyTagsToSnapshot"),
+            type = "boolean",
+            name = "CopyTagsToSnapshot",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -1425,6 +1431,12 @@ M.DBCluster = schema.new({
             type = "string",
             name = "NetworkType",
             target_id = prelude.String.id,
+        }),
+        CopyTagsToSnapshot = schema.new({
+            id = id.from(_N, "DBCluster", "CopyTagsToSnapshot"),
+            type = "boolean",
+            name = "CopyTagsToSnapshot",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -4908,6 +4920,12 @@ M.ModifyDBClusterInput = schema.new({
             name = "NetworkType",
             target_id = prelude.String.id,
         }),
+        CopyTagsToSnapshot = schema.new({
+            id = id.from(_N, "ModifyDBClusterInput", "CopyTagsToSnapshot"),
+            type = "boolean",
+            name = "CopyTagsToSnapshot",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -5656,6 +5674,12 @@ M.RestoreDBClusterFromSnapshotInput = schema.new({
             name = "NetworkType",
             target_id = prelude.String.id,
         }),
+        CopyTagsToSnapshot = schema.new({
+            id = id.from(_N, "RestoreDBClusterFromSnapshotInput", "CopyTagsToSnapshot"),
+            type = "boolean",
+            name = "CopyTagsToSnapshot",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -5776,6 +5800,12 @@ M.RestoreDBClusterToPointInTimeInput = schema.new({
             type = "string",
             name = "NetworkType",
             target_id = prelude.String.id,
+        }),
+        CopyTagsToSnapshot = schema.new({
+            id = id.from(_N, "RestoreDBClusterToPointInTimeInput", "CopyTagsToSnapshot"),
+            type = "boolean",
+            name = "CopyTagsToSnapshot",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

@@ -108,6 +108,8 @@ M.HarnessSkills = schema.new({ type = "list", list_member = M.HarnessSkill })
 
 M.HarnessAllowedTools = schema.new({ type = "list", list_member = prelude.String })
 
+M.HarnessHooks = schema.new({ type = "list", list_member = M.HarnessHook })
+
 M.HarnessSummaries = schema.new({ type = "list", list_member = M.HarnessSummary })
 
 M.HarnessVersionSummaries = schema.new({ type = "list", list_member = M.HarnessVersionSummary })
@@ -14143,6 +14145,239 @@ M.HarnessEnvironmentArtifact = schema.new({
     },
 })
 
+M.HarnessHookEventBridgeTarget = schema.new({
+    id = id.from(_N, "HarnessHookEventBridgeTarget"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "HarnessHookEventBridgeTarget", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HarnessHookLambdaTarget = schema.new({
+    id = id.from(_N, "HarnessHookLambdaTarget"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "HarnessHookLambdaTarget", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timeoutSeconds = schema.new({
+            id = id.from(_N, "HarnessHookLambdaTarget", "timeoutSeconds"),
+            type = "integer",
+            name = "timeoutSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 60 },
+            },
+        }),
+        failureMode = schema.new({
+            id = id.from(_N, "HarnessHookLambdaTarget", "failureMode"),
+            type = "string",
+            name = "failureMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "deny" },
+            },
+        }),
+    },
+})
+
+M.HarnessHookSnsTarget = schema.new({
+    id = id.from(_N, "HarnessHookSnsTarget"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "HarnessHookSnsTarget", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HarnessHookTarget = schema.new({
+    id = id.from(_N, "HarnessHookTarget"),
+    type = "union",
+    members = {
+        lambda = schema.new({
+            id = id.from(_N, "HarnessHookTarget", "lambda"),
+            type = "structure",
+            name = "lambda",
+            target_id = id.from(_N, "HarnessHookLambdaTarget"),
+            target = M.HarnessHookLambdaTarget,
+        }),
+        sns = schema.new({
+            id = id.from(_N, "HarnessHookTarget", "sns"),
+            type = "structure",
+            name = "sns",
+            target_id = id.from(_N, "HarnessHookSnsTarget"),
+            target = M.HarnessHookSnsTarget,
+        }),
+        eventBridge = schema.new({
+            id = id.from(_N, "HarnessHookTarget", "eventBridge"),
+            type = "structure",
+            name = "eventBridge",
+            target_id = id.from(_N, "HarnessHookEventBridgeTarget"),
+            target = M.HarnessHookEventBridgeTarget,
+        }),
+    },
+})
+
+M.HarnessAfterInvocationHook = schema.new({
+    id = id.from(_N, "HarnessAfterInvocationHook"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "HarnessAfterInvocationHook", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        target = schema.new({
+            id = id.from(_N, "HarnessAfterInvocationHook", "target"),
+            type = "union",
+            name = "target",
+            target_id = id.from(_N, "HarnessHookTarget"),
+            target = M.HarnessHookTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HarnessAfterToolCallHook = schema.new({
+    id = id.from(_N, "HarnessAfterToolCallHook"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "HarnessAfterToolCallHook", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        target = schema.new({
+            id = id.from(_N, "HarnessAfterToolCallHook", "target"),
+            type = "union",
+            name = "target",
+            target_id = id.from(_N, "HarnessHookTarget"),
+            target = M.HarnessHookTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HarnessBeforeInvocationHook = schema.new({
+    id = id.from(_N, "HarnessBeforeInvocationHook"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "HarnessBeforeInvocationHook", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        target = schema.new({
+            id = id.from(_N, "HarnessBeforeInvocationHook", "target"),
+            type = "union",
+            name = "target",
+            target_id = id.from(_N, "HarnessHookTarget"),
+            target = M.HarnessHookTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HarnessBeforeToolCallHook = schema.new({
+    id = id.from(_N, "HarnessBeforeToolCallHook"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "HarnessBeforeToolCallHook", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        target = schema.new({
+            id = id.from(_N, "HarnessBeforeToolCallHook", "target"),
+            type = "union",
+            name = "target",
+            target_id = id.from(_N, "HarnessHookTarget"),
+            target = M.HarnessHookTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HarnessHook = schema.new({
+    id = id.from(_N, "HarnessHook"),
+    type = "union",
+    members = {
+        beforeInvocation = schema.new({
+            id = id.from(_N, "HarnessHook", "beforeInvocation"),
+            type = "structure",
+            name = "beforeInvocation",
+            target_id = id.from(_N, "HarnessBeforeInvocationHook"),
+            target = M.HarnessBeforeInvocationHook,
+        }),
+        afterInvocation = schema.new({
+            id = id.from(_N, "HarnessHook", "afterInvocation"),
+            type = "structure",
+            name = "afterInvocation",
+            target_id = id.from(_N, "HarnessAfterInvocationHook"),
+            target = M.HarnessAfterInvocationHook,
+        }),
+        beforeToolCall = schema.new({
+            id = id.from(_N, "HarnessHook", "beforeToolCall"),
+            type = "structure",
+            name = "beforeToolCall",
+            target_id = id.from(_N, "HarnessBeforeToolCallHook"),
+            target = M.HarnessBeforeToolCallHook,
+        }),
+        afterToolCall = schema.new({
+            id = id.from(_N, "HarnessHook", "afterToolCall"),
+            type = "structure",
+            name = "afterToolCall",
+            target_id = id.from(_N, "HarnessAfterToolCallHook"),
+            target = M.HarnessAfterToolCallHook,
+        }),
+    },
+})
+
 M.HarnessAgentCoreMemoryRetrievalConfig = schema.new({
     id = id.from(_N, "HarnessAgentCoreMemoryRetrievalConfig"),
     type = "structure",
@@ -14443,6 +14678,12 @@ M.HarnessOpenAiModelConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        apiBase = schema.new({
+            id = id.from(_N, "HarnessOpenAiModelConfig", "apiBase"),
+            type = "string",
+            name = "apiBase",
+            target_id = prelude.String.id,
         }),
         maxTokens = schema.new({
             id = id.from(_N, "HarnessOpenAiModelConfig", "maxTokens"),
@@ -15030,6 +15271,13 @@ M.CreateHarnessInput = schema.new({
             target_id = id.from(_N, "HarnessTruncationConfiguration"),
             target = M.HarnessTruncationConfiguration,
         }),
+        hooks = schema.new({
+            id = id.from(_N, "CreateHarnessInput", "hooks"),
+            type = "list",
+            name = "hooks",
+            target_id = prelude.Document.id,
+            list_member = M.HarnessHook,
+        }),
         maxIterations = schema.new({
             id = id.from(_N, "CreateHarnessInput", "maxIterations"),
             type = "integer",
@@ -15313,6 +15561,13 @@ M.Harness = schema.new({
             name = "memory",
             target_id = id.from(_N, "HarnessMemoryConfiguration"),
             target = M.HarnessMemoryConfiguration,
+        }),
+        hooks = schema.new({
+            id = id.from(_N, "Harness", "hooks"),
+            type = "list",
+            name = "hooks",
+            target_id = prelude.Document.id,
+            list_member = M.HarnessHook,
         }),
         maxIterations = schema.new({
             id = id.from(_N, "Harness", "maxIterations"),
@@ -15864,6 +16119,13 @@ M.UpdateHarnessInput = schema.new({
             name = "truncation",
             target_id = id.from(_N, "HarnessTruncationConfiguration"),
             target = M.HarnessTruncationConfiguration,
+        }),
+        hooks = schema.new({
+            id = id.from(_N, "UpdateHarnessInput", "hooks"),
+            type = "list",
+            name = "hooks",
+            target_id = prelude.Document.id,
+            list_member = M.HarnessHook,
         }),
         maxIterations = schema.new({
             id = id.from(_N, "UpdateHarnessInput", "maxIterations"),
