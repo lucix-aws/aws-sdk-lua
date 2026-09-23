@@ -22,6 +22,24 @@ function M.items_list_centralization_rules_for_organization(client, input)
     })
 end
 
+--- Returns a page iterator for listDatasetIntegrations.
+function M.pages_list_dataset_integrations(client, input)
+    return paginator.pages(client, "listDatasetIntegrations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DatasetIntegrationSummaries",
+    })
+end
+
+--- Returns an item iterator for listDatasetIntegrations.
+function M.items_list_dataset_integrations(client, input)
+    return paginator.items(client, "listDatasetIntegrations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DatasetIntegrationSummaries",
+    })
+end
+
 --- Returns a page iterator for listResourceTelemetry.
 function M.pages_list_resource_telemetry(client, input)
     return paginator.pages(client, "listResourceTelemetry", input, {

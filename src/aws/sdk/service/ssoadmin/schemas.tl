@@ -12,6 +12,8 @@ local M: {string:any} = {}
 
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
+M.RegionMetadataList = schema.new({ type = "list", list_member = M.RegionMetadata })
+
 M.AccountAssignmentOperationStatusList = schema.new({ type = "list", list_member = M.AccountAssignmentOperationStatusMetadata })
 
 M.AccountAssignmentList = schema.new({ type = "list", list_member = M.AccountAssignment })
@@ -37,8 +39,6 @@ M.AttachedManagedPolicyList = schema.new({ type = "list", list_member = M.Attach
 M.PermissionSetProvisioningStatusList = schema.new({ type = "list", list_member = M.PermissionSetProvisioningStatusMetadata })
 
 M.PermissionSetList = schema.new({ type = "list", list_member = prelude.String })
-
-M.RegionMetadataList = schema.new({ type = "list", list_member = M.RegionMetadata })
 
 M.TrustedTokenIssuerList = schema.new({ type = "list", list_member = M.TrustedTokenIssuerMetadata })
 
@@ -2647,6 +2647,40 @@ M.EncryptionConfigurationDetails = schema.new({
     },
 })
 
+M.RegionMetadata = schema.new({
+    id = id.from(_N, "RegionMetadata"),
+    type = "structure",
+    members = {
+        RegionName = schema.new({
+            id = id.from(_N, "RegionMetadata", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "RegionMetadata", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        AddedDate = schema.new({
+            id = id.from(_N, "RegionMetadata", "AddedDate"),
+            type = "timestamp",
+            name = "AddedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        IsPrimaryRegion = schema.new({
+            id = id.from(_N, "RegionMetadata", "IsPrimaryRegion"),
+            type = "boolean",
+            name = "IsPrimaryRegion",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
 M.DescribeInstanceOutput = schema.new({
     id = id.from(_N, "DescribeInstanceResponse"),
     type = "structure",
@@ -2661,6 +2695,12 @@ M.DescribeInstanceOutput = schema.new({
             id = id.from(_N, "DescribeInstanceOutput", "IdentityStoreId"),
             type = "string",
             name = "IdentityStoreId",
+            target_id = prelude.String.id,
+        }),
+        IdentityStoreArn = schema.new({
+            id = id.from(_N, "DescribeInstanceOutput", "IdentityStoreArn"),
+            type = "string",
+            name = "IdentityStoreArn",
             target_id = prelude.String.id,
         }),
         OwnerAccountId = schema.new({
@@ -2692,6 +2732,19 @@ M.DescribeInstanceOutput = schema.new({
             type = "string",
             name = "StatusReason",
             target_id = prelude.String.id,
+        }),
+        PrimaryRegion = schema.new({
+            id = id.from(_N, "DescribeInstanceOutput", "PrimaryRegion"),
+            type = "string",
+            name = "PrimaryRegion",
+            target_id = prelude.String.id,
+        }),
+        Regions = schema.new({
+            id = id.from(_N, "DescribeInstanceOutput", "Regions"),
+            type = "list",
+            name = "Regions",
+            target_id = prelude.Document.id,
+            list_member = M.RegionMetadata,
         }),
         EncryptionConfigurationDetails = schema.new({
             id = id.from(_N, "DescribeInstanceOutput", "EncryptionConfigurationDetails"),
@@ -3239,40 +3292,6 @@ M.GetPermissionsBoundaryForPermissionSetOutput = schema.new({
     },
 })
 
-M.RegionMetadata = schema.new({
-    id = id.from(_N, "RegionMetadata"),
-    type = "structure",
-    members = {
-        RegionName = schema.new({
-            id = id.from(_N, "RegionMetadata", "RegionName"),
-            type = "string",
-            name = "RegionName",
-            target_id = prelude.String.id,
-        }),
-        Status = schema.new({
-            id = id.from(_N, "RegionMetadata", "Status"),
-            type = "string",
-            name = "Status",
-            target_id = prelude.String.id,
-        }),
-        AddedDate = schema.new({
-            id = id.from(_N, "RegionMetadata", "AddedDate"),
-            type = "timestamp",
-            name = "AddedDate",
-            target_id = prelude.Timestamp.id,
-        }),
-        IsPrimaryRegion = schema.new({
-            id = id.from(_N, "RegionMetadata", "IsPrimaryRegion"),
-            type = "boolean",
-            name = "IsPrimaryRegion",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.DEFAULT] = { value = false },
-            },
-        }),
-    },
-})
-
 M.InstanceMetadata = schema.new({
     id = id.from(_N, "InstanceMetadata"),
     type = "structure",
@@ -3287,6 +3306,12 @@ M.InstanceMetadata = schema.new({
             id = id.from(_N, "InstanceMetadata", "IdentityStoreId"),
             type = "string",
             name = "IdentityStoreId",
+            target_id = prelude.String.id,
+        }),
+        IdentityStoreArn = schema.new({
+            id = id.from(_N, "InstanceMetadata", "IdentityStoreArn"),
+            type = "string",
+            name = "IdentityStoreArn",
             target_id = prelude.String.id,
         }),
         OwnerAccountId = schema.new({

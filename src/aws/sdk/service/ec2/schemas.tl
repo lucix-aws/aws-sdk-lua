@@ -256,6 +256,10 @@ M.CapacityReservationCancellationQuoteIdSet = schema.new({ type = "list", list_m
 
 M.CapacityReservationCancellationQuoteResponseSet = schema.new({ type = "list", list_member = M.CapacityReservationCancellationQuote })
 
+M.CapacityReservationModificationQuoteIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityReservationModificationQuoteResponseSet = schema.new({ type = "list", list_member = M.CapacityReservationModificationQuote })
+
 M.CapacityReservationFleetSet = schema.new({ type = "list", list_member = M.CapacityReservationFleet })
 
 M.CapacityReservationSet = schema.new({ type = "list", list_member = M.CapacityReservation })
@@ -14196,6 +14200,63 @@ M.CreateCapacityReservationInput = schema.new({
     },
 })
 
+M.CapacityReservationAdjustmentDetails = schema.new({
+    id = id.from(_N, "CapacityReservationAdjustmentDetails"),
+    type = "structure",
+    members = {
+        StartDate = schema.new({
+            id = id.from(_N, "CapacityReservationAdjustmentDetails", "StartDate"),
+            type = "timestamp",
+            name = "StartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "startDate" },
+                [traits.EC2_QUERY_NAME] = { name = "StartDate" },
+            },
+        }),
+        EndDate = schema.new({
+            id = id.from(_N, "CapacityReservationAdjustmentDetails", "EndDate"),
+            type = "timestamp",
+            name = "EndDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "endDate" },
+                [traits.EC2_QUERY_NAME] = { name = "EndDate" },
+            },
+        }),
+        CommitmentEndDate = schema.new({
+            id = id.from(_N, "CapacityReservationAdjustmentDetails", "CommitmentEndDate"),
+            type = "timestamp",
+            name = "CommitmentEndDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "commitmentEndDate" },
+                [traits.EC2_QUERY_NAME] = { name = "CommitmentEndDate" },
+            },
+        }),
+        EndDateType = schema.new({
+            id = id.from(_N, "CapacityReservationAdjustmentDetails", "EndDateType"),
+            type = "string",
+            name = "EndDateType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "endDateType" },
+                [traits.EC2_QUERY_NAME] = { name = "EndDateType" },
+            },
+        }),
+        CommitmentDuration = schema.new({
+            id = id.from(_N, "CapacityReservationAdjustmentDetails", "CommitmentDuration"),
+            type = "long",
+            name = "CommitmentDuration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.XML_NAME] = { name = "commitmentDuration" },
+                [traits.EC2_QUERY_NAME] = { name = "CommitmentDuration" },
+            },
+        }),
+    },
+})
+
 M.CapacityAllocationMetadataEntry = schema.new({
     id = id.from(_N, "CapacityAllocationMetadataEntry"),
     type = "structure",
@@ -14283,6 +14344,16 @@ M.CapacityReservationCommitmentInfo = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "commitmentEndDate" },
                 [traits.EC2_QUERY_NAME] = { name = "CommitmentEndDate" },
+            },
+        }),
+        CommitmentDuration = schema.new({
+            id = id.from(_N, "CapacityReservationCommitmentInfo", "CommitmentDuration"),
+            type = "long",
+            name = "CommitmentDuration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.XML_NAME] = { name = "commitmentDuration" },
+                [traits.EC2_QUERY_NAME] = { name = "CommitmentDuration" },
             },
         }),
     },
@@ -14701,6 +14772,37 @@ M.CapacityReservation = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "InterruptionInfo" },
             },
         }),
+        AdjustmentStatus = schema.new({
+            id = id.from(_N, "CapacityReservation", "AdjustmentStatus"),
+            type = "string",
+            name = "AdjustmentStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "adjustmentStatus" },
+                [traits.EC2_QUERY_NAME] = { name = "AdjustmentStatus" },
+            },
+        }),
+        AdjustmentDetails = schema.new({
+            id = id.from(_N, "CapacityReservation", "AdjustmentDetails"),
+            type = "structure",
+            name = "AdjustmentDetails",
+            target_id = id.from(_N, "CapacityReservationAdjustmentDetails"),
+            target = M.CapacityReservationAdjustmentDetails,
+            traits = {
+                [traits.XML_NAME] = { name = "adjustmentDetails" },
+                [traits.EC2_QUERY_NAME] = { name = "AdjustmentDetails" },
+            },
+        }),
+        OriginalStartDate = schema.new({
+            id = id.from(_N, "CapacityReservation", "OriginalStartDate"),
+            type = "timestamp",
+            name = "OriginalStartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "originalStartDate" },
+                [traits.EC2_QUERY_NAME] = { name = "OriginalStartDate" },
+            },
+        }),
         ZeroSizePreference = schema.new({
             id = id.from(_N, "CapacityReservation", "ZeroSizePreference"),
             type = "string",
@@ -15049,6 +15151,266 @@ M.CreateCapacityReservationCancellationQuoteOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "capacityReservationCancellationQuote" },
                 [traits.EC2_QUERY_NAME] = { name = "CapacityReservationCancellationQuote" },
+            },
+        }),
+    },
+})
+
+M.CreateCapacityReservationDateChangeQuoteInput = schema.new({
+    id = id.from(_N, "CreateCapacityReservationDateChangeQuoteRequest"),
+    type = "structure",
+    members = {
+        CapacityReservationId = schema.new({
+            id = id.from(_N, "CreateCapacityReservationDateChangeQuoteInput", "CapacityReservationId"),
+            type = "string",
+            name = "CapacityReservationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NewStartDate = schema.new({
+            id = id.from(_N, "CreateCapacityReservationDateChangeQuoteInput", "NewStartDate"),
+            type = "timestamp",
+            name = "NewStartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateCapacityReservationDateChangeQuoteInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "CreateCapacityReservationDateChangeQuoteInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagSpecification" },
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "CreateCapacityReservationDateChangeQuoteInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ModificationQuoteCurrentConfiguration = schema.new({
+    id = id.from(_N, "ModificationQuoteCurrentConfiguration"),
+    type = "structure",
+    members = {
+        InstanceCount = schema.new({
+            id = id.from(_N, "ModificationQuoteCurrentConfiguration", "InstanceCount"),
+            type = "integer",
+            name = "InstanceCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceCount" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceCount" },
+            },
+        }),
+        ReservationState = schema.new({
+            id = id.from(_N, "ModificationQuoteCurrentConfiguration", "ReservationState"),
+            type = "string",
+            name = "ReservationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "reservationState" },
+                [traits.EC2_QUERY_NAME] = { name = "ReservationState" },
+            },
+        }),
+        StartDate = schema.new({
+            id = id.from(_N, "ModificationQuoteCurrentConfiguration", "StartDate"),
+            type = "timestamp",
+            name = "StartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "startDate" },
+                [traits.EC2_QUERY_NAME] = { name = "StartDate" },
+            },
+        }),
+        OriginalStartDate = schema.new({
+            id = id.from(_N, "ModificationQuoteCurrentConfiguration", "OriginalStartDate"),
+            type = "timestamp",
+            name = "OriginalStartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "originalStartDate" },
+                [traits.EC2_QUERY_NAME] = { name = "OriginalStartDate" },
+            },
+        }),
+    },
+})
+
+M.ModificationReservationUpdate = schema.new({
+    id = id.from(_N, "ModificationReservationUpdate"),
+    type = "structure",
+    members = {
+        NewCommitmentEndDate = schema.new({
+            id = id.from(_N, "ModificationReservationUpdate", "NewCommitmentEndDate"),
+            type = "timestamp",
+            name = "NewCommitmentEndDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "newCommitmentEndDate" },
+                [traits.EC2_QUERY_NAME] = { name = "NewCommitmentEndDate" },
+            },
+        }),
+        NewStartDate = schema.new({
+            id = id.from(_N, "ModificationReservationUpdate", "NewStartDate"),
+            type = "timestamp",
+            name = "NewStartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "newStartDate" },
+                [traits.EC2_QUERY_NAME] = { name = "NewStartDate" },
+            },
+        }),
+        NewCommitmentDuration = schema.new({
+            id = id.from(_N, "ModificationReservationUpdate", "NewCommitmentDuration"),
+            type = "integer",
+            name = "NewCommitmentDuration",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "newCommitmentDuration" },
+                [traits.EC2_QUERY_NAME] = { name = "NewCommitmentDuration" },
+            },
+        }),
+    },
+})
+
+M.ModificationTerms = schema.new({
+    id = id.from(_N, "ModificationTerms"),
+    type = "structure",
+    members = {
+        ReservationUpdate = schema.new({
+            id = id.from(_N, "ModificationTerms", "ReservationUpdate"),
+            type = "structure",
+            name = "ReservationUpdate",
+            target_id = id.from(_N, "ModificationReservationUpdate"),
+            target = M.ModificationReservationUpdate,
+            traits = {
+                [traits.XML_NAME] = { name = "reservationUpdate" },
+                [traits.EC2_QUERY_NAME] = { name = "ReservationUpdate" },
+            },
+        }),
+    },
+})
+
+M.CapacityReservationModificationQuote = schema.new({
+    id = id.from(_N, "CapacityReservationModificationQuote"),
+    type = "structure",
+    members = {
+        CapacityReservationModificationQuoteId = schema.new({
+            id = id.from(_N, "CapacityReservationModificationQuote", "CapacityReservationModificationQuoteId"),
+            type = "string",
+            name = "CapacityReservationModificationQuoteId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "capacityReservationModificationQuoteId" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityReservationModificationQuoteId" },
+            },
+        }),
+        CapacityReservationId = schema.new({
+            id = id.from(_N, "CapacityReservationModificationQuote", "CapacityReservationId"),
+            type = "string",
+            name = "CapacityReservationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "capacityReservationId" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityReservationId" },
+            },
+        }),
+        CreateTime = schema.new({
+            id = id.from(_N, "CapacityReservationModificationQuote", "CreateTime"),
+            type = "timestamp",
+            name = "CreateTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "createTime" },
+                [traits.EC2_QUERY_NAME] = { name = "CreateTime" },
+            },
+        }),
+        ExpirationTime = schema.new({
+            id = id.from(_N, "CapacityReservationModificationQuote", "ExpirationTime"),
+            type = "timestamp",
+            name = "ExpirationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "expirationTime" },
+                [traits.EC2_QUERY_NAME] = { name = "ExpirationTime" },
+            },
+        }),
+        QuoteState = schema.new({
+            id = id.from(_N, "CapacityReservationModificationQuote", "QuoteState"),
+            type = "string",
+            name = "QuoteState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "quoteState" },
+                [traits.EC2_QUERY_NAME] = { name = "QuoteState" },
+            },
+        }),
+        CurrentConfiguration = schema.new({
+            id = id.from(_N, "CapacityReservationModificationQuote", "CurrentConfiguration"),
+            type = "structure",
+            name = "CurrentConfiguration",
+            target_id = id.from(_N, "ModificationQuoteCurrentConfiguration"),
+            target = M.ModificationQuoteCurrentConfiguration,
+            traits = {
+                [traits.XML_NAME] = { name = "currentConfiguration" },
+                [traits.EC2_QUERY_NAME] = { name = "CurrentConfiguration" },
+            },
+        }),
+        ModificationTerms = schema.new({
+            id = id.from(_N, "CapacityReservationModificationQuote", "ModificationTerms"),
+            type = "structure",
+            name = "ModificationTerms",
+            target_id = id.from(_N, "ModificationTerms"),
+            target = M.ModificationTerms,
+            traits = {
+                [traits.XML_NAME] = { name = "modificationTerms" },
+                [traits.EC2_QUERY_NAME] = { name = "ModificationTerms" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CapacityReservationModificationQuote", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
+            },
+        }),
+    },
+})
+
+M.CreateCapacityReservationDateChangeQuoteOutput = schema.new({
+    id = id.from(_N, "CreateCapacityReservationDateChangeQuoteResult"),
+    type = "structure",
+    members = {
+        CapacityReservationModificationQuote = schema.new({
+            id = id.from(_N, "CreateCapacityReservationDateChangeQuoteOutput", "CapacityReservationModificationQuote"),
+            type = "structure",
+            name = "CapacityReservationModificationQuote",
+            target_id = id.from(_N, "CapacityReservationModificationQuote"),
+            target = M.CapacityReservationModificationQuote,
+            traits = {
+                [traits.XML_NAME] = { name = "capacityReservationModificationQuote" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityReservationModificationQuote" },
             },
         }),
     },
@@ -51184,6 +51546,79 @@ M.DescribeCapacityReservationCancellationQuotesOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "DescribeCapacityReservationCancellationQuotesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.DescribeCapacityReservationDateChangeQuotesInput = schema.new({
+    id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesRequest"),
+    type = "structure",
+    members = {
+        CapacityReservationModificationQuoteIds = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesInput", "CapacityReservationModificationQuoteIds"),
+            type = "list",
+            name = "CapacityReservationModificationQuoteIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "CapacityReservationModificationQuoteId" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+    },
+})
+
+M.DescribeCapacityReservationDateChangeQuotesOutput = schema.new({
+    id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesResult"),
+    type = "structure",
+    members = {
+        CapacityReservationModificationQuotes = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesOutput", "CapacityReservationModificationQuotes"),
+            type = "list",
+            name = "CapacityReservationModificationQuotes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.CapacityReservationModificationQuote, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "capacityReservationModificationQuoteSet" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityReservationModificationQuoteSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationDateChangeQuotesOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -96788,6 +97223,24 @@ M.ModifyCapacityReservationInput = schema.new({
             name = "InstanceMatchCriteria",
             target_id = prelude.String.id,
         }),
+        AcceptModificationTerms = schema.new({
+            id = id.from(_N, "ModifyCapacityReservationInput", "AcceptModificationTerms"),
+            type = "boolean",
+            name = "AcceptModificationTerms",
+            target_id = prelude.Boolean.id,
+        }),
+        StartDate = schema.new({
+            id = id.from(_N, "ModifyCapacityReservationInput", "StartDate"),
+            type = "timestamp",
+            name = "StartDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        QuoteId = schema.new({
+            id = id.from(_N, "ModifyCapacityReservationInput", "QuoteId"),
+            type = "string",
+            name = "QuoteId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -96803,6 +97256,27 @@ M.ModifyCapacityReservationOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "return" },
                 [traits.EC2_QUERY_NAME] = { name = "Return" },
+            },
+        }),
+        AdjustmentStatus = schema.new({
+            id = id.from(_N, "ModifyCapacityReservationOutput", "AdjustmentStatus"),
+            type = "string",
+            name = "AdjustmentStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "adjustmentStatus" },
+                [traits.EC2_QUERY_NAME] = { name = "AdjustmentStatus" },
+            },
+        }),
+        AdjustmentDetails = schema.new({
+            id = id.from(_N, "ModifyCapacityReservationOutput", "AdjustmentDetails"),
+            type = "structure",
+            name = "AdjustmentDetails",
+            target_id = id.from(_N, "CapacityReservationAdjustmentDetails"),
+            target = M.CapacityReservationAdjustmentDetails,
+            traits = {
+                [traits.XML_NAME] = { name = "adjustmentDetails" },
+                [traits.EC2_QUERY_NAME] = { name = "AdjustmentDetails" },
             },
         }),
     },
@@ -111518,6 +111992,17 @@ M.CreateCapacityReservationCancellationQuote = schema.operation({
     },
 })
 
+M.CreateCapacityReservationDateChangeQuote = schema.operation({
+    id = id.from("com.amazonaws.ec2", "CreateCapacityReservationDateChangeQuote"),
+    input = M.CreateCapacityReservationDateChangeQuoteInput,
+    output = M.CreateCapacityReservationDateChangeQuoteOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateCapacityReservationFleet = schema.operation({
     id = id.from("com.amazonaws.ec2", "CreateCapacityReservationFleet"),
     input = M.CreateCapacityReservationFleetInput,
@@ -114041,6 +114526,17 @@ M.DescribeCapacityReservationCancellationQuotes = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeCapacityReservationCancellationQuotes"),
     input = M.DescribeCapacityReservationCancellationQuotesInput,
     output = M.DescribeCapacityReservationCancellationQuotesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCapacityReservationDateChangeQuotes = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeCapacityReservationDateChangeQuotes"),
+    input = M.DescribeCapacityReservationDateChangeQuotesInput,
+    output = M.DescribeCapacityReservationDateChangeQuotesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

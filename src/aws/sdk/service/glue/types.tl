@@ -6358,6 +6358,34 @@ local record M
         ViewExpandedText: string
     end
 
+    enum SubObjectSourceType
+        "HIVE_PARQUET"
+        "HIVE_ORC"
+        "HIVE_CSV"
+        "HIVE_JSON"
+        "PLAIN_PARQUET"
+        "ICEBERG"
+    end
+
+    -- Statistics for one sub-object referenced by a materialized view, recorded when the
+    -- materialized view was created or last fully refreshed. These values describe what that refresh
+    -- selected from the sub-object, which can be a subset of the table when the materialized view's
+    -- definition limits the data it reads. The fields present depend on the sub-object's format.
+    record SubObjectStatistics
+        -- The source type of the sub-object (for example, its table format), which identifies the
+        -- sub-object.
+        SourceType: string
+        -- The Glue version ID of the sub-object that the statistics were captured for.
+        GlueVersionId: string
+        -- The number of sub-object partitions selected for that refresh. Not present for
+        -- unpartitioned sub-objects.
+        PartitionCount: number
+        -- The number of sub-object data files selected for that refresh.
+        FileCount: number
+        -- The total size, in bytes, of the data files counted by FileCount.
+        TotalFileBytes: number
+    end
+
     -- A structure containing details for creating or updating an Glue view.
     record ViewDefinitionInput
         -- You can set this flag as true to instruct the engine not to push user-provided operations into the logical plan of the view during query planning. However, setting this flag does not guarantee that the engine will comply. Refer to the engine's documentation to understand the guarantees provided, if any.
@@ -6380,6 +6408,13 @@ local record M
         SubObjects: {string}
         -- List of the Apache Iceberg table versions referenced by the materialized view.
         SubObjectVersionIds: {number}
+        -- Statistics for each sub-object referenced by the materialized view, such as the source
+        -- type, Glue version ID, and the partition, file, and byte counts. Each entry
+        -- describes one sub-object, identified by its source type.
+        SubObjectsStatistics: {SubObjectStatistics}
+        -- A map of key-value pairs containing Spark Declarative Pipelines (SDP) information for the
+        -- materialized view.
+        SparkPipelineInfo: {string : string}
     end
 
     -- A structure used to define a table.
@@ -10390,8 +10425,15 @@ local record M
         SubObjects: {string}
         -- List of the Apache Iceberg table versions referenced by the materialized view.
         SubObjectVersionIds: {number}
+        -- Statistics captured for each sub-object referenced by the materialized view as of its most
+        -- recent refresh, such as the source type, Glue version ID, and the partition,
+        -- file, and byte counts. Each entry describes one sub-object, identified by its source type.
+        SubObjectsStatistics: {SubObjectStatistics}
         -- A list of representations.
         Representations: {ViewRepresentation}
+        -- A map of key-value pairs containing Spark Declarative Pipelines (SDP) information for the
+        -- materialized view.
+        SparkPipelineInfo: {string : string}
     end
 
     record GetTableOptimizerInput

@@ -195,6 +195,7 @@ local record M
         "ipam-pool-allocation"
         "capacity-reservation-cancellation-quote"
         "application-status-check"
+        "capacity-reservation-modification-quote"
     end
 
     -- Describes a tag.
@@ -4660,6 +4661,34 @@ local record M
         DeliveryPreference: string
     end
 
+    -- Describes the configuration that a Capacity Reservation will have after a pending
+    -- adjustment is applied.
+    record CapacityReservationAdjustmentDetails
+        -- The start date that the Capacity Reservation will have after the adjustment.
+        StartDate: number
+        -- The end date that the Capacity Reservation will have after the adjustment.
+        EndDate: number
+        -- The date and time at which the commitment duration will expire after the
+        -- adjustment.
+        CommitmentEndDate: number
+        -- Indicates the way in which the Capacity Reservation will end after the adjustment.
+        -- Possible values are:
+        -- unlimited - The Capacity Reservation remains active until you
+        -- explicitly cancel it.
+        -- limited - The Capacity Reservation expires automatically at the
+        -- date and time given by endDate.
+        EndDateType: string
+        -- The commitment duration, in seconds, that the Capacity Reservation will have after the
+        -- adjustment.
+        CommitmentDuration: number
+    end
+
+    enum CapacityReservationAdjustmentStatus
+        "requested"
+        "applied"
+        "rejected"
+    end
+
     -- A key-value pair that provides additional metadata about a capacity allocation.
     record CapacityAllocationMetadataEntry
         -- The key of the metadata entry.
@@ -4691,6 +4720,10 @@ local record M
         -- the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ). You can't decrease the
         -- instance count or cancel the Capacity Reservation before this date and time.
         CommitmentEndDate: number
+        -- The commitment duration, in seconds, for the future-dated Capacity Reservation. This is
+        -- the minimum duration for which you commit to having the Capacity Reservation in the
+        -- active state in your account after it has been delivered.
+        CommitmentDuration: number
     end
 
     enum InterruptionType
@@ -4888,6 +4921,23 @@ local record M
         InterruptibleCapacityAllocation: InterruptibleCapacityAllocation
         -- Information about the interruption configuration and association with the source reservation for interruptible Capacity Reservations.
         InterruptionInfo: InterruptionInfo
+        -- The status of the most recent modification to the Capacity Reservation. A Capacity
+        -- Reservation can have one of the following adjustment statuses:
+        -- requested - The modification was requested and is being
+        -- processed.
+        -- applied - The modification was applied to the Capacity
+        -- Reservation.
+        -- rejected - The modification was not applied and the Capacity
+        -- Reservation keeps its existing configuration.
+        -- This field is not returned if the Capacity Reservation has never been modified.
+        AdjustmentStatus: string
+        -- The configuration that the Capacity Reservation will have after the requested adjustment
+        -- is applied.
+        AdjustmentDetails: CapacityReservationAdjustmentDetails
+        -- The start date that you originally requested for the Capacity Reservation, in the ISO8601
+        -- format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ). This value doesn't
+        -- change when you push out the start date.
+        OriginalStartDate: number
         -- The zero-size preference configured for the interruptible Capacity Reservation. A value of retain keeps the interruptible Capacity Reservation active at zero capacity when you reduce its allocation to zero. A value of default cancels the interruptible Capacity Reservation when you reduce its allocation to zero.
         ZeroSizePreference: string
     end
@@ -4989,6 +5039,94 @@ local record M
     record CreateCapacityReservationCancellationQuoteOutput
         -- Information about the Capacity Reservation cancellation quote.
         CapacityReservationCancellationQuote: CapacityReservationCancellationQuote
+    end
+
+    record CreateCapacityReservationDateChangeQuoteInput
+        -- The ID of the Capacity Reservation.
+        CapacityReservationId: string
+        -- The requested new start date for the Capacity Reservation, in the ISO8601 format in the
+        -- UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ). The new start date must be later
+        -- than the current start date and within the cumulative 30-day pushout limit.
+        NewStartDate: number
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensure Idempotency.
+        ClientToken: string
+        -- The tags to apply to the date change quote.
+        TagSpecifications: {TagSpecification}
+        -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes the configuration that a Capacity Reservation has at the time a modification
+    -- quote is generated.
+    record ModificationQuoteCurrentConfiguration
+        -- The number of instances in the Capacity Reservation.
+        InstanceCount: number
+        -- The current state of the Capacity Reservation.
+        ReservationState: string
+        -- The start date that the Capacity Reservation has before the quoted modification is
+        -- applied.
+        StartDate: number
+        -- The start date that the Capacity Reservation was originally requested with. This value
+        -- does not change when you push out the start date.
+        OriginalStartDate: number
+    end
+
+    -- Describes the changes that a Capacity Reservation modification quote will apply to a
+    -- Capacity Reservation.
+    record ModificationReservationUpdate
+        -- The date and time at which the commitment duration will expire after the modification,
+        -- in the ISO8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ).
+        NewCommitmentEndDate: number
+        -- The start date that the Capacity Reservation will have after the modification, in the
+        -- ISO8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ).
+        NewStartDate: number
+        -- The commitment duration, in seconds, that the Capacity Reservation will have after the
+        -- modification.
+        NewCommitmentDuration: number
+    end
+
+    -- Describes the terms of a Capacity Reservation modification quote.
+    record ModificationTerms
+        -- The changes that will be applied to the Capacity Reservation if you accept the
+        -- modification terms.
+        ReservationUpdate: ModificationReservationUpdate
+    end
+
+    enum CapacityReservationModificationQuoteState
+        "active"
+        "expired"
+    end
+
+    -- Describes a Capacity Reservation modification quote, which provides the terms for
+    -- changing the start date or the commitment of a future-dated Capacity Reservation.
+    record CapacityReservationModificationQuote
+        -- The ID of the modification quote.
+        CapacityReservationModificationQuoteId: string
+        -- The ID of the Capacity Reservation associated with the modification quote.
+        CapacityReservationId: string
+        -- The date and time at which the modification quote was created.
+        CreateTime: number
+        -- The date and time at which the modification quote expires.
+        ExpirationTime: number
+        -- The state of the modification quote itself. Possible values are:
+        -- active - The quote can still be used.
+        -- expired - The quote can no longer be used. A quote becomes
+        -- expired at its expirationTime.
+        QuoteState: string
+        -- The configuration that the Capacity Reservation has at the time the quote was
+        -- generated.
+        CurrentConfiguration: ModificationQuoteCurrentConfiguration
+        -- The terms of the modification, including the configuration that the Capacity Reservation
+        -- will have if you accept them by using ModifyCapacityReservation.
+        ModificationTerms: ModificationTerms
+        -- The tags assigned to the modification quote.
+        Tags: {Tag}
+    end
+
+    record CreateCapacityReservationDateChangeQuoteOutput
+        -- Information about the Capacity Reservation date change quote.
+        CapacityReservationModificationQuote: CapacityReservationModificationQuote
     end
 
     enum FleetInstanceMatchCriteria
@@ -20997,6 +21135,27 @@ local record M
     record DescribeCapacityReservationCancellationQuotesOutput
         -- Information about the Capacity Reservation cancellation quotes.
         CapacityReservationCancellationQuotes: {CapacityReservationCancellationQuote}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
+    end
+
+    record DescribeCapacityReservationDateChangeQuotesInput
+        -- The IDs of the date change quotes to describe.
+        CapacityReservationModificationQuoteIds: {string}
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information,
+        -- see Pagination.
+        MaxResults: number
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- One or more filters. Filter names and values are case-sensitive.
+        Filters: {Filter}
+    end
+
+    record DescribeCapacityReservationDateChangeQuotesOutput
+        -- Information about the Capacity Reservation date change quotes.
+        CapacityReservationModificationQuotes: {CapacityReservationModificationQuote}
         -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
         NextToken: string
     end
@@ -38633,11 +38792,33 @@ local record M
         -- To modify the instance eligibility, the Capacity Reservation must be completely idle
         -- (zero usage).
         InstanceMatchCriteria: string
+        -- Indicates that you accept the modification terms of the quote identified by
+        -- QuoteId. To apply a quoted modification, set this parameter to
+        -- true.
+        AcceptModificationTerms: boolean
+        -- The new start date for the Capacity Reservation, in the ISO8601 format in the UTC time
+        -- zone (YYYY-MM-DDThh:mm:ss.sssZ). Applies to future-dated Capacity
+        -- Reservations only. Requires a quote from
+        -- CreateCapacityReservationDateChangeQuote; pass the quote ID in
+        -- QuoteId with AcceptModificationTerms set to
+        -- true.
+        StartDate: number
+        -- The ID of the quote that describes the modification you want to apply. Generate a quote
+        -- by using CreateCapacityReservationDateChangeQuote. The quote must be in the
+        -- active state, and each quote can be used only once.
+        QuoteId: string
     end
 
     record ModifyCapacityReservationOutput
         -- Returns true if the request succeeds; otherwise, it returns an error.
         Return: boolean
+        -- The status of the requested modification. For a description of each possible value, see
+        -- the adjustmentStatus field of the CapacityReservation data
+        -- type.
+        AdjustmentStatus: string
+        -- The configuration that the Capacity Reservation will have after the adjustment is
+        -- applied.
+        AdjustmentDetails: CapacityReservationAdjustmentDetails
     end
 
     record ModifyCapacityReservationFleetInput

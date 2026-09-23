@@ -19,16 +19,19 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     createCentralizationRuleForOrganization: function(Client, types.CreateCentralizationRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCentralizationRuleForOrganizationOutput>
+    createDatasetIntegration: function(Client, types.CreateDatasetIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetIntegrationOutput>
     createS3TableIntegration: function(Client, types.CreateS3TableIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateS3TableIntegrationOutput>
     createTelemetryPipeline: function(Client, types.CreateTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.CreateTelemetryPipelineOutput>
     createTelemetryRule: function(Client, types.CreateTelemetryRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateTelemetryRuleOutput>
     createTelemetryRuleForOrganization: function(Client, types.CreateTelemetryRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTelemetryRuleForOrganizationOutput>
     deleteCentralizationRuleForOrganization: function(Client, types.DeleteCentralizationRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCentralizationRuleForOrganizationOutput>
+    deleteDatasetIntegration: function(Client, types.DeleteDatasetIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetIntegrationOutput>
     deleteS3TableIntegration: function(Client, types.DeleteS3TableIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteS3TableIntegrationOutput>
     deleteTelemetryPipeline: function(Client, types.DeleteTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTelemetryPipelineOutput>
     deleteTelemetryRule: function(Client, types.DeleteTelemetryRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTelemetryRuleOutput>
     deleteTelemetryRuleForOrganization: function(Client, types.DeleteTelemetryRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTelemetryRuleForOrganizationOutput>
     getCentralizationRuleForOrganization: function(Client, types.GetCentralizationRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.GetCentralizationRuleForOrganizationOutput>
+    getDatasetIntegration: function(Client, types.GetDatasetIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetDatasetIntegrationOutput>
     getS3TableIntegration: function(Client, types.GetS3TableIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetS3TableIntegrationOutput>
     getTelemetryEnrichmentStatus: function(Client, types.GetTelemetryEnrichmentStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryEnrichmentStatusOutput>
     getTelemetryEvaluationStatus: function(Client, types.GetTelemetryEvaluationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryEvaluationStatusOutput>
@@ -37,6 +40,7 @@ local record Client
     getTelemetryRule: function(Client, types.GetTelemetryRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryRuleOutput>
     getTelemetryRuleForOrganization: function(Client, types.GetTelemetryRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryRuleForOrganizationOutput>
     listCentralizationRulesForOrganization: function(Client, types.ListCentralizationRulesForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListCentralizationRulesForOrganizationOutput>
+    listDatasetIntegrations: function(Client, types.ListDatasetIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetIntegrationsOutput>
     listResourceTelemetry: function(Client, types.ListResourceTelemetryInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceTelemetryOutput>
     listResourceTelemetryForOrganization: function(Client, types.ListResourceTelemetryForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceTelemetryForOrganizationOutput>
     listS3TableIntegrations: function(Client, types.ListS3TableIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListS3TableIntegrationsOutput>
@@ -54,6 +58,7 @@ local record Client
     testTelemetryPipeline: function(Client, types.TestTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.TestTelemetryPipelineOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateCentralizationRuleForOrganization: function(Client, types.UpdateCentralizationRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
+    updateDatasetIntegration: function(Client, types.UpdateDatasetIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetIntegrationOutput>
     updateTelemetryPipeline: function(Client, types.UpdateTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTelemetryPipelineOutput>
     updateTelemetryRule: function(Client, types.UpdateTelemetryRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTelemetryRuleOutput>
     updateTelemetryRuleForOrganization: function(Client, types.UpdateTelemetryRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTelemetryRuleForOrganizationOutput>
@@ -106,6 +111,10 @@ function C:createCentralizationRuleForOrganization(input: types.CreateCentraliza
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCentralizationRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.CreateCentralizationRuleForOrganizationOutput>
 end
 
+function C:createDatasetIntegration(input: types.CreateDatasetIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDatasetIntegration as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetIntegrationOutput>
+end
+
 function C:createS3TableIntegration(input: types.CreateS3TableIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateS3TableIntegrationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateS3TableIntegration as schema.OperationSchema, input, options) as async.Operation<types.CreateS3TableIntegrationOutput>
 end
@@ -126,6 +135,10 @@ function C:deleteCentralizationRuleForOrganization(input: types.DeleteCentraliza
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCentralizationRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DeleteCentralizationRuleForOrganizationOutput>
 end
 
+function C:deleteDatasetIntegration(input: types.DeleteDatasetIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDatasetIntegration as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetIntegrationOutput>
+end
+
 function C:deleteS3TableIntegration(input: types.DeleteS3TableIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteS3TableIntegrationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteS3TableIntegration as schema.OperationSchema, input, options) as async.Operation<types.DeleteS3TableIntegrationOutput>
 end
@@ -144,6 +157,10 @@ end
 
 function C:getCentralizationRuleForOrganization(input: types.GetCentralizationRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCentralizationRuleForOrganizationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCentralizationRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.GetCentralizationRuleForOrganizationOutput>
+end
+
+function C:getDatasetIntegration(input: types.GetDatasetIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatasetIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDatasetIntegration as schema.OperationSchema, input, options) as async.Operation<types.GetDatasetIntegrationOutput>
 end
 
 function C:getS3TableIntegration(input: types.GetS3TableIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetS3TableIntegrationOutput>
@@ -176,6 +193,10 @@ end
 
 function C:listCentralizationRulesForOrganization(input: types.ListCentralizationRulesForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListCentralizationRulesForOrganizationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCentralizationRulesForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ListCentralizationRulesForOrganizationOutput>
+end
+
+function C:listDatasetIntegrations(input: types.ListDatasetIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetIntegrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetIntegrations as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetIntegrationsOutput>
 end
 
 function C:listResourceTelemetry(input: types.ListResourceTelemetryInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceTelemetryOutput>
@@ -244,6 +265,10 @@ end
 
 function C:updateCentralizationRuleForOrganization(input: types.UpdateCentralizationRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCentralizationRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
+end
+
+function C:updateDatasetIntegration(input: types.UpdateDatasetIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDatasetIntegration as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasetIntegrationOutput>
 end
 
 function C:updateTelemetryPipeline(input: types.UpdateTelemetryPipelineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTelemetryPipelineOutput>

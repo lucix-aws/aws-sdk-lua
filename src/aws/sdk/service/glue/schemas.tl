@@ -416,6 +416,10 @@ M.ViewSubObjectsList = schema.new({ type = "list", list_member = prelude.String 
 
 M.ViewSubObjectVersionIdsList = schema.new({ type = "list", list_member = prelude.Long })
 
+M.SubObjectsStatisticsList = schema.new({ type = "list", list_member = M.SubObjectStatistics })
+
+M.SparkPipelineInfoMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.PropertyTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.AllowedValues = schema.new({ type = "list", list_member = M.AllowedValue })
@@ -16106,6 +16110,43 @@ M.ViewRepresentationInput = schema.new({
     },
 })
 
+M.SubObjectStatistics = schema.new({
+    id = id.from(_N, "SubObjectStatistics"),
+    type = "structure",
+    members = {
+        SourceType = schema.new({
+            id = id.from(_N, "SubObjectStatistics", "SourceType"),
+            type = "string",
+            name = "SourceType",
+            target_id = prelude.String.id,
+        }),
+        GlueVersionId = schema.new({
+            id = id.from(_N, "SubObjectStatistics", "GlueVersionId"),
+            type = "string",
+            name = "GlueVersionId",
+            target_id = prelude.String.id,
+        }),
+        PartitionCount = schema.new({
+            id = id.from(_N, "SubObjectStatistics", "PartitionCount"),
+            type = "long",
+            name = "PartitionCount",
+            target_id = prelude.Long.id,
+        }),
+        FileCount = schema.new({
+            id = id.from(_N, "SubObjectStatistics", "FileCount"),
+            type = "long",
+            name = "FileCount",
+            target_id = prelude.Long.id,
+        }),
+        TotalFileBytes = schema.new({
+            id = id.from(_N, "SubObjectStatistics", "TotalFileBytes"),
+            type = "long",
+            name = "TotalFileBytes",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
 M.ViewDefinitionInput = schema.new({
     id = id.from(_N, "ViewDefinitionInput"),
     type = "structure",
@@ -16169,6 +16210,21 @@ M.ViewDefinitionInput = schema.new({
             name = "SubObjectVersionIds",
             target_id = prelude.Document.id,
             list_member = prelude.Long,
+        }),
+        SubObjectsStatistics = schema.new({
+            id = id.from(_N, "ViewDefinitionInput", "SubObjectsStatistics"),
+            type = "list",
+            name = "SubObjectsStatistics",
+            target_id = prelude.Document.id,
+            list_member = M.SubObjectStatistics,
+        }),
+        SparkPipelineInfo = schema.new({
+            id = id.from(_N, "ViewDefinitionInput", "SparkPipelineInfo"),
+            type = "map",
+            name = "SparkPipelineInfo",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -26579,12 +26635,27 @@ M.ViewDefinition = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.Long,
         }),
+        SubObjectsStatistics = schema.new({
+            id = id.from(_N, "ViewDefinition", "SubObjectsStatistics"),
+            type = "list",
+            name = "SubObjectsStatistics",
+            target_id = prelude.Document.id,
+            list_member = M.SubObjectStatistics,
+        }),
         Representations = schema.new({
             id = id.from(_N, "ViewDefinition", "Representations"),
             type = "list",
             name = "Representations",
             target_id = prelude.Document.id,
             list_member = M.ViewRepresentation,
+        }),
+        SparkPipelineInfo = schema.new({
+            id = id.from(_N, "ViewDefinition", "SparkPipelineInfo"),
+            type = "map",
+            name = "SparkPipelineInfo",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })

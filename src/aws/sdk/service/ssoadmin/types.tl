@@ -949,6 +949,18 @@ local record M
         EncryptionStatusReason: string
     end
 
+    -- Contains information about an enabled Region of an IAM Identity Center instance, including the Region name, status, date added, and whether it is the primary Region.
+    record RegionMetadata
+        -- The Amazon Web Services Region name.
+        RegionName: string
+        -- The current status of the Region. Valid values are ACTIVE (Region is operational), ADDING (Region extension workflow is in progress), or REMOVING (Region removal workflow is in progress).
+        Status: string
+        -- The timestamp when the Region was added to the IAM Identity Center instance. For the primary Region, this is the instance creation time.
+        AddedDate: number
+        -- Indicates whether this is the primary Region where the IAM Identity Center instance was originally enabled. The primary Region cannot be removed.
+        IsPrimaryRegion: boolean
+    end
+
     enum InstanceStatus
         "CREATE_IN_PROGRESS"
         "CREATE_FAILED"
@@ -961,6 +973,8 @@ local record M
         InstanceArn: string
         -- The identifier of the identity store that is connected to the instance of IAM Identity Center.
         IdentityStoreId: string
+        -- The ARN of the identity store that is connected to the instance of IAM Identity Center.
+        IdentityStoreArn: string
         -- The identifier of the Amazon Web Services account for which the instance was created.
         OwnerAccountId: string
         -- Specifies the instance name.
@@ -971,6 +985,10 @@ local record M
         Status: string
         -- Provides additional context about the current status of the IAM Identity Center instance. This field is particularly useful when an instance is in a non-ACTIVE state, such as CREATE_FAILED. When an instance fails to create or update, this field contains information about the cause, which may include issues with KMS key configuration, permission problems with the specified KMS key, or service-related errors.
         StatusReason: string
+        -- The primary Region where the IAM Identity Center instance was originally enabled. The primary Region cannot be removed.
+        PrimaryRegion: string
+        -- The list of Regions enabled in the IAM Identity Center instance, including Regions with ACTIVE, ADDING, or REMOVING status.
+        Regions: {RegionMetadata}
         -- Contains the encryption configuration for your IAM Identity Center instance, including the encryption status, KMS key type, and KMS key ARN.
         EncryptionConfigurationDetails: EncryptionConfigurationDetails
         -- Indicates whether permission sets are enabled for this Identity Center instance.
@@ -1160,24 +1178,14 @@ local record M
         PermissionsBoundary: PermissionsBoundary
     end
 
-    -- Contains information about an enabled Region of an IAM Identity Center instance, including the Region name, status, date added, and whether it is the primary Region.
-    record RegionMetadata
-        -- The Amazon Web Services Region name.
-        RegionName: string
-        -- The current status of the Region. Valid values are ACTIVE (Region is operational), ADDING (Region extension workflow is in progress), or REMOVING (Region removal workflow is in progress).
-        Status: string
-        -- The timestamp when the Region was added to the IAM Identity Center instance. For the primary Region, this is the instance creation time.
-        AddedDate: number
-        -- Indicates whether this is the primary Region where the IAM Identity Center instance was originally enabled. The primary Region cannot be removed.
-        IsPrimaryRegion: boolean
-    end
-
     -- Provides information about the IAM Identity Center instance.
     record InstanceMetadata
         -- The ARN of the Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces in the Amazon Web Services General Reference.
         InstanceArn: string
         -- The identifier of the identity store that is connected to the Identity Center instance.
         IdentityStoreId: string
+        -- The ARN of the identity store that is connected to the Identity Center instance.
+        IdentityStoreArn: string
         -- The Amazon Web Services account ID number of the owner of the Identity Center instance.
         OwnerAccountId: string
         -- The name of the Identity Center instance.

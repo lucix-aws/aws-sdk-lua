@@ -11334,6 +11334,230 @@ local record M
         ShareNewRelicAction: string
         -- The ability to use New Relic actions.
         UseNewRelicAction: string
+        -- The ability to perform actions using PagerDuty Agent connectors.
+        PagerDutyAgentAction: string
+        -- The ability to create and update PagerDuty Agent actions.
+        CreateAndUpdatePagerDutyAgentAction: string
+        -- The ability to share PagerDuty Agent actions.
+        SharePagerDutyAgentAction: string
+        -- The ability to use PagerDuty Agent actions.
+        UsePagerDutyAgentAction: string
+        -- The ability to perform actions using Visier Agent connectors.
+        VisierAgentAction: string
+        -- The ability to create and update Visier Agent actions.
+        CreateAndUpdateVisierAgentAction: string
+        -- The ability to share Visier Agent actions.
+        ShareVisierAgentAction: string
+        -- The ability to use Visier Agent actions.
+        UseVisierAgentAction: string
+        -- The ability to perform actions using Zoom connectors.
+        ZoomAction: string
+        -- The ability to create and update Zoom actions.
+        CreateAndUpdateZoomAction: string
+        -- The ability to share Zoom actions.
+        ShareZoomAction: string
+        -- The ability to use Zoom actions.
+        UseZoomAction: string
+        -- The ability to perform actions using Snowflake Cortex Agent connectors.
+        SnowFlakeAction: string
+        -- The ability to create and update Snowflake Cortex Agent actions.
+        CreateAndUpdateSnowFlakeAction: string
+        -- The ability to share Snowflake Cortex Agent actions.
+        ShareSnowFlakeAction: string
+        -- The ability to use Snowflake Cortex Agent actions.
+        UseSnowFlakeAction: string
+        -- The ability to perform actions using Zapier Agent connectors.
+        ZapierAction: string
+        -- The ability to create and update Zapier Agent actions.
+        CreateAndUpdateZapierAction: string
+        -- The ability to share Zapier Agent actions.
+        ShareZapierAction: string
+        -- The ability to use Zapier Agent actions.
+        UseZapierAction: string
+        -- The ability to perform actions using Airtable connectors.
+        AirtableAction: string
+        -- The ability to create and update Airtable actions.
+        CreateAndUpdateAirtableAction: string
+        -- The ability to share Airtable actions.
+        ShareAirtableAction: string
+        -- The ability to use Airtable actions.
+        UseAirtableAction: string
+        -- The ability to perform actions using Dropbox connectors.
+        DropboxAction: string
+        -- The ability to create and update Dropbox actions.
+        CreateAndUpdateDropboxAction: string
+        -- The ability to share Dropbox actions.
+        ShareDropboxAction: string
+        -- The ability to use Dropbox actions.
+        UseDropboxAction: string
+        -- The ability to perform actions using Gmail connectors.
+        GmailAction: string
+        -- The ability to create and update Gmail actions.
+        CreateAndUpdateGmailAction: string
+        -- The ability to share Gmail actions.
+        ShareGmailAction: string
+        -- The ability to use Gmail actions.
+        UseGmailAction: string
+        -- The ability to perform actions using Google Analytics connectors.
+        GoogleAnalyticsAction: string
+        -- The ability to create and update Google Analytics actions.
+        CreateAndUpdateGoogleAnalyticsAction: string
+        -- The ability to share Google Analytics actions.
+        ShareGoogleAnalyticsAction: string
+        -- The ability to use Google Analytics actions.
+        UseGoogleAnalyticsAction: string
+        -- The ability to perform actions using Google Docs connectors.
+        GoogleDocsAction: string
+        -- The ability to create and update Google Docs actions.
+        CreateAndUpdateGoogleDocsAction: string
+        -- The ability to share Google Docs actions.
+        ShareGoogleDocsAction: string
+        -- The ability to use Google Docs actions.
+        UseGoogleDocsAction: string
+        -- The ability to perform actions using Google Drive connectors.
+        GoogleDriveAction: string
+        -- The ability to create and update Google Drive actions.
+        CreateAndUpdateGoogleDriveAction: string
+        -- The ability to share Google Drive actions.
+        ShareGoogleDriveAction: string
+        -- The ability to use Google Drive actions.
+        UseGoogleDriveAction: string
+        -- The ability to perform actions using Google Meet connectors.
+        GoogleMeetAction: string
+        -- The ability to create and update Google Meet actions.
+        CreateAndUpdateGoogleMeetAction: string
+        -- The ability to share Google Meet actions.
+        ShareGoogleMeetAction: string
+        -- The ability to use Google Meet actions.
+        UseGoogleMeetAction: string
+        -- The ability to perform actions using Google Sheets connectors.
+        GoogleSheetsAction: string
+        -- The ability to create and update Google Sheets actions.
+        CreateAndUpdateGoogleSheetsAction: string
+        -- The ability to share Google Sheets actions.
+        ShareGoogleSheetsAction: string
+        -- The ability to use Google Sheets actions.
+        UseGoogleSheetsAction: string
+        -- The ability to perform actions using Google Slides connectors.
+        GoogleSlidesAction: string
+        -- The ability to create and update Google Slides actions.
+        CreateAndUpdateGoogleSlidesAction: string
+        -- The ability to share Google Slides actions.
+        ShareGoogleSlidesAction: string
+        -- The ability to use Google Slides actions.
+        UseGoogleSlidesAction: string
+        -- The ability to perform actions using QuickBooks connectors.
+        QuickBooksAction: string
+        -- The ability to create and update QuickBooks actions.
+        CreateAndUpdateQuickBooksAction: string
+        -- The ability to share QuickBooks actions.
+        ShareQuickBooksAction: string
+        -- The ability to use QuickBooks actions.
+        UseQuickBooksAction: string
+        -- The ability to perform actions using Figma connectors.
+        FigmaAction: string
+        -- The ability to create and update Figma actions.
+        CreateAndUpdateFigmaAction: string
+        -- The ability to share Figma actions.
+        ShareFigmaAction: string
+        -- The ability to use Figma actions.
+        UseFigmaAction: string
+        -- The ability to perform actions using WhatsApp connectors.
+        WhatsAppAction: string
+        -- The ability to create and update WhatsApp actions.
+        CreateAndUpdateWhatsAppAction: string
+        -- The ability to share WhatsApp actions.
+        ShareWhatsAppAction: string
+        -- The ability to use WhatsApp actions.
+        UseWhatsAppAction: string
+        -- The ability to perform actions using Google Chat connectors.
+        GoogleChatAction: string
+        -- The ability to create and update Google Chat actions.
+        CreateAndUpdateGoogleChatAction: string
+        -- The ability to share Google Chat actions.
+        ShareGoogleChatAction: string
+        -- The ability to use Google Chat actions.
+        UseGoogleChatAction: string
+        -- The ability to perform actions using Microsoft OneNote connectors.
+        OneNoteAction: string
+        -- The ability to create and update Microsoft OneNote actions.
+        CreateAndUpdateOneNoteAction: string
+        -- The ability to share Microsoft OneNote actions.
+        ShareOneNoteAction: string
+        -- The ability to use Microsoft OneNote actions.
+        UseOneNoteAction: string
+        -- The ability to perform actions using Shopify connectors.
+        ShopifyAction: string
+        -- The ability to create and update Shopify actions.
+        CreateAndUpdateShopifyAction: string
+        -- The ability to share Shopify actions.
+        ShareShopifyAction: string
+        -- The ability to use Shopify actions.
+        UseShopifyAction: string
+        -- The ability to perform actions using Adobe Marketing Agent connectors.
+        AdobeAction: string
+        -- The ability to create and update Adobe Marketing Agent actions.
+        CreateAndUpdateAdobeAction: string
+        -- The ability to share Adobe Marketing Agent actions.
+        ShareAdobeAction: string
+        -- The ability to use Adobe Marketing Agent actions.
+        UseAdobeAction: string
+        -- The ability to perform actions using Cisco Webex Video Messaging Agent connectors.
+        CiscoWebexVidcastAction: string
+        -- The ability to create and update Cisco Webex Video Messaging Agent actions.
+        CreateAndUpdateCiscoWebexVidcastAction: string
+        -- The ability to share Cisco Webex Video Messaging Agent actions.
+        ShareCiscoWebexVidcastAction: string
+        -- The ability to use Cisco Webex Video Messaging Agent actions.
+        UseCiscoWebexVidcastAction: string
+        -- The ability to perform actions using Cisco Webex Meetings connectors.
+        CiscoWebexMeetingsAction: string
+        -- The ability to create and update Cisco Webex Meetings actions.
+        CreateAndUpdateCiscoWebexMeetingsAction: string
+        -- The ability to share Cisco Webex Meetings actions.
+        ShareCiscoWebexMeetingsAction: string
+        -- The ability to use Cisco Webex Meetings actions.
+        UseCiscoWebexMeetingsAction: string
+        -- The ability to perform actions using Dun and Bradstreet connectors.
+        DunAndBradstreetAction: string
+        -- The ability to create and update Dun and Bradstreet actions.
+        CreateAndUpdateDunAndBradstreetAction: string
+        -- The ability to share Dun and Bradstreet actions.
+        ShareDunAndBradstreetAction: string
+        -- The ability to use Dun and Bradstreet actions.
+        UseDunAndBradstreetAction: string
+        -- The ability to perform actions using HG Insights Agent connectors.
+        HGInsightsAction: string
+        -- The ability to create and update HG Insights Agent actions.
+        CreateAndUpdateHGInsightsAction: string
+        -- The ability to share HG Insights Agent actions.
+        ShareHGInsightsAction: string
+        -- The ability to use HG Insights Agent actions.
+        UseHGInsightsAction: string
+        -- The ability to perform actions using ZoomInfo Agent connectors.
+        ZoomInfoAction: string
+        -- The ability to create and update ZoomInfo Agent actions.
+        CreateAndUpdateZoomInfoAction: string
+        -- The ability to share ZoomInfo Agent actions.
+        ShareZoomInfoAction: string
+        -- The ability to use ZoomInfo Agent actions.
+        UseZoomInfoAction: string
+        -- The ability to perform actions using Moody's GenAI Ready Data connectors.
+        MoodysAction: string
+        -- The ability to create and update Moody's GenAI Ready Data actions.
+        CreateAndUpdateMoodysAction: string
+        -- The ability to share Moody's GenAI Ready Data actions.
+        ShareMoodysAction: string
+        -- The ability to use Moody's GenAI Ready Data actions.
+        UseMoodysAction: string
+        -- The ability to perform actions using Bee connectors.
+        BeeAction: string
+        -- The ability to create and update Bee actions.
+        CreateAndUpdateBeeAction: string
+        -- The ability to share Bee actions.
+        ShareBeeAction: string
+        -- The ability to use Bee actions.
+        UseBeeAction: string
         -- The ability to perform Topic-related actions.
         Topic: string
         -- The ability to Edit Visual with AI

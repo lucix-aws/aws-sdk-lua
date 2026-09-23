@@ -18,6 +18,8 @@ M.RegionStatuses = schema.new({ type = "list", list_member = M.RegionStatus })
 
 M.CentralizationRuleSummaries = schema.new({ type = "list", list_member = M.CentralizationRuleSummary })
 
+M.DatasetIntegrationSummaries = schema.new({ type = "list", list_member = M.DatasetIntegrationSummary })
+
 M.ResourceTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.TelemetryConfigurationState = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -384,6 +386,11 @@ M.CentralizationRuleDestination = schema.new({
     },
 })
 
+M.SourceContextGraphConfiguration = schema.new({
+    id = id.from(_N, "SourceContextGraphConfiguration"),
+    type = "structure",
+})
+
 M.SourceLogsConfiguration = schema.new({
     id = id.from(_N, "SourceLogsConfiguration"),
     type = "structure",
@@ -461,6 +468,13 @@ M.CentralizationRuleSource = schema.new({
             name = "SourceMetricsConfiguration",
             target_id = id.from(_N, "SourceMetricsConfiguration"),
             target = M.SourceMetricsConfiguration,
+        }),
+        SourceContextGraphConfiguration = schema.new({
+            id = id.from(_N, "CentralizationRuleSource", "SourceContextGraphConfiguration"),
+            type = "structure",
+            name = "SourceContextGraphConfiguration",
+            target_id = id.from(_N, "SourceContextGraphConfiguration"),
+            target = M.SourceContextGraphConfiguration,
         }),
     },
 })
@@ -554,6 +568,12 @@ M.CentralizationRuleSummary = schema.new({
             id = id.from(_N, "CentralizationRuleSummary", "TagPropagationFailureReason"),
             type = "string",
             name = "TagPropagationFailureReason",
+            target_id = prelude.String.id,
+        }),
+        ContextGraphStatus = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "ContextGraphStatus"),
+            type = "string",
+            name = "ContextGraphStatus",
             target_id = prelude.String.id,
         }),
         DestinationAccountId = schema.new({
@@ -915,6 +935,73 @@ M.ValidationException = schema.new({
             name = "Errors",
             target_id = prelude.Document.id,
             list_member = M.ValidationError,
+        }),
+    },
+})
+
+M.CreateDatasetIntegrationInput = schema.new({
+    id = id.from(_N, "CreateDatasetIntegrationInput"),
+    type = "structure",
+    members = {
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateDatasetIntegrationInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateDatasetIntegrationInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateDatasetIntegrationOutput = schema.new({
+    id = id.from(_N, "CreateDatasetIntegrationOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateDatasetIntegrationOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateDatasetIntegrationOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "CreateDatasetIntegrationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "CreateDatasetIntegrationOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -1474,6 +1561,40 @@ M.CreateTelemetryRuleForOrganizationOutput = schema.new({
     },
 })
 
+M.DatasetIntegrationSummary = schema.new({
+    id = id.from(_N, "DatasetIntegrationSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DatasetIntegrationSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "DatasetIntegrationSummary", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "DatasetIntegrationSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "DatasetIntegrationSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.DeleteCentralizationRuleForOrganizationInput = schema.new({
     id = id.from(_N, "DeleteCentralizationRuleForOrganizationInput"),
     type = "structure",
@@ -1519,6 +1640,24 @@ M.ResourceNotFoundException = schema.new({
         }),
     },
 })
+
+M.DeleteDatasetIntegrationInput = schema.new({
+    id = id.from(_N, "DeleteDatasetIntegrationInput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeleteDatasetIntegrationInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDatasetIntegrationOutput = prelude.Unit
 
 M.DeleteS3TableIntegrationInput = schema.new({
     id = id.from(_N, "DeleteS3TableIntegrationInput"),
@@ -1691,12 +1830,65 @@ M.GetCentralizationRuleForOrganizationOutput = schema.new({
             name = "TagPropagationFailureReason",
             target_id = prelude.String.id,
         }),
+        ContextGraphStatus = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "ContextGraphStatus"),
+            type = "string",
+            name = "ContextGraphStatus",
+            target_id = prelude.String.id,
+        }),
         CentralizationRule = schema.new({
             id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "CentralizationRule"),
             type = "structure",
             name = "CentralizationRule",
             target_id = id.from(_N, "CentralizationRule"),
             target = M.CentralizationRule,
+        }),
+    },
+})
+
+M.GetDatasetIntegrationInput = schema.new({
+    id = id.from(_N, "GetDatasetIntegrationInput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetDatasetIntegrationInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDatasetIntegrationOutput = schema.new({
+    id = id.from(_N, "GetDatasetIntegrationOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetDatasetIntegrationOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "GetDatasetIntegrationOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetDatasetIntegrationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetDatasetIntegrationOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -2195,6 +2387,51 @@ M.ListCentralizationRulesForOrganizationOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListCentralizationRulesForOrganizationOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDatasetIntegrationsInput = schema.new({
+    id = id.from(_N, "ListDatasetIntegrationsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDatasetIntegrationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDatasetIntegrationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDatasetIntegrationsOutput = schema.new({
+    id = id.from(_N, "ListDatasetIntegrationsOutput"),
+    type = "structure",
+    members = {
+        DatasetIntegrationSummaries = schema.new({
+            id = id.from(_N, "ListDatasetIntegrationsOutput", "DatasetIntegrationSummaries"),
+            type = "list",
+            name = "DatasetIntegrationSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.DatasetIntegrationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDatasetIntegrationsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -3052,6 +3289,74 @@ M.UpdateCentralizationRuleForOrganizationOutput = schema.new({
     },
 })
 
+M.UpdateDatasetIntegrationInput = schema.new({
+    id = id.from(_N, "UpdateDatasetIntegrationInput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateDatasetIntegrationInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "UpdateDatasetIntegrationInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateDatasetIntegrationOutput = schema.new({
+    id = id.from(_N, "UpdateDatasetIntegrationOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateDatasetIntegrationOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "UpdateDatasetIntegrationOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "UpdateDatasetIntegrationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "UpdateDatasetIntegrationOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateTelemetryRuleInput = schema.new({
     id = id.from(_N, "UpdateTelemetryRuleInput"),
     type = "structure",
@@ -3198,6 +3503,18 @@ M.CreateCentralizationRuleForOrganization = schema.operation({
     },
 })
 
+M.CreateDatasetIntegration = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "CreateDatasetIntegration"),
+    input = M.CreateDatasetIntegrationInput,
+    output = M.CreateDatasetIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateDatasetIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateS3TableIntegration = schema.operation({
     id = id.from("com.amazonaws.observabilityadmin", "CreateS3TableIntegration"),
     input = M.CreateS3TableIntegrationInput,
@@ -3258,6 +3575,18 @@ M.DeleteCentralizationRuleForOrganization = schema.operation({
     },
 })
 
+M.DeleteDatasetIntegration = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "DeleteDatasetIntegration"),
+    input = M.DeleteDatasetIntegrationInput,
+    output = M.DeleteDatasetIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteDatasetIntegration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteS3TableIntegration = schema.operation({
     id = id.from("com.amazonaws.observabilityadmin", "DeleteS3TableIntegration"),
     input = M.DeleteS3TableIntegrationInput,
@@ -3312,6 +3641,18 @@ M.GetCentralizationRuleForOrganization = schema.operation({
     output = M.GetCentralizationRuleForOrganizationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/GetCentralizationRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDatasetIntegration = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "GetDatasetIntegration"),
+    input = M.GetDatasetIntegrationInput,
+    output = M.GetDatasetIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetDatasetIntegration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3408,6 +3749,18 @@ M.ListCentralizationRulesForOrganization = schema.operation({
     output = M.ListCentralizationRulesForOrganizationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/ListCentralizationRulesForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDatasetIntegrations = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "ListDatasetIntegrations"),
+    input = M.ListDatasetIntegrationsInput,
+    output = M.ListDatasetIntegrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListDatasetIntegrations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3612,6 +3965,18 @@ M.UpdateCentralizationRuleForOrganization = schema.operation({
     output = M.UpdateCentralizationRuleForOrganizationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/UpdateCentralizationRuleForOrganization" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDatasetIntegration = schema.operation({
+    id = id.from("com.amazonaws.observabilityadmin", "UpdateDatasetIntegration"),
+    input = M.UpdateDatasetIntegrationInput,
+    output = M.UpdateDatasetIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateDatasetIntegration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

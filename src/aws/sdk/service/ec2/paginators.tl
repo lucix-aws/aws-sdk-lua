@@ -202,6 +202,24 @@ function M.items_describe_capacity_reservation_billing_requests(client, input)
     })
 end
 
+--- Returns a page iterator for describeCapacityReservationDateChangeQuotes.
+function M.pages_describe_capacity_reservation_date_change_quotes(client, input)
+    return paginator.pages(client, "describeCapacityReservationDateChangeQuotes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservationModificationQuotes",
+    })
+end
+
+--- Returns an item iterator for describeCapacityReservationDateChangeQuotes.
+function M.items_describe_capacity_reservation_date_change_quotes(client, input)
+    return paginator.items(client, "describeCapacityReservationDateChangeQuotes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CapacityReservationModificationQuotes",
+    })
+end
+
 --- Returns a page iterator for describeCapacityReservationFleets.
 function M.pages_describe_capacity_reservation_fleets(client, input)
     return paginator.pages(client, "describeCapacityReservationFleets", input, {

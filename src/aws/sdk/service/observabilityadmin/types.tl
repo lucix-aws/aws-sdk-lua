@@ -147,6 +147,10 @@ local record M
         DestinationMetricsConfiguration: DestinationMetricsConfiguration
     end
 
+    -- Configuration that enables centralization of the context graph for the selected sources. Including this configuration in a rule's source opts the rule into centralizing the context graph for the selected sources.
+    record SourceContextGraphConfiguration
+    end
+
     enum EncryptedLogGroupStrategy
         "ALLOW"
         "SKIP"
@@ -178,6 +182,8 @@ local record M
         SourceLogsConfiguration: SourceLogsConfiguration
         -- Metric specific configuration for centralization source metrics.
         SourceMetricsConfiguration: SourceMetricsConfiguration
+        -- Configuration that enables centralization of the context graph for the selected sources. Including this configuration in a rule's source opts the rule into centralizing the context graph for the selected sources.
+        SourceContextGraphConfiguration: SourceContextGraphConfiguration
     end
 
     -- Defines how telemetry data should be centralized across an Amazon Web Services Organization, including source and destination configurations.
@@ -186,6 +192,12 @@ local record M
         Source: CentralizationRuleSource
         -- Configuration determining where the telemetry data should be centralized, backed up, as well as encryption configuration for the primary and backup destinations.
         Destination: CentralizationRuleDestination
+    end
+
+    enum ContextGraphStatus
+        "Healthy"
+        "Unhealthy"
+        "Provisioning"
     end
 
     enum RuleHealth
@@ -226,6 +238,8 @@ local record M
         TagPropagationStatus: string
         -- The reason tag propagation is unhealthy for this rule. Only present when TagPropagationStatus is Unhealthy.
         TagPropagationFailureReason: string
+        -- The status of context graph centralization for this rule. Returns Provisioning while the context graph is being set up, Healthy once it is active, or Unhealthy if provisioning failed. This status is independent of the overall RuleHealth for log delivery.
+        ContextGraphStatus: string
         -- The primary destination account of the organization centralization rule.
         DestinationAccountId: string
         -- The primary destination region of the organization centralization rule.
@@ -347,6 +361,24 @@ local record M
         Message: string
         -- The errors in the input which caused the exception.
         Errors: {ValidationError}
+    end
+
+    record CreateDatasetIntegrationInput
+        -- The Amazon Resource Name (ARN) of the IAM role that grants Amazon CloudWatch permission to access the resources needed for the dataset integration.
+        RoleArn: string
+        -- The key-value pairs to associate with the dataset integration resource for categorization and management purposes.
+        Tags: {string : string}
+    end
+
+    record CreateDatasetIntegrationOutput
+        -- The Amazon Resource Name (ARN) of the created dataset integration.
+        Arn: string
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the dataset integration.
+        RoleArn: string
+        -- The timestamp when the dataset integration was created.
+        CreatedAt: number
+        -- The timestamp when the dataset integration was last updated.
+        UpdatedAt: number
     end
 
     enum SSEAlgorithm
@@ -628,6 +660,18 @@ local record M
         RuleArn: string
     end
 
+    -- Contains summary information about a dataset integration, including its ARN, associated IAM role, and creation and update timestamps, as returned by ListDatasetIntegrations.
+    record DatasetIntegrationSummary
+        -- The Amazon Resource Name (ARN) of the dataset integration.
+        Arn: string
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the dataset integration.
+        RoleArn: string
+        -- The timestamp when the dataset integration was created.
+        CreatedAt: number
+        -- The timestamp when the dataset integration was last updated.
+        UpdatedAt: number
+    end
+
     record DeleteCentralizationRuleForOrganizationInput
         -- The identifier (name or ARN) of the organization centralization rule to delete.
         RuleIdentifier: string
@@ -643,6 +687,14 @@ local record M
         ResourceId: string
         -- The type of the resource which could not be found.
         ResourceType: string
+    end
+
+    record DeleteDatasetIntegrationInput
+        -- The Amazon Resource Name (ARN) of the dataset integration to delete.
+        Arn: string
+    end
+
+    record DeleteDatasetIntegrationOutput
     end
 
     record DeleteS3TableIntegrationInput
@@ -708,8 +760,26 @@ local record M
         TagPropagationStatus: string
         -- The reason tag propagation is unhealthy for this rule. Only present when TagPropagationStatus is Unhealthy.
         TagPropagationFailureReason: string
+        -- The status of context graph centralization for this rule. Returns Provisioning while the context graph is being set up, Healthy once it is active, or Unhealthy if provisioning failed. This status is independent of the overall RuleHealth for log delivery.
+        ContextGraphStatus: string
         -- The configuration details for the organization centralization rule.
         CentralizationRule: CentralizationRule
+    end
+
+    record GetDatasetIntegrationInput
+        -- The Amazon Resource Name (ARN) of the dataset integration to retrieve.
+        Arn: string
+    end
+
+    record GetDatasetIntegrationOutput
+        -- The Amazon Resource Name (ARN) of the dataset integration.
+        Arn: string
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the dataset integration.
+        RoleArn: string
+        -- The timestamp when the dataset integration was created.
+        CreatedAt: number
+        -- The timestamp when the dataset integration was last updated.
+        UpdatedAt: number
     end
 
     record GetS3TableIntegrationInput
@@ -922,6 +992,20 @@ local record M
         NextToken: string
     end
 
+    record ListDatasetIntegrationsInput
+        -- The maximum number of results to return in a single call.
+        MaxResults: number
+        -- The token for the next set of results. A previous call generates this token.
+        NextToken: string
+    end
+
+    record ListDatasetIntegrationsOutput
+        -- The dataset integrations in your account.
+        DatasetIntegrationSummaries: {DatasetIntegrationSummary}
+        -- A token to resume pagination of results.
+        NextToken: string
+    end
+
     enum TelemetryState
         "Enabled"
         "Disabled"
@@ -931,7 +1015,7 @@ local record M
     record ListResourceTelemetryInput
         -- A string used to filter resources which have a ResourceIdentifier starting with the ResourceIdentifierPrefix.
         ResourceIdentifierPrefix: string
-        -- A list of resource types used to filter resources supported by telemetry config. If this parameter is provided, the resources will be returned in the same order used in the request.
+        -- A list of resource types used to filter resources supported by telemetry config. If this parameter is provided, the service returns the resources in the same order as specified in the request. Currently supported resource types for discovery are: AWS::EC2::Instance AWS::EC2::VPC AWS::Lambda::Function AWS::EKS::Cluster AWS::WAFv2::WebACL AWS::ElasticLoadBalancingV2::LoadBalancer (Network Load Balancers only)
         ResourceTypes: {string}
         -- A key-value pair to filter resources based on the telemetry type and the state of the telemetry configuration. The key is the telemetry type and the value is the state.
         TelemetryConfigurationState: {string : string}
@@ -972,7 +1056,7 @@ local record M
         AccountIdentifiers: {string}
         -- A string used to filter resources in the organization which have a ResourceIdentifier starting with the ResourceIdentifierPrefix.
         ResourceIdentifierPrefix: string
-        -- A list of resource types used to filter resources in the organization. If this parameter is provided, the resources will be returned in the same order used in the request.
+        -- A list of resource types used to filter resources in the organization. If this parameter is provided, the service returns the resources in the same order as specified in the request. Currently supported resource types for discovery are: AWS::EC2::Instance AWS::EC2::VPC AWS::Lambda::Function AWS::EKS::Cluster AWS::WAFv2::WebACL AWS::ElasticLoadBalancingV2::LoadBalancer (Network Load Balancers only)
         ResourceTypes: {string}
         -- A key-value pair to filter resources in the organization based on the telemetry type and the state of the telemetry configuration. The key is the telemetry type and the value is the state.
         TelemetryConfigurationState: {string : string}
@@ -1237,6 +1321,24 @@ local record M
     record UpdateCentralizationRuleForOrganizationOutput
         -- The Amazon Resource Name (ARN) of the updated organization centralization rule.
         RuleArn: string
+    end
+
+    record UpdateDatasetIntegrationInput
+        -- The Amazon Resource Name (ARN) of the dataset integration to update.
+        Arn: string
+        -- The Amazon Resource Name (ARN) of the IAM role to associate with the dataset integration.
+        RoleArn: string
+    end
+
+    record UpdateDatasetIntegrationOutput
+        -- The Amazon Resource Name (ARN) of the updated dataset integration.
+        Arn: string
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the updated dataset integration.
+        RoleArn: string
+        -- The timestamp when the dataset integration was created.
+        CreatedAt: number
+        -- The timestamp when the dataset integration was last updated.
+        UpdatedAt: number
     end
 
     record UpdateTelemetryRuleInput
