@@ -30,6 +30,7 @@ local record Client
     getEnterpriseSupportContractDetails: function(Client, types.GetEnterpriseSupportContractDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetEnterpriseSupportContractDetailsOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     listBillingViews: function(Client, types.ListBillingViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingViewsOutput>
+    listBillingViewSegments: function(Client, types.ListBillingViewSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingViewSegmentsOutput>
     listEnterpriseSupportLinkedAccountCharges: function(Client, types.ListEnterpriseSupportLinkedAccountChargesInput, ? base_client.InvokeOptions): async.Operation<types.ListEnterpriseSupportLinkedAccountChargesOutput>
     listSourceViewsForBillingView: function(Client, types.ListSourceViewsForBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceViewsForBillingViewOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -128,6 +129,10 @@ end
 
 function C:listBillingViews(input: types.ListBillingViewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBillingViewsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBillingViews as schema.OperationSchema, input, options) as async.Operation<types.ListBillingViewsOutput>
+end
+
+function C:listBillingViewSegments(input: types.ListBillingViewSegmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBillingViewSegmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBillingViewSegments as schema.OperationSchema, input, options) as async.Operation<types.ListBillingViewSegmentsOutput>
 end
 
 function C:listEnterpriseSupportLinkedAccountCharges(input: types.ListEnterpriseSupportLinkedAccountChargesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnterpriseSupportLinkedAccountChargesOutput>

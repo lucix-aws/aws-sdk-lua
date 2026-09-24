@@ -202,6 +202,8 @@ local record M
         "MULTIVIEW_INPUT_TYPE_WITH_SEGMENT_DURATION"
         "MULTIVIEW_SOURCE_NON_EPOCH_LOCKED"
         "MULTIVIEW_SCTE_REQUIRES_AVAILS_PERIOD_TRIGGER"
+        "CONTENT_KEY_PERIOD_TIMING_WITHOUT_KEY_ROTATION"
+        "CONTENT_KEY_PERIOD_TIMING_REQUIRES_SPEKE_V2_1"
     end
 
     -- The input failed to meet the constraints specified by the AWS service.
@@ -783,6 +785,18 @@ local record M
         IsmEncryptionMethod: string
     end
 
+    enum ContentKeyPeriodTiming
+        "INDEX_ONLY"
+        "START_END_ONLY"
+        "INDEX_WITH_START_END"
+    end
+
+    -- The configuration that controls the content key period timing information that MediaPackage signals to your DRM key provider.
+    record ContentKeyPeriodConfiguration
+        -- Specifies what timing information MediaPackage signals in the ContentKeyPeriod to your DRM key provider. If you don't specify a value, the default is INDEX_ONLY. Signaling start and end times (START_END_ONLY or INDEX_WITH_START_END) also requires key rotation to be enabled. The allowed values are: INDEX_ONLY - Signals only the content key index. This is the default and matches the current behavior. It's supported for both SPEKE Version 2.0 and 2.1. START_END_ONLY - Signals only the start and end times the key is used for. Requires SpekeVersion V2_1. INDEX_WITH_START_END - Signals both the content key index and the start and end times the key is used for. Requires SpekeVersion V2_1.
+        ContentKeyPeriodTiming: string
+    end
+
     enum DrmSystem
         "CLEAR_KEY_AES_128"
         "FAIRPLAY"
@@ -820,6 +834,11 @@ local record M
         PresetSpeke20Video: string
     end
 
+    enum SpekeVersion
+        "V2_0"
+        "V2_1"
+    end
+
     -- The parameters for the SPEKE key provider.
     record SpekeKeyProvider
         -- Configure one or more content encryption keys for your endpoints that use SPEKE Version 2.0. The encryption contract defines which content keys are used to encrypt the audio and video tracks in your stream. To configure the encryption contract, specify which audio and video encryption presets to use.
@@ -834,6 +853,10 @@ local record M
         Url: string
         -- The ARN for the certificate that you imported to Amazon Web Services Certificate Manager to add content key encryption to this endpoint. For this feature to work, your DRM key provider must support content key encryption.
         CertificateArn: string
+        -- Specifies the SPEKE version used with your DRM key provider. If you don't specify a value, the default is V2_0. The allowed values are: V2_0 - Follows the SPEKE Version 2.0 contract and signals only the content key index in key requests. This is the default. V2_1 - Follows the SPEKE Version 2.1 contract and additionally supports signaling the start and end times a content key is used for, using ContentKeyPeriodConfiguration. For more information, see SPEKE Version 2.0 payload.
+        SpekeVersion: string
+        -- The configuration that controls whether MediaPackage signals the start and end times a content key is used for, in the ContentKeyPeriod sent to your DRM key provider. Signaling this timing is supported only when key rotation is enabled (KeyRotationIntervalSeconds is set to a non-zero value) and SpekeVersion is V2_1. You can update these settings on an existing origin endpoint.
+        ContentKeyPeriodConfiguration: ContentKeyPeriodConfiguration
     end
 
     -- The parameters for encrypting content.

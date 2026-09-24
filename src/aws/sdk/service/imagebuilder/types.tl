@@ -32,13 +32,16 @@ local record M
         severityCounts: SeverityCounts
     end
 
-    -- Contains settings for the Systems Manager agent on your build instance.
+    -- Contains settings for the Systems Manager agent on your build instance. This setting
+    -- applies to Linux and macOS build instances only. Requests that set it for a
+    -- recipe with a Windows base image are rejected.
     record SystemsManagerAgent
-        -- Controls whether the Systems Manager agent is removed from your final build image, prior to
-        -- creating the new AMI. If this is set to true, then the agent is removed from the final
-        -- image. If it's set to false, then the agent is left in, so that it is included in the
-        -- new AMI. default value is false.
-        -- The default behavior of uninstallAfterBuild is to remove the SSM Agent if it was installed by EC2 Image Builder
+        -- Specifies whether the Systems Manager agent is removed from your final build image
+        -- before Image Builder creates the new AMI. If true, the agent is
+        -- removed. If false, the agent is kept, so that it's
+        -- included in the AMI. If you don't set this property, Image Builder removes the
+        -- agent only if Image Builder installed the agent during the build. An agent that was
+        -- pre-installed on the base image is kept.
         uninstallAfterBuild: boolean
     end
 
@@ -51,7 +54,9 @@ local record M
     -- Image Builder installs it. For Linux instances where Image Builder installs the Systems Manager agent, you can
     -- choose whether to keep it for the AMI that you create.
     record AdditionalInstanceConfiguration
-        -- Contains settings for the Systems Manager agent on your build instance.
+        -- The Systems Manager agent settings for your build instance. This setting
+        -- applies to Linux and macOS build instances only. Requests that set it for a
+        -- recipe with a Windows base image are rejected.
         systemsManagerAgent: SystemsManagerAgent
         -- Use this property to provide commands or a command script to run when you launch your
         -- build instance.
@@ -61,7 +66,7 @@ local record M
         -- your base image.
         -- The user data is always base 64 encoded. For example, the following commands are
         -- encoded as
-        -- IyEvYmluL2Jhc2gKbWtkaXIgLXAgL3Zhci9iYi8KdG91Y2ggL3Zhci$:
+        -- IyEvYmluL2Jhc2gKbWtkaXIgLXAgL3Zhci9iYi8KdG91Y2ggL3Zhcg==:
         -- #!/bin/bash
         -- mkdir -p /var/bb/
         -- touch /var
@@ -174,7 +179,12 @@ local record M
 
     -- Image status and the reason for that status.
     record ImageState
-        -- The status of the image.
+        -- The status of the image. A new image moves through build, test, and
+        -- distribution statuses during creation, and ends in the
+        -- AVAILABLE, FAILED, or CANCELLED
+        -- state. The DEPRECATED, DISABLED, and
+        -- DELETED statuses come from later resource management
+        -- actions.
         status: string
         -- The reason for the status of the image.
         reason: string
@@ -193,6 +203,8 @@ local record M
         name: string
         -- The description of the Amazon EC2 AMI. Minimum and maximum length are in characters.
         description: string
+        -- The state of the AMI, which includes the status and, if applicable,
+        -- the reason for that status.
         state: ImageState
         -- The account ID of the owner of the AMI.
         accountId: string
@@ -201,14 +213,17 @@ local record M
     -- Describes the configuration for a launch permission. The launch permission
     -- modification request is sent to the Amazon EC2
     -- ModifyImageAttribute API on behalf of the user for each Region they have
-    -- selected to distribute the AMI. To make an AMI public, set the launch permission
-    -- authorized accounts to all. See the examples for making an AMI public at
+    -- selected to distribute the AMI. To make an AMI public, set userGroups
+    -- to the value all. See the examples for making an AMI public at
     -- Amazon EC2
     -- ModifyImageAttribute.
     record LaunchPermissionConfiguration
-        -- The Amazon Web Services account ID.
+        -- The Amazon Web Services account IDs to grant launch permission to. Each listed account can
+        -- use the distributed AMI to launch instances.
         userIds: {string}
-        -- The name of the group.
+        -- The name of the group that you want to grant launch permission to. The only
+        -- supported value is all, which makes the distributed AMI
+        -- public.
         userGroups: {string}
         -- The ARN for an Amazon Web Services Organization that you want to share your AMI with. For more
         -- information, see What is
@@ -222,12 +237,22 @@ local record M
 
     -- Define and configure the output AMIs of the pipeline.
     record AmiDistributionConfiguration
-        -- The name of the output AMI.
+        -- The name of the output AMI. The name must include the
+        -- {{ imagebuilder:buildDate }} dynamic tag so that each build
+        -- produces a uniquely named AMI. If you don't specify a name, Image Builder
+        -- names the output AMI with the image name followed by the build timestamp,
+        -- for example my-image 2022-10-26T22-30-05.912619Z.
         name: string
-        -- The description of the AMI distribution configuration. Minimum and maximum length are
-        -- in characters.
+        -- The description to apply to the distributed AMI. Image Builder sets this as the
+        -- output AMI's description in each target Region and account. If you
+        -- don't specify a description, the AMI in the build Region uses the
+        -- image recipe's description, if the recipe has one. Copies distributed
+        -- to other Regions and accounts don't receive a default
+        -- description.
         description: string
-        -- The ID of an account to which you want to distribute an image.
+        -- The Amazon Web Services account IDs to distribute the AMI to in this Region. Each listed
+        -- account receives its own copy of the output AMI. If you don't specify
+        -- accounts, Image Builder distributes the AMI only to your own account.
         targetAccountIds: {string}
         -- The tags to apply to AMIs distributed to this Region.
         amiTags: {string : string}
@@ -240,7 +265,10 @@ local record M
         launchPermission: LaunchPermissionConfiguration
     end
 
-    -- Defines the rules by which an image pipeline is automatically disabled when it fails.
+    -- Defines the rules by which an image pipeline is automatically disabled when
+    -- it fails. By default, if the schedule doesn't include an auto-disable
+    -- policy, Image Builder disables the pipeline after 5 consecutive failed scheduled
+    -- builds.
     record AutoDisablePolicy
         -- The number of consecutive scheduled image pipeline executions that must fail before Image Builder
         -- automatically disables the pipeline.
@@ -254,7 +282,9 @@ local record M
         "IMPORT_ISO"
     end
 
-    -- You have exceeded the permitted request rate for the specific operation.
+    -- You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder
+    -- calls on your behalf. Retry with an increasing or variable delay between
+    -- requests.
     record CallRateLimitExceededException
         message: string
     end
@@ -264,8 +294,9 @@ local record M
         -- for.
         imageBuildVersionArn: string
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -279,9 +310,9 @@ local record M
         imageBuildVersionArn: string
     end
 
-    -- These errors are usually caused by a client action, such as using an action or
-    -- resource on behalf of a user that doesn't have permissions to use the action or
-    -- resource, or specifying an invalid resource identifier.
+    -- A generic client error. This error usually indicates that the request
+    -- failed a validation check, such as when a downstream service rejects a
+    -- configured value.
     record ClientException
         message: string
     end
@@ -297,7 +328,8 @@ local record M
         message: string
     end
 
-    -- You have requested an action that that the service doesn't support.
+    -- The request is malformed or otherwise invalid. Verify the request and try
+    -- again.
     record InvalidRequestException
         message: string
     end
@@ -308,8 +340,8 @@ local record M
         message: string
     end
 
-    -- This exception is thrown when the service encounters an unrecoverable
-    -- exception.
+    -- An internal server error occurred while Image Builder processed the request.
+    -- Retrying the request may succeed.
     record ServiceException
         message: string
     end
@@ -323,14 +355,16 @@ local record M
         -- Identifies the specific runtime instance of the image lifecycle to cancel.
         lifecycleExecutionId: string
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
 
     record CancelLifecycleExecutionOutput
-        -- The unique identifier for the image lifecycle runtime instance that was canceled.
+        -- The unique identifier of the lifecycle execution that the cancellation
+        -- request applies to. The cancellation completes asynchronously.
         lifecycleExecutionId: string
     end
 
@@ -374,7 +408,9 @@ local record M
 
     -- A group of fields that describe the current status of components.
     record ComponentState
-        -- The current state of the component.
+        -- The current state of the component. Components with a status of
+        -- DEPRECATED or DISABLED can't be added to new
+        -- recipes.
         status: string
         -- Describes how or why the component changed state.
         reason: string
@@ -409,14 +445,18 @@ local record M
         -- Contains parameter details for each of the parameters that the component document
         -- defined for the component.
         parameters: {ComponentParameterDetail}
-        -- The owner of the component.
+        -- The owner of the component. The value is your account ID for components
+        -- that you own, the sharing account's ID for shared components, or
+        -- Amazon, ThirdParty, or AWSMarketplace.
         owner: string
         -- Component data contains the YAML document content for the component.
         data: string
         -- The KMS key identifier used to encrypt the component. This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
         -- in the Key Management Service Developer Guide.
         kmsKeyId: string
-        -- The encryption status of the component.
+        -- Indicates whether the component data is encrypted at rest. Image Builder encrypts
+        -- all component data at rest, so this value is always true. This
+        -- field is retained for backward compatibility.
         encrypted: boolean
         -- The date that Image Builder created the component.
         dateCreated: string
@@ -440,12 +480,19 @@ local record M
         value: {string}
     end
 
-    -- Configuration details of the component.
+    -- Configuration details of the component. You can specify each component only
+    -- once in a recipe, regardless of version. Components with a status of
+    -- DEPRECATED or DISABLED can't be added to new
+    -- recipes.
     record ComponentConfiguration
-        -- The Amazon Resource Name (ARN) of the component.
+        -- The Amazon Resource Name (ARN) of the component. You can specify a build version ARN, or a
+        -- component version ARN whose version segments can use x
+        -- wildcards, for example 1.x.x.
         componentArn: string
-        -- A group of parameter settings that Image Builder uses to configure the component for a specific
-        -- recipe.
+        -- A group of parameter settings that Image Builder uses to configure the component for
+        -- a specific recipe. You must supply a value for every component parameter
+        -- that has no default value, and you can only supply parameters that the
+        -- component defines.
         parameters: {ComponentParameter}
     end
 
@@ -469,13 +516,15 @@ local record M
         supportedOsVersions: {string}
         -- Describes the current status of the component.
         state: ComponentState
-        -- The owner of the component.
+        -- The owner of the component. The value is your account ID for components
+        -- that you own, the sharing account's ID for shared components, or
+        -- Amazon, ThirdParty, or AWSMarketplace.
         owner: string
         -- The description of the component.
         description: string
-        -- The change description for the current version of the component.
+        -- The change description for this version of the component.
         changeDescription: string
-        -- The original creation date of the component.
+        -- The date that Image Builder created this version of the component.
         dateCreated: string
         -- The tags that apply to the component.
         tags: {string : string}
@@ -487,7 +536,7 @@ local record M
         obfuscate: boolean
     end
 
-    -- The defining characteristics of a specific version of an Amazon Web Services TOE component.
+    -- The defining characteristics of a specific version of a component.
     record ComponentVersion
         -- The Amazon Resource Name (ARN) of the component.
         -- Semantic versioning is included in each object's Amazon Resource Name (ARN),
@@ -520,7 +569,9 @@ local record M
         -- available, Image Builder performs a prefix match against the base image OS version during image
         -- recipe creation.
         supportedOsVersions: {string}
-        -- The owner of the component.
+        -- The owner of the component. The value is your account ID for components
+        -- that you own, the sharing account's ID for shared components, or
+        -- Amazon, ThirdParty, or AWSMarketplace.
         owner: string
         -- The date that the component was created.
         dateCreated: string
@@ -530,7 +581,9 @@ local record M
         productCodes: {ProductCodeListItem}
     end
 
-    -- A container encapsulates the runtime environment for an application.
+    -- Details of the container images that are output resources of an image build
+    -- in a given Amazon Web Services Region: the Region, and the URIs of the container
+    -- images.
     record Container
         -- Containers and container images are Region-specific. This is the Region context for
         -- the container.
@@ -547,18 +600,21 @@ local record M
     record TargetContainerRepository
         -- Specifies the service in which this image was registered.
         service: string
-        -- The name of the container repository where the output container image is stored.
-        -- This name is prefixed by the repository location. For example,
-        -- /repository_name.
+        -- The name of the container repository where the output container image is
+        -- stored. Provide the repository name only (a namespace path such as
+        -- team-a/my-repo is allowed, but not the registry
+        -- hostname).
         repositoryName: string
     end
 
-    -- Container distribution settings for encryption, licensing, and sharing in a specific
-    -- Region.
+    -- Defines how the output container image is distributed in a specific
+    -- Amazon Web Services Region: the target repository, the image tags to apply to the
+    -- distributed image, and an optional description.
     record ContainerDistributionConfiguration
         -- The description of the container distribution configuration.
         description: string
-        -- Tags that are attached to the container distribution configuration.
+        -- Tags that Image Builder applies to the distributed container image in the target
+        -- repository. These are repository image tags, not resource tags.
         containerTags: {string}
         -- The destination repository for the container distribution configuration.
         targetRepository: TargetContainerRepository
@@ -621,12 +677,14 @@ local record M
         -- followed by the parameter name or ARN.
         -- If not specified, Image Builder uses the appropriate ECS-optimized AMI as a base image.
         image: string
-        -- Defines the block devices to attach for building an instance from this Image Builder
-        -- AMI.
+        -- Defines the block device mappings for the EC2 instance that Image Builder launches
+        -- to build and test your container image.
         blockDeviceMappings: {InstanceBlockDeviceMapping}
     end
 
-    -- A container recipe.
+    -- Defines how Image Builder builds and tests a container image: the base image,
+    -- components to apply, the Dockerfile template, the build and test instance
+    -- configuration, and the target repository for the output image.
     record ContainerRecipe
         -- The Amazon Resource Name (ARN) of the container recipe.
         -- Semantic versioning is included in each object's Amazon Resource Name (ARN),
@@ -642,7 +700,8 @@ local record M
         name: string
         -- The description of the container recipe.
         description: string
-        -- The system platform for the container, such as Windows or Linux.
+        -- The system platform for the container. Container recipes support only the
+        -- Linux and Windows platforms.
         platform: string
         -- The owner of the container recipe.
         owner: string
@@ -660,22 +719,31 @@ local record M
         -- to the right of the first wildcard must also be wildcards.
         version: string
         -- Build and test components that are included in the container recipe.
-        -- Recipes require a minimum of one build component, and can
-        -- have a maximum of 20 build and test components in any combination.
+        -- A recipe can contain a maximum of 20 build and test components
+        -- in any combination, by default. This maximum is an adjustable quota. For more information, see
+        -- EC2 Image Builder endpoints and quotas
+        -- in the Amazon Web Services General Reference.
         components: {ComponentConfiguration}
         -- A group of options that can be used to configure an instance for building and testing
         -- container images.
         instanceConfiguration: InstanceConfiguration
-        -- Dockerfiles are text documents that are used to build Docker containers, and ensure
-        -- that they contain all of the elements required by the application running inside. The
-        -- template data consists of contextual variables where Image Builder places build information or
-        -- scripts, based on your container image recipe.
+        -- The Dockerfile template that Image Builder uses to build the container image. The
+        -- template can include contextual variables that Image Builder replaces with build
+        -- information at build time. For the contextual variables that the template
+        -- can include, see Create
+        -- a new version of a container recipe in the
+        -- EC2 Image Builder User Guide.
         dockerfileTemplateData: string
-        -- The Amazon Resource Name (ARN) that uniquely identifies which KMS key is used to encrypt the container image
-        -- for distribution to the target Region. This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
-        -- in the Key Management Service Developer Guide.
+        -- The KMS key that Image Builder uses to encrypt the recipe's Dockerfile template
+        -- data at rest. This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
+        -- in the Key Management Service Developer Guide. If you don't specify a key, Image Builder
+        -- encrypts the template data with a KMS key that Image Builder owns. This key
+        -- isn't used to encrypt the output container image.
         kmsKeyId: string
-        -- A flag that indicates if the target container is encrypted.
+        -- Specifies whether the recipe's Dockerfile template data is encrypted at
+        -- rest. Image Builder encrypts all Dockerfile template data at rest, so this value is
+        -- always true. This field is retained for backward compatibility,
+        -- and doesn't describe encryption of the output container image.
         encrypted: boolean
         -- The base image for customizations specified in the container recipe. This can
         -- contain an Image Builder image resource ARN or a container image URI, for example
@@ -691,7 +759,7 @@ local record M
         targetRepository: TargetContainerRepository
     end
 
-    -- A summary of a container recipe
+    -- A summary of a container recipe.
     record ContainerRecipeSummary
         -- The Amazon Resource Name (ARN) of the container recipe.
         arn: string
@@ -699,7 +767,8 @@ local record M
         containerType: string
         -- The name of the container recipe.
         name: string
-        -- The system platform for the container, such as Windows or Linux.
+        -- The system platform for the container. Container recipes support only the
+        -- Linux and Windows platforms.
         platform: string
         -- The owner of the container recipe.
         owner: string
@@ -717,7 +786,13 @@ local record M
     end
 
     record CreateComponentInput
-        -- The name of the component.
+        -- The name of the component. Image Builder generates the component ARN from a
+        -- normalized form of the name, so names that differ only in case, spaces, or
+        -- underscores count as the same name. If a component with the same name and
+        -- semantic version already exists in your account in the same Amazon Web Services Region,
+        -- the request creates a new build version for it. If the content is also
+        -- identical to the latest build version, the request fails because the
+        -- component already exists.
         name: string
         -- The semantic version of the component. This version follows the semantic version
         -- syntax.
@@ -749,25 +824,30 @@ local record M
         -- The uri of a YAML component document file. This must be an S3 URL
         -- (s3://bucket/key), and you must have permission to access the
         -- S3 bucket it points to. If you use Amazon S3, you can specify component content up to your
-        -- service quota.
+        -- service quota for component size, which is 64 KB by default.
         -- Alternatively, you can specify the YAML document inline, using the component
         -- data property. You cannot specify both properties.
         uri: string
-        -- The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this component. This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
-        -- in the Key Management Service Developer Guide.
+        -- The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this component.
+        -- This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
+        -- in the Key Management Service Developer Guide. If you don't specify a key, Image Builder encrypts the
+        -- component data with a KMS key that Image Builder owns.
         kmsKeyId: string
         -- The tags that apply to the component.
         tags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        -- Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
-    -- The resource ARNs with different wildcard variations of semantic versioning.
+    -- A set of wildcard version ARNs that always reference the latest
+    -- version of the resource. ARNs are included for the latest version overall, and for the latest
+    -- versions within the same major, minor, and patch levels.
     record LatestVersionReferences
         -- The latest version Amazon Resource Name (ARN) of the Image Builder resource.
         latestVersionArn: string
@@ -786,7 +866,9 @@ local record M
         clientToken: string
         -- The Amazon Resource Name (ARN) of the component that the request created.
         componentBuildVersionArn: string
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
@@ -795,8 +877,9 @@ local record M
         message: string
     end
 
-    -- You have specified two or more mutually exclusive parameters. Review the error message
-    -- for details.
+    -- You have specified a combination of parameters that isn't valid. For
+    -- example, two mutually exclusive parameters, or a parameter without its
+    -- required companion parameter. Review the error message for details.
     record InvalidParameterCombinationException
         message: string
     end
@@ -816,7 +899,11 @@ local record M
     record CreateContainerRecipeInput
         -- The type of container to create.
         containerType: string
-        -- The name of the container recipe.
+        -- The name of the container recipe. The recipe name, combined with the
+        -- semantic version, must be unique to your account in each Amazon Web Services Region.
+        -- Image Builder generates the container recipe ARN from a normalized form of the
+        -- name, so names that differ only in case, spaces, or underscores count as
+        -- the same name.
         name: string
         -- The description of the container recipe.
         description: string
@@ -831,38 +918,56 @@ local record M
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
         -- a date, such as 2021.01.01.
         semanticVersion: string
-        -- The components included in the container recipe.
+        -- The components included in the container recipe. You can specify each
+        -- component only one time in a recipe.
         components: {ComponentConfiguration}
         -- A group of options that can be used to configure an instance for building and testing
         -- container images.
         instanceConfiguration: InstanceConfiguration
-        -- The Dockerfile template used to build your image as an inline data blob.
+        -- The Dockerfile template used to build your image, as an inline data blob.
+        -- You must specify exactly one of the dockerfileTemplateData or
+        -- dockerfileTemplateUri properties. For the contextual variables
+        -- that the template can include, see Create
+        -- a new version of a container recipe in the
+        -- EC2 Image Builder User Guide.
         dockerfileTemplateData: string
-        -- The Amazon S3 URI for the Dockerfile that is used to build your container
-        -- image.
+        -- The Amazon S3 URI for the Dockerfile template that is used to build your container
+        -- image. You must have permission to read the object. Image Builder reads the object
+        -- once, when it creates the recipe, and stores its content in the recipe.
+        -- Later changes to the S3 object don't affect the recipe. You must specify
+        -- exactly one of the dockerfileTemplateData or
+        -- dockerfileTemplateUri properties.
         dockerfileTemplateUri: string
         -- Specifies the operating system platform when you use a custom base image.
+        -- Container recipes support only the Linux and Windows platforms.
         platformOverride: string
-        -- Specifies the operating system version for the base image.
+        -- Specifies the operating system version for the base image. Use this property
+        -- only when the base image is a container image from a registry. When the base
+        -- image is an Image Builder image, the operating system version comes from the parent
+        -- image.
         imageOsVersionOverride: string
-        -- The base image for the container recipe.
+        -- The base image for the container recipe. This can be an Image Builder image resource
+        -- ARN or a container image URI from a registry, for example
+        -- amazonlinux:latest.
         parentImage: string
         -- Tags that are attached to the container recipe.
         tags: {string : string}
         -- The working directory for use during build and test workflows.
         workingDirectory: string
-        -- The destination repository for the container image.
+        -- The destination repository for the container image. The Amazon ECR repository
+        -- must already exist in the Amazon Web Services Region where the build runs.
         targetRepository: TargetContainerRepository
         -- The Amazon Resource Name (ARN) that uniquely identifies which KMS key is used to encrypt the Dockerfile
         -- template. This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
         -- in the Key Management Service Developer Guide.
         kmsKeyId: string
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        -- Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -874,7 +979,9 @@ local record M
         -- Returns the Amazon Resource Name (ARN) of the container recipe that the request
         -- created.
         containerRecipeArn: string
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
@@ -884,15 +991,15 @@ local record M
     end
 
     -- Identifies the launch template that the associated Windows AMI uses for launching an
-    -- instance when faster launching is enabled.
+    -- instance when Windows fast launch is enabled.
     -- You can specify either the launchTemplateName or the
     -- launchTemplateId, but not both.
     record FastLaunchLaunchTemplateSpecification
-        -- The ID of the launch template to use for faster launching for a Windows AMI.
+        -- The ID of the launch template to use for Windows fast launch for a Windows AMI.
         launchTemplateId: string
-        -- The name of the launch template to use for faster launching for a Windows AMI.
+        -- The name of the launch template to use for Windows fast launch for a Windows AMI.
         launchTemplateName: string
-        -- The version of the launch template to use for faster launching for a Windows
+        -- The version of the launch template to use for Windows fast launch for a Windows
         -- AMI.
         launchTemplateVersion: string
     end
@@ -905,14 +1012,14 @@ local record M
         targetResourceCount: number
     end
 
-    -- Define and configure faster launching for output Windows AMIs.
+    -- Defines and configures EC2 Fast Launch for output Windows AMIs.
     record FastLaunchConfiguration
-        -- A Boolean that represents the current state of faster launching for the Windows AMI.
-        -- Set to true to start using Windows faster launching, or false
-        -- to stop using it.
+        -- Specifies whether to enable Windows fast launch on the output AMI during
+        -- distribution. A value of false means Image Builder takes no
+        -- fast-launch action for this configuration.
         enabled: boolean
         -- Configuration settings for managing the number of snapshots that are created from
-        -- pre-provisioned instances for the Windows AMI when faster launching is enabled.
+        -- pre-provisioned instances for the Windows AMI when Windows fast launch is enabled.
         snapshotConfiguration: FastLaunchSnapshotConfiguration
         -- The maximum number of parallel instances that are launched for creating
         -- resources.
@@ -930,8 +1037,9 @@ local record M
         launchTemplateId: string
         -- The account ID that this configuration applies to.
         accountId: string
-        -- Set the specified Amazon EC2 launch template as the default launch template for the
-        -- specified account.
+        -- Specifies whether to make the new launch template version that Image Builder creates
+        -- the default version of the launch template. If you don't set a value,
+        -- Image Builder treats it as true.
         setDefaultVersion: boolean
     end
 
@@ -941,8 +1049,8 @@ local record M
         "VHD"
     end
 
-    -- Properties that configure export from your build instance to a compatible file format
-    -- for your VM.
+    -- Properties that configure exporting the output image to a disk image file in
+    -- an Amazon S3 bucket, in a format that's compatible with your VMs.
     record S3ExportConfiguration
         -- The name of the role that grants VM Import/Export permission to export images to your
         -- S3 bucket.
@@ -1009,20 +1117,27 @@ local record M
     end
 
     record CreateDistributionConfigurationInput
-        -- The name of the distribution configuration.
+        -- The name of the distribution configuration. Distribution configuration
+        -- names must be unique to your account in each Amazon Web Services Region. Image Builder generates
+        -- the distribution configuration ARN from a normalized form of the name, so
+        -- names that differ only in case, spaces, or underscores count as the same
+        -- name.
         name: string
         -- The description of the distribution configuration.
         description: string
-        -- The distributions of the distribution configuration.
+        -- The distribution settings for the configuration. Each entry defines how
+        -- output images are distributed in one target Amazon Web Services Region. A Region can
+        -- appear at most once in the list.
         distributions: {Distribution}
         -- The tags of the distribution configuration.
         tags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        -- Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -1039,11 +1154,12 @@ local record M
     -- Settings that Image Builder uses to configure the ECR repository and the output container
     -- images that Amazon Inspector scans.
     record EcrConfiguration
-        -- The name of the container repository that Amazon Inspector scans to identify findings for your
-        -- container images. The name includes the path for the repository location. If you don’t
-        -- provide this information, Image Builder creates a repository in your account named
-        -- image-builder-image-scanning-repository for vulnerability scans of your
-        -- output container images.
+        -- The name of the container repository where Image Builder pushes the container
+        -- image for the vulnerability scan. Provide the repository name only (a
+        -- namespace path is allowed, but not the registry hostname); the repository
+        -- must already exist in your account. If you don't specify a repository
+        -- name, Image Builder creates the default repository
+        -- image-builder-image-scanning-repository in your account.
         repositoryName: string
         -- Tags for Image Builder to apply to the output container image that Amazon Inspector scans. Tags can
         -- help you identify and manage your scanned images.
@@ -1052,8 +1168,12 @@ local record M
 
     -- Contains settings for Image Builder image resource and container image scans.
     record ImageScanningConfiguration
-        -- A setting that indicates whether Image Builder keeps a snapshot of the vulnerability scans that
-        -- Amazon Inspector runs against the build instance when you create a new image.
+        -- Specifies whether Amazon Inspector scans for vulnerabilities when you create a new
+        -- image, and whether Image Builder saves the findings. Amazon Inspector must be enabled in the
+        -- account. Image tests must also be enabled. For AMI output, Amazon Inspector scans the
+        -- test instance. For container output, Amazon Inspector scans the container image that
+        -- Image Builder pushes to the Amazon ECR repository from your ecrConfiguration
+        -- settings.
         imageScanningEnabled: boolean
         -- Contains Amazon ECR settings for vulnerability scans.
         ecrConfiguration: EcrConfiguration
@@ -1066,7 +1186,8 @@ local record M
         -- When enabled, tests run after the image build and before image distribution.
         -- Defaults to true.
         imageTestsEnabled: boolean
-        -- The maximum time in minutes that tests are permitted to run.
+        -- The maximum time in minutes that tests are permitted to run. If you don't
+        -- specify a value, Image Builder stores and returns 720.
         -- The timeout property is not currently active. This value is
         -- ignored.
         timeoutMinutes: number
@@ -1108,24 +1229,32 @@ local record M
         -- others complete, until all workflows in the group have completed. This field only
         -- applies for test workflows.
         parallelGroup: string
-        -- The action to take if the workflow fails.
+        -- The action to take if the workflow fails. With CONTINUE, a
+        -- failed workflow is logged and image creation proceeds to the next workflow.
+        -- If you don't set a value, the image build fails when the workflow fails.
+        -- You can only set this property for test workflows.
         onFailure: string
     end
 
     record CreateImageInput
         -- The Amazon Resource Name (ARN) of the image recipe that defines how images are
-        -- configured, tested, and assessed.
+        -- configured, tested, and assessed. You must specify either this property or
+        -- containerRecipeArn, but not both.
         imageRecipeArn: string
         -- The Amazon Resource Name (ARN) of the container recipe that defines how images are
-        -- configured and tested.
+        -- configured and tested. You must specify either this property or
+        -- imageRecipeArn, but not both.
         containerRecipeArn: string
         -- The Amazon Resource Name (ARN) of the distribution configuration that defines and
-        -- configures the outputs of your pipeline.
+        -- configures the outputs of the image build. If you don't specify a
+        -- distribution configuration, Image Builder creates the output image only in the
+        -- account and Amazon Web Services Region where the build runs.
         distributionConfigurationArn: string
         -- The Amazon Resource Name (ARN) of the infrastructure configuration that defines the
         -- environment in which your image will be built and tested.
         infrastructureConfigurationArn: string
-        -- The image tests configuration of the image.
+        -- Settings that determine whether Image Builder runs tests on the image after
+        -- building it. Image tests are enabled by default.
         imageTestsConfiguration: ImageTestsConfiguration
         -- Specifies whether to collect additional information about the image being created, including the operating
         -- system (OS) version and package list. Defaults to true.
@@ -1133,18 +1262,30 @@ local record M
         -- The tags of the image.
         tags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Contains settings for vulnerability scans.
+        -- Settings for vulnerability scans that Amazon Inspector runs during image
+        -- creation. For AMI output, Amazon Inspector scans the test instance. For container
+        -- output, Amazon Inspector scans the container image that Image Builder pushes to the Amazon ECR
+        -- repository specified in ecrConfiguration.
         imageScanningConfiguration: ImageScanningConfiguration
-        -- Contains an array of workflow configuration objects.
+        -- The array of workflow configuration objects for the build. If you specify
+        -- workflows, they replace the default workflows that Image Builder otherwise runs for
+        -- the build, and you must also provide an executionRole.
         workflows: {WorkflowConfiguration}
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
-        -- Image Builder access to perform workflow actions.
+        -- Image Builder access to perform workflow actions. This property is required if you
+        -- specify workflows. If you don't provide a role, Image Builder uses the
+        -- Image Builder service-linked role in your account, and creates it if it doesn't
+        -- exist.
         executionRole: string
-        -- The logging configuration for the image build process.
+        -- The CloudWatch Logs log group where Image Builder sends the image build logs. If
+        -- you specify a log group name outside of the /aws/imagebuilder/
+        -- namespace, you must also provide an executionRole that has
+        -- permission to write to that log group.
         loggingConfiguration: ImageLoggingConfiguration
     end
 
@@ -1155,7 +1296,9 @@ local record M
         clientToken: string
         -- The Amazon Resource Name (ARN) of the image that the request created.
         imageBuildVersionArn: string
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
@@ -1187,13 +1330,16 @@ local record M
     -- A schedule configures when and how often a pipeline will automatically create a new
     -- image.
     record Schedule
-        -- The cron expression determines how often EC2 Image Builder evaluates your
-        -- pipelineExecutionStartCondition.
+        -- The expression determines how often EC2 Image Builder evaluates your
+        -- pipelineExecutionStartCondition. You can specify a cron
+        -- expression, or a rate expression such as rate(1 day).
         -- For information on how to format a cron expression in Image Builder, see Use
         -- cron expressions in EC2 Image Builder.
         scheduleExpression: string
-        -- The timezone that applies to the scheduling expression. For example, "Etc/UTC",
-        -- "America/Los_Angeles" in the IANA timezone format. If not specified this defaults to UTC.
+        -- The timezone that applies to the scheduling expression. Specify a value in
+        -- IANA timezone
+        -- format, for example Etc/UTC or
+        -- America/Los_Angeles. If not specified, this defaults to UTC.
         timezone: string
         -- The start condition configures when the pipeline should trigger a new image build,
         -- as follows. If no value is set Image Builder defaults to
@@ -1202,9 +1348,13 @@ local record M
         -- When you use semantic version filters on the base image or components in your
         -- image recipe, EC2 Image Builder builds a new image only when there are new versions of
         -- the base image or components in your recipe that match the filter.
-        -- For semantic version syntax, see CreateComponent.
+        -- For semantic version syntax, see
+        -- CreateComponent.
         -- EXPRESSION_MATCH_ONLY – This condition builds a new
         -- image every time the CRON expression matches the current time.
+        -- If the recipe references its base image through an Amazon Web Services Systems Manager Parameter
+        -- Store parameter, a change in the parameter's value also counts as an
+        -- available dependency update.
         pipelineExecutionStartCondition: string
         -- The policy that configures when Image Builder should automatically disable a pipeline that
         -- is failing.
@@ -1217,15 +1367,20 @@ local record M
     end
 
     record CreateImagePipelineInput
-        -- The name of the image pipeline.
+        -- The name of the image pipeline. Pipeline names must be unique to your
+        -- account in each Amazon Web Services Region. Image Builder generates the pipeline ARN from a
+        -- normalized form of the name, so names that differ only in case, spaces, or
+        -- underscores count as the same name.
         name: string
         -- The description of the image pipeline.
         description: string
         -- The Amazon Resource Name (ARN) of the image recipe that configures
-        -- images created by this image pipeline.
+        -- images created by this image pipeline. You must specify either this property
+        -- or containerRecipeArn, but not both.
         imageRecipeArn: string
         -- The Amazon Resource Name (ARN) of the container recipe that is used to configure
-        -- images created by this container pipeline.
+        -- images created by this container pipeline. You must specify either this
+        -- property or imageRecipeArn, but not both.
         containerRecipeArn: string
         -- The Amazon Resource Name (ARN) of the infrastructure configuration that
         -- builds images created by this image pipeline.
@@ -1233,27 +1388,40 @@ local record M
         -- The Amazon Resource Name (ARN) of the distribution configuration that configures and
         -- distributes images created by this image pipeline.
         distributionConfigurationArn: string
-        -- The image test configuration of the image pipeline.
+        -- Specifies the test settings that Image Builder applies to images that this
+        -- pipeline creates. If you don't provide test settings, Image Builder stores a default
+        -- configuration with image tests enabled.
         imageTestsConfiguration: ImageTestsConfiguration
         -- Specifies whether to collect additional information about the image being created, including the operating
         -- system (OS) version and package list. Defaults to true.
         enhancedImageMetadataEnabled: boolean
-        -- The schedule of the image pipeline.
+        -- The schedule of the image pipeline. If you don't provide a schedule, the
+        -- pipeline runs only when you call
+        -- StartImagePipelineExecution.
         schedule: Schedule
-        -- The status of the image pipeline.
+        -- The status of the image pipeline. If you don't specify a status, it
+        -- defaults to ENABLED. A disabled pipeline doesn't run on its
+        -- schedule, but you can still start builds manually.
         status: string
         -- The tags of the image pipeline.
         tags: {string : string}
-        -- The tags to be applied to the images produced by this pipeline.
+        -- The tags that Image Builder applies to the Image Builder image resource that this
+        -- pipeline's scheduled executions create. These tags don't apply to the
+        -- output AMI. To tag output AMIs, use amiTags in the
+        -- pipeline's distribution configuration.
         imageTags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Contains settings for vulnerability scans.
+        -- Contains settings for vulnerability scans that Amazon Inspector runs against the test instance
+        -- during image creation.
         imageScanningConfiguration: ImageScanningConfiguration
-        -- Contains an array of workflow configuration objects.
+        -- The array of workflow configuration objects for builds that this pipeline
+        -- starts. You must also specify executionRole when you provide
+        -- workflows.
         workflows: {WorkflowConfiguration}
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
         -- Image Builder access to perform workflow actions.
@@ -1265,7 +1433,7 @@ local record M
         -- role. For custom log group names outside of this prefix, you must also
         -- provide an executionRole.
         loggingConfiguration: PipelineLoggingConfiguration
-        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        -- Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -1280,7 +1448,11 @@ local record M
     end
 
     record CreateImageRecipeInput
-        -- The name of the image recipe.
+        -- The name of the image recipe. The recipe name, combined with the semantic
+        -- version, must be unique to your account in each Amazon Web Services Region. Image Builder
+        -- generates the image recipe ARN from a normalized form of the name, so
+        -- names that differ only in case, spaces, or underscores count as the same
+        -- name.
         name: string
         -- The description of the image recipe.
         description: string
@@ -1295,7 +1467,12 @@ local record M
         -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
         -- a date, such as 2021.01.01.
         semanticVersion: string
-        -- The components included in the image recipe.
+        -- The components included in the image recipe. Components are optional. A
+        -- recipe with no components bakes the base image without additional
+        -- customization. You can
+        -- specify each component only one time in a recipe. Components with a status
+        -- of DEPRECATED or DISABLED can't be added to
+        -- new recipes.
         components: {ComponentConfiguration}
         -- The base image for customizations specified in the image recipe. You can specify the
         -- parent image using one of the following options:
@@ -1305,13 +1482,19 @@ local record M
         -- followed by the parameter name or ARN.
         -- Amazon Web Services Marketplace product ID
         -- If you enter an AMI ID or an SSM parameter that contains the AMI ID, you must have access
-        -- to the AMI, and the AMI must be in the source Region.
+        -- to the AMI. The AMI must also be in the Region where you're creating
+        -- the recipe.
         parentImage: string
-        -- The block device mappings of the image recipe.
+        -- The block device mappings that Image Builder applies to the build instance and the
+        -- output AMI. For example, you can override the size of the base image's
+        -- root volume or attach additional EBS volumes.
         blockDeviceMappings: {InstanceBlockDeviceMapping}
         -- The tags of the image recipe.
         tags: {string : string}
-        -- The working directory used during build and test workflows.
+        -- The working directory used during build and test workflows. If you
+        -- don't specify a working directory, Image Builder uses /tmp for
+        -- Linux and macOS build instances, and C:/ for Windows build
+        -- instances.
         workingDirectory: string
         -- The additional settings and launch scripts for your build instances.
         additionalInstanceConfiguration: AdditionalInstanceConfiguration
@@ -1326,11 +1509,12 @@ local record M
         -- watermarks cannot be made public.
         amiWatermarks: {string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        -- Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -1342,17 +1526,16 @@ local record M
         -- The Amazon Resource Name (ARN) of the image recipe that was created by this
         -- request.
         imageRecipeArn: string
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
-    -- The instance metadata options that apply to the HTTP requests that pipeline builds use
-    -- to launch EC2 build and test instances. For more information about instance metadata
-    -- options, see Configure the instance metadata options in the
-    -- Amazon EC2 User Guide
-    -- for Linux instances, or Configure the instance metadata options in the
-    -- Amazon EC2 Windows Guide
-    -- for Windows instances.
+    -- The instance metadata service (IMDS) settings that Image Builder applies to the EC2
+    -- build and test instances it launches. These settings control how software
+    -- on those instances retrieves instance metadata and IAM role
+    -- credentials.
     record InstanceMetadataOptions
         -- Indicates whether a signed token header is required for instance metadata retrieval
         -- requests. The values affect the response as follows:
@@ -1362,19 +1545,29 @@ local record M
         -- token header in your request to retrieve instance metadata, or you can leave it
         -- out. If you include it, version 2.0 credentials are returned for the IAM role.
         -- Otherwise, version 1.0 credentials are returned.
-        -- The default setting is optional.
+        -- If you don't set a value, the EC2 launch default applies to the
+        -- build and test instances. That default depends on the base AMI and any
+        -- account-level instance metadata defaults. For more information, see Configure the instance metadata options in the
+        -- Amazon EC2 User Guide
+        -- .
         httpTokens: string
-        -- Limit the number of hops that an instance metadata request can traverse to reach its
-        -- destination. The default is one hop. However, if HTTP tokens are required, container
-        -- image builds need a minimum of two hops.
+        -- Limit the number of hops that an instance metadata request can traverse to
+        -- reach its destination. If you don't set a value, the EC2 launch default
+        -- for the instance applies. If HTTP tokens are required, container image
+        -- builds need a minimum of two hops.
         httpPutResponseHopLimit: number
     end
 
     -- Amazon S3 logging configuration.
     record S3Logs
-        -- The S3 bucket in which to store the logs.
+        -- The name of an existing Amazon S3 bucket where Image Builder saves build logs. The bucket
+        -- isn't validated when you create or update the configuration, and Image Builder
+        -- doesn't create it. The instance profile associated with this
+        -- infrastructure configuration must have permission to write to the
+        -- bucket.
         s3BucketName: string
-        -- The Amazon S3 path to the bucket where the logs are stored.
+        -- The Amazon S3 key prefix under which Image Builder writes build and test logs in the
+        -- bucket.
         s3KeyPrefix: string
     end
 
@@ -1407,33 +1600,42 @@ local record M
         -- find an available host for your build and test instances.
         tenancy: string
         -- The ID of the Dedicated Host on which build and test instances run. This only
-        -- applies if tenancy is host. If you specify the host ID, you
-        -- must not specify the resource group ARN. If you specify both, Image Builder returns an error.
+        -- applies if tenancy is host.
         hostId: string
         -- The Amazon Resource Name (ARN) of the host resource group in which to launch build and test instances.
-        -- This only applies if tenancy is host. If you specify the resource
-        -- group ARN, you must not specify the host ID. If you specify both, Image Builder returns an error.
+        -- This only applies if tenancy is host.
         hostResourceGroupArn: string
     end
 
     record CreateInfrastructureConfigurationInput
-        -- The name of the infrastructure configuration.
+        -- The name of the infrastructure configuration. Infrastructure configuration
+        -- names must be unique to your account in each Amazon Web Services Region. Image Builder generates
+        -- the infrastructure configuration ARN from a normalized form of the name, so
+        -- names that differ only in case, spaces, or underscores count as the same
+        -- name.
         name: string
         -- The description of the infrastructure configuration.
         description: string
         -- The instance types of the infrastructure configuration. You can specify one or more
         -- instance types to use for this build. Image Builder picks one of these instance types
-        -- based on availability.
+        -- based on availability. If you don't specify instance types, Image Builder selects
+        -- compatible instance types automatically. If you specify a Dedicated Host,
+        -- Image Builder uses only instance types that the host supports.
         instanceTypes: {string}
         -- The instance profile to associate with the instance used to customize your Amazon EC2
-        -- AMI.
+        -- AMI. The instance profile must exist in your account.
         instanceProfileName: string
         -- The security group IDs to associate with the instance used to customize your Amazon EC2
         -- AMI.
         securityGroupIds: {string}
-        -- The subnet ID in which to place the instance used to customize your Amazon EC2 AMI.
+        -- The subnet ID in which to place the instance used to customize your Amazon EC2
+        -- AMI. If you specify subnetId, you must also specify one or
+        -- more security group IDs in securityGroupIds. Otherwise, the
+        -- request fails.
         subnetId: string
-        -- The logging configuration of the infrastructure configuration.
+        -- The logging configuration of the infrastructure configuration. When you
+        -- configure S3 logs, Image Builder writes logs from the build and test process to the
+        -- specified bucket under the key prefix.
         logging: Logging
         -- The key pair of the infrastructure configuration. You can use this to log on to and
         -- debug the instance used to create your image.
@@ -1443,28 +1645,45 @@ local record M
         -- test phase of your workflow fails. Defaults to true.
         terminateInstanceOnFailure: boolean
         -- The Amazon Resource Name (ARN) of the SNS topic to which Image Builder sends image build event notifications.
-        -- EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys
-        -- from other accounts. The key that is used to encrypt the SNS topic must reside in the
-        -- account that the Image Builder service runs under.
+        -- Specify a standard topic. Image Builder doesn't support FIFO topics.
+        -- Image Builder validates the topic when you create or update the configuration. You
+        -- must have permission to publish to the topic.
+        -- EC2 Image Builder can't send notifications to SNS topics that are encrypted using keys
+        -- from other accounts. If your SNS topic is encrypted, the key must be owned by the
+        -- same account that owns your Image Builder resources.
         snsTopicArn: string
-        -- The metadata tags to assign to the Amazon EC2 instance that Image Builder launches during the build process.
-        -- Tags are formatted as key value pairs.
+        -- The metadata tags to assign to the Amazon EC2 instance that Image Builder launches during
+        -- the build process. Tags are formatted as key value pairs. Tag keys can't
+        -- begin with aws: or match one of the following reserved keys: CreatedBy,
+        -- Ec2ImageBuilderArn, Name, or
+        -- Tags.
         resourceTags: {string : string}
-        -- The instance metadata options that you can set for the HTTP requests that pipeline
-        -- builds use to launch EC2 build and test instances.
+        -- The instance metadata service (IMDS) settings that Image Builder applies to the EC2
+        -- build and test instances it launches during image creation. If you don't
+        -- set these options, the EC2 launch defaults for the instance apply. For more
+        -- information about instance metadata options, see one of the following
+        -- links:
+        -- Configure the instance metadata options in the
+        -- Amazon EC2 User Guide
+        -- for Linux instances.
+        -- Configure the instance metadata options in the
+        -- Amazon EC2 Windows Guide
+        -- for Windows instances.
         instanceMetadataOptions: InstanceMetadataOptions
         -- The metadata tags to assign to the infrastructure configuration resource that Image Builder
         -- creates as output. Tags are formatted as key value pairs.
         tags: {string : string}
-        -- The instance placement settings that define where the instances that are launched
-        -- from your image run.
+        -- The instance placement settings that define where the build and test
+        -- instances that Image Builder launches during image creation run. These settings
+        -- don't affect instances that you launch from the output image.
         placement: Placement
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        -- Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -1494,9 +1713,14 @@ local record M
         "DISABLE"
     end
 
-    -- Contains selection criteria for the lifecycle policy.
+    -- Contains the action configuration for a lifecycle policy rule: the action to
+    -- take, and which underlying resources the action extends to.
     record LifecyclePolicyDetailAction
-        -- Specifies the resources that the lifecycle policy applies to.
+        -- Specifies which underlying resources the action extends to beyond the Image Builder
+        -- image resource itself: distributed AMIs, their snapshots, or distributed
+        -- container images. DELETE rules can include all three,
+        -- DEPRECATE and DISABLE rules can include AMIs only,
+        -- and you can only include snapshots together with AMIs.
         includeResources: LifecyclePolicyDetailActionIncludeResources
     end
 
@@ -1512,8 +1736,8 @@ local record M
     record LifecyclePolicyDetailExclusionRulesAmisLastLaunched
         -- The integer number of units for the time period. For example 6 (months).
         value: number
-        -- Defines the unit of time that the lifecycle policy uses to calculate elapsed time
-        -- since the last instance launched from the AMI. For example: days, weeks, months, or years.
+        -- Defines the unit of time that the lifecycle policy uses to calculate elapsed
+        -- time since the last launch.
         unit: string
     end
 
@@ -1523,12 +1747,15 @@ local record M
         isPublic: boolean
         -- Configures Amazon Web Services Regions that are excluded from the lifecycle action.
         regions: {string}
-        -- Specifies Amazon Web Services accounts whose resources are excluded from the lifecycle action.
+        -- The lifecycle action doesn't apply to AMIs that are shared with any of
+        -- the specified Amazon Web Services accounts.
         sharedAccounts: {string}
-        -- Specifies configuration details for Image Builder to exclude the most recent resources
-        -- from lifecycle actions.
+        -- Configures Image Builder to exclude AMIs that were launched within the specified time
+        -- period from lifecycle actions. AMIs with no recorded last-launched time
+        -- aren't excluded by this rule.
         lastLaunched: LifecyclePolicyDetailExclusionRulesAmisLastLaunched
-        -- Lists tags that should be excluded from lifecycle actions for the AMIs that have them.
+        -- Lifecycle actions don't apply to AMIs that have any of these tags. Both
+        -- the key and the value must match.
         tagMap: {string : string}
     end
 
@@ -1565,7 +1792,9 @@ local record M
         retainAtLeast: number
     end
 
-    -- The configuration details for a lifecycle policy resource.
+    -- Defines one lifecycle policy rule: the action to take, the filter that
+    -- determines which resources the rule applies to, and optional exclusion
+    -- rules.
     record LifecyclePolicyDetail
         -- Configuration details for the policy action.
         action: LifecyclePolicyDetailAction
@@ -1583,7 +1812,8 @@ local record M
         semanticVersion: string
     end
 
-    -- Resource selection criteria for the lifecycle policy.
+    -- Resource selection criteria for the lifecycle policy. You must provide
+    -- exactly one selection criteria: either recipes or a tag map, not both.
     record LifecyclePolicyResourceSelection
         -- A list of recipes that are used as selection criteria for the output
         -- images that the lifecycle policy applies to.
@@ -1604,29 +1834,46 @@ local record M
     end
 
     record CreateLifecyclePolicyInput
-        -- The name of the lifecycle policy to create.
+        -- The name of the lifecycle policy to create. Policy names must be unique to
+        -- your account in each Amazon Web Services Region. Image Builder generates the policy ARN from a
+        -- normalized form of the name, so names that differ only in case, spaces, or
+        -- underscores count as the same name. You can't change the name after
+        -- creation.
         name: string
         -- Optional description for the lifecycle policy.
         description: string
-        -- Indicates whether the lifecycle policy resource is enabled.
+        -- Indicates whether the lifecycle policy resource is enabled. If you don't
+        -- specify a status, it defaults to ENABLED. Only enabled policies
+        -- run on their schedule.
         status: string
-        -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
-        -- Image Builder access to run lifecycle actions.
+        -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to run
+        -- lifecycle actions. You must have permission to pass the role, and the
+        -- role's trust policy must allow the Image Builder service principal to assume it.
         executionRole: string
-        -- The type of Image Builder resource that the lifecycle policy applies to.
+        -- The type of Image Builder resource that the lifecycle policy applies to. The resource
+        -- type determines the allowed rule actions: policies for AMI-based Image Builder images
+        -- support DELETE, DEPRECATE, and
+        -- DISABLE, and policies for container-based Image Builder images support
+        -- only DELETE. You can't
+        -- change the resource type after creation.
         resourceType: string
-        -- Configuration details for the lifecycle policy rules.
+        -- Configuration details for the lifecycle policy rules. A policy can contain
+        -- at most one rule per action type: one DELETE, one
+        -- DEPRECATE, and one DISABLE.
         policyDetails: {LifecyclePolicyDetail}
         -- Selection criteria for the resources that the lifecycle policy applies to.
+        -- You must specify exactly one selection criteria: either recipes or a tag
+        -- map, not both.
         resourceSelection: LifecyclePolicyResourceSelection
         -- Tags to apply to the lifecycle policy resource.
         tags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        -- Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -1644,7 +1891,13 @@ local record M
     end
 
     record CreateWorkflowInput
-        -- The name of the workflow to create.
+        -- The name of the workflow to create. Image Builder generates the workflow ARN from a
+        -- normalized form of the name, so names that differ only in case, spaces, or
+        -- underscores count as the same name. If a workflow with the same name and
+        -- semantic version already exists in your account in the same Amazon Web Services Region,
+        -- the request creates a new build version for it. If the content is also
+        -- identical to the latest build version, the request fails because the
+        -- workflow already exists.
         name: string
         -- The semantic version of this workflow resource. The semantic version syntax
         -- adheres to the following rules.
@@ -1662,29 +1915,33 @@ local record M
         -- Describes what change has been made in this version of the workflow, or
         -- what makes this version different from other versions of the workflow.
         changeDescription: string
-        -- Contains the UTF-8 encoded YAML document content for the workflow.
-        -- Alternatively, you can specify the uri of a YAML document file stored in
-        -- Amazon S3. However, you cannot specify both properties.
+        -- The UTF-8 encoded YAML document content for the workflow, up to
+        -- 16,000 characters. For larger documents, store the document in Amazon S3 and specify
+        -- the uri property instead. You must specify exactly one of the
+        -- data or uri properties.
         data: string
-        -- The uri of a YAML component document file. This must be an S3 URL
-        -- (s3://bucket/key), and you must have permission to access the
-        -- S3 bucket it points to. If you use Amazon S3, you can specify component content up to your
-        -- service quota.
-        -- Alternatively, you can specify the YAML document inline, using the component
-        -- data property. You cannot specify both properties.
+        -- The uri of a YAML workflow document file stored in Amazon S3. This must
+        -- be an S3 URL (s3://bucket/key), and you must have permission to
+        -- access the S3 bucket it points to. A workflow document that you provide from
+        -- Amazon S3 can be up to your service quota for workflow size.
+        -- Alternatively, you can specify the YAML document inline, using the workflow
+        -- data property. You must specify exactly one of the data
+        -- or uri properties.
         uri: string
         -- The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this workflow resource.
         -- This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
-        -- in the Key Management Service Developer Guide.
+        -- in the Key Management Service Developer Guide. If you don't specify a key, Image Builder encrypts the workflow
+        -- document with a KMS key that Image Builder owns.
         kmsKeyId: string
         -- Tags that apply to the workflow resource.
         tags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Validates the required permissions and request parameters without making the request. If validation succeeds, the operation returns a DryRunOperationException error response.
+        -- Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a DryRunOperationException error response.
         dryRun: boolean
     end
 
@@ -1693,16 +1950,16 @@ local record M
         clientToken: string
         -- The Amazon Resource Name (ARN) of the workflow resource that the request created.
         workflowBuildVersionArn: string
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
-    -- Amazon Inspector generates a risk score for each finding. This score helps you to prioritize
-    -- findings, to focus on the most critical findings and the most vulnerable resources. The
-    -- score uses the Common Vulnerability Scoring System (CVSS) format. This format is a
-    -- modification of the base CVSS score that the National Vulnerability Database (NVD)
-    -- provides. For more information about severity levels, see Severity levels for Amazon Inspector findings in the Amazon Inspector User
-    -- Guide.
+    -- A CVSS score for the vulnerability, as published by the vulnerability
+    -- source. Sources include the National Vulnerability Database (NVD) and the
+    -- operating system vendor's security feed. A finding can include CVSS scores
+    -- from multiple sources and CVSS versions.
     record CvssScore
         -- The CVSS base score.
         baseScore: number
@@ -1727,7 +1984,8 @@ local record M
     record CvssScoreDetails
         -- The source for the CVSS score.
         scoreSource: string
-        -- The source of the finding.
+        -- The source of the CVSS data that the Amazon Inspector score for the finding is based
+        -- on, for example NVD or a vendor security feed.
         cvssSource: string
         -- The CVSS version that generated the score.
         version: string
@@ -1735,8 +1993,9 @@ local record M
         score: number
         -- A vector that measures the severity of the vulnerability.
         scoringVector: string
-        -- An object that contains details about an adjustment that Amazon Inspector made to the CVSS score
-        -- for the finding.
+        -- The adjustments that Amazon Inspector applied to the base CVSS score to produce its own
+        -- score for the finding. The list is empty when Amazon Inspector made no
+        -- adjustments.
         adjustments: {CvssScoreAdjustment}
     end
 
@@ -1853,10 +2112,15 @@ local record M
     end
 
     record DistributeImageInput
-        -- The source image to distribute. Specify an AMI identifier,
-        -- SSM parameter path, or Image Builder image Amazon Resource Name (ARN). When you specify an
-        -- Image Builder image Amazon Resource Name (ARN), the image must be in the AVAILABLE
-        -- state.
+        -- The source image to distribute. You can specify the source in any of the
+        -- following formats:
+        -- An AMI ID.
+        -- An Amazon Web Services Systems Manager Parameter Store reference, prefixed by
+        -- ssm:, followed by the parameter name or ARN.
+        -- An Image Builder image Amazon Resource Name (ARN). An image version ARN resolves to the latest
+        -- available build version.
+        -- Whichever format you use, the source must resolve to an AMI in the current
+        -- Amazon Web Services Region.
         sourceImage: string
         -- The Amazon Resource Name (ARN) of the distribution configuration. The configuration
         -- defines target Regions, accounts, and AMI settings. The distribution
@@ -1865,11 +2129,14 @@ local record M
         -- The name or Amazon Resource Name (ARN) of the IAM role that Image Builder assumes to distribute
         -- the image.
         executionRole: string
-        -- The tags to apply to the distributed image.
+        -- The tags to apply to the new Image Builder image resource that this operation
+        -- creates. To tag the output AMIs, use amiTags in the
+        -- distribution configuration.
         tags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
         -- The logging configuration for the distribution.
@@ -1879,7 +2146,9 @@ local record M
     record DistributeImageOutput
         -- The client token that uniquely identifies the request.
         clientToken: string
-        -- The Amazon Resource Name (ARN) of the image to be distributed.
+        -- The Amazon Resource Name (ARN) of the new Image Builder image resource that this operation creates to
+        -- track the distribution. Use this ARN with GetImage to
+        -- monitor distribution progress.
         imageBuildVersionArn: string
     end
 
@@ -1893,7 +2162,12 @@ local record M
         message: string
     end
 
-    -- A distribution configuration.
+    -- Defines how Image Builder distributes the output of an image build. You can
+    -- configure:
+    -- The Regions to distribute the image to.
+    -- The Region-specific settings to apply, such as output AMI names,
+    -- launch permissions for other Amazon Web Services accounts, and target container
+    -- repositories.
     record DistributionConfiguration
         -- The Amazon Resource Name (ARN) of the distribution configuration.
         arn: string
@@ -1904,7 +2178,9 @@ local record M
         -- The distribution objects that apply Region-specific settings for the deployment of
         -- the image to targeted Regions.
         distributions: {Distribution}
-        -- The maximum duration in minutes for this distribution configuration.
+        -- A property that Image Builder doesn't use. You can't set this property
+        -- when you create or update a distribution configuration, and it has no
+        -- effect on distribution behavior.
         timeoutMinutes: number
         -- The date on which this distribution configuration was created.
         dateCreated: string
@@ -1928,7 +2204,8 @@ local record M
         dateUpdated: string
         -- The tags associated with the distribution configuration.
         tags: {string : string}
-        -- A list of Regions where the container image is distributed to.
+        -- A list of the Regions that the distribution configuration distributes
+        -- images to.
         regions: {string}
     end
 
@@ -1943,8 +2220,11 @@ local record M
     end
 
     record GetComponentInput
-        -- The Amazon Resource Name (ARN) of the component that you want to get. Regex requires
-        -- the suffix /\d+$.
+        -- The Amazon Resource Name (ARN) of the component that you want to get. You can specify a build
+        -- version ARN, or a component version ARN. The version can use the
+        -- x wildcard in trailing positions, for example
+        -- 1.0.x or 1.x.x. Version ARNs resolve to the
+        -- latest available matching component build version.
         componentBuildVersionArn: string
     end
 
@@ -1953,7 +2233,9 @@ local record M
         requestId: string
         -- The component object specified in the request.
         component: Component
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
@@ -1980,7 +2262,9 @@ local record M
         requestId: string
         -- The container recipe object that is returned.
         containerRecipe: ContainerRecipe
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
@@ -1993,7 +2277,9 @@ local record M
     record GetContainerRecipePolicyOutput
         -- The request ID that uniquely identifies this request.
         requestId: string
-        -- The container recipe policy object that is returned.
+        -- The resource policy for the container recipe, as a JSON policy document. If
+        -- no policy has been applied, the response contains an empty JSON object
+        -- ({}).
         policy: string
     end
 
@@ -2011,7 +2297,13 @@ local record M
     end
 
     record GetImageInput
-        -- The Amazon Resource Name (ARN) of the image that you want to get.
+        -- The Amazon Resource Name (ARN) of the image that you want to get. You can specify a full build
+        -- version ARN, or a version ARN with or without wildcards
+        -- (x.x.x, 1.x.x, or 1.0.x). A version or
+        -- wildcard ARN resolves to the latest matching build version that has reached
+        -- AVAILABLE status. Builds that were later deprecated, disabled,
+        -- or deleted don't resolve. To get an image in any other state, such as a
+        -- failed or in-progress build, specify the full build version ARN.
         imageBuildVersionArn: string
     end
 
@@ -2034,8 +2326,10 @@ local record M
         owner: string
         -- The version of the image recipe.
         version: string
-        -- The components that are included in the image recipe. Recipes require a minimum of one build component, and can
-        -- have a maximum of 20 build and test components in any combination.
+        -- The components that are included in the image recipe. A recipe can contain a maximum of 20 build and test components
+        -- in any combination, by default. This maximum is an adjustable quota. For more information, see
+        -- EC2 Image Builder endpoints and quotas
+        -- in the Amazon Web Services General Reference.
         components: {ComponentConfiguration}
         -- The base image for customizations specified in the image recipe. You can specify the
         -- parent image using one of the following options:
@@ -2051,12 +2345,15 @@ local record M
         dateCreated: string
         -- The tags of the image recipe.
         tags: {string : string}
-        -- The working directory to be used during build and test workflows.
+        -- The working directory used during build and test workflows. If you
+        -- don't specify a working directory, Image Builder uses /tmp for
+        -- Linux and macOS build instances, and C:/ for Windows build
+        -- instances.
         workingDirectory: string
         -- Before you create a new AMI, Image Builder launches temporary Amazon EC2 instances to build and test
         -- your image configuration. Instance configuration adds a layer of control over those
-        -- instances. You can define settings and add scripts to run when an instance is launched
-        -- from your AMI.
+        -- instances. You can define settings and add scripts to run when Image Builder launches
+        -- your build instance.
         additionalInstanceConfiguration: AdditionalInstanceConfiguration
         -- Tags that are applied to the AMI that Image Builder creates during the Build phase
         -- prior to image distribution.
@@ -2090,40 +2387,48 @@ local record M
         securityGroupIds: {string}
         -- The subnet ID of the infrastructure configuration.
         subnetId: string
-        -- The logging configuration of the infrastructure configuration.
+        -- The logging configuration of the infrastructure configuration. When you
+        -- configure S3 logs, Image Builder writes logs from the build and test process to the
+        -- specified bucket under the key prefix.
         logging: Logging
         -- The Amazon EC2 key pair of the infrastructure configuration.
         keyPair: string
-        -- The terminate instance on failure configuration of the infrastructure
-        -- configuration.
+        -- Indicates whether Image Builder terminates the build and test instances when the image
+        -- build fails. When false, Image Builder retains the instance so that you
+        -- can debug it.
         terminateInstanceOnFailure: boolean
         -- The Amazon Resource Name (ARN) of the SNS topic to which Image Builder
-        -- sends image build event notifications.
-        -- EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys
-        -- from other accounts. The key that is used to encrypt the SNS topic must reside in the
-        -- account that the Image Builder service runs under.
+        -- sends image build event notifications. Specify a standard topic. Image Builder doesn't support FIFO
+        -- topics.
+        -- EC2 Image Builder can't send notifications to SNS topics that are encrypted using keys
+        -- from other accounts. If your SNS topic is encrypted, the key must be owned by the
+        -- same account that owns your Image Builder resources.
         snsTopicArn: string
         -- The date on which the infrastructure configuration was created.
         dateCreated: string
         -- The date on which the infrastructure configuration was last updated.
         dateUpdated: string
-        -- The tags attached to the resource created by Image Builder.
+        -- The metadata tags assigned to the Amazon EC2 build and test instances that Image Builder
+        -- launches during image creation.
         resourceTags: {string : string}
         -- The instance metadata option settings for the infrastructure configuration.
         instanceMetadataOptions: InstanceMetadataOptions
         -- The tags of the infrastructure configuration.
         tags: {string : string}
-        -- The instance placement settings that define where the instances that are launched
-        -- from your image run.
+        -- The instance placement settings that define where the build and test
+        -- instances that Image Builder launches during image creation run. These settings
+        -- don't affect instances that you launch from the output image.
         placement: Placement
     end
 
     -- The resources produced by this image.
     record OutputResources
-        -- The Amazon EC2 AMIs created by this image.
+        -- The Amazon EC2 AMIs created by this image. The list contains one entry per
+        -- AMI, including copies that distribution created in each target
+        -- Amazon Web Services Region and account.
         amis: {Ami}
-        -- Container images that the pipeline has generated and stored in the output
-        -- repository.
+        -- The container images that Image Builder created when it built this image, stored in
+        -- the output Amazon ECR repository.
         containers: {Container}
     end
 
@@ -2140,16 +2445,23 @@ local record M
     -- Shows the vulnerability scan status for a specific image, and the reason for that
     -- status.
     record ImageScanState
-        -- The current state of vulnerability scans for the image.
+        -- The current state of vulnerability scans for the image. The scan starts as
+        -- PENDING and moves through SCANNING and
+        -- COLLECTING to COMPLETED. Image Builder sets the status to
+        -- ABANDONED if the image reaches a terminal state before the scan
+        -- finding collection completes. A scan can also end as FAILED or
+        -- TIMED_OUT.
         status: string
         -- The reason for the scan status for the image.
         reason: string
     end
 
-    -- An Image Builder image resource that keeps track of all of the settings used to create, configure,
-    -- and distribute output for that image. You must specify exactly one recipe for the image –
-    -- either a container recipe (containerRecipe), which creates a container image, or an
-    -- image recipe (imageRecipe), which creates an AMI.
+    -- An Image Builder image resource that keeps track of all of the settings used to create,
+    -- configure, and distribute output for that image. An image that Image Builder built
+    -- from a recipe contains exactly one recipe – either a container recipe
+    -- (containerRecipe), which creates a container image, or an image
+    -- recipe (imageRecipe), which creates an AMI. Imported images
+    -- don't contain a recipe.
     record Image
         -- The Amazon Resource Name (ARN) of the image.
         -- Semantic versioning is included in each object's Amazon Resource Name (ARN),
@@ -2190,15 +2502,17 @@ local record M
         -- For container images, this is the container recipe that Image Builder used to create the
         -- image. For images that distribute an AMI, this is empty.
         containerRecipe: ContainerRecipe
-        -- The name of the image pipeline that created this image.
+        -- The name of the image pipeline that created this image. Image Builder doesn't return
+        -- this field for new images. Use sourcePipelineArn instead.
         sourcePipelineName: string
-        -- The Amazon Resource Name (ARN) of the image pipeline that created this image.
+        -- The Amazon Resource Name (ARN) of the image pipeline that created this image. This field is only
+        -- present for images that a pipeline execution created.
         sourcePipelineArn: string
         -- The infrastructure that Image Builder used to create this image.
         infrastructureConfiguration: InfrastructureConfiguration
         -- The distribution configuration that Image Builder used to create this image.
         distributionConfiguration: DistributionConfiguration
-        -- The image tests that ran when that Image Builder created this image.
+        -- The image test settings that Image Builder used when it created this image.
         imageTestsConfiguration: ImageTestsConfiguration
         -- The date on which Image Builder created this image.
         dateCreated: string
@@ -2221,7 +2535,10 @@ local record M
         imageSource: string
         -- Contains information about the current state of scans for this image.
         scanState: ImageScanState
-        -- Contains settings for vulnerability scans.
+        -- Settings for the vulnerability scans that Amazon Inspector runs for this
+        -- image. For AMI output, Amazon Inspector scans the test instance during image creation.
+        -- For container output, Amazon Inspector scans the container image in its Amazon ECR
+        -- repository.
         imageScanningConfiguration: ImageScanningConfiguration
         -- The time when deprecation occurs for an image resource. This can be a past or future date.
         deprecationTime: number
@@ -2230,7 +2547,8 @@ local record M
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
         -- Image Builder access to perform workflow actions.
         executionRole: string
-        -- Contains the build and test workflows that are associated with the image.
+        -- The build, test, and distribution workflow configurations that are
+        -- associated with the image.
         workflows: {WorkflowConfiguration}
         -- The logging configuration that's defined for the image. Image Builder uses the defined settings
         -- to direct execution log output during image creation.
@@ -2242,7 +2560,9 @@ local record M
         requestId: string
         -- The image object.
         image: Image
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
@@ -2251,7 +2571,11 @@ local record M
         imagePipelineArn: string
     end
 
-    -- Details of an image pipeline.
+    -- Defines the automation configuration for building, testing, and
+    -- distributing images. A pipeline references the resources that its builds
+    -- use, such as the recipe and infrastructure configuration. It also holds
+    -- the settings that control its builds, such as the schedule and custom
+    -- workflows.
     record ImagePipeline
         -- The Amazon Resource Name (ARN) of the image pipeline.
         arn: string
@@ -2259,7 +2583,8 @@ local record M
         name: string
         -- The description of the image pipeline.
         description: string
-        -- The platform of the image pipeline.
+        -- The platform of the image pipeline, inherited from the recipe that the
+        -- pipeline uses.
         platform: string
         -- Specifies whether to collect additional information about the image being created, including the operating
         -- system (OS) version and package list. Defaults to true.
@@ -2280,13 +2605,15 @@ local record M
         imageTestsConfiguration: ImageTestsConfiguration
         -- The schedule of the image pipeline.
         schedule: Schedule
-        -- The status of the image pipeline.
+        -- The status of the image pipeline. A disabled pipeline doesn't run on its
+        -- schedule, but you can still start builds manually. Image Builder can also disable a
+        -- pipeline automatically when consecutive scheduled builds fail.
         status: string
         -- The date on which this image pipeline was created.
         dateCreated: string
         -- The date on which this image pipeline was last updated.
         dateUpdated: string
-        -- This is no longer supported, and does not return a value.
+        -- The date on which this image pipeline was last run.
         dateLastRun: string
         -- The status of the last image that this pipeline built, such as
         -- BUILDING, TESTING, FAILED,
@@ -2296,23 +2623,28 @@ local record M
         dateNextRun: string
         -- The tags of this image pipeline.
         tags: {string : string}
-        -- Contains settings for vulnerability scans.
+        -- Contains settings for vulnerability scans that Amazon Inspector runs against the test instance
+        -- during image creation.
         imageScanningConfiguration: ImageScanningConfiguration
-        -- The tags to be applied to the images produced by this pipeline.
+        -- The tags that Image Builder applies to the Image Builder image resource that this
+        -- pipeline's scheduled executions create. These tags don't apply to the
+        -- output AMI. Builds that you start manually use the tags from the
+        -- StartImagePipelineExecution request instead.
         imageTags: {string : string}
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
         -- Image Builder access to perform workflow actions.
         executionRole: string
         -- Contains the workflows that run for the image pipeline.
         workflows: {WorkflowConfiguration}
-        -- Defines logging configuration for the output image.
+        -- The CloudWatch Logs configuration for the pipeline: the log group for
+        -- image build logs and the log group for pipeline execution logs.
         loggingConfiguration: PipelineLoggingConfiguration
         -- Image Builder tracks the number of consecutive failures for scheduled pipeline
         -- executions and takes one of the following actions each time it runs on a schedule:
         -- If the pipeline execution is successful, the number of consecutive
         -- failures resets to zero.
         -- If the pipeline execution fails, Image Builder increments the number of
-        -- consecutive failures. If the failure count exceeds the limit defined in the
+        -- consecutive failures. If the failure count reaches the limit defined in the
         -- AutoDisablePolicy, Image Builder disables the pipeline.
         -- The consecutive failure count is also reset to zero under the following
         -- conditions:
@@ -2338,12 +2670,16 @@ local record M
     record GetImagePolicyOutput
         -- The request ID that uniquely identifies this request.
         requestId: string
-        -- The image policy object.
+        -- The resource policy for the image, as a JSON policy document. If the image
+        -- has no policy applied, the response contains an empty JSON object
+        -- ({}).
         policy: string
     end
 
     record GetImageRecipeInput
-        -- The Amazon Resource Name (ARN) of the image recipe that you want to retrieve.
+        -- The Amazon Resource Name (ARN) of the image recipe that you want to retrieve. You can use the
+        -- x wildcard in trailing version positions to retrieve the latest
+        -- matching version, for example x.x.x or 1.x.x.
         imageRecipeArn: string
     end
 
@@ -2352,7 +2688,9 @@ local record M
         requestId: string
         -- The image recipe object.
         imageRecipe: ImageRecipe
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
@@ -2365,7 +2703,9 @@ local record M
     record GetImageRecipePolicyOutput
         -- The request ID that uniquely identifies this request.
         requestId: string
-        -- The image recipe policy object.
+        -- The resource policy for the image recipe, as a JSON policy document. If no
+        -- policy has been applied, the response contains an empty JSON object
+        -- ({}).
         policy: string
     end
 
@@ -2389,10 +2729,11 @@ local record M
         lifecycleExecutionId: string
     end
 
-    -- Contains details for an image resource that was identified for a lifecycle action.
+    -- Contains an indicator that shows whether the lifecycle execution identified
+    -- any resources to take lifecycle actions on.
     record LifecycleExecutionResourcesImpactedSummary
-        -- Indicates whether an image resource that was identified for a lifecycle action has
-        -- associated resources that are also impacted.
+        -- Indicates whether the lifecycle execution identified any resources to take
+        -- lifecycle actions on.
         hasImpactedResources: boolean
     end
 
@@ -2419,11 +2760,11 @@ local record M
         lifecycleExecutionId: string
         -- The Amazon Resource Name (ARN) of the lifecycle policy that ran.
         lifecyclePolicyArn: string
-        -- Contains information about associated resources that are identified for action by
-        -- the runtime instance of the lifecycle policy.
+        -- A summary flag that indicates whether the lifecycle execution identified any
+        -- resources to take lifecycle actions on.
         resourcesImpactedSummary: LifecycleExecutionResourcesImpactedSummary
-        -- Runtime state that reports if the policy action ran successfully,
-        -- failed, or was skipped.
+        -- Runtime state that reports whether the lifecycle execution is in progress,
+        -- succeeded, or failed.
         state: LifecycleExecutionState
         -- The timestamp when the lifecycle runtime instance started.
         startTime: number
@@ -2441,7 +2782,8 @@ local record M
         lifecyclePolicyArn: string
     end
 
-    -- The configuration details for a lifecycle policy resource.
+    -- Defines a lifecycle policy resource: its identity, status, execution role,
+    -- resource type, rules, resource selection, timestamps, and tags.
     record LifecyclePolicy
         -- The Amazon Resource Name (ARN) of the lifecycle policy resource.
         arn: string
@@ -2449,14 +2791,18 @@ local record M
         name: string
         -- Optional description for the lifecycle policy.
         description: string
-        -- Indicates whether the lifecycle policy resource is enabled.
+        -- Indicates whether the lifecycle policy resource is enabled. Only enabled
+        -- policies run on their schedule. Disabling or deleting a policy removes its
+        -- schedule and cancels any in-flight lifecycle execution.
         status: string
         -- The name or Amazon Resource Name (ARN) of the IAM role that Image Builder uses to run the lifecycle policy.
         -- This is a custom role that you create.
         executionRole: string
         -- The type of resources the lifecycle policy targets.
         resourceType: string
-        -- The configuration details for a lifecycle policy resource.
+        -- The list of rules for the lifecycle policy. Each rule pairs an action with a
+        -- filter and optional exclusion rules. A policy can contain at most one rule
+        -- per action type.
         policyDetails: {LifecyclePolicyDetail}
         -- Resource selection criteria used to run the lifecycle policy.
         resourceSelection: LifecyclePolicyResourceSelection
@@ -2473,7 +2819,7 @@ local record M
     end
 
     record GetLifecyclePolicyOutput
-        -- The Amazon Resource Name (ARN) of the image lifecycle policy resource that was returned.
+        -- The details of the lifecycle policy that the request retrieved.
         lifecyclePolicy: LifecyclePolicy
     end
 
@@ -2487,21 +2833,26 @@ local record M
         resourceType: string
         -- The Amazon Resource Name (ARN) that uniquely identifies an Amazon Web Services Marketplace resource.
         resourceArn: string
-        -- The bucket path that you can specify to download the resource from Amazon S3.
+        -- The Amazon S3 location of the component artifact to retrieve, in
+        -- s3://bucket/key form.
         resourceLocation: string
     end
 
     record GetMarketplaceResourceOutput
         -- The Amazon Resource Name (ARN) for the Amazon Web Services Marketplace resource that was requested.
         resourceArn: string
-        -- The obfuscated S3 URL to download the component artifact from.
+        -- A time-limited presigned URL for downloading the component artifact from
+        -- Amazon S3.
         url: string
         -- Returns obfuscated data that contains the YAML content of the component.
         data: string
     end
 
     record GetWorkflowInput
-        -- The Amazon Resource Name (ARN) of the workflow resource that you want to get.
+        -- The Amazon Resource Name (ARN) of the workflow resource that you want to get. You can specify a
+        -- build version ARN, or a version ARN with or without wildcards (x)
+        -- in its version segments. Image Builder resolves version and wildcard ARNs to the most
+        -- recent matching build version.
         workflowBuildVersionArn: string
     end
 
@@ -2520,7 +2871,7 @@ local record M
         "DEPRECATED"
     end
 
-    -- A group of fields that describe the current status of workflow.
+    -- A group of fields that describe the current status of the workflow.
     record WorkflowState
         -- The current state of the workflow.
         status: string
@@ -2528,8 +2879,8 @@ local record M
         reason: string
     end
 
-    -- Defines a process that Image Builder uses to build and test images during
-    -- the image creation process.
+    -- Defines a process that Image Builder runs during the build, test, or distribution
+    -- stage of the image creation process.
     record Workflow
         -- The Amazon Resource Name (ARN) of the workflow resource.
         arn: string
@@ -2555,9 +2906,9 @@ local record M
         kmsKeyId: string
         -- The timestamp when Image Builder created the workflow resource.
         dateCreated: string
-        -- The tags that apply to the workflow resource
+        -- The tags that apply to the workflow resource.
         tags: {string : string}
-        -- An array of input parameters that that the image workflow uses
+        -- An array of input parameters that the image workflow uses
         -- to control actions or configure settings.
         parameters: {WorkflowParameterDetail}
     end
@@ -2565,7 +2916,9 @@ local record M
     record GetWorkflowOutput
         -- The workflow resource specified in the request.
         workflow: Workflow
-        -- The resource ARNs with different wildcard variations of semantic versioning.
+        -- A set of wildcard version ARNs that always reference the latest
+        -- version of the resource. ARNs are included for the latest version overall, and for the latest
+        -- versions within the same major, minor, and patch levels.
         latestVersionReferences: LatestVersionReferences
     end
 
@@ -2595,16 +2948,19 @@ local record M
         -- The unique identifier that Image Builder assigned to keep track of runtime details
         -- when it ran the workflow.
         workflowExecutionId: string
-        -- The Amazon Resource Name (ARN) of the image resource build version that the specified
-        -- runtime instance of the workflow created.
+        -- The Amazon Resource Name (ARN) of the image build version that owns the specified runtime
+        -- instance of the workflow.
         imageBuildVersionArn: string
         -- The current runtime status for the specified runtime instance of the workflow.
+        -- COMPLETED, FAILED, ROLLBACK_COMPLETED,
+        -- CANCELLED, and SKIPPED are terminal states.
         status: string
         -- The output message from the specified runtime instance of the workflow, if applicable.
         message: string
-        -- The total number of steps in the specified runtime instance of the workflow that ran.
-        -- This number should equal the sum of the step counts for steps that succeeded, were skipped,
-        -- and failed.
+        -- The total number of steps that the workflow document defines for this runtime
+        -- instance of the workflow. Image Builder sets this count before any steps run. The sum of
+        -- succeeded, skipped, and failed steps only reaches this total if every step
+        -- finishes in one of those states.
         totalStepCount: number
         -- A runtime count for the number of steps that ran successfully in the specified runtime
         -- instance of the workflow.
@@ -2619,14 +2975,15 @@ local record M
         startTime: string
         -- The timestamp when the specified runtime instance of the workflow finished.
         endTime: string
-        -- Test workflows are defined within named runtime groups. The parallel group
-        -- is a named group that contains one or more test workflows.
+        -- The name of the parallel group that this runtime instance of the workflow
+        -- ran in, if configured. Parallel groups apply only to test workflows.
         parallelGroup: string
     end
 
     record GetWorkflowStepExecutionInput
-        -- Use the unique identifier for a specific runtime instance of the workflow step to
-        -- get runtime details for that step.
+        -- The unique identifier for the runtime instance of the workflow step that you
+        -- want to get runtime details for. To get the identifiers for the steps that ran
+        -- in a workflow, call ListWorkflowStepExecutions.
         stepExecutionId: string
     end
 
@@ -2649,7 +3006,7 @@ local record M
     record GetWorkflowStepExecutionOutput
         -- The request ID that uniquely identifies this request.
         requestId: string
-        -- The unique identifier for the runtime version of the workflow step that you specified
+        -- The unique identifier for the runtime instance of the workflow step that you specified
         -- in the request.
         stepExecutionId: string
         -- The Amazon Resource Name (ARN) of the build version for the Image Builder workflow resource
@@ -2658,8 +3015,8 @@ local record M
         -- The unique identifier that Image Builder assigned to keep track of runtime details
         -- when it ran the workflow.
         workflowExecutionId: string
-        -- The Amazon Resource Name (ARN) of the image resource build version that the specified
-        -- runtime instance of the workflow step creates.
+        -- The Amazon Resource Name (ARN) of the image build version that owns the specified runtime
+        -- instance of the workflow step.
         imageBuildVersionArn: string
         -- The name of the specified runtime instance of the workflow step.
         name: string
@@ -2667,25 +3024,34 @@ local record M
         description: string
         -- The name of the action that the specified step performs.
         action: string
-        -- The current status for the specified runtime version of the workflow step.
+        -- The current status for the specified runtime instance of the workflow step.
         status: string
-        -- Reports on the rollback status of the specified runtime version of the workflow step,
-        -- if applicable.
+        -- Reports on the rollback status of the specified runtime instance of the
+        -- workflow step, if applicable. Rollback runs when the workflow execution fails,
+        -- and undoes the work that completed steps performed.
         rollbackStatus: string
         -- The output message from the specified runtime instance of the workflow step, if applicable.
         message: string
         -- Input parameters that Image Builder provided for the specified runtime instance of
-        -- the workflow step.
+        -- the workflow step, as a JSON-encoded string.
         inputs: string
-        -- The file names that the specified runtime version of the workflow step created as output.
+        -- The output values that the specified runtime instance of the workflow step
+        -- produced, as a JSON-encoded string. For example, a step that launches an
+        -- instance outputs the instance ID. If the step failed, this field contains the
+        -- error message.
         outputs: string
-        -- The timestamp when the specified runtime version of the workflow step started.
+        -- The timestamp when the specified runtime instance of the workflow step started.
         startTime: string
         -- The timestamp when the specified runtime instance of the workflow step finished.
         endTime: string
-        -- The action to perform if the workflow step fails.
+        -- The action that the workflow takes if this step fails, as configured in the
+        -- workflow document. Abort fails the workflow and rolls back
+        -- completed steps. Continue proceeds to the next step. If the
+        -- step doesn't set a value, it defaults to Abort.
         onFailure: string
-        -- The maximum duration in seconds for this step to complete its action.
+        -- The maximum duration in seconds for this step to complete its action. If the
+        -- workflow document doesn't set a timeout for the step, Image Builder applies the
+        -- default timeout for the step's action. This field returns that value.
         timeoutSeconds: number
         -- The current attempt number for the specified runtime instance of the workflow
         -- step. The first run is attempt one. The number increases by one for each retry.
@@ -2706,15 +3072,24 @@ local record M
     end
 
     record ImportComponentInput
-        -- The name of the component.
+        -- The name of the component. Image Builder generates the component ARN from a
+        -- normalized form of the name, so names that differ only in case, spaces, or
+        -- underscores count as the same name. If a component with the same name and
+        -- semantic version already exists in your account in the same Amazon Web Services Region,
+        -- the request creates a new build version for it. If the content is also
+        -- identical to the latest build version, the request fails because the
+        -- component already exists.
         name: string
         -- The semantic version of the component. This version follows the semantic version
         -- syntax.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
-        -- Filtering: You can use wildcards (x) to specify the most recent versions or nodes when
-        -- selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes
-        -- to the right of the first wildcard must also be wildcards.
+        -- Assignment: For the first three nodes, you can assign any positive integer value, including
+        -- zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the
+        -- build number to the fourth node.
+        -- Patterns: You can use any numeric pattern that adheres to the assignment requirements for
+        -- the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or
+        -- a date, such as 2021.01.01.
         semanticVersion: string
         -- The description of the component. Describes the contents of the component.
         description: string
@@ -2726,22 +3101,27 @@ local record M
         format: string
         -- The platform of the component.
         platform: string
-        -- The data of the component. Used to specify the data inline. Either data
-        -- or uri can be used to specify the data within the component.
+        -- The data of the component. For the SHELL format, this is the
+        -- plain script content. You must specify exactly one of the data
+        -- or uri properties. For scripts that exceed the inline length
+        -- constraint, use the uri property.
         data: string
         -- The uri of the component. Must be an Amazon S3 URL and you must have permission
         -- to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content up to your
         -- service quota. Either data or uri can be used to specify the
         -- data within the component.
         uri: string
-        -- The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this component. This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
-        -- in the Key Management Service Developer Guide.
+        -- The Amazon Resource Name (ARN) of the KMS key that is used to encrypt this component.
+        -- This can be either the Key ARN or the Alias ARN. For more information, see Key identifiers (KeyId)
+        -- in the Key Management Service Developer Guide. If you don't specify a key, Image Builder encrypts the
+        -- component data with a KMS key that Image Builder owns.
         kmsKeyId: string
         -- The tags of the component.
         tags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -2786,7 +3166,12 @@ local record M
     end
 
     record ImportDiskImageInput
-        -- The name of the image resource that's created from the import.
+        -- The name of the image resource that's created from the import. Image Builder
+        -- generates the image ARN from a normalized form of the name, so names that
+        -- differ only in case, spaces, or underscores count as the same name. If an
+        -- image with the same name and semantic version already exists in your
+        -- account in the same Amazon Web Services Region, the import creates a new build version
+        -- for it.
         name: string
         -- The semantic version to attach to the image that's created during the import
         -- process. This version follows the semantic version syntax.
@@ -2796,18 +3181,26 @@ local record M
         -- The operating system platform for the imported image. Allowed values include
         -- the following: Windows.
         platform: string
-        -- The operating system version for the imported image. Allowed values include
-        -- the following: Microsoft Windows 11.
+        -- The operating system version for the imported image. The only supported
+        -- value is Microsoft Windows 11.
         osVersion: string
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access
         -- to perform workflow actions to import an image from a Microsoft ISO file.
+        -- If you don't provide a role, Image Builder uses the Image Builder service-linked role in your
+        -- account, and creates it if it doesn't exist.
         executionRole: string
         -- The Amazon Resource Name (ARN) of the infrastructure configuration resource that's used for
         -- launching the EC2 instance on which the ISO image is built.
         infrastructureConfigurationArn: string
-        -- The uri of the ISO disk file that's stored in Amazon S3.
+        -- The uri of the ISO disk file that's stored in Amazon S3, in
+        -- s3://bucket/key format. The key must end with the
+        -- .iso, .ISO, or .Iso extension, and the
+        -- bucket must be owned by the account that makes the request.
         uri: string
-        -- The logging configuration for the image build process.
+        -- The CloudWatch Logs log group where Image Builder sends the import logs. If you
+        -- specify a log group name outside of the /aws/imagebuilder/
+        -- namespace, you must also provide an executionRole that has
+        -- permission to write to that log group.
         loggingConfiguration: ImageLoggingConfiguration
         -- Tags that are attached to image resources created from the import.
         tags: {string : string}
@@ -2817,8 +3210,9 @@ local record M
         -- Specifies Windows settings for ISO imports.
         windowsConfiguration: WindowsConfiguration
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -2826,12 +3220,20 @@ local record M
     record ImportDiskImageOutput
         -- The client token that uniquely identifies the request.
         clientToken: string
-        -- The Amazon Resource Name (ARN) of the output AMI that was created from the ISO disk file.
+        -- The Amazon Resource Name (ARN) of the Image Builder image resource that this request created. The AMI
+        -- doesn't exist yet when the response returns. The import runs asynchronously,
+        -- and the output AMI appears in the image's output resources when the import
+        -- completes.
         imageBuildVersionArn: string
     end
 
     record ImportVmImageInput
-        -- The name of the base image that is created by the import process.
+        -- The name of the base image that is created by the import process. Image Builder
+        -- generates the image ARN from a normalized form of the name, so names that
+        -- differ only in case, spaces, or underscores count as the same name. If an
+        -- image with the same name and semantic version already exists in your
+        -- account in the same Amazon Web Services Region, the import creates a new build version
+        -- for it.
         name: string
         -- The semantic version to attach to the base image that was created during the import
         -- process. This version follows the semantic version syntax.
@@ -2851,16 +3253,20 @@ local record M
         -- The operating system version for the imported VM.
         osVersion: string
         -- The importTaskId (API) or ImportTaskId (CLI) from the
-        -- Amazon EC2 VM import process. Image Builder retrieves information from the import process to pull in
-        -- the AMI that is created from the VM source as the base image for your recipe.
+        -- Amazon EC2 VM import process. The import task doesn't need to be complete when you
+        -- call ImportVmImage - Image Builder monitors the task and finishes creating the image
+        -- when the task completes.
         vmImportTaskId: string
-        -- The logging configuration for the image build process.
+        -- The CloudWatch Logs log group where Image Builder sends the import logs. For
+        -- ImportVmImage, the log group name must be within the
+        -- /aws/imagebuilder/ namespace.
         loggingConfiguration: ImageLoggingConfiguration
         -- Tags that are attached to the import resources.
         tags: {string : string}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -2868,8 +3274,9 @@ local record M
     record ImportVmImageOutput
         -- The request ID that uniquely identifies this request.
         requestId: string
-        -- The Amazon Resource Name (ARN) of the AMI that was created during the VM import
-        -- process. This AMI is used as the base image for the recipe that imported the VM.
+        -- The Amazon Resource Name (ARN) of the Image Builder image resource that this request created. Image Builder
+        -- records the AMI from the VM import task in the image's output resources
+        -- after the task completes.
         imageArn: string
         -- The client token that uniquely identifies the request.
         clientToken: string
@@ -2881,8 +3288,10 @@ local record M
     end
 
     record ListComponentBuildVersionsInput
-        -- The component version Amazon Resource Name (ARN) whose versions you want to
-        -- list.
+        -- The component version ARN whose build versions you want to list. The ARN
+        -- must specify an exact version, without a build number suffix. If you
+        -- don't specify an ARN, Image Builder returns build versions for the components
+        -- that your account owns.
         componentVersionArn: string
         -- The maximum number of items to return in a single request.
         maxResults: number
@@ -2894,7 +3303,10 @@ local record M
     record ListComponentBuildVersionsOutput
         -- The request ID that uniquely identifies this request.
         requestId: string
-        -- The list of component summaries for the specified semantic version.
+        -- The list of component summaries. Each summary represents one build version
+        -- of the specified component version, or of the components that your account
+        -- owns if you didn't specify an ARN. Deprecated build versions aren't
+        -- included.
         componentSummaryList: {ComponentSummary}
         -- The next token used for paginated responses. When this field isn't empty,
         -- there are additional elements that the service hasn't included in this request. Use this token
@@ -2913,18 +3325,24 @@ local record M
     record ListComponentsInput
         -- Filters results based on the type of owner for the component. By default, this request
         -- returns a list of components that your account owns. To see results for other types of
-        -- owners, you can specify components that Amazon manages, third party components, or
-        -- components that other accounts have shared with you.
+        -- owners, you can specify components that Amazon manages, components from the
+        -- Amazon Web Services Marketplace, third party components, or components that other accounts have shared
+        -- with you.
         owner: string
         -- Use the following filters to streamline results:
         -- description
         -- name
         -- platform
+        -- productCodes
+        -- status
         -- supportedOsVersion
         -- type
         -- version
         filters: {Filter}
-        -- Returns the list of components for the specified name.
+        -- Specifies whether to return one entry per component name, with all versions
+        -- of each component aggregated. Defaults to false, which returns
+        -- one entry per component version. You can't combine this option with the
+        -- version filter.
         byName: boolean
         -- The maximum number of items to return in a single request.
         maxResults: number
@@ -2947,9 +3365,10 @@ local record M
     end
 
     record ListContainerRecipesInput
-        -- Returns container recipes belonging to the specified owner, that have been shared with
-        -- you. You can omit this field to return container recipes belonging to your
-        -- account.
+        -- Returns container recipes belonging to the specified owner, that have been
+        -- shared with you. You can omit this field to return container recipes
+        -- belonging to your account. For container recipes, the valid owner values are
+        -- Self, Shared, and Amazon.
         owner: string
         -- Use the following filters to streamline results:
         -- containerType
@@ -2997,8 +3416,11 @@ local record M
     end
 
     record ListImageBuildVersionsInput
-        -- The Amazon Resource Name (ARN) of the image whose build versions you want to
-        -- retrieve.
+        -- The Amazon Resource Name (ARN) of the image version whose build versions you want to retrieve.
+        -- The ARN must specify an exact version
+        -- (..) - wildcards aren't allowed.
+        -- This parameter is optional. If you don't specify it, Image Builder returns build
+        -- versions for all of the images in your account.
         imageVersionArn: string
         -- Use the following filters to streamline results:
         -- name
@@ -3070,7 +3492,8 @@ local record M
     end
 
     record ListImagePackagesInput
-        -- Filter results for the ListImagePackages request by the Image Build Version ARN
+        -- The Amazon Resource Name (ARN) of the image build version whose packages you want to list. The
+        -- value must be a full build version ARN.
         imageBuildVersionArn: string
         -- The maximum number of items to return in a single request.
         maxResults: number
@@ -3079,8 +3502,9 @@ local record M
         nextToken: string
     end
 
-    -- A software package that's installed on top of the base image to create a
-    -- customized image.
+    -- A software package that's installed on an image, as detected by Amazon Web Services Systems Manager
+    -- Inventory at build time. The list includes packages that shipped with the
+    -- base image.
     record ImagePackage
         -- The name of the package that's reported to the operating system package
         -- manager.
@@ -3212,14 +3636,19 @@ local record M
         -- type
         -- version
         filters: {Filter}
-        -- Requests a list of images with a specific recipe name.
+        -- Specifies whether to return one entry per image name, with all versions of
+        -- each image aggregated. Defaults to false, which returns one
+        -- entry per image version. You can't combine this option with the
+        -- version filter.
         byName: boolean
         -- The maximum number of items to return in a single request.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
-        -- Includes deprecated images in the response list.
+        -- Specifies whether to include deprecated Amazon-managed images in the
+        -- results. Deprecated images that you own are always returned. Defaults to
+        -- false.
         includeDeprecated: boolean
     end
 
@@ -3235,7 +3664,7 @@ local record M
         arn: string
         -- The name of this specific version of an Image Builder image.
         name: string
-        -- Details for a specific version of an Image Builder image. This version follows the semantic
+        -- The semantic version of the image. This version follows the semantic
         -- version syntax.
         -- The semantic version has four nodes: ../.
         -- You can assign values for the first three, and can filter on all of them.
@@ -3252,8 +3681,8 @@ local record M
         -- The operating system platform of the image version, for example "Windows" or
         -- "Linux".
         platform: string
-        -- The operating system version of the Amazon EC2 build instance. For example, Amazon Linux 2,
-        -- Ubuntu 18, or Microsoft Windows Server 2019.
+        -- The operating system version of the image. For example, Amazon Linux 2023
+        -- or Microsoft Windows Server 2022.
         osVersion: string
         -- The owner of the image version.
         owner: string
@@ -3291,6 +3720,12 @@ local record M
     end
 
     record ListImageScanFindingAggregationsInput
+        -- A filter name and value pair that determines the type of aggregation
+        -- that Image Builder returns. Use one of the following filter names:
+        -- imageBuildVersionArn
+        -- imagePipelineArn
+        -- vulnerabilityId
+        -- If you don't specify a filter, Image Builder returns an aggregation for your account.
         filter: Filter
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3355,6 +3790,15 @@ local record M
     -- vulnerability scan findings list action.
     record ImageScanFindingsFilter
         -- The name of the image scan finding filter. Filter names are case-sensitive.
+        -- Valid filter names are:
+        -- imageBuildVersionArn – Filters findings by the
+        -- image build version that was scanned.
+        -- imagePipelineArn – Filters findings by the
+        -- pipeline that created the scanned image.
+        -- vulnerabilityId – Filters findings by
+        -- vulnerability ID, for example a CVE ID.
+        -- severity – Filters findings by severity
+        -- level.
         name: string
         -- The filter values. Filter values are case-sensitive.
         values: {string}
@@ -3363,10 +3807,14 @@ local record M
     record ListImageScanFindingsInput
         -- An array of name value pairs that you can use to filter your results. You can use the
         -- following filters to streamline results:
-        -- imageBuildVersionArn
-        -- imagePipelineArn
-        -- vulnerabilityId
-        -- severity
+        -- imageBuildVersionArn – Filters findings by the
+        -- image build version that was scanned.
+        -- imagePipelineArn – Filters findings by the
+        -- pipeline that created the scanned image.
+        -- vulnerabilityId – Filters findings by
+        -- vulnerability ID, for example a CVE ID.
+        -- severity – Filters findings by severity
+        -- level.
         -- If you don't request a filter, then all findings in your account are listed.
         filters: {ImageScanFindingsFilter}
         -- The maximum number of items to return in a single request.
@@ -3379,8 +3827,9 @@ local record M
     -- Information about the factors that influenced the score that Amazon Inspector assigned for a
     -- finding.
     record InspectorScoreDetails
-        -- An object that contains details about an adjustment that Amazon Inspector made to the CVSS score
-        -- for the finding.
+        -- The CVSS score that Amazon Inspector assigned to the finding after applying its
+        -- adjustments. It includes the score source, CVSS version, scoring vector,
+        -- and the adjustments applied.
         adjustedCvss: CvssScoreDetails
     end
 
@@ -3416,8 +3865,9 @@ local record M
         vulnerablePackages: {VulnerablePackage}
         -- The source of the vulnerability information.
         source: string
-        -- CVSS scores for one or more vulnerabilities that Amazon Inspector identified for a
-        -- package.
+        -- The CVSS scores for the vulnerability in this finding, as published
+        -- by the vulnerability sources. Sources include NVD and the operating system
+        -- vendor, and scores can span CVSS versions.
         cvss: {CvssScore}
         -- Vulnerabilities that are often related to the findings for the package.
         relatedVulnerabilities: {string}
@@ -3452,7 +3902,8 @@ local record M
         recommendation: RemediationRecommendation
     end
 
-    -- Contains details about a vulnerability scan finding.
+    -- Contains details about a vulnerability scan finding that Amazon Inspector generated
+    -- for an image.
     record ImageScanFinding
         -- The Amazon Web Services account ID that's associated with the finding.
         awsAccountId: string
@@ -3468,7 +3919,8 @@ local record M
         title: string
         -- An object that contains the details about how to remediate the finding.
         remediation: Remediation
-        -- The severity of the finding.
+        -- The severity of the finding. For more information, see Severity levels for Amazon Inspector findings in the
+        -- Amazon Inspector User Guide.
         severity: string
         -- The date and time when the finding was first observed.
         firstObservedAt: number
@@ -3481,7 +3933,12 @@ local record M
         -- An object that contains the details of a package vulnerability finding.
         packageVulnerabilityDetails: PackageVulnerabilityDetails
         -- Details about whether a fix is available for any of the packages that are identified
-        -- in the finding through a version update.
+        -- in the finding through a version update. Valid values include:
+        -- YES – A fix is available for all of the packages
+        -- identified in the finding.
+        -- NO – No fix is available.
+        -- PARTIAL – A fix is available for some, but not
+        -- all, of the packages identified in the finding.
         fixAvailable: string
     end
 
@@ -3507,7 +3964,8 @@ local record M
         nextToken: string
     end
 
-    -- The infrastructure used when building Amazon EC2 AMIs.
+    -- Contains a high-level summary of an infrastructure configuration, including
+    -- the environment settings that Image Builder uses to build and test images.
     record InfrastructureConfigurationSummary
         -- The Amazon Resource Name (ARN) of the infrastructure configuration.
         arn: string
@@ -3519,7 +3977,8 @@ local record M
         dateCreated: string
         -- The date on which the infrastructure configuration was last updated.
         dateUpdated: string
-        -- The tags attached to the image created by Image Builder.
+        -- The metadata tags assigned to the Amazon EC2 build and test instances that Image Builder
+        -- launches during image creation.
         resourceTags: {string : string}
         -- The tags of the infrastructure configuration.
         tags: {string : string}
@@ -3527,8 +3986,9 @@ local record M
         instanceTypes: {string}
         -- The instance profile of the infrastructure configuration.
         instanceProfileName: string
-        -- The instance placement settings that define where the instances that are launched
-        -- from your image run.
+        -- The instance placement settings that define where the build and test
+        -- instances that Image Builder launches during image creation run. These settings
+        -- don't affect instances that you launch from the output image.
         placement: Placement
     end
 
@@ -3546,10 +4006,13 @@ local record M
     record ListLifecycleExecutionResourcesInput
         -- The unique identifier for a runtime instance of the lifecycle policy.
         lifecycleExecutionId: string
-        -- You can leave this empty to get a list of Image Builder resources that were identified for lifecycle actions.
-        -- To get a list of associated resources that are impacted for an individual resource (the parent), specify
-        -- its Amazon Resource Name (ARN). Associated resources are produced from your image and distributed when you run a build, such as
-        -- AMIs or container images stored in ECR repositories.
+        -- The Amazon Resource Name (ARN) of an image build version to get the output resources for,
+        -- such as AMIs or container images in Amazon ECR. You can get this value from the
+        -- resourceId in the top-level response. If you leave this
+        -- property empty, the response lists the Image Builder resources that the lifecycle
+        -- execution identified for lifecycle actions. If the image build version that
+        -- you specify in parentResourceId wasn't part of this
+        -- lifecycle execution, the response contains an empty list.
         parentResourceId: string
         -- The maximum number of items to return in a single request.
         maxResults: number
@@ -3567,7 +4030,7 @@ local record M
 
     -- The lifecycle policy action that was identified for the impacted resource.
     record LifecycleExecutionResourceAction
-        -- The name of the resource that was identified for a lifecycle policy action.
+        -- The name of the lifecycle action that was identified for the resource.
         name: string
         -- The reason why the lifecycle policy action is taken.
         reason: string
@@ -3610,7 +4073,7 @@ local record M
         -- Distributed AMIs: AMI ID
         -- Container images distributed to an ECR repository: image URI or SHA Digest
         resourceId: string
-        -- The runtime state for the lifecycle execution.
+        -- The runtime state of the lifecycle action for this resource.
         state: LifecycleExecutionResourceState
         -- The action to take for the identified resource.
         action: LifecycleExecutionResourceAction
@@ -3629,7 +4092,7 @@ local record M
     end
 
     record ListLifecycleExecutionResourcesOutput
-        -- Runtime details for the specified runtime instance of the lifecycle policy.
+        -- The unique identifier for the runtime instance of the lifecycle policy.
         lifecycleExecutionId: string
         -- The current state of the lifecycle runtime instance.
         lifecycleExecutionState: LifecycleExecutionState
@@ -3647,7 +4110,11 @@ local record M
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
         nextToken: string
-        -- The Amazon Resource Name (ARN) of the resource for which to get a list of lifecycle runtime instances.
+        -- The Amazon Resource Name (ARN) of the resource for which to list lifecycle executions. Specify a
+        -- lifecycle policy ARN to list its executions, or an image build version ARN
+        -- to list the executions that StartResourceStateUpdate
+        -- started for that image. Other ARN types aren't valid for this
+        -- request.
         resourceArn: string
     end
 
@@ -3661,8 +4128,9 @@ local record M
     end
 
     record ListLifecyclePoliciesInput
-        -- Streamline results based on one of the following values: Name,
-        -- Status.
+        -- Use the following filters to streamline results: name,
+        -- resourceType, and status. Filter names are
+        -- matched exactly as shown.
         filters: {Filter}
         -- The maximum number of items to return in a single request.
         maxResults: number
@@ -3673,7 +4141,7 @@ local record M
 
     -- Contains a summary of lifecycle policy resources.
     record LifecyclePolicySummary
-        -- The Amazon Resource Name (ARN) of the lifecycle policy summary resource.
+        -- The Amazon Resource Name (ARN) of the lifecycle policy.
         arn: string
         -- The name of the lifecycle policy.
         name: string
@@ -3731,8 +4199,8 @@ local record M
         nextToken: string
     end
 
-    -- Contains runtime details for an instance of a workflow that ran for the
-    -- associated image build version.
+    -- Contains runtime details for a workflow step that has paused at a
+    -- WaitForAction step, and is waiting for you to send an action.
     record WorkflowStepExecution
         -- Uniquely identifies the workflow step that ran for the associated
         -- image build version.
@@ -3754,7 +4222,9 @@ local record M
 
     record ListWaitingWorkflowStepsOutput
         -- An array of the workflow steps that are waiting for action in your
-        -- Amazon Web Services account.
+        -- Amazon Web Services account. Each step is paused at a WaitForAction step, and
+        -- remains in the list until you respond with
+        -- SendWorkflowStepAction or the wait times out.
         steps: {WorkflowStepExecution}
         -- The next token used for paginated responses. When this field isn't empty,
         -- there are additional elements that the service hasn't included in this request. Use this token
@@ -3764,6 +4234,9 @@ local record M
 
     record ListWorkflowBuildVersionsInput
         -- The Amazon Resource Name (ARN) of the workflow resource for which to get a list of build versions.
+        -- The version segments can contain wildcards (x) to match multiple
+        -- versions of the workflow. If you don't specify an ARN, the response lists build
+        -- versions for all of the workflows in your account.
         workflowVersionArn: string
         -- The maximum number of items to return in a single request.
         maxResults: number
@@ -3795,8 +4268,8 @@ local record M
     end
 
     record ListWorkflowBuildVersionsOutput
-        -- A list that contains metadata for the workflow builds that have run for
-        -- the workflow resource specified in the request.
+        -- A list that contains metadata for the build versions of the workflow
+        -- resource specified in the request.
         workflowSummaryList: {WorkflowSummary}
         -- The next token used for paginated responses. When this field isn't empty,
         -- there are additional elements that the service hasn't included in this request. Use this token
@@ -3826,8 +4299,10 @@ local record M
         status: string
         -- The runtime output message from the workflow, if applicable.
         message: string
-        -- The total number of steps in the workflow. This should equal the sum of the step
-        -- counts for steps that succeeded, were skipped, and failed.
+        -- The total number of steps that the workflow document defines for this runtime
+        -- instance of the workflow. Image Builder sets this count before any steps run. The sum of
+        -- succeeded, skipped, and failed steps only reaches this total if every step
+        -- finishes in one of those states.
         totalStepCount: number
         -- A runtime count for the number of steps in the workflow that ran successfully.
         totalStepsSucceeded: number
@@ -3841,20 +4316,26 @@ local record M
         endTime: string
         -- The name of the test group that included the test workflow resource at runtime.
         parallelGroup: string
-        -- Indicates retry status for this runtime instance of the workflow.
+        -- Indicates whether a retry of the image build superseded this runtime instance
+        -- of the workflow. When you retry a failed image build, Image Builder sets this flag to
+        -- true on the original workflow executions that the retry re-ran.
         retried: boolean
     end
 
     record ListWorkflowExecutionsOutput
         -- The request ID that uniquely identifies this request.
         requestId: string
-        -- Contains an array of runtime details that represents each time a workflow ran for
-        -- the requested image build version.
+        -- An array of runtime details that represents each time a workflow ran for
+        -- the requested image build version. Image Builder retains workflow execution records
+        -- for a limited time, so this array can be empty for older image build
+        -- versions.
         workflowExecutions: {WorkflowExecutionMetadata}
         -- The resource Amazon Resource Name (ARN) of the image build version for which you requested a list of
         -- workflow runtime details.
         imageBuildVersionArn: string
-        -- The output message from the list action, if applicable.
+        -- The failure reason for the image build version, if it's in a failed state.
+        -- This comes from the image itself, not from an individual workflow, so it's
+        -- available even when no workflow executions remain for the image.
         message: string
         -- The next token used for paginated responses. When this field isn't empty,
         -- there are additional elements that the service hasn't included in this request. Use this token
@@ -3863,11 +4344,20 @@ local record M
     end
 
     record ListWorkflowsInput
-        -- Used to get a list of workflow build version filtered by the identity of the creator.
+        -- Filters results based on the workflow owner. By default, this request returns
+        -- the workflows that your account owns (Self). Specify
+        -- Amazon to list the workflows that Image Builder manages. Image Builder rejects
+        -- the Shared and ThirdParty owner values for
+        -- workflows, and AWSMarketplace returns no results.
         owner: string
-        -- Used to streamline search results.
+        -- Filters to narrow the list of workflows. You can filter on
+        -- name, version, description, and
+        -- type.
         filters: {Filter}
-        -- Specify all or part of the workflow name to streamline results.
+        -- Specifies whether to return one entry per workflow name, with all versions of
+        -- each workflow aggregated. Defaults to false, which returns one
+        -- entry per workflow version. You can't combine this option with the
+        -- version filter.
         byName: boolean
         -- The maximum number of items to return in a single request.
         maxResults: number
@@ -3893,7 +4383,7 @@ local record M
     end
 
     record ListWorkflowsOutput
-        -- A list of workflow build versions that match the request criteria.
+        -- A list of workflow versions that match the request criteria.
         workflowVersionList: {WorkflowVersion}
         -- The next token used for paginated responses. When this field isn't empty,
         -- there are additional elements that the service hasn't included in this request. Use this token
@@ -3928,9 +4418,13 @@ local record M
         rollbackStatus: string
         -- Detailed output message that the workflow step provides at runtime.
         message: string
-        -- Input parameters that Image Builder provides for the workflow step.
+        -- Input parameters that Image Builder provides for the workflow step, as a JSON-encoded
+        -- string.
         inputs: string
-        -- The file names that the workflow step created as output for this runtime instance of the workflow.
+        -- The output values that the workflow step produced for this runtime instance
+        -- of the workflow, as a JSON-encoded string. For example, a step that launches
+        -- an instance outputs the instance ID. If the step failed, this field contains
+        -- the error message.
         outputs: string
         -- The timestamp when the workflow step started.
         startTime: string
@@ -4009,7 +4503,9 @@ local record M
         -- The Amazon Resource Name (ARN) of the image that this policy should be applied
         -- to.
         imageArn: string
-        -- The policy to apply.
+        -- The resource policy to apply to the image, as a JSON policy document.
+        -- Image Builder validates the policy with Amazon Web Services RAM before applying it, and rejects
+        -- invalid policies with InvalidParameterValueException.
         policy: string
     end
 
@@ -4037,11 +4533,13 @@ local record M
     end
 
     record RetryImageInput
-        -- The source image Amazon Resource Name (ARN) to retry.
+        -- The Amazon Resource Name (ARN) of the image build version that you want to retry. The image
+        -- must be in the FAILED or CANCELLED state.
         imageBuildVersionArn: string
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -4059,30 +4557,36 @@ local record M
     end
 
     record SendWorkflowStepActionInput
-        -- Uniquely identifies the workflow step that sent the step action.
+        -- Uniquely identifies the waiting workflow step that you send the action to.
+        -- To get this identifier, call ListWaitingWorkflowSteps.
         stepExecutionId: string
         -- The Amazon Resource Name (ARN) of the image build version associated with the workflow
         -- step execution. This value must match the image that owns the waiting step.
         -- If the ARN does not correspond to the image running the workflow,
         -- then the request fails with a validation error.
         imageBuildVersionArn: string
-        -- The action to perform on the paused workflow step. The workflow
-        -- step must be in a waiting state to accept an action. The request
-        -- fails if the step has already timed out or been actioned.
+        -- The action to perform on the paused workflow step.
+        -- RESUME completes the waiting step, and the workflow continues.
+        -- STOP fails the step, and the step's onFailure
+        -- setting determines whether the workflow continues or aborts. The workflow
+        -- step must be in a waiting state to accept an action. The request fails if
+        -- the step has already timed out or been actioned.
         action: string
         -- The reason for the action. This value is stored with the step
         -- execution record and is accessible in subsequent workflow steps
         -- via step output references.
         reason: string
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
 
     record SendWorkflowStepActionOutput
-        -- The workflow step that sent the step action.
+        -- The unique identifier for the workflow step that received the action, as
+        -- specified in the request.
         stepExecutionId: string
         -- The Amazon Resource Name (ARN) of the image build version that received the action
         -- request.
@@ -4096,8 +4600,9 @@ local record M
         -- invoke.
         imagePipelineArn: string
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
         -- The tags for Image Builder to apply to the image resource that's created
@@ -4116,12 +4621,17 @@ local record M
 
     -- Additional rules to specify resources that should be exempt from ad-hoc lifecycle actions.
     record ResourceStateUpdateExclusionRules
+        -- Defines criteria for AMIs that Image Builder should exclude from the resource
+        -- state update.
         amis: LifecyclePolicyDetailExclusionRulesAmis
     end
 
-    -- Specifies if the lifecycle policy should apply actions to selected resources.
+    -- Specifies which underlying resources the resource state update applies to,
+    -- in addition to the Image Builder image resource itself: distributed AMIs and their
+    -- snapshots for AMI images, or distributed container images for container
+    -- images.
     record ResourceStateUpdateIncludeResources
-        -- Specifies whether the lifecycle action should apply to distributed AMIs
+        -- Specifies whether the lifecycle action should apply to distributed AMIs.
         amis: boolean
         -- Specifies whether the lifecycle action should apply to snapshots associated with distributed AMIs.
         snapshots: boolean
@@ -4136,9 +4646,12 @@ local record M
         "DISABLED"
     end
 
-    -- The current state of an impacted resource.
+    -- The state to apply to the image resource in a resource state update
+    -- request.
     record ResourceState
-        -- Shows the current lifecycle policy action that was applied to an impacted resource.
+        -- The status to which you want to move the image resource. Set the status to
+        -- AVAILABLE to restore an image that's currently deprecated
+        -- or disabled.
         status: string
     end
 
@@ -4156,34 +4669,45 @@ local record M
         -- DELETED. For container-based images, only
         -- DELETED is supported.
         state: ResourceState
-        -- The name or Amazon Resource Name (ARN) of the IAM role that’s used to update image state.
+        -- The name or Amazon Resource Name (ARN) of the IAM role that's used to update image state. You
+        -- must provide this property together with includeResources.
+        -- Neither is valid without the other.
         executionRole: string
-        -- Specifies which image resources to include in the state update.
-        -- When specified, the lifecycle action applies to underlying resources.
-        -- These resources include AMIs, snapshots, and containers in addition
-        -- to the Image Builder image resource. Requires executionRole to
-        -- also be specified. To delete an image and its underlying resources, you must
-        -- specify includeResources. To delete only the Image Builder
-        -- image record without affecting underlying resources, use the
-        -- DeleteImage API instead.
+        -- Specifies which underlying resources to update, in addition to the Image Builder
+        -- image resource itself. Snapshots and containers are only valid for the
+        -- DELETED state. To set an image to DELETED, you
+        -- must include its underlying resources. To delete only the Image Builder image
+        -- record, use the DeleteImage operation instead.
         includeResources: ResourceStateUpdateIncludeResources
-        -- Skip action on the image resource and associated resources if specified
-        -- exclusion rules are met.
+        -- Rules that Image Builder evaluates against each of the image's AMIs. Matching
+        -- AMIs and their snapshots are skipped. Exclusion rules only take effect when
+        -- the request includes AMIs. If the target state is DELETED and
+        -- any resource was skipped, the Image Builder image resource itself is also retained.
+        -- For the DEPRECATED and DISABLED target states,
+        -- Image Builder updates the image resource's state regardless of
+        -- exclusions.
         exclusionRules: ResourceStateUpdateExclusionRules
-        -- Specifies the timestamp when the state transition takes
-        -- effect. Use this parameter only when the target status is
-        -- DEPRECATED. The value must be a future time.
+        -- The timestamp that indicates when resources are updated by a lifecycle
+        -- action. This property is valid only when the target status is
+        -- DEPRECATED, and the value must be a future time. If you
+        -- don't specify a value, Image Builder begins the state update right away. For a
+        -- scheduled deprecation, included AMIs get their EC2 deprecation time set
+        -- immediately, and Image Builder schedules the image resource to transition to
+        -- DEPRECATED at that time.
         updateAt: number
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
 
     record StartResourceStateUpdateOutput
-        -- Identifies the lifecycle runtime instance that started the resource
-        -- state update.
+        -- Identifies the lifecycle execution that performs the resource state update.
+        -- Image Builder only returns this field when it started a lifecycle execution for the
+        -- update. Use it with GetLifecycleExecution to track
+        -- progress.
         lifecycleExecutionId: string
         -- The requested Amazon Resource Name (ARN) of the Image Builder resource for the asynchronous update.
         resourceArn: string
@@ -4215,11 +4739,15 @@ local record M
         distributionConfigurationArn: string
         -- The description of the distribution configuration.
         description: string
-        -- The distributions of the distribution configuration.
+        -- The distribution settings for the configuration. Each entry defines how
+        -- output images are distributed in one target Amazon Web Services Region. A Region can
+        -- appear at most once in the list. This list replaces the configuration's existing
+        -- distributions entirely.
         distributions: {Distribution}
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -4240,41 +4768,63 @@ local record M
         -- The description of the image pipeline.
         description: string
         -- The Amazon Resource Name (ARN) of the image recipe that configures
-        -- images updated by this image pipeline.
+        -- images created by this image pipeline. You must specify either this property
+        -- or containerRecipeArn, but not both.
         imageRecipeArn: string
-        -- The Amazon Resource Name (ARN) of the container pipeline to update.
+        -- The Amazon Resource Name (ARN) of the container recipe that is used to configure images
+        -- created by this container pipeline. You must specify either this property or
+        -- imageRecipeArn, but not both.
         containerRecipeArn: string
         -- The Amazon Resource Name (ARN) of the infrastructure configuration that Image Builder uses to
-        -- build images that this image pipeline has updated.
+        -- build images created by this image pipeline.
         infrastructureConfigurationArn: string
         -- The Amazon Resource Name (ARN) of the distribution configuration that Image Builder uses to
-        -- configure and distribute images that this image pipeline has updated.
+        -- configure and distribute images created by this image pipeline.
         distributionConfigurationArn: string
-        -- The image test configuration of the image pipeline.
+        -- Specifies the test settings that Image Builder applies to images that this
+        -- pipeline creates. If you don't provide test settings, Image Builder stores a default
+        -- configuration with image tests enabled.
         imageTestsConfiguration: ImageTestsConfiguration
         -- Specifies whether to collect additional information about the image being created, including the operating
         -- system (OS) version and package list. Defaults to true.
         enhancedImageMetadataEnabled: boolean
-        -- The schedule of the image pipeline.
+        -- The schedule of the image pipeline. Because the update replaces the entire
+        -- configuration, omitting this property removes any existing schedule. The
+        -- pipeline then runs only when you call
+        -- StartImagePipelineExecution.
         schedule: Schedule
-        -- The status of the image pipeline.
+        -- The status of the image pipeline. Defaults to ENABLED when
+        -- omitted. To keep a pipeline disabled, include this property set to
+        -- DISABLED in your update request.
         status: string
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Contains settings for vulnerability scans.
+        -- Contains settings for vulnerability scans that Amazon Inspector runs against the test instance
+        -- during image creation.
         imageScanningConfiguration: ImageScanningConfiguration
-        -- Contains the workflows to run for the pipeline.
+        -- The array of workflow configuration objects for builds that this pipeline
+        -- starts. You must also specify executionRole when you provide
+        -- workflows.
         workflows: {WorkflowConfiguration}
-        -- Update logging configuration for the output image that's created when
-        -- the pipeline runs.
+        -- Specifies the logging configuration for the image pipeline. Use this
+        -- to define custom CloudWatch Logs log groups for your pipeline execution
+        -- logs and image build logs. The service manages log groups with names
+        -- starting with /aws/imagebuilder/ using the service-linked
+        -- role. For custom log group names outside of this prefix, you must also
+        -- provide an executionRole.
         loggingConfiguration: PipelineLoggingConfiguration
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
-        -- Image Builder access to perform workflow actions.
+        -- Image Builder access to perform workflow actions. If you omit this property, the
+        -- pipeline reverts to the Image Builder service-linked role.
         executionRole: string
-        -- The tags to be applied to the images produced by this pipeline.
+        -- The tags that Image Builder applies to the Image Builder image resource that this
+        -- pipeline's scheduled executions create. These tags don't apply to the
+        -- output AMI. To tag output AMIs, use amiTags in the
+        -- pipeline's distribution configuration.
         imageTags: {string : string}
     end
 
@@ -4296,17 +4846,24 @@ local record M
         description: string
         -- The instance types of the infrastructure configuration. You can specify one or more
         -- instance types to use for this build. Image Builder picks one of these instance types
-        -- based on availability.
+        -- based on availability. If you don't specify instance types, Image Builder selects
+        -- compatible instance types automatically. If you specify a Dedicated Host,
+        -- Image Builder uses only instance types that the host supports.
         instanceTypes: {string}
         -- The instance profile to associate with the instance used to customize your Amazon EC2
-        -- AMI.
+        -- AMI. The instance profile must exist in your account.
         instanceProfileName: string
         -- The security group IDs to associate with the instance used to customize your Amazon EC2
         -- AMI.
         securityGroupIds: {string}
-        -- The subnet ID to place the instance used to customize your Amazon EC2 AMI in.
+        -- The subnet ID in which to place the instance used to customize your Amazon EC2
+        -- AMI. If you specify subnetId, you must also specify one or
+        -- more security group IDs in securityGroupIds. Otherwise, the
+        -- request fails.
         subnetId: string
-        -- The logging configuration of the infrastructure configuration.
+        -- The logging configuration of the infrastructure configuration. When you
+        -- configure S3 logs, Image Builder writes logs from the build and test process to the
+        -- specified bucket under the key prefix.
         logging: Logging
         -- The key pair of the infrastructure configuration. You can use this to log on to and
         -- debug the instance used to create your image.
@@ -4316,16 +4873,24 @@ local record M
         -- test phase of your workflow fails. Defaults to true.
         terminateInstanceOnFailure: boolean
         -- The Amazon Resource Name (ARN) of the SNS topic to which Image Builder
-        -- sends image build event notifications.
-        -- EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys
-        -- from other accounts. The key that is used to encrypt the SNS topic must reside in the
-        -- account that the Image Builder service runs under.
+        -- sends image build event notifications. Specify a standard topic. Image Builder doesn't support FIFO
+        -- topics. Image Builder validates the topic when you create or update the configuration.
+        -- You must have permission to publish to the topic.
+        -- EC2 Image Builder can't send notifications to SNS topics that are encrypted using keys
+        -- from other accounts. If your SNS topic is encrypted, the key must be owned by the
+        -- same account that owns your Image Builder resources.
         snsTopicArn: string
-        -- The tags attached to the resource created by Image Builder.
+        -- The metadata tags to assign to the Amazon EC2 instance that Image Builder launches during
+        -- the build process. Tags are formatted as key value pairs. Tag keys can't
+        -- begin with aws: or match one of the following reserved keys:
+        -- CreatedBy, Ec2ImageBuilderArn, Name,
+        -- or Tags.
         resourceTags: {string : string}
-        -- The instance metadata options that you can set for the HTTP requests that pipeline
-        -- builds use to launch EC2 build and test instances. For more information about instance
-        -- metadata options, see one of the following links:
+        -- The instance metadata service (IMDS) settings that Image Builder applies to the EC2
+        -- build and test instances it launches during image creation. If you don't
+        -- set these options, the EC2 launch defaults for the instance apply. For more
+        -- information about instance metadata options, see one of the following
+        -- links:
         -- Configure the instance metadata options in the
         -- Amazon EC2 User Guide
         -- for Linux instances.
@@ -4333,12 +4898,14 @@ local record M
         -- Amazon EC2 Windows Guide
         -- for Windows instances.
         instanceMetadataOptions: InstanceMetadataOptions
-        -- The instance placement settings that define where the instances that are launched
-        -- from your image run.
+        -- The instance placement settings that define where the build and test
+        -- instances that Image Builder launches during image creation run. These settings
+        -- don't affect instances that you launch from the output image.
         placement: Placement
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end
@@ -4356,22 +4923,31 @@ local record M
     record UpdateLifecyclePolicyInput
         -- The Amazon Resource Name (ARN) of the lifecycle policy resource.
         lifecyclePolicyArn: string
-        -- Optional description for the lifecycle policy.
+        -- Optional description for the lifecycle policy. Because the update replaces the
+        -- entire configuration, omitting this property removes any existing
+        -- description.
         description: string
-        -- Indicates whether the lifecycle policy resource is enabled.
+        -- Indicates whether the lifecycle policy resource is enabled. Defaults to
+        -- ENABLED when omitted, so updating a disabled policy without
+        -- setting this property re-enables it.
         status: string
-        -- The name or Amazon Resource Name (ARN) of the IAM role that Image Builder uses to update the
-        -- lifecycle policy.
+        -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access
+        -- to run lifecycle actions.
         executionRole: string
-        -- The type of image resource that the lifecycle policy applies to.
+        -- The type of image resource that the lifecycle policy applies to. The value
+        -- must match the policy's existing resource type. You can't change the
+        -- resource type of an existing lifecycle policy.
         resourceType: string
         -- The configuration details for a lifecycle policy resource.
         policyDetails: {LifecyclePolicyDetail}
-        -- Selection criteria for resources that the lifecycle policy applies to.
+        -- Selection criteria for resources that the lifecycle policy applies to. You
+        -- must specify exactly one selection criteria: either recipes or a tag map,
+        -- not both.
         resourceSelection: LifecyclePolicyResourceSelection
         -- A unique, case-sensitive identifier you provide to ensure
-        -- that the operation completes no more than one time. If this token matches a previous request,
-        -- the service ignores the request, but does not return an error. For more information, see Ensuring idempotency
+        -- that the operation runs no more than one time. If you retry a request with the same client
+        -- token, Image Builder returns the original response without running the operation again. For more
+        -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
     end

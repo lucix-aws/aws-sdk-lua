@@ -22,6 +22,24 @@ function M.items_get_credit_allocation_history(client, input)
     })
 end
 
+--- Returns a page iterator for listBillingViewSegments.
+function M.pages_list_billing_view_segments(client, input)
+    return paginator.pages(client, "listBillingViewSegments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listBillingViewSegments.
+function M.items_list_billing_view_segments(client, input)
+    return paginator.items(client, "listBillingViewSegments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listBillingViews.
 function M.pages_list_billing_views(client, input)
     return paginator.pages(client, "listBillingViews", input, {

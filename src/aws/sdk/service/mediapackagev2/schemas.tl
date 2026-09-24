@@ -1740,6 +1740,19 @@ M.EncryptionMethod = schema.new({
     },
 })
 
+M.ContentKeyPeriodConfiguration = schema.new({
+    id = id.from(_N, "ContentKeyPeriodConfiguration"),
+    type = "structure",
+    members = {
+        ContentKeyPeriodTiming = schema.new({
+            id = id.from(_N, "ContentKeyPeriodConfiguration", "ContentKeyPeriodTiming"),
+            type = "string",
+            name = "ContentKeyPeriodTiming",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EncryptionContractConfiguration = schema.new({
     id = id.from(_N, "EncryptionContractConfiguration"),
     type = "structure",
@@ -1821,6 +1834,19 @@ M.SpekeKeyProvider = schema.new({
             type = "string",
             name = "CertificateArn",
             target_id = prelude.String.id,
+        }),
+        SpekeVersion = schema.new({
+            id = id.from(_N, "SpekeKeyProvider", "SpekeVersion"),
+            type = "string",
+            name = "SpekeVersion",
+            target_id = prelude.String.id,
+        }),
+        ContentKeyPeriodConfiguration = schema.new({
+            id = id.from(_N, "SpekeKeyProvider", "ContentKeyPeriodConfiguration"),
+            type = "structure",
+            name = "ContentKeyPeriodConfiguration",
+            target_id = id.from(_N, "ContentKeyPeriodConfiguration"),
+            target = M.ContentKeyPeriodConfiguration,
         }),
     },
 })

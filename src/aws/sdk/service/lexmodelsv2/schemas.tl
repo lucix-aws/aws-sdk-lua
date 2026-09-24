@@ -2661,6 +2661,23 @@ M.BotLocaleHistoryEvent = schema.new({
     },
 })
 
+M.SpeakerDiarizationSettings = schema.new({
+    id = id.from(_N, "SpeakerDiarizationSettings"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "SpeakerDiarizationSettings", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
 M.DeepgramSpeechModelConfig = schema.new({
     id = id.from(_N, "DeepgramSpeechModelConfig"),
     type = "structure",
@@ -2848,6 +2865,13 @@ M.BotLocaleImportSpecification = schema.new({
             name = "audioFillerSettings",
             target_id = id.from(_N, "AudioFillerSettings"),
             target = M.AudioFillerSettings,
+        }),
+        speakerDiarizationSettings = schema.new({
+            id = id.from(_N, "BotLocaleImportSpecification", "speakerDiarizationSettings"),
+            type = "structure",
+            name = "speakerDiarizationSettings",
+            target_id = id.from(_N, "SpeakerDiarizationSettings"),
+            target = M.SpeakerDiarizationSettings,
         }),
     },
 })
@@ -4764,6 +4788,13 @@ M.CreateBotLocaleInput = schema.new({
             name = "speechDetectionSensitivity",
             target_id = prelude.String.id,
         }),
+        speakerDiarizationSettings = schema.new({
+            id = id.from(_N, "CreateBotLocaleInput", "speakerDiarizationSettings"),
+            type = "structure",
+            name = "speakerDiarizationSettings",
+            target_id = id.from(_N, "SpeakerDiarizationSettings"),
+            target = M.SpeakerDiarizationSettings,
+        }),
     },
 })
 
@@ -4859,6 +4890,13 @@ M.CreateBotLocaleOutput = schema.new({
             type = "string",
             name = "speechDetectionSensitivity",
             target_id = prelude.String.id,
+        }),
+        speakerDiarizationSettings = schema.new({
+            id = id.from(_N, "CreateBotLocaleOutput", "speakerDiarizationSettings"),
+            type = "structure",
+            name = "speakerDiarizationSettings",
+            target_id = id.from(_N, "SpeakerDiarizationSettings"),
+            target = M.SpeakerDiarizationSettings,
         }),
     },
 })
@@ -7890,6 +7928,13 @@ M.DescribeBotLocaleOutput = schema.new({
             type = "string",
             name = "speechDetectionSensitivity",
             target_id = prelude.String.id,
+        }),
+        speakerDiarizationSettings = schema.new({
+            id = id.from(_N, "DescribeBotLocaleOutput", "speakerDiarizationSettings"),
+            type = "structure",
+            name = "speakerDiarizationSettings",
+            target_id = id.from(_N, "SpeakerDiarizationSettings"),
+            target = M.SpeakerDiarizationSettings,
         }),
     },
 })
@@ -15081,6 +15126,13 @@ M.UpdateBotLocaleInput = schema.new({
             name = "speechDetectionSensitivity",
             target_id = prelude.String.id,
         }),
+        speakerDiarizationSettings = schema.new({
+            id = id.from(_N, "UpdateBotLocaleInput", "speakerDiarizationSettings"),
+            type = "structure",
+            name = "speakerDiarizationSettings",
+            target_id = id.from(_N, "SpeakerDiarizationSettings"),
+            target = M.SpeakerDiarizationSettings,
+        }),
     },
 })
 
@@ -15196,6 +15248,13 @@ M.UpdateBotLocaleOutput = schema.new({
             type = "string",
             name = "speechDetectionSensitivity",
             target_id = prelude.String.id,
+        }),
+        speakerDiarizationSettings = schema.new({
+            id = id.from(_N, "UpdateBotLocaleOutput", "speakerDiarizationSettings"),
+            type = "structure",
+            name = "speakerDiarizationSettings",
+            target_id = id.from(_N, "SpeakerDiarizationSettings"),
+            target = M.SpeakerDiarizationSettings,
         }),
     },
 })

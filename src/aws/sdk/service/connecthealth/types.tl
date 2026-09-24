@@ -309,6 +309,7 @@ local record M
 
     enum MedicalScribeLanguageCode
         "en-US"
+        "multi"
     end
 
     enum MedicalScribeMediaEncoding

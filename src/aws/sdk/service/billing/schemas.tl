@@ -44,6 +44,8 @@ M.StringSearches = schema.new({ type = "list", list_member = M.StringSearch })
 
 M.BillingViewList = schema.new({ type = "list", list_member = M.BillingViewListElement })
 
+M.BillingViewSegmentsList = schema.new({ type = "list", list_member = M.BillingViewSegmentsListElement })
+
 M.LinkedAccountChargeList = schema.new({ type = "list", list_member = M.LinkedAccountCharge })
 
 M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -2090,6 +2092,118 @@ M.ListBillingViewsOutput = schema.new({
     },
 })
 
+M.BillingViewSegmentTimeRange = schema.new({
+    id = id.from(_N, "BillingViewSegmentTimeRange"),
+    type = "structure",
+    members = {
+        beginDateInclusive = schema.new({
+            id = id.from(_N, "BillingViewSegmentTimeRange", "beginDateInclusive"),
+            type = "timestamp",
+            name = "beginDateInclusive",
+            target_id = prelude.Timestamp.id,
+        }),
+        endDateExclusive = schema.new({
+            id = id.from(_N, "BillingViewSegmentTimeRange", "endDateExclusive"),
+            type = "timestamp",
+            name = "endDateExclusive",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListBillingViewSegmentsInput = schema.new({
+    id = id.from(_N, "ListBillingViewSegmentsRequest"),
+    type = "structure",
+    members = {
+        timeRange = schema.new({
+            id = id.from(_N, "ListBillingViewSegmentsInput", "timeRange"),
+            type = "structure",
+            name = "timeRange",
+            target_id = id.from(_N, "BillingViewSegmentTimeRange"),
+            target = M.BillingViewSegmentTimeRange,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "ListBillingViewSegmentsInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListBillingViewSegmentsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListBillingViewSegmentsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BillingViewSegmentsListElement = schema.new({
+    id = id.from(_N, "BillingViewSegmentsListElement"),
+    type = "structure",
+    members = {
+        domain = schema.new({
+            id = id.from(_N, "BillingViewSegmentsListElement", "domain"),
+            type = "string",
+            name = "domain",
+            target_id = prelude.String.id,
+        }),
+        timeRange = schema.new({
+            id = id.from(_N, "BillingViewSegmentsListElement", "timeRange"),
+            type = "structure",
+            name = "timeRange",
+            target_id = id.from(_N, "BillingViewSegmentTimeRange"),
+            target = M.BillingViewSegmentTimeRange,
+        }),
+        billingTransferAccountId = schema.new({
+            id = id.from(_N, "BillingViewSegmentsListElement", "billingTransferAccountId"),
+            type = "string",
+            name = "billingTransferAccountId",
+            target_id = prelude.String.id,
+        }),
+        managementAccountId = schema.new({
+            id = id.from(_N, "BillingViewSegmentsListElement", "managementAccountId"),
+            type = "string",
+            name = "managementAccountId",
+            target_id = prelude.String.id,
+        }),
+        billingGroupPrimaryAccountId = schema.new({
+            id = id.from(_N, "BillingViewSegmentsListElement", "billingGroupPrimaryAccountId"),
+            type = "string",
+            name = "billingGroupPrimaryAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListBillingViewSegmentsOutput = schema.new({
+    id = id.from(_N, "ListBillingViewSegmentsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListBillingViewSegmentsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.BillingViewSegmentsListElement,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListBillingViewSegmentsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListEnterpriseSupportLinkedAccountChargesInput = schema.new({
     id = id.from(_N, "ListEnterpriseSupportLinkedAccountChargesRequest"),
     type = "structure",
@@ -2717,6 +2831,17 @@ M.ListBillingViews = schema.operation({
     output = M.ListBillingViewsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBillingViewSegments = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListBillingViewSegments"),
+    input = M.ListBillingViewSegmentsInput,
+    output = M.ListBillingViewSegmentsOutput,
+    traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -38,6 +38,8 @@ M.__listOfColorConversion3DLUTSetting = schema.new({ type = "list", list_member 
 
 M.__listOfInput = schema.new({ type = "list", list_member = M.Input })
 
+M.__listOfMotionImageInserter = schema.new({ type = "list", list_member = M.MotionImageInserter })
+
 M.__listOfOutputGroup = schema.new({ type = "list", list_member = M.OutputGroup })
 
 M.__listOfOutputGroupDetail = schema.new({ type = "list", list_member = M.OutputGroupDetail })
@@ -3334,6 +3336,15 @@ M.AudioSelector = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "selectorType" },
+            },
+        }),
+        Smpte337Passthrough = schema.new({
+            id = id.from(_N, "AudioSelector", "Smpte337Passthrough"),
+            type = "string",
+            name = "Smpte337Passthrough",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "smpte337Passthrough" },
             },
         }),
         Streams = schema.new({
@@ -10777,6 +10788,24 @@ M.PassthroughSettings = schema.new({
                 [traits.JSON_NAME] = { name = "frameControl" },
             },
         }),
+        GopsPerSegment = schema.new({
+            id = id.from(_N, "PassthroughSettings", "GopsPerSegment"),
+            type = "integer",
+            name = "GopsPerSegment",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "gopsPerSegment" },
+            },
+        }),
+        SegmentationMode = schema.new({
+            id = id.from(_N, "PassthroughSettings", "SegmentationMode"),
+            type = "string",
+            name = "SegmentationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "segmentationMode" },
+            },
+        }),
         VideoSelectorMode = schema.new({
             id = id.from(_N, "PassthroughSettings", "VideoSelectorMode"),
             type = "string",
@@ -13009,6 +13038,16 @@ M.JobSettings = schema.new({
                 [traits.JSON_NAME] = { name = "motionImageInserter" },
             },
         }),
+        MotionImageInserters = schema.new({
+            id = id.from(_N, "JobSettings", "MotionImageInserters"),
+            type = "list",
+            name = "MotionImageInserters",
+            target_id = prelude.Document.id,
+            list_member = M.MotionImageInserter,
+            traits = {
+                [traits.JSON_NAME] = { name = "motionImageInserters" },
+            },
+        }),
         NielsenConfiguration = schema.new({
             id = id.from(_N, "JobSettings", "NielsenConfiguration"),
             type = "structure",
@@ -13592,6 +13631,16 @@ M.JobTemplateSettings = schema.new({
             target = M.MotionImageInserter,
             traits = {
                 [traits.JSON_NAME] = { name = "motionImageInserter" },
+            },
+        }),
+        MotionImageInserters = schema.new({
+            id = id.from(_N, "JobTemplateSettings", "MotionImageInserters"),
+            type = "list",
+            name = "MotionImageInserters",
+            target_id = prelude.Document.id,
+            list_member = M.MotionImageInserter,
+            traits = {
+                [traits.JSON_NAME] = { name = "motionImageInserters" },
             },
         }),
         NielsenConfiguration = schema.new({

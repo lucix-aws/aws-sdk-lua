@@ -683,6 +683,51 @@ local record M
         nextToken: string
     end
 
+    -- Specifies a time range with an inclusive begin date and an exclusive end date.
+    record BillingViewSegmentTimeRange
+        -- The inclusive start of the time range. This value can't be in the future.
+        beginDateInclusive: number
+        -- The exclusive end of the time range. This value must be after beginDateInclusive.
+        endDateExclusive: number
+    end
+
+    record ListBillingViewSegmentsInput
+        -- The billing period to query. If you don't provide a time range, the current billing period, which is the calendar month in UTC, is used.
+        timeRange: BillingViewSegmentTimeRange
+        -- The Amazon Resource Name (ARN) that uniquely identifies the billing view to query. If you don't provide an ARN, the caller's PRIMARY billing view is used. The ARN must reference a primary billing view. Custom billing views aren't supported.
+        arn: string
+        -- The number of entries a paginated response contains. Valid values range from 1 to 100. The default is 100.
+        maxResults: number
+        -- The pagination token that is used on subsequent calls to list billing view segments.
+        nextToken: string
+    end
+
+    enum BillingDomain
+        "BILLABLE"
+        "PRO_FORMA"
+    end
+
+    -- A billing view segment. A segment represents a time range during which the billing domain and account relationships for a billing view remained unchanged.
+    record BillingViewSegmentsListElement
+        -- The billing domain for this segment. The following values are valid: PRO_FORMA - Data shaped by Billing Conductor that doesn't reflect the final charges owed to Amazon Web Services. BILLABLE - Data that represents the final charges owed to Amazon Web Services.
+        domain: string
+        -- The time range during which this segment is effective.
+        timeRange: BillingViewSegmentTimeRange
+        -- The billing transfer account ID. The response includes this field only when the caller is a billing transfer source account. The response omits this field for billing group billing views.
+        billingTransferAccountId: string
+        -- The management account ID of the organization. The response includes this field for organization member accounts.
+        managementAccountId: string
+        -- The billing group primary account ID. The response includes this field for billing group members. Compare this value to your own account ID to determine whether you are the primary account.
+        billingGroupPrimaryAccountId: string
+    end
+
+    record ListBillingViewSegmentsOutput
+        -- A list of billing view segments. Each segment covers a portion of the requested time period. The response omits hidden segments, so the segments it returns might not cover the entire requested time period.
+        items: {BillingViewSegmentsListElement}
+        -- The pagination token that is used on subsequent calls to list billing view segments.
+        nextToken: string
+    end
+
     -- The request structure for ListEnterpriseSupportLinkedAccountCharges.
     record ListEnterpriseSupportLinkedAccountChargesInput
         -- The billing month in YYYY-MM format. This must be a month in the past.

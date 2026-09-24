@@ -1478,6 +1478,19 @@ local record M
         eventDate: number
     end
 
+    -- Specifies configuration that restricts speech detection to the
+    -- primary (loudest) speaker during streaming audio conversations, so that
+    -- speech from background speakers does not start a turn, interrupt the
+    -- bot, or reach speech recognition.
+    record SpeakerDiarizationSettings
+        -- Specifies whether speaker diarization is enabled for the bot locale.
+        -- Set to true to have Amazon Lex treat speech from speakers other
+        -- than the primary speaker as non-speech. Set to false to
+        -- disable speaker diarization and rely on voice activity detection
+        -- alone.
+        enabled: boolean
+    end
+
     enum SpeechDetectionSensitivity
         "Default"
         "HighNoiseTolerance"
@@ -1502,6 +1515,7 @@ local record M
         "Standard"
         "Neural"
         "Deepgram"
+        "Advanced"
     end
 
     -- Settings that control how Amazon Lex processes and recognizes speech input from users.
@@ -1591,6 +1605,9 @@ local record M
         -- (speech-to-speech) to be enabled when enabled is
         -- true.
         audioFillerSettings: AudioFillerSettings
+        -- The speaker diarization settings to apply when importing the bot
+        -- locale configuration.
+        speakerDiarizationSettings: SpeakerDiarizationSettings
     end
 
     enum BotLocaleSortAttribute
@@ -2476,6 +2493,10 @@ local record M
         generativeAISettings: GenerativeAISettings
         -- The sensitivity level for voice activity detection (VAD) in the bot locale. This setting helps optimize speech recognition accuracy by adjusting how the system responds to background noise during voice interactions.
         speechDetectionSensitivity: string
+        -- The speaker diarization settings to configure for the new bot
+        -- locale. When enabled, Amazon Lex restricts speech detection to the primary
+        -- (loudest) speaker during streaming audio conversations.
+        speakerDiarizationSettings: SpeakerDiarizationSettings
     end
 
     record CreateBotLocaleOutput
@@ -2520,6 +2541,9 @@ local record M
         generativeAISettings: GenerativeAISettings
         -- The sensitivity level for voice activity detection (VAD) that was specified for the bot locale.
         speechDetectionSensitivity: string
+        -- The speaker diarization settings configured for the created bot
+        -- locale.
+        speakerDiarizationSettings: SpeakerDiarizationSettings
     end
 
     record CreateBotReplicaInput
@@ -3828,6 +3852,9 @@ local record M
         generativeAISettings: GenerativeAISettings
         -- The sensitivity level for voice activity detection (VAD) configured for the bot locale.
         speechDetectionSensitivity: string
+        -- The speaker diarization settings configured for the bot
+        -- locale.
+        speakerDiarizationSettings: SpeakerDiarizationSettings
     end
 
     record DescribeBotRecommendationInput
@@ -6942,6 +6969,11 @@ local record M
         generativeAISettings: GenerativeAISettings
         -- The new sensitivity level for voice activity detection (VAD) in the bot locale. This setting helps optimize speech recognition accuracy by adjusting how the system responds to background noise during voice interactions.
         speechDetectionSensitivity: string
+        -- The updated speaker diarization settings to apply to the bot locale.
+        -- If you omit this field, Amazon Lex keeps the setting currently stored on the
+        -- bot locale. To turn speaker diarization off, set enabled
+        -- to false explicitly.
+        speakerDiarizationSettings: SpeakerDiarizationSettings
     end
 
     record UpdateBotLocaleOutput
@@ -6988,6 +7020,8 @@ local record M
         generativeAISettings: GenerativeAISettings
         -- The updated sensitivity level for voice activity detection (VAD) in the bot locale.
         speechDetectionSensitivity: string
+        -- The updated speaker diarization settings for the bot locale.
+        speakerDiarizationSettings: SpeakerDiarizationSettings
     end
 
     record UpdateBotRecommendationInput

@@ -61,6 +61,7 @@ local record Client
     updateMaxRecordSize: function(Client, types.UpdateMaxRecordSizeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMaxRecordSizeOutput>
     updateShardCount: function(Client, types.UpdateShardCountInput, ? base_client.InvokeOptions): async.Operation<types.UpdateShardCountOutput>
     updateStreamMode: function(Client, types.UpdateStreamModeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamModeOutput>
+    updateStreamRecordDistributionStrategy: function(Client, types.UpdateStreamRecordDistributionStrategyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamRecordDistributionStrategyOutput>
     updateStreamWarmThroughput: function(Client, types.UpdateStreamWarmThroughputInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamWarmThroughputOutput>
 end
 
@@ -276,6 +277,10 @@ end
 
 function C:updateStreamMode(input: types.UpdateStreamModeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamModeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStreamMode as schema.OperationSchema, input, options) as async.Operation<types.UpdateStreamModeOutput>
+end
+
+function C:updateStreamRecordDistributionStrategy(input: types.UpdateStreamRecordDistributionStrategyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamRecordDistributionStrategyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStreamRecordDistributionStrategy as schema.OperationSchema, input, options) as async.Operation<types.UpdateStreamRecordDistributionStrategyOutput>
 end
 
 function C:updateStreamWarmThroughput(input: types.UpdateStreamWarmThroughputInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamWarmThroughputOutput>

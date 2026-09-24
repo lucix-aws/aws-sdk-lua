@@ -2912,6 +2912,13 @@ M.ReEncryptionAttributes = schema.new({
             target_id = id.from(_N, "SymmetricEncryptionAttributes"),
             target = M.SymmetricEncryptionAttributes,
         }),
+        Asymmetric = schema.new({
+            id = id.from(_N, "ReEncryptionAttributes", "Asymmetric"),
+            type = "structure",
+            name = "Asymmetric",
+            target_id = id.from(_N, "AsymmetricEncryptionAttributes"),
+            target = M.AsymmetricEncryptionAttributes,
+        }),
         Dukpt = schema.new({
             id = id.from(_N, "ReEncryptionAttributes", "Dukpt"),
             type = "structure",

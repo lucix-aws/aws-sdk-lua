@@ -1300,6 +1300,12 @@ M.CreateStreamInput = schema.new({
             name = "MaxRecordSizeInKiB",
             target_id = prelude.Integer.id,
         }),
+        RecordDistributionStrategy = schema.new({
+            id = id.from(_N, "CreateStreamInput", "RecordDistributionStrategy"),
+            type = "string",
+            name = "RecordDistributionStrategy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2043,6 +2049,12 @@ M.StreamDescriptionSummary = schema.new({
             name = "ChannelCount",
             target_id = prelude.Integer.id,
         }),
+        RecordDistributionStrategy = schema.new({
+            id = id.from(_N, "StreamDescriptionSummary", "RecordDistributionStrategy"),
+            type = "string",
+            name = "RecordDistributionStrategy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2320,9 +2332,6 @@ M.Record = schema.new({
             type = "string",
             name = "PartitionKey",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         EncryptionType = schema.new({
             id = id.from(_N, "Record", "EncryptionType"),
@@ -3085,9 +3094,6 @@ M.PutRecordInput = schema.new({
             type = "string",
             name = "PartitionKey",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         ExplicitHashKey = schema.new({
             id = id.from(_N, "PutRecordInput", "ExplicitHashKey"),
@@ -3177,9 +3183,6 @@ M.PutRecordsRequestEntry = schema.new({
             type = "string",
             name = "PartitionKey",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -4107,6 +4110,39 @@ M.UpdateStreamModeInput = schema.new({
 
 M.UpdateStreamModeOutput = prelude.Unit
 
+M.UpdateStreamRecordDistributionStrategyInput = schema.new({
+    id = id.from(_N, "UpdateStreamRecordDistributionStrategyInput"),
+    type = "structure",
+    members = {
+        StreamARN = schema.new({
+            id = id.from(_N, "UpdateStreamRecordDistributionStrategyInput", "StreamARN"),
+            type = "string",
+            name = "StreamARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamId = schema.new({
+            id = id.from(_N, "UpdateStreamRecordDistributionStrategyInput", "StreamId"),
+            type = "string",
+            name = "StreamId",
+            target_id = prelude.String.id,
+        }),
+        RecordDistributionStrategy = schema.new({
+            id = id.from(_N, "UpdateStreamRecordDistributionStrategyInput", "RecordDistributionStrategy"),
+            type = "string",
+            name = "RecordDistributionStrategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateStreamRecordDistributionStrategyOutput = prelude.Unit
+
 M.UpdateStreamWarmThroughputInput = schema.new({
     id = id.from(_N, "UpdateStreamWarmThroughputInput"),
     type = "structure",
@@ -4924,6 +4960,24 @@ M.UpdateStreamMode = schema.operation({
     id = id.from("com.amazonaws.kinesis", "UpdateStreamMode"),
     input = M.UpdateStreamModeInput,
     output = M.UpdateStreamModeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamARN = "StreamARN",
+            StreamId = "StreamId",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            OperationType = { value = "control" },
+        },
+    },
+})
+
+M.UpdateStreamRecordDistributionStrategy = schema.operation({
+    id = id.from("com.amazonaws.kinesis", "UpdateStreamRecordDistributionStrategy"),
+    input = M.UpdateStreamRecordDistributionStrategyInput,
+    output = M.UpdateStreamRecordDistributionStrategyOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

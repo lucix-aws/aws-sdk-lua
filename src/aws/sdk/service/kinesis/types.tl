@@ -118,7 +118,7 @@ local record M
         -- The template used to construct the Amazon S3 object key for delivered objects. If not specified, a default template is used.
         OutputKeyTemplate: string
         -- The Amazon S3 storage class for delivered objects. Valid values:
-        -- STANDARD - Default storage class for frequently accessed data. (default)
+        -- STANDARD - The default storage class, for frequently accessed data.
         -- INTELLIGENT_TIERING - Automatically moves objects to the most cost-effective access tier based on usage patterns.
         -- GLACIER_IR - Low-cost storage for rarely accessed data that requires millisecond retrieval.
         StorageClass: string
@@ -205,7 +205,7 @@ local record M
         -- STRING - Supported only for general purpose Amazon S3 destinations.
         -- BYTE_ARRAY - Supported only for general purpose Amazon S3 destinations.
         RecordFormatType: string
-        -- The Amazon Resource Name (ARN) of the Amazon Web Services Glue Schema Registry schema used to validate records. Required when the channel destination is a streaming table (Amazon S3 Tables), for both the JSON and GSR_JSON record formats.
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Glue Schema Registry schema used to validate records. Required when the channel destination is a streaming table.
         GSRSchemaARN: string
     end
 
@@ -246,7 +246,7 @@ local record M
         S3DestinationConfiguration: S3DestinationDescription
         -- The configuration for delivery to streaming tables on Apache Iceberg in Amazon S3 Tables. Present only when the channel destination is a streaming table.
         S3TablesDestinationConfiguration: S3TablesDestinationDescription
-        -- The server-side encryption configuration for the channel.
+        -- The Amazon Web Services KMS key configuration that Amazon Kinesis Data Streams uses to encrypt data delivered to the channel's destination.
         EncryptionConfiguration: ChannelEncryptionConfiguration
         -- The Amazon CloudWatch Logs configuration for the channel.
         LoggingConfiguration: ChannelLoggingConfiguration
@@ -269,7 +269,7 @@ local record M
 
     -- The updated Amazon CloudWatch Logs configuration for a channel. Used in UpdateChannel.
     record ChannelLoggingUpdateInput
-        -- The updated Amazon CloudWatch Logs settings for the channel.
+        -- The updated Amazon CloudWatch Logs settings, including whether logging is enabled and the target log group and log stream.
         CloudWatchLogs: CloudWatchLogsUpdateInput
     end
 
@@ -381,7 +381,7 @@ local record M
 
     -- The configuration for delivery to a general purpose Amazon S3 bucket. Used in CreateChannel.
     record S3DestinationConfiguration
-        -- The maximum age, in seconds, of undelivered data. Valid range is 300 to 900 seconds (5 to 15 minutes). The default value is 300 seconds.
+        -- The maximum age, in seconds, of undelivered data before the channel delivers it to the destination. The default value is 300 seconds.
         DataFreshnessInSeconds: number
         -- The dead-letter queue configuration for records that cannot be delivered. Optional for general purpose Amazon S3 destinations. If not specified, it defaults to the destination bucket with an error prefix.
         DeadLetterQueueS3Configuration: DeadLetterQueueS3Configuration
@@ -391,7 +391,7 @@ local record M
 
     -- The configuration for delivery to streaming tables on Apache Iceberg. Used in CreateChannel.
     record S3TablesDestinationConfiguration
-        -- The maximum age, in seconds, of undelivered data. Valid range is 300 to 900 seconds (5 to 15 minutes). The default value is 300 seconds.
+        -- The maximum age, in seconds, of undelivered data before the channel delivers it to the destination. The default value is 300 seconds.
         DataFreshnessInSeconds: number
         -- The dead-letter queue configuration for records that cannot be delivered. Required for streaming table destinations.
         DeadLetterQueueS3Configuration: DeadLetterQueueS3Configuration
@@ -406,9 +406,9 @@ local record M
         ServiceExecutionRoleARN: string
         -- The source stream configuration for the channel. Currently, one stream is supported per channel.
         StreamConfigurationList: {ChannelStreamConfiguration}
-        -- The configuration for delivery to a general purpose Amazon S3 bucket. You must specify either S3DestinationConfiguration or S3TablesDestinationConfiguration, but not both.
+        -- The configuration for delivery to a general purpose Amazon S3 bucket. Specify this parameter when S3TablesDestinationConfiguration is not specified.
         S3DestinationConfiguration: S3DestinationConfiguration
-        -- The configuration for delivery to streaming tables on Apache Iceberg in Amazon S3 Tables. You must specify either S3DestinationConfiguration or S3TablesDestinationConfiguration, but not both.
+        -- The configuration for delivery to streaming tables on Apache Iceberg in Amazon S3 Tables. Specify this parameter when S3DestinationConfiguration is not specified.
         S3TablesDestinationConfiguration: S3TablesDestinationConfiguration
         -- The server-side encryption configuration that uses an Amazon Web Services KMS key to encrypt data delivered to the destination.
         EncryptionConfiguration: ChannelEncryptionConfiguration
@@ -419,7 +419,7 @@ local record M
     end
 
     record CreateChannelOutput
-        -- The configuration and current status of the channel.
+        -- The configuration and current status of the channel, including its ARN, destination configuration, and lifecycle state. Immediately after creation, the state is CREATING.
         ChannelDescription: ChannelDescription
     end
 
@@ -475,6 +475,11 @@ local record M
         message: string
     end
 
+    enum RecordDistributionStrategy
+        "AUTO"
+        "USER_PARTITION_KEY"
+    end
+
     enum StreamMode
         "PROVISIONED"
         "ON_DEMAND"
@@ -510,6 +515,20 @@ local record M
         WarmThroughputMiBps: number
         -- The maximum record size of a single record in kibibyte (KiB) that you can write to, and read from a stream.
         MaxRecordSizeInKiB: number
+        -- The record distribution strategy for the stream, which determines how Amazon Kinesis
+        -- Data Streams distributes records across shards. Specify one of the following
+        -- values:
+        -- AUTO – Amazon Kinesis Data Streams distributes records evenly
+        -- across shards and ignores any partition key and ExplicitHashKey
+        -- that producers supply. Use this value for stateless workloads that do not
+        -- require partition-key ordering.
+        -- USER_PARTITION_KEY – Producers must supply a partition key, which
+        -- Amazon Kinesis Data Streams uses to determine shard placement. This is the
+        -- default.
+        -- The record distribution strategy is only supported for streams that use the on-demand
+        -- capacity mode. If you do not specify this parameter, the stream uses
+        -- USER_PARTITION_KEY.
+        RecordDistributionStrategy: string
     end
 
     record CreateStreamOutput
@@ -618,7 +637,7 @@ local record M
     end
 
     record DescribeChannelOutput
-        -- The configuration and current status of the channel.
+        -- The configuration and current status of the channel, including its ARN, source stream, destination configuration, and lifecycle state.
         ChannelDescription: ChannelDescription
     end
 
@@ -887,6 +906,12 @@ local record M
         MaxRecordSizeInKiB: number
         -- The number of channels associated with the stream.
         ChannelCount: number
+        -- The record distribution strategy that the stream currently uses. A value of
+        -- AUTO indicates that Amazon Kinesis Data Streams distributes records across
+        -- shards using service-managed algorithms. A value of USER_PARTITION_KEY
+        -- indicates that shard placement is determined by the partition key that producers supply.
+        -- This field is only present for streams that use the on-demand capacity mode.
+        RecordDistributionStrategy: string
     end
 
     record DescribeStreamSummaryOutput
@@ -1021,6 +1046,10 @@ local record M
         -- size, the total size must not exceed the maximum record size (10 MiB).
         Data: string
         -- Identifies which shard in the stream the data record is assigned to.
+        -- For a stream that uses the AUTO record distribution strategy, this value
+        -- is not returned if the producer did not provide a partition key when writing the record.
+        -- If the producer provided a partition key, the original value is returned even though it
+        -- was not used to determine shard placement.
         PartitionKey: string
         -- The encryption type used on the record. This parameter can be one of the following
         -- values:
@@ -1163,7 +1192,7 @@ local record M
         StreamFilter: {StreamFilter}
         -- The maximum number of channels to return in a single call. The default value is 100. If you specify a value greater than 100, at most 100 results are returned.
         MaxResults: number
-        -- The pagination token returned by a previous call. Specify this token to retrieve the next page of results. This value is null when there are no more results to return.
+        -- The pagination token returned by a previous call. Specify this token to retrieve the next page of results.
         NextToken: string
     end
 
@@ -1490,6 +1519,13 @@ local record M
         -- function is used to map partition keys to 128-bit integer values and to map associated
         -- data records to shards. As a result of this hashing mechanism, all data records with the
         -- same partition key map to the same shard within the stream.
+        -- If the stream uses the USER_PARTITION_KEY record distribution strategy
+        -- (the default), a partition key is required. If the stream uses the AUTO
+        -- record distribution strategy, the partition key is optional and any value you provide is
+        -- ignored, along with any ExplicitHashKey you provide. In that case, Amazon
+        -- Kinesis Data Streams distributes the record across shards using service-managed
+        -- algorithms. For more information, see
+        -- UpdateStreamRecordDistributionStrategy.
         PartitionKey: string
         -- The hash value used to explicitly determine the shard the data record is assigned to
         -- by overriding the partition key hash.
@@ -1542,6 +1578,13 @@ local record M
         -- function is used to map partition keys to 128-bit integer values and to map associated
         -- data records to shards. As a result of this hashing mechanism, all data records with the
         -- same partition key map to the same shard within the stream.
+        -- If the stream uses the USER_PARTITION_KEY record distribution strategy
+        -- (the default), a partition key is required for each record. If the stream uses the
+        -- AUTO record distribution strategy, the partition key is optional and any
+        -- value you provide is ignored, along with any ExplicitHashKey you provide.
+        -- In that case, Amazon Kinesis Data Streams distributes records across shards using
+        -- service-managed algorithms. For more information, see
+        -- UpdateStreamRecordDistributionStrategy.
         PartitionKey: string
     end
 
@@ -1865,29 +1908,29 @@ local record M
 
     -- The updated configuration for a general purpose Amazon S3 destination. Used in UpdateChannel. Only DataFreshnessInSeconds can be updated.
     record S3DestinationUpdateInput
-        -- The maximum age, in seconds, of undelivered data. Valid range is 300 to 900 seconds (5 to 15 minutes).
+        -- The maximum age, in seconds, of undelivered data before the channel delivers it to the destination.
         DataFreshnessInSeconds: number
     end
 
     -- The updated configuration for a streaming table destination. Used in UpdateChannel. Only DataFreshnessInSeconds can be updated.
     record S3TablesDestinationUpdateInput
-        -- The maximum age, in seconds, of undelivered data. Valid range is 300 to 900 seconds (5 to 15 minutes).
+        -- The maximum age, in seconds, of undelivered data before the channel delivers it to the destination.
         DataFreshnessInSeconds: number
     end
 
     record UpdateChannelInput
         -- The Amazon Resource Name (ARN) of the channel to update.
         ChannelARN: string
-        -- The updated configuration for a general purpose Amazon S3 destination. Only DataFreshnessInSeconds can be updated.
+        -- The updated configuration for a general purpose Amazon S3 destination. Specify this parameter when the channel delivers to a general purpose Amazon S3 bucket. Only DataFreshnessInSeconds can be updated.
         S3DestinationConfiguration: S3DestinationUpdateInput
-        -- The updated configuration for a streaming table destination. Only DataFreshnessInSeconds can be updated.
+        -- The updated configuration for a streaming table destination. Specify this parameter when the channel delivers to streaming tables on Apache Iceberg in Amazon S3 Tables. Only DataFreshnessInSeconds can be updated.
         S3TablesDestinationConfiguration: S3TablesDestinationUpdateInput
         -- The updated Amazon CloudWatch Logs configuration for the channel.
         LoggingConfiguration: ChannelLoggingUpdateInput
     end
 
     record UpdateChannelOutput
-        -- The configuration and current status of the updated channel.
+        -- The configuration and current status of the channel after the update, including its ARN, destination configuration, and lifecycle state. Immediately after the request, the state is UPDATING.
         ChannelDescription: ChannelDescription
     end
 
@@ -1953,6 +1996,25 @@ local record M
     end
 
     record UpdateStreamModeOutput
+    end
+
+    record UpdateStreamRecordDistributionStrategyInput
+        -- The Amazon Resource Name (ARN) of the stream to update.
+        StreamARN: string
+        -- Not Implemented. Reserved for future use.
+        StreamId: string
+        -- The record distribution strategy to apply to the stream. Specify one of the following
+        -- values:
+        -- AUTO – Amazon Kinesis Data Streams distributes records evenly
+        -- across shards and ignores any partition key and ExplicitHashKey
+        -- that producers supply.
+        -- USER_PARTITION_KEY – Producers must supply a partition key, which
+        -- Amazon Kinesis Data Streams uses to determine shard placement. This is the
+        -- default.
+        RecordDistributionStrategy: string
+    end
+
+    record UpdateStreamRecordDistributionStrategyOutput
     end
 
     record UpdateStreamWarmThroughputInput

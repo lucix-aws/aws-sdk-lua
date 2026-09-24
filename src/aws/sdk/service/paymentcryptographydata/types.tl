@@ -997,8 +997,11 @@ local record M
 
     -- Parameters that are required to perform reencryption operation.
     record ReEncryptionAttributes
-        -- Parameters that are required to encrypt data using symmetric keys.
+        -- Specifies the parameters required to encrypt data using symmetric keys.
         Symmetric: SymmetricEncryptionAttributes
+        -- Specifies the parameters required to encrypt data using an asymmetric key pair. You must specify a PaddingType.
+        Asymmetric: AsymmetricEncryptionAttributes
+        -- Specifies the parameters required to encrypt data using DUKPT.
         Dukpt: DukptEncryptionAttributes
     end
 
