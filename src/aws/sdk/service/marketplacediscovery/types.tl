@@ -7,6 +7,14 @@ local record M
         message: string
     end
 
+    -- Contains supported Amazon EBS volume information for an AMI fulfillment option.
+    record AmazonMachineImageEbsVolume
+        -- The supported Amazon EBS volume types.
+        volumeTypes: {string}
+        -- The total number of provisioned IOPS supported.
+        iops: number
+    end
+
     enum FulfillmentOptionType
         "AMAZON_MACHINE_IMAGE"
         "API"
@@ -32,10 +40,24 @@ local record M
         operatingSystemVersion: string
     end
 
+    -- Contains a recommended security group configuration for an AMI fulfillment option.
+    record AmazonMachineImageSecurityGroup
+        -- The IP protocol name, such as tcp.
+        protocol: string
+        -- The start of the port range.
+        fromPort: number
+        -- The end of the port range.
+        toPort: number
+        -- The IP address ranges in CIDR format.
+        cidrIpAddresses: {string}
+    end
+
     -- Recommended instance types for running an AMI fulfillment option.
     record AmazonMachineImageRecommendation
         -- The recommended EC2 instance type for this AMI.
         instanceType: string
+        -- The recommended security group configurations for this AMI.
+        securityGroups: {AmazonMachineImageSecurityGroup}
     end
 
     -- Describes an Amazon Machine Image (AMI) fulfillment option, including version details, supported operating systems, and recommended instance types.
@@ -58,6 +80,18 @@ local record M
         releaseNotes: string
         -- Instructions on how to deploy and use this fulfillment option.
         usageInstructions: string
+        -- The date and time when the AMI became available for fulfillment.
+        availableFromTime: number
+        -- The URL pattern for accessing the product when an instance is running.
+        accessUrlTemplate: string
+        -- The architecture of the AMI, such as x86_64.
+        architecture: string
+        -- The alias of the AMI associated with this fulfillment option.
+        amiAlias: string
+        -- The supported Amazon EBS volume configuration for the AMI.
+        ebsVolume: AmazonMachineImageEbsVolume
+        -- A short description of the fulfillment option.
+        shortDescription: string
     end
 
     -- Describes an AWS service supported by a fulfillment option.
@@ -85,6 +119,8 @@ local record M
     end
 
     record GetListingInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- The unique identifier of the listing to retrieve.
         listingId: string
     end
@@ -304,6 +340,8 @@ local record M
     end
 
     record GetListingOutput
+        -- The locale of the returned content. Indicates whether the response contains content in the requested locale, or fell back to the default locale. See Locale for details.
+        locale: string
         -- The products and offers associated with this listing. Each entity contains product and offer information.
         associatedEntities: {ListingAssociatedEntity}
         -- Badges indicating special attributes of the listing, such as free tier eligibility, free trial availability, or Quick Launch support.
@@ -375,6 +413,8 @@ local record M
     end
 
     record GetOfferInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- The unique identifier of the offer to retrieve.
         offerId: string
     end
@@ -411,6 +451,8 @@ local record M
     end
 
     record GetOfferOutput
+        -- The locale of the returned content. Indicates whether the response contains content in the requested locale, or fell back to the default locale. See Locale for details.
+        locale: string
         -- The unique identifier of the offer.
         offerId: string
         -- The name of the catalog that the offer belongs to.
@@ -436,6 +478,8 @@ local record M
     end
 
     record GetOfferSetInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- The unique identifier of the offer set to retrieve.
         offerSetId: string
     end
@@ -449,6 +493,8 @@ local record M
     end
 
     record GetOfferSetOutput
+        -- The locale of the returned content. Indicates whether the response contains content in the requested locale, or fell back to the default locale. See Locale for details.
+        locale: string
         -- The unique identifier of the offer set.
         offerSetId: string
         -- The name of the catalog that the offer set belongs to.
@@ -470,6 +516,8 @@ local record M
     end
 
     record GetOfferTermsInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- The unique identifier of the offer whose terms to retrieve.
         offerId: string
         -- The maximum number of results that are returned per call. You can use nextToken to get more results.
@@ -706,11 +754,11 @@ local record M
 
     -- A single installment entry in the renewal payment schedule.
     record PaymentScheduleEntry
-        -- The relative offset from the renewal agreement start date when this installment is due, in ISO 8601 duration format. The offset uses months only or days only (for example, P1M or P30D); mixed units are not supported, and every offset in a schedule uses the same unit.
+        -- The relative offset from the renewal agreement start date when this installment is due, represented in ISO 8601 duration format (for example, P1M or P30D).
         chargeDateOffset: string
-        -- The percentage of the increased TCV to charge in this installment. All entries in a schedule sum to 100.00.
+        -- The percentage of the increased Total Contract Value (TCV) to charge in this installment. All entries in a schedule sum to 100.00.
         chargePercentage: string
-        -- The optional calendar day of month on which the charge occurs. When absent, the charge day is derived from chargeDateOffset, and this field does not apply when chargeDateOffset is expressed in days. For months with fewer days than the specified day, the charge occurs on the last day of the month. For example, if dayOfMonth is 31, the charge in April occurs on April 30.
+        -- The optional calendar day of month on which the charge occurs. When absent, the charge day is derived from chargeDateOffset. For months with fewer days than the specified day, the charge occurs on the last day of the month. For example, if dayOfMonth is 31, the charge in April occurs on April 30.
         dayOfMonth: number
     end
 
@@ -807,6 +855,8 @@ local record M
     end
 
     record GetOfferTermsOutput
+        -- The locale of the returned content. Indicates whether the response contains content in the requested locale, or fell back to the default locale. See Locale for details.
+        locale: string
         -- The terms attached to the offer. Each element contains exactly one term type.
         offerTerms: {OfferTerm}
         -- If nextToken is returned, there are more results available. Make the call again using the returned token to retrieve the next page.
@@ -814,6 +864,8 @@ local record M
     end
 
     record GetProductInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- The unique identifier of the product to retrieve.
         productId: string
     end
@@ -825,6 +877,8 @@ local record M
     end
 
     record GetProductOutput
+        -- The locale of the returned content. Indicates whether the response contains content in the requested locale, or fell back to the default locale. See Locale for details.
+        locale: string
         -- The unique identifier of the product.
         productId: string
         -- The name of the catalog that the product belongs to.
@@ -853,9 +907,13 @@ local record M
         resources: {Resource}
         -- Engagement options available to potential buyers, such as requesting a private offer or requesting a demo.
         sellerEngagements: {SellerEngagement}
+        -- The default listing identifier associated with the product.
+        listingId: string
     end
 
     record ListFulfillmentOptionsInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- The unique identifier of the product for which to list fulfillment options.
         productId: string
         -- The maximum number of results that are returned per call. You can use nextToken to get more results.
@@ -880,6 +938,12 @@ local record M
         releaseNotes: string
         -- Instructions on how to deploy and use this CloudFormation template.
         usageInstructions: string
+        -- The date and time when the CloudFormation fulfillment option became available for fulfillment.
+        availableFromTime: number
+        -- A short description of the fulfillment option.
+        shortDescription: string
+        -- A detailed description of the fulfillment option.
+        longDescription: string
     end
 
     -- Describes an operating system supported by a container fulfillment option.
@@ -1028,6 +1092,11 @@ local record M
         fulfillmentOptionDisplayName: string
     end
 
+    enum SaasQuickLaunchStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
     -- Describes a Software as a Service (SaaS) fulfillment option.
     record SaasFulfillmentOption
         -- The unique identifier of the fulfillment option.
@@ -1040,6 +1109,12 @@ local record M
         fulfillmentUrl: string
         -- Instructions on how to access and use this SaaS product.
         usageInstructions: string
+        -- The date and time when the SaaS product became available for fulfillment.
+        availableFromTime: number
+        -- The URL that a buyer uses to launch the seller's SaaS product. This URL is distinct from fulfillmentUrl, which is the seller's software registration landing page.
+        launchUrl: string
+        -- Specifies whether the SaaS product supports quick-launch deployment.
+        quickLaunch: string
     end
 
     -- Recommended instance types for training and inference with a SageMaker algorithm.
@@ -1094,6 +1169,10 @@ local record M
         usageInstructions: string
         -- Recommended instance types for inference with this model.
         recommendation: SageMakerModelRecommendation
+        -- The MIME types that this model accepts as input.
+        supportedContentTypes: {string}
+        -- The MIME types that this model returns as output.
+        supportedResponseMimeTypes: {string}
     end
 
     -- Describes a fulfillment option for a product. Each element contains exactly one fulfillment option type.
@@ -1125,6 +1204,7 @@ local record M
     end
 
     record ListFulfillmentOptionsOutput
+        locale: string
         -- The fulfillment options available for the product. Each option describes how the buyer can deploy or access the product.
         fulfillmentOptions: {FulfillmentOption}
         -- If nextToken is returned, there are more results available. Make the call again using the returned token to retrieve the next page.
@@ -1143,11 +1223,13 @@ local record M
     record PurchaseOptionFilter
         -- The type of filter to apply, such as PRODUCT_ID, VISIBILITY_SCOPE, or PURCHASE_OPTION_TYPE.
         filterType: string
-        -- The values to filter by. Multiple values within the same filter are combined with OR logic.
+        -- The values to filter by. Supported values depend on filterType: PRODUCT_ID – One or more product identifiers to filter by. SELLER_OF_RECORD_PROFILE_ID – One or more seller profile identifiers to filter by. PURCHASE_OPTION_TYPE – One or more purchase option types to filter by: OFFER or OFFERSET. VISIBILITY_SCOPE – The visibility scope to filter by: PRIVATE. AVAILABILITY_STATUS – One or more availability statuses to filter by: AVAILABLE or EXPIRED. To retrieve private offers and offer sets visible to you, use VISIBILITY_SCOPE with PRIVATE. OR logic combines multiple values within the same filter.
         filterValues: {string}
     end
 
     record ListPurchaseOptionsInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- Filters to narrow the results. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.
         filters: {PurchaseOptionFilter}
         -- The maximum number of results that are returned per call. You can use nextToken to get more results.
@@ -1232,6 +1314,8 @@ local record M
     end
 
     record SearchFacetsInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- The search query text to filter listings before retrieving facets.
         searchText: string
         -- Filters to apply before retrieving facets. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.
@@ -1274,6 +1358,8 @@ local record M
     end
 
     record SearchListingsInput
+        -- A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See Locale for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.
+        locale: string
         -- The search query text to find relevant listings.
         searchText: string
         -- Filters to narrow search results. Multiple filters are combined with AND logic. Multiple values within the same filter are combined with OR logic.

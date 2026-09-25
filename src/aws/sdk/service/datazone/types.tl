@@ -1689,6 +1689,10 @@ local record M
         attributes: {BatchPutAttributeOutput}
     end
 
+    enum BlueprintCategory
+        "TOOLING"
+    end
+
     record CancelMetadataGenerationRunInput
         -- The ID of the Amazon DataZone domain in which the metadata generation run is to be cancelled.
         domainIdentifier: string
@@ -1894,6 +1898,8 @@ local record M
     record IamPropertiesInput
         -- Specifies whether Amazon Web Services Glue lineage sync is enabled for a connection.
         glueLineageSyncEnabled: boolean
+        -- The ARN of the IAM role to associate with the connection as the project user role. To use this operation, you must have iam:PassRole permission for this role.
+        roleArn: string
     end
 
     -- The lakehouse properties of a connection.
@@ -3560,6 +3566,8 @@ local record M
         provisioningProperties: ProvisioningProperties
         -- The user parameters of this Amazon DataZone blueprint.
         userParameters: {CustomParameter}
+        -- The category of the Amazon DataZone blueprint. The only valid value is TOOLING, which creates a blueprint that provisions the tooling resources of a project.
+        blueprintCategory: string
     end
 
     record CreateEnvironmentBlueprintOutput
@@ -3579,6 +3587,8 @@ local record M
         userParameters: {CustomParameter}
         -- The glossary terms attached to this Amazon DataZone blueprint.
         glossaryTerms: {string}
+        -- The category of the Amazon DataZone blueprint. The only valid value is TOOLING, which indicates a blueprint that provisions the tooling resources of a project.
+        blueprintCategory: string
         -- The timestamp at which the environment blueprint was created.
         createdAt: number
         -- The timestamp of when this blueprint was updated.
@@ -6262,6 +6272,8 @@ local record M
         userParameters: {CustomParameter}
         -- The glossary terms attached to this Amazon DataZone blueprint.
         glossaryTerms: {string}
+        -- The category of this Amazon DataZone blueprint. The only valid value is TOOLING, which indicates a blueprint that provisions the tooling resources of a project.
+        blueprintCategory: string
         -- A timestamp of when this blueprint was created.
         createdAt: number
         -- The timestamp of when this blueprint was updated.
@@ -7220,6 +7232,8 @@ local record M
         createdAt: number
         -- The timestamp of when the blueprint was enabled.
         updatedAt: number
+        -- The category of the environment blueprint. The only valid value is TOOLING.
+        blueprintCategory: string
     end
 
     record ListEnvironmentBlueprintsOutput
@@ -9869,6 +9883,8 @@ local record M
         provisioningProperties: ProvisioningProperties
         -- The user parameters to be updated as part of the UpdateEnvironmentBlueprint action.
         userParameters: {CustomParameter}
+        -- The category to update. The only valid value is TOOLING.
+        blueprintCategory: string
     end
 
     record UpdateEnvironmentBlueprintOutput
@@ -9888,6 +9904,8 @@ local record M
         userParameters: {CustomParameter}
         -- The glossary terms to be updated as part of the UpdateEnvironmentBlueprint action.
         glossaryTerms: {string}
+        -- The category of the environment blueprint. The only valid value is TOOLING.
+        blueprintCategory: string
         -- The timestamp of when the environment blueprint was created.
         createdAt: number
         -- The timestamp of when the blueprint was updated.

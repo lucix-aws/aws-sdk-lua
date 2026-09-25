@@ -112,11 +112,11 @@ local record M
 
     -- The VPC configuration for a pentest, specifying the VPC, security groups, and subnets to use during testing.
     record VpcConfig
-        -- The Amazon Resource Name (ARN) of the VPC.
+        -- The Amazon Resource Name (ARN) or ID of the VPC.
         vpcArn: string
-        -- The Amazon Resource Names (ARNs) of the security groups for the VPC configuration.
+        -- The Amazon Resource Names (ARNs) or IDs of the security groups for the VPC configuration.
         securityGroupArns: {string}
-        -- The Amazon Resource Names (ARNs) of the subnets for the VPC configuration.
+        -- The Amazon Resource Names (ARNs) or IDs of the subnets for the VPC configuration.
         subnetArns: {string}
     end
 
@@ -468,7 +468,7 @@ local record M
 
     -- A trust anchor used when validating a target endpoint's TLS certificate.
     record TrustedCaCertificate
-        -- The source that AWS Security Agent reads the certificate from.
+        -- The source that Security Agent reads the certificate from.
         source: CaCertificateSource
     end
 
@@ -678,6 +678,70 @@ local record M
         customHeaders: {CustomHeader}
     end
 
+    -- Destination for publishing scan reports to an integrated document provider.
+    record ReportDestination
+        -- The integration identifier for the document provider.
+        integrationId: string
+        -- The container identifier where the report will be published.
+        containerId: string
+        -- The parent document identifier under which the report will be created.
+        parentId: string
+        -- The existing document identifier to update instead of creating a new document.
+        documentId: string
+    end
+
+    enum ConfidenceLevel
+        "FALSE_POSITIVE"
+        "UNCONFIRMED"
+        "LOW"
+        "MEDIUM"
+        "HIGH"
+    end
+
+    enum RiskLevel
+        "UNKNOWN"
+        "INFORMATIONAL"
+        "LOW"
+        "MEDIUM"
+        "HIGH"
+        "CRITICAL"
+    end
+
+    enum FindingStatus
+        "ACTIVE"
+        "RESOLVED"
+        "ACCEPTED"
+        "FALSE_POSITIVE"
+    end
+
+    enum TaskExecutionStatus
+        "IN_PROGRESS"
+        "ABORTED"
+        "COMPLETED"
+        "INTERNAL_ERROR"
+        "FAILED"
+    end
+
+    -- The report-generation filters applied when a pentest or code review report is exported.
+    record ReportFilters
+        -- The severity levels to include in the report.
+        riskLevels: {string}
+        -- The confidence levels to include in the report.
+        confidenceLevels: {string}
+        -- The finding statuses to include in the report.
+        statuses: {string}
+        -- The risk types to include in the report.
+        riskTypes: {string}
+        -- The finding types to include in the report.
+        findingTypes: {string}
+        -- The task execution statuses to include in the report's task table.
+        taskStatuses: {string}
+        -- Whether to include reviewer annotation notes under each finding.
+        annotationNotes: boolean
+        -- Whether to include the compliance-ready report additions.
+        complianceReport: boolean
+    end
+
     -- Represents a pentest configuration that defines the parameters for security testing, including target assets, risk type exclusions, and infrastructure settings.
     record Pentest
         -- The unique identifier of the pentest.
@@ -706,6 +770,10 @@ local record M
         disableManagedSkills: {string}
         -- The maximum number of billable task hours allowed for jobs started from this pentest. If a job reaches the configured limit, it is gracefully stopped. If not set, jobs run to completion with no budget cap.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
         -- The date and time the pentest was created, in UTC format.
         createdAt: number
         -- The date and time the pentest was last updated, in UTC format.
@@ -885,6 +953,8 @@ local record M
         codeRemediationStrategy: string
         -- The maximum number of billable task hours allowed for this code review job. If the cumulative task hours reach this limit, the job is gracefully stopped.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
         -- The date and time the code review job was created, in UTC format.
         createdAt: number
         -- The date and time the code review job was last updated, in UTC format.
@@ -913,14 +983,6 @@ local record M
         name: string
         -- Indicates whether this is the primary category for the task.
         isPrimary: boolean
-    end
-
-    enum TaskExecutionStatus
-        "IN_PROGRESS"
-        "ABORTED"
-        "COMPLETED"
-        "INTERNAL_ERROR"
-        "FAILED"
     end
 
     enum LogType
@@ -1004,6 +1066,10 @@ local record M
         validationMode: string
         -- The maximum number of billable task hours allowed for jobs started from this code review. If a job reaches the configured limit, it is gracefully stopped. If not set, jobs run to completion with no budget cap.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
         -- The date and time the code review was created, in UTC format.
         createdAt: number
         -- The date and time the code review was last updated, in UTC format.
@@ -1062,30 +1128,6 @@ local record M
         statusReason: string
         -- The list of details for the code remediation task, including repository name, code diff link, and pull request link.
         taskDetails: {CodeRemediationTaskDetails}
-    end
-
-    enum ConfidenceLevel
-        "FALSE_POSITIVE"
-        "UNCONFIRMED"
-        "LOW"
-        "MEDIUM"
-        "HIGH"
-    end
-
-    enum RiskLevel
-        "UNKNOWN"
-        "INFORMATIONAL"
-        "LOW"
-        "MEDIUM"
-        "HIGH"
-        "CRITICAL"
-    end
-
-    enum FindingStatus
-        "ACTIVE"
-        "RESOLVED"
-        "ACCEPTED"
-        "FALSE_POSITIVE"
     end
 
     enum ValidationStatus
@@ -1251,6 +1293,8 @@ local record M
         jobType: string
         -- The list of finding identifiers selected for revalidation. Present only when jobType is REVALIDATION.
         selectedFindingIds: {string}
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
         -- The date and time the pentest job was created, in UTC format.
         createdAt: number
         -- The date and time the pentest job was last updated, in UTC format.
@@ -1480,6 +1524,8 @@ local record M
         errorInformation: ErrorInformation
         -- The system overview generated during threat modeling.
         systemOverview: string
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
     end
 
     -- Output for the BatchGetThreatModelJobs operation.
@@ -1556,6 +1602,8 @@ local record M
         serviceRole: string
         -- The CloudWatch Logs configuration for the threat model.
         logConfig: CloudWatchLog
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
         -- The date and time the threat model was created, in UTC format.
         createdAt: number
         -- The date and time the threat model was last updated, in UTC format.
@@ -1861,6 +1909,10 @@ local record M
         validationMode: string
         -- The maximum number of billable task hours allowed for jobs started from this code review. Must be a positive number. If not set, jobs run to completion with no budget cap.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
     end
 
     -- Output for the CreateCodeReview operation.
@@ -1887,6 +1939,10 @@ local record M
         validationMode: string
         -- The maximum number of billable task hours configured for jobs started from this code review. Null if no budget cap is set.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
     end
 
     -- The input required to create a GitHub integration, including the OAuth authorization code and CSRF state.
@@ -2021,6 +2077,10 @@ local record M
         disableManagedSkills: {string}
         -- The maximum number of billable task hours allowed for jobs started from this pentest. Must be a positive number. If not set, jobs run to completion with no budget cap.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
     end
 
     -- Output for the CreatePentest operation.
@@ -2043,6 +2103,10 @@ local record M
         logConfig: CloudWatchLog
         -- The unique identifier of the agent space that contains the pentest.
         agentSpaceId: string
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
     end
 
     -- The configuration for a self-managed private connection.
@@ -2276,18 +2340,6 @@ local record M
         updatedAt: number
     end
 
-    -- Destination for publishing scan reports to an integrated document provider.
-    record ReportDestination
-        -- The integration identifier for the document provider.
-        integrationId: string
-        -- The container identifier where the report will be published.
-        containerId: string
-        -- The parent document identifier under which the report will be created.
-        parentId: string
-        -- The existing document identifier to update instead of creating a new document.
-        documentId: string
-    end
-
     -- Input for creating a new threat model.
     record CreateThreatModelInput
         -- The title of the threat model.
@@ -2330,6 +2382,8 @@ local record M
         createdAt: number
         -- The date and time the threat model was last updated, in UTC format.
         updatedAt: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
     end
 
     record DeleteArtifactInput
@@ -3678,6 +3732,10 @@ local record M
         validationMode: string
         -- The updated maximum number of billable task hours allowed for jobs started from this code review.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
     end
 
     -- Output for the UpdateCodeReview operation.
@@ -3704,6 +3762,10 @@ local record M
         validationMode: string
         -- The maximum number of billable task hours configured for jobs started from this code review. Null if no budget cap is set.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
     end
 
     -- Input for updating an existing security finding.
@@ -3774,6 +3836,10 @@ local record M
         disableManagedSkills: {string}
         -- The updated maximum number of billable task hours allowed for jobs started from this pentest.
         maxTaskHours: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
     end
 
     -- Output for the UpdatePentest operation.
@@ -3796,6 +3862,10 @@ local record M
         logConfig: CloudWatchLog
         -- The unique identifier of the agent space that contains the pentest.
         agentSpaceId: string
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+        -- The report-generation filters applied when the report is exported.
+        reportFilters: ReportFilters
     end
 
     -- Input for updating an existing threat.
@@ -3898,6 +3968,8 @@ local record M
         serviceRole: string
         -- The updated CloudWatch Logs configuration for the threat model.
         logConfig: CloudWatchLog
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
     end
 
     -- Output for the UpdateThreatModel operation.
@@ -3922,6 +3994,8 @@ local record M
         createdAt: number
         -- The date and time the threat model was last updated, in UTC format.
         updatedAt: number
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
     end
 
     -- Input for verifying ownership for a registered target domain in an agent space.

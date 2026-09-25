@@ -150,6 +150,8 @@ local record M
         IpId: string
         -- The ID of the subnet that includes the IP address that you want to update. To get this ID, use
         -- GetResolverEndpoint.
+        -- We recommend using VPC Resolver on Outposts to create endpoints on Outposts Racks.
+        -- Outposts subnets with Local Network Interface (LNI) enabled are not compatible with Route 53 Resolver endpoints. If you enable LNI on a subnet that contains Route 53 Resolver endpoint elastic network interfaces (ENIs), those ENIs will stop functioning. For more information, see Subnet compatibility for Resolver endpoints in the Amazon Route 53 Developer Guide.
         SubnetId: string
         -- The new IPv4 address.
         Ip: string
@@ -487,21 +489,21 @@ local record M
         Category: string
     end
 
-    -- The configuration for a partner threat-protection rule. To enumerate the partners available in your account, call ListFirewallRuleTypes with RuleType set to PartnerThreatProtection — each returned FirewallRuleTypeDefinition includes a SubscriptionInfo identifying the AWS Marketplace product that backs it.
+    -- The configuration for a partner threat-protection rule. To enumerate the partners available in your account, call ListFirewallRuleTypes with RuleType set to PartnerThreatProtection — each returned FirewallRuleTypeDefinition includes a SubscriptionInfo identifying the Amazon Web Services Marketplace product that backs it.
     record PartnerThreatProtectionConfig
-        -- The identifier of the partner threat-protection product, exactly as returned in the Value field of a FirewallRuleTypeDefinition with RuleType set to PartnerThreatProtection. The calling account must hold an active AWS Marketplace subscription to this product.
+        -- The identifier of the partner threat-protection product, exactly as returned in the Value field of a FirewallRuleTypeDefinition with RuleType set to PartnerThreatProtection. The calling account must hold an active Amazon Web Services Marketplace subscription to this product.
         Partner: string
     end
 
     -- The rule-type configuration for a DNS Firewall rule. FirewallRuleType is a tagged union — exactly one member must be set per rule, and the member determines what the rule matches against. This shape is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields on CreateFirewallRule and UpdateFirewallRule.
     -- Call ListFirewallRuleTypes to discover which rule-type variants and which values within each variant are available in your account and Region.
     record FirewallRuleType
-        -- Configures the rule to match a third-party threat feed delivered through AWS Marketplace. The calling account must hold an active subscription to the partner product named in Partner; if the subscription is missing or revoked, the rule is created with Status
+        -- Configures the rule to match a third-party threat feed delivered through Amazon Web Services Marketplace. The calling account must hold an active subscription to the partner product named in Partner; if the subscription is missing or revoked, the rule is created with Status
         -- CREATION_FAILED and cannot be modified — only deleted. See PartnerThreatProtectionConfig.
         PartnerThreatProtection: PartnerThreatProtectionConfig
-        -- Configures the rule to match an AWS-managed content category (for example, VIOLENCE_AND_HATE_SPEECH). See FirewallAdvancedContentCategoryConfig.
+        -- Configures the rule to match an Amazon Web Services-managed content category (for example, VIOLENCE_AND_HATE_SPEECH). See FirewallAdvancedContentCategoryConfig.
         FirewallAdvancedContentCategory: FirewallAdvancedContentCategoryConfig
-        -- Configures the rule to match an AWS-managed advanced threat category (for example, PHISHING). See FirewallAdvancedThreatCategoryConfig.
+        -- Configures the rule to match an Amazon Web Services-managed advanced threat category (for example, PHISHING). See FirewallAdvancedThreatCategoryConfig.
         FirewallAdvancedThreatCategory: FirewallAdvancedThreatCategoryConfig
         -- Configures the rule to match a built-in DNS Firewall Advanced threat detector — DGA, DNS_TUNNELING, or DICTIONARY_DGA. See DnsThreatProtectionRuleTypeConfig.
         DnsThreatProtection: DnsThreatProtectionRuleTypeConfig
@@ -567,10 +569,10 @@ local record M
         -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
         ConfidenceThreshold: string
         -- The rule type configuration for the firewall rule. This is a tagged union — set exactly one of its members. This setting is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields. Use one of:
-        -- FirewallAdvancedContentCategory — match an AWS-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
-        -- FirewallAdvancedThreatCategory — match an AWS-managed advanced threat category (for example, PHISHING).
+        -- FirewallAdvancedContentCategory — match an Amazon Web Services-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
+        -- FirewallAdvancedThreatCategory — match an Amazon Web Services-managed advanced threat category (for example, PHISHING).
         -- DnsThreatProtection — match a built-in DNS Firewall Advanced threat detector (DGA, DNS_TUNNELING, or DICTIONARY_DGA).
-        -- PartnerThreatProtection — match a third-party threat feed delivered through AWS Marketplace. The selected partner must be an active subscription on the calling account.
+        -- PartnerThreatProtection — match a third-party threat feed delivered through Amazon Web Services Marketplace. The selected partner must be an active subscription on the calling account.
         -- To enumerate the values supported in your account, call ListFirewallRuleTypes.
         FirewallRuleType: FirewallRuleType
     end
@@ -655,14 +657,14 @@ local record M
         -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
         ConfidenceThreshold: string
         -- The rule type configuration for the firewall rule. This is a tagged union — exactly one of its members will be populated. Possible members are:
-        -- FirewallAdvancedContentCategory — an AWS-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
-        -- FirewallAdvancedThreatCategory — an AWS-managed advanced threat category (for example, PHISHING).
+        -- FirewallAdvancedContentCategory — an Amazon Web Services-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
+        -- FirewallAdvancedThreatCategory — an Amazon Web Services-managed advanced threat category (for example, PHISHING).
         -- DnsThreatProtection — a built-in DNS Firewall Advanced threat detector (DGA, DNS_TUNNELING, or DICTIONARY_DGA).
-        -- PartnerThreatProtection — a third-party threat feed delivered through AWS Marketplace.
+        -- PartnerThreatProtection — a third-party threat feed delivered through Amazon Web Services Marketplace.
         -- To enumerate the values supported in your account, call ListFirewallRuleTypes.
         FirewallRuleType: FirewallRuleType
         -- The lifecycle state of the firewall rule. Possible values:
-        -- CREATING — DNS Firewall is provisioning the rule. Rules created with the PartnerThreatProtection rule type begin in this state while DNS Firewall verifies the calling account's AWS Marketplace entitlement.
+        -- CREATING — DNS Firewall is provisioning the rule. Rules created with the PartnerThreatProtection rule type begin in this state while DNS Firewall verifies the calling account's Amazon Web Services Marketplace entitlement.
         -- COMPLETE — The rule is provisioned and enforcing matches.
         -- CREATION_FAILED — Provisioning failed. StatusMessage contains a human-readable reason. A rule in this state is immutable: UpdateFirewallRule rejects the request, and the rule must be removed with DeleteFirewallRule.
         -- For rules that do not require asynchronous provisioning, this field may be absent.
@@ -782,10 +784,10 @@ local record M
         -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
         ConfidenceThreshold: string
         -- The rule type configuration for the firewall rule. This is a tagged union — set exactly one of its members. This setting is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields. Use one of:
-        -- FirewallAdvancedContentCategory — match an AWS-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
-        -- FirewallAdvancedThreatCategory — match an AWS-managed advanced threat category (for example, PHISHING).
+        -- FirewallAdvancedContentCategory — match an Amazon Web Services-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
+        -- FirewallAdvancedThreatCategory — match an Amazon Web Services-managed advanced threat category (for example, PHISHING).
         -- DnsThreatProtection — match a built-in DNS Firewall Advanced threat detector (DGA, DNS_TUNNELING, or DICTIONARY_DGA).
-        -- PartnerThreatProtection — match a third-party threat feed delivered through AWS Marketplace. The selected partner must be an active subscription on the calling account.
+        -- PartnerThreatProtection — match a third-party threat feed delivered through Amazon Web Services Marketplace. The selected partner must be an active subscription on the calling account.
         -- To enumerate the values supported in your account, call ListFirewallRuleTypes.
         FirewallRuleType: FirewallRuleType
     end
@@ -948,10 +950,10 @@ local record M
         -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
         ConfidenceThreshold: string
         -- The rule type configuration for the firewall rule. This is a tagged union — set exactly one of its members. This setting is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields. Use one of:
-        -- FirewallAdvancedContentCategory — match an AWS-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
-        -- FirewallAdvancedThreatCategory — match an AWS-managed advanced threat category (for example, PHISHING).
+        -- FirewallAdvancedContentCategory — match an Amazon Web Services-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
+        -- FirewallAdvancedThreatCategory — match an Amazon Web Services-managed advanced threat category (for example, PHISHING).
         -- DnsThreatProtection — match a built-in DNS Firewall Advanced threat detector (DGA, DNS_TUNNELING, or DICTIONARY_DGA).
-        -- PartnerThreatProtection — match a third-party threat feed delivered through AWS Marketplace. The selected partner must be an active subscription on the calling account.
+        -- PartnerThreatProtection — match a third-party threat feed delivered through Amazon Web Services Marketplace. The selected partner must be an active subscription on the calling account.
         -- To enumerate the values supported in your account, call ListFirewallRuleTypes.
         FirewallRuleType: FirewallRuleType
     end
@@ -1093,6 +1095,8 @@ local record M
     -- IpAddressRequest also includes the ID of the subnet that contains the IP address.
     record IpAddressRequest
         -- The ID of the subnet that contains the IP address.
+        -- We recommend using VPC Resolver on Outposts to create endpoints on Outposts Racks.
+        -- Outposts subnets with Local Network Interface (LNI) enabled are not compatible with Route 53 Resolver endpoints. If you enable LNI on a subnet that contains Route 53 Resolver endpoint elastic network interfaces (ENIs), those ENIs will stop functioning. For more information, see Subnet compatibility for Resolver endpoints in the Amazon Route 53 Developer Guide.
         SubnetId: string
         -- The IPv4 address that you want to use for DNS queries.
         Ip: string
@@ -1124,9 +1128,13 @@ local record M
         -- The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward
         -- DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC.
         -- Even though the minimum is 1, Route 53 requires that you create at least two.
+        -- We recommend using VPC Resolver on Outposts to create endpoints on Outposts Racks.
+        -- Outposts subnets with Local Network Interface (LNI) enabled are not compatible with Route 53 Resolver endpoints. If you enable LNI on a subnet that contains Route 53 Resolver endpoint elastic network interfaces (ENIs), those ENIs will stop functioning. For more information, see Subnet compatibility for Resolver endpoints in the Amazon Route 53 Developer Guide.
         IpAddresses: {IpAddressRequest}
         -- The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must also specify a
         -- value for the PreferredInstanceType.
+        -- Resolver endpoints on Outposts are supported on first-generation Outposts only. Inbound and outbound
+        -- Resolver endpoints aren't supported on second-generation Outposts.
         OutpostArn: string
         -- The instance type. If you specify this, you must also specify a value for the OutpostArn.
         PreferredInstanceType: string
@@ -1722,11 +1730,11 @@ local record M
         ShareStatus: string
     end
 
-    -- Identifies the AWS Marketplace product that backs a partner-managed rule type. Returned as part of FirewallRuleTypeDefinition when the rule type variant requires an active customer subscription to the named product.
+    -- Identifies the Amazon Web Services Marketplace product that backs a partner-managed rule type. Returned as part of FirewallRuleTypeDefinition when the rule type variant requires an active customer subscription to the named product.
     record SubscriptionInfo
-        -- The name of the AWS Marketplace seller (vendor) that publishes the partner threat-protection product (for example, Palo Alto Networks).
+        -- The name of the Amazon Web Services Marketplace seller (vendor) that publishes the partner threat-protection product (for example, Palo Alto Networks).
         VendorName: string
-        -- The AWS Marketplace product identifier of the partner threat-protection product. Use this value to verify or manage the calling account's subscription in AWS Marketplace.
+        -- The Amazon Web Services Marketplace product identifier of the partner threat-protection product. Use this value to verify or manage the calling account's subscription in Amazon Web Services Marketplace.
         ProductId: string
     end
 
@@ -1740,7 +1748,7 @@ local record M
         DisplayName: string
         -- A description of the rule type.
         Description: string
-        -- For rule types that require an external subscription (today, only the PartnerThreatProtection variant), describes the AWS Marketplace product that backs the rule type. Absent for rule types that are managed by AWS and do not require a separate subscription. See SubscriptionInfo.
+        -- For rule types that require an external subscription (today, only the PartnerThreatProtection variant), describes the Amazon Web Services Marketplace product that backs the rule type. Absent for rule types that are managed by Amazon Web Services and do not require a separate subscription. See SubscriptionInfo.
         SubscriptionInfo: SubscriptionInfo
     end
 
@@ -2763,10 +2771,10 @@ local record M
         -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
         ConfidenceThreshold: string
         -- The rule type configuration for the firewall rule. This is a tagged union — set exactly one of its members. This setting is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields. Use one of:
-        -- FirewallAdvancedContentCategory — match an AWS-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
-        -- FirewallAdvancedThreatCategory — match an AWS-managed advanced threat category (for example, PHISHING).
+        -- FirewallAdvancedContentCategory — match an Amazon Web Services-managed content category (for example, VIOLENCE_AND_HATE_SPEECH).
+        -- FirewallAdvancedThreatCategory — match an Amazon Web Services-managed advanced threat category (for example, PHISHING).
         -- DnsThreatProtection — match a built-in DNS Firewall Advanced threat detector (DGA, DNS_TUNNELING, or DICTIONARY_DGA).
-        -- PartnerThreatProtection — match a third-party threat feed delivered through AWS Marketplace. The selected partner must be an active subscription on the calling account.
+        -- PartnerThreatProtection — match a third-party threat feed delivered through Amazon Web Services Marketplace. The selected partner must be an active subscription on the calling account.
         -- To enumerate the values supported in your account, call ListFirewallRuleTypes.
         FirewallRuleType: FirewallRuleType
     end

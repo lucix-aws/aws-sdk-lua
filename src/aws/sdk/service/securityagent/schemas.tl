@@ -166,6 +166,18 @@ M.IntegratedRepositoryList = schema.new({ type = "list", list_member = M.Integra
 
 M.TrustedCaCertificateList = schema.new({ type = "list", list_member = M.TrustedCaCertificate })
 
+M.RiskLevelFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConfidenceLevelFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingStatusFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RiskTypeFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReportFilterList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskExecutionStatusFilterList = schema.new({ type = "list", list_member = prelude.String })
+
 M.SecurityGroupArns = schema.new({ type = "list", list_member = prelude.String })
 
 M.SubnetArns = schema.new({ type = "list", list_member = prelude.String })
@@ -2044,6 +2056,104 @@ M.NetworkTrafficConfig = schema.new({
     },
 })
 
+M.ReportDestination = schema.new({
+    id = id.from(_N, "ReportDestination"),
+    type = "structure",
+    members = {
+        integrationId = schema.new({
+            id = id.from(_N, "ReportDestination", "integrationId"),
+            type = "string",
+            name = "integrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        containerId = schema.new({
+            id = id.from(_N, "ReportDestination", "containerId"),
+            type = "string",
+            name = "containerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        parentId = schema.new({
+            id = id.from(_N, "ReportDestination", "parentId"),
+            type = "string",
+            name = "parentId",
+            target_id = prelude.String.id,
+        }),
+        documentId = schema.new({
+            id = id.from(_N, "ReportDestination", "documentId"),
+            type = "string",
+            name = "documentId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReportFilters = schema.new({
+    id = id.from(_N, "ReportFilters"),
+    type = "structure",
+    members = {
+        riskLevels = schema.new({
+            id = id.from(_N, "ReportFilters", "riskLevels"),
+            type = "list",
+            name = "riskLevels",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        confidenceLevels = schema.new({
+            id = id.from(_N, "ReportFilters", "confidenceLevels"),
+            type = "list",
+            name = "confidenceLevels",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        statuses = schema.new({
+            id = id.from(_N, "ReportFilters", "statuses"),
+            type = "list",
+            name = "statuses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        riskTypes = schema.new({
+            id = id.from(_N, "ReportFilters", "riskTypes"),
+            type = "list",
+            name = "riskTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        findingTypes = schema.new({
+            id = id.from(_N, "ReportFilters", "findingTypes"),
+            type = "list",
+            name = "findingTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        taskStatuses = schema.new({
+            id = id.from(_N, "ReportFilters", "taskStatuses"),
+            type = "list",
+            name = "taskStatuses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        annotationNotes = schema.new({
+            id = id.from(_N, "ReportFilters", "annotationNotes"),
+            type = "boolean",
+            name = "annotationNotes",
+            target_id = prelude.Boolean.id,
+        }),
+        complianceReport = schema.new({
+            id = id.from(_N, "ReportFilters", "complianceReport"),
+            type = "boolean",
+            name = "complianceReport",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.Pentest = schema.new({
     id = id.from(_N, "Pentest"),
     type = "structure",
@@ -2143,6 +2253,20 @@ M.Pentest = schema.new({
             type = "double",
             name = "maxTaskHours",
             target_id = prelude.Double.id,
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "Pentest", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "Pentest", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
         }),
         createdAt = schema.new({
             id = id.from(_N, "Pentest", "createdAt"),
@@ -2578,6 +2702,13 @@ M.CodeReviewJob = schema.new({
             name = "maxTaskHours",
             target_id = prelude.Double.id,
         }),
+        reportDestination = schema.new({
+            id = id.from(_N, "CodeReviewJob", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "CodeReviewJob", "createdAt"),
             type = "timestamp",
@@ -2893,6 +3024,20 @@ M.CodeReview = schema.new({
             type = "double",
             name = "maxTaskHours",
             target_id = prelude.Double.id,
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "CodeReview", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "CodeReview", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
         }),
         createdAt = schema.new({
             id = id.from(_N, "CodeReview", "createdAt"),
@@ -3515,6 +3660,13 @@ M.PentestJob = schema.new({
             name = "selectedFindingIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "PentestJob", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
         }),
         createdAt = schema.new({
             id = id.from(_N, "PentestJob", "createdAt"),
@@ -4194,6 +4346,13 @@ M.ThreatModelJob = schema.new({
             name = "systemOverview",
             target_id = prelude.String.id,
         }),
+        reportDestination = schema.new({
+            id = id.from(_N, "ThreatModelJob", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
     },
 })
 
@@ -4434,6 +4593,13 @@ M.ThreatModel = schema.new({
             name = "logConfig",
             target_id = id.from(_N, "CloudWatchLog"),
             target = M.CloudWatchLog,
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "ThreatModel", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
         }),
         createdAt = schema.new({
             id = id.from(_N, "ThreatModel", "createdAt"),
@@ -5341,6 +5507,20 @@ M.CreateCodeReviewInput = schema.new({
             name = "maxTaskHours",
             target_id = prelude.Double.id,
         }),
+        reportDestination = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
+        }),
     },
 })
 
@@ -5424,6 +5604,20 @@ M.CreateCodeReviewOutput = schema.new({
             type = "double",
             name = "maxTaskHours",
             target_id = prelude.Double.id,
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
         }),
     },
 })
@@ -5778,6 +5972,20 @@ M.CreatePentestInput = schema.new({
             name = "maxTaskHours",
             target_id = prelude.Double.id,
         }),
+        reportDestination = schema.new({
+            id = id.from(_N, "CreatePentestInput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "CreatePentestInput", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
+        }),
     },
 })
 
@@ -5847,6 +6055,20 @@ M.CreatePentestOutput = schema.new({
             type = "string",
             name = "agentSpaceId",
             target_id = prelude.String.id,
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "CreatePentestOutput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "CreatePentestOutput", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
         }),
     },
 })
@@ -6523,43 +6745,6 @@ M.CreateThreatOutput = schema.new({
     },
 })
 
-M.ReportDestination = schema.new({
-    id = id.from(_N, "ReportDestination"),
-    type = "structure",
-    members = {
-        integrationId = schema.new({
-            id = id.from(_N, "ReportDestination", "integrationId"),
-            type = "string",
-            name = "integrationId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        containerId = schema.new({
-            id = id.from(_N, "ReportDestination", "containerId"),
-            type = "string",
-            name = "containerId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        parentId = schema.new({
-            id = id.from(_N, "ReportDestination", "parentId"),
-            type = "string",
-            name = "parentId",
-            target_id = prelude.String.id,
-        }),
-        documentId = schema.new({
-            id = id.from(_N, "ReportDestination", "documentId"),
-            type = "string",
-            name = "documentId",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.CreateThreatModelInput = schema.new({
     id = id.from(_N, "CreateThreatModelInput"),
     type = "structure",
@@ -6703,6 +6888,13 @@ M.CreateThreatModelOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "CreateThreatModelOutput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
         }),
     },
 })
@@ -10854,6 +11046,20 @@ M.UpdateCodeReviewInput = schema.new({
             name = "maxTaskHours",
             target_id = prelude.Double.id,
         }),
+        reportDestination = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
+        }),
     },
 })
 
@@ -10937,6 +11143,20 @@ M.UpdateCodeReviewOutput = schema.new({
             type = "double",
             name = "maxTaskHours",
             target_id = prelude.Double.id,
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
         }),
     },
 })
@@ -11153,6 +11373,20 @@ M.UpdatePentestInput = schema.new({
             name = "maxTaskHours",
             target_id = prelude.Double.id,
         }),
+        reportDestination = schema.new({
+            id = id.from(_N, "UpdatePentestInput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "UpdatePentestInput", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
+        }),
     },
 })
 
@@ -11222,6 +11456,20 @@ M.UpdatePentestOutput = schema.new({
             type = "string",
             name = "agentSpaceId",
             target_id = prelude.String.id,
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "UpdatePentestOutput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
+        reportFilters = schema.new({
+            id = id.from(_N, "UpdatePentestOutput", "reportFilters"),
+            type = "structure",
+            name = "reportFilters",
+            target_id = id.from(_N, "ReportFilters"),
+            target = M.ReportFilters,
         }),
     },
 })
@@ -11550,6 +11798,13 @@ M.UpdateThreatModelInput = schema.new({
             target_id = id.from(_N, "CloudWatchLog"),
             target = M.CloudWatchLog,
         }),
+        reportDestination = schema.new({
+            id = id.from(_N, "UpdateThreatModelInput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
+        }),
     },
 })
 
@@ -11628,6 +11883,13 @@ M.UpdateThreatModelOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        reportDestination = schema.new({
+            id = id.from(_N, "UpdateThreatModelOutput", "reportDestination"),
+            type = "structure",
+            name = "reportDestination",
+            target_id = id.from(_N, "ReportDestination"),
+            target = M.ReportDestination,
         }),
     },
 })

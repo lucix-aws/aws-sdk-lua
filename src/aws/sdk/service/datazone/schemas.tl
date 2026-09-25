@@ -5752,6 +5752,12 @@ M.IamPropertiesInput = schema.new({
             name = "glueLineageSyncEnabled",
             target_id = prelude.Boolean.id,
         }),
+        roleArn = schema.new({
+            id = id.from(_N, "IamPropertiesInput", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -10268,6 +10274,12 @@ M.CreateEnvironmentBlueprintInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.CustomParameter,
         }),
+        blueprintCategory = schema.new({
+            id = id.from(_N, "CreateEnvironmentBlueprintInput", "blueprintCategory"),
+            type = "string",
+            name = "blueprintCategory",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -10338,6 +10350,12 @@ M.CreateEnvironmentBlueprintOutput = schema.new({
             name = "glossaryTerms",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        blueprintCategory = schema.new({
+            id = id.from(_N, "CreateEnvironmentBlueprintOutput", "blueprintCategory"),
+            type = "string",
+            name = "blueprintCategory",
+            target_id = prelude.String.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "CreateEnvironmentBlueprintOutput", "createdAt"),
@@ -19036,6 +19054,12 @@ M.GetEnvironmentBlueprintOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        blueprintCategory = schema.new({
+            id = id.from(_N, "GetEnvironmentBlueprintOutput", "blueprintCategory"),
+            type = "string",
+            name = "blueprintCategory",
+            target_id = prelude.String.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "GetEnvironmentBlueprintOutput", "createdAt"),
             type = "timestamp",
@@ -22394,6 +22418,12 @@ M.EnvironmentBlueprintSummary = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        blueprintCategory = schema.new({
+            id = id.from(_N, "EnvironmentBlueprintSummary", "blueprintCategory"),
+            type = "string",
+            name = "blueprintCategory",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -31333,6 +31363,12 @@ M.UpdateEnvironmentBlueprintInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.CustomParameter,
         }),
+        blueprintCategory = schema.new({
+            id = id.from(_N, "UpdateEnvironmentBlueprintInput", "blueprintCategory"),
+            type = "string",
+            name = "blueprintCategory",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -31403,6 +31439,12 @@ M.UpdateEnvironmentBlueprintOutput = schema.new({
             name = "glossaryTerms",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        blueprintCategory = schema.new({
+            id = id.from(_N, "UpdateEnvironmentBlueprintOutput", "blueprintCategory"),
+            type = "string",
+            name = "blueprintCategory",
+            target_id = prelude.String.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "UpdateEnvironmentBlueprintOutput", "createdAt"),

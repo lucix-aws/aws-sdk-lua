@@ -2321,6 +2321,12 @@ M.DescribeEventBusOutput = schema.new({
             name = "LastModifiedTime",
             target_id = prelude.Timestamp.id,
         }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "DescribeEventBusOutput", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3091,6 +3097,12 @@ M.EventBus = schema.new({
             type = "timestamp",
             name = "LastModifiedTime",
             target_id = prelude.Timestamp.id,
+        }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "EventBus", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
         }),
     },
 })

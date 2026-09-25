@@ -90,11 +90,21 @@ M.EksAddOnOperatingSystemList = schema.new({ type = "list", list_member = M.EksA
 
 M.DataArtifactList = schema.new({ type = "list", list_member = M.DataArtifact })
 
+M.SageMakerModelContentTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SageMakerModelResponseMimeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AmazonMachineImageSecurityGroupList = schema.new({ type = "list", list_member = M.AmazonMachineImageSecurityGroup })
+
+M.AmazonMachineImageEbsVolumeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.RateCardList = schema.new({ type = "list", list_member = M.RateCardItem })
 
 M.DimensionLabelList = schema.new({ type = "list", list_member = M.DimensionLabel })
 
 M.PaymentScheduleEntryList = schema.new({ type = "list", list_member = M.PaymentScheduleEntry })
+
+M.AmazonMachineImageCidrIpAddressList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -108,6 +118,29 @@ M.AccessDeniedException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AmazonMachineImageEbsVolume = schema.new({
+    id = id.from(_N, "AmazonMachineImageEbsVolume"),
+    type = "structure",
+    members = {
+        volumeTypes = schema.new({
+            id = id.from(_N, "AmazonMachineImageEbsVolume", "volumeTypes"),
+            type = "list",
+            name = "volumeTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        iops = schema.new({
+            id = id.from(_N, "AmazonMachineImageEbsVolume", "iops"),
+            type = "integer",
+            name = "iops",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -143,6 +176,50 @@ M.AmazonMachineImageOperatingSystem = schema.new({
     },
 })
 
+M.AmazonMachineImageSecurityGroup = schema.new({
+    id = id.from(_N, "AmazonMachineImageSecurityGroup"),
+    type = "structure",
+    members = {
+        protocol = schema.new({
+            id = id.from(_N, "AmazonMachineImageSecurityGroup", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fromPort = schema.new({
+            id = id.from(_N, "AmazonMachineImageSecurityGroup", "fromPort"),
+            type = "integer",
+            name = "fromPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        toPort = schema.new({
+            id = id.from(_N, "AmazonMachineImageSecurityGroup", "toPort"),
+            type = "integer",
+            name = "toPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cidrIpAddresses = schema.new({
+            id = id.from(_N, "AmazonMachineImageSecurityGroup", "cidrIpAddresses"),
+            type = "list",
+            name = "cidrIpAddresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AmazonMachineImageRecommendation = schema.new({
     id = id.from(_N, "AmazonMachineImageRecommendation"),
     type = "structure",
@@ -155,6 +232,13 @@ M.AmazonMachineImageRecommendation = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        securityGroups = schema.new({
+            id = id.from(_N, "AmazonMachineImageRecommendation", "securityGroups"),
+            type = "list",
+            name = "securityGroups",
+            target_id = prelude.Document.id,
+            list_member = M.AmazonMachineImageSecurityGroup,
         }),
     },
 })
@@ -232,6 +316,46 @@ M.AmazonMachineImageFulfillmentOption = schema.new({
             id = id.from(_N, "AmazonMachineImageFulfillmentOption", "usageInstructions"),
             type = "string",
             name = "usageInstructions",
+            target_id = prelude.String.id,
+        }),
+        availableFromTime = schema.new({
+            id = id.from(_N, "AmazonMachineImageFulfillmentOption", "availableFromTime"),
+            type = "timestamp",
+            name = "availableFromTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        accessUrlTemplate = schema.new({
+            id = id.from(_N, "AmazonMachineImageFulfillmentOption", "accessUrlTemplate"),
+            type = "string",
+            name = "accessUrlTemplate",
+            target_id = prelude.String.id,
+        }),
+        architecture = schema.new({
+            id = id.from(_N, "AmazonMachineImageFulfillmentOption", "architecture"),
+            type = "string",
+            name = "architecture",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        amiAlias = schema.new({
+            id = id.from(_N, "AmazonMachineImageFulfillmentOption", "amiAlias"),
+            type = "string",
+            name = "amiAlias",
+            target_id = prelude.String.id,
+        }),
+        ebsVolume = schema.new({
+            id = id.from(_N, "AmazonMachineImageFulfillmentOption", "ebsVolume"),
+            type = "structure",
+            name = "ebsVolume",
+            target_id = id.from(_N, "AmazonMachineImageEbsVolume"),
+            target = M.AmazonMachineImageEbsVolume,
+        }),
+        shortDescription = schema.new({
+            id = id.from(_N, "AmazonMachineImageFulfillmentOption", "shortDescription"),
+            type = "string",
+            name = "shortDescription",
             target_id = prelude.String.id,
         }),
     },
@@ -325,6 +449,12 @@ M.GetListingInput = schema.new({
     id = id.from(_N, "GetListingInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetListingInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         listingId = schema.new({
             id = id.from(_N, "GetListingInput", "listingId"),
             type = "string",
@@ -871,6 +1001,12 @@ M.GetListingOutput = schema.new({
     id = id.from(_N, "GetListingOutput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetListingOutput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         associatedEntities = schema.new({
             id = id.from(_N, "GetListingOutput", "associatedEntities"),
             type = "list",
@@ -1135,6 +1271,12 @@ M.GetOfferInput = schema.new({
     id = id.from(_N, "GetOfferInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetOfferInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         offerId = schema.new({
             id = id.from(_N, "GetOfferInput", "offerId"),
             type = "string",
@@ -1226,6 +1368,12 @@ M.GetOfferOutput = schema.new({
     id = id.from(_N, "GetOfferOutput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetOfferOutput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         offerId = schema.new({
             id = id.from(_N, "GetOfferOutput", "offerId"),
             type = "string",
@@ -1324,6 +1472,12 @@ M.GetOfferSetInput = schema.new({
     id = id.from(_N, "GetOfferSetInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetOfferSetInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         offerSetId = schema.new({
             id = id.from(_N, "GetOfferSetInput", "offerSetId"),
             type = "string",
@@ -1367,6 +1521,12 @@ M.GetOfferSetOutput = schema.new({
     id = id.from(_N, "GetOfferSetOutput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetOfferSetOutput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         offerSetId = schema.new({
             id = id.from(_N, "GetOfferSetOutput", "offerSetId"),
             type = "string",
@@ -1446,6 +1606,12 @@ M.GetOfferTermsInput = schema.new({
     id = id.from(_N, "GetOfferTermsInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetOfferTermsInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         offerId = schema.new({
             id = id.from(_N, "GetOfferTermsInput", "offerId"),
             type = "string",
@@ -2560,6 +2726,12 @@ M.GetOfferTermsOutput = schema.new({
     id = id.from(_N, "GetOfferTermsOutput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetOfferTermsOutput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         offerTerms = schema.new({
             id = id.from(_N, "GetOfferTermsOutput", "offerTerms"),
             type = "list",
@@ -2583,6 +2755,12 @@ M.GetProductInput = schema.new({
     id = id.from(_N, "GetProductInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetProductInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         productId = schema.new({
             id = id.from(_N, "GetProductInput", "productId"),
             type = "string",
@@ -2599,6 +2777,12 @@ M.GetProductOutput = schema.new({
     id = id.from(_N, "GetProductOutput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "GetProductOutput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         productId = schema.new({
             id = id.from(_N, "GetProductOutput", "productId"),
             type = "string",
@@ -2732,6 +2916,15 @@ M.GetProductOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        listingId = schema.new({
+            id = id.from(_N, "GetProductOutput", "listingId"),
+            type = "string",
+            name = "listingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
     },
 })
 
@@ -2739,6 +2932,12 @@ M.ListFulfillmentOptionsInput = schema.new({
     id = id.from(_N, "ListFulfillmentOptionsInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "ListFulfillmentOptionsInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         productId = schema.new({
             id = id.from(_N, "ListFulfillmentOptionsInput", "productId"),
             type = "string",
@@ -2822,6 +3021,24 @@ M.CloudFormationFulfillmentOption = schema.new({
             id = id.from(_N, "CloudFormationFulfillmentOption", "usageInstructions"),
             type = "string",
             name = "usageInstructions",
+            target_id = prelude.String.id,
+        }),
+        availableFromTime = schema.new({
+            id = id.from(_N, "CloudFormationFulfillmentOption", "availableFromTime"),
+            type = "timestamp",
+            name = "availableFromTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        shortDescription = schema.new({
+            id = id.from(_N, "CloudFormationFulfillmentOption", "shortDescription"),
+            type = "string",
+            name = "shortDescription",
+            target_id = prelude.String.id,
+        }),
+        longDescription = schema.new({
+            id = id.from(_N, "CloudFormationFulfillmentOption", "longDescription"),
+            type = "string",
+            name = "longDescription",
             target_id = prelude.String.id,
         }),
     },
@@ -3357,6 +3574,27 @@ M.SaasFulfillmentOption = schema.new({
             name = "usageInstructions",
             target_id = prelude.String.id,
         }),
+        availableFromTime = schema.new({
+            id = id.from(_N, "SaasFulfillmentOption", "availableFromTime"),
+            type = "timestamp",
+            name = "availableFromTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        launchUrl = schema.new({
+            id = id.from(_N, "SaasFulfillmentOption", "launchUrl"),
+            type = "string",
+            name = "launchUrl",
+            target_id = prelude.String.id,
+        }),
+        quickLaunch = schema.new({
+            id = id.from(_N, "SaasFulfillmentOption", "quickLaunch"),
+            type = "string",
+            name = "quickLaunch",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
     },
 })
 
@@ -3528,6 +3766,20 @@ M.SageMakerModelFulfillmentOption = schema.new({
             target_id = id.from(_N, "SageMakerModelRecommendation"),
             target = M.SageMakerModelRecommendation,
         }),
+        supportedContentTypes = schema.new({
+            id = id.from(_N, "SageMakerModelFulfillmentOption", "supportedContentTypes"),
+            type = "list",
+            name = "supportedContentTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        supportedResponseMimeTypes = schema.new({
+            id = id.from(_N, "SageMakerModelFulfillmentOption", "supportedResponseMimeTypes"),
+            type = "list",
+            name = "supportedResponseMimeTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -3626,6 +3878,12 @@ M.ListFulfillmentOptionsOutput = schema.new({
     id = id.from(_N, "ListFulfillmentOptionsOutput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "ListFulfillmentOptionsOutput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         fulfillmentOptions = schema.new({
             id = id.from(_N, "ListFulfillmentOptionsOutput", "fulfillmentOptions"),
             type = "list",
@@ -3675,6 +3933,12 @@ M.ListPurchaseOptionsInput = schema.new({
     id = id.from(_N, "ListPurchaseOptionsInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "ListPurchaseOptionsInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         filters = schema.new({
             id = id.from(_N, "ListPurchaseOptionsInput", "filters"),
             type = "list",
@@ -3863,6 +4127,12 @@ M.SearchFacetsInput = schema.new({
     id = id.from(_N, "SearchFacetsInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "SearchFacetsInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         searchText = schema.new({
             id = id.from(_N, "SearchFacetsInput", "searchText"),
             type = "string",
@@ -3969,6 +4239,12 @@ M.SearchListingsInput = schema.new({
     id = id.from(_N, "SearchListingsInput"),
     type = "structure",
     members = {
+        locale = schema.new({
+            id = id.from(_N, "SearchListingsInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+        }),
         searchText = schema.new({
             id = id.from(_N, "SearchListingsInput", "searchText"),
             type = "string",
@@ -4217,6 +4493,7 @@ M.Service = schema.service({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4229,6 +4506,7 @@ M.GetListing = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/getListing" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4241,6 +4519,7 @@ M.GetOffer = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/getOffer" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4253,6 +4532,7 @@ M.GetOfferSet = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/getOfferSet" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4265,6 +4545,7 @@ M.GetOfferTerms = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/getOfferTerms" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4277,6 +4558,7 @@ M.GetProduct = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/getProduct" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4289,6 +4571,7 @@ M.ListFulfillmentOptions = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/listFulfillmentOptions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4301,6 +4584,7 @@ M.ListPurchaseOptions = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/listPurchaseOptions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4313,6 +4597,7 @@ M.SearchFacets = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/searchFacets" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })
@@ -4325,6 +4610,7 @@ M.SearchListings = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/2026-02-05/searchListings" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "aws.auth#sigv4a" },
         },
     },
 })

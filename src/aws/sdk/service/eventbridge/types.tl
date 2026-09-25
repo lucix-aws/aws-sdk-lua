@@ -991,6 +991,9 @@ local record M
         CreationTime: number
         -- The time the event bus was last modified.
         LastModifiedTime: number
+        -- If the event bus was created on behalf of your account by an Amazon Web Services service,
+        -- this field displays the principal name of the service that created the event bus.
+        ManagedBy: string
     end
 
     record DescribeEventSourceInput
@@ -1345,6 +1348,9 @@ local record M
         CreationTime: number
         -- The time the event bus was last modified.
         LastModifiedTime: number
+        -- If the event bus was created on behalf of your account by an Amazon Web Services service,
+        -- this field displays the principal name of the service that created the event bus.
+        ManagedBy: string
     end
 
     record ListEventBusesOutput
@@ -1976,10 +1982,9 @@ local record M
         PipelineParameterList: {SageMakerPipelineParameter}
     end
 
-    -- This structure includes the custom parameter to be used when the target is an SQS FIFO
-    -- queue.
+    -- The custom parameters for EventBridge to use for a target that is an Amazon SQS fair or FIFO queue.
     record SqsParameters
-        -- The FIFO message group ID to use as the target.
+        -- The ID of the message group to use as the target.
         MessageGroupId: string
     end
 
@@ -2026,8 +2031,8 @@ local record M
         -- name, and other parameters. For more information, see Jobs in the Batch
         -- User Guide.
         BatchParameters: BatchParameters
-        -- Contains the message group ID to use when the target is a FIFO queue.
-        -- If you specify an SQS FIFO queue as a target, the queue must have content-based
+        -- Contains the message group ID to use when the target is an Amazon SQS fair or FIFO queue.
+        -- If you specify a fair or FIFO queue as a target, the queue must have content-based
         -- deduplication enabled.
         SqsParameters: SqsParameters
         -- Contains the HTTP parameters to use when the target is a API Gateway endpoint or

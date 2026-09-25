@@ -19,12 +19,14 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     associateDatasetKmsKey: function(Client, types.AssociateDatasetKmsKeyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDatasetKmsKeyOutput>
+    createResourceMetricsConfiguration: function(Client, types.CreateResourceMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceMetricsConfigurationOutput>
     deleteAlarmMuteRule: function(Client, types.DeleteAlarmMuteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmMuteRuleOutput>
     deleteAlarms: function(Client, types.DeleteAlarmsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmsOutput>
     deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnomalyDetectorOutput>
     deleteDashboards: function(Client, types.DeleteDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDashboardsOutput>
     deleteInsightRules: function(Client, types.DeleteInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInsightRulesOutput>
     deleteMetricStream: function(Client, types.DeleteMetricStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMetricStreamOutput>
+    deleteResourceMetricsConfiguration: function(Client, types.DeleteResourceMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceMetricsConfigurationOutput>
     describeAlarmContributors: function(Client, types.DescribeAlarmContributorsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmContributorsOutput>
     describeAlarmHistory: function(Client, types.DescribeAlarmHistoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmHistoryOutput>
     describeAlarms: function(Client, types.DescribeAlarmsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmsOutput>
@@ -45,6 +47,7 @@ local record Client
     getMetricStream: function(Client, types.GetMetricStreamInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricStreamOutput>
     getMetricWidgetImage: function(Client, types.GetMetricWidgetImageInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricWidgetImageOutput>
     getOTelEnrichment: function(Client, types.GetOTelEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.GetOTelEnrichmentOutput>
+    getResourceMetricsConfiguration: function(Client, types.GetResourceMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceMetricsConfigurationOutput>
     listAlarmMuteRules: function(Client, types.ListAlarmMuteRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListAlarmMuteRulesOutput>
     listDashboards: function(Client, types.ListDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
     listManagedInsightRules: function(Client, types.ListManagedInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedInsightRulesOutput>
@@ -68,6 +71,8 @@ local record Client
     stopOTelEnrichment: function(Client, types.StopOTelEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.StopOTelEnrichmentOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateOTelEnrichment: function(Client, types.UpdateOTelEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOTelEnrichmentOutput>
+    updateResourceMetricsConfiguration: function(Client, types.UpdateResourceMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceMetricsConfigurationOutput>
 end
 
 local record M
@@ -116,6 +121,10 @@ function C:associateDatasetKmsKey(input: types.AssociateDatasetKmsKeyInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDatasetKmsKey as schema.OperationSchema, input, options) as async.Operation<types.AssociateDatasetKmsKeyOutput>
 end
 
+function C:createResourceMetricsConfiguration(input: types.CreateResourceMetricsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceMetricsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceMetricsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceMetricsConfigurationOutput>
+end
+
 function C:deleteAlarmMuteRule(input: types.DeleteAlarmMuteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAlarmMuteRuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlarmMuteRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteAlarmMuteRuleOutput>
 end
@@ -138,6 +147,10 @@ end
 
 function C:deleteMetricStream(input: types.DeleteMetricStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMetricStreamOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMetricStream as schema.OperationSchema, input, options) as async.Operation<types.DeleteMetricStreamOutput>
+end
+
+function C:deleteResourceMetricsConfiguration(input: types.DeleteResourceMetricsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceMetricsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceMetricsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceMetricsConfigurationOutput>
 end
 
 function C:describeAlarmContributors(input: types.DescribeAlarmContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAlarmContributorsOutput>
@@ -218,6 +231,10 @@ end
 
 function C:getOTelEnrichment(input: types.GetOTelEnrichmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetOTelEnrichmentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOTelEnrichment as schema.OperationSchema, input, options) as async.Operation<types.GetOTelEnrichmentOutput>
+end
+
+function C:getResourceMetricsConfiguration(input: types.GetResourceMetricsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceMetricsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceMetricsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetResourceMetricsConfigurationOutput>
 end
 
 function C:listAlarmMuteRules(input: types.ListAlarmMuteRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAlarmMuteRulesOutput>
@@ -310,6 +327,14 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateOTelEnrichment(input: types.UpdateOTelEnrichmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOTelEnrichmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOTelEnrichment as schema.OperationSchema, input, options) as async.Operation<types.UpdateOTelEnrichmentOutput>
+end
+
+function C:updateResourceMetricsConfiguration(input: types.UpdateResourceMetricsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceMetricsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourceMetricsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceMetricsConfigurationOutput>
 end
 
 return M

@@ -1344,9 +1344,6 @@ M.ListDatabasesInput = schema.new({
             type = "string",
             name = "Database",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         SecretArn = schema.new({
             id = id.from(_N, "ListDatabasesInput", "SecretArn"),

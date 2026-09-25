@@ -293,6 +293,23 @@ M.CacheSubnetGroupNotFoundFault = schema.new({
     },
 })
 
+M.GlobalReplicationGroupNotFoundFault = schema.new({
+    id = id.from(_N, "GlobalReplicationGroupNotFoundFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "GlobalReplicationGroupNotFoundFault", httpResponseCode = 404 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "GlobalReplicationGroupNotFoundFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InvalidARNFault = schema.new({
     id = id.from(_N, "InvalidARNFault"),
     type = "structure",
@@ -303,6 +320,23 @@ M.InvalidARNFault = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InvalidARNFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidParameterValueException = schema.new({
+    id = id.from(_N, "InvalidParameterValueException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterValue", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidParameterValueException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -652,23 +686,6 @@ M.InvalidParameterCombinationException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InvalidParameterCombinationException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidParameterValueException = schema.new({
-    id = id.from(_N, "InvalidParameterValueException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "InvalidParameterValue", httpResponseCode = 400 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InvalidParameterValueException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -3369,6 +3386,13 @@ M.CreateGlobalReplicationGroupInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateGlobalReplicationGroupInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
+        }),
     },
 })
 
@@ -3817,23 +3841,6 @@ M.CreateReplicationGroupOutput = schema.new({
             name = "ReplicationGroup",
             target_id = id.from(_N, "ReplicationGroup"),
             target = M.ReplicationGroup,
-        }),
-    },
-})
-
-M.GlobalReplicationGroupNotFoundFault = schema.new({
-    id = id.from(_N, "GlobalReplicationGroupNotFoundFault"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "GlobalReplicationGroupNotFoundFault", httpResponseCode = 404 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "GlobalReplicationGroupNotFoundFault", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
         }),
     },
 })

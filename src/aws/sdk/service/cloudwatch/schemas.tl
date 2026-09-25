@@ -10,6 +10,8 @@ local _N = "com.amazonaws.cloudwatch"
 
 local M: {string:any} = {}
 
+M.ResourceMetricSelectionList = schema.new({ type = "list", list_member = M.ResourceMetricSelection })
+
 M.AlarmNames = schema.new({ type = "list", list_member = prelude.String })
 
 M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
@@ -64,6 +66,8 @@ M.MetricStreamFilters = schema.new({ type = "list", list_member = M.MetricStream
 
 M.MetricStreamStatisticsConfigurations = schema.new({ type = "list", list_member = M.MetricStreamStatisticsConfiguration })
 
+M.OTelEnrichmentMetricSelectorList = schema.new({ type = "list", list_member = M.OTelEnrichmentMetricSelector })
+
 M.AlarmMuteRuleStatuses = schema.new({ type = "list", list_member = prelude.String })
 
 M.AlarmMuteRuleSummaries = schema.new({ type = "list", list_member = M.AlarmMuteRuleSummary })
@@ -102,6 +106,8 @@ M.AnomalyDetectorExcludedTimeRanges = schema.new({ type = "list", list_member = 
 
 M.LogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
 
+M.MetricNameList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ContributorAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.InsightRuleContributorKeys = schema.new({ type = "list", list_member = prelude.String })
@@ -119,6 +125,8 @@ M.MetricStreamFilterMetricNames = schema.new({ type = "list", list_member = prel
 M.MetricStreamStatisticsIncludeMetrics = schema.new({ type = "list", list_member = M.MetricStreamStatisticsMetric })
 
 M.MetricStreamStatisticsAdditionalStatistics = schema.new({ type = "list", list_member = prelude.String })
+
+M.OTelEnrichmentMetricNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.Values = schema.new({ type = "list", list_member = prelude.Double })
 
@@ -923,6 +931,104 @@ M.ConcurrentModificationException = schema.new({
     },
 })
 
+M.ResourceMetricSelection = schema.new({
+    id = id.from(_N, "ResourceMetricSelection"),
+    type = "structure",
+    members = {
+        IncludeMetrics = schema.new({
+            id = id.from(_N, "ResourceMetricSelection", "IncludeMetrics"),
+            type = "list",
+            name = "IncludeMetrics",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateResourceMetricsConfigurationInput = schema.new({
+    id = id.from(_N, "CreateResourceMetricsConfigurationInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "CreateResourceMetricsConfigurationInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricSelections = schema.new({
+            id = id.from(_N, "CreateResourceMetricsConfigurationInput", "MetricSelections"),
+            type = "list",
+            name = "MetricSelections",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceMetricSelection,
+        }),
+    },
+})
+
+M.ResourceMetricsConfiguration = schema.new({
+    id = id.from(_N, "ResourceMetricsConfiguration"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ResourceMetricsConfiguration", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ResourceMetricsConfiguration", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ResourceMetricsConfiguration", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricSelections = schema.new({
+            id = id.from(_N, "ResourceMetricsConfiguration", "MetricSelections"),
+            type = "list",
+            name = "MetricSelections",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceMetricSelection,
+        }),
+    },
+})
+
+M.CreateResourceMetricsConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateResourceMetricsConfigurationOutput"),
+    type = "structure",
+    members = {
+        ResourceMetricsConfiguration = schema.new({
+            id = id.from(_N, "CreateResourceMetricsConfigurationOutput", "ResourceMetricsConfiguration"),
+            type = "structure",
+            name = "ResourceMetricsConfiguration",
+            target_id = id.from(_N, "ResourceMetricsConfiguration"),
+            target = M.ResourceMetricsConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DashboardEntry = schema.new({
     id = id.from(_N, "DashboardEntry"),
     type = "structure",
@@ -1338,6 +1444,27 @@ M.DeleteMetricStreamInput = schema.new({
 
 M.DeleteMetricStreamOutput = schema.new({
     id = id.from(_N, "DeleteMetricStreamOutput"),
+    type = "structure",
+})
+
+M.DeleteResourceMetricsConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteResourceMetricsConfigurationInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "DeleteResourceMetricsConfigurationInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResourceMetricsConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteResourceMetricsConfigurationOutput"),
     type = "structure",
 })
 
@@ -3630,6 +3757,29 @@ M.GetOTelEnrichmentInput = schema.new({
     type = "structure",
 })
 
+M.OTelEnrichmentMetricSelector = schema.new({
+    id = id.from(_N, "OTelEnrichmentMetricSelector"),
+    type = "structure",
+    members = {
+        Namespace = schema.new({
+            id = id.from(_N, "OTelEnrichmentMetricSelector", "Namespace"),
+            type = "string",
+            name = "Namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricNames = schema.new({
+            id = id.from(_N, "OTelEnrichmentMetricSelector", "MetricNames"),
+            type = "list",
+            name = "MetricNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.GetOTelEnrichmentOutput = schema.new({
     id = id.from(_N, "GetOTelEnrichmentOutput"),
     type = "structure",
@@ -3639,6 +3789,65 @@ M.GetOTelEnrichmentOutput = schema.new({
             type = "string",
             name = "Status",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IncludeFilters = schema.new({
+            id = id.from(_N, "GetOTelEnrichmentOutput", "IncludeFilters"),
+            type = "list",
+            name = "IncludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+        ExcludeFilters = schema.new({
+            id = id.from(_N, "GetOTelEnrichmentOutput", "ExcludeFilters"),
+            type = "list",
+            name = "ExcludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetOTelEnrichmentOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetOTelEnrichmentOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetResourceMetricsConfigurationInput = schema.new({
+    id = id.from(_N, "GetResourceMetricsConfigurationInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "GetResourceMetricsConfigurationInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetResourceMetricsConfigurationOutput = schema.new({
+    id = id.from(_N, "GetResourceMetricsConfigurationOutput"),
+    type = "structure",
+    members = {
+        ResourceMetricsConfiguration = schema.new({
+            id = id.from(_N, "GetResourceMetricsConfigurationOutput", "ResourceMetricsConfiguration"),
+            type = "structure",
+            name = "ResourceMetricsConfiguration",
+            target_id = id.from(_N, "ResourceMetricsConfiguration"),
+            target = M.ResourceMetricsConfiguration,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -4942,11 +5151,72 @@ M.StartMetricStreamsOutput = schema.new({
 M.StartOTelEnrichmentInput = schema.new({
     id = id.from(_N, "StartOTelEnrichmentInput"),
     type = "structure",
+    members = {
+        IncludeFilters = schema.new({
+            id = id.from(_N, "StartOTelEnrichmentInput", "IncludeFilters"),
+            type = "list",
+            name = "IncludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+        ExcludeFilters = schema.new({
+            id = id.from(_N, "StartOTelEnrichmentInput", "ExcludeFilters"),
+            type = "list",
+            name = "ExcludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+    },
 })
 
 M.StartOTelEnrichmentOutput = schema.new({
     id = id.from(_N, "StartOTelEnrichmentOutput"),
     type = "structure",
+    members = {
+        IncludeFilters = schema.new({
+            id = id.from(_N, "StartOTelEnrichmentOutput", "IncludeFilters"),
+            type = "list",
+            name = "IncludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+        ExcludeFilters = schema.new({
+            id = id.from(_N, "StartOTelEnrichmentOutput", "ExcludeFilters"),
+            type = "list",
+            name = "ExcludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "StartOTelEnrichmentOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "StartOTelEnrichmentOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ValidationError", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.StopMetricStreamsInput = schema.new({
@@ -5043,6 +5313,100 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateOTelEnrichmentInput = schema.new({
+    id = id.from(_N, "UpdateOTelEnrichmentInput"),
+    type = "structure",
+    members = {
+        IncludeFilters = schema.new({
+            id = id.from(_N, "UpdateOTelEnrichmentInput", "IncludeFilters"),
+            type = "list",
+            name = "IncludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+        ExcludeFilters = schema.new({
+            id = id.from(_N, "UpdateOTelEnrichmentInput", "ExcludeFilters"),
+            type = "list",
+            name = "ExcludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+    },
+})
+
+M.UpdateOTelEnrichmentOutput = schema.new({
+    id = id.from(_N, "UpdateOTelEnrichmentOutput"),
+    type = "structure",
+    members = {
+        IncludeFilters = schema.new({
+            id = id.from(_N, "UpdateOTelEnrichmentOutput", "IncludeFilters"),
+            type = "list",
+            name = "IncludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+        ExcludeFilters = schema.new({
+            id = id.from(_N, "UpdateOTelEnrichmentOutput", "ExcludeFilters"),
+            type = "list",
+            name = "ExcludeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.OTelEnrichmentMetricSelector,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "UpdateOTelEnrichmentOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "UpdateOTelEnrichmentOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.UpdateResourceMetricsConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateResourceMetricsConfigurationInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UpdateResourceMetricsConfigurationInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricSelections = schema.new({
+            id = id.from(_N, "UpdateResourceMetricsConfigurationInput", "MetricSelections"),
+            type = "list",
+            name = "MetricSelections",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceMetricSelection,
+        }),
+    },
+})
+
+M.UpdateResourceMetricsConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateResourceMetricsConfigurationOutput"),
+    type = "structure",
+    members = {
+        ResourceMetricsConfiguration = schema.new({
+            id = id.from(_N, "UpdateResourceMetricsConfigurationOutput", "ResourceMetricsConfiguration"),
+            type = "structure",
+            name = "ResourceMetricsConfiguration",
+            target_id = id.from(_N, "ResourceMetricsConfiguration"),
+            target = M.ResourceMetricsConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -5072,6 +5436,17 @@ M.AssociateDatasetKmsKey = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "AssociateDatasetKmsKey"),
     input = M.AssociateDatasetKmsKeyInput,
     output = M.AssociateDatasetKmsKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateResourceMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "CreateResourceMetricsConfiguration"),
+    input = M.CreateResourceMetricsConfigurationInput,
+    output = M.CreateResourceMetricsConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -5138,6 +5513,17 @@ M.DeleteMetricStream = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "DeleteMetricStream"),
     input = M.DeleteMetricStreamInput,
     output = M.DeleteMetricStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DeleteResourceMetricsConfiguration"),
+    input = M.DeleteResourceMetricsConfigurationInput,
+    output = M.DeleteResourceMetricsConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -5358,6 +5744,17 @@ M.GetOTelEnrichment = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "GetOTelEnrichment"),
     input = M.GetOTelEnrichmentInput,
     output = M.GetOTelEnrichmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourceMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetResourceMetricsConfiguration"),
+    input = M.GetResourceMetricsConfigurationInput,
+    output = M.GetResourceMetricsConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -5611,6 +6008,28 @@ M.UntagResource = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "UntagResource"),
     input = M.UntagResourceInput,
     output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOTelEnrichment = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "UpdateOTelEnrichment"),
+    input = M.UpdateOTelEnrichmentInput,
+    output = M.UpdateOTelEnrichmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourceMetricsConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "UpdateResourceMetricsConfiguration"),
+    input = M.UpdateResourceMetricsConfigurationInput,
+    output = M.UpdateResourceMetricsConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

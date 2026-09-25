@@ -559,6 +559,55 @@ local record M
         Message: string
     end
 
+    -- Specifies which metrics Amazon CloudWatch collects for a resource metrics
+    -- configuration. Include this in a CreateResourceMetricsConfiguration or UpdateResourceMetricsConfiguration request to limit collection to a specific
+    -- set of metrics. If you omit metric selections, Amazon CloudWatch collects all
+    -- available detailed metrics for the resource.
+    record ResourceMetricSelection
+        -- The names of the metrics to collect for the resource. Amazon CloudWatch collects
+        -- only the metrics that you list here.
+        IncludeMetrics: {string}
+    end
+
+    -- Specifies the resource ARN and optional metric selections for a
+    -- CreateResourceMetricsConfiguration request.
+    record CreateResourceMetricsConfigurationInput
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services resource to enable detailed
+        -- monitoring for.
+        ResourceArn: string
+        -- Specifies which metrics Amazon CloudWatch collects for the resource. If you omit
+        -- this parameter, Amazon CloudWatch collects all available detailed metrics for the
+        -- resource.
+        MetricSelections: {ResourceMetricSelection}
+    end
+
+    -- Represents a resource metrics configuration for an Amazon Web Services resource. A
+    -- resource metrics configuration enables detailed metric collection for the resource that
+    -- is identified by its Amazon Resource Name (ARN). Each Amazon Web Services resource can
+    -- have only one resource metrics configuration.
+    -- This structure is returned by the CreateResourceMetricsConfiguration, UpdateResourceMetricsConfiguration, and GetResourceMetricsConfiguration operations.
+    record ResourceMetricsConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services resource that this
+        -- configuration applies to.
+        ResourceArn: string
+        -- The date and time that the resource metrics configuration was created.
+        CreatedAt: number
+        -- The date and time that the resource metrics configuration was last updated. When the
+        -- configuration is first created, this value is the same as
+        -- CreatedAt.
+        UpdatedAt: number
+        -- The metrics that Amazon CloudWatch collects for the resource. If this field is not
+        -- present, Amazon CloudWatch collects all available detailed metrics for the
+        -- resource.
+        MetricSelections: {ResourceMetricSelection}
+    end
+
+    -- Returns the newly created resource metrics configuration.
+    record CreateResourceMetricsConfigurationOutput
+        -- The resource metrics configuration that was created by this operation.
+        ResourceMetricsConfiguration: ResourceMetricsConfiguration
+    end
+
     -- Represents a specific dashboard.
     record DashboardEntry
         -- The name of the dashboard.
@@ -728,6 +777,18 @@ local record M
     end
 
     record DeleteMetricStreamOutput
+    end
+
+    -- Specifies the resource ARN for a DeleteResourceMetricsConfiguration
+    -- request.
+    record DeleteResourceMetricsConfigurationInput
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services resource to delete the
+        -- resource metrics configuration for.
+        ResourceArn: string
+    end
+
+    -- No data is returned.
+    record DeleteResourceMetricsConfigurationOutput
     end
 
     record DescribeAlarmContributorsInput
@@ -2075,6 +2136,21 @@ local record M
     record GetOTelEnrichmentInput
     end
 
+    -- Selects the metrics in one namespace, for use in the IncludeFilters or
+    -- ExcludeFilters parameter of StartOTelEnrichment or UpdateOTelEnrichment.
+    -- A maximum of 100 selectors is allowed across IncludeFilters and
+    -- ExcludeFilters combined.
+    record OTelEnrichmentMetricSelector
+        -- The namespace of the metrics to select. Namespaces are matched exactly and are
+        -- case-sensitive.
+        Namespace: string
+        -- The names of the metrics to select within the namespace. Metric names are matched
+        -- exactly and are case-sensitive. If this parameter is omitted, every metric in the
+        -- namespace is selected.
+        -- A maximum of 100 metric names is allowed for each selector.
+        MetricNames: {string}
+    end
+
     enum OTelEnrichmentStatus
         "Running"
         "Stopped"
@@ -2085,6 +2161,34 @@ local record M
         -- Running (enrichment is enabled) and Stopped (enrichment is
         -- disabled).
         Status: string
+        -- The metric namespaces, and the metric names, that are enriched. This parameter is
+        -- omitted when enrichment is stopped, and when enrichment is running with no include
+        -- filters, which means that every supported namespace is in scope.
+        IncludeFilters: {OTelEnrichmentMetricSelector}
+        -- The metric namespaces, and the metric names, that are left unenriched. This
+        -- parameter is omitted when enrichment is stopped, and when enrichment is running with no
+        -- exclude filters, which means that nothing is excluded.
+        ExcludeFilters: {OTelEnrichmentMetricSelector}
+        -- The date and time that enrichment started for the account. This parameter is
+        -- omitted when enrichment is stopped.
+        CreatedAt: number
+        -- The date and time that the enrichment configuration for the account was last
+        -- stored.
+        UpdatedAt: number
+    end
+
+    -- Specifies the resource ARN for a GetResourceMetricsConfiguration
+    -- request.
+    record GetResourceMetricsConfigurationInput
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services resource to retrieve the
+        -- resource metrics configuration for.
+        ResourceArn: string
+    end
+
+    -- Returns the current resource metrics configuration for the specified resource.
+    record GetResourceMetricsConfigurationOutput
+        -- The resource metrics configuration for the specified resource.
+        ResourceMetricsConfiguration: ResourceMetricsConfiguration
     end
 
     record ListAlarmMuteRulesInput
@@ -3099,9 +3203,38 @@ local record M
     end
 
     record StartOTelEnrichmentInput
+        -- The metric namespaces, and the metric names, to enrich. If this parameter is
+        -- omitted, every namespace that Amazon CloudWatch supports for enrichment is in
+        -- scope.
+        -- A maximum of 100 filters is allowed across IncludeFilters and
+        -- ExcludeFilters combined.
+        IncludeFilters: {OTelEnrichmentMetricSelector}
+        -- The metric namespaces, and the metric names, to leave unenriched. If this parameter
+        -- is omitted, nothing is excluded.
+        -- Amazon CloudWatch applies ExcludeFilters after
+        -- IncludeFilters, so a metric that both parameters match is not
+        -- enriched.
+        -- A maximum of 100 filters is allowed across IncludeFilters and
+        -- ExcludeFilters combined.
+        ExcludeFilters: {OTelEnrichmentMetricSelector}
     end
 
     record StartOTelEnrichmentOutput
+        -- The include filters that are stored for the account.
+        IncludeFilters: {OTelEnrichmentMetricSelector}
+        -- The exclude filters that are stored for the account.
+        ExcludeFilters: {OTelEnrichmentMetricSelector}
+        -- The date and time that enrichment started for the account.
+        CreatedAt: number
+        -- The date and time that the enrichment configuration for the account was last
+        -- stored.
+        UpdatedAt: number
+    end
+
+    -- The request failed validation. One or more input parameters do not satisfy the
+    -- constraints that the operation requires.
+    record ValidationException
+        message: string
     end
 
     record StopMetricStreamsInput
@@ -3159,6 +3292,58 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateOTelEnrichmentInput
+        -- The metric namespaces, and the metric names, to enrich. If this parameter is
+        -- omitted, every namespace that Amazon CloudWatch supports for enrichment is in
+        -- scope.
+        -- A maximum of 100 filters is allowed across IncludeFilters and
+        -- ExcludeFilters combined.
+        IncludeFilters: {OTelEnrichmentMetricSelector}
+        -- The metric namespaces, and the metric names, to leave unenriched. If this parameter
+        -- is omitted, nothing is excluded.
+        -- Amazon CloudWatch applies ExcludeFilters after
+        -- IncludeFilters, so a metric that both parameters match is not
+        -- enriched.
+        -- A maximum of 100 filters is allowed across IncludeFilters and
+        -- ExcludeFilters combined.
+        ExcludeFilters: {OTelEnrichmentMetricSelector}
+    end
+
+    record UpdateOTelEnrichmentOutput
+        -- The include filters that are stored for the account after the replacement. This
+        -- parameter is omitted when the request cleared the include filters, which means that
+        -- every supported namespace is in scope.
+        IncludeFilters: {OTelEnrichmentMetricSelector}
+        -- The exclude filters that are stored for the account after the replacement. This
+        -- parameter is omitted when the request cleared the exclude filters, which means that
+        -- nothing is excluded.
+        ExcludeFilters: {OTelEnrichmentMetricSelector}
+        -- The date and time that enrichment started for the account.
+        CreatedAt: number
+        -- The date and time that the enrichment configuration for the account was last
+        -- stored.
+        UpdatedAt: number
+    end
+
+    -- Specifies the resource ARN and optional replacement metric selections for an
+    -- UpdateResourceMetricsConfiguration request.
+    record UpdateResourceMetricsConfigurationInput
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services resource to update the
+        -- resource metrics configuration for.
+        ResourceArn: string
+        -- Specifies which metrics Amazon CloudWatch collects for the resource. The selections
+        -- that you provide completely replace any existing metric selections.
+        -- If you omit this parameter, Amazon CloudWatch removes any existing metric selection
+        -- filter and collects all available detailed metrics for the resource.
+        MetricSelections: {ResourceMetricSelection}
+    end
+
+    -- Returns the updated resource metrics configuration.
+    record UpdateResourceMetricsConfigurationOutput
+        -- The resource metrics configuration after the update was applied.
+        ResourceMetricsConfiguration: ResourceMetricsConfiguration
     end
 
 end

@@ -4,7 +4,7 @@ local record M
 
     -- A tag that can be added to an ElastiCache cluster or replication group. Tags are
     -- composed of a Key/Value pair. You can use tags to categorize and track all your
-    -- ElastiCache resources, with the exception of global replication group. When you add or
+    -- ElastiCache resources. When you add or
     -- remove tags on replication groups, those actions will be replicated to all nodes in the
     -- replication group. A tag with a null Value is permitted.
     record Tag
@@ -60,9 +60,20 @@ local record M
         message: string
     end
 
+    -- The Global datastore does not exist
+    record GlobalReplicationGroupNotFoundFault
+        message: string
+    end
+
     -- The requested Amazon Resource Name (ARN) does not refer to an existing
     -- resource.
     record InvalidARNFault
+        message: string
+    end
+
+    -- The value for a parameter is invalid.
+    record InvalidParameterValueException
+        -- A parameter value is invalid.
         message: string
     end
 
@@ -182,12 +193,6 @@ local record M
     -- Two or more incompatible parameters were specified.
     record InvalidParameterCombinationException
         -- Two or more parameters that must not be used together were used together.
-        message: string
-    end
-
-    -- The value for a parameter is invalid.
-    record InvalidParameterValueException
-        -- A parameter value is invalid.
         message: string
     end
 
@@ -2041,6 +2046,9 @@ local record M
         -- The name of the primary cluster that accepts writes and will replicate updates to the
         -- secondary cluster. This value is stored as a lowercase string.
         PrimaryReplicationGroupId: string
+        -- A list of tags to be added to this resource. A tag is a key-value pair. A tag key must
+        -- be accompanied by a tag value, although null is accepted.
+        Tags: {Tag}
     end
 
     -- Indicates the slot configuration and global identifier for a slice group.
@@ -2482,11 +2490,6 @@ local record M
 
     record CreateReplicationGroupOutput
         ReplicationGroup: ReplicationGroup
-    end
-
-    -- The Global datastore does not exist
-    record GlobalReplicationGroupNotFoundFault
-        message: string
     end
 
     -- The requested cluster is not in the available state.

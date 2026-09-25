@@ -4108,7 +4108,8 @@ local record M
 
     record DeleteV2LoggingLevelInput
         -- The type of resource for which you are configuring logging. Must be
-        -- THING_Group.
+        -- DEFAULT, THING_GROUP, CLIENT_ID,
+        -- SOURCE_IP, or PRINCIPAL_ID.
         targetType: string
         -- The name of the resource for which you are configuring logging.
         targetName: string
@@ -8261,7 +8262,8 @@ local record M
 
     record ListV2LoggingLevelsInput
         -- The type of resource for which you are configuring logging. Must be
-        -- THING_Group.
+        -- DEFAULT, THING_GROUP, CLIENT_ID,
+        -- SOURCE_IP, or PRINCIPAL_ID.
         targetType: string
         -- To retrieve the next set of results, the nextToken
         -- value from a previous response; otherwise null to receive
