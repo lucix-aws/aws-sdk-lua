@@ -466,6 +466,11 @@ local record M
         minimumSuccessPercentage: number
     end
 
+    enum WaitELBTargetGroupHealthy
+        "enabled"
+        "disabled"
+    end
+
     -- Configuration for increasing the capacity of Amazon EC2 Auto Scaling groups during a Region switch.
     record Ec2AsgCapacityIncreaseConfiguration
         -- The timeout value specified for the configuration.
@@ -478,6 +483,8 @@ local record M
         targetPercent: number
         -- The monitoring approach that you specify EC2 Auto Scaling groups for the configuration.
         capacityMonitoringApproach: string
+        -- If enabled, the step completes only after each attached ELB target group reports a healthy target count that matches the group's new desired capacity calculated in the step.
+        waitELBTargetGroupHealthy: string
     end
 
     enum EcsCapacityMonitoringApproach
@@ -515,6 +522,8 @@ local record M
         targetPercent: number
         -- The monitoring approach specified for the configuration, for example, Most_Recent.
         capacityMonitoringApproach: string
+        -- If enabled, the step completes only after each attached ELB target group reports a healthy target count that matches the service's new desired task count calculated in the step.
+        waitELBTargetGroupHealthy: string
     end
 
     enum EksCapacityMonitoringApproach
@@ -987,6 +996,58 @@ local record M
         nextToken: string
     end
 
+    record ListServiceQuotaWarningsInput
+        -- The Amazon Resource Names (ARNs) of the plans to return service quota warnings for. You can specify up to 100 plan ARNs. Region switch ignores any plan ARN that you can't access. If you omit this parameter, Region switch returns the warnings for all of your accessible plans.
+        planArns: {string}
+        -- The maximum number of results to return with this call. Valid values are 1 to 100. If you don't specify a value, the operation returns up to the maximum number of results.
+        maxResults: number
+        -- Specifies that you want to receive the next page of results. Valid only if you received a nextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's nextToken response to request the next page of results.
+        nextToken: string
+    end
+
+    enum ServiceQuotaWarningStatus
+        "pending"
+        "denied"
+        "insufficientPermissions"
+        "maxRegionSwitchRequestsExceeded"
+        "maxAccountRequestsExceeded"
+    end
+
+    -- A service quota warning for a plan. Region switch creates a warning when the applied quota value in one Region of a plan is lower than the value for the matching resource in another Region or account in the plan, or when it can't complete a service quota check.
+    record ServiceQuotaWarningSummary
+        -- The Amazon Web Services account ID that owns the plan that the warning applies to.
+        accountId: string
+        -- The Amazon Web Services Region that the quota applies to.
+        quotaRegion: string
+        -- The service code of the service that the quota belongs to, as defined in Service Quotas. For example, ec2.
+        serviceCode: string
+        -- The quota code of the quota that the warning applies to, as defined in Service Quotas.
+        quotaCode: string
+        -- The name of the quota that the warning applies to, as defined in Service Quotas.
+        quotaName: string
+        -- The status of the service quota warning.
+        status: string
+        -- The Amazon Resource Name (ARN) of the plan that the warning applies to.
+        planArn: string
+        -- The ID of the quota increase request that Region switch submitted, if it submitted one for this quota.
+        requestId: string
+        -- The ID of the support case associated with the quota increase request, if Region switch submitted one for this quota.
+        caseId: string
+        -- A message that describes the service quota warning.
+        warningMessage: string
+        -- The time (UTC) when Region switch last checked this quota.
+        lastCheckedAt: number
+        -- The time (UTC) when Region switch created this warning.
+        warningCreatedAt: number
+    end
+
+    record ListServiceQuotaWarningsOutput
+        -- The service quota warnings for the plans that you can access.
+        serviceQuotaWarningSummaries: {ServiceQuotaWarningSummary}
+        -- A pagination token. A response may contain no results while still including a nextToken. Continue paginating until nextToken is null to retrieve all results.
+        nextToken: string
+    end
+
     record DeletePlanInput
         -- The Amazon Resource Name (ARN) of the plan.
         arn: string
@@ -1215,6 +1276,8 @@ local record M
         -- The triggers associated with a Region switch plan.
         triggers: {Trigger}
         reportConfiguration: ReportConfiguration
+        -- Specifies whether to enable service quota checks for the Region switch plan.
+        serviceQuotaChecksEnabled: boolean
         -- The name of a Region switch plan.
         name: string
         -- An array that specifies the Amazon Web Services Regions for a Region switch plan. Specify two Regions.
@@ -1245,6 +1308,8 @@ local record M
         triggers: {Trigger}
         -- The report configuration for a plan.
         reportConfiguration: ReportConfiguration
+        -- Indicates whether service quota checks are enabled for the Region switch plan. When enabled, Region switch compares the applied service quota values across the plan's Amazon Web Services Regions and creates a warning when a quota in one Region is lower than the value required for the matching resource in another Region. Service quota checks are advisory and don't prevent you from creating, evaluating, or executing a plan.
+        serviceQuotaChecksEnabled: boolean
         -- The name for a plan.
         name: string
         -- The Amazon Web Services Regions for a plan.
@@ -1278,6 +1343,8 @@ local record M
         triggers: {Trigger}
         -- The updated report configuration for the plan.
         reportConfiguration: ReportConfiguration
+        -- Specifies whether service quota checks are enabled for the Region switch plan.
+        serviceQuotaChecksEnabled: boolean
     end
 
     record CreatePlanOutput

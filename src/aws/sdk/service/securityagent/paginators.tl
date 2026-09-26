@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listActorMessages.
+function M.pages_list_actor_messages(client, input)
+    return paginator.pages(client, "listActorMessages", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "messages",
+    })
+end
+
+--- Returns an item iterator for listActorMessages.
+function M.items_list_actor_messages(client, input)
+    return paginator.items(client, "listActorMessages", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "messages",
+    })
+end
+
 --- Returns a page iterator for listAgentSpaces.
 function M.pages_list_agent_spaces(client, input)
     return paginator.pages(client, "listAgentSpaces", input, {

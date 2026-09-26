@@ -636,6 +636,8 @@ local record M
     record AIAgentConfigurationData
         -- The ID of the AI Agent to be configured.
         aiAgentId: string
+        -- Indicates whether the AI Agent configured for this AI Agent type is enabled. When this value is omitted or set to true, the configured AI Agent runs; when set to false, the AI Agent ID is retained but no AI Agent runs for the AI Agent type. Setting this value to false is currently supported only for the ANSWER_RECOMMENDATION AI Agent type; other requests to set it to false are rejected with a validation error.
+        enabled: boolean
     end
 
     enum GuardrailFilterStrength
@@ -1558,6 +1560,7 @@ local record M
         "SUGGESTED_MESSAGE"
         "NOTES_CHUNK"
         "BLOCKED_NOTES_CHUNK"
+        "PROACTIVE_RECOMMENDATION"
     end
 
     record GetRecommendationsInput
@@ -1665,6 +1668,12 @@ local record M
     record NotesDataDetails
         -- The completion data for notes.
         completion: string
+    end
+
+    -- Details about a proactive recommendation, including the token used to retrieve its chunked response with GetNextMessage.
+    record ProactiveRecommendationDataDetails
+        -- The token used to retrieve the next message in the proactive recommendation. Pass this token in a GetNextMessage request to continue receiving the chunked proactive response. Each response returns the next token to use until the chunked response is complete.
+        nextMessageToken: string
     end
 
     -- Contains information about where the text with a citation begins and ends in the generated output.
@@ -2083,6 +2092,25 @@ local record M
         assistantAssociationIds: {string}
     end
 
+    enum RetrieveErrorCode
+        "ACCESS_DENIED"
+        "RESOURCE_NOT_FOUND"
+        "VALIDATION_ERROR"
+        "THROTTLED"
+        "DEPENDENCY_FAILED"
+        "INTERNAL_SERVER_ERROR"
+    end
+
+    -- An error returned for a single assistant association whose knowledge base retrieval failed during a Retrieve operation. The overall operation still succeeds and returns the results from the associations that were queried successfully.
+    record RetrieveError
+        -- The identifier of the assistant association whose knowledge base retrieval failed.
+        associationId: string
+        -- The error code that categorizes the retrieval failure for the assistant association.
+        code: string
+        -- A human-readable description of the retrieval failure for the assistant association.
+        message: string
+    end
+
     -- A single result from a content retrieval operation.
     record RetrieveResult
         -- The identifier of the assistant association for the retrieved result.
@@ -2098,6 +2126,8 @@ local record M
     record RetrieveOutput
         -- The results of the content retrieval operation.
         results: {RetrieveResult}
+        -- The per-association errors returned when one or more knowledge base associations fail during a Retrieve operation that spans multiple assistant associations. The overall operation still succeeds and returns the results from the associations that were queried successfully. This list contains one entry for each association that failed, up to a maximum of five.
+        errors: {RetrieveError}
     end
 
     enum FilterField
@@ -4739,6 +4769,8 @@ local record M
         notesData: NotesDataDetails
         -- Details about notes chunk data.
         notesChunkData: NotesChunkDataDetails
+        -- Details about a proactive recommendation, including the token used to retrieve its chunked response with GetNextMessage.
+        proactiveRecommendationData: ProactiveRecommendationDataDetails
     end
 
     -- Summary of the data.

@@ -999,7 +999,7 @@ local record M
         kmsKeyIdentifier: string
         -- Specifies the number of dimensions for vector embeddings that will be loaded into the graph. The value is specified as dimension=value. Max = 65,535
         vectorSearchConfiguration: VectorSearchConfiguration
-        -- The number of replicas in other AZs to provision on the new graph after import. Default = 0, Min = 0, Max = 2. Additional charges equivalent to the m-NCUs selected for the graph apply for each replica.
+        -- The number of replicas in other AZs to provision on the new graph after import. Default = 1, Min = 0, Max = 2. Additional charges equivalent to the m-NCUs selected for the graph apply for each replica.
         replicaCount: number
         -- Indicates whether or not to enable deletion protection on the graph. The graph can’t be deleted when deletion protection is enabled. (true or false).
         deletionProtection: boolean
@@ -1204,6 +1204,8 @@ local record M
     end
 
     record ListImportTasksInput
+        -- The unique identifier of the Neptune Analytics graph. When provided, the service returns only import tasks associated with this graph. If not specified, the service returns all import tasks.
+        graphIdentifier: string
         -- Pagination token used to paginate output. When this value is provided as input, the service returns results from where the previous response left off. When this value is present in output, it indicates that there are more results to retrieve.
         nextToken: string
         -- The total number of records to return in the command's output. If the total number of records available is more than the value specified, nextToken is provided in the command's output. To resume pagination, provide the nextToken output value in the nextToken argument of a subsequent command. Do not use the nextToken response element directly outside of the Amazon CLI.

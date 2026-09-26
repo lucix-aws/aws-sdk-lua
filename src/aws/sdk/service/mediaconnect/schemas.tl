@@ -6469,6 +6469,112 @@ M.RistRouterOutputConfiguration = schema.new({
     },
 })
 
+M.PublicTlsEncryptionConfiguration = schema.new({
+    id = id.from(_N, "PublicTlsEncryptionConfiguration"),
+    type = "structure",
+})
+
+M.TlsEncryptionConfiguration = schema.new({
+    id = id.from(_N, "TlsEncryptionConfiguration"),
+    type = "union",
+    members = {
+        Public = schema.new({
+            id = id.from(_N, "TlsEncryptionConfiguration", "Public"),
+            type = "structure",
+            name = "Public",
+            target_id = id.from(_N, "PublicTlsEncryptionConfiguration"),
+            target = M.PublicTlsEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "public" },
+            },
+        }),
+    },
+})
+
+M.TlsEncryption = schema.new({
+    id = id.from(_N, "TlsEncryption"),
+    type = "structure",
+    members = {
+        EncryptionType = schema.new({
+            id = id.from(_N, "TlsEncryption", "EncryptionType"),
+            type = "string",
+            name = "EncryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionType" },
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "TlsEncryption", "EncryptionConfiguration"),
+            type = "union",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "TlsEncryptionConfiguration"),
+            target = M.TlsEncryptionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "encryptionConfiguration" },
+            },
+        }),
+    },
+})
+
+M.RtmpPushRouterOutputConfiguration = schema.new({
+    id = id.from(_N, "RtmpPushRouterOutputConfiguration"),
+    type = "structure",
+    members = {
+        DestinationAddress = schema.new({
+            id = id.from(_N, "RtmpPushRouterOutputConfiguration", "DestinationAddress"),
+            type = "string",
+            name = "DestinationAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationAddress" },
+            },
+        }),
+        DestinationPort = schema.new({
+            id = id.from(_N, "RtmpPushRouterOutputConfiguration", "DestinationPort"),
+            type = "integer",
+            name = "DestinationPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationPort" },
+            },
+        }),
+        ApplicationName = schema.new({
+            id = id.from(_N, "RtmpPushRouterOutputConfiguration", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "applicationName" },
+            },
+        }),
+        StreamName = schema.new({
+            id = id.from(_N, "RtmpPushRouterOutputConfiguration", "StreamName"),
+            type = "string",
+            name = "StreamName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "streamName" },
+            },
+        }),
+        TlsEncryption = schema.new({
+            id = id.from(_N, "RtmpPushRouterOutputConfiguration", "TlsEncryption"),
+            type = "structure",
+            name = "TlsEncryption",
+            target_id = id.from(_N, "TlsEncryption"),
+            target = M.TlsEncryption,
+            traits = {
+                [traits.JSON_NAME] = { name = "tlsEncryption" },
+            },
+        }),
+    },
+})
+
 M.RtpRouterOutputConfiguration = schema.new({
     id = id.from(_N, "RtpRouterOutputConfiguration"),
     type = "structure",
@@ -6638,6 +6744,16 @@ M.RouterOutputProtocolConfiguration = schema.new({
             target = M.SrtListenerRouterOutputConfiguration,
             traits = {
                 [traits.JSON_NAME] = { name = "srtListener" },
+            },
+        }),
+        RtmpPush = schema.new({
+            id = id.from(_N, "RouterOutputProtocolConfiguration", "RtmpPush"),
+            type = "structure",
+            name = "RtmpPush",
+            target_id = id.from(_N, "RtmpPushRouterOutputConfiguration"),
+            target = M.RtmpPushRouterOutputConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPush" },
             },
         }),
         SrtCaller = schema.new({

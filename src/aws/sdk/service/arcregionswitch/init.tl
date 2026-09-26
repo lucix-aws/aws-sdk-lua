@@ -32,6 +32,7 @@ local record Client
     listPlansInRegion: function(Client, types.ListPlansInRegionInput, ? base_client.InvokeOptions): async.Operation<types.ListPlansInRegionOutput>
     listRoute53HealthChecks: function(Client, types.ListRoute53HealthChecksInput, ? base_client.InvokeOptions): async.Operation<types.ListRoute53HealthChecksOutput>
     listRoute53HealthChecksInRegion: function(Client, types.ListRoute53HealthChecksInRegionInput, ? base_client.InvokeOptions): async.Operation<types.ListRoute53HealthChecksInRegionOutput>
+    listServiceQuotaWarnings: function(Client, types.ListServiceQuotaWarningsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceQuotaWarningsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     startPlanExecution: function(Client, types.StartPlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartPlanExecutionOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -137,6 +138,10 @@ end
 
 function C:listRoute53HealthChecksInRegion(input: types.ListRoute53HealthChecksInRegionInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoute53HealthChecksInRegionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRoute53HealthChecksInRegion as schema.OperationSchema, input, options) as async.Operation<types.ListRoute53HealthChecksInRegionOutput>
+end
+
+function C:listServiceQuotaWarnings(input: types.ListServiceQuotaWarningsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceQuotaWarningsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceQuotaWarnings as schema.OperationSchema, input, options) as async.Operation<types.ListServiceQuotaWarningsOutput>
 end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>

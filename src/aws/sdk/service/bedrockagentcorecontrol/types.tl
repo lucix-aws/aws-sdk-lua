@@ -4071,7 +4071,7 @@ local record M
     record McpServerTargetConfiguration
         -- The endpoint for the MCP server target configuration.
         endpoint: string
-        -- The tool schema configuration for the MCP server target. Supported only when the credential provider is configured with an authorization code grant type. Dynamic tool discovery/synchronization will be disabled when target is configured with mcpToolSchema.
+        -- A static tool list for the MCP server target. It is supported for all credential providers. Dynamic tool discovery/synchronization will be disabled when a target is configured with mcpToolSchema.
         mcpToolSchema: McpToolSchemaConfiguration
         -- The listing mode for the MCP server target configuration. MCP resources for default targets are cached at the control plane for faster access. MCP resources for dynamic targets will be dynamically retrieved when listing tools.
         listingMode: string
@@ -7221,6 +7221,8 @@ local record M
         name: string
         -- The description of the payment connector.
         description: string
+        -- Specifies how the payment connector was provisioned. Payment connectors that were created before this field was available return MANUAL. MANUAL - You provided the credential provider configurations, so you own the credentials. Rotate them with the payment provider, then call UpdatePaymentCredentialProvider. QUICK_CREATE - AgentCore provisioned the credential provider for you, so the credentials are service-managed. You can rotate them with RotatePaymentConnectorCredentials.
+        provisionMode: string
         -- The credential provider configurations for the payment connector.
         credentialProviderConfigurations: {CredentialsProviderConfiguration}
         -- The timestamp when the payment connector was created.
@@ -7231,6 +7233,8 @@ local record M
         status: string
         -- The URL that the user must open to complete OAuth consent. This field is only present when the payment connector status is PENDING_AUTHENTICATION.
         authorizationUrl: string
+        -- The timestamp when the payment connector's current service-managed credentials took effect. It is first set when the credentials are provisioned and is updated by each rotation. This field is present only for payment connectors with a provisionMode of QUICK_CREATE.
+        credentialsUpdatedAt: number
     end
 
     record ListPaymentConnectorsInput
@@ -7248,6 +7252,8 @@ local record M
         paymentConnectorId: string
         -- The name of the payment connector.
         name: string
+        -- Specifies how the payment connector was provisioned. Payment connectors that were created before this field was available return MANUAL. MANUAL - You provided the credential provider configurations, so you own the credentials. QUICK_CREATE - AgentCore provisioned the credential provider for you, so the credentials are service-managed and you can rotate them with RotatePaymentConnectorCredentials.
+        provisionMode: string
         -- The current status of the payment connector. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
         status: string
         -- The timestamp when the payment connector was last updated.
@@ -7259,6 +7265,45 @@ local record M
         paymentConnectors: {PaymentConnectorSummary}
         -- If the total number of results is greater than the maxResults value provided in the request, use this token when making another request in the nextToken field to return the next batch of results.
         nextToken: string
+    end
+
+    enum CoinbaseCdpSecret
+        "API_KEY"
+        "WALLET_SECRET"
+    end
+
+    -- Specifies the service-managed Coinbase CDP secrets to rotate.
+    record CoinbaseCdpRotationTargets
+        -- The secrets to rotate. Specify at least one value. Each secret that you specify is rotated independently. API_KEY - The API key that the payment connector uses to call Coinbase CDP. Rotate it as routine maintenance, or if you suspect that it is compromised. WALLET_SECRET - The wallet secret that signs transactions. Rotate it only if it is lost or compromised. Coinbase CDP allows one wallet secret per project, so it is replaced in place and signing can be briefly interrupted.
+        secrets: {string}
+    end
+
+    -- Specifies the service-managed credentials to rotate. Provide the member that matches the payment connector's type.
+    record CredentialRotationConfig
+        -- The credentials to rotate for a Coinbase CDP payment connector.
+        coinbaseCDP: CoinbaseCdpRotationTargets
+    end
+
+    record RotatePaymentConnectorCredentialsInput
+        -- The unique identifier of the parent payment manager.
+        paymentManagerId: string
+        -- The unique identifier of the payment connector whose credentials you want to rotate.
+        paymentConnectorId: string
+        -- The credentials to rotate. Specify the member that matches the payment connector's type. Each credential that you select is rotated independently.
+        credentialsToRotate: CredentialRotationConfig
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+    end
+
+    record RotatePaymentConnectorCredentialsOutput
+        -- The unique identifier of the payment connector.
+        paymentConnectorId: string
+        -- The unique identifier of the parent payment manager.
+        paymentManagerId: string
+        -- The timestamp when the payment connector was last updated, which is when the rotation completed.
+        lastUpdatedAt: number
+        -- The current status of the payment connector, which is READY after a successful rotation.
+        status: string
     end
 
     record UpdatePaymentConnectorInput

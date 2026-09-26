@@ -44,6 +44,18 @@ local record M
         mfaForwardingAddress: string
     end
 
+    -- A message received at an actor's server-generated email MFA address.
+    record ActorMessage
+        -- The address the message was sent from.
+        sender: string
+        -- The subject line of the message.
+        subject: string
+        -- The plain-text body of the message, containing the MFA code or verification link.
+        body: string
+        -- The time the message was received.
+        receivedAt: number
+    end
+
     enum ArtifactType
         "TXT"
         "PNG"
@@ -2826,6 +2838,26 @@ local record M
     record ListIntegrationsOutput
         -- The list of integration summaries.
         integrationSummaries: {IntegrationSummary}
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+    end
+
+    record ListActorMessagesInput
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+        -- The unique identifier of the agent space that owns the pentest.
+        agentSpaceId: string
+        -- The unique identifier of the pentest that the actor belongs to.
+        pentestId: string
+        -- The identifier of the actor whose messages to list. The identifier is case-insensitive.
+        actorIdentifier: string
+    end
+
+    record ListActorMessagesOutput
+        -- The list of messages received for the actor, most recent first.
+        messages: {ActorMessage}
         -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
         nextToken: string
     end

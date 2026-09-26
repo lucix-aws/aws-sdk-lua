@@ -291,6 +291,8 @@ local record M
         recommendationArn: string
         -- The Amazon Resource Name (ARN) of the associated profile.
         profileArn: string
+        -- The identifier of the generation process that produced this recommendation.
+        generationId: string
         -- The title of the recommendation.
         title: string
         -- A description of the recommendation.
@@ -1356,6 +1358,8 @@ local record M
         recommendationArn: string
         -- The Amazon Resource Name (ARN) of the associated profile.
         profileArn: string
+        -- The identifier of the generation process that produced this recommendation.
+        generationId: string
         -- The title of the recommendation.
         title: string
         -- A description of the recommendation.

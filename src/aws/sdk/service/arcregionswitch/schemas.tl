@@ -24,6 +24,10 @@ M.PlanList = schema.new({ type = "list", list_member = M.AbbreviatedPlan })
 
 M.Route53HealthCheckList = schema.new({ type = "list", list_member = M.Route53HealthCheck })
 
+M.PlanArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServiceQuotaWarningSummaryList = schema.new({ type = "list", list_member = M.ServiceQuotaWarningSummary })
+
 M.WorkflowList = schema.new({ type = "list", list_member = M.Workflow })
 
 M.AssociatedAlarmMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AssociatedAlarm })
@@ -1279,6 +1283,12 @@ M.Ec2AsgCapacityIncreaseConfiguration = schema.new({
                 [traits.DEFAULT] = { value = "sampledMaxInLast24Hours" },
             },
         }),
+        waitELBTargetGroupHealthy = schema.new({
+            id = id.from(_N, "Ec2AsgCapacityIncreaseConfiguration", "waitELBTargetGroupHealthy"),
+            type = "string",
+            name = "waitELBTargetGroupHealthy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1376,6 +1386,12 @@ M.EcsCapacityIncreaseConfiguration = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "sampledMaxInLast24Hours" },
             },
+        }),
+        waitELBTargetGroupHealthy = schema.new({
+            id = id.from(_N, "EcsCapacityIncreaseConfiguration", "waitELBTargetGroupHealthy"),
+            type = "string",
+            name = "waitELBTargetGroupHealthy",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2533,6 +2549,146 @@ M.ListRoute53HealthChecksInRegionOutput = schema.new({
     },
 })
 
+M.ListServiceQuotaWarningsInput = schema.new({
+    id = id.from(_N, "ListServiceQuotaWarningsRequest"),
+    type = "structure",
+    members = {
+        planArns = schema.new({
+            id = id.from(_N, "ListServiceQuotaWarningsInput", "planArns"),
+            type = "list",
+            name = "planArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListServiceQuotaWarningsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListServiceQuotaWarningsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaWarningSummary = schema.new({
+    id = id.from(_N, "ServiceQuotaWarningSummary"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        quotaRegion = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "quotaRegion"),
+            type = "string",
+            name = "quotaRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "serviceCode"),
+            type = "string",
+            name = "serviceCode",
+            target_id = prelude.String.id,
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
+            target_id = prelude.String.id,
+        }),
+        quotaName = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "quotaName"),
+            type = "string",
+            name = "quotaName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        planArn = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "planArn"),
+            type = "string",
+            name = "planArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+        }),
+        caseId = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "caseId"),
+            type = "string",
+            name = "caseId",
+            target_id = prelude.String.id,
+        }),
+        warningMessage = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "warningMessage"),
+            type = "string",
+            name = "warningMessage",
+            target_id = prelude.String.id,
+        }),
+        lastCheckedAt = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "lastCheckedAt"),
+            type = "timestamp",
+            name = "lastCheckedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        warningCreatedAt = schema.new({
+            id = id.from(_N, "ServiceQuotaWarningSummary", "warningCreatedAt"),
+            type = "timestamp",
+            name = "warningCreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListServiceQuotaWarningsOutput = schema.new({
+    id = id.from(_N, "ListServiceQuotaWarningsResponse"),
+    type = "structure",
+    members = {
+        serviceQuotaWarningSummaries = schema.new({
+            id = id.from(_N, "ListServiceQuotaWarningsOutput", "serviceQuotaWarningSummaries"),
+            type = "list",
+            name = "serviceQuotaWarningSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ServiceQuotaWarningSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListServiceQuotaWarningsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeletePlanInput = schema.new({
     id = id.from(_N, "DeletePlanRequest"),
     type = "structure",
@@ -3245,6 +3401,12 @@ M.CreatePlanInput = schema.new({
             target_id = id.from(_N, "ReportConfiguration"),
             target = M.ReportConfiguration,
         }),
+        serviceQuotaChecksEnabled = schema.new({
+            id = id.from(_N, "CreatePlanInput", "serviceQuotaChecksEnabled"),
+            type = "boolean",
+            name = "serviceQuotaChecksEnabled",
+            target_id = prelude.Boolean.id,
+        }),
         name = schema.new({
             id = id.from(_N, "CreatePlanInput", "name"),
             type = "string",
@@ -3355,6 +3517,12 @@ M.Plan = schema.new({
             name = "reportConfiguration",
             target_id = id.from(_N, "ReportConfiguration"),
             target = M.ReportConfiguration,
+        }),
+        serviceQuotaChecksEnabled = schema.new({
+            id = id.from(_N, "Plan", "serviceQuotaChecksEnabled"),
+            type = "boolean",
+            name = "serviceQuotaChecksEnabled",
+            target_id = prelude.Boolean.id,
         }),
         name = schema.new({
             id = id.from(_N, "Plan", "name"),
@@ -3479,6 +3647,12 @@ M.UpdatePlanInput = schema.new({
             name = "reportConfiguration",
             target_id = id.from(_N, "ReportConfiguration"),
             target = M.ReportConfiguration,
+        }),
+        serviceQuotaChecksEnabled = schema.new({
+            id = id.from(_N, "UpdatePlanInput", "serviceQuotaChecksEnabled"),
+            type = "boolean",
+            name = "serviceQuotaChecksEnabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -3859,6 +4033,17 @@ M.ListRoute53HealthChecksInRegion = schema.operation({
     id = id.from("com.amazonaws.arcregionswitch", "ListRoute53HealthChecksInRegion"),
     input = M.ListRoute53HealthChecksInRegionInput,
     output = M.ListRoute53HealthChecksInRegionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListServiceQuotaWarnings = schema.operation({
+    id = id.from("com.amazonaws.arcregionswitch", "ListServiceQuotaWarnings"),
+    input = M.ListServiceQuotaWarningsInput,
+    output = M.ListServiceQuotaWarningsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

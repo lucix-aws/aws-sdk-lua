@@ -10,7 +10,11 @@ local _N = "com.amazonaws.bedrockagent"
 
 local M: {string:any} = {}
 
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.VpcConfigurationSummaryList = schema.new({ type = "list", list_member = M.VpcConfigurationSummary })
 
 M.FlowValidations = schema.new({ type = "list", list_member = M.FlowValidation })
 
@@ -3363,6 +3367,136 @@ M.UpdateAgentAliasOutput = schema.new({
     },
 })
 
+M.CreateVpcConfigurationInput = schema.new({
+    id = id.from(_N, "CreateVpcConfigurationRequest"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subnetIds = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "subnetIds"),
+            type = "list",
+            name = "subnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceTarget = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "resourceTarget"),
+            type = "string",
+            name = "resourceTarget",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        port = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resolutionMode = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "resolutionMode"),
+            type = "string",
+            name = "resolutionMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hostHeader = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "hostHeader"),
+            type = "string",
+            name = "hostHeader",
+            target_id = prelude.String.id,
+        }),
+        tlsServerName = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "tlsServerName"),
+            type = "string",
+            name = "tlsServerName",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateVpcConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateVpcConfigurationResponse"),
+    type = "structure",
+    members = {
+        vpcConfigurationId = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationOutput", "vpcConfigurationId"),
+            type = "string",
+            name = "vpcConfigurationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateVpcConfigurationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PatternObjectFilter = schema.new({
     id = id.from(_N, "PatternObjectFilter"),
     type = "structure",
@@ -5139,6 +5273,58 @@ M.DeleteResourcePolicyOutput = schema.new({
             type = "string",
             name = "revisionId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteVpcConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteVpcConfigurationRequest"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "DeleteVpcConfigurationInput", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        vpcConfigurationId = schema.new({
+            id = id.from(_N, "DeleteVpcConfigurationInput", "vpcConfigurationId"),
+            type = "string",
+            name = "vpcConfigurationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteVpcConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteVpcConfigurationResponse"),
+    type = "structure",
+    members = {
+        vpcConfigurationId = schema.new({
+            id = id.from(_N, "DeleteVpcConfigurationOutput", "vpcConfigurationId"),
+            type = "string",
+            name = "vpcConfigurationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteVpcConfigurationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -8493,6 +8679,186 @@ M.GetResourcePolicyOutput = schema.new({
     },
 })
 
+M.GetVpcConfigurationInput = schema.new({
+    id = id.from(_N, "GetVpcConfigurationRequest"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "GetVpcConfigurationInput", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        vpcConfigurationId = schema.new({
+            id = id.from(_N, "GetVpcConfigurationInput", "vpcConfigurationId"),
+            type = "string",
+            name = "vpcConfigurationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.VpcConfiguration = schema.new({
+    id = id.from(_N, "VpcConfiguration"),
+    type = "structure",
+    members = {
+        vpcConfigurationId = schema.new({
+            id = id.from(_N, "VpcConfiguration", "vpcConfigurationId"),
+            type = "string",
+            name = "vpcConfigurationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "VpcConfiguration", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusMessage = schema.new({
+            id = id.from(_N, "VpcConfiguration", "statusMessage"),
+            type = "string",
+            name = "statusMessage",
+            target_id = prelude.String.id,
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "VpcConfiguration", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subnetIds = schema.new({
+            id = id.from(_N, "VpcConfiguration", "subnetIds"),
+            type = "list",
+            name = "subnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceTarget = schema.new({
+            id = id.from(_N, "VpcConfiguration", "resourceTarget"),
+            type = "string",
+            name = "resourceTarget",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        port = schema.new({
+            id = id.from(_N, "VpcConfiguration", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "VpcConfiguration", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resolutionMode = schema.new({
+            id = id.from(_N, "VpcConfiguration", "resolutionMode"),
+            type = "string",
+            name = "resolutionMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hostHeader = schema.new({
+            id = id.from(_N, "VpcConfiguration", "hostHeader"),
+            type = "string",
+            name = "hostHeader",
+            target_id = prelude.String.id,
+        }),
+        tlsServerName = schema.new({
+            id = id.from(_N, "VpcConfiguration", "tlsServerName"),
+            type = "string",
+            name = "tlsServerName",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "VpcConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "VpcConfiguration", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "VpcConfiguration", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "VpcConfiguration", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetVpcConfigurationOutput = schema.new({
+    id = id.from(_N, "GetVpcConfigurationResponse"),
+    type = "structure",
+    members = {
+        vpcConfiguration = schema.new({
+            id = id.from(_N, "GetVpcConfigurationOutput", "vpcConfiguration"),
+            type = "structure",
+            name = "vpcConfiguration",
+            target_id = id.from(_N, "VpcConfiguration"),
+            target = M.VpcConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetIngestionJobInput = schema.new({
     id = id.from(_N, "GetIngestionJobRequest"),
     type = "structure",
@@ -11770,6 +12136,186 @@ M.UpdateKnowledgeBaseOutput = schema.new({
     },
 })
 
+M.ListVpcConfigurationsInput = schema.new({
+    id = id.from(_N, "ListVpcConfigurationsRequest"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "ListVpcConfigurationsInput", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        statusFilter = schema.new({
+            id = id.from(_N, "ListVpcConfigurationsInput", "statusFilter"),
+            type = "string",
+            name = "statusFilter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListVpcConfigurationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListVpcConfigurationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.VpcConfigurationSummary = schema.new({
+    id = id.from(_N, "VpcConfigurationSummary"),
+    type = "structure",
+    members = {
+        vpcConfigurationId = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "vpcConfigurationId"),
+            type = "string",
+            name = "vpcConfigurationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusMessage = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "statusMessage"),
+            type = "string",
+            name = "statusMessage",
+            target_id = prelude.String.id,
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceTarget = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "resourceTarget"),
+            type = "string",
+            name = "resourceTarget",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        port = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resolutionMode = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "resolutionMode"),
+            type = "string",
+            name = "resolutionMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hostHeader = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "hostHeader"),
+            type = "string",
+            name = "hostHeader",
+            target_id = prelude.String.id,
+        }),
+        tlsServerName = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "tlsServerName"),
+            type = "string",
+            name = "tlsServerName",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "VpcConfigurationSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListVpcConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListVpcConfigurationsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListVpcConfigurationsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.VpcConfigurationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListVpcConfigurationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PromptAgentResource = schema.new({
     id = id.from(_N, "PromptAgentResource"),
     type = "structure",
@@ -13991,6 +14537,18 @@ M.CreatePromptVersion = schema.operation({
     },
 })
 
+M.CreateVpcConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateVpcConfiguration"),
+    input = M.CreateVpcConfigurationInput,
+    output = M.CreateVpcConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/vpcconfigurations/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteAgent = schema.operation({
     id = id.from("com.amazonaws.bedrockagent", "DeleteAgent"),
     input = M.DeleteAgentInput,
@@ -14129,6 +14687,18 @@ M.DeleteResourcePolicy = schema.operation({
     output = M.DeleteResourcePolicyOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteVpcConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteVpcConfiguration"),
+    input = M.DeleteVpcConfigurationInput,
+    output = M.DeleteVpcConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/knowledgebases/{knowledgeBaseId}/vpcconfigurations/{vpcConfigurationId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14339,6 +14909,18 @@ M.GetResourcePolicy = schema.operation({
     },
 })
 
+M.GetVpcConfiguration = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetVpcConfiguration"),
+    input = M.GetVpcConfigurationInput,
+    output = M.GetVpcConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgebases/{knowledgeBaseId}/vpcconfigurations/{vpcConfigurationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.IngestKnowledgeBaseDocuments = schema.operation({
     id = id.from("com.amazonaws.bedrockagent", "IngestKnowledgeBaseDocuments"),
     input = M.IngestKnowledgeBaseDocumentsInput,
@@ -14525,6 +15107,18 @@ M.ListTagsForResource = schema.operation({
     output = M.ListTagsForResourceOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVpcConfigurations = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListVpcConfigurations"),
+    input = M.ListVpcConfigurationsInput,
+    output = M.ListVpcConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/knowledgebases/{knowledgeBaseId}/vpcconfigurations/" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

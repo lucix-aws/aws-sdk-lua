@@ -862,6 +862,12 @@ M.AgentRecommendationSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        generationId = schema.new({
+            id = id.from(_N, "AgentRecommendationSummary", "generationId"),
+            type = "string",
+            name = "generationId",
+            target_id = prelude.String.id,
+        }),
         title = schema.new({
             id = id.from(_N, "AgentRecommendationSummary", "title"),
             type = "string",
@@ -4316,6 +4322,12 @@ M.GetAgentRecommendationOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        generationId = schema.new({
+            id = id.from(_N, "GetAgentRecommendationOutput", "generationId"),
+            type = "string",
+            name = "generationId",
+            target_id = prelude.String.id,
         }),
         title = schema.new({
             id = id.from(_N, "GetAgentRecommendationOutput", "title"),
@@ -10871,6 +10883,9 @@ M.CreateAgentContext = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -10883,6 +10898,9 @@ M.CreateAgentGoal = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -10894,6 +10912,9 @@ M.CreateAgentProfile = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/api/v1/agent-profiles" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11015,6 +11036,9 @@ M.DeleteAgentContext = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11027,6 +11051,9 @@ M.DeleteAgentGoal = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11038,6 +11065,9 @@ M.DeleteAgentProfile = schema.operation({
         [traits.HTTP] = { method = "DELETE", path = "/api/v1/agent-profiles/{profileArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11183,6 +11213,9 @@ M.GetAgentContext = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11194,6 +11227,9 @@ M.GetAgentGoal = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/goals/{id}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11207,6 +11243,9 @@ M.GetAgentProfile = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11219,6 +11258,9 @@ M.GetAgentRecommendation = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11230,6 +11272,9 @@ M.GetAgentRecommendationGeneration = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/generations/{generationId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11423,6 +11468,9 @@ M.ListAgentContexts = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11434,6 +11482,9 @@ M.ListAgentGoals = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/goals" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11447,6 +11498,9 @@ M.ListAgentProfiles = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11458,6 +11512,9 @@ M.ListAgentRecommendationGenerations = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/generations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11471,6 +11528,9 @@ M.ListAgentRecommendationItems = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11482,6 +11542,9 @@ M.ListAgentRecommendations = schema.operation({
         [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/recommendations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11723,6 +11786,9 @@ M.PutAgentRecommendationFeedback = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11734,6 +11800,9 @@ M.StartAgentRecommendationGeneration = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/api/v1/agent-profiles/{profileArn}/generations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11771,6 +11840,9 @@ M.UpdateAgentContext = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11782,6 +11854,9 @@ M.UpdateAgentGoal = schema.operation({
         [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-profiles/{profileArn}/goals/{id}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })
@@ -11795,6 +11870,9 @@ M.UpdateAgentProfile = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
     },
 })
 
@@ -11806,6 +11884,9 @@ M.UpdateAgentRecommendationStatus = schema.operation({
         [traits.HTTP] = { method = "PATCH", path = "/api/v1/agent-recommendations/{recommendationArn}/status" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
         },
     },
 })

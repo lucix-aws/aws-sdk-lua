@@ -155,6 +155,7 @@ local record Client
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listWorkloadIdentities: function(Client, types.ListWorkloadIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkloadIdentitiesOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    rotatePaymentConnectorCredentials: function(Client, types.RotatePaymentConnectorCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.RotatePaymentConnectorCredentialsOutput>
     setTokenVaultCMK: function(Client, types.SetTokenVaultCMKInput, ? base_client.InvokeOptions): async.Operation<types.SetTokenVaultCMKOutput>
     startPolicyGeneration: function(Client, types.StartPolicyGenerationInput, ? base_client.InvokeOptions): async.Operation<types.StartPolicyGenerationOutput>
     submitRegistryRecordForApproval: function(Client, types.SubmitRegistryRecordForApprovalInput, ? base_client.InvokeOptions): async.Operation<types.SubmitRegistryRecordForApprovalOutput>
@@ -778,6 +779,10 @@ end
 
 function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
+end
+
+function C:rotatePaymentConnectorCredentials(input: types.RotatePaymentConnectorCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.RotatePaymentConnectorCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RotatePaymentConnectorCredentials as schema.OperationSchema, input, options) as async.Operation<types.RotatePaymentConnectorCredentialsOutput>
 end
 
 function C:setTokenVaultCMK(input: types.SetTokenVaultCMKInput, options?: base_client.InvokeOptions): async.Operation<types.SetTokenVaultCMKOutput>

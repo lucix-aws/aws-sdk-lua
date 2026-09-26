@@ -66,6 +66,7 @@ local record Client
     getSecurityRequirementPack: function(Client, types.GetSecurityRequirementPackInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityRequirementPackOutput>
     importSecurityRequirements: function(Client, types.ImportSecurityRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.ImportSecurityRequirementsOutput>
     initiateProviderRegistration: function(Client, types.InitiateProviderRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.InitiateProviderRegistrationOutput>
+    listActorMessages: function(Client, types.ListActorMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListActorMessagesOutput>
     listAgentSpaces: function(Client, types.ListAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
     listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
     listArtifacts: function(Client, types.ListArtifactsInput, ? base_client.InvokeOptions): async.Operation<types.ListArtifactsOutput>
@@ -344,6 +345,10 @@ end
 
 function C:initiateProviderRegistration(input: types.InitiateProviderRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateProviderRegistrationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateProviderRegistration as schema.OperationSchema, input, options) as async.Operation<types.InitiateProviderRegistrationOutput>
+end
+
+function C:listActorMessages(input: types.ListActorMessagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListActorMessagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActorMessages as schema.OperationSchema, input, options) as async.Operation<types.ListActorMessagesOutput>
 end
 
 function C:listAgentSpaces(input: types.ListAgentSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>

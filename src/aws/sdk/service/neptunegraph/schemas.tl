@@ -3671,6 +3671,15 @@ M.ListImportTasksInput = schema.new({
     id = id.from(_N, "ListImportTasksInput"),
     type = "structure",
     members = {
+        graphIdentifier = schema.new({
+            id = id.from(_N, "ListImportTasksInput", "graphIdentifier"),
+            type = "string",
+            name = "graphIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "graphIdentifier" },
+            },
+        }),
         nextToken = schema.new({
             id = id.from(_N, "ListImportTasksInput", "nextToken"),
             type = "string",

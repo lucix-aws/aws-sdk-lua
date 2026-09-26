@@ -30,6 +30,7 @@ local record Client
     createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
     createPrompt: function(Client, types.CreatePromptInput, ? base_client.InvokeOptions): async.Operation<types.CreatePromptOutput>
     createPromptVersion: function(Client, types.CreatePromptVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePromptVersionOutput>
+    createVpcConfiguration: function(Client, types.CreateVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcConfigurationOutput>
     deleteAgent: function(Client, types.DeleteAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
     deleteAgentActionGroup: function(Client, types.DeleteAgentActionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentActionGroupOutput>
     deleteAgentAlias: function(Client, types.DeleteAgentAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentAliasOutput>
@@ -42,6 +43,7 @@ local record Client
     deleteKnowledgeBaseDocuments: function(Client, types.DeleteKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
     deletePrompt: function(Client, types.DeletePromptInput, ? base_client.InvokeOptions): async.Operation<types.DeletePromptOutput>
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteVpcConfiguration: function(Client, types.DeleteVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcConfigurationOutput>
     disassociateAgentCollaborator: function(Client, types.DisassociateAgentCollaboratorInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAgentCollaboratorOutput>
     disassociateAgentKnowledgeBase: function(Client, types.DisassociateAgentKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
     getAgent: function(Client, types.GetAgentInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentOutput>
@@ -59,6 +61,7 @@ local record Client
     getKnowledgeBaseDocuments: function(Client, types.GetKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseDocumentsOutput>
     getPrompt: function(Client, types.GetPromptInput, ? base_client.InvokeOptions): async.Operation<types.GetPromptOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getVpcConfiguration: function(Client, types.GetVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetVpcConfigurationOutput>
     ingestKnowledgeBaseDocuments: function(Client, types.IngestKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
     listAgentActionGroups: function(Client, types.ListAgentActionGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentActionGroupsOutput>
     listAgentAliases: function(Client, types.ListAgentAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentAliasesOutput>
@@ -75,6 +78,7 @@ local record Client
     listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput, ? base_client.InvokeOptions): async.Operation<types.ListKnowledgeBasesOutput>
     listPrompts: function(Client, types.ListPromptsInput, ? base_client.InvokeOptions): async.Operation<types.ListPromptsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVpcConfigurations: function(Client, types.ListVpcConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcConfigurationsOutput>
     prepareAgent: function(Client, types.PrepareAgentInput, ? base_client.InvokeOptions): async.Operation<types.PrepareAgentOutput>
     prepareFlow: function(Client, types.PrepareFlowInput, ? base_client.InvokeOptions): async.Operation<types.PrepareFlowOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
@@ -185,6 +189,10 @@ function C:createPromptVersion(input: types.CreatePromptVersionInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePromptVersion as schema.OperationSchema, input, options) as async.Operation<types.CreatePromptVersionOutput>
 end
 
+function C:createVpcConfiguration(input: types.CreateVpcConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcConfigurationOutput>
+end
+
 function C:deleteAgent(input: types.DeleteAgentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgent as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentOutput>
 end
@@ -231,6 +239,10 @@ end
 
 function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+end
+
+function C:deleteVpcConfiguration(input: types.DeleteVpcConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcConfigurationOutput>
 end
 
 function C:disassociateAgentCollaborator(input: types.DisassociateAgentCollaboratorInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAgentCollaboratorOutput>
@@ -301,6 +313,10 @@ function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
+function C:getVpcConfiguration(input: types.GetVpcConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpcConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpcConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetVpcConfigurationOutput>
+end
+
 function C:ingestKnowledgeBaseDocuments(input: types.IngestKnowledgeBaseDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IngestKnowledgeBaseDocuments as schema.OperationSchema, input, options) as async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
 end
@@ -363,6 +379,10 @@ end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
+end
+
+function C:listVpcConfigurations(input: types.ListVpcConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListVpcConfigurationsOutput>
 end
 
 function C:prepareAgent(input: types.PrepareAgentInput, options?: base_client.InvokeOptions): async.Operation<types.PrepareAgentOutput>

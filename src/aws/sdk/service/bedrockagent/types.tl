@@ -1018,6 +1018,58 @@ local record M
         agentAlias: AgentAlias
     end
 
+    enum VpcProtocol
+        "HTTP"
+        "HTTPS"
+    end
+
+    enum VpcResolutionMode
+        "PUBLIC"
+        "IN_VPC"
+    end
+
+    record CreateVpcConfigurationInput
+        -- The unique identifier of the knowledge base to associate this VPC configuration with.
+        knowledgeBaseId: string
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.
+        clientToken: string
+        -- The identifier of the VPC that the knowledge base connects through to reach the resource.
+        vpcId: string
+        -- The subnets, in the VPC identified by vpcId, that the knowledge base uses to connect to the resource.
+        subnetIds: {string}
+        -- The private IPv4 address or DNS name of the resource you want the knowledge base to reach. The target must be privately reachable from inside your VPC, such as an internal load balancer or a private IP. The following are not supported: Internet-facing endpoints Loopback addresses Link-local addresses Wildcard addresses Multicast addresses IPv6 literals
+        resourceTarget: string
+        -- The port on which to reach the resource.
+        port: number
+        -- The protocol used to connect to the resource. Specify HTTP for plaintext or HTTPS for TLS. When you specify HTTPS, you must also provide tlsServerName.
+        protocol: string
+        -- Controls how a domain-name resourceTarget is resolved. This applies only when the target is a domain name; it has no effect for IP-address targets, which have no name to resolve. In all cases the resolved address must be reachable from inside your VPC. Valid values: IN_VPC (default, recommended) – The target domain name is resolved privately, using the DNS resolvers of the VPC, such as private Route 53 hosted zones or on-premises DNS reachable from the VPC. Use this for targets that are private to your VPC, such as internal load balancers, private hosted-zone names, or on-premises hosts. PUBLIC – The target domain name is resolved against public DNS resolvers. Select this only when the target's domain name must be resolved through public DNS and the resulting address is still reachable from the VPC, an uncommon split-horizon configuration. If you are unsure, use IN_VPC.
+        resolutionMode: string
+        -- An optional HTTP Host header value to send when invoking the resource. Set this only if your resource (or an upstream router or ingress) routes by the Host header and that host differs from the target. This setting is independent of tlsServerName.
+        hostHeader: string
+        -- The expected TLS server name. The service matches this value against the Subject Alternative Names on your resource's TLS certificate during invocation. This field is required when protocol is HTTPS. Set it to a hostname on your certificate, such as app.internal.example.com. You can use a single leftmost wildcard, such as *.example.com. The value must be a hostname without a port.
+        tlsServerName: string
+        -- An optional human-readable name for the VPC configuration. If you don't specify a name, the VPC configuration has no name.
+        name: string
+        -- An optional description of the VPC configuration. If you don't specify a description, the VPC configuration has no description.
+        description: string
+    end
+
+    enum VpcConfigurationStatus
+        "CREATING"
+        "CREATED"
+        "DELETING"
+        "CREATE_FAILED"
+        "DELETE_FAILED"
+    end
+
+    record CreateVpcConfigurationOutput
+        -- The unique identifier of the VPC configuration that was created.
+        vpcConfigurationId: string
+        -- The current status of the VPC configuration. Immediately after creation this is CREATING.
+        status: string
+    end
+
     enum DataDeletionPolicy
         "RETAIN"
         "DELETE"
@@ -1685,6 +1737,20 @@ local record M
         resourceArn: string
         -- The revision identifier after the resource policy was deleted.
         revisionId: string
+    end
+
+    record DeleteVpcConfigurationInput
+        -- The unique identifier of the knowledge base that owns the VPC configuration.
+        knowledgeBaseId: string
+        -- The unique identifier of the VPC configuration to delete.
+        vpcConfigurationId: string
+    end
+
+    record DeleteVpcConfigurationOutput
+        -- The unique identifier of the VPC configuration being deleted.
+        vpcConfigurationId: string
+        -- The current status of the VPC configuration. Immediately after a delete request this is DELETING.
+        status: string
     end
 
     -- The configuration of a connection between a condition node and another node.
@@ -2859,6 +2925,52 @@ local record M
         revisionId: string
     end
 
+    record GetVpcConfigurationInput
+        -- The unique identifier of the knowledge base that owns the VPC configuration.
+        knowledgeBaseId: string
+        -- The unique identifier of the VPC configuration to retrieve.
+        vpcConfigurationId: string
+    end
+
+    -- Contains the details of a VPC configuration, including its connection settings, resolution mode, and current lifecycle status.
+    record VpcConfiguration
+        -- The unique identifier of the VPC configuration.
+        vpcConfigurationId: string
+        -- The current lifecycle status of the VPC configuration.
+        status: string
+        -- Additional detail about the current status, such as the cause of a CREATE_FAILED or DELETE_FAILED status.
+        statusMessage: string
+        -- The identifier of the VPC that the knowledge base connects through to reach the resource.
+        vpcId: string
+        -- The subnets that the knowledge base uses to connect to the resource.
+        subnetIds: {string}
+        -- The private IPv4 address or DNS name of the resource.
+        resourceTarget: string
+        -- The port on which the resource is reached.
+        port: number
+        -- The protocol used to connect to the resource.
+        protocol: string
+        -- Specifies how the resource target is resolved.
+        resolutionMode: string
+        -- The HTTP Host header value sent when invoking the resource, if configured.
+        hostHeader: string
+        -- The expected TLS server name that the service matches against the Subject Alternative Names on the resource's TLS certificate. Present when protocol is HTTPS.
+        tlsServerName: string
+        -- The human-readable name of the VPC configuration, if provided.
+        name: string
+        -- The description of the VPC configuration, if provided.
+        description: string
+        -- The time at which the VPC configuration was created.
+        createdAt: number
+        -- The time at which the VPC configuration was last updated.
+        updatedAt: number
+    end
+
+    record GetVpcConfigurationOutput
+        -- The VPC configuration, including its connection settings, resolution mode, and current lifecycle status.
+        vpcConfiguration: VpcConfiguration
+    end
+
     record GetIngestionJobInput
         -- The unique identifier of the knowledge base for the data ingestion job you want to get information on.
         knowledgeBaseId: string
@@ -3337,7 +3449,7 @@ local record M
         audio: {AudioConfiguration}
         -- Configuration settings for processing video content in multimodal knowledge bases. This field is deprecated. Use modelConfiguration instead.
         video: {VideoConfiguration}
-        -- Model-specific configuration for the embedding model, provided as a JSON object. Use this field to specify settings that apply to the embedding model that you selected, such as how audio and video files are divided into segments. The fields that this object accepts depend on the embedding model. For the settings that each model accepts, see the documentation for that model.
+        -- Model-specific configuration for the embedding model, provided as a JSON object. Use this field to specify settings that apply to the embedding model that you selected, such as how audio and video files are divided into segments. The fields that this object accepts depend on the embedding model. For the settings that each model accepts, see the documentation for that model. For an example of a CreateKnowledgeBase request that uses this field to configure a multimodal embedding model, see the Examples section of CreateKnowledgeBase.
         modelConfiguration: any
     end
 
@@ -3948,6 +4060,54 @@ local record M
     record UpdateKnowledgeBaseOutput
         -- Contains details about the knowledge base.
         knowledgeBase: KnowledgeBase
+    end
+
+    record ListVpcConfigurationsInput
+        -- The unique identifier of the knowledge base whose VPC configurations you want to list.
+        knowledgeBaseId: string
+        -- The status to filter the results by. Only VPC configurations with the specified status are returned.
+        statusFilter: string
+        -- The maximum number of results to return in the response. If more results are available, the response returns a nextToken.
+        maxResults: number
+        -- A pagination token to retrieve the next page of results, returned in a previous response when more results are available.
+        nextToken: string
+    end
+
+    -- A summary of a VPC configuration returned by ListVpcConfigurations.
+    record VpcConfigurationSummary
+        -- The unique identifier of the VPC configuration.
+        vpcConfigurationId: string
+        -- The current lifecycle status of the VPC configuration.
+        status: string
+        -- Additional detail about the current status, such as the cause of a failure.
+        statusMessage: string
+        -- The identifier of the VPC that the knowledge base connects through to reach the resource.
+        vpcId: string
+        -- The private IPv4 address or DNS name of the resource.
+        resourceTarget: string
+        -- The port on which the resource is reached.
+        port: number
+        -- The protocol used to connect to the resource.
+        protocol: string
+        -- Specifies how the resource target is resolved.
+        resolutionMode: string
+        -- The HTTP Host header value sent when invoking the resource, if configured.
+        hostHeader: string
+        -- The expected TLS server name that the service matches against the Subject Alternative Names on the resource's TLS certificate. Present when protocol is HTTPS.
+        tlsServerName: string
+        -- The human-readable name of the VPC configuration, if provided.
+        name: string
+        -- The description of the VPC configuration, if provided.
+        description: string
+        -- The time at which the VPC configuration was created.
+        createdAt: number
+    end
+
+    record ListVpcConfigurationsOutput
+        -- A list of VPC configuration summaries.
+        items: {VpcConfigurationSummary}
+        -- A pagination token to retrieve the next page of results, present when the total number of results exceeds the maximum number of results.
+        nextToken: string
     end
 
     -- Contains specifications for an Amazon Bedrock agent with which to use the prompt. For more information, see Create a prompt using Prompt management and Automate tasks in your application using conversational agents.

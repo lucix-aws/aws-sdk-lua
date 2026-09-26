@@ -72,6 +72,8 @@ M.FaceDetections = schema.new({ type = "list", list_member = M.FaceDetection })
 
 M.AuditImages = schema.new({ type = "list", list_member = M.AuditImage })
 
+M.FeedbackList = schema.new({ type = "list", list_member = M.FeedbackItem })
+
 M.PersonMatches = schema.new({ type = "list", list_member = M.PersonMatch })
 
 M.LabelDetections = schema.new({ type = "list", list_member = M.LabelDetection })
@@ -5199,6 +5201,31 @@ M.FaceRecord = schema.new({
     },
 })
 
+M.FeedbackItem = schema.new({
+    id = id.from(_N, "FeedbackItem"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "FeedbackItem", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "FeedbackItem", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetCelebrityInfoInput = schema.new({
     id = id.from(_N, "GetCelebrityInfoRequest"),
     type = "structure",
@@ -5629,6 +5656,22 @@ M.GetFaceLivenessSessionResultsInput = schema.new({
     },
 })
 
+M.SessionMetadata = schema.new({
+    id = id.from(_N, "SessionMetadata"),
+    type = "structure",
+    members = {
+        SDKType = schema.new({
+            id = id.from(_N, "SessionMetadata", "SDKType"),
+            type = "string",
+            name = "SDKType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetFaceLivenessSessionResultsOutput = schema.new({
     id = id.from(_N, "GetFaceLivenessSessionResultsResponse"),
     type = "structure",
@@ -5677,6 +5720,20 @@ M.GetFaceLivenessSessionResultsOutput = schema.new({
             name = "Challenge",
             target_id = id.from(_N, "Challenge"),
             target = M.Challenge,
+        }),
+        Feedback = schema.new({
+            id = id.from(_N, "GetFaceLivenessSessionResultsOutput", "Feedback"),
+            type = "list",
+            name = "Feedback",
+            target_id = prelude.Document.id,
+            list_member = M.FeedbackItem,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "GetFaceLivenessSessionResultsOutput", "Metadata"),
+            type = "structure",
+            name = "Metadata",
+            target_id = id.from(_N, "SessionMetadata"),
+            target = M.SessionMetadata,
         }),
     },
 })

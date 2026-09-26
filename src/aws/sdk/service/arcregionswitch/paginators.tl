@@ -148,4 +148,22 @@ function M.items_list_route53_health_checks_in_region(client, input)
     })
 end
 
+--- Returns a page iterator for listServiceQuotaWarnings.
+function M.pages_list_service_quota_warnings(client, input)
+    return paginator.pages(client, "listServiceQuotaWarnings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "serviceQuotaWarningSummaries",
+    })
+end
+
+--- Returns an item iterator for listServiceQuotaWarnings.
+function M.items_list_service_quota_warnings(client, input)
+    return paginator.items(client, "listServiceQuotaWarnings", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "serviceQuotaWarningSummaries",
+    })
+end
+
 return M

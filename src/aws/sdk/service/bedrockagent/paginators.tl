@@ -256,4 +256,22 @@ function M.items_list_prompts(client, input)
     })
 end
 
+--- Returns a page iterator for listVpcConfigurations.
+function M.pages_list_vpc_configurations(client, input)
+    return paginator.pages(client, "listVpcConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listVpcConfigurations.
+function M.items_list_vpc_configurations(client, input)
+    return paginator.items(client, "listVpcConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 return M

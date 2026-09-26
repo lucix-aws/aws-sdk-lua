@@ -6439,6 +6439,7 @@ local record M
         "USE_CUSTOM_TTS_VOICES"
         "EARLY_MEDIA"
         "MULTI_PARTY_CONFERENCE"
+        "AUTO_MUTE_AGENT_ON_HOLD"
         "HIGH_VOLUME_OUTBOUND"
         "ENHANCED_CONTACT_MONITORING"
         "ENHANCED_CHAT_MONITORING"
@@ -16059,6 +16060,9 @@ local record M
         -- If you set the attribute type as MESSAGE_STREAMING, you need to update the Lex bot alias resource
         -- based policy to include the lex:RecognizeMessageAsync action for the connect instance ARN
         -- resource.
+        -- If you set the attribute type AUTO_MUTE_AGENT_ON_HOLD to true, the system
+        -- automatically mutes agents while they're on hold and unmutes them when they resume the contact. Agents can't
+        -- change their mute state while on hold.
         AttributeType: string
         -- The value for the attribute. Maximum character limit is 100.
         Value: string

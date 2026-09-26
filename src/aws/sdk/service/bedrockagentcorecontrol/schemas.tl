@@ -232,6 +232,8 @@ M.TokenEndpointAuthMethodsType = schema.new({ type = "list", list_member = prelu
 
 M.ScopesListType = schema.new({ type = "list", list_member = prelude.String })
 
+M.CoinbaseCdpSecrets = schema.new({ type = "list", list_member = prelude.String })
+
 M.HostingEnvironmentListType = schema.new({ type = "list", list_member = M.HostingEnvironment })
 
 M.WorkloadIdentityNameListType = schema.new({ type = "list", list_member = prelude.String })
@@ -22680,6 +22682,12 @@ M.GetPaymentConnectorOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        provisionMode = schema.new({
+            id = id.from(_N, "GetPaymentConnectorOutput", "provisionMode"),
+            type = "string",
+            name = "provisionMode",
+            target_id = prelude.String.id,
+        }),
         credentialProviderConfigurations = schema.new({
             id = id.from(_N, "GetPaymentConnectorOutput", "credentialProviderConfigurations"),
             type = "list",
@@ -22730,6 +22738,15 @@ M.GetPaymentConnectorOutput = schema.new({
             type = "string",
             name = "authorizationUrl",
             target_id = prelude.String.id,
+        }),
+        credentialsUpdatedAt = schema.new({
+            id = id.from(_N, "GetPaymentConnectorOutput", "credentialsUpdatedAt"),
+            type = "timestamp",
+            name = "credentialsUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })
@@ -22800,6 +22817,12 @@ M.PaymentConnectorSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        provisionMode = schema.new({
+            id = id.from(_N, "PaymentConnectorSummary", "provisionMode"),
+            type = "string",
+            name = "provisionMode",
+            target_id = prelude.String.id,
+        }),
         status = schema.new({
             id = id.from(_N, "PaymentConnectorSummary", "status"),
             type = "string",
@@ -22844,6 +22867,130 @@ M.ListPaymentConnectorsOutput = schema.new({
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CoinbaseCdpRotationTargets = schema.new({
+    id = id.from(_N, "CoinbaseCdpRotationTargets"),
+    type = "structure",
+    members = {
+        secrets = schema.new({
+            id = id.from(_N, "CoinbaseCdpRotationTargets", "secrets"),
+            type = "list",
+            name = "secrets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CredentialRotationConfig = schema.new({
+    id = id.from(_N, "CredentialRotationConfig"),
+    type = "union",
+    members = {
+        coinbaseCDP = schema.new({
+            id = id.from(_N, "CredentialRotationConfig", "coinbaseCDP"),
+            type = "structure",
+            name = "coinbaseCDP",
+            target_id = id.from(_N, "CoinbaseCdpRotationTargets"),
+            target = M.CoinbaseCdpRotationTargets,
+        }),
+    },
+})
+
+M.RotatePaymentConnectorCredentialsInput = schema.new({
+    id = id.from(_N, "RotatePaymentConnectorCredentialsRequest"),
+    type = "structure",
+    members = {
+        paymentManagerId = schema.new({
+            id = id.from(_N, "RotatePaymentConnectorCredentialsInput", "paymentManagerId"),
+            type = "string",
+            name = "paymentManagerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "RotatePaymentConnectorCredentialsInput", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        credentialsToRotate = schema.new({
+            id = id.from(_N, "RotatePaymentConnectorCredentialsInput", "credentialsToRotate"),
+            type = "union",
+            name = "credentialsToRotate",
+            target_id = id.from(_N, "CredentialRotationConfig"),
+            target = M.CredentialRotationConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "RotatePaymentConnectorCredentialsInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.RotatePaymentConnectorCredentialsOutput = schema.new({
+    id = id.from(_N, "RotatePaymentConnectorCredentialsResponse"),
+    type = "structure",
+    members = {
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "RotatePaymentConnectorCredentialsOutput", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentManagerId = schema.new({
+            id = id.from(_N, "RotatePaymentConnectorCredentialsOutput", "paymentManagerId"),
+            type = "string",
+            name = "paymentManagerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "RotatePaymentConnectorCredentialsOutput", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "RotatePaymentConnectorCredentialsOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -30981,6 +31128,18 @@ M.PutResourcePolicy = schema.operation({
     output = M.PutResourcePolicyOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RotatePaymentConnectorCredentials = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "RotatePaymentConnectorCredentials"),
+    input = M.RotatePaymentConnectorCredentialsInput,
+    output = M.RotatePaymentConnectorCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/managers/{paymentManagerId}/connectors/{paymentConnectorId}/rotate-credentials" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

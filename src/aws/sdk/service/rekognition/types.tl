@@ -2540,6 +2540,27 @@ local record M
         "TIMESTAMP"
     end
 
+    enum FeedbackCode
+        "FACE_NOT_VISIBLE"
+        "FACE_OBSTRUCTION_DETECTED"
+        "LOW_VIDEO_QUALITY_DETECTED"
+        "FACE_NOT_ALIGNED"
+        "EYES_CLOSED_DETECTED"
+        "LOW_LIGHTING_DETECTED"
+        "HIGH_LIGHTING_DETECTED"
+    end
+
+    -- Describes a condition that was detected in the Face Liveness video and that contributed to
+    -- the confidence score returned for the session.
+    record FeedbackItem
+        -- A code identifying the condition that was detected during the Face Liveness session.
+        Code: string
+        -- A human-readable description of the detected condition, suitable for displaying to an end
+        -- user before they retry a Face Liveness check. Use Code rather than this message
+        -- for programmatic decisions, because the message text can change.
+        Message: string
+    end
+
     record GetCelebrityInfoInput
         -- The ID for the celebrity. You get the celebrity ID from a call to the RecognizeCelebrities operation, which recognizes celebrities in an image.
         Id: string
@@ -2728,6 +2749,16 @@ local record M
         SessionId: string
     end
 
+    -- Contains metadata about the client that streamed the video for a Face Liveness
+    -- session.
+    record SessionMetadata
+        -- The type of SDK that was used to stream the video for the Face Liveness session.
+        -- This value is self-reported by the client that streamed the session, and
+        -- Amazon Rekognition doesn't verify it. Don't rely on it for authentication, authorization, or any
+        -- other security decision.
+        SDKType: string
+    end
+
     enum LivenessSessionStatus
         "CREATED"
         "IN_PROGRESS"
@@ -2759,6 +2790,13 @@ local record M
         AuditImages: {AuditImage}
         -- Contains information regarding the challenge type used for the Face Liveness check.
         Challenge: Challenge
+        -- A list of conditions that were detected in the Face Liveness video and that contributed to
+        -- the returned Confidence score. Each item contains a code and a human-readable
+        -- message. Feedback is returned only for sessions with a Status of
+        -- SUCCEEDED, and the list is empty when no such conditions were detected.
+        Feedback: {FeedbackItem}
+        -- Metadata about the client that streamed the video for the Face Liveness session.
+        Metadata: SessionMetadata
     end
 
     -- Occurs when a given sessionId is not found.

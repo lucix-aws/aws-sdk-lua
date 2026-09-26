@@ -88,6 +88,8 @@ M.ThreatEvidenceList = schema.new({ type = "list", list_member = M.ThreatEvidenc
 
 M.DocumentList = schema.new({ type = "list", list_member = M.DocumentInfo })
 
+M.ActorMessageList = schema.new({ type = "list", list_member = M.ActorMessage })
+
 M.ArtifactSummaryList = schema.new({ type = "list", list_member = M.ArtifactSummary })
 
 M.CodeReviewJobSummaryList = schema.new({ type = "list", list_member = M.CodeReviewJobSummary })
@@ -287,6 +289,40 @@ M.Actor = schema.new({
             type = "string",
             name = "mfaForwardingAddress",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ActorMessage = schema.new({
+    id = id.from(_N, "ActorMessage"),
+    type = "structure",
+    members = {
+        sender = schema.new({
+            id = id.from(_N, "ActorMessage", "sender"),
+            type = "string",
+            name = "sender",
+            target_id = prelude.String.id,
+        }),
+        subject = schema.new({
+            id = id.from(_N, "ActorMessage", "subject"),
+            type = "string",
+            name = "subject",
+            target_id = prelude.String.id,
+        }),
+        body = schema.new({
+            id = id.from(_N, "ActorMessage", "body"),
+            type = "string",
+            name = "body",
+            target_id = prelude.String.id,
+        }),
+        receivedAt = schema.new({
+            id = id.from(_N, "ActorMessage", "receivedAt"),
+            type = "timestamp",
+            name = "receivedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })
@@ -8295,6 +8331,72 @@ M.ListIntegrationsOutput = schema.new({
     },
 })
 
+M.ListActorMessagesInput = schema.new({
+    id = id.from(_N, "ListActorMessagesInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListActorMessagesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListActorMessagesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "ListActorMessagesInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        pentestId = schema.new({
+            id = id.from(_N, "ListActorMessagesInput", "pentestId"),
+            type = "string",
+            name = "pentestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        actorIdentifier = schema.new({
+            id = id.from(_N, "ListActorMessagesInput", "actorIdentifier"),
+            type = "string",
+            name = "actorIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListActorMessagesOutput = schema.new({
+    id = id.from(_N, "ListActorMessagesOutput"),
+    type = "structure",
+    members = {
+        messages = schema.new({
+            id = id.from(_N, "ListActorMessagesOutput", "messages"),
+            type = "list",
+            name = "messages",
+            target_id = prelude.Document.id,
+            list_member = M.ActorMessage,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListActorMessagesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListArtifactsInput = schema.new({
     id = id.from(_N, "ListArtifactsInput"),
     type = "structure",
@@ -12563,6 +12665,18 @@ M.InitiateProviderRegistration = schema.operation({
     output = M.InitiateProviderRegistrationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/oauth2/provider/register" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListActorMessages = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListActorMessages"),
+    input = M.ListActorMessagesInput,
+    output = M.ListActorMessagesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListActorMessages" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

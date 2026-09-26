@@ -6321,6 +6321,18 @@ local record M
         IcebergInput: IcebergInput
     end
 
+    -- A table that points to an entity outside the Glue Data Catalog.
+    record FederatedTable
+        -- A unique identifier for the federated table.
+        Identifier: string
+        -- A unique identifier for the federated database.
+        DatabaseIdentifier: string
+        -- The name of the connection to the external metastore.
+        ConnectionName: string
+        -- The type of connection used to access the federated table, specifying the protocol or method for connecting to the external data source.
+        ConnectionType: string
+    end
+
     -- A structure that describes a target table for resource linking.
     record TableIdentifier
         -- The ID of the Data Catalog in which the table resides.
@@ -6461,6 +6473,8 @@ local record M
         Parameters: {string : string}
         -- A TableIdentifier structure that describes a target table for resource linking.
         TargetTable: TableIdentifier
+        -- A FederatedTable structure that references an entity outside the Glue Data Catalog. Specify this field to create a federated table, which points to a table in an external metastore instead of describing data managed in the Glue Data Catalog.
+        FederatedTable: FederatedTable
         -- A structure that contains all the information that defines the view, including the dialect or dialects for the view, and the query.
         ViewDefinition: ViewDefinitionInput
     end
@@ -10320,18 +10334,6 @@ local record M
         AttributesToGet: {string}
     end
 
-    -- A table that points to an entity outside the Glue Data Catalog.
-    record FederatedTable
-        -- A unique identifier for the federated table.
-        Identifier: string
-        -- A unique identifier for the federated database.
-        DatabaseIdentifier: string
-        -- The name of the connection to the external metastore.
-        ConnectionName: string
-        -- The type of connection used to access the federated table, specifying the protocol or method for connecting to the external data source.
-        ConnectionType: string
-    end
-
     -- The Apache Iceberg table metadata, including format version, table identifier, schemas, partition specifications, sort orders, and table properties. This structure captures the current state of an Iceberg table's metadata as managed by the Glue Data Catalog.
     record IcebergTableMetadata
         -- The Apache Iceberg table format version, such as 1 or 2. Determines the set of features and on-disk layout supported by the table.
@@ -10458,6 +10460,11 @@ local record M
         TableOptimizer: TableOptimizer
     end
 
+    enum TableResourceShareType
+        "FEDERATED"
+        "ALL"
+    end
+
     record GetTablesInput
         -- The ID of the Data Catalog where the tables reside. If none is provided, the Amazon Web Services account
         -- ID is used by default.
@@ -10478,6 +10485,10 @@ local record M
         QueryAsOfTime: number
         -- A structure containing the Lake Formation audit context.
         AuditContext: AuditContext
+        -- Specifies which tables the GetTables call returns. The allowable values are FEDERATED or ALL.
+        -- If set to FEDERATED, returns only federated tables, which reference an entity outside the Glue Data Catalog.
+        -- If set to ALL, returns all tables in the database, both federated and non-federated.
+        ResourceShareType: string
         -- Specifies whether to include status details related to a request to create or update an Glue Data Catalog view.
         IncludeStatusDetails: boolean
         -- Specifies the table fields returned by the GetTables call. This parameter doesn’t accept an empty list. The request must include NAME.

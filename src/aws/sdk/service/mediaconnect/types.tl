@@ -1900,6 +1900,7 @@ local record M
         "RIST"
         "SRT_CALLER"
         "SRT_LISTENER"
+        "RTMP_PUSH"
     end
 
     -- The configuration settings for a router output using the RIST (Reliable Internet Stream Transport) protocol, including the destination address and port.
@@ -1908,6 +1909,42 @@ local record M
         DestinationAddress: string
         -- The destination port number for the RIST protocol in the router output configuration.
         DestinationPort: number
+    end
+
+    -- The TLS encryption configuration for destinations that present a certificate from a publicly trusted certificate authority. This type does not require any additional settings.
+    record PublicTlsEncryptionConfiguration
+    end
+
+    -- The configuration settings for TLS encryption.
+    record TlsEncryptionConfiguration
+        -- The TLS encryption configuration that validates the destination by using a publicly trusted certificate authority.
+        Public: PublicTlsEncryptionConfiguration
+    end
+
+    enum TlsEncryptionType
+        "PUBLIC"
+    end
+
+    -- The Transport Layer Security (TLS) encryption settings used to establish a secure connection to a destination.
+    record TlsEncryption
+        -- The type of TLS encryption to use for the connection.
+        EncryptionType: string
+        -- The configuration settings for the specified TLS encryption type.
+        EncryptionConfiguration: TlsEncryptionConfiguration
+    end
+
+    -- The configuration settings for a router output that pushes a stream to a destination using the RTMP (Real-Time Messaging Protocol) protocol, or RTMPS (RTMP over TLS) when TLS encryption is specified. These settings include the destination address and port, the application and stream names, and optional TLS encryption configuration.
+    record RtmpPushRouterOutputConfiguration
+        -- The IP address or hostname of the destination RTMP server that the router output pushes the stream to. Provide only the server address; specify the application and stream names separately.
+        DestinationAddress: string
+        -- The TCP port on the destination RTMP server. For RTMP, valid values range from 1024 to 65535. For RTMPS (RTMP over TLS), valid values are 443 or 1024 to 65535. RTMP typically uses port 1935, and RTMPS typically uses port 443.
+        DestinationPort: number
+        -- The name of the RTMP application on the destination server. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://destinationAddress/applicationName/streamName.
+        ApplicationName: string
+        -- The name of the RTMP stream that the output publishes to the destination application. The stream name forms the final segment of the RTMP URL path.
+        StreamName: string
+        -- The TLS encryption settings for the output. When you specify these settings, the output uses RTMPS (RTMP over TLS) to establish a secure, encrypted connection to the destination server.
+        TlsEncryption: TlsEncryption
     end
 
     -- The configuration settings for a router output using the RTP (Real-Time Transport Protocol) protocol, including the destination address and port, and forward error correction state.
@@ -1954,6 +1991,7 @@ local record M
     record RouterOutputProtocolConfiguration
         Rist: RistRouterOutputConfiguration
         SrtListener: SrtListenerRouterOutputConfiguration
+        RtmpPush: RtmpPushRouterOutputConfiguration
         SrtCaller: SrtCallerRouterOutputConfiguration
         Rtp: RtpRouterOutputConfiguration
     end

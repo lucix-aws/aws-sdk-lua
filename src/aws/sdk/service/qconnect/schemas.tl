@@ -32,6 +32,8 @@ M.QueryResultsList = schema.new({ type = "list", list_member = M.ResultData })
 
 M.RetrieveResultList = schema.new({ type = "list", list_member = M.RetrieveResult })
 
+M.RetrieveErrorList = schema.new({ type = "list", list_member = M.RetrieveError })
+
 M.SessionSummaries = schema.new({ type = "list", list_member = M.SessionSummary })
 
 M.KnowledgeBaseList = schema.new({ type = "list", list_member = M.KnowledgeBaseSummary })
@@ -2026,6 +2028,15 @@ M.AIAgentConfigurationData = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
+            },
+        }),
+        enabled = schema.new({
+            id = id.from(_N, "AIAgentConfigurationData", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
             },
         }),
     },
@@ -5073,6 +5084,22 @@ M.NotesDataDetails = schema.new({
     },
 })
 
+M.ProactiveRecommendationDataDetails = schema.new({
+    id = id.from(_N, "ProactiveRecommendationDataDetails"),
+    type = "structure",
+    members = {
+        nextMessageToken = schema.new({
+            id = id.from(_N, "ProactiveRecommendationDataDetails", "nextMessageToken"),
+            type = "string",
+            name = "nextMessageToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CitationSpan = schema.new({
     id = id.from(_N, "CitationSpan"),
     type = "structure",
@@ -6183,6 +6210,40 @@ M.KnowledgeSource = schema.new({
     },
 })
 
+M.RetrieveError = schema.new({
+    id = id.from(_N, "RetrieveError"),
+    type = "structure",
+    members = {
+        associationId = schema.new({
+            id = id.from(_N, "RetrieveError", "associationId"),
+            type = "string",
+            name = "associationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "RetrieveError", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "RetrieveError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RetrieveResult = schema.new({
     id = id.from(_N, "RetrieveResult"),
     type = "structure",
@@ -6239,6 +6300,13 @@ M.RetrieveOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        errors = schema.new({
+            id = id.from(_N, "RetrieveOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.RetrieveError,
         }),
     },
 })
@@ -14448,6 +14516,13 @@ M.DataDetails = schema.new({
             name = "notesChunkData",
             target_id = id.from(_N, "NotesChunkDataDetails"),
             target = M.NotesChunkDataDetails,
+        }),
+        proactiveRecommendationData = schema.new({
+            id = id.from(_N, "DataDetails", "proactiveRecommendationData"),
+            type = "structure",
+            name = "proactiveRecommendationData",
+            target_id = id.from(_N, "ProactiveRecommendationDataDetails"),
+            target = M.ProactiveRecommendationDataDetails,
         }),
     },
 })

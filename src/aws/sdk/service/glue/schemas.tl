@@ -16042,6 +16042,37 @@ M.OpenTableFormatInput = schema.new({
     },
 })
 
+M.FederatedTable = schema.new({
+    id = id.from(_N, "FederatedTable"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "FederatedTable", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        DatabaseIdentifier = schema.new({
+            id = id.from(_N, "FederatedTable", "DatabaseIdentifier"),
+            type = "string",
+            name = "DatabaseIdentifier",
+            target_id = prelude.String.id,
+        }),
+        ConnectionName = schema.new({
+            id = id.from(_N, "FederatedTable", "ConnectionName"),
+            type = "string",
+            name = "ConnectionName",
+            target_id = prelude.String.id,
+        }),
+        ConnectionType = schema.new({
+            id = id.from(_N, "FederatedTable", "ConnectionType"),
+            type = "string",
+            name = "ConnectionType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.TableIdentifier = schema.new({
     id = id.from(_N, "TableIdentifier"),
     type = "structure",
@@ -16321,6 +16352,13 @@ M.TableInput = schema.new({
             name = "TargetTable",
             target_id = id.from(_N, "TableIdentifier"),
             target = M.TableIdentifier,
+        }),
+        FederatedTable = schema.new({
+            id = id.from(_N, "TableInput", "FederatedTable"),
+            type = "structure",
+            name = "FederatedTable",
+            target_id = id.from(_N, "FederatedTable"),
+            target = M.FederatedTable,
         }),
         ViewDefinition = schema.new({
             id = id.from(_N, "TableInput", "ViewDefinition"),
@@ -26361,37 +26399,6 @@ M.GetTableInput = schema.new({
     },
 })
 
-M.FederatedTable = schema.new({
-    id = id.from(_N, "FederatedTable"),
-    type = "structure",
-    members = {
-        Identifier = schema.new({
-            id = id.from(_N, "FederatedTable", "Identifier"),
-            type = "string",
-            name = "Identifier",
-            target_id = prelude.String.id,
-        }),
-        DatabaseIdentifier = schema.new({
-            id = id.from(_N, "FederatedTable", "DatabaseIdentifier"),
-            type = "string",
-            name = "DatabaseIdentifier",
-            target_id = prelude.String.id,
-        }),
-        ConnectionName = schema.new({
-            id = id.from(_N, "FederatedTable", "ConnectionName"),
-            type = "string",
-            name = "ConnectionName",
-            target_id = prelude.String.id,
-        }),
-        ConnectionType = schema.new({
-            id = id.from(_N, "FederatedTable", "ConnectionType"),
-            type = "string",
-            name = "ConnectionType",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.IcebergTableMetadata = schema.new({
     id = id.from(_N, "IcebergTableMetadata"),
     type = "structure",
@@ -26790,6 +26797,12 @@ M.GetTablesInput = schema.new({
             name = "AuditContext",
             target_id = id.from(_N, "AuditContext"),
             target = M.AuditContext,
+        }),
+        ResourceShareType = schema.new({
+            id = id.from(_N, "GetTablesInput", "ResourceShareType"),
+            type = "string",
+            name = "ResourceShareType",
+            target_id = prelude.String.id,
         }),
         IncludeStatusDetails = schema.new({
             id = id.from(_N, "GetTablesInput", "IncludeStatusDetails"),
