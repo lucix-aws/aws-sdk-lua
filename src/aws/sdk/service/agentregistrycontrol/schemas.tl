@@ -30,6 +30,8 @@ M.RegistrySummaryList = schema.new({ type = "list", list_member = M.RegistrySumm
 
 M.AutoApprovalRuleList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RecordTypeSchemaOverrideList = schema.new({ type = "list", list_member = M.RecordTypeSchemaOverride })
+
 M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.ProvenanceSummaryList = schema.new({ type = "list", list_member = M.ProvenanceSummary })
@@ -1117,6 +1119,12 @@ M.CreateRegistryRecordInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Provenance,
         }),
+        customMetadata = schema.new({
+            id = id.from(_N, "CreateRegistryRecordInput", "customMetadata"),
+            type = "document",
+            name = "customMetadata",
+            target_id = prelude.Document.id,
+        }),
         tags = schema.new({
             id = id.from(_N, "CreateRegistryRecordInput", "tags"),
             type = "map",
@@ -1362,6 +1370,18 @@ M.GetRegistryRecordOutput = schema.new({
             name = "createdBy",
             target_id = prelude.String.id,
         }),
+        customMetadata = schema.new({
+            id = id.from(_N, "GetRegistryRecordOutput", "customMetadata"),
+            type = "document",
+            name = "customMetadata",
+            target_id = prelude.Document.id,
+        }),
+        customMetadataSchemaComplianceStatus = schema.new({
+            id = id.from(_N, "GetRegistryRecordOutput", "customMetadataSchemaComplianceStatus"),
+            type = "string",
+            name = "customMetadataSchemaComplianceStatus",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1582,6 +1602,12 @@ M.RegistryRecordSummary = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ProvenanceSummary,
         }),
+        customMetadataSchemaComplianceStatus = schema.new({
+            id = id.from(_N, "RegistryRecordSummary", "customMetadataSchemaComplianceStatus"),
+            type = "string",
+            name = "customMetadataSchemaComplianceStatus",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1687,6 +1713,19 @@ M.SubmitRegistryRecordForApprovalOutput = schema.new({
             direct_traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.UpdatedCustomMetadataMap = schema.new({
+    id = id.from(_N, "UpdatedCustomMetadataMap"),
+    type = "structure",
+    members = {
+        optionalValue = schema.new({
+            id = id.from(_N, "UpdatedCustomMetadataMap", "optionalValue"),
+            type = "document",
+            name = "optionalValue",
+            target_id = prelude.Document.id,
         }),
     },
 })
@@ -2233,6 +2272,13 @@ M.UpdateRegistryRecordInput = schema.new({
             name = "recordVersion",
             target_id = prelude.String.id,
         }),
+        customMetadata = schema.new({
+            id = id.from(_N, "UpdateRegistryRecordInput", "customMetadata"),
+            type = "structure",
+            name = "customMetadata",
+            target_id = id.from(_N, "UpdatedCustomMetadataMap"),
+            target = M.UpdatedCustomMetadataMap,
+        }),
         triggerSynchronization = schema.new({
             id = id.from(_N, "UpdateRegistryRecordInput", "triggerSynchronization"),
             type = "boolean",
@@ -2381,6 +2427,18 @@ M.UpdateRegistryRecordOutput = schema.new({
             id = id.from(_N, "UpdateRegistryRecordOutput", "createdBy"),
             type = "string",
             name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        customMetadata = schema.new({
+            id = id.from(_N, "UpdateRegistryRecordOutput", "customMetadata"),
+            type = "document",
+            name = "customMetadata",
+            target_id = prelude.Document.id,
+        }),
+        customMetadataSchemaComplianceStatus = schema.new({
+            id = id.from(_N, "UpdateRegistryRecordOutput", "customMetadataSchemaComplianceStatus"),
+            type = "string",
+            name = "customMetadataSchemaComplianceStatus",
             target_id = prelude.String.id,
         }),
     },
@@ -2535,6 +2593,51 @@ M.AutoDetectionConfiguration = schema.new({
     },
 })
 
+M.RecordTypeSchemaOverride = schema.new({
+    id = id.from(_N, "RecordTypeSchemaOverride"),
+    type = "structure",
+    members = {
+        recordType = schema.new({
+            id = id.from(_N, "RecordTypeSchemaOverride", "recordType"),
+            type = "string",
+            name = "recordType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        schema = schema.new({
+            id = id.from(_N, "RecordTypeSchemaOverride", "schema"),
+            type = "string",
+            name = "schema",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomMetadataSchemaConfiguration = schema.new({
+    id = id.from(_N, "CustomMetadataSchemaConfiguration"),
+    type = "structure",
+    members = {
+        defaultSchema = schema.new({
+            id = id.from(_N, "CustomMetadataSchemaConfiguration", "defaultSchema"),
+            type = "string",
+            name = "defaultSchema",
+            target_id = prelude.String.id,
+        }),
+        recordTypeSchemaOverrides = schema.new({
+            id = id.from(_N, "CustomMetadataSchemaConfiguration", "recordTypeSchemaOverrides"),
+            type = "list",
+            name = "recordTypeSchemaOverrides",
+            target_id = prelude.Document.id,
+            list_member = M.RecordTypeSchemaOverride,
+        }),
+    },
+})
+
 M.DiscoveryConfiguration = schema.new({
     id = id.from(_N, "DiscoveryConfiguration"),
     type = "structure",
@@ -2627,6 +2730,13 @@ M.CreateRegistryInput = schema.new({
             name = "approvalConfiguration",
             target_id = id.from(_N, "ApprovalConfiguration"),
             target = M.ApprovalConfiguration,
+        }),
+        customMetadataSchemaConfiguration = schema.new({
+            id = id.from(_N, "CreateRegistryInput", "customMetadataSchemaConfiguration"),
+            type = "structure",
+            name = "customMetadataSchemaConfiguration",
+            target_id = id.from(_N, "CustomMetadataSchemaConfiguration"),
+            target = M.CustomMetadataSchemaConfiguration,
         }),
         autoDetectionConfiguration = schema.new({
             id = id.from(_N, "CreateRegistryInput", "autoDetectionConfiguration"),
@@ -2793,6 +2903,13 @@ M.GetRegistryOutput = schema.new({
             name = "approvalConfiguration",
             target_id = id.from(_N, "ApprovalConfiguration"),
             target = M.ApprovalConfiguration,
+        }),
+        customMetadataSchemaConfiguration = schema.new({
+            id = id.from(_N, "GetRegistryOutput", "customMetadataSchemaConfiguration"),
+            type = "structure",
+            name = "customMetadataSchemaConfiguration",
+            target_id = id.from(_N, "CustomMetadataSchemaConfiguration"),
+            target = M.CustomMetadataSchemaConfiguration,
         }),
         status = schema.new({
             id = id.from(_N, "GetRegistryOutput", "status"),
@@ -3043,6 +3160,20 @@ M.UpdatedAutoDetectionConfiguration = schema.new({
     },
 })
 
+M.UpdatedCustomMetadataSchemaConfiguration = schema.new({
+    id = id.from(_N, "UpdatedCustomMetadataSchemaConfiguration"),
+    type = "structure",
+    members = {
+        optionalValue = schema.new({
+            id = id.from(_N, "UpdatedCustomMetadataSchemaConfiguration", "optionalValue"),
+            type = "structure",
+            name = "optionalValue",
+            target_id = id.from(_N, "CustomMetadataSchemaConfiguration"),
+            target = M.CustomMetadataSchemaConfiguration,
+        }),
+    },
+})
+
 M.UpdatedAuthorizerConfiguration = schema.new({
     id = id.from(_N, "UpdatedAuthorizerConfiguration"),
     type = "structure",
@@ -3112,6 +3243,13 @@ M.UpdateRegistryInput = schema.new({
             target_id = id.from(_N, "UpdatedApprovalConfiguration"),
             target = M.UpdatedApprovalConfiguration,
         }),
+        customMetadataSchemaConfiguration = schema.new({
+            id = id.from(_N, "UpdateRegistryInput", "customMetadataSchemaConfiguration"),
+            type = "structure",
+            name = "customMetadataSchemaConfiguration",
+            target_id = id.from(_N, "UpdatedCustomMetadataSchemaConfiguration"),
+            target = M.UpdatedCustomMetadataSchemaConfiguration,
+        }),
         autoDetectionConfiguration = schema.new({
             id = id.from(_N, "UpdateRegistryInput", "autoDetectionConfiguration"),
             type = "structure",
@@ -3179,6 +3317,13 @@ M.UpdateRegistryOutput = schema.new({
             name = "approvalConfiguration",
             target_id = id.from(_N, "ApprovalConfiguration"),
             target = M.ApprovalConfiguration,
+        }),
+        customMetadataSchemaConfiguration = schema.new({
+            id = id.from(_N, "UpdateRegistryOutput", "customMetadataSchemaConfiguration"),
+            type = "structure",
+            name = "customMetadataSchemaConfiguration",
+            target_id = id.from(_N, "CustomMetadataSchemaConfiguration"),
+            target = M.CustomMetadataSchemaConfiguration,
         }),
         status = schema.new({
             id = id.from(_N, "UpdateRegistryOutput", "status"),

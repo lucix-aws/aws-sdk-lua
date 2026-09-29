@@ -601,6 +601,12 @@ local record M
         agentSpaceId: string
     end
 
+    -- The configuration that enables a pentest to run as part of a CI/CD pipeline, scoped to the code changes in each pipeline run.
+    record CiCdConfiguration
+        -- Whether CI/CD pentesting is enabled for this pentest.
+        enabled: boolean
+    end
+
     enum CleanUpStrategy
         "BEST_EFFORT_DELETE"
         "RETAIN_ALL"
@@ -786,6 +792,8 @@ local record M
         reportDestination: ReportDestination
         -- The report-generation filters applied when the report is exported.
         reportFilters: ReportFilters
+        -- The CI/CD pentesting configuration for this pentest. Present when the pentest is set up to run from a CI/CD pipeline.
+        cicdConfiguration: CiCdConfiguration
         -- The date and time the pentest was created, in UTC format.
         createdAt: number
         -- The date and time the pentest was last updated, in UTC format.
@@ -1247,6 +1255,35 @@ local record M
     enum JobType
         "FULL"
         "REVALIDATION"
+        "CICD"
+    end
+
+    -- A code change in a CI/CD pipeline run that defines what a CI/CD pentest job tests. Each scope change identifies an integrated repository and the commit range for the change.
+    record ScopeChange
+        -- The identifier of the integration for the source-code provider that hosts the repository.
+        integrationId: string
+        -- The provider-specific identifier of the repository the change belongs to.
+        providerResourceId: string
+        -- The commit SHA that the change is compared against. When omitted, the change is evaluated against the head commit alone.
+        baseCommitSha: string
+        -- The commit SHA at the tip of the change to be tested.
+        headCommitSha: string
+        -- The identifier of the CI/CD pipeline run that triggered this pentest job.
+        triggerRunId: string
+    end
+
+    enum ScopeDecision
+        "IN_SCOPE"
+        "SCOPED_OUT"
+        "SCOPE_CONFLICT"
+    end
+
+    -- The outcome of scoping a CI/CD pentest job's code changes, including the decision and the reason for it.
+    record ScopeResult
+        -- The scoping decision for the job's code changes.
+        decision: string
+        -- A human-readable explanation of the scoping decision.
+        reason: string
     end
 
     -- Represents a pentest job, which is an execution instance of a pentest. A pentest job progresses through preflight, static analysis, pentest, and finalizing steps.
@@ -1301,12 +1338,19 @@ local record M
         disableManagedSkills: {string}
         -- The maximum number of billable task hours allowed for this pentest job. If the cumulative task hours reach this limit, the job is gracefully stopped.
         maxTaskHours: number
-        -- The type of the pentest job. Valid values are FULL and REVALIDATION.
+        -- The type of the pentest job. Valid values are FULL, REVALIDATION, and CICD.
         jobType: string
         -- The list of finding identifiers selected for revalidation. Present only when jobType is REVALIDATION.
         selectedFindingIds: {string}
         -- The destination for publishing scan reports to an integrated document provider.
         reportDestination: ReportDestination
+        -- The URL to view this pentest job's findings report in the console.
+        reportUrl: string
+        -- The scoping outcome for this CI/CD pentest job. Present only for jobs of type CICD.
+        scopeResult: ScopeResult
+        -- The code changes that defined the scope of this CI/CD pentest job. Present only for jobs of type CICD.
+        scopeChanges: {ScopeChange}
+        cicdConfiguration: CiCdConfiguration
         -- The date and time the pentest job was created, in UTC format.
         createdAt: number
         -- The date and time the pentest job was last updated, in UTC format.
@@ -2093,6 +2137,8 @@ local record M
         reportDestination: ReportDestination
         -- The report-generation filters applied when the report is exported.
         reportFilters: ReportFilters
+        -- The CI/CD pentesting configuration to apply to the pentest.
+        cicdConfiguration: CiCdConfiguration
     end
 
     -- Output for the CreatePentest operation.
@@ -2119,6 +2165,8 @@ local record M
         reportDestination: ReportDestination
         -- The report-generation filters applied when the report is exported.
         reportFilters: ReportFilters
+        -- The CI/CD pentesting configuration applied to the pentest.
+        cicdConfiguration: CiCdConfiguration
     end
 
     -- The configuration for a self-managed private connection.
@@ -3094,6 +3142,8 @@ local record M
         agentSpaceId: string
         -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
         nextToken: string
+        -- Filters the returned pentest jobs to only those of the specified job type.
+        jobType: string
     end
 
     -- Contains summary information about a pentest job.
@@ -3110,6 +3160,10 @@ local record M
         createdAt: number
         -- The date and time the pentest job was last updated, in UTC format.
         updatedAt: number
+        -- The type of the pentest job. Valid values are FULL, REVALIDATION, and CICD.
+        jobType: string
+        -- The URL to view this pentest job's findings report in the console.
+        reportUrl: string
     end
 
     -- Output for the ListPentestJobsForPentest operation.
@@ -3608,10 +3662,12 @@ local record M
         agentSpaceId: string
         -- The unique identifier of the pentest to start a job for.
         pentestId: string
-        -- The type of pentest job to start. Valid values are FULL and REVALIDATION. When set to REVALIDATION, the selectedFindingIds parameter is required.
+        -- The type of pentest job to start. Valid values are FULL, REVALIDATION, and CICD. When set to REVALIDATION, the selectedFindingIds parameter is required. When set to CICD, the scopeChanges parameter defines the code changes to test.
         jobType: string
         -- The list of finding identifiers to revalidate. Required when jobType is REVALIDATION. Each finding must belong to the same agent space and pentest.
         selectedFindingIds: {string}
+        -- The code changes that define the scope of a CI/CD pentest job. Provide this when starting a job with jobType CICD to test only the changes in the current pipeline run.
+        scopeChanges: {ScopeChange}
     end
 
     -- Output for the StartPentestJob operation.
@@ -3872,6 +3928,8 @@ local record M
         reportDestination: ReportDestination
         -- The report-generation filters applied when the report is exported.
         reportFilters: ReportFilters
+        -- The updated CI/CD pentesting configuration to apply to the pentest.
+        cicdConfiguration: CiCdConfiguration
     end
 
     -- Output for the UpdatePentest operation.
@@ -3898,6 +3956,8 @@ local record M
         reportDestination: ReportDestination
         -- The report-generation filters applied when the report is exported.
         reportFilters: ReportFilters
+        -- The CI/CD pentesting configuration applied to the pentest.
+        cicdConfiguration: CiCdConfiguration
     end
 
     -- Input for updating an existing threat.

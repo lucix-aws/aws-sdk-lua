@@ -58,6 +58,42 @@ function M.items_list_billing_views(client, input)
     })
 end
 
+--- Returns a page iterator for listBusinessSupportAccountCharges.
+function M.pages_list_business_support_account_charges(client, input)
+    return paginator.pages(client, "listBusinessSupportAccountCharges", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountCharges",
+    })
+end
+
+--- Returns an item iterator for listBusinessSupportAccountCharges.
+function M.items_list_business_support_account_charges(client, input)
+    return paginator.items(client, "listBusinessSupportAccountCharges", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountCharges",
+    })
+end
+
+--- Returns a page iterator for listBusinessSupportSubscriptionHistory.
+function M.pages_list_business_support_subscription_history(client, input)
+    return paginator.pages(client, "listBusinessSupportSubscriptionHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "subscriptionContracts",
+    })
+end
+
+--- Returns an item iterator for listBusinessSupportSubscriptionHistory.
+function M.items_list_business_support_subscription_history(client, input)
+    return paginator.items(client, "listBusinessSupportSubscriptionHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "subscriptionContracts",
+    })
+end
+
 --- Returns a page iterator for listEnterpriseSupportLinkedAccountCharges.
 function M.pages_list_enterprise_support_linked_account_charges(client, input)
     return paginator.pages(client, "listEnterpriseSupportLinkedAccountCharges", input, {

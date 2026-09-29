@@ -3215,6 +3215,8 @@ local record M
         sessionConfiguration: SessionConfiguration
         -- The streaming configuration for the MCP gateway. This configuration controls whether response streaming is enabled for the gateway.
         streamingConfiguration: StreamingConfiguration
+        -- Specifies whether pagination is disabled for the Model Context Protocol (MCP) tools/list operation. When set to true, the gateway returns the complete list of tools in a single response without a pagination cursor. When set to false or omitted, the gateway returns tools in paginated responses.
+        disableMcpListToolsPagination: boolean
     end
 
     -- The configuration for a gateway protocol. This structure defines how the gateway communicates with external services.

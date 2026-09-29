@@ -14855,6 +14855,13 @@ local record M
         UploadUrlMetadata: UploadUrlMetadata
     end
 
+    enum ConnectionType
+        "WEBSOCKET"
+        "CONNECTION_CREDENTIALS"
+        "AUTHENTICATION_SESSION"
+        "WEBRTC_CONNECTION"
+    end
+
     enum DisconnectOnCustomerExitParticipantType
         "AGENT"
     end
@@ -14870,6 +14877,24 @@ local record M
         ResponseMode: string
     end
 
+    -- The credentials that a chat participant uses to connect to the Connect Customer Participant Service.
+    record ConnectionCredentials
+        -- The connection token used by the chat participant to call the Connect Customer Participant Service.
+        ConnectionToken: string
+        -- The expiration of the token. It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example,
+        -- 2019-11-08T02:41:28.172Z.
+        Expiry: string
+    end
+
+    -- The websocket that a chat participant uses to receive messages and events for the chat.
+    record Websocket
+        -- The URL of the websocket.
+        Url: string
+        -- The expiration of the websocket URL. It's specified in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example,
+        -- 2019-11-08T02:41:28.172Z.
+        ConnectionExpiry: string
+    end
+
     record StartChatContactOutput
         -- The identifier of this contact within the Connect Customer instance.
         ContactId: string
@@ -14881,6 +14906,15 @@ local record M
         -- The contactId from which a persistent chat session is started. This field is populated only for persistent
         -- chats.
         ContinuedFromContactId: string
+        -- The connection credentials for the chat participant. Returned only when the request includes
+        -- CONNECTION_CREDENTIALS in ConnectionTypes.
+        ConnectionCredentials: ConnectionCredentials
+        -- The websocket for the chat participant. Returned only when the request includes WEBSOCKET in
+        -- ConnectionTypes.
+        Websocket: Websocket
+        -- The identifier of the streaming configuration enabled with the chat. Returned only when the request sets
+        -- ChatStreamingConfiguration. Use this value to call StopContactStreaming.
+        StreamingId: string
     end
 
     -- The language configuration for conversational analytics.
@@ -16060,9 +16094,6 @@ local record M
         -- If you set the attribute type as MESSAGE_STREAMING, you need to update the Lex bot alias resource
         -- based policy to include the lex:RecognizeMessageAsync action for the connect instance ARN
         -- resource.
-        -- If you set the attribute type AUTO_MUTE_AGENT_ON_HOLD to true, the system
-        -- automatically mutes agents while they're on hold and unmutes them when they resume the contact. Agents can't
-        -- change their mute state while on hold.
         AttributeType: string
         -- The value for the attribute. Maximum character limit is 100.
         Value: string
@@ -17760,6 +17791,21 @@ local record M
         CustomerId: string
         -- A list of participant types to automatically disconnect when the end customer ends the chat session, allowing them to continue through disconnect flows such as surveys or feedback forms.
         DisconnectOnCustomerExit: {string}
+        -- The types of connection information to return in the response. This parameter is optional.
+        -- Specify CONNECTION_CREDENTIALS to receive a connection token. Specify WEBSOCKET to
+        -- receive a websocket URL. You can specify both. No other value returns connection information.
+        -- Request WEBSOCKET to get a URL the participant connects to directly. You do not need to call CreateParticipantConnection for it. Request CONNECTION_CREDENTIALS on its own and the response
+        -- returns a connection token but no websocket URL.
+        -- If you omit this parameter, the response has no connection information.
+        -- If the information you request cannot be returned, StartChatContact returns an error rather than a response that
+        -- omits it.
+        ConnectionTypes: {string}
+        -- The streaming configuration, such as the Amazon SNS streaming endpoint. Use it to initiate real-time
+        -- message streaming when the chat is created. This parameter is optional.
+        -- When you set this parameter, the response includes StreamingId. You do not need to call StartContactStreaming.
+        -- This parameter starts message streaming only. The response does not include connection information, and setting
+        -- this parameter does not remove the need to call CreateParticipantConnection.
+        ChatStreamingConfiguration: ChatStreamingConfiguration
     end
 
     record StartEmailContactInput

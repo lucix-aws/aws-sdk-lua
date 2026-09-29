@@ -10634,6 +10634,12 @@ M.MCPGatewayConfiguration = schema.new({
             target_id = id.from(_N, "StreamingConfiguration"),
             target = M.StreamingConfiguration,
         }),
+        disableMcpListToolsPagination = schema.new({
+            id = id.from(_N, "MCPGatewayConfiguration", "disableMcpListToolsPagination"),
+            type = "boolean",
+            name = "disableMcpListToolsPagination",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 

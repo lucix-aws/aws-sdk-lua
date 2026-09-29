@@ -2205,6 +2205,11 @@ local record M
         Message: string
     end
 
+    enum DeletionMode
+        "RemoveSharing"
+        "RollbackMigration"
+    end
+
     record DeleteResourcePolicyInput
         -- Amazon Resource Name (ARN) of the resource to which the policies are attached.
         ResourceArn: string
@@ -2213,6 +2218,14 @@ local record M
         -- ID of the current policy version. The hash helps to prevent multiple calls from attempting
         -- to overwrite a policy.
         PolicyHash: string
+        -- Specifies the intended outcome of the operation. Applies only to the Document
+        -- resource type. The operation ignores this parameter for other resource types. Optional. Defaults
+        -- to RemoveSharing.
+        -- RemoveSharing – Deletes the resource policy and removes sharing of the
+        -- document.
+        -- RollbackMigration – Reverts the document to Custom sharing, preserving
+        -- existing consumer access, instead of removing the policy.
+        DeletionMode: string
     end
 
     record DeleteResourcePolicyOutput
@@ -9692,8 +9705,8 @@ local record M
         -- the association unless you previously specifed the apply-only-at-cron-interval
         -- parameter.
         DocumentVersion: string
-        -- Specify the document format for the new document version. Systems Manager supports JSON and YAML
-        -- documents. JSON is the default format.
+        -- Specify the document format for the new document version. The document format can be JSON,
+        -- YAML, or TEXT. JSON is the default format.
         DocumentFormat: string
         -- Specify a new target type for the document.
         TargetType: string

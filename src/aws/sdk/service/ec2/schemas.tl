@@ -1070,6 +1070,8 @@ M.ClientVpnAvailabilityZoneSet = schema.new({ type = "list", list_member = prelu
 
 M.ClientVpnAvailabilityZoneIdSet = schema.new({ type = "list", list_member = prelude.String })
 
+M.ClientVpnTrustProviderRequestList = schema.new({ type = "list", list_member = M.ClientVpnTrustProviderRequest })
+
 M.SubnetIpv6CidrBlockAssociationSet = schema.new({ type = "list", list_member = M.SubnetIpv6CidrBlockAssociation })
 
 M.VpcIpv6CidrBlockAssociationSet = schema.new({ type = "list", list_member = M.VpcIpv6CidrBlockAssociation })
@@ -1439,6 +1441,8 @@ M.InstanceIpv6AddressListRequest = schema.new({ type = "list", list_member = M.I
 M.SecondaryInterfacePrivateIpAddressSpecificationListRequest = schema.new({ type = "list", list_member = M.SecondaryInterfacePrivateIpAddressSpecificationRequest })
 
 M.ThroughResourcesStatementList = schema.new({ type = "list", list_member = M.ThroughResourcesStatement })
+
+M.ClientVpnTrustProviderSet = schema.new({ type = "list", list_member = M.ClientVpnTrustProvider })
 
 M.ReservationTypeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -16045,6 +16049,60 @@ M.ConnectionLogOptions = schema.new({
             name = "CloudwatchLogStream",
             target_id = prelude.String.id,
         }),
+        IncludeAuthorizationPolicyContext = schema.new({
+            id = id.from(_N, "ConnectionLogOptions", "IncludeAuthorizationPolicyContext"),
+            type = "boolean",
+            name = "IncludeAuthorizationPolicyContext",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ClientVpnTrustProviderRequest = schema.new({
+    id = id.from(_N, "ClientVpnTrustProviderRequest"),
+    type = "structure",
+    members = {
+        TrustProviderType = schema.new({
+            id = id.from(_N, "ClientVpnTrustProviderRequest", "TrustProviderType"),
+            type = "string",
+            name = "TrustProviderType",
+            target_id = prelude.String.id,
+        }),
+        TenantId = schema.new({
+            id = id.from(_N, "ClientVpnTrustProviderRequest", "TenantId"),
+            type = "string",
+            name = "TenantId",
+            target_id = prelude.String.id,
+        }),
+        PublicSigningKeyUrl = schema.new({
+            id = id.from(_N, "ClientVpnTrustProviderRequest", "PublicSigningKeyUrl"),
+            type = "string",
+            name = "PublicSigningKeyUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DevicePostureOptions = schema.new({
+    id = id.from(_N, "DevicePostureOptions"),
+    type = "structure",
+    members = {
+        TrustProviders = schema.new({
+            id = id.from(_N, "DevicePostureOptions", "TrustProviders"),
+            type = "list",
+            name = "TrustProviders",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ClientVpnTrustProviderRequest, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TrustProvider" },
+            },
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "DevicePostureOptions", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -16250,6 +16308,13 @@ M.CreateClientVpnEndpointInput = schema.new({
             name = "TransitGatewayConfiguration",
             target_id = id.from(_N, "TransitGatewayConfigurationInputStructure"),
             target = M.TransitGatewayConfigurationInputStructure,
+        }),
+        DevicePostureOptions = schema.new({
+            id = id.from(_N, "CreateClientVpnEndpointInput", "DevicePostureOptions"),
+            type = "structure",
+            name = "DevicePostureOptions",
+            target_id = id.from(_N, "DevicePostureOptions"),
+            target = M.DevicePostureOptions,
         }),
     },
 })
@@ -43777,6 +43842,45 @@ M.DeleteClientVpnEndpointOutput = schema.new({
     },
 })
 
+M.DeleteClientVpnEndpointAuthorizationPolicyInput = schema.new({
+    id = id.from(_N, "DeleteClientVpnEndpointAuthorizationPolicyRequest"),
+    type = "structure",
+    members = {
+        ClientVpnEndpointId = schema.new({
+            id = id.from(_N, "DeleteClientVpnEndpointAuthorizationPolicyInput", "ClientVpnEndpointId"),
+            type = "string",
+            name = "ClientVpnEndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DeleteClientVpnEndpointAuthorizationPolicyInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DeleteClientVpnEndpointAuthorizationPolicyOutput = schema.new({
+    id = id.from(_N, "DeleteClientVpnEndpointAuthorizationPolicyResult"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "DeleteClientVpnEndpointAuthorizationPolicyOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "status" },
+                [traits.EC2_QUERY_NAME] = { name = "Status" },
+            },
+        }),
+    },
+})
+
 M.DeleteClientVpnRouteInput = schema.new({
     id = id.from(_N, "DeleteClientVpnRouteRequest"),
     type = "structure",
@@ -52640,6 +52744,16 @@ M.ClientVpnConnection = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "PostureComplianceStatusSet" },
             },
         }),
+        AuthorizationPolicyLastEvaluatedTime = schema.new({
+            id = id.from(_N, "ClientVpnConnection", "AuthorizationPolicyLastEvaluatedTime"),
+            type = "string",
+            name = "AuthorizationPolicyLastEvaluatedTime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "authorizationPolicyLastEvaluatedTime" },
+                [traits.EC2_QUERY_NAME] = { name = "AuthorizationPolicyLastEvaluatedTime" },
+            },
+        }),
     },
 })
 
@@ -52984,6 +53098,67 @@ M.ConnectionLogResponseOptions = schema.new({
             type = "string",
             name = "CloudwatchLogStream",
             target_id = prelude.String.id,
+        }),
+        IncludeAuthorizationPolicyContext = schema.new({
+            id = id.from(_N, "ConnectionLogResponseOptions", "IncludeAuthorizationPolicyContext"),
+            type = "boolean",
+            name = "IncludeAuthorizationPolicyContext",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ClientVpnTrustProvider = schema.new({
+    id = id.from(_N, "ClientVpnTrustProvider"),
+    type = "structure",
+    members = {
+        TrustProviderType = schema.new({
+            id = id.from(_N, "ClientVpnTrustProvider", "TrustProviderType"),
+            type = "string",
+            name = "TrustProviderType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "trustProviderType" },
+                [traits.EC2_QUERY_NAME] = { name = "TrustProviderType" },
+            },
+        }),
+        TenantId = schema.new({
+            id = id.from(_N, "ClientVpnTrustProvider", "TenantId"),
+            type = "string",
+            name = "TenantId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "tenantId" },
+                [traits.EC2_QUERY_NAME] = { name = "TenantId" },
+            },
+        }),
+        PublicSigningKeyUrl = schema.new({
+            id = id.from(_N, "ClientVpnTrustProvider", "PublicSigningKeyUrl"),
+            type = "string",
+            name = "PublicSigningKeyUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "publicSigningKeyUrl" },
+                [traits.EC2_QUERY_NAME] = { name = "PublicSigningKeyUrl" },
+            },
+        }),
+    },
+})
+
+M.DevicePostureResponseOptions = schema.new({
+    id = id.from(_N, "DevicePostureResponseOptions"),
+    type = "structure",
+    members = {
+        TrustProviders = schema.new({
+            id = id.from(_N, "DevicePostureResponseOptions", "TrustProviders"),
+            type = "list",
+            name = "TrustProviders",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ClientVpnTrustProvider, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "trustProviderSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TrustProviderSet" },
+            },
         }),
     },
 })
@@ -53330,6 +53505,17 @@ M.ClientVpnEndpoint = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "transitGatewayConfiguration" },
                 [traits.EC2_QUERY_NAME] = { name = "TransitGatewayConfiguration" },
+            },
+        }),
+        DevicePostureOptions = schema.new({
+            id = id.from(_N, "ClientVpnEndpoint", "DevicePostureOptions"),
+            type = "structure",
+            name = "DevicePostureOptions",
+            target_id = id.from(_N, "DevicePostureResponseOptions"),
+            target = M.DevicePostureResponseOptions,
+            traits = {
+                [traits.XML_NAME] = { name = "devicePostureOptions" },
+                [traits.EC2_QUERY_NAME] = { name = "DevicePostureOptions" },
             },
         }),
     },
@@ -87717,6 +87903,85 @@ M.GetCapacityReservationUsageOutput = schema.new({
     },
 })
 
+M.GetClientVpnEndpointAuthorizationPolicyInput = schema.new({
+    id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyRequest"),
+    type = "structure",
+    members = {
+        ClientVpnEndpointId = schema.new({
+            id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyInput", "ClientVpnEndpointId"),
+            type = "string",
+            name = "ClientVpnEndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GetClientVpnEndpointAuthorizationPolicyOutput = schema.new({
+    id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyResult"),
+    type = "structure",
+    members = {
+        ClientVpnEndpointId = schema.new({
+            id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyOutput", "ClientVpnEndpointId"),
+            type = "string",
+            name = "ClientVpnEndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "clientVpnEndpointId" },
+                [traits.EC2_QUERY_NAME] = { name = "ClientVpnEndpointId" },
+            },
+        }),
+        PolicyDocument = schema.new({
+            id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyOutput", "PolicyDocument"),
+            type = "string",
+            name = "PolicyDocument",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "policyDocument" },
+                [traits.EC2_QUERY_NAME] = { name = "PolicyDocument" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "description" },
+                [traits.EC2_QUERY_NAME] = { name = "Description" },
+            },
+        }),
+        ShadowMode = schema.new({
+            id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyOutput", "ShadowMode"),
+            type = "string",
+            name = "ShadowMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "shadowMode" },
+                [traits.EC2_QUERY_NAME] = { name = "ShadowMode" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetClientVpnEndpointAuthorizationPolicyOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "status" },
+                [traits.EC2_QUERY_NAME] = { name = "Status" },
+            },
+        }),
+    },
+})
+
 M.GetCoipPoolUsageInput = schema.new({
     id = id.from(_N, "GetCoipPoolUsageRequest"),
     type = "structure",
@@ -97478,6 +97743,13 @@ M.ModifyClientVpnEndpointInput = schema.new({
             target_id = id.from(_N, "TransitGatewayConfigurationInputStructure"),
             target = M.TransitGatewayConfigurationInputStructure,
         }),
+        DevicePostureOptions = schema.new({
+            id = id.from(_N, "ModifyClientVpnEndpointInput", "DevicePostureOptions"),
+            type = "structure",
+            name = "DevicePostureOptions",
+            target_id = id.from(_N, "DevicePostureOptions"),
+            target = M.DevicePostureOptions,
+        }),
     },
 })
 
@@ -97493,6 +97765,72 @@ M.ModifyClientVpnEndpointOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "return" },
                 [traits.EC2_QUERY_NAME] = { name = "Return" },
+            },
+        }),
+    },
+})
+
+M.ModifyClientVpnEndpointAuthorizationPolicyInput = schema.new({
+    id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyRequest"),
+    type = "structure",
+    members = {
+        ClientVpnEndpointId = schema.new({
+            id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyInput", "ClientVpnEndpointId"),
+            type = "string",
+            name = "ClientVpnEndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PolicyDocument = schema.new({
+            id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyInput", "PolicyDocument"),
+            type = "string",
+            name = "PolicyDocument",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ShadowMode = schema.new({
+            id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyInput", "ShadowMode"),
+            type = "string",
+            name = "ShadowMode",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ModifyClientVpnEndpointAuthorizationPolicyOutput = schema.new({
+    id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyResult"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ModifyClientVpnEndpointAuthorizationPolicyOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "status" },
+                [traits.EC2_QUERY_NAME] = { name = "Status" },
             },
         }),
     },
@@ -113191,6 +113529,17 @@ M.DeleteClientVpnEndpoint = schema.operation({
     },
 })
 
+M.DeleteClientVpnEndpointAuthorizationPolicy = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DeleteClientVpnEndpointAuthorizationPolicy"),
+    input = M.DeleteClientVpnEndpointAuthorizationPolicyInput,
+    output = M.DeleteClientVpnEndpointAuthorizationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteClientVpnRoute = schema.operation({
     id = id.from("com.amazonaws.ec2", "DeleteClientVpnRoute"),
     input = M.DeleteClientVpnRouteInput,
@@ -117393,6 +117742,17 @@ M.GetCapacityReservationUsage = schema.operation({
     },
 })
 
+M.GetClientVpnEndpointAuthorizationPolicy = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetClientVpnEndpointAuthorizationPolicy"),
+    input = M.GetClientVpnEndpointAuthorizationPolicyInput,
+    output = M.GetClientVpnEndpointAuthorizationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetCoipPoolUsage = schema.operation({
     id = id.from("com.amazonaws.ec2", "GetCoipPoolUsage"),
     input = M.GetCoipPoolUsageInput,
@@ -118310,6 +118670,17 @@ M.ModifyClientVpnEndpoint = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyClientVpnEndpoint"),
     input = M.ModifyClientVpnEndpointInput,
     output = M.ModifyClientVpnEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyClientVpnEndpointAuthorizationPolicy = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyClientVpnEndpointAuthorizationPolicy"),
+    input = M.ModifyClientVpnEndpointAuthorizationPolicyInput,
+    output = M.ModifyClientVpnEndpointAuthorizationPolicyOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

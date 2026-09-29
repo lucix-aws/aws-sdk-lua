@@ -522,6 +522,12 @@ M.RegistryRecordSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        customMetadata = schema.new({
+            id = id.from(_N, "RegistryRecordSummary", "customMetadata"),
+            type = "document",
+            name = "customMetadata",
+            target_id = prelude.Document.id,
+        }),
     },
 })
 

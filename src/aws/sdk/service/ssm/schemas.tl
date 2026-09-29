@@ -4532,6 +4532,12 @@ M.DeleteResourcePolicyInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        DeletionMode = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "DeletionMode"),
+            type = "string",
+            name = "DeletionMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

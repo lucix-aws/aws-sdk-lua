@@ -541,7 +541,7 @@ local record M
         billingPeriodStartDate: number
         -- The end date of the billing period.
         billingPeriodEndDate: number
-        -- When true, the Support charge amount is estimated. When false, the Support charge amount is finalized.
+        -- Specifies whether the Support charge amount is estimated. When false, the charge amount is finalized.
         isEstimated: boolean
         -- The date the bill was generated.
         billDate: number
@@ -728,13 +728,139 @@ local record M
         nextToken: string
     end
 
+    -- Contains the billing month and optional filters used to retrieve Business Support charges broken down by linked account.
+    record ListBusinessSupportAccountChargesInput
+        -- The billing month to retrieve Business Support charges for, in YYYY-MM format. You can request the current month (charges will be estimated) or a past month (charges will be finalized).
+        billingMonth: string
+        -- The linked account ID to filter results to a specific account. If you don't specify a value, the response includes charges for all linked accounts.
+        accountId: string
+        -- The maximum number of results to return per page. Default is 100.
+        maxResults: number
+        -- The pagination token for the next page of results.
+        nextToken: string
+    end
+
+    -- A discount applied to a Business Support account charge, including the discount amount, percentage, type, and source.
+    record BusinessSupportDiscount
+        -- The discount amount applied to the Business Support charge. This value is negative, representing a reduction in the charge.
+        discountAmount: string
+        -- The discount percentage applied to the Business Support charge, expressed as a decimal (for example, 0.12 for a 12% discount).
+        discountPercentage: string
+        -- The type of discount applied. Valid values: Distributor_Discount (a discount applied through a distributor arrangement), SPP_Discount (a discount applied through the Solution Provider Program).
+        discountType: string
+        -- The source or program through which the discount was applied.
+        discountSource: string
+    end
+
+    -- A service-level spend entry contributing to Business Support eligible spend.
+    record BusinessSupportServiceSpend
+        -- The name of the Amazon Web Services service contributing to the Support-eligible spend.
+        contributingService: string
+        -- The type of the line item. Valid values: Usage.
+        itemType: string
+        -- A human-readable description of the service spend entry.
+        description: string
+        -- The Support-eligible spend amount for this service.
+        chargeAmount: string
+        -- The ISO 4217 currency code for the charge amount (for example, USD).
+        currency: string
+    end
+
+    -- A tier-level charge within a Business Support pricing plan. Business Support uses tiered pricing where different percentage rates apply to different ranges of Support-eligible spend.
+    record BusinessSupportTierCharge
+        -- A human-readable description of the pricing tier, including the spend range and percentage rate applied.
+        tierDescription: string
+        -- The percentage rate applied to Support-eligible spend within this pricing tier.
+        tierRate: string
+        -- The amount of Support-eligible spend that falls within this pricing tier.
+        usageSlice: string
+        -- The Business Support charge amount calculated for this pricing tier.
+        tierCharge: string
+        -- The start date of the charge period for this tier charge.
+        chargePeriodStartDate: number
+        -- The end date of the charge period for this tier charge.
+        chargePeriodEndDate: number
+    end
+
+    -- Business Support charges for a linked account.
+    record BusinessSupportAccountCharge
+        -- The linked account ID.
+        accountId: string
+        -- The Support plan name for this account. Valid values: AWSSupportBusiness (Business Support plan), AWSSupportDeveloper (Developer Support plan), AWSSupportEssential (Basic Support plan).
+        supportPlanName: string
+        -- The total Business Support charge amount for this account in the billing month.
+        totalCharge: string
+        -- The total Support-eligible spend used as the basis for calculating the Business Support charge for this account.
+        totalUsageBasis: string
+        -- The tier-level charges that make up the total Business Support charge for this account. Each tier represents a spend range with its own rate.
+        tierCharges: {BusinessSupportTierCharge}
+        -- The discount applied to the Business Support charge for this account, if any. This field is absent when no discount applies.
+        supportDiscount: BusinessSupportDiscount
+        -- The Support-eligible spend broken down by contributing service for this account.
+        supportEligibleSpendByService: {BusinessSupportServiceSpend}
+    end
+
+    -- Contains the Business Support charges broken down by linked account for the specified billing month, along with account and spend totals.
+    record ListBusinessSupportAccountChargesOutput
+        -- The billing month for the returned charges, in YYYY-MM format.
+        billingMonth: string
+        -- Specifies whether the Support charge amount is estimated. When false, the charge amount is finalized.
+        isEstimated: boolean
+        -- The total Business Support charge amount for all accounts in the billing month.
+        totalSupportCharge: string
+        -- The total Support-eligible spend from all accounts in the billing month. This includes eligible spend from usage of Amazon Web Services.
+        totalSupportEligibleSpend: string
+        -- The total number of linked accounts with Business Support charges in the billing month.
+        accountCount: number
+        -- The list of Business Support charges per linked account.
+        accountCharges: {BusinessSupportAccountCharge}
+        -- The pagination token for the next page of results.
+        nextToken: string
+    end
+
+    -- Contains the optional filters used to retrieve the history of Business Support subscription contracts across accounts.
+    record ListBusinessSupportSubscriptionHistoryInput
+        -- The billing month to retrieve subscription contracts for, in YYYY-MM format. If you don't specify a value, defaults to the current month.
+        billingMonth: string
+        -- The account ID to filter results to a specific account. If you don't specify a value, the response includes subscription history for all accounts.
+        accountId: string
+        -- The start date to filter subscription contracts from.
+        startDate: number
+        -- The end date to filter subscription contracts to.
+        endDate: number
+        -- The maximum number of results to return per page. Default is 100.
+        maxResults: number
+        -- The pagination token for the next page of results.
+        nextToken: string
+    end
+
+    -- A Business Support subscription contract for an account.
+    record BusinessSupportSubscriptionContract
+        -- The account ID associated with this subscription contract.
+        accountId: string
+        -- The name of the Support plan for this subscription contract. Valid values: AWSSupportBusiness (Business Support plan), AWSSupportDeveloper (Developer Support plan), AWSSupportEssential (Basic Support plan).
+        planName: string
+        -- The start date of the subscription contract.
+        contractStartDate: number
+        -- The end date of the subscription contract.
+        contractEndDate: number
+    end
+
+    -- Contains the list of Business Support subscription contracts that match the request filters.
+    record ListBusinessSupportSubscriptionHistoryOutput
+        -- The list of Business Support subscription contracts.
+        subscriptionContracts: {BusinessSupportSubscriptionContract}
+        -- The pagination token for the next page of results.
+        nextToken: string
+    end
+
     -- The request structure for ListEnterpriseSupportLinkedAccountCharges.
     record ListEnterpriseSupportLinkedAccountChargesInput
         -- The billing month in YYYY-MM format. This must be a month in the past.
         billingMonth: string
-        -- An optional linked account ID to filter results to a specific account.
+        -- The linked account ID to filter results to a specific account. If you don't specify a value, the response includes charges for all linked accounts.
         accountId: string
-        -- The maximum number of results to return per page.
+        -- The maximum number of results to return per page. Default is 100.
         maxResults: number
         -- The pagination token for the next page of results.
         nextToken: string

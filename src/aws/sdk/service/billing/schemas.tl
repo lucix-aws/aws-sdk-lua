@@ -46,6 +46,10 @@ M.BillingViewList = schema.new({ type = "list", list_member = M.BillingViewListE
 
 M.BillingViewSegmentsList = schema.new({ type = "list", list_member = M.BillingViewSegmentsListElement })
 
+M.BusinessSupportAccountChargeList = schema.new({ type = "list", list_member = M.BusinessSupportAccountCharge })
+
+M.BusinessSupportSubscriptionContractList = schema.new({ type = "list", list_member = M.BusinessSupportSubscriptionContract })
+
 M.LinkedAccountChargeList = schema.new({ type = "list", list_member = M.LinkedAccountCharge })
 
 M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -65,6 +69,10 @@ M.ProductNames = schema.new({ type = "list", list_member = prelude.String })
 M.ShareableAccountIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.PurchaseTypeApplications = schema.new({ type = "list", list_member = prelude.String })
+
+M.BusinessSupportTierChargeList = schema.new({ type = "list", list_member = M.BusinessSupportTierCharge })
+
+M.BusinessSupportServiceSpendList = schema.new({ type = "list", list_member = M.BusinessSupportServiceSpend })
 
 M.TimePeriodList = schema.new({ type = "list", list_member = M.EnterpriseSupportTimePeriod })
 
@@ -2204,6 +2212,416 @@ M.ListBillingViewSegmentsOutput = schema.new({
     },
 })
 
+M.ListBusinessSupportAccountChargesInput = schema.new({
+    id = id.from(_N, "ListBusinessSupportAccountChargesRequest"),
+    type = "structure",
+    members = {
+        billingMonth = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesInput", "billingMonth"),
+            type = "string",
+            name = "billingMonth",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BusinessSupportDiscount = schema.new({
+    id = id.from(_N, "BusinessSupportDiscount"),
+    type = "structure",
+    members = {
+        discountAmount = schema.new({
+            id = id.from(_N, "BusinessSupportDiscount", "discountAmount"),
+            type = "string",
+            name = "discountAmount",
+            target_id = prelude.String.id,
+        }),
+        discountPercentage = schema.new({
+            id = id.from(_N, "BusinessSupportDiscount", "discountPercentage"),
+            type = "string",
+            name = "discountPercentage",
+            target_id = prelude.String.id,
+        }),
+        discountType = schema.new({
+            id = id.from(_N, "BusinessSupportDiscount", "discountType"),
+            type = "string",
+            name = "discountType",
+            target_id = prelude.String.id,
+        }),
+        discountSource = schema.new({
+            id = id.from(_N, "BusinessSupportDiscount", "discountSource"),
+            type = "string",
+            name = "discountSource",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BusinessSupportServiceSpend = schema.new({
+    id = id.from(_N, "BusinessSupportServiceSpend"),
+    type = "structure",
+    members = {
+        contributingService = schema.new({
+            id = id.from(_N, "BusinessSupportServiceSpend", "contributingService"),
+            type = "string",
+            name = "contributingService",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        itemType = schema.new({
+            id = id.from(_N, "BusinessSupportServiceSpend", "itemType"),
+            type = "string",
+            name = "itemType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "BusinessSupportServiceSpend", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        chargeAmount = schema.new({
+            id = id.from(_N, "BusinessSupportServiceSpend", "chargeAmount"),
+            type = "string",
+            name = "chargeAmount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        currency = schema.new({
+            id = id.from(_N, "BusinessSupportServiceSpend", "currency"),
+            type = "string",
+            name = "currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BusinessSupportTierCharge = schema.new({
+    id = id.from(_N, "BusinessSupportTierCharge"),
+    type = "structure",
+    members = {
+        tierDescription = schema.new({
+            id = id.from(_N, "BusinessSupportTierCharge", "tierDescription"),
+            type = "string",
+            name = "tierDescription",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tierRate = schema.new({
+            id = id.from(_N, "BusinessSupportTierCharge", "tierRate"),
+            type = "string",
+            name = "tierRate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        usageSlice = schema.new({
+            id = id.from(_N, "BusinessSupportTierCharge", "usageSlice"),
+            type = "string",
+            name = "usageSlice",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tierCharge = schema.new({
+            id = id.from(_N, "BusinessSupportTierCharge", "tierCharge"),
+            type = "string",
+            name = "tierCharge",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        chargePeriodStartDate = schema.new({
+            id = id.from(_N, "BusinessSupportTierCharge", "chargePeriodStartDate"),
+            type = "timestamp",
+            name = "chargePeriodStartDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        chargePeriodEndDate = schema.new({
+            id = id.from(_N, "BusinessSupportTierCharge", "chargePeriodEndDate"),
+            type = "timestamp",
+            name = "chargePeriodEndDate",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.BusinessSupportAccountCharge = schema.new({
+    id = id.from(_N, "BusinessSupportAccountCharge"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "BusinessSupportAccountCharge", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        supportPlanName = schema.new({
+            id = id.from(_N, "BusinessSupportAccountCharge", "supportPlanName"),
+            type = "string",
+            name = "supportPlanName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalCharge = schema.new({
+            id = id.from(_N, "BusinessSupportAccountCharge", "totalCharge"),
+            type = "string",
+            name = "totalCharge",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalUsageBasis = schema.new({
+            id = id.from(_N, "BusinessSupportAccountCharge", "totalUsageBasis"),
+            type = "string",
+            name = "totalUsageBasis",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tierCharges = schema.new({
+            id = id.from(_N, "BusinessSupportAccountCharge", "tierCharges"),
+            type = "list",
+            name = "tierCharges",
+            target_id = prelude.Document.id,
+            list_member = M.BusinessSupportTierCharge,
+        }),
+        supportDiscount = schema.new({
+            id = id.from(_N, "BusinessSupportAccountCharge", "supportDiscount"),
+            type = "structure",
+            name = "supportDiscount",
+            target_id = id.from(_N, "BusinessSupportDiscount"),
+            target = M.BusinessSupportDiscount,
+        }),
+        supportEligibleSpendByService = schema.new({
+            id = id.from(_N, "BusinessSupportAccountCharge", "supportEligibleSpendByService"),
+            type = "list",
+            name = "supportEligibleSpendByService",
+            target_id = prelude.Document.id,
+            list_member = M.BusinessSupportServiceSpend,
+        }),
+    },
+})
+
+M.ListBusinessSupportAccountChargesOutput = schema.new({
+    id = id.from(_N, "ListBusinessSupportAccountChargesResponse"),
+    type = "structure",
+    members = {
+        billingMonth = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesOutput", "billingMonth"),
+            type = "string",
+            name = "billingMonth",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        isEstimated = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesOutput", "isEstimated"),
+            type = "boolean",
+            name = "isEstimated",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalSupportCharge = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesOutput", "totalSupportCharge"),
+            type = "string",
+            name = "totalSupportCharge",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalSupportEligibleSpend = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesOutput", "totalSupportEligibleSpend"),
+            type = "string",
+            name = "totalSupportEligibleSpend",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountCount = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesOutput", "accountCount"),
+            type = "integer",
+            name = "accountCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountCharges = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesOutput", "accountCharges"),
+            type = "list",
+            name = "accountCharges",
+            target_id = prelude.Document.id,
+            list_member = M.BusinessSupportAccountCharge,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListBusinessSupportAccountChargesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListBusinessSupportSubscriptionHistoryInput = schema.new({
+    id = id.from(_N, "ListBusinessSupportSubscriptionHistoryRequest"),
+    type = "structure",
+    members = {
+        billingMonth = schema.new({
+            id = id.from(_N, "ListBusinessSupportSubscriptionHistoryInput", "billingMonth"),
+            type = "string",
+            name = "billingMonth",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "ListBusinessSupportSubscriptionHistoryInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        startDate = schema.new({
+            id = id.from(_N, "ListBusinessSupportSubscriptionHistoryInput", "startDate"),
+            type = "timestamp",
+            name = "startDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        endDate = schema.new({
+            id = id.from(_N, "ListBusinessSupportSubscriptionHistoryInput", "endDate"),
+            type = "timestamp",
+            name = "endDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListBusinessSupportSubscriptionHistoryInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListBusinessSupportSubscriptionHistoryInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BusinessSupportSubscriptionContract = schema.new({
+    id = id.from(_N, "BusinessSupportSubscriptionContract"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "BusinessSupportSubscriptionContract", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        planName = schema.new({
+            id = id.from(_N, "BusinessSupportSubscriptionContract", "planName"),
+            type = "string",
+            name = "planName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractStartDate = schema.new({
+            id = id.from(_N, "BusinessSupportSubscriptionContract", "contractStartDate"),
+            type = "timestamp",
+            name = "contractStartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractEndDate = schema.new({
+            id = id.from(_N, "BusinessSupportSubscriptionContract", "contractEndDate"),
+            type = "timestamp",
+            name = "contractEndDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListBusinessSupportSubscriptionHistoryOutput = schema.new({
+    id = id.from(_N, "ListBusinessSupportSubscriptionHistoryResponse"),
+    type = "structure",
+    members = {
+        subscriptionContracts = schema.new({
+            id = id.from(_N, "ListBusinessSupportSubscriptionHistoryOutput", "subscriptionContracts"),
+            type = "list",
+            name = "subscriptionContracts",
+            target_id = prelude.Document.id,
+            list_member = M.BusinessSupportSubscriptionContract,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListBusinessSupportSubscriptionHistoryOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListEnterpriseSupportLinkedAccountChargesInput = schema.new({
     id = id.from(_N, "ListEnterpriseSupportLinkedAccountChargesRequest"),
     type = "structure",
@@ -2841,6 +3259,28 @@ M.ListBillingViewSegments = schema.operation({
     id = id.from("com.amazonaws.billing", "ListBillingViewSegments"),
     input = M.ListBillingViewSegmentsInput,
     output = M.ListBillingViewSegmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBusinessSupportAccountCharges = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListBusinessSupportAccountCharges"),
+    input = M.ListBusinessSupportAccountChargesInput,
+    output = M.ListBusinessSupportAccountChargesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBusinessSupportSubscriptionHistory = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListBusinessSupportSubscriptionHistory"),
+    input = M.ListBusinessSupportSubscriptionHistoryInput,
+    output = M.ListBusinessSupportSubscriptionHistoryOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

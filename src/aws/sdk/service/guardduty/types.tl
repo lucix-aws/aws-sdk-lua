@@ -203,6 +203,8 @@ local record M
         AccountId: string
         -- Details on whether the Amazon Web Services account of the remote API caller is related to your GuardDuty environment. If this value is True the API caller is affiliated to your account in some way. If it is False the API caller is from outside your environment.
         Affiliated: boolean
+        -- If the remote account belongs to an Amazon Web Services service, this field indicates which service the remote account belongs to.
+        AwsServiceName: string
     end
 
     -- Contains information about the city associated with the IP address.

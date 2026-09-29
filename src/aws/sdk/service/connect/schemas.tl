@@ -392,6 +392,8 @@ M.SupportedMessagingContentTypes = schema.new({ type = "list", list_member = pre
 
 M.DisconnectOnCustomerExit = schema.new({ type = "list", list_member = prelude.String })
 
+M.ConnectionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AnalyticsModes = schema.new({ type = "list", list_member = prelude.String })
 
 M.EmailAttachments = schema.new({ type = "list", list_member = M.EmailAttachment })
@@ -34836,6 +34838,44 @@ M.ParticipantConfiguration = schema.new({
     },
 })
 
+M.ConnectionCredentials = schema.new({
+    id = id.from(_N, "ConnectionCredentials"),
+    type = "structure",
+    members = {
+        ConnectionToken = schema.new({
+            id = id.from(_N, "ConnectionCredentials", "ConnectionToken"),
+            type = "string",
+            name = "ConnectionToken",
+            target_id = prelude.String.id,
+        }),
+        Expiry = schema.new({
+            id = id.from(_N, "ConnectionCredentials", "Expiry"),
+            type = "string",
+            name = "Expiry",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Websocket = schema.new({
+    id = id.from(_N, "Websocket"),
+    type = "structure",
+    members = {
+        Url = schema.new({
+            id = id.from(_N, "Websocket", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+        }),
+        ConnectionExpiry = schema.new({
+            id = id.from(_N, "Websocket", "ConnectionExpiry"),
+            type = "string",
+            name = "ConnectionExpiry",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.StartChatContactOutput = schema.new({
     id = id.from(_N, "StartChatContactResponse"),
     type = "structure",
@@ -34862,6 +34902,26 @@ M.StartChatContactOutput = schema.new({
             id = id.from(_N, "StartChatContactOutput", "ContinuedFromContactId"),
             type = "string",
             name = "ContinuedFromContactId",
+            target_id = prelude.String.id,
+        }),
+        ConnectionCredentials = schema.new({
+            id = id.from(_N, "StartChatContactOutput", "ConnectionCredentials"),
+            type = "structure",
+            name = "ConnectionCredentials",
+            target_id = id.from(_N, "ConnectionCredentials"),
+            target = M.ConnectionCredentials,
+        }),
+        Websocket = schema.new({
+            id = id.from(_N, "StartChatContactOutput", "Websocket"),
+            type = "structure",
+            name = "Websocket",
+            target_id = id.from(_N, "Websocket"),
+            target = M.Websocket,
+        }),
+        StreamingId = schema.new({
+            id = id.from(_N, "StartChatContactOutput", "StreamingId"),
+            type = "string",
+            name = "StreamingId",
             target_id = prelude.String.id,
         }),
     },
@@ -42784,6 +42844,20 @@ M.StartChatContactInput = schema.new({
             name = "DisconnectOnCustomerExit",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        ConnectionTypes = schema.new({
+            id = id.from(_N, "StartChatContactInput", "ConnectionTypes"),
+            type = "list",
+            name = "ConnectionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ChatStreamingConfiguration = schema.new({
+            id = id.from(_N, "StartChatContactInput", "ChatStreamingConfiguration"),
+            type = "structure",
+            name = "ChatStreamingConfiguration",
+            target_id = id.from(_N, "ChatStreamingConfiguration"),
+            target = M.ChatStreamingConfiguration,
         }),
     },
 })

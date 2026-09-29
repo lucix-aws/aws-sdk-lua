@@ -186,18 +186,20 @@ local record M
         customJWTAuthorizer: CustomJWTAuthorizerConfiguration
     end
 
-    -- Workload identity details associated with a source resource.
+    -- The workload identity details associated with a source resource. Present on the source details of a provenance entry when the upstream resource has a workload identity configured.
     record WorkloadIdentityDetails
         -- The Amazon Resource Name (ARN) of the workload identity associated with the source resource.
         workloadIdentityArn: string
     end
 
-    -- Source details for a record auto-detected from an AgentCore Gateway resource.
+    -- The source details for a registry record that was auto-detected from an Amazon Bedrock AgentCore Gateway resource.
     record AgentCoreGatewaySourceDetails
+        -- The protocol type of the AgentCore Gateway resource that the registry record was detected from, for example MCP.
         protocolType: string
         -- The type of authorizer configured on the AgentCore Gateway resource that the registry record was detected from.
         authorizerType: string
         authorizerConfiguration: AuthorizerConfiguration
+        -- The workload identity details for the AgentCore Gateway resource. Present when the gateway has a workload identity configured.
         workloadIdentityDetails: WorkloadIdentityDetails
     end
 
@@ -208,15 +210,18 @@ local record M
         "AGUI"
     end
 
-    -- Protocol configuration for an AgentCore Runtime.
+    -- The protocol configuration of an AgentCore Runtime resource that a registry record was auto-detected from.
     record AgentCoreRuntimeProtocolConfiguration
+        -- The server protocol used by the AgentCore Runtime, such as MCP, HTTP, A2A, or AGUI.
         serverProtocol: string
     end
 
-    -- Source details for a record auto-detected from an AgentCore Runtime resource.
+    -- The source details for a registry record that was auto-detected from an Amazon Bedrock AgentCore Runtime resource.
     record AgentCoreRuntimeSourceDetails
+        -- The protocol configuration of the AgentCore Runtime resource that the registry record was detected from.
         protocolConfiguration: AgentCoreRuntimeProtocolConfiguration
         authorizerConfiguration: AuthorizerConfiguration
+        -- The workload identity details for the AgentCore Runtime resource. Present when the runtime has a workload identity configured.
         workloadIdentityDetails: WorkloadIdentityDetails
     end
 
@@ -365,7 +370,9 @@ local record M
 
     -- The details about the upstream source from which a registry record was detected. Exactly one member is populated, corresponding to the source type.
     record SourceDetails
+        -- The source details for a registry record that was auto-detected from an Amazon Bedrock AgentCore Runtime resource. Populated when the source type is AWS::BedrockAgentCore::Runtime.
         agentcoreRuntime: AgentCoreRuntimeSourceDetails
+        -- The source details for a registry record that was auto-detected from an Amazon Bedrock AgentCore Gateway resource. Populated when the source type is AWS::BedrockAgentCore::Gateway.
         agentcoreGateway: AgentCoreGatewaySourceDetails
     end
 
@@ -374,8 +381,9 @@ local record M
         "AWS::BedrockAgentCore::Gateway"
     end
 
-    -- One provenance entry describing the lineage of a registry record.
+    -- A provenance entry that describes the lineage of a registry record. Records that were auto-detected by Amazon Web Services Agent Registry carry a provenance entry that links the record back to its upstream source.
     record Provenance
+        -- The relationship between the registry record and its upstream source. DETECTED_FROM indicates that the record was auto-detected from the source resource.
         relation: string
         -- The identifier of the upstream source that the registry record was detected from.
         sourceId: string
@@ -410,7 +418,10 @@ local record M
         recordVersion: string
         -- Client token for idempotency
         clientToken: string
+        -- The provenance lineage entries for the registry record. This field is reserved for the Amazon Web Services Agent Registry auto-detection service principal. Requests that include this field from other callers are rejected.
         provenance: {Provenance}
+        -- The custom metadata to attach to the registry record. Each key must match a property defined in the registry's custom metadata schema. Values can be strings (maximum 128 characters) or native JSON booleans (true or false). Values are validated against the schema at creation time.
+        customMetadata: any
         -- Tags to associate with the registry record
         tags: {string : string}
     end
@@ -458,6 +469,11 @@ local record M
         recordId: string
     end
 
+    enum CustomMetadataSchemaComplianceStatus
+        "COMPLIANT"
+        "NON_COMPLIANT"
+    end
+
     -- Response structure for retrieving a registry record
     record GetRegistryRecordOutput
         -- The Amazon Resource Name (ARN) of the parent registry that owns the record.
@@ -486,11 +502,16 @@ local record M
         updatedAt: number
         -- The reason for the current status. Typically populated when the status indicates a failure state.
         statusReason: string
+        -- The provenance lineage entries for the registry record. Populated for records created by auto-detection; each entry identifies the upstream source that the record was detected from.
         provenance: {Provenance}
         -- Specifies whether the registry record was created by auto-detection. true indicates the record was automatically created by the service based on the registry's auto-detection configuration; false indicates the record was created through a control-plane API call.
         createdByAutoDetection: boolean
         -- The ID of the Amazon Web Services account that created the registry record.
         createdBy: string
+        -- The custom metadata attached to this registry record. Values are strings (maximum 128 characters) or booleans.
+        customMetadata: any
+        -- Indicates whether this record's custom metadata conforms to the registry's current schema. This status is computed at read time against the latest schema.
+        customMetadataSchemaComplianceStatus: string
     end
 
     enum RegistryRecordFilterName
@@ -518,9 +539,9 @@ local record M
         filters: {RegistryRecordFilter}
     end
 
-    -- Condensed provenance entry for list results — the key triple only (no sourceDetails union).
-    -- Enough to display and client-side-filter lineage without the full-read config payload.
+    -- A condensed provenance entry surfaced in list results. Contains the source identity of a lineage entry without the source details returned by GetRegistryRecord.
     record ProvenanceSummary
+        -- The relationship between the registry record and its upstream source. DETECTED_FROM indicates that the record was auto-detected from the source resource.
         relation: string
         -- The identifier of the upstream source that the registry record was detected from.
         sourceId: string
@@ -556,7 +577,10 @@ local record M
         createdByAutoDetection: boolean
         -- The ID of the Amazon Web Services account that created the registry record.
         createdBy: string
+        -- The condensed provenance lineage for the registry record. Each entry contains the source relation, source identifier, and source type of an auto-detection lineage entry. Populated for records created by auto-detection.
         provenanceSummaryList: {ProvenanceSummary}
+        -- Indicates whether this record's custom metadata conforms to the registry's current schema.
+        customMetadataSchemaComplianceStatus: string
     end
 
     -- Response structure for listing registry records
@@ -586,6 +610,12 @@ local record M
         status: string
         -- The timestamp when the record was last updated
         updatedAt: number
+    end
+
+    -- The custom metadata patch wrapper. Omit to leave the existing metadata unchanged; supply with a null value to clear all metadata; supply with key-value pairs to replace the existing metadata.
+    record UpdatedCustomMetadataMap
+        -- The value to set for this field. Omit the wrapper to leave the field unchanged.
+        optionalValue: any
     end
 
     -- Wrapper for updating an optional Description field with PATCH semantics
@@ -797,8 +827,11 @@ local record M
         descriptors: UpdatedDescriptors
         -- The updated version of the registry record. Omit to leave the version unchanged.
         recordVersion: string
+        -- The updated custom metadata for the registry record. Values can be strings (maximum 128 characters) or native JSON booleans (true or false). Omit to leave the existing metadata unchanged. Supply the wrapper with a full replacement set to update, or with a null value to clear all metadata.
+        customMetadata: UpdatedCustomMetadataMap
         -- Whether to trigger synchronization of the record's descriptor content from its source
         triggerSynchronization: boolean
+        -- The provenance lineage re-assertion for the registry record. This field is reserved for the Amazon Web Services Agent Registry auto-detection service principal. Requests that include this field from other callers are rejected. The source identity of an existing lineage is immutable; a re-assertion may only refresh the source details.
         provenance: {Provenance}
     end
 
@@ -830,11 +863,16 @@ local record M
         updatedAt: number
         -- The reason for the current status. Typically populated when the status indicates a failure state.
         statusReason: string
+        -- The provenance lineage entries for the registry record. Populated for records created by auto-detection; each entry identifies the upstream source that the record was detected from.
         provenance: {Provenance}
         -- Specifies whether the registry record was created by auto-detection. true indicates the record was automatically created by the service based on the registry's auto-detection configuration; false indicates the record was created through a control-plane API call.
         createdByAutoDetection: boolean
         -- The ID of the Amazon Web Services account that created the registry record.
         createdBy: string
+        -- The custom metadata attached to this registry record. Values are strings (maximum 128 characters) or booleans.
+        customMetadata: any
+        -- Indicates whether this record's custom metadata conforms to the registry's current schema. This status is computed at read time against the latest schema.
+        customMetadataSchemaComplianceStatus: string
     end
 
     record UpdateRegistryRecordStatusInput
@@ -886,6 +924,22 @@ local record M
         enabled: boolean
     end
 
+    -- A schema override for a specific record type within a custom metadata schema configuration.
+    record RecordTypeSchemaOverride
+        -- The record type that this schema override applies to.
+        recordType: string
+        -- The JSON Schema for the specified record type. Must follow the same structural rules as the default schema.
+        schema: string
+    end
+
+    -- Configuration that defines a typed metadata schema for a registry. Specify at least one of a default schema or per-record-type schema overrides. You can provide both.
+    record CustomMetadataSchemaConfiguration
+        -- The default JSON Schema that applies to record types without a specific override. Supported property types are string, string with an enum constraint, string with a uri format, and boolean.
+        defaultSchema: string
+        -- A list of per-record-type schema overrides. When a record's type matches an override, that override's schema is used instead of the default schema for validation. If you don't specify an override for a record type, the default schema applies. If no default schema exists, custom metadata on records of that type is rejected.
+        recordTypeSchemaOverrides: {RecordTypeSchemaOverride}
+    end
+
     enum RegistryAuthorizerType
         "CUSTOM_JWT"
         "AWS_IAM"
@@ -921,6 +975,8 @@ local record M
         tags: {string : string}
         -- Approval configuration for registry records
         approvalConfiguration: ApprovalConfiguration
+        -- The optional custom metadata schema configuration for the registry. When provided, registry records can carry structured metadata validated against this schema.
+        customMetadataSchemaConfiguration: CustomMetadataSchemaConfiguration
         -- The optional auto-detection configuration for the registry. When provided, the registry is automatically populated with resources discovered according to the configuration. Omit this field for registries whose records are managed exclusively through the Agent Registry Control API.
         autoDetectionConfiguration: AutoDetectionConfiguration
     end
@@ -990,6 +1046,8 @@ local record M
         encryptionConfiguration: EncryptionConfiguration
         -- Approval configuration for registry records
         approvalConfiguration: ApprovalConfiguration
+        -- The custom metadata schema configuration for this registry, if one has been defined.
+        customMetadataSchemaConfiguration: CustomMetadataSchemaConfiguration
         -- Current status of the registry
         status: string
         -- The reason for the current status. Typically populated when the status indicates a failure state.
@@ -1069,6 +1127,12 @@ local record M
         optionalValue: AutoDetectionConfiguration
     end
 
+    -- The custom metadata schema configuration patch wrapper. Omit to leave the existing schema unchanged.
+    record UpdatedCustomMetadataSchemaConfiguration
+        -- The value to set for this field. Omit the wrapper to leave the field unchanged.
+        optionalValue: CustomMetadataSchemaConfiguration
+    end
+
     -- Wrapper for updating an optional authorizer configuration with PATCH semantics.
     record UpdatedAuthorizerConfiguration
         -- The new authorizer configuration to set. Omit to leave the existing configuration unchanged.
@@ -1093,6 +1157,8 @@ local record M
         discoveryConfiguration: UpdatedDiscoveryConfiguration
         -- The updated approval configuration. The change applies only to records that move to PENDING_APPROVAL after the update; records already in PENDING_APPROVAL are unaffected.
         approvalConfiguration: UpdatedApprovalConfiguration
+        -- Updated custom metadata schema configuration for the registry. Omit to leave the existing schema unchanged. Schema evolution is additive only: you can add properties and enum values, but you cannot remove properties, change property types or formats, add or remove enum constraints, or remove record type overrides.
+        customMetadataSchemaConfiguration: UpdatedCustomMetadataSchemaConfiguration
         -- The updated auto-detection configuration for the registry, with PATCH semantics. Omit this field to leave the current configuration unchanged. Supply an empty wrapper to unset it. Supply optionalValue to replace it.
         autoDetectionConfiguration: UpdatedAutoDetectionConfiguration
     end
@@ -1113,6 +1179,8 @@ local record M
         encryptionConfiguration: EncryptionConfiguration
         -- Approval configuration for registry records
         approvalConfiguration: ApprovalConfiguration
+        -- The custom metadata schema configuration for this registry, if one has been defined.
+        customMetadataSchemaConfiguration: CustomMetadataSchemaConfiguration
         -- Current status of the registry
         status: string
         -- The reason for the current status. Typically populated when the status indicates a failure state.

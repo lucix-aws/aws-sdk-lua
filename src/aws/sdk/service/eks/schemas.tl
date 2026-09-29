@@ -1192,6 +1192,12 @@ M.ArgoCdConfigRequest = schema.new({
             target_id = id.from(_N, "ArgoCdNetworkAccessConfigRequest"),
             target = M.ArgoCdNetworkAccessConfigRequest,
         }),
+        endpointPrefix = schema.new({
+            id = id.from(_N, "ArgoCdConfigRequest", "endpointPrefix"),
+            type = "string",
+            name = "endpointPrefix",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1244,6 +1250,12 @@ M.ArgoCdConfigResponse = schema.new({
             id = id.from(_N, "ArgoCdConfigResponse", "serverUrl"),
             type = "string",
             name = "serverUrl",
+            target_id = prelude.String.id,
+        }),
+        endpointPrefix = schema.new({
+            id = id.from(_N, "ArgoCdConfigResponse", "endpointPrefix"),
+            type = "string",
+            name = "endpointPrefix",
             target_id = prelude.String.id,
         }),
     },

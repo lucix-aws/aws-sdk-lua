@@ -679,6 +679,8 @@ local record M
         rbacRoleMappings: {ArgoCdRoleMapping}
         -- Configuration for network access to the Argo CD capability's managed API server endpoint. By default, the Argo CD server is accessible via a public endpoint. You can optionally specify one or more VPC endpoint IDs to enable private connectivity from your VPCs. When VPC endpoints are configured, public access is blocked and the Argo CD server is only accessible through the specified VPC endpoints.
         networkAccess: ArgoCdNetworkAccessConfigRequest
+        -- An optional prefix used to construct the hostname of the Argo CD server endpoint. If not specified, Amazon EKS automatically generates the endpoint. This value can't be changed after the capability is created.
+        endpointPrefix: string
     end
 
     -- The response object containing network access configuration for the Argo CD capability's managed API server endpoint. If VPC endpoint IDs are present, public access is blocked and the Argo CD server is only accessible through the specified VPC endpoints.
@@ -699,6 +701,8 @@ local record M
         networkAccess: ArgoCdNetworkAccessConfigResponse
         -- The URL of the Argo CD server. Use this URL to access the Argo CD web interface and API.
         serverUrl: string
+        -- The prefix that was configured for the hostname of the Argo CD server endpoint when the capability was created.
+        endpointPrefix: string
     end
 
     record AssociateAccessPolicyInput

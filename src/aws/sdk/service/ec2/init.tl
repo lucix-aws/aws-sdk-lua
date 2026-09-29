@@ -197,6 +197,7 @@ local record Client
     deleteCapacityManagerDataExport: function(Client, types.DeleteCapacityManagerDataExportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityManagerDataExportOutput>
     deleteCarrierGateway: function(Client, types.DeleteCarrierGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCarrierGatewayOutput>
     deleteClientVpnEndpoint: function(Client, types.DeleteClientVpnEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClientVpnEndpointOutput>
+    deleteClientVpnEndpointAuthorizationPolicy: function(Client, types.DeleteClientVpnEndpointAuthorizationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClientVpnEndpointAuthorizationPolicyOutput>
     deleteClientVpnRoute: function(Client, types.DeleteClientVpnRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClientVpnRouteOutput>
     deleteCoipCidr: function(Client, types.DeleteCoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoipCidrOutput>
     deleteCoipPool: function(Client, types.DeleteCoipPoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoipPoolOutput>
@@ -579,6 +580,7 @@ local record Client
     getCapacityManagerMetricDimensions: function(Client, types.GetCapacityManagerMetricDimensionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMetricDimensionsOutput>
     getCapacityManagerMonitoredTagKeys: function(Client, types.GetCapacityManagerMonitoredTagKeysInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
     getCapacityReservationUsage: function(Client, types.GetCapacityReservationUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityReservationUsageOutput>
+    getClientVpnEndpointAuthorizationPolicy: function(Client, types.GetClientVpnEndpointAuthorizationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetClientVpnEndpointAuthorizationPolicyOutput>
     getCoipPoolUsage: function(Client, types.GetCoipPoolUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetCoipPoolUsageOutput>
     getConsoleOutput: function(Client, types.GetConsoleOutputInput, ? base_client.InvokeOptions): async.Operation<types.GetConsoleOutputOutput>
     getConsoleScreenshot: function(Client, types.GetConsoleScreenshotInput, ? base_client.InvokeOptions): async.Operation<types.GetConsoleScreenshotOutput>
@@ -663,6 +665,7 @@ local record Client
     modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationOutput>
     modifyCapacityReservationFleet: function(Client, types.ModifyCapacityReservationFleetInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationFleetOutput>
     modifyClientVpnEndpoint: function(Client, types.ModifyClientVpnEndpointInput, ? base_client.InvokeOptions): async.Operation<types.ModifyClientVpnEndpointOutput>
+    modifyClientVpnEndpointAuthorizationPolicy: function(Client, types.ModifyClientVpnEndpointAuthorizationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyClientVpnEndpointAuthorizationPolicyOutput>
     modifyDefaultCreditSpecification: function(Client, types.ModifyDefaultCreditSpecificationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDefaultCreditSpecificationOutput>
     modifyEbsDefaultKmsKeyId: function(Client, types.ModifyEbsDefaultKmsKeyIdInput, ? base_client.InvokeOptions): async.Operation<types.ModifyEbsDefaultKmsKeyIdOutput>
     modifyFleet: function(Client, types.ModifyFleetInput, ? base_client.InvokeOptions): async.Operation<types.ModifyFleetOutput>
@@ -1580,6 +1583,10 @@ end
 
 function C:deleteClientVpnEndpoint(input: types.DeleteClientVpnEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClientVpnEndpointOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClientVpnEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteClientVpnEndpointOutput>
+end
+
+function C:deleteClientVpnEndpointAuthorizationPolicy(input: types.DeleteClientVpnEndpointAuthorizationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClientVpnEndpointAuthorizationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClientVpnEndpointAuthorizationPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteClientVpnEndpointAuthorizationPolicyOutput>
 end
 
 function C:deleteClientVpnRoute(input: types.DeleteClientVpnRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClientVpnRouteOutput>
@@ -3110,6 +3117,10 @@ function C:getCapacityReservationUsage(input: types.GetCapacityReservationUsageI
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityReservationUsage as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityReservationUsageOutput>
 end
 
+function C:getClientVpnEndpointAuthorizationPolicy(input: types.GetClientVpnEndpointAuthorizationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetClientVpnEndpointAuthorizationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetClientVpnEndpointAuthorizationPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetClientVpnEndpointAuthorizationPolicyOutput>
+end
+
 function C:getCoipPoolUsage(input: types.GetCoipPoolUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoipPoolUsageOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoipPoolUsage as schema.OperationSchema, input, options) as async.Operation<types.GetCoipPoolUsageOutput>
 end
@@ -3444,6 +3455,10 @@ end
 
 function C:modifyClientVpnEndpoint(input: types.ModifyClientVpnEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyClientVpnEndpointOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyClientVpnEndpoint as schema.OperationSchema, input, options) as async.Operation<types.ModifyClientVpnEndpointOutput>
+end
+
+function C:modifyClientVpnEndpointAuthorizationPolicy(input: types.ModifyClientVpnEndpointAuthorizationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyClientVpnEndpointAuthorizationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyClientVpnEndpointAuthorizationPolicy as schema.OperationSchema, input, options) as async.Operation<types.ModifyClientVpnEndpointAuthorizationPolicyOutput>
 end
 
 function C:modifyDefaultCreditSpecification(input: types.ModifyDefaultCreditSpecificationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDefaultCreditSpecificationOutput>

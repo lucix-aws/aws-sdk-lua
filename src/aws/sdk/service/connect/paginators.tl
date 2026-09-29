@@ -386,6 +386,24 @@ function M.items_list_entity_security_profiles(client, input)
     })
 end
 
+--- Returns a page iterator for listEvaluationFormAIVersions.
+function M.pages_list_evaluation_form_a_i_versions(client, input)
+    return paginator.pages(client, "listEvaluationFormAIVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AIVersionSummaries",
+    })
+end
+
+--- Returns an item iterator for listEvaluationFormAIVersions.
+function M.items_list_evaluation_form_a_i_versions(client, input)
+    return paginator.items(client, "listEvaluationFormAIVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AIVersionSummaries",
+    })
+end
+
 --- Returns a page iterator for listEvaluationFormVersions.
 function M.pages_list_evaluation_form_versions(client, input)
     return paginator.pages(client, "listEvaluationFormVersions", input, {

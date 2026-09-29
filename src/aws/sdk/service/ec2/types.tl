@@ -6843,6 +6843,35 @@ local record M
         CloudwatchLogGroup: string
         -- The name of the CloudWatch Logs log stream to which the connection data is published.
         CloudwatchLogStream: string
+        -- Specifies whether to include the authorization policy evaluation context in the connection logs for the Client VPN endpoint.
+        IncludeAuthorizationPolicyContext: boolean
+    end
+
+    enum ClientVpnDeviceTrustProviderType
+        "crowdstrike"
+        "jamf"
+        "jumpcloud"
+    end
+
+    -- Describes a device trust provider to configure for a Client VPN endpoint.
+    record ClientVpnTrustProviderRequest
+        -- The type of the device trust provider. Possible values include:
+        -- crowdstrike - CrowdStrike device trust provider.
+        -- jamf - Jamf device trust provider.
+        -- jumpcloud - JumpCloud device trust provider.
+        TrustProviderType: string
+        -- The tenant ID associated with your device trust provider account.
+        TenantId: string
+        -- The URL of the public signing key that is used to verify the identity token issued by the device trust provider.
+        PublicSigningKeyUrl: string
+    end
+
+    -- Describes the device posture options for a Client VPN endpoint. Device posture options specify the device trust providers that the endpoint uses to evaluate the security posture of connecting devices.
+    record DevicePostureOptions
+        -- The device trust providers to configure for the Client VPN endpoint.
+        TrustProviders: {ClientVpnTrustProviderRequest}
+        -- Indicates whether device posture evaluation is enabled for the Client VPN endpoint. Specify false to disable device posture, which clears the configured device trust providers.
+        Enabled: boolean
     end
 
     enum EndpointIpAddressType
@@ -6950,6 +6979,8 @@ local record M
         TrafficIpAddressType: string
         -- The Transit Gateway configuration for the Client VPN endpoint. Use this parameter to associate the endpoint with a Transit Gateway instead of a VPC. You cannot specify both TransitGatewayConfiguration and VpcId/SecurityGroupIds.
         TransitGatewayConfiguration: TransitGatewayConfigurationInputStructure
+        -- The device posture options for the Client VPN endpoint. Use this parameter to specify the device trust providers that the endpoint uses to evaluate the security posture of connecting devices.
+        DevicePostureOptions: DevicePostureOptions
     end
 
     enum ClientVpnEndpointStatusCode
@@ -10274,6 +10305,7 @@ local record M
         "apnic"
         "arin"
         "lacnic"
+        "nicbr"
     end
 
     record CreateIpamInternetRegistryAssociationInput
@@ -10304,6 +10336,9 @@ local record M
         "enable-in-progress"
         "enable-complete"
         "enable-failed"
+        "disable-in-progress"
+        "disable-complete"
+        "disable-failed"
         "delete-in-progress"
         "delete-complete"
         "delete-failed"
@@ -17192,6 +17227,7 @@ local record M
         -- Otherwise, it is UnauthorizedOperation.
         DryRun: boolean
         -- The type of endpoint.
+        -- For more information about the types of VPC endpoints, see VPC endpoints in the Amazon Web Services PrivateLink User Guide.
         -- Default: Gateway
         VpcEndpointType: string
         -- The ID of the VPC.
@@ -17204,12 +17240,16 @@ local record M
         PolicyDocument: string
         -- (Gateway endpoint) The route table IDs.
         RouteTableIds: {string}
-        -- (Interface and Gateway Load Balancer endpoints) The IDs of the subnets in which to create endpoint
-        -- network interfaces. For a Gateway Load Balancer endpoint, you can specify only one subnet.
+        -- (Interface, Gateway Load Balancer endpoints, Resource, ServiceNetwork, and Tunnel endpoints only) The IDs of the
+        -- subnets in which to create endpoint network interfaces. For a Gateway Load Balancer endpoint, you can
+        -- specify only one subnet. For a Tunnel endpoint, the subnets must be in the
+        -- Availability Zones of the resource gateway associated with the shared resource
+        -- configuration. An endpoint network interface is created only in an Availability Zone
+        -- that the resource gateway is also in.
         SubnetIds: {string}
-        -- (Interface endpoint) The IDs of the security groups to associate with the
-        -- endpoint network interfaces. If this parameter is not specified, we use the default
-        -- security group for the VPC.
+        -- (Interface, Resource, ServiceNetwork, and Tunnel endpoints only) The IDs of the security groups
+        -- to associate with the endpoint network interfaces. If this parameter is not specified,
+        -- we use the default security group for the VPC.
         SecurityGroupIds: {string}
         -- The IP address type for the endpoint.
         IpAddressType: string
@@ -17238,8 +17278,19 @@ local record M
         -- The Amazon Resource Name (ARN) of a service network that will be associated with the VPC
         -- endpoint of type service-network.
         ServiceNetworkArn: string
-        -- The Amazon Resource Name (ARN) of a resource configuration that will be associated with
-        -- the VPC endpoint of type resource.
+        -- (Resource and Tunnel endpoints only) The Amazon Resource Name (ARN) of a resource
+        -- configuration associated with the VPC endpoint. The type of resource configuration depends
+        -- on the endpoint type:
+        -- For a Resource endpoint, you can specify a resource configuration that is of type
+        -- SINGLE, GROUP, or ARN. To reach a resource
+        -- that belongs to a group, specify the parent GROUP resource
+        -- configuration.
+        -- For a Tunnel endpoint, you can specify a resource configuration that is of type
+        -- CIDR.
+        -- For more information about the types of resource configurations, see Types of resource configurations in the Amazon Web Services PrivateLink User Guide.
+        -- This request fails if a VPC endpoint owned by a different Amazon Web Services account
+        -- already exists on a resource gateway that is enabled for ResourceGatewayCharges
+        -- payer responsibility.
         ResourceConfigurationArn: string
         -- The Region where the service is hosted. The default is the current Region.
         ServiceRegion: string
@@ -17329,6 +17380,7 @@ local record M
         -- The ID of the endpoint.
         VpcEndpointId: string
         -- The type of endpoint.
+        -- For more information about the types of VPC endpoints, see VPC endpoints in the Amazon Web Services PrivateLink User Guide.
         VpcEndpointType: string
         -- The ID of the VPC to which the endpoint is associated.
         VpcId: string
@@ -17340,9 +17392,9 @@ local record M
         PolicyDocument: string
         -- (Gateway endpoint) The IDs of the route tables associated with the endpoint.
         RouteTableIds: {string}
-        -- (Interface endpoint) The subnets for the endpoint.
+        -- (Interface, Gateway Load Balancer endpoints, Resource, ServiceNetwork, and Tunnel endpoints only) The subnets for the endpoint.
         SubnetIds: {string}
-        -- (Interface endpoint) Information about the security groups that are associated with
+        -- (Interface, Resource, ServiceNetwork, and Tunnel endpoints only) Information about the security groups that are associated with
         -- the network interface.
         Groups: {SecurityGroupIdentifier}
         -- The IP address type for the endpoint.
@@ -17353,7 +17405,7 @@ local record M
         PrivateDnsEnabled: boolean
         -- Indicates whether the endpoint is being managed by its service.
         RequesterManaged: boolean
-        -- (Interface endpoint) The network interfaces for the endpoint.
+        -- (Interface, Gateway Load Balancer endpoints, Resource, ServiceNetwork, and Tunnel endpoints only) The network interfaces for the endpoint.
         NetworkInterfaceIds: {string}
         -- (Interface endpoint) The DNS entries for the endpoint.
         DnsEntries: {DnsEntry}
@@ -18271,6 +18323,26 @@ local record M
     record DeleteClientVpnEndpointOutput
         -- The current state of the Client VPN endpoint.
         Status: ClientVpnEndpointStatus
+    end
+
+    record DeleteClientVpnEndpointAuthorizationPolicyInput
+        -- The ID of the Client VPN endpoint.
+        ClientVpnEndpointId: string
+        -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    enum ClientVpnAuthorizationPolicyStatus
+        "creating"
+        "updating"
+        "active"
+        "failed"
+        "deleting"
+    end
+
+    record DeleteClientVpnEndpointAuthorizationPolicyOutput
+        -- The current state of the authorization policy.
+        Status: string
     end
 
     record DeleteClientVpnRouteInput
@@ -21587,6 +21659,8 @@ local record M
         ConnectionEndTime: string
         -- The statuses returned by the client connect handler for posture compliance, if applicable.
         PostureComplianceStatuses: {string}
+        -- The date and time the authorization policy was last evaluated for the client connection, if applicable.
+        AuthorizationPolicyLastEvaluatedTime: string
     end
 
     record DescribeClientVpnConnectionsOutput
@@ -21709,6 +21783,27 @@ local record M
         CloudwatchLogGroup: string
         -- The name of the Amazon CloudWatch Logs log stream to which connection logging data is published.
         CloudwatchLogStream: string
+        -- Specifies whether the authorization policy evaluation context is included in the connection logs for the Client VPN endpoint.
+        IncludeAuthorizationPolicyContext: boolean
+    end
+
+    -- Information about a device trust provider configured for a Client VPN endpoint.
+    record ClientVpnTrustProvider
+        -- The type of the device trust provider. Possible values include:
+        -- crowdstrike - CrowdStrike device trust provider.
+        -- jamf - Jamf device trust provider.
+        -- jumpcloud - JumpCloud device trust provider.
+        TrustProviderType: string
+        -- The tenant ID associated with your device trust provider account.
+        TenantId: string
+        -- The URL of the public signing key that is used to verify the identity token issued by the device trust provider.
+        PublicSigningKeyUrl: string
+    end
+
+    -- Information about the device posture options for a Client VPN endpoint.
+    record DevicePostureResponseOptions
+        -- The device trust providers configured for the Client VPN endpoint.
+        TrustProviders: {ClientVpnTrustProvider}
     end
 
     -- Describes the Transit Gateway configuration for a Client VPN endpoint.
@@ -21793,6 +21888,8 @@ local record M
         TrafficIpAddressType: string
         -- The Transit Gateway configuration for the Client VPN endpoint.
         TransitGatewayConfiguration: TransitGatewayConfigurationDescribeEndpointStructure
+        -- The device trust providers configured for the Client VPN endpoint, if applicable.
+        DevicePostureOptions: DevicePostureResponseOptions
     end
 
     record DescribeClientVpnEndpointsOutput
@@ -32766,7 +32863,7 @@ local record M
         -- rejected | failed).
         -- vpc-endpoint-type - The type of VPC endpoint (Interface |
         -- Gateway | GatewayLoadBalancer | Resource |
-        -- ServiceNetwork).
+        -- ServiceNetwork | Tunnel).
         Filters: {Filter}
         -- The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.
         -- Constraint: If the value is greater than 1,000, we return only 1,000 items.
@@ -35461,6 +35558,33 @@ local record M
         InterruptibleCapacityAllocation: InterruptibleCapacityAllocation
         -- Details about the interruption configuration and source reservation for interruptible Capacity Reservations.
         InterruptionInfo: InterruptionInfo
+    end
+
+    record GetClientVpnEndpointAuthorizationPolicyInput
+        -- The ID of the Client VPN endpoint.
+        ClientVpnEndpointId: string
+        -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    enum ClientVpnAuthorizationPolicyShadowMode
+        "enabled"
+        "disabled"
+    end
+
+    record GetClientVpnEndpointAuthorizationPolicyOutput
+        -- The ID of the Client VPN endpoint.
+        ClientVpnEndpointId: string
+        -- The authorization policy document, written in the Cedar policy language.
+        PolicyDocument: string
+        -- A brief description of the authorization policy.
+        Description: string
+        -- Specifies whether the authorization policy is evaluated in shadow mode. Possible values include:
+        -- enabled - The authorization policy is evaluated and the results are logged, but access is not enforced.
+        -- disabled - The authorization policy is enforced.
+        ShadowMode: string
+        -- The current state of the authorization policy.
+        Status: string
     end
 
     record GetCoipPoolUsageInput
@@ -38919,11 +39043,37 @@ local record M
         DisconnectOnSessionTimeout: boolean
         -- The Transit Gateway configuration for the Client VPN endpoint. This option is currently not supported.
         TransitGatewayConfiguration: TransitGatewayConfigurationInputStructure
+        -- The device posture options for the Client VPN endpoint. Specifying this parameter replaces the entire device posture configuration for the endpoint. To remove all device trust providers, specify an empty list.
+        DevicePostureOptions: DevicePostureOptions
     end
 
     record ModifyClientVpnEndpointOutput
         -- Returns true if the request succeeds; otherwise, it returns an error.
         Return: boolean
+    end
+
+    record ModifyClientVpnEndpointAuthorizationPolicyInput
+        -- The ID of the Client VPN endpoint.
+        ClientVpnEndpointId: string
+        -- The authorization policy document, written in the Cedar policy language. This parameter is required when you create the authorization policy for a Client VPN endpoint that does not already have one.
+        PolicyDocument: string
+        -- A brief description of the authorization policy.
+        Description: string
+        -- Specifies whether the authorization policy is evaluated in shadow mode. Possible values include:
+        -- enabled - The authorization policy is evaluated and the results are logged, but access is not enforced.
+        -- disabled - The authorization policy is enforced.
+        -- The default value is disabled.
+        ShadowMode: string
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        -- For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ModifyClientVpnEndpointAuthorizationPolicyOutput
+        -- The current state of the authorization policy.
+        Status: string
     end
 
     record ModifyDefaultCreditSpecificationInput

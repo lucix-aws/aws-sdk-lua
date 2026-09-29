@@ -919,6 +919,15 @@ M.RemoteAccountDetails = schema.new({
                 [traits.JSON_NAME] = { name = "affiliated" },
             },
         }),
+        AwsServiceName = schema.new({
+            id = id.from(_N, "RemoteAccountDetails", "AwsServiceName"),
+            type = "string",
+            name = "AwsServiceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "awsServiceName" },
+            },
+        }),
     },
 })
 

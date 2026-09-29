@@ -124,6 +124,8 @@ M.ThreatModelSummaryList = schema.new({ type = "list", list_member = M.ThreatMod
 
 M.ThreatSummaryList = schema.new({ type = "list", list_member = M.ThreatSummary })
 
+M.ScopeChangeList = schema.new({ type = "list", list_member = M.ScopeChange })
+
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.IntegratedResourceInputItemList = schema.new({ type = "list", list_member = M.IntegratedResourceInputItem })
@@ -2008,6 +2010,19 @@ M.BatchDeletePentestsInput = schema.new({
     },
 })
 
+M.CiCdConfiguration = schema.new({
+    id = id.from(_N, "CiCdConfiguration"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "CiCdConfiguration", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.CloudWatchLog = schema.new({
     id = id.from(_N, "CloudWatchLog"),
     type = "structure",
@@ -2303,6 +2318,13 @@ M.Pentest = schema.new({
             name = "reportFilters",
             target_id = id.from(_N, "ReportFilters"),
             target = M.ReportFilters,
+        }),
+        cicdConfiguration = schema.new({
+            id = id.from(_N, "Pentest", "cicdConfiguration"),
+            type = "structure",
+            name = "cicdConfiguration",
+            target_id = id.from(_N, "CiCdConfiguration"),
+            target = M.CiCdConfiguration,
         }),
         createdAt = schema.new({
             id = id.from(_N, "Pentest", "createdAt"),
@@ -3514,6 +3536,77 @@ M.BatchGetPentestJobsInput = schema.new({
     },
 })
 
+M.ScopeChange = schema.new({
+    id = id.from(_N, "ScopeChange"),
+    type = "structure",
+    members = {
+        integrationId = schema.new({
+            id = id.from(_N, "ScopeChange", "integrationId"),
+            type = "string",
+            name = "integrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        providerResourceId = schema.new({
+            id = id.from(_N, "ScopeChange", "providerResourceId"),
+            type = "string",
+            name = "providerResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        baseCommitSha = schema.new({
+            id = id.from(_N, "ScopeChange", "baseCommitSha"),
+            type = "string",
+            name = "baseCommitSha",
+            target_id = prelude.String.id,
+        }),
+        headCommitSha = schema.new({
+            id = id.from(_N, "ScopeChange", "headCommitSha"),
+            type = "string",
+            name = "headCommitSha",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        triggerRunId = schema.new({
+            id = id.from(_N, "ScopeChange", "triggerRunId"),
+            type = "string",
+            name = "triggerRunId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ScopeResult = schema.new({
+    id = id.from(_N, "ScopeResult"),
+    type = "structure",
+    members = {
+        decision = schema.new({
+            id = id.from(_N, "ScopeResult", "decision"),
+            type = "string",
+            name = "decision",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "ScopeResult", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PentestJob = schema.new({
     id = id.from(_N, "PentestJob"),
     type = "structure",
@@ -3703,6 +3796,33 @@ M.PentestJob = schema.new({
             name = "reportDestination",
             target_id = id.from(_N, "ReportDestination"),
             target = M.ReportDestination,
+        }),
+        reportUrl = schema.new({
+            id = id.from(_N, "PentestJob", "reportUrl"),
+            type = "string",
+            name = "reportUrl",
+            target_id = prelude.String.id,
+        }),
+        scopeResult = schema.new({
+            id = id.from(_N, "PentestJob", "scopeResult"),
+            type = "structure",
+            name = "scopeResult",
+            target_id = id.from(_N, "ScopeResult"),
+            target = M.ScopeResult,
+        }),
+        scopeChanges = schema.new({
+            id = id.from(_N, "PentestJob", "scopeChanges"),
+            type = "list",
+            name = "scopeChanges",
+            target_id = prelude.Document.id,
+            list_member = M.ScopeChange,
+        }),
+        cicdConfiguration = schema.new({
+            id = id.from(_N, "PentestJob", "cicdConfiguration"),
+            type = "structure",
+            name = "cicdConfiguration",
+            target_id = id.from(_N, "CiCdConfiguration"),
+            target = M.CiCdConfiguration,
         }),
         createdAt = schema.new({
             id = id.from(_N, "PentestJob", "createdAt"),
@@ -6022,6 +6142,13 @@ M.CreatePentestInput = schema.new({
             target_id = id.from(_N, "ReportFilters"),
             target = M.ReportFilters,
         }),
+        cicdConfiguration = schema.new({
+            id = id.from(_N, "CreatePentestInput", "cicdConfiguration"),
+            type = "structure",
+            name = "cicdConfiguration",
+            target_id = id.from(_N, "CiCdConfiguration"),
+            target = M.CiCdConfiguration,
+        }),
     },
 })
 
@@ -6105,6 +6232,13 @@ M.CreatePentestOutput = schema.new({
             name = "reportFilters",
             target_id = id.from(_N, "ReportFilters"),
             target = M.ReportFilters,
+        }),
+        cicdConfiguration = schema.new({
+            id = id.from(_N, "CreatePentestOutput", "cicdConfiguration"),
+            type = "structure",
+            name = "cicdConfiguration",
+            target_id = id.from(_N, "CiCdConfiguration"),
+            target = M.CiCdConfiguration,
         }),
     },
 })
@@ -9069,6 +9203,12 @@ M.ListPentestJobsForPentestInput = schema.new({
             name = "nextToken",
             target_id = prelude.String.id,
         }),
+        jobType = schema.new({
+            id = id.from(_N, "ListPentestJobsForPentestInput", "jobType"),
+            type = "string",
+            name = "jobType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -9123,6 +9263,18 @@ M.PentestJobSummary = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        jobType = schema.new({
+            id = id.from(_N, "PentestJobSummary", "jobType"),
+            type = "string",
+            name = "jobType",
+            target_id = prelude.String.id,
+        }),
+        reportUrl = schema.new({
+            id = id.from(_N, "PentestJobSummary", "reportUrl"),
+            type = "string",
+            name = "reportUrl",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -10695,6 +10847,13 @@ M.StartPentestJobInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        scopeChanges = schema.new({
+            id = id.from(_N, "StartPentestJobInput", "scopeChanges"),
+            type = "list",
+            name = "scopeChanges",
+            target_id = prelude.Document.id,
+            list_member = M.ScopeChange,
+        }),
     },
 })
 
@@ -11489,6 +11648,13 @@ M.UpdatePentestInput = schema.new({
             target_id = id.from(_N, "ReportFilters"),
             target = M.ReportFilters,
         }),
+        cicdConfiguration = schema.new({
+            id = id.from(_N, "UpdatePentestInput", "cicdConfiguration"),
+            type = "structure",
+            name = "cicdConfiguration",
+            target_id = id.from(_N, "CiCdConfiguration"),
+            target = M.CiCdConfiguration,
+        }),
     },
 })
 
@@ -11572,6 +11738,13 @@ M.UpdatePentestOutput = schema.new({
             name = "reportFilters",
             target_id = id.from(_N, "ReportFilters"),
             target = M.ReportFilters,
+        }),
+        cicdConfiguration = schema.new({
+            id = id.from(_N, "UpdatePentestOutput", "cicdConfiguration"),
+            type = "structure",
+            name = "cicdConfiguration",
+            target_id = id.from(_N, "CiCdConfiguration"),
+            target = M.CiCdConfiguration,
         }),
     },
 })
