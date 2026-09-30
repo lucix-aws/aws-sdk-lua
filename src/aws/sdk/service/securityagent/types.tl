@@ -500,6 +500,46 @@ local record M
         trustedCaCertificates: {TrustedCaCertificate}
     end
 
+    -- Connection details for an Azure DevOps integration.
+    record AzureDevOpsIntegrationInput
+        -- The OAuth 2.0 authorization code returned to your redirect URL after the connection is authorized.
+        code: string
+        -- The CSRF state value returned by InitiateProviderRegistration and echoed back on the authorization redirect.
+        state: string
+        -- The name of the Azure DevOps organization to connect, for example my-org.
+        organizationName: string
+    end
+
+    -- Metadata for an integrated Azure DevOps repository.
+    record AzureDevOpsRepositoryMetadata
+        name: string
+        providerResourceId: string
+        -- The name of the Azure DevOps organization that owns the repository.
+        organization: string
+        -- The name of the Azure DevOps project that contains the repository.
+        project: string
+        -- The GUID of the Azure DevOps project that contains the repository.
+        projectId: string
+        accessType: string
+    end
+
+    -- An Azure DevOps repository integrated as a resource.
+    record AzureDevOpsRepositoryResource
+        name: string
+        -- The name of the Azure DevOps organization that owns the repository.
+        organization: string
+        -- The name of the Azure DevOps project that contains the repository.
+        project: string
+    end
+
+    -- Capabilities for an integrated Azure DevOps repository.
+    record AzureDevOpsResourceCapabilities
+        -- Whether to post code review comments on pull requests.
+        leaveComments: boolean
+        -- Whether to create pull requests with automated fixes.
+        remediateCode: boolean
+    end
+
     -- Contains information about a successfully created security requirement.
     record BatchCreateSecurityRequirementResult
         -- The unique identifier of the pack containing the security requirement.
@@ -1810,6 +1850,16 @@ local record M
         errors: {BatchSecurityRequirementError}
     end
 
+    -- Connection details for a self-managed Bitbucket Data Center integration.
+    record BitbucketDataCenterIntegrationInput
+        -- The HTTPS URL of your Bitbucket Data Center instance, for example https://bitbucket.example.com.
+        targetUrl: string
+        -- The OAuth 2.0 authorization code returned to your redirect URL after the connection is authorized.
+        code: string
+        -- The CSRF state value returned by InitiateProviderRegistration and echoed back on the authorization redirect.
+        state: string
+    end
+
     -- The configuration for creating a Bitbucket integration.
     record BitbucketIntegrationInput
         -- The Atlassian installation identifier, available from the Atlassian administration console.
@@ -2042,6 +2092,10 @@ local record M
         bitbucket: BitbucketIntegrationInput
         -- The configuration for a Confluence integration.
         confluence: ConfluenceIntegrationInput
+        -- The Azure DevOps-specific input for creating an integration.
+        azureDevOps: AzureDevOpsIntegrationInput
+        -- The Bitbucket Data Center-specific input for creating an integration.
+        bitbucketDataCenter: BitbucketDataCenterIntegrationInput
     end
 
     enum Provider
@@ -2049,10 +2103,11 @@ local record M
         "GITLAB"
         "BITBUCKET"
         "CONFLUENCE"
+        "AZURE_DEVOPS"
     end
 
     record CreateIntegrationInput
-        -- The integration provider. Currently, only GITHUB is supported.
+        -- The integration provider.
         provider: string
         -- The provider-specific input required to create the integration.
         input: ProviderInput
@@ -2657,6 +2712,8 @@ local record M
         kmsKeyId: string
         -- The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations.
         targetUrl: string
+        -- The payload URL of the integration's webhook, once it has been created. The signing secret is never returned on a read.
+        webhookUrl: string
         -- The name of the private connection used to reach the integration's self-hosted instance over private networking, if one is configured.
         privateConnectionName: string
     end
@@ -2792,8 +2849,16 @@ local record M
     end
 
     record InitiateProviderRegistrationInput
-        -- The provider to initiate registration with. Currently, only GITHUB is supported.
+        -- The provider to initiate registration with.
         provider: string
+        -- The HTTPS URL of a self-managed provider instance. Omit for SaaS providers.
+        targetUrl: string
+        -- The name of the organization to connect.
+        organizationName: string
+        -- The client ID of the OAuth application registered on your self-managed provider instance.
+        clientId: string
+        -- The client secret of the OAuth application registered on your self-managed provider instance.
+        clientSecret: string
     end
 
     record InitiateProviderRegistrationOutput
@@ -2810,6 +2875,8 @@ local record M
         gitlabRepository: GitLabRepositoryResource
         bitbucketRepository: BitbucketRepositoryResource
         confluenceDocument: ConfluenceDocumentResource
+        -- The Azure DevOps repository resource information.
+        azureDevOpsRepository: AzureDevOpsRepositoryResource
     end
 
     -- The capabilities for an integrated resource from a third-party provider. This is a union type that contains provider-specific capabilities.
@@ -2819,6 +2886,8 @@ local record M
         gitlab: GitLabResourceCapabilities
         bitbucket: BitbucketResourceCapabilities
         confluence: ConfluenceResourceCapabilities
+        -- The Azure DevOps-specific resource capabilities.
+        azureDevOps: AzureDevOpsResourceCapabilities
     end
 
     -- Represents an input item for updating integrated resources, including the resource and its capabilities.
@@ -2836,6 +2905,8 @@ local record M
         gitlabRepository: GitLabRepositoryMetadata
         bitbucketRepository: BitbucketRepositoryMetadata
         confluenceDocument: ConfluenceDocumentMetadata
+        -- The Azure DevOps repository metadata.
+        azureDevOpsRepository: AzureDevOpsRepositoryMetadata
     end
 
     -- Contains summary information about an integrated resource.
@@ -2879,6 +2950,8 @@ local record M
         displayName: string
         -- The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations.
         targetUrl: string
+        -- The payload URL of the integration's webhook, once it has been created. The signing secret is never returned on a read.
+        webhookUrl: string
         -- The name of the private connection used to reach the integration's self-hosted instance over private networking, if one is configured.
         privateConnectionName: string
     end
@@ -2888,6 +2961,29 @@ local record M
         integrationSummaries: {IntegrationSummary}
         -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
         nextToken: string
+    end
+
+    enum WebhookAction
+        "CREATE_IF_ABSENT"
+        "ROTATE"
+    end
+
+    -- Input for creating or rotating an integration's webhook.
+    record UpdateIntegrationInput
+        -- The ID of the integration whose webhook you want to create or rotate.
+        integrationId: string
+        -- The action to perform on the integration's webhook.
+        webhookAction: string
+    end
+
+    -- Output for the UpdateIntegration operation.
+    record UpdateIntegrationOutput
+        -- The ID of the integration.
+        integrationId: string
+        -- The payload URL to configure on your provider instance. Returned when a webhook is created; unchanged by a rotate.
+        webhookUrl: string
+        -- The HMAC signing secret for the webhook. Returned only once, in this response; it is never returned again.
+        secret: string
     end
 
     record ListActorMessagesInput

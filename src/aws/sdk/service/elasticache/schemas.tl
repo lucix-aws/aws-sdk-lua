@@ -4097,6 +4097,12 @@ M.CreateServerlessCacheInput = schema.new({
             name = "NetworkType",
             target_id = prelude.String.id,
         }),
+        ConnectionType = schema.new({
+            id = id.from(_N, "CreateServerlessCacheInput", "ConnectionType"),
+            type = "string",
+            name = "ConnectionType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4221,6 +4227,12 @@ M.ServerlessCache = schema.new({
             id = id.from(_N, "ServerlessCache", "NetworkType"),
             type = "string",
             name = "NetworkType",
+            target_id = prelude.String.id,
+        }),
+        ConnectionType = schema.new({
+            id = id.from(_N, "ServerlessCache", "ConnectionType"),
+            type = "string",
+            name = "ConnectionType",
             target_id = prelude.String.id,
         }),
     },

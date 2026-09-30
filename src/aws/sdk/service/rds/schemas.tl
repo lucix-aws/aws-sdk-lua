@@ -14,6 +14,8 @@ M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
+M.TargetResourceConfigurationList = schema.new({ type = "list", list_member = M.TargetResourceConfiguration })
+
 M.SupportedCharacterSetsList = schema.new({ type = "list", list_member = M.CharacterSet })
 
 M.ValidUpgradeTargetList = schema.new({ type = "list", list_member = M.UpgradeTarget })
@@ -2876,6 +2878,28 @@ M.BlueGreenDeploymentAlreadyExistsFault = schema.new({
     },
 })
 
+M.TargetResourceConfiguration = schema.new({
+    id = id.from(_N, "TargetResourceConfiguration"),
+    type = "structure",
+    members = {
+        SourceArn = schema.new({
+            id = id.from(_N, "TargetResourceConfiguration", "SourceArn"),
+            type = "string",
+            name = "SourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetKmsKeyId = schema.new({
+            id = id.from(_N, "TargetResourceConfiguration", "TargetKmsKeyId"),
+            type = "string",
+            name = "TargetKmsKeyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateBlueGreenDeploymentInput = schema.new({
     id = id.from(_N, "CreateBlueGreenDeploymentRequest"),
     type = "structure",
@@ -2958,6 +2982,13 @@ M.CreateBlueGreenDeploymentInput = schema.new({
             type = "integer",
             name = "TargetStorageThroughput",
             target_id = prelude.Integer.id,
+        }),
+        TargetResourceConfigurations = schema.new({
+            id = id.from(_N, "CreateBlueGreenDeploymentInput", "TargetResourceConfigurations"),
+            type = "list",
+            name = "TargetResourceConfigurations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TargetResourceConfiguration, traits = { [traits.XML_NAME] = { name = "TargetResourceConfiguration" } } }),
         }),
     },
 })

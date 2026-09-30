@@ -72,6 +72,8 @@ M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
 
+M.SftpPorts = schema.new({ type = "list", list_member = M.SftpPortWithOptions })
+
 M.As2Transports = schema.new({ type = "list", list_member = prelude.String })
 
 M.OnUploadWorkflowDetails = schema.new({ type = "list", list_member = M.WorkflowDetail })
@@ -2255,6 +2257,28 @@ M.ProxyConfig = schema.new({
     },
 })
 
+M.SftpPortWithOptions = schema.new({
+    id = id.from(_N, "SftpPortWithOptions"),
+    type = "structure",
+    members = {
+        SftpPort = schema.new({
+            id = id.from(_N, "SftpPortWithOptions", "SftpPort"),
+            type = "integer",
+            name = "SftpPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CommunicationMode = schema.new({
+            id = id.from(_N, "SftpPortWithOptions", "CommunicationMode"),
+            type = "string",
+            name = "CommunicationMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ProtocolDetails = schema.new({
     id = id.from(_N, "ProtocolDetails"),
     type = "structure",
@@ -2276,6 +2300,13 @@ M.ProtocolDetails = schema.new({
             type = "string",
             name = "SetStatOption",
             target_id = prelude.String.id,
+        }),
+        SftpPorts = schema.new({
+            id = id.from(_N, "ProtocolDetails", "SftpPorts"),
+            type = "list",
+            name = "SftpPorts",
+            target_id = prelude.Document.id,
+            list_member = M.SftpPortWithOptions,
         }),
         As2Transports = schema.new({
             id = id.from(_N, "ProtocolDetails", "As2Transports"),

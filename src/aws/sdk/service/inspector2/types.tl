@@ -93,6 +93,12 @@ local record M
         high: number
         -- The total count of critical severity findings.
         critical: number
+        -- The total count of low severity findings.
+        low: number
+        -- The total count of informational severity findings.
+        informational: number
+        -- The total count of untriaged findings.
+        untriaged: number
     end
 
     -- An aggregation of findings by Amazon Web Services account ID.
@@ -1305,6 +1311,12 @@ local record M
         "NODEJS_22_X"
         "JAVA_21"
         "JAVA_25"
+        "PYTHON_3_12"
+        "PYTHON_3_13"
+        "PYTHON_3_14"
+        "RUBY_3_3"
+        "DOTNET_8"
+        "NODEJS_20_X"
     end
 
     -- The VPC security groups and subnets that are attached to an Amazon Web Services Lambda

@@ -1653,6 +1653,12 @@ local record M
         "FALSE"
     end
 
+    -- Describes the software metadata for an image, such as the installed NVIDIA GRID driver version.
+    record ImageSoftwareMetadata
+        -- The version of the NVIDIA GRID driver installed on the image. This field is empty if no NVIDIA GRID driver is installed.
+        nvidiaGridDriverVersion: string
+    end
+
     enum ImageType
         "CUSTOM"
         "NATIVE"
@@ -1748,6 +1754,8 @@ local record M
         ManagedSoftwareIncluded: boolean
         -- The type of the image. Images created through AMI import have type "custom", while WorkSpaces Applications provided images have type "native". Custom images support additional instance types including GeneralPurpose, MemoryOptimized, ComputeOptimized, and Accelerated instance families.
         ImageType: string
+        -- The software metadata associated with the image.
+        ImageSoftwareMetadata: ImageSoftwareMetadata
     end
 
     record CreateImportedImageOutput

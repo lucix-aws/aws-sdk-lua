@@ -208,6 +208,20 @@ M.TaskRunManifestPropertiesListRequest = schema.new({ type = "list", list_member
 
 M.AssignedSessionActions = schema.new({ type = "list", list_member = M.AssignedSessionAction })
 
+M.SessionMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ParameterStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PathStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FloatStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BooleanStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntStringListList = schema.new({ type = "list", list_member = M.NestedIntStringList })
+
 M.StringFilterList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AcceleratorTypes = schema.new({ type = "list", list_member = prelude.String })
@@ -218,13 +232,19 @@ M.CustomFleetAttributeCapabilities = schema.new({ type = "list", list_member = M
 
 M.InstanceTypes = schema.new({ type = "list", list_member = prelude.String })
 
+M.FleetSoftwareAddOns = schema.new({ type = "list", list_member = M.FleetSoftwareAddOn })
+
 M.VpcResourceConfigurationArns = schema.new({ type = "list", list_member = prelude.String })
 
 M.AttributeCapabilityValuesList = schema.new({ type = "list", list_member = prelude.String })
 
+M.OpenjdExtensionNameList = schema.new({ type = "list", list_member = prelude.String })
+
 M.PathMappingRules = schema.new({ type = "list", list_member = M.PathMappingRule })
 
 M.DependenciesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NestedIntStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.OutputRelativeDirectoriesList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -632,6 +652,14 @@ M.AssignedSession = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "AssignedSession", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -1746,6 +1774,60 @@ M.JobParameter = schema.new({
             name = "path",
             target_id = prelude.String.id,
         }),
+        bool = schema.new({
+            id = id.from(_N, "JobParameter", "bool"),
+            type = "string",
+            name = "bool",
+            target_id = prelude.String.id,
+        }),
+        rangeExpr = schema.new({
+            id = id.from(_N, "JobParameter", "rangeExpr"),
+            type = "string",
+            name = "rangeExpr",
+            target_id = prelude.String.id,
+        }),
+        stringList = schema.new({
+            id = id.from(_N, "JobParameter", "stringList"),
+            type = "list",
+            name = "stringList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        pathList = schema.new({
+            id = id.from(_N, "JobParameter", "pathList"),
+            type = "list",
+            name = "pathList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        intList = schema.new({
+            id = id.from(_N, "JobParameter", "intList"),
+            type = "list",
+            name = "intList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        floatList = schema.new({
+            id = id.from(_N, "JobParameter", "floatList"),
+            type = "list",
+            name = "floatList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        boolList = schema.new({
+            id = id.from(_N, "JobParameter", "boolList"),
+            type = "list",
+            name = "boolList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        intListList = schema.new({
+            id = id.from(_N, "JobParameter", "intListList"),
+            type = "list",
+            name = "intListList",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
+        }),
     },
 })
 
@@ -2182,6 +2264,19 @@ M.EnvironmentDetailsEntity = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        extensions = schema.new({
+            id = id.from(_N, "EnvironmentDetailsEntity", "extensions"),
+            type = "list",
+            name = "extensions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        resolvedSymbolTable = schema.new({
+            id = id.from(_N, "EnvironmentDetailsEntity", "resolvedSymbolTable"),
+            type = "string",
+            name = "resolvedSymbolTable",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2409,6 +2504,13 @@ M.JobDetailsEntity = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        extensions = schema.new({
+            id = id.from(_N, "JobDetailsEntity", "extensions"),
+            type = "list",
+            name = "extensions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         pathMappingRules = schema.new({
             id = id.from(_N, "JobDetailsEntity", "pathMappingRules"),
             type = "list",
@@ -2468,6 +2570,19 @@ M.StepDetailsEntity = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        extensions = schema.new({
+            id = id.from(_N, "StepDetailsEntity", "extensions"),
+            type = "list",
+            name = "extensions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        resolvedSymbolTable = schema.new({
+            id = id.from(_N, "StepDetailsEntity", "resolvedSymbolTable"),
+            type = "string",
+            name = "resolvedSymbolTable",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -6109,6 +6224,22 @@ M.Ec2EbsVolume = schema.new({
     },
 })
 
+M.FleetSoftwareAddOn = schema.new({
+    id = id.from(_N, "FleetSoftwareAddOn"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "FleetSoftwareAddOn", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ServiceManagedEc2InstanceCapabilities = schema.new({
     id = id.from(_N, "ServiceManagedEc2InstanceCapabilities"),
     type = "structure",
@@ -6192,6 +6323,13 @@ M.ServiceManagedEc2InstanceCapabilities = schema.new({
             name = "customAttributes",
             target_id = prelude.Document.id,
             list_member = M.FleetAttributeCapability,
+        }),
+        softwareAddOns = schema.new({
+            id = id.from(_N, "ServiceManagedEc2InstanceCapabilities", "softwareAddOns"),
+            type = "list",
+            name = "softwareAddOns",
+            target_id = prelude.Document.id,
+            list_member = M.FleetSoftwareAddOn,
         }),
     },
 })

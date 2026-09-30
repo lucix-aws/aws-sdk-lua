@@ -74,6 +74,8 @@ M.__listOfScheduleAdBreak = schema.new({ type = "list", list_member = M.Schedule
 
 M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.BeaconEventTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AdBreakMetadataList = schema.new({ type = "list", list_member = M.KeyValuePair })
 
 M.__listOfAlternateMedia = schema.new({ type = "list", list_member = M.AlternateMedia })
@@ -1413,6 +1415,43 @@ M.AvailSuppression = schema.new({
     },
 })
 
+M.ClientSideBeaconingConfiguration = schema.new({
+    id = id.from(_N, "ClientSideBeaconingConfiguration"),
+    type = "structure",
+    members = {
+        ReportingMode = schema.new({
+            id = id.from(_N, "ClientSideBeaconingConfiguration", "ReportingMode"),
+            type = "string",
+            name = "ReportingMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AdditionalEventTypes = schema.new({
+            id = id.from(_N, "ClientSideBeaconingConfiguration", "AdditionalEventTypes"),
+            type = "list",
+            name = "AdditionalEventTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.BeaconingConfiguration = schema.new({
+    id = id.from(_N, "BeaconingConfiguration"),
+    type = "structure",
+    members = {
+        ClientSide = schema.new({
+            id = id.from(_N, "BeaconingConfiguration", "ClientSide"),
+            type = "structure",
+            name = "ClientSide",
+            target_id = id.from(_N, "ClientSideBeaconingConfiguration"),
+            target = M.ClientSideBeaconingConfiguration,
+        }),
+    },
+})
+
 M.Bumper = schema.new({
     id = id.from(_N, "Bumper"),
     type = "structure",
@@ -1906,6 +1945,13 @@ M.PlaybackConfiguration = schema.new({
             name = "AdsPersonalizationConcurrency",
             target_id = id.from(_N, "AdsPersonalizationConcurrency"),
             target = M.AdsPersonalizationConcurrency,
+        }),
+        BeaconingConfiguration = schema.new({
+            id = id.from(_N, "PlaybackConfiguration", "BeaconingConfiguration"),
+            type = "structure",
+            name = "BeaconingConfiguration",
+            target_id = id.from(_N, "BeaconingConfiguration"),
+            target = M.BeaconingConfiguration,
         }),
     },
 })
@@ -5609,6 +5655,13 @@ M.GetPlaybackConfigurationOutput = schema.new({
             target_id = id.from(_N, "AdsPersonalizationConcurrency"),
             target = M.AdsPersonalizationConcurrency,
         }),
+        BeaconingConfiguration = schema.new({
+            id = id.from(_N, "GetPlaybackConfigurationOutput", "BeaconingConfiguration"),
+            type = "structure",
+            name = "BeaconingConfiguration",
+            target_id = id.from(_N, "BeaconingConfiguration"),
+            target = M.BeaconingConfiguration,
+        }),
     },
 })
 
@@ -6313,6 +6366,13 @@ M.PutPlaybackConfigurationInput = schema.new({
             target_id = id.from(_N, "AdsPersonalizationConcurrency"),
             target = M.AdsPersonalizationConcurrency,
         }),
+        BeaconingConfiguration = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationInput", "BeaconingConfiguration"),
+            type = "structure",
+            name = "BeaconingConfiguration",
+            target_id = id.from(_N, "BeaconingConfiguration"),
+            target = M.BeaconingConfiguration,
+        }),
     },
 })
 
@@ -6512,6 +6572,13 @@ M.PutPlaybackConfigurationOutput = schema.new({
             name = "AdsPersonalizationConcurrency",
             target_id = id.from(_N, "AdsPersonalizationConcurrency"),
             target = M.AdsPersonalizationConcurrency,
+        }),
+        BeaconingConfiguration = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationOutput", "BeaconingConfiguration"),
+            type = "structure",
+            name = "BeaconingConfiguration",
+            target_id = id.from(_N, "BeaconingConfiguration"),
+            target = M.BeaconingConfiguration,
         }),
     },
 })

@@ -1666,6 +1666,142 @@ M.Assets = schema.new({
     },
 })
 
+M.AzureDevOpsIntegrationInput = schema.new({
+    id = id.from(_N, "AzureDevOpsIntegrationInput"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "AzureDevOpsIntegrationInput", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "AzureDevOpsIntegrationInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationName = schema.new({
+            id = id.from(_N, "AzureDevOpsIntegrationInput", "organizationName"),
+            type = "string",
+            name = "organizationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AzureDevOpsRepositoryMetadata = schema.new({
+    id = id.from(_N, "AzureDevOpsRepositoryMetadata"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryMetadata", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        providerResourceId = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryMetadata", "providerResourceId"),
+            type = "string",
+            name = "providerResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organization = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryMetadata", "organization"),
+            type = "string",
+            name = "organization",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        project = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryMetadata", "project"),
+            type = "string",
+            name = "project",
+            target_id = prelude.String.id,
+        }),
+        projectId = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryMetadata", "projectId"),
+            type = "string",
+            name = "projectId",
+            target_id = prelude.String.id,
+        }),
+        accessType = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryMetadata", "accessType"),
+            type = "string",
+            name = "accessType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AzureDevOpsRepositoryResource = schema.new({
+    id = id.from(_N, "AzureDevOpsRepositoryResource"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryResource", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organization = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryResource", "organization"),
+            type = "string",
+            name = "organization",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        project = schema.new({
+            id = id.from(_N, "AzureDevOpsRepositoryResource", "project"),
+            type = "string",
+            name = "project",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AzureDevOpsResourceCapabilities = schema.new({
+    id = id.from(_N, "AzureDevOpsResourceCapabilities"),
+    type = "structure",
+    members = {
+        leaveComments = schema.new({
+            id = id.from(_N, "AzureDevOpsResourceCapabilities", "leaveComments"),
+            type = "boolean",
+            name = "leaveComments",
+            target_id = prelude.Boolean.id,
+        }),
+        remediateCode = schema.new({
+            id = id.from(_N, "AzureDevOpsResourceCapabilities", "remediateCode"),
+            type = "boolean",
+            name = "remediateCode",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.BatchCreateSecurityRequirementResult = schema.new({
     id = id.from(_N, "BatchCreateSecurityRequirementResult"),
     type = "structure",
@@ -5127,6 +5263,40 @@ M.BatchUpdateSecurityRequirementsOutput = schema.new({
     },
 })
 
+M.BitbucketDataCenterIntegrationInput = schema.new({
+    id = id.from(_N, "BitbucketDataCenterIntegrationInput"),
+    type = "structure",
+    members = {
+        targetUrl = schema.new({
+            id = id.from(_N, "BitbucketDataCenterIntegrationInput", "targetUrl"),
+            type = "string",
+            name = "targetUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "BitbucketDataCenterIntegrationInput", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "BitbucketDataCenterIntegrationInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.BitbucketIntegrationInput = schema.new({
     id = id.from(_N, "BitbucketIntegrationInput"),
     type = "structure",
@@ -5889,6 +6059,20 @@ M.ProviderInput = schema.new({
             name = "confluence",
             target_id = id.from(_N, "ConfluenceIntegrationInput"),
             target = M.ConfluenceIntegrationInput,
+        }),
+        azureDevOps = schema.new({
+            id = id.from(_N, "ProviderInput", "azureDevOps"),
+            type = "structure",
+            name = "azureDevOps",
+            target_id = id.from(_N, "AzureDevOpsIntegrationInput"),
+            target = M.AzureDevOpsIntegrationInput,
+        }),
+        bitbucketDataCenter = schema.new({
+            id = id.from(_N, "ProviderInput", "bitbucketDataCenter"),
+            type = "structure",
+            name = "bitbucketDataCenter",
+            target_id = id.from(_N, "BitbucketDataCenterIntegrationInput"),
+            target = M.BitbucketDataCenterIntegrationInput,
         }),
     },
 })
@@ -7751,6 +7935,12 @@ M.GetIntegrationOutput = schema.new({
             name = "targetUrl",
             target_id = prelude.String.id,
         }),
+        webhookUrl = schema.new({
+            id = id.from(_N, "GetIntegrationOutput", "webhookUrl"),
+            type = "string",
+            name = "webhookUrl",
+            target_id = prelude.String.id,
+        }),
         privateConnectionName = schema.new({
             id = id.from(_N, "GetIntegrationOutput", "privateConnectionName"),
             type = "string",
@@ -8143,6 +8333,30 @@ M.InitiateProviderRegistrationInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        targetUrl = schema.new({
+            id = id.from(_N, "InitiateProviderRegistrationInput", "targetUrl"),
+            type = "string",
+            name = "targetUrl",
+            target_id = prelude.String.id,
+        }),
+        organizationName = schema.new({
+            id = id.from(_N, "InitiateProviderRegistrationInput", "organizationName"),
+            type = "string",
+            name = "organizationName",
+            target_id = prelude.String.id,
+        }),
+        clientId = schema.new({
+            id = id.from(_N, "InitiateProviderRegistrationInput", "clientId"),
+            type = "string",
+            name = "clientId",
+            target_id = prelude.String.id,
+        }),
+        clientSecret = schema.new({
+            id = id.from(_N, "InitiateProviderRegistrationInput", "clientSecret"),
+            type = "string",
+            name = "clientSecret",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -8203,6 +8417,13 @@ M.IntegratedResource = schema.new({
             target_id = id.from(_N, "ConfluenceDocumentResource"),
             target = M.ConfluenceDocumentResource,
         }),
+        azureDevOpsRepository = schema.new({
+            id = id.from(_N, "IntegratedResource", "azureDevOpsRepository"),
+            type = "structure",
+            name = "azureDevOpsRepository",
+            target_id = id.from(_N, "AzureDevOpsRepositoryResource"),
+            target = M.AzureDevOpsRepositoryResource,
+        }),
     },
 })
 
@@ -8237,6 +8458,13 @@ M.ProviderResourceCapabilities = schema.new({
             name = "confluence",
             target_id = id.from(_N, "ConfluenceResourceCapabilities"),
             target = M.ConfluenceResourceCapabilities,
+        }),
+        azureDevOps = schema.new({
+            id = id.from(_N, "ProviderResourceCapabilities", "azureDevOps"),
+            type = "structure",
+            name = "azureDevOps",
+            target_id = id.from(_N, "AzureDevOpsResourceCapabilities"),
+            target = M.AzureDevOpsResourceCapabilities,
         }),
     },
 })
@@ -8296,6 +8524,13 @@ M.IntegratedResourceMetadata = schema.new({
             name = "confluenceDocument",
             target_id = id.from(_N, "ConfluenceDocumentMetadata"),
             target = M.ConfluenceDocumentMetadata,
+        }),
+        azureDevOpsRepository = schema.new({
+            id = id.from(_N, "IntegratedResourceMetadata", "azureDevOpsRepository"),
+            type = "structure",
+            name = "azureDevOpsRepository",
+            target_id = id.from(_N, "AzureDevOpsRepositoryMetadata"),
+            target = M.AzureDevOpsRepositoryMetadata,
         }),
     },
 })
@@ -8433,6 +8668,12 @@ M.IntegrationSummary = schema.new({
             name = "targetUrl",
             target_id = prelude.String.id,
         }),
+        webhookUrl = schema.new({
+            id = id.from(_N, "IntegrationSummary", "webhookUrl"),
+            type = "string",
+            name = "webhookUrl",
+            target_id = prelude.String.id,
+        }),
         privateConnectionName = schema.new({
             id = id.from(_N, "IntegrationSummary", "privateConnectionName"),
             type = "string",
@@ -8460,6 +8701,59 @@ M.ListIntegrationsOutput = schema.new({
             id = id.from(_N, "ListIntegrationsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateIntegrationInput = schema.new({
+    id = id.from(_N, "UpdateIntegrationInput"),
+    type = "structure",
+    members = {
+        integrationId = schema.new({
+            id = id.from(_N, "UpdateIntegrationInput", "integrationId"),
+            type = "string",
+            name = "integrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        webhookAction = schema.new({
+            id = id.from(_N, "UpdateIntegrationInput", "webhookAction"),
+            type = "string",
+            name = "webhookAction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateIntegrationOutput = schema.new({
+    id = id.from(_N, "UpdateIntegrationOutput"),
+    type = "structure",
+    members = {
+        integrationId = schema.new({
+            id = id.from(_N, "UpdateIntegrationOutput", "integrationId"),
+            type = "string",
+            name = "integrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        webhookUrl = schema.new({
+            id = id.from(_N, "UpdateIntegrationOutput", "webhookUrl"),
+            type = "string",
+            name = "webhookUrl",
+            target_id = prelude.String.id,
+        }),
+        secret = schema.new({
+            id = id.from(_N, "UpdateIntegrationOutput", "secret"),
+            type = "string",
+            name = "secret",
             target_id = prelude.String.id,
         }),
     },
@@ -13294,6 +13588,18 @@ M.UpdateIntegratedResources = schema.operation({
     output = M.UpdateIntegratedResourcesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/UpdateIntegratedResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntegration = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UpdateIntegration"),
+    input = M.UpdateIntegrationInput,
+    output = M.UpdateIntegrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateIntegration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

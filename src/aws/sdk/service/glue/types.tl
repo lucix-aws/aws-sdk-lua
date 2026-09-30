@@ -6402,6 +6402,8 @@ local record M
     record ViewDefinitionInput
         -- You can set this flag as true to instruct the engine not to push user-provided operations into the logical plan of the view during query planning. However, setting this flag does not guarantee that the engine will comply. Refer to the engine's documentation to understand the guarantees provided, if any.
         IsProtected: boolean
+        -- Specifies whether the materialized view is managed by Glue.
+        IsManaged: boolean
         -- The definer of a view in SQL.
         Definer: string
         -- A list of structures that contains the dialect of the view, and the query that defines the view.
@@ -10412,6 +10414,8 @@ local record M
     record ViewDefinition
         -- You can set this flag as true to instruct the engine not to push user-provided operations into the logical plan of the view during query planning. However, setting this flag does not guarantee that the engine will comply. Refer to the engine's documentation to understand the guarantees provided, if any.
         IsProtected: boolean
+        -- Specifies whether the materialized view is managed by Glue.
+        IsManaged: boolean
         -- The definer of a view in SQL.
         Definer: string
         -- The ID value that identifies this view's version. For materialized views, the version ID is the Apache Iceberg table's snapshot ID.

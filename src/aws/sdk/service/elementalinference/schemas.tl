@@ -130,6 +130,12 @@ M.ContextualMetadataConfig = schema.new({
             name = "summaryGeneration",
             target_id = prelude.String.id,
         }),
+        extendedAnalysis = schema.new({
+            id = id.from(_N, "ContextualMetadataConfig", "extendedAnalysis"),
+            type = "string",
+            name = "extendedAnalysis",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

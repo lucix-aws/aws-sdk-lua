@@ -44,6 +44,8 @@ M.EmailInsightsList = schema.new({ type = "list", list_member = M.EmailInsights 
 
 M.Routes = schema.new({ type = "list", list_member = M.Route })
 
+M.ConfigurationSetFilter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.ConfigurationSetNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ListOfContactLists = schema.new({ type = "list", list_member = M.ContactList })
@@ -57,6 +59,8 @@ M.ListOfDedicatedIpPools = schema.new({ type = "list", list_member = prelude.Str
 M.DeliverabilityTestReports = schema.new({ type = "list", list_member = M.DeliverabilityTestReport })
 
 M.DomainDeliverabilityCampaignList = schema.new({ type = "list", list_member = M.DomainDeliverabilityCampaign })
+
+M.IdentityFilter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.IdentityInfoList = schema.new({ type = "list", list_member = M.IdentityInfo })
 
@@ -87,6 +91,8 @@ M.SuppressedDestinationSummaries = schema.new({ type = "list", list_member = M.S
 M.ListTenantResourcesFilter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.TenantResourceList = schema.new({ type = "list", list_member = M.TenantResource })
+
+M.ListTenantsFilter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.TenantInfoList = schema.new({ type = "list", list_member = M.TenantInfo })
 
@@ -6107,23 +6113,25 @@ M.ListConfigurationSetsInput = schema.new({
     id = id.from(_N, "ListConfigurationSetsRequest"),
     type = "structure",
     members = {
+        Filter = schema.new({
+            id = id.from(_N, "ListConfigurationSetsInput", "Filter"),
+            type = "map",
+            name = "Filter",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
         NextToken = schema.new({
             id = id.from(_N, "ListConfigurationSetsInput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "NextToken" },
-            },
         }),
         PageSize = schema.new({
             id = id.from(_N, "ListConfigurationSetsInput", "PageSize"),
             type = "integer",
             name = "PageSize",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "PageSize" },
-            },
         }),
     },
 })
@@ -6511,23 +6519,25 @@ M.ListEmailIdentitiesInput = schema.new({
     id = id.from(_N, "ListEmailIdentitiesRequest"),
     type = "structure",
     members = {
+        Filter = schema.new({
+            id = id.from(_N, "ListEmailIdentitiesInput", "Filter"),
+            type = "map",
+            name = "Filter",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
         NextToken = schema.new({
             id = id.from(_N, "ListEmailIdentitiesInput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "NextToken" },
-            },
         }),
         PageSize = schema.new({
             id = id.from(_N, "ListEmailIdentitiesInput", "PageSize"),
             type = "integer",
             name = "PageSize",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "PageSize" },
-            },
         }),
     },
 })
@@ -7303,6 +7313,14 @@ M.ListTenantsInput = schema.new({
     id = id.from(_N, "ListTenantsRequest"),
     type = "structure",
     members = {
+        Filter = schema.new({
+            id = id.from(_N, "ListTenantsInput", "Filter"),
+            type = "map",
+            name = "Filter",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
         NextToken = schema.new({
             id = id.from(_N, "ListTenantsInput", "NextToken"),
             type = "string",
@@ -7345,6 +7363,12 @@ M.TenantInfo = schema.new({
             type = "timestamp",
             name = "CreatedTimestamp",
             target_id = prelude.Timestamp.id,
+        }),
+        SendingStatus = schema.new({
+            id = id.from(_N, "TenantInfo", "SendingStatus"),
+            type = "string",
+            name = "SendingStatus",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -9604,7 +9628,7 @@ M.ListConfigurationSets = schema.operation({
     input = M.ListConfigurationSetsInput,
     output = M.ListConfigurationSetsOutput,
     traits = {
-        [traits.HTTP] = { method = "GET", path = "/v2/email/configuration-sets" },
+        [traits.HTTP] = { method = "POST", path = "/v2/email/list-configuration-sets" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9688,7 +9712,7 @@ M.ListEmailIdentities = schema.operation({
     input = M.ListEmailIdentitiesInput,
     output = M.ListEmailIdentitiesOutput,
     traits = {
-        [traits.HTTP] = { method = "GET", path = "/v2/email/identities" },
+        [traits.HTTP] = { method = "POST", path = "/v2/email/list-identities" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

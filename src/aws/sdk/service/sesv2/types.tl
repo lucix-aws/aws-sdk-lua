@@ -668,6 +668,10 @@ local record M
         Tracking: TrackingConfigurationOverrides
     end
 
+    enum ConfigurationSetFilterKey
+        "CONFIGURATION_SET_NAME_CONTAINS"
+    end
+
     -- If there is already an ongoing account details update under review.
     record ConflictException
         message: string
@@ -3514,6 +3518,12 @@ local record M
         CertificateExpiryTime: number
     end
 
+    enum IdentityFilterKey
+        "IDENTITY_NAME_CONTAINS"
+        "IDENTITY_TYPE"
+        "VERIFICATION_STATUS"
+    end
+
     -- Information about an email identity.
     record IdentityInfo
         -- The email identity type. Note: the MANAGED_DOMAIN type is not supported
@@ -3567,6 +3577,9 @@ local record M
     -- A request to obtain a list of configuration sets for your Amazon SES account in the current
     -- Amazon Web Services Region.
     record ListConfigurationSetsInput
+        -- An object that contains filters to apply when listing configuration sets.
+        -- You can filter by configuration set name.
+        Filter: {string : string}
         -- A token returned from a previous call to ListConfigurationSets to
         -- indicate the position in the list of configuration sets.
         NextToken: string
@@ -3774,6 +3787,9 @@ local record M
     -- list includes identities that you've already verified, identities that are unverified,
     -- and identities that were verified in the past, but are no longer verified.
     record ListEmailIdentitiesInput
+        -- An object that contains filters to apply when listing email identities.
+        -- You can filter by identity name, identity type, or verification status.
+        Filter: {string : string}
         -- A token returned from a previous call to ListEmailIdentities to indicate
         -- the position in the list of identities.
         NextToken: string
@@ -4210,8 +4226,16 @@ local record M
         NextToken: string
     end
 
+    enum ListTenantsFilterKey
+        "TENANT_NAME_CONTAINS"
+        "SENDING_STATUS"
+    end
+
     -- Represents a request to list all tenants associated with your account in the current Amazon Web Services Region.
     record ListTenantsInput
+        -- An object that contains filters to apply when listing tenants. You can filter
+        -- by tenant name or sending status.
+        Filter: {string : string}
         -- A token returned from a previous call to ListTenants to indicate the position in the list of tenants.
         NextToken: string
         -- The number of results to show in a single call to ListTenants.
@@ -4230,6 +4254,7 @@ local record M
         TenantArn: string
         -- The date and time when the tenant was created.
         CreatedTimestamp: number
+        SendingStatus: string
     end
 
     -- Information about tenants associated with your account.

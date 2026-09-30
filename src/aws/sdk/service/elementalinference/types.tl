@@ -29,6 +29,11 @@ local record M
         dataSourceConfiguration: DataSourceConfiguration
     end
 
+    enum ExtendedAnalysisMode
+        "ENABLED"
+        "DISABLED"
+    end
+
     enum SummaryGenerationMode
         "ENABLED"
         "DISABLED"
@@ -36,8 +41,10 @@ local record M
 
     -- The output configuration settings for the contextual metadata feature. Use this structure when the feed output generates metadata that describes the media content.
     record ContextualMetadataConfig
-        -- Specifies whether Elemental Inference generates a descriptive summary of the media content for this output. Valid values: ENABLED (default) – Elemental Inference generates a descriptive summary along with IAB taxonomy and GARM suitability classifications. DISABLED – No descriptive summary is generated.
+        -- Specifies whether Elemental Inference generates a descriptive summary of the media content for this output, along with the objects and actions that it detects. This setting is independent of extendedAnalysis. Valid values: ENABLED (default) – Elemental Inference populates the summary, objects, and actions fields, along with the IAB taxonomy and GARM suitability classifications. DISABLED – Elemental Inference doesn't populate the summary, objects, and actions fields.
         summaryGeneration: string
+        -- Specifies whether Elemental Inference generates extended analysis of the media content for this output. Extended analysis identifies the people, environments, brands, and on-screen text in the media content. This setting is independent of summaryGeneration. Valid values: ENABLED (default) – Elemental Inference populates the people, environments, brands, and on-screen text fields. DISABLED – Elemental Inference doesn't populate the people, environments, brands, and on-screen text fields.
+        extendedAnalysis: string
     end
 
     -- A named set of graphics-compositing templates used by the crop feature, specified in the templateGroups array of a CroppingConfig.
@@ -72,7 +79,7 @@ local record M
         "DROP"
     end
 
-    -- A type of OutputConfig, used when the output in a feed is for the smart subtitling feature. smart subtitling uses automatic speech recognition (ASR) to generate live TTML subtitles from the audio in your source media.
+    -- A type of OutputConfig, used when the output in a feed is for the smart subtitling feature. Smart subtitling uses automatic speech recognition (ASR) to generate live TTML subtitles from the audio in your source media.
     record SubtitlingConfig
         -- The language of the audio in the source media. Elemental Inference uses this setting to optimize transcription accuracy. Specify the language using an ISO 639-2/T three-letter code, optionally with a region subtag. Supported values: eng, eng-au, eng-gb, eng-us, fra, ita, deu, spa, por.
         language: string

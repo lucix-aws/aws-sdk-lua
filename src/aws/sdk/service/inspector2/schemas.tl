@@ -446,6 +446,24 @@ M.SeverityCounts = schema.new({
             name = "critical",
             target_id = prelude.Long.id,
         }),
+        low = schema.new({
+            id = id.from(_N, "SeverityCounts", "low"),
+            type = "long",
+            name = "low",
+            target_id = prelude.Long.id,
+        }),
+        informational = schema.new({
+            id = id.from(_N, "SeverityCounts", "informational"),
+            type = "long",
+            name = "informational",
+            target_id = prelude.Long.id,
+        }),
+        untriaged = schema.new({
+            id = id.from(_N, "SeverityCounts", "untriaged"),
+            type = "long",
+            name = "untriaged",
+            target_id = prelude.Long.id,
+        }),
     },
 })
 

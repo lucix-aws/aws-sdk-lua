@@ -58,6 +58,24 @@ function M.items_list_groups(client, input)
     })
 end
 
+--- Returns a page iterator for listIdentityStores.
+function M.pages_list_identity_stores(client, input)
+    return paginator.pages(client, "listIdentityStores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IdentityStores",
+    })
+end
+
+--- Returns an item iterator for listIdentityStores.
+function M.items_list_identity_stores(client, input)
+    return paginator.items(client, "listIdentityStores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IdentityStores",
+    })
+end
+
 --- Returns a page iterator for listUsers.
 function M.pages_list_users(client, input)
     return paginator.pages(client, "listUsers", input, {

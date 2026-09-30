@@ -16188,6 +16188,12 @@ M.ViewDefinitionInput = schema.new({
             name = "IsProtected",
             target_id = prelude.Boolean.id,
         }),
+        IsManaged = schema.new({
+            id = id.from(_N, "ViewDefinitionInput", "IsManaged"),
+            type = "boolean",
+            name = "IsManaged",
+            target_id = prelude.Boolean.id,
+        }),
         Definer = schema.new({
             id = id.from(_N, "ViewDefinitionInput", "Definer"),
             type = "string",
@@ -26593,6 +26599,12 @@ M.ViewDefinition = schema.new({
             id = id.from(_N, "ViewDefinition", "IsProtected"),
             type = "boolean",
             name = "IsProtected",
+            target_id = prelude.Boolean.id,
+        }),
+        IsManaged = schema.new({
+            id = id.from(_N, "ViewDefinition", "IsManaged"),
+            type = "boolean",
+            name = "IsManaged",
             target_id = prelude.Boolean.id,
         }),
         Definer = schema.new({

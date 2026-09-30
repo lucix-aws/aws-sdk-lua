@@ -2406,6 +2406,22 @@ local record M
         "FAILED"
     end
 
+    enum ValidationFailureSeverity
+        "Critical"
+        "Warning"
+    end
+
+    -- A validation failure that occurred as the result of a pre-update validation check
+    -- (verbose dry run) on a domain.
+    record ValidationFailure
+        -- The error code of the failure.
+        Code: string
+        -- A message corresponding to the failure.
+        Message: string
+        -- The severity of the validation failure.
+        Severity: string
+    end
+
     -- The progress details of a specific domain configuration change.
     record ChangeProgressStatusDetails
         -- The unique change identifier associated with a specific domain configuration
@@ -2431,6 +2447,10 @@ local record M
         ConfigChangeStatus: string
         -- The IAM principal who initiated the configuration change.
         InitiatedBy: string
+        -- The validation failures that occurred as a result of the configuration change.
+        ValidationFailures: {ValidationFailure}
+        -- The list of advisory warning codes that were accepted for the configuration change.
+        AcceptedWarnings: {string}
     end
 
     -- The result of a DescribeDomainChangeProgress request. Contains progress
@@ -2899,15 +2919,6 @@ local record M
         LoadDryRunConfig: boolean
     end
 
-    -- A validation failure that occurred as the result of a pre-update validation check
-    -- (verbose dry run) on a domain.
-    record ValidationFailure
-        -- The error code of the failure.
-        Code: string
-        -- A message corresponding to the failure.
-        Message: string
-    end
-
     -- Information about the progress of a pre-upgrade dry run analysis.
     record DryRunProgressStatus
         -- The unique identifier of the dry run.
@@ -2918,8 +2929,10 @@ local record M
         CreationDate: string
         -- The timestamp when the dry run was last updated.
         UpdateDate: string
-        -- Any validation failures that occurred as a result of the dry run.
+        -- The validation failures that occurred as a result of the dry run.
         ValidationFailures: {ValidationFailure}
+        -- The list of advisory warning codes that were accepted for the configuration change.
+        AcceptedWarnings: {string}
     end
 
     -- Results of a dry run performed in an update domain request.
@@ -4803,6 +4816,8 @@ local record M
         UseCase: string
         -- The engine mode for the domain. The engine mode can't be changed after the domain is created. For valid values, see EngineMode.
         EngineMode: string
+        -- A list of advisory warning codes to accept for this configuration change. By default, any advisory warning blocks the change. Include the code of each warning you want to accept so the change can proceed. You can find warning codes in theValidationFailures list returned by DescribeDomainChangeProgressand DescribeDryRunProgress. Critical validation failures cannot be accepted and always block the change. If you omit this parameter or pass an empty list, all warnings block the change. For more information, see Validating a domain update.
+        AcceptedWarnings: {string}
     end
 
     -- The results of an UpdateDomain request. Contains the status of the domain

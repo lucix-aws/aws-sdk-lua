@@ -1427,6 +1427,45 @@ M.BedrockFoundationModelConfiguration = schema.new({
     },
 })
 
+M.MantleFoundationModelModelConfiguration = schema.new({
+    id = id.from(_N, "MantleFoundationModelModelConfiguration"),
+    type = "structure",
+    members = {
+        modelArn = schema.new({
+            id = id.from(_N, "MantleFoundationModelModelConfiguration", "modelArn"),
+            type = "string",
+            name = "modelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        projectId = schema.new({
+            id = id.from(_N, "MantleFoundationModelModelConfiguration", "projectId"),
+            type = "string",
+            name = "projectId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MantleFoundationModelConfiguration = schema.new({
+    id = id.from(_N, "MantleFoundationModelConfiguration"),
+    type = "structure",
+    members = {
+        modelConfiguration = schema.new({
+            id = id.from(_N, "MantleFoundationModelConfiguration", "modelConfiguration"),
+            type = "structure",
+            name = "modelConfiguration",
+            target_id = id.from(_N, "MantleFoundationModelModelConfiguration"),
+            target = M.MantleFoundationModelModelConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.FoundationModelConfiguration = schema.new({
     id = id.from(_N, "FoundationModelConfiguration"),
     type = "structure",
@@ -1446,6 +1485,13 @@ M.FoundationModelConfiguration = schema.new({
             name = "bedrockFoundationModelConfiguration",
             target_id = id.from(_N, "BedrockFoundationModelConfiguration"),
             target = M.BedrockFoundationModelConfiguration,
+        }),
+        mantleFoundationModelConfiguration = schema.new({
+            id = id.from(_N, "FoundationModelConfiguration", "mantleFoundationModelConfiguration"),
+            type = "structure",
+            name = "mantleFoundationModelConfiguration",
+            target_id = id.from(_N, "MantleFoundationModelConfiguration"),
+            target = M.MantleFoundationModelConfiguration,
         }),
     },
 })

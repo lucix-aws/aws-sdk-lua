@@ -3306,6 +3306,19 @@ M.ImagePermissions = schema.new({
     },
 })
 
+M.ImageSoftwareMetadata = schema.new({
+    id = id.from(_N, "ImageSoftwareMetadata"),
+    type = "structure",
+    members = {
+        nvidiaGridDriverVersion = schema.new({
+            id = id.from(_N, "ImageSoftwareMetadata", "nvidiaGridDriverVersion"),
+            type = "string",
+            name = "nvidiaGridDriverVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ImageStateChangeReason = schema.new({
     id = id.from(_N, "ImageStateChangeReason"),
     type = "structure",
@@ -3474,6 +3487,13 @@ M.Image = schema.new({
             type = "string",
             name = "ImageType",
             target_id = prelude.String.id,
+        }),
+        ImageSoftwareMetadata = schema.new({
+            id = id.from(_N, "Image", "ImageSoftwareMetadata"),
+            type = "structure",
+            name = "ImageSoftwareMetadata",
+            target_id = id.from(_N, "ImageSoftwareMetadata"),
+            target = M.ImageSoftwareMetadata,
         }),
     },
 })

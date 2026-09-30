@@ -26,6 +26,7 @@ local record Client
     deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
     describeGroup: function(Client, types.DescribeGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGroupOutput>
     describeGroupMembership: function(Client, types.DescribeGroupMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGroupMembershipOutput>
+    describeIdentityStore: function(Client, types.DescribeIdentityStoreInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdentityStoreOutput>
     describeUser: function(Client, types.DescribeUserInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
     getGroupId: function(Client, types.GetGroupIdInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupIdOutput>
     getGroupMembershipId: function(Client, types.GetGroupMembershipIdInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupMembershipIdOutput>
@@ -34,8 +35,10 @@ local record Client
     listGroupMemberships: function(Client, types.ListGroupMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupMembershipsOutput>
     listGroupMembershipsForMember: function(Client, types.ListGroupMembershipsForMemberInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupMembershipsForMemberOutput>
     listGroups: function(Client, types.ListGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    listIdentityStores: function(Client, types.ListIdentityStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityStoresOutput>
     listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
     updateGroup: function(Client, types.UpdateGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    updateIdentityStore: function(Client, types.UpdateIdentityStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdentityStoreOutput>
     updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
 end
 
@@ -113,6 +116,10 @@ function C:describeGroupMembership(input: types.DescribeGroupMembershipInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGroupMembership as schema.OperationSchema, input, options) as async.Operation<types.DescribeGroupMembershipOutput>
 end
 
+function C:describeIdentityStore(input: types.DescribeIdentityStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIdentityStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIdentityStore as schema.OperationSchema, input, options) as async.Operation<types.DescribeIdentityStoreOutput>
+end
+
 function C:describeUser(input: types.DescribeUserInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUser as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserOutput>
 end
@@ -145,12 +152,20 @@ function C:listGroups(input: types.ListGroupsInput, options?: base_client.Invoke
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroups as schema.OperationSchema, input, options) as async.Operation<types.ListGroupsOutput>
 end
 
+function C:listIdentityStores(input: types.ListIdentityStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentityStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentityStores as schema.OperationSchema, input, options) as async.Operation<types.ListIdentityStoresOutput>
+end
+
 function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
 function C:updateGroup(input: types.UpdateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateGroupOutput>
+end
+
+function C:updateIdentityStore(input: types.UpdateIdentityStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdentityStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdentityStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdentityStoreOutput>
 end
 
 function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>

@@ -4768,6 +4768,11 @@ local record M
         InterruptionType: string
     end
 
+    enum CapacityReservationLaunchStatus
+        "launchable"
+        "unlaunchable"
+    end
+
     enum CapacityReservationType
         "default"
         "capacity-block"
@@ -4940,6 +4945,14 @@ local record M
         OriginalStartDate: number
         -- The zero-size preference configured for the interruptible Capacity Reservation. A value of retain keeps the interruptible Capacity Reservation active at zero capacity when you reduce its allocation to zero. A value of default cancels the interruptible Capacity Reservation when you reduce its allocation to zero.
         ZeroSizePreference: string
+        -- Only supported for UltraServers.
+        -- Indicates whether you can launch instances into the Capacity Reservation. A Capacity
+        -- Reservation can have the following launch statuses:
+        -- launchable - You can launch instances into the Capacity
+        -- Reservation.
+        -- unlaunchable - You can't launch instances into the Capacity
+        -- Reservation. For example, the Capacity Reservation is not active.
+        LaunchStatus: string
     end
 
     record CreateCapacityReservationOutput

@@ -491,14 +491,31 @@ local record M
         modelConfiguration: BedrockFoundationModelModelConfiguration
     end
 
+    -- Model configuration for a Mantle foundation model.
+    record MantleFoundationModelModelConfiguration
+        -- The ARN of the Mantle foundation model.
+        modelArn: string
+        -- The Amazon Bedrock project ID used for billing and usage attribution. If you don't specify a value, the service uses the default project.
+        projectId: string
+    end
+
+    -- Configuration for a Mantle foundation model.
+    record MantleFoundationModelConfiguration
+        -- The model configuration containing the model ARN and project ID.
+        modelConfiguration: MantleFoundationModelModelConfiguration
+    end
+
     enum FoundationModelConfigurationType
         "BEDROCK_FOUNDATION_MODEL"
+        "MANTLE_FOUNDATION_MODEL"
     end
 
     -- Configuration for the foundation model.
     record FoundationModelConfiguration
         -- The Bedrock foundation model configuration.
         bedrockFoundationModelConfiguration: BedrockFoundationModelConfiguration
+        -- The Mantle foundation model configuration.
+        mantleFoundationModelConfiguration: MantleFoundationModelConfiguration
     end
 
     enum FoundationModelType

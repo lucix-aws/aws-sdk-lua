@@ -46,6 +46,7 @@ local record M
         "INTERSTITIAL_VOD_FAILURE"
         "PRE_ADS_REQUEST_HOOK_ERROR"
         "PRE_ADS_REQUEST_FUNCTION_ERROR"
+        "BEACON_RECEIVED"
         "POST_ADS_RESPONSE_HOOK_ERROR"
         "POST_ADS_RESPONSE_FUNCTION_ERROR"
         "PRE_MANIFEST_INSERTION_HOOK_ERROR"
@@ -567,6 +568,32 @@ local record M
         FillPolicy: string
     end
 
+    enum BeaconEventType
+        "MUTE"
+        "UNMUTE"
+        "PAUSE"
+        "SKIP"
+    end
+
+    enum ClientSideBeaconingMode
+        "DISABLED"
+        "INSIGHTS"
+    end
+
+    -- The beaconing settings that apply to client-side reporting sessions: whether MediaTailor includes its beacons in the ad tracking response, and which player operation events it reports on.
+    record ClientSideBeaconingConfiguration
+        -- Specifies whether MediaTailor includes its beacons in the ad tracking response. Valid values, which are case-sensitive: INSIGHTS – MediaTailor includes its beacons in the ad tracking response. DISABLED – MediaTailor doesn't include its beacons in the ad tracking response. If you send a ClientSide object, this setting is required. If you omit BeaconingConfiguration or ClientSide entirely, MediaTailor uses INSIGHTS. PutPlaybackConfiguration replaces the whole playback configuration. To keep beaconing off, include DISABLED in every subsequent write.
+        ReportingMode: string
+        -- The player operation events to report on, in addition to the ad progress events that MediaTailor always reports on. The default is an empty list. This parameter is valid only when ReportingMode is INSIGHTS. MediaTailor rejects the request if you specify a value while ReportingMode is DISABLED, or if you specify duplicate values.
+        AdditionalEventTypes: {string}
+    end
+
+    -- The beaconing configuration for a playback configuration. Beaconing controls whether MediaTailor includes its own beacons in the ad tracking response, in addition to the ad server beacons.
+    record BeaconingConfiguration
+        -- The beaconing settings for client-side reporting sessions. If you omit this object, MediaTailor uses INSIGHTS reporting mode.
+        ClientSide: ClientSideBeaconingConfiguration
+    end
+
     -- The configuration for bumpers. Bumpers are short audio or video clips that play at the start or before the end of an ad break. To learn more about bumpers, see Bumpers.
     record Bumper
         -- The URL for the end bumper asset.
@@ -804,6 +831,8 @@ local record M
         AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
         -- The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.
         AdsPersonalizationConcurrency: AdsPersonalizationConcurrency
+        -- The beaconing configuration for this playback configuration, which controls whether MediaTailor includes beacons of its own in the ad tracking response.
+        BeaconingConfiguration: BeaconingConfiguration
     end
 
     -- For single prefetch, describes how and when that MediaTailor places prefetched ads into upcoming ad breaks.
@@ -1940,6 +1969,8 @@ local record M
         AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
         -- The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.
         AdsPersonalizationConcurrency: AdsPersonalizationConcurrency
+        -- The beaconing configuration for this playback configuration, which controls whether MediaTailor includes beacons of its own in the ad tracking response. MediaTailor always returns this setting. If you created the playback configuration before this setting existed, MediaTailor reports ReportingMode as INSIGHTS. This is also the value MediaTailor uses for that configuration at playback time.
+        BeaconingConfiguration: BeaconingConfiguration
     end
 
     record GetPrefetchScheduleInput
@@ -2151,6 +2182,8 @@ local record M
         AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
         -- The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.
         AdsPersonalizationConcurrency: AdsPersonalizationConcurrency
+        -- The beaconing configuration for this playback configuration, which controls whether MediaTailor includes beacons of its own in the ad tracking response. If you omit this setting, MediaTailor uses INSIGHTS.
+        BeaconingConfiguration: BeaconingConfiguration
     end
 
     record PutPlaybackConfigurationOutput
@@ -2210,6 +2243,8 @@ local record M
         AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
         -- The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.
         AdsPersonalizationConcurrency: AdsPersonalizationConcurrency
+        -- The beaconing configuration for this playback configuration, which controls whether MediaTailor includes beacons of its own in the ad tracking response.
+        BeaconingConfiguration: BeaconingConfiguration
     end
 
     record UpdateSourceLocationInput

@@ -145,6 +145,8 @@ local record M
         sessionActions: {AssignedSessionAction}
         -- The log configuration for the worker's assigned session.
         logConfiguration: LogConfiguration
+        -- Key-value hints that the service provides to guide how the session runs. This value is used by the worker agent.
+        metadata: {string : string}
     end
 
     enum MembershipLevel
@@ -542,6 +544,22 @@ local record M
         string: string
         -- A file system path represented as a string.
         path: string
+        -- A boolean value represented as a string. Accepted values are true, false, yes, no, on, off, 1, and 0, case-insensitive.
+        bool: string
+        -- An Open Job Description range expression represented as a string, such as 1-10:2.
+        rangeExpr: string
+        -- A list of UTF-8 strings.
+        stringList: {string}
+        -- A list of file system paths, each represented as a string.
+        pathList: {string}
+        -- A list of signed integers, each represented as a string.
+        intList: {string}
+        -- A list of double precision IEEE-754 floating point numbers, each represented as a string.
+        floatList: {string}
+        -- A list of boolean values, each represented as a string.
+        boolList: {string}
+        -- A list of lists of signed integers, each represented as a string.
+        intListList: {{string}}
     end
 
     enum JobTargetTaskRunStatus
@@ -690,6 +708,10 @@ local record M
         schemaVersion: string
         -- The template used for the environment.
         template: any
+        -- The Open Job Description extensions that the environment uses. This value is used by the worker agent.
+        extensions: {string}
+        -- The resolved symbol table for the environment's expressions, serialized as JSON. This value is used by the worker agent.
+        resolvedSymbolTable: string
     end
 
     -- The job attachments.
@@ -765,6 +787,8 @@ local record M
         parameters: {string : JobParameter}
         -- The schema version.
         schemaVersion: string
+        -- The Open Job Description extensions that the job template uses. This value is used by the worker agent.
+        extensions: {string}
         -- The path mapping rules.
         pathMappingRules: {PathMappingRule}
     end
@@ -781,6 +805,10 @@ local record M
         template: any
         -- The dependencies for a step.
         dependencies: {string}
+        -- The Open Job Description extensions that the step uses. This value is used by the worker agent.
+        extensions: {string}
+        -- The resolved symbol table for the step's expressions, serialized as JSON. This value is used by the worker agent.
+        resolvedSymbolTable: string
     end
 
     -- The details of a job entity.
@@ -2009,6 +2037,16 @@ local record M
         throughputMiB: number
     end
 
+    enum FleetSoftwareAddOnName
+        "docker"
+    end
+
+    -- Software that the service installs on worker hosts in a service-managed fleet.
+    record FleetSoftwareAddOn
+        -- The name of the software add-on. The supported value is docker.
+        name: string
+    end
+
     -- The Amazon EC2 instance capabilities.
     record ServiceManagedEc2InstanceCapabilities
         -- The amount of vCPU to require for instances in this fleet.
@@ -2031,6 +2069,8 @@ local record M
         customAmounts: {FleetAmountCapability}
         -- The custom capability attributes to require for instances in this fleet.
         customAttributes: {FleetAttributeCapability}
+        -- The software add-ons that the service installs on worker hosts when they launch.
+        softwareAddOns: {FleetSoftwareAddOn}
     end
 
     enum Ec2MarketType
@@ -2464,7 +2504,7 @@ local record M
         workerId: string
     end
 
-    -- The time stamp in date-time format.
+    -- The timestamp in date-time format.
     record DateTimeFilterExpression
         -- The name of the date-time field to filter on.
         name: string
@@ -5241,7 +5281,7 @@ local record M
         startTime: number
         -- The Linux timestamp of the date and time that the statistics end.
         endTime: number
-        -- The timezone to use for the statistics. Use UTC notation such as "UTC+8."
+        -- The time zone to use for the statistics. Use UTC notation such as "UTC+8."
         timezone: string
         -- The period to aggregate the statistics.
         period: string

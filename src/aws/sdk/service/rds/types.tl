@@ -880,6 +880,14 @@ local record M
         message: string
     end
 
+    -- The configuration for a single resource in the green environment of a blue/green deployment. Use SourceArn to identify a resource in the blue environment. Amazon RDS creates the corresponding resource in the green environment using this configuration. This data type is a request parameter of the CreateBlueGreenDeployment operation.
+    record TargetResourceConfiguration
+        -- The Amazon Resource Name (ARN) of the DB cluster or DB instance in the blue environment to which this configuration applies.
+        SourceArn: string
+        -- The Amazon Web Services KMS key identifier for encryption of the corresponding resource in the green environment. The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key. Specify this setting in either of the following cases: You want the green resource to use a different KMS key than the blue resource. The blue resource is unencrypted and you want to encrypt the green resource. For Aurora, encryption applies at the DB cluster level. Specify a DB cluster ARN in SourceArn. All DB instances in that cluster use the same KMS key. For RDS, encryption applies at the DB instance level. Specify a DB instance ARN in SourceArn. To encrypt read replicas, include a separate entry for each one. Each entry can specify a different KMS key.
+        TargetKmsKeyId: string
+    end
+
     record CreateBlueGreenDeploymentInput
         -- The name of the blue/green deployment. Constraints: Can't be the same as an existing blue/green deployment name in the same account and Amazon Web Services Region.
         BlueGreenDeploymentName: string
@@ -905,6 +913,8 @@ local record M
         TargetAllocatedStorage: number
         -- The storage throughput value for the green DB instance. This setting applies only to the gp3 storage type. This setting doesn't apply to Amazon Aurora blue/green deployments.
         TargetStorageThroughput: number
+        -- Specifies resource-level configuration overrides for the green environment. Each entry identifies a resource in the blue environment by its Amazon Resource Name (ARN). It defines the desired configuration for the corresponding resource in the green environment. Any resource that you don't include in this parameter retains the same configuration as its counterpart in the blue environment. Use this parameter when one or more resources in the green environment require a different configuration than what they have in the blue environment. Constraints: You can't specify the same SourceArn in more than one entry.
+        TargetResourceConfigurations: {TargetResourceConfiguration}
     end
 
     -- Contains the details about a blue/green deployment. For more information, see Using Amazon RDS Blue/Green Deployments for database updates in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments for database updates in the Amazon Aurora User Guide.

@@ -104,6 +104,8 @@ M.VpcEndpointSummaryList = schema.new({ type = "list", list_member = M.VpcEndpoi
 
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AcceptedWarningsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.PackageUserList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SlotList = schema.new({ type = "list", list_member = prelude.Long })
@@ -4834,6 +4836,31 @@ M.ChangeProgressStage = schema.new({
     },
 })
 
+M.ValidationFailure = schema.new({
+    id = id.from(_N, "ValidationFailure"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ValidationFailure", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ValidationFailure", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Severity = schema.new({
+            id = id.from(_N, "ValidationFailure", "Severity"),
+            type = "string",
+            name = "Severity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ChangeProgressStatusDetails = schema.new({
     id = id.from(_N, "ChangeProgressStatusDetails"),
     type = "structure",
@@ -4903,6 +4930,20 @@ M.ChangeProgressStatusDetails = schema.new({
             type = "string",
             name = "InitiatedBy",
             target_id = prelude.String.id,
+        }),
+        ValidationFailures = schema.new({
+            id = id.from(_N, "ChangeProgressStatusDetails", "ValidationFailures"),
+            type = "list",
+            name = "ValidationFailures",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationFailure,
+        }),
+        AcceptedWarnings = schema.new({
+            id = id.from(_N, "ChangeProgressStatusDetails", "AcceptedWarnings"),
+            type = "list",
+            name = "AcceptedWarnings",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -6025,25 +6066,6 @@ M.DescribeDryRunProgressInput = schema.new({
     },
 })
 
-M.ValidationFailure = schema.new({
-    id = id.from(_N, "ValidationFailure"),
-    type = "structure",
-    members = {
-        Code = schema.new({
-            id = id.from(_N, "ValidationFailure", "Code"),
-            type = "string",
-            name = "Code",
-            target_id = prelude.String.id,
-        }),
-        Message = schema.new({
-            id = id.from(_N, "ValidationFailure", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.DryRunProgressStatus = schema.new({
     id = id.from(_N, "DryRunProgressStatus"),
     type = "structure",
@@ -6090,6 +6112,13 @@ M.DryRunProgressStatus = schema.new({
             name = "ValidationFailures",
             target_id = prelude.Document.id,
             list_member = M.ValidationFailure,
+        }),
+        AcceptedWarnings = schema.new({
+            id = id.from(_N, "DryRunProgressStatus", "AcceptedWarnings"),
+            type = "list",
+            name = "AcceptedWarnings",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -10458,6 +10487,13 @@ M.UpdateDomainConfigInput = schema.new({
             type = "string",
             name = "EngineMode",
             target_id = prelude.String.id,
+        }),
+        AcceptedWarnings = schema.new({
+            id = id.from(_N, "UpdateDomainConfigInput", "AcceptedWarnings"),
+            type = "list",
+            name = "AcceptedWarnings",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

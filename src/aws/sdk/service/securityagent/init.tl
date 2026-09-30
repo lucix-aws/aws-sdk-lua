@@ -104,6 +104,7 @@ local record Client
     updateCodeReview: function(Client, types.UpdateCodeReviewInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCodeReviewOutput>
     updateFinding: function(Client, types.UpdateFindingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFindingOutput>
     updateIntegratedResources: function(Client, types.UpdateIntegratedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegratedResourcesOutput>
+    updateIntegration: function(Client, types.UpdateIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegrationOutput>
     updatePentest: function(Client, types.UpdatePentestInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePentestOutput>
     updatePrivateConnectionCertificate: function(Client, types.UpdatePrivateConnectionCertificateInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrivateConnectionCertificateOutput>
     updateSecurityRequirementPack: function(Client, types.UpdateSecurityRequirementPackInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityRequirementPackOutput>
@@ -497,6 +498,10 @@ end
 
 function C:updateIntegratedResources(input: types.UpdateIntegratedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIntegratedResourcesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIntegratedResources as schema.OperationSchema, input, options) as async.Operation<types.UpdateIntegratedResourcesOutput>
+end
+
+function C:updateIntegration(input: types.UpdateIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIntegration as schema.OperationSchema, input, options) as async.Operation<types.UpdateIntegrationOutput>
 end
 
 function C:updatePentest(input: types.UpdatePentestInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePentestOutput>

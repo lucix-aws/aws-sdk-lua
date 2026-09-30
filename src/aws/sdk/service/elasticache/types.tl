@@ -2547,6 +2547,11 @@ local record M
         ECPUPerSecond: ECPUPerSecond
     end
 
+    enum ConnectionType
+        "vpc"
+        "public"
+    end
+
     record CreateServerlessCacheInput
         -- User-provided identifier for the serverless cache. This parameter is stored as a lowercase string.
         ServerlessCacheName: string
@@ -2587,6 +2592,13 @@ local record M
         -- ipv6 is only supported with IPv6-only subnets.
         -- If not specified, defaults to ipv4, unless all provided subnets are IPv6-only, in which case it defaults to ipv6.
         NetworkType: string
+        -- The connection type for the serverless cache.
+        -- Must be either vpc | public.
+        -- Use vpc to access the cache through a VPC endpoint, or public to access the cache over the internet.
+        -- If not specified, defaults to vpc.
+        -- This value cannot be changed after the serverless cache is created.
+        -- Setting this to public requires Valkey 9 or above.
+        ConnectionType: string
     end
 
     -- The resource representing a serverless cache.
@@ -2636,6 +2648,10 @@ local record M
         -- ipv6 is only supported with IPv6-only subnets.
         -- If not specified, defaults to ipv4, unless all provided subnets are IPv6-only, in which case it defaults to ipv6.
         NetworkType: string
+        -- The connection type for the serverless cache.
+        -- Must be either vpc | public.
+        -- If not specified, defaults to vpc.
+        ConnectionType: string
     end
 
     record CreateServerlessCacheOutput

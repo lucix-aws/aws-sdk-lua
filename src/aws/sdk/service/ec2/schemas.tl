@@ -14817,6 +14817,16 @@ M.CapacityReservation = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "ZeroSizePreference" },
             },
         }),
+        LaunchStatus = schema.new({
+            id = id.from(_N, "CapacityReservation", "LaunchStatus"),
+            type = "string",
+            name = "LaunchStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "launchStatus" },
+                [traits.EC2_QUERY_NAME] = { name = "LaunchStatus" },
+            },
+        }),
     },
 })
 
