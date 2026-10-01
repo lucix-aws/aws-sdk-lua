@@ -8322,6 +8322,15 @@ M.DetectorAdditionalConfigurationResult = schema.new({
                 [traits.JSON_NAME] = { name = "updatedAt" },
             },
         }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "DetectorAdditionalConfigurationResult", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedBy" },
+            },
+        }),
     },
 })
 
@@ -8364,6 +8373,15 @@ M.DetectorFeatureConfigurationResult = schema.new({
             list_member = M.DetectorAdditionalConfigurationResult,
             traits = {
                 [traits.JSON_NAME] = { name = "additionalConfiguration" },
+            },
+        }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "DetectorFeatureConfigurationResult", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedBy" },
             },
         }),
     },
@@ -13712,6 +13730,15 @@ M.MemberAdditionalConfigurationResult = schema.new({
                 [traits.JSON_NAME] = { name = "updatedAt" },
             },
         }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "MemberAdditionalConfigurationResult", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedBy" },
+            },
+        }),
     },
 })
 
@@ -13754,6 +13781,15 @@ M.MemberFeaturesConfigurationResult = schema.new({
             list_member = M.MemberAdditionalConfigurationResult,
             traits = {
                 [traits.JSON_NAME] = { name = "additionalConfiguration" },
+            },
+        }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "MemberFeaturesConfigurationResult", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedBy" },
             },
         }),
     },

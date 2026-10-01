@@ -200,6 +200,8 @@ M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
 
+M.NotifyOnStates = schema.new({ type = "list", list_member = prelude.String })
+
 M.DataSourceSummaries = schema.new({ type = "list", list_member = M.DataSourceSummary })
 
 M.DataSourceRunSummaries = schema.new({ type = "list", list_member = M.DataSourceRunSummary })
@@ -27169,6 +27171,23 @@ M.NetworkConfig = schema.new({
     },
 })
 
+M.NotificationConfig = schema.new({
+    id = id.from(_N, "NotificationConfig"),
+    type = "structure",
+    members = {
+        notifyOn = schema.new({
+            id = id.from(_N, "NotificationConfig", "notifyOn"),
+            type = "list",
+            name = "notifyOn",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.StorageConfig = schema.new({
     id = id.from(_N, "StorageConfig"),
     type = "structure",
@@ -27332,6 +27351,13 @@ M.GetNotebookRunOutput = schema.new({
             name = "storageConfiguration",
             target_id = id.from(_N, "StorageConfig"),
             target = M.StorageConfig,
+        }),
+        notificationConfiguration = schema.new({
+            id = id.from(_N, "GetNotebookRunOutput", "notificationConfiguration"),
+            type = "structure",
+            name = "notificationConfiguration",
+            target_id = id.from(_N, "NotificationConfig"),
+            target = M.NotificationConfig,
         }),
         triggerSource = schema.new({
             id = id.from(_N, "GetNotebookRunOutput", "triggerSource"),
@@ -27647,6 +27673,13 @@ M.StartNotebookRunInput = schema.new({
             target_id = id.from(_N, "TimeoutConfig"),
             target = M.TimeoutConfig,
         }),
+        notificationConfiguration = schema.new({
+            id = id.from(_N, "StartNotebookRunInput", "notificationConfiguration"),
+            type = "structure",
+            name = "notificationConfiguration",
+            target_id = id.from(_N, "NotificationConfig"),
+            target = M.NotificationConfig,
+        }),
         triggerSource = schema.new({
             id = id.from(_N, "StartNotebookRunInput", "triggerSource"),
             type = "structure",
@@ -27794,6 +27827,13 @@ M.StartNotebookRunOutput = schema.new({
             name = "storageConfiguration",
             target_id = id.from(_N, "StorageConfig"),
             target = M.StorageConfig,
+        }),
+        notificationConfiguration = schema.new({
+            id = id.from(_N, "StartNotebookRunOutput", "notificationConfiguration"),
+            type = "structure",
+            name = "notificationConfiguration",
+            target_id = id.from(_N, "NotificationConfig"),
+            target = M.NotificationConfig,
         }),
         triggerSource = schema.new({
             id = id.from(_N, "StartNotebookRunOutput", "triggerSource"),

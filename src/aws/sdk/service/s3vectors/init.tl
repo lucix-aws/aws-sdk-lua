@@ -32,11 +32,13 @@ local record Client
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listVectorBuckets: function(Client, types.ListVectorBucketsInput, ? base_client.InvokeOptions): async.Operation<types.ListVectorBucketsOutput>
     listVectors: function(Client, types.ListVectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListVectorsOutput>
+    putVectorBucketDefaultIndexMode: function(Client, types.PutVectorBucketDefaultIndexModeInput, ? base_client.InvokeOptions): async.Operation<types.PutVectorBucketDefaultIndexModeOutput>
     putVectorBucketPolicy: function(Client, types.PutVectorBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutVectorBucketPolicyOutput>
     putVectors: function(Client, types.PutVectorsInput, ? base_client.InvokeOptions): async.Operation<types.PutVectorsOutput>
     queryVectors: function(Client, types.QueryVectorsInput, ? base_client.InvokeOptions): async.Operation<types.QueryVectorsOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateIndexMode: function(Client, types.UpdateIndexModeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIndexModeOutput>
 end
 
 local record M
@@ -137,6 +139,10 @@ function C:listVectors(input: types.ListVectorsInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVectors as schema.OperationSchema, input, options) as async.Operation<types.ListVectorsOutput>
 end
 
+function C:putVectorBucketDefaultIndexMode(input: types.PutVectorBucketDefaultIndexModeInput, options?: base_client.InvokeOptions): async.Operation<types.PutVectorBucketDefaultIndexModeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutVectorBucketDefaultIndexMode as schema.OperationSchema, input, options) as async.Operation<types.PutVectorBucketDefaultIndexModeOutput>
+end
+
 function C:putVectorBucketPolicy(input: types.PutVectorBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutVectorBucketPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutVectorBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutVectorBucketPolicyOutput>
 end
@@ -155,6 +161,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateIndexMode(input: types.UpdateIndexModeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIndexModeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIndexMode as schema.OperationSchema, input, options) as async.Operation<types.UpdateIndexModeOutput>
 end
 
 return M

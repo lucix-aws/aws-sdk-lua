@@ -33,7 +33,9 @@ local record Client
     putAccountName: function(Client, types.PutAccountNameInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountNameOutput>
     putAlternateContact: function(Client, types.PutAlternateContactInput, ? base_client.InvokeOptions): async.Operation<types.PutAlternateContactOutput>
     putContactInformation: function(Client, types.PutContactInformationInput, ? base_client.InvokeOptions): async.Operation<types.PutContactInformationOutput>
+    sendPhoneNumberVerification: function(Client, types.SendPhoneNumberVerificationInput, ? base_client.InvokeOptions): async.Operation<types.SendPhoneNumberVerificationOutput>
     startPrimaryEmailUpdate: function(Client, types.StartPrimaryEmailUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartPrimaryEmailUpdateOutput>
+    verifyPhoneNumber: function(Client, types.VerifyPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.VerifyPhoneNumberOutput>
 end
 
 local record M
@@ -138,8 +140,16 @@ function C:putContactInformation(input: types.PutContactInformationInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutContactInformation as schema.OperationSchema, input, options) as async.Operation<types.PutContactInformationOutput>
 end
 
+function C:sendPhoneNumberVerification(input: types.SendPhoneNumberVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.SendPhoneNumberVerificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendPhoneNumberVerification as schema.OperationSchema, input, options) as async.Operation<types.SendPhoneNumberVerificationOutput>
+end
+
 function C:startPrimaryEmailUpdate(input: types.StartPrimaryEmailUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartPrimaryEmailUpdateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPrimaryEmailUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartPrimaryEmailUpdateOutput>
+end
+
+function C:verifyPhoneNumber(input: types.VerifyPhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyPhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyPhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.VerifyPhoneNumberOutput>
 end
 
 return M

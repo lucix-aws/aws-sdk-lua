@@ -200,6 +200,11 @@ local record M
         indexArn: string
     end
 
+    enum IndexMode
+        "CLASSIC"
+        "ENHANCED"
+    end
+
     -- The attributes of a vector index.
     record Index
         -- The name of the vector bucket that contains the vector index.
@@ -220,6 +225,8 @@ local record M
         metadataConfiguration: MetadataConfiguration
         -- The encryption configuration for a vector index. By default, if you don't specify, all new vectors in the vector index will use the encryption configuration of the vector bucket.
         encryptionConfiguration: EncryptionConfiguration
+        -- The mode that determines how the vector index processes queries. Valid values: CLASSIC - Applies metadata filters during the vector search. ENHANCED - Applies metadata filters before the vector search.
+        indexMode: string
     end
 
     record GetIndexOutput
@@ -260,6 +267,8 @@ local record M
         creationTime: number
         -- The encryption configuration for the vector bucket.
         encryptionConfiguration: EncryptionConfiguration
+        -- The mode that is automatically assigned to new vector indexes in the vector bucket. Changing the default index mode doesn't affect existing vector indexes.
+        defaultIndexMode: string
     end
 
     record GetVectorBucketOutput
@@ -329,6 +338,20 @@ local record M
         nextToken: string
         -- The attributes of the vector indexes
         indexes: {IndexSummary}
+    end
+
+    record UpdateIndexModeInput
+        -- The name of the vector bucket that contains the vector index.
+        vectorBucketName: string
+        -- The name of the vector index to update.
+        indexName: string
+        -- The Amazon Resource Name (ARN) of the vector index to update.
+        indexArn: string
+        -- The new mode for the vector index. Valid values: CLASSIC - Applies metadata filters during the vector search. You can specify CLASSIC only for a vector index in a vector bucket created before September 30, 2026. ENHANCED - Applies metadata filters before the vector search.
+        indexMode: string
+    end
+
+    record UpdateIndexModeOutput
     end
 
     record ListVectorsInput
@@ -406,6 +429,8 @@ local record M
         queryVector: VectorData
         -- Metadata filter to apply during the query. For more information about metadata keys, see Metadata filtering in the Amazon S3 User Guide.
         filter: any
+        -- The mode to use to process the query. If you don't specify a query mode, the operation uses the mode that's currently configured for the vector index. Valid values: CLASSIC - Applies metadata filters during the vector search. You can't specify CLASSIC for an ENHANCED index. ENHANCED - Applies metadata filters before the vector search.
+        queryMode: string
         -- Indicates whether to include metadata in the response. The default value is false.
         returnMetadata: boolean
         -- Indicates whether to include the computed distance in the response. The default value is false.
@@ -467,6 +492,18 @@ local record M
         nextToken: string
         -- The list of vector buckets owned by the requester.
         vectorBuckets: {VectorBucketSummary}
+    end
+
+    record PutVectorBucketDefaultIndexModeInput
+        -- The name of the vector bucket to update.
+        vectorBucketName: string
+        -- The Amazon Resource Name (ARN) of the vector bucket to update.
+        vectorBucketArn: string
+        -- The default mode to assign to new vector indexes in the vector bucket. This change doesn't affect existing vector indexes.
+        defaultIndexMode: string
+    end
+
+    record PutVectorBucketDefaultIndexModeOutput
     end
 
     record PutVectorBucketPolicyInput

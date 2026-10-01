@@ -7915,6 +7915,43 @@ M.ClarifyExplainerConfig = schema.new({
     },
 })
 
+M.ClusterAccountingDatabase = schema.new({
+    id = id.from(_N, "ClusterAccountingDatabase"),
+    type = "structure",
+    members = {
+        Endpoint = schema.new({
+            id = id.from(_N, "ClusterAccountingDatabase", "Endpoint"),
+            type = "string",
+            name = "Endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Port = schema.new({
+            id = id.from(_N, "ClusterAccountingDatabase", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ClusterAccountingDatabase", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "ClusterAccountingDatabase", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RollingDeploymentPolicy = schema.new({
     id = id.from(_N, "RollingDeploymentPolicy"),
     type = "structure",
@@ -8197,6 +8234,31 @@ M.ClusterMetadata = schema.new({
     },
 })
 
+M.DatabaseConfigurationMetadata = schema.new({
+    id = id.from(_N, "DatabaseConfigurationMetadata"),
+    type = "structure",
+    members = {
+        RollbackStatus = schema.new({
+            id = id.from(_N, "DatabaseConfigurationMetadata", "RollbackStatus"),
+            type = "string",
+            name = "RollbackStatus",
+            target_id = prelude.String.id,
+        }),
+        Advisory = schema.new({
+            id = id.from(_N, "DatabaseConfigurationMetadata", "Advisory"),
+            type = "string",
+            name = "Advisory",
+            target_id = prelude.String.id,
+        }),
+        FailureMessage = schema.new({
+            id = id.from(_N, "DatabaseConfigurationMetadata", "FailureMessage"),
+            type = "string",
+            name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InstanceRequirementsEniConfiguration = schema.new({
     id = id.from(_N, "InstanceRequirementsEniConfiguration"),
     type = "structure",
@@ -8345,6 +8407,37 @@ M.InstanceGroupScalingMetadata = schema.new({
     },
 })
 
+M.SlurmHealthMetadata = schema.new({
+    id = id.from(_N, "SlurmHealthMetadata"),
+    type = "structure",
+    members = {
+        Component = schema.new({
+            id = id.from(_N, "SlurmHealthMetadata", "Component"),
+            type = "string",
+            name = "Component",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SlurmHealthMetadata", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "SlurmHealthMetadata", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EventMetadata = schema.new({
     id = id.from(_N, "EventMetadata"),
     type = "union",
@@ -8376,6 +8469,20 @@ M.EventMetadata = schema.new({
             name = "Instance",
             target_id = id.from(_N, "InstanceMetadata"),
             target = M.InstanceMetadata,
+        }),
+        DatabaseConfiguration = schema.new({
+            id = id.from(_N, "EventMetadata", "DatabaseConfiguration"),
+            type = "structure",
+            name = "DatabaseConfiguration",
+            target_id = id.from(_N, "DatabaseConfigurationMetadata"),
+            target = M.DatabaseConfigurationMetadata,
+        }),
+        SlurmHealth = schema.new({
+            id = id.from(_N, "EventMetadata", "SlurmHealth"),
+            type = "structure",
+            name = "SlurmHealth",
+            target_id = id.from(_N, "SlurmHealthMetadata"),
+            target = M.SlurmHealthMetadata,
         }),
     },
 })
@@ -9633,6 +9740,13 @@ M.ClusterOrchestratorSlurmConfig = schema.new({
             type = "string",
             name = "SlurmConfigStrategy",
             target_id = prelude.String.id,
+        }),
+        AccountingDatabase = schema.new({
+            id = id.from(_N, "ClusterOrchestratorSlurmConfig", "AccountingDatabase"),
+            type = "structure",
+            name = "AccountingDatabase",
+            target_id = id.from(_N, "ClusterAccountingDatabase"),
+            target = M.ClusterAccountingDatabase,
         }),
     },
 })

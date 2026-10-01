@@ -457,7 +457,7 @@ local record M
         "ALB_HEALTH_CHECK_LOGS"
     end
 
-    -- The configuration parameters for log delivery, including logType settings. Applies to resource types that support configurable log delivery, such as Amazon Bedrock Knowledge Bases and Elastic Load Balancing Application Load Balancers.
+    -- The configuration parameters for log delivery, including logType settings. Applies to resource types that support configurable log delivery, such as Amazon Bedrock Knowledge Bases, Amazon Bedrock AgentCore payment managers, and Elastic Load Balancing Application Load Balancers.
     record LogDeliveryParameters
         -- The types of logs to collect from the resource.
         LogTypes: {string}
@@ -562,7 +562,7 @@ local record M
         ELBLoadBalancerLoggingParameters: ELBLoadBalancerLoggingParameters
         -- Configuration parameters specific to WAF logging when WAF is the resource type.
         WAFLoggingParameters: WAFLoggingParameters
-        -- The configuration parameters for log delivery when the resource type supports configurable log types, such as Amazon Bedrock Knowledge Bases or Elastic Load Balancing Application Load Balancers.
+        -- The configuration parameters for log delivery when the resource type supports configurable log types, such as Amazon Bedrock Knowledge Bases, Amazon Bedrock AgentCore payment managers, or Elastic Load Balancing Application Load Balancers.
         LogDeliveryParameters: LogDeliveryParameters
         -- Configuration parameters specific to MSK monitoring when MSK is the resource type.
         MskMonitoringParameters: MskMonitoringParameters
@@ -585,6 +585,7 @@ local record M
         "AWS::BedrockAgentCore::Gateway"
         "AWS::BedrockAgentCore::Memory"
         "AWS::BedrockAgentCore::WorkloadIdentity"
+        "AWS::BedrockAgentCore::PaymentManager"
         "AWS::SecurityHub::Hub"
         "AWS::CloudFront::Distribution"
         "AWS::SecurityHub::HubV2"
@@ -612,7 +613,7 @@ local record M
 
     -- Defines how telemetry should be configured for specific Amazon Web Services resources.
     record TelemetryRule
-        -- The type of Amazon Web Services resource to configure telemetry for (for example, AWS::EC2::VPC, AWS::EKS::Cluster, AWS::ElasticLoadBalancingV2::LoadBalancer, or AWS::Bedrock::KnowledgeBase).
+        -- The type of Amazon Web Services resource to configure telemetry for (for example, AWS::EC2::VPC, AWS::EKS::Cluster, AWS::ElasticLoadBalancingV2::LoadBalancer, AWS::Bedrock::KnowledgeBase, or AWS::BedrockAgentCore::PaymentManager).
         ResourceType: string
         -- The type of telemetry to collect (Logs, Metrics, or Traces).
         TelemetryType: string

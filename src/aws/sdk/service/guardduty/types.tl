@@ -2641,6 +2641,10 @@ local record M
         "BITDEFENDER"
     end
 
+    enum ManagedBy
+        "GUARDDUTY_POLICY"
+    end
+
     -- Information about the additional configuration.
     record DetectorAdditionalConfigurationResult
         -- Name of the additional configuration.
@@ -2649,6 +2653,8 @@ local record M
         Status: string
         -- The timestamp at which the additional configuration was last updated. This is in UTC format.
         UpdatedAt: number
+        -- Indicates what manages the additional configuration. A value of GUARDDUTY_POLICY means a GuardDuty policy manages the additional configuration.
+        ManagedBy: string
     end
 
     enum DetectorFeatureResult
@@ -2676,6 +2682,8 @@ local record M
         UpdatedAt: number
         -- Additional configuration for a resource.
         AdditionalConfiguration: {DetectorAdditionalConfigurationResult}
+        -- Indicates what manages the feature. A value of GUARDDUTY_POLICY means a GuardDuty policy manages the feature.
+        ManagedBy: string
     end
 
     enum DetectorStatus
@@ -4175,6 +4183,8 @@ local record M
         Status: string
         -- The timestamp at which the additional configuration was set for the member account. This is in UTC format.
         UpdatedAt: number
+        -- Indicates what manages the additional configuration. A value of GUARDDUTY_POLICY means a GuardDuty policy manages the additional configuration.
+        ManagedBy: string
     end
 
     -- Contains information about the features for the member account.
@@ -4187,6 +4197,8 @@ local record M
         UpdatedAt: number
         -- Indicates the additional configuration of the feature that is configured for the member account.
         AdditionalConfiguration: {MemberAdditionalConfigurationResult}
+        -- Indicates what manages the feature. A value of GUARDDUTY_POLICY means a GuardDuty policy manages the feature.
+        ManagedBy: string
     end
 
     -- Contains information on which data sources are enabled for a member account.

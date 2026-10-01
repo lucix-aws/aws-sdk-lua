@@ -3370,6 +3370,12 @@ M.Crawler = schema.new({
             target_id = id.from(_N, "LakeFormationConfiguration"),
             target = M.LakeFormationConfiguration,
         }),
+        CatalogId = schema.new({
+            id = id.from(_N, "Crawler", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -13160,6 +13166,12 @@ M.CreateCrawlerInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        CatalogId = schema.new({
+            id = id.from(_N, "CreateCrawlerInput", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -17162,6 +17174,12 @@ M.DeleteColumnStatisticsTaskSettingsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        CatalogID = schema.new({
+            id = id.from(_N, "DeleteColumnStatisticsTaskSettingsInput", "CatalogID"),
+            type = "string",
+            name = "CatalogID",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -21489,6 +21507,12 @@ M.GetColumnStatisticsTaskRunsInput = schema.new({
             name = "NextToken",
             target_id = prelude.String.id,
         }),
+        CatalogID = schema.new({
+            id = id.from(_N, "GetColumnStatisticsTaskRunsInput", "CatalogID"),
+            type = "string",
+            name = "CatalogID",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -21533,6 +21557,12 @@ M.GetColumnStatisticsTaskSettingsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        CatalogID = schema.new({
+            id = id.from(_N, "GetColumnStatisticsTaskSettingsInput", "CatalogID"),
+            type = "string",
+            name = "CatalogID",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -32648,6 +32678,12 @@ M.StartColumnStatisticsTaskRunScheduleInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        CatalogID = schema.new({
+            id = id.from(_N, "StartColumnStatisticsTaskRunScheduleInput", "CatalogID"),
+            type = "string",
+            name = "CatalogID",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -33358,6 +33394,12 @@ M.StopColumnStatisticsTaskRunInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        CatalogID = schema.new({
+            id = id.from(_N, "StopColumnStatisticsTaskRunInput", "CatalogID"),
+            type = "string",
+            name = "CatalogID",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -33387,6 +33429,12 @@ M.StopColumnStatisticsTaskRunScheduleInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        CatalogID = schema.new({
+            id = id.from(_N, "StopColumnStatisticsTaskRunScheduleInput", "CatalogID"),
+            type = "string",
+            name = "CatalogID",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -34481,6 +34529,12 @@ M.UpdateCrawlerInput = schema.new({
             id = id.from(_N, "UpdateCrawlerInput", "CrawlerSecurityConfiguration"),
             type = "string",
             name = "CrawlerSecurityConfiguration",
+            target_id = prelude.String.id,
+        }),
+        CatalogId = schema.new({
+            id = id.from(_N, "UpdateCrawlerInput", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
             target_id = prelude.String.id,
         }),
     },

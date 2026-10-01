@@ -1003,6 +1003,7 @@ local record M
         "BEDROCK_POLICY"
         "S3_POLICY"
         "NETWORK_SECURITY_DIRECTOR_POLICY"
+        "GUARDDUTY_POLICY"
     end
 
     -- Contains information about a policy type and its status in the associated root.
@@ -1146,6 +1147,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         Type: string
         -- A list of tags that you want to attach to the newly created policy. For each tag in
         -- the list, you must specify both a tag key and a value. You can set the value to an empty
@@ -1357,6 +1359,7 @@ local record M
         "BEDROCK_POLICY"
         "S3_POLICY"
         "NETWORK_SECURITY_DIRECTOR_POLICY"
+        "GUARDDUTY_POLICY"
     end
 
     record DescribeEffectivePolicyInput
@@ -1373,6 +1376,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         PolicyType: string
         -- When you're signed in as the management account, specify the ID of the account that
         -- you want details about. Specifying an organization root or organizational unit (OU) as
@@ -1604,6 +1608,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         PolicyType: string
     end
 
@@ -1678,6 +1683,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         PolicyType: string
     end
 
@@ -1844,6 +1850,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         PolicyType: string
         -- The parameter for receiving additional results if you receive a
         -- NextToken response in a previous request. A NextToken response
@@ -1871,6 +1878,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         PolicyType: string
         -- If present, indicates that more output is available than is
         -- included in the current response. Use this value in the NextToken request parameter
@@ -2097,6 +2105,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         PolicyType: string
         -- The parameter for receiving additional results if you receive a
         -- NextToken response in a previous request. A NextToken response
@@ -2140,6 +2149,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         PolicyType: string
         -- The path in the organization where the specified account exists.
         Path: string
@@ -2353,6 +2363,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         Filter: string
         -- The parameter for receiving additional results if you receive a
         -- NextToken response in a previous request. A NextToken response
@@ -2402,6 +2413,7 @@ local record M
         -- BEDROCK_POLICY
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
+        -- GUARDDUTY_POLICY
         Filter: string
         -- The parameter for receiving additional results if you receive a
         -- NextToken response in a previous request. A NextToken response

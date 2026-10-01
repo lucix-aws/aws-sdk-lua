@@ -2715,6 +2715,12 @@ M.DeliveryDestination = schema.new({
             target_id = id.from(_N, "DeliveryDestinationConfiguration"),
             target = M.DeliveryDestinationConfiguration,
         }),
+        roleArn = schema.new({
+            id = id.from(_N, "DeliveryDestination", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
         tags = schema.new({
             id = id.from(_N, "DeliveryDestination", "tags"),
             type = "map",
@@ -8283,6 +8289,12 @@ M.PutDeliveryDestinationInput = schema.new({
             id = id.from(_N, "PutDeliveryDestinationInput", "deliveryDestinationType"),
             type = "string",
             name = "deliveryDestinationType",
+            target_id = prelude.String.id,
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "PutDeliveryDestinationInput", "roleArn"),
+            type = "string",
+            name = "roleArn",
             target_id = prelude.String.id,
         }),
         tags = schema.new({

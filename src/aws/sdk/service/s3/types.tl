@@ -3137,6 +3137,7 @@ local record M
         "ObjectAccessControlList"
         "ObjectOwner"
         "LifecycleExpirationDate"
+        "IntelligentTieringReferenceDate"
     end
 
     enum InventoryFrequency

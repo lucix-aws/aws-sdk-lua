@@ -1158,6 +1158,8 @@ local record M
         CrawlerSecurityConfiguration: string
         -- Specifies whether the crawler should use Lake Formation credentials for the crawler instead of the IAM role credentials.
         LakeFormationConfiguration: LakeFormationConfiguration
+        -- The ID of the Data Catalog in which the crawler's output is stored.
+        CatalogId: string
     end
 
     record BatchGetCrawlersOutput
@@ -5125,6 +5127,8 @@ local record M
         -- crawler. For more information about tags in Glue, see Amazon Web Services Tags in Glue in the developer
         -- guide.
         Tags: {string : string}
+        -- The ID of the Data Catalog in which to store the crawler's output. If none is supplied, the Amazon Web Services account ID is used by default.
+        CatalogId: string
     end
 
     record CreateCrawlerOutput
@@ -6767,6 +6771,8 @@ local record M
         DatabaseName: string
         -- The name of the table for which to delete column statistics.
         TableName: string
+        -- The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.
+        CatalogID: string
     end
 
     record DeleteColumnStatisticsTaskSettingsOutput
@@ -8308,6 +8314,8 @@ local record M
         MaxResults: number
         -- A continuation token, if this is a continuation call.
         NextToken: string
+        -- The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.
+        CatalogID: string
     end
 
     record GetColumnStatisticsTaskRunsOutput
@@ -8322,6 +8330,8 @@ local record M
         DatabaseName: string
         -- The name of the table for which to retrieve column statistics.
         TableName: string
+        -- The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.
+        CatalogID: string
     end
 
     enum ExecutionStatus
@@ -12633,6 +12643,8 @@ local record M
         DatabaseName: string
         -- The name of the table for which to start a column statistic task run schedule.
         TableName: string
+        -- The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.
+        CatalogID: string
     end
 
     record StartColumnStatisticsTaskRunScheduleOutput
@@ -12920,6 +12932,8 @@ local record M
         DatabaseName: string
         -- The name of the table.
         TableName: string
+        -- The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.
+        CatalogID: string
     end
 
     record StopColumnStatisticsTaskRunOutput
@@ -12930,6 +12944,8 @@ local record M
         DatabaseName: string
         -- The name of the table for which to stop a column statistic task run schedule.
         TableName: string
+        -- The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.
+        CatalogID: string
     end
 
     record StopColumnStatisticsTaskRunScheduleOutput
@@ -13320,6 +13336,8 @@ local record M
         -- The name of the SecurityConfiguration structure to be used by this
         -- crawler.
         CrawlerSecurityConfiguration: string
+        -- The ID of the Data Catalog in which to store the crawler's output. If you omit this value, the existing value on the crawler is preserved.
+        CatalogId: string
     end
 
     record UpdateCrawlerOutput

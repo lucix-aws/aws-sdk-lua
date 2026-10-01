@@ -675,6 +675,12 @@ M.GetContactInformationOutput = schema.new({
             target_id = id.from(_N, "ContactInformation"),
             target = M.ContactInformation,
         }),
+        VerificationStatus = schema.new({
+            id = id.from(_N, "GetContactInformationOutput", "VerificationStatus"),
+            type = "string",
+            name = "VerificationStatus",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -702,6 +708,67 @@ M.PutContactInformationInput = schema.new({
 })
 
 M.PutContactInformationOutput = prelude.Unit
+
+M.SendPhoneNumberVerificationInput = schema.new({
+    id = id.from(_N, "SendPhoneNumberVerificationRequest"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "SendPhoneNumberVerificationInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SendPhoneNumberVerificationOutput = schema.new({
+    id = id.from(_N, "SendPhoneNumberVerificationResponse"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "SendPhoneNumberVerificationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VerifyPhoneNumberInput = schema.new({
+    id = id.from(_N, "VerifyPhoneNumberRequest"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "VerifyPhoneNumberInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+        Otp = schema.new({
+            id = id.from(_N, "VerifyPhoneNumberInput", "Otp"),
+            type = "string",
+            name = "Otp",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VerifyPhoneNumberOutput = schema.new({
+    id = id.from(_N, "VerifyPhoneNumberResponse"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "VerifyPhoneNumberOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
 
 M.GetPrimaryEmailInput = schema.new({
     id = id.from(_N, "GetPrimaryEmailRequest"),
@@ -1170,12 +1237,36 @@ M.PutContactInformation = schema.operation({
     },
 })
 
+M.SendPhoneNumberVerification = schema.operation({
+    id = id.from("com.amazonaws.account", "SendPhoneNumberVerification"),
+    input = M.SendPhoneNumberVerificationInput,
+    output = M.SendPhoneNumberVerificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sendPhoneNumberVerification" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StartPrimaryEmailUpdate = schema.operation({
     id = id.from("com.amazonaws.account", "StartPrimaryEmailUpdate"),
     input = M.StartPrimaryEmailUpdateInput,
     output = M.StartPrimaryEmailUpdateOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/startPrimaryEmailUpdate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyPhoneNumber = schema.operation({
+    id = id.from("com.amazonaws.account", "VerifyPhoneNumber"),
+    input = M.VerifyPhoneNumberInput,
+    output = M.VerifyPhoneNumberOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/verifyPhoneNumber" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -9328,6 +9328,47 @@ M.NotificationRecipientType = schema.new({
     },
 })
 
+M.SendInAppNotificationActionDefinition = schema.new({
+    id = id.from(_N, "SendInAppNotificationActionDefinition"),
+    type = "structure",
+    members = {
+        Content = schema.new({
+            id = id.from(_N, "SendInAppNotificationActionDefinition", "Content"),
+            type = "map",
+            name = "Content",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Recipient = schema.new({
+            id = id.from(_N, "SendInAppNotificationActionDefinition", "Recipient"),
+            type = "structure",
+            name = "Recipient",
+            target_id = id.from(_N, "NotificationRecipientType"),
+            target = M.NotificationRecipientType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Exclusion = schema.new({
+            id = id.from(_N, "SendInAppNotificationActionDefinition", "Exclusion"),
+            type = "structure",
+            name = "Exclusion",
+            target_id = id.from(_N, "NotificationRecipientType"),
+            target = M.NotificationRecipientType,
+        }),
+        Priority = schema.new({
+            id = id.from(_N, "SendInAppNotificationActionDefinition", "Priority"),
+            type = "string",
+            name = "Priority",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SendNotificationActionDefinition = schema.new({
     id = id.from(_N, "SendNotificationActionDefinition"),
     type = "structure",
@@ -9539,6 +9580,13 @@ M.RuleAction = schema.new({
             name = "ExtractInformationAction",
             target_id = id.from(_N, "ExtractInformationActionDefinition"),
             target = M.ExtractInformationActionDefinition,
+        }),
+        SendInAppNotificationAction = schema.new({
+            id = id.from(_N, "RuleAction", "SendInAppNotificationAction"),
+            type = "structure",
+            name = "SendInAppNotificationAction",
+            target_id = id.from(_N, "SendInAppNotificationActionDefinition"),
+            target = M.SendInAppNotificationActionDefinition,
         }),
     },
 })

@@ -1966,6 +1966,8 @@ local record M
     end
 
     record DeleteConfigurationBundleOutput
+        -- The Amazon Resource Name (ARN) of the deleted configuration bundle.
+        bundleArn: string
         -- The unique identifier of the deleted configuration bundle.
         bundleId: string
         -- The status of the configuration bundle deletion operation.
@@ -3724,6 +3726,28 @@ local record M
         system: SystemManagedBlock
         -- The timestamp when the rule was last updated.
         updatedAt: number
+    end
+
+    -- A reference to a PEM-encoded private CA certificate stored as an Amazon S3 object.
+    record S3CertificateConfiguration
+        -- The URI of the Amazon S3 object that contains the PEM-encoded certificate.
+        uri: string
+        -- The account ID of the Amazon S3 bucket owner. This ID is used for cross-account access to the bucket.
+        bucketOwnerAccountId: string
+    end
+
+    -- A reference to a PEM-encoded private CA certificate stored in an Amazon Web Services Secrets Manager secret.
+    record SecretsManagerCertificateConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the PEM-encoded certificate.
+        secretArn: string
+    end
+
+    -- A reference to a private certificate authority (CA) certificate that the gateway uses to verify TLS connections to the target endpoint. Use this when the target presents a certificate issued by a private CA that is not trusted by default. Specify exactly one certificate source. The configuration is a reference only and never contains the certificate content.
+    record CertificateConfiguration
+        -- The Amazon S3 location of the PEM-encoded private CA certificate.
+        s3: S3CertificateConfiguration
+        -- The Amazon Web Services Secrets Manager location of the PEM-encoded private CA certificate.
+        secretsManager: SecretsManagerCertificateConfiguration
     end
 
     enum ApiKeyCredentialLocation
@@ -8957,6 +8981,8 @@ local record M
         metadataConfiguration: MetadataConfiguration
         -- The private endpoint configuration for the gateway target. Use this to connect the gateway to private resources in your VPC.
         privateEndpoint: PrivateEndpoint
+        -- The private certificate authority (CA) configurations for the gateway target. Use this to have the gateway trust a private CA when it establishes TLS connections to the target endpoint. Provide each certificate by reference to an Amazon S3 object or an Amazon Web Services Secrets Manager secret. You can specify only one certificate authority configuration in this list.
+        certificateConfigurations: {CertificateConfiguration}
     end
 
     record CreateGatewayTargetOutput
@@ -8992,6 +9018,8 @@ local record M
         authorizationData: AuthorizationData
         -- The protocol type of the created gateway target.
         protocolType: string
+        -- The private certificate authority (CA) configurations for the gateway target.
+        certificateConfigurations: {CertificateConfiguration}
     end
 
     -- The gateway target.
@@ -9026,6 +9054,8 @@ local record M
         authorizationData: AuthorizationData
         -- The protocol type of the gateway target.
         protocolType: string
+        -- The private certificate authority (CA) configurations for the gateway target.
+        certificateConfigurations: {CertificateConfiguration}
     end
 
     record GetGatewayTargetOutput
@@ -9060,6 +9090,8 @@ local record M
         authorizationData: AuthorizationData
         -- The protocol type of the gateway target.
         protocolType: string
+        -- The private certificate authority (CA) configurations for the gateway target.
+        certificateConfigurations: {CertificateConfiguration}
     end
 
     record UpdateGatewayTargetInput
@@ -9078,6 +9110,8 @@ local record M
         metadataConfiguration: MetadataConfiguration
         -- The private endpoint configuration for the gateway target. Use this to connect the gateway to private resources in your VPC.
         privateEndpoint: PrivateEndpoint
+        -- The private certificate authority (CA) configurations for the gateway target. Use this to have the gateway trust a private CA when it establishes TLS connections to the target endpoint. Provide each certificate by reference to an Amazon S3 object or an Amazon Web Services Secrets Manager secret. You can specify only one certificate authority configuration in this list. To remove a previously configured certificate authority, omit this field on update.
+        certificateConfigurations: {CertificateConfiguration}
     end
 
     record UpdateGatewayTargetOutput
@@ -9112,6 +9146,8 @@ local record M
         authorizationData: AuthorizationData
         -- The protocol type of the updated gateway target.
         protocolType: string
+        -- The private certificate authority (CA) configurations for the gateway target.
+        certificateConfigurations: {CertificateConfiguration}
     end
 
     record SynchronizeGatewayTargetsOutput

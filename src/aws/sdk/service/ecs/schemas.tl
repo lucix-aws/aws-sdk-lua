@@ -232,6 +232,8 @@ M.ServiceConnectServiceResourceList = schema.new({ type = "list", list_member = 
 
 M.ServiceRevisionLoadBalancers = schema.new({ type = "list", list_member = M.ServiceRevisionLoadBalancer })
 
+M.ServiceRevisionVpcLatticeConfigurations = schema.new({ type = "list", list_member = M.ServiceRevisionVpcLatticeConfiguration })
+
 M.ManagedIngressPaths = schema.new({ type = "list", list_member = M.ManagedIngressPath })
 
 M.ManagedMetricAlarms = schema.new({ type = "list", list_member = M.ManagedMetricAlarm })
@@ -9237,6 +9239,31 @@ M.ServiceVolumeConfiguration = schema.new({
     },
 })
 
+M.VpcLatticeAdvancedConfiguration = schema.new({
+    id = id.from(_N, "VpcLatticeAdvancedConfiguration"),
+    type = "structure",
+    members = {
+        alternateTargetGroupArn = schema.new({
+            id = id.from(_N, "VpcLatticeAdvancedConfiguration", "alternateTargetGroupArn"),
+            type = "string",
+            name = "alternateTargetGroupArn",
+            target_id = prelude.String.id,
+        }),
+        productionListenerRule = schema.new({
+            id = id.from(_N, "VpcLatticeAdvancedConfiguration", "productionListenerRule"),
+            type = "string",
+            name = "productionListenerRule",
+            target_id = prelude.String.id,
+        }),
+        testListenerRule = schema.new({
+            id = id.from(_N, "VpcLatticeAdvancedConfiguration", "testListenerRule"),
+            type = "string",
+            name = "testListenerRule",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.VpcLatticeConfiguration = schema.new({
     id = id.from(_N, "VpcLatticeConfiguration"),
     type = "structure",
@@ -9267,6 +9294,13 @@ M.VpcLatticeConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        advancedConfiguration = schema.new({
+            id = id.from(_N, "VpcLatticeConfiguration", "advancedConfiguration"),
+            type = "structure",
+            name = "advancedConfiguration",
+            target_id = id.from(_N, "VpcLatticeAdvancedConfiguration"),
+            target = M.VpcLatticeAdvancedConfiguration,
         }),
     },
 })
@@ -11698,6 +11732,25 @@ M.ServiceRevisionLoadBalancer = schema.new({
     },
 })
 
+M.ServiceRevisionVpcLatticeConfiguration = schema.new({
+    id = id.from(_N, "ServiceRevisionVpcLatticeConfiguration"),
+    type = "structure",
+    members = {
+        targetGroupArn = schema.new({
+            id = id.from(_N, "ServiceRevisionVpcLatticeConfiguration", "targetGroupArn"),
+            type = "string",
+            name = "targetGroupArn",
+            target_id = prelude.String.id,
+        }),
+        productionListenerRule = schema.new({
+            id = id.from(_N, "ServiceRevisionVpcLatticeConfiguration", "productionListenerRule"),
+            type = "string",
+            name = "productionListenerRule",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ResolvedConfiguration = schema.new({
     id = id.from(_N, "ResolvedConfiguration"),
     type = "structure",
@@ -11708,6 +11761,13 @@ M.ResolvedConfiguration = schema.new({
             name = "loadBalancers",
             target_id = prelude.Document.id,
             list_member = M.ServiceRevisionLoadBalancer,
+        }),
+        vpcLatticeConfigurations = schema.new({
+            id = id.from(_N, "ResolvedConfiguration", "vpcLatticeConfigurations"),
+            type = "list",
+            name = "vpcLatticeConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ServiceRevisionVpcLatticeConfiguration,
         }),
     },
 })

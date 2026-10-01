@@ -783,6 +783,54 @@ local record M
         containerInsights: string
     end
 
+    enum EksAccessEntryDesiredState
+        "ENABLED"
+        "DISABLED"
+        "INHERIT_FROM_CLUSTER"
+    end
+
+    enum EksAccessEntryStatus
+        "ACTIVE"
+        "INACTIVE"
+    end
+
+    -- Configures whether Batch manages an Amazon EKS access entry on the cluster for the compute
+    -- environment. For information on how the fields interact with the cluster's
+    -- authenticationMode and with other compute environments that share the cluster,
+    -- see Amazon EKS access entry
+    -- authentication in the Batch User Guide.
+    -- Setting desiredState=ENABLED on a single compute environment does not guarantee that Batch creates an access
+    -- entry, and setting desiredState=DISABLED on a single compute environment does not guarantee that Batch deletes
+    -- one. Batch compares the desiredState across all compute environments that
+    -- target the same cluster. The Batch-managed access entry is created only when all compute environments have
+    -- desiredState=ENABLED, and deleted only when all have
+    -- desiredState=DISABLED. If you have multiple compute environments on the same
+    -- cluster, set desiredState consistently across all of them to avoid uncertainty.
+    -- For more information, see Reconciling
+    -- desiredState across compute environments in the
+    -- Batch User Guide.
+    record EksAccessEntry
+        -- The desired access entry state for the compute environment. Valid values:
+        -- ENABLED
+        -- Batch manages an access entry on the cluster for the compute environment.
+        -- DISABLED
+        -- Batch deletes the Batch-managed access entry for the cluster. This value is rejected if the cluster's
+        -- authenticationMode is API, because such a cluster doesn't support
+        -- the aws-auth ConfigMap.
+        -- INHERIT_FROM_CLUSTER
+        -- Batch defers to the cluster's current access entry status. On a cluster whose
+        -- authentication mode is API, Batch creates and manages an access entry. On a
+        -- cluster whose authentication mode is API_AND_CONFIG_MAP or
+        -- CONFIG_MAP, Batch neither adds nor removes an access entry.
+        desiredState: string
+        -- The observed state of the access entry on the cluster. ACTIVE means that an
+        -- access entry for the compute environment exists on the cluster and takes
+        -- precedence over the aws-auth ConfigMap. INACTIVE means that no
+        -- Batch-managed access entry is present. This is a read-only field returned by
+        -- DescribeComputeEnvironments.
+        status: string
+    end
+
     -- Configuration for the Amazon EKS cluster that supports the Batch compute environment. The
     -- cluster must exist before the compute environment can be created.
     record EksConfiguration
@@ -795,6 +843,24 @@ local record M
         -- default, can't start with "kube-," and must match this regular
         -- expression: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$. For more information, see Namespaces in the Kubernetes documentation.
         kubernetesNamespace: string
+        -- The Batch-managed Amazon EKS access entry for the compute environment. Set
+        -- desiredState to declare whether Batch manages an access entry on the cluster. In
+        -- a DescribeComputeEnvironments response, desiredState is the value that
+        -- Batch recorded for the compute environment and status is the observed state of
+        -- the access entry on the cluster. To change the access entry on an existing compute environment,
+        -- use
+        -- EksConfigurationUpdate.accessEntry
+        -- .
+        -- Whether the entry is provisioned on the cluster depends on the cluster's
+        -- authenticationMode and the desiredState recorded for each Batch compute
+        -- environment targeting the cluster. For more information,
+        -- see Amazon EKS access entry
+        -- authentication in the Batch User Guide.
+        -- If you don't specify this field, Batch doesn't record a desiredState for the
+        -- compute environment and DescribeComputeEnvironments doesn't return one. For the
+        -- purpose of provisioning the access entry, Batch behaves as it does for
+        -- INHERIT_FROM_CLUSTER.
+        accessEntry: EksAccessEntry
     end
 
     enum CEState
@@ -873,7 +939,9 @@ local record M
         tags: {string : string}
         -- The details for the Amazon EKS cluster that supports the compute environment.
         -- To create a compute environment that uses EKS resources, the caller must have
-        -- permissions to call eks:DescribeCluster.
+        -- permissions to call eks:DescribeCluster. Additional Amazon EKS permissions are
+        -- required for Batch to manage an access entry on the cluster; see Amazon EKS access entry
+        -- authentication in the Batch User Guide.
         eksConfiguration: EksConfiguration
         -- Reserved.
         context: string
@@ -2312,8 +2380,8 @@ local record M
         readonlyRootFilesystem: boolean
         -- The private repository authentication credentials to use.
         repositoryCredentials: RepositoryCredentials
-        -- The type and amount of a resource to assign to a container. The only supported resource is a
-        -- GPU.
+        -- The type and amount of a resource to assign to a container. The supported resources include
+        -- GPU, MEMORY, and VCPU.
         resourceRequirements: {ResourceRequirement}
         -- The secrets to pass to the container. For more information, see Specifying Sensitive
         -- Data in the Amazon Elastic Container Service Developer Guide.
@@ -5461,6 +5529,19 @@ local record M
         capacityTags: {string : string}
     end
 
+    -- An object that represents the attributes of an Batch compute environment's Amazon EKS
+    -- configuration that can be updated. Currently accessEntry is the only attribute that you can
+    -- change after the compute environment is created. For more information, see Amazon EKS access entry
+    -- authentication in the Batch User Guide.
+    record EksConfigurationUpdate
+        -- The updated access entry configuration for the compute environment. Set
+        -- desiredState to declare whether Batch will manage an access entry on the cluster.
+        -- For the accepted values, see
+        -- EksAccessEntry
+        -- .
+        accessEntry: EksAccessEntry
+    end
+
     -- Contains the parameters for UpdateComputeEnvironment.
     record UpdateComputeEnvironmentInput
         -- The name or full Amazon Resource Name (ARN) of the compute environment to update.
@@ -5519,6 +5600,12 @@ local record M
         -- The Amazon ECS settings for the compute environment. These settings control CloudWatch
         -- Container Insights collection for the compute environment.
         ecsSettings: EcsSettings
+        -- Updates the Amazon EKS configuration for the compute environment. Only specify this
+        -- parameter if the compute environment's containerOrchestrationType is
+        -- EKS. Currently, the accessEntry setting is the only Amazon EKS configuration that
+        -- you can change after the compute environment is created. For more information, see Amazon EKS access entry
+        -- authentication in the Batch User Guide.
+        eksConfiguration: EksConfigurationUpdate
     end
 
     record UpdateComputeEnvironmentOutput

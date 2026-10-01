@@ -718,6 +718,12 @@ M.Index = schema.new({
             target_id = id.from(_N, "EncryptionConfiguration"),
             target = M.EncryptionConfiguration,
         }),
+        indexMode = schema.new({
+            id = id.from(_N, "Index", "indexMode"),
+            type = "string",
+            name = "indexMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -837,6 +843,12 @@ M.VectorBucket = schema.new({
             name = "encryptionConfiguration",
             target_id = id.from(_N, "EncryptionConfiguration"),
             target = M.EncryptionConfiguration,
+        }),
+        defaultIndexMode = schema.new({
+            id = id.from(_N, "VectorBucket", "defaultIndexMode"),
+            type = "string",
+            name = "defaultIndexMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1061,6 +1073,45 @@ M.ListIndexesOutput = schema.new({
             },
         }),
     },
+})
+
+M.UpdateIndexModeInput = schema.new({
+    id = id.from(_N, "UpdateIndexModeInput"),
+    type = "structure",
+    members = {
+        vectorBucketName = schema.new({
+            id = id.from(_N, "UpdateIndexModeInput", "vectorBucketName"),
+            type = "string",
+            name = "vectorBucketName",
+            target_id = prelude.String.id,
+        }),
+        indexName = schema.new({
+            id = id.from(_N, "UpdateIndexModeInput", "indexName"),
+            type = "string",
+            name = "indexName",
+            target_id = prelude.String.id,
+        }),
+        indexArn = schema.new({
+            id = id.from(_N, "UpdateIndexModeInput", "indexArn"),
+            type = "string",
+            name = "indexArn",
+            target_id = prelude.String.id,
+        }),
+        indexMode = schema.new({
+            id = id.from(_N, "UpdateIndexModeInput", "indexMode"),
+            type = "string",
+            name = "indexMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateIndexModeOutput = schema.new({
+    id = id.from(_N, "UpdateIndexModeOutput"),
+    type = "structure",
 })
 
 M.ListVectorsInput = schema.new({
@@ -1313,6 +1364,12 @@ M.QueryVectorsInput = schema.new({
             name = "filter",
             target_id = prelude.Document.id,
         }),
+        queryMode = schema.new({
+            id = id.from(_N, "QueryVectorsInput", "queryMode"),
+            type = "string",
+            name = "queryMode",
+            target_id = prelude.String.id,
+        }),
         returnMetadata = schema.new({
             id = id.from(_N, "QueryVectorsInput", "returnMetadata"),
             type = "boolean",
@@ -1515,6 +1572,39 @@ M.ListVectorBucketsOutput = schema.new({
             },
         }),
     },
+})
+
+M.PutVectorBucketDefaultIndexModeInput = schema.new({
+    id = id.from(_N, "PutVectorBucketDefaultIndexModeInput"),
+    type = "structure",
+    members = {
+        vectorBucketName = schema.new({
+            id = id.from(_N, "PutVectorBucketDefaultIndexModeInput", "vectorBucketName"),
+            type = "string",
+            name = "vectorBucketName",
+            target_id = prelude.String.id,
+        }),
+        vectorBucketArn = schema.new({
+            id = id.from(_N, "PutVectorBucketDefaultIndexModeInput", "vectorBucketArn"),
+            type = "string",
+            name = "vectorBucketArn",
+            target_id = prelude.String.id,
+        }),
+        defaultIndexMode = schema.new({
+            id = id.from(_N, "PutVectorBucketDefaultIndexModeInput", "defaultIndexMode"),
+            type = "string",
+            name = "defaultIndexMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutVectorBucketDefaultIndexModeOutput = schema.new({
+    id = id.from(_N, "PutVectorBucketDefaultIndexModeOutput"),
+    type = "structure",
 })
 
 M.PutVectorBucketPolicyInput = schema.new({
@@ -1809,6 +1899,18 @@ M.ListVectors = schema.operation({
     },
 })
 
+M.PutVectorBucketDefaultIndexMode = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "PutVectorBucketDefaultIndexMode"),
+    input = M.PutVectorBucketDefaultIndexModeInput,
+    output = M.PutVectorBucketDefaultIndexModeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/PutVectorBucketDefaultIndexMode" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.PutVectorBucketPolicy = schema.operation({
     id = id.from("com.amazonaws.s3vectors", "PutVectorBucketPolicy"),
     input = M.PutVectorBucketPolicyInput,
@@ -1863,6 +1965,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIndexMode = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "UpdateIndexMode"),
+    input = M.UpdateIndexModeInput,
+    output = M.UpdateIndexModeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateIndexMode" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -90,6 +90,8 @@ M.GatewayRules = schema.new({ type = "list", list_member = M.GatewayRuleDetail }
 
 M.CredentialProviderConfigurations = schema.new({ type = "list", list_member = M.CredentialProviderConfiguration })
 
+M.CertificateConfigurationList = schema.new({ type = "list", list_member = M.CertificateConfiguration })
+
 M.PrivateEndpointManagedResources = schema.new({ type = "list", list_member = M.ManagedResourceDetails })
 
 M.TargetSummaries = schema.new({ type = "list", list_member = M.TargetSummary })
@@ -6519,6 +6521,15 @@ M.DeleteConfigurationBundleOutput = schema.new({
     id = id.from(_N, "DeleteConfigurationBundleResponse"),
     type = "structure",
     members = {
+        bundleArn = schema.new({
+            id = id.from(_N, "DeleteConfigurationBundleOutput", "bundleArn"),
+            type = "string",
+            name = "bundleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
         bundleId = schema.new({
             id = id.from(_N, "DeleteConfigurationBundleOutput", "bundleId"),
             type = "string",
@@ -7106,6 +7117,9 @@ M.UpdateConfigurationBundleInput = schema.new({
             type = "string",
             name = "commitMessage",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
         createdBy = schema.new({
             id = id.from(_N, "UpdateConfigurationBundleInput", "createdBy"),
@@ -12373,6 +12387,65 @@ M.UpdateGatewayRuleOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+    },
+})
+
+M.S3CertificateConfiguration = schema.new({
+    id = id.from(_N, "S3CertificateConfiguration"),
+    type = "structure",
+    members = {
+        uri = schema.new({
+            id = id.from(_N, "S3CertificateConfiguration", "uri"),
+            type = "string",
+            name = "uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        bucketOwnerAccountId = schema.new({
+            id = id.from(_N, "S3CertificateConfiguration", "bucketOwnerAccountId"),
+            type = "string",
+            name = "bucketOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SecretsManagerCertificateConfiguration = schema.new({
+    id = id.from(_N, "SecretsManagerCertificateConfiguration"),
+    type = "structure",
+    members = {
+        secretArn = schema.new({
+            id = id.from(_N, "SecretsManagerCertificateConfiguration", "secretArn"),
+            type = "string",
+            name = "secretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CertificateConfiguration = schema.new({
+    id = id.from(_N, "CertificateConfiguration"),
+    type = "union",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "CertificateConfiguration", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "S3CertificateConfiguration"),
+            target = M.S3CertificateConfiguration,
+        }),
+        secretsManager = schema.new({
+            id = id.from(_N, "CertificateConfiguration", "secretsManager"),
+            type = "structure",
+            name = "secretsManager",
+            target_id = id.from(_N, "SecretsManagerCertificateConfiguration"),
+            target = M.SecretsManagerCertificateConfiguration,
         }),
     },
 })
@@ -28804,6 +28877,13 @@ M.CreateGatewayTargetInput = schema.new({
             target_id = id.from(_N, "PrivateEndpoint"),
             target = M.PrivateEndpoint,
         }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "CreateGatewayTargetInput", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
+        }),
     },
 })
 
@@ -28948,6 +29028,13 @@ M.CreateGatewayTargetOutput = schema.new({
             type = "string",
             name = "protocolType",
             target_id = prelude.String.id,
+        }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "CreateGatewayTargetOutput", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
         }),
     },
 })
@@ -29094,6 +29181,13 @@ M.GatewayTarget = schema.new({
             name = "protocolType",
             target_id = prelude.String.id,
         }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "GatewayTarget", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
+        }),
     },
 })
 
@@ -29239,6 +29333,13 @@ M.GetGatewayTargetOutput = schema.new({
             name = "protocolType",
             target_id = prelude.String.id,
         }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "GetGatewayTargetOutput", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
+        }),
     },
 })
 
@@ -29308,6 +29409,13 @@ M.UpdateGatewayTargetInput = schema.new({
             name = "privateEndpoint",
             target_id = id.from(_N, "PrivateEndpoint"),
             target = M.PrivateEndpoint,
+        }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "UpdateGatewayTargetInput", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
         }),
     },
 })
@@ -29453,6 +29561,13 @@ M.UpdateGatewayTargetOutput = schema.new({
             type = "string",
             name = "protocolType",
             target_id = prelude.String.id,
+        }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "UpdateGatewayTargetOutput", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
         }),
     },
 })

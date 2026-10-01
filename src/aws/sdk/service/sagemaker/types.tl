@@ -4150,6 +4150,18 @@ local record M
         ShapConfig: ClarifyShapConfig
     end
 
+    -- The external MySQL-compatible database that the Slurm accounting daemon (slurmdbd) connects to for a SageMaker HyperPod cluster. You provide the database credentials in an Amazon Web Services Secrets Manager secret instead of in the request.
+    record ClusterAccountingDatabase
+        -- The hostname or endpoint of the accounting database, such as the endpoint of an Amazon RDS for MySQL or Aurora MySQL database. The database must be reachable from the subnets and security groups that you configure for the cluster.
+        Endpoint: string
+        -- The port that the accounting database listens on. The default is 3306.
+        Port: number
+        -- The name of the database schema that stores the Slurm accounting data. The default is slurm_acct_db_ followed by the cluster ID from the cluster ARN, for example slurm_acct_db_a1b2c3d4e5f6.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the user name and password for the accounting database. The database user must be able to create the schema and to read from and write to it.
+        SecretArn: string
+    end
+
     -- The configurations that SageMaker uses when updating the AMI versions.
     record RollingDeploymentPolicy
         -- The maximum amount of instances in the cluster that SageMaker can update at a time.
@@ -4289,6 +4301,22 @@ local record M
         SlrAccessEntry: string
     end
 
+    enum DatabaseConfigurationRollbackStatus
+        "NotApplicable"
+        "Reverted"
+        "RevertFailed"
+    end
+
+    -- Metadata information about a change to the external Slurm accounting database of a HyperPod cluster.
+    record DatabaseConfigurationMetadata
+        -- Whether HyperPod restored the previous accounting database configuration after the change failed. Valid values: NotApplicable: The change failed before HyperPod modified the cluster, for example because the database could not be reached or rejected the credentials, so there was nothing to restore. Reverted: The change failed after it was applied, and HyperPod restored the previous configuration. The cluster continues to use the previous accounting database. RevertFailed: The change failed and HyperPod could not restore the previous configuration, so Slurm accounting on the cluster might not be working. This field is omitted when the change succeeds.
+        RollbackStatus: string
+        -- Additional information about a change that succeeded, such as an action to take on the cluster.
+        Advisory: string
+        -- An error message describing why the accounting database change failed, and how to resolve it.
+        FailureMessage: string
+    end
+
     -- The customer ENI and additional ENIs associated with a network interface category.
     record InstanceRequirementsEniConfiguration
         -- The ID of the customer-managed Elastic Network Interface (ENI) associated with the instance type category.
@@ -4343,6 +4371,31 @@ local record M
         FailureMessage: string
     end
 
+    enum SlurmHealthComponent
+        "Slurmdbd"
+    end
+
+    enum SlurmHealthReason
+        "DaemonDown"
+        "DaemonDisabled"
+        "DbUnreachable"
+    end
+
+    enum SlurmHealthStatus
+        "Healthy"
+        "Unhealthy"
+    end
+
+    -- Metadata information about the health of a Slurm component on the controller node of a HyperPod cluster.
+    record SlurmHealthMetadata
+        -- The Slurm component that the health information describes. The valid value is Slurmdbd, the Slurm accounting daemon.
+        Component: string
+        -- The health of the component. Valid values are Healthy and Unhealthy.
+        Status: string
+        -- The reason the component is unhealthy. Valid values: DaemonDown: The daemon is not running, so job accounting records are not being written. DaemonDisabled: The daemon is running and its accounting database is responding, but the daemon is not enabled to start automatically. Job accounting stops the next time the controller node restarts. DbUnreachable: The daemon is running, but its accounting database did not respond. Job accounting records might not be written. This field is omitted when the component is healthy.
+        Reason: string
+    end
+
     -- Metadata associated with a cluster event, which may include details about various resource types.
     record EventMetadata
         -- Metadata specific to cluster-level events.
@@ -4353,6 +4406,10 @@ local record M
         InstanceGroupScaling: InstanceGroupScalingMetadata
         -- Metadata specific to instance-level events.
         Instance: InstanceMetadata
+        -- Metadata specific to events about the external Slurm accounting database of the cluster.
+        DatabaseConfiguration: DatabaseConfigurationMetadata
+        -- Metadata specific to events about the health of the Slurm components on the controller node of the cluster.
+        SlurmHealth: SlurmHealthMetadata
     end
 
     -- Detailed information about a specific event, including event metadata.
@@ -4848,6 +4905,8 @@ local record M
     record ClusterOrchestratorSlurmConfig
         -- The strategy for managing partitions for the Slurm configuration. Valid values are Managed, Overwrite, and Merge.
         SlurmConfigStrategy: string
+        -- The external database that stores the Slurm accounting data for the cluster, such as job history, associations, and usage. When you omit this field, Slurm accounting uses a database on the cluster's controller node. This field is only supported for clusters using Continuous as the NodeProvisioningMode.
+        AccountingDatabase: ClusterAccountingDatabase
     end
 
     -- The type of orchestrator used for the SageMaker HyperPod cluster.

@@ -311,8 +311,8 @@ return
                                             authSchemes = {
                                                 {
                                                     signingRegion = "us-east-1",
-                                                    name = "sigv4",
                                                     signingName = "dynamodb",
+                                                    name = "sigv4",
                                                 },
                                             },
                                         },

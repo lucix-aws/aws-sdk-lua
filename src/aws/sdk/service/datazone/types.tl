@@ -8598,6 +8598,22 @@ local record M
         securityGroupIds: {string}
     end
 
+    enum NotifyOnState
+        "SUCCEEDED"
+        "FAILED"
+        "STOPPED"
+        "QUEUED"
+        "STARTING"
+        "RUNNING"
+        "STOPPING"
+    end
+
+    -- The notification configuration for a notebook run in Amazon SageMaker Unified Studio.
+    record NotificationConfig
+        -- Notebook run states that trigger notifications. Ordering is not significant.
+        notifyOn: {string}
+    end
+
     enum NotebookRunStatus
         "QUEUED"
         "STARTING"
@@ -8663,6 +8679,8 @@ local record M
         environmentConfiguration: EnvironmentConfig
         -- The storage configuration of the notebook run, including the Amazon Simple Storage Service path and KMS key ARN.
         storageConfiguration: StorageConfig
+        -- The notification configuration of the notebook run, including the notebook run states that trigger notifications.
+        notificationConfiguration: NotificationConfig
         -- The source that triggered the notebook run.
         triggerSource: TriggerSource
         -- The error details if the notebook run failed.
@@ -8752,6 +8770,8 @@ local record M
         networkConfiguration: NetworkConfig
         -- The timeout configuration for the notebook run. The default timeout is 720 minutes (12 hours) and the maximum is 1440 minutes (24 hours).
         timeoutConfiguration: TimeoutConfig
+        -- The notification configuration for the notebook run. Use this to specify the notebook run states that trigger notifications.
+        notificationConfiguration: NotificationConfig
         -- The source that triggered the notebook run.
         triggerSource: TriggerSource
         -- The metadata for the notebook run, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.
@@ -8791,6 +8811,8 @@ local record M
         environmentConfiguration: EnvironmentConfig
         -- The storage configuration of the notebook run, including the Amazon Simple Storage Service path and KMS key ARN.
         storageConfiguration: StorageConfig
+        -- The notification configuration of the notebook run, including the notebook run states that trigger notifications.
+        notificationConfiguration: NotificationConfig
         -- The source that triggered the notebook run.
         triggerSource: TriggerSource
         -- The error details if the notebook run failed.

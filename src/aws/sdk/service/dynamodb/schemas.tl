@@ -3436,154 +3436,6 @@ M.IncrementalExportSpecification = schema.new({
     },
 })
 
-M.ExportDescription = schema.new({
-    id = id.from(_N, "ExportDescription"),
-    type = "structure",
-    members = {
-        ExportArn = schema.new({
-            id = id.from(_N, "ExportDescription", "ExportArn"),
-            type = "string",
-            name = "ExportArn",
-            target_id = prelude.String.id,
-        }),
-        ExportStatus = schema.new({
-            id = id.from(_N, "ExportDescription", "ExportStatus"),
-            type = "string",
-            name = "ExportStatus",
-            target_id = prelude.String.id,
-        }),
-        StartTime = schema.new({
-            id = id.from(_N, "ExportDescription", "StartTime"),
-            type = "timestamp",
-            name = "StartTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        EndTime = schema.new({
-            id = id.from(_N, "ExportDescription", "EndTime"),
-            type = "timestamp",
-            name = "EndTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        ExportManifest = schema.new({
-            id = id.from(_N, "ExportDescription", "ExportManifest"),
-            type = "string",
-            name = "ExportManifest",
-            target_id = prelude.String.id,
-        }),
-        TableArn = schema.new({
-            id = id.from(_N, "ExportDescription", "TableArn"),
-            type = "string",
-            name = "TableArn",
-            target_id = prelude.String.id,
-        }),
-        TableId = schema.new({
-            id = id.from(_N, "ExportDescription", "TableId"),
-            type = "string",
-            name = "TableId",
-            target_id = prelude.String.id,
-        }),
-        ExportTime = schema.new({
-            id = id.from(_N, "ExportDescription", "ExportTime"),
-            type = "timestamp",
-            name = "ExportTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        ClientToken = schema.new({
-            id = id.from(_N, "ExportDescription", "ClientToken"),
-            type = "string",
-            name = "ClientToken",
-            target_id = prelude.String.id,
-        }),
-        S3Bucket = schema.new({
-            id = id.from(_N, "ExportDescription", "S3Bucket"),
-            type = "string",
-            name = "S3Bucket",
-            target_id = prelude.String.id,
-        }),
-        S3BucketOwner = schema.new({
-            id = id.from(_N, "ExportDescription", "S3BucketOwner"),
-            type = "string",
-            name = "S3BucketOwner",
-            target_id = prelude.String.id,
-        }),
-        S3Prefix = schema.new({
-            id = id.from(_N, "ExportDescription", "S3Prefix"),
-            type = "string",
-            name = "S3Prefix",
-            target_id = prelude.String.id,
-        }),
-        S3SseAlgorithm = schema.new({
-            id = id.from(_N, "ExportDescription", "S3SseAlgorithm"),
-            type = "string",
-            name = "S3SseAlgorithm",
-            target_id = prelude.String.id,
-        }),
-        S3SseKmsKeyId = schema.new({
-            id = id.from(_N, "ExportDescription", "S3SseKmsKeyId"),
-            type = "string",
-            name = "S3SseKmsKeyId",
-            target_id = prelude.String.id,
-        }),
-        FailureCode = schema.new({
-            id = id.from(_N, "ExportDescription", "FailureCode"),
-            type = "string",
-            name = "FailureCode",
-            target_id = prelude.String.id,
-        }),
-        FailureMessage = schema.new({
-            id = id.from(_N, "ExportDescription", "FailureMessage"),
-            type = "string",
-            name = "FailureMessage",
-            target_id = prelude.String.id,
-        }),
-        ExportFormat = schema.new({
-            id = id.from(_N, "ExportDescription", "ExportFormat"),
-            type = "string",
-            name = "ExportFormat",
-            target_id = prelude.String.id,
-        }),
-        BilledSizeBytes = schema.new({
-            id = id.from(_N, "ExportDescription", "BilledSizeBytes"),
-            type = "long",
-            name = "BilledSizeBytes",
-            target_id = prelude.Long.id,
-        }),
-        ItemCount = schema.new({
-            id = id.from(_N, "ExportDescription", "ItemCount"),
-            type = "long",
-            name = "ItemCount",
-            target_id = prelude.Long.id,
-        }),
-        ExportType = schema.new({
-            id = id.from(_N, "ExportDescription", "ExportType"),
-            type = "string",
-            name = "ExportType",
-            target_id = prelude.String.id,
-        }),
-        IncrementalExportSpecification = schema.new({
-            id = id.from(_N, "ExportDescription", "IncrementalExportSpecification"),
-            type = "structure",
-            name = "IncrementalExportSpecification",
-            target_id = id.from(_N, "IncrementalExportSpecification"),
-            target = M.IncrementalExportSpecification,
-        }),
-    },
-})
-
-M.DescribeExportOutput = schema.new({
-    id = id.from(_N, "DescribeExportOutput"),
-    type = "structure",
-    members = {
-        ExportDescription = schema.new({
-            id = id.from(_N, "DescribeExportOutput", "ExportDescription"),
-            type = "structure",
-            name = "ExportDescription",
-            target_id = id.from(_N, "ExportDescription"),
-            target = M.ExportDescription,
-        }),
-    },
-})
-
 M.ExportNotFoundException = schema.new({
     id = id.from(_N, "ExportNotFoundException"),
     type = "structure",
@@ -4593,103 +4445,6 @@ M.ExportConflictException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ExportTableToPointInTimeInput = schema.new({
-    id = id.from(_N, "ExportTableToPointInTimeInput"),
-    type = "structure",
-    members = {
-        TableArn = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "TableArn"),
-            type = "string",
-            name = "TableArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ExportTime = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "ExportTime"),
-            type = "timestamp",
-            name = "ExportTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        ClientToken = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "ClientToken"),
-            type = "string",
-            name = "ClientToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.IDEMPOTENCY_TOKEN] = {},
-            },
-        }),
-        S3Bucket = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "S3Bucket"),
-            type = "string",
-            name = "S3Bucket",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        S3BucketOwner = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "S3BucketOwner"),
-            type = "string",
-            name = "S3BucketOwner",
-            target_id = prelude.String.id,
-        }),
-        S3Prefix = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "S3Prefix"),
-            type = "string",
-            name = "S3Prefix",
-            target_id = prelude.String.id,
-        }),
-        S3SseAlgorithm = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "S3SseAlgorithm"),
-            type = "string",
-            name = "S3SseAlgorithm",
-            target_id = prelude.String.id,
-        }),
-        S3SseKmsKeyId = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "S3SseKmsKeyId"),
-            type = "string",
-            name = "S3SseKmsKeyId",
-            target_id = prelude.String.id,
-        }),
-        ExportFormat = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "ExportFormat"),
-            type = "string",
-            name = "ExportFormat",
-            target_id = prelude.String.id,
-        }),
-        ExportType = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "ExportType"),
-            type = "string",
-            name = "ExportType",
-            target_id = prelude.String.id,
-        }),
-        IncrementalExportSpecification = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeInput", "IncrementalExportSpecification"),
-            type = "structure",
-            name = "IncrementalExportSpecification",
-            target_id = id.from(_N, "IncrementalExportSpecification"),
-            target = M.IncrementalExportSpecification,
-        }),
-    },
-})
-
-M.ExportTableToPointInTimeOutput = schema.new({
-    id = id.from(_N, "ExportTableToPointInTimeOutput"),
-    type = "structure",
-    members = {
-        ExportDescription = schema.new({
-            id = id.from(_N, "ExportTableToPointInTimeOutput", "ExportDescription"),
-            type = "structure",
-            name = "ExportDescription",
-            target_id = id.from(_N, "ExportDescription"),
-            target = M.ExportDescription,
         }),
     },
 })
@@ -6896,6 +6651,47 @@ M.ExecuteStatementInput = schema.new({
     },
 })
 
+M.FilterSpecification = schema.new({
+    id = id.from(_N, "FilterSpecification"),
+    type = "structure",
+    members = {
+        FilterExpression = schema.new({
+            id = id.from(_N, "FilterSpecification", "FilterExpression"),
+            type = "string",
+            name = "FilterExpression",
+            target_id = prelude.String.id,
+        }),
+        ProjectionExpression = schema.new({
+            id = id.from(_N, "FilterSpecification", "ProjectionExpression"),
+            type = "string",
+            name = "ProjectionExpression",
+            target_id = prelude.String.id,
+        }),
+        KeyConditionExpression = schema.new({
+            id = id.from(_N, "FilterSpecification", "KeyConditionExpression"),
+            type = "string",
+            name = "KeyConditionExpression",
+            target_id = prelude.String.id,
+        }),
+        ExpressionAttributeNames = schema.new({
+            id = id.from(_N, "FilterSpecification", "ExpressionAttributeNames"),
+            type = "map",
+            name = "ExpressionAttributeNames",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ExpressionAttributeValues = schema.new({
+            id = id.from(_N, "FilterSpecification", "ExpressionAttributeValues"),
+            type = "map",
+            name = "ExpressionAttributeValues",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AttributeValue,
+        }),
+    },
+})
+
 M.Get = schema.new({
     id = id.from(_N, "Get"),
     type = "structure",
@@ -7127,6 +6923,237 @@ M.SearchResultItem = schema.new({
     },
 })
 
+M.ExportDescription = schema.new({
+    id = id.from(_N, "ExportDescription"),
+    type = "structure",
+    members = {
+        ExportArn = schema.new({
+            id = id.from(_N, "ExportDescription", "ExportArn"),
+            type = "string",
+            name = "ExportArn",
+            target_id = prelude.String.id,
+        }),
+        ExportStatus = schema.new({
+            id = id.from(_N, "ExportDescription", "ExportStatus"),
+            type = "string",
+            name = "ExportStatus",
+            target_id = prelude.String.id,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "ExportDescription", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "ExportDescription", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ExportManifest = schema.new({
+            id = id.from(_N, "ExportDescription", "ExportManifest"),
+            type = "string",
+            name = "ExportManifest",
+            target_id = prelude.String.id,
+        }),
+        TableArn = schema.new({
+            id = id.from(_N, "ExportDescription", "TableArn"),
+            type = "string",
+            name = "TableArn",
+            target_id = prelude.String.id,
+        }),
+        TableId = schema.new({
+            id = id.from(_N, "ExportDescription", "TableId"),
+            type = "string",
+            name = "TableId",
+            target_id = prelude.String.id,
+        }),
+        ExportTime = schema.new({
+            id = id.from(_N, "ExportDescription", "ExportTime"),
+            type = "timestamp",
+            name = "ExportTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "ExportDescription", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+        }),
+        S3Bucket = schema.new({
+            id = id.from(_N, "ExportDescription", "S3Bucket"),
+            type = "string",
+            name = "S3Bucket",
+            target_id = prelude.String.id,
+        }),
+        S3BucketOwner = schema.new({
+            id = id.from(_N, "ExportDescription", "S3BucketOwner"),
+            type = "string",
+            name = "S3BucketOwner",
+            target_id = prelude.String.id,
+        }),
+        S3Prefix = schema.new({
+            id = id.from(_N, "ExportDescription", "S3Prefix"),
+            type = "string",
+            name = "S3Prefix",
+            target_id = prelude.String.id,
+        }),
+        S3SseAlgorithm = schema.new({
+            id = id.from(_N, "ExportDescription", "S3SseAlgorithm"),
+            type = "string",
+            name = "S3SseAlgorithm",
+            target_id = prelude.String.id,
+        }),
+        S3SseKmsKeyId = schema.new({
+            id = id.from(_N, "ExportDescription", "S3SseKmsKeyId"),
+            type = "string",
+            name = "S3SseKmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        FailureCode = schema.new({
+            id = id.from(_N, "ExportDescription", "FailureCode"),
+            type = "string",
+            name = "FailureCode",
+            target_id = prelude.String.id,
+        }),
+        FailureMessage = schema.new({
+            id = id.from(_N, "ExportDescription", "FailureMessage"),
+            type = "string",
+            name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+        ExportFormat = schema.new({
+            id = id.from(_N, "ExportDescription", "ExportFormat"),
+            type = "string",
+            name = "ExportFormat",
+            target_id = prelude.String.id,
+        }),
+        BilledSizeBytes = schema.new({
+            id = id.from(_N, "ExportDescription", "BilledSizeBytes"),
+            type = "long",
+            name = "BilledSizeBytes",
+            target_id = prelude.Long.id,
+        }),
+        ItemCount = schema.new({
+            id = id.from(_N, "ExportDescription", "ItemCount"),
+            type = "long",
+            name = "ItemCount",
+            target_id = prelude.Long.id,
+        }),
+        ExportType = schema.new({
+            id = id.from(_N, "ExportDescription", "ExportType"),
+            type = "string",
+            name = "ExportType",
+            target_id = prelude.String.id,
+        }),
+        IncrementalExportSpecification = schema.new({
+            id = id.from(_N, "ExportDescription", "IncrementalExportSpecification"),
+            type = "structure",
+            name = "IncrementalExportSpecification",
+            target_id = id.from(_N, "IncrementalExportSpecification"),
+            target = M.IncrementalExportSpecification,
+        }),
+        FilterSpecification = schema.new({
+            id = id.from(_N, "ExportDescription", "FilterSpecification"),
+            type = "structure",
+            name = "FilterSpecification",
+            target_id = id.from(_N, "FilterSpecification"),
+            target = M.FilterSpecification,
+        }),
+    },
+})
+
+M.ExportTableToPointInTimeInput = schema.new({
+    id = id.from(_N, "ExportTableToPointInTimeInput"),
+    type = "structure",
+    members = {
+        TableArn = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "TableArn"),
+            type = "string",
+            name = "TableArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExportTime = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "ExportTime"),
+            type = "timestamp",
+            name = "ExportTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        S3Bucket = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "S3Bucket"),
+            type = "string",
+            name = "S3Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3BucketOwner = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "S3BucketOwner"),
+            type = "string",
+            name = "S3BucketOwner",
+            target_id = prelude.String.id,
+        }),
+        S3Prefix = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "S3Prefix"),
+            type = "string",
+            name = "S3Prefix",
+            target_id = prelude.String.id,
+        }),
+        S3SseAlgorithm = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "S3SseAlgorithm"),
+            type = "string",
+            name = "S3SseAlgorithm",
+            target_id = prelude.String.id,
+        }),
+        S3SseKmsKeyId = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "S3SseKmsKeyId"),
+            type = "string",
+            name = "S3SseKmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        ExportFormat = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "ExportFormat"),
+            type = "string",
+            name = "ExportFormat",
+            target_id = prelude.String.id,
+        }),
+        ExportType = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "ExportType"),
+            type = "string",
+            name = "ExportType",
+            target_id = prelude.String.id,
+        }),
+        IncrementalExportSpecification = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "IncrementalExportSpecification"),
+            type = "structure",
+            name = "IncrementalExportSpecification",
+            target_id = id.from(_N, "IncrementalExportSpecification"),
+            target = M.IncrementalExportSpecification,
+        }),
+        FilterSpecification = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeInput", "FilterSpecification"),
+            type = "structure",
+            name = "FilterSpecification",
+            target_id = id.from(_N, "FilterSpecification"),
+            target = M.FilterSpecification,
+        }),
+    },
+})
+
 M.KeysAndAttributes = schema.new({
     id = id.from(_N, "KeysAndAttributes"),
     type = "structure",
@@ -7211,6 +7238,20 @@ M.BatchExecuteStatementInput = schema.new({
     },
 })
 
+M.DescribeExportOutput = schema.new({
+    id = id.from(_N, "DescribeExportOutput"),
+    type = "structure",
+    members = {
+        ExportDescription = schema.new({
+            id = id.from(_N, "DescribeExportOutput", "ExportDescription"),
+            type = "structure",
+            name = "ExportDescription",
+            target_id = id.from(_N, "ExportDescription"),
+            target = M.ExportDescription,
+        }),
+    },
+})
+
 M.ExecuteTransactionInput = schema.new({
     id = id.from(_N, "ExecuteTransactionInput"),
     type = "structure",
@@ -7260,6 +7301,20 @@ M.ExecuteTransactionOutput = schema.new({
             name = "ConsumedCapacity",
             target_id = prelude.Document.id,
             list_member = M.ConsumedCapacity,
+        }),
+    },
+})
+
+M.ExportTableToPointInTimeOutput = schema.new({
+    id = id.from(_N, "ExportTableToPointInTimeOutput"),
+    type = "structure",
+    members = {
+        ExportDescription = schema.new({
+            id = id.from(_N, "ExportTableToPointInTimeOutput", "ExportDescription"),
+            type = "structure",
+            name = "ExportDescription",
+            target_id = id.from(_N, "ExportDescription"),
+            target = M.ExportDescription,
         }),
     },
 })

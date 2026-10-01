@@ -233,9 +233,18 @@ local record M
         WebsiteUrl: string
     end
 
+    enum PhoneNumberVerificationStatus
+        "PENDING"
+        "VERIFIED"
+        "UNVERIFIED"
+        "NOT_SUPPORTED"
+    end
+
     record GetContactInformationOutput
         -- Contains the details of the primary contact information associated with an Amazon Web Services account.
         ContactInformation: ContactInformation
+        -- The verification status of the phone number in the primary contact information associated with an Amazon Web Services account. Valid values: PENDING – A one-time passcode has been sent and is waiting to be submitted. VERIFIED – The phone number has been verified. UNVERIFIED – The phone number has not been verified. NOT_SUPPORTED – Phone number verification isn't available for this account.
+        VerificationStatus: string
     end
 
     record PutContactInformationInput
@@ -246,6 +255,28 @@ local record M
     end
 
     record PutContactInformationOutput
+    end
+
+    record SendPhoneNumberVerificationInput
+        -- Specifies the 12 digit account ID number of the Amazon Web Services account that you want to access or modify with this operation. If you do not specify this parameter, it defaults to the Amazon Web Services account of the identity used to call the operation. To use this parameter, the caller must be an identity in the organization's management account or a delegated administrator account, and the specified account ID must be a member account in the same organization. The organization must have all features enabled, and the organization must have trusted access enabled for the Account Management service, and optionally a delegated administrator account assigned. The management account can't specify its own AccountId; it must call the operation in standalone context by not including the AccountId parameter. To call this operation on an account that is not a member of an organization, then don't specify this parameter, and call the operation using an identity belonging to the account whose contacts you wish to retrieve or modify.
+        AccountId: string
+    end
+
+    record SendPhoneNumberVerificationOutput
+        -- The verification status of the phone number in the primary contact information after the one-time passcode is sent. Valid values: PENDING – A one-time passcode has been sent and is waiting to be submitted. VERIFIED – The phone number has been verified. UNVERIFIED – The phone number has not been verified. NOT_SUPPORTED – Phone number verification isn't available for this account.
+        Status: string
+    end
+
+    record VerifyPhoneNumberInput
+        -- Specifies the 12 digit account ID number of the Amazon Web Services account that you want to access or modify with this operation. If you do not specify this parameter, it defaults to the Amazon Web Services account of the identity used to call the operation. To use this parameter, the caller must be an identity in the organization's management account or a delegated administrator account, and the specified account ID must be a member account in the same organization. The organization must have all features enabled, and the organization must have trusted access enabled for the Account Management service, and optionally a delegated administrator account assigned. The management account can't specify its own AccountId; it must call the operation in standalone context by not including the AccountId parameter. To call this operation on an account that is not a member of an organization, then don't specify this parameter, and call the operation using an identity belonging to the account whose contacts you wish to retrieve or modify.
+        AccountId: string
+        -- The one-time passcode sent to the phone number in the primary contact information by the SendPhoneNumberVerification operation.
+        Otp: string
+    end
+
+    record VerifyPhoneNumberOutput
+        -- The verification status of the phone number in the primary contact information after the submitted one-time passcode is evaluated. Valid values: PENDING – A one-time passcode has been sent and is waiting to be submitted. VERIFIED – The phone number has been verified. UNVERIFIED – The phone number has not been verified. NOT_SUPPORTED – Phone number verification isn't available for this account.
+        Status: string
     end
 
     record GetPrimaryEmailInput

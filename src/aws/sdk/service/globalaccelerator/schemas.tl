@@ -78,6 +78,8 @@ M.CustomRoutingProtocols = schema.new({ type = "list", list_member = prelude.Str
 
 M.SocketAddresses = schema.new({ type = "list", list_member = M.SocketAddress })
 
+M.IpAddressDetails = schema.new({ type = "list", list_member = M.IpAddressDetail })
+
 M.Protocols = schema.new({ type = "list", list_member = prelude.String })
 
 M.AcceleratorEvent = schema.new({
@@ -95,6 +97,25 @@ M.AcceleratorEvent = schema.new({
             type = "timestamp",
             name = "Timestamp",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.IpAddressDetail = schema.new({
+    id = id.from(_N, "IpAddressDetail"),
+    type = "structure",
+    members = {
+        IpAddress = schema.new({
+            id = id.from(_N, "IpAddressDetail", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        NetworkZone = schema.new({
+            id = id.from(_N, "IpAddressDetail", "NetworkZone"),
+            type = "string",
+            name = "NetworkZone",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -121,6 +142,13 @@ M.IpSet = schema.new({
             type = "string",
             name = "IpAddressFamily",
             target_id = prelude.String.id,
+        }),
+        IpAddressDetails = schema.new({
+            id = id.from(_N, "IpSet", "IpAddressDetails"),
+            type = "list",
+            name = "IpAddressDetails",
+            target_id = prelude.Document.id,
+            list_member = M.IpAddressDetail,
         }),
     },
 })

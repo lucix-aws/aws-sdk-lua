@@ -22,6 +22,7 @@ local record M
         "END_ASSOCIATED_TASKS"
         "SUBMIT_AUTO_EVALUATION"
         "EXTRACT_INFORMATION"
+        "SEND_IN_APP_NOTIFICATION"
     end
 
     -- Information about an action.
@@ -3661,14 +3662,6 @@ local record M
         RulesExtractionDefinitions: {RulesExtractionDefinitionIdentifier}
     end
 
-    enum NotificationContentType
-        "PLAIN_TEXT"
-    end
-
-    enum NotificationDeliveryType
-        "EMAIL"
-    end
-
     -- The type of notification recipient.
     record NotificationRecipientType
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Connect Customer users with the specified tags will be notified.
@@ -3676,6 +3669,28 @@ local record M
         -- A list of user IDs. Supports variable injection of $.ContactLens.ContactEvaluation.Agent.AgentId
         -- for OnContactEvaluationSubmit event source.
         UserIds: {string}
+    end
+
+    -- Information about the send in-app notification action.
+    record SendInAppNotificationActionDefinition
+        -- Notification content. Supports variable injection. For more information, see
+        -- JSONPath reference
+        -- in the Connect Customer Administrators Guide.
+        Content: {string : string}
+        -- Notification recipient.
+        Recipient: NotificationRecipientType
+        -- Recipients to exclude from notification.
+        Exclusion: NotificationRecipientType
+        -- Notification priority.
+        Priority: string
+    end
+
+    enum NotificationContentType
+        "PLAIN_TEXT"
+    end
+
+    enum NotificationDeliveryType
+        "EMAIL"
     end
 
     -- Information about the send notification action.
@@ -3770,6 +3785,15 @@ local record M
         SubmitAutoEvaluationAction: SubmitAutoEvaluationActionDefinition
         -- Information about the extract information action.
         ExtractInformationAction: ExtractInformationActionDefinition
+        -- Information about the send in-app notification action.
+        -- Supported only for TriggerEventSource values: OnPostCallAnalysisAvailable |
+        -- OnRealTimeCallAnalysisAvailable | OnRealTimeChatAnalysisAvailable |
+        -- OnPostChatAnalysisAvailable | OnAfterCallWorkAvailable |
+        -- OnAfterChatWorkAvailable | OnEmailAnalysisAvailable |
+        -- OnContactEvaluationSubmit | OnCaseCreate | OnCaseUpdate |
+        -- OnSlaBreach | OnSchedulePublish | OnScheduleUpdate |
+        -- OnScheduleTimeOffRequestActivity
+        SendInAppNotificationAction: SendInAppNotificationActionDefinition
     end
 
     enum PreEvaluationFilterType
@@ -9099,7 +9123,7 @@ local record M
         -- Filter keys
         -- The following are valid filter keys for a GetMetricDataV2 request:
         -- AGENT | AI_AGENT | AI_AGENT_ID | AI_AGENT_NAME |
-        -- AI_AGENT_TYPE | AI_PROMPT | AI_PROMPT_ID |
+        -- AI_AGENT_NAME_VERSION | AI_AGENT_TYPE | AI_PROMPT | AI_PROMPT_ID |
         -- AI_PROMPT_NAME | AI_PROMPT_TYPE | AI_TOOL_ID |
         -- AI_TOOL_NAME | AI_TOOL_TYPE | AI_USE_CASE |
         -- AGENT_HIERARCHY_LEVEL_ONE | AGENT_HIERARCHY_LEVEL_TWO |
@@ -9184,7 +9208,7 @@ local record M
         -- RESOURCE_PUBLISHED_TIMESTAMP | ROUTING_PROFILE | ROUTING_STEP_EXPRESSION |
         -- SESSION_ID | TEST_CASE | TEST_CASE_EXECUTION_FAILURE_REASON |
         -- TEST_CASE_INVOCATION_METHOD | WEB_NOTIFICATION_TYPE
-        -- AI_AGENT_NAME_VERSION, AI_PROMPT_NAME_VERSION, and KNOWLEDGE_ARTICLE_NAME are valid groupings but not valid filters.
+        -- AI_PROMPT_NAME_VERSION and KNOWLEDGE_ARTICLE_NAME are valid groupings but not valid filters.
         -- API, SCHEDULE, and EVENT are the only valid filterValues for TEST_CASE_INVOCATION_METHOD.
         -- OBSERVE_EVENT, SEND_INSTRUCTION, ASSERT_DATA, and OVERRIDE_SYSTEM_BEHAVIOR are the only valid filterValues for
         -- TEST_CASE_EXECUTION_FAILURE_REASON
@@ -9367,170 +9391,163 @@ local record M
         -- Feature is a valid filter but not a valid grouping.
         -- ACTIVE_AI_AGENTS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing
-        -- Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
         -- UI name: Active AI Agents
         -- AI_HANDOFF_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: AI Handoff Rate
         -- AI_HANDOFFS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: AI Handoff Count
         -- AI_AGENT_INVOCATION_SUCCESS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
-        -- Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Agent Invocation Success
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_AGENT_INVOCATION_SUCCESS_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
-        -- Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Agent Invocation Success Rate
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_AGENT_INVOCATIONS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Agent Name Version, AI Use Case,
-        -- Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Agent Invocation Count
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_AGENT_RESPONSE_HELPFUL
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel,
-        -- Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Agent Response Helpful
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_AGENT_RESPONSE_NOT_HELPFUL
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel,
-        -- Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Agent Response Not Helpful
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_RESPONSE_COMPLETION_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: AI Response Completion Rate
         -- AI_INVOLVED_CONTACTS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: AI Involved Contacts
         -- AI_PROMPT_INVOCATION_SUCCESS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI
-        -- Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI
+        -- Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Prompt Invocation Success
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_PROMPT_INVOCATION_SUCCESS_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI
-        -- Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI
+        -- Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Prompt Invocation Success Rate
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_PROMPT_INVOCATIONS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI
-        -- Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI
+        -- Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Prompt Invocations
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_TOOL_INVOCATION_SUCCESS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI
-        -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI
+        -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Tool Invocation Success
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_TOOL_INVOCATION_SUCCESS_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI
-        -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI
+        -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Tool Invocation Success Rate
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_TOOL_INVOCATIONS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI
-        -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI
+        -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Tool Invocations
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AVG_AI_AGENT_CONVERSATION_TURNS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
-        -- Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
         -- UI name: Average AI Agent Conversation Turns
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AVG_AI_CONVERSATION_TURNS
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Average AI Conversation Turns
         -- AVG_AI_PROMPT_INVOCATION_LATENCY
         -- Unit: Milliseconds
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI
-        -- Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Prompt, AI
+        -- Prompt ID, AI Prompt Name, AI Prompt Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: Average AI Prompt Invocation Latency
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AVG_AI_TOOL_INVOCATION_LATENCY
         -- Unit: Milliseconds
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI
-        -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID, AI
+        -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: Average AI Tool Invocation Latency
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_TOOL_PARAMETER_ACCURACY
         -- Unit: Double
-        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type,
-        -- AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID,
+        -- AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Tool Parameter Accuracy
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_TOOL_SELECTION_ACCURACY
         -- Unit: Double
-        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type,
-        -- AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID,
+        -- AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Tool Selection Accuracy
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_TOOL_UTILIZATION_ACCURACY
         -- Unit: Double
-        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type,
-        -- AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Tool ID,
+        -- AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
         -- UI name: AI Tool Utilization Accuracy
-        -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- COMPLETENESS_SCORE
         -- Unit: Double
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue,
-        -- Routing Profile, Session ID
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Completeness Score
         -- FAITHFULNESS_SCORE
         -- Unit: Double
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue,
-        -- Routing Profile, Session ID
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Faithfulness Score
         -- GOAL_SUCCESS_RATE
         -- Unit: Double
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue,
-        -- Routing Profile, Session ID
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Goal Success Rate
         -- KNOWLEDGE_CONTENT_REFERENCES
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Use Case, Channel, Knowledge Base
-        -- Name, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Knowledge Base Name, Queue, Routing Profile, Session ID
         -- UI name: Knowledge Content References
         -- PROACTIVE_INTENT_ENGAGEMENT_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Proactive Intent Engagement Rate
         -- PROACTIVE_INTENT_RESPONSE_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Proactive Intent Response Rate
         -- PROACTIVE_INTENTS_ANSWERED
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Proactive Intents Answered
         -- PROACTIVE_INTENTS_DETECTED
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Proactive Intents Detected
         -- PROACTIVE_INTENTS_ENGAGED
         -- Unit: Count
-        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile,
+        -- Session ID
         -- UI name: Proactive Intents Engaged
         -- AVG_HOLD_TIME
         -- Unit: Seconds
@@ -9999,6 +10016,33 @@ local record M
         -- Valid groupings and filters: Campaign, Channel, contact/segmentAttributes/connect:Subtype, Campaign Execution
         -- Timestamp
         -- UI name: Recipients interacted
+        -- AI_AGENT_COLLABORATORS
+        -- Unit: Count
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
+        -- UI name: AI Agent Collaborators
+        -- AI_AGENT_COLLABORATION_INVOCATIONS
+        -- Unit: Count
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
+        -- UI name: AI Agent Collaboration Invocations
+        -- AI_AGENT_SELECTION_ACCURACY
+        -- Unit: Double
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
+        -- UI name: AI Agent Selection Accuracy
+        -- This metric is available as part of Connect Customer AI.
+        -- AVG_AI_AGENT_INVOCATION_LATENCY
+        -- Unit: Milliseconds
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
+        -- UI name: Average AI Agent Invocation Latency
+        -- CONTEXT_FIDELITY_SCORE
+        -- Unit: Double
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
+        -- Channel, Queue, Routing Profile, Session ID
+        -- UI name: Context Fidelity Score
+        -- This metric is available as part of Connect Customer AI.
         -- RECIPIENTS_TARGETED
         -- This metric is only available for outbound campaigns initiated using a customer segment. It is not available
         -- for event triggered campaigns.
@@ -16094,6 +16138,9 @@ local record M
         -- If you set the attribute type as MESSAGE_STREAMING, you need to update the Lex bot alias resource
         -- based policy to include the lex:RecognizeMessageAsync action for the connect instance ARN
         -- resource.
+        -- If you set the attribute type AUTO_MUTE_AGENT_ON_HOLD to true, the system
+        -- automatically mutes agents while they're on hold and unmutes them when they resume the contact. Agents can't
+        -- change their mute state while on hold.
         AttributeType: string
         -- The value for the attribute. Maximum character limit is 100.
         Value: string
@@ -16160,7 +16207,8 @@ local record M
         InstanceId: string
         -- The unique identifier for the notification to update.
         NotificationId: string
-        -- The updated localized content of the notification. A map of locale codes and values. Maximum 500 characters per locale.
+        -- The updated localized content of the notification. A map of locale codes and values. Maximum 500 visible
+        -- characters per locale.
         Content: {string : string}
     end
 
@@ -17792,17 +17840,21 @@ local record M
         -- A list of participant types to automatically disconnect when the end customer ends the chat session, allowing them to continue through disconnect flows such as surveys or feedback forms.
         DisconnectOnCustomerExit: {string}
         -- The types of connection information to return in the response. This parameter is optional.
-        -- Specify CONNECTION_CREDENTIALS to receive a connection token. Specify WEBSOCKET to
-        -- receive a websocket URL. You can specify both. No other value returns connection information.
+        -- To receive connection information, specify one or both of the following values:
+        -- CONNECTION_CREDENTIALS: Returns a connection token.
+        -- WEBSOCKET: Returns a websocket URL.
+        -- WEBSOCKET and CONNECTION_CREDENTIALS are the values this operation acts on. No other
+        -- value returns connection information.
         -- Request WEBSOCKET to get a URL the participant connects to directly. You do not need to call CreateParticipantConnection for it. Request CONNECTION_CREDENTIALS on its own and the response
         -- returns a connection token but no websocket URL.
         -- If you omit this parameter, the response has no connection information.
-        -- If the information you request cannot be returned, StartChatContact returns an error rather than a response that
-        -- omits it.
+        -- When you start a new chat contact and the information you request cannot be returned, StartChatContact returns
+        -- an error rather than a response that omits it. When you retry a request with the same ClientToken, the
+        -- response repeats the original contact and can omit a websocket URL if the chat has already ended.
         ConnectionTypes: {string}
         -- The streaming configuration, such as the Amazon SNS streaming endpoint. Use it to initiate real-time
         -- message streaming when the chat is created. This parameter is optional.
-        -- When you set this parameter, the response includes StreamingId. You do not need to call StartContactStreaming.
+        -- Setting this parameter returns a StreamingId in the response, and you do not need to call StartContactStreaming.
         -- This parameter starts message streaming only. The response does not include connection information, and setting
         -- this parameter does not remove the need to call CreateParticipantConnection.
         ChatStreamingConfiguration: ChatStreamingConfiguration

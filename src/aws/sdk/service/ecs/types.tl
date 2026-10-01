@@ -3251,7 +3251,7 @@ local record M
         cpu: string
         -- The amount of memory (in MiB) used by the task. This parameter determines the memory allocation for each task in the Express service. The default value for an express service is 512 MiB.
         memory: string
-        -- The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the default is X86_64. Valid values: X86_64 - The x86 64-bit architecture. ARM64 - The 64-bit ARM architecture. Make sure that the container image that you specify supports the architecture that you choose. The operating system family for an Express service is always LINUX. You can't specify cpuArchitecture when you also specify taskDefinitionArn, because this value applies only to a task definition that Amazon ECS registers on your behalf.
+        -- The CPU architecture that the task runs on. If you don't specify a value, the default is X86_64. Valid values: X86_64 - The x86 64-bit architecture. ARM64 - The 64-bit ARM architecture. Ensure that the container image you specify supports the architecture you choose. The operating system family for an Express service is always LINUX. You can't specify cpuArchitecture together with taskDefinitionArn.
         cpuArchitecture: string
         -- The auto-scaling configuration for the Express service. This defines how the service automatically adjusts the number of running tasks based on demand. You can specify the minimum and maximum number of tasks, the scaling metric (CPU utilization, memory utilization, or request count per target), and the target value for the metric. If not specified, the default target value for an Express service is 60.
         scalingTarget: ExpressGatewayScalingTarget
@@ -3283,7 +3283,7 @@ local record M
         cpu: string
         -- The memory allocation for tasks in this service revision.
         memory: string
-        -- The CPU architecture that the tasks in this service revision run on. This is the architecture from the task definition that the service revision uses, so it reflects the default or the previously configured architecture when the request that created the revision didn't specify one. Valid values: X86_64 - The x86 64-bit architecture. ARM64 - The 64-bit ARM architecture. This value isn't returned when the task definition for the service revision doesn't specify a runtime platform. Because the architecture comes from each service revision's own task definition, revisions of the same service can report different architectures.
+        -- The CPU architecture that the task runs on. Valid values: X86_64 - The x86 64-bit architecture. ARM64 - The 64-bit ARM architecture. Different service revisions can report different architectures. This value isn't returned when the service uses a customer-provided task definition that doesn't specify a CPU architecture.
         cpuArchitecture: string
         -- The network configuration for tasks in this service revision.
         networkConfiguration: ExpressGatewayServiceNetworkConfiguration
@@ -3614,6 +3614,16 @@ local record M
         managedEBSVolume: ServiceManagedEBSVolumeConfiguration
     end
 
+    -- The advanced settings for VPC Lattice used in blue/green deployments. Specify the alternate target group and listener rules required for traffic shifting during blue/green deployments. For more information, see Required resources for Amazon ECS blue/green deployments in the Amazon Elastic Container Service Developer Guide.
+    record VpcLatticeAdvancedConfiguration
+        -- The Amazon Resource Name (ARN) of the alternate target group associated with the VPC Lattice Configuration for Amazon ECS blue/green deployments.
+        alternateTargetGroupArn: string
+        -- The Amazon Resource Name (ARN) that identifies the production listener rule or listener for routing production traffic.
+        productionListenerRule: string
+        -- The Amazon Resource Name (ARN) that identifies the test listener rule or listener for routing test traffic.
+        testListenerRule: string
+    end
+
     -- The VPC Lattice configuration for your service that holds the information for the target group(s) Amazon ECS tasks will be registered to.
     record VpcLatticeConfiguration
         -- The ARN of the IAM role to associate with this VPC Lattice configuration. This is the Amazon ECS infrastructure IAM role that is used to manage your VPC Lattice infrastructure.
@@ -3622,6 +3632,7 @@ local record M
         targetGroupArn: string
         -- The name of the port mapping to register in the VPC Lattice target group. This is the name of the portMapping you defined in your task definition.
         portName: string
+        advancedConfiguration: VpcLatticeAdvancedConfiguration
     end
 
     record CreateServiceInput
@@ -4104,7 +4115,7 @@ local record M
         cpu: string
         -- The amount of memory (in MiB) used by the task.
         memory: string
-        -- The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the service keeps the architecture that it currently runs on. Valid values: X86_64 - The x86 64-bit architecture. ARM64 - The 64-bit ARM architecture. Changing the architecture starts a new deployment that replaces the running tasks. Make sure that the container image that the service uses supports the architecture that you choose. The operating system family for an Express service is always LINUX. You can't specify cpuArchitecture when you also specify taskDefinitionArn, because this value applies only to a task definition that Amazon ECS registers on your behalf.
+        -- The CPU architecture that the task runs on. If you don't specify a value, the service keeps its current architecture. Valid values: X86_64 - The x86 64-bit architecture. ARM64 - The 64-bit ARM architecture. Changing the architecture starts a new deployment that replaces the running tasks. Ensure that the container image you specify supports the architecture you choose. The operating system family for an Express service is always LINUX. You can't specify cpuArchitecture together with taskDefinitionArn.
         cpuArchitecture: string
         -- The auto-scaling configuration for the Express service.
         scalingTarget: ExpressGatewayScalingTarget
@@ -4439,10 +4450,20 @@ local record M
         productionListenerRule: string
     end
 
+    -- The resolved VPC Lattice configuration for a service revision. This includes information about which target groups serve traffic and which listener rules direct traffic to them.
+    record ServiceRevisionVpcLatticeConfiguration
+        -- The Amazon Resource Name (ARN) of the target group associated with the service revision.
+        targetGroupArn: string
+        -- The Amazon Resource Name (ARN) of the production listener rule or listener that directs traffic to the target group associated with the service revision.
+        productionListenerRule: string
+    end
+
     -- The resolved configuration for a service revision, which contains the actual resources your service revision uses, such as which target groups serve traffic.
     record ResolvedConfiguration
         -- The resolved load balancer configuration for the service revision. This includes information about which target groups serve traffic and which listener rules direct traffic to them.
         loadBalancers: {ServiceRevisionLoadBalancer}
+        -- The resolved VPC Lattice configuration for the service revision. This includes information about which target groups serve traffic and which listener rules direct traffic to them.
+        vpcLatticeConfigurations: {ServiceRevisionVpcLatticeConfiguration}
     end
 
     -- Information about the service revision. A service revision contains a record of the workload configuration Amazon ECS is attempting to deploy. Whenever you create or deploy a service, Amazon ECS automatically creates and captures the configuration that you're trying to deploy in the service revision. For information about service revisions, see Amazon ECS service revisions in the Amazon Elastic Container Service Developer Guide .

@@ -1080,6 +1080,28 @@ M.EcsSettings = schema.new({
     },
 })
 
+M.EksAccessEntry = schema.new({
+    id = id.from(_N, "EksAccessEntry"),
+    type = "structure",
+    members = {
+        desiredState = schema.new({
+            id = id.from(_N, "EksAccessEntry", "desiredState"),
+            type = "string",
+            name = "desiredState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "EksAccessEntry", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EksConfiguration = schema.new({
     id = id.from(_N, "EksConfiguration"),
     type = "structure",
@@ -1101,6 +1123,13 @@ M.EksConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        accessEntry = schema.new({
+            id = id.from(_N, "EksConfiguration", "accessEntry"),
+            type = "structure",
+            name = "accessEntry",
+            target_id = id.from(_N, "EksAccessEntry"),
+            target = M.EksAccessEntry,
         }),
     },
 })
@@ -8250,6 +8279,20 @@ M.ComputeResourceUpdate = schema.new({
     },
 })
 
+M.EksConfigurationUpdate = schema.new({
+    id = id.from(_N, "EksConfigurationUpdate"),
+    type = "structure",
+    members = {
+        accessEntry = schema.new({
+            id = id.from(_N, "EksConfigurationUpdate", "accessEntry"),
+            type = "structure",
+            name = "accessEntry",
+            target_id = id.from(_N, "EksAccessEntry"),
+            target = M.EksAccessEntry,
+        }),
+    },
+})
+
 M.UpdateComputeEnvironmentInput = schema.new({
     id = id.from(_N, "UpdateComputeEnvironmentRequest"),
     type = "structure",
@@ -8307,6 +8350,13 @@ M.UpdateComputeEnvironmentInput = schema.new({
             name = "ecsSettings",
             target_id = id.from(_N, "EcsSettings"),
             target = M.EcsSettings,
+        }),
+        eksConfiguration = schema.new({
+            id = id.from(_N, "UpdateComputeEnvironmentInput", "eksConfiguration"),
+            type = "structure",
+            name = "eksConfiguration",
+            target_id = id.from(_N, "EksConfigurationUpdate"),
+            target = M.EksConfigurationUpdate,
         }),
     },
 })
