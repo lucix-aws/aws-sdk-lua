@@ -766,6 +766,62 @@ local record M
         healthServiceAccessStatusForOrganization: string
     end
 
+    -- A filter for narrowing down service lifecycle results.
+    record ServiceLifecycleFilter
+        -- The Amazon Web Services service name to filter by.
+        service: string
+    end
+
+    record DescribeServiceLifecycleInput
+        -- Values to narrow the results returned.
+        filter: ServiceLifecycleFilter
+        -- If the results of a search are large, only a portion of the
+        -- results are returned, and a nextToken pagination token is returned in the response. To
+        -- retrieve the next batch of results, reissue the search request and include the returned token.
+        -- When all results have been returned, the response does not contain a pagination token value.
+        nextToken: string
+        -- The maximum number of items to return in one batch, between 1 and 20, inclusive.
+        maxResults: number
+    end
+
+    -- A lifecycle event for an Amazon Web Services service version, such as end-of-support or end-of-life.
+    record LifecycleEvent
+        -- The type of lifecycle event (for example, end-of-support, end-of-life).
+        lifecycleEventType: string
+        -- The date of the lifecycle event.
+        date: number
+        -- The Amazon Web Services Regions affected by this lifecycle event.
+        regions: {string}
+        -- The potential impact risks associated with this lifecycle event.
+        impactRisks: {string}
+        -- A description of the lifecycle event.
+        description: string
+    end
+
+    -- Contains lifecycle information for an Amazon Web Services service version, including lifecycle events and version recommendations.
+    record ServiceLifecycle
+        -- The name of the Amazon Web Services service.
+        service: string
+        -- The version of the service.
+        version: string
+        -- A human-readable title for the lifecycle entry.
+        title: string
+        -- The recommended version to upgrade to.
+        recommendedVersion: string
+        -- The list of lifecycle events for this service version.
+        lifecycleEvents: {LifecycleEvent}
+    end
+
+    record DescribeServiceLifecycleOutput
+        -- The list of service lifecycle entries matching the filter criteria.
+        serviceLifecycles: {ServiceLifecycle}
+        -- If the results of a search are large, only a portion of the
+        -- results are returned, and a nextToken pagination token is returned in the response. To
+        -- retrieve the next batch of results, reissue the search request and include the returned token.
+        -- When all results have been returned, the response does not contain a pagination token value.
+        nextToken: string
+    end
+
     -- EnableHealthServiceAccessForOrganization is already in progress. Wait for the
     -- action to complete before trying again. To get the current status, use the DescribeHealthServiceStatusForOrganization operation.
     record ConcurrentModificationException

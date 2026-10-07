@@ -664,6 +664,8 @@ M.GeocodePreferenceList = schema.new({ type = "list", list_member = M.GeocodePre
 
 M.AggregationSortConfigurationList = schema.new({ type = "list", list_member = M.AggregationSortConfiguration })
 
+M.HierarchyFilterLevelList = schema.new({ type = "list", list_member = M.HierarchyFilterLevel })
+
 M.ColumnNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ColumnSemanticPropertyList = schema.new({ type = "list", list_member = M.ColumnSemanticProperty })
@@ -717,6 +719,10 @@ M.SheetLayoutGroupList = schema.new({ type = "list", list_member = M.SheetLayout
 M.HeaderFooterSectionConfigurationList = schema.new({ type = "list", list_member = M.HeaderFooterSectionConfiguration })
 
 M.BodySectionConfigurationList = schema.new({ type = "list", list_member = M.BodySectionConfiguration })
+
+M.HierarchyValuesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.HierarchyFilterNodeList = schema.new({ type = "list", list_member = M.HierarchyFilterNode })
 
 M.FilteredVisualsList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -4326,6 +4332,167 @@ M.DefaultFilterDropDownControlOptions = schema.new({
     },
 })
 
+M.ControlTitleFormatText = schema.new({
+    id = id.from(_N, "ControlTitleFormatText"),
+    type = "structure",
+    members = {
+        PlainText = schema.new({
+            id = id.from(_N, "ControlTitleFormatText", "PlainText"),
+            type = "string",
+            name = "PlainText",
+            target_id = prelude.String.id,
+        }),
+        RichText = schema.new({
+            id = id.from(_N, "ControlTitleFormatText", "RichText"),
+            type = "string",
+            name = "RichText",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HierarchyFilterDropDownControlDisplayOptions = schema.new({
+    id = id.from(_N, "HierarchyFilterDropDownControlDisplayOptions"),
+    type = "structure",
+    members = {
+        TitleOptions = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControlDisplayOptions", "TitleOptions"),
+            type = "structure",
+            name = "TitleOptions",
+            target_id = id.from(_N, "LabelOptions"),
+            target = M.LabelOptions,
+        }),
+        InfoIconLabelOptions = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControlDisplayOptions", "InfoIconLabelOptions"),
+            type = "structure",
+            name = "InfoIconLabelOptions",
+            target_id = id.from(_N, "SheetControlInfoIconLabelOptions"),
+            target = M.SheetControlInfoIconLabelOptions,
+        }),
+    },
+})
+
+M.DefaultHierarchyFilterDropDownControlOptions = schema.new({
+    id = id.from(_N, "DefaultHierarchyFilterDropDownControlOptions"),
+    type = "structure",
+    members = {
+        DisplayOptions = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterDropDownControlOptions", "DisplayOptions"),
+            type = "structure",
+            name = "DisplayOptions",
+            target_id = id.from(_N, "HierarchyFilterDropDownControlDisplayOptions"),
+            target = M.HierarchyFilterDropDownControlDisplayOptions,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterDropDownControlOptions", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        CommitMode = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterDropDownControlOptions", "CommitMode"),
+            type = "string",
+            name = "CommitMode",
+            target_id = prelude.String.id,
+        }),
+        ControlSortConfigurations = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterDropDownControlOptions", "ControlSortConfigurations"),
+            type = "list",
+            name = "ControlSortConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ControlSortConfiguration,
+        }),
+        ControlTitleFormatText = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterDropDownControlOptions", "ControlTitleFormatText"),
+            type = "structure",
+            name = "ControlTitleFormatText",
+            target_id = id.from(_N, "ControlTitleFormatText"),
+            target = M.ControlTitleFormatText,
+        }),
+    },
+})
+
+M.HierarchyFilterListControlSearchOptions = schema.new({
+    id = id.from(_N, "HierarchyFilterListControlSearchOptions"),
+    type = "structure",
+    members = {
+        Visibility = schema.new({
+            id = id.from(_N, "HierarchyFilterListControlSearchOptions", "Visibility"),
+            type = "string",
+            name = "Visibility",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HierarchyFilterListControlDisplayOptions = schema.new({
+    id = id.from(_N, "HierarchyFilterListControlDisplayOptions"),
+    type = "structure",
+    members = {
+        TitleOptions = schema.new({
+            id = id.from(_N, "HierarchyFilterListControlDisplayOptions", "TitleOptions"),
+            type = "structure",
+            name = "TitleOptions",
+            target_id = id.from(_N, "LabelOptions"),
+            target = M.LabelOptions,
+        }),
+        InfoIconLabelOptions = schema.new({
+            id = id.from(_N, "HierarchyFilterListControlDisplayOptions", "InfoIconLabelOptions"),
+            type = "structure",
+            name = "InfoIconLabelOptions",
+            target_id = id.from(_N, "SheetControlInfoIconLabelOptions"),
+            target = M.SheetControlInfoIconLabelOptions,
+        }),
+        SearchOptions = schema.new({
+            id = id.from(_N, "HierarchyFilterListControlDisplayOptions", "SearchOptions"),
+            type = "structure",
+            name = "SearchOptions",
+            target_id = id.from(_N, "HierarchyFilterListControlSearchOptions"),
+            target = M.HierarchyFilterListControlSearchOptions,
+        }),
+    },
+})
+
+M.DefaultHierarchyFilterListControlOptions = schema.new({
+    id = id.from(_N, "DefaultHierarchyFilterListControlOptions"),
+    type = "structure",
+    members = {
+        DisplayOptions = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterListControlOptions", "DisplayOptions"),
+            type = "structure",
+            name = "DisplayOptions",
+            target_id = id.from(_N, "HierarchyFilterListControlDisplayOptions"),
+            target = M.HierarchyFilterListControlDisplayOptions,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterListControlOptions", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        CommitMode = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterListControlOptions", "CommitMode"),
+            type = "string",
+            name = "CommitMode",
+            target_id = prelude.String.id,
+        }),
+        ControlSortConfigurations = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterListControlOptions", "ControlSortConfigurations"),
+            type = "list",
+            name = "ControlSortConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ControlSortConfiguration,
+        }),
+        ControlTitleFormatText = schema.new({
+            id = id.from(_N, "DefaultHierarchyFilterListControlOptions", "ControlTitleFormatText"),
+            type = "structure",
+            name = "ControlTitleFormatText",
+            target_id = id.from(_N, "ControlTitleFormatText"),
+            target = M.ControlTitleFormatText,
+        }),
+    },
+})
+
 M.ListControlSearchOptions = schema.new({
     id = id.from(_N, "ListControlSearchOptions"),
     type = "structure",
@@ -4682,24 +4849,19 @@ M.DefaultFilterControlOptions = schema.new({
             target_id = id.from(_N, "DefaultRelativeDateTimeControlOptions"),
             target = M.DefaultRelativeDateTimeControlOptions,
         }),
-    },
-})
-
-M.ControlTitleFormatText = schema.new({
-    id = id.from(_N, "ControlTitleFormatText"),
-    type = "structure",
-    members = {
-        PlainText = schema.new({
-            id = id.from(_N, "ControlTitleFormatText", "PlainText"),
-            type = "string",
-            name = "PlainText",
-            target_id = prelude.String.id,
+        DefaultHierarchyList = schema.new({
+            id = id.from(_N, "DefaultFilterControlOptions", "DefaultHierarchyList"),
+            type = "structure",
+            name = "DefaultHierarchyList",
+            target_id = id.from(_N, "DefaultHierarchyFilterListControlOptions"),
+            target = M.DefaultHierarchyFilterListControlOptions,
         }),
-        RichText = schema.new({
-            id = id.from(_N, "ControlTitleFormatText", "RichText"),
-            type = "string",
-            name = "RichText",
-            target_id = prelude.String.id,
+        DefaultHierarchyDropdown = schema.new({
+            id = id.from(_N, "DefaultFilterControlOptions", "DefaultHierarchyDropdown"),
+            type = "structure",
+            name = "DefaultHierarchyDropdown",
+            target_id = id.from(_N, "DefaultHierarchyFilterDropDownControlOptions"),
+            target = M.DefaultHierarchyFilterDropDownControlOptions,
         }),
     },
 })
@@ -4776,6 +4938,23 @@ M.CategoryFilter = schema.new({
             name = "DefaultFilterControlConfiguration",
             target_id = id.from(_N, "DefaultFilterControlConfiguration"),
             target = M.DefaultFilterControlConfiguration,
+        }),
+    },
+})
+
+M.HierarchyFilterLevel = schema.new({
+    id = id.from(_N, "HierarchyFilterLevel"),
+    type = "structure",
+    members = {
+        Column = schema.new({
+            id = id.from(_N, "HierarchyFilterLevel", "Column"),
+            type = "structure",
+            name = "Column",
+            target_id = id.from(_N, "ColumnIdentifier"),
+            target = M.ColumnIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -5468,69 +5647,6 @@ M.TopBottomFilter = schema.new({
     },
 })
 
-M.Filter = schema.new({
-    id = id.from(_N, "Filter"),
-    type = "structure",
-    members = {
-        CategoryFilter = schema.new({
-            id = id.from(_N, "Filter", "CategoryFilter"),
-            type = "structure",
-            name = "CategoryFilter",
-            target_id = id.from(_N, "CategoryFilter"),
-            target = M.CategoryFilter,
-        }),
-        NumericRangeFilter = schema.new({
-            id = id.from(_N, "Filter", "NumericRangeFilter"),
-            type = "structure",
-            name = "NumericRangeFilter",
-            target_id = id.from(_N, "NumericRangeFilter"),
-            target = M.NumericRangeFilter,
-        }),
-        NumericEqualityFilter = schema.new({
-            id = id.from(_N, "Filter", "NumericEqualityFilter"),
-            type = "structure",
-            name = "NumericEqualityFilter",
-            target_id = id.from(_N, "NumericEqualityFilter"),
-            target = M.NumericEqualityFilter,
-        }),
-        TimeEqualityFilter = schema.new({
-            id = id.from(_N, "Filter", "TimeEqualityFilter"),
-            type = "structure",
-            name = "TimeEqualityFilter",
-            target_id = id.from(_N, "TimeEqualityFilter"),
-            target = M.TimeEqualityFilter,
-        }),
-        TimeRangeFilter = schema.new({
-            id = id.from(_N, "Filter", "TimeRangeFilter"),
-            type = "structure",
-            name = "TimeRangeFilter",
-            target_id = id.from(_N, "TimeRangeFilter"),
-            target = M.TimeRangeFilter,
-        }),
-        RelativeDatesFilter = schema.new({
-            id = id.from(_N, "Filter", "RelativeDatesFilter"),
-            type = "structure",
-            name = "RelativeDatesFilter",
-            target_id = id.from(_N, "RelativeDatesFilter"),
-            target = M.RelativeDatesFilter,
-        }),
-        TopBottomFilter = schema.new({
-            id = id.from(_N, "Filter", "TopBottomFilter"),
-            type = "structure",
-            name = "TopBottomFilter",
-            target_id = id.from(_N, "TopBottomFilter"),
-            target = M.TopBottomFilter,
-        }),
-        NestedFilter = schema.new({
-            id = id.from(_N, "Filter", "NestedFilter"),
-            type = "structure",
-            name = "NestedFilter",
-            target_id = id.from(_N, "NestedFilter"),
-            target = M.NestedFilter,
-        }),
-    },
-})
-
 M.SheetVisualScopingConfiguration = schema.new({
     id = id.from(_N, "SheetVisualScopingConfiguration"),
     type = "structure",
@@ -5594,57 +5710,6 @@ M.FilterScopeConfiguration = schema.new({
             name = "AllSheets",
             target_id = id.from(_N, "AllSheetsFilterScopeConfiguration"),
             target = M.AllSheetsFilterScopeConfiguration,
-        }),
-    },
-})
-
-M.FilterGroup = schema.new({
-    id = id.from(_N, "FilterGroup"),
-    type = "structure",
-    members = {
-        FilterGroupId = schema.new({
-            id = id.from(_N, "FilterGroup", "FilterGroupId"),
-            type = "string",
-            name = "FilterGroupId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Filters = schema.new({
-            id = id.from(_N, "FilterGroup", "Filters"),
-            type = "list",
-            name = "Filters",
-            target_id = prelude.Document.id,
-            list_member = M.Filter,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ScopeConfiguration = schema.new({
-            id = id.from(_N, "FilterGroup", "ScopeConfiguration"),
-            type = "structure",
-            name = "ScopeConfiguration",
-            target_id = id.from(_N, "FilterScopeConfiguration"),
-            target = M.FilterScopeConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Status = schema.new({
-            id = id.from(_N, "FilterGroup", "Status"),
-            type = "string",
-            name = "Status",
-            target_id = prelude.String.id,
-        }),
-        CrossDataset = schema.new({
-            id = id.from(_N, "FilterGroup", "CrossDataset"),
-            type = "string",
-            name = "CrossDataset",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -6462,6 +6527,134 @@ M.FilterDropDownControl = schema.new({
     },
 })
 
+M.HierarchyFilterDropDownControl = schema.new({
+    id = id.from(_N, "HierarchyFilterDropDownControl"),
+    type = "structure",
+    members = {
+        FilterControlId = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControl", "FilterControlId"),
+            type = "string",
+            name = "FilterControlId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFilterId = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControl", "SourceFilterId"),
+            type = "string",
+            name = "SourceFilterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControl", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+        }),
+        DisplayOptions = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControl", "DisplayOptions"),
+            type = "structure",
+            name = "DisplayOptions",
+            target_id = id.from(_N, "HierarchyFilterDropDownControlDisplayOptions"),
+            target = M.HierarchyFilterDropDownControlDisplayOptions,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControl", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        CommitMode = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControl", "CommitMode"),
+            type = "string",
+            name = "CommitMode",
+            target_id = prelude.String.id,
+        }),
+        ControlSortConfigurations = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControl", "ControlSortConfigurations"),
+            type = "list",
+            name = "ControlSortConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ControlSortConfiguration,
+        }),
+        ControlTitleFormatText = schema.new({
+            id = id.from(_N, "HierarchyFilterDropDownControl", "ControlTitleFormatText"),
+            type = "structure",
+            name = "ControlTitleFormatText",
+            target_id = id.from(_N, "ControlTitleFormatText"),
+            target = M.ControlTitleFormatText,
+        }),
+    },
+})
+
+M.HierarchyFilterListControl = schema.new({
+    id = id.from(_N, "HierarchyFilterListControl"),
+    type = "structure",
+    members = {
+        FilterControlId = schema.new({
+            id = id.from(_N, "HierarchyFilterListControl", "FilterControlId"),
+            type = "string",
+            name = "FilterControlId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFilterId = schema.new({
+            id = id.from(_N, "HierarchyFilterListControl", "SourceFilterId"),
+            type = "string",
+            name = "SourceFilterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "HierarchyFilterListControl", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+        }),
+        DisplayOptions = schema.new({
+            id = id.from(_N, "HierarchyFilterListControl", "DisplayOptions"),
+            type = "structure",
+            name = "DisplayOptions",
+            target_id = id.from(_N, "HierarchyFilterListControlDisplayOptions"),
+            target = M.HierarchyFilterListControlDisplayOptions,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "HierarchyFilterListControl", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        CommitMode = schema.new({
+            id = id.from(_N, "HierarchyFilterListControl", "CommitMode"),
+            type = "string",
+            name = "CommitMode",
+            target_id = prelude.String.id,
+        }),
+        ControlSortConfigurations = schema.new({
+            id = id.from(_N, "HierarchyFilterListControl", "ControlSortConfigurations"),
+            type = "list",
+            name = "ControlSortConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ControlSortConfiguration,
+        }),
+        ControlTitleFormatText = schema.new({
+            id = id.from(_N, "HierarchyFilterListControl", "ControlTitleFormatText"),
+            type = "structure",
+            name = "ControlTitleFormatText",
+            target_id = id.from(_N, "ControlTitleFormatText"),
+            target = M.ControlTitleFormatText,
+        }),
+    },
+})
+
 M.FilterListControl = schema.new({
     id = id.from(_N, "FilterListControl"),
     type = "structure",
@@ -6836,6 +7029,20 @@ M.FilterControl = schema.new({
             name = "CrossSheet",
             target_id = id.from(_N, "FilterCrossSheetControl"),
             target = M.FilterCrossSheetControl,
+        }),
+        HierarchyList = schema.new({
+            id = id.from(_N, "FilterControl", "HierarchyList"),
+            type = "structure",
+            name = "HierarchyList",
+            target_id = id.from(_N, "HierarchyFilterListControl"),
+            target = M.HierarchyFilterListControl,
+        }),
+        HierarchyDropdown = schema.new({
+            id = id.from(_N, "FilterControl", "HierarchyDropdown"),
+            type = "structure",
+            name = "HierarchyDropdown",
+            target_id = id.from(_N, "HierarchyFilterDropDownControl"),
+            target = M.HierarchyFilterDropDownControl,
         }),
     },
 })
@@ -20573,100 +20780,6 @@ M.TopicIdentifierDeclaration = schema.new({
     },
 })
 
-M.AnalysisDefinition = schema.new({
-    id = id.from(_N, "AnalysisDefinition"),
-    type = "structure",
-    members = {
-        DataSetIdentifierDeclarations = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "DataSetIdentifierDeclarations"),
-            type = "list",
-            name = "DataSetIdentifierDeclarations",
-            target_id = prelude.Document.id,
-            list_member = M.DataSetIdentifierDeclaration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        TopicIdentifierDeclarations = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "TopicIdentifierDeclarations"),
-            type = "list",
-            name = "TopicIdentifierDeclarations",
-            target_id = prelude.Document.id,
-            list_member = M.TopicIdentifierDeclaration,
-        }),
-        Sheets = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "Sheets"),
-            type = "list",
-            name = "Sheets",
-            target_id = prelude.Document.id,
-            list_member = M.SheetDefinition,
-        }),
-        TooltipSheets = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "TooltipSheets"),
-            type = "list",
-            name = "TooltipSheets",
-            target_id = prelude.Document.id,
-            list_member = M.TooltipSheetDefinition,
-        }),
-        CalculatedFields = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "CalculatedFields"),
-            type = "list",
-            name = "CalculatedFields",
-            target_id = prelude.Document.id,
-            list_member = M.CalculatedField,
-        }),
-        ParameterDeclarations = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "ParameterDeclarations"),
-            type = "list",
-            name = "ParameterDeclarations",
-            target_id = prelude.Document.id,
-            list_member = M.ParameterDeclaration,
-        }),
-        FilterGroups = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "FilterGroups"),
-            type = "list",
-            name = "FilterGroups",
-            target_id = prelude.Document.id,
-            list_member = M.FilterGroup,
-        }),
-        ColumnConfigurations = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "ColumnConfigurations"),
-            type = "list",
-            name = "ColumnConfigurations",
-            target_id = prelude.Document.id,
-            list_member = M.ColumnConfiguration,
-        }),
-        AnalysisDefaults = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "AnalysisDefaults"),
-            type = "structure",
-            name = "AnalysisDefaults",
-            target_id = id.from(_N, "AnalysisDefaults"),
-            target = M.AnalysisDefaults,
-        }),
-        Options = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "Options"),
-            type = "structure",
-            name = "Options",
-            target_id = id.from(_N, "AssetOptions"),
-            target = M.AssetOptions,
-        }),
-        QueryExecutionOptions = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "QueryExecutionOptions"),
-            type = "structure",
-            name = "QueryExecutionOptions",
-            target_id = id.from(_N, "QueryExecutionOptions"),
-            target = M.QueryExecutionOptions,
-        }),
-        StaticFiles = schema.new({
-            id = id.from(_N, "AnalysisDefinition", "StaticFiles"),
-            type = "list",
-            name = "StaticFiles",
-            target_id = prelude.Document.id,
-            list_member = M.StaticFile,
-        }),
-    },
-})
-
 M.AnalysisSearchFilter = schema.new({
     id = id.from(_N, "AnalysisSearchFilter"),
     type = "structure",
@@ -22783,6 +22896,63 @@ M.CustomConnectionParameters = schema.new({
     },
 })
 
+M.VpcConnectionProperties = schema.new({
+    id = id.from(_N, "VpcConnectionProperties"),
+    type = "structure",
+    members = {
+        VpcConnectionArn = schema.new({
+            id = id.from(_N, "VpcConnectionProperties", "VpcConnectionArn"),
+            type = "string",
+            name = "VpcConnectionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OAuthParameters = schema.new({
+    id = id.from(_N, "OAuthParameters"),
+    type = "structure",
+    members = {
+        TokenProviderUrl = schema.new({
+            id = id.from(_N, "OAuthParameters", "TokenProviderUrl"),
+            type = "string",
+            name = "TokenProviderUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OAuthScope = schema.new({
+            id = id.from(_N, "OAuthParameters", "OAuthScope"),
+            type = "string",
+            name = "OAuthScope",
+            target_id = prelude.String.id,
+        }),
+        IdentityProviderVpcConnectionProperties = schema.new({
+            id = id.from(_N, "OAuthParameters", "IdentityProviderVpcConnectionProperties"),
+            type = "structure",
+            name = "IdentityProviderVpcConnectionProperties",
+            target_id = id.from(_N, "VpcConnectionProperties"),
+            target = M.VpcConnectionProperties,
+        }),
+        IdentityProviderResourceUri = schema.new({
+            id = id.from(_N, "OAuthParameters", "IdentityProviderResourceUri"),
+            type = "string",
+            name = "IdentityProviderResourceUri",
+            target_id = prelude.String.id,
+        }),
+        IdentityProviderCACertificatesBundleS3Uri = schema.new({
+            id = id.from(_N, "OAuthParameters", "IdentityProviderCACertificatesBundleS3Uri"),
+            type = "string",
+            name = "IdentityProviderCACertificatesBundleS3Uri",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DatabricksParameters = schema.new({
     id = id.from(_N, "DatabricksParameters"),
     type = "structure",
@@ -22813,6 +22983,19 @@ M.DatabricksParameters = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        AuthenticationType = schema.new({
+            id = id.from(_N, "DatabricksParameters", "AuthenticationType"),
+            type = "string",
+            name = "AuthenticationType",
+            target_id = prelude.String.id,
+        }),
+        OAuthParameters = schema.new({
+            id = id.from(_N, "DatabricksParameters", "OAuthParameters"),
+            type = "structure",
+            name = "OAuthParameters",
+            target_id = id.from(_N, "OAuthParameters"),
+            target = M.OAuthParameters,
         }),
     },
 })
@@ -23402,63 +23585,6 @@ M.SharePointParameters = schema.new({
             id = id.from(_N, "SharePointParameters", "AuthType"),
             type = "string",
             name = "AuthType",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.VpcConnectionProperties = schema.new({
-    id = id.from(_N, "VpcConnectionProperties"),
-    type = "structure",
-    members = {
-        VpcConnectionArn = schema.new({
-            id = id.from(_N, "VpcConnectionProperties", "VpcConnectionArn"),
-            type = "string",
-            name = "VpcConnectionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.OAuthParameters = schema.new({
-    id = id.from(_N, "OAuthParameters"),
-    type = "structure",
-    members = {
-        TokenProviderUrl = schema.new({
-            id = id.from(_N, "OAuthParameters", "TokenProviderUrl"),
-            type = "string",
-            name = "TokenProviderUrl",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        OAuthScope = schema.new({
-            id = id.from(_N, "OAuthParameters", "OAuthScope"),
-            type = "string",
-            name = "OAuthScope",
-            target_id = prelude.String.id,
-        }),
-        IdentityProviderVpcConnectionProperties = schema.new({
-            id = id.from(_N, "OAuthParameters", "IdentityProviderVpcConnectionProperties"),
-            type = "structure",
-            name = "IdentityProviderVpcConnectionProperties",
-            target_id = id.from(_N, "VpcConnectionProperties"),
-            target = M.VpcConnectionProperties,
-        }),
-        IdentityProviderResourceUri = schema.new({
-            id = id.from(_N, "OAuthParameters", "IdentityProviderResourceUri"),
-            type = "string",
-            name = "IdentityProviderResourceUri",
-            target_id = prelude.String.id,
-        }),
-        IdentityProviderCACertificatesBundleS3Uri = schema.new({
-            id = id.from(_N, "OAuthParameters", "IdentityProviderCACertificatesBundleS3Uri"),
-            type = "string",
-            name = "IdentityProviderCACertificatesBundleS3Uri",
             target_id = prelude.String.id,
         }),
     },
@@ -30737,97 +30863,6 @@ M.ValidationStrategy = schema.new({
     },
 })
 
-M.CreateAnalysisInput = schema.new({
-    id = id.from(_N, "CreateAnalysisRequest"),
-    type = "structure",
-    members = {
-        AwsAccountId = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "AwsAccountId"),
-            type = "string",
-            name = "AwsAccountId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        AnalysisId = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "AnalysisId"),
-            type = "string",
-            name = "AnalysisId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Name = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Parameters = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "Parameters"),
-            type = "structure",
-            name = "Parameters",
-            target_id = id.from(_N, "Parameters"),
-            target = M.Parameters,
-        }),
-        Permissions = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "Permissions"),
-            type = "list",
-            name = "Permissions",
-            target_id = prelude.Document.id,
-            list_member = M.ResourcePermission,
-        }),
-        SourceEntity = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "SourceEntity"),
-            type = "structure",
-            name = "SourceEntity",
-            target_id = id.from(_N, "AnalysisSourceEntity"),
-            target = M.AnalysisSourceEntity,
-        }),
-        ThemeArn = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "ThemeArn"),
-            type = "string",
-            name = "ThemeArn",
-            target_id = prelude.String.id,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "AnalysisDefinition"),
-            target = M.AnalysisDefinition,
-        }),
-        ValidationStrategy = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "ValidationStrategy"),
-            type = "structure",
-            name = "ValidationStrategy",
-            target_id = id.from(_N, "ValidationStrategy"),
-            target = M.ValidationStrategy,
-        }),
-        FolderArns = schema.new({
-            id = id.from(_N, "CreateAnalysisInput", "FolderArns"),
-            type = "list",
-            name = "FolderArns",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-    },
-})
-
 M.CreateAnalysisOutput = schema.new({
     id = id.from(_N, "CreateAnalysisResponse"),
     type = "structure",
@@ -31481,93 +31516,6 @@ M.DashboardPublishOptions = schema.new({
     },
 })
 
-M.DashboardVersionDefinition = schema.new({
-    id = id.from(_N, "DashboardVersionDefinition"),
-    type = "structure",
-    members = {
-        DataSetIdentifierDeclarations = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "DataSetIdentifierDeclarations"),
-            type = "list",
-            name = "DataSetIdentifierDeclarations",
-            target_id = prelude.Document.id,
-            list_member = M.DataSetIdentifierDeclaration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        TopicIdentifierDeclarations = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "TopicIdentifierDeclarations"),
-            type = "list",
-            name = "TopicIdentifierDeclarations",
-            target_id = prelude.Document.id,
-            list_member = M.TopicIdentifierDeclaration,
-        }),
-        Sheets = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "Sheets"),
-            type = "list",
-            name = "Sheets",
-            target_id = prelude.Document.id,
-            list_member = M.SheetDefinition,
-        }),
-        TooltipSheets = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "TooltipSheets"),
-            type = "list",
-            name = "TooltipSheets",
-            target_id = prelude.Document.id,
-            list_member = M.TooltipSheetDefinition,
-        }),
-        CalculatedFields = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "CalculatedFields"),
-            type = "list",
-            name = "CalculatedFields",
-            target_id = prelude.Document.id,
-            list_member = M.CalculatedField,
-        }),
-        ParameterDeclarations = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "ParameterDeclarations"),
-            type = "list",
-            name = "ParameterDeclarations",
-            target_id = prelude.Document.id,
-            list_member = M.ParameterDeclaration,
-        }),
-        FilterGroups = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "FilterGroups"),
-            type = "list",
-            name = "FilterGroups",
-            target_id = prelude.Document.id,
-            list_member = M.FilterGroup,
-        }),
-        ColumnConfigurations = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "ColumnConfigurations"),
-            type = "list",
-            name = "ColumnConfigurations",
-            target_id = prelude.Document.id,
-            list_member = M.ColumnConfiguration,
-        }),
-        AnalysisDefaults = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "AnalysisDefaults"),
-            type = "structure",
-            name = "AnalysisDefaults",
-            target_id = id.from(_N, "AnalysisDefaults"),
-            target = M.AnalysisDefaults,
-        }),
-        Options = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "Options"),
-            type = "structure",
-            name = "Options",
-            target_id = id.from(_N, "AssetOptions"),
-            target = M.AssetOptions,
-        }),
-        StaticFiles = schema.new({
-            id = id.from(_N, "DashboardVersionDefinition", "StaticFiles"),
-            type = "list",
-            name = "StaticFiles",
-            target_id = prelude.Document.id,
-            list_member = M.StaticFile,
-        }),
-    },
-})
-
 M.LinkSharingConfiguration = schema.new({
     id = id.from(_N, "LinkSharingConfiguration"),
     type = "structure",
@@ -31625,124 +31573,6 @@ M.DashboardSourceEntity = schema.new({
             name = "SourceTemplate",
             target_id = id.from(_N, "DashboardSourceTemplate"),
             target = M.DashboardSourceTemplate,
-        }),
-    },
-})
-
-M.CreateDashboardInput = schema.new({
-    id = id.from(_N, "CreateDashboardRequest"),
-    type = "structure",
-    members = {
-        AwsAccountId = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "AwsAccountId"),
-            type = "string",
-            name = "AwsAccountId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        DashboardId = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "DashboardId"),
-            type = "string",
-            name = "DashboardId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Name = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Parameters = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "Parameters"),
-            type = "structure",
-            name = "Parameters",
-            target_id = id.from(_N, "Parameters"),
-            target = M.Parameters,
-        }),
-        Permissions = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "Permissions"),
-            type = "list",
-            name = "Permissions",
-            target_id = prelude.Document.id,
-            list_member = M.ResourcePermission,
-        }),
-        SourceEntity = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "SourceEntity"),
-            type = "structure",
-            name = "SourceEntity",
-            target_id = id.from(_N, "DashboardSourceEntity"),
-            target = M.DashboardSourceEntity,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-        VersionDescription = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "VersionDescription"),
-            type = "string",
-            name = "VersionDescription",
-            target_id = prelude.String.id,
-        }),
-        DashboardPublishOptions = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "DashboardPublishOptions"),
-            type = "structure",
-            name = "DashboardPublishOptions",
-            target_id = id.from(_N, "DashboardPublishOptions"),
-            target = M.DashboardPublishOptions,
-        }),
-        ThemeArn = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "ThemeArn"),
-            type = "string",
-            name = "ThemeArn",
-            target_id = prelude.String.id,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "DashboardVersionDefinition"),
-            target = M.DashboardVersionDefinition,
-        }),
-        ValidationStrategy = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "ValidationStrategy"),
-            type = "structure",
-            name = "ValidationStrategy",
-            target_id = id.from(_N, "ValidationStrategy"),
-            target = M.ValidationStrategy,
-        }),
-        FolderArns = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "FolderArns"),
-            type = "list",
-            name = "FolderArns",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        LinkSharingConfiguration = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "LinkSharingConfiguration"),
-            type = "structure",
-            name = "LinkSharingConfiguration",
-            target_id = id.from(_N, "LinkSharingConfiguration"),
-            target = M.LinkSharingConfiguration,
-        }),
-        LinkEntities = schema.new({
-            id = id.from(_N, "CreateDashboardInput", "LinkEntities"),
-            type = "list",
-            name = "LinkEntities",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
         }),
     },
 })
@@ -36567,100 +36397,6 @@ M.TopicConfiguration = schema.new({
     },
 })
 
-M.TemplateVersionDefinition = schema.new({
-    id = id.from(_N, "TemplateVersionDefinition"),
-    type = "structure",
-    members = {
-        DataSetConfigurations = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "DataSetConfigurations"),
-            type = "list",
-            name = "DataSetConfigurations",
-            target_id = prelude.Document.id,
-            list_member = M.DataSetConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        TopicConfigurations = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "TopicConfigurations"),
-            type = "list",
-            name = "TopicConfigurations",
-            target_id = prelude.Document.id,
-            list_member = M.TopicConfiguration,
-        }),
-        Sheets = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "Sheets"),
-            type = "list",
-            name = "Sheets",
-            target_id = prelude.Document.id,
-            list_member = M.SheetDefinition,
-        }),
-        TooltipSheets = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "TooltipSheets"),
-            type = "list",
-            name = "TooltipSheets",
-            target_id = prelude.Document.id,
-            list_member = M.TooltipSheetDefinition,
-        }),
-        CalculatedFields = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "CalculatedFields"),
-            type = "list",
-            name = "CalculatedFields",
-            target_id = prelude.Document.id,
-            list_member = M.CalculatedField,
-        }),
-        ParameterDeclarations = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "ParameterDeclarations"),
-            type = "list",
-            name = "ParameterDeclarations",
-            target_id = prelude.Document.id,
-            list_member = M.ParameterDeclaration,
-        }),
-        FilterGroups = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "FilterGroups"),
-            type = "list",
-            name = "FilterGroups",
-            target_id = prelude.Document.id,
-            list_member = M.FilterGroup,
-        }),
-        ColumnConfigurations = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "ColumnConfigurations"),
-            type = "list",
-            name = "ColumnConfigurations",
-            target_id = prelude.Document.id,
-            list_member = M.ColumnConfiguration,
-        }),
-        AnalysisDefaults = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "AnalysisDefaults"),
-            type = "structure",
-            name = "AnalysisDefaults",
-            target_id = id.from(_N, "AnalysisDefaults"),
-            target = M.AnalysisDefaults,
-        }),
-        Options = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "Options"),
-            type = "structure",
-            name = "Options",
-            target_id = id.from(_N, "AssetOptions"),
-            target = M.AssetOptions,
-        }),
-        QueryExecutionOptions = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "QueryExecutionOptions"),
-            type = "structure",
-            name = "QueryExecutionOptions",
-            target_id = id.from(_N, "QueryExecutionOptions"),
-            target = M.QueryExecutionOptions,
-        }),
-        StaticFiles = schema.new({
-            id = id.from(_N, "TemplateVersionDefinition", "StaticFiles"),
-            type = "list",
-            name = "StaticFiles",
-            target_id = prelude.Document.id,
-            list_member = M.StaticFile,
-        }),
-    },
-})
-
 M.TemplateSourceAnalysis = schema.new({
     id = id.from(_N, "TemplateSourceAnalysis"),
     type = "structure",
@@ -36727,80 +36463,6 @@ M.TemplateSourceEntity = schema.new({
             name = "SourceTemplate",
             target_id = id.from(_N, "TemplateSourceTemplate"),
             target = M.TemplateSourceTemplate,
-        }),
-    },
-})
-
-M.CreateTemplateInput = schema.new({
-    id = id.from(_N, "CreateTemplateRequest"),
-    type = "structure",
-    members = {
-        AwsAccountId = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "AwsAccountId"),
-            type = "string",
-            name = "AwsAccountId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        TemplateId = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "TemplateId"),
-            type = "string",
-            name = "TemplateId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Name = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        Permissions = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "Permissions"),
-            type = "list",
-            name = "Permissions",
-            target_id = prelude.Document.id,
-            list_member = M.ResourcePermission,
-        }),
-        SourceEntity = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "SourceEntity"),
-            type = "structure",
-            name = "SourceEntity",
-            target_id = id.from(_N, "TemplateSourceEntity"),
-            target = M.TemplateSourceEntity,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-        VersionDescription = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "VersionDescription"),
-            type = "string",
-            name = "VersionDescription",
-            target_id = prelude.String.id,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "TemplateVersionDefinition"),
-            target = M.TemplateVersionDefinition,
-        }),
-        ValidationStrategy = schema.new({
-            id = id.from(_N, "CreateTemplateInput", "ValidationStrategy"),
-            type = "structure",
-            name = "ValidationStrategy",
-            target_id = id.from(_N, "ValidationStrategy"),
-            target = M.ValidationStrategy,
         }),
     },
 })
@@ -43210,67 +42872,6 @@ M.DescribeAnalysisDefinitionInput = schema.new({
     },
 })
 
-M.DescribeAnalysisDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeAnalysisDefinitionResponse"),
-    type = "structure",
-    members = {
-        AnalysisId = schema.new({
-            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "AnalysisId"),
-            type = "string",
-            name = "AnalysisId",
-            target_id = prelude.String.id,
-        }),
-        Name = schema.new({
-            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        Errors = schema.new({
-            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "Errors"),
-            type = "list",
-            name = "Errors",
-            target_id = prelude.Document.id,
-            list_member = M.AnalysisError,
-        }),
-        ResourceStatus = schema.new({
-            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "ResourceStatus"),
-            type = "string",
-            name = "ResourceStatus",
-            target_id = prelude.String.id,
-        }),
-        ThemeArn = schema.new({
-            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "ThemeArn"),
-            type = "string",
-            name = "ThemeArn",
-            target_id = prelude.String.id,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "AnalysisDefinition"),
-            target = M.AnalysisDefinition,
-        }),
-        Status = schema.new({
-            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "Status"),
-            type = "integer",
-            name = "Status",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-                [traits.HTTP_RESPONSE_CODE] = {},
-            },
-        }),
-        RequestId = schema.new({
-            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "RequestId"),
-            type = "string",
-            name = "RequestId",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.DescribeAnalysisPermissionsInput = schema.new({
     id = id.from(_N, "DescribeAnalysisPermissionsRequest"),
     type = "structure",
@@ -44247,74 +43848,6 @@ M.DescribeDashboardDefinitionInput = schema.new({
             traits = {
                 [traits.HTTP_QUERY] = { name = "alias-name" },
             },
-        }),
-    },
-})
-
-M.DescribeDashboardDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeDashboardDefinitionResponse"),
-    type = "structure",
-    members = {
-        DashboardId = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "DashboardId"),
-            type = "string",
-            name = "DashboardId",
-            target_id = prelude.String.id,
-        }),
-        Errors = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "Errors"),
-            type = "list",
-            name = "Errors",
-            target_id = prelude.Document.id,
-            list_member = M.DashboardError,
-        }),
-        Name = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        ResourceStatus = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "ResourceStatus"),
-            type = "string",
-            name = "ResourceStatus",
-            target_id = prelude.String.id,
-        }),
-        ThemeArn = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "ThemeArn"),
-            type = "string",
-            name = "ThemeArn",
-            target_id = prelude.String.id,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "DashboardVersionDefinition"),
-            target = M.DashboardVersionDefinition,
-        }),
-        Status = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "Status"),
-            type = "integer",
-            name = "Status",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-                [traits.HTTP_RESPONSE_CODE] = {},
-            },
-        }),
-        RequestId = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "RequestId"),
-            type = "string",
-            name = "RequestId",
-            target_id = prelude.String.id,
-        }),
-        DashboardPublishOptions = schema.new({
-            id = id.from(_N, "DescribeDashboardDefinitionOutput", "DashboardPublishOptions"),
-            type = "structure",
-            name = "DashboardPublishOptions",
-            target_id = id.from(_N, "DashboardPublishOptions"),
-            target = M.DashboardPublishOptions,
         }),
     },
 })
@@ -48125,67 +47658,6 @@ M.DescribeTemplateDefinitionInput = schema.new({
             traits = {
                 [traits.HTTP_QUERY] = { name = "alias-name" },
             },
-        }),
-    },
-})
-
-M.DescribeTemplateDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeTemplateDefinitionResponse"),
-    type = "structure",
-    members = {
-        Name = schema.new({
-            id = id.from(_N, "DescribeTemplateDefinitionOutput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        TemplateId = schema.new({
-            id = id.from(_N, "DescribeTemplateDefinitionOutput", "TemplateId"),
-            type = "string",
-            name = "TemplateId",
-            target_id = prelude.String.id,
-        }),
-        Errors = schema.new({
-            id = id.from(_N, "DescribeTemplateDefinitionOutput", "Errors"),
-            type = "list",
-            name = "Errors",
-            target_id = prelude.Document.id,
-            list_member = M.TemplateError,
-        }),
-        ResourceStatus = schema.new({
-            id = id.from(_N, "DescribeTemplateDefinitionOutput", "ResourceStatus"),
-            type = "string",
-            name = "ResourceStatus",
-            target_id = prelude.String.id,
-        }),
-        ThemeArn = schema.new({
-            id = id.from(_N, "DescribeTemplateDefinitionOutput", "ThemeArn"),
-            type = "string",
-            name = "ThemeArn",
-            target_id = prelude.String.id,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "DescribeTemplateDefinitionOutput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "TemplateVersionDefinition"),
-            target = M.TemplateVersionDefinition,
-        }),
-        Status = schema.new({
-            id = id.from(_N, "DescribeTemplateDefinitionOutput", "Status"),
-            type = "integer",
-            name = "Status",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-                [traits.HTTP_RESPONSE_CODE] = {},
-            },
-        }),
-        RequestId = schema.new({
-            id = id.from(_N, "DescribeTemplateDefinitionOutput", "RequestId"),
-            type = "string",
-            name = "RequestId",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -58253,76 +57725,6 @@ M.UpdateAgentPermissionsOutput = schema.new({
     },
 })
 
-M.UpdateAnalysisInput = schema.new({
-    id = id.from(_N, "UpdateAnalysisRequest"),
-    type = "structure",
-    members = {
-        AwsAccountId = schema.new({
-            id = id.from(_N, "UpdateAnalysisInput", "AwsAccountId"),
-            type = "string",
-            name = "AwsAccountId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        AnalysisId = schema.new({
-            id = id.from(_N, "UpdateAnalysisInput", "AnalysisId"),
-            type = "string",
-            name = "AnalysisId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Name = schema.new({
-            id = id.from(_N, "UpdateAnalysisInput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Parameters = schema.new({
-            id = id.from(_N, "UpdateAnalysisInput", "Parameters"),
-            type = "structure",
-            name = "Parameters",
-            target_id = id.from(_N, "Parameters"),
-            target = M.Parameters,
-        }),
-        SourceEntity = schema.new({
-            id = id.from(_N, "UpdateAnalysisInput", "SourceEntity"),
-            type = "structure",
-            name = "SourceEntity",
-            target_id = id.from(_N, "AnalysisSourceEntity"),
-            target = M.AnalysisSourceEntity,
-        }),
-        ThemeArn = schema.new({
-            id = id.from(_N, "UpdateAnalysisInput", "ThemeArn"),
-            type = "string",
-            name = "ThemeArn",
-            target_id = prelude.String.id,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "UpdateAnalysisInput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "AnalysisDefinition"),
-            target = M.AnalysisDefinition,
-        }),
-        ValidationStrategy = schema.new({
-            id = id.from(_N, "UpdateAnalysisInput", "ValidationStrategy"),
-            type = "structure",
-            name = "ValidationStrategy",
-            target_id = id.from(_N, "ValidationStrategy"),
-            target = M.ValidationStrategy,
-        }),
-    },
-})
-
 M.UpdateAnalysisOutput = schema.new({
     id = id.from(_N, "UpdateAnalysisResponse"),
     type = "structure",
@@ -58882,89 +58284,6 @@ M.UpdateCustomPermissionsOutput = schema.new({
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.UpdateDashboardInput = schema.new({
-    id = id.from(_N, "UpdateDashboardRequest"),
-    type = "structure",
-    members = {
-        AwsAccountId = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "AwsAccountId"),
-            type = "string",
-            name = "AwsAccountId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        DashboardId = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "DashboardId"),
-            type = "string",
-            name = "DashboardId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Name = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        SourceEntity = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "SourceEntity"),
-            type = "structure",
-            name = "SourceEntity",
-            target_id = id.from(_N, "DashboardSourceEntity"),
-            target = M.DashboardSourceEntity,
-        }),
-        Parameters = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "Parameters"),
-            type = "structure",
-            name = "Parameters",
-            target_id = id.from(_N, "Parameters"),
-            target = M.Parameters,
-        }),
-        VersionDescription = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "VersionDescription"),
-            type = "string",
-            name = "VersionDescription",
-            target_id = prelude.String.id,
-        }),
-        DashboardPublishOptions = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "DashboardPublishOptions"),
-            type = "structure",
-            name = "DashboardPublishOptions",
-            target_id = id.from(_N, "DashboardPublishOptions"),
-            target = M.DashboardPublishOptions,
-        }),
-        ThemeArn = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "ThemeArn"),
-            type = "string",
-            name = "ThemeArn",
-            target_id = prelude.String.id,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "DashboardVersionDefinition"),
-            target = M.DashboardVersionDefinition,
-        }),
-        ValidationStrategy = schema.new({
-            id = id.from(_N, "UpdateDashboardInput", "ValidationStrategy"),
-            type = "structure",
-            name = "ValidationStrategy",
-            target_id = id.from(_N, "ValidationStrategy"),
-            target = M.ValidationStrategy,
         }),
     },
 })
@@ -61758,66 +61077,6 @@ M.UpdateSPICECapacityConfigurationOutput = schema.new({
     },
 })
 
-M.UpdateTemplateInput = schema.new({
-    id = id.from(_N, "UpdateTemplateRequest"),
-    type = "structure",
-    members = {
-        AwsAccountId = schema.new({
-            id = id.from(_N, "UpdateTemplateInput", "AwsAccountId"),
-            type = "string",
-            name = "AwsAccountId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        TemplateId = schema.new({
-            id = id.from(_N, "UpdateTemplateInput", "TemplateId"),
-            type = "string",
-            name = "TemplateId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        SourceEntity = schema.new({
-            id = id.from(_N, "UpdateTemplateInput", "SourceEntity"),
-            type = "structure",
-            name = "SourceEntity",
-            target_id = id.from(_N, "TemplateSourceEntity"),
-            target = M.TemplateSourceEntity,
-        }),
-        VersionDescription = schema.new({
-            id = id.from(_N, "UpdateTemplateInput", "VersionDescription"),
-            type = "string",
-            name = "VersionDescription",
-            target_id = prelude.String.id,
-        }),
-        Name = schema.new({
-            id = id.from(_N, "UpdateTemplateInput", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        Definition = schema.new({
-            id = id.from(_N, "UpdateTemplateInput", "Definition"),
-            type = "structure",
-            name = "Definition",
-            target_id = id.from(_N, "TemplateVersionDefinition"),
-            target = M.TemplateVersionDefinition,
-        }),
-        ValidationStrategy = schema.new({
-            id = id.from(_N, "UpdateTemplateInput", "ValidationStrategy"),
-            type = "structure",
-            name = "ValidationStrategy",
-            target_id = id.from(_N, "ValidationStrategy"),
-            target = M.ValidationStrategy,
-        }),
-    },
-})
-
 M.UpdateTemplateOutput = schema.new({
     id = id.from(_N, "UpdateTemplateResponse"),
     type = "structure",
@@ -63015,6 +62274,43 @@ M.UpdateVPCConnectionOutput = schema.new({
     },
 })
 
+M.HierarchyFilterNode = schema.new({
+    id = id.from(_N, "HierarchyFilterNode"),
+    type = "structure",
+    members = {
+        Column = schema.new({
+            id = id.from(_N, "HierarchyFilterNode", "Column"),
+            type = "structure",
+            name = "Column",
+            target_id = id.from(_N, "ColumnIdentifier"),
+            target = M.ColumnIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ParentValue = schema.new({
+            id = id.from(_N, "HierarchyFilterNode", "ParentValue"),
+            type = "string",
+            name = "ParentValue",
+            target_id = prelude.String.id,
+        }),
+        HierarchyValues = schema.new({
+            id = id.from(_N, "HierarchyFilterNode", "HierarchyValues"),
+            type = "list",
+            name = "HierarchyValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Children = schema.new({
+            id = id.from(_N, "HierarchyFilterNode", "Children"),
+            type = "list",
+            name = "Children",
+            target_id = prelude.Document.id,
+            list_member = M.HierarchyFilterNode,
+        }),
+    },
+})
+
 M.TopicVisual = schema.new({
     id = id.from(_N, "TopicVisual"),
     type = "structure",
@@ -63103,6 +62399,74 @@ M.CreateTopicReviewedAnswer = schema.new({
     },
 })
 
+M.HierarchyFilter = schema.new({
+    id = id.from(_N, "HierarchyFilter"),
+    type = "structure",
+    members = {
+        FilterId = schema.new({
+            id = id.from(_N, "HierarchyFilter", "FilterId"),
+            type = "string",
+            name = "FilterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Column = schema.new({
+            id = id.from(_N, "HierarchyFilter", "Column"),
+            type = "structure",
+            name = "Column",
+            target_id = id.from(_N, "ColumnIdentifier"),
+            target = M.ColumnIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HierarchyLevels = schema.new({
+            id = id.from(_N, "HierarchyFilter", "HierarchyLevels"),
+            type = "list",
+            name = "HierarchyLevels",
+            target_id = prelude.Document.id,
+            list_member = M.HierarchyFilterLevel,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HierarchyTree = schema.new({
+            id = id.from(_N, "HierarchyFilter", "HierarchyTree"),
+            type = "structure",
+            name = "HierarchyTree",
+            target_id = id.from(_N, "HierarchyFilterNode"),
+            target = M.HierarchyFilterNode,
+        }),
+        NullOption = schema.new({
+            id = id.from(_N, "HierarchyFilter", "NullOption"),
+            type = "string",
+            name = "NullOption",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MatchOperator = schema.new({
+            id = id.from(_N, "HierarchyFilter", "MatchOperator"),
+            type = "string",
+            name = "MatchOperator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DefaultFilterControlConfiguration = schema.new({
+            id = id.from(_N, "HierarchyFilter", "DefaultFilterControlConfiguration"),
+            type = "structure",
+            name = "DefaultFilterControlConfiguration",
+            target_id = id.from(_N, "DefaultFilterControlConfiguration"),
+            target = M.DefaultFilterControlConfiguration,
+        }),
+    },
+})
+
 M.TopicReviewedAnswer = schema.new({
     id = id.from(_N, "TopicReviewedAnswer"),
     type = "structure",
@@ -63160,6 +62524,76 @@ M.TopicReviewedAnswer = schema.new({
             name = "Template",
             target_id = id.from(_N, "TopicTemplate"),
             target = M.TopicTemplate,
+        }),
+    },
+})
+
+M.Filter = schema.new({
+    id = id.from(_N, "Filter"),
+    type = "structure",
+    members = {
+        CategoryFilter = schema.new({
+            id = id.from(_N, "Filter", "CategoryFilter"),
+            type = "structure",
+            name = "CategoryFilter",
+            target_id = id.from(_N, "CategoryFilter"),
+            target = M.CategoryFilter,
+        }),
+        NumericRangeFilter = schema.new({
+            id = id.from(_N, "Filter", "NumericRangeFilter"),
+            type = "structure",
+            name = "NumericRangeFilter",
+            target_id = id.from(_N, "NumericRangeFilter"),
+            target = M.NumericRangeFilter,
+        }),
+        NumericEqualityFilter = schema.new({
+            id = id.from(_N, "Filter", "NumericEqualityFilter"),
+            type = "structure",
+            name = "NumericEqualityFilter",
+            target_id = id.from(_N, "NumericEqualityFilter"),
+            target = M.NumericEqualityFilter,
+        }),
+        TimeEqualityFilter = schema.new({
+            id = id.from(_N, "Filter", "TimeEqualityFilter"),
+            type = "structure",
+            name = "TimeEqualityFilter",
+            target_id = id.from(_N, "TimeEqualityFilter"),
+            target = M.TimeEqualityFilter,
+        }),
+        TimeRangeFilter = schema.new({
+            id = id.from(_N, "Filter", "TimeRangeFilter"),
+            type = "structure",
+            name = "TimeRangeFilter",
+            target_id = id.from(_N, "TimeRangeFilter"),
+            target = M.TimeRangeFilter,
+        }),
+        RelativeDatesFilter = schema.new({
+            id = id.from(_N, "Filter", "RelativeDatesFilter"),
+            type = "structure",
+            name = "RelativeDatesFilter",
+            target_id = id.from(_N, "RelativeDatesFilter"),
+            target = M.RelativeDatesFilter,
+        }),
+        TopBottomFilter = schema.new({
+            id = id.from(_N, "Filter", "TopBottomFilter"),
+            type = "structure",
+            name = "TopBottomFilter",
+            target_id = id.from(_N, "TopBottomFilter"),
+            target = M.TopBottomFilter,
+        }),
+        NestedFilter = schema.new({
+            id = id.from(_N, "Filter", "NestedFilter"),
+            type = "structure",
+            name = "NestedFilter",
+            target_id = id.from(_N, "NestedFilter"),
+            target = M.NestedFilter,
+        }),
+        HierarchyFilter = schema.new({
+            id = id.from(_N, "Filter", "HierarchyFilter"),
+            type = "structure",
+            name = "HierarchyFilter",
+            target_id = id.from(_N, "HierarchyFilter"),
+            target = M.HierarchyFilter,
         }),
     },
 })
@@ -63239,6 +62673,1018 @@ M.ListTopicReviewedAnswersOutput = schema.new({
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FilterGroup = schema.new({
+    id = id.from(_N, "FilterGroup"),
+    type = "structure",
+    members = {
+        FilterGroupId = schema.new({
+            id = id.from(_N, "FilterGroup", "FilterGroupId"),
+            type = "string",
+            name = "FilterGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "FilterGroup", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScopeConfiguration = schema.new({
+            id = id.from(_N, "FilterGroup", "ScopeConfiguration"),
+            type = "structure",
+            name = "ScopeConfiguration",
+            target_id = id.from(_N, "FilterScopeConfiguration"),
+            target = M.FilterScopeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "FilterGroup", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CrossDataset = schema.new({
+            id = id.from(_N, "FilterGroup", "CrossDataset"),
+            type = "string",
+            name = "CrossDataset",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnalysisDefinition = schema.new({
+    id = id.from(_N, "AnalysisDefinition"),
+    type = "structure",
+    members = {
+        DataSetIdentifierDeclarations = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "DataSetIdentifierDeclarations"),
+            type = "list",
+            name = "DataSetIdentifierDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.DataSetIdentifierDeclaration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TopicIdentifierDeclarations = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "TopicIdentifierDeclarations"),
+            type = "list",
+            name = "TopicIdentifierDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.TopicIdentifierDeclaration,
+        }),
+        Sheets = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "Sheets"),
+            type = "list",
+            name = "Sheets",
+            target_id = prelude.Document.id,
+            list_member = M.SheetDefinition,
+        }),
+        TooltipSheets = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "TooltipSheets"),
+            type = "list",
+            name = "TooltipSheets",
+            target_id = prelude.Document.id,
+            list_member = M.TooltipSheetDefinition,
+        }),
+        CalculatedFields = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "CalculatedFields"),
+            type = "list",
+            name = "CalculatedFields",
+            target_id = prelude.Document.id,
+            list_member = M.CalculatedField,
+        }),
+        ParameterDeclarations = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "ParameterDeclarations"),
+            type = "list",
+            name = "ParameterDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.ParameterDeclaration,
+        }),
+        FilterGroups = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "FilterGroups"),
+            type = "list",
+            name = "FilterGroups",
+            target_id = prelude.Document.id,
+            list_member = M.FilterGroup,
+        }),
+        ColumnConfigurations = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "ColumnConfigurations"),
+            type = "list",
+            name = "ColumnConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnConfiguration,
+        }),
+        AnalysisDefaults = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "AnalysisDefaults"),
+            type = "structure",
+            name = "AnalysisDefaults",
+            target_id = id.from(_N, "AnalysisDefaults"),
+            target = M.AnalysisDefaults,
+        }),
+        Options = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "Options"),
+            type = "structure",
+            name = "Options",
+            target_id = id.from(_N, "AssetOptions"),
+            target = M.AssetOptions,
+        }),
+        QueryExecutionOptions = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "QueryExecutionOptions"),
+            type = "structure",
+            name = "QueryExecutionOptions",
+            target_id = id.from(_N, "QueryExecutionOptions"),
+            target = M.QueryExecutionOptions,
+        }),
+        StaticFiles = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "StaticFiles"),
+            type = "list",
+            name = "StaticFiles",
+            target_id = prelude.Document.id,
+            list_member = M.StaticFile,
+        }),
+    },
+})
+
+M.DashboardVersionDefinition = schema.new({
+    id = id.from(_N, "DashboardVersionDefinition"),
+    type = "structure",
+    members = {
+        DataSetIdentifierDeclarations = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "DataSetIdentifierDeclarations"),
+            type = "list",
+            name = "DataSetIdentifierDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.DataSetIdentifierDeclaration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TopicIdentifierDeclarations = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "TopicIdentifierDeclarations"),
+            type = "list",
+            name = "TopicIdentifierDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.TopicIdentifierDeclaration,
+        }),
+        Sheets = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "Sheets"),
+            type = "list",
+            name = "Sheets",
+            target_id = prelude.Document.id,
+            list_member = M.SheetDefinition,
+        }),
+        TooltipSheets = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "TooltipSheets"),
+            type = "list",
+            name = "TooltipSheets",
+            target_id = prelude.Document.id,
+            list_member = M.TooltipSheetDefinition,
+        }),
+        CalculatedFields = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "CalculatedFields"),
+            type = "list",
+            name = "CalculatedFields",
+            target_id = prelude.Document.id,
+            list_member = M.CalculatedField,
+        }),
+        ParameterDeclarations = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "ParameterDeclarations"),
+            type = "list",
+            name = "ParameterDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.ParameterDeclaration,
+        }),
+        FilterGroups = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "FilterGroups"),
+            type = "list",
+            name = "FilterGroups",
+            target_id = prelude.Document.id,
+            list_member = M.FilterGroup,
+        }),
+        ColumnConfigurations = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "ColumnConfigurations"),
+            type = "list",
+            name = "ColumnConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnConfiguration,
+        }),
+        AnalysisDefaults = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "AnalysisDefaults"),
+            type = "structure",
+            name = "AnalysisDefaults",
+            target_id = id.from(_N, "AnalysisDefaults"),
+            target = M.AnalysisDefaults,
+        }),
+        Options = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "Options"),
+            type = "structure",
+            name = "Options",
+            target_id = id.from(_N, "AssetOptions"),
+            target = M.AssetOptions,
+        }),
+        StaticFiles = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "StaticFiles"),
+            type = "list",
+            name = "StaticFiles",
+            target_id = prelude.Document.id,
+            list_member = M.StaticFile,
+        }),
+    },
+})
+
+M.TemplateVersionDefinition = schema.new({
+    id = id.from(_N, "TemplateVersionDefinition"),
+    type = "structure",
+    members = {
+        DataSetConfigurations = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "DataSetConfigurations"),
+            type = "list",
+            name = "DataSetConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DataSetConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TopicConfigurations = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "TopicConfigurations"),
+            type = "list",
+            name = "TopicConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.TopicConfiguration,
+        }),
+        Sheets = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "Sheets"),
+            type = "list",
+            name = "Sheets",
+            target_id = prelude.Document.id,
+            list_member = M.SheetDefinition,
+        }),
+        TooltipSheets = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "TooltipSheets"),
+            type = "list",
+            name = "TooltipSheets",
+            target_id = prelude.Document.id,
+            list_member = M.TooltipSheetDefinition,
+        }),
+        CalculatedFields = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "CalculatedFields"),
+            type = "list",
+            name = "CalculatedFields",
+            target_id = prelude.Document.id,
+            list_member = M.CalculatedField,
+        }),
+        ParameterDeclarations = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "ParameterDeclarations"),
+            type = "list",
+            name = "ParameterDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.ParameterDeclaration,
+        }),
+        FilterGroups = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "FilterGroups"),
+            type = "list",
+            name = "FilterGroups",
+            target_id = prelude.Document.id,
+            list_member = M.FilterGroup,
+        }),
+        ColumnConfigurations = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "ColumnConfigurations"),
+            type = "list",
+            name = "ColumnConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnConfiguration,
+        }),
+        AnalysisDefaults = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "AnalysisDefaults"),
+            type = "structure",
+            name = "AnalysisDefaults",
+            target_id = id.from(_N, "AnalysisDefaults"),
+            target = M.AnalysisDefaults,
+        }),
+        Options = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "Options"),
+            type = "structure",
+            name = "Options",
+            target_id = id.from(_N, "AssetOptions"),
+            target = M.AssetOptions,
+        }),
+        QueryExecutionOptions = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "QueryExecutionOptions"),
+            type = "structure",
+            name = "QueryExecutionOptions",
+            target_id = id.from(_N, "QueryExecutionOptions"),
+            target = M.QueryExecutionOptions,
+        }),
+        StaticFiles = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "StaticFiles"),
+            type = "list",
+            name = "StaticFiles",
+            target_id = prelude.Document.id,
+            list_member = M.StaticFile,
+        }),
+    },
+})
+
+M.CreateAnalysisInput = schema.new({
+    id = id.from(_N, "CreateAnalysisRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AnalysisId = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "AnalysisId"),
+            type = "string",
+            name = "AnalysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "Parameters"),
+            type = "structure",
+            name = "Parameters",
+            target_id = id.from(_N, "Parameters"),
+            target = M.Parameters,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        SourceEntity = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "SourceEntity"),
+            type = "structure",
+            name = "SourceEntity",
+            target_id = id.from(_N, "AnalysisSourceEntity"),
+            target = M.AnalysisSourceEntity,
+        }),
+        ThemeArn = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "ThemeArn"),
+            type = "string",
+            name = "ThemeArn",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "AnalysisDefinition"),
+            target = M.AnalysisDefinition,
+        }),
+        ValidationStrategy = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "ValidationStrategy"),
+            type = "structure",
+            name = "ValidationStrategy",
+            target_id = id.from(_N, "ValidationStrategy"),
+            target = M.ValidationStrategy,
+        }),
+        FolderArns = schema.new({
+            id = id.from(_N, "CreateAnalysisInput", "FolderArns"),
+            type = "list",
+            name = "FolderArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.CreateDashboardInput = schema.new({
+    id = id.from(_N, "CreateDashboardRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DashboardId = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "DashboardId"),
+            type = "string",
+            name = "DashboardId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "Parameters"),
+            type = "structure",
+            name = "Parameters",
+            target_id = id.from(_N, "Parameters"),
+            target = M.Parameters,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        SourceEntity = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "SourceEntity"),
+            type = "structure",
+            name = "SourceEntity",
+            target_id = id.from(_N, "DashboardSourceEntity"),
+            target = M.DashboardSourceEntity,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        VersionDescription = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "VersionDescription"),
+            type = "string",
+            name = "VersionDescription",
+            target_id = prelude.String.id,
+        }),
+        DashboardPublishOptions = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "DashboardPublishOptions"),
+            type = "structure",
+            name = "DashboardPublishOptions",
+            target_id = id.from(_N, "DashboardPublishOptions"),
+            target = M.DashboardPublishOptions,
+        }),
+        ThemeArn = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "ThemeArn"),
+            type = "string",
+            name = "ThemeArn",
+            target_id = prelude.String.id,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "DashboardVersionDefinition"),
+            target = M.DashboardVersionDefinition,
+        }),
+        ValidationStrategy = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "ValidationStrategy"),
+            type = "structure",
+            name = "ValidationStrategy",
+            target_id = id.from(_N, "ValidationStrategy"),
+            target = M.ValidationStrategy,
+        }),
+        FolderArns = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "FolderArns"),
+            type = "list",
+            name = "FolderArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        LinkSharingConfiguration = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "LinkSharingConfiguration"),
+            type = "structure",
+            name = "LinkSharingConfiguration",
+            target_id = id.from(_N, "LinkSharingConfiguration"),
+            target = M.LinkSharingConfiguration,
+        }),
+        LinkEntities = schema.new({
+            id = id.from(_N, "CreateDashboardInput", "LinkEntities"),
+            type = "list",
+            name = "LinkEntities",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.CreateTemplateInput = schema.new({
+    id = id.from(_N, "CreateTemplateRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TemplateId = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "TemplateId"),
+            type = "string",
+            name = "TemplateId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        SourceEntity = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "SourceEntity"),
+            type = "structure",
+            name = "SourceEntity",
+            target_id = id.from(_N, "TemplateSourceEntity"),
+            target = M.TemplateSourceEntity,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        VersionDescription = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "VersionDescription"),
+            type = "string",
+            name = "VersionDescription",
+            target_id = prelude.String.id,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "TemplateVersionDefinition"),
+            target = M.TemplateVersionDefinition,
+        }),
+        ValidationStrategy = schema.new({
+            id = id.from(_N, "CreateTemplateInput", "ValidationStrategy"),
+            type = "structure",
+            name = "ValidationStrategy",
+            target_id = id.from(_N, "ValidationStrategy"),
+            target = M.ValidationStrategy,
+        }),
+    },
+})
+
+M.DescribeAnalysisDefinitionOutput = schema.new({
+    id = id.from(_N, "DescribeAnalysisDefinitionResponse"),
+    type = "structure",
+    members = {
+        AnalysisId = schema.new({
+            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "AnalysisId"),
+            type = "string",
+            name = "AnalysisId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.AnalysisError,
+        }),
+        ResourceStatus = schema.new({
+            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "ResourceStatus"),
+            type = "string",
+            name = "ResourceStatus",
+            target_id = prelude.String.id,
+        }),
+        ThemeArn = schema.new({
+            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "ThemeArn"),
+            type = "string",
+            name = "ThemeArn",
+            target_id = prelude.String.id,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "AnalysisDefinition"),
+            target = M.AnalysisDefinition,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeAnalysisDefinitionOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeDashboardDefinitionOutput = schema.new({
+    id = id.from(_N, "DescribeDashboardDefinitionResponse"),
+    type = "structure",
+    members = {
+        DashboardId = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "DashboardId"),
+            type = "string",
+            name = "DashboardId",
+            target_id = prelude.String.id,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.DashboardError,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ResourceStatus = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "ResourceStatus"),
+            type = "string",
+            name = "ResourceStatus",
+            target_id = prelude.String.id,
+        }),
+        ThemeArn = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "ThemeArn"),
+            type = "string",
+            name = "ThemeArn",
+            target_id = prelude.String.id,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "DashboardVersionDefinition"),
+            target = M.DashboardVersionDefinition,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        DashboardPublishOptions = schema.new({
+            id = id.from(_N, "DescribeDashboardDefinitionOutput", "DashboardPublishOptions"),
+            type = "structure",
+            name = "DashboardPublishOptions",
+            target_id = id.from(_N, "DashboardPublishOptions"),
+            target = M.DashboardPublishOptions,
+        }),
+    },
+})
+
+M.DescribeTemplateDefinitionOutput = schema.new({
+    id = id.from(_N, "DescribeTemplateDefinitionResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DescribeTemplateDefinitionOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        TemplateId = schema.new({
+            id = id.from(_N, "DescribeTemplateDefinitionOutput", "TemplateId"),
+            type = "string",
+            name = "TemplateId",
+            target_id = prelude.String.id,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "DescribeTemplateDefinitionOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.TemplateError,
+        }),
+        ResourceStatus = schema.new({
+            id = id.from(_N, "DescribeTemplateDefinitionOutput", "ResourceStatus"),
+            type = "string",
+            name = "ResourceStatus",
+            target_id = prelude.String.id,
+        }),
+        ThemeArn = schema.new({
+            id = id.from(_N, "DescribeTemplateDefinitionOutput", "ThemeArn"),
+            type = "string",
+            name = "ThemeArn",
+            target_id = prelude.String.id,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "DescribeTemplateDefinitionOutput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "TemplateVersionDefinition"),
+            target = M.TemplateVersionDefinition,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeTemplateDefinitionOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeTemplateDefinitionOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAnalysisInput = schema.new({
+    id = id.from(_N, "UpdateAnalysisRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateAnalysisInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AnalysisId = schema.new({
+            id = id.from(_N, "UpdateAnalysisInput", "AnalysisId"),
+            type = "string",
+            name = "AnalysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAnalysisInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "UpdateAnalysisInput", "Parameters"),
+            type = "structure",
+            name = "Parameters",
+            target_id = id.from(_N, "Parameters"),
+            target = M.Parameters,
+        }),
+        SourceEntity = schema.new({
+            id = id.from(_N, "UpdateAnalysisInput", "SourceEntity"),
+            type = "structure",
+            name = "SourceEntity",
+            target_id = id.from(_N, "AnalysisSourceEntity"),
+            target = M.AnalysisSourceEntity,
+        }),
+        ThemeArn = schema.new({
+            id = id.from(_N, "UpdateAnalysisInput", "ThemeArn"),
+            type = "string",
+            name = "ThemeArn",
+            target_id = prelude.String.id,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "UpdateAnalysisInput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "AnalysisDefinition"),
+            target = M.AnalysisDefinition,
+        }),
+        ValidationStrategy = schema.new({
+            id = id.from(_N, "UpdateAnalysisInput", "ValidationStrategy"),
+            type = "structure",
+            name = "ValidationStrategy",
+            target_id = id.from(_N, "ValidationStrategy"),
+            target = M.ValidationStrategy,
+        }),
+    },
+})
+
+M.UpdateDashboardInput = schema.new({
+    id = id.from(_N, "UpdateDashboardRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DashboardId = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "DashboardId"),
+            type = "string",
+            name = "DashboardId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceEntity = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "SourceEntity"),
+            type = "structure",
+            name = "SourceEntity",
+            target_id = id.from(_N, "DashboardSourceEntity"),
+            target = M.DashboardSourceEntity,
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "Parameters"),
+            type = "structure",
+            name = "Parameters",
+            target_id = id.from(_N, "Parameters"),
+            target = M.Parameters,
+        }),
+        VersionDescription = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "VersionDescription"),
+            type = "string",
+            name = "VersionDescription",
+            target_id = prelude.String.id,
+        }),
+        DashboardPublishOptions = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "DashboardPublishOptions"),
+            type = "structure",
+            name = "DashboardPublishOptions",
+            target_id = id.from(_N, "DashboardPublishOptions"),
+            target = M.DashboardPublishOptions,
+        }),
+        ThemeArn = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "ThemeArn"),
+            type = "string",
+            name = "ThemeArn",
+            target_id = prelude.String.id,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "DashboardVersionDefinition"),
+            target = M.DashboardVersionDefinition,
+        }),
+        ValidationStrategy = schema.new({
+            id = id.from(_N, "UpdateDashboardInput", "ValidationStrategy"),
+            type = "structure",
+            name = "ValidationStrategy",
+            target_id = id.from(_N, "ValidationStrategy"),
+            target = M.ValidationStrategy,
+        }),
+    },
+})
+
+M.UpdateTemplateInput = schema.new({
+    id = id.from(_N, "UpdateTemplateRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateTemplateInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TemplateId = schema.new({
+            id = id.from(_N, "UpdateTemplateInput", "TemplateId"),
+            type = "string",
+            name = "TemplateId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SourceEntity = schema.new({
+            id = id.from(_N, "UpdateTemplateInput", "SourceEntity"),
+            type = "structure",
+            name = "SourceEntity",
+            target_id = id.from(_N, "TemplateSourceEntity"),
+            target = M.TemplateSourceEntity,
+        }),
+        VersionDescription = schema.new({
+            id = id.from(_N, "UpdateTemplateInput", "VersionDescription"),
+            type = "string",
+            name = "VersionDescription",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateTemplateInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Definition = schema.new({
+            id = id.from(_N, "UpdateTemplateInput", "Definition"),
+            type = "structure",
+            name = "Definition",
+            target_id = id.from(_N, "TemplateVersionDefinition"),
+            target = M.TemplateVersionDefinition,
+        }),
+        ValidationStrategy = schema.new({
+            id = id.from(_N, "UpdateTemplateInput", "ValidationStrategy"),
+            type = "structure",
+            name = "ValidationStrategy",
+            target_id = id.from(_N, "ValidationStrategy"),
+            target = M.ValidationStrategy,
         }),
     },
 })

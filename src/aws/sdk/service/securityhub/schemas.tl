@@ -116,6 +116,8 @@ M.MemberList = schema.new({ type = "list", list_member = M.Member })
 
 M.RecommendationSteps = schema.new({ type = "list", list_member = M.RecommendationStep })
 
+M.RemediationV2ItemList = schema.new({ type = "list", list_member = M.RemediationV2Item })
+
 M.ResourceGroupByRules = schema.new({ type = "list", list_member = M.ResourceGroupByRule })
 
 M.ResourcesTrendsMetrics = schema.new({ type = "list", list_member = M.ResourcesTrendsMetricsResult })
@@ -137,6 +139,8 @@ M.CspmConnectorSummaryList = schema.new({ type = "list", list_member = M.CspmCon
 M.ConnectorSummaryList = schema.new({ type = "list", list_member = M.ConnectorSummary })
 
 M.ProductSubscriptionArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExposureFindingItemsList = schema.new({ type = "list", list_member = M.ExposureFinding })
 
 M.FindingAggregatorList = schema.new({ type = "list", list_member = M.FindingAggregator })
 
@@ -183,6 +187,8 @@ M.FindingsTrendsCompositeFilterList = schema.new({ type = "list", list_member = 
 M.CompositeFilterList = schema.new({ type = "list", list_member = M.CompositeFilter })
 
 M.InsightResultValueList = schema.new({ type = "list", list_member = M.InsightResultValue })
+
+M.RemediationCompositeFilterList = schema.new({ type = "list", list_member = M.RemediationCompositeFilter })
 
 M.ResourcesTrendsCompositeFilterList = schema.new({ type = "list", list_member = M.ResourcesTrendsCompositeFilter })
 
@@ -260,6 +266,12 @@ M.OcsfMapFilterList = schema.new({ type = "list", list_member = M.OcsfMapFilter 
 
 M.OcsfIpFilterList = schema.new({ type = "list", list_member = M.OcsfIpFilter })
 
+M.RemediationStringFilterList = schema.new({ type = "list", list_member = M.RemediationStringFilter })
+
+M.RemediationStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.KbArticleList = schema.new({ type = "list", list_member = M.KbArticle })
+
 M.ResourcesTrendsStringFilterList = schema.new({ type = "list", list_member = M.ResourcesTrendsStringFilter })
 
 M.ResourcesStringFilterList = schema.new({ type = "list", list_member = M.ResourcesStringFilter })
@@ -289,6 +301,10 @@ M.NetworkEndpointsList = schema.new({ type = "list", list_member = M.NetworkEndp
 M.SignalsList = schema.new({ type = "list", list_member = M.Signal })
 
 M.IndicatorsList = schema.new({ type = "list", list_member = M.Indicator })
+
+M.RemediationParameterList = schema.new({ type = "list", list_member = M.RemediationParameter })
+
+M.RemediationStepList = schema.new({ type = "list", list_member = M.RemediationStep })
 
 M.PortRangeList = schema.new({ type = "list", list_member = M.PortRange })
 
@@ -29591,6 +29607,58 @@ M.EnableSecurityHubV2Output = schema.new({
     },
 })
 
+M.ExposureFinding = schema.new({
+    id = id.from(_N, "ExposureFinding"),
+    type = "structure",
+    members = {
+        MetadataUid = schema.new({
+            id = id.from(_N, "ExposureFinding", "MetadataUid"),
+            type = "string",
+            name = "MetadataUid",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "ExposureFinding", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PreviousSeverity = schema.new({
+            id = id.from(_N, "ExposureFinding", "PreviousSeverity"),
+            type = "string",
+            name = "PreviousSeverity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProjectedSeverity = schema.new({
+            id = id.from(_N, "ExposureFinding", "ProjectedSeverity"),
+            type = "string",
+            name = "ProjectedSeverity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Impact = schema.new({
+            id = id.from(_N, "ExposureFinding", "Impact"),
+            type = "string",
+            name = "Impact",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.FindingAggregator = schema.new({
     id = id.from(_N, "FindingAggregator"),
     type = "structure",
@@ -31275,6 +31343,838 @@ M.GetRecommendedPolicyV2Output = schema.new({
     },
 })
 
+M.RemediationStringFilterCondition = schema.new({
+    id = id.from(_N, "RemediationStringFilterCondition"),
+    type = "structure",
+    members = {
+        Value = schema.new({
+            id = id.from(_N, "RemediationStringFilterCondition", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemediationStringFilter = schema.new({
+    id = id.from(_N, "RemediationStringFilter"),
+    type = "structure",
+    members = {
+        FieldName = schema.new({
+            id = id.from(_N, "RemediationStringFilter", "FieldName"),
+            type = "string",
+            name = "FieldName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "RemediationStringFilter", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "RemediationStringFilterCondition"),
+            target = M.RemediationStringFilterCondition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemediationCompositeFilter = schema.new({
+    id = id.from(_N, "RemediationCompositeFilter"),
+    type = "structure",
+    members = {
+        StringFilters = schema.new({
+            id = id.from(_N, "RemediationCompositeFilter", "StringFilters"),
+            type = "list",
+            name = "StringFilters",
+            target_id = prelude.Document.id,
+            list_member = M.RemediationStringFilter,
+        }),
+    },
+})
+
+M.RemediationFilters = schema.new({
+    id = id.from(_N, "RemediationFilters"),
+    type = "structure",
+    members = {
+        CompositeFilters = schema.new({
+            id = id.from(_N, "RemediationFilters", "CompositeFilters"),
+            type = "list",
+            name = "CompositeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.RemediationCompositeFilter,
+        }),
+    },
+})
+
+M.GetRemediationsV2Input = schema.new({
+    id = id.from(_N, "GetRemediationsV2Request"),
+    type = "structure",
+    members = {
+        TargetUid = schema.new({
+            id = id.from(_N, "GetRemediationsV2Input", "TargetUid"),
+            type = "string",
+            name = "TargetUid",
+            target_id = prelude.String.id,
+        }),
+        MetadataUid = schema.new({
+            id = id.from(_N, "GetRemediationsV2Input", "MetadataUid"),
+            type = "string",
+            name = "MetadataUid",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetRemediationsV2Input", "Filters"),
+            type = "structure",
+            name = "Filters",
+            target_id = id.from(_N, "RemediationFilters"),
+            target = M.RemediationFilters,
+        }),
+        ShowGuidance = schema.new({
+            id = id.from(_N, "GetRemediationsV2Input", "ShowGuidance"),
+            type = "boolean",
+            name = "ShowGuidance",
+            target_id = prelude.Boolean.id,
+        }),
+        GuidanceFormat = schema.new({
+            id = id.from(_N, "GetRemediationsV2Input", "GuidanceFormat"),
+            type = "string",
+            name = "GuidanceFormat",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetRemediationsV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetRemediationsV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemediationGuidanceContext = schema.new({
+    id = id.from(_N, "RemediationGuidanceContext"),
+    type = "structure",
+    members = {
+        ProblemStatement = schema.new({
+            id = id.from(_N, "RemediationGuidanceContext", "ProblemStatement"),
+            type = "string",
+            name = "ProblemStatement",
+            target_id = prelude.String.id,
+        }),
+        RiskAssessment = schema.new({
+            id = id.from(_N, "RemediationGuidanceContext", "RiskAssessment"),
+            type = "string",
+            name = "RiskAssessment",
+            target_id = prelude.String.id,
+        }),
+        AffectedScope = schema.new({
+            id = id.from(_N, "RemediationGuidanceContext", "AffectedScope"),
+            type = "string",
+            name = "AffectedScope",
+            target_id = prelude.String.id,
+        }),
+        Prerequisites = schema.new({
+            id = id.from(_N, "RemediationGuidanceContext", "Prerequisites"),
+            type = "list",
+            name = "Prerequisites",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RemediationGuidanceExamples = schema.new({
+    id = id.from(_N, "RemediationGuidanceExamples"),
+    type = "structure",
+    members = {
+        AwsCli = schema.new({
+            id = id.from(_N, "RemediationGuidanceExamples", "AwsCli"),
+            type = "string",
+            name = "AwsCli",
+            target_id = prelude.String.id,
+        }),
+        Cli = schema.new({
+            id = id.from(_N, "RemediationGuidanceExamples", "Cli"),
+            type = "string",
+            name = "Cli",
+            target_id = prelude.String.id,
+        }),
+        Python = schema.new({
+            id = id.from(_N, "RemediationGuidanceExamples", "Python"),
+            type = "string",
+            name = "Python",
+            target_id = prelude.String.id,
+        }),
+        Terraform = schema.new({
+            id = id.from(_N, "RemediationGuidanceExamples", "Terraform"),
+            type = "string",
+            name = "Terraform",
+            target_id = prelude.String.id,
+        }),
+        Cdk = schema.new({
+            id = id.from(_N, "RemediationGuidanceExamples", "Cdk"),
+            type = "string",
+            name = "Cdk",
+            target_id = prelude.String.id,
+        }),
+        CloudFormation = schema.new({
+            id = id.from(_N, "RemediationGuidanceExamples", "CloudFormation"),
+            type = "string",
+            name = "CloudFormation",
+            target_id = prelude.String.id,
+        }),
+        IaC = schema.new({
+            id = id.from(_N, "RemediationGuidanceExamples", "IaC"),
+            type = "string",
+            name = "IaC",
+            target_id = prelude.String.id,
+        }),
+        Template = schema.new({
+            id = id.from(_N, "RemediationGuidanceExamples", "Template"),
+            type = "string",
+            name = "Template",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemediationGuidanceMetadata = schema.new({
+    id = id.from(_N, "RemediationGuidanceMetadata"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExposureType = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "ExposureType"),
+            type = "string",
+            name = "ExposureType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TraitTitles = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "TraitTitles"),
+            type = "list",
+            name = "TraitTitles",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Reversibility = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "Reversibility"),
+            type = "string",
+            name = "Reversibility",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FixEffect = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "FixEffect"),
+            type = "string",
+            name = "FixEffect",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RiskLevel = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "RiskLevel"),
+            type = "string",
+            name = "RiskLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AutomationLevel = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "AutomationLevel"),
+            type = "string",
+            name = "AutomationLevel",
+            target_id = prelude.String.id,
+        }),
+        HumanReviewRequired = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "HumanReviewRequired"),
+            type = "boolean",
+            name = "HumanReviewRequired",
+            target_id = prelude.Boolean.id,
+        }),
+        GeneratedAt = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "GeneratedAt"),
+            type = "timestamp",
+            name = "GeneratedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        VerificationStatus = schema.new({
+            id = id.from(_N, "RemediationGuidanceMetadata", "VerificationStatus"),
+            type = "string",
+            name = "VerificationStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemediationParameter = schema.new({
+    id = id.from(_N, "RemediationParameter"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RemediationParameter", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RemediationParameter", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RemediationParameter", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Required = schema.new({
+            id = id.from(_N, "RemediationParameter", "Required"),
+            type = "boolean",
+            name = "Required",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.RemediationStep = schema.new({
+    id = id.from(_N, "RemediationStep"),
+    type = "structure",
+    members = {
+        Phase = schema.new({
+            id = id.from(_N, "RemediationStep", "Phase"),
+            type = "string",
+            name = "Phase",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RemediationStep", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "RemediationStep", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Action = schema.new({
+            id = id.from(_N, "RemediationStep", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Logic = schema.new({
+            id = id.from(_N, "RemediationStep", "Logic"),
+            type = "string",
+            name = "Logic",
+            target_id = prelude.String.id,
+        }),
+        Inverse = schema.new({
+            id = id.from(_N, "RemediationStep", "Inverse"),
+            type = "string",
+            name = "Inverse",
+            target_id = prelude.String.id,
+        }),
+        VerifyAfter = schema.new({
+            id = id.from(_N, "RemediationStep", "VerifyAfter"),
+            type = "string",
+            name = "VerifyAfter",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemediationGuidanceSpecification = schema.new({
+    id = id.from(_N, "RemediationGuidanceSpecification"),
+    type = "structure",
+    members = {
+        Parameters = schema.new({
+            id = id.from(_N, "RemediationGuidanceSpecification", "Parameters"),
+            type = "list",
+            name = "Parameters",
+            target_id = prelude.Document.id,
+            list_member = M.RemediationParameter,
+        }),
+        Steps = schema.new({
+            id = id.from(_N, "RemediationGuidanceSpecification", "Steps"),
+            type = "list",
+            name = "Steps",
+            target_id = prelude.Document.id,
+            list_member = M.RemediationStep,
+        }),
+        ExpectedEndState = schema.new({
+            id = id.from(_N, "RemediationGuidanceSpecification", "ExpectedEndState"),
+            type = "string",
+            name = "ExpectedEndState",
+            target_id = prelude.String.id,
+        }),
+        RequiredPermissions = schema.new({
+            id = id.from(_N, "RemediationGuidanceSpecification", "RequiredPermissions"),
+            type = "list",
+            name = "RequiredPermissions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RemediationGuidance = schema.new({
+    id = id.from(_N, "RemediationGuidance"),
+    type = "structure",
+    members = {
+        TargetTypeName = schema.new({
+            id = id.from(_N, "RemediationGuidance", "TargetTypeName"),
+            type = "string",
+            name = "TargetTypeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Pattern = schema.new({
+            id = id.from(_N, "RemediationGuidance", "Pattern"),
+            type = "string",
+            name = "Pattern",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "RemediationGuidance", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Context = schema.new({
+            id = id.from(_N, "RemediationGuidance", "Context"),
+            type = "structure",
+            name = "Context",
+            target_id = id.from(_N, "RemediationGuidanceContext"),
+            target = M.RemediationGuidanceContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Specification = schema.new({
+            id = id.from(_N, "RemediationGuidance", "Specification"),
+            type = "structure",
+            name = "Specification",
+            target_id = id.from(_N, "RemediationGuidanceSpecification"),
+            target = M.RemediationGuidanceSpecification,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Examples = schema.new({
+            id = id.from(_N, "RemediationGuidance", "Examples"),
+            type = "structure",
+            name = "Examples",
+            target_id = id.from(_N, "RemediationGuidanceExamples"),
+            target = M.RemediationGuidanceExamples,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "RemediationGuidance", "Metadata"),
+            type = "structure",
+            name = "Metadata",
+            target_id = id.from(_N, "RemediationGuidanceMetadata"),
+            target = M.RemediationGuidanceMetadata,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemediationOutcome = schema.new({
+    id = id.from(_N, "RemediationOutcome"),
+    type = "structure",
+    members = {
+        ResolvedFindingsCount = schema.new({
+            id = id.from(_N, "RemediationOutcome", "ResolvedFindingsCount"),
+            type = "integer",
+            name = "ResolvedFindingsCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SeverityReductionFindingsCount = schema.new({
+            id = id.from(_N, "RemediationOutcome", "SeverityReductionFindingsCount"),
+            type = "integer",
+            name = "SeverityReductionFindingsCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SeverityUnchangedCount = schema.new({
+            id = id.from(_N, "RemediationOutcome", "SeverityUnchangedCount"),
+            type = "integer",
+            name = "SeverityUnchangedCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.KbArticle = schema.new({
+    id = id.from(_N, "KbArticle"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "KbArticle", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "KbArticle", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemediationSummaryDetail = schema.new({
+    id = id.from(_N, "RemediationSummaryDetail"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "RemediationSummaryDetail", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RemediationSummaryDetail", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        IsImmediate = schema.new({
+            id = id.from(_N, "RemediationSummaryDetail", "IsImmediate"),
+            type = "boolean",
+            name = "IsImmediate",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PostRemediationSteps = schema.new({
+            id = id.from(_N, "RemediationSummaryDetail", "PostRemediationSteps"),
+            type = "list",
+            name = "PostRemediationSteps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        KbArticles = schema.new({
+            id = id.from(_N, "RemediationSummaryDetail", "KbArticles"),
+            type = "list",
+            name = "KbArticles",
+            target_id = prelude.Document.id,
+            list_member = M.KbArticle,
+        }),
+    },
+})
+
+M.RemediationResource = schema.new({
+    id = id.from(_N, "RemediationResource"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "RemediationResource", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Region = schema.new({
+            id = id.from(_N, "RemediationResource", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceOwnerAccountId = schema.new({
+            id = id.from(_N, "RemediationResource", "ResourceOwnerAccountId"),
+            type = "string",
+            name = "ResourceOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+        ResourceOwnerOrgId = schema.new({
+            id = id.from(_N, "RemediationResource", "ResourceOwnerOrgId"),
+            type = "string",
+            name = "ResourceOwnerOrgId",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RemediationResource", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RemediationResource", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "RemediationResource", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceGuid = schema.new({
+            id = id.from(_N, "RemediationResource", "ResourceGuid"),
+            type = "string",
+            name = "ResourceGuid",
+            target_id = prelude.String.id,
+        }),
+        ResourceRegion = schema.new({
+            id = id.from(_N, "RemediationResource", "ResourceRegion"),
+            type = "string",
+            name = "ResourceRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CloudProvider = schema.new({
+            id = id.from(_N, "RemediationResource", "CloudProvider"),
+            type = "string",
+            name = "CloudProvider",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemediationTrait = schema.new({
+    id = id.from(_N, "RemediationTrait"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "RemediationTrait", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "RemediationTrait", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemediationV2Item = schema.new({
+    id = id.from(_N, "RemediationV2Item"),
+    type = "structure",
+    members = {
+        TargetUid = schema.new({
+            id = id.from(_N, "RemediationV2Item", "TargetUid"),
+            type = "string",
+            name = "TargetUid",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Outcome = schema.new({
+            id = id.from(_N, "RemediationV2Item", "Outcome"),
+            type = "structure",
+            name = "Outcome",
+            target_id = id.from(_N, "RemediationOutcome"),
+            target = M.RemediationOutcome,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Priority = schema.new({
+            id = id.from(_N, "RemediationV2Item", "Priority"),
+            type = "string",
+            name = "Priority",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RemediationSummary = schema.new({
+            id = id.from(_N, "RemediationV2Item", "RemediationSummary"),
+            type = "structure",
+            name = "RemediationSummary",
+            target_id = id.from(_N, "RemediationSummaryDetail"),
+            target = M.RemediationSummaryDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Resource = schema.new({
+            id = id.from(_N, "RemediationV2Item", "Resource"),
+            type = "structure",
+            name = "Resource",
+            target_id = id.from(_N, "RemediationResource"),
+            target = M.RemediationResource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "RemediationV2Item", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Trait = schema.new({
+            id = id.from(_N, "RemediationV2Item", "Trait"),
+            type = "structure",
+            name = "Trait",
+            target_id = id.from(_N, "RemediationTrait"),
+            target = M.RemediationTrait,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Guidance = schema.new({
+            id = id.from(_N, "RemediationV2Item", "Guidance"),
+            type = "structure",
+            name = "Guidance",
+            target_id = id.from(_N, "RemediationGuidance"),
+            target = M.RemediationGuidance,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "RemediationV2Item", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetRemediationsV2Output = schema.new({
+    id = id.from(_N, "GetRemediationsV2Response"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "GetRemediationsV2Output", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.RemediationV2Item,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetRemediationsV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ResourcesDateFilter = schema.new({
     id = id.from(_N, "ResourcesDateFilter"),
     type = "structure",
@@ -32413,6 +33313,95 @@ M.ListEnabledProductsForImportOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListEnabledProductsForImportOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListExposuresByRemediationV2Input = schema.new({
+    id = id.from(_N, "ListExposuresByRemediationV2Request"),
+    type = "structure",
+    members = {
+        TargetUid = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Input", "TargetUid"),
+            type = "string",
+            name = "TargetUid",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListExposuresByRemediationV2Output = schema.new({
+    id = id.from(_N, "ListExposuresByRemediationV2Response"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Output", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.ExposureFinding,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetUid = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Output", "TargetUid"),
+            type = "string",
+            name = "TargetUid",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Resource = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Output", "Resource"),
+            type = "structure",
+            name = "Resource",
+            target_id = id.from(_N, "RemediationResource"),
+            target = M.RemediationResource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TotalCount = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Output", "TotalCount"),
+            type = "integer",
+            name = "TotalCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Trait = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Output", "Trait"),
+            type = "structure",
+            name = "Trait",
+            target_id = id.from(_N, "RemediationTrait"),
+            target = M.RemediationTrait,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListExposuresByRemediationV2Output", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -35494,6 +36483,18 @@ M.GetRecommendedPolicyV2 = schema.operation({
     },
 })
 
+M.GetRemediationsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetRemediationsV2"),
+    input = M.GetRemediationsV2Input,
+    output = M.GetRemediationsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRemediationsV2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetResourcesStatisticsV2 = schema.operation({
     id = id.from("com.amazonaws.securityhub", "GetResourcesStatisticsV2"),
     input = M.GetResourcesStatisticsV2Input,
@@ -35644,6 +36645,18 @@ M.ListEnabledProductsForImport = schema.operation({
     output = M.ListEnabledProductsForImportOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/productSubscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListExposuresByRemediationV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListExposuresByRemediationV2"),
+    input = M.ListExposuresByRemediationV2Input,
+    output = M.ListExposuresByRemediationV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListExposuresByRemediationV2" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

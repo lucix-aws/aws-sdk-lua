@@ -789,6 +789,19 @@ M.EinvoiceDeliveryPreference = schema.new({
     },
 })
 
+M.MarketplacePunchOutPreference = schema.new({
+    id = id.from(_N, "MarketplacePunchOutPreference"),
+    type = "structure",
+    members = {
+        ApprovalRequestRedirectUrl = schema.new({
+            id = id.from(_N, "MarketplacePunchOutPreference", "ApprovalRequestRedirectUrl"),
+            type = "string",
+            name = "ApprovalRequestRedirectUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ProcurementPortalPreferenceSelector = schema.new({
     id = id.from(_N, "ProcurementPortalPreferenceSelector"),
     type = "structure",
@@ -964,6 +977,19 @@ M.CreateProcurementPortalPreferenceInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        MarketplacePunchOutEnabled = schema.new({
+            id = id.from(_N, "CreateProcurementPortalPreferenceInput", "MarketplacePunchOutEnabled"),
+            type = "boolean",
+            name = "MarketplacePunchOutEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        MarketplacePunchOutPreference = schema.new({
+            id = id.from(_N, "CreateProcurementPortalPreferenceInput", "MarketplacePunchOutPreference"),
+            type = "structure",
+            name = "MarketplacePunchOutPreference",
+            target_id = id.from(_N, "MarketplacePunchOutPreference"),
+            target = M.MarketplacePunchOutPreference,
         }),
         Contacts = schema.new({
             id = id.from(_N, "CreateProcurementPortalPreferenceInput", "Contacts"),
@@ -1617,6 +1643,19 @@ M.ProcurementPortalPreference = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        MarketplacePunchOutEnabled = schema.new({
+            id = id.from(_N, "ProcurementPortalPreference", "MarketplacePunchOutEnabled"),
+            type = "boolean",
+            name = "MarketplacePunchOutEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        MarketplacePunchOutPreference = schema.new({
+            id = id.from(_N, "ProcurementPortalPreference", "MarketplacePunchOutPreference"),
+            type = "structure",
+            name = "MarketplacePunchOutPreference",
+            target_id = id.from(_N, "MarketplacePunchOutPreference"),
+            target = M.MarketplacePunchOutPreference,
+        }),
         Contacts = schema.new({
             id = id.from(_N, "ProcurementPortalPreference", "Contacts"),
             type = "list",
@@ -2206,6 +2245,12 @@ M.ProcurementPortalPreferenceSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        MarketplacePunchOutEnabled = schema.new({
+            id = id.from(_N, "ProcurementPortalPreferenceSummary", "MarketplacePunchOutEnabled"),
+            type = "boolean",
+            name = "MarketplacePunchOutEnabled",
+            target_id = prelude.Boolean.id,
+        }),
         EinvoiceDeliveryPreferenceStatus = schema.new({
             id = id.from(_N, "ProcurementPortalPreferenceSummary", "EinvoiceDeliveryPreferenceStatus"),
             type = "string",
@@ -2544,6 +2589,19 @@ M.PutProcurementPortalPreferenceInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        MarketplacePunchOutEnabled = schema.new({
+            id = id.from(_N, "PutProcurementPortalPreferenceInput", "MarketplacePunchOutEnabled"),
+            type = "boolean",
+            name = "MarketplacePunchOutEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        MarketplacePunchOutPreference = schema.new({
+            id = id.from(_N, "PutProcurementPortalPreferenceInput", "MarketplacePunchOutPreference"),
+            type = "structure",
+            name = "MarketplacePunchOutPreference",
+            target_id = id.from(_N, "MarketplacePunchOutPreference"),
+            target = M.MarketplacePunchOutPreference,
         }),
         Contacts = schema.new({
             id = id.from(_N, "PutProcurementPortalPreferenceInput", "Contacts"),

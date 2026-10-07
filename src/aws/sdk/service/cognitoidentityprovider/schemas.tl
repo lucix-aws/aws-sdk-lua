@@ -46,6 +46,8 @@ M.AttributeMappingType = schema.new({ type = "map", map_key = prelude.String, ma
 
 M.IdpIdentifiersListType = schema.new({ type = "list", list_member = prelude.String })
 
+M.AcrMappingType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AssetListType = schema.new({ type = "list", list_member = M.AssetType })
 
 M.ResourceServerScopeListType = schema.new({ type = "list", list_member = M.ResourceServerScopeType })
@@ -61,6 +63,8 @@ M.UsernameAttributesListType = schema.new({ type = "list", list_member = prelude
 M.UserPoolTagsType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.SchemaAttributesListType = schema.new({ type = "list", list_member = M.SchemaAttributeType })
+
+M.AcrConfigurationType = schema.new({ type = "map", map_key = prelude.String, map_value = M.AcrLevelConfigType })
 
 M.ClientPermissionListType = schema.new({ type = "list", list_member = prelude.String })
 
@@ -331,6 +335,22 @@ M.AccountTakeoverRiskConfigurationType = schema.new({
             name = "Actions",
             target_id = id.from(_N, "AccountTakeoverActionsType"),
             target = M.AccountTakeoverActionsType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AcrLevelConfigType = schema.new({
+    id = id.from(_N, "AcrLevelConfigType"),
+    type = "structure",
+    members = {
+        AcrValue = schema.new({
+            id = id.from(_N, "AcrLevelConfigType", "AcrValue"),
+            type = "string",
+            name = "AcrValue",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1995,6 +2015,22 @@ M.AdminInitiateAuthOutput = schema.new({
     },
 })
 
+M.FeatureUnavailableInTierException = schema.new({
+    id = id.from(_N, "FeatureUnavailableInTierException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "FeatureUnavailableInTierException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InvalidEmailRoleAccessPolicyException = schema.new({
     id = id.from(_N, "InvalidEmailRoleAccessPolicyException"),
     type = "structure",
@@ -2681,6 +2717,13 @@ M.AdminRespondToAuthChallengeOutput = schema.new({
             name = "AuthenticationResult",
             target_id = id.from(_N, "AuthenticationResultType"),
             target = M.AuthenticationResultType,
+        }),
+        AvailableChallenges = schema.new({
+            id = id.from(_N, "AdminRespondToAuthChallengeOutput", "AvailableChallenges"),
+            type = "list",
+            name = "AvailableChallenges",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -3892,6 +3935,14 @@ M.CreateIdentityProviderInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        AcrMapping = schema.new({
+            id = id.from(_N, "CreateIdentityProviderInput", "AcrMapping"),
+            type = "map",
+            name = "AcrMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
     },
 })
 
@@ -3939,6 +3990,14 @@ M.IdentityProviderType = schema.new({
             name = "IdpIdentifiers",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        AcrMapping = schema.new({
+            id = id.from(_N, "IdentityProviderType", "AcrMapping"),
+            type = "map",
+            name = "AcrMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
         LastModifiedDate = schema.new({
             id = id.from(_N, "IdentityProviderType", "LastModifiedDate"),
@@ -5326,6 +5385,14 @@ M.CreateUserPoolInput = schema.new({
             target_id = id.from(_N, "IssuerConfigurationType"),
             target = M.IssuerConfigurationType,
         }),
+        AcrConfiguration = schema.new({
+            id = id.from(_N, "CreateUserPoolInput", "AcrConfiguration"),
+            type = "map",
+            name = "AcrConfiguration",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AcrLevelConfigType,
+        }),
     },
 })
 
@@ -5571,6 +5638,14 @@ M.UserPoolType = schema.new({
             target_id = id.from(_N, "IssuerConfigurationType"),
             target = M.IssuerConfigurationType,
         }),
+        AcrConfiguration = schema.new({
+            id = id.from(_N, "UserPoolType", "AcrConfiguration"),
+            type = "map",
+            name = "AcrConfiguration",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AcrLevelConfigType,
+        }),
     },
 })
 
@@ -5584,22 +5659,6 @@ M.CreateUserPoolOutput = schema.new({
             name = "UserPool",
             target_id = id.from(_N, "UserPoolType"),
             target = M.UserPoolType,
-        }),
-    },
-})
-
-M.FeatureUnavailableInTierException = schema.new({
-    id = id.from(_N, "FeatureUnavailableInTierException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "FeatureUnavailableInTierException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -9565,6 +9624,13 @@ M.RespondToAuthChallengeOutput = schema.new({
             target_id = id.from(_N, "AuthenticationResultType"),
             target = M.AuthenticationResultType,
         }),
+        AvailableChallenges = schema.new({
+            id = id.from(_N, "RespondToAuthChallengeOutput", "AvailableChallenges"),
+            type = "list",
+            name = "AvailableChallenges",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -10454,6 +10520,14 @@ M.UpdateIdentityProviderInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        AcrMapping = schema.new({
+            id = id.from(_N, "UpdateIdentityProviderInput", "AcrMapping"),
+            type = "map",
+            name = "AcrMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
     },
 })
 
@@ -10919,6 +10993,14 @@ M.UpdateUserPoolInput = schema.new({
             name = "IssuerConfiguration",
             target_id = id.from(_N, "IssuerConfigurationType"),
             target = M.IssuerConfigurationType,
+        }),
+        AcrConfiguration = schema.new({
+            id = id.from(_N, "UpdateUserPoolInput", "AcrConfiguration"),
+            type = "map",
+            name = "AcrConfiguration",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AcrLevelConfigType,
         }),
     },
 })

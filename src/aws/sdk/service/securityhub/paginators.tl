@@ -220,6 +220,24 @@ function M.items_get_recommended_policy_v2(client, input)
     })
 end
 
+--- Returns a page iterator for getRemediationsV2.
+function M.pages_get_remediations_v2(client, input)
+    return paginator.pages(client, "getRemediationsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for getRemediationsV2.
+function M.items_get_remediations_v2(client, input)
+    return paginator.items(client, "getRemediationsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 --- Returns a page iterator for getResourcesTrendsV2.
 function M.pages_get_resources_trends_v2(client, input)
     return paginator.pages(client, "getResourcesTrendsV2", input, {
@@ -325,6 +343,24 @@ function M.items_list_enabled_products_for_import(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "ProductSubscriptions",
+    })
+end
+
+--- Returns a page iterator for listExposuresByRemediationV2.
+function M.pages_list_exposures_by_remediation_v2(client, input)
+    return paginator.pages(client, "listExposuresByRemediationV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listExposuresByRemediationV2.
+function M.items_list_exposures_by_remediation_v2(client, input)
+    return paginator.items(client, "listExposuresByRemediationV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
     })
 end
 

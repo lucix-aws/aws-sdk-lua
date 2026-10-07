@@ -212,6 +212,14 @@ M.VerificationScriptEnvVarList = schema.new({ type = "list", list_member = M.Ver
 
 M.UriList = schema.new({ type = "list", list_member = prelude.String })
 
+M.TriggerFilterGroups = schema.new({ type = "list", list_member = M.TriggerFilterGroup })
+
+M.TriggerEventList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TriggerFilterList = schema.new({ type = "list", list_member = M.TriggerFilter })
+
+M.TriggerRegexPatternList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1783,10 +1791,70 @@ M.AzureDevOpsRepositoryResource = schema.new({
     },
 })
 
+M.TriggerFilter = schema.new({
+    id = id.from(_N, "TriggerFilter"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "TriggerFilter", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        patterns = schema.new({
+            id = id.from(_N, "TriggerFilter", "patterns"),
+            type = "list",
+            name = "patterns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        matchMode = schema.new({
+            id = id.from(_N, "TriggerFilter", "matchMode"),
+            type = "string",
+            name = "matchMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TriggerFilterGroup = schema.new({
+    id = id.from(_N, "TriggerFilterGroup"),
+    type = "structure",
+    members = {
+        events = schema.new({
+            id = id.from(_N, "TriggerFilterGroup", "events"),
+            type = "list",
+            name = "events",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        filters = schema.new({
+            id = id.from(_N, "TriggerFilterGroup", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.TriggerFilter,
+        }),
+    },
+})
+
 M.AzureDevOpsResourceCapabilities = schema.new({
     id = id.from(_N, "AzureDevOpsResourceCapabilities"),
     type = "structure",
     members = {
+        triggerFilterGroups = schema.new({
+            id = id.from(_N, "AzureDevOpsResourceCapabilities", "triggerFilterGroups"),
+            type = "list",
+            name = "triggerFilterGroups",
+            target_id = prelude.Document.id,
+            list_member = M.TriggerFilterGroup,
+        }),
         leaveComments = schema.new({
             id = id.from(_N, "AzureDevOpsResourceCapabilities", "leaveComments"),
             type = "boolean",
@@ -5409,6 +5477,13 @@ M.BitbucketResourceCapabilities = schema.new({
     id = id.from(_N, "BitbucketResourceCapabilities"),
     type = "structure",
     members = {
+        triggerFilterGroups = schema.new({
+            id = id.from(_N, "BitbucketResourceCapabilities", "triggerFilterGroups"),
+            type = "list",
+            name = "triggerFilterGroups",
+            target_id = prelude.Document.id,
+            list_member = M.TriggerFilterGroup,
+        }),
         leaveComments = schema.new({
             id = id.from(_N, "BitbucketResourceCapabilities", "leaveComments"),
             type = "boolean",
@@ -8122,6 +8197,13 @@ M.GitHubResourceCapabilities = schema.new({
     id = id.from(_N, "GitHubResourceCapabilities"),
     type = "structure",
     members = {
+        triggerFilterGroups = schema.new({
+            id = id.from(_N, "GitHubResourceCapabilities", "triggerFilterGroups"),
+            type = "list",
+            name = "triggerFilterGroups",
+            target_id = prelude.Document.id,
+            list_member = M.TriggerFilterGroup,
+        }),
         leaveComments = schema.new({
             id = id.from(_N, "GitHubResourceCapabilities", "leaveComments"),
             type = "boolean",
@@ -8206,6 +8288,13 @@ M.GitLabResourceCapabilities = schema.new({
     id = id.from(_N, "GitLabResourceCapabilities"),
     type = "structure",
     members = {
+        triggerFilterGroups = schema.new({
+            id = id.from(_N, "GitLabResourceCapabilities", "triggerFilterGroups"),
+            type = "list",
+            name = "triggerFilterGroups",
+            target_id = prelude.Document.id,
+            list_member = M.TriggerFilterGroup,
+        }),
         leaveComments = schema.new({
             id = id.from(_N, "GitLabResourceCapabilities", "leaveComments"),
             type = "boolean",

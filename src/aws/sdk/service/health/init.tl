@@ -30,6 +30,7 @@ local record Client
     describeEventsForOrganization: function(Client, types.DescribeEventsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventsForOrganizationOutput>
     describeEventTypes: function(Client, types.DescribeEventTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventTypesOutput>
     describeHealthServiceStatusForOrganization: function(Client, types.DescribeHealthServiceStatusForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
+    describeServiceLifecycle: function(Client, types.DescribeServiceLifecycleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceLifecycleOutput>
     disableHealthServiceAccessForOrganization: function(Client, types.DisableHealthServiceAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
     enableHealthServiceAccessForOrganization: function(Client, types.EnableHealthServiceAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
 end
@@ -122,6 +123,10 @@ end
 
 function C:describeHealthServiceStatusForOrganization(input: types.DescribeHealthServiceStatusForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHealthServiceStatusForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
+end
+
+function C:describeServiceLifecycle(input: types.DescribeServiceLifecycleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceLifecycleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceLifecycle as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceLifecycleOutput>
 end
 
 function C:disableHealthServiceAccessForOrganization(input: types.DisableHealthServiceAccessForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>

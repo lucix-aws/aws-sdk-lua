@@ -3994,7 +3994,9 @@ local record M
         -- The following tags are not be copied:
         -- System tags (prefixed with aws:)
         -- For public and shared AMIs, user-defined tags that are attached by other Amazon Web Services
-        -- accounts
+        -- accounts, except tags with the ec2:SharedTag/ prefix. For more information
+        -- about tag sharing, see Sharing
+        -- tags in the Amazon EC2 User Guide.
         -- Default: Your user-defined AMI tags are not copied.
         CopyImageTags: boolean
         -- The tags to apply to the new AMI and new snapshots. You can tag the AMI, the snapshots, or

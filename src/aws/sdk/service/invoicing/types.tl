@@ -307,6 +307,12 @@ local record M
         EinvoiceDeliveryActivationDate: number
     end
 
+    -- Represents the Marketplace PunchOut configuration for a procurement portal preference.
+    record MarketplacePunchOutPreference
+        -- The URL that buyers are redirected to for approval requests in the procurement portal. This is only supported for Coupa. When provided together with the procurement portal instance endpoint, its host must match the host of that endpoint.
+        ApprovalRequestRedirectUrl: string
+    end
+
     enum ProcurementPortalName
         "SAP_BUSINESS_NETWORK"
         "COUPA"
@@ -364,6 +370,10 @@ local record M
         EinvoiceDeliveryPreference: EinvoiceDeliveryPreference
         -- Indicates whether purchase order retrieval is enabled for this procurement portal preference. Set to true to enable PO retrieval, false to disable.
         PurchaseOrderRetrievalEnabled: boolean
+        -- Defaults to false if not provided.
+        MarketplacePunchOutEnabled: boolean
+        -- Required for Coupa when MarketplacePunchOutEnabled is true.
+        MarketplacePunchOutPreference: MarketplacePunchOutPreference
         -- List of contact information for portal administrators and technical contacts responsible for the e-invoice integration.
         Contacts: {Contact}
         -- The tags to apply to this procurement portal preference resource. Each tag consists of a key and an optional value.
@@ -587,10 +597,14 @@ local record M
         TestEnvPreference: TestEnvPreference
         -- Indicates whether e-invoice delivery is enabled for this procurement portal preference.
         EinvoiceDeliveryEnabled: boolean
-        -- The configuration settings that specify how e-invoices are delivered to the procurement portal.
+        -- The e-invoice delivery configuration including document types, attachment types, and customization settings.
         EinvoiceDeliveryPreference: EinvoiceDeliveryPreference
         -- Indicates whether purchase order retrieval is enabled for this procurement portal preference.
         PurchaseOrderRetrievalEnabled: boolean
+        -- Indicates whether Marketplace PunchOut is enabled for this procurement portal preference. Defaults to false.
+        MarketplacePunchOutEnabled: boolean
+        -- The Marketplace PunchOut configuration for this procurement portal preference. This is present when MarketplacePunchOutEnabled is true.
+        MarketplacePunchOutPreference: MarketplacePunchOutPreference
         -- List of contact information for portal administrators and technical contacts.
         Contacts: {Contact}
         -- The current status of the e-invoice delivery preference.
@@ -801,6 +815,8 @@ local record M
         EinvoiceDeliveryEnabled: boolean
         -- Indicates whether purchase order retrieval is enabled for this procurement portal preference.
         PurchaseOrderRetrievalEnabled: boolean
+        -- Indicates whether Marketplace PunchOut is enabled for this procurement portal preference. Defaults to false.
+        MarketplacePunchOutEnabled: boolean
         -- The current status of the e-invoice delivery preference in this summary.
         EinvoiceDeliveryPreferenceStatus: string
         -- The reason for the current e-invoice delivery preference status in this summary.
@@ -909,6 +925,10 @@ local record M
         EinvoiceDeliveryPreference: EinvoiceDeliveryPreference
         -- Updated flag indicating whether purchase order retrieval is enabled for this procurement portal preference.
         PurchaseOrderRetrievalEnabled: boolean
+        -- Whether Marketplace PunchOut is enabled for this connection. Defaults to false if not provided.
+        MarketplacePunchOutEnabled: boolean
+        -- Configuration for Marketplace PunchOut. Required when MarketplacePunchOutEnabled is true.
+        MarketplacePunchOutPreference: MarketplacePunchOutPreference
         -- Updated list of contact information for portal administrators and technical contacts.
         Contacts: {Contact}
         -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.

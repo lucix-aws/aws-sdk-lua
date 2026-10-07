@@ -96,6 +96,7 @@ local record Client
     getMasterAccount: function(Client, types.GetMasterAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetMasterAccountOutput>
     getMembers: function(Client, types.GetMembersInput, ? base_client.InvokeOptions): async.Operation<types.GetMembersOutput>
     getRecommendedPolicyV2: function(Client, types.GetRecommendedPolicyV2Input, ? base_client.InvokeOptions): async.Operation<types.GetRecommendedPolicyV2Output>
+    getRemediationsV2: function(Client, types.GetRemediationsV2Input, ? base_client.InvokeOptions): async.Operation<types.GetRemediationsV2Output>
     getResourcesStatisticsV2: function(Client, types.GetResourcesStatisticsV2Input, ? base_client.InvokeOptions): async.Operation<types.GetResourcesStatisticsV2Output>
     getResourcesTrendsV2: function(Client, types.GetResourcesTrendsV2Input, ? base_client.InvokeOptions): async.Operation<types.GetResourcesTrendsV2Output>
     getResourcesV2: function(Client, types.GetResourcesV2Input, ? base_client.InvokeOptions): async.Operation<types.GetResourcesV2Output>
@@ -109,6 +110,7 @@ local record Client
     listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
     listConnectorsV2: function(Client, types.ListConnectorsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsV2Output>
     listEnabledProductsForImport: function(Client, types.ListEnabledProductsForImportInput, ? base_client.InvokeOptions): async.Operation<types.ListEnabledProductsForImportOutput>
+    listExposuresByRemediationV2: function(Client, types.ListExposuresByRemediationV2Input, ? base_client.InvokeOptions): async.Operation<types.ListExposuresByRemediationV2Output>
     listFindingAggregators: function(Client, types.ListFindingAggregatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingAggregatorsOutput>
     listFreeTrialStatusesV2: function(Client, types.ListFreeTrialStatusesV2Input, ? base_client.InvokeOptions): async.Operation<types.ListFreeTrialStatusesV2Output>
     listInvitations: function(Client, types.ListInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>
@@ -491,6 +493,10 @@ function C:getRecommendedPolicyV2(input: types.GetRecommendedPolicyV2Input, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendedPolicyV2 as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendedPolicyV2Output>
 end
 
+function C:getRemediationsV2(input: types.GetRemediationsV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetRemediationsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRemediationsV2 as schema.OperationSchema, input, options) as async.Operation<types.GetRemediationsV2Output>
+end
+
 function C:getResourcesStatisticsV2(input: types.GetResourcesStatisticsV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetResourcesStatisticsV2Output>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcesStatisticsV2 as schema.OperationSchema, input, options) as async.Operation<types.GetResourcesStatisticsV2Output>
 end
@@ -541,6 +547,10 @@ end
 
 function C:listEnabledProductsForImport(input: types.ListEnabledProductsForImportInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnabledProductsForImportOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnabledProductsForImport as schema.OperationSchema, input, options) as async.Operation<types.ListEnabledProductsForImportOutput>
+end
+
+function C:listExposuresByRemediationV2(input: types.ListExposuresByRemediationV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListExposuresByRemediationV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExposuresByRemediationV2 as schema.OperationSchema, input, options) as async.Operation<types.ListExposuresByRemediationV2Output>
 end
 
 function C:listFindingAggregators(input: types.ListFindingAggregatorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingAggregatorsOutput>

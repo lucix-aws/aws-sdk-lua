@@ -249,6 +249,8 @@ local record M
         "ml.g7.12xlarge"
         "ml.g7.24xlarge"
         "ml.g7.48xlarge"
+        "ml.c8a.16xlarge"
+        "ml.m8a.16xlarge"
     end
 
     -- Configuration of the resources used for the compute allocation definition.
@@ -5927,7 +5929,7 @@ local record M
     end
 
     record CreateClusterSchedulerConfigInput
-        -- Name for the cluster policy.
+        -- The name for the cluster policy. The name must be unique within the SageMaker AI HyperPod cluster specified by ClusterArn. You can use the same name in other clusters within a Region or across Regions.
         Name: string
         -- ARN of the cluster.
         ClusterArn: string
@@ -6041,7 +6043,7 @@ local record M
     end
 
     record CreateComputeQuotaInput
-        -- Name to the compute allocation definition.
+        -- The name of the compute allocation definition. The name must be unique within the SageMaker AI HyperPod cluster specified by ClusterArn. You can use the same name in other clusters within a Region or across Regions.
         Name: string
         -- Description of the compute allocation definition.
         Description: string

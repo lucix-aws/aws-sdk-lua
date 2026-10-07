@@ -204,6 +204,12 @@ local record M
         "MULTIVIEW_SCTE_REQUIRES_AVAILS_PERIOD_TRIGGER"
         "CONTENT_KEY_PERIOD_TIMING_WITHOUT_KEY_ROTATION"
         "CONTENT_KEY_PERIOD_TIMING_REQUIRES_SPEKE_V2_1"
+        "MULTIVIEW_FILTER_CONFIGURATION_NOT_ALLOWED"
+        "MULTIVIEW_FILTER_LAYOUT_NOT_AVAILABLE"
+        "MULTIVIEW_FILTER_SOURCE_NOT_AVAILABLE"
+        "MULTIVIEW_FILTER_SOURCE_COUNT_MISMATCH"
+        "MULTIVIEW_SOURCE_CHANNEL_LIMIT_EXCEEDED"
+        "MULTIVIEW_TS_USE_AUDIO_RENDITION_GROUP_DISABLED"
     end
 
     -- The input failed to meet the constraints specified by the AWS service.
@@ -539,6 +545,14 @@ local record M
         ErrorMetrics: {DashDvbMetricsReporting}
     end
 
+    -- The multiview combination for a pinned manifest. MediaPackage serves the manifest with this layout and these sources, so players request it without an aws.multiview query parameter. If a request for a pinned manifest also includes an aws.multiview query parameter, MediaPackage rejects the request, even when that parameter requests the same combination.
+    record MultiviewFilterConfiguration
+        -- The layout that MediaPackage uses to composite the tiles into a single output. This layout must be one of the AvailableLayouts of the channel that this origin endpoint is on.
+        Layout: string
+        -- The source channels to composite, in tile order. Each channel must be one of the AvailableSources of the channel that this origin endpoint is on, and the number of channels must equal the number of tiles in Layout.
+        Sources: {string}
+    end
+
     -- Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest.
     record FilterConfiguration
         -- Optionally specify one or more manifest filters for all of your manifest egress requests. When you include a manifest filter, note that you cannot use an identical manifest filter query parameter for this manifest's endpoint URL.
@@ -553,6 +567,8 @@ local record M
         TimeDelaySeconds: number
         -- Optionally specify the clip start time for all of your manifest egress requests. When you include clip start time, note that you cannot use clip start time query parameters for this manifest's endpoint URL.
         ClipStartTime: number
+        -- Optionally pin this manifest to a single multiview combination, so that players request it without an aws.multiview query parameter. When you pin a combination, note that you cannot use the aws.multiview query parameter for this manifest's endpoint URL, even when that parameter requests the same combination. This setting is valid only on an origin endpoint whose channel has an InputType of MULTIVIEW.
+        Multiview: MultiviewFilterConfiguration
     end
 
     enum DashPeriodTrigger

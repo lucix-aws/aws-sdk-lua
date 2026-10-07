@@ -1203,6 +1203,32 @@ M.DashDvbSettings = schema.new({
     },
 })
 
+M.MultiviewFilterConfiguration = schema.new({
+    id = id.from(_N, "MultiviewFilterConfiguration"),
+    type = "structure",
+    members = {
+        Layout = schema.new({
+            id = id.from(_N, "MultiviewFilterConfiguration", "Layout"),
+            type = "string",
+            name = "Layout",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Sources = schema.new({
+            id = id.from(_N, "MultiviewFilterConfiguration", "Sources"),
+            type = "list",
+            name = "Sources",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.FilterConfiguration = schema.new({
     id = id.from(_N, "FilterConfiguration"),
     type = "structure",
@@ -1242,6 +1268,13 @@ M.FilterConfiguration = schema.new({
             type = "timestamp",
             name = "ClipStartTime",
             target_id = prelude.Timestamp.id,
+        }),
+        Multiview = schema.new({
+            id = id.from(_N, "FilterConfiguration", "Multiview"),
+            type = "structure",
+            name = "Multiview",
+            target_id = id.from(_N, "MultiviewFilterConfiguration"),
+            target = M.MultiviewFilterConfiguration,
         }),
     },
 })

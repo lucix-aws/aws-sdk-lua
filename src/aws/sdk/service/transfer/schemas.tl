@@ -3013,6 +3013,13 @@ M.CreateWorkflowInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        StructuredLogDestinations = schema.new({
+            id = id.from(_N, "CreateWorkflowInput", "StructuredLogDestinations"),
+            type = "list",
+            name = "StructuredLogDestinations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -4291,6 +4298,13 @@ M.DescribedWorkflow = schema.new({
             name = "Tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        StructuredLogDestinations = schema.new({
+            id = id.from(_N, "DescribedWorkflow", "StructuredLogDestinations"),
+            type = "list",
+            name = "StructuredLogDestinations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

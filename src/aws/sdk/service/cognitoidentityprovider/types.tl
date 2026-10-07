@@ -136,6 +136,15 @@ local record M
         Actions: AccountTakeoverActionsType
     end
 
+    -- The configuration for a single authentication context class reference (ACR) level in a user pool. Each entry in an AcrConfiguration map associates a level (Level1 through Level4) with this configuration, which provides the custom name that Amazon Cognito reports for that level in the acr token claim.
+    record AcrLevelConfigType
+        -- The custom name for this authentication context class reference (ACR) level. This
+        -- value is the URI that Amazon Cognito reports in the acr token claim when a
+        -- user meets this level. The name must be unique across all levels in the user pool,
+        -- including default names.
+        AcrValue: string
+    end
+
     enum AttributeDataType
         "String"
         "Number"
@@ -1087,6 +1096,32 @@ local record M
         -- value for PREFERRED_CHALLENGE, Amazon Cognito responds with the
         -- AvailableChallenges parameter that specifies the
         -- available sign-in methods.
+        -- TARGET_ACR_VALUES. An optional, space-separated list
+        -- of the authentication context class reference (ACR) level URIs that
+        -- you want the user to reach. List the levels in priority order, from
+        -- highest to lowest. Amazon Cognito attempts the highest-priority level that the
+        -- user can satisfy, and falls back through the list. Amazon Cognito ignores any
+        -- value that it doesn't recognize. If none of the requested values are
+        -- valid, Amazon Cognito returns an error.
+        -- Requesting step-up authentication with this parameter requires the
+        -- Essentials or Plus feature plan. On a lower feature plan,
+        -- AdminInitiateAuth returns a FeatureUnavailableInTierException.
+        -- USERNAME is required. When you provide an
+        -- ACCESS_TOKEN, you must also provide
+        -- TARGET_ACR_VALUES. Amazon Cognito returns an error if you provide
+        -- an ACCESS_TOKEN without TARGET_ACR_VALUES.
+        -- The USERNAME that you provide must match the user that the
+        -- ACCESS_TOKEN was issued for.
+        -- For more information about step-up authentication and how Amazon Cognito
+        -- handles multi-factor authentication requirements, see Step-up
+        -- authentication with ACR and AMR in the Amazon Cognito
+        -- Developer Guide.
+        -- MAX_AGE. An optional integer that sets the maximum
+        -- number of seconds allowed since the user last authenticated. If the
+        -- user's most recent authentication is older than this value, Amazon Cognito
+        -- discards the authentication-methods credit from any access token that
+        -- you provide and processes the request as a fresh authentication toward
+        -- the target level. The access token itself remains valid.
         -- USER_SRP_AUTH
         -- USERNAME (required)
         -- SRP_A (required)
@@ -1300,6 +1335,18 @@ local record M
         -- able to choose between passkey authentication, a one-time password from an SMS message,
         -- and a traditional password.
         AvailableChallenges: {string}
+    end
+
+    -- This exception is thrown when a feature that you attempted to use or configure
+    -- isn't included in your user pool's current feature plan. This can occur
+    -- when:
+    -- You configure a feature that your feature plan doesn't support.
+    -- You make a request that uses a feature that requires a higher feature
+    -- plan.
+    -- To resolve this issue, upgrade your user pool to a feature plan that includes the
+    -- feature.
+    record FeatureUnavailableInTierException
+        message: string
     end
 
     -- This exception is thrown when Amazon Cognito isn't allowed to use your email identity. HTTP
@@ -2098,6 +2145,11 @@ local record M
         -- all challenges, Amazon Cognito returns an AuthenticationResult with the JSON web
         -- tokens (JWTs) that indicate successful sign-in.
         AuthenticationResult: AuthenticationResultType
+        -- This response parameter lists the available authentication challenges that users can
+        -- select from in choice-based authentication. For example, they might be
+        -- able to choose between passkey authentication, a one-time password from an SMS message,
+        -- and a traditional password.
+        AvailableChallenges: {string}
     end
 
     -- This exception is thrown if the provided code doesn't match what the server was
@@ -2931,6 +2983,17 @@ local record M
         -- idp_identifier query parameter of requests to the Authorize endpoint to silently redirect to sign-in with the associated IdP.
         -- Identifiers in a domain format also enable the use of email-address matching with SAML providers.
         IdpIdentifiers: {string}
+        -- A mapping between the authentication context class reference (ACR) levels of your user
+        -- pool and the ACR values of the external OpenID Connect (OIDC) identity provider (IdP).
+        -- The map is keyed by level, from Level1 through Level4, and each
+        -- value is the ACR value that the IdP uses for the corresponding level. Amazon Cognito uses
+        -- this mapping to translate a requested user pool ACR level to the value that the IdP
+        -- expects, and to map an ACR value that the IdP returns back to a user pool level. When the
+        -- IdP returns an ACR value that isn't mapped, Amazon Cognito resolves it to the lowest
+        -- level. Only OIDC IdPs support ACR mapping.
+        -- Setting AcrMapping is available in all feature plans. It isn't restricted
+        -- to the Essentials or Plus feature plan.
+        AcrMapping: {string : string}
     end
 
     -- A user pool identity provider (IdP). Contains information about a third-party IdP to a
@@ -3044,6 +3107,12 @@ local record M
         -- the right IdP with either IdP identifiers or IdP names. For more information, see
         -- identity_provider and idp_identifier at Authorize endpoint.
         IdpIdentifiers: {string}
+        -- A mapping between the authentication context class reference (ACR) levels of your user
+        -- pool and the ACR values of the external OpenID Connect (OIDC) identity provider (IdP), so
+        -- that your application gets a consistent step-up experience regardless of which IdP
+        -- authenticated the user. The map is keyed by level, from Level1 through
+        -- Level4.
+        AcrMapping: {string : string}
         -- The date and time when the item was modified. Amazon Cognito returns this timestamp in UNIX epoch time format. Your SDK might render the output in a
         -- human-readable format like ISO 8601 or a Java Date object.
         LastModifiedDate: number
@@ -4006,6 +4075,22 @@ local record M
         -- The issuer configuration for the user pool. Specifies the issuer type for token
         -- generation.
         IssuerConfiguration: IssuerConfigurationType
+        -- The custom names for the authentication context class reference
+        -- (ACR) levels in your user pool. Amazon Cognito defines four fixed ACR levels that
+        -- represent increasing authentication assurance. The combination of authentication factors
+        -- that satisfies each level is fixed and you can't change it. With this configuration, you
+        -- customize only the URI name that Amazon Cognito reports for each level in the
+        -- acr token claim.
+        -- You can override a subset of the levels. By default, the levels are named
+        -- urn:cognito:loa:1 through urn:cognito:loa:4, and Amazon Cognito
+        -- applies the default name to any level that you don't specify. Each name must be
+        -- unique across all four levels, including any default names that apply to levels you
+        -- don't override. A name can contain any character
+        -- that is valid in a URL or a URN.
+        -- Configuring custom ACR level names requires the Essentials or Plus feature plan.
+        -- To activate this setting, your user pool must be in the
+        -- Essentials tier or higher.
+        AcrConfiguration: {string : AcrLevelConfigType}
     end
 
     enum StatusType
@@ -4163,18 +4248,19 @@ local record M
         KeyConfiguration: KeyConfigurationType
         -- The issuer configuration for the user pool, including token issuing settings.
         IssuerConfiguration: IssuerConfigurationType
+        -- The names of the authentication context class reference (ACR) levels for the user
+        -- pool. Amazon Cognito always returns the effective configuration, with default names
+        -- merged in for any level that you haven't customized.
+        -- Configuring custom ACR level names requires the Essentials or Plus feature plan.
+        -- To activate this setting, your user pool must be in the
+        -- Essentials tier or higher.
+        AcrConfiguration: {string : AcrLevelConfigType}
     end
 
     -- Represents the response from the server for the request to create a user pool.
     record CreateUserPoolOutput
         -- The details of the created user pool.
         UserPool: UserPoolType
-    end
-
-    -- This exception is thrown when a feature you attempted to configure isn't
-    -- available in your current feature plan.
-    record FeatureUnavailableInTierException
-        message: string
     end
 
     -- This exception is thrown when you've attempted to change your feature plan but
@@ -5227,7 +5313,7 @@ local record M
     end
 
     record DescribeTermsByClientOutput
-        -- A summary of the requested terms documents. Includes a unique identifier for later
+        -- A summary of the requested terms documents, including a unique identifier for later
         -- changes to the terms documents.
         Terms: TermsType
     end
@@ -6011,6 +6097,32 @@ local record M
         -- value for PREFERRED_CHALLENGE, Amazon Cognito responds with the
         -- AvailableChallenges parameter that specifies the
         -- available sign-in methods.
+        -- TARGET_ACR_VALUES. An optional, space-separated list
+        -- of the authentication context class reference (ACR) level URIs that
+        -- you want the user to reach. List the levels in priority order, from
+        -- highest to lowest. Amazon Cognito attempts the highest-priority level that the
+        -- user can satisfy, and falls back through the list. Amazon Cognito ignores any
+        -- value that it doesn't recognize. If none of the requested values are
+        -- valid, Amazon Cognito returns an error.
+        -- Requesting step-up authentication with this parameter requires the
+        -- Essentials or Plus feature plan. On a lower feature plan, InitiateAuth
+        -- returns a FeatureUnavailableInTierException. USERNAME is
+        -- required. When you provide an ACCESS_TOKEN, you must also
+        -- provide TARGET_ACR_VALUES. Amazon Cognito returns an error if you
+        -- provide an ACCESS_TOKEN without
+        -- TARGET_ACR_VALUES. The USERNAME that you
+        -- provide must match the user that the ACCESS_TOKEN was
+        -- issued for.
+        -- For more information about step-up authentication and how Amazon Cognito
+        -- handles multi-factor authentication requirements, see Step-up
+        -- authentication with ACR and AMR in the Amazon Cognito
+        -- Developer Guide.
+        -- MAX_AGE. An optional integer that sets the maximum
+        -- number of seconds allowed since the user last authenticated. If the
+        -- user's most recent authentication is older than this value, Amazon Cognito
+        -- discards the authentication-methods credit from any access token that
+        -- you provide and processes the request as a fresh authentication toward
+        -- the target level. The access token itself remains valid.
         -- USER_SRP_AUTH
         -- USERNAME (required)
         -- SRP_A (required)
@@ -6979,6 +7091,11 @@ local record M
         -- all challenges, Amazon Cognito returns an AuthenticationResult with the JSON web
         -- tokens (JWTs) that indicate successful sign-in.
         AuthenticationResult: AuthenticationResultType
+        -- This response parameter lists the available authentication challenges that users can
+        -- select from in choice-based authentication. For example, they might be
+        -- able to choose between passkey authentication, a one-time password from an SMS message,
+        -- and a traditional password.
+        AvailableChallenges: {string}
     end
 
     record RevokeTokenInput
@@ -7512,6 +7629,13 @@ local record M
         -- idp_identifier query parameter of requests to the Authorize endpoint to silently redirect to sign-in with the associated IdP.
         -- Identifiers in a domain format also enable the use of email-address matching with SAML providers.
         IdpIdentifiers: {string}
+        -- A mapping between the authentication context class reference (ACR) levels of your user
+        -- pool and the ACR values of the external OpenID Connect (OIDC) identity provider (IdP).
+        -- This mapping has the same behavior as it does when you create an identity provider. Only
+        -- OIDC IdPs support ACR mapping.
+        -- Setting AcrMapping is available in all feature plans. It isn't restricted
+        -- to the Essentials or Plus feature plan.
+        AcrMapping: {string : string}
     end
 
     record UpdateIdentityProviderOutput
@@ -7772,6 +7896,15 @@ local record M
         -- The issuer configuration for the user pool. In secondary regions, this parameter must
         -- match the existing configuration and cannot be modified.
         IssuerConfiguration: IssuerConfigurationType
+        -- The custom names for the authentication context class reference
+        -- (ACR) levels in your user pool. This configuration has the same behavior as it does when
+        -- you create a user pool: you customize only the URI name that Amazon Cognito reports for
+        -- each of the four fixed ACR levels, and any level that you don't specify keeps its default
+        -- name. Each name must be unique across all four levels, including default names.
+        -- Configuring custom ACR level names requires the Essentials or Plus feature plan.
+        -- To activate this setting, your user pool must be in the
+        -- Essentials tier or higher.
+        AcrConfiguration: {string : AcrLevelConfigType}
     end
 
     -- Represents the response from the server when you make a request to update the user

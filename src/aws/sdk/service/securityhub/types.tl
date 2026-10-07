@@ -84,7 +84,7 @@ local record M
         -- SECURITY_HUB_V2 specifies Security Hub.
         -- SECURITY_HUB_V2_MULTI_CLOUD_AZURE specifies Security Hub coverage for Microsoft Azure resources.
         FeatureType: string
-        -- Whether the free trial period is currently active. Valid values:
+        -- Specifies whether the free trial period is currently active. Valid values:
         -- ACTIVE specifies that the free trial period is ongoing.
         -- INACTIVE specifies that the free trial period has ended, or that it never started.
         -- To determine whether a trial has expired, compare ExpiresAt to the current time.
@@ -678,6 +678,9 @@ local record M
         -- To search for values that include the filter value, use CONTAINS. For example, the
         -- filter Title CONTAINS CloudFront matches findings that have a Title that
         -- includes the string CloudFront.
+        -- To search for values that contain a word matching the filter value, regardless of case, use CONTAINS_WORD. For example,
+        -- the filter Title CONTAINS_WORD lambda matches a finding whose Title is GuardDuty Lambda Protection, because
+        -- the Title contains the word Lambda. Including special characters in the filter value might produce unexpected search results.
         -- To search for values that exactly match the filter value, use EQUALS. For example,
         -- the filter AwsAccountId EQUALS 123456789012 only matches findings that have an account ID of
         -- 123456789012.
@@ -13093,6 +13096,38 @@ local record M
         HubV2Arn: string
     end
 
+    enum ExposureImpact
+        "Reduces"
+        "Resolves"
+        "Unchanged"
+    end
+
+    enum ExposureSeverity
+        "Informational"
+        "Low"
+        "Medium"
+        "High"
+        "Critical"
+    end
+
+    -- Provides details about an exposure finding and the effect the specific remediation target has on it.
+    record ExposureFinding
+        -- The unique identifier (ID) of the Security Hub exposure finding, found under the
+        -- metadata.uid field of the finding.
+        MetadataUid: string
+        -- The title of the exposure finding.
+        Title: string
+        -- The severity of the exposure finding before the remediation target is resolved.
+        PreviousSeverity: string
+        -- The severity of the exposure finding after the remediation target is resolved.
+        ProjectedSeverity: string
+        -- The impact resolving a remediation target has on the exposure finding.
+        -- Reduces specifies that resolving the remediation target lowers the severity of the exposure finding, but does not resolve it.
+        -- Resolves specifies that resolving the remediation target resolves the exposure finding.
+        -- Unchanged specifies that resolving the remediation target does not change the severity of the exposure finding.
+        Impact: string
+    end
+
     -- A finding aggregator is a Security Hub CSPM resource that specifies cross-Region aggregation settings, including the
     -- home Region and any linked Regions.
     record FindingAggregator
@@ -13820,6 +13855,318 @@ local record M
         ResourceArn: string
     end
 
+    enum RemediationStringField
+        "Resource.Type"
+        "Priority"
+        "Status"
+        "Resource.Id"
+        "Resource.ResourceOwnerAccountId"
+        "Resource.CloudProvider"
+    end
+
+    -- The condition to apply to the string filter.
+    record RemediationStringFilterCondition
+        -- The value the string filter is comparing against.
+        Value: string
+    end
+
+    -- A string filter for filtering remediation targets.
+    record RemediationStringFilter
+        -- The name of the filter field. Valid values are Resource.Type, Priority, Status, Resource.Id, Resource.ResourceOwnerAccountId, and Resource.CloudProvider.
+        FieldName: string
+        -- The string filter definition.
+        Filter: RemediationStringFilterCondition
+    end
+
+    -- Enables the creation of criteria for remediation targets.
+    record RemediationCompositeFilter
+        -- Enables filtering based on string field values.
+        StringFilters: {RemediationStringFilter}
+    end
+
+    -- Contains the criteria used to filter remediation targets, such as resource type, priority,
+    -- or status.
+    record RemediationFilters
+        -- A collection of complex filtering conditions that can be applied to remediation target data.
+        CompositeFilters: {RemediationCompositeFilter}
+    end
+
+    enum GuidanceFormat
+        "All"
+        "AwsCli"
+        "Cli"
+        "Python"
+        "Terraform"
+        "Cdk"
+        "CloudFormation"
+        "IaC"
+        "Template"
+    end
+
+    record GetRemediationsV2Input
+        -- The unique identifier (ID) of an existing remediation target to return. Returns the single
+        -- matching target. You can't use TargetUid together with MetadataUid
+        -- or Filters.
+        TargetUid: string
+        -- The unique identifier (ID) of the Security Hub exposure finding, found under the
+        -- metadata.uid field of the finding. Returns the remediation targets associated with
+        -- that finding. You can't use MetadataUid together with TargetUid or
+        -- Filters.
+        MetadataUid: string
+        -- Filters remediation targets based on a set of criteria. You can't use Filters
+        -- together with TargetUid or MetadataUid.
+        Filters: RemediationFilters
+        -- Specifies whether to show remediation target guidance.
+        ShowGuidance: boolean
+        -- The format of the remediation guidance examples to return. Valid values are All,
+        -- AwsCli, Cli, Python, Terraform,
+        -- Cdk, CloudFormation, IaC, and Template.
+        -- If you don't specify a value, all formats are returned. Applies only when
+        -- ShowGuidance is true.
+        GuidanceFormat: string
+        -- The maximum number of results to return. Valid range is 1-100. If you don't specify a value,
+        -- the operation returns up to 25 results.
+        MaxResults: number
+        -- The token used to paginate the remediations target list returned.
+        -- On your first call to GetRemediationsV2, omit this parameter or set it
+        -- to NULL. For subsequent calls, use the NextToken value returned in
+        -- the previous response to retrieve the next page of results.
+        NextToken: string
+    end
+
+    -- The context behind the remediation target's existence and guidance.
+    record RemediationGuidanceContext
+        -- Explains the cause which directly created the remediation target.
+        ProblemStatement: string
+        -- An assessment of the existing risk the remediation target creates.
+        RiskAssessment: string
+        -- The scope of the resources affected by the resolution of the remediation target.
+        AffectedScope: string
+        -- An array of prerequisite steps in resolving the remediation target.
+        Prerequisites: {string}
+    end
+
+    -- Provided remediation guidance examples in different formats that can be run for remediating the target.
+    record RemediationGuidanceExamples
+        -- An AWS CLI snippet version of the example.
+        AwsCli: string
+        -- A CLI snippet version of the example.
+        Cli: string
+        -- A Python snippet version of the example.
+        Python: string
+        -- A Terraform snippet version of the example.
+        Terraform: string
+        -- A CDK snippet version of the example.
+        Cdk: string
+        -- A CloudFormation snippet version of the example.
+        CloudFormation: string
+        -- An IaC snippet version of the example.
+        IaC: string
+        -- A Template snippet version of the example.
+        Template: string
+    end
+
+    -- The metadata of the remediation guidance.
+    record RemediationGuidanceMetadata
+        -- The resource type of the remediation target.
+        ResourceType: string
+        -- The exposure type of the related exposure findings.
+        ExposureType: string
+        -- The titles of traits this guidance applies to.
+        TraitTitles: {string}
+        -- The extent to which changes made in accordance with the guidance can be reversed, for example Fully reversible.
+        Reversibility: string
+        -- When the fix takes effect, for example Immediate or Deferred.
+        FixEffect: string
+        -- The risk when implementing the guidance provided.
+        RiskLevel: string
+        -- The extent to which the guidance can be automated, for example Full.
+        AutomationLevel: string
+        -- Specifies whether human review is required.
+        HumanReviewRequired: boolean
+        -- Timestamp of when the guidance was generated.
+        -- For more information about the validation and formatting of timestamp fields in Security Hub CSPM, see Timestamps.
+        GeneratedAt: number
+        -- Verification status of the guidance.
+        VerificationStatus: string
+    end
+
+    -- A parameter used in running the guidance steps.
+    record RemediationParameter
+        -- The name of the parameter.
+        Name: string
+        -- The type of the parameter.
+        Type: string
+        -- A description of the parameter.
+        Description: string
+        -- Specifies whether the parameter is required for running the guidance steps.
+        Required: boolean
+    end
+
+    -- A step in the remediation guidance.
+    record RemediationStep
+        -- The phase of the remediation plan that this step belongs to (for example, FIX).
+        Phase: string
+        -- A description of what the step does.
+        Description: string
+        -- Which service this step is performed in.
+        Service: string
+        -- The action to be taken for this step.
+        Action: string
+        -- The logic behind the existence of this step.
+        Logic: string
+        -- The inverse of the step, to be used if the step needs to be rolled back.
+        Inverse: string
+        -- The action to take after the step to verify its success.
+        VerifyAfter: string
+    end
+
+    -- The specification of the remediation target guidance. This outlines required resource parameters
+    -- and permissions, remediation steps, and the end state.
+    record RemediationGuidanceSpecification
+        -- An array of the parameters used in running the steps provided.
+        Parameters: {RemediationParameter}
+        -- An array of ordered steps for resolving the remediation targets.
+        Steps: {RemediationStep}
+        -- The expected end state of the associated resources after completion of the steps.
+        ExpectedEndState: string
+        -- An array of required permissions to run the steps.
+        RequiredPermissions: {string}
+    end
+
+    -- A remediation guidebook outlining guidance in resolving the remediation target.
+    record RemediationGuidance
+        -- The name of the remediation target type.
+        TargetTypeName: string
+        -- The remediation pattern of the remediation target.
+        Pattern: string
+        -- The guidance version.
+        Version: string
+        -- The context behind the remediation target's existence and guidance.
+        Context: RemediationGuidanceContext
+        -- The specification of the remediation target guidance. This outlines required resource parameters
+        -- and permissions, remediation steps, and the end state.
+        Specification: RemediationGuidanceSpecification
+        -- Provided remediation guidance examples in different formats that can be run for remediating the target.
+        Examples: RemediationGuidanceExamples
+        -- The metadata of the remediation guidance.
+        Metadata: RemediationGuidanceMetadata
+    end
+
+    -- The outcome from resolving the remediation target.
+    record RemediationOutcome
+        -- The number of associated exposure findings that are resolved by remediating the target.
+        ResolvedFindingsCount: number
+        -- The number of associated exposure findings whose severity is reduced by remediating the target.
+        SeverityReductionFindingsCount: number
+        -- The number of associated exposure findings whose severity is unchanged by remediating the target.
+        SeverityUnchangedCount: number
+    end
+
+    enum RemediationPriority
+        "Critical"
+        "High"
+        "Medium"
+        "Low"
+    end
+
+    -- A knowledge base article that provides additional guidance related to the remediation target.
+    record KbArticle
+        -- The title of the KbArticle.
+        Title: string
+        -- The URL of the KbArticle.
+        Url: string
+    end
+
+    -- A summary of the remediation target.
+    record RemediationSummaryDetail
+        -- A summarized action to take for the remediation target.
+        Action: string
+        -- A description of the remediation target.
+        Description: string
+        -- Specifies whether the effect of this target is immediate.
+        IsImmediate: boolean
+        -- An array of steps to be taken after remediation.
+        PostRemediationSteps: {string}
+        -- An array of KbArticle objects.
+        KbArticles: {KbArticle}
+    end
+
+    -- Provides comprehensive details about a resource.
+    record RemediationResource
+        -- The Amazon Web Services account that recorded the resource data in Security Hub.
+        AccountId: string
+        -- The Amazon Web Services Region in which Security Hub recorded the resource data.
+        Region: string
+        -- The identifier of the cloud account that owns the resource. For Amazon Web Services resources, this is the Amazon Web Services account ID. For Azure resources, this is the Azure subscription ID.
+        ResourceOwnerAccountId: string
+        -- The identifier of the cloud organization that owns the resource. For Amazon Web Services resources, this is the Organizations ID. For Azure resources, this is the Azure tenant ID.
+        ResourceOwnerOrgId: string
+        -- The type of the resource.
+        Type: string
+        -- The name of the resource.
+        Name: string
+        -- The unique identifier for a resource.
+        Id: string
+        -- The global identifier used to identify a resource.
+        ResourceGuid: string
+        -- The native cloud region where the resource is located. For Amazon Web Services, this is an Amazon Web Services Region (for example, us-east-1). For Azure resources, this is the Azure region (for example, westus2). This field is always included.
+        ResourceRegion: string
+        -- The cloud provider where the resource exists.
+        -- AWS specifies that the resource exists in Amazon Web Services.
+        -- Azure specifies that the resource exists in Microsoft Azure.
+        CloudProvider: string
+    end
+
+    enum RemediationStatus
+        "New"
+        "Updated"
+        "Resolved"
+    end
+
+    -- The trait associated with the remediation target.
+    record RemediationTrait
+        -- The trait type.
+        Type: string
+        -- The trait title.
+        Title: string
+    end
+
+    -- A remediation target.
+    record RemediationV2Item
+        -- The unique identifier (ID) of the remediation target.
+        TargetUid: string
+        -- The outcome of the remediation target's resolution.
+        Outcome: RemediationOutcome
+        -- The remediation target's priority. Valid values are Critical, High, Medium, and Low.
+        Priority: string
+        -- A summary of the remediation target.
+        RemediationSummary: RemediationSummaryDetail
+        -- The remediation target's associated resource.
+        Resource: RemediationResource
+        -- The current status of the remediation target.
+        -- New specifies that the remediation target was newly identified.
+        -- Updated specifies that the remediation target changed after it was identified.
+        -- Resolved specifies that the remediation target is no longer present.
+        Status: string
+        -- The trait associated with the remediation target.
+        Trait: RemediationTrait
+        -- The remediation target's guidance. Returned only when ShowGuidance is
+        -- true in the request.
+        Guidance: RemediationGuidance
+        -- The remediation target's last updated timestamp.
+        -- For more information about the validation and formatting of timestamp fields in Security Hub CSPM, see Timestamps.
+        UpdatedAt: number
+    end
+
+    record GetRemediationsV2Output
+        -- An array of remediation targets returned by the operation.
+        Items: {RemediationV2Item}
+        -- The pagination token to use to request the next page of results.
+        -- Otherwise, this parameter is null.
+        NextToken: string
+    end
+
     enum ResourcesDateField
         "ResourceDetailCaptureTime"
         "ResourceCreationTime"
@@ -14341,6 +14688,35 @@ local record M
         -- The list of ARNs for the resources that represent your subscriptions to products.
         ProductSubscriptions: {string}
         -- The pagination token to use to request the next page of results.
+        NextToken: string
+    end
+
+    record ListExposuresByRemediationV2Input
+        -- The unique identifier (ID) of an existing remediation target to list exposure findings for.
+        TargetUid: string
+        -- The maximum number of results to return. Valid range is 1-100. If you don't specify a value,
+        -- the operation returns up to 25 results.
+        MaxResults: number
+        -- The token used to paginate the exposures list returned.
+        -- On your first call to ListExposuresByRemediationV2, omit this parameter or set it
+        -- to NULL. For subsequent calls, use the NextToken value returned in
+        -- the previous response to retrieve the next page of results.
+        NextToken: string
+    end
+
+    record ListExposuresByRemediationV2Output
+        -- An array of exposure findings returned by the operation.
+        Items: {ExposureFinding}
+        -- The unique identifier (ID) of the remediation target that the exposure findings are associated with.
+        TargetUid: string
+        -- Provides comprehensive details about a resource.
+        Resource: RemediationResource
+        -- The total count of exposure findings associated with the remediation target.
+        TotalCount: number
+        -- The specific trait associated with the remediation target.
+        Trait: RemediationTrait
+        -- The pagination token to use to request the next page of results.
+        -- Otherwise, this parameter is null.
         NextToken: string
     end
 

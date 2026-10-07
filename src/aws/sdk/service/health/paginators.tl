@@ -130,4 +130,22 @@ function M.items_describe_events_for_organization(client, input)
     })
 end
 
+--- Returns a page iterator for describeServiceLifecycle.
+function M.pages_describe_service_lifecycle(client, input)
+    return paginator.pages(client, "describeServiceLifecycle", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "serviceLifecycles",
+    })
+end
+
+--- Returns an item iterator for describeServiceLifecycle.
+function M.items_describe_service_lifecycle(client, input)
+    return paginator.items(client, "describeServiceLifecycle", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "serviceLifecycles",
+    })
+end
+
 return M

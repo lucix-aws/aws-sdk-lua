@@ -9061,6 +9061,15 @@ M.IngestionJob = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        textReadyAt = schema.new({
+            id = id.from(_N, "IngestionJob", "textReadyAt"),
+            type = "timestamp",
+            name = "textReadyAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
     },
 })
 
@@ -9264,6 +9273,15 @@ M.IngestionJobSummary = schema.new({
             },
             direct_traits = {
                 [traits.REQUIRED] = {},
+            },
+        }),
+        textReadyAt = schema.new({
+            id = id.from(_N, "IngestionJobSummary", "textReadyAt"),
+            type = "timestamp",
+            name = "textReadyAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
         statistics = schema.new({

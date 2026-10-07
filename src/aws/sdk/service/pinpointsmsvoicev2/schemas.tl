@@ -637,6 +637,12 @@ M.CarrierLookupInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        EnableCleansing = schema.new({
+            id = id.from(_N, "CarrierLookupInput", "EnableCleansing"),
+            type = "boolean",
+            name = "EnableCleansing",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -697,6 +703,12 @@ M.CarrierLookupOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        OriginalPhoneNumber = schema.new({
+            id = id.from(_N, "CarrierLookupOutput", "OriginalPhoneNumber"),
+            type = "string",
+            name = "OriginalPhoneNumber",
+            target_id = prelude.String.id,
         }),
     },
 })

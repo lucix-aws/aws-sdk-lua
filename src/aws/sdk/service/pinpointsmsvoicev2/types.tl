@@ -303,11 +303,15 @@ local record M
     record CarrierLookupInput
         -- The phone number that you want to retrieve information about. You can provide the phone number in various formats including special characters such as parentheses, brackets, spaces, hyphens, periods, and commas. The service automatically converts the input to E164 format for processing.
         PhoneNumber: string
+        -- Specifies whether the service cleanses the phone number that you provide. When set to true, the service normalizes the phone number according to the destination country's national numbering plan and dialing rules. The service returns the cleansed number in E.164 format in the E164PhoneNumber field and returns the number that you provided in the OriginalPhoneNumber field.
+        EnableCleansing: boolean
     end
 
     enum PhoneNumberType
         "MOBILE"
         "LANDLINE"
+        "VOIP"
+        "PREPAID"
         "OTHER"
         "INVALID"
     end
@@ -327,8 +331,10 @@ local record M
         MNC: string
         -- The carrier or service provider that the phone number is currently registered with. In some countries and regions, this value may be the carrier or service provider that the phone number was originally registered with.
         Carrier: string
-        -- Describes the type of phone number. Valid values are: MOBILE, LANDLINE, OTHER, and INVALID. Avoid sending SMS or voice messages to INVALID phone numbers, as these numbers are unlikely to belong to actual recipients.
+        -- Describes the type of phone number. Valid values are: MOBILE, LANDLINE, VOIP, PREPAID, OTHER, and INVALID. Avoid sending SMS or voice messages to INVALID phone numbers, as these numbers are unlikely to belong to actual recipients.
         PhoneNumberType: string
+        -- The phone number exactly as you supplied it in the request. This field is returned only when you set EnableCleansing to true, the phone number was cleansed, and a normalized E.164 phone number was returned in the E164PhoneNumber field.
+        OriginalPhoneNumber: string
     end
 
     enum CarrierStatus
@@ -2897,7 +2903,7 @@ local record M
         "ExactMatch"
     end
 
-    -- A single number preference — specifies a pattern type and filter value.
+    -- A single number preference that specifies how to match available phone numbers. Each preference pairs a match type with one or more filter values.
     record NumberPreferenceItem
         -- The type of match to apply to the filter values. StartsWith: Returns numbers that begin with the filter value. EndsWith: Returns numbers that end with the filter value. Contains: Returns numbers that contain the filter value. ExactMatch: Returns the number that exactly matches the filter value.
         PreferenceType: {string}
@@ -2918,8 +2924,7 @@ local record M
         NumberType: string
         -- The registration associated with the request. A registration is required for regulated number types. You can specify either: The unique identifier of the registration. The Amazon Resource Name (ARN) of the registration.
         RegistrationId: string
-        -- Optional. If omitted, returns unfiltered available numbers.
-        -- Max 1 element for List API.
+        -- An optional selection preference used to return only phone numbers that match a specific digit pattern, such as numbers that start with, end with, or contain a particular sequence. You can specify at most one preference. Number preferences apply only to TEN_DLC numbers in the US.
         NumberPreference: {NumberPreferenceItem}
         -- The token returned from a previous request to retrieve the next page of results.
         NextToken: string

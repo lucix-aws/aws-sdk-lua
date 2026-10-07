@@ -532,8 +532,42 @@ local record M
         project: string
     end
 
+    enum TriggerEvent
+        "PULL_REQUEST_READY_FOR_REVIEW"
+        "PULL_REQUEST_DRAFT"
+        "PULL_REQUEST_LABEL_ADDED"
+    end
+
+    enum TriggerFilterMatchMode
+        "INCLUDE"
+        "EXCLUDE"
+    end
+
+    enum TriggerFilterType
+        "TARGET_BRANCH"
+        "LABEL"
+    end
+
+    -- A condition on a pull request value.
+    record TriggerFilter
+        -- The regular expressions to match against the value.
+        patterns: {string}
+        -- Whether the value must match the patterns. The default is INCLUDE.
+        matchMode: string
+    end
+
+    -- A set of conditions that start an automatic code review when they all pass. A filter group must include events, filters, or both.
+    record TriggerFilterGroup
+        -- Passes when the pull request event is one of the listed events. If you omit this, the group matches PULL_REQUEST_READY_FOR_REVIEW and PULL_REQUEST_DRAFT events only.
+        events: {string}
+        -- Passes when every filter passes. If you omit this, the group matches its events on any target branch and with any labels.
+        filters: {TriggerFilter}
+    end
+
     -- Capabilities for an integrated Azure DevOps repository.
     record AzureDevOpsResourceCapabilities
+        -- The filter groups that control which pull request events start an automatic code review when leaveComments is enabled. A review starts when any group matches. If you omit this, a review starts on PULL_REQUEST_READY_FOR_REVIEW events.
+        triggerFilterGroups: {TriggerFilterGroup}
         -- Whether to post code review comments on pull requests.
         leaveComments: boolean
         -- Whether to create pull requests with automated fixes.
@@ -1890,6 +1924,8 @@ local record M
 
     -- Capabilities for an integrated Bitbucket repository.
     record BitbucketResourceCapabilities
+        -- The filter groups that control which pull request events start an automatic code review when leaveComments is enabled. A review starts when any group matches. If you omit this, a review starts on PULL_REQUEST_READY_FOR_REVIEW events.
+        triggerFilterGroups: {TriggerFilterGroup}
         -- Whether to post code review comments on pull requests.
         leaveComments: boolean
         -- Whether to create pull requests with automated fixes.
@@ -2780,6 +2816,8 @@ local record M
 
     -- The capabilities enabled for a GitHub resource integration.
     record GitHubResourceCapabilities
+        -- The filter groups that control which pull request events start an automatic code review when leaveComments is enabled. A review starts when any group matches. If you omit this, a review starts on PULL_REQUEST_READY_FOR_REVIEW events.
+        triggerFilterGroups: {TriggerFilterGroup}
         -- Indicates whether the integration can leave comments on pull requests.
         leaveComments: boolean
         -- Indicates whether the integration can create code remediation pull requests.
@@ -2804,6 +2842,8 @@ local record M
 
     -- Capabilities for an integrated GitLab repository.
     record GitLabResourceCapabilities
+        -- The filter groups that control which merge request events start an automatic code review when leaveComments is enabled. A review starts when any group matches. If you omit this, a review starts on PULL_REQUEST_READY_FOR_REVIEW events.
+        triggerFilterGroups: {TriggerFilterGroup}
         -- Whether to post code review comments on merge request discussions.
         leaveComments: boolean
         -- Whether to create merge requests with automated fixes.

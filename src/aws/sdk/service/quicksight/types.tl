@@ -1741,6 +1741,70 @@ local record M
         ControlSortConfigurations: {ControlSortConfiguration}
     end
 
+    -- The title format text configuration for a sheet control. This is a tagged union type. Specify either PlainText or RichText, but not both.
+    record ControlTitleFormatText
+        -- The plain text format of the title text.
+        PlainText: string
+        -- The rich text format of the title text.
+        RichText: string
+    end
+
+    -- The display options of a control.
+    record HierarchyFilterDropDownControlDisplayOptions
+        -- The options to configure the title visibility, name, and font size.
+        TitleOptions: LabelOptions
+        -- The configuration of info icon label options.
+        InfoIconLabelOptions: SheetControlInfoIconLabelOptions
+    end
+
+    -- The default options that correspond to the HierarchyDropdown filter control type.
+    record DefaultHierarchyFilterDropDownControlOptions
+        -- The display options of a control.
+        DisplayOptions: HierarchyFilterDropDownControlDisplayOptions
+        -- The type of the DefaultHierarchyFilterDropDownControlOptions. Choose one of the following options:
+        -- MULTI_SELECT: The user can select multiple entries from a dropdown menu.
+        -- SINGLE_SELECT: The user can select a single entry from a dropdown menu.
+        Type: string
+        -- The visibility configuration of the Apply button on a HierarchyFilterDropDownControl.
+        CommitMode: string
+        -- The sort configuration for the values displayed in the control. Only one sort configuration can be applied per control.
+        ControlSortConfigurations: {ControlSortConfiguration}
+        -- The title text format configuration for the control.
+        ControlTitleFormatText: ControlTitleFormatText
+    end
+
+    -- The configuration of the search options in a hierarchy list control.
+    record HierarchyFilterListControlSearchOptions
+        -- The visibility configuration of the search options in a hierarchy list control.
+        Visibility: string
+    end
+
+    -- The display options of a control.
+    record HierarchyFilterListControlDisplayOptions
+        -- The options to configure the title visibility, name, and font size.
+        TitleOptions: LabelOptions
+        -- The configuration of info icon label options.
+        InfoIconLabelOptions: SheetControlInfoIconLabelOptions
+        -- The configuration of the search options in a hierarchy list control.
+        SearchOptions: HierarchyFilterListControlSearchOptions
+    end
+
+    -- The default options that correspond to the HierarchyList filter control type.
+    record DefaultHierarchyFilterListControlOptions
+        -- The display options of a control.
+        DisplayOptions: HierarchyFilterListControlDisplayOptions
+        -- The type of the DefaultHierarchyFilterListControlOptions. Choose one of the following options:
+        -- MULTI_SELECT: The user can select multiple entries from the list.
+        -- SINGLE_SELECT: The user can select a single entry from the list.
+        Type: string
+        -- The visibility configuration of the Apply button on a HierarchyFilterListControl.
+        CommitMode: string
+        -- The sort configuration for the values displayed in the control. Only one sort configuration can be applied per control.
+        ControlSortConfigurations: {ControlSortConfiguration}
+        -- The title text format configuration for the control.
+        ControlTitleFormatText: ControlTitleFormatText
+    end
+
     -- The configuration of the search options in a list control.
     record ListControlSearchOptions
         -- The visibility configuration of the search options in a list control.
@@ -1876,14 +1940,10 @@ local record M
         DefaultSliderOptions: DefaultSliderControlOptions
         -- The default options that correspond to the RelativeDateTime filter control type.
         DefaultRelativeDateTimeOptions: DefaultRelativeDateTimeControlOptions
-    end
-
-    -- The title format text configuration for a sheet control. This is a tagged union type. Specify either PlainText or RichText, but not both.
-    record ControlTitleFormatText
-        -- The plain text format of the title text.
-        PlainText: string
-        -- The rich text format of the title text.
-        RichText: string
+        -- The default options that correspond to the HierarchyList filter control type.
+        DefaultHierarchyList: DefaultHierarchyFilterListControlOptions
+        -- The default options that correspond to the HierarchyDropdown filter control type.
+        DefaultHierarchyDropdown: DefaultHierarchyFilterDropDownControlOptions
     end
 
     -- The default configuration for all dependent controls of the filter.
@@ -1907,6 +1967,18 @@ local record M
         Configuration: CategoryFilterConfiguration
         -- The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.
         DefaultFilterControlConfiguration: DefaultFilterControlConfiguration
+    end
+
+    -- One level of the drill-down path of a HierarchyFilter.
+    record HierarchyFilterLevel
+        -- The column that this level of the hierarchy drills down by. This column must belong to
+        -- the same dataset as HierarchyFilter$Column.
+        Column: ColumnIdentifier
+    end
+
+    enum HierarchyFilterMatchOperator
+        "INCLUDE"
+        "EXCLUDE"
     end
 
     -- A CategoryInnerFilter filters text values for the NestedFilter.
@@ -2157,29 +2229,6 @@ local record M
         DefaultFilterControlConfiguration: DefaultFilterControlConfiguration
     end
 
-    -- With a Filter, you can remove portions of data from a particular visual or view.
-    -- This is a union type structure. For this structure to be valid, only one of the attributes can be defined.
-    record Filter
-        -- A CategoryFilter filters text values.
-        -- For more information, see Adding text filters in the Amazon Quick Suite User Guide.
-        CategoryFilter: CategoryFilter
-        -- A NumericRangeFilter filters numeric values that are either inside or outside a given numeric range.
-        NumericRangeFilter: NumericRangeFilter
-        -- A NumericEqualityFilter filters numeric values that equal or do not equal a given numeric value.
-        NumericEqualityFilter: NumericEqualityFilter
-        -- A TimeEqualityFilter filters date-time values that equal or do not equal
-        -- a given date/time value.
-        TimeEqualityFilter: TimeEqualityFilter
-        -- A TimeRangeFilter filters date-time values that are either inside or outside a given date/time range.
-        TimeRangeFilter: TimeRangeFilter
-        -- A RelativeDatesFilter filters date values that are relative to a given date.
-        RelativeDatesFilter: RelativeDatesFilter
-        -- A TopBottomFilter filters data to the top or bottom values for a given column.
-        TopBottomFilter: TopBottomFilter
-        -- A NestedFilter filters data with a subset of data that is defined by the nested inner filter.
-        NestedFilter: NestedFilter
-    end
-
     enum FilterVisualScope
         "ALL_VISUALS"
         "SELECTED_VISUALS"
@@ -2211,24 +2260,6 @@ local record M
         SelectedSheets: SelectedSheetsFilterScopeConfiguration
         -- The configuration that applies a filter to all sheets. When you choose AllSheets as the value for a FilterScopeConfiguration, this filter is applied to all visuals of all sheets in an Analysis, Dashboard, or Template. The AllSheetsFilterScopeConfiguration is chosen.
         AllSheets: AllSheetsFilterScopeConfiguration
-    end
-
-    -- A grouping of individual filters. Filter groups are applied to the same group of visuals.
-    -- For more information, see Adding filter conditions (group filters) with AND and OR operators in the Amazon Quick Suite User Guide.
-    record FilterGroup
-        -- The value that uniquely identifies a FilterGroup within a dashboard, template, or analysis.
-        FilterGroupId: string
-        -- The list of filters that are present in a FilterGroup.
-        Filters: {Filter}
-        -- The configuration that specifies what scope to apply to a FilterGroup.
-        -- This is a union type structure. For this structure to be valid, only one of the attributes can be defined.
-        ScopeConfiguration: FilterScopeConfiguration
-        -- The status of the FilterGroup.
-        Status: string
-        -- The filter new feature which can apply filter group to all data sets. Choose one of the following options:
-        -- ALL_DATASETS
-        -- SINGLE_DATASET
-        CrossDataset: string
     end
 
     enum VisualHighlightTrigger
@@ -2556,6 +2587,52 @@ local record M
         ControlTitleFormatText: ControlTitleFormatText
     end
 
+    -- A control from a hierarchy filter that displays the hierarchy as a dropdown list. You can expand a value to see and select the values beneath it, and select either a single value or multiple values.
+    record HierarchyFilterDropDownControl
+        -- The ID of the HierarchyFilterDropDownControl.
+        FilterControlId: string
+        -- The source filter ID of the HierarchyFilterDropDownControl. This must be
+        -- the FilterId of a HierarchyFilter.
+        SourceFilterId: string
+        -- The title of the HierarchyFilterDropDownControl.
+        Title: string
+        -- The display options of a control.
+        DisplayOptions: HierarchyFilterDropDownControlDisplayOptions
+        -- The type of the HierarchyFilterDropDownControl. Choose one of the following options:
+        -- MULTI_SELECT: The user can select multiple entries from a dropdown menu.
+        -- SINGLE_SELECT: The user can select a single entry from a dropdown menu.
+        Type: string
+        -- The visibility configuration of the Apply button on a HierarchyFilterDropDownControl.
+        CommitMode: string
+        -- The sort configuration for the values displayed in the control. Only one sort configuration can be applied per control.
+        ControlSortConfigurations: {ControlSortConfiguration}
+        -- The title text format configuration for the control.
+        ControlTitleFormatText: ControlTitleFormatText
+    end
+
+    -- A control from a hierarchy filter that displays the hierarchy as a list. You can expand a value to see and select the values beneath it, and select either a single value or multiple values.
+    record HierarchyFilterListControl
+        -- The ID of the HierarchyFilterListControl.
+        FilterControlId: string
+        -- The source filter ID of the HierarchyFilterListControl. This must be the
+        -- FilterId of a HierarchyFilter.
+        SourceFilterId: string
+        -- The title of the HierarchyFilterListControl.
+        Title: string
+        -- The display options of a control.
+        DisplayOptions: HierarchyFilterListControlDisplayOptions
+        -- The type of the HierarchyFilterListControl. Choose one of the following options:
+        -- MULTI_SELECT: The user can select multiple entries from the list.
+        -- SINGLE_SELECT: The user can select a single entry from the list.
+        Type: string
+        -- The visibility configuration of the Apply button on a HierarchyFilterListControl.
+        CommitMode: string
+        -- The sort configuration for the values displayed in the control. Only one sort configuration can be applied per control.
+        ControlSortConfigurations: {ControlSortConfiguration}
+        -- The title text format configuration for the control.
+        ControlTitleFormatText: ControlTitleFormatText
+    end
+
     -- A control to display a list of buttons or boxes. This is used to select either a single value or multiple values.
     record FilterListControl
         -- The ID of the FilterListControl.
@@ -2669,6 +2746,10 @@ local record M
         RelativeDateTime: FilterRelativeDateTimeControl
         -- A control from a filter that is scoped across more than one sheet. This represents your filter control on a sheet
         CrossSheet: FilterCrossSheetControl
+        -- A control from a hierarchy filter that displays the hierarchy as a list. You can expand a value to see and select the values beneath it, and select either a single value or multiple values.
+        HierarchyList: HierarchyFilterListControl
+        -- A control from a hierarchy filter that displays the hierarchy as a dropdown list. You can expand a value to see and select the values beneath it, and select either a single value or multiple values.
+        HierarchyDropdown: HierarchyFilterDropDownControl
     end
 
     -- The background style configuration of a free-form layout element.
@@ -8116,40 +8197,6 @@ local record M
         TopicArn: string
     end
 
-    -- The definition of an analysis.
-    record AnalysisDefinition
-        -- An array of dataset identifier declarations. This mapping allows the usage of dataset identifiers instead
-        -- of dataset ARNs throughout analysis sub-structures.
-        DataSetIdentifierDeclarations: {DataSetIdentifierDeclaration}
-        -- An array of topic identifier declarations. This mapping allows the usage of topic identifiers instead
-        -- of topic ARNs throughout analysis sub-structures.
-        TopicIdentifierDeclarations: {TopicIdentifierDeclaration}
-        -- An array of sheet definitions for an analysis. Each SheetDefinition provides detailed information about
-        -- a sheet within this analysis.
-        Sheets: {SheetDefinition}
-        -- An array of tooltip sheet definitions for an analysis. Each TooltipSheetDefinition provides detailed information about
-        -- a tooltip sheet within this analysis.
-        TooltipSheets: {TooltipSheetDefinition}
-        -- An array of calculated field definitions for the analysis.
-        CalculatedFields: {CalculatedField}
-        -- An array of parameter declarations for an analysis.
-        -- Parameters are named variables that can transfer a value for use by an action or an object.
-        -- For more information, see Parameters in Amazon Quick Sight in the Amazon Quick Suite User Guide.
-        ParameterDeclarations: {ParameterDeclaration}
-        -- Filter definitions for an analysis.
-        -- For more information, see Filtering Data in Amazon Quick Sight in the Amazon Quick Suite User Guide.
-        FilterGroups: {FilterGroup}
-        -- An array of analysis-level column configurations. Column configurations can be used to set default
-        -- formatting for a column to be used throughout an analysis.
-        ColumnConfigurations: {ColumnConfiguration}
-        AnalysisDefaults: AnalysisDefaults
-        -- An array of option definitions for an analysis.
-        Options: AssetOptions
-        QueryExecutionOptions: QueryExecutionOptions
-        -- The static files for the definition.
-        StaticFiles: {StaticFile}
-    end
-
     enum AnalysisFilterAttribute
         "QUICKSIGHT_USER"
         "QUICKSIGHT_VIEWER_OR_OWNER"
@@ -9103,6 +9150,32 @@ local record M
         ConnectionType: string
     end
 
+    enum AuthenticationType
+        "PASSWORD"
+        "KEYPAIR"
+        "TOKEN"
+        "X509"
+    end
+
+    -- VPC connection properties.
+    record VpcConnectionProperties
+        -- The Amazon Resource Name (ARN) for the VPC connection.
+        VpcConnectionArn: string
+    end
+
+    -- An object that contains information needed to create a data source connection that uses OAuth client credentials. This option is available for data source connections that are made with Snowflake, Starburst, and Databricks.
+    record OAuthParameters
+        -- The token endpoint URL of the identity provider.
+        TokenProviderUrl: string
+        -- The OAuth scope.
+        OAuthScope: string
+        IdentityProviderVpcConnectionProperties: VpcConnectionProperties
+        -- The resource uri of the identity provider.
+        IdentityProviderResourceUri: string
+        -- The S3 URI of the identity provider's CA certificates bundle in PEM format. Use this parameter to provide a custom CA certificate bundle for the identity provider when the default trust store does not include the required certificates.
+        IdentityProviderCACertificatesBundleS3Uri: string
+    end
+
     -- The parameters that are required to connect to a Databricks data source.
     record DatabricksParameters
         -- The host name of the Databricks data source.
@@ -9111,6 +9184,10 @@ local record M
         Port: number
         -- The HTTP path of the Databricks data source.
         SqlEndpointPath: string
+        -- The authentication type that you want to use for your connection. This parameter accepts OAuth and non-OAuth authentication types.
+        AuthenticationType: string
+        -- An object that contains information needed to create a data source connection between an Quick Sight account and Databricks.
+        OAuthParameters: OAuthParameters
     end
 
     -- The required parameters for connecting to an Exasol data source.
@@ -9334,32 +9411,6 @@ local record M
         -- TWO_LEGGED_OAUTH – Server-to-server authentication using client credentials that do not require user interaction.
         -- THREE_LEGGED_OAUTH – Interactive OAuth that requires user consent.
         AuthType: string
-    end
-
-    enum AuthenticationType
-        "PASSWORD"
-        "KEYPAIR"
-        "TOKEN"
-        "X509"
-    end
-
-    -- VPC connection properties.
-    record VpcConnectionProperties
-        -- The Amazon Resource Name (ARN) for the VPC connection.
-        VpcConnectionArn: string
-    end
-
-    -- An object that contains information needed to create a data source connection that uses OAuth client credentials. This option is available for data source connections that are made with Snowflake and Starburst.
-    record OAuthParameters
-        -- The token endpoint URL of the identity provider.
-        TokenProviderUrl: string
-        -- The OAuth scope.
-        OAuthScope: string
-        IdentityProviderVpcConnectionProperties: VpcConnectionProperties
-        -- The resource uri of the identity provider.
-        IdentityProviderResourceUri: string
-        -- The S3 URI of the identity provider's CA certificates bundle in PEM format. Use this parameter to provide a custom CA certificate bundle for the identity provider when the default trust store does not include the required certificates.
-        IdentityProviderCACertificatesBundleS3Uri: string
     end
 
     -- The parameters for Snowflake.
@@ -12146,46 +12197,6 @@ local record M
         Mode: string
     end
 
-    record CreateAnalysisInput
-        -- The ID of the Amazon Web Services account where you are creating an analysis.
-        AwsAccountId: string
-        -- The ID for the analysis that you're creating. This ID displays in the URL of the
-        -- analysis.
-        AnalysisId: string
-        -- A descriptive name for the analysis that you're creating. This name displays for the
-        -- analysis in the Amazon Quick Sight console.
-        Name: string
-        -- The parameter names and override values that you want to use. An analysis can have
-        -- any parameter type, and some parameters might accept multiple values.
-        Parameters: Parameters
-        -- A structure that describes the principals and the resource-level permissions on an
-        -- analysis. You can use the Permissions structure to grant permissions by
-        -- providing a list of Identity and Access Management (IAM) action information for each
-        -- principal listed by Amazon Resource Name (ARN).
-        -- To specify no permissions, omit Permissions.
-        Permissions: {ResourcePermission}
-        -- A source entity to use for the analysis that you're creating. This metadata structure
-        -- contains details that describe a source template and one or more datasets or topics.
-        -- Either a SourceEntity or a Definition must be provided in
-        -- order for the request to be valid.
-        SourceEntity: AnalysisSourceEntity
-        -- The ARN for the theme to apply to the analysis that you're creating. To see the theme
-        -- in the Amazon Quick Sight console, make sure that you have access to it.
-        ThemeArn: string
-        -- Contains a map of the key-value pairs for the resource tag or tags assigned to the
-        -- analysis.
-        Tags: {Tag}
-        -- The definition of an analysis.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        -- Either a SourceEntity or a Definition must be provided in
-        -- order for the request to be valid.
-        Definition: AnalysisDefinition
-        -- The option to relax the validation needed to create an analysis with definition objects. This skips the validation step for specific errors.
-        ValidationStrategy: ValidationStrategy
-        -- When you create the analysis, Amazon Quick Sight adds the analysis to these folders.
-        FolderArns: {string}
-    end
-
     record CreateAnalysisOutput
         -- The ARN for the analysis.
         Arn: string
@@ -12422,37 +12433,6 @@ local record M
         DataStoriesSharingOption: DataStoriesSharingOption
     end
 
-    -- The contents of a dashboard.
-    record DashboardVersionDefinition
-        -- An array of dataset identifier declarations. With
-        -- this mapping,you can use dataset identifiers instead of dataset Amazon Resource Names (ARNs) throughout the dashboard's sub-structures.
-        DataSetIdentifierDeclarations: {DataSetIdentifierDeclaration}
-        -- An array of topic identifier declarations. With
-        -- this mapping, you can use topic identifiers instead of topic Amazon Resource Names (ARNs) throughout the dashboard's sub-structures.
-        TopicIdentifierDeclarations: {TopicIdentifierDeclaration}
-        -- An array of sheet definitions for a dashboard.
-        Sheets: {SheetDefinition}
-        -- An array of tooltip sheet definitions for a dashboard.
-        TooltipSheets: {TooltipSheetDefinition}
-        -- An array of calculated field definitions for the dashboard.
-        CalculatedFields: {CalculatedField}
-        -- The parameter declarations for a dashboard. Parameters are named variables that can transfer a value for use by an action or an object.
-        -- For more information, see Parameters in Amazon Quick Sight in the Amazon Quick Suite User Guide.
-        ParameterDeclarations: {ParameterDeclaration}
-        -- The filter definitions for a dashboard.
-        -- For more information, see Filtering Data in Amazon Quick Sight in the Amazon Quick Suite User Guide.
-        FilterGroups: {FilterGroup}
-        -- An array of dashboard-level column configurations. Column configurations
-        -- are used to set the default formatting for a column that
-        -- is used throughout a dashboard.
-        ColumnConfigurations: {ColumnConfiguration}
-        AnalysisDefaults: AnalysisDefaults
-        -- An array of option definitions for a dashboard.
-        Options: AssetOptions
-        -- The static files for the definition.
-        StaticFiles: {StaticFile}
-    end
-
     -- A structure that contains the configuration of a shareable link to the
     -- dashboard.
     record LinkSharingConfiguration
@@ -12474,97 +12454,6 @@ local record M
     record DashboardSourceEntity
         -- Source template.
         SourceTemplate: DashboardSourceTemplate
-    end
-
-    record CreateDashboardInput
-        -- The ID of the Amazon Web Services account where you want to create the
-        -- dashboard.
-        AwsAccountId: string
-        -- The ID for the dashboard, also added to the IAM policy.
-        DashboardId: string
-        -- The display name of the dashboard.
-        Name: string
-        -- The parameters for the creation of the dashboard, which you want to use to override
-        -- the default settings. A dashboard can have any type of parameters, and some parameters
-        -- might accept multiple values.
-        Parameters: Parameters
-        -- A structure that contains the permissions of the dashboard. You can use this structure
-        -- for granting permissions by providing a list of IAM action information
-        -- for each principal ARN.
-        -- To specify no permissions, omit the permissions list.
-        Permissions: {ResourcePermission}
-        -- The entity that you are using as a source when you create the dashboard. In
-        -- SourceEntity, you specify the type of object you're using as source.
-        -- You can only create a dashboard from a template, so you use a
-        -- SourceTemplate entity. If you need to create a dashboard from an
-        -- analysis, first convert the analysis to a template by using the
-        -- CreateTemplate
-        -- API operation. For SourceTemplate,
-        -- specify the Amazon Resource Name (ARN) of the source template. The
-        -- SourceTemplateARN can contain any Amazon Web Services account and any
-        -- Amazon Quick Sight-supported Amazon Web Services Region.
-        -- Use the DataSetReferences entity within SourceTemplate to
-        -- list the replacement datasets for the placeholders listed in the original. The schema in
-        -- each dataset must match its placeholder. Use the TopicReferences
-        -- entity to list the replacement topics for the topic placeholders listed in the original.
-        -- The schema in each topic must match its placeholder.
-        -- Either a SourceEntity or a Definition must be provided in
-        -- order for the request to be valid.
-        SourceEntity: DashboardSourceEntity
-        -- Contains a map of the key-value pairs for the resource tag or tags assigned to the
-        -- dashboard.
-        Tags: {Tag}
-        -- A description for the first version of the dashboard being created.
-        VersionDescription: string
-        -- Options for publishing the dashboard when you create it:
-        -- AvailabilityStatus for AdHocFilteringOption - This
-        -- status can be either ENABLED or DISABLED. When this is
-        -- set to DISABLED, Amazon Quick Sight disables the left filter pane on
-        -- the published dashboard, which can be used for ad hoc (one-time) filtering. This
-        -- option is ENABLED by default.
-        -- AvailabilityStatus for ExportToCSVOption - This
-        -- status can be either ENABLED or DISABLED. The visual
-        -- option to export data to .CSV format isn't enabled when this is set to
-        -- DISABLED. This option is ENABLED by default.
-        -- VisibilityState for SheetControlsOption - This
-        -- visibility state can be either COLLAPSED or EXPANDED.
-        -- This option is COLLAPSED by default.
-        -- AvailabilityStatus for QuickSuiteActionsOption -
-        -- This status can be either ENABLED or DISABLED.
-        -- Features related to Actions in Amazon Quick Suite on dashboards are disabled
-        -- when this is set to DISABLED. This option is DISABLED
-        -- by default.
-        -- AvailabilityStatus for ExecutiveSummaryOption - This
-        -- status can be either ENABLED or DISABLED. The option
-        -- to build an executive summary is disabled when this is set to
-        -- DISABLED. This option is ENABLED by
-        -- default.
-        -- AvailabilityStatus for DataStoriesSharingOption -
-        -- This status can be either ENABLED or DISABLED. The
-        -- option to share a data story is disabled when this is set to
-        -- DISABLED. This option is ENABLED by
-        -- default.
-        DashboardPublishOptions: DashboardPublishOptions
-        -- The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If
-        -- you add a value for this field, it overrides the value that is used in the source
-        -- entity. The theme ARN must exist in the same Amazon Web Services account where you create
-        -- the dashboard.
-        ThemeArn: string
-        -- The definition of a dashboard.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        -- Either a SourceEntity or a Definition must be provided in
-        -- order for the request to be valid.
-        Definition: DashboardVersionDefinition
-        -- The option to relax the validation needed to create a dashboard with definition
-        -- objects. This option skips the validation step for specific errors.
-        ValidationStrategy: ValidationStrategy
-        -- When you create the dashboard, Amazon Quick Sight adds the dashboard to these
-        -- folders.
-        FolderArns: {string}
-        -- A structure that contains the permissions of a shareable link to the dashboard.
-        LinkSharingConfiguration: LinkSharingConfiguration
-        -- A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.
-        LinkEntities: {string}
     end
 
     record CreateDashboardOutput
@@ -14491,37 +14380,6 @@ local record M
         ColumnGroupSchemaList: {ColumnGroupSchema}
     end
 
-    -- The detailed definition of a template.
-    record TemplateVersionDefinition
-        -- An array of dataset configurations. These configurations define the required columns for each dataset used within a template.
-        DataSetConfigurations: {DataSetConfiguration}
-        -- An array of topic configurations. These configurations define the required columns for each topic used within a template.
-        TopicConfigurations: {TopicConfiguration}
-        -- An array of sheet definitions for a template.
-        Sheets: {SheetDefinition}
-        -- An array of tooltip sheet definitions for a template.
-        TooltipSheets: {TooltipSheetDefinition}
-        -- An array of calculated field definitions for the template.
-        CalculatedFields: {CalculatedField}
-        -- An array of parameter declarations for a template.
-        -- Parameters are named variables that can transfer a value for use by an action or an object.
-        -- For more information, see Parameters in Amazon Quick Sight in the
-        -- Amazon Quick Suite User Guide.
-        ParameterDeclarations: {ParameterDeclaration}
-        -- Filter definitions for a template.
-        -- For more information, see Filtering Data in the Amazon Quick Suite User Guide.
-        FilterGroups: {FilterGroup}
-        -- An array of template-level column
-        -- configurations. Column configurations are used to set default formatting for a column that's used throughout a template.
-        ColumnConfigurations: {ColumnConfiguration}
-        AnalysisDefaults: AnalysisDefaults
-        -- An array of option definitions for a template.
-        Options: AssetOptions
-        QueryExecutionOptions: QueryExecutionOptions
-        -- The static files for the definition.
-        StaticFiles: {StaticFile}
-    end
-
     -- The source analysis of the template.
     record TemplateSourceAnalysis
         -- The Amazon Resource Name (ARN) of the resource.
@@ -14546,47 +14404,6 @@ local record M
         SourceAnalysis: TemplateSourceAnalysis
         -- The source template, if it is based on an template.
         SourceTemplate: TemplateSourceTemplate
-    end
-
-    record CreateTemplateInput
-        -- The ID for the Amazon Web Services account that the group is in. You use the ID for the Amazon Web Services account that contains your Amazon Quick Sight account.
-        AwsAccountId: string
-        -- An ID for the template that you want to create. This template is unique per Amazon Web Services Region; in
-        -- each Amazon Web Services account.
-        TemplateId: string
-        -- A display name for the template.
-        Name: string
-        -- A list of resource permissions to be set on the template.
-        Permissions: {ResourcePermission}
-        -- The entity that you are using as a source when you create the template. In
-        -- SourceEntity, you specify the type of object you're using as source:
-        -- SourceTemplate for a template or SourceAnalysis for an
-        -- analysis. Both of these require an Amazon Resource Name (ARN). For
-        -- SourceTemplate, specify the ARN of the source template. For
-        -- SourceAnalysis, specify the ARN of the source analysis. The SourceTemplate
-        -- ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region.
-        -- Use the DataSetReferences entity within SourceTemplate or
-        -- SourceAnalysis to list the replacement datasets for the placeholders listed
-        -- in the original. The schema in each dataset must match its placeholder. Use the TopicReferences
-        -- entity to list the replacement topics for the topic placeholders listed in the original.
-        -- The schema in each topic must match its placeholder.
-        -- Either a SourceEntity or a Definition must be provided in
-        -- order for the request to be valid.
-        SourceEntity: TemplateSourceEntity
-        -- Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.
-        Tags: {Tag}
-        -- A description of the current template version being created. This API operation creates the
-        -- first version of the template. Every time UpdateTemplate is called, a new
-        -- version is created. Each version of the template maintains a description of the version
-        -- in the VersionDescription field.
-        VersionDescription: string
-        -- The definition of a template.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        -- Either a SourceEntity or a Definition must be provided in
-        -- order for the request to be valid.
-        Definition: TemplateVersionDefinition
-        -- TThe option to relax the validation needed to create a template with definition objects. This skips the validation step for specific errors.
-        ValidationStrategy: ValidationStrategy
     end
 
     record CreateTemplateOutput
@@ -16933,33 +16750,6 @@ local record M
         AnalysisId: string
     end
 
-    record DescribeAnalysisDefinitionOutput
-        -- The ID of the analysis described.
-        AnalysisId: string
-        -- The descriptive name of the analysis.
-        Name: string
-        -- Errors associated with the analysis.
-        Errors: {AnalysisError}
-        -- Status associated with the analysis.
-        -- CREATION_IN_PROGRESS
-        -- CREATION_SUCCESSFUL
-        -- CREATION_FAILED
-        -- UPDATE_IN_PROGRESS
-        -- UPDATE_SUCCESSFUL
-        -- UPDATE_FAILED
-        -- DELETED
-        ResourceStatus: string
-        -- The ARN of the theme of the analysis.
-        ThemeArn: string
-        -- The definition of an analysis.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        Definition: AnalysisDefinition
-        -- The HTTP status of the request.
-        Status: number
-        -- The Amazon Web Services request ID for this operation.
-        RequestId: string
-    end
-
     record DescribeAnalysisPermissionsInput
         -- The ID of the Amazon Web Services account that contains the analysis whose permissions you're
         -- describing. You must be using the Amazon Web Services account that the analysis is in.
@@ -17290,62 +17080,6 @@ local record M
         VersionNumber: number
         -- The alias name.
         AliasName: string
-    end
-
-    record DescribeDashboardDefinitionOutput
-        -- The ID of the dashboard described.
-        DashboardId: string
-        -- Errors associated with this dashboard version.
-        Errors: {DashboardError}
-        -- The display name of the dashboard.
-        Name: string
-        -- Status associated with the dashboard version.
-        -- CREATION_IN_PROGRESS
-        -- CREATION_SUCCESSFUL
-        -- CREATION_FAILED
-        -- UPDATE_IN_PROGRESS
-        -- UPDATE_SUCCESSFUL
-        -- UPDATE_FAILED
-        -- DELETED
-        ResourceStatus: string
-        -- The ARN of the theme of the dashboard.
-        ThemeArn: string
-        -- The definition of a dashboard.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        Definition: DashboardVersionDefinition
-        -- The HTTP status of the request.
-        Status: number
-        -- The Amazon Web Services request ID for this operation.
-        RequestId: string
-        -- Options for publishing the dashboard:
-        -- AvailabilityStatus for AdHocFilteringOption - This
-        -- status can be either ENABLED or DISABLED. When this is
-        -- set to DISABLED, Amazon Quick Sight disables the left filter pane on
-        -- the published dashboard, which can be used for ad hoc (one-time) filtering. This
-        -- option is ENABLED by default.
-        -- AvailabilityStatus for ExportToCSVOption - This
-        -- status can be either ENABLED or DISABLED. The visual
-        -- option to export data to .CSV format isn't enabled when this is set to
-        -- DISABLED. This option is ENABLED by default.
-        -- VisibilityState for SheetControlsOption - This
-        -- visibility state can be either COLLAPSED or EXPANDED.
-        -- This option is COLLAPSED by default.
-        -- AvailabilityStatus for QuickSuiteActionsOption -
-        -- This status can be either ENABLED or DISABLED.
-        -- Features related to Actions in Amazon Quick Suite on dashboards are disabled
-        -- when this is set to DISABLED. This option is DISABLED
-        -- by default.
-        -- AvailabilityStatus for ExecutiveSummaryOption - This
-        -- status can be either ENABLED or DISABLED. The option
-        -- to build an executive summary is disabled when this is set to
-        -- DISABLED. This option is ENABLED by
-        -- default.
-        -- AvailabilityStatus for DataStoriesSharingOption -
-        -- This status can be either ENABLED or DISABLED. The
-        -- option to share a data story is disabled when this is set to
-        -- DISABLED. This option is ENABLED by
-        -- default.
-        DashboardPublishOptions: DashboardPublishOptions
     end
 
     record DescribeDashboardPermissionsInput
@@ -18654,33 +18388,6 @@ local record M
         -- template by providing the keyword $LATEST in the AliasName
         -- parameter. The keyword $PUBLISHED doesn't apply to templates.
         AliasName: string
-    end
-
-    record DescribeTemplateDefinitionOutput
-        -- The descriptive name of the template.
-        Name: string
-        -- The ID of the template described.
-        TemplateId: string
-        -- Errors associated with the template version.
-        Errors: {TemplateError}
-        -- Status associated with the template.
-        -- CREATION_IN_PROGRESS
-        -- CREATION_SUCCESSFUL
-        -- CREATION_FAILED
-        -- UPDATE_IN_PROGRESS
-        -- UPDATE_SUCCESSFUL
-        -- UPDATE_FAILED
-        -- DELETED
-        ResourceStatus: string
-        -- The ARN of the theme of the template.
-        ThemeArn: string
-        -- The definition of the template.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        Definition: TemplateVersionDefinition
-        -- The HTTP status of the request.
-        Status: number
-        -- The Amazon Web Services request ID for this operation.
-        RequestId: string
     end
 
     record DescribeTemplatePermissionsInput
@@ -22190,32 +21897,6 @@ local record M
         Permissions: {ResourcePermission}
     end
 
-    record UpdateAnalysisInput
-        -- The ID of the Amazon Web Services account that contains the analysis that you're updating.
-        AwsAccountId: string
-        -- The ID for the analysis that you're updating. This ID displays in the URL of the
-        -- analysis.
-        AnalysisId: string
-        -- A descriptive name for the analysis that you're updating. This name displays for the
-        -- analysis in the Amazon Quick Sight console.
-        Name: string
-        -- The parameter names and override values that you want to use. An analysis can have
-        -- any parameter type, and some parameters might accept multiple values.
-        Parameters: Parameters
-        -- A source entity to use for the analysis that you're updating. This metadata structure
-        -- contains details that describe a source template and one or more datasets or topics.
-        SourceEntity: AnalysisSourceEntity
-        -- The Amazon Resource Name (ARN) for the theme to apply to the analysis that you're
-        -- creating. To see the theme in the Amazon Quick Sight console, make sure that you have access to
-        -- it.
-        ThemeArn: string
-        -- The definition of an analysis.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        Definition: AnalysisDefinition
-        -- The option to relax the validation needed to update an analysis with definition objects. This skips the validation step for specific errors.
-        ValidationStrategy: ValidationStrategy
-    end
-
     record UpdateAnalysisOutput
         -- The ARN of the analysis that you're updating.
         Arn: string
@@ -22386,78 +22067,6 @@ local record M
         Arn: string
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
-    end
-
-    record UpdateDashboardInput
-        -- The ID of the Amazon Web Services account that contains the dashboard that you're
-        -- updating.
-        AwsAccountId: string
-        -- The ID for the dashboard.
-        DashboardId: string
-        -- The display name of the dashboard.
-        Name: string
-        -- The entity that you are using as a source when you update the dashboard. In
-        -- SourceEntity, you specify the type of object you're using as source.
-        -- You can only update a dashboard from a template, so you use a
-        -- SourceTemplate entity. If you need to update a dashboard from an
-        -- analysis, first convert the analysis to a template by using the
-        -- CreateTemplate
-        -- API operation. For SourceTemplate,
-        -- specify the Amazon Resource Name (ARN) of the source template. The
-        -- SourceTemplate ARN can contain any Amazon Web Services account and any
-        -- Amazon Quick Sight-supported Amazon Web Services Region.
-        -- Use the DataSetReferences entity within SourceTemplate to
-        -- list the replacement datasets for the placeholders listed in the original. The schema in
-        -- each dataset must match its placeholder. Use the TopicReferences
-        -- entity to list the replacement topics for the topic placeholders listed in the original.
-        -- The schema in each topic must match its placeholder.
-        SourceEntity: DashboardSourceEntity
-        -- A structure that contains the parameters of the dashboard. These are parameter
-        -- overrides for a dashboard. A dashboard can have any type of parameters, and some
-        -- parameters might accept multiple values.
-        Parameters: Parameters
-        -- A description for the first version of the dashboard being created.
-        VersionDescription: string
-        -- Options for publishing the dashboard when you create it:
-        -- AvailabilityStatus for AdHocFilteringOption - This
-        -- status can be either ENABLED or DISABLED. When this is
-        -- set to DISABLED, Amazon Quick Sight disables the left filter pane on
-        -- the published dashboard, which can be used for ad hoc (one-time) filtering. This
-        -- option is ENABLED by default.
-        -- AvailabilityStatus for ExportToCSVOption - This
-        -- status can be either ENABLED or DISABLED. The visual
-        -- option to export data to .CSV format isn't enabled when this is set to
-        -- DISABLED. This option is ENABLED by default.
-        -- VisibilityState for SheetControlsOption - This
-        -- visibility state can be either COLLAPSED or EXPANDED.
-        -- This option is COLLAPSED by default.
-        -- AvailabilityStatus for QuickSuiteActionsOption -
-        -- This status can be either ENABLED or DISABLED.
-        -- Features related to Actions in Amazon Quick Suite on dashboards are disabled
-        -- when this is set to DISABLED. This option is DISABLED
-        -- by default.
-        -- AvailabilityStatus for ExecutiveSummaryOption - This
-        -- status can be either ENABLED or DISABLED. The option
-        -- to build an executive summary is disabled when this is set to
-        -- DISABLED. This option is ENABLED by
-        -- default.
-        -- AvailabilityStatus for DataStoriesSharingOption -
-        -- This status can be either ENABLED or DISABLED. The
-        -- option to share a data story is disabled when this is set to
-        -- DISABLED. This option is ENABLED by
-        -- default.
-        DashboardPublishOptions: DashboardPublishOptions
-        -- The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If
-        -- you add a value for this field, it overrides the value that was originally associated
-        -- with the entity. The theme ARN must exist in the same Amazon Web Services account where
-        -- you create the dashboard.
-        ThemeArn: string
-        -- The definition of a dashboard.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        Definition: DashboardVersionDefinition
-        -- The option to relax the validation needed to update a dashboard with definition
-        -- objects. This skips the validation step for specific errors.
-        ValidationStrategy: ValidationStrategy
     end
 
     record UpdateDashboardOutput
@@ -23303,38 +22912,6 @@ local record M
         Status: number
     end
 
-    record UpdateTemplateInput
-        -- The ID of the Amazon Web Services account that contains the template that you're updating.
-        AwsAccountId: string
-        -- The ID for the template.
-        TemplateId: string
-        -- The entity that you are using as a source when you update the template. In
-        -- SourceEntity, you specify the type of object you're using as source:
-        -- SourceTemplate for a template or SourceAnalysis for an
-        -- analysis. Both of these require an Amazon Resource Name (ARN). For
-        -- SourceTemplate, specify the ARN of the source template. For
-        -- SourceAnalysis, specify the ARN of the source analysis. The SourceTemplate
-        -- ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region;.
-        -- Use the DataSetReferences entity within SourceTemplate or
-        -- SourceAnalysis to list the replacement datasets for the placeholders listed
-        -- in the original. The schema in each dataset must match its placeholder. Use the TopicReferences
-        -- entity to list the replacement topics for the topic placeholders listed in the original.
-        -- The schema in each topic must match its placeholder.
-        SourceEntity: TemplateSourceEntity
-        -- A description of the current template version that is being updated. Every time you call
-        -- UpdateTemplate, you create a new version of the template. Each version
-        -- of the template maintains a description of the version in the
-        -- VersionDescription field.
-        VersionDescription: string
-        -- The name for the template.
-        Name: string
-        -- The definition of a template.
-        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
-        Definition: TemplateVersionDefinition
-        -- The option to relax the validation needed to update a template with definition objects. This skips the validation step for specific errors.
-        ValidationStrategy: ValidationStrategy
-    end
-
     record UpdateTemplateOutput
         -- The ID for the template.
         TemplateId: string
@@ -23724,6 +23301,31 @@ local record M
         Status: number
     end
 
+    -- A node in the selection tree of a HierarchyFilter. Each node records the
+    -- values that are selected at one level of the hierarchy. Nodes nest through
+    -- Children to record selections at deeper levels.
+    -- The tree cannot be deeper than the number of levels declared in
+    -- HierarchyLevels. A tree can be a maximum of 5 levels deep, and a node can
+    -- have a maximum of 1,000 children.
+    record HierarchyFilterNode
+        -- The column that this node selects values from. This column must match the column of the
+        -- corresponding level in HierarchyFilter$HierarchyLevels. The node at depth 1
+        -- must match the first level, the node at depth 2 must match the second level, and so on.
+        Column: ColumnIdentifier
+        -- The value in the parent node's HierarchyValues that this node belongs to.
+        -- When a parent selects several values, each of its children repeats one of them here to
+        -- identify which branch of the hierarchy that child describes.
+        -- Omit this attribute on the root node of HierarchyTree, which has no
+        -- parent.
+        ParentValue: string
+        -- The values that are selected at this level of the hierarchy. You can specify a maximum
+        -- of 2,000 values per node.
+        HierarchyValues: {string}
+        -- The nodes that record the selections at the next level of the hierarchy. You can
+        -- specify a maximum of 1,000 children per node.
+        Children: {HierarchyFilterNode}
+    end
+
     -- The definition for a TopicVisual.
     record TopicVisual
         -- The visual ID for the TopicVisual.
@@ -23752,6 +23354,32 @@ local record M
         Template: TopicTemplate
     end
 
+    -- A HierarchyFilter filters data by drilling down through an ordered list of columns. Each level in the list narrows the data by one column, and the selected values at each level determine which values are available at the next.
+    record HierarchyFilter
+        -- An identifier that uniquely identifies a filter within a dashboard, analysis, or template.
+        FilterId: string
+        -- The column that anchors the filter. This column determines the dataset that the whole
+        -- filter applies to, so every column in HierarchyLevels and in
+        -- HierarchyTree must belong to the same dataset.
+        Column: ColumnIdentifier
+        -- The ordered list of columns that defines the drill-down path of the filter. The first level is the top of the hierarchy. You can specify a maximum of 5 levels.
+        HierarchyLevels: {HierarchyFilterLevel}
+        -- The tree of selected values for the filter. Each node records the values that are selected at one level of the hierarchy, and its children record the selections beneath those values. Omit this attribute to define the drill-down path without restricting any values.
+        HierarchyTree: HierarchyFilterNode
+        -- This option determines how null values should be treated when filtering data.
+        -- ALL_VALUES: Include null values in filtered results.
+        -- NULLS_ONLY: Only include null values in filtered results.
+        -- NON_NULLS_ONLY: Exclude null values from filtered results.
+        NullOption: string
+        -- Determines whether the values selected in HierarchyTree are kept or
+        -- removed. Choose one of the following options:
+        -- INCLUDE: Keep only the selected values.
+        -- EXCLUDE: Remove the selected values.
+        MatchOperator: string
+        -- The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.
+        DefaultFilterControlConfiguration: DefaultFilterControlConfiguration
+    end
+
     -- The deinition for a TopicReviewedAnswer.
     record TopicReviewedAnswer
         -- The Amazon Resource Name (ARN) of the reviewed answer.
@@ -23768,6 +23396,31 @@ local record M
         PrimaryVisual: TopicVisual
         -- The template for the TopicReviewedAnswer.
         Template: TopicTemplate
+    end
+
+    -- With a Filter, you can remove portions of data from a particular visual or view.
+    -- This is a union type structure. For this structure to be valid, only one of the attributes can be defined.
+    record Filter
+        -- A CategoryFilter filters text values.
+        -- For more information, see Adding text filters in the Amazon Quick Suite User Guide.
+        CategoryFilter: CategoryFilter
+        -- A NumericRangeFilter filters numeric values that are either inside or outside a given numeric range.
+        NumericRangeFilter: NumericRangeFilter
+        -- A NumericEqualityFilter filters numeric values that equal or do not equal a given numeric value.
+        NumericEqualityFilter: NumericEqualityFilter
+        -- A TimeEqualityFilter filters date-time values that equal or do not equal
+        -- a given date/time value.
+        TimeEqualityFilter: TimeEqualityFilter
+        -- A TimeRangeFilter filters date-time values that are either inside or outside a given date/time range.
+        TimeRangeFilter: TimeRangeFilter
+        -- A RelativeDatesFilter filters date values that are relative to a given date.
+        RelativeDatesFilter: RelativeDatesFilter
+        -- A TopBottomFilter filters data to the top or bottom values for a given column.
+        TopBottomFilter: TopBottomFilter
+        -- A NestedFilter filters data with a subset of data that is defined by the nested inner filter.
+        NestedFilter: NestedFilter
+        -- A HierarchyFilter filters data by drilling down through an ordered list of columns. Each level in the list narrows the data by one column, and the selected values at each level determine which values are available at the next.
+        HierarchyFilter: HierarchyFilter
     end
 
     record BatchCreateTopicReviewedAnswerInput
@@ -23790,6 +23443,532 @@ local record M
         Status: number
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
+    end
+
+    -- A grouping of individual filters. Filter groups are applied to the same group of visuals.
+    -- For more information, see Adding filter conditions (group filters) with AND and OR operators in the Amazon Quick Suite User Guide.
+    record FilterGroup
+        -- The value that uniquely identifies a FilterGroup within a dashboard, template, or analysis.
+        FilterGroupId: string
+        -- The list of filters that are present in a FilterGroup.
+        Filters: {Filter}
+        -- The configuration that specifies what scope to apply to a FilterGroup.
+        -- This is a union type structure. For this structure to be valid, only one of the attributes can be defined.
+        ScopeConfiguration: FilterScopeConfiguration
+        -- The status of the FilterGroup.
+        Status: string
+        -- The filter new feature which can apply filter group to all data sets. Choose one of the following options:
+        -- ALL_DATASETS
+        -- SINGLE_DATASET
+        CrossDataset: string
+    end
+
+    -- The definition of an analysis.
+    record AnalysisDefinition
+        -- An array of dataset identifier declarations. This mapping allows the usage of dataset identifiers instead
+        -- of dataset ARNs throughout analysis sub-structures.
+        DataSetIdentifierDeclarations: {DataSetIdentifierDeclaration}
+        -- An array of topic identifier declarations. This mapping allows the usage of topic identifiers instead
+        -- of topic ARNs throughout analysis sub-structures.
+        TopicIdentifierDeclarations: {TopicIdentifierDeclaration}
+        -- An array of sheet definitions for an analysis. Each SheetDefinition provides detailed information about
+        -- a sheet within this analysis.
+        Sheets: {SheetDefinition}
+        -- An array of tooltip sheet definitions for an analysis. Each TooltipSheetDefinition provides detailed information about
+        -- a tooltip sheet within this analysis.
+        TooltipSheets: {TooltipSheetDefinition}
+        -- An array of calculated field definitions for the analysis.
+        CalculatedFields: {CalculatedField}
+        -- An array of parameter declarations for an analysis.
+        -- Parameters are named variables that can transfer a value for use by an action or an object.
+        -- For more information, see Parameters in Amazon Quick Sight in the Amazon Quick Suite User Guide.
+        ParameterDeclarations: {ParameterDeclaration}
+        -- Filter definitions for an analysis.
+        -- For more information, see Filtering Data in Amazon Quick Sight in the Amazon Quick Suite User Guide.
+        FilterGroups: {FilterGroup}
+        -- An array of analysis-level column configurations. Column configurations can be used to set default
+        -- formatting for a column to be used throughout an analysis.
+        ColumnConfigurations: {ColumnConfiguration}
+        AnalysisDefaults: AnalysisDefaults
+        -- An array of option definitions for an analysis.
+        Options: AssetOptions
+        QueryExecutionOptions: QueryExecutionOptions
+        -- The static files for the definition.
+        StaticFiles: {StaticFile}
+    end
+
+    -- The contents of a dashboard.
+    record DashboardVersionDefinition
+        -- An array of dataset identifier declarations. With
+        -- this mapping,you can use dataset identifiers instead of dataset Amazon Resource Names (ARNs) throughout the dashboard's sub-structures.
+        DataSetIdentifierDeclarations: {DataSetIdentifierDeclaration}
+        -- An array of topic identifier declarations. With
+        -- this mapping, you can use topic identifiers instead of topic Amazon Resource Names (ARNs) throughout the dashboard's sub-structures.
+        TopicIdentifierDeclarations: {TopicIdentifierDeclaration}
+        -- An array of sheet definitions for a dashboard.
+        Sheets: {SheetDefinition}
+        -- An array of tooltip sheet definitions for a dashboard.
+        TooltipSheets: {TooltipSheetDefinition}
+        -- An array of calculated field definitions for the dashboard.
+        CalculatedFields: {CalculatedField}
+        -- The parameter declarations for a dashboard. Parameters are named variables that can transfer a value for use by an action or an object.
+        -- For more information, see Parameters in Amazon Quick Sight in the Amazon Quick Suite User Guide.
+        ParameterDeclarations: {ParameterDeclaration}
+        -- The filter definitions for a dashboard.
+        -- For more information, see Filtering Data in Amazon Quick Sight in the Amazon Quick Suite User Guide.
+        FilterGroups: {FilterGroup}
+        -- An array of dashboard-level column configurations. Column configurations
+        -- are used to set the default formatting for a column that
+        -- is used throughout a dashboard.
+        ColumnConfigurations: {ColumnConfiguration}
+        AnalysisDefaults: AnalysisDefaults
+        -- An array of option definitions for a dashboard.
+        Options: AssetOptions
+        -- The static files for the definition.
+        StaticFiles: {StaticFile}
+    end
+
+    -- The detailed definition of a template.
+    record TemplateVersionDefinition
+        -- An array of dataset configurations. These configurations define the required columns for each dataset used within a template.
+        DataSetConfigurations: {DataSetConfiguration}
+        -- An array of topic configurations. These configurations define the required columns for each topic used within a template.
+        TopicConfigurations: {TopicConfiguration}
+        -- An array of sheet definitions for a template.
+        Sheets: {SheetDefinition}
+        -- An array of tooltip sheet definitions for a template.
+        TooltipSheets: {TooltipSheetDefinition}
+        -- An array of calculated field definitions for the template.
+        CalculatedFields: {CalculatedField}
+        -- An array of parameter declarations for a template.
+        -- Parameters are named variables that can transfer a value for use by an action or an object.
+        -- For more information, see Parameters in Amazon Quick Sight in the
+        -- Amazon Quick Suite User Guide.
+        ParameterDeclarations: {ParameterDeclaration}
+        -- Filter definitions for a template.
+        -- For more information, see Filtering Data in the Amazon Quick Suite User Guide.
+        FilterGroups: {FilterGroup}
+        -- An array of template-level column
+        -- configurations. Column configurations are used to set default formatting for a column that's used throughout a template.
+        ColumnConfigurations: {ColumnConfiguration}
+        AnalysisDefaults: AnalysisDefaults
+        -- An array of option definitions for a template.
+        Options: AssetOptions
+        QueryExecutionOptions: QueryExecutionOptions
+        -- The static files for the definition.
+        StaticFiles: {StaticFile}
+    end
+
+    record CreateAnalysisInput
+        -- The ID of the Amazon Web Services account where you are creating an analysis.
+        AwsAccountId: string
+        -- The ID for the analysis that you're creating. This ID displays in the URL of the
+        -- analysis.
+        AnalysisId: string
+        -- A descriptive name for the analysis that you're creating. This name displays for the
+        -- analysis in the Amazon Quick Sight console.
+        Name: string
+        -- The parameter names and override values that you want to use. An analysis can have
+        -- any parameter type, and some parameters might accept multiple values.
+        Parameters: Parameters
+        -- A structure that describes the principals and the resource-level permissions on an
+        -- analysis. You can use the Permissions structure to grant permissions by
+        -- providing a list of Identity and Access Management (IAM) action information for each
+        -- principal listed by Amazon Resource Name (ARN).
+        -- To specify no permissions, omit Permissions.
+        Permissions: {ResourcePermission}
+        -- A source entity to use for the analysis that you're creating. This metadata structure
+        -- contains details that describe a source template and one or more datasets or topics.
+        -- Either a SourceEntity or a Definition must be provided in
+        -- order for the request to be valid.
+        SourceEntity: AnalysisSourceEntity
+        -- The ARN for the theme to apply to the analysis that you're creating. To see the theme
+        -- in the Amazon Quick Sight console, make sure that you have access to it.
+        ThemeArn: string
+        -- Contains a map of the key-value pairs for the resource tag or tags assigned to the
+        -- analysis.
+        Tags: {Tag}
+        -- The definition of an analysis.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        -- Either a SourceEntity or a Definition must be provided in
+        -- order for the request to be valid.
+        Definition: AnalysisDefinition
+        -- The option to relax the validation needed to create an analysis with definition objects. This skips the validation step for specific errors.
+        ValidationStrategy: ValidationStrategy
+        -- When you create the analysis, Amazon Quick Sight adds the analysis to these folders.
+        FolderArns: {string}
+    end
+
+    record CreateDashboardInput
+        -- The ID of the Amazon Web Services account where you want to create the
+        -- dashboard.
+        AwsAccountId: string
+        -- The ID for the dashboard, also added to the IAM policy.
+        DashboardId: string
+        -- The display name of the dashboard.
+        Name: string
+        -- The parameters for the creation of the dashboard, which you want to use to override
+        -- the default settings. A dashboard can have any type of parameters, and some parameters
+        -- might accept multiple values.
+        Parameters: Parameters
+        -- A structure that contains the permissions of the dashboard. You can use this structure
+        -- for granting permissions by providing a list of IAM action information
+        -- for each principal ARN.
+        -- To specify no permissions, omit the permissions list.
+        Permissions: {ResourcePermission}
+        -- The entity that you are using as a source when you create the dashboard. In
+        -- SourceEntity, you specify the type of object you're using as source.
+        -- You can only create a dashboard from a template, so you use a
+        -- SourceTemplate entity. If you need to create a dashboard from an
+        -- analysis, first convert the analysis to a template by using the
+        -- CreateTemplate
+        -- API operation. For SourceTemplate,
+        -- specify the Amazon Resource Name (ARN) of the source template. The
+        -- SourceTemplateARN can contain any Amazon Web Services account and any
+        -- Amazon Quick Sight-supported Amazon Web Services Region.
+        -- Use the DataSetReferences entity within SourceTemplate to
+        -- list the replacement datasets for the placeholders listed in the original. The schema in
+        -- each dataset must match its placeholder. Use the TopicReferences
+        -- entity to list the replacement topics for the topic placeholders listed in the original.
+        -- The schema in each topic must match its placeholder.
+        -- Either a SourceEntity or a Definition must be provided in
+        -- order for the request to be valid.
+        SourceEntity: DashboardSourceEntity
+        -- Contains a map of the key-value pairs for the resource tag or tags assigned to the
+        -- dashboard.
+        Tags: {Tag}
+        -- A description for the first version of the dashboard being created.
+        VersionDescription: string
+        -- Options for publishing the dashboard when you create it:
+        -- AvailabilityStatus for AdHocFilteringOption - This
+        -- status can be either ENABLED or DISABLED. When this is
+        -- set to DISABLED, Amazon Quick Sight disables the left filter pane on
+        -- the published dashboard, which can be used for ad hoc (one-time) filtering. This
+        -- option is ENABLED by default.
+        -- AvailabilityStatus for ExportToCSVOption - This
+        -- status can be either ENABLED or DISABLED. The visual
+        -- option to export data to .CSV format isn't enabled when this is set to
+        -- DISABLED. This option is ENABLED by default.
+        -- VisibilityState for SheetControlsOption - This
+        -- visibility state can be either COLLAPSED or EXPANDED.
+        -- This option is COLLAPSED by default.
+        -- AvailabilityStatus for QuickSuiteActionsOption -
+        -- This status can be either ENABLED or DISABLED.
+        -- Features related to Actions in Amazon Quick Suite on dashboards are disabled
+        -- when this is set to DISABLED. This option is DISABLED
+        -- by default.
+        -- AvailabilityStatus for ExecutiveSummaryOption - This
+        -- status can be either ENABLED or DISABLED. The option
+        -- to build an executive summary is disabled when this is set to
+        -- DISABLED. This option is ENABLED by
+        -- default.
+        -- AvailabilityStatus for DataStoriesSharingOption -
+        -- This status can be either ENABLED or DISABLED. The
+        -- option to share a data story is disabled when this is set to
+        -- DISABLED. This option is ENABLED by
+        -- default.
+        DashboardPublishOptions: DashboardPublishOptions
+        -- The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If
+        -- you add a value for this field, it overrides the value that is used in the source
+        -- entity. The theme ARN must exist in the same Amazon Web Services account where you create
+        -- the dashboard.
+        ThemeArn: string
+        -- The definition of a dashboard.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        -- Either a SourceEntity or a Definition must be provided in
+        -- order for the request to be valid.
+        Definition: DashboardVersionDefinition
+        -- The option to relax the validation needed to create a dashboard with definition
+        -- objects. This option skips the validation step for specific errors.
+        ValidationStrategy: ValidationStrategy
+        -- When you create the dashboard, Amazon Quick Sight adds the dashboard to these
+        -- folders.
+        FolderArns: {string}
+        -- A structure that contains the permissions of a shareable link to the dashboard.
+        LinkSharingConfiguration: LinkSharingConfiguration
+        -- A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.
+        LinkEntities: {string}
+    end
+
+    record CreateTemplateInput
+        -- The ID for the Amazon Web Services account that the group is in. You use the ID for the Amazon Web Services account that contains your Amazon Quick Sight account.
+        AwsAccountId: string
+        -- An ID for the template that you want to create. This template is unique per Amazon Web Services Region; in
+        -- each Amazon Web Services account.
+        TemplateId: string
+        -- A display name for the template.
+        Name: string
+        -- A list of resource permissions to be set on the template.
+        Permissions: {ResourcePermission}
+        -- The entity that you are using as a source when you create the template. In
+        -- SourceEntity, you specify the type of object you're using as source:
+        -- SourceTemplate for a template or SourceAnalysis for an
+        -- analysis. Both of these require an Amazon Resource Name (ARN). For
+        -- SourceTemplate, specify the ARN of the source template. For
+        -- SourceAnalysis, specify the ARN of the source analysis. The SourceTemplate
+        -- ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region.
+        -- Use the DataSetReferences entity within SourceTemplate or
+        -- SourceAnalysis to list the replacement datasets for the placeholders listed
+        -- in the original. The schema in each dataset must match its placeholder. Use the TopicReferences
+        -- entity to list the replacement topics for the topic placeholders listed in the original.
+        -- The schema in each topic must match its placeholder.
+        -- Either a SourceEntity or a Definition must be provided in
+        -- order for the request to be valid.
+        SourceEntity: TemplateSourceEntity
+        -- Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.
+        Tags: {Tag}
+        -- A description of the current template version being created. This API operation creates the
+        -- first version of the template. Every time UpdateTemplate is called, a new
+        -- version is created. Each version of the template maintains a description of the version
+        -- in the VersionDescription field.
+        VersionDescription: string
+        -- The definition of a template.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        -- Either a SourceEntity or a Definition must be provided in
+        -- order for the request to be valid.
+        Definition: TemplateVersionDefinition
+        -- TThe option to relax the validation needed to create a template with definition objects. This skips the validation step for specific errors.
+        ValidationStrategy: ValidationStrategy
+    end
+
+    record DescribeAnalysisDefinitionOutput
+        -- The ID of the analysis described.
+        AnalysisId: string
+        -- The descriptive name of the analysis.
+        Name: string
+        -- Errors associated with the analysis.
+        Errors: {AnalysisError}
+        -- Status associated with the analysis.
+        -- CREATION_IN_PROGRESS
+        -- CREATION_SUCCESSFUL
+        -- CREATION_FAILED
+        -- UPDATE_IN_PROGRESS
+        -- UPDATE_SUCCESSFUL
+        -- UPDATE_FAILED
+        -- DELETED
+        ResourceStatus: string
+        -- The ARN of the theme of the analysis.
+        ThemeArn: string
+        -- The definition of an analysis.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        Definition: AnalysisDefinition
+        -- The HTTP status of the request.
+        Status: number
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    record DescribeDashboardDefinitionOutput
+        -- The ID of the dashboard described.
+        DashboardId: string
+        -- Errors associated with this dashboard version.
+        Errors: {DashboardError}
+        -- The display name of the dashboard.
+        Name: string
+        -- Status associated with the dashboard version.
+        -- CREATION_IN_PROGRESS
+        -- CREATION_SUCCESSFUL
+        -- CREATION_FAILED
+        -- UPDATE_IN_PROGRESS
+        -- UPDATE_SUCCESSFUL
+        -- UPDATE_FAILED
+        -- DELETED
+        ResourceStatus: string
+        -- The ARN of the theme of the dashboard.
+        ThemeArn: string
+        -- The definition of a dashboard.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        Definition: DashboardVersionDefinition
+        -- The HTTP status of the request.
+        Status: number
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- Options for publishing the dashboard:
+        -- AvailabilityStatus for AdHocFilteringOption - This
+        -- status can be either ENABLED or DISABLED. When this is
+        -- set to DISABLED, Amazon Quick Sight disables the left filter pane on
+        -- the published dashboard, which can be used for ad hoc (one-time) filtering. This
+        -- option is ENABLED by default.
+        -- AvailabilityStatus for ExportToCSVOption - This
+        -- status can be either ENABLED or DISABLED. The visual
+        -- option to export data to .CSV format isn't enabled when this is set to
+        -- DISABLED. This option is ENABLED by default.
+        -- VisibilityState for SheetControlsOption - This
+        -- visibility state can be either COLLAPSED or EXPANDED.
+        -- This option is COLLAPSED by default.
+        -- AvailabilityStatus for QuickSuiteActionsOption -
+        -- This status can be either ENABLED or DISABLED.
+        -- Features related to Actions in Amazon Quick Suite on dashboards are disabled
+        -- when this is set to DISABLED. This option is DISABLED
+        -- by default.
+        -- AvailabilityStatus for ExecutiveSummaryOption - This
+        -- status can be either ENABLED or DISABLED. The option
+        -- to build an executive summary is disabled when this is set to
+        -- DISABLED. This option is ENABLED by
+        -- default.
+        -- AvailabilityStatus for DataStoriesSharingOption -
+        -- This status can be either ENABLED or DISABLED. The
+        -- option to share a data story is disabled when this is set to
+        -- DISABLED. This option is ENABLED by
+        -- default.
+        DashboardPublishOptions: DashboardPublishOptions
+    end
+
+    record DescribeTemplateDefinitionOutput
+        -- The descriptive name of the template.
+        Name: string
+        -- The ID of the template described.
+        TemplateId: string
+        -- Errors associated with the template version.
+        Errors: {TemplateError}
+        -- Status associated with the template.
+        -- CREATION_IN_PROGRESS
+        -- CREATION_SUCCESSFUL
+        -- CREATION_FAILED
+        -- UPDATE_IN_PROGRESS
+        -- UPDATE_SUCCESSFUL
+        -- UPDATE_FAILED
+        -- DELETED
+        ResourceStatus: string
+        -- The ARN of the theme of the template.
+        ThemeArn: string
+        -- The definition of the template.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        Definition: TemplateVersionDefinition
+        -- The HTTP status of the request.
+        Status: number
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    record UpdateAnalysisInput
+        -- The ID of the Amazon Web Services account that contains the analysis that you're updating.
+        AwsAccountId: string
+        -- The ID for the analysis that you're updating. This ID displays in the URL of the
+        -- analysis.
+        AnalysisId: string
+        -- A descriptive name for the analysis that you're updating. This name displays for the
+        -- analysis in the Amazon Quick Sight console.
+        Name: string
+        -- The parameter names and override values that you want to use. An analysis can have
+        -- any parameter type, and some parameters might accept multiple values.
+        Parameters: Parameters
+        -- A source entity to use for the analysis that you're updating. This metadata structure
+        -- contains details that describe a source template and one or more datasets or topics.
+        SourceEntity: AnalysisSourceEntity
+        -- The Amazon Resource Name (ARN) for the theme to apply to the analysis that you're
+        -- creating. To see the theme in the Amazon Quick Sight console, make sure that you have access to
+        -- it.
+        ThemeArn: string
+        -- The definition of an analysis.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        Definition: AnalysisDefinition
+        -- The option to relax the validation needed to update an analysis with definition objects. This skips the validation step for specific errors.
+        ValidationStrategy: ValidationStrategy
+    end
+
+    record UpdateDashboardInput
+        -- The ID of the Amazon Web Services account that contains the dashboard that you're
+        -- updating.
+        AwsAccountId: string
+        -- The ID for the dashboard.
+        DashboardId: string
+        -- The display name of the dashboard.
+        Name: string
+        -- The entity that you are using as a source when you update the dashboard. In
+        -- SourceEntity, you specify the type of object you're using as source.
+        -- You can only update a dashboard from a template, so you use a
+        -- SourceTemplate entity. If you need to update a dashboard from an
+        -- analysis, first convert the analysis to a template by using the
+        -- CreateTemplate
+        -- API operation. For SourceTemplate,
+        -- specify the Amazon Resource Name (ARN) of the source template. The
+        -- SourceTemplate ARN can contain any Amazon Web Services account and any
+        -- Amazon Quick Sight-supported Amazon Web Services Region.
+        -- Use the DataSetReferences entity within SourceTemplate to
+        -- list the replacement datasets for the placeholders listed in the original. The schema in
+        -- each dataset must match its placeholder. Use the TopicReferences
+        -- entity to list the replacement topics for the topic placeholders listed in the original.
+        -- The schema in each topic must match its placeholder.
+        SourceEntity: DashboardSourceEntity
+        -- A structure that contains the parameters of the dashboard. These are parameter
+        -- overrides for a dashboard. A dashboard can have any type of parameters, and some
+        -- parameters might accept multiple values.
+        Parameters: Parameters
+        -- A description for the first version of the dashboard being created.
+        VersionDescription: string
+        -- Options for publishing the dashboard when you create it:
+        -- AvailabilityStatus for AdHocFilteringOption - This
+        -- status can be either ENABLED or DISABLED. When this is
+        -- set to DISABLED, Amazon Quick Sight disables the left filter pane on
+        -- the published dashboard, which can be used for ad hoc (one-time) filtering. This
+        -- option is ENABLED by default.
+        -- AvailabilityStatus for ExportToCSVOption - This
+        -- status can be either ENABLED or DISABLED. The visual
+        -- option to export data to .CSV format isn't enabled when this is set to
+        -- DISABLED. This option is ENABLED by default.
+        -- VisibilityState for SheetControlsOption - This
+        -- visibility state can be either COLLAPSED or EXPANDED.
+        -- This option is COLLAPSED by default.
+        -- AvailabilityStatus for QuickSuiteActionsOption -
+        -- This status can be either ENABLED or DISABLED.
+        -- Features related to Actions in Amazon Quick Suite on dashboards are disabled
+        -- when this is set to DISABLED. This option is DISABLED
+        -- by default.
+        -- AvailabilityStatus for ExecutiveSummaryOption - This
+        -- status can be either ENABLED or DISABLED. The option
+        -- to build an executive summary is disabled when this is set to
+        -- DISABLED. This option is ENABLED by
+        -- default.
+        -- AvailabilityStatus for DataStoriesSharingOption -
+        -- This status can be either ENABLED or DISABLED. The
+        -- option to share a data story is disabled when this is set to
+        -- DISABLED. This option is ENABLED by
+        -- default.
+        DashboardPublishOptions: DashboardPublishOptions
+        -- The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If
+        -- you add a value for this field, it overrides the value that was originally associated
+        -- with the entity. The theme ARN must exist in the same Amazon Web Services account where
+        -- you create the dashboard.
+        ThemeArn: string
+        -- The definition of a dashboard.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        Definition: DashboardVersionDefinition
+        -- The option to relax the validation needed to update a dashboard with definition
+        -- objects. This skips the validation step for specific errors.
+        ValidationStrategy: ValidationStrategy
+    end
+
+    record UpdateTemplateInput
+        -- The ID of the Amazon Web Services account that contains the template that you're updating.
+        AwsAccountId: string
+        -- The ID for the template.
+        TemplateId: string
+        -- The entity that you are using as a source when you update the template. In
+        -- SourceEntity, you specify the type of object you're using as source:
+        -- SourceTemplate for a template or SourceAnalysis for an
+        -- analysis. Both of these require an Amazon Resource Name (ARN). For
+        -- SourceTemplate, specify the ARN of the source template. For
+        -- SourceAnalysis, specify the ARN of the source analysis. The SourceTemplate
+        -- ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region;.
+        -- Use the DataSetReferences entity within SourceTemplate or
+        -- SourceAnalysis to list the replacement datasets for the placeholders listed
+        -- in the original. The schema in each dataset must match its placeholder. Use the TopicReferences
+        -- entity to list the replacement topics for the topic placeholders listed in the original.
+        -- The schema in each topic must match its placeholder.
+        SourceEntity: TemplateSourceEntity
+        -- A description of the current template version that is being updated. Every time you call
+        -- UpdateTemplate, you create a new version of the template. Each version
+        -- of the template maintains a description of the version in the
+        -- VersionDescription field.
+        VersionDescription: string
+        -- The name for the template.
+        Name: string
+        -- The definition of a template.
+        -- A definition is the data model of all features in a Dashboard, Template, or Analysis.
+        Definition: TemplateVersionDefinition
+        -- The option to relax the validation needed to update a template with definition objects. This skips the validation step for specific errors.
+        ValidationStrategy: ValidationStrategy
     end
 
 end

@@ -50,6 +50,8 @@ M.OrganizationEventList = schema.new({ type = "list", list_member = M.Organizati
 
 M.EventTypeList = schema.new({ type = "list", list_member = M.EventType })
 
+M.ServiceLifecycleList = schema.new({ type = "list", list_member = M.ServiceLifecycle })
+
 M.entityArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.entityValueList = schema.new({ type = "list", list_member = prelude.String })
@@ -95,6 +97,10 @@ M.entityStatuses = schema.new({ type = "map", map_key = prelude.String, map_valu
 M.AccountEntityAggregatesList = schema.new({ type = "list", list_member = M.AccountEntityAggregate })
 
 M.eventMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.LifecycleEventList = schema.new({ type = "list", list_member = M.LifecycleEvent })
+
+M.ImpactRiskList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccountEntityAggregate = schema.new({
     id = id.from(_N, "AccountEntityAggregate"),
@@ -1609,6 +1615,142 @@ M.DescribeHealthServiceStatusForOrganizationOutput = schema.new({
     },
 })
 
+M.ServiceLifecycleFilter = schema.new({
+    id = id.from(_N, "ServiceLifecycleFilter"),
+    type = "structure",
+    members = {
+        service = schema.new({
+            id = id.from(_N, "ServiceLifecycleFilter", "service"),
+            type = "string",
+            name = "service",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeServiceLifecycleInput = schema.new({
+    id = id.from(_N, "DescribeServiceLifecycleRequest"),
+    type = "structure",
+    members = {
+        filter = schema.new({
+            id = id.from(_N, "DescribeServiceLifecycleInput", "filter"),
+            type = "structure",
+            name = "filter",
+            target_id = id.from(_N, "ServiceLifecycleFilter"),
+            target = M.ServiceLifecycleFilter,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeServiceLifecycleInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "DescribeServiceLifecycleInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.LifecycleEvent = schema.new({
+    id = id.from(_N, "LifecycleEvent"),
+    type = "structure",
+    members = {
+        lifecycleEventType = schema.new({
+            id = id.from(_N, "LifecycleEvent", "lifecycleEventType"),
+            type = "string",
+            name = "lifecycleEventType",
+            target_id = prelude.String.id,
+        }),
+        date = schema.new({
+            id = id.from(_N, "LifecycleEvent", "date"),
+            type = "timestamp",
+            name = "date",
+            target_id = prelude.Timestamp.id,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "LifecycleEvent", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        impactRisks = schema.new({
+            id = id.from(_N, "LifecycleEvent", "impactRisks"),
+            type = "list",
+            name = "impactRisks",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        description = schema.new({
+            id = id.from(_N, "LifecycleEvent", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceLifecycle = schema.new({
+    id = id.from(_N, "ServiceLifecycle"),
+    type = "structure",
+    members = {
+        service = schema.new({
+            id = id.from(_N, "ServiceLifecycle", "service"),
+            type = "string",
+            name = "service",
+            target_id = prelude.String.id,
+        }),
+        version = schema.new({
+            id = id.from(_N, "ServiceLifecycle", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+        }),
+        title = schema.new({
+            id = id.from(_N, "ServiceLifecycle", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        recommendedVersion = schema.new({
+            id = id.from(_N, "ServiceLifecycle", "recommendedVersion"),
+            type = "string",
+            name = "recommendedVersion",
+            target_id = prelude.String.id,
+        }),
+        lifecycleEvents = schema.new({
+            id = id.from(_N, "ServiceLifecycle", "lifecycleEvents"),
+            type = "list",
+            name = "lifecycleEvents",
+            target_id = prelude.Document.id,
+            list_member = M.LifecycleEvent,
+        }),
+    },
+})
+
+M.DescribeServiceLifecycleOutput = schema.new({
+    id = id.from(_N, "DescribeServiceLifecycleResponse"),
+    type = "structure",
+    members = {
+        serviceLifecycles = schema.new({
+            id = id.from(_N, "DescribeServiceLifecycleOutput", "serviceLifecycles"),
+            type = "list",
+            name = "serviceLifecycles",
+            target_id = prelude.Document.id,
+            list_member = M.ServiceLifecycle,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeServiceLifecycleOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ConcurrentModificationException = schema.new({
     id = id.from(_N, "ConcurrentModificationException"),
     type = "structure",
@@ -1783,6 +1925,17 @@ M.DescribeHealthServiceStatusForOrganization = schema.operation({
     id = id.from("com.amazonaws.health", "DescribeHealthServiceStatusForOrganization"),
     input = M.DescribeHealthServiceStatusForOrganizationInput,
     output = M.DescribeHealthServiceStatusForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServiceLifecycle = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeServiceLifecycle"),
+    input = M.DescribeServiceLifecycleInput,
+    output = M.DescribeServiceLifecycleOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

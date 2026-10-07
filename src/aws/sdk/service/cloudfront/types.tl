@@ -2443,6 +2443,7 @@ local record M
         "never"
         "always"
         "no-override"
+        "always-amz-auth"
     end
 
     enum OriginAccessControlSigningProtocols
@@ -2458,7 +2459,7 @@ local record M
         Description: string
         -- The signing protocol of the origin access control, which determines how CloudFront signs (authenticates) requests. The only valid values are sigv4 and sigv4a.
         SigningProtocol: string
-        -- Specifies which requests CloudFront signs (adds authentication information to). Specify always for the most common use case. For more information, see origin access control advanced settings in the Amazon CloudFront Developer Guide. This field can have one of the following values: always – CloudFront signs all origin requests, overwriting the Authorization header from the viewer request if one exists. never – CloudFront doesn't sign any origin requests. This value turns off origin access control for all origins in all distributions that use this origin access control. no-override – If the viewer request doesn't contain the Authorization header, then CloudFront signs the origin request. If the viewer request contains the Authorization header, then CloudFront doesn't sign the origin request and instead passes along the Authorization header from the viewer request. WARNING: To pass along the Authorization header from the viewer request, you must add the Authorization header to a cache policy for all cache behaviors that use origins associated with this origin access control.
+        -- Specifies which requests CloudFront signs (adds authentication information to). Specify always for the most common use case. For more information, see origin access control advanced settings in the Amazon CloudFront Developer Guide. This field can have one of the following values: always – CloudFront signs all origin requests, overwriting the Authorization header from the viewer request if one exists. never – CloudFront doesn't sign any origin requests. This value turns off origin access control for all origins in all distributions that use this origin access control. no-override – If the viewer request doesn't contain the Authorization header, then CloudFront signs the origin request. If the viewer request contains the Authorization header, then CloudFront doesn't sign the origin request and instead passes along the Authorization header from the viewer request. WARNING: To pass along the Authorization header from the viewer request, you must add the Authorization header to a cache policy for all cache behaviors that use origins associated with this origin access control. always-amz-auth – CloudFront signs all origin requests with Amazon authentication headers. If the viewer request contains the Authorization header, then CloudFront also forwards that header to the origin. This value is only valid with Lambda-Web origins. WARNING: To forward the Authorization header from the viewer request, you must add the Authorization header to a cache policy for all cache behaviors that use origins associated with this origin access control.
         SigningBehavior: string
         -- The type of origin that this origin access control is for.
         OriginAccessControlOriginType: string
@@ -4900,7 +4901,7 @@ local record M
         Name: string
         -- The signing protocol of the origin access control. The signing protocol determines how CloudFront signs (authenticates) requests. The only valid values are sigv4 and sigv4a.
         SigningProtocol: string
-        -- A value that specifies which requests CloudFront signs (adds authentication information to). This field can have one of the following values: never – CloudFront doesn't sign any origin requests. always – CloudFront signs all origin requests, overwriting the Authorization header from the viewer request if necessary. no-override – If the viewer request doesn't contain the Authorization header, CloudFront signs the origin request. If the viewer request contains the Authorization header, CloudFront doesn't sign the origin request, but instead passes along the Authorization header that it received in the viewer request.
+        -- A value that specifies which requests CloudFront signs (adds authentication information to). This field can have one of the following values: never – CloudFront doesn't sign any origin requests. always – CloudFront signs all origin requests, overwriting the Authorization header from the viewer request if necessary. no-override – If the viewer request doesn't contain the Authorization header, CloudFront signs the origin request. If the viewer request contains the Authorization header, CloudFront doesn't sign the origin request, but instead passes along the Authorization header that it received in the viewer request. always-amz-auth – CloudFront signs all origin requests with Amazon authentication headers, and forwards the viewer's Authorization header to the origin if one is present. This value is only valid with Lambda-Web origins.
         SigningBehavior: string
         -- The type of origin that this origin access control is for.
         OriginAccessControlOriginType: string

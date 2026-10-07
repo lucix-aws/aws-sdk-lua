@@ -3029,6 +3029,8 @@ local record M
         startedAt: number
         -- The time the data ingestion job was last updated. If you stop a data ingestion job, the updatedAt time is the time the job was stopped.
         updatedAt: number
+        -- The time at which all text content in the data ingestion job finished extraction and became available to query. This time isn't returned until text extraction is complete for all the documents in the job.
+        textReadyAt: number
     end
 
     record GetIngestionJobOutput
@@ -3103,6 +3105,8 @@ local record M
         startedAt: number
         -- The time the data ingestion job was last updated.
         updatedAt: number
+        -- The time at which all text content in the data ingestion job finished extraction and became available to query. This time isn't returned until text extraction is complete for all the documents in the job.
+        textReadyAt: number
         -- Contains statistics for the data ingestion job.
         statistics: IngestionJobStatistics
     end
