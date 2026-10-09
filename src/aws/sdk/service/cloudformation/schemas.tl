@@ -1216,6 +1216,12 @@ M.ContinueUpdateRollbackInput = schema.new({
             name = "ClientRequestToken",
             target_id = prelude.String.id,
         }),
+        ForceRollback = schema.new({
+            id = id.from(_N, "ContinueUpdateRollbackInput", "ForceRollback"),
+            type = "boolean",
+            name = "ForceRollback",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 

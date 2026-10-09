@@ -682,6 +682,41 @@ local record M
         "Organization"
     end
 
+    record GetFindingMetricsInput
+        -- The membership ID to retrieve metrics for.
+        membershipId: string
+        -- The start of the day-aligned UTC window, inclusive.
+        startDate: number
+        -- The end of the day-aligned UTC window, inclusive.
+        endDate: number
+    end
+
+    -- Finding-lifecycle metrics for a membership over the requested date range.
+    record GetFindingMetricsOutput
+        -- The number of findings ingested from AWS Security Hub during the requested date range.
+        findingsIngestedSecurityHub: number
+        -- The number of findings ingested from Amazon GuardDuty during the requested date range.
+        findingsIngestedGuardDuty: number
+        -- The number of findings triaged during the requested date range.
+        findingsTriaged: number
+        -- The number of triaged findings that were closed as false positives during the requested date range.
+        findingsTriagedFalsePositive: number
+        -- The number of findings investigated during the requested date range.
+        findingsInvestigated: number
+        -- The number of investigated findings that were closed as false positives during the requested date range.
+        findingsInvestigatedFalsePositive: number
+        -- The number of findings escalated during the requested date range.
+        findingsEscalated: number
+        -- The number of escalated findings that were closed as false positives during the requested date range.
+        findingsEscalatedFalsePositive: number
+        -- The number of findings confirmed as true positives during the requested date range.
+        findingsTruePositive: number
+        -- The number of findings whose investigation was in progress during the requested date range.
+        findingsInvestigatedInProgress: number
+        -- The number of findings whose escalation was in progress during the requested date range.
+        findingsEscalatedInProgress: number
+    end
+
     record GetMembershipInput
         -- Required element for GetMembership to identify the membership ID to query.
         membershipId: string

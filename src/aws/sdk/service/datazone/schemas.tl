@@ -284,6 +284,8 @@ M.PredictionChoices = schema.new({ type = "list", list_member = prelude.Integer 
 
 M.AggregationOutputItems = schema.new({ type = "list", list_member = M.AggregationOutputItem })
 
+M.S3FileList = schema.new({ type = "list", list_member = M.S3File })
+
 M.RelationalFilterConfigurations = schema.new({ type = "list", list_member = M.RelationalFilterConfiguration })
 
 M.TrackingAssets = schema.new({ type = "map", map_key = prelude.String, map_value = M.TrackingAssetArns })
@@ -30371,6 +30373,48 @@ M.SearchUserProfilesOutput = schema.new({
     },
 })
 
+M.S3File = schema.new({
+    id = id.from(_N, "S3File"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "S3File", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3FilesLocation = schema.new({
+    id = id.from(_N, "S3FilesLocation"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "S3FilesLocation", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileList = schema.new({
+            id = id.from(_N, "S3FilesLocation", "fileList"),
+            type = "list",
+            name = "fileList",
+            target_id = prelude.Document.id,
+            list_member = M.S3File,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SourceLocation = schema.new({
     id = id.from(_N, "SourceLocation"),
     type = "union",
@@ -30380,6 +30424,13 @@ M.SourceLocation = schema.new({
             type = "string",
             name = "s3",
             target_id = prelude.String.id,
+        }),
+        s3Files = schema.new({
+            id = id.from(_N, "SourceLocation", "s3Files"),
+            type = "structure",
+            name = "s3Files",
+            target_id = id.from(_N, "S3FilesLocation"),
+            target = M.S3FilesLocation,
         }),
     },
 })
@@ -30432,6 +30483,12 @@ M.StartNotebookImportInput = schema.new({
             name = "description",
             target_id = prelude.String.id,
         }),
+        type = schema.new({
+            id = id.from(_N, "StartNotebookImportInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "StartNotebookImportInput", "clientToken"),
             type = "string",
@@ -30482,6 +30539,12 @@ M.StartNotebookImportOutput = schema.new({
             id = id.from(_N, "StartNotebookImportOutput", "description"),
             type = "string",
             name = "description",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "type"),
+            type = "string",
+            name = "type",
             target_id = prelude.String.id,
         }),
         sourceLocation = schema.new({

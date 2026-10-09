@@ -346,6 +346,24 @@ function M.items_list_enabled_products_for_import(client, input)
     })
 end
 
+--- Returns a page iterator for listExportJobsV2.
+function M.pages_list_export_jobs_v2(client, input)
+    return paginator.pages(client, "listExportJobsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listExportJobsV2.
+function M.items_list_export_jobs_v2(client, input)
+    return paginator.items(client, "listExportJobsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 --- Returns a page iterator for listExposuresByRemediationV2.
 function M.pages_list_exposures_by_remediation_v2(client, input)
     return paginator.pages(client, "listExposuresByRemediationV2", input, {

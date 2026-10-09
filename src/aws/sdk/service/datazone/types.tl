@@ -9612,10 +9612,26 @@ local record M
         nextToken: string
     end
 
+    -- A single Amazon Simple Storage Service object to import as a notebook cell.
+    record S3File
+        -- The key of the Amazon Simple Storage Service object to import.
+        key: string
+    end
+
+    -- The Amazon Simple Storage Service objects to import as the cells of a notebook, specified as a bucket and an ordered list of object keys.
+    record S3FilesLocation
+        -- The name of the Amazon Simple Storage Service bucket that contains the files to import.
+        bucket: string
+        -- The files to import. Cells are created in the order in which you list the files. You can specify between 1 and 100 files.
+        fileList: {S3File}
+    end
+
     -- The source location for a notebook import in Amazon SageMaker Unified Studio.
     record SourceLocation
         -- The Amazon Simple Storage Service URI of the notebook source file.
         s3: string
+        -- The Amazon Simple Storage Service objects to import as the notebook's cells. One cell is created for each object, in the order in which you list them.
+        s3Files: S3FilesLocation
     end
 
     record StartNotebookImportInput
@@ -9623,7 +9639,7 @@ local record M
         domainIdentifier: string
         -- The identifier of the project that will own the imported notebook.
         owningProjectIdentifier: string
-        -- The source location of the notebook to import. This specifies the Amazon Simple Storage Service URI of the notebook file.
+        -- The source location of the notebook to import. Specify either a single Amazon Simple Storage Service URI, or a list of objects to import as the notebook's cells.
         sourceLocation: SourceLocation
         -- The name of the imported notebook. The name must be between 1 and 256 characters.
         name: string

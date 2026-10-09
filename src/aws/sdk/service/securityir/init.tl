@@ -27,6 +27,7 @@ local record Client
     getCase: function(Client, types.GetCaseInput, ? base_client.InvokeOptions): async.Operation<types.GetCaseOutput>
     getCaseAttachmentDownloadUrl: function(Client, types.GetCaseAttachmentDownloadUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetCaseAttachmentDownloadUrlOutput>
     getCaseAttachmentUploadUrl: function(Client, types.GetCaseAttachmentUploadUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetCaseAttachmentUploadUrlOutput>
+    getFindingMetrics: function(Client, types.GetFindingMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingMetricsOutput>
     getMembership: function(Client, types.GetMembershipInput, ? base_client.InvokeOptions): async.Operation<types.GetMembershipOutput>
     listCaseEdits: function(Client, types.ListCaseEditsInput, ? base_client.InvokeOptions): async.Operation<types.ListCaseEditsOutput>
     listCases: function(Client, types.ListCasesInput, ? base_client.InvokeOptions): async.Operation<types.ListCasesOutput>
@@ -120,6 +121,10 @@ end
 
 function C:getCaseAttachmentUploadUrl(input: types.GetCaseAttachmentUploadUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetCaseAttachmentUploadUrlOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCaseAttachmentUploadUrl as schema.OperationSchema, input, options) as async.Operation<types.GetCaseAttachmentUploadUrlOutput>
+end
+
+function C:getFindingMetrics(input: types.GetFindingMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.GetFindingMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindingMetrics as schema.OperationSchema, input, options) as async.Operation<types.GetFindingMetricsOutput>
 end
 
 function C:getMembership(input: types.GetMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.GetMembershipOutput>

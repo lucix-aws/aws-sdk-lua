@@ -138,6 +138,8 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ContainerFleetRemoveAttributeList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ContainerGroupDefinitionRemoveAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.FilterInstanceStatuses = schema.new({ type = "list", list_member = prelude.String })
 
 M.ContainerFleetLocationAttributesList = schema.new({ type = "list", list_member = M.ContainerFleetLocationAttributes })
@@ -1326,6 +1328,12 @@ M.GameServerContainerDefinition = schema.new({
             target_id = id.from(_N, "LinuxCapabilities"),
             target = M.LinuxCapabilities,
         }),
+        Vcpu = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "Vcpu"),
+            type = "double",
+            name = "Vcpu",
+            target_id = prelude.Double.id,
+        }),
     },
 })
 
@@ -2041,6 +2049,12 @@ M.GameServerContainerDefinitionInput = schema.new({
             target_id = id.from(_N, "LinuxCapabilities"),
             target = M.LinuxCapabilities,
         }),
+        Vcpu = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "Vcpu"),
+            type = "double",
+            name = "Vcpu",
+            target_id = prelude.Double.id,
+        }),
     },
 })
 
@@ -2162,9 +2176,6 @@ M.CreateContainerGroupDefinitionInput = schema.new({
             type = "double",
             name = "TotalVcpuLimit",
             target_id = prelude.Double.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         GameServerContainerDefinition = schema.new({
             id = id.from(_N, "CreateContainerGroupDefinitionInput", "GameServerContainerDefinition"),
@@ -9568,6 +9579,13 @@ M.UpdateContainerGroupDefinitionInput = schema.new({
             type = "string",
             name = "OperatingSystem",
             target_id = prelude.String.id,
+        }),
+        RemoveAttributes = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "RemoveAttributes"),
+            type = "list",
+            name = "RemoveAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

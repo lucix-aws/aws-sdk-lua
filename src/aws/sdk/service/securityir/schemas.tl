@@ -2021,6 +2021,149 @@ M.CreateMembershipOutput = schema.new({
     },
 })
 
+M.GetFindingMetricsInput = schema.new({
+    id = id.from(_N, "GetFindingMetricsRequest"),
+    type = "structure",
+    members = {
+        membershipId = schema.new({
+            id = id.from(_N, "GetFindingMetricsInput", "membershipId"),
+            type = "string",
+            name = "membershipId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        startDate = schema.new({
+            id = id.from(_N, "GetFindingMetricsInput", "startDate"),
+            type = "timestamp",
+            name = "startDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "startDate" },
+            },
+        }),
+        endDate = schema.new({
+            id = id.from(_N, "GetFindingMetricsInput", "endDate"),
+            type = "timestamp",
+            name = "endDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "endDate" },
+            },
+        }),
+    },
+})
+
+M.GetFindingMetricsOutput = schema.new({
+    id = id.from(_N, "GetFindingMetricsResponse"),
+    type = "structure",
+    members = {
+        findingsIngestedSecurityHub = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsIngestedSecurityHub"),
+            type = "long",
+            name = "findingsIngestedSecurityHub",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsIngestedGuardDuty = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsIngestedGuardDuty"),
+            type = "long",
+            name = "findingsIngestedGuardDuty",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsTriaged = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsTriaged"),
+            type = "long",
+            name = "findingsTriaged",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsTriagedFalsePositive = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsTriagedFalsePositive"),
+            type = "long",
+            name = "findingsTriagedFalsePositive",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsInvestigated = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsInvestigated"),
+            type = "long",
+            name = "findingsInvestigated",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsInvestigatedFalsePositive = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsInvestigatedFalsePositive"),
+            type = "long",
+            name = "findingsInvestigatedFalsePositive",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsEscalated = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsEscalated"),
+            type = "long",
+            name = "findingsEscalated",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsEscalatedFalsePositive = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsEscalatedFalsePositive"),
+            type = "long",
+            name = "findingsEscalatedFalsePositive",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsTruePositive = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsTruePositive"),
+            type = "long",
+            name = "findingsTruePositive",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsInvestigatedInProgress = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsInvestigatedInProgress"),
+            type = "long",
+            name = "findingsInvestigatedInProgress",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingsEscalatedInProgress = schema.new({
+            id = id.from(_N, "GetFindingMetricsOutput", "findingsEscalatedInProgress"),
+            type = "long",
+            name = "findingsEscalatedInProgress",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetMembershipInput = schema.new({
     id = id.from(_N, "GetMembershipRequest"),
     type = "structure",
@@ -2538,6 +2681,18 @@ M.GetCaseAttachmentUploadUrl = schema.operation({
     output = M.GetCaseAttachmentUploadUrlOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/cases/{caseId}/get-presigned-url" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFindingMetrics = schema.operation({
+    id = id.from("com.amazonaws.securityir", "GetFindingMetrics"),
+    input = M.GetFindingMetricsInput,
+    output = M.GetFindingMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/membership/{membershipId}/finding-metrics" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

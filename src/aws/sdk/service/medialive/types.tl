@@ -1826,6 +1826,7 @@ local record M
         "MEDIACONNECT_FLOW"
         "S3_BUCKET"
         "MEDIATAILOR_PLAYBACK_CONFIGURATION"
+        "ELEMENTAL_INFERENCE_FEED"
     end
 
     enum CloudWatchAlarmTemplateTreatMissingData

@@ -118,6 +118,8 @@ M.SavingsPlansToExclude = schema.new({ type = "list", list_member = prelude.Stri
 
 M.MatchOptions = schema.new({ type = "list", list_member = prelude.String })
 
+M.ProductAttributeValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.Metrics = schema.new({ type = "map", map_key = prelude.String, map_value = M.MetricValue })
 
 M.Groups = schema.new({ type = "list", list_member = M.Group })
@@ -828,6 +830,36 @@ M.DimensionValues = schema.new({
         }),
         MatchOptions = schema.new({
             id = id.from(_N, "DimensionValues", "MatchOptions"),
+            type = "list",
+            name = "MatchOptions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ProductAttributeValues = schema.new({
+    id = id.from(_N, "ProductAttributeValues"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "ProductAttributeValues", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "ProductAttributeValues", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MatchOptions = schema.new({
+            id = id.from(_N, "ProductAttributeValues", "MatchOptions"),
             type = "list",
             name = "MatchOptions",
             target_id = prelude.Document.id,
@@ -5668,6 +5700,13 @@ M.Expression = schema.new({
             target_id = id.from(_N, "CostCategoryValues"),
             target = M.CostCategoryValues,
         }),
+        ProductAttributes = schema.new({
+            id = id.from(_N, "Expression", "ProductAttributes"),
+            type = "structure",
+            name = "ProductAttributes",
+            target_id = id.from(_N, "ProductAttributeValues"),
+            target = M.ProductAttributeValues,
+        }),
     },
 })
 
@@ -6299,6 +6338,12 @@ M.GetDimensionValuesInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        DimensionKey = schema.new({
+            id = id.from(_N, "GetDimensionValuesInput", "DimensionKey"),
+            type = "string",
+            name = "DimensionKey",
+            target_id = prelude.String.id,
         }),
         Context = schema.new({
             id = id.from(_N, "GetDimensionValuesInput", "Context"),

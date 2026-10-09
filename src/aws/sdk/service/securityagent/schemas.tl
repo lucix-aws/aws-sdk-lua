@@ -3620,6 +3620,12 @@ M.Finding = schema.new({
             name = "attackScript",
             target_id = prelude.String.id,
         }),
+        remediationCode = schema.new({
+            id = id.from(_N, "Finding", "remediationCode"),
+            type = "string",
+            name = "remediationCode",
+            target_id = prelude.String.id,
+        }),
         codeRemediationTask = schema.new({
             id = id.from(_N, "Finding", "codeRemediationTask"),
             type = "structure",

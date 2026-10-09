@@ -82,6 +82,8 @@ M.AddonIssueList = schema.new({ type = "list", list_member = M.AddonIssue })
 
 M.ArgoCdRoleMappingList = schema.new({ type = "list", list_member = M.ArgoCdRoleMapping })
 
+M.AckDisabledServicesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.CapabilityIssueList = schema.new({ type = "list", list_member = M.CapabilityIssue })
 
 M.ClusterIssueList = schema.new({ type = "list", list_member = M.ClusterIssue })
@@ -246,6 +248,46 @@ M.AccessScope = schema.new({
             id = id.from(_N, "AccessScope", "namespaces"),
             type = "list",
             name = "namespaces",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AckConfigRequest = schema.new({
+    id = id.from(_N, "AckConfigRequest"),
+    type = "structure",
+    members = {
+        enableCrossNamespace = schema.new({
+            id = id.from(_N, "AckConfigRequest", "enableCrossNamespace"),
+            type = "boolean",
+            name = "enableCrossNamespace",
+            target_id = prelude.Boolean.id,
+        }),
+        disabledServices = schema.new({
+            id = id.from(_N, "AckConfigRequest", "disabledServices"),
+            type = "list",
+            name = "disabledServices",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AckConfigResponse = schema.new({
+    id = id.from(_N, "AckConfigResponse"),
+    type = "structure",
+    members = {
+        enableCrossNamespace = schema.new({
+            id = id.from(_N, "AckConfigResponse", "enableCrossNamespace"),
+            type = "boolean",
+            name = "enableCrossNamespace",
+            target_id = prelude.Boolean.id,
+        }),
+        disabledServices = schema.new({
+            id = id.from(_N, "AckConfigResponse", "disabledServices"),
+            type = "list",
+            name = "disabledServices",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -2018,6 +2060,13 @@ M.CapabilityConfigurationRequest = schema.new({
             target_id = id.from(_N, "ArgoCdConfigRequest"),
             target = M.ArgoCdConfigRequest,
         }),
+        ack = schema.new({
+            id = id.from(_N, "CapabilityConfigurationRequest", "ack"),
+            type = "structure",
+            name = "ack",
+            target_id = id.from(_N, "AckConfigRequest"),
+            target = M.AckConfigRequest,
+        }),
     },
 })
 
@@ -2108,6 +2157,13 @@ M.CapabilityConfigurationResponse = schema.new({
             name = "argoCd",
             target_id = id.from(_N, "ArgoCdConfigResponse"),
             target = M.ArgoCdConfigResponse,
+        }),
+        ack = schema.new({
+            id = id.from(_N, "CapabilityConfigurationResponse", "ack"),
+            type = "structure",
+            name = "ack",
+            target_id = id.from(_N, "AckConfigResponse"),
+            target = M.AckConfigResponse,
         }),
     },
 })
@@ -8570,6 +8626,26 @@ M.UpdateAddonOutput = schema.new({
     },
 })
 
+M.UpdateAckConfig = schema.new({
+    id = id.from(_N, "UpdateAckConfig"),
+    type = "structure",
+    members = {
+        enableCrossNamespace = schema.new({
+            id = id.from(_N, "UpdateAckConfig", "enableCrossNamespace"),
+            type = "boolean",
+            name = "enableCrossNamespace",
+            target_id = prelude.Boolean.id,
+        }),
+        disabledServices = schema.new({
+            id = id.from(_N, "UpdateAckConfig", "disabledServices"),
+            type = "list",
+            name = "disabledServices",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.UpdateRoleMappings = schema.new({
     id = id.from(_N, "UpdateRoleMappings"),
     type = "structure",
@@ -8622,6 +8698,13 @@ M.UpdateCapabilityConfiguration = schema.new({
             name = "argoCd",
             target_id = id.from(_N, "UpdateArgoCdConfig"),
             target = M.UpdateArgoCdConfig,
+        }),
+        ack = schema.new({
+            id = id.from(_N, "UpdateCapabilityConfiguration", "ack"),
+            type = "structure",
+            name = "ack",
+            target_id = id.from(_N, "UpdateAckConfig"),
+            target = M.UpdateAckConfig,
         }),
     },
 })

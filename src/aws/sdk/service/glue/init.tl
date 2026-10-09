@@ -189,6 +189,8 @@ local record Client
     getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
     getSessionEndpoint: function(Client, types.GetSessionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
     getStatement: function(Client, types.GetStatementInput, ? base_client.InvokeOptions): async.Operation<types.GetStatementOutput>
+    getSystemLogsForJobRun: function(Client, types.GetSystemLogsForJobRunInput, ? base_client.InvokeOptions): async.Operation<types.GetSystemLogsForJobRunOutput>
+    getSystemLogsForSession: function(Client, types.GetSystemLogsForSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSystemLogsForSessionOutput>
     getTable: function(Client, types.GetTableInput, ? base_client.InvokeOptions): async.Operation<types.GetTableOutput>
     getTableOptimizer: function(Client, types.GetTableOptimizerInput, ? base_client.InvokeOptions): async.Operation<types.GetTableOptimizerOutput>
     getTables: function(Client, types.GetTablesInput, ? base_client.InvokeOptions): async.Operation<types.GetTablesOutput>
@@ -1044,6 +1046,14 @@ end
 
 function C:getStatement(input: types.GetStatementInput, options?: base_client.InvokeOptions): async.Operation<types.GetStatementOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStatement as schema.OperationSchema, input, options) as async.Operation<types.GetStatementOutput>
+end
+
+function C:getSystemLogsForJobRun(input: types.GetSystemLogsForJobRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetSystemLogsForJobRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSystemLogsForJobRun as schema.OperationSchema, input, options) as async.Operation<types.GetSystemLogsForJobRunOutput>
+end
+
+function C:getSystemLogsForSession(input: types.GetSystemLogsForSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSystemLogsForSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSystemLogsForSession as schema.OperationSchema, input, options) as async.Operation<types.GetSystemLogsForSessionOutput>
 end
 
 function C:getTable(input: types.GetTableInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableOutput>

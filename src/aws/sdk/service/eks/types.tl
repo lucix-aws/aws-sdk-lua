@@ -93,6 +93,22 @@ local record M
         namespaces: {string}
     end
 
+    -- Configuration settings for an ACK (Amazon Web Services Controllers for Kubernetes) capability. This includes whether controllers can resolve cross-namespace resource references and which ACK service controllers are disabled.
+    record AckConfigRequest
+        -- Specifies whether ACK controllers resolve resource references to resources in a different Kubernetes namespace. Set this value to true to allow references to resolve to resources in another namespace. If you don't specify this value, or you omit the ack configuration entirely, the capability is created with this value set to false and references must remain within the same namespace.
+        enableCrossNamespace: boolean
+        -- A list of ACK service names whose controllers are turned off for this capability, for example s3, ec2, and iam. Resources of a disabled service aren't reconciled until you re-enable the service. To keep all services enabled, omit this field or specify an empty list. An unrecognized service name is accepted and stored but turns nothing off, and DescribeCapability returns the list exactly as you supplied it. For more information, see ACK capability configuration options in the Amazon EKS User Guide.
+        disabledServices: {string}
+    end
+
+    -- The response object containing configuration details for an ACK (Amazon Web Services Controllers for Kubernetes) capability.
+    record AckConfigResponse
+        -- Indicates whether ACK controllers resolve resource references to resources in a different Kubernetes namespace. This value reflects the setting that's in effect, and is false if you never specified a value. Capabilities that were using cross-namespace references before this setting became available have this value set to true, so their behavior is unchanged.
+        enableCrossNamespace: boolean
+        -- The list of ACK service names whose controllers are turned off for this capability. Existing custom resource definitions remain installed, and resources of a disabled service aren't reconciled until the service is re-enabled.
+        disabledServices: {string}
+    end
+
     record ActivateCertificateAuthorityInput
         -- The name of your cluster.
         clusterName: string
@@ -262,6 +278,8 @@ local record M
         "VendedLogs"
         "UpdatedTier"
         "PreviousTier"
+        "EnableCrossNamespace"
+        "DisabledServices"
         "WarmPoolEnabled"
         "WarmPoolMaxGroupPreparedCapacity"
         "WarmPoolMinSize"
@@ -1070,6 +1088,8 @@ local record M
     record CapabilityConfigurationRequest
         -- Configuration settings specific to Argo CD capabilities. This field is only used when creating or updating an Argo CD capability.
         argoCd: ArgoCdConfigRequest
+        -- Configuration settings specific to ACK (Amazon Web Services Controllers for Kubernetes) capabilities. This field is only used when creating or updating an ACK capability.
+        ack: AckConfigRequest
     end
 
     enum CapabilityDeletePropagationPolicy
@@ -1104,6 +1124,8 @@ local record M
     record CapabilityConfigurationResponse
         -- Configuration settings for an Argo CD capability, including the server URL and other Argo CD-specific settings.
         argoCd: ArgoCdConfigResponse
+        -- Configuration settings for an ACK (Amazon Web Services Controllers for Kubernetes) capability, including the cross-namespace reference setting and the list of disabled services.
+        ack: AckConfigResponse
     end
 
     enum CapabilityIssueCode
@@ -4635,6 +4657,14 @@ local record M
         update: Update
     end
 
+    -- Configuration updates for an ACK (Amazon Web Services Controllers for Kubernetes) capability. You only need to specify the fields that you want to update.
+    record UpdateAckConfig
+        -- Specifies whether ACK controllers resolve resource references to resources in a different Kubernetes namespace. Set this value to false to require references to remain within the same namespace, or true to allow cross-namespace references. If you omit this field, the current value is unchanged.
+        enableCrossNamespace: boolean
+        -- An updated list of ACK service names whose controllers are turned off for this capability. This list replaces the previous list instead of merging with it, so specify the complete set of services that you want turned off. If you omit this field, the previous list is unchanged. To turn all services back on, specify an empty list.
+        disabledServices: {string}
+    end
+
     -- Updates to RBAC role mappings for an Argo CD capability. You can add, update, or remove role mappings in a single operation.
     record UpdateRoleMappings
         -- A list of role mappings to add or update. If a mapping for the specified role already exists, it will be updated with the new identities. If it doesn't exist, a new mapping will be created.
@@ -4655,6 +4685,8 @@ local record M
     record UpdateCapabilityConfiguration
         -- Configuration updates specific to Argo CD capabilities.
         argoCd: UpdateArgoCdConfig
+        -- Configuration updates specific to ACK (Amazon Web Services Controllers for Kubernetes) capabilities.
+        ack: UpdateAckConfig
     end
 
     record UpdateCapabilityInput

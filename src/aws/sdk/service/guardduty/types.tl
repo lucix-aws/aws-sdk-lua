@@ -1192,6 +1192,7 @@ local record M
         "EKS_ADDON_MANAGEMENT"
         "ECS_FARGATE_AGENT_MANAGEMENT"
         "EC2_AGENT_MANAGEMENT"
+        "RDS_DATA_RISK"
     end
 
     enum FeatureStatus
@@ -2000,6 +2001,7 @@ local record M
         "EKS_ADDON_MANAGEMENT"
         "ECS_FARGATE_AGENT_MANAGEMENT"
         "EC2_AGENT_MANAGEMENT"
+        "RDS_DATA_RISK"
     end
 
     -- A list of additional configuration which will be configured for the organization.
@@ -4436,6 +4438,10 @@ local record M
         "FARGATE_RUNTIME_MONITORING"
         "RDS_DBI_PROTECTION_PROVISIONED"
         "RDS_DBI_PROTECTION_SERVERLESS"
+        "RDS_DBI_PROTECTION_LIMITLESS"
+        "RDS_DATA_ACTIVITY_DBI_PROTECTION_PROVISIONED"
+        "RDS_DATA_ACTIVITY_DBI_PROTECTION_SERVERLESS"
+        "RDS_DATA_ACTIVITY_DBI_PROTECTION_LIMITLESS"
         "AI_PROTECTION"
     end
 

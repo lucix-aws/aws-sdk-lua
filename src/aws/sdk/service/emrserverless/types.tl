@@ -272,6 +272,8 @@ local record M
         resourceId: string
         -- The type of resource to access the dashboard for. Currently, only Session is supported.
         resourceType: string
+        -- Allows access to system profile logs for Lake Formation-enabled sessions. Default is false.
+        accessSystemProfileLogs: boolean
     end
 
     record GetResourceDashboardOutput
@@ -891,7 +893,7 @@ local record M
         networkConfiguration: NetworkConfiguration
         -- The job run total execution duration in seconds. This field is only available for job runs in a COMPLETED, FAILED, or CANCELLED state.
         totalExecutionDurationSeconds: number
-        -- Returns the job run timeout value from the StartJobRun call. If no timeout was specified, then it returns the default timeout of 720 minutes.
+        -- Returns the job run timeout value from the StartJobRun call. If you didn't specify a timeout, this value defaults to 720 minutes. For BATCH mode job runs, the maximum value is 10080 minutes (7 days) starting with Amazon EMR release 7.11.
         executionTimeoutMinutes: number
         -- The aggregate vCPU, memory, and storage that Amazon Web Services has billed for the job run. The billed resources include a 1-minute minimum usage for workers, plus additional storage over 20 GB per worker. Note that billed resources do not include usage for idle pre-initialized workers.
         billedResourceUtilization: ResourceUtilization
@@ -977,7 +979,7 @@ local record M
         configurationOverrides: ConfigurationOverrides
         -- The tags assigned to the job run.
         tags: {string : string}
-        -- The maximum duration for the job run to run. If the job run runs beyond this duration, it will be automatically cancelled.
+        -- The maximum duration, in minutes, for the job run. If the job run exceeds this duration, Amazon EMR Serverless cancels it automatically. For BATCH mode job runs, the maximum value is 10080 minutes (7 days) starting with Amazon EMR release 7.11. Setting a value of 0 to disable the timeout is no longer supported for BATCH mode job runs.
         executionTimeoutMinutes: number
         -- The optional job run name. This doesn't have to be unique.
         name: string

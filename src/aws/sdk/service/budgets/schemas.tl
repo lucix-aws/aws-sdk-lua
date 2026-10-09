@@ -666,6 +666,36 @@ M.ExpressionDimensionValues = schema.new({
     },
 })
 
+M.ProductAttributeValues = schema.new({
+    id = id.from(_N, "ProductAttributeValues"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "ProductAttributeValues", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "ProductAttributeValues", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MatchOptions = schema.new({
+            id = id.from(_N, "ProductAttributeValues", "MatchOptions"),
+            type = "list",
+            name = "MatchOptions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.TagValues = schema.new({
     id = id.from(_N, "TagValues"),
     type = "structure",
@@ -2463,6 +2493,13 @@ M.Expression = schema.new({
             name = "CostCategories",
             target_id = id.from(_N, "CostCategoryValues"),
             target = M.CostCategoryValues,
+        }),
+        ProductAttributes = schema.new({
+            id = id.from(_N, "Expression", "ProductAttributes"),
+            type = "structure",
+            name = "ProductAttributes",
+            target_id = id.from(_N, "ProductAttributeValues"),
+            target = M.ProductAttributeValues,
         }),
     },
 })

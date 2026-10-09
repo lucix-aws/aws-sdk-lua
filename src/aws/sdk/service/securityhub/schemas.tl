@@ -140,6 +140,8 @@ M.ConnectorSummaryList = schema.new({ type = "list", list_member = M.ConnectorSu
 
 M.ProductSubscriptionArnList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ExportSummaryList = schema.new({ type = "list", list_member = M.ExportSummary })
+
 M.ExposureFindingItemsList = schema.new({ type = "list", list_member = M.ExposureFinding })
 
 M.FindingAggregatorList = schema.new({ type = "list", list_member = M.FindingAggregator })
@@ -225,6 +227,8 @@ M.CategoryList = schema.new({ type = "list", list_member = prelude.String })
 M.IntegrationTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.IntegrationV2TypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingsSelectedFieldList = schema.new({ type = "list", list_member = prelude.String })
 
 M.FindingHistoryUpdatesList = schema.new({ type = "list", list_member = M.FindingHistoryUpdate })
 
@@ -26602,6 +26606,48 @@ M.BooleanConfigurationOptions = schema.new({
     },
 })
 
+M.CancelExportJobV2Input = schema.new({
+    id = id.from(_N, "CancelExportJobV2Request"),
+    type = "structure",
+    members = {
+        ExportJobId = schema.new({
+            id = id.from(_N, "CancelExportJobV2Input", "ExportJobId"),
+            type = "string",
+            name = "ExportJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.CancelExportJobV2Output = schema.new({
+    id = id.from(_N, "CancelExportJobV2Response"),
+    type = "structure",
+    members = {
+        ExportJobId = schema.new({
+            id = id.from(_N, "CancelExportJobV2Output", "ExportJobId"),
+            type = "string",
+            name = "ExportJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CancelExportJobV2Output", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.OcsfBooleanFilter = schema.new({
     id = id.from(_N, "OcsfBooleanFilter"),
     type = "structure",
@@ -29607,6 +29653,193 @@ M.EnableSecurityHubV2Output = schema.new({
     },
 })
 
+M.S3ExportDestination = schema.new({
+    id = id.from(_N, "S3ExportDestination"),
+    type = "structure",
+    members = {
+        BucketArn = schema.new({
+            id = id.from(_N, "S3ExportDestination", "BucketArn"),
+            type = "string",
+            name = "BucketArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "S3ExportDestination", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectPrefix = schema.new({
+            id = id.from(_N, "S3ExportDestination", "ObjectPrefix"),
+            type = "string",
+            name = "ObjectPrefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExportDestination = schema.new({
+    id = id.from(_N, "ExportDestination"),
+    type = "union",
+    members = {
+        S3 = schema.new({
+            id = id.from(_N, "ExportDestination", "S3"),
+            type = "structure",
+            name = "S3",
+            target_id = id.from(_N, "S3ExportDestination"),
+            target = M.S3ExportDestination,
+        }),
+    },
+})
+
+M.FindingsOutputSummary = schema.new({
+    id = id.from(_N, "FindingsOutputSummary"),
+    type = "structure",
+    members = {
+        Format = schema.new({
+            id = id.from(_N, "FindingsOutputSummary", "Format"),
+            type = "string",
+            name = "Format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExportOutputSummary = schema.new({
+    id = id.from(_N, "ExportOutputSummary"),
+    type = "union",
+    members = {
+        Findings = schema.new({
+            id = id.from(_N, "ExportOutputSummary", "Findings"),
+            type = "structure",
+            name = "Findings",
+            target_id = id.from(_N, "FindingsOutputSummary"),
+            target = M.FindingsOutputSummary,
+        }),
+    },
+})
+
+M.ExportScopes = schema.new({
+    id = id.from(_N, "ExportScopes"),
+    type = "structure",
+    members = {
+        AwsOrganizations = schema.new({
+            id = id.from(_N, "ExportScopes", "AwsOrganizations"),
+            type = "list",
+            name = "AwsOrganizations",
+            target_id = prelude.Document.id,
+            list_member = M.AwsOrganizationScope,
+        }),
+    },
+})
+
+M.ExportSummary = schema.new({
+    id = id.from(_N, "ExportSummary"),
+    type = "structure",
+    members = {
+        ExportJobId = schema.new({
+            id = id.from(_N, "ExportSummary", "ExportJobId"),
+            type = "string",
+            name = "ExportJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ExportSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ExportSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DataType = schema.new({
+            id = id.from(_N, "ExportSummary", "DataType"),
+            type = "string",
+            name = "DataType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutputConfiguration = schema.new({
+            id = id.from(_N, "ExportSummary", "OutputConfiguration"),
+            type = "union",
+            name = "OutputConfiguration",
+            target_id = id.from(_N, "ExportOutputSummary"),
+            target = M.ExportOutputSummary,
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "ExportSummary", "Scopes"),
+            type = "structure",
+            name = "Scopes",
+            target_id = id.from(_N, "ExportScopes"),
+            target = M.ExportScopes,
+        }),
+        Destination = schema.new({
+            id = id.from(_N, "ExportSummary", "Destination"),
+            type = "union",
+            name = "Destination",
+            target_id = id.from(_N, "ExportDestination"),
+            target = M.ExportDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FailureCode = schema.new({
+            id = id.from(_N, "ExportSummary", "FailureCode"),
+            type = "string",
+            name = "FailureCode",
+            target_id = prelude.String.id,
+        }),
+        FailureMessage = schema.new({
+            id = id.from(_N, "ExportSummary", "FailureMessage"),
+            type = "string",
+            name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "ExportSummary", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndedAt = schema.new({
+            id = id.from(_N, "ExportSummary", "EndedAt"),
+            type = "timestamp",
+            name = "EndedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.ExposureFinding = schema.new({
     id = id.from(_N, "ExposureFinding"),
     type = "structure",
@@ -30403,6 +30636,23 @@ M.GetEnabledStandardsOutput = schema.new({
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetExportJobV2Input = schema.new({
+    id = id.from(_N, "GetExportJobV2Request"),
+    type = "structure",
+    members = {
+        ExportJobId = schema.new({
+            id = id.from(_N, "GetExportJobV2Input", "ExportJobId"),
+            type = "string",
+            name = "ExportJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
         }),
     },
 })
@@ -33320,6 +33570,72 @@ M.ListEnabledProductsForImportOutput = schema.new({
     },
 })
 
+M.ListExportJobsV2Input = schema.new({
+    id = id.from(_N, "ListExportJobsV2Request"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ListExportJobsV2Input", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Status" },
+            },
+        }),
+        DataType = schema.new({
+            id = id.from(_N, "ListExportJobsV2Input", "DataType"),
+            type = "string",
+            name = "DataType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "DataType" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListExportJobsV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListExportJobsV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.ListExportJobsV2Output = schema.new({
+    id = id.from(_N, "ListExportJobsV2Response"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListExportJobsV2Output", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.ExportSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListExportJobsV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListExposuresByRemediationV2Input = schema.new({
     id = id.from(_N, "ListExposuresByRemediationV2Request"),
     type = "structure",
@@ -34117,6 +34433,22 @@ M.StartConfigurationPolicyDisassociationInput = schema.new({
 M.StartConfigurationPolicyDisassociationOutput = schema.new({
     id = id.from(_N, "StartConfigurationPolicyDisassociationResponse"),
     type = "structure",
+})
+
+M.StartExportJobV2Output = schema.new({
+    id = id.from(_N, "StartExportJobV2Response"),
+    type = "structure",
+    members = {
+        ExportJobId = schema.new({
+            id = id.from(_N, "StartExportJobV2Output", "ExportJobId"),
+            type = "string",
+            name = "ExportJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.TagResourceInput = schema.new({
@@ -35013,6 +35345,36 @@ M.Criteria = schema.new({
     },
 })
 
+M.FindingsOutput = schema.new({
+    id = id.from(_N, "FindingsOutput"),
+    type = "structure",
+    members = {
+        Format = schema.new({
+            id = id.from(_N, "FindingsOutput", "Format"),
+            type = "string",
+            name = "Format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "FindingsOutput", "Filters"),
+            type = "structure",
+            name = "Filters",
+            target_id = id.from(_N, "OcsfFindingFilters"),
+            target = M.OcsfFindingFilters,
+        }),
+        SelectedFields = schema.new({
+            id = id.from(_N, "FindingsOutput", "SelectedFields"),
+            type = "list",
+            name = "SelectedFields",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.GetFindingsTrendsV2Input = schema.new({
     id = id.from(_N, "GetFindingsTrendsV2Request"),
     type = "structure",
@@ -35320,6 +35682,20 @@ M.CreateAutomationRuleV2Input = schema.new({
     },
 })
 
+M.ExportOutput = schema.new({
+    id = id.from(_N, "ExportOutput"),
+    type = "union",
+    members = {
+        Findings = schema.new({
+            id = id.from(_N, "ExportOutput", "Findings"),
+            type = "structure",
+            name = "Findings",
+            target_id = id.from(_N, "FindingsOutput"),
+            target = M.FindingsOutput,
+        }),
+    },
+})
+
 M.GetAutomationRuleV2Output = schema.new({
     id = id.from(_N, "GetAutomationRuleV2Response"),
     type = "structure",
@@ -35450,6 +35826,104 @@ M.UpdateAutomationRuleV2Input = schema.new({
     },
 })
 
+M.GetExportJobV2Output = schema.new({
+    id = id.from(_N, "GetExportJobV2Response"),
+    type = "structure",
+    members = {
+        ExportJobId = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "ExportJobId"),
+            type = "string",
+            name = "ExportJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DataType = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "DataType"),
+            type = "string",
+            name = "DataType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutputConfiguration = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "OutputConfiguration"),
+            type = "union",
+            name = "OutputConfiguration",
+            target_id = id.from(_N, "ExportOutput"),
+            target = M.ExportOutput,
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "Scopes"),
+            type = "structure",
+            name = "Scopes",
+            target_id = id.from(_N, "ExportScopes"),
+            target = M.ExportScopes,
+        }),
+        Destination = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "Destination"),
+            type = "union",
+            name = "Destination",
+            target_id = id.from(_N, "ExportDestination"),
+            target = M.ExportDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FailureCode = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "FailureCode"),
+            type = "string",
+            name = "FailureCode",
+            target_id = prelude.String.id,
+        }),
+        FailureMessage = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "FailureMessage"),
+            type = "string",
+            name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndedAt = schema.new({
+            id = id.from(_N, "GetExportJobV2Output", "EndedAt"),
+            type = "timestamp",
+            name = "EndedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.GetFindingStatisticsV2Input = schema.new({
     id = id.from(_N, "GetFindingStatisticsV2Request"),
     type = "structure",
@@ -35518,6 +35992,55 @@ M.GetResourcesStatisticsV2Input = schema.new({
             type = "integer",
             name = "MaxStatisticResults",
             target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.StartExportJobV2Input = schema.new({
+    id = id.from(_N, "StartExportJobV2Request"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "StartExportJobV2Input", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Destination = schema.new({
+            id = id.from(_N, "StartExportJobV2Input", "Destination"),
+            type = "union",
+            name = "Destination",
+            target_id = id.from(_N, "ExportDestination"),
+            target = M.ExportDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutputConfiguration = schema.new({
+            id = id.from(_N, "StartExportJobV2Input", "OutputConfiguration"),
+            type = "union",
+            name = "OutputConfiguration",
+            target_id = id.from(_N, "ExportOutput"),
+            target = M.ExportOutput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "StartExportJobV2Input", "Scopes"),
+            type = "structure",
+            name = "Scopes",
+            target_id = id.from(_N, "ExportScopes"),
+            target = M.ExportScopes,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "StartExportJobV2Input", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
         }),
     },
 })
@@ -35709,6 +36232,18 @@ M.BatchUpdateStandardsControlAssociations = schema.operation({
     output = M.BatchUpdateStandardsControlAssociationsOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelExportJobV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CancelExportJobV2"),
+    input = M.CancelExportJobV2Input,
+    output = M.CancelExportJobV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/exportjobsv2/{ExportJobId}/cancel" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -36339,6 +36874,18 @@ M.GetEnabledStandards = schema.operation({
     },
 })
 
+M.GetExportJobV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetExportJobV2"),
+    input = M.GetExportJobV2Input,
+    output = M.GetExportJobV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/exportjobsv2/{ExportJobId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetFindingAggregator = schema.operation({
     id = id.from("com.amazonaws.securityhub", "GetFindingAggregator"),
     input = M.GetFindingAggregatorInput,
@@ -36651,6 +37198,18 @@ M.ListEnabledProductsForImport = schema.operation({
     },
 })
 
+M.ListExportJobsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListExportJobsV2"),
+    input = M.ListExportJobsV2Input,
+    output = M.ListExportJobsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/exportjobsv2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListExposuresByRemediationV2 = schema.operation({
     id = id.from("com.amazonaws.securityhub", "ListExposuresByRemediationV2"),
     input = M.ListExposuresByRemediationV2Input,
@@ -36789,6 +37348,18 @@ M.StartConfigurationPolicyDisassociation = schema.operation({
     output = M.StartConfigurationPolicyDisassociationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/configurationPolicyAssociation/disassociate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartExportJobV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "StartExportJobV2"),
+    input = M.StartExportJobV2Input,
+    output = M.StartExportJobV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/exportjobsv2" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

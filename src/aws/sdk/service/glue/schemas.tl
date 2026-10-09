@@ -26372,6 +26372,73 @@ M.GetStatementOutput = schema.new({
     },
 })
 
+M.GetSystemLogsForJobRunInput = schema.new({
+    id = id.from(_N, "GetSystemLogsForJobRunRequest"),
+    type = "structure",
+    members = {
+        JobName = schema.new({
+            id = id.from(_N, "GetSystemLogsForJobRunInput", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RunId = schema.new({
+            id = id.from(_N, "GetSystemLogsForJobRunInput", "RunId"),
+            type = "string",
+            name = "RunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSystemLogsForJobRunOutput = schema.new({
+    id = id.from(_N, "GetSystemLogsForJobRunResponse"),
+    type = "structure",
+    members = {
+        SystemLogsUrl = schema.new({
+            id = id.from(_N, "GetSystemLogsForJobRunOutput", "SystemLogsUrl"),
+            type = "string",
+            name = "SystemLogsUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetSystemLogsForSessionInput = schema.new({
+    id = id.from(_N, "GetSystemLogsForSessionRequest"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetSystemLogsForSessionInput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSystemLogsForSessionOutput = schema.new({
+    id = id.from(_N, "GetSystemLogsForSessionResponse"),
+    type = "structure",
+    members = {
+        SystemLogsUrl = schema.new({
+            id = id.from(_N, "GetSystemLogsForSessionOutput", "SystemLogsUrl"),
+            type = "string",
+            name = "SystemLogsUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetTableInput = schema.new({
     id = id.from(_N, "GetTableRequest"),
     type = "structure",
@@ -39661,6 +39728,28 @@ M.GetStatement = schema.operation({
     id = id.from("com.amazonaws.glue", "GetStatement"),
     input = M.GetStatementInput,
     output = M.GetStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSystemLogsForJobRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSystemLogsForJobRun"),
+    input = M.GetSystemLogsForJobRunInput,
+    output = M.GetSystemLogsForJobRunOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSystemLogsForSession = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSystemLogsForSession"),
+    input = M.GetSystemLogsForSessionInput,
+    output = M.GetSystemLogsForSessionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

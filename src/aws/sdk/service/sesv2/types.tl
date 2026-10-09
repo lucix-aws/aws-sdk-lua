@@ -1378,64 +1378,16 @@ local record M
         -- AWS_SES – Configure DKIM for the identity by using Easy DKIM.
         -- EXTERNAL – Configure DKIM for the identity by using Bring Your Own DKIM
         -- (BYODKIM).
-        -- AWS_SES_AF_SOUTH_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Africa (Cape Town) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_NORTH_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Europe (Stockholm) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_SOUTH_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Asia Pacific (Mumbai) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_SOUTH_2 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Asia Pacific (Hyderabad) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_WEST_3 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Europe (Paris) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_WEST_2 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Europe (London) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_SOUTH_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Europe (Milan) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_WEST_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Europe (Ireland) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_NORTHEAST_3 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Asia Pacific (Osaka) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_NORTHEAST_2 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Asia Pacific (Seoul) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_ME_CENTRAL_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Middle East (UAE) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_ME_SOUTH_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Middle East (Bahrain) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_NORTHEAST_1 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Asia Pacific (Tokyo) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_IL_CENTRAL_1 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Israel (Tel Aviv) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_SA_EAST_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in South America (São Paulo) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_CA_CENTRAL_1 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Canada (Central) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_CA_WEST_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Canada (Calgary) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_SOUTHEAST_1 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Asia Pacific (Singapore) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_SOUTHEAST_2 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Asia Pacific (Sydney) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_SOUTHEAST_3 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Asia Pacific (Jakarta) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_SOUTHEAST_5 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Asia Pacific (Malaysia) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_CENTRAL_1 – Configure DKIM for the identity by replicating from a
-        -- parent identity in Europe (Frankfurt) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_CENTRAL_2 – Configure DKIM for the identity by replicating from a parent
-        -- identity in Europe (Zurich) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_EAST_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in US East (N. Virginia) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_EAST_2 – Configure DKIM for the identity by replicating from a parent
-        -- identity in US East (Ohio) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_WEST_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in US West (N. California) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_WEST_2 – Configure DKIM for the identity by replicating from a parent
-        -- identity in US West (Oregon) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_GOV_EAST_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in AWS GovCloud (US-East) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_GOV_WEST_1 – Configure DKIM for the identity by replicating from a parent
-        -- identity in AWS GovCloud (US-West) region using Deterministic Easy-DKIM (DEED).
+        -- AWS_SES_ – Configure DKIM for the identity by
+        -- replicating the signing attributes of a parent identity in another
+        -- Amazon Web Services Region, using Deterministic
+        -- Easy-DKIM (DEED). Replace with the
+        -- Amazon Web Services Region of the parent identity, in uppercase with each hyphen
+        -- replaced by an underscore. You can specify any Amazon Web Services Region in which
+        -- Amazon SES supports DEED. For example, to replicate from a parent identity in
+        -- us-east-1, specify AWS_SES_US_EAST_1.
+        -- The parent identity must already exist in the specified
+        -- Amazon Web Services Region and have Easy DKIM configured.
         DomainSigningAttributesOrigin: string
     end
 
@@ -1520,78 +1472,15 @@ local record M
         -- identity by using Easy DKIM.
         -- EXTERNAL – Indicates that DKIM was configured for the
         -- identity by using Bring Your Own DKIM (BYODKIM).
-        -- AWS_SES_AF_SOUTH_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Africa (Cape Town) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_EU_NORTH_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Europe (Stockholm) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_AP_SOUTH_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Mumbai) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_AP_SOUTH_2 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Hyderabad) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_WEST_3 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Europe (Paris) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_WEST_2 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Europe (London) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_SOUTH_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Europe (Milan) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_WEST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Europe (Ireland) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_NORTHEAST_3 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Osaka) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_AP_NORTHEAST_2 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Seoul) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_ME_CENTRAL_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Middle East (UAE) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_ME_SOUTH_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Middle East (Bahrain) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_AP_NORTHEAST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Tokyo) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_IL_CENTRAL_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Israel (Tel Aviv) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_SA_EAST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in South America (São Paulo) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_CA_CENTRAL_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Canada (Central) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_CA_WEST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Canada (Calgary) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_AP_SOUTHEAST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Singapore) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_AP_SOUTHEAST_2 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Sydney) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_AP_SOUTHEAST_3 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Jakarta) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_AP_SOUTHEAST_5 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Asia Pacific (Malaysia) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_EU_CENTRAL_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Europe (Frankfurt) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_EU_CENTRAL_2 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in Europe (Zurich) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_EAST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in US East (N. Virginia) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_US_EAST_2 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in US East (Ohio) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_WEST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in US West (N. California) region using Deterministic Easy-DKIM
-        -- (DEED).
-        -- AWS_SES_US_WEST_2 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in US West (Oregon) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_GOV_EAST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in AWS GovCloud (US-East) region using Deterministic Easy-DKIM (DEED).
-        -- AWS_SES_US_GOV_WEST_1 – Indicates that DKIM was configured for the identity by
-        -- replicating signing attributes from a parent identity in AWS GovCloud (US-West) region using Deterministic Easy-DKIM (DEED).
+        -- AWS_SES_ – Indicates that DKIM was configured
+        -- for the identity by replicating the signing attributes of a parent identity in
+        -- another Amazon Web Services Region, using Deterministic
+        -- Easy-DKIM (DEED). is the
+        -- Amazon Web Services Region of the parent identity, in uppercase with each hyphen
+        -- replaced by an underscore. Amazon SES uses this format for every
+        -- Amazon Web Services Region in which it supports DEED. For example, a parent
+        -- identity in us-east-1 is reported as
+        -- AWS_SES_US_EAST_1.
         SigningAttributesOrigin: string
         -- [Easy DKIM] The key length of the future DKIM key pair to be generated. This can be
         -- changed at most once per day.
@@ -1762,12 +1651,22 @@ local record M
     end
 
     -- An object that contains details about the destination of the export job.
+    -- When you create an export job, specify only DataFormat. SES
+    -- writes the export file to a location that it manages. After the job completes, call
+    -- GetExportJob and use the S3Url that's returned to download
+    -- the file. To store a copy in your own Amazon S3 bucket, upload the downloaded file to your
+    -- bucket. Do not include S3Url in the CreateExportJob request.
     record ExportDestination
         -- The data format of the final export job file, can be one of the following:
         -- CSV - A comma-separated values file.
         -- JSON - A Json file.
         DataFormat: string
         -- An Amazon S3 pre-signed URL that points to the generated export file.
+        -- SES sets this value. It's returned only in the GetExportJob
+        -- response, after the export job status is COMPLETED. The URL expires five
+        -- minutes after GetExportJob returns it. Call GetExportJob again
+        -- to get a new URL. If you include this field in a CreateExportJob request,
+        -- the request fails with a BadRequestException.
         S3Url: string
     end
 
@@ -1776,7 +1675,9 @@ local record M
     record CreateExportJobInput
         -- The data source for the export job.
         ExportDataSource: ExportDataSource
-        -- The destination for the export job.
+        -- The destination for the export job. Specify only DataFormat. Do not
+        -- include S3Url in this request. SES writes the export file to a
+        -- location that it manages and returns the download URL in GetExportJob.
         ExportDestination: ExportDestination
     end
 
@@ -3244,7 +3145,9 @@ local record M
         ExportSourceType: string
         -- The status of the export job.
         JobStatus: string
-        -- The destination of the export job.
+        -- The destination of the export job. When JobStatus is
+        -- COMPLETED, this object includes S3Url, a pre-signed URL
+        -- that you use to download the export file.
         ExportDestination: ExportDestination
         -- The data source of the export job.
         ExportDataSource: ExportDataSource
@@ -3483,7 +3386,10 @@ local record M
         CreatedTimestamp: number
         -- An array of objects that define the tags (keys and values) associated with the tenant.
         Tags: {Tag}
-        -- The status of sending capability for the tenant.
+        -- The status of sending capability for the tenant:
+        -- ENABLED – Sending is allowed for the tenant.
+        -- DISABLED – Sending is prevented for the tenant.
+        -- REINSTATED – Sending is allowed even if there are active reputation findings.
         SendingStatus: string
         -- An object that contains information about the suppression list preferences for the tenant.
         SuppressionAttributes: TenantSuppressionAttributes
@@ -3578,7 +3484,7 @@ local record M
     -- Amazon Web Services Region.
     record ListConfigurationSetsInput
         -- An object that contains filters to apply when listing configuration sets.
-        -- You can filter by configuration set name.
+        -- You can filter by a substring of the configuration set name.
         Filter: {string : string}
         -- A token returned from a previous call to ListConfigurationSets to
         -- indicate the position in the list of configuration sets.
@@ -3788,7 +3694,8 @@ local record M
     -- and identities that were verified in the past, but are no longer verified.
     record ListEmailIdentitiesInput
         -- An object that contains filters to apply when listing email identities.
-        -- You can filter by identity name, identity type, or verification status.
+        -- You can filter by a substring of the identity name, by identity type, or by
+        -- verification status.
         Filter: {string : string}
         -- A token returned from a previous call to ListEmailIdentities to indicate
         -- the position in the list of identities.
@@ -4234,7 +4141,7 @@ local record M
     -- Represents a request to list all tenants associated with your account in the current Amazon Web Services Region.
     record ListTenantsInput
         -- An object that contains filters to apply when listing tenants. You can filter
-        -- by tenant name or sending status.
+        -- by a substring of the tenant name or by sending status.
         Filter: {string : string}
         -- A token returned from a previous call to ListTenants to indicate the position in the list of tenants.
         NextToken: string
@@ -4254,6 +4161,10 @@ local record M
         TenantArn: string
         -- The date and time when the tenant was created.
         CreatedTimestamp: number
+        -- The status of sending capability for the tenant:
+        -- ENABLED – Sending is allowed for the tenant.
+        -- DISABLED – Sending is prevented for the tenant.
+        -- REINSTATED – Sending is allowed even if there are active reputation findings.
         SendingStatus: string
     end
 

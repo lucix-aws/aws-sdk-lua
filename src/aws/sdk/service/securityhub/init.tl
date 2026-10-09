@@ -32,6 +32,7 @@ local record Client
     batchUpdateFindings: function(Client, types.BatchUpdateFindingsInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateFindingsOutput>
     batchUpdateFindingsV2: function(Client, types.BatchUpdateFindingsV2Input, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateFindingsV2Output>
     batchUpdateStandardsControlAssociations: function(Client, types.BatchUpdateStandardsControlAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateStandardsControlAssociationsOutput>
+    cancelExportJobV2: function(Client, types.CancelExportJobV2Input, ? base_client.InvokeOptions): async.Operation<types.CancelExportJobV2Output>
     createActionTarget: function(Client, types.CreateActionTargetInput, ? base_client.InvokeOptions): async.Operation<types.CreateActionTargetOutput>
     createAggregatorV2: function(Client, types.CreateAggregatorV2Input, ? base_client.InvokeOptions): async.Operation<types.CreateAggregatorV2Output>
     createAutomationRule: function(Client, types.CreateAutomationRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutomationRuleOutput>
@@ -84,6 +85,7 @@ local record Client
     getConnector: function(Client, types.GetConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectorOutput>
     getConnectorV2: function(Client, types.GetConnectorV2Input, ? base_client.InvokeOptions): async.Operation<types.GetConnectorV2Output>
     getEnabledStandards: function(Client, types.GetEnabledStandardsInput, ? base_client.InvokeOptions): async.Operation<types.GetEnabledStandardsOutput>
+    getExportJobV2: function(Client, types.GetExportJobV2Input, ? base_client.InvokeOptions): async.Operation<types.GetExportJobV2Output>
     getFindingAggregator: function(Client, types.GetFindingAggregatorInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingAggregatorOutput>
     getFindingHistory: function(Client, types.GetFindingHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingHistoryOutput>
     getFindings: function(Client, types.GetFindingsInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsOutput>
@@ -110,6 +112,7 @@ local record Client
     listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
     listConnectorsV2: function(Client, types.ListConnectorsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsV2Output>
     listEnabledProductsForImport: function(Client, types.ListEnabledProductsForImportInput, ? base_client.InvokeOptions): async.Operation<types.ListEnabledProductsForImportOutput>
+    listExportJobsV2: function(Client, types.ListExportJobsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListExportJobsV2Output>
     listExposuresByRemediationV2: function(Client, types.ListExposuresByRemediationV2Input, ? base_client.InvokeOptions): async.Operation<types.ListExposuresByRemediationV2Output>
     listFindingAggregators: function(Client, types.ListFindingAggregatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingAggregatorsOutput>
     listFreeTrialStatusesV2: function(Client, types.ListFreeTrialStatusesV2Input, ? base_client.InvokeOptions): async.Operation<types.ListFreeTrialStatusesV2Output>
@@ -122,6 +125,7 @@ local record Client
     registerConnectorV2: function(Client, types.RegisterConnectorV2Input, ? base_client.InvokeOptions): async.Operation<types.RegisterConnectorV2Output>
     startConfigurationPolicyAssociation: function(Client, types.StartConfigurationPolicyAssociationInput, ? base_client.InvokeOptions): async.Operation<types.StartConfigurationPolicyAssociationOutput>
     startConfigurationPolicyDisassociation: function(Client, types.StartConfigurationPolicyDisassociationInput, ? base_client.InvokeOptions): async.Operation<types.StartConfigurationPolicyDisassociationOutput>
+    startExportJobV2: function(Client, types.StartExportJobV2Input, ? base_client.InvokeOptions): async.Operation<types.StartExportJobV2Output>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateActionTarget: function(Client, types.UpdateActionTargetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateActionTargetOutput>
@@ -235,6 +239,10 @@ end
 
 function C:batchUpdateStandardsControlAssociations(input: types.BatchUpdateStandardsControlAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateStandardsControlAssociationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateStandardsControlAssociations as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateStandardsControlAssociationsOutput>
+end
+
+function C:cancelExportJobV2(input: types.CancelExportJobV2Input, options?: base_client.InvokeOptions): async.Operation<types.CancelExportJobV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelExportJobV2 as schema.OperationSchema, input, options) as async.Operation<types.CancelExportJobV2Output>
 end
 
 function C:createActionTarget(input: types.CreateActionTargetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateActionTargetOutput>
@@ -445,6 +453,10 @@ function C:getEnabledStandards(input: types.GetEnabledStandardsInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnabledStandards as schema.OperationSchema, input, options) as async.Operation<types.GetEnabledStandardsOutput>
 end
 
+function C:getExportJobV2(input: types.GetExportJobV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetExportJobV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExportJobV2 as schema.OperationSchema, input, options) as async.Operation<types.GetExportJobV2Output>
+end
+
 function C:getFindingAggregator(input: types.GetFindingAggregatorInput, options?: base_client.InvokeOptions): async.Operation<types.GetFindingAggregatorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindingAggregator as schema.OperationSchema, input, options) as async.Operation<types.GetFindingAggregatorOutput>
 end
@@ -549,6 +561,10 @@ function C:listEnabledProductsForImport(input: types.ListEnabledProductsForImpor
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnabledProductsForImport as schema.OperationSchema, input, options) as async.Operation<types.ListEnabledProductsForImportOutput>
 end
 
+function C:listExportJobsV2(input: types.ListExportJobsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListExportJobsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExportJobsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListExportJobsV2Output>
+end
+
 function C:listExposuresByRemediationV2(input: types.ListExposuresByRemediationV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListExposuresByRemediationV2Output>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExposuresByRemediationV2 as schema.OperationSchema, input, options) as async.Operation<types.ListExposuresByRemediationV2Output>
 end
@@ -595,6 +611,10 @@ end
 
 function C:startConfigurationPolicyDisassociation(input: types.StartConfigurationPolicyDisassociationInput, options?: base_client.InvokeOptions): async.Operation<types.StartConfigurationPolicyDisassociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartConfigurationPolicyDisassociation as schema.OperationSchema, input, options) as async.Operation<types.StartConfigurationPolicyDisassociationOutput>
+end
+
+function C:startExportJobV2(input: types.StartExportJobV2Input, options?: base_client.InvokeOptions): async.Operation<types.StartExportJobV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExportJobV2 as schema.OperationSchema, input, options) as async.Operation<types.StartExportJobV2Output>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

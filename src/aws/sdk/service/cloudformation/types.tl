@@ -862,6 +862,22 @@ local record M
         -- ContinueUpdateRollback requests to ensure that CloudFormation successfully received
         -- them.
         ClientRequestToken: string
+        -- Specifies whether CloudFormation forces the rollback to continue by skipping resources
+        -- currently in the UPDATE_FAILED state. Use this instead of listing each resource
+        -- individually in ResourcesToSkip. Only resources that entered the
+        -- UPDATE_FAILED state because a rollback failed are skipped. If you don't specify
+        -- a value, the default is false and CloudFormation doesn't skip any resources.
+        -- ForceRollback and ResourcesToSkip are mutually exclusive.
+        -- Specifying both in the same request returns a validation error.
+        -- We recommend that you troubleshoot resources before skipping them. CloudFormation sets the status of the
+        -- skipped resources to UPDATE_COMPLETE and continues to roll back the stack,
+        -- including resources in nested stacks. After the rollback completes, the skipped resources no
+        -- longer match the resources in the stack template. Before performing another stack update,
+        -- you must update the stack or resources to be consistent with each other. If you don't,
+        -- subsequent stack updates might fail, and the stack will become unrecoverable.
+        -- Drift detection reports skipped resources as NOT_CHECKED. For guidance,
+        -- see Continue rolling back an update in the CloudFormation User Guide.
+        ForceRollback: boolean
     end
 
     -- The output for a ContinueUpdateRollback operation.
@@ -5129,9 +5145,11 @@ local record M
         -- expected configuration.
         -- Any resources that don't currently support drift detection have a status of
         -- NOT_CHECKED. For more information, see Resource
-        -- type support for imports and drift detection. If you performed an ContinueUpdateRollback operation on a stack, any resources included in
-        -- ResourcesToSkip will also have a status of NOT_CHECKED. For more
-        -- information about skipping resources during rollback operations, see Continue rolling back an update in the CloudFormation User Guide.
+        -- type support for imports and drift detection. If you performed a ContinueUpdateRollback operation on a stack, resources skipped using
+        -- ResourcesToSkip or ForceRollback also have a status of
+        -- NOT_CHECKED. To detect whether a skipped resource actually differs from the
+        -- template, run DetectStackResourceDrift. For more information about
+        -- skipping resources during rollback operations, see Continue rolling back an update in the CloudFormation User Guide.
         -- IN_SYNC: The resource's actual configuration matches its expected
         -- configuration.
         StackResourceDriftStatus: string

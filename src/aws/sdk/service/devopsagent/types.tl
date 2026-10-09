@@ -335,6 +335,8 @@ local record M
         instanceIdentifier: string
         -- Optional role ARN that AIDevOps assumes at runtime for automatic verification testing and VPC connectivity on this association.
         runtimeRoleArn: string
+        -- The identifier of the release management association that this repository maps to for automatic verification testing.
+        releaseManagementAssociationId: string
     end
 
     -- Configuration for GitLab project integration.
@@ -347,6 +349,8 @@ local record M
         instanceIdentifier: string
         -- Optional role ARN that AIDevOps assumes at runtime for automatic verification testing and VPC connectivity on this association.
         runtimeRoleArn: string
+        -- The identifier of the release management association that this project maps to for automatic verification testing.
+        releaseManagementAssociationId: string
     end
 
     enum ToolClassification
@@ -415,6 +419,28 @@ local record M
         services: {string}
         -- Email to be used in Pagerduty API header
         customerEmail: string
+    end
+
+    -- Private network access to the resource inside a VPC, using a private connection.
+    record PrivateNetworkAccess
+        -- Name of the private connection that supplies the VPC configuration for this release management environment.
+        privateConnectionName: string
+        -- Role ARN that AWS DevOps Agent assumes at runtime to connect to your VPC.
+        runtimeRoleArn: string
+    end
+
+    -- Specifies how AWS DevOps Agent reaches your application using a Release Management Environment
+    record NetworkAccessConfiguration
+        -- Private network access to the resource inside a VPC, using a private connection.
+        privateAccess: PrivateNetworkAccess
+    end
+
+    -- Configuration for a release management environment.
+    record ReleaseManagementConfiguration
+        -- The name for this release management environment.
+        name: string
+        -- Specifies how AWS DevOps Agent reaches your application using a Release Management Environment
+        networkAccess: NetworkAccessConfiguration
     end
 
     -- Configuration for token-based remote A2A agent integration.
@@ -529,6 +555,8 @@ local record M
         remoteagent: RemoteAgentConfiguration
         -- Remote A2A agent integration configuration (SigV4 auth).
         remoteagentsigv4: RemoteAgentSigV4Configuration
+        -- Release management network environment configuration
+        releaseManagement: ReleaseManagementConfiguration
     end
 
     -- Input for creating a new service association within an AgentSpace.
@@ -1392,15 +1420,77 @@ local record M
         tags: {string : string}
     end
 
-    -- Schedule-based condition that fires the Trigger
-    record ScheduleCondition
-        -- The schedule expression
+    -- Cron or rate schedule. Trigger-created custom-agent schedules use an EventBridge flexible window of up to 30 minutes for load distribution.
+    record CronSchedule
+        -- EventBridge cron or rate expression that anchors the flexible window
         expression: string
     end
 
-    -- Defines the firing condition for a Trigger
+    -- Daily recurrence
+    record DailyRecurrence
+    end
+
+    -- Monthly recurrence
+    record MonthlyRecurrence
+        -- Day of month the window recurs on
+        dayOfMonth: number
+    end
+
+    enum DayOfWeek
+        "MONDAY"
+        "TUESDAY"
+        "WEDNESDAY"
+        "THURSDAY"
+        "FRIDAY"
+        "SATURDAY"
+        "SUNDAY"
+    end
+
+    -- Weekly recurrence
+    record WeeklyRecurrence
+        -- Day of week the window recurs on
+        dayOfWeek: string
+    end
+
+    -- Recurrence cadence for a time-range schedule
+    record Recurrence
+        -- The window recurs every day
+        daily: DailyRecurrence
+        -- The window recurs once per week
+        weekly: WeeklyRecurrence
+        -- The window recurs once per month
+        monthly: MonthlyRecurrence
+    end
+
+    -- Recurring time-of-day window in UTC. The service derives an EventBridge expression anchored at startAfter and a flexible-window width from the interval to startBefore. A startBefore earlier than startAfter wraps past midnight.
+    record TimeRangeSchedule
+        -- Earliest time of day the trigger may fire
+        startAfter: string
+        -- Latest time of day the trigger may fire
+        startBefore: string
+        -- How the window recurs
+        recurrence: Recurrence
+    end
+
+    -- Structured schedule specification. Select exactly one schedule form.
+    record ScheduleSpec
+        -- Runs on an EventBridge cron or rate cadence
+        cron: CronSchedule
+        -- Runs within a recurring time-of-day window
+        timeRange: TimeRangeSchedule
+    end
+
+    -- Expression-based schedule condition. CreateTrigger callers using this condition supply expression and omit spec. Trigger responses always use this condition, include the persisted or derived expression, and also include spec when the trigger was created from a structured schedule.
+    record ScheduleCondition
+        -- EventBridge cron or rate expression. Required for existing request and response compatibility. For a structured schedule response, this is the expression derived by Backlog.
+        expression: string
+        -- Structured schedule source of truth (cron | timeRange). On CreateTrigger supply exactly one of spec or expression. Present in responses together with the derived expression for structured triggers.
+        spec: ScheduleSpec
+    end
+
+    -- Defines how a Trigger fires.
     record TriggerCondition
-        -- Time-based firing condition
+        -- Schedule-based firing condition. On CreateTrigger supply exactly one of the schedule condition's expression or spec.
         schedule: ScheduleCondition
     end
 

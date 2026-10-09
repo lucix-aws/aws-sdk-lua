@@ -121,7 +121,7 @@ local record M
     -- You need Amazon Web Services credentials for the following tasks:
     -- To upload a game server build directly to Amazon GameLift Servers S3 storage using CreateBuild. To get access for this
     -- task, call https://docs.aws.amazon.com/gamelift/latest/apireference/API_RequestUploadCredentials.html.
-    -- To remotely connect to an active Amazon GameLift Servers fleet instances.
+    -- To remotely connect to an active Amazon GameLift Servers fleet instance.
     -- To get remote access, call https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetComputeAccess.html.
     record AwsCredentials
         -- The access key ID that identifies the temporary security credentials.
@@ -887,7 +887,7 @@ local record M
     end
 
     -- An Amazon GameLift Servers compute resource for hosting your game servers. Computes in an Amazon GameLift Servers
-    -- fleet differs depending on the fleet's compute type property as follows:
+    -- fleet differ depending on the fleet's compute type property as follows:
     -- For managed EC2 fleets, a compute is an EC2 instance.
     -- For Anywhere fleets, a compute is a computing resource that you provide and is
     -- registered to the fleet.
@@ -969,7 +969,7 @@ local record M
     end
 
     -- A container's dependency on another container in the same container group. The dependency
-    -- impacts how the dependent container is able to start or shut down based the status of the
+    -- impacts how the dependent container is able to start or shut down based on the status of the
     -- other container.
     -- For example, ContainerA is configured with the following dependency: a
     -- START dependency on ContainerB. This means that
@@ -1027,7 +1027,7 @@ local record M
     -- consume available resources.
     -- The policy is evaluated when a player tries to create a new game session. On receiving
     -- a CreateGameSession request, Amazon GameLift Servers checks that the player (identified by
-    -- CreatorId) has created fewer than game session limit in the specified
+    -- CreatorId) has created fewer than the game session limit in the specified
     -- time period.
     record GameSessionCreationLimitPolicy
         -- A policy that puts limits on the number of game sessions that a player can create
@@ -1035,7 +1035,7 @@ local record M
         -- consume available resources.
         -- The policy evaluates when a player tries to create a new game session. On receiving a
         -- CreateGameSession request, Amazon GameLift Servers checks that the player (identified
-        -- by CreatorId) has created fewer than game session limit in the specified
+        -- by CreatorId) has created fewer than the game session limit in the specified
         -- time period.
         NewGameSessionsPerCreator: number
         -- The time span used in evaluating the resource creation limit policy.
@@ -1099,7 +1099,7 @@ local record M
         -- deployed.
         -- ACTIVE -- The container fleet has been deployed and is ready to
         -- host game sessions.
-        -- UPDATING -- Updates to the container fleet is being updated. A
+        -- UPDATING -- The container fleet is being updated. A
         -- deployment is in progress.
         -- EXPIRED -- The container fleet has been expired. The fleet is
         -- scaled down to zero instances and cannot host new game sessions.
@@ -1184,13 +1184,13 @@ local record M
         -- The number of times to replicate the game server container group on each fleet
         -- instance.
         GameServerContainerGroupsPerInstance: number
-        -- The calculated maximum number of game server container group that can be deployed on
+        -- The calculated maximum number of game server container groups that can be deployed on
         -- each fleet instance. The calculation depends on the resource needs of the container
         -- group and the CPU and memory resources of the fleet's instance type.
         MaximumGameServerContainerGroupsPerInstance: number
         -- The Amazon EC2 instance type to use for all instances in the fleet. Instance type
         -- determines the computing resources and processing power that's available to host your
-        -- game servers. This includes including CPU, memory, storage, and networking capacity. You
+        -- game servers. This includes CPU, memory, storage, and networking capacity. You
         -- can't update this fleet property.
         InstanceType: string
         -- Indicates whether the fleet uses On-Demand or Spot instances for this fleet. Learn
@@ -1225,7 +1225,7 @@ local record M
         -- ACTIVATING -- New container fleet instances are being deployed.
         -- ACTIVE -- The container fleet has been deployed and is ready to host game
         -- sessions.
-        -- UPDATING -- Updates to the container fleet is being updated. A deployment is in
+        -- UPDATING -- The container fleet is being updated. A deployment is in
         -- progress.
         -- EXPIRED -- The container fleet has been expired. The fleet is scaled down to zero
         -- instances and cannot host new game sessions.
@@ -1422,6 +1422,20 @@ local record M
         ServerSdkVersion: string
         -- Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see LinuxCapabilities.
         LinuxCapabilities: LinuxCapabilities
+        -- The number of vCPU units reserved for the game server container. The container can use
+        -- more vCPU when it's available, up to the container group's total vCPU limit if one is set. If
+        -- the container group has a total vCPU limit and the request doesn't set this value, Amazon GameLift Servers
+        -- calculates the game server container's vCPU as the total vCPU limit minus the sum of the vCPU
+        -- units reserved for the group's support containers.
+        -- A game server container group needs either a total vCPU limit or this value. If the
+        -- container group doesn't have a total vCPU limit, the group's containers can use up to the
+        -- instance's available vCPU, and Amazon GameLift Servers uses the sum of the group's container
+        -- Vcpu values to calculate how many game server container groups fit on an
+        -- instance.
+        -- Related data type:
+        -- ContainerGroupDefinition
+        -- TotalVcpuLimit
+        Vcpu: number
     end
 
     enum ContainerOperatingSystem
@@ -1508,7 +1522,7 @@ local record M
         -- ContainerGroupDefinition TotalMemoryLimitMebibytes
         MemoryHardLimitMebibytes: number
         -- A set of ports that allow access to the container from external users. Processes running
-        -- in the container can bind to a one of these ports. Container ports aren't directly accessed by
+        -- in the container can bind to one of these ports. Container ports aren't directly accessed by
         -- inbound traffic. Amazon GameLift Servers maps these container ports to externally accessible connection ports,
         -- which are assigned as needed from the container fleet's
         -- ConnectionPortRange.
@@ -1526,7 +1540,7 @@ local record M
     end
 
     -- The properties that describe a container group resource. You can update all properties of
-    -- a container group definition properties. Updates to a container group definition are saved as
+    -- a container group definition. Updates to a container group definition are saved as
     -- new versions.
     -- Used with:
     -- CreateContainerGroupDefinition
@@ -1560,16 +1574,21 @@ local record M
         TotalMemoryLimitMebibytes: number
         -- The amount of vCPU units on a fleet instance to allocate for the container group (1 vCPU
         -- is equal to 1024 CPU units). All containers in the group share these resources. You can set a
-        -- limit for each container definition in the group. If individual containers have limits, this
-        -- total value must be equal to or greater than the sum of the limits for each container in the
-        -- group.
+        -- vCPU reservation for each container definition in the group. If individual containers have
+        -- reservations, this total value must be equal to or greater than the sum of the reservations
+        -- for each container in the group.
+        -- For a game server container group, if this property is set, Amazon GameLift Servers uses this value to
+        -- calculate how many game server container groups fit on an instance. If this property isn't set,
+        -- the group's containers can use up to the instance's available vCPU, and Amazon GameLift Servers uses the sum of
+        -- the containers' Vcpu values to calculate how many game server container groups fit
+        -- on an instance.
         TotalVcpuLimit: number
         -- The definition for the game server container in this group. This property is used only
         -- when the container group type is GAME_SERVER. This container definition specifies
         -- a container image with the game server build.
         GameServerContainerDefinition: GameServerContainerDefinition
         -- The set of definitions for support containers in this group. A container group definition
-        -- might have zero support container definitions. Support container can be used in any type of
+        -- might have zero support container definitions. Support containers can be used in any type of
         -- container group.
         SupportContainerDefinitions: {SupportContainerDefinition}
         -- Indicates the version of a particular container group definition. This number is
@@ -1595,7 +1614,7 @@ local record M
         -- status. Possible reasons include:
         -- An internal issue prevented Amazon GameLift Servers from creating
         -- the container group definition resource. Delete the failed resource and call
-        -- CreateContainerGroupDefinitionagain.
+        -- CreateContainerGroupDefinition again.
         -- An access-denied message means that you don't have permissions to access the container image on ECR. See
         -- IAM permission examples
         -- for help setting up required IAM permissions for Amazon GameLift Servers.
@@ -1609,6 +1628,10 @@ local record M
         -- At least one of the container images referenced in the
         -- container group definition uses a different operating system than the one defined for the container group.
         StatusReason: string
+    end
+
+    enum ContainerGroupDefinitionRemoveAttribute
+        "TOTAL_VCPU_LIMIT"
     end
 
     -- Describes a mapping between a container port and a connection port on a fleet
@@ -1683,7 +1706,7 @@ local record M
         -- The routing configuration, including routing type and fleet target, for the alias.
         RoutingStrategy: RoutingStrategy
         -- A list of labels to assign to the new alias resource. Tags are developer-defined
-        -- key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access
+        -- key-value pairs. Tagging Amazon Web Services resources is useful for resource management, access
         -- management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the
         -- Amazon Web Services General Reference.
         Tags: {Tag}
@@ -1710,7 +1733,7 @@ local record M
     -- The location in Amazon S3 where build or script files are stored for access by
     -- Amazon GameLift Servers.
     record S3Location
-        -- An Amazon S3 bucket identifier. Thename of the S3 bucket.
+        -- An Amazon S3 bucket identifier. The name of the S3 bucket.
         -- Amazon GameLift Servers doesn't support uploading from Amazon S3 buckets with names that contain a dot
         -- (.).
         Bucket: string
@@ -1757,7 +1780,7 @@ local record M
         -- Migrate to server SDK version 5.
         OperatingSystem: string
         -- A list of labels to assign to the new build resource. Tags are developer defined
-        -- key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access
+        -- key-value pairs. Tagging Amazon Web Services resources is useful for resource management, access
         -- management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the
         -- Amazon Web Services General Reference. Once the resource is created, you can
         -- use TagResource, UntagResource, and
@@ -1772,7 +1795,7 @@ local record M
     end
 
     record CreateBuildOutput
-        -- The newly created build resource, including a unique build IDs and status.
+        -- The newly created build resource, including a unique build ID and status.
         Build: Build
         -- This element is returned only when the operation is called without a storage location.
         -- It contains credentials to use when you are uploading a build file to an Amazon S3 bucket
@@ -1812,7 +1835,7 @@ local record M
         -- This operation creates a
         -- ContainerGroupDefinition resource.
         GameServerContainerGroupDefinitionName: string
-        -- The name of a container group definition resource that describes a set of axillary
+        -- The name of a container group definition resource that describes a set of auxiliary
         -- software. A fleet instance has one process for executables in this container group. A
         -- per-instance container group is optional. You can update the fleet to add or remove a
         -- per-instance container group at any time. You can specify the container group
@@ -1868,14 +1891,14 @@ local record M
         -- instance.
         -- By default, Amazon GameLift Servers calculates the maximum number of game server container groups that
         -- can fit on each instance. This calculation is based on the CPU and memory resources of
-        -- the fleet's instance type). To use the calculated maximum, don't set this parameter. If
+        -- the fleet's instance type. To use the calculated maximum, don't set this parameter. If
         -- you set this number manually, Amazon GameLift Servers uses your value as long as it's less than the
         -- calculated maximum.
         GameServerContainerGroupsPerInstance: number
         -- The Amazon EC2 instance type to use for all instances in the fleet. For multi-location
         -- fleets, the instance type must be available in the home region and all remote locations.
         -- Instance type determines the computing resources and processing power that's available
-        -- to host your game servers. This includes including CPU, memory, storage, and networking
+        -- to host your game servers. This includes CPU, memory, storage, and networking
         -- capacity.
         -- By default, Amazon GameLift Servers uses the c5.large instance type. If this instance
         -- type does not have sufficient resources for your container groups, you can choose a
@@ -1921,14 +1944,14 @@ local record M
         -- S3 -- Store logs in an Amazon S3 bucket that you define.
         -- NONE -- Don't collect container logs.
         -- By default, this property is set to CLOUDWATCH.
-        -- Amazon GameLift Servers requires permissions to send logs other Amazon Web Services services in your account. These permissions are included in the IAM fleet role for this container fleet (see FleetRoleArn).
+        -- Amazon GameLift Servers requires permissions to send logs to other Amazon Web Services services in your account. These permissions are included in the IAM fleet role for this container fleet (see FleetRoleArn).
         LogConfiguration: LogConfiguration
         -- A list of labels to assign to the new fleet resource. Tags are developer-defined
-        -- key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access
+        -- key-value pairs. Tagging Amazon Web Services resources is useful for resource management, access
         -- management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the
         -- Amazon Web Services General Reference.
         Tags: {Tag}
-        -- Configures player gateway for your fleet. Player gateway provides benefits such as DDoS protection by rate limiting and validating traﬃc before it reaches game servers, hiding game server IP addresses from players, and providing updated endpoints when relay endpoints become unhealthy.
+        -- Configures player gateway for your fleet. Player gateway provides benefits such as DDoS protection by rate limiting and validating traffic before it reaches game servers, hiding game server IP addresses from players, and providing updated endpoints when relay endpoints become unhealthy.
         -- How it works: When enabled, game clients connect to relay endpoints instead of to your game servers. Player gateway validates player gateway tokens and routes traffic to the appropriate game server. Your game backend calls GetPlayerConnectionDetails to retrieve relay endpoints and player gateway tokens for your game clients. To learn more about this topic, see DDoS protection with Amazon GameLift Servers player gateway.
         -- Possible values include:
         -- DISABLED (default) -- Game clients connect to the game server endpoint. Use this when you do not intend to integrate your game with player gateway.
@@ -1987,7 +2010,7 @@ local record M
         -- A set of ports that Amazon GameLift Servers can assign to processes in a container. The container port
         -- configuration must have enough ports for each container process that accepts inbound traffic
         -- connections. For example, a game server process requires a container port to allow game
-        -- clients to connect to it. A container port configuration can have can have one or more
+        -- clients to connect to it. A container port configuration can have one or more
         -- container port ranges. Each range specifies starting and ending values as well as the
         -- supported network protocol.
         -- Container ports aren't directly accessed by inbound traffic. Amazon GameLift Servers maps each container
@@ -1999,6 +2022,20 @@ local record M
         ServerSdkVersion: string
         -- Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see LinuxCapabilities.
         LinuxCapabilities: LinuxCapabilities
+        -- The number of vCPU units reserved for the game server container. The container can use
+        -- more vCPU when it's available, up to the container group's total vCPU limit if one is set. If
+        -- the container group has a total vCPU limit and the request doesn't set this value, Amazon GameLift Servers
+        -- calculates the game server container's vCPU as the total vCPU limit minus the sum of the vCPU
+        -- units reserved for the group's support containers.
+        -- A game server container group needs either a total vCPU limit or this value. If the
+        -- container group doesn't have a total vCPU limit, the group's containers can use up to the
+        -- instance's available vCPU, and Amazon GameLift Servers uses the sum of the group's container
+        -- Vcpu values to calculate how many game server container groups fit on an
+        -- instance.
+        -- Related data type:
+        -- ContainerGroupDefinition
+        -- TotalVcpuLimit
+        Vcpu: number
     end
 
     -- Describes a support container in a container group. You can define a support container in
@@ -2016,7 +2053,6 @@ local record M
         ContainerName: string
         -- Establishes dependencies between this container and the status of other containers in the
         -- same container group. A container can have dependencies on multiple different containers.
-        -- .
         -- You can use dependencies to establish a startup/shutdown sequence across the container
         -- group. For example, you might specify that ContainerB has a
         -- START dependency on ContainerA. This dependency means that
@@ -2057,11 +2093,12 @@ local record M
         -- a container-specific memory limit, the container shares the container group's total memory
         -- allocation.
         -- Related data type:
-        -- ContainerGroupDefinitionTotalMemoryLimitMebibytes
+        -- ContainerGroupDefinition
+        -- TotalMemoryLimitMebibytes
         MemoryHardLimitMebibytes: number
         -- A set of ports that Amazon GameLift Servers can assign to processes in a container. The container port
         -- configuration must have enough ports for each container process that accepts inbound traffic
-        -- connections. A container port configuration can have can have one or more container port
+        -- connections. A container port configuration can have one or more container port
         -- ranges. Each range specifies starting and ending values as well as the supported network
         -- protocol.
         -- Container ports aren't directly accessed by inbound traffic. Amazon GameLift Servers maps each container
@@ -2069,10 +2106,10 @@ local record M
         -- ConnectionPortRange).
         PortConfiguration: ContainerPortConfiguration
         -- The number of vCPU units to reserve for this container. The container can use more
-        -- resources when needed, if available. If you don't reserve CPU units for this container, it
+        -- resources when needed, if available. If you don't reserve vCPU units for this container, it
         -- shares the container group's total vCPU limit.
         -- Related data type:
-        -- ContainerGroupDefinition TotalCpuLimit
+        -- ContainerGroupDefinition TotalVcpuLimit
         Vcpu: number
         -- Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see LinuxCapabilities.
         LinuxCapabilities: LinuxCapabilities
@@ -2091,10 +2128,17 @@ local record M
         -- Default value: 1024
         TotalMemoryLimitMebibytes: number
         -- The maximum amount of vCPU units to allocate to the container group (1 vCPU is equal to 1024
-        -- CPU units). All containers in the group share this memory. If you specify vCPU limits for
-        -- individual containers, the total value must be equal to or greater than the sum of the CPU
-        -- limits for all containers in the group.
-        -- Default value: 1
+        -- CPU units). All containers in the group share these resources. If you set vCPU reservations for
+        -- individual containers, the total value must be equal to or greater than the sum of the
+        -- Vcpu values for all containers in the group.
+        -- This property is required for a per-instance container group.
+        -- For a game server container group, Amazon GameLift Servers requires either a total vCPU limit or a
+        -- Vcpu value for the game server container. If you set a total vCPU limit for a
+        -- game server container group, Amazon GameLift Servers uses this value to calculate how many game server
+        -- container groups fit on an instance. If you don't set a total vCPU limit, the group's
+        -- containers can use up to the instance's available vCPU, and Amazon GameLift Servers uses the sum of the
+        -- containers' Vcpu values to calculate how many game server container groups fit
+        -- on an instance.
         TotalVcpuLimit: number
         -- The definition for the game server container in this group. Define a game server container
         -- only when the container group type is GAME_SERVER. Game server containers specify
@@ -2116,7 +2160,7 @@ local record M
         -- A description for the initial version of this container group definition.
         VersionDescription: string
         -- A list of labels to assign to the container group definition resource. Tags are
-        -- developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management,
+        -- developer-defined key-value pairs. Tagging Amazon Web Services resources is useful for resource management,
         -- access management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the
         -- Amazon Web Services General Reference.
         Tags: {Tag}
@@ -2153,7 +2197,7 @@ local record M
     -- consume available resources.
     -- The policy is evaluated when a player tries to create a new game session. On receiving
     -- a CreateGameSession request, Amazon GameLift Servers checks that the player (identified by
-    -- CreatorId) has created fewer than game session limit in the specified
+    -- CreatorId) has created fewer than the game session limit in the specified
     -- time period.
     -- The purpose of this policy is to prevent a single player from consuming a large share of
     -- available hosting resources. For example, setting NewGameSessionsPerCreator to
@@ -2167,7 +2211,7 @@ local record M
         -- consume available resources.
         -- The policy is evaluated when a player tries to create a new game session. On receiving
         -- a CreateGameSession request, Amazon GameLift Servers checks that the player (identified by
-        -- CreatorId) has created fewer than game session limit in the specified
+        -- CreatorId) has created fewer than the game session limit in the specified
         -- time period.
         NewGameSessionsPerCreator: number
         -- The time span used in evaluating the resource creation limit policy.
@@ -2271,7 +2315,7 @@ local record M
         -- event.
         NewGameSessionProtectionPolicy: string
         -- Instructions for how to launch and run server processes on the fleet. Set runtime
-        -- configuration for managed EC2 fleets. For an Anywhere fleets, set this
+        -- configuration for managed EC2 fleets. For an Anywhere fleet, set this
         -- parameter only if the fleet is running the Amazon GameLift Servers Agent. The runtime configuration
         -- defines one or more server process configurations. Each server process identifies a game
         -- executable or Realtime script file and the number of processes to run concurrently.
@@ -2330,7 +2374,7 @@ local record M
         -- Amazon GameLift Servers service locations for managed hosting.
         Locations: {LocationConfiguration}
         -- A list of labels to assign to the new fleet resource. Tags are developer-defined
-        -- key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access
+        -- key-value pairs. Tagging Amazon Web Services resources is useful for resource management, access
         -- management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the
         -- Amazon Web Services General Reference.
         Tags: {Tag}
@@ -2352,7 +2396,7 @@ local record M
         -- credentials, see Communicate
         -- with other Amazon Web Services resources from your fleets.
         InstanceRoleCredentialsProvider: string
-        -- Configures player gateway for your fleet. Player gateway provides benefits such as DDoS protection by rate limiting and validating traﬃc before it reaches game servers, hiding game server IP addresses from players, and providing updated endpoints when relay endpoints become unhealthy. Note, player gateway is only available for fleets using server SDK 5.x or later game server builds.
+        -- Configures player gateway for your fleet. Player gateway provides benefits such as DDoS protection by rate limiting and validating traffic before it reaches game servers, hiding game server IP addresses from players, and providing updated endpoints when relay endpoints become unhealthy. Note, player gateway is only available for fleets using server SDK 5.x or later game server builds.
         -- How it works: When enabled, game clients connect to relay endpoints instead of to your game servers. Player gateway validates player gateway tokens and routes traffic to the appropriate game server. Your game backend calls GetPlayerConnectionDetails to retrieve relay endpoints and player gateway tokens for your game clients. To learn more about this topic, see DDoS protection with Amazon GameLift Servers player gateway.
         -- Possible values include:
         -- DISABLED (default) -- Game clients connect to the game server endpoint. Use this when you do not intend to integrate your game with player gateway.
@@ -2416,7 +2460,7 @@ local record M
         -- Current status of the fleet. Possible fleet statuses include the following:
         -- NEW -- A new fleet resource has been defined and Amazon GameLift Servers has started creating the fleet.
         -- Desired instances is set to 1.
-        -- DOWNLOADING/VALIDATING/BUILDING -- Amazon GameLift Servers is download the game server build,
+        -- DOWNLOADING/VALIDATING/BUILDING -- Amazon GameLift Servers is downloading the game server build,
         -- running install scripts, and then validating the build files. When complete,
         -- Amazon GameLift Servers launches a fleet instance.
         -- ACTIVATING -- Amazon GameLift Servers is launching a game server process and testing its
@@ -2818,7 +2862,7 @@ local record M
         -- from early termination. Unprotected instances that have active game servers running might
         -- be terminated during a scale-down event, causing players to be dropped from the game.
         -- Protected instances cannot be terminated while there are active game servers running except
-        -- in the event of a forced game server group deletion (see ). An exception to this is with Spot
+        -- in the event of a forced game server group deletion. An exception to this is with Spot
         -- Instances, which can be terminated by Amazon Web Services regardless of protection status. This property is set to NO_PROTECTION by default.
         GameServerProtectionPolicy: string
         -- A list of virtual private cloud (VPC) subnets to use with instances in the game server
@@ -2889,7 +2933,7 @@ local record M
         -- from early termination. Unprotected instances that have active game servers running might
         -- be terminated during a scale-down event, causing players to be dropped from the game.
         -- Protected instances cannot be terminated while there are active game servers running except
-        -- in the event of a forced game server group deletion (see ). An exception to this is with Spot
+        -- in the event of a forced game server group deletion. An exception to this is with Spot
         -- Instances, which can be terminated by Amazon Web Services regardless of protection status.
         GameServerProtectionPolicy: string
         -- A generated unique ID for the Amazon EC2 Auto Scaling group that is associated with this
@@ -2971,7 +3015,7 @@ local record M
         -- CreateGameSession operation requires a CreatorId. Amazon GameLift Servers
         -- limits the number of game session creation requests with the same CreatorId
         -- in a specified time period.
-        -- If you your fleet doesn't have a resource creation limit policy and you provide a
+        -- If your fleet doesn't have a resource creation limit policy and you provide a
         -- CreatorId in your CreateGameSession requests, Amazon GameLift Servers
         -- limits requests to one request per CreatorId per second.
         -- To not limit CreateGameSession requests with the same
@@ -3138,7 +3182,7 @@ local record M
 
     -- A list of fleet locations where a game session queue can place new game sessions. You
     -- can use a filter to temporarily exclude specific locations from receiving placements.
-    -- For queues that have multi-location fleets, you can use a filter configuration allow
+    -- For queues that have multi-location fleets, you can use a filter configuration to allow
     -- placement with some, but not all, of a fleet's locations.
     record FilterConfiguration
         -- A list of locations to allow game session placement in, in the form of Amazon Web Services Region
@@ -3149,7 +3193,7 @@ local record M
     -- Sets a latency cap for individual players when placing a game session. With a latency
     -- policy in force, a game session cannot be placed in a fleet location where a player
     -- reports latency higher than the cap. Latency policies are used only with placement
-    -- request that provide player latency information. Player latency policies can be stacked
+    -- requests that provide player latency information. Player latency policies can be stacked
     -- to gradually relax latency requirements over time.
     record PlayerLatencyPolicy
         -- The maximum latency value that is allowed for any player, in milliseconds. All
@@ -3180,7 +3224,7 @@ local record M
     -- locations.
     -- When a game session request includes player latency data, Amazon GameLift Servers re-orders
     -- the queue's destinations to make placements where the average player latency is
-    -- lowest. It reorders based the following priorities: (1) the lowest average
+    -- lowest. It reorders based on the following priorities: (1) the lowest average
     -- latency across all players, (2) the lowest hosting cost, (3) the queue's default
     -- destination order, and (4) for multi-location fleets, an alphabetic list of
     -- locations.
@@ -3235,7 +3279,7 @@ local record M
         -- notifications for game session placement.
         NotificationTarget: string
         -- A list of labels to assign to the new game session queue resource. Tags are
-        -- developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource
+        -- developer-defined key-value pairs. Tagging Amazon Web Services resources is useful for resource
         -- management, access management and cost allocation. For more information, see Tagging Amazon Web Services
         -- Resources in the Amazon Web Services General Reference.
         Tags: {Tag}
@@ -3286,9 +3330,9 @@ local record M
         -- A descriptive name for the custom location.
         LocationName: string
         -- A list of labels to assign to the new resource. Tags are developer-defined key-value
-        -- pairs. Tagging Amazon Web Services resources are useful for resource management, access management,
+        -- pairs. Tagging Amazon Web Services resources is useful for resource management, access management,
         -- and cost allocation. For more information, see Tagging Amazon Web Services Resources in the
-        -- Amazon Web Services General Rareference.
+        -- Amazon Web Services General Reference.
         Tags: {Tag}
     end
 
@@ -3342,8 +3386,10 @@ local record M
         Description: string
         -- The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift Servers game session queue resource and uniquely identifies it. ARNs are unique across all Regions. Format is arn:aws:gamelift:::gamesessionqueue/. Queues can be located in any Region. Queues are used to start new
         -- Amazon GameLift Servers-hosted game sessions for matches that are created with this matchmaking
-        -- configuration. If FlexMatchMode is set to STANDALONE, do not
-        -- set this parameter.
+        -- configuration. A matchmaking configuration supports only one queue; if you specify
+        -- more than one ARN, the request fails with an InvalidRequestException.
+        -- If FlexMatchMode is set to STANDALONE, do not set this
+        -- parameter.
         GameSessionQueueArns: {string}
         -- The maximum duration, in seconds, that a matchmaking ticket can remain in process
         -- before timing out. Requests that fail due to timing out can be resubmitted as
@@ -3398,7 +3444,7 @@ local record M
         -- the specified Amazon GameLift Servers queue to start a game session for the match.
         FlexMatchMode: string
         -- A list of labels to assign to the new matchmaking configuration resource. Tags are
-        -- developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource
+        -- developer-defined key-value pairs. Tagging Amazon Web Services resources is useful for resource
         -- management, access management and cost allocation. For more information, see Tagging Amazon Web Services
         -- Resources in the Amazon Web Services General Reference.
         Tags: {Tag}
@@ -3490,7 +3536,7 @@ local record M
         -- allowed in JSON, but most elements support a description field.
         RuleSetBody: string
         -- A list of labels to assign to the new matchmaking rule set resource. Tags are
-        -- developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource
+        -- developer-defined key-value pairs. Tagging Amazon Web Services resources is useful for resource
         -- management, access management and cost allocation. For more information, see Tagging Amazon Web Services
         -- Resources in the Amazon Web Services General Reference.
         Tags: {Tag}
@@ -3514,7 +3560,7 @@ local record M
     -- based on player attributes. A rule might specify minimum requirements for
     -- individual players, teams, or entire matches. For example, a rule might require
     -- each player to meet a certain skill level, each team to have at least one player
-    -- in a certain role, or the match to have a minimum average skill level. or may
+    -- in a certain role, or the match to have a minimum average skill level, or may
     -- describe an entire group--such as all teams must be evenly matched or have at
     -- least one player in a certain role.
     -- Expansions -- Optional. Expansions allow you to relax the rules after a period
@@ -3559,11 +3605,11 @@ local record M
 
     -- Represents a player session. Player sessions are created either for a specific game
     -- session, or as part of a game session placement or matchmaking request. A player session
-    -- can represents a reserved player slot in a game session (when status is
+    -- can represent a reserved player slot in a game session (when status is
     -- RESERVED) or actual player activity in a game session (when status is
     -- ACTIVE). A player session object, including player data, is
     -- automatically passed to a game session when the player connects to the game session and
-    -- is validated. After the game session ends, player sessions information is retained for
+    -- is validated. After the game session ends, player session information is retained for
     -- 30 days and then removed.
     -- Related actions
     -- All APIs by task
@@ -3670,7 +3716,7 @@ local record M
         -- fileb://myRealtimeScript.zip.
         ZipFile: string
         -- A list of labels to assign to the new script resource. Tags are developer-defined
-        -- key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access
+        -- key-value pairs. Tagging Amazon Web Services resources is useful for resource management, access
         -- management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the
         -- Amazon Web Services General Reference. Once the resource is created, you can
         -- use TagResource, UntagResource, and
@@ -3729,7 +3775,7 @@ local record M
         -- storage location reflects an Amazon S3 location: (1) If the script was uploaded from an S3
         -- bucket under your account, the storage location reflects the information that was
         -- provided in the CreateScript request; (2) If the script file was
-        -- uploaded from a local zip file, the storage location reflects an S3 location controls by
+        -- uploaded from a local zip file, the storage location reflects an S3 location controlled by
         -- the Amazon GameLift Servers service.
         Script: Script
     end
@@ -4154,7 +4200,7 @@ local record M
 
     -- The Amazon GameLift Servers service limits for an Amazon EC2 instance type and current utilization. Amazon GameLift Servers
     -- allows Amazon Web Services accounts a maximum number of instances, per instance type, per Amazon Web Services Region
-    -- or location, for use with Amazon GameLift Servers. You can request an limit increase for your account by
+    -- or location, for use with Amazon GameLift Servers. You can request a limit increase for your account by
     -- using the Service limits page in the Amazon GameLift Servers
     -- console.
     record EC2InstanceLimit
@@ -4214,7 +4260,7 @@ local record M
     -- Combine this count with the number of server processes that each game server container group runs
     -- to learn how many game sessions the fleet is capable of hosting concurrently. For example, if a
     -- fleet has 50 game server container groups, and the game server container in each group runs 1 game server
-    -- process, then the fleet has the capacity to run host 50 game sessions at a time.
+    -- process, then the fleet has the capacity to host 50 game sessions at a time.
     -- Returned by:
     -- https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html, https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationCapacity.html
     record GameServerContainerGroupCounts
@@ -4502,7 +4548,7 @@ local record M
         -- FLEET_BINARY_DOWNLOAD_FAILED -- The build failed to download to the fleet
         -- instance.
         -- FLEET_CREATION_EXTRACTING_BUILD -- The game server build was successfully
-        -- downloaded to an instance, and Amazon GameLift Serversis now extracting the build files from the
+        -- downloaded to an instance, and Amazon GameLift Servers is now extracting the build files from the
         -- uploaded build. Failure at this stage prevents a fleet from moving to ACTIVE
         -- status. Logs for this stage display a list of the files that are extracted and
         -- saved on the instance. Access the logs by using the URL in
@@ -4516,11 +4562,11 @@ local record M
         -- FLEET_CREATION_COMPLETED_INSTALLER -- The game server build files were
         -- successfully installed and validation of the installation will begin
         -- soon.
-        -- FLEET_CREATION_FAILED_INSTALLER -- The installed failed while attempting to
+        -- FLEET_CREATION_FAILED_INSTALLER -- The installer failed while attempting to
         -- install the build files. This event indicates that the failure occurred before
         -- Amazon GameLift Servers could start validation.
         -- FLEET_CREATION_VALIDATING_RUNTIME_CONFIG -- The build process was successful,
-        -- and the GameLift is now verifying that the game server launch paths, which are
+        -- and GameLift is now verifying that the game server launch paths, which are
         -- specified in the fleet's runtime configuration, exist. If any listed launch path
         -- exists, Amazon GameLift Servers tries to launch a game server process and waits for the process
         -- to report ready. Failures in this stage prevent a fleet from moving to
@@ -4810,7 +4856,7 @@ local record M
     -- Additional properties,
     -- including status, that describe an EC2 instance in a game server group. Instance
     -- configurations are set with game server group properties (see
-    -- DescribeGameServerGroup and with the EC2 launch template that was used
+    -- DescribeGameServerGroup) and with the EC2 launch template that was used
     -- when creating the game server group.
     -- Retrieve game server instances for a game server group by calling
     -- DescribeGameServerInstances.
@@ -4923,7 +4969,7 @@ local record M
     -- A priority configuration override list does not override a queue's
     -- FilterConfiguration setting, if the queue has one. Filter configurations are used to
     -- limit placements to a subset of the locations in a queue's destinations. If the
-    -- override list includes a location that's not on in the
+    -- override list includes a location that's not in the
     -- FilterConfiguration allowed list, Amazon GameLift Servers won't attempt to place a
     -- game session there.
     record PriorityConfigurationOverride
@@ -5305,7 +5351,7 @@ local record M
         Players: {Player}
         -- Connection information for a new game session. Once a match is made, the FlexMatch
         -- engine creates a new game session for it. This information is added to the matchmaking
-        -- ticket, which you can be retrieve by calling DescribeMatchmaking .
+        -- ticket, which you can retrieve by calling DescribeMatchmaking .
         GameSessionConnectionInfo: GameSessionConnectionInfo
         -- Average amount of time (in seconds) that players are currently waiting for a match. If
         -- there is not enough recent data, this property may be empty.
@@ -5470,7 +5516,7 @@ local record M
     end
 
     -- Settings for a target-based scaling policy. A target-based policy tracks a particular
-    -- fleet metric specifies a target value for the metric. As player usage changes, the
+    -- fleet metric and specifies a target value for the metric. As player usage changes, the
     -- policy triggers Amazon GameLift Servers to adjust capacity so that the metric returns to the target
     -- value. The target configuration specifies settings as needed for the target based
     -- policy, including the target value.
@@ -5539,7 +5585,7 @@ local record M
         -- ActiveInstances -- Fleet instances that
         -- are currently running at least one game session.
         -- AvailableGameSessions -- Additional game
-        -- sessions that fleet could host simultaneously, given current capacity.
+        -- sessions that a fleet could host simultaneously, given current capacity.
         -- AvailablePlayerSessions -- Empty player
         -- slots in currently active game sessions. This includes game sessions that are
         -- not currently accepting players. Reserved player slots are not
@@ -6130,7 +6176,7 @@ local record M
         -- ActiveInstances -- Fleet instances that
         -- are currently running at least one game session.
         -- AvailableGameSessions -- Additional game
-        -- sessions that fleet could host simultaneously, given current capacity.
+        -- sessions that a fleet could host simultaneously, given current capacity.
         -- AvailablePlayerSessions -- Empty player
         -- slots in currently active game sessions. This includes game sessions that are
         -- not currently accepting players. Reserved player slots are not
@@ -6451,7 +6497,7 @@ local record M
     end
 
     record StartMatchmakingOutput
-        -- Ticket representing the matchmaking request. This object include the information
+        -- Ticket representing the matchmaking request. This object includes the information
         -- included in the request, ticket status, and match results as generated during the
         -- matchmaking process.
         MatchmakingTicket: MatchmakingTicket
@@ -6692,9 +6738,17 @@ local record M
         -- total value must be greater than any individual container's memory limit.
         TotalMemoryLimitMebibytes: number
         -- The maximum amount of vCPU units to allocate to the container group (1 vCPU is equal to 1024
-        -- CPU units). All containers in the group share this memory. If you specify vCPU limits for
-        -- individual containers, the total value must be equal to or greater than the sum of the CPU
-        -- limits for all containers in the group.
+        -- CPU units). All containers in the group share these resources. If you set vCPU reservations for
+        -- individual containers, the total value must be equal to or greater than the sum of the
+        -- Vcpu values for all containers in the group.
+        -- For a game server container group, Amazon GameLift Servers requires either a total vCPU limit or a
+        -- Vcpu value for the game server container. If the container group has a total vCPU
+        -- limit, Amazon GameLift Servers uses this value to calculate how many game server container groups fit on an
+        -- instance. If the container group doesn't have a total vCPU limit, its containers can use up to
+        -- the instance's available vCPU, and Amazon GameLift Servers uses the sum of the containers' Vcpu
+        -- values to calculate how many game server container groups fit on an instance. To remove the
+        -- total vCPU limit, omit this parameter and set RemoveAttributes to
+        -- TOTAL_VCPU_LIMIT.
         TotalVcpuLimit: number
         -- A description for this update to the container group definition.
         VersionDescription: string
@@ -6708,6 +6762,12 @@ local record M
         -- server build to server SDK 5.x, and then deploy to AL2023 instances. See Migrate to
         -- server SDK version 5.
         OperatingSystem: string
+        -- If set, this update removes the container group's total vCPU limit, and the group's
+        -- containers can use up to the instance's available vCPU. You can't remove the total vCPU limit
+        -- from a per-instance container group. A game server container group needs either a total vCPU
+        -- limit or a Vcpu value for the game server container. You can't set
+        -- TotalVcpuLimit in the same request.
+        RemoveAttributes: {string}
     end
 
     record UpdateContainerGroupDefinitionOutput
@@ -6817,7 +6877,7 @@ local record M
         GameServerData: string
         -- Indicates if the game server is available or is currently hosting gameplay. You can
         -- update a game server status from AVAILABLE to UTILIZED, but
-        -- you can't change a the status from UTILIZED to
+        -- you can't change the status from UTILIZED to
         -- AVAILABLE.
         UtilizationStatus: string
         -- Indicates health status of the game server. A request that includes this parameter
@@ -6850,7 +6910,7 @@ local record M
         -- from early termination. Unprotected instances that have active game servers running might
         -- be terminated during a scale-down event, causing players to be dropped from the game.
         -- Protected instances cannot be terminated while there are active game servers running except
-        -- in the event of a forced game server group deletion (see ). An exception to this is with Spot
+        -- in the event of a forced game server group deletion. An exception to this is with Spot
         -- Instances, which can be terminated by Amazon Web Services regardless of protection status. This property is set to NO_PROTECTION by default.
         GameServerProtectionPolicy: string
         -- Indicates how Amazon GameLift Servers FleetIQ balances the use of Spot Instances and On-Demand Instances in the
@@ -6950,8 +7010,10 @@ local record M
         Description: string
         -- The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift Servers game session queue resource and uniquely identifies it. ARNs are unique across all Regions. Format is arn:aws:gamelift:::gamesessionqueue/. Queues can be located in any Region. Queues are used to start new
         -- Amazon GameLift Servers-hosted game sessions for matches that are created with this matchmaking
-        -- configuration. If FlexMatchMode is set to STANDALONE, do not
-        -- set this parameter.
+        -- configuration. A matchmaking configuration supports only one queue; if you specify
+        -- more than one ARN, the request fails with an InvalidRequestException.
+        -- If FlexMatchMode is set to STANDALONE, do not set this
+        -- parameter.
         GameSessionQueueArns: {string}
         -- The maximum duration, in seconds, that a matchmaking ticket can remain in process
         -- before timing out. Requests that fail due to timing out can be resubmitted as
@@ -7057,7 +7119,7 @@ local record M
         -- location reflects an Amazon S3 location: (1) If the script was uploaded from an S3 bucket
         -- under your account, the storage location reflects the information that was provided in
         -- the CreateScript request; (2) If the script file was uploaded from
-        -- a local zip file, the storage location reflects an S3 location controls by the Amazon GameLift Servers
+        -- a local zip file, the storage location reflects an S3 location controlled by the Amazon GameLift Servers
         -- service.
         Script: Script
     end

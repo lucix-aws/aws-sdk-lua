@@ -1029,6 +1029,12 @@ M.GitHubConfiguration = schema.new({
             name = "runtimeRoleArn",
             target_id = prelude.String.id,
         }),
+        releaseManagementAssociationId = schema.new({
+            id = id.from(_N, "GitHubConfiguration", "releaseManagementAssociationId"),
+            type = "string",
+            name = "releaseManagementAssociationId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1064,6 +1070,12 @@ M.GitLabConfiguration = schema.new({
             id = id.from(_N, "GitLabConfiguration", "runtimeRoleArn"),
             type = "string",
             name = "runtimeRoleArn",
+            target_id = prelude.String.id,
+        }),
+        releaseManagementAssociationId = schema.new({
+            id = id.from(_N, "GitLabConfiguration", "releaseManagementAssociationId"),
+            type = "string",
+            name = "releaseManagementAssociationId",
             target_id = prelude.String.id,
         }),
     },
@@ -1238,6 +1250,71 @@ M.PagerDutyConfiguration = schema.new({
             type = "string",
             name = "customerEmail",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PrivateNetworkAccess = schema.new({
+    id = id.from(_N, "PrivateNetworkAccess"),
+    type = "structure",
+    members = {
+        privateConnectionName = schema.new({
+            id = id.from(_N, "PrivateNetworkAccess", "privateConnectionName"),
+            type = "string",
+            name = "privateConnectionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        runtimeRoleArn = schema.new({
+            id = id.from(_N, "PrivateNetworkAccess", "runtimeRoleArn"),
+            type = "string",
+            name = "runtimeRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.NetworkAccessConfiguration = schema.new({
+    id = id.from(_N, "NetworkAccessConfiguration"),
+    type = "union",
+    members = {
+        privateAccess = schema.new({
+            id = id.from(_N, "NetworkAccessConfiguration", "privateAccess"),
+            type = "structure",
+            name = "privateAccess",
+            target_id = id.from(_N, "PrivateNetworkAccess"),
+            target = M.PrivateNetworkAccess,
+        }),
+    },
+})
+
+M.ReleaseManagementConfiguration = schema.new({
+    id = id.from(_N, "ReleaseManagementConfiguration"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ReleaseManagementConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        networkAccess = schema.new({
+            id = id.from(_N, "ReleaseManagementConfiguration", "networkAccess"),
+            type = "union",
+            name = "networkAccess",
+            target_id = id.from(_N, "NetworkAccessConfiguration"),
+            target = M.NetworkAccessConfiguration,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1573,6 +1650,13 @@ M.ServiceConfiguration = schema.new({
             name = "remoteagentsigv4",
             target_id = id.from(_N, "RemoteAgentSigV4Configuration"),
             target = M.RemoteAgentSigV4Configuration,
+        }),
+        releaseManagement = schema.new({
+            id = id.from(_N, "ServiceConfiguration", "releaseManagement"),
+            type = "structure",
+            name = "releaseManagement",
+            target_id = id.from(_N, "ReleaseManagementConfiguration"),
+            target = M.ReleaseManagementConfiguration,
         }),
     },
 })
@@ -4151,6 +4235,143 @@ M.CreatePrivateConnectionOutput = schema.new({
     },
 })
 
+M.CronSchedule = schema.new({
+    id = id.from(_N, "CronSchedule"),
+    type = "structure",
+    members = {
+        expression = schema.new({
+            id = id.from(_N, "CronSchedule", "expression"),
+            type = "string",
+            name = "expression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DailyRecurrence = schema.new({
+    id = id.from(_N, "DailyRecurrence"),
+    type = "structure",
+})
+
+M.MonthlyRecurrence = schema.new({
+    id = id.from(_N, "MonthlyRecurrence"),
+    type = "structure",
+    members = {
+        dayOfMonth = schema.new({
+            id = id.from(_N, "MonthlyRecurrence", "dayOfMonth"),
+            type = "integer",
+            name = "dayOfMonth",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WeeklyRecurrence = schema.new({
+    id = id.from(_N, "WeeklyRecurrence"),
+    type = "structure",
+    members = {
+        dayOfWeek = schema.new({
+            id = id.from(_N, "WeeklyRecurrence", "dayOfWeek"),
+            type = "string",
+            name = "dayOfWeek",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Recurrence = schema.new({
+    id = id.from(_N, "Recurrence"),
+    type = "union",
+    members = {
+        daily = schema.new({
+            id = id.from(_N, "Recurrence", "daily"),
+            type = "structure",
+            name = "daily",
+            target_id = id.from(_N, "DailyRecurrence"),
+            target = M.DailyRecurrence,
+        }),
+        weekly = schema.new({
+            id = id.from(_N, "Recurrence", "weekly"),
+            type = "structure",
+            name = "weekly",
+            target_id = id.from(_N, "WeeklyRecurrence"),
+            target = M.WeeklyRecurrence,
+        }),
+        monthly = schema.new({
+            id = id.from(_N, "Recurrence", "monthly"),
+            type = "structure",
+            name = "monthly",
+            target_id = id.from(_N, "MonthlyRecurrence"),
+            target = M.MonthlyRecurrence,
+        }),
+    },
+})
+
+M.TimeRangeSchedule = schema.new({
+    id = id.from(_N, "TimeRangeSchedule"),
+    type = "structure",
+    members = {
+        startAfter = schema.new({
+            id = id.from(_N, "TimeRangeSchedule", "startAfter"),
+            type = "string",
+            name = "startAfter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startBefore = schema.new({
+            id = id.from(_N, "TimeRangeSchedule", "startBefore"),
+            type = "string",
+            name = "startBefore",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        recurrence = schema.new({
+            id = id.from(_N, "TimeRangeSchedule", "recurrence"),
+            type = "union",
+            name = "recurrence",
+            target_id = id.from(_N, "Recurrence"),
+            target = M.Recurrence,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ScheduleSpec = schema.new({
+    id = id.from(_N, "ScheduleSpec"),
+    type = "union",
+    members = {
+        cron = schema.new({
+            id = id.from(_N, "ScheduleSpec", "cron"),
+            type = "structure",
+            name = "cron",
+            target_id = id.from(_N, "CronSchedule"),
+            target = M.CronSchedule,
+        }),
+        timeRange = schema.new({
+            id = id.from(_N, "ScheduleSpec", "timeRange"),
+            type = "structure",
+            name = "timeRange",
+            target_id = id.from(_N, "TimeRangeSchedule"),
+            target = M.TimeRangeSchedule,
+        }),
+    },
+})
+
 M.ScheduleCondition = schema.new({
     id = id.from(_N, "ScheduleCondition"),
     type = "structure",
@@ -4160,9 +4381,13 @@ M.ScheduleCondition = schema.new({
             type = "string",
             name = "expression",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        spec = schema.new({
+            id = id.from(_N, "ScheduleCondition", "spec"),
+            type = "union",
+            name = "spec",
+            target_id = id.from(_N, "ScheduleSpec"),
+            target = M.ScheduleSpec,
         }),
     },
 })

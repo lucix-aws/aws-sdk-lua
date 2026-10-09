@@ -2606,6 +2606,12 @@ M.EncryptionAtRestOptions = schema.new({
             name = "KmsKeyId",
             target_id = prelude.String.id,
         }),
+        EncryptionMode = schema.new({
+            id = id.from(_N, "EncryptionAtRestOptions", "EncryptionMode"),
+            type = "string",
+            name = "EncryptionMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

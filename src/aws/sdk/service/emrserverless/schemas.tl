@@ -793,6 +793,15 @@ M.GetResourceDashboardInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "resourceType" },
             },
         }),
+        accessSystemProfileLogs = schema.new({
+            id = id.from(_N, "GetResourceDashboardInput", "accessSystemProfileLogs"),
+            type = "boolean",
+            name = "accessSystemProfileLogs",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "accessSystemProfileLogs" },
+            },
+        }),
     },
 })
 

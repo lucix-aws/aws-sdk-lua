@@ -10316,6 +10316,28 @@ local record M
         Statement: Statement
     end
 
+    record GetSystemLogsForJobRunInput
+        -- The name of the job.
+        JobName: string
+        -- The ID of the job run.
+        RunId: string
+    end
+
+    record GetSystemLogsForJobRunOutput
+        -- The URL to download the system logs for the job run.
+        SystemLogsUrl: string
+    end
+
+    record GetSystemLogsForSessionInput
+        -- The ID of the session.
+        Id: string
+    end
+
+    record GetSystemLogsForSessionOutput
+        -- The URL to download the system logs for the session.
+        SystemLogsUrl: string
+    end
+
     enum TableAttributes
         "NAME"
         "TABLE_TYPE"

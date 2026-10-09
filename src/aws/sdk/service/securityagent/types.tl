@@ -1288,6 +1288,8 @@ local record M
         validationStatus: string
         -- The attack script used to reproduce the finding.
         attackScript: string
+        -- The suggested fix for the finding, describing the changes recommended to remediate the vulnerability, with example code or configuration.
+        remediationCode: string
         -- The code remediation task associated with the finding, if code remediation was initiated.
         codeRemediationTask: CodeRemediationTask
         -- The identifier of the entity that last updated the finding.

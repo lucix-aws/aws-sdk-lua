@@ -11690,6 +11690,25 @@ local record M
         DefaultValue: boolean
     end
 
+    record CancelExportJobV2Input
+        -- The unique identifier of the export job to cancel. This is the value returned by StartExportJobV2.
+        ExportJobId: string
+    end
+
+    enum ExportStatus
+        "RUNNING"
+        "SUCCEEDED"
+        "FAILED"
+        "CANCELLED"
+    end
+
+    record CancelExportJobV2Output
+        -- The unique identifier of the export job.
+        ExportJobId: string
+        -- The state of the export job after the cancel request.
+        Status: string
+    end
+
     enum OcsfBooleanField
         "compliance.assessments.meets_criteria"
         "vulnerabilities.is_exploit_available"
@@ -13096,6 +13115,203 @@ local record M
         HubV2Arn: string
     end
 
+    enum ExportDataType
+        "FINDINGS"
+    end
+
+    -- The Amazon S3 destination for an export, including the bucket, the Amazon Web Services KMS key used for encryption, and an optional object key prefix.
+    record S3ExportDestination
+        -- The Amazon Resource Name (ARN) of the Amazon S3 bucket that Security Hub writes the export to. You must own the bucket, and its bucket policy must grant the Security Hub service principal (exportv2.securityhub.amazonaws.com) permission to write objects. For the required bucket policy, see the Examples section of StartExportJobV2.
+        BucketArn: string
+        -- The ARN of the Amazon Web Services KMS key that Security Hub uses to encrypt the export objects with server-side encryption. The key policy must allow the Security Hub service principal (exportv2.securityhub.amazonaws.com) to use the key through Amazon S3. For the required key policy, see the Examples section of StartExportJobV2.
+        -- The key must meet all of the following requirements:
+        -- It must be a symmetric key with a key usage of ENCRYPT_DECRYPT.
+        -- It must be a single-Region key. Multi-Region keys, whose key IDs begin with mrk-, are rejected.
+        -- You must specify the full key ARN. Key IDs and aliases are rejected.
+        -- The key must be in the same Amazon Web Services account as the export job.
+        -- The key must be in the same Amazon Web Services Region as the export job.
+        -- The key must be in the aws, aws-cn, or aws-us-gov partition.
+        KmsKeyArn: string
+        -- An optional key prefix that Security Hub prepends to the Amazon S3 object keys of the export output. Use a prefix to organize exports within the bucket. The value can be up to 512 characters.
+        ObjectPrefix: string
+    end
+
+    -- Specifies where Security Hub writes the export output. This is a union: you must specify exactly one member. Currently, the only supported member is S3.
+    record ExportDestination
+        -- The Amazon Simple Storage Service (Amazon S3) bucket and Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Security Hub uses to write the export.
+        S3: S3ExportDestination
+    end
+
+    enum ExportFailureCode
+        "ACCESS_DENIED"
+        "RESOURCE_NOT_FOUND"
+        "INTERNAL_ERROR"
+    end
+
+    enum FindingsExportFormat
+        "CSV"
+        "OCSF_JSON"
+    end
+
+    enum FindingsSelectableField
+        "metadata.uid"
+        "activity_name"
+        "cloud.account.name"
+        "cloud.account.uid"
+        "cloud.provider"
+        "cloud.region"
+        "compliance.assessments.category"
+        "compliance.assessments.name"
+        "compliance.control"
+        "compliance.status"
+        "compliance.standards"
+        "finding_info.desc"
+        "finding_info.src_url"
+        "finding_info.title"
+        "finding_info.types"
+        "finding_info.uid"
+        "finding_info.related_events.traits.category"
+        "finding_info.related_events.uid"
+        "finding_info.related_events.product.uid"
+        "finding_info.related_events.title"
+        "metadata.product.feature.uid"
+        "metadata.product.name"
+        "metadata.product.uid"
+        "metadata.product.vendor_name"
+        "remediation.desc"
+        "remediation.references"
+        "resources.cloud_partition"
+        "resources.name"
+        "resources.owner.account.uid"
+        "resources.owner.org.uid"
+        "resources.owner.account.name"
+        "resources.provider"
+        "resources.region"
+        "resources.type"
+        "resources.uid"
+        "severity"
+        "status"
+        "comment"
+        "vulnerabilities.fix_coverage"
+        "class_name"
+        "databucket.encryption_details.algorithm"
+        "databucket.encryption_details.key_uid"
+        "databucket.file.data_classifications.classifier_details.type"
+        "evidences.actor.user.account.uid"
+        "evidences.api.operation"
+        "evidences.api.response.error_message"
+        "evidences.api.service.name"
+        "evidences.connection_info.direction"
+        "evidences.connection_info.protocol_name"
+        "evidences.dst_endpoint.autonomous_system.name"
+        "evidences.dst_endpoint.location.city"
+        "evidences.dst_endpoint.location.country"
+        "evidences.src_endpoint.autonomous_system.name"
+        "evidences.src_endpoint.hostname"
+        "evidences.src_endpoint.location.city"
+        "evidences.src_endpoint.location.country"
+        "finding_info.analytic.name"
+        "malware.name"
+        "malware_scan_info.uid"
+        "malware.severity"
+        "resources.cloud_function.layers.uid_alt"
+        "resources.cloud_function.runtime"
+        "resources.cloud_function.user.uid"
+        "resources.device.encryption_details.key_uid"
+        "resources.device.image.uid"
+        "resources.image.architecture"
+        "resources.image.registry_uid"
+        "resources.image.repository_name"
+        "resources.image.uid"
+        "resources.subnet_info.uid"
+        "resources.vpc_uid"
+        "vulnerabilities.affected_code.file.path"
+        "vulnerabilities.affected_packages.name"
+        "vulnerabilities.cve.cvss.vendor_name"
+        "vulnerabilities.cve.cvss.version"
+        "vulnerabilities.cve.epss.score"
+        "vulnerabilities.cve.uid"
+        "vulnerabilities.related_vulnerabilities"
+        "vendor_attributes.severity"
+        "activity_id"
+        "compliance.status_id"
+        "confidence_score"
+        "severity_id"
+        "status_id"
+        "finding_info.related_events_count"
+        "evidences.api.response.code"
+        "evidences.dst_endpoint.autonomous_system.number"
+        "evidences.dst_endpoint.port"
+        "evidences.src_endpoint.autonomous_system.number"
+        "evidences.src_endpoint.port"
+        "resources.image.in_use_count"
+        "vulnerabilities.cve.cvss.base_score"
+        "vendor_attributes.severity_id"
+        "finding_info.created_time_dt"
+        "finding_info.first_seen_time_dt"
+        "finding_info.last_seen_time_dt"
+        "finding_info.modified_time_dt"
+        "resources.image.created_time_dt"
+        "resources.image.last_used_time_dt"
+        "resources.modified_time_dt"
+        "compliance.assessments.meets_criteria"
+        "vulnerabilities.is_exploit_available"
+        "vulnerabilities.is_fix_available"
+        "resources.tags"
+        "compliance.control_parameters"
+        "databucket.tags"
+        "finding_info.tags"
+        "evidences.dst_endpoint.ip"
+        "evidences.src_endpoint.ip"
+    end
+
+    -- A summary of the output configuration for a findings export, returned by ListExportJobsV2. Unlike the configuration returned by GetExportJobV2, it reports only the output format.
+    record FindingsOutputSummary
+        -- The output format of the export. CSV produces comma-separated rows that are suitable for spreadsheets and analysis tools. OCSF_JSON produces newline-delimited JSON records in the Open Cybersecurity Schema Framework (OCSF) format used elsewhere in Security Hub.
+        Format: string
+    end
+
+    -- A summary of the output configuration for an export job. The populated member corresponds to the data type that was exported.
+    record ExportOutputSummary
+        -- The output configuration summary for a findings export.
+        Findings: FindingsOutputSummary
+    end
+
+    -- Defines the data boundary for a findings export. Scopes determine which organizational units or organizations to retrieve data from.
+    -- Only a delegated administrator can use this structure. If a delegated administrator omits it, the export covers the entire organization; any other caller exports only findings from its own account.
+    record ExportScopes
+        -- A list of Organizations scopes to include in the export. Each entry in the list specifies an organization or organizational unit to include for the delegated administrator's account. If the list specifies multiple entries, the entries are combined using OR logic.
+        AwsOrganizations: {AwsOrganizationScope}
+    end
+
+    -- A summary of an export job, as returned by ListExportJobsV2.
+    record ExportSummary
+        -- The unique identifier of the export job.
+        ExportJobId: string
+        -- The user-provided name of the export job, if one was specified.
+        Name: string
+        -- The current state of the export job.
+        Status: string
+        -- The category of data that the export job produces.
+        DataType: string
+        -- The output configuration of the export job. For findings exports, this reports the output format. Present only for findings exports; absent for other data types.
+        OutputConfiguration: ExportOutputSummary
+        -- The organization scopes that the export job was started with, echoed verbatim. Absent if the caller didn't supply Scopes.
+        Scopes: ExportScopes
+        -- The destination that the export job writes to.
+        Destination: ExportDestination
+        -- A code that classifies why the export job failed. Present only when Status is FAILED.
+        FailureCode: string
+        -- A human-readable message about why the export job failed. Present only when Status is FAILED.
+        FailureMessage: string
+        -- The time when the export job was created.
+        -- For more information about the validation and formatting of timestamp fields in Security Hub, see Timestamps.
+        StartedAt: number
+        -- The time when the export job reached a terminal state. Absent while the job is RUNNING.
+        -- For more information about the validation and formatting of timestamp fields in Security Hub, see Timestamps.
+        EndedAt: number
+    end
+
     enum ExposureImpact
         "Reduces"
         "Resolves"
@@ -13430,6 +13646,11 @@ local record M
         StandardsSubscriptions: {StandardsSubscription}
         -- The pagination token to use to request the next page of results.
         NextToken: string
+    end
+
+    record GetExportJobV2Input
+        -- The unique identifier of the export job to retrieve. This is the value returned by StartExportJobV2.
+        ExportJobId: string
     end
 
     record GetFindingAggregatorInput
@@ -13948,7 +14169,7 @@ local record M
 
     -- Provided remediation guidance examples in different formats that can be run for remediating the target.
     record RemediationGuidanceExamples
-        -- An AWS CLI snippet version of the example.
+        -- An CLI snippet version of the example.
         AwsCli: string
         -- A CLI snippet version of the example.
         Cli: string
@@ -14691,6 +14912,26 @@ local record M
         NextToken: string
     end
 
+    record ListExportJobsV2Input
+        -- Filters the results to export jobs that have the specified status.
+        Status: string
+        -- Filters the results to export jobs that produce the specified data type.
+        DataType: string
+        -- The maximum number of results to return in a single call. Valid range is 1–20.
+        MaxResults: number
+        -- The token required for pagination.
+        -- On your first call, set the value of this parameter to NULL.
+        -- For subsequent calls, to continue listing data, set the value of this parameter to the value returned in the previous response.
+        NextToken: string
+    end
+
+    record ListExportJobsV2Output
+        -- The export jobs that match the request, as ExportSummary objects.
+        Items: {ExportSummary}
+        -- The pagination token to use to request the next page of results. Otherwise, this parameter is null.
+        NextToken: string
+    end
+
     record ListExposuresByRemediationV2Input
         -- The unique identifier (ID) of an existing remediation target to list exposure findings for.
         TargetUid: string
@@ -14978,6 +15219,11 @@ local record M
     end
 
     record StartConfigurationPolicyDisassociationOutput
+    end
+
+    record StartExportJobV2Output
+        -- The unique identifier of the export job that Security Hub started. Use this value with GetExportJobV2 or CancelExportJobV2.
+        ExportJobId: string
     end
 
     record TagResourceInput
@@ -15338,6 +15584,19 @@ local record M
         OcsfFindingCriteria: OcsfFindingFilters
     end
 
+    -- The configuration for a findings export: the output format, an optional set of filters, and the fields to include.
+    record FindingsOutput
+        -- The output format of the export. CSV produces comma-separated rows that are suitable for spreadsheets and analysis tools. OCSF_JSON produces newline-delimited JSON records in the Open Cybersecurity Schema Framework (OCSF) format used elsewhere in Security Hub.
+        Format: string
+        -- An optional set of OCSF finding filters that restrict which findings are exported. The filter structure is the same as the one used by GetFindingsV2. If you omit this member, Security Hub exports all findings available to the caller. When echoed by GetExportJobV2, relative date ranges are returned unresolved.
+        Filters: OcsfFindingFilters
+        -- The OCSF finding fields to include in the export, specified as OCSF field paths (for example, finding_info.title or severity). You can specify from 1 to 50 fields.
+        -- Whether this parameter is required depends on the value of Format:
+        -- CSV – Required. The field paths that you specify become the columns of the output, in the order that you provide them. If you omit this parameter, the request returns a ValidationException.
+        -- OCSF_JSON – Not supported. This format includes each finding in full, so field selection doesn't apply. If you specify this parameter, the request returns a ValidationException.
+        SelectedFields: {string}
+    end
+
     record GetFindingsTrendsV2Input
         -- The filters to apply to the findings trend data.
         Filters: FindingsTrendsFilters
@@ -15437,6 +15696,12 @@ local record M
         ClientToken: string
     end
 
+    -- Specifies what data to export and how to format it. This is a union: you must specify exactly one member. Currently, the only supported member is Findings.
+    record ExportOutput
+        -- Configures an export of Security Hub findings, including the output format and any filters or selected fields.
+        Findings: FindingsOutput
+    end
+
     record GetAutomationRuleV2Output
         -- The ARN of the V2 automation rule.
         RuleArn: string
@@ -15477,6 +15742,33 @@ local record M
         Actions: {AutomationRulesActionV2}
     end
 
+    record GetExportJobV2Output
+        -- The unique identifier of the export job.
+        ExportJobId: string
+        -- The user-provided name of the export job, if one was specified when the job was started.
+        Name: string
+        -- The current state of the export job.
+        Status: string
+        -- The category of data that the export job produces.
+        DataType: string
+        -- The output configuration that the export job was started with, including the format and any filters or selected fields.
+        OutputConfiguration: ExportOutput
+        -- The organization scopes that the export job was started with, echoed verbatim. This parameter is absent if the caller didn't supply Scopes. It contains only the organization or organizational unit (OU) identifiers that the caller submitted; it never contains resolved member-account identifiers.
+        Scopes: ExportScopes
+        -- The destination that the export job writes to.
+        Destination: ExportDestination
+        -- A code that classifies why the export job failed. Present only when Status is FAILED.
+        FailureCode: string
+        -- A human-readable message that provides more detail about why the export job failed. Present only when Status is FAILED.
+        FailureMessage: string
+        -- The time when the export job was created.
+        -- For more information about the validation and formatting of timestamp fields in Security Hub, see Timestamps.
+        StartedAt: number
+        -- The time when the export job reached a terminal state (SUCCEEDED, FAILED, or CANCELLED). This parameter is absent while the job is RUNNING.
+        -- For more information about the validation and formatting of timestamp fields in Security Hub, see Timestamps.
+        EndedAt: number
+    end
+
     record GetFindingStatisticsV2Input
         -- Specifies how security findings should be aggregated and organized in the statistical analysis.
         -- It can accept up to 5 groupBy fields in a single call.
@@ -15505,6 +15797,21 @@ local record M
         SortOrder: string
         -- The maximum number of results to be returned.
         MaxStatisticResults: number
+    end
+
+    record StartExportJobV2Input
+        -- An optional, user-provided name for the export job that helps you identify it in ListExportJobsV2 results. The value can be 1–256 characters. Alphanumeric characters, spaces, and the following ASCII characters are permitted: . _ , : ( ) / + -.
+        Name: string
+        -- The destination that Security Hub writes the export to. You must specify exactly one destination type. Currently, the only supported type is Amazon S3.
+        Destination: ExportDestination
+        -- Specifies what data to export and how to format it. You must specify exactly one output type. Currently, the only supported type is Findings.
+        OutputConfiguration: ExportOutput
+        -- Limits the export to findings from specific organizational units (OUs) or from the delegated administrator's organization. Only the delegated administrator account can use this parameter; other accounts that specify it receive an AccessDeniedException.
+        -- This parameter is optional. If you omit it, the delegated administrator exports findings from all accounts across the entire organization, and other accounts export only their own findings.
+        -- You can specify up to 10 entries in Scopes.AwsOrganizations. If you specify multiple entries, Security Hub combines them using OR logic.
+        Scopes: ExportScopes
+        -- A unique identifier used to ensure idempotency.
+        ClientToken: string
     end
 
 end
