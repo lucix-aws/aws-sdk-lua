@@ -220,6 +220,24 @@ function M.items_list_limits(client, input)
     })
 end
 
+--- Returns a page iterator for listMemberships.
+function M.pages_list_memberships(client, input)
+    return paginator.pages(client, "listMemberships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "memberships",
+    })
+end
+
+--- Returns an item iterator for listMemberships.
+function M.items_list_memberships(client, input)
+    return paginator.items(client, "listMemberships", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "memberships",
+    })
+end
+
 --- Returns a page iterator for listMeteredProducts.
 function M.pages_list_metered_products(client, input)
     return paginator.pages(client, "listMeteredProducts", input, {

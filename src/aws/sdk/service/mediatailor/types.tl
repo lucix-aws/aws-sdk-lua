@@ -297,6 +297,16 @@ local record M
         Alias: string
     end
 
+    -- The optional response-caching configuration shared by the HTTP-based function types (HTTP_REQUEST, AWS_SERVICE_REQUEST, and VAST_REQUEST). When you provide this configuration, MediaTailor caches the function's responses that have one of the following HTTP status codes: 200, 203, 204, 404, 405, 410, 414, and 501. For a cacheable response, MediaTailor caches it for the number of seconds given by the response's Cache-Control max-age directive, limited to the range between TtlMinimumSeconds and TtlMaximumSeconds. If the response has no Cache-Control max-age directive, MediaTailor caches it for TtlMinimumSeconds seconds. Cached HTTP responses are scoped per playback configuration, not per function.
+    record HttpRequestCacheConfiguration
+        -- The lower bound, in seconds, on how long MediaTailor caches a response. MediaTailor also uses this value as the cache duration when a response has no Cache-Control max-age directive.
+        TtlMinimumSeconds: number
+        -- The upper bound, in seconds, on how long MediaTailor caches a response. This value must be greater than or equal to TtlMinimumSeconds.
+        TtlMaximumSeconds: number
+        -- A JSONata expression that MediaTailor evaluates to a custom cache key. By default, the cache key is a hash of the HTTP URL, the request body, and the HTTP method; request headers are not included. You can specify a custom cache key expression to vary caching by request headers and more. The evaluated key must be smaller than 1 KB; otherwise the HTTP function will fail.
+        Key: string
+    end
+
     enum MethodType
         "GET"
         "POST"
@@ -322,6 +332,8 @@ local record M
         Body: string
         -- A map of HTTP header names to expression values. MediaTailor evaluates each header value expression at runtime and includes the result in the outbound request to the AWS service. Use this to pass any headers required by the target service operation. You can include a maximum of 50 headers.
         Headers: {string : string}
+        -- The optional response-caching configuration for the function. When present, MediaTailor caches the responses that the function receives from the AWS service, within the time-to-live (TTL) bounds that you specify. Omit this configuration to disable response caching.
+        Cache: HttpRequestCacheConfiguration
         -- The AWS service to call. Valid value: elemental-inference (AWS Elemental Inference).
         TargetService: string
         -- The AWS Region for the target service. Specify a static Region code (for example, us-east-1) or a JSONata expression that resolves to a Region code at runtime (for example, {%inference.region%}).
@@ -375,6 +387,8 @@ local record M
         Body: string
         -- A map of HTTP header names to expression values. MediaTailor evaluates each header value expression at runtime and includes the result in the outbound HTTP request. Maximum 50 headers.
         Headers: {string : string}
+        -- The optional response-caching configuration for the function. When present, MediaTailor caches the responses that the function receives from the HTTP endpoint, within the time-to-live (TTL) bounds that you specify. Omit this configuration to disable response caching.
+        Cache: HttpRequestCacheConfiguration
     end
 
     -- The configuration for a SEQUENTIAL_EXECUTOR function. A SEQUENTIAL_EXECUTOR runs a sequence of child functions in order, passing data between steps through temporary data. For more information, see SEQUENTIAL_EXECUTOR in the MediaTailor User Guide.
@@ -405,6 +419,8 @@ local record M
         Body: string
         -- A map of HTTP header names to expression values. MediaTailor evaluates each header value expression at runtime and includes the result in the outbound request. Headers beginning with X-Amz- are reserved by the service, and method override headers are not allowed.
         Headers: {string : string}
+        -- The optional response-caching configuration for the function. When present, MediaTailor caches the responses that the function receives from the HTTP endpoint, within the time-to-live (TTL) bounds that you specify. Omit this configuration to disable response caching.
+        Cache: HttpRequestCacheConfiguration
     end
 
     -- Defines reusable logic that MediaTailor executes at lifecycle hooks during ad insertion. The FunctionType determines the function's runtime behavior. For more information about functions, see Working with functions in the MediaTailor User Guide.

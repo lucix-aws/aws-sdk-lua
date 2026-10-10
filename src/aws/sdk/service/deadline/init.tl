@@ -100,6 +100,7 @@ local record Client
     listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
     listLicenseEndpoints: function(Client, types.ListLicenseEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseEndpointsOutput>
     listLimits: function(Client, types.ListLimitsInput, ? base_client.InvokeOptions): async.Operation<types.ListLimitsOutput>
+    listMemberships: function(Client, types.ListMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
     listMeteredProducts: function(Client, types.ListMeteredProductsInput, ? base_client.InvokeOptions): async.Operation<types.ListMeteredProductsOutput>
     listMonitors: function(Client, types.ListMonitorsInput, ? base_client.InvokeOptions): async.Operation<types.ListMonitorsOutput>
     listQueueEnvironments: function(Client, types.ListQueueEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListQueueEnvironmentsOutput>
@@ -514,6 +515,10 @@ end
 
 function C:listLimits(input: types.ListLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLimitsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLimits as schema.OperationSchema, input, options) as async.Operation<types.ListLimitsOutput>
+end
+
+function C:listMemberships(input: types.ListMembershipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemberships as schema.OperationSchema, input, options) as async.Operation<types.ListMembershipsOutput>
 end
 
 function C:listMeteredProducts(input: types.ListMeteredProductsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMeteredProductsOutput>

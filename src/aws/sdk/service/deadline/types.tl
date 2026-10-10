@@ -4771,6 +4771,49 @@ local record M
         nextToken: string
     end
 
+    enum MembershipResourceType
+        "FARM"
+        "QUEUE"
+        "FLEET"
+        "JOB"
+    end
+
+    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
+    record ListMembershipsInput
+        -- The token for the next set of results, or null to start from the beginning.
+        nextToken: string
+        -- The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.
+        maxResults: number
+        -- The ID of the IAM Identity Center principal whose Deadline Cloud resource memberships you want to list.
+        principalId: string
+        -- The identity store ID that contains the principal. This parameter is required for callers that do not use a monitor session.
+        identityStoreId: string
+        -- The Region of the IAM Identity Center instance. If not provided, the service defaults to the Amazon Web Services Region in which you make the request.
+        identityCenterRegion: string
+        -- The resource types to include when listing the principal's memberships. If not specified, memberships for all supported resource types are returned.
+        resourceTypes: {string}
+    end
+
+    -- A membership record for a principal on a single Deadline Cloud resource. The summary identifies the resource that the principal is a member of and the principal's membership level for that resource.
+    record MembershipSummary
+        -- A membership on a farm.
+        farm: FarmMember
+        -- A membership on a queue.
+        queue: QueueMember
+        -- A membership on a fleet.
+        fleet: FleetMember
+        -- A membership on a job.
+        job: JobMember
+    end
+
+    -- Shared pagination field for List operation outputs (nextToken).
+    record ListMembershipsOutput
+        -- The memberships associated with the specified principal.
+        memberships: {MembershipSummary}
+        -- If Deadline Cloud returns nextToken, then there are more results available. The value of nextToken is a unique pagination token for each page. To retrieve the next page, call the operation again using the returned token. Keep all other arguments unchanged. If no results remain, then nextToken is set to null. Each pagination token expires after 24 hours. If you provide a token that isn't valid, then you receive an HTTP 400 ValidationException error.
+        nextToken: string
+    end
+
     -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListQueueFleetAssociationsInput
         -- The farm ID for the queue-fleet association list.

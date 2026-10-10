@@ -834,6 +834,15 @@ local record M
         complianceReport: boolean
     end
 
+    enum TestScopeType
+        "WEB_APP"
+        "GENERATIVE_AI_APP"
+    end
+
+    -- The category of application a pentest targets.
+    record TestScope
+    end
+
     -- Represents a pentest configuration that defines the parameters for security testing, including target assets, risk type exclusions, and infrastructure settings.
     record Pentest
         -- The unique identifier of the pentest.
@@ -868,6 +877,7 @@ local record M
         reportFilters: ReportFilters
         -- The CI/CD pentesting configuration for this pentest. Present when the pentest is set up to run from a CI/CD pipeline.
         cicdConfiguration: CiCdConfiguration
+        testScope: TestScope
         -- The date and time the pentest was created, in UTC format.
         createdAt: number
         -- The date and time the pentest was last updated, in UTC format.
@@ -1427,6 +1437,7 @@ local record M
         -- The code changes that defined the scope of this CI/CD pentest job. Present only for jobs of type CICD.
         scopeChanges: {ScopeChange}
         cicdConfiguration: CiCdConfiguration
+        testScope: TestScope
         -- The date and time the pentest job was created, in UTC format.
         createdAt: number
         -- The date and time the pentest job was last updated, in UTC format.
@@ -2232,6 +2243,7 @@ local record M
         reportFilters: ReportFilters
         -- The CI/CD pentesting configuration to apply to the pentest.
         cicdConfiguration: CiCdConfiguration
+        testScope: TestScope
     end
 
     -- Output for the CreatePentest operation.
@@ -2260,6 +2272,7 @@ local record M
         reportFilters: ReportFilters
         -- The CI/CD pentesting configuration applied to the pentest.
         cicdConfiguration: CiCdConfiguration
+        testScope: TestScope
     end
 
     -- The configuration for a self-managed private connection.
@@ -4068,6 +4081,7 @@ local record M
         reportFilters: ReportFilters
         -- The updated CI/CD pentesting configuration to apply to the pentest.
         cicdConfiguration: CiCdConfiguration
+        testScope: TestScope
     end
 
     -- Output for the UpdatePentest operation.
@@ -4096,6 +4110,7 @@ local record M
         reportFilters: ReportFilters
         -- The CI/CD pentesting configuration applied to the pentest.
         cicdConfiguration: CiCdConfiguration
+        testScope: TestScope
     end
 
     -- Input for updating an existing threat.

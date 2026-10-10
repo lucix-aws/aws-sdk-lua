@@ -11609,6 +11609,14 @@ local record M
         ShareBeeAction: string
         -- The ability to use Bee actions.
         UseBeeAction: string
+        -- The ability to perform actions using Gong connectors.
+        GongAction: string
+        -- The ability to create and update Gong actions.
+        CreateAndUpdateGongAction: string
+        -- The ability to share Gong actions.
+        ShareGongAction: string
+        -- The ability to use Gong actions.
+        UseGongAction: string
         -- The ability to perform Topic-related actions.
         Topic: string
         -- The ability to Edit Visual with AI
@@ -11662,6 +11670,366 @@ local record M
         InboundEmailTrigger: string
         -- The ability to create, view, edit, delete, and run Quick event triggers for flows and automations.
         QuickEventTrigger: string
+        -- The ability to create, update, and share file data sources.
+        FileDataSource: string
+        -- The ability to create file data sources.
+        CreateFileDataSource: string
+        -- The ability to update file data sources.
+        UpdateFileDataSource: string
+        -- The ability to share file data sources.
+        ShareFileDataSource: string
+        -- The ability to create, update, and share Amazon S3 data sources.
+        S3DataSource: string
+        -- The ability to create Amazon S3 data sources.
+        CreateS3DataSource: string
+        -- The ability to update Amazon S3 data sources.
+        UpdateS3DataSource: string
+        -- The ability to share Amazon S3 data sources.
+        ShareS3DataSource: string
+        -- The ability to create, update, and share Amazon S3 Analytics data sources.
+        S3AnalyticsDataSource: string
+        -- The ability to create Amazon S3 Analytics data sources.
+        CreateS3AnalyticsDataSource: string
+        -- The ability to update Amazon S3 Analytics data sources.
+        UpdateS3AnalyticsDataSource: string
+        -- The ability to share Amazon S3 Analytics data sources.
+        ShareS3AnalyticsDataSource: string
+        -- The ability to create, update, and share Amazon S3 Tables data sources.
+        S3TablesDataSource: string
+        -- The ability to create Amazon S3 Tables data sources.
+        CreateS3TablesDataSource: string
+        -- The ability to update Amazon S3 Tables data sources.
+        UpdateS3TablesDataSource: string
+        -- The ability to share Amazon S3 Tables data sources.
+        ShareS3TablesDataSource: string
+        -- The ability to create, update, and share Amazon Athena data sources.
+        AthenaDataSource: string
+        -- The ability to create Amazon Athena data sources.
+        CreateAthenaDataSource: string
+        -- The ability to update Amazon Athena data sources.
+        UpdateAthenaDataSource: string
+        -- The ability to share Amazon Athena data sources.
+        ShareAthenaDataSource: string
+        -- The ability to create, update, and share auto-discovered Amazon RDS data sources.
+        RdsDataSource: string
+        -- The ability to create auto-discovered Amazon RDS data sources.
+        CreateRdsDataSource: string
+        -- The ability to update auto-discovered Amazon RDS data sources.
+        UpdateRdsDataSource: string
+        -- The ability to share auto-discovered Amazon RDS data sources.
+        ShareRdsDataSource: string
+        -- The ability to create, update, and share auto-discovered Amazon Redshift data sources.
+        RedshiftAutoDiscoveredDataSource: string
+        -- The ability to create auto-discovered Amazon Redshift data sources.
+        CreateRedshiftAutoDiscoveredDataSource: string
+        -- The ability to update auto-discovered Amazon Redshift data sources.
+        UpdateRedshiftAutoDiscoveredDataSource: string
+        -- The ability to share auto-discovered Amazon Redshift data sources.
+        ShareRedshiftAutoDiscoveredDataSource: string
+        -- The ability to create, update, and share manually configured Amazon Redshift data sources.
+        RedshiftManualDataSource: string
+        -- The ability to create manually configured Amazon Redshift data sources.
+        CreateRedshiftManualDataSource: string
+        -- The ability to update manually configured Amazon Redshift data sources.
+        UpdateRedshiftManualDataSource: string
+        -- The ability to share manually configured Amazon Redshift data sources.
+        ShareRedshiftManualDataSource: string
+        -- The ability to create, update, and share Amazon OpenSearch Service data sources.
+        OpenSearchDataSource: string
+        -- The ability to create Amazon OpenSearch Service data sources.
+        CreateOpenSearchDataSource: string
+        -- The ability to update Amazon OpenSearch Service data sources.
+        UpdateOpenSearchDataSource: string
+        -- The ability to share Amazon OpenSearch Service data sources.
+        ShareOpenSearchDataSource: string
+        -- The ability to create, update, and share Amazon Timestream data sources.
+        TimestreamDataSource: string
+        -- The ability to create Amazon Timestream data sources.
+        CreateTimestreamDataSource: string
+        -- The ability to update Amazon Timestream data sources.
+        UpdateTimestreamDataSource: string
+        -- The ability to share Amazon Timestream data sources.
+        ShareTimestreamDataSource: string
+        -- The ability to create, update, and share Amazon Aurora data sources.
+        AuroraDataSource: string
+        -- The ability to create Amazon Aurora data sources.
+        CreateAuroraDataSource: string
+        -- The ability to update Amazon Aurora data sources.
+        UpdateAuroraDataSource: string
+        -- The ability to share Amazon Aurora data sources.
+        ShareAuroraDataSource: string
+        -- The ability to create, update, and share MySQL data sources.
+        MySqlDataSource: string
+        -- The ability to create MySQL data sources.
+        CreateMySqlDataSource: string
+        -- The ability to update MySQL data sources.
+        UpdateMySqlDataSource: string
+        -- The ability to share MySQL data sources.
+        ShareMySqlDataSource: string
+        -- The ability to create, update, and share PostgreSQL data sources.
+        PostgreSqlDataSource: string
+        -- The ability to create PostgreSQL data sources.
+        CreatePostgreSqlDataSource: string
+        -- The ability to update PostgreSQL data sources.
+        UpdatePostgreSqlDataSource: string
+        -- The ability to share PostgreSQL data sources.
+        SharePostgreSqlDataSource: string
+        -- The ability to create, update, and share Oracle data sources.
+        OracleDataSource: string
+        -- The ability to create Oracle data sources.
+        CreateOracleDataSource: string
+        -- The ability to update Oracle data sources.
+        UpdateOracleDataSource: string
+        -- The ability to share Oracle data sources.
+        ShareOracleDataSource: string
+        -- The ability to create, update, and share SQL Server data sources.
+        SqlServerDataSource: string
+        -- The ability to create SQL Server data sources.
+        CreateSqlServerDataSource: string
+        -- The ability to update SQL Server data sources.
+        UpdateSqlServerDataSource: string
+        -- The ability to share SQL Server data sources.
+        ShareSqlServerDataSource: string
+        -- The ability to create, update, and share MariaDB data sources.
+        MariaDbDataSource: string
+        -- The ability to create MariaDB data sources.
+        CreateMariaDbDataSource: string
+        -- The ability to update MariaDB data sources.
+        UpdateMariaDbDataSource: string
+        -- The ability to share MariaDB data sources.
+        ShareMariaDbDataSource: string
+        -- The ability to create, update, and share Snowflake data sources.
+        SnowflakeDataSource: string
+        -- The ability to create Snowflake data sources.
+        CreateSnowflakeDataSource: string
+        -- The ability to update Snowflake data sources.
+        UpdateSnowflakeDataSource: string
+        -- The ability to share Snowflake data sources.
+        ShareSnowflakeDataSource: string
+        -- The ability to create, update, and share Google BigQuery data sources.
+        GoogleBigQueryDataSource: string
+        -- The ability to create Google BigQuery data sources.
+        CreateGoogleBigQueryDataSource: string
+        -- The ability to update Google BigQuery data sources.
+        UpdateGoogleBigQueryDataSource: string
+        -- The ability to share Google BigQuery data sources.
+        ShareGoogleBigQueryDataSource: string
+        -- The ability to create, update, and share Databricks data sources.
+        DatabricksDataSource: string
+        -- The ability to create Databricks data sources.
+        CreateDatabricksDataSource: string
+        -- The ability to update Databricks data sources.
+        UpdateDatabricksDataSource: string
+        -- The ability to share Databricks data sources.
+        ShareDatabricksDataSource: string
+        -- The ability to create, update, and share Starburst data sources.
+        StarburstDataSource: string
+        -- The ability to create Starburst data sources.
+        CreateStarburstDataSource: string
+        -- The ability to update Starburst data sources.
+        UpdateStarburstDataSource: string
+        -- The ability to share Starburst data sources.
+        ShareStarburstDataSource: string
+        -- The ability to create, update, and share Trino data sources.
+        TrinoDataSource: string
+        -- The ability to create Trino data sources.
+        CreateTrinoDataSource: string
+        -- The ability to update Trino data sources.
+        UpdateTrinoDataSource: string
+        -- The ability to share Trino data sources.
+        ShareTrinoDataSource: string
+        -- The ability to create, update, and share Impala data sources.
+        ImpalaDataSource: string
+        -- The ability to create Impala data sources.
+        CreateImpalaDataSource: string
+        -- The ability to update Impala data sources.
+        UpdateImpalaDataSource: string
+        -- The ability to share Impala data sources.
+        ShareImpalaDataSource: string
+        -- The ability to create, update, and share Teradata data sources.
+        TeradataDataSource: string
+        -- The ability to create Teradata data sources.
+        CreateTeradataDataSource: string
+        -- The ability to update Teradata data sources.
+        UpdateTeradataDataSource: string
+        -- The ability to share Teradata data sources.
+        ShareTeradataDataSource: string
+        -- The ability to create, update, and share Presto data sources.
+        PrestoDataSource: string
+        -- The ability to create Presto data sources.
+        CreatePrestoDataSource: string
+        -- The ability to update Presto data sources.
+        UpdatePrestoDataSource: string
+        -- The ability to share Presto data sources.
+        SharePrestoDataSource: string
+        -- The ability to create, update, and share Spark data sources.
+        SparkDataSource: string
+        -- The ability to create Spark data sources.
+        CreateSparkDataSource: string
+        -- The ability to update Spark data sources.
+        UpdateSparkDataSource: string
+        -- The ability to share Spark data sources.
+        ShareSparkDataSource: string
+        -- The ability to create, update, and share Exasol data sources.
+        ExasolDataSource: string
+        -- The ability to create Exasol data sources.
+        CreateExasolDataSource: string
+        -- The ability to update Exasol data sources.
+        UpdateExasolDataSource: string
+        -- The ability to share Exasol data sources.
+        ShareExasolDataSource: string
+        -- The ability to create, update, and share Db2 data sources.
+        Db2DataSource: string
+        -- The ability to create Db2 data sources.
+        CreateDb2DataSource: string
+        -- The ability to update Db2 data sources.
+        UpdateDb2DataSource: string
+        -- The ability to share Db2 data sources.
+        ShareDb2DataSource: string
+        -- The ability to create, update, and share SAP HANA data sources.
+        SapHanaDataSource: string
+        -- The ability to create SAP HANA data sources.
+        CreateSapHanaDataSource: string
+        -- The ability to update SAP HANA data sources.
+        UpdateSapHanaDataSource: string
+        -- The ability to share SAP HANA data sources.
+        ShareSapHanaDataSource: string
+        -- The ability to create, update, and share Denodo data sources.
+        DenodoDataSource: string
+        -- The ability to create Denodo data sources.
+        CreateDenodoDataSource: string
+        -- The ability to update Denodo data sources.
+        UpdateDenodoDataSource: string
+        -- The ability to share Denodo data sources.
+        ShareDenodoDataSource: string
+        -- The ability to create, update, and share Dremio data sources.
+        DremioDataSource: string
+        -- The ability to create Dremio data sources.
+        CreateDremioDataSource: string
+        -- The ability to update Dremio data sources.
+        UpdateDremioDataSource: string
+        -- The ability to share Dremio data sources.
+        ShareDremioDataSource: string
+        -- The ability to create, update, and share Salesforce data sources.
+        SalesforceDataSource: string
+        -- The ability to create Salesforce data sources.
+        CreateSalesforceDataSource: string
+        -- The ability to update Salesforce data sources.
+        UpdateSalesforceDataSource: string
+        -- The ability to share Salesforce data sources.
+        ShareSalesforceDataSource: string
+        -- The ability to create, update, and share Amazon QuickSight data sources.
+        RadiantDataSource: string
+        -- The ability to create Amazon QuickSight data sources.
+        CreateRadiantDataSource: string
+        -- The ability to update Amazon QuickSight data sources.
+        UpdateRadiantDataSource: string
+        -- The ability to share Amazon QuickSight data sources.
+        ShareRadiantDataSource: string
+        -- The ability to create, update, and share PayPal data sources.
+        PayPalDataSource: string
+        -- The ability to create PayPal data sources.
+        CreatePayPalDataSource: string
+        -- The ability to update PayPal data sources.
+        UpdatePayPalDataSource: string
+        -- The ability to share PayPal data sources.
+        SharePayPalDataSource: string
+        -- The ability to create, update, and share Square data sources.
+        SquareDataSource: string
+        -- The ability to create Square data sources.
+        CreateSquareDataSource: string
+        -- The ability to update Square data sources.
+        UpdateSquareDataSource: string
+        -- The ability to share Square data sources.
+        ShareSquareDataSource: string
+        -- The ability to create, update, and share GitHub data sources.
+        GitHubDataSource: string
+        -- The ability to create GitHub data sources.
+        CreateGitHubDataSource: string
+        -- The ability to update GitHub data sources.
+        UpdateGitHubDataSource: string
+        -- The ability to share GitHub data sources.
+        ShareGitHubDataSource: string
+        -- The ability to create, update, and share Twitter data sources.
+        TwitterDataSource: string
+        -- The ability to create Twitter data sources.
+        CreateTwitterDataSource: string
+        -- The ability to update Twitter data sources.
+        UpdateTwitterDataSource: string
+        -- The ability to share Twitter data sources.
+        ShareTwitterDataSource: string
+        -- The ability to create, update, and share Jira data sources.
+        JiraDataSource: string
+        -- The ability to create Jira data sources.
+        CreateJiraDataSource: string
+        -- The ability to update Jira data sources.
+        UpdateJiraDataSource: string
+        -- The ability to share Jira data sources.
+        ShareJiraDataSource: string
+        -- The ability to create, update, and share ServiceNow data sources.
+        ServiceNowDataSource: string
+        -- The ability to create ServiceNow data sources.
+        CreateServiceNowDataSource: string
+        -- The ability to update ServiceNow data sources.
+        UpdateServiceNowDataSource: string
+        -- The ability to share ServiceNow data sources.
+        ShareServiceNowDataSource: string
+        -- The ability to create, update, and share Adobe Analytics data sources.
+        AdobeAnalyticsDataSource: string
+        -- The ability to create Adobe Analytics data sources.
+        CreateAdobeAnalyticsDataSource: string
+        -- The ability to update Adobe Analytics data sources.
+        UpdateAdobeAnalyticsDataSource: string
+        -- The ability to share Adobe Analytics data sources.
+        ShareAdobeAnalyticsDataSource: string
+        -- The ability to create, update, and share Google Analytics data sources.
+        GoogleAnalyticsDataSource: string
+        -- The ability to create Google Analytics data sources.
+        CreateGoogleAnalyticsDataSource: string
+        -- The ability to update Google Analytics data sources.
+        UpdateGoogleAnalyticsDataSource: string
+        -- The ability to share Google Analytics data sources.
+        ShareGoogleAnalyticsDataSource: string
+        -- The ability to create, update, and share Google Sheets data sources.
+        GoogleSheetsDataSource: string
+        -- The ability to create Google Sheets data sources.
+        CreateGoogleSheetsDataSource: string
+        -- The ability to update Google Sheets data sources.
+        UpdateGoogleSheetsDataSource: string
+        -- The ability to share Google Sheets data sources.
+        ShareGoogleSheetsDataSource: string
+        -- The ability to create, update, and share Amazon DocumentDB data sources.
+        DocumentDbDataSource: string
+        -- The ability to create Amazon DocumentDB data sources.
+        CreateDocumentDbDataSource: string
+        -- The ability to update Amazon DocumentDB data sources.
+        UpdateDocumentDbDataSource: string
+        -- The ability to share Amazon DocumentDB data sources.
+        ShareDocumentDbDataSource: string
+        -- The ability to create, update, and share MongoDB data sources.
+        MongoDbDataSource: string
+        -- The ability to create MongoDB data sources.
+        CreateMongoDbDataSource: string
+        -- The ability to update MongoDB data sources.
+        UpdateMongoDbDataSource: string
+        -- The ability to share MongoDB data sources.
+        ShareMongoDbDataSource: string
+        -- The ability to create, update, and share MongoDB Atlas data sources.
+        MongoAtlasDataSource: string
+        -- The ability to create MongoDB Atlas data sources.
+        CreateMongoAtlasDataSource: string
+        -- The ability to update MongoDB Atlas data sources.
+        UpdateMongoAtlasDataSource: string
+        -- The ability to share MongoDB Atlas data sources.
+        ShareMongoAtlasDataSource: string
+        -- The ability to create, update, and share Amazon DynamoDB data sources.
+        DynamoDbDataSource: string
+        -- The ability to create Amazon DynamoDB data sources.
+        CreateDynamoDbDataSource: string
+        -- The ability to update Amazon DynamoDB data sources.
+        UpdateDynamoDbDataSource: string
+        -- The ability to share Amazon DynamoDB data sources.
+        ShareDynamoDbDataSource: string
     end
 
     -- A filter that matches users by total capacity range in bytes.

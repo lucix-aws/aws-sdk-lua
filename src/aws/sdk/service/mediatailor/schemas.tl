@@ -719,6 +719,37 @@ M.FunctionRef = schema.new({
     },
 })
 
+M.HttpRequestCacheConfiguration = schema.new({
+    id = id.from(_N, "HttpRequestCacheConfiguration"),
+    type = "structure",
+    members = {
+        TtlMinimumSeconds = schema.new({
+            id = id.from(_N, "HttpRequestCacheConfiguration", "TtlMinimumSeconds"),
+            type = "integer",
+            name = "TtlMinimumSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TtlMaximumSeconds = schema.new({
+            id = id.from(_N, "HttpRequestCacheConfiguration", "TtlMaximumSeconds"),
+            type = "integer",
+            name = "TtlMaximumSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "HttpRequestCacheConfiguration", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AwsServiceRequestConfiguration = schema.new({
     id = id.from(_N, "AwsServiceRequestConfiguration"),
     type = "structure",
@@ -780,6 +811,13 @@ M.AwsServiceRequestConfiguration = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        Cache = schema.new({
+            id = id.from(_N, "AwsServiceRequestConfiguration", "Cache"),
+            type = "structure",
+            name = "Cache",
+            target_id = id.from(_N, "HttpRequestCacheConfiguration"),
+            target = M.HttpRequestCacheConfiguration,
         }),
         TargetService = schema.new({
             id = id.from(_N, "AwsServiceRequestConfiguration", "TargetService"),
@@ -943,6 +981,13 @@ M.HttpRequestConfiguration = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        Cache = schema.new({
+            id = id.from(_N, "HttpRequestConfiguration", "Cache"),
+            type = "structure",
+            name = "Cache",
+            target_id = id.from(_N, "HttpRequestCacheConfiguration"),
+            target = M.HttpRequestCacheConfiguration,
+        }),
     },
 })
 
@@ -1050,6 +1095,13 @@ M.VastRequestConfiguration = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        Cache = schema.new({
+            id = id.from(_N, "VastRequestConfiguration", "Cache"),
+            type = "structure",
+            name = "Cache",
+            target_id = id.from(_N, "HttpRequestCacheConfiguration"),
+            target = M.HttpRequestCacheConfiguration,
         }),
     },
 })

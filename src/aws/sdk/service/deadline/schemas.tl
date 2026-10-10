@@ -62,6 +62,10 @@ M.StatisticsList = schema.new({ type = "list", list_member = M.Statistics })
 
 M.MeteredProductSummaryList = schema.new({ type = "list", list_member = M.MeteredProductSummary })
 
+M.MembershipResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.MembershipSummaries = schema.new({ type = "list", list_member = M.MembershipSummary })
+
 M.QueueFleetAssociationSummaries = schema.new({ type = "list", list_member = M.QueueFleetAssociationSummary })
 
 M.QueueLimitAssociationSummaries = schema.new({ type = "list", list_member = M.QueueLimitAssociationSummary })
@@ -6396,7 +6400,7 @@ M.PersistentVolumeConfiguration = schema.new({
             name = "lastUsedTtlHours",
             target_id = prelude.Integer.id,
             traits = {
-                [traits.DEFAULT] = { value = 168 },
+                [traits.DEFAULT] = { value = 12 },
             },
         }),
     },
@@ -15566,6 +15570,128 @@ M.ListAvailableMeteredProductsOutput = schema.new({
     },
 })
 
+M.ListMembershipsInput = schema.new({
+    id = id.from(_N, "ListMembershipsRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListMembershipsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListMembershipsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        principalId = schema.new({
+            id = id.from(_N, "ListMembershipsInput", "principalId"),
+            type = "string",
+            name = "principalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "principalId" },
+            },
+        }),
+        identityStoreId = schema.new({
+            id = id.from(_N, "ListMembershipsInput", "identityStoreId"),
+            type = "string",
+            name = "identityStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "identityStoreId" },
+            },
+        }),
+        identityCenterRegion = schema.new({
+            id = id.from(_N, "ListMembershipsInput", "identityCenterRegion"),
+            type = "string",
+            name = "identityCenterRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "identityCenterRegion" },
+            },
+        }),
+        resourceTypes = schema.new({
+            id = id.from(_N, "ListMembershipsInput", "resourceTypes"),
+            type = "list",
+            name = "resourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "resourceTypes" },
+            },
+        }),
+    },
+})
+
+M.MembershipSummary = schema.new({
+    id = id.from(_N, "MembershipSummary"),
+    type = "union",
+    members = {
+        farm = schema.new({
+            id = id.from(_N, "MembershipSummary", "farm"),
+            type = "structure",
+            name = "farm",
+            target_id = id.from(_N, "FarmMember"),
+            target = M.FarmMember,
+        }),
+        queue = schema.new({
+            id = id.from(_N, "MembershipSummary", "queue"),
+            type = "structure",
+            name = "queue",
+            target_id = id.from(_N, "QueueMember"),
+            target = M.QueueMember,
+        }),
+        fleet = schema.new({
+            id = id.from(_N, "MembershipSummary", "fleet"),
+            type = "structure",
+            name = "fleet",
+            target_id = id.from(_N, "FleetMember"),
+            target = M.FleetMember,
+        }),
+        job = schema.new({
+            id = id.from(_N, "MembershipSummary", "job"),
+            type = "structure",
+            name = "job",
+            target_id = id.from(_N, "JobMember"),
+            target = M.JobMember,
+        }),
+    },
+})
+
+M.ListMembershipsOutput = schema.new({
+    id = id.from(_N, "ListMembershipsResponse"),
+    type = "structure",
+    members = {
+        memberships = schema.new({
+            id = id.from(_N, "ListMembershipsOutput", "memberships"),
+            type = "list",
+            name = "memberships",
+            target_id = prelude.Document.id,
+            list_member = M.MembershipSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListMembershipsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListQueueFleetAssociationsInput = schema.new({
     id = id.from(_N, "ListQueueFleetAssociationsRequest"),
     type = "structure",
@@ -18704,6 +18830,18 @@ M.ListLimits = schema.operation({
     output = M.ListLimitsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/limits" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMemberships = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListMemberships"),
+    input = M.ListMembershipsInput,
+    output = M.ListMembershipsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/memberships" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

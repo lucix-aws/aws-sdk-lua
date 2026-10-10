@@ -643,6 +643,19 @@ M.ResolveCustomerInput = schema.new({
     },
 })
 
+M.Metadata = schema.new({
+    id = id.from(_N, "Metadata"),
+    type = "structure",
+    members = {
+        AgreementId = schema.new({
+            id = id.from(_N, "Metadata", "AgreementId"),
+            type = "string",
+            name = "AgreementId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ResolveCustomerOutput = schema.new({
     id = id.from(_N, "ResolveCustomerResult"),
     type = "structure",
@@ -670,6 +683,13 @@ M.ResolveCustomerOutput = schema.new({
             type = "string",
             name = "LicenseArn",
             target_id = prelude.String.id,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "ResolveCustomerOutput", "Metadata"),
+            type = "structure",
+            name = "Metadata",
+            target_id = id.from(_N, "Metadata"),
+            target = M.Metadata,
         }),
     },
 })

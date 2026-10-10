@@ -2409,6 +2409,22 @@ M.ReportFilters = schema.new({
     },
 })
 
+M.TestScope = schema.new({
+    id = id.from(_N, "TestScope"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "TestScope", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.Pentest = schema.new({
     id = id.from(_N, "Pentest"),
     type = "structure",
@@ -2529,6 +2545,13 @@ M.Pentest = schema.new({
             name = "cicdConfiguration",
             target_id = id.from(_N, "CiCdConfiguration"),
             target = M.CiCdConfiguration,
+        }),
+        testScope = schema.new({
+            id = id.from(_N, "Pentest", "testScope"),
+            type = "structure",
+            name = "testScope",
+            target_id = id.from(_N, "TestScope"),
+            target = M.TestScope,
         }),
         createdAt = schema.new({
             id = id.from(_N, "Pentest", "createdAt"),
@@ -4033,6 +4056,13 @@ M.PentestJob = schema.new({
             name = "cicdConfiguration",
             target_id = id.from(_N, "CiCdConfiguration"),
             target = M.CiCdConfiguration,
+        }),
+        testScope = schema.new({
+            id = id.from(_N, "PentestJob", "testScope"),
+            type = "structure",
+            name = "testScope",
+            target_id = id.from(_N, "TestScope"),
+            target = M.TestScope,
         }),
         createdAt = schema.new({
             id = id.from(_N, "PentestJob", "createdAt"),
@@ -6414,6 +6444,13 @@ M.CreatePentestInput = schema.new({
             target_id = id.from(_N, "CiCdConfiguration"),
             target = M.CiCdConfiguration,
         }),
+        testScope = schema.new({
+            id = id.from(_N, "CreatePentestInput", "testScope"),
+            type = "structure",
+            name = "testScope",
+            target_id = id.from(_N, "TestScope"),
+            target = M.TestScope,
+        }),
     },
 })
 
@@ -6504,6 +6541,13 @@ M.CreatePentestOutput = schema.new({
             name = "cicdConfiguration",
             target_id = id.from(_N, "CiCdConfiguration"),
             target = M.CiCdConfiguration,
+        }),
+        testScope = schema.new({
+            id = id.from(_N, "CreatePentestOutput", "testScope"),
+            type = "structure",
+            name = "testScope",
+            target_id = id.from(_N, "TestScope"),
+            target = M.TestScope,
         }),
     },
 })
@@ -12044,6 +12088,13 @@ M.UpdatePentestInput = schema.new({
             target_id = id.from(_N, "CiCdConfiguration"),
             target = M.CiCdConfiguration,
         }),
+        testScope = schema.new({
+            id = id.from(_N, "UpdatePentestInput", "testScope"),
+            type = "structure",
+            name = "testScope",
+            target_id = id.from(_N, "TestScope"),
+            target = M.TestScope,
+        }),
     },
 })
 
@@ -12134,6 +12185,13 @@ M.UpdatePentestOutput = schema.new({
             name = "cicdConfiguration",
             target_id = id.from(_N, "CiCdConfiguration"),
             target = M.CiCdConfiguration,
+        }),
+        testScope = schema.new({
+            id = id.from(_N, "UpdatePentestOutput", "testScope"),
+            type = "structure",
+            name = "testScope",
+            target_id = id.from(_N, "TestScope"),
+            target = M.TestScope,
         }),
     },
 })

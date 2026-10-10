@@ -305,9 +305,17 @@ local record M
         RegistrationToken: string
     end
 
+    -- Metadata associated with a resolved customer. Includes the AgreementId of
+    -- the Amazon Web Services Marketplace agreement the customer accepted.
+    record Metadata
+        -- The unique identifier of the Amazon Web Services Marketplace agreement the customer accepted. Use it to
+        -- call Amazon Web Services Marketplace Agreement APIs.
+        AgreementId: string
+    end
+
     -- The result of the ResolveCustomer operation. Contains the
     -- CustomerIdentifier along with the CustomerAWSAccountId,
-    -- ProductCode, and LicenseArn.
+    -- ProductCode, LicenseArn, and Metadata.
     record ResolveCustomerOutput
         -- The CustomerIdentifier is used to identify an individual customer in your
         -- application.
@@ -324,6 +332,9 @@ local record M
         -- The LicenseArn is a unique identifier for a specific granted license. These are typically used for software purchased through Amazon Web Services Marketplace. Calls to BatchMeterUsage require LicenseArn for each UsageRecord.
         -- Once you receive the CustomerAWSAccountId and LicenseArn in the response, store that for future purposes/API calls/integrations.
         LicenseArn: string
+        -- The metadata associated with the resolved customer, including the
+        -- AgreementId of the Amazon Web Services Marketplace agreement the customer accepted.
+        Metadata: Metadata
     end
 
 end
