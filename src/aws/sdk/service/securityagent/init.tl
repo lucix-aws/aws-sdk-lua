@@ -24,6 +24,8 @@ local record Client
     batchDeletePentests: function(Client, types.BatchDeletePentestsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeletePentestsOutput>
     batchDeleteSecurityRequirements: function(Client, types.BatchDeleteSecurityRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteSecurityRequirementsOutput>
     batchDeleteThreatModels: function(Client, types.BatchDeleteThreatModelsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteThreatModelsOutput>
+    batchDisassociateFindingIssue: function(Client, types.BatchDisassociateFindingIssueInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateFindingIssueOutput>
+    batchExportFindings: function(Client, types.BatchExportFindingsInput, ? base_client.InvokeOptions): async.Operation<types.BatchExportFindingsOutput>
     batchGetAgentSpaces: function(Client, types.BatchGetAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAgentSpacesOutput>
     batchGetArtifactMetadata: function(Client, types.BatchGetArtifactMetadataInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetArtifactMetadataOutput>
     batchGetCodeReviewJobs: function(Client, types.BatchGetCodeReviewJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCodeReviewJobsOutput>
@@ -178,6 +180,14 @@ end
 
 function C:batchDeleteThreatModels(input: types.BatchDeleteThreatModelsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteThreatModelsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteThreatModels as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteThreatModelsOutput>
+end
+
+function C:batchDisassociateFindingIssue(input: types.BatchDisassociateFindingIssueInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateFindingIssueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateFindingIssue as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateFindingIssueOutput>
+end
+
+function C:batchExportFindings(input: types.BatchExportFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchExportFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchExportFindings as schema.OperationSchema, input, options) as async.Operation<types.BatchExportFindingsOutput>
 end
 
 function C:batchGetAgentSpaces(input: types.BatchGetAgentSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetAgentSpacesOutput>

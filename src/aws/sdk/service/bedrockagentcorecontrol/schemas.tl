@@ -16960,6 +16960,25 @@ M.CustomConfigurationInput = schema.new({
     },
 })
 
+M.RecordExpirySpecification = schema.new({
+    id = id.from(_N, "RecordExpirySpecification"),
+    type = "union",
+    members = {
+        recordExpiryDurationDays = schema.new({
+            id = id.from(_N, "RecordExpirySpecification", "recordExpiryDurationDays"),
+            type = "integer",
+            name = "recordExpiryDurationDays",
+            target_id = prelude.Integer.id,
+        }),
+        action = schema.new({
+            id = id.from(_N, "RecordExpirySpecification", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CustomMemoryStrategyInput = schema.new({
     id = id.from(_N, "CustomMemoryStrategyInput"),
     type = "structure",
@@ -17006,6 +17025,13 @@ M.CustomMemoryStrategyInput = schema.new({
             name = "memoryRecordSchema",
             target_id = id.from(_N, "MemoryRecordSchema"),
             target = M.MemoryRecordSchema,
+        }),
+        recordExpirySpecification = schema.new({
+            id = id.from(_N, "CustomMemoryStrategyInput", "recordExpirySpecification"),
+            type = "union",
+            name = "recordExpirySpecification",
+            target_id = id.from(_N, "RecordExpirySpecification"),
+            target = M.RecordExpirySpecification,
         }),
     },
 })
@@ -17085,6 +17111,13 @@ M.EpisodicMemoryStrategyInput = schema.new({
             target_id = id.from(_N, "MemoryRecordSchema"),
             target = M.MemoryRecordSchema,
         }),
+        recordExpirySpecification = schema.new({
+            id = id.from(_N, "EpisodicMemoryStrategyInput", "recordExpirySpecification"),
+            type = "union",
+            name = "recordExpirySpecification",
+            target_id = id.from(_N, "RecordExpirySpecification"),
+            target = M.RecordExpirySpecification,
+        }),
     },
 })
 
@@ -17127,6 +17160,13 @@ M.SemanticMemoryStrategyInput = schema.new({
             name = "memoryRecordSchema",
             target_id = id.from(_N, "MemoryRecordSchema"),
             target = M.MemoryRecordSchema,
+        }),
+        recordExpirySpecification = schema.new({
+            id = id.from(_N, "SemanticMemoryStrategyInput", "recordExpirySpecification"),
+            type = "union",
+            name = "recordExpirySpecification",
+            target_id = id.from(_N, "RecordExpirySpecification"),
+            target = M.RecordExpirySpecification,
         }),
     },
 })
@@ -17171,6 +17211,13 @@ M.SummaryMemoryStrategyInput = schema.new({
             target_id = id.from(_N, "MemoryRecordSchema"),
             target = M.MemoryRecordSchema,
         }),
+        recordExpirySpecification = schema.new({
+            id = id.from(_N, "SummaryMemoryStrategyInput", "recordExpirySpecification"),
+            type = "union",
+            name = "recordExpirySpecification",
+            target_id = id.from(_N, "RecordExpirySpecification"),
+            target = M.RecordExpirySpecification,
+        }),
     },
 })
 
@@ -17213,6 +17260,13 @@ M.UserPreferenceMemoryStrategyInput = schema.new({
             name = "memoryRecordSchema",
             target_id = id.from(_N, "MemoryRecordSchema"),
             target = M.MemoryRecordSchema,
+        }),
+        recordExpirySpecification = schema.new({
+            id = id.from(_N, "UserPreferenceMemoryStrategyInput", "recordExpirySpecification"),
+            type = "union",
+            name = "recordExpirySpecification",
+            target_id = id.from(_N, "RecordExpirySpecification"),
+            target = M.RecordExpirySpecification,
         }),
     },
 })
@@ -18105,6 +18159,12 @@ M.MemoryStrategy = schema.new({
             target_id = id.from(_N, "MemoryRecordSchema"),
             target = M.MemoryRecordSchema,
         }),
+        recordExpiryDurationDays = schema.new({
+            id = id.from(_N, "MemoryStrategy", "recordExpiryDurationDays"),
+            type = "integer",
+            name = "recordExpiryDurationDays",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -18738,6 +18798,13 @@ M.ModifyMemoryStrategyInput = schema.new({
             name = "memoryRecordSchema",
             target_id = id.from(_N, "MemoryRecordSchema"),
             target = M.MemoryRecordSchema,
+        }),
+        recordExpirySpecification = schema.new({
+            id = id.from(_N, "ModifyMemoryStrategyInput", "recordExpirySpecification"),
+            type = "union",
+            name = "recordExpirySpecification",
+            target_id = id.from(_N, "RecordExpirySpecification"),
+            target = M.RecordExpirySpecification,
         }),
     },
 })

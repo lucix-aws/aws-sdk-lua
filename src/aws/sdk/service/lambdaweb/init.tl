@@ -18,7 +18,26 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createWebFunction: function(Client, types.CreateWebFunctionInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebFunctionOutput>
+    createWebFunctionEndpoint: function(Client, types.CreateWebFunctionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebFunctionEndpointOutput>
+    createWebFunctionRevision: function(Client, types.CreateWebFunctionRevisionInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebFunctionRevisionOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteWebFunction: function(Client, types.DeleteWebFunctionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebFunctionOutput>
+    deleteWebFunctionEndpoint: function(Client, types.DeleteWebFunctionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebFunctionEndpointOutput>
+    deleteWebFunctionRevision: function(Client, types.DeleteWebFunctionRevisionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebFunctionRevisionOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     getWebAccountSettings: function(Client, types.GetWebAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetWebAccountSettingsOutput>
+    getWebFunction: function(Client, types.GetWebFunctionInput, ? base_client.InvokeOptions): async.Operation<types.GetWebFunctionOutput>
+    getWebFunctionEndpoint: function(Client, types.GetWebFunctionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetWebFunctionEndpointOutput>
+    getWebFunctionRevision: function(Client, types.GetWebFunctionRevisionInput, ? base_client.InvokeOptions): async.Operation<types.GetWebFunctionRevisionOutput>
+    listTags: function(Client, types.ListTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    listWebFunctionEndpoints: function(Client, types.ListWebFunctionEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebFunctionEndpointsOutput>
+    listWebFunctionRevisions: function(Client, types.ListWebFunctionRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebFunctionRevisionsOutput>
+    listWebFunctions: function(Client, types.ListWebFunctionsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebFunctionsOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateWebFunctionEndpoint: function(Client, types.UpdateWebFunctionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWebFunctionEndpointOutput>
 end
 
 local record M
@@ -63,8 +82,84 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:createWebFunction(input: types.CreateWebFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebFunction as schema.OperationSchema, input, options) as async.Operation<types.CreateWebFunctionOutput>
+end
+
+function C:createWebFunctionEndpoint(input: types.CreateWebFunctionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebFunctionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebFunctionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateWebFunctionEndpointOutput>
+end
+
+function C:createWebFunctionRevision(input: types.CreateWebFunctionRevisionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebFunctionRevisionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebFunctionRevision as schema.OperationSchema, input, options) as async.Operation<types.CreateWebFunctionRevisionOutput>
+end
+
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+end
+
+function C:deleteWebFunction(input: types.DeleteWebFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebFunction as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebFunctionOutput>
+end
+
+function C:deleteWebFunctionEndpoint(input: types.DeleteWebFunctionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebFunctionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebFunctionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebFunctionEndpointOutput>
+end
+
+function C:deleteWebFunctionRevision(input: types.DeleteWebFunctionRevisionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebFunctionRevisionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebFunctionRevision as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebFunctionRevisionOutput>
+end
+
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
+end
+
 function C:getWebAccountSettings(input: types.GetWebAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebAccountSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetWebAccountSettingsOutput>
+end
+
+function C:getWebFunction(input: types.GetWebFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebFunction as schema.OperationSchema, input, options) as async.Operation<types.GetWebFunctionOutput>
+end
+
+function C:getWebFunctionEndpoint(input: types.GetWebFunctionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebFunctionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebFunctionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetWebFunctionEndpointOutput>
+end
+
+function C:getWebFunctionRevision(input: types.GetWebFunctionRevisionInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebFunctionRevisionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebFunctionRevision as schema.OperationSchema, input, options) as async.Operation<types.GetWebFunctionRevisionOutput>
+end
+
+function C:listTags(input: types.ListTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTags as schema.OperationSchema, input, options) as async.Operation<types.ListTagsOutput>
+end
+
+function C:listWebFunctionEndpoints(input: types.ListWebFunctionEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebFunctionEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebFunctionEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListWebFunctionEndpointsOutput>
+end
+
+function C:listWebFunctionRevisions(input: types.ListWebFunctionRevisionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebFunctionRevisionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebFunctionRevisions as schema.OperationSchema, input, options) as async.Operation<types.ListWebFunctionRevisionsOutput>
+end
+
+function C:listWebFunctions(input: types.ListWebFunctionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebFunctionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebFunctions as schema.OperationSchema, input, options) as async.Operation<types.ListWebFunctionsOutput>
+end
+
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
+end
+
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
+end
+
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateWebFunctionEndpoint(input: types.UpdateWebFunctionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWebFunctionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWebFunctionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateWebFunctionEndpointOutput>
 end
 
 return M

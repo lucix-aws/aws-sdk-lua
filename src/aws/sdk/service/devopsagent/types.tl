@@ -61,6 +61,7 @@ local record M
         "oauth-3lo"
         "api-key"
         "bearer-token"
+        "custom-headers"
     end
 
     -- Details specific to a registered MCP (Model Context Protocol) server.
@@ -75,6 +76,8 @@ local record M
         description: string
         -- If the MCP server uses API key authentication, these details are provided.
         apiKeyHeader: string
+        -- The configured custom authentication header names when the MCP server uses custom-header authentication. Secret values are not returned.
+        customHeaderNames: {string}
     end
 
     -- Details specific to a registered Grafana server, used by the built-in MCP server.
@@ -904,10 +907,17 @@ local record M
         idp: IdpAuthConfiguration
     end
 
+    enum IncludedData
+        "METADATA_ONLY"
+        "ALL_DATA"
+    end
+
     -- Input for retrieving a specific AgentSpace by ID.
     record GetAgentSpaceInput
         -- The unique identifier of the AgentSpace
         agentSpaceId: string
+        -- How much data to include in the response.
+        includedData: string
     end
 
     -- Output containing the requested AgentSpace details.
@@ -938,6 +948,8 @@ local record M
         maxResults: number
         -- Token for the next page of results.
         nextToken: string
+        -- How much data to include in the response.
+        includedData: string
     end
 
     -- Output containing a list of AgentSpaces and pagination token.
@@ -1668,6 +1680,7 @@ local record M
         monthlyAccountSystemLearningHours: UsageMetric
         -- Monthly on-demand hours usage and limit for an account
         monthlyAccountOnDemandHours: UsageMetric
+        monthlyAccountGraderHours: UsageMetric
         -- The start time of the usage tracking period
         usagePeriodStartTime: number
         -- The end time of the usage tracking period
@@ -2657,6 +2670,11 @@ local record M
         authorizationHeader: string
     end
 
+    -- Configuration for authenticating to an MCP server with custom HTTP headers.
+    record MCPServerCustomHeadersConfig
+        headers: {string : string}
+    end
+
     -- OAuth 3-legged authorization configuration for MCP server.
     record MCPServerOAuth3LOConfig
         -- User friendly OAuth client name specified by end user.
@@ -2705,6 +2723,8 @@ local record M
         apiKey: MCPServerAPIKeyConfig
         -- MCP server configuration with Bearer token (RFC 6750).
         bearerToken: MCPServerBearerTokenConfig
+        -- MCP server configuration with one or more custom authentication headers.
+        customHeaders: MCPServerCustomHeadersConfig
         -- MCP server authorization discovery configuration.
         authorizationDiscovery: MCPServerAuthorizationDiscoveryConfig
     end

@@ -14,6 +14,8 @@ M.NetworkConnectorsList = schema.new({ type = "list", list_member = M.NetworkCon
 
 M.NetworkConnectorTags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.NetworkConnectorVersionsList = schema.new({ type = "list", list_member = M.NetworkConnectorVersionSummary })
+
 M.NetworkConnectorSubnetIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.NetworkConnectorSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
@@ -147,6 +149,18 @@ M.CreateNetworkConnectorOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        VersionArn = schema.new({
+            id = id.from(_N, "CreateNetworkConnectorOutput", "VersionArn"),
+            type = "string",
+            name = "VersionArn",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "CreateNetworkConnectorOutput", "Version"),
+            type = "long",
+            name = "Version",
+            target_id = prelude.Long.id,
         }),
         Configuration = schema.new({
             id = id.from(_N, "CreateNetworkConnectorOutput", "Configuration"),
@@ -343,6 +357,18 @@ M.DeleteNetworkConnectorOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        VersionArn = schema.new({
+            id = id.from(_N, "DeleteNetworkConnectorOutput", "VersionArn"),
+            type = "string",
+            name = "VersionArn",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "DeleteNetworkConnectorOutput", "Version"),
+            type = "long",
+            name = "Version",
+            target_id = prelude.Long.id,
+        }),
         Configuration = schema.new({
             id = id.from(_N, "DeleteNetworkConnectorOutput", "Configuration"),
             type = "union",
@@ -435,10 +461,28 @@ M.GetNetworkConnectorOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        VersionArn = schema.new({
+            id = id.from(_N, "GetNetworkConnectorOutput", "VersionArn"),
+            type = "string",
+            name = "VersionArn",
+            target_id = prelude.String.id,
+        }),
         Version = schema.new({
             id = id.from(_N, "GetNetworkConnectorOutput", "Version"),
             type = "long",
             name = "Version",
+            target_id = prelude.Long.id,
+        }),
+        LatestVersionArn = schema.new({
+            id = id.from(_N, "GetNetworkConnectorOutput", "LatestVersionArn"),
+            type = "string",
+            name = "LatestVersionArn",
+            target_id = prelude.String.id,
+        }),
+        LatestVersion = schema.new({
+            id = id.from(_N, "GetNetworkConnectorOutput", "LatestVersion"),
+            type = "long",
+            name = "LatestVersion",
             target_id = prelude.Long.id,
         }),
         Configuration = schema.new({
@@ -591,6 +635,18 @@ M.NetworkConnectorSummary = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        LatestVersionArn = schema.new({
+            id = id.from(_N, "NetworkConnectorSummary", "LatestVersionArn"),
+            type = "string",
+            name = "LatestVersionArn",
+            target_id = prelude.String.id,
+        }),
+        LatestVersion = schema.new({
+            id = id.from(_N, "NetworkConnectorSummary", "LatestVersion"),
+            type = "long",
+            name = "LatestVersion",
+            target_id = prelude.Long.id,
+        }),
     },
 })
 
@@ -610,6 +666,155 @@ M.ListNetworkConnectorsOutput = schema.new({
         }),
         NextMarker = schema.new({
             id = id.from(_N, "ListNetworkConnectorsOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListNetworkConnectorVersionsInput = schema.new({
+    id = id.from(_N, "ListNetworkConnectorVersionsRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "ListNetworkConnectorVersionsInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "ListNetworkConnectorVersionsInput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "State" },
+            },
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "ListNetworkConnectorVersionsInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Marker" },
+            },
+        }),
+        MaxItems = schema.new({
+            id = id.from(_N, "ListNetworkConnectorVersionsInput", "MaxItems"),
+            type = "integer",
+            name = "MaxItems",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxItems" },
+            },
+        }),
+    },
+})
+
+M.NetworkConnectorVersionSummary = schema.new({
+    id = id.from(_N, "NetworkConnectorVersionSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VersionArn = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "VersionArn"),
+            type = "string",
+            name = "VersionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "Version"),
+            type = "long",
+            name = "Version",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StateReason = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "StateReason"),
+            type = "string",
+            name = "StateReason",
+            target_id = prelude.String.id,
+        }),
+        StateReasonCode = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "StateReasonCode"),
+            type = "string",
+            name = "StateReasonCode",
+            target_id = prelude.String.id,
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "NetworkConnectorVersionSummary", "LastModified"),
+            type = "timestamp",
+            name = "LastModified",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ListNetworkConnectorVersionsOutput = schema.new({
+    id = id.from(_N, "ListNetworkConnectorVersionsResponse"),
+    type = "structure",
+    members = {
+        NetworkConnectorVersions = schema.new({
+            id = id.from(_N, "ListNetworkConnectorVersionsOutput", "NetworkConnectorVersions"),
+            type = "list",
+            name = "NetworkConnectorVersions",
+            target_id = prelude.Document.id,
+            list_member = M.NetworkConnectorVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "ListNetworkConnectorVersionsOutput", "NextMarker"),
             type = "string",
             name = "NextMarker",
             target_id = prelude.String.id,
@@ -686,6 +891,18 @@ M.UpdateNetworkConnectorOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        VersionArn = schema.new({
+            id = id.from(_N, "UpdateNetworkConnectorOutput", "VersionArn"),
+            type = "string",
+            name = "VersionArn",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "UpdateNetworkConnectorOutput", "Version"),
+            type = "long",
+            name = "Version",
+            target_id = prelude.Long.id,
         }),
         OperatorRole = schema.new({
             id = id.from(_N, "UpdateNetworkConnectorOutput", "OperatorRole"),
@@ -797,6 +1014,18 @@ M.ListNetworkConnectors = schema.operation({
     output = M.ListNetworkConnectorsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2026-04-04/network-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListNetworkConnectorVersions = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "ListNetworkConnectorVersions"),
+    input = M.ListNetworkConnectorVersionsInput,
+    output = M.ListNetworkConnectorVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2026-04-04/network-connectors/{Identifier}/versions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

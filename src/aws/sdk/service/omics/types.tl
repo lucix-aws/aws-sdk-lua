@@ -920,6 +920,8 @@ local record M
         securityGroupIds: {string}
         -- List of subnet IDs. Maximum of 16 subnets allowed.
         subnetIds: {string}
+        -- The Amazon Web Services account ID of the cross-account VPC owner for RAM-shared VPC configurations.
+        vpcOwnerAccountId: string
     end
 
     -- Run-specific configuration settings.
@@ -949,6 +951,8 @@ local record M
         subnetIds: {string}
         -- VPC ID computed from the provided subnet IDs.
         vpcId: string
+        -- The Amazon Web Services account ID of the cross-account VPC owner for RAM-shared VPC configurations.
+        vpcOwnerAccountId: string
     end
 
     -- Run-specific configuration settings with computed values.

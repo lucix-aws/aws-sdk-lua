@@ -1368,7 +1368,7 @@ local record M
         RuleResults: {DataQualityRuleResult}
         -- A list of DataQualityAnalyzerResult objects representing the results for each analyzer.
         AnalyzerResults: {DataQualityAnalyzerResult}
-        -- A list of DataQualityObservation objects representing the observations generated after evaluating the rules and analyzers.
+        -- A list of DataQualityObservation objects representing the anomaly detection observations generated after evaluating the rules and analyzers.
         Observations: {DataQualityObservation}
         -- A summary of DataQualityAggregatedMetrics objects showing the total counts of processed rows and rules, including their pass/fail statistics based on row-level results.
         AggregatedMetrics: DataQualityAggregatedMetrics
@@ -1377,6 +1377,52 @@ local record M
     record BatchGetDataQualityResultOutput
         -- A list of DataQualityResult objects representing the data quality results.
         Results: {DataQualityResult}
+        -- A list of result IDs for which results were not found.
+        ResultsNotFound: {string}
+    end
+
+    record BatchGetDataQualityResultV2Input
+        -- A list of unique result IDs for the data quality results.
+        ResultIds: {string}
+    end
+
+    -- Describes a data quality result returned by BatchGetDataQualityResultV2.
+    record DataQualityResultV2Item
+        -- A unique result ID for the data quality result.
+        ResultId: string
+        -- The table associated with the data quality result, if any.
+        DataSource: DataSource
+        -- A map of platform-specific identifiers, such as cluster, application, workgroup, or project IDs, that identify where the data quality evaluation ran.
+        Dimensions: {string : string}
+        -- A map of tags associated with the data quality result.
+        Tags: {string : string}
+        -- The date and time when this data quality run started.
+        ExecutionStartedOn: number
+        -- The date and time when this data quality run completed.
+        ExecutionCompletedOn: number
+        -- The date and time when this data quality result was published.
+        ResultPublishedOn: number
+        -- An aggregate data quality score. Represents the ratio of rules that passed to the total number of rules.
+        Score: number
+        -- A list of DataQualityRuleResult objects representing the results for each rule.
+        RuleResults: {DataQualityRuleResult}
+        -- A list of DataQualityAnalyzerResult objects representing the results for each analyzer.
+        AnalyzerResults: {DataQualityAnalyzerResult}
+        -- A list of DataQualityObservation objects representing the anomaly detection observations generated after evaluating the rules and analyzers.
+        Observations: {DataQualityObservation}
+        -- The evaluation context for the data quality result. This value identifies a specific data quality result, or a series of related results, within a run.
+        EvaluationContext: string
+        -- A map of user-provided descriptors that add contextual metadata and configuration to the data quality result, such as database name, table name, team, or environment.
+        Descriptors: {string : string}
+        -- A summary of DataQualityAggregatedMetrics objects showing the total counts of processed rows and rules, including their pass/fail statistics based on row-level results.
+        AggregatedMetrics: DataQualityAggregatedMetrics
+        -- The name of the ruleset associated with the data quality result.
+        RulesetName: string
+    end
+
+    record BatchGetDataQualityResultV2Output
+        -- A list of DataQualityResultV2Item objects representing the data quality results.
+        Results: {DataQualityResultV2Item}
         -- A list of result IDs for which results were not found.
         ResultsNotFound: {string}
     end
@@ -8919,10 +8965,50 @@ local record M
         RuleResults: {DataQualityRuleResult}
         -- A list of DataQualityAnalyzerResult objects representing the results for each analyzer.
         AnalyzerResults: {DataQualityAnalyzerResult}
-        -- A list of DataQualityObservation objects representing the observations generated after evaluating the rules and analyzers.
+        -- A list of DataQualityObservation objects representing the anomaly detection observations generated after evaluating the rules and analyzers.
         Observations: {DataQualityObservation}
         -- A summary of DataQualityAggregatedMetrics objects showing the total counts of processed rows and rules, including their pass/fail statistics based on row-level results.
         AggregatedMetrics: DataQualityAggregatedMetrics
+    end
+
+    record GetDataQualityResultV2Input
+        -- A unique result ID for the data quality result.
+        ResultId: string
+    end
+
+    record GetDataQualityResultV2Output
+        -- A unique result ID for the data quality result.
+        ResultId: string
+        -- The table associated with the data quality result, if any.
+        DataSource: DataSource
+        -- The Profile ID for the data quality result.
+        ProfileId: string
+        -- A map of platform-specific identifiers, such as cluster, application, workgroup, or project IDs, that identify where the data quality evaluation ran.
+        Dimensions: {string : string}
+        -- A map of tags associated with the data quality result.
+        Tags: {string : string}
+        -- The date and time when this data quality run started.
+        ExecutionStartedOn: number
+        -- The date and time when this data quality run completed.
+        ExecutionCompletedOn: number
+        -- The date and time when this data quality result was published.
+        ResultPublishedOn: number
+        -- An aggregate data quality score. Represents the ratio of rules that passed to the total number of rules.
+        Score: number
+        -- A list of DataQualityRuleResult objects representing the results for each rule.
+        RuleResults: {DataQualityRuleResult}
+        -- A list of DataQualityAnalyzerResult objects representing the results for each analyzer.
+        AnalyzerResults: {DataQualityAnalyzerResult}
+        -- A list of DataQualityObservation objects representing the anomaly detection observations generated after evaluating the rules and analyzers.
+        Observations: {DataQualityObservation}
+        -- The evaluation context for the data quality result. This value identifies a specific data quality result, or a series of related results, within a run.
+        EvaluationContext: string
+        -- A map of user-provided descriptors that add contextual metadata and configuration to the data quality result, such as database name, table name, team, or environment.
+        Descriptors: {string : string}
+        -- A summary of DataQualityAggregatedMetrics objects showing the total counts of processed rows and rules, including their pass/fail statistics based on row-level results.
+        AggregatedMetrics: DataQualityAggregatedMetrics
+        -- The name of the ruleset associated with the data quality result.
+        RulesetName: string
     end
 
     record GetDataQualityRuleRecommendationRunInput
@@ -10399,6 +10485,12 @@ local record M
         DefaultSortOrderId: number
     end
 
+    -- A structure that describes the default row-level security policy of a table.
+    record RLSProperties
+        -- The name of the default row-level security policy applied to the table.
+        DefaultRLSPolicy: string
+    end
+
     enum ResourceAction
         "UPDATE"
         "CREATE"
@@ -11188,6 +11280,53 @@ local record M
         NextToken: string
     end
 
+    -- Describes the criteria used to filter the data quality results returned by ListDataQualityResultsV2.
+    record DataQualityResultsV2FilterCriteria
+        -- The data source used to filter the results. For example, you can retrieve all results for an Glue table. DatabaseName and TableName are required. If you omit CatalogId, the catalog of the calling account is used.
+        -- When you filter by data source, a page of results can be empty but still include a NextToken. Keep requesting pages until NextToken is absent.
+        DataSource: DataSource
+        -- The time after which to include published results.
+        PublishedAfter: number
+        -- The time before which to include published results.
+        PublishedBefore: number
+        -- The platform dimensions to filter results by.
+        Dimensions: {string : string}
+        -- The evaluation context to filter results by.
+        EvaluationContext: string
+    end
+
+    record ListDataQualityResultsV2Input
+        -- The filter criteria.
+        Filter: DataQualityResultsV2FilterCriteria
+        -- A pagination token to retrieve the next page of results.
+        NextToken: string
+        -- The maximum number of results to return. If you don't specify a value, the operation uses the default number of results.
+        MaxResults: number
+    end
+
+    -- Describes a data quality result returned by ListDataQualityResultsV2.
+    record DataQualityResultsV2Description
+        -- The unique result ID for this data quality result.
+        ResultId: string
+        -- The table associated with the data quality result, if any.
+        DataSource: DataSource
+        -- The date and time when this data quality result was published.
+        ResultPublishedOn: number
+        -- A map of platform-specific identifiers, such as cluster, application, workgroup, or project IDs, that identify where the data quality evaluation ran.
+        Dimensions: {string : string}
+        -- The evaluation context for the data quality result. This value identifies a specific data quality result, or a series of related results, within a run.
+        EvaluationContext: string
+        -- A map of user-provided descriptors that add contextual metadata and configuration to the data quality result, such as database name, table name, team, or environment.
+        Descriptors: {string : string}
+    end
+
+    record ListDataQualityResultsV2Output
+        -- A list of DataQualityResultsV2Description objects.
+        Results: {DataQualityResultsV2Description}
+        -- A pagination token, if more results are available.
+        NextToken: string
+    end
+
     -- A filter for listing data quality recommendation runs.
     record DataQualityRuleRecommendationRunFilter
         -- Filter based on a specified data source (Glue table).
@@ -11972,6 +12111,73 @@ local record M
         DataFilter: string
         -- The updated configuration settings for the integration.
         IntegrationConfig: IntegrationConfig
+    end
+
+    -- The run configuration for a data quality result.
+    record DataQualityConfigurationV2
+        -- Whether observations are enabled for the run. Valid values are:
+        -- ALL
+        -- NONE
+        ObservationsEnabled: string
+        -- The observation mode for the run. Valid values are:
+        -- SCHEDULED
+        -- FIXED
+        ObservationMode: string
+    end
+
+    enum DataQualityEngine
+        "SPARK"
+        "PYTHON"
+    end
+
+    record DataQualityTelemetry
+        VcpuHours: number
+        FlagsEnabled: {string : string}
+        LibraryVersion: string
+        SparkVersion: string
+        HostRuntimeVersion: string
+        Engine: string
+    end
+
+    record PublishDataQualityResultV2Input
+        -- The dimensions for the result.
+        Dimensions: {string : string}
+        -- The tags for the result.
+        Tags: {string : string}
+        -- The time execution started for the result.
+        ExecutionStartedOn: number
+        -- The time execution completed for the result.
+        ExecutionCompletedOn: number
+        -- The score for the result.
+        Score: number
+        -- The rule level results.
+        RuleResults: {DataQualityRuleResult}
+        -- The analyzer level results.
+        AnalyzerResults: {DataQualityAnalyzerResult}
+        -- The observations for the result.
+        Observations: {DataQualityObservation}
+        -- The aggregated metrics for the result.
+        AggregatedMetrics: DataQualityAggregatedMetrics
+        -- The statistics for the result.
+        Statistics: {StatisticSummary}
+        -- The run configuration for the result.
+        RunConfiguration: DataQualityConfigurationV2
+        -- The client token for the request.
+        ClientToken: string
+        -- The evaluation context for the result.
+        EvaluationContext: string
+        -- The descriptors for the result.
+        Descriptors: {string : string}
+        -- The ruleset name for the result.
+        RulesetName: string
+        -- The security configuration for the result.
+        DataQualitySecurityConfiguration: string
+        Telemetry: DataQualityTelemetry
+    end
+
+    record PublishDataQualityResultV2Output
+        -- The ID of the result.
+        ResultId: string
     end
 
     record PutAssetInput
@@ -14044,6 +14250,8 @@ local record M
         IcebergTableMetadata: IcebergTableMetadata
         -- Indicates the the state of an asynchronous change to a table.
         Status: TableStatus
+        -- A RLSProperties structure that describes the default row-level security policy of the table.
+        RLSProperties: RLSProperties
     end
 
     -- A structure containing information about the state of an asynchronous change to a table.

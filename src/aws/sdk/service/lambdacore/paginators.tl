@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listNetworkConnectorVersions.
+function M.pages_list_network_connector_versions(client, input)
+    return paginator.pages(client, "listNetworkConnectorVersions", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "NetworkConnectorVersions",
+    })
+end
+
+--- Returns an item iterator for listNetworkConnectorVersions.
+function M.items_list_network_connector_versions(client, input)
+    return paginator.items(client, "listNetworkConnectorVersions", input, {
+        input_token = "Marker",
+        output_token = "NextMarker",
+        items = "NetworkConnectorVersions",
+    })
+end
+
 --- Returns a page iterator for listNetworkConnectors.
 function M.pages_list_network_connectors(client, input)
     return paginator.pages(client, "listNetworkConnectors", input, {

@@ -1445,10 +1445,6 @@ local record M
     record MetricMetadata
         -- The metric name as emitted, such as "Duration".
         name: string
-        -- DEPRECATED: read attributes["service.namespace"] instead. Retained (deprecated) for
-        -- backward compatibility with existing consumers; will be removed once they migrate. The
-        -- logical service grouping the metric belongs to.
-        namespace: string
         -- The statistic to chart or alarm on, such as "p99" or "Sum". Free-form and
         -- frequently absent.
         preferredStat: string
@@ -1456,12 +1452,15 @@ local record M
         -- (CloudWatch-vended metrics carry the same kinds). Absent when the producer did not
         -- report one.
         metricType: string
-        -- Per-metric qualifying attributes the console uses to query this metric's telemetry.
-        -- These are the RAW, store-matching values keyed by their OTel names ("service.name",
-        -- "service.namespace", "cloud.provider", "cloud.account.id", "cloud.region",
-        -- "instrumentation_scope") — deliberately NOT the node's normalized/merged identity, so
-        -- the query selectors match the emitted series. A merged node can carry different values
-        -- per metric, which is why they live here rather than on the node.
+        -- Per-metric qualifying attributes used to query this metric's telemetry. Keys are the
+        -- metric store's own label names, not bare OTel attribute names: service identity arrives
+        -- as "@resource.service.name" and "@resource.service.namespace", and the instrumentation
+        -- scope as "@instrumentation.@name", while span-derived metrics label the service as a
+        -- bare "service.name". Cloud provider, account and region are not repeated per metric —
+        -- read those from the node. Values are RAW, deliberately NOT the node's normalized or
+        -- merged identity, so a selector built from them matches the emitted series. A merged node
+        -- can carry different values per metric, which is why these live here rather than on the
+        -- node.
         attributes: {string : string}
         -- What the metric means and the unit it is reported in.
         semantics: MetricSemantics
@@ -1494,13 +1493,12 @@ local record M
         -- Semantic description of the node. Absent on an edge, because semantics
         -- describe a service rather than a relationship.
         semantics: NodeSemantics
-        -- Per-signal LOGS query selectors: a LIST of blocks the console ORs, each an AND of exact
-        -- store column -> raw values. Node-level (edges carry only traces). Populated when the request
-        -- sets includeMetadata; derived labels (logSourceType) are added by the service projection, not
-        -- stored here.
+        -- LOGS query selectors: a list of blocks to OR together, each block an AND of exact store
+        -- column to raw value. Present on node metadata only — edges carry trace selectors. Returned
+        -- when the request sets includeMetadata.
         logs: {LogMetadata}
-        -- Per-signal TRACES query selectors (same block shape as logs). Present on both node and edge
-        -- metadata. serviceName is derived at the service projection, not stored here.
+        -- TRACES query selectors, same block shape as the logs selectors. Present on both node and
+        -- edge metadata. Returned when the request sets includeMetadata.
         traces: {TraceMetadata}
     end
 
@@ -2371,6 +2369,9 @@ local record M
         -- lowercase letters, numbers, and hyphens. It must begin and end with a letter or
         -- number and cannot contain consecutive hyphens.
         name: string
+        -- The ARN of the IAM role used by AgentCore online evaluation. Must be in the
+        -- caller's account. Omit if the space does not use AgentCore online evaluation.
+        agentCoreEvaluationRoleArn: string
         -- How to encrypt the space's data at rest. Omit to leave encryption unchanged.
         -- Pass `encryptionStrategy` AWS_OWNED to stop using a customer managed key and
         -- revert to service owned encryption.

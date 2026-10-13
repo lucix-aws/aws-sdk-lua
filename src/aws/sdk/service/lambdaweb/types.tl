@@ -2,7 +2,7 @@
 
 local record M
 
-    -- You do not have sufficient permissions to perform this operation.
+    -- You don't have permission to perform this operation. Check the IAM policies for your identity and any resource-based policy on the web function.
     record AccessDeniedException
         -- A message describing the access denied error.
         message: string
@@ -26,6 +26,533 @@ local record M
         functionCount: number
     end
 
+    enum ApplicationLogLevel
+        "TRACE"
+        "DEBUG"
+        "INFO"
+        "WARN"
+        "ERROR"
+        "FATAL"
+    end
+
+    enum AuthType
+        "ApplicationManaged"
+        "IamAuth"
+    end
+
+    enum AutoDeploymentMode
+        "LatestRevision"
+        "Disabled"
+    end
+
+    -- The Amazon S3 location of a deployment artifact.
+    record S3Object
+        -- The name of the Amazon S3 bucket.
+        bucket: string
+        -- The Amazon S3 object key.
+        key: string
+        -- The version ID of the Amazon S3 object.
+        versionId: string
+    end
+
+    -- The code configuration specifying the location of the deployment artifact.
+    record CodeConfig
+        -- The Amazon S3 location of the deployment artifact.
+        s3Object: S3Object
+    end
+
+    -- The runtime configuration for a web function revision.
+    record RuntimeConfig
+        -- The runtime identifier for the web function (for example, a Node.js runtime identifier).
+        runtime: string
+    end
+
+    -- The build configuration for a web function revision, including code location and runtime settings.
+    record BuildConfig
+        -- The code configuration specifying where the deployment artifact is stored.
+        codeConfig: CodeConfig
+        -- The runtime configuration for the revision.
+        runtimeConfig: RuntimeConfig
+    end
+
+    -- The request conflicts with the current state of the resource. For example, the resource is being modified by another request, you tried to delete a revision that is serving traffic on an endpoint, or the policy revision ID that you specified doesn't match the current policy. Resolve the conflict and try again.
+    record ConflictException
+        -- A message describing the conflict.
+        message: string
+        -- The identifier of the resource in conflict.
+        resourceId: string
+        -- The type of the resource in conflict.
+        resourceType: string
+    end
+
+    enum EndpointType
+        "HomeRegion"
+        "MultiRegion"
+        "PerRegion"
+    end
+
+    -- The scaling configuration for a web function endpoint.
+    record ScalingConfig
+        -- The maximum number of concurrent execution environments for the endpoint. Minimum value of 2, maximum value of 10000. There is no default value. If you don't specify a value, the scaling configuration is absent from the response. On an update, omit scalingConfig to keep the current value, or specify an empty object to clear a previously set value.
+        maxEnvironments: number
+    end
+
+    -- The throttling configuration for a web function endpoint.
+    record ThrottleConfig
+        -- The maximum request rate per second for the endpoint. The value must be one of the following supported values: 0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, or 10000. The maximum effective value is also bounded by your account-level maximum total rate limit. There is no default value. If you don't specify a value, the throttling configuration is absent from the response. On an update, omit throttleConfig to keep the current value, or specify an empty object to clear a previously set value.
+        rateLimit: number
+    end
+
+    -- The configuration for a web function endpoint.
+    record EndpointConfig
+        -- The name of the endpoint. The name can contain letters, numbers, hyphens (-), and underscores (_), and can't begin or end with a hyphen or an underscore. The name is limited to 64 characters in length.
+        endpointName: string
+        -- A description of the endpoint.
+        description: string
+        -- The type of endpoint. Determines how traffic is served and routed across Regions. Valid values: HomeRegion – Serves traffic from the Region where you created the web function. MultiRegion – Replicates across the Regions that you choose and routes each request to the nearest one. PerRegion – Creates a separate endpoint in each Region that you choose.
+        endpointType: string
+        -- The authorization type for the endpoint. Valid values: ApplicationManaged – Your application handles authorization. IamAuth – Lambda uses IAM to authorize requests, which must be signed with Signature Version 4 (SigV4).
+        authType: string
+        -- The auto-deployment mode for the endpoint. If you don't specify a value, the default is Disabled, and this default is returned in the response. Valid values: LatestRevision – The endpoint automatically serves the newest revision. Disabled – Revision routing stays fixed until you change it.
+        autoDeploymentMode: string
+        -- The list of Regions for the endpoint. Required when the endpoint type is MultiRegion or PerRegion: specify at least one Region other than the Region where you create the endpoint (the home Region). The home Region is added automatically if you don't include it; specifying only the home Region isn't allowed. When the endpoint type is HomeRegion, omit this field or specify only the home Region.
+        regions: {string}
+        -- The scaling configuration for the endpoint.
+        scalingConfig: ScalingConfig
+        -- The throttling configuration for the endpoint.
+        throttleConfig: ThrottleConfig
+    end
+
+    enum SystemLogLevel
+        "DEBUG"
+        "INFO"
+        "WARN"
+    end
+
+    -- The logging configuration for a web function revision.
+    record LoggingConfig
+        -- The name of the Amazon CloudWatch Logs log group the web function sends logs to. If you don't specify a value, the default is /aws/lambda/web/{functionName}, and this default is returned in the response.
+        logGroup: string
+        -- The log level for application logs emitted by the web function. If you don't specify a value, the default is INFO, and this default is returned in the response.
+        applicationLogLevel: string
+        -- The log level for system logs emitted by the Lambda runtime. If you don't specify a value, the default is INFO, and this default is returned in the response.
+        systemLogLevel: string
+    end
+
+    -- The telemetry configuration for a web function revision.
+    record TelemetryConfig
+        -- The logging configuration for the web function.
+        loggingConfig: LoggingConfig
+    end
+
+    -- The service configuration for a web function revision, including execution role, timeout, VPC network access, concurrency, and telemetry settings.
+    record ServiceConfig
+        -- The ARN of the IAM role that the web function assumes when it runs. This role provides permissions to access AWS services and resources.
+        executionRoleArn: string
+        -- The amount of time (in seconds) that Lambda allows the web function to run before stopping it. Minimum value of 3, maximum value of 900. If you don't specify a value, the default is 30, and this default is returned in the response.
+        timeoutSeconds: number
+        -- The Amazon Resource Name (ARN) of the Lambda network connector that gives the web function access to resources in your VPC. You must specify the fully qualified ARN, including the connector version, which pins the revision to that version. If the network connector is deleted, invocations of revisions that reference it fail. Revisions that specify a network connector support only HomeRegion endpoints, not MultiRegion or PerRegion.
+        egressNetworkConnectorArn: string
+        -- The maximum number of concurrent requests handled per execution environment. Minimum value of 1, maximum value of 128. If you don't specify a value, the default is 64, and this default is returned in the response.
+        maxConcurrencyPerEnvironment: number
+        -- A map of environment variable key-value pairs available to the web function at runtime. Environment variable values are sensitive.
+        environmentVariables: {string : string}
+        -- The telemetry configuration for the web function, including logging settings.
+        telemetryConfig: TelemetryConfig
+    end
+
+    -- The configuration for a web function revision, including code build settings and service configuration.
+    record RevisionConfig
+        -- A description of the revision.
+        description: string
+        -- The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) key used to encrypt the revision's code and environment variables.
+        kmsKeyArn: string
+        -- The build configuration for the revision.
+        buildConfig: BuildConfig
+        -- The service configuration for the revision.
+        serviceConfig: ServiceConfig
+    end
+
+    -- The request to create a web function.
+    record CreateWebFunctionInput
+        -- The name of the web function. The name can contain letters, numbers, hyphens (-), and underscores (_), and can't begin or end with a hyphen or an underscore. The name is limited to 64 characters in length.
+        functionName: string
+        -- The configuration for the initial revision of the web function, including code and service settings.
+        revisionConfig: RevisionConfig
+        -- The configuration for the initial endpoint of the web function.
+        endpointConfig: EndpointConfig
+        -- A map of tag keys and values to apply to the web function.
+        tags: {string : string}
+    end
+
+    -- Specifies a revision and its traffic weight for an endpoint. You can assign weights to up to two revisions to split traffic for canary or blue-green deployments.
+    record RevisionWeight
+        -- The identifier of the revision.
+        revisionId: string
+        -- The percentage of traffic to route to this revision. Minimum value of 1, maximum value of 100.
+        weight: number
+    end
+
+    enum EndpointState
+        "Pending"
+        "Active"
+        "Failed"
+        "Deleting"
+    end
+
+    enum EndpointUpdateStatus
+        "InProgress"
+        "Successful"
+        "Failed"
+    end
+
+    -- A summary of a web function endpoint.
+    record FunctionEndpointSummary
+        -- The Amazon Resource Name (ARN) of the endpoint.
+        endpointArn: string
+        -- The name of the endpoint.
+        endpointName: string
+        -- A description of the endpoint.
+        description: string
+        -- The type of the endpoint.
+        endpointType: string
+        -- The domain name of the endpoint.
+        domainName: string
+        -- The authorization type for the endpoint.
+        authType: string
+        -- The auto-deployment mode for the endpoint.
+        autoDeploymentMode: string
+        -- The revision weights for the endpoint.
+        revisionWeights: {RevisionWeight}
+        -- The list of Regions for the endpoint.
+        regions: {string}
+        -- The scaling configuration for the endpoint. This field is absent if the endpoint has no scaling configuration.
+        scalingConfig: ScalingConfig
+        -- The throttling configuration for the endpoint. This field is absent if the endpoint has no throttling configuration.
+        throttleConfig: ThrottleConfig
+        -- The current state of the endpoint.
+        state: string
+        -- The reason for the current state of the endpoint.
+        stateReason: string
+        -- The status of the most recent update to the endpoint.
+        updateStatus: string
+        -- The reason for the current update status of the endpoint.
+        updateStatusReason: string
+        -- The date and time the endpoint was created.
+        createdAt: number
+        -- The date and time the endpoint was last updated.
+        updatedAt: number
+    end
+
+    enum RevisionState
+        "Pending"
+        "Active"
+        "Failed"
+    end
+
+    -- A summary of a web function revision.
+    record FunctionRevisionSummary
+        -- The Amazon Resource Name (ARN) of the revision.
+        revisionArn: string
+        -- The identifier of the revision.
+        revisionId: string
+        -- A description of the revision.
+        description: string
+        -- The current state of the revision.
+        state: string
+        -- The reason for the current state of the revision.
+        stateReason: string
+        -- The date and time the revision was created.
+        createdAt: number
+    end
+
+    enum FunctionState
+        "Pending"
+        "Active"
+        "Failed"
+        "Deleting"
+    end
+
+    -- Contains details about the created web function.
+    record CreateWebFunctionOutput
+        -- The name of the web function.
+        functionName: string
+        -- The Amazon Resource Name (ARN) of the web function.
+        functionArn: string
+        -- The current state of the web function.
+        state: string
+        -- The reason for the current state of the web function.
+        stateReason: string
+        -- The date and time the web function was created.
+        createdAt: number
+        -- The date and time the web function was last updated.
+        updatedAt: number
+        -- A summary of the initial revision created with the web function.
+        revision: FunctionRevisionSummary
+        -- A summary of the initial endpoint created with the web function.
+        endpoint: FunctionEndpointSummary
+        -- A map of tag keys and values associated with the web function.
+        tags: {string : string}
+    end
+
+    -- The request failed because of an internal error in the service. Retry the request. If the error persists, open a support case.
+    record InternalServerException
+        -- A message describing the internal error.
+        message: string
+    end
+
+    -- The specified web function, revision, endpoint, or resource-based policy doesn't exist. Verify the resource identifier and try again.
+    record ResourceNotFoundException
+        -- A message describing the resource not found error.
+        message: string
+        -- The identifier of the resource that was not found.
+        resourceId: string
+        -- The type of the resource that was not found.
+        resourceType: string
+    end
+
+    -- The request would exceed a service quota, such as the maximum number of web functions in your account or the maximum number of revisions or endpoints per web function. Request a quota increase or reduce usage and try again.
+    record ServiceQuotaExceededException
+        -- A message describing the quota that was exceeded.
+        message: string
+        -- The identifier of the resource that exceeded the quota.
+        resourceId: string
+        -- The type of resource that exceeded the quota.
+        resourceType: string
+        -- The service code of the service that owns the quota.
+        serviceCode: string
+        -- The quota code of the exceeded quota.
+        quotaCode: string
+    end
+
+    -- The request was denied because it exceeded the request rate that Lambda allows for your account. Reduce the frequency of requests and retry with exponential backoff.
+    record ThrottlingException
+        -- A message describing the throttling error.
+        message: string
+        -- The number of seconds to wait before retrying the request.
+        retryAfterSeconds: number
+        -- The service code of the throttled service.
+        serviceCode: string
+        -- The quota code that was exceeded, if applicable.
+        quotaCode: string
+    end
+
+    -- The request failed validation because a parameter was missing, malformed, or outside the allowed range. Check the request parameters and try again.
+    record ValidationException
+        -- A message describing the validation error.
+        message: string
+    end
+
+    -- The request to create a web function endpoint.
+    record CreateWebFunctionEndpointInput
+        -- The web function to create the endpoint for. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- The name of the endpoint to create. The name can contain letters, numbers, hyphens (-), and underscores (_), and can't begin or end with a hyphen or an underscore. The name is limited to 64 characters in length.
+        endpointName: string
+        -- A description of the endpoint.
+        description: string
+        -- The type of endpoint to create. Determines how traffic is served and routed across Regions. Valid values: HomeRegion – Serves traffic from the Region where you created the web function. MultiRegion – Replicates across the Regions that you choose and routes each request to the nearest one. PerRegion – Creates a separate endpoint in each Region that you choose.
+        endpointType: string
+        -- The authorization type for the endpoint. Valid values: ApplicationManaged – Your application handles authorization. IamAuth – Lambda uses IAM to authorize requests, which must be signed with Signature Version 4 (SigV4).
+        authType: string
+        -- The auto-deployment mode for the endpoint. Controls whether the endpoint automatically serves the newest revision. If you don't specify a value, the default is Disabled, and this default is returned in the response. Valid values: LatestRevision – The endpoint automatically serves the newest revision. Disabled – Revision routing stays fixed until you change it.
+        autoDeploymentMode: string
+        -- A list of revision weights that determine how traffic is distributed across revisions. You can specify up to two revisions for canary or blue-green deployments.
+        revisionWeights: {RevisionWeight}
+        -- The list of Regions for the endpoint. Required when the endpoint type is MultiRegion or PerRegion: specify at least one Region other than the Region where you create the endpoint (the home Region). The home Region is added automatically if you don't include it; specifying only the home Region isn't allowed. When the endpoint type is HomeRegion, omit this field or specify only the home Region.
+        regions: {string}
+        -- The scaling configuration for the endpoint. There is no default value. If you don't specify a scaling configuration, it is absent from the response.
+        scalingConfig: ScalingConfig
+        -- The throttling configuration for the endpoint. There is no default value. If you don't specify a throttling configuration, it is absent from the response.
+        throttleConfig: ThrottleConfig
+    end
+
+    -- Represents the endpoint configuration and state in a specific Region.
+    record RegionalEndpoint
+        -- The domain name of the regional endpoint.
+        domainName: string
+        -- The authorization type for the regional endpoint.
+        authType: string
+        -- The revision weights for the regional endpoint.
+        revisionWeights: {RevisionWeight}
+        -- The scaling configuration for the regional endpoint. This field is absent if the endpoint has no scaling configuration.
+        scalingConfig: ScalingConfig
+        -- The throttling configuration for the regional endpoint. This field is absent if the endpoint has no throttling configuration.
+        throttleConfig: ThrottleConfig
+        -- The current state of the regional endpoint.
+        state: string
+        -- The reason for the current state of the regional endpoint.
+        stateReason: string
+        -- The status of the most recent update to the regional endpoint.
+        updateStatus: string
+        -- The reason for the current update status of the regional endpoint.
+        updateStatusReason: string
+    end
+
+    -- Contains details about the created endpoint.
+    record CreateWebFunctionEndpointOutput
+        -- The Amazon Resource Name (ARN) of the web function.
+        functionArn: string
+        -- The Amazon Resource Name (ARN) of the endpoint.
+        endpointArn: string
+        -- The name of the endpoint.
+        endpointName: string
+        -- The description of the endpoint.
+        description: string
+        endpointType: string
+        -- The domain name assigned to the endpoint.
+        domainName: string
+        authType: string
+        autoDeploymentMode: string
+        -- The traffic distribution across revisions for the endpoint. Each entry maps a revision to a weight from 1 to 100.
+        revisionWeights: {RevisionWeight}
+        -- The Regions configured for the endpoint.
+        regions: {string}
+        scalingConfig: ScalingConfig
+        throttleConfig: ThrottleConfig
+        -- The current state of the endpoint.
+        state: string
+        -- The reason for the current state of the endpoint.
+        stateReason: string
+        updateStatus: string
+        -- The reason for the endpoint's most recent update status.
+        updateStatusReason: string
+        -- The list of regional endpoint configurations.
+        regionalEndpoints: {string : RegionalEndpoint}
+        -- The date and time the endpoint was created.
+        createdAt: number
+        -- The date and time the endpoint was last updated.
+        updatedAt: number
+    end
+
+    -- The request to create a web function revision.
+    record CreateWebFunctionRevisionInput
+        -- The web function. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- A description of the revision.
+        description: string
+        -- The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) key used to encrypt the revision's code and environment variables.
+        kmsKeyArn: string
+        -- The build configuration for the revision, including code location and runtime settings.
+        buildConfig: BuildConfig
+        -- The service configuration for the revision, including execution role, timeout, and concurrency settings.
+        serviceConfig: ServiceConfig
+    end
+
+    -- A single error encountered while creating or reading a web function revision. The error describes the affected attribute, an error code, and a human-readable message. This structure is present only when the revision has errors.
+    record RevisionError
+        -- The name of the revision attribute that the error applies to.
+        attribute: string
+        -- A short, machine-readable code that identifies the error.
+        errorCode: string
+        -- A human-readable message describing the error.
+        errorMessage: string
+    end
+
+    -- Contains details about the created revision.
+    record CreateWebFunctionRevisionOutput
+        -- The Amazon Resource Name (ARN) of the web function.
+        functionArn: string
+        -- The Amazon Resource Name (ARN) of the revision.
+        revisionArn: string
+        -- The identifier of the revision.
+        revisionId: string
+        -- The description of the revision.
+        description: string
+        -- The Amazon Resource Name (ARN) of the AWS KMS key used to encrypt the revision's code and environment variables.
+        kmsKeyArn: string
+        buildConfig: BuildConfig
+        serviceConfig: ServiceConfig
+        -- The current state of the revision.
+        state: string
+        -- The reason for the current state of the revision.
+        stateReason: string
+        -- A list of errors encountered during revision creation. This field is absent when the revision has no errors.
+        errors: {RevisionError}
+        -- The date and time the revision was created.
+        createdAt: number
+    end
+
+    -- The request to delete a resource-based policy.
+    record DeleteResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the web function.
+        resourceArn: string
+        -- The revision ID of the policy. Use this to prevent deleting a policy that has been updated since you last retrieved it. If you don't specify a value, the policy is deleted regardless of its current revision.
+        revisionId: string
+    end
+
+    record DeleteResourcePolicyOutput
+    end
+
+    -- The request to delete a web function.
+    record DeleteWebFunctionInput
+        -- The web function to delete. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+    end
+
+    record DeleteWebFunctionOutput
+    end
+
+    -- The request to delete a web function endpoint.
+    record DeleteWebFunctionEndpointInput
+        -- The web function. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- The endpoint to delete. You can specify either of the following: The endpoint name, for example my-endpoint. The endpoint ARN. The length constraint applies only to the full ARN. If you specify only the endpoint name, it is limited to 64 characters in length.
+        endpointName: string
+    end
+
+    record DeleteWebFunctionEndpointOutput
+    end
+
+    -- The request to delete a web function revision.
+    record DeleteWebFunctionRevisionInput
+        -- The web function. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- The revision to delete. You can specify either of the following: The revision identifier. The revision ARN. The length constraint applies only to the full ARN.
+        revisionId: string
+    end
+
+    record DeleteWebFunctionRevisionOutput
+    end
+
+    -- A filter to apply when listing resources.
+    record Filter
+        -- The name of the filter field.
+        name: string
+        -- The values to match for the filter.
+        values: {string}
+    end
+
+    -- A summary of a web function.
+    record FunctionSummary
+        -- The name of the web function.
+        functionName: string
+        -- The Amazon Resource Name (ARN) of the web function.
+        functionArn: string
+        -- The current state of the web function.
+        state: string
+        -- The reason for the current state of the web function.
+        stateReason: string
+        -- The date and time the web function was created.
+        createdAt: number
+        -- The date and time the web function was last updated.
+        updatedAt: number
+    end
+
+    -- The request to retrieve a resource-based policy.
+    record GetResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the web function.
+        resourceArn: string
+    end
+
+    -- Contains the resource-based policy and its revision ID.
+    record GetResourcePolicyOutput
+        -- The JSON-formatted resource-based policy attached to the web function.
+        policy: string
+        -- The revision ID of the policy.
+        revisionId: string
+    end
+
     record GetWebAccountSettingsInput
     end
 
@@ -37,22 +564,268 @@ local record M
         accountUsage: AccountUsage
     end
 
-    -- An internal server error occurred. Try again later.
-    record InternalServerException
-        -- A message describing the internal error.
-        message: string
+    -- The request to retrieve a web function.
+    record GetWebFunctionInput
+        -- The web function to retrieve. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
     end
 
-    -- The request was throttled. Reduce the frequency of requests and try again.
-    record ThrottlingException
-        -- A message describing the throttling error.
-        message: string
-        -- The number of seconds to wait before retrying the request.
-        retryAfterSeconds: number
-        -- The service code of the throttled service.
-        serviceCode: string
-        -- The quota code that was exceeded, if applicable.
-        quotaCode: string
+    -- Contains details about the web function.
+    record GetWebFunctionOutput
+        -- The name of the web function.
+        functionName: string
+        -- The Amazon Resource Name (ARN) of the web function.
+        functionArn: string
+        -- The current state of the web function.
+        state: string
+        -- The reason for the current state of the web function.
+        stateReason: string
+        -- The date and time the web function was created.
+        createdAt: number
+        -- The date and time the web function was last updated.
+        updatedAt: number
+    end
+
+    -- The request to retrieve a web function endpoint.
+    record GetWebFunctionEndpointInput
+        -- The web function. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- The endpoint to retrieve. You can specify either of the following: The endpoint name, for example my-endpoint. The endpoint ARN. The length constraint applies only to the full ARN. If you specify only the endpoint name, it is limited to 64 characters in length.
+        endpointName: string
+    end
+
+    -- Contains details about the web function endpoint.
+    record GetWebFunctionEndpointOutput
+        -- The Amazon Resource Name (ARN) of the web function.
+        functionArn: string
+        -- The Amazon Resource Name (ARN) of the endpoint.
+        endpointArn: string
+        -- The name of the endpoint.
+        endpointName: string
+        -- The description of the endpoint.
+        description: string
+        endpointType: string
+        -- The domain name assigned to the endpoint.
+        domainName: string
+        authType: string
+        autoDeploymentMode: string
+        -- The traffic distribution across revisions for the endpoint. Each entry maps a revision to a weight from 1 to 100.
+        revisionWeights: {RevisionWeight}
+        -- The Regions configured for the endpoint.
+        regions: {string}
+        scalingConfig: ScalingConfig
+        throttleConfig: ThrottleConfig
+        -- The current state of the endpoint.
+        state: string
+        -- The reason for the current state of the endpoint.
+        stateReason: string
+        updateStatus: string
+        -- The reason for the endpoint's most recent update status.
+        updateStatusReason: string
+        -- The list of regional endpoint configurations.
+        regionalEndpoints: {string : RegionalEndpoint}
+        -- The date and time the endpoint was created.
+        createdAt: number
+        -- The date and time the endpoint was last updated.
+        updatedAt: number
+    end
+
+    -- The request to retrieve a web function revision.
+    record GetWebFunctionRevisionInput
+        -- The web function. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- The revision to retrieve. You can specify either of the following: The revision identifier. The revision ARN. The length constraint applies only to the full ARN.
+        revisionId: string
+    end
+
+    -- Contains details about the web function revision.
+    record GetWebFunctionRevisionOutput
+        -- The Amazon Resource Name (ARN) of the web function.
+        functionArn: string
+        -- The Amazon Resource Name (ARN) of the revision.
+        revisionArn: string
+        -- The identifier of the revision.
+        revisionId: string
+        -- The description of the revision.
+        description: string
+        -- The Amazon Resource Name (ARN) of the AWS KMS key used to encrypt the revision's code and environment variables.
+        kmsKeyArn: string
+        buildConfig: BuildConfig
+        serviceConfig: ServiceConfig
+        -- The current state of the revision.
+        state: string
+        -- The reason for the current state of the revision.
+        stateReason: string
+        -- A list of errors encountered during revision creation. This field is absent when the revision has no errors.
+        errors: {RevisionError}
+        -- The date and time the revision was created.
+        createdAt: number
+    end
+
+    -- The request to list tags for a resource.
+    record ListTagsInput
+        -- The Amazon Resource Name (ARN) of the web function.
+        resource: string
+    end
+
+    -- Contains the list of tags.
+    record ListTagsOutput
+        -- A map of tag keys and values associated with the web function.
+        tags: {string : string}
+    end
+
+    -- The request to add or update a resource-based policy.
+    record PutResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the web function.
+        resourceArn: string
+        -- The JSON-formatted resource-based policy to attach to the web function.
+        policy: string
+        -- The revision ID of the existing policy. Use this to prevent conflicts when updating a policy concurrently. If you don't specify a value, the update proceeds without checking the current revision.
+        revisionId: string
+    end
+
+    -- Contains the resource-based policy and its revision ID.
+    record PutResourcePolicyOutput
+        -- The JSON-formatted resource-based policy attached to the web function.
+        policy: string
+        -- The revision ID of the policy. Use this value in subsequent PutResourcePolicy or DeleteResourcePolicy requests to prevent conflicts.
+        revisionId: string
+    end
+
+    -- The request to add tags to a resource.
+    record TagResourceInput
+        -- The Amazon Resource Name (ARN) of the web function.
+        resource: string
+        -- A map of tag keys and values to add to the web function.
+        tags: {string : string}
+    end
+
+    record TagResourceOutput
+    end
+
+    -- The request to remove tags from a resource.
+    record UntagResourceInput
+        -- The Amazon Resource Name (ARN) of the web function.
+        resource: string
+        -- A list of tag keys to remove from the web function.
+        tagKeys: {string}
+    end
+
+    record UntagResourceOutput
+    end
+
+    -- The request to list web functions.
+    record ListWebFunctionsInput
+        -- A list of filters to apply to the results. The only supported filter name is state. If you don't specify a filter, the operation returns all web functions.
+        filters: {Filter}
+        -- The maximum number of results to return in a single call. Minimum value of 1, maximum value of 50. Default is 50.
+        maxResults: number
+        -- The pagination token that's returned by a previous request to retrieve the next page of results.
+        nextToken: string
+    end
+
+    -- Contains the list of web functions.
+    record ListWebFunctionsOutput
+        -- A list of web function summaries.
+        functions: {FunctionSummary}
+        -- The pagination token that's included if more results are available. Use this value as the nextToken request parameter in a subsequent call to retrieve the next page of results.
+        nextToken: string
+    end
+
+    -- The request to list web function endpoints.
+    record ListWebFunctionEndpointsInput
+        -- The web function. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- A list of filters to apply to the results. Supported filter names: authType, autoDeploymentMode, endpointType, state, and updateStatus. If you don't specify a filter, the operation returns all endpoints for the web function.
+        filters: {Filter}
+        -- The maximum number of results to return in a single call. Minimum value of 1, maximum value of 50. Default is 50.
+        maxResults: number
+        -- The pagination token that's returned by a previous request to retrieve the next page of results.
+        nextToken: string
+    end
+
+    -- Contains the list of web function endpoints.
+    record ListWebFunctionEndpointsOutput
+        -- A list of endpoint summaries for the web function.
+        endpoints: {FunctionEndpointSummary}
+        -- The pagination token that's included if more results are available. Use this value as the nextToken request parameter in a subsequent call to retrieve the next page of results.
+        nextToken: string
+    end
+
+    -- The request to update a web function endpoint.
+    record UpdateWebFunctionEndpointInput
+        -- The web function. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- The endpoint to update. You can specify either of the following: The endpoint name, for example my-endpoint. The endpoint ARN. The length constraint applies only to the full ARN. If you specify only the endpoint name, it is limited to 64 characters in length.
+        endpointName: string
+        -- A description of the endpoint. Omit this field to keep the current description.
+        description: string
+        -- The authorization type for the endpoint. Omit this field to keep the current authorization type. Valid values: ApplicationManaged – Your application handles authorization. IamAuth – Lambda uses IAM to authorize requests, which must be signed with Signature Version 4 (SigV4).
+        authType: string
+        -- The auto-deployment mode for the endpoint. Omit this field to keep the current auto-deployment mode. Valid values: LatestRevision – The endpoint automatically serves the newest revision. Disabled – Revision routing stays fixed until you change it.
+        autoDeploymentMode: string
+        -- A list of revision weights that determine how traffic is distributed across revisions.
+        revisionWeights: {RevisionWeight}
+        -- The scaling configuration for the endpoint. Omit this field to keep the current scaling configuration. To clear a previously set maxEnvironments value, specify an empty object.
+        scalingConfig: ScalingConfig
+        -- The throttling configuration for the endpoint. Omit this field to keep the current throttling configuration. To clear a previously set rateLimit value, specify an empty object.
+        throttleConfig: ThrottleConfig
+    end
+
+    -- Contains details about the updated endpoint.
+    record UpdateWebFunctionEndpointOutput
+        -- The Amazon Resource Name (ARN) of the web function.
+        functionArn: string
+        -- The Amazon Resource Name (ARN) of the endpoint.
+        endpointArn: string
+        -- The name of the endpoint.
+        endpointName: string
+        -- The description of the endpoint.
+        description: string
+        endpointType: string
+        -- The domain name assigned to the endpoint.
+        domainName: string
+        authType: string
+        autoDeploymentMode: string
+        -- The traffic distribution across revisions for the endpoint. Each entry maps a revision to a weight from 1 to 100.
+        revisionWeights: {RevisionWeight}
+        -- The Regions configured for the endpoint.
+        regions: {string}
+        scalingConfig: ScalingConfig
+        throttleConfig: ThrottleConfig
+        -- The current state of the endpoint.
+        state: string
+        -- The reason for the current state of the endpoint.
+        stateReason: string
+        updateStatus: string
+        -- The reason for the endpoint's most recent update status.
+        updateStatusReason: string
+        -- The list of regional endpoint configurations.
+        regionalEndpoints: {string : RegionalEndpoint}
+        -- The date and time the endpoint was created.
+        createdAt: number
+        -- The date and time the endpoint was last updated.
+        updatedAt: number
+    end
+
+    -- The request to list web function revisions.
+    record ListWebFunctionRevisionsInput
+        -- The web function. You can specify either of the following: The function name, for example my-function. The function ARN. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        functionName: string
+        -- A list of filters to apply to the results. The only supported filter name is state. If you don't specify a filter, the operation returns all revisions for the web function.
+        filters: {Filter}
+        -- The maximum number of results to return in a single call. Minimum value of 1, maximum value of 50. Default is 50.
+        maxResults: number
+        -- The pagination token that's returned by a previous request to retrieve the next page of results.
+        nextToken: string
+    end
+
+    -- Contains the list of web function revisions.
+    record ListWebFunctionRevisionsOutput
+        -- A list of revision summaries for the web function.
+        revisions: {FunctionRevisionSummary}
+        -- The pagination token that's included if more results are available. Use this value as the nextToken request parameter in a subsequent call to retrieve the next page of results.
+        nextToken: string
     end
 
 end

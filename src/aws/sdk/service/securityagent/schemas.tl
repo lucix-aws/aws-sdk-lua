@@ -36,6 +36,14 @@ M.ThreatModelIdList = schema.new({ type = "list", list_member = prelude.String }
 
 M.DeleteThreatModelFailureList = schema.new({ type = "list", list_member = M.DeleteThreatModelFailure })
 
+M.FindingIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDisassociateFindingIssueErrors = schema.new({ type = "list", list_member = M.BatchDisassociateFindingIssueError })
+
+M.BatchExportFindingResultList = schema.new({ type = "list", list_member = M.BatchExportFindingResult })
+
+M.BatchExportFindingErrorList = schema.new({ type = "list", list_member = M.BatchExportFindingError })
+
 M.ArtifactIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.ArtifactMetadataList = schema.new({ type = "list", list_member = M.ArtifactMetadataItem })
@@ -49,8 +57,6 @@ M.TaskIdList = schema.new({ type = "list", list_member = prelude.String })
 M.CodeReviewJobTaskList = schema.new({ type = "list", list_member = M.CodeReviewJobTask })
 
 M.CodeReviewList = schema.new({ type = "list", list_member = M.CodeReview })
-
-M.FindingIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.FindingList = schema.new({ type = "list", list_member = M.Finding })
 
@@ -2733,6 +2739,304 @@ M.BatchDeleteThreatModelsOutput = schema.new({
     },
 })
 
+M.BatchDisassociateFindingIssueInput = schema.new({
+    id = id.from(_N, "BatchDisassociateFindingIssueInput"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "BatchDisassociateFindingIssueInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        pentestJobId = schema.new({
+            id = id.from(_N, "BatchDisassociateFindingIssueInput", "pentestJobId"),
+            type = "string",
+            name = "pentestJobId",
+            target_id = prelude.String.id,
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "BatchDisassociateFindingIssueInput", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+        }),
+        findingIds = schema.new({
+            id = id.from(_N, "BatchDisassociateFindingIssueInput", "findingIds"),
+            type = "list",
+            name = "findingIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDisassociateFindingIssueError = schema.new({
+    id = id.from(_N, "BatchDisassociateFindingIssueError"),
+    type = "structure",
+    members = {
+        findingId = schema.new({
+            id = id.from(_N, "BatchDisassociateFindingIssueError", "findingId"),
+            type = "string",
+            name = "findingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "BatchDisassociateFindingIssueError", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "BatchDisassociateFindingIssueError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDisassociateFindingIssueOutput = schema.new({
+    id = id.from(_N, "BatchDisassociateFindingIssueOutput"),
+    type = "structure",
+    members = {
+        errors = schema.new({
+            id = id.from(_N, "BatchDisassociateFindingIssueOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchDisassociateFindingIssueError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchExportFindingError = schema.new({
+    id = id.from(_N, "BatchExportFindingError"),
+    type = "structure",
+    members = {
+        findingId = schema.new({
+            id = id.from(_N, "BatchExportFindingError", "findingId"),
+            type = "string",
+            name = "findingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "BatchExportFindingError", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "BatchExportFindingError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LinkedIssue = schema.new({
+    id = id.from(_N, "LinkedIssue"),
+    type = "structure",
+    members = {
+        provider = schema.new({
+            id = id.from(_N, "LinkedIssue", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+        }),
+        integrationId = schema.new({
+            id = id.from(_N, "LinkedIssue", "integrationId"),
+            type = "string",
+            name = "integrationId",
+            target_id = prelude.String.id,
+        }),
+        projectKey = schema.new({
+            id = id.from(_N, "LinkedIssue", "projectKey"),
+            type = "string",
+            name = "projectKey",
+            target_id = prelude.String.id,
+        }),
+        issueKey = schema.new({
+            id = id.from(_N, "LinkedIssue", "issueKey"),
+            type = "string",
+            name = "issueKey",
+            target_id = prelude.String.id,
+        }),
+        issueId = schema.new({
+            id = id.from(_N, "LinkedIssue", "issueId"),
+            type = "string",
+            name = "issueId",
+            target_id = prelude.String.id,
+        }),
+        issueUrl = schema.new({
+            id = id.from(_N, "LinkedIssue", "issueUrl"),
+            type = "string",
+            name = "issueUrl",
+            target_id = prelude.String.id,
+        }),
+        siteUrl = schema.new({
+            id = id.from(_N, "LinkedIssue", "siteUrl"),
+            type = "string",
+            name = "siteUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchExportFindingResult = schema.new({
+    id = id.from(_N, "BatchExportFindingResult"),
+    type = "structure",
+    members = {
+        findingId = schema.new({
+            id = id.from(_N, "BatchExportFindingResult", "findingId"),
+            type = "string",
+            name = "findingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        linkedIssue = schema.new({
+            id = id.from(_N, "BatchExportFindingResult", "linkedIssue"),
+            type = "structure",
+            name = "linkedIssue",
+            target_id = id.from(_N, "LinkedIssue"),
+            target = M.LinkedIssue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IssueDestination = schema.new({
+    id = id.from(_N, "IssueDestination"),
+    type = "structure",
+    members = {
+        integrationId = schema.new({
+            id = id.from(_N, "IssueDestination", "integrationId"),
+            type = "string",
+            name = "integrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        projectKey = schema.new({
+            id = id.from(_N, "IssueDestination", "projectKey"),
+            type = "string",
+            name = "projectKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchExportFindingsInput = schema.new({
+    id = id.from(_N, "BatchExportFindingsInput"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "BatchExportFindingsInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        pentestJobId = schema.new({
+            id = id.from(_N, "BatchExportFindingsInput", "pentestJobId"),
+            type = "string",
+            name = "pentestJobId",
+            target_id = prelude.String.id,
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "BatchExportFindingsInput", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+        }),
+        issueDestination = schema.new({
+            id = id.from(_N, "BatchExportFindingsInput", "issueDestination"),
+            type = "structure",
+            name = "issueDestination",
+            target_id = id.from(_N, "IssueDestination"),
+            target = M.IssueDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findingIds = schema.new({
+            id = id.from(_N, "BatchExportFindingsInput", "findingIds"),
+            type = "list",
+            name = "findingIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchExportFindingsOutput = schema.new({
+    id = id.from(_N, "BatchExportFindingsOutput"),
+    type = "structure",
+    members = {
+        results = schema.new({
+            id = id.from(_N, "BatchExportFindingsOutput", "results"),
+            type = "list",
+            name = "results",
+            target_id = prelude.Document.id,
+            list_member = M.BatchExportFindingResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errors = schema.new({
+            id = id.from(_N, "BatchExportFindingsOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchExportFindingError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.BatchGetArtifactMetadataInput = schema.new({
     id = id.from(_N, "BatchGetArtifactMetadataInput"),
     type = "structure",
@@ -3700,6 +4004,13 @@ M.Finding = schema.new({
             type = "string",
             name = "originalFindingId",
             target_id = prelude.String.id,
+        }),
+        linkedIssue = schema.new({
+            id = id.from(_N, "Finding", "linkedIssue"),
+            type = "structure",
+            name = "linkedIssue",
+            target_id = id.from(_N, "LinkedIssue"),
+            target = M.LinkedIssue,
         }),
         createdAt = schema.new({
             id = id.from(_N, "Finding", "createdAt"),
@@ -6139,6 +6450,49 @@ M.GitLabIntegrationInput = schema.new({
     },
 })
 
+M.JiraIntegrationInput = schema.new({
+    id = id.from(_N, "JiraIntegrationInput"),
+    type = "structure",
+    members = {
+        installationId = schema.new({
+            id = id.from(_N, "JiraIntegrationInput", "installationId"),
+            type = "string",
+            name = "installationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "JiraIntegrationInput", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "JiraIntegrationInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        siteUrl = schema.new({
+            id = id.from(_N, "JiraIntegrationInput", "siteUrl"),
+            type = "string",
+            name = "siteUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ProviderInput = schema.new({
     id = id.from(_N, "ProviderInput"),
     type = "union",
@@ -6184,6 +6538,13 @@ M.ProviderInput = schema.new({
             name = "bitbucketDataCenter",
             target_id = id.from(_N, "BitbucketDataCenterIntegrationInput"),
             target = M.BitbucketDataCenterIntegrationInput,
+        }),
+        jira = schema.new({
+            id = id.from(_N, "ProviderInput", "jira"),
+            type = "structure",
+            name = "jira",
+            target_id = id.from(_N, "JiraIntegrationInput"),
+            target = M.JiraIntegrationInput,
         }),
     },
 })
@@ -8060,6 +8421,12 @@ M.GetIntegrationOutput = schema.new({
             name = "targetUrl",
             target_id = prelude.String.id,
         }),
+        siteUrl = schema.new({
+            id = id.from(_N, "GetIntegrationOutput", "siteUrl"),
+            type = "string",
+            name = "siteUrl",
+            target_id = prelude.String.id,
+        }),
         webhookUrl = schema.new({
             id = id.from(_N, "GetIntegrationOutput", "webhookUrl"),
             type = "string",
@@ -8524,6 +8891,46 @@ M.InitiateProviderRegistrationOutput = schema.new({
     },
 })
 
+M.JiraProjectResource = schema.new({
+    id = id.from(_N, "JiraProjectResource"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "JiraProjectResource", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        projectKey = schema.new({
+            id = id.from(_N, "JiraProjectResource", "projectKey"),
+            type = "string",
+            name = "projectKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        projectId = schema.new({
+            id = id.from(_N, "JiraProjectResource", "projectId"),
+            type = "string",
+            name = "projectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        projectName = schema.new({
+            id = id.from(_N, "JiraProjectResource", "projectName"),
+            type = "string",
+            name = "projectName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.IntegratedResource = schema.new({
     id = id.from(_N, "IntegratedResource"),
     type = "union",
@@ -8562,6 +8969,32 @@ M.IntegratedResource = schema.new({
             name = "azureDevOpsRepository",
             target_id = id.from(_N, "AzureDevOpsRepositoryResource"),
             target = M.AzureDevOpsRepositoryResource,
+        }),
+        jiraProject = schema.new({
+            id = id.from(_N, "IntegratedResource", "jiraProject"),
+            type = "structure",
+            name = "jiraProject",
+            target_id = id.from(_N, "JiraProjectResource"),
+            target = M.JiraProjectResource,
+        }),
+    },
+})
+
+M.JiraResourceCapabilities = schema.new({
+    id = id.from(_N, "JiraResourceCapabilities"),
+    type = "structure",
+    members = {
+        createIssue = schema.new({
+            id = id.from(_N, "JiraResourceCapabilities", "createIssue"),
+            type = "boolean",
+            name = "createIssue",
+            target_id = prelude.Boolean.id,
+        }),
+        commentIssue = schema.new({
+            id = id.from(_N, "JiraResourceCapabilities", "commentIssue"),
+            type = "boolean",
+            name = "commentIssue",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -8605,6 +9038,13 @@ M.ProviderResourceCapabilities = schema.new({
             target_id = id.from(_N, "AzureDevOpsResourceCapabilities"),
             target = M.AzureDevOpsResourceCapabilities,
         }),
+        jira = schema.new({
+            id = id.from(_N, "ProviderResourceCapabilities", "jira"),
+            type = "structure",
+            name = "jira",
+            target_id = id.from(_N, "JiraResourceCapabilities"),
+            target = M.JiraResourceCapabilities,
+        }),
     },
 })
 
@@ -8628,6 +9068,55 @@ M.IntegratedResourceInputItem = schema.new({
             name = "capabilities",
             target_id = id.from(_N, "ProviderResourceCapabilities"),
             target = M.ProviderResourceCapabilities,
+        }),
+    },
+})
+
+M.JiraProjectMetadata = schema.new({
+    id = id.from(_N, "JiraProjectMetadata"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "JiraProjectMetadata", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        providerResourceId = schema.new({
+            id = id.from(_N, "JiraProjectMetadata", "providerResourceId"),
+            type = "string",
+            name = "providerResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        projectKey = schema.new({
+            id = id.from(_N, "JiraProjectMetadata", "projectKey"),
+            type = "string",
+            name = "projectKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        projectId = schema.new({
+            id = id.from(_N, "JiraProjectMetadata", "projectId"),
+            type = "string",
+            name = "projectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        projectName = schema.new({
+            id = id.from(_N, "JiraProjectMetadata", "projectName"),
+            type = "string",
+            name = "projectName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8670,6 +9159,13 @@ M.IntegratedResourceMetadata = schema.new({
             name = "azureDevOpsRepository",
             target_id = id.from(_N, "AzureDevOpsRepositoryMetadata"),
             target = M.AzureDevOpsRepositoryMetadata,
+        }),
+        jiraProject = schema.new({
+            id = id.from(_N, "IntegratedResourceMetadata", "jiraProject"),
+            type = "structure",
+            name = "jiraProject",
+            target_id = id.from(_N, "JiraProjectMetadata"),
+            target = M.JiraProjectMetadata,
         }),
     },
 })
@@ -12781,6 +13277,30 @@ M.BatchDeleteThreatModels = schema.operation({
     output = M.BatchDeleteThreatModelsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/BatchDeleteThreatModels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchDisassociateFindingIssue = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchDisassociateFindingIssue"),
+    input = M.BatchDisassociateFindingIssueInput,
+    output = M.BatchDisassociateFindingIssueOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchDisassociateFindingIssue" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchExportFindings = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchExportFindings"),
+    input = M.BatchExportFindingsInput,
+    output = M.BatchExportFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchExportFindings" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

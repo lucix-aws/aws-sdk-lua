@@ -938,6 +938,115 @@ local record M
         failed: {DeleteThreatModelFailure}
     end
 
+    -- The input for the BatchDisassociateFindingIssue operation.
+    record BatchDisassociateFindingIssueInput
+        -- The identifier of the agent space where the job exists.
+        agentSpaceId: string
+        -- The identifier of the penetration test job. This parameter is mutually exclusive with codeReviewJobId.
+        pentestJobId: string
+        -- The identifier of the code review job. This parameter is mutually exclusive with pentestJobId.
+        codeReviewJobId: string
+        -- The identifiers of the findings to disassociate from their issues. Each must belong to the specified job.
+        findingIds: {string}
+    end
+
+    enum ErrorCode
+        "CLIENT_ERROR"
+        "INTERNAL_ERROR"
+        "STOPPED_BY_USER"
+    end
+
+    -- A finding that failed to disassociate, with the cause of the failure.
+    record BatchDisassociateFindingIssueError
+        -- The identifier of the finding that failed to disassociate.
+        findingId: string
+        -- The machine-readable failure category.
+        code: string
+        -- A customer-facing explanation of the failure.
+        message: string
+    end
+
+    -- The output for the BatchDisassociateFindingIssue operation.
+    record BatchDisassociateFindingIssueOutput
+        -- The findings whose issue could not be disassociated.
+        errors: {BatchDisassociateFindingIssueError}
+    end
+
+    -- A finding whose issue could not be created, with the cause of the failure.
+    record BatchExportFindingError
+        -- The identifier of the finding this error corresponds to.
+        findingId: string
+        -- The machine-readable failure category.
+        code: string
+        -- A customer-facing explanation of why the issue could not be created.
+        message: string
+    end
+
+    enum Provider
+        "GITHUB"
+        "GITLAB"
+        "BITBUCKET"
+        "CONFLUENCE"
+        "AZURE_DEVOPS"
+        "JIRA"
+    end
+
+    -- A reference to an issue created for a finding in a third-party issue tracker.
+    record LinkedIssue
+        -- The issue-tracker provider.
+        provider: string
+        -- The integration identifier for the issue-tracker provider.
+        integrationId: string
+        -- The key of the project the issue belongs to.
+        projectKey: string
+        -- The issue key.
+        issueKey: string
+        -- The stable numeric issue identifier.
+        issueId: string
+        -- The issue URL.
+        issueUrl: string
+        -- The Atlassian Cloud site URL.
+        siteUrl: string
+    end
+
+    -- A finding whose issue was created.
+    record BatchExportFindingResult
+        -- The identifier of the finding this result corresponds to.
+        findingId: string
+        -- The issue that was created for the finding.
+        linkedIssue: LinkedIssue
+    end
+
+    -- The destination for filing findings as issues in an integrated issue tracker.
+    record IssueDestination
+        -- The integration identifier for the issue-tracker provider.
+        integrationId: string
+        -- The identifier of the project the issues are filed under.
+        projectKey: string
+    end
+
+    -- The input for the BatchExportFindings operation.
+    record BatchExportFindingsInput
+        -- The identifier of the agent space where the job exists.
+        agentSpaceId: string
+        -- The identifier of the penetration test job. This parameter is mutually exclusive with codeReviewJobId.
+        pentestJobId: string
+        -- The identifier of the code review job. This parameter is mutually exclusive with pentestJobId.
+        codeReviewJobId: string
+        -- The destination issue-tracker project the findings are exported to. Must be a connected capability of the agent space.
+        issueDestination: IssueDestination
+        -- The identifiers of the findings to export. Each must belong to the specified job.
+        findingIds: {string}
+    end
+
+    -- The output for the BatchExportFindings operation.
+    record BatchExportFindingsOutput
+        -- The findings whose issue was created, each with its linked issue.
+        results: {BatchExportFindingResult}
+        -- The findings whose issue could not be created, each with a customer-facing reason.
+        errors: {BatchExportFindingError}
+    end
+
     record BatchGetArtifactMetadataInput
         -- The unique identifier of the agent space that contains the artifacts.
         agentSpaceId: string
@@ -956,12 +1065,6 @@ local record M
         codeReviewJobIds: {string}
         -- The unique identifier of the agent space that contains the code review jobs.
         agentSpaceId: string
-    end
-
-    enum ErrorCode
-        "CLIENT_ERROR"
-        "INTERNAL_ERROR"
-        "STOPPED_BY_USER"
     end
 
     -- Contains error information for a pentest job that encountered an error.
@@ -1316,6 +1419,8 @@ local record M
         revalidationJobIds: {string}
         -- The identifier of the original finding that this revalidation finding was produced from.
         originalFindingId: string
+        -- The issue in a third-party issue tracker that this finding has been exported to.
+        linkedIssue: LinkedIssue
         -- The date and time the finding was created, in UTC format.
         createdAt: number
         -- The date and time the finding was last updated, in UTC format.
@@ -2131,6 +2236,18 @@ local record M
         groupId: string
     end
 
+    -- The configuration for creating a Jira integration.
+    record JiraIntegrationInput
+        -- The Atlassian installation identifier, available from the Atlassian administration console.
+        installationId: string
+        -- The OAuth 2.0 authorization code returned from the consent redirect.
+        code: string
+        -- The CSRF state token echoed back from the OAuth redirect.
+        state: string
+        -- The Jira Cloud site URL, for example https://mysite.atlassian.net.
+        siteUrl: string
+    end
+
     -- The provider-specific input for creating an integration. This is a union type that contains provider-specific configuration.
     record ProviderInput
         -- The GitHub-specific input for creating an integration.
@@ -2145,14 +2262,8 @@ local record M
         azureDevOps: AzureDevOpsIntegrationInput
         -- The Bitbucket Data Center-specific input for creating an integration.
         bitbucketDataCenter: BitbucketDataCenterIntegrationInput
-    end
-
-    enum Provider
-        "GITHUB"
-        "GITLAB"
-        "BITBUCKET"
-        "CONFLUENCE"
-        "AZURE_DEVOPS"
+        -- The configuration for a Jira integration.
+        jira: JiraIntegrationInput
     end
 
     record CreateIntegrationInput
@@ -2746,6 +2857,7 @@ local record M
     enum ProviderType
         "SOURCE_CODE"
         "DOCUMENTATION"
+        "ISSUE_TRACKING"
     end
 
     record GetIntegrationOutput
@@ -2763,6 +2875,8 @@ local record M
         kmsKeyId: string
         -- The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations.
         targetUrl: string
+        -- The Atlassian Cloud site URL for Atlassian integrations.
+        siteUrl: string
         -- The payload URL of the integration's webhook, once it has been created. The signing secret is never returned on a read.
         webhookUrl: string
         -- The name of the private connection used to reach the integration's self-hosted instance over private networking, if one is configured.
@@ -2923,6 +3037,17 @@ local record M
         csrfState: string
     end
 
+    -- Represents a Jira project resource used in an integration.
+    record JiraProjectResource
+        name: string
+        -- The Jira project key, for example PROJ.
+        projectKey: string
+        -- The Jira project identifier.
+        projectId: string
+        -- The display name of the Jira project.
+        projectName: string
+    end
+
     -- Represents an integrated resource from a third-party provider. This is a union type that contains provider-specific resource information.
     record IntegratedResource
         -- The GitHub repository resource information.
@@ -2932,6 +3057,16 @@ local record M
         confluenceDocument: ConfluenceDocumentResource
         -- The Azure DevOps repository resource information.
         azureDevOpsRepository: AzureDevOpsRepositoryResource
+        -- The Jira project resource information.
+        jiraProject: JiraProjectResource
+    end
+
+    -- Capabilities for an integrated Jira project.
+    record JiraResourceCapabilities
+        -- Whether to create issues in the integrated jira project.
+        createIssue: boolean
+        -- Whether to post comments on issues in the integrated jira project.
+        commentIssue: boolean
     end
 
     -- The capabilities for an integrated resource from a third-party provider. This is a union type that contains provider-specific capabilities.
@@ -2943,6 +3078,8 @@ local record M
         confluence: ConfluenceResourceCapabilities
         -- The Azure DevOps-specific resource capabilities.
         azureDevOps: AzureDevOpsResourceCapabilities
+        -- The Jira-specific resource capabilities.
+        jira: JiraResourceCapabilities
     end
 
     -- Represents an input item for updating integrated resources, including the resource and its capabilities.
@@ -2951,6 +3088,18 @@ local record M
         resource: IntegratedResource
         -- The capabilities to enable for the integrated resource.
         capabilities: ProviderResourceCapabilities
+    end
+
+    -- Contains metadata about a Jira project that is integrated with the service.
+    record JiraProjectMetadata
+        name: string
+        providerResourceId: string
+        -- The Jira project key, for example PROJ.
+        projectKey: string
+        -- The Jira project identifier.
+        projectId: string
+        -- The display name of the Jira project.
+        projectName: string
     end
 
     -- Contains metadata about an integrated resource. This is a union type that contains provider-specific metadata.
@@ -2962,6 +3111,8 @@ local record M
         confluenceDocument: ConfluenceDocumentMetadata
         -- The Azure DevOps repository metadata.
         azureDevOpsRepository: AzureDevOpsRepositoryMetadata
+        -- The Jira project metadata.
+        jiraProject: JiraProjectMetadata
     end
 
     -- Contains summary information about an integrated resource.
@@ -3196,6 +3347,7 @@ local record M
     enum ResourceType
         "CODE_REPOSITORY"
         "DOCUMENT"
+        "PROJECT"
     end
 
     record ListIntegratedResourcesInput

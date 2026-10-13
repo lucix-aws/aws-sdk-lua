@@ -10,6 +10,30 @@ local _N = "com.amazonaws.lambdaweb"
 
 local M: {string:any} = {}
 
+M.RevisionWeightList = schema.new({ type = "list", list_member = M.RevisionWeight })
+
+M.RegionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RegionalEndpoints = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionalEndpoint })
+
+M.RevisionErrors = schema.new({ type = "list", list_member = M.RevisionError })
+
+M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.FunctionSummaryList = schema.new({ type = "list", list_member = M.FunctionSummary })
+
+M.FunctionEndpointSummaryList = schema.new({ type = "list", list_member = M.FunctionEndpointSummary })
+
+M.FunctionRevisionSummaryList = schema.new({ type = "list", list_member = M.FunctionRevisionSummary })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -88,34 +112,723 @@ M.AccountUsage = schema.new({
     },
 })
 
-M.GetWebAccountSettingsInput = schema.new({
-    id = id.from(_N, "GetWebAccountSettingsRequest"),
-    type = "structure",
-})
-
-M.GetWebAccountSettingsOutput = schema.new({
-    id = id.from(_N, "GetWebAccountSettingsResponse"),
+M.S3Object = schema.new({
+    id = id.from(_N, "S3Object"),
     type = "structure",
     members = {
-        accountQuotas = schema.new({
-            id = id.from(_N, "GetWebAccountSettingsOutput", "accountQuotas"),
-            type = "structure",
-            name = "accountQuotas",
-            target_id = id.from(_N, "AccountQuotas"),
-            target = M.AccountQuotas,
+        bucket = schema.new({
+            id = id.from(_N, "S3Object", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        accountUsage = schema.new({
-            id = id.from(_N, "GetWebAccountSettingsOutput", "accountUsage"),
-            type = "structure",
-            name = "accountUsage",
-            target_id = id.from(_N, "AccountUsage"),
-            target = M.AccountUsage,
+        key = schema.new({
+            id = id.from(_N, "S3Object", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        versionId = schema.new({
+            id = id.from(_N, "S3Object", "versionId"),
+            type = "string",
+            name = "versionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CodeConfig = schema.new({
+    id = id.from(_N, "CodeConfig"),
+    type = "structure",
+    members = {
+        s3Object = schema.new({
+            id = id.from(_N, "CodeConfig", "s3Object"),
+            type = "structure",
+            name = "s3Object",
+            target_id = id.from(_N, "S3Object"),
+            target = M.S3Object,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RuntimeConfig = schema.new({
+    id = id.from(_N, "RuntimeConfig"),
+    type = "structure",
+    members = {
+        runtime = schema.new({
+            id = id.from(_N, "RuntimeConfig", "runtime"),
+            type = "string",
+            name = "runtime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BuildConfig = schema.new({
+    id = id.from(_N, "BuildConfig"),
+    type = "structure",
+    members = {
+        codeConfig = schema.new({
+            id = id.from(_N, "BuildConfig", "codeConfig"),
+            type = "structure",
+            name = "codeConfig",
+            target_id = id.from(_N, "CodeConfig"),
+            target = M.CodeConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        runtimeConfig = schema.new({
+            id = id.from(_N, "BuildConfig", "runtimeConfig"),
+            type = "structure",
+            name = "runtimeConfig",
+            target_id = id.from(_N, "RuntimeConfig"),
+            target = M.RuntimeConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ConflictException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ConflictException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ScalingConfig = schema.new({
+    id = id.from(_N, "ScalingConfig"),
+    type = "structure",
+    members = {
+        maxEnvironments = schema.new({
+            id = id.from(_N, "ScalingConfig", "maxEnvironments"),
+            type = "integer",
+            name = "maxEnvironments",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ThrottleConfig = schema.new({
+    id = id.from(_N, "ThrottleConfig"),
+    type = "structure",
+    members = {
+        rateLimit = schema.new({
+            id = id.from(_N, "ThrottleConfig", "rateLimit"),
+            type = "integer",
+            name = "rateLimit",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.EndpointConfig = schema.new({
+    id = id.from(_N, "EndpointConfig"),
+    type = "structure",
+    members = {
+        endpointName = schema.new({
+            id = id.from(_N, "EndpointConfig", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "EndpointConfig", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        endpointType = schema.new({
+            id = id.from(_N, "EndpointConfig", "endpointType"),
+            type = "string",
+            name = "endpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authType = schema.new({
+            id = id.from(_N, "EndpointConfig", "authType"),
+            type = "string",
+            name = "authType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        autoDeploymentMode = schema.new({
+            id = id.from(_N, "EndpointConfig", "autoDeploymentMode"),
+            type = "string",
+            name = "autoDeploymentMode",
+            target_id = prelude.String.id,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "EndpointConfig", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        scalingConfig = schema.new({
+            id = id.from(_N, "EndpointConfig", "scalingConfig"),
+            type = "structure",
+            name = "scalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
+        throttleConfig = schema.new({
+            id = id.from(_N, "EndpointConfig", "throttleConfig"),
+            type = "structure",
+            name = "throttleConfig",
+            target_id = id.from(_N, "ThrottleConfig"),
+            target = M.ThrottleConfig,
+        }),
+    },
+})
+
+M.LoggingConfig = schema.new({
+    id = id.from(_N, "LoggingConfig"),
+    type = "structure",
+    members = {
+        logGroup = schema.new({
+            id = id.from(_N, "LoggingConfig", "logGroup"),
+            type = "string",
+            name = "logGroup",
+            target_id = prelude.String.id,
+        }),
+        applicationLogLevel = schema.new({
+            id = id.from(_N, "LoggingConfig", "applicationLogLevel"),
+            type = "string",
+            name = "applicationLogLevel",
+            target_id = prelude.String.id,
+        }),
+        systemLogLevel = schema.new({
+            id = id.from(_N, "LoggingConfig", "systemLogLevel"),
+            type = "string",
+            name = "systemLogLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TelemetryConfig = schema.new({
+    id = id.from(_N, "TelemetryConfig"),
+    type = "structure",
+    members = {
+        loggingConfig = schema.new({
+            id = id.from(_N, "TelemetryConfig", "loggingConfig"),
+            type = "structure",
+            name = "loggingConfig",
+            target_id = id.from(_N, "LoggingConfig"),
+            target = M.LoggingConfig,
+        }),
+    },
+})
+
+M.ServiceConfig = schema.new({
+    id = id.from(_N, "ServiceConfig"),
+    type = "structure",
+    members = {
+        executionRoleArn = schema.new({
+            id = id.from(_N, "ServiceConfig", "executionRoleArn"),
+            type = "string",
+            name = "executionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timeoutSeconds = schema.new({
+            id = id.from(_N, "ServiceConfig", "timeoutSeconds"),
+            type = "integer",
+            name = "timeoutSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 30 },
+            },
+        }),
+        egressNetworkConnectorArn = schema.new({
+            id = id.from(_N, "ServiceConfig", "egressNetworkConnectorArn"),
+            type = "string",
+            name = "egressNetworkConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        maxConcurrencyPerEnvironment = schema.new({
+            id = id.from(_N, "ServiceConfig", "maxConcurrencyPerEnvironment"),
+            type = "integer",
+            name = "maxConcurrencyPerEnvironment",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 64 },
+            },
+        }),
+        environmentVariables = schema.new({
+            id = id.from(_N, "ServiceConfig", "environmentVariables"),
+            type = "map",
+            name = "environmentVariables",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        telemetryConfig = schema.new({
+            id = id.from(_N, "ServiceConfig", "telemetryConfig"),
+            type = "structure",
+            name = "telemetryConfig",
+            target_id = id.from(_N, "TelemetryConfig"),
+            target = M.TelemetryConfig,
+        }),
+    },
+})
+
+M.RevisionConfig = schema.new({
+    id = id.from(_N, "RevisionConfig"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "RevisionConfig", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "RevisionConfig", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        buildConfig = schema.new({
+            id = id.from(_N, "RevisionConfig", "buildConfig"),
+            type = "structure",
+            name = "buildConfig",
+            target_id = id.from(_N, "BuildConfig"),
+            target = M.BuildConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceConfig = schema.new({
+            id = id.from(_N, "RevisionConfig", "serviceConfig"),
+            type = "structure",
+            name = "serviceConfig",
+            target_id = id.from(_N, "ServiceConfig"),
+            target = M.ServiceConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateWebFunctionInput = schema.new({
+    id = id.from(_N, "CreateWebFunctionRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "CreateWebFunctionInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionInput", "revisionConfig"),
+            type = "structure",
+            name = "revisionConfig",
+            target_id = id.from(_N, "RevisionConfig"),
+            target = M.RevisionConfig,
+        }),
+        endpointConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionInput", "endpointConfig"),
+            type = "structure",
+            name = "endpointConfig",
+            target_id = id.from(_N, "EndpointConfig"),
+            target = M.EndpointConfig,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateWebFunctionInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.RevisionWeight = schema.new({
+    id = id.from(_N, "RevisionWeight"),
+    type = "structure",
+    members = {
+        revisionId = schema.new({
+            id = id.from(_N, "RevisionWeight", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        weight = schema.new({
+            id = id.from(_N, "RevisionWeight", "weight"),
+            type = "integer",
+            name = "weight",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FunctionEndpointSummary = schema.new({
+    id = id.from(_N, "FunctionEndpointSummary"),
+    type = "structure",
+    members = {
+        endpointArn = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "endpointArn"),
+            type = "string",
+            name = "endpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        endpointType = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "endpointType"),
+            type = "string",
+            name = "endpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainName = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "domainName"),
+            type = "string",
+            name = "domainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authType = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "authType"),
+            type = "string",
+            name = "authType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        autoDeploymentMode = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "autoDeploymentMode"),
+            type = "string",
+            name = "autoDeploymentMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionWeights = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "revisionWeights"),
+            type = "list",
+            name = "revisionWeights",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionWeight,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regions = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scalingConfig = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "scalingConfig"),
+            type = "structure",
+            name = "scalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
+        throttleConfig = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "throttleConfig"),
+            type = "structure",
+            name = "throttleConfig",
+            target_id = id.from(_N, "ThrottleConfig"),
+            target = M.ThrottleConfig,
+        }),
+        state = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateStatus = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "updateStatus"),
+            type = "string",
+            name = "updateStatus",
+            target_id = prelude.String.id,
+        }),
+        updateStatusReason = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "updateStatusReason"),
+            type = "string",
+            name = "updateStatusReason",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "FunctionEndpointSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FunctionRevisionSummary = schema.new({
+    id = id.from(_N, "FunctionRevisionSummary"),
+    type = "structure",
+    members = {
+        revisionArn = schema.new({
+            id = id.from(_N, "FunctionRevisionSummary", "revisionArn"),
+            type = "string",
+            name = "revisionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "FunctionRevisionSummary", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "FunctionRevisionSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "FunctionRevisionSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "FunctionRevisionSummary", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "FunctionRevisionSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateWebFunctionOutput = schema.new({
+    id = id.from(_N, "CreateWebFunctionResponse"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        functionArn = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revision = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "revision"),
+            type = "structure",
+            name = "revision",
+            target_id = id.from(_N, "FunctionRevisionSummary"),
+            target = M.FunctionRevisionSummary,
+        }),
+        endpoint = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "endpoint"),
+            type = "structure",
+            name = "endpoint",
+            target_id = id.from(_N, "FunctionEndpointSummary"),
+            target = M.FunctionEndpointSummary,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateWebFunctionOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -131,6 +844,80 @@ M.InternalServerException = schema.new({
             id = id.from(_N, "InternalServerException", "message"),
             type = "string",
             name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+        serviceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "serviceCode"),
+            type = "string",
+            name = "serviceCode",
+            target_id = prelude.String.id,
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
             target_id = prelude.String.id,
         }),
     },
@@ -176,6 +963,1824 @@ M.ThrottlingException = schema.new({
     },
 })
 
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateWebFunctionEndpointInput = schema.new({
+    id = id.from(_N, "CreateWebFunctionEndpointRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        endpointType = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "endpointType"),
+            type = "string",
+            name = "endpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authType = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "authType"),
+            type = "string",
+            name = "authType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        autoDeploymentMode = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "autoDeploymentMode"),
+            type = "string",
+            name = "autoDeploymentMode",
+            target_id = prelude.String.id,
+        }),
+        revisionWeights = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "revisionWeights"),
+            type = "list",
+            name = "revisionWeights",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionWeight,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        scalingConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "scalingConfig"),
+            type = "structure",
+            name = "scalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
+        throttleConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointInput", "throttleConfig"),
+            type = "structure",
+            name = "throttleConfig",
+            target_id = id.from(_N, "ThrottleConfig"),
+            target = M.ThrottleConfig,
+        }),
+    },
+})
+
+M.RegionalEndpoint = schema.new({
+    id = id.from(_N, "RegionalEndpoint"),
+    type = "structure",
+    members = {
+        domainName = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "domainName"),
+            type = "string",
+            name = "domainName",
+            target_id = prelude.String.id,
+        }),
+        authType = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "authType"),
+            type = "string",
+            name = "authType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionWeights = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "revisionWeights"),
+            type = "list",
+            name = "revisionWeights",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionWeight,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scalingConfig = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "scalingConfig"),
+            type = "structure",
+            name = "scalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
+        throttleConfig = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "throttleConfig"),
+            type = "structure",
+            name = "throttleConfig",
+            target_id = id.from(_N, "ThrottleConfig"),
+            target = M.ThrottleConfig,
+        }),
+        state = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateStatus = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "updateStatus"),
+            type = "string",
+            name = "updateStatus",
+            target_id = prelude.String.id,
+        }),
+        updateStatusReason = schema.new({
+            id = id.from(_N, "RegionalEndpoint", "updateStatusReason"),
+            type = "string",
+            name = "updateStatusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateWebFunctionEndpointOutput = schema.new({
+    id = id.from(_N, "CreateWebFunctionEndpointResponse"),
+    type = "structure",
+    members = {
+        functionArn = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointArn = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "endpointArn"),
+            type = "string",
+            name = "endpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        endpointType = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "endpointType"),
+            type = "string",
+            name = "endpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainName = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "domainName"),
+            type = "string",
+            name = "domainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authType = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "authType"),
+            type = "string",
+            name = "authType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        autoDeploymentMode = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "autoDeploymentMode"),
+            type = "string",
+            name = "autoDeploymentMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionWeights = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "revisionWeights"),
+            type = "list",
+            name = "revisionWeights",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionWeight,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regions = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scalingConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "scalingConfig"),
+            type = "structure",
+            name = "scalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
+        throttleConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "throttleConfig"),
+            type = "structure",
+            name = "throttleConfig",
+            target_id = id.from(_N, "ThrottleConfig"),
+            target = M.ThrottleConfig,
+        }),
+        state = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateStatus = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "updateStatus"),
+            type = "string",
+            name = "updateStatus",
+            target_id = prelude.String.id,
+        }),
+        updateStatusReason = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "updateStatusReason"),
+            type = "string",
+            name = "updateStatusReason",
+            target_id = prelude.String.id,
+        }),
+        regionalEndpoints = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "regionalEndpoints"),
+            type = "map",
+            name = "regionalEndpoints",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.RegionalEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CreateWebFunctionEndpointOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateWebFunctionRevisionInput = schema.new({
+    id = id.from(_N, "CreateWebFunctionRevisionRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        buildConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionInput", "buildConfig"),
+            type = "structure",
+            name = "buildConfig",
+            target_id = id.from(_N, "BuildConfig"),
+            target = M.BuildConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionInput", "serviceConfig"),
+            type = "structure",
+            name = "serviceConfig",
+            target_id = id.from(_N, "ServiceConfig"),
+            target = M.ServiceConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RevisionError = schema.new({
+    id = id.from(_N, "RevisionError"),
+    type = "structure",
+    members = {
+        attribute = schema.new({
+            id = id.from(_N, "RevisionError", "attribute"),
+            type = "string",
+            name = "attribute",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "RevisionError", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "RevisionError", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateWebFunctionRevisionOutput = schema.new({
+    id = id.from(_N, "CreateWebFunctionRevisionResponse"),
+    type = "structure",
+    members = {
+        functionArn = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionArn = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "revisionArn"),
+            type = "string",
+            name = "revisionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        buildConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "buildConfig"),
+            type = "structure",
+            name = "buildConfig",
+            target_id = id.from(_N, "BuildConfig"),
+            target = M.BuildConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceConfig = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "serviceConfig"),
+            type = "structure",
+            name = "serviceConfig",
+            target_id = id.from(_N, "ServiceConfig"),
+            target = M.ServiceConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errors = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionError,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateWebFunctionRevisionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResourcePolicyInput = schema.new({
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "RevisionId" },
+            },
+        }),
+    },
+})
+
+M.DeleteResourcePolicyOutput = prelude.Unit
+
+M.DeleteWebFunctionInput = schema.new({
+    id = id.from(_N, "DeleteWebFunctionRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "DeleteWebFunctionInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteWebFunctionOutput = prelude.Unit
+
+M.DeleteWebFunctionEndpointInput = schema.new({
+    id = id.from(_N, "DeleteWebFunctionEndpointRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "DeleteWebFunctionEndpointInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "DeleteWebFunctionEndpointInput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteWebFunctionEndpointOutput = prelude.Unit
+
+M.DeleteWebFunctionRevisionInput = schema.new({
+    id = id.from(_N, "DeleteWebFunctionRevisionRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "DeleteWebFunctionRevisionInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "DeleteWebFunctionRevisionInput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteWebFunctionRevisionOutput = prelude.Unit
+
+M.Filter = schema.new({
+    id = id.from(_N, "Filter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "Filter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "Filter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FunctionSummary = schema.new({
+    id = id.from(_N, "FunctionSummary"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "FunctionSummary", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        functionArn = schema.new({
+            id = id.from(_N, "FunctionSummary", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "FunctionSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "FunctionSummary", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "FunctionSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "FunctionSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetResourcePolicyInput = schema.new({
+    id = id.from(_N, "GetResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "GetResourcePolicyInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetResourcePolicyOutput = schema.new({
+    id = id.from(_N, "GetResourcePolicyResponse"),
+    type = "structure",
+    members = {
+        policy = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "Policy" },
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "RevisionId" },
+            },
+        }),
+    },
+})
+
+M.GetWebAccountSettingsInput = schema.new({
+    id = id.from(_N, "GetWebAccountSettingsRequest"),
+    type = "structure",
+})
+
+M.GetWebAccountSettingsOutput = schema.new({
+    id = id.from(_N, "GetWebAccountSettingsResponse"),
+    type = "structure",
+    members = {
+        accountQuotas = schema.new({
+            id = id.from(_N, "GetWebAccountSettingsOutput", "accountQuotas"),
+            type = "structure",
+            name = "accountQuotas",
+            target_id = id.from(_N, "AccountQuotas"),
+            target = M.AccountQuotas,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountUsage = schema.new({
+            id = id.from(_N, "GetWebAccountSettingsOutput", "accountUsage"),
+            type = "structure",
+            name = "accountUsage",
+            target_id = id.from(_N, "AccountUsage"),
+            target = M.AccountUsage,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetWebFunctionInput = schema.new({
+    id = id.from(_N, "GetWebFunctionRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "GetWebFunctionInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetWebFunctionOutput = schema.new({
+    id = id.from(_N, "GetWebFunctionResponse"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "GetWebFunctionOutput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        functionArn = schema.new({
+            id = id.from(_N, "GetWebFunctionOutput", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetWebFunctionOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "GetWebFunctionOutput", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetWebFunctionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetWebFunctionOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetWebFunctionEndpointInput = schema.new({
+    id = id.from(_N, "GetWebFunctionEndpointRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointInput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetWebFunctionEndpointOutput = schema.new({
+    id = id.from(_N, "GetWebFunctionEndpointResponse"),
+    type = "structure",
+    members = {
+        functionArn = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointArn = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "endpointArn"),
+            type = "string",
+            name = "endpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        endpointType = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "endpointType"),
+            type = "string",
+            name = "endpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainName = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "domainName"),
+            type = "string",
+            name = "domainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authType = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "authType"),
+            type = "string",
+            name = "authType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        autoDeploymentMode = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "autoDeploymentMode"),
+            type = "string",
+            name = "autoDeploymentMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionWeights = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "revisionWeights"),
+            type = "list",
+            name = "revisionWeights",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionWeight,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regions = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scalingConfig = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "scalingConfig"),
+            type = "structure",
+            name = "scalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
+        throttleConfig = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "throttleConfig"),
+            type = "structure",
+            name = "throttleConfig",
+            target_id = id.from(_N, "ThrottleConfig"),
+            target = M.ThrottleConfig,
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateStatus = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "updateStatus"),
+            type = "string",
+            name = "updateStatus",
+            target_id = prelude.String.id,
+        }),
+        updateStatusReason = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "updateStatusReason"),
+            type = "string",
+            name = "updateStatusReason",
+            target_id = prelude.String.id,
+        }),
+        regionalEndpoints = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "regionalEndpoints"),
+            type = "map",
+            name = "regionalEndpoints",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.RegionalEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetWebFunctionEndpointOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetWebFunctionRevisionInput = schema.new({
+    id = id.from(_N, "GetWebFunctionRevisionRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionInput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetWebFunctionRevisionOutput = schema.new({
+    id = id.from(_N, "GetWebFunctionRevisionResponse"),
+    type = "structure",
+    members = {
+        functionArn = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionArn = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "revisionArn"),
+            type = "string",
+            name = "revisionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        buildConfig = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "buildConfig"),
+            type = "structure",
+            name = "buildConfig",
+            target_id = id.from(_N, "BuildConfig"),
+            target = M.BuildConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceConfig = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "serviceConfig"),
+            type = "structure",
+            name = "serviceConfig",
+            target_id = id.from(_N, "ServiceConfig"),
+            target = M.ServiceConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errors = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionError,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetWebFunctionRevisionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsInput = schema.new({
+    id = id.from(_N, "ListTagsRequest"),
+    type = "structure",
+    members = {
+        resource = schema.new({
+            id = id.from(_N, "ListTagsInput", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsOutput = schema.new({
+    id = id.from(_N, "ListTagsResponse"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "Tags" },
+            },
+        }),
+    },
+})
+
+M.PutResourcePolicyInput = schema.new({
+    id = id.from(_N, "PutResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "Policy" },
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "RevisionId" },
+            },
+        }),
+    },
+})
+
+M.PutResourcePolicyOutput = schema.new({
+    id = id.from(_N, "PutResourcePolicyResponse"),
+    type = "structure",
+    members = {
+        policy = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "Policy" },
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "RevisionId" },
+            },
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceRequest"),
+    type = "structure",
+    members = {
+        resource = schema.new({
+            id = id.from(_N, "TagResourceInput", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "Tags" },
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = prelude.Unit
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceRequest"),
+    type = "structure",
+    members = {
+        resource = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = prelude.Unit
+
+M.ListWebFunctionsInput = schema.new({
+    id = id.from(_N, "ListWebFunctionsRequest"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "ListWebFunctionsInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListWebFunctionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWebFunctionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListWebFunctionsOutput = schema.new({
+    id = id.from(_N, "ListWebFunctionsResponse"),
+    type = "structure",
+    members = {
+        functions = schema.new({
+            id = id.from(_N, "ListWebFunctionsOutput", "functions"),
+            type = "list",
+            name = "functions",
+            target_id = prelude.Document.id,
+            list_member = M.FunctionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWebFunctionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListWebFunctionEndpointsInput = schema.new({
+    id = id.from(_N, "ListWebFunctionEndpointsRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "ListWebFunctionEndpointsInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        filters = schema.new({
+            id = id.from(_N, "ListWebFunctionEndpointsInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListWebFunctionEndpointsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWebFunctionEndpointsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListWebFunctionEndpointsOutput = schema.new({
+    id = id.from(_N, "ListWebFunctionEndpointsResponse"),
+    type = "structure",
+    members = {
+        endpoints = schema.new({
+            id = id.from(_N, "ListWebFunctionEndpointsOutput", "endpoints"),
+            type = "list",
+            name = "endpoints",
+            target_id = prelude.Document.id,
+            list_member = M.FunctionEndpointSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWebFunctionEndpointsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateWebFunctionEndpointInput = schema.new({
+    id = id.from(_N, "UpdateWebFunctionEndpointRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointInput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        authType = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointInput", "authType"),
+            type = "string",
+            name = "authType",
+            target_id = prelude.String.id,
+        }),
+        autoDeploymentMode = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointInput", "autoDeploymentMode"),
+            type = "string",
+            name = "autoDeploymentMode",
+            target_id = prelude.String.id,
+        }),
+        revisionWeights = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointInput", "revisionWeights"),
+            type = "list",
+            name = "revisionWeights",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionWeight,
+        }),
+        scalingConfig = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointInput", "scalingConfig"),
+            type = "structure",
+            name = "scalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
+        throttleConfig = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointInput", "throttleConfig"),
+            type = "structure",
+            name = "throttleConfig",
+            target_id = id.from(_N, "ThrottleConfig"),
+            target = M.ThrottleConfig,
+        }),
+    },
+})
+
+M.UpdateWebFunctionEndpointOutput = schema.new({
+    id = id.from(_N, "UpdateWebFunctionEndpointResponse"),
+    type = "structure",
+    members = {
+        functionArn = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointArn = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "endpointArn"),
+            type = "string",
+            name = "endpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        endpointType = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "endpointType"),
+            type = "string",
+            name = "endpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainName = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "domainName"),
+            type = "string",
+            name = "domainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authType = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "authType"),
+            type = "string",
+            name = "authType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        autoDeploymentMode = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "autoDeploymentMode"),
+            type = "string",
+            name = "autoDeploymentMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionWeights = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "revisionWeights"),
+            type = "list",
+            name = "revisionWeights",
+            target_id = prelude.Document.id,
+            list_member = M.RevisionWeight,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regions = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scalingConfig = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "scalingConfig"),
+            type = "structure",
+            name = "scalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
+        throttleConfig = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "throttleConfig"),
+            type = "structure",
+            name = "throttleConfig",
+            target_id = id.from(_N, "ThrottleConfig"),
+            target = M.ThrottleConfig,
+        }),
+        state = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateStatus = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "updateStatus"),
+            type = "string",
+            name = "updateStatus",
+            target_id = prelude.String.id,
+        }),
+        updateStatusReason = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "updateStatusReason"),
+            type = "string",
+            name = "updateStatusReason",
+            target_id = prelude.String.id,
+        }),
+        regionalEndpoints = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "regionalEndpoints"),
+            type = "map",
+            name = "regionalEndpoints",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.RegionalEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "UpdateWebFunctionEndpointOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListWebFunctionRevisionsInput = schema.new({
+    id = id.from(_N, "ListWebFunctionRevisionsRequest"),
+    type = "structure",
+    members = {
+        functionName = schema.new({
+            id = id.from(_N, "ListWebFunctionRevisionsInput", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        filters = schema.new({
+            id = id.from(_N, "ListWebFunctionRevisionsInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListWebFunctionRevisionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWebFunctionRevisionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListWebFunctionRevisionsOutput = schema.new({
+    id = id.from(_N, "ListWebFunctionRevisionsResponse"),
+    type = "structure",
+    members = {
+        revisions = schema.new({
+            id = id.from(_N, "ListWebFunctionRevisionsOutput", "revisions"),
+            type = "list",
+            name = "revisions",
+            target_id = prelude.Document.id,
+            list_member = M.FunctionRevisionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWebFunctionRevisionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -201,12 +2806,240 @@ M.Service = schema.service({
     },
 })
 
+M.CreateWebFunction = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "CreateWebFunction"),
+    input = M.CreateWebFunctionInput,
+    output = M.CreateWebFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2025-03-07/web-functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebFunctionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "CreateWebFunctionEndpoint"),
+    input = M.CreateWebFunctionEndpointInput,
+    output = M.CreateWebFunctionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2025-03-07/web-functions/{functionName}/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateWebFunctionRevision = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "CreateWebFunctionRevision"),
+    input = M.CreateWebFunctionRevisionInput,
+    output = M.CreateWebFunctionRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-03-07/web-functions/{functionName}/revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2025-03-07/resource-policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebFunction = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "DeleteWebFunction"),
+    input = M.DeleteWebFunctionInput,
+    output = M.DeleteWebFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2025-03-07/web-functions/{functionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebFunctionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "DeleteWebFunctionEndpoint"),
+    input = M.DeleteWebFunctionEndpointInput,
+    output = M.DeleteWebFunctionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2025-03-07/web-functions/{functionName}/endpoints/{endpointName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteWebFunctionRevision = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "DeleteWebFunctionRevision"),
+    input = M.DeleteWebFunctionRevisionInput,
+    output = M.DeleteWebFunctionRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2025-03-07/web-functions/{functionName}/revisions/{revisionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-03-07/resource-policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetWebAccountSettings = schema.operation({
     id = id.from("com.amazonaws.lambdaweb", "GetWebAccountSettings"),
     input = M.GetWebAccountSettingsInput,
     output = M.GetWebAccountSettingsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2025-03-07/web-account-settings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWebFunction = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "GetWebFunction"),
+    input = M.GetWebFunctionInput,
+    output = M.GetWebFunctionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-03-07/web-functions/{functionName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWebFunctionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "GetWebFunctionEndpoint"),
+    input = M.GetWebFunctionEndpointInput,
+    output = M.GetWebFunctionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-03-07/web-functions/{functionName}/endpoints/{endpointName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWebFunctionRevision = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "GetWebFunctionRevision"),
+    input = M.GetWebFunctionRevisionInput,
+    output = M.GetWebFunctionRevisionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-03-07/web-functions/{functionName}/revisions/{revisionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTags = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "ListTags"),
+    input = M.ListTagsInput,
+    output = M.ListTagsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2025-03-07/tags/{resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebFunctionEndpoints = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "ListWebFunctionEndpoints"),
+    input = M.ListWebFunctionEndpointsInput,
+    output = M.ListWebFunctionEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-03-07/web-functions/{functionName}/list-endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebFunctionRevisions = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "ListWebFunctionRevisions"),
+    input = M.ListWebFunctionRevisionsInput,
+    output = M.ListWebFunctionRevisionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-03-07/web-functions/{functionName}/list-revisions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWebFunctions = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "ListWebFunctions"),
+    input = M.ListWebFunctionsInput,
+    output = M.ListWebFunctionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-03-07/web-functions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2025-03-07/resource-policy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2025-03-07/tags/{resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2025-03-07/tags/{resource}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWebFunctionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.lambdaweb", "UpdateWebFunctionEndpoint"),
+    input = M.UpdateWebFunctionEndpointInput,
+    output = M.UpdateWebFunctionEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2025-03-07/web-functions/{functionName}/endpoints/{endpointName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

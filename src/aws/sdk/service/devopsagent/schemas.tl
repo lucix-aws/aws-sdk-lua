@@ -94,6 +94,8 @@ M.TriggerFilterGroups = schema.new({ type = "list", list_member = M.TriggerFilte
 
 M.CustomHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.CustomHeaderNames = schema.new({ type = "list", list_member = prelude.String })
+
 M.PagerDutyScopesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ExchangeParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -293,6 +295,13 @@ M.RegisteredMCPServerDetails = schema.new({
             type = "string",
             name = "apiKeyHeader",
             target_id = prelude.String.id,
+        }),
+        customHeaderNames = schema.new({
+            id = id.from(_N, "RegisteredMCPServerDetails", "customHeaderNames"),
+            type = "list",
+            name = "customHeaderNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -2766,6 +2775,15 @@ M.GetAgentSpaceInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        includedData = schema.new({
+            id = id.from(_N, "GetAgentSpaceInput", "includedData"),
+            type = "string",
+            name = "includedData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "includedData" },
+            },
+        }),
     },
 })
 
@@ -2866,6 +2884,15 @@ M.ListAgentSpacesInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        includedData = schema.new({
+            id = id.from(_N, "ListAgentSpacesInput", "includedData"),
+            type = "string",
+            name = "includedData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "includedData" },
             },
         }),
     },
@@ -4967,6 +4994,13 @@ M.GetAccountUsageOutput = schema.new({
             id = id.from(_N, "GetAccountUsageOutput", "monthlyAccountOnDemandHours"),
             type = "structure",
             name = "monthlyAccountOnDemandHours",
+            target_id = id.from(_N, "UsageMetric"),
+            target = M.UsageMetric,
+        }),
+        monthlyAccountGraderHours = schema.new({
+            id = id.from(_N, "GetAccountUsageOutput", "monthlyAccountGraderHours"),
+            type = "structure",
+            name = "monthlyAccountGraderHours",
             target_id = id.from(_N, "UsageMetric"),
             target = M.UsageMetric,
         }),
@@ -7883,6 +7917,24 @@ M.MCPServerBearerTokenConfig = schema.new({
     },
 })
 
+M.MCPServerCustomHeadersConfig = schema.new({
+    id = id.from(_N, "MCPServerCustomHeadersConfig"),
+    type = "structure",
+    members = {
+        headers = schema.new({
+            id = id.from(_N, "MCPServerCustomHeadersConfig", "headers"),
+            type = "map",
+            name = "headers",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.MCPServerOAuth3LOConfig = schema.new({
     id = id.from(_N, "MCPServerOAuth3LOConfig"),
     type = "structure",
@@ -8048,6 +8100,13 @@ M.MCPServerAuthorizationConfig = schema.new({
             name = "bearerToken",
             target_id = id.from(_N, "MCPServerBearerTokenConfig"),
             target = M.MCPServerBearerTokenConfig,
+        }),
+        customHeaders = schema.new({
+            id = id.from(_N, "MCPServerAuthorizationConfig", "customHeaders"),
+            type = "structure",
+            name = "customHeaders",
+            target_id = id.from(_N, "MCPServerCustomHeadersConfig"),
+            target = M.MCPServerCustomHeadersConfig,
         }),
         authorizationDiscovery = schema.new({
             id = id.from(_N, "MCPServerAuthorizationConfig", "authorizationDiscovery"),

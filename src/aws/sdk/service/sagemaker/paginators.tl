@@ -1470,6 +1470,24 @@ function M.items_list_training_plans(client, input)
     })
 end
 
+--- Returns a page iterator for listTrainingSessions.
+function M.pages_list_training_sessions(client, input)
+    return paginator.pages(client, "listTrainingSessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrainingSessionSummaries",
+    })
+end
+
+--- Returns an item iterator for listTrainingSessions.
+function M.items_list_training_sessions(client, input)
+    return paginator.items(client, "listTrainingSessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TrainingSessionSummaries",
+    })
+end
+
 --- Returns a page iterator for listTransformJobs.
 function M.pages_list_transform_jobs(client, input)
     return paginator.pages(client, "listTransformJobs", input, {

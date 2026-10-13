@@ -10020,6 +10020,25 @@ M.InvokeHarnessOutput = schema.new({
     },
 })
 
+M.RecordExpirySpecification = schema.new({
+    id = id.from(_N, "RecordExpirySpecification"),
+    type = "union",
+    members = {
+        recordExpiryDurationDays = schema.new({
+            id = id.from(_N, "RecordExpirySpecification", "recordExpiryDurationDays"),
+            type = "integer",
+            name = "recordExpiryDurationDays",
+            target_id = prelude.Integer.id,
+        }),
+        action = schema.new({
+            id = id.from(_N, "RecordExpirySpecification", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.MemoryContent = schema.new({
     id = id.from(_N, "MemoryContent"),
     type = "union",
@@ -10156,6 +10175,13 @@ M.BatchCreateMemoryRecordsInput = schema.new({
             traits = {
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
+        }),
+        recordExpirySpecification = schema.new({
+            id = id.from(_N, "BatchCreateMemoryRecordsInput", "recordExpirySpecification"),
+            type = "union",
+            name = "recordExpirySpecification",
+            target_id = id.from(_N, "RecordExpirySpecification"),
+            target = M.RecordExpirySpecification,
         }),
     },
 })
@@ -10427,6 +10453,13 @@ M.BatchUpdateMemoryRecordsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        recordExpirySpecification = schema.new({
+            id = id.from(_N, "BatchUpdateMemoryRecordsInput", "recordExpirySpecification"),
+            type = "union",
+            name = "recordExpirySpecification",
+            target_id = id.from(_N, "RecordExpirySpecification"),
+            target = M.RecordExpirySpecification,
         }),
     },
 })
@@ -11057,6 +11090,12 @@ M.MemoryRecord = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        timestamp = schema.new({
+            id = id.from(_N, "MemoryRecord", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+        }),
         metadata = schema.new({
             id = id.from(_N, "MemoryRecord", "metadata"),
             type = "map",
@@ -11064,6 +11103,12 @@ M.MemoryRecord = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = M.MemoryRecordMetadataValue,
+        }),
+        expiresAt = schema.new({
+            id = id.from(_N, "MemoryRecord", "expiresAt"),
+            type = "timestamp",
+            name = "expiresAt",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -11841,6 +11886,12 @@ M.MemoryRecordSummary = schema.new({
             type = "double",
             name = "score",
             target_id = prelude.Double.id,
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "MemoryRecordSummary", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
         }),
         metadata = schema.new({
             id = id.from(_N, "MemoryRecordSummary", "metadata"),

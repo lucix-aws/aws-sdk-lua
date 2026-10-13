@@ -338,6 +338,8 @@ M.TrainingPlanFilters = schema.new({ type = "list", list_member = M.TrainingPlan
 
 M.TrainingPlanSummaries = schema.new({ type = "list", list_member = M.TrainingPlanSummary })
 
+M.TrainingSessionSummaries = schema.new({ type = "list", list_member = M.TrainingSessionSummary })
+
 M.TransformJobSummaries = schema.new({ type = "list", list_member = M.TransformJobSummary })
 
 M.TrialComponentSummaries = schema.new({ type = "list", list_member = M.TrialComponentSummary })
@@ -6862,6 +6864,31 @@ M.Bias = schema.new({
             name = "PostTrainingReport",
             target_id = id.from(_N, "MetricsSource"),
             target = M.MetricsSource,
+        }),
+    },
+})
+
+M.BillableTokenUsage = schema.new({
+    id = id.from(_N, "BillableTokenUsage"),
+    type = "structure",
+    members = {
+        PrefillTokenCount = schema.new({
+            id = id.from(_N, "BillableTokenUsage", "PrefillTokenCount"),
+            type = "long",
+            name = "PrefillTokenCount",
+            target_id = prelude.Long.id,
+        }),
+        SampleTokenCount = schema.new({
+            id = id.from(_N, "BillableTokenUsage", "SampleTokenCount"),
+            type = "long",
+            name = "SampleTokenCount",
+            target_id = prelude.Long.id,
+        }),
+        TrainingTokenCount = schema.new({
+            id = id.from(_N, "BillableTokenUsage", "TrainingTokenCount"),
+            type = "long",
+            name = "TrainingTokenCount",
+            target_id = prelude.Long.id,
         }),
     },
 })
@@ -23602,6 +23629,183 @@ M.CreateTrainingPlanOutput = schema.new({
     },
 })
 
+M.LoraConfig = schema.new({
+    id = id.from(_N, "LoraConfig"),
+    type = "structure",
+    members = {
+        Rank = schema.new({
+            id = id.from(_N, "LoraConfig", "Rank"),
+            type = "integer",
+            name = "Rank",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Alpha = schema.new({
+            id = id.from(_N, "LoraConfig", "Alpha"),
+            type = "integer",
+            name = "Alpha",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TrainingSessionModelConfig = schema.new({
+    id = id.from(_N, "TrainingSessionModelConfig"),
+    type = "structure",
+    members = {
+        BaseModelArn = schema.new({
+            id = id.from(_N, "TrainingSessionModelConfig", "BaseModelArn"),
+            type = "string",
+            name = "BaseModelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AcceptEula = schema.new({
+            id = id.from(_N, "TrainingSessionModelConfig", "AcceptEula"),
+            type = "boolean",
+            name = "AcceptEula",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.TrainingSessionS3Location = schema.new({
+    id = id.from(_N, "TrainingSessionS3Location"),
+    type = "structure",
+    members = {
+        Path = schema.new({
+            id = id.from(_N, "TrainingSessionS3Location", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "TrainingSessionS3Location", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TrainingSessionOutputConfig = schema.new({
+    id = id.from(_N, "TrainingSessionOutputConfig"),
+    type = "structure",
+    members = {
+        S3Location = schema.new({
+            id = id.from(_N, "TrainingSessionOutputConfig", "S3Location"),
+            type = "structure",
+            name = "S3Location",
+            target_id = id.from(_N, "TrainingSessionS3Location"),
+            target = M.TrainingSessionS3Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateTrainingSessionInput = schema.new({
+    id = id.from(_N, "CreateTrainingSessionRequest"),
+    type = "structure",
+    members = {
+        TrainingSessionName = schema.new({
+            id = id.from(_N, "CreateTrainingSessionInput", "TrainingSessionName"),
+            type = "string",
+            name = "TrainingSessionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ModelPackageGroupArn = schema.new({
+            id = id.from(_N, "CreateTrainingSessionInput", "ModelPackageGroupArn"),
+            type = "string",
+            name = "ModelPackageGroupArn",
+            target_id = prelude.String.id,
+        }),
+        LoraConfig = schema.new({
+            id = id.from(_N, "CreateTrainingSessionInput", "LoraConfig"),
+            type = "structure",
+            name = "LoraConfig",
+            target_id = id.from(_N, "LoraConfig"),
+            target = M.LoraConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateTrainingSessionInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VpcConfig = schema.new({
+            id = id.from(_N, "CreateTrainingSessionInput", "VpcConfig"),
+            type = "structure",
+            name = "VpcConfig",
+            target_id = id.from(_N, "VpcConfig"),
+            target = M.VpcConfig,
+        }),
+        ModelConfig = schema.new({
+            id = id.from(_N, "CreateTrainingSessionInput", "ModelConfig"),
+            type = "structure",
+            name = "ModelConfig",
+            target_id = id.from(_N, "TrainingSessionModelConfig"),
+            target = M.TrainingSessionModelConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutputConfig = schema.new({
+            id = id.from(_N, "CreateTrainingSessionInput", "OutputConfig"),
+            type = "structure",
+            name = "OutputConfig",
+            target_id = id.from(_N, "TrainingSessionOutputConfig"),
+            target = M.TrainingSessionOutputConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateTrainingSessionInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateTrainingSessionOutput = schema.new({
+    id = id.from(_N, "CreateTrainingSessionResponse"),
+    type = "structure",
+    members = {
+        TrainingSessionArn = schema.new({
+            id = id.from(_N, "CreateTrainingSessionOutput", "TrainingSessionArn"),
+            type = "string",
+            name = "TrainingSessionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DataProcessing = schema.new({
     id = id.from(_N, "DataProcessing"),
     type = "structure",
@@ -25964,6 +26168,27 @@ M.DeleteTrainingJobInput = schema.new({
 })
 
 M.DeleteTrainingJobOutput = prelude.Unit
+
+M.DeleteTrainingSessionInput = schema.new({
+    id = id.from(_N, "DeleteTrainingSessionRequest"),
+    type = "structure",
+    members = {
+        TrainingSessionName = schema.new({
+            id = id.from(_N, "DeleteTrainingSessionInput", "TrainingSessionName"),
+            type = "string",
+            name = "TrainingSessionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTrainingSessionOutput = schema.new({
+    id = id.from(_N, "DeleteTrainingSessionResponse"),
+    type = "structure",
+})
 
 M.DeleteTrialInput = schema.new({
     id = id.from(_N, "DeleteTrialRequest"),
@@ -37141,6 +37366,160 @@ M.DescribeTrainingPlanExtensionHistoryOutput = schema.new({
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTrainingSessionInput = schema.new({
+    id = id.from(_N, "DescribeTrainingSessionRequest"),
+    type = "structure",
+    members = {
+        TrainingSessionName = schema.new({
+            id = id.from(_N, "DescribeTrainingSessionInput", "TrainingSessionName"),
+            type = "string",
+            name = "TrainingSessionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TrainingSessionDetail = schema.new({
+    id = id.from(_N, "TrainingSessionDetail"),
+    type = "structure",
+    members = {
+        TrainingSessionArn = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "TrainingSessionArn"),
+            type = "string",
+            name = "TrainingSessionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TrainingSessionName = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "TrainingSessionName"),
+            type = "string",
+            name = "TrainingSessionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TrainingSessionStatus = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "TrainingSessionStatus"),
+            type = "string",
+            name = "TrainingSessionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ModelPackageGroupArn = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "ModelPackageGroupArn"),
+            type = "string",
+            name = "ModelPackageGroupArn",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ErrorDetails = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "ErrorDetails"),
+            type = "string",
+            name = "ErrorDetails",
+            target_id = prelude.String.id,
+        }),
+        LastReceivedSequenceNumber = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "LastReceivedSequenceNumber"),
+            type = "integer",
+            name = "LastReceivedSequenceNumber",
+            target_id = prelude.Integer.id,
+        }),
+        BillableTokenUsage = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "BillableTokenUsage"),
+            type = "structure",
+            name = "BillableTokenUsage",
+            target_id = id.from(_N, "BillableTokenUsage"),
+            target = M.BillableTokenUsage,
+        }),
+        VpcConfig = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "VpcConfig"),
+            type = "structure",
+            name = "VpcConfig",
+            target_id = id.from(_N, "VpcConfig"),
+            target = M.VpcConfig,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        LoraConfig = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "LoraConfig"),
+            type = "structure",
+            name = "LoraConfig",
+            target_id = id.from(_N, "LoraConfig"),
+            target = M.LoraConfig,
+        }),
+        ModelConfig = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "ModelConfig"),
+            type = "structure",
+            name = "ModelConfig",
+            target_id = id.from(_N, "TrainingSessionModelConfig"),
+            target = M.TrainingSessionModelConfig,
+        }),
+        OutputConfig = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "OutputConfig"),
+            type = "structure",
+            name = "OutputConfig",
+            target_id = id.from(_N, "TrainingSessionOutputConfig"),
+            target = M.TrainingSessionOutputConfig,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TrainingSessionDetail", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.DescribeTrainingSessionOutput = schema.new({
+    id = id.from(_N, "DescribeTrainingSessionResponse"),
+    type = "structure",
+    members = {
+        TrainingSessionDetail = schema.new({
+            id = id.from(_N, "DescribeTrainingSessionOutput", "TrainingSessionDetail"),
+            type = "structure",
+            name = "TrainingSessionDetail",
+            target_id = id.from(_N, "TrainingSessionDetail"),
+            target = M.TrainingSessionDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -50492,6 +50871,109 @@ M.ListTrainingPlansOutput = schema.new({
     },
 })
 
+M.ListTrainingSessionsInput = schema.new({
+    id = id.from(_N, "ListTrainingSessionsRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListTrainingSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTrainingSessionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        CreationTimeAfter = schema.new({
+            id = id.from(_N, "ListTrainingSessionsInput", "CreationTimeAfter"),
+            type = "timestamp",
+            name = "CreationTimeAfter",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreationTimeBefore = schema.new({
+            id = id.from(_N, "ListTrainingSessionsInput", "CreationTimeBefore"),
+            type = "timestamp",
+            name = "CreationTimeBefore",
+            target_id = prelude.Timestamp.id,
+        }),
+        NameContains = schema.new({
+            id = id.from(_N, "ListTrainingSessionsInput", "NameContains"),
+            type = "string",
+            name = "NameContains",
+            target_id = prelude.String.id,
+        }),
+        StatusEquals = schema.new({
+            id = id.from(_N, "ListTrainingSessionsInput", "StatusEquals"),
+            type = "string",
+            name = "StatusEquals",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TrainingSessionSummary = schema.new({
+    id = id.from(_N, "TrainingSessionSummary"),
+    type = "structure",
+    members = {
+        TrainingSessionArn = schema.new({
+            id = id.from(_N, "TrainingSessionSummary", "TrainingSessionArn"),
+            type = "string",
+            name = "TrainingSessionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TrainingSessionStatus = schema.new({
+            id = id.from(_N, "TrainingSessionSummary", "TrainingSessionStatus"),
+            type = "string",
+            name = "TrainingSessionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "TrainingSessionSummary", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "TrainingSessionSummary", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListTrainingSessionsOutput = schema.new({
+    id = id.from(_N, "ListTrainingSessionsResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListTrainingSessionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        TrainingSessionSummaries = schema.new({
+            id = id.from(_N, "ListTrainingSessionsOutput", "TrainingSessionSummaries"),
+            type = "list",
+            name = "TrainingSessionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.TrainingSessionSummary,
+        }),
+    },
+})
+
 M.ListTransformJobsInput = schema.new({
     id = id.from(_N, "ListTransformJobsRequest"),
     type = "structure",
@@ -55054,6 +55536,27 @@ M.StopTrainingJobInput = schema.new({
 
 M.StopTrainingJobOutput = prelude.Unit
 
+M.StopTrainingSessionInput = schema.new({
+    id = id.from(_N, "StopTrainingSessionRequest"),
+    type = "structure",
+    members = {
+        TrainingSessionName = schema.new({
+            id = id.from(_N, "StopTrainingSessionInput", "TrainingSessionName"),
+            type = "string",
+            name = "TrainingSessionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopTrainingSessionOutput = schema.new({
+    id = id.from(_N, "StopTrainingSessionResponse"),
+    type = "structure",
+})
+
 M.StopTransformJobInput = schema.new({
     id = id.from(_N, "StopTransformJobRequest"),
     type = "structure",
@@ -58882,6 +59385,17 @@ M.CreateTrainingPlan = schema.operation({
     },
 })
 
+M.CreateTrainingSession = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateTrainingSession"),
+    input = M.CreateTrainingSessionInput,
+    output = M.CreateTrainingSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateTransformJob = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "CreateTransformJob"),
     input = M.CreateTransformJobInput,
@@ -59568,6 +60082,17 @@ M.DeleteTrainingJob = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "DeleteTrainingJob"),
     input = M.DeleteTrainingJobInput,
     output = M.DeleteTrainingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrainingSession = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteTrainingSession"),
+    input = M.DeleteTrainingSessionInput,
+    output = M.DeleteTrainingSessionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -60404,6 +60929,17 @@ M.DescribeTrainingPlanExtensionHistory = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "DescribeTrainingPlanExtensionHistory"),
     input = M.DescribeTrainingPlanExtensionHistoryInput,
     output = M.DescribeTrainingPlanExtensionHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTrainingSession = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeTrainingSession"),
+    input = M.DescribeTrainingSessionInput,
+    output = M.DescribeTrainingSessionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -61522,6 +62058,17 @@ M.ListTrainingPlans = schema.operation({
     },
 })
 
+M.ListTrainingSessions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListTrainingSessions"),
+    input = M.ListTrainingSessionsInput,
+    output = M.ListTrainingSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTransformJobs = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "ListTransformJobs"),
     input = M.ListTransformJobsInput,
@@ -61977,6 +62524,17 @@ M.StopTrainingJob = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "StopTrainingJob"),
     input = M.StopTrainingJobInput,
     output = M.StopTrainingJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTrainingSession = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopTrainingSession"),
+    input = M.StopTrainingSessionInput,
+    output = M.StopTrainingSessionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

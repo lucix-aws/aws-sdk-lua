@@ -1085,6 +1085,15 @@ M.AddOutputRequest = schema.new({
                 [traits.JSON_NAME] = { name = "ndiOutputTimecodeSource" },
             },
         }),
+        NdiAudioReferenceLevel = schema.new({
+            id = id.from(_N, "AddOutputRequest", "NdiAudioReferenceLevel"),
+            type = "integer",
+            name = "NdiAudioReferenceLevel",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ndiAudioReferenceLevel" },
+            },
+        }),
     },
 })
 
@@ -2406,6 +2415,40 @@ M.NdiDiscoveryServerConfig = schema.new({
     },
 })
 
+M.ColorInformation = schema.new({
+    id = id.from(_N, "ColorInformation"),
+    type = "structure",
+    members = {
+        Colorimetry = schema.new({
+            id = id.from(_N, "ColorInformation", "Colorimetry"),
+            type = "string",
+            name = "Colorimetry",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "colorimetry" },
+            },
+        }),
+        TransferCharacteristics = schema.new({
+            id = id.from(_N, "ColorInformation", "TransferCharacteristics"),
+            type = "string",
+            name = "TransferCharacteristics",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "transferCharacteristics" },
+            },
+        }),
+        MatrixCoefficients = schema.new({
+            id = id.from(_N, "ColorInformation", "MatrixCoefficients"),
+            type = "string",
+            name = "MatrixCoefficients",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "matrixCoefficients" },
+            },
+        }),
+    },
+})
+
 M.FrameResolution = schema.new({
     id = id.from(_N, "FrameResolution"),
     type = "structure",
@@ -2474,6 +2517,16 @@ M.NdiMediaStreamInfo = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "scanMode" },
+            },
+        }),
+        Color = schema.new({
+            id = id.from(_N, "NdiMediaStreamInfo", "Color"),
+            type = "structure",
+            name = "Color",
+            target_id = id.from(_N, "ColorInformation"),
+            target = M.ColorInformation,
+            traits = {
+                [traits.JSON_NAME] = { name = "color" },
             },
         }),
         FrameResolution = schema.new({
@@ -2660,6 +2713,15 @@ M.NdiSourceSettings = schema.new({
                 [traits.JSON_NAME] = { name = "sourceName" },
             },
         }),
+        AudioReferenceLevel = schema.new({
+            id = id.from(_N, "NdiSourceSettings", "AudioReferenceLevel"),
+            type = "integer",
+            name = "AudioReferenceLevel",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "audioReferenceLevel" },
+            },
+        }),
     },
 })
 
@@ -2821,6 +2883,15 @@ M.Transport = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "ndiOutputTimecodeSource" },
+            },
+        }),
+        NdiAudioReferenceLevel = schema.new({
+            id = id.from(_N, "Transport", "NdiAudioReferenceLevel"),
+            type = "integer",
+            name = "NdiAudioReferenceLevel",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ndiAudioReferenceLevel" },
             },
         }),
     },
@@ -3639,6 +3710,16 @@ M.TransportStream = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "codec" },
+            },
+        }),
+        Color = schema.new({
+            id = id.from(_N, "TransportStream", "Color"),
+            type = "structure",
+            name = "Color",
+            target_id = id.from(_N, "ColorInformation"),
+            target = M.ColorInformation,
+            traits = {
+                [traits.JSON_NAME] = { name = "color" },
             },
         }),
         FrameRate = schema.new({
@@ -9780,6 +9861,15 @@ M.TransportMediaInfo = schema.new({
                 [traits.JSON_NAME] = { name = "programs" },
             },
         }),
+        TsId = schema.new({
+            id = id.from(_N, "TransportMediaInfo", "TsId"),
+            type = "integer",
+            name = "TsId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tsId" },
+            },
+        }),
     },
 })
 
@@ -11252,6 +11342,15 @@ M.UpdateFlowOutputInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "ndiOutputTimecodeSource" },
+            },
+        }),
+        NdiAudioReferenceLevel = schema.new({
+            id = id.from(_N, "UpdateFlowOutputInput", "NdiAudioReferenceLevel"),
+            type = "integer",
+            name = "NdiAudioReferenceLevel",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ndiAudioReferenceLevel" },
             },
         }),
     },

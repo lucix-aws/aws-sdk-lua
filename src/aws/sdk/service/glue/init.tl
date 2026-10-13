@@ -28,6 +28,7 @@ local record Client
     batchGetCrawlers: function(Client, types.BatchGetCrawlersInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCrawlersOutput>
     batchGetCustomEntityTypes: function(Client, types.BatchGetCustomEntityTypesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCustomEntityTypesOutput>
     batchGetDataQualityResult: function(Client, types.BatchGetDataQualityResultInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityResultOutput>
+    batchGetDataQualityResultV2: function(Client, types.BatchGetDataQualityResultV2Input, ? base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityResultV2Output>
     batchGetDataQualityRulesetEvaluationRun: function(Client, types.BatchGetDataQualityRulesetEvaluationRunInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityRulesetEvaluationRunOutput>
     batchGetDevEndpoints: function(Client, types.BatchGetDevEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetDevEndpointsOutput>
     batchGetIterableForms: function(Client, types.BatchGetIterableFormsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetIterableFormsOutput>
@@ -150,6 +151,7 @@ local record Client
     getDataQualityModel: function(Client, types.GetDataQualityModelInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityModelOutput>
     getDataQualityModelResult: function(Client, types.GetDataQualityModelResultInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityModelResultOutput>
     getDataQualityResult: function(Client, types.GetDataQualityResultInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityResultOutput>
+    getDataQualityResultV2: function(Client, types.GetDataQualityResultV2Input, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityResultV2Output>
     getDataQualityRuleRecommendationRun: function(Client, types.GetDataQualityRuleRecommendationRunInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityRuleRecommendationRunOutput>
     getDataQualityRuleset: function(Client, types.GetDataQualityRulesetInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityRulesetOutput>
     getDataQualityRulesetEvaluationRun: function(Client, types.GetDataQualityRulesetEvaluationRunInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityRulesetEvaluationRunOutput>
@@ -218,6 +220,7 @@ local record Client
     listCrawls: function(Client, types.ListCrawlsInput, ? base_client.InvokeOptions): async.Operation<types.ListCrawlsOutput>
     listCustomEntityTypes: function(Client, types.ListCustomEntityTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomEntityTypesOutput>
     listDataQualityResults: function(Client, types.ListDataQualityResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityResultsOutput>
+    listDataQualityResultsV2: function(Client, types.ListDataQualityResultsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityResultsV2Output>
     listDataQualityRuleRecommendationRuns: function(Client, types.ListDataQualityRuleRecommendationRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityRuleRecommendationRunsOutput>
     listDataQualityRulesetEvaluationRuns: function(Client, types.ListDataQualityRulesetEvaluationRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityRulesetEvaluationRunsOutput>
     listDataQualityRulesets: function(Client, types.ListDataQualityRulesetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityRulesetsOutput>
@@ -244,6 +247,7 @@ local record Client
     listUsageProfiles: function(Client, types.ListUsageProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListUsageProfilesOutput>
     listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
     modifyIntegration: function(Client, types.ModifyIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIntegrationOutput>
+    publishDataQualityResultV2: function(Client, types.PublishDataQualityResultV2Input, ? base_client.InvokeOptions): async.Operation<types.PublishDataQualityResultV2Output>
     putAsset: function(Client, types.PutAssetInput, ? base_client.InvokeOptions): async.Operation<types.PutAssetOutput>
     putAssetType: function(Client, types.PutAssetTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutAssetTypeOutput>
     putAttachment: function(Client, types.PutAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.PutAttachmentOutput>
@@ -402,6 +406,10 @@ end
 
 function C:batchGetDataQualityResult(input: types.BatchGetDataQualityResultInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityResultOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetDataQualityResult as schema.OperationSchema, input, options) as async.Operation<types.BatchGetDataQualityResultOutput>
+end
+
+function C:batchGetDataQualityResultV2(input: types.BatchGetDataQualityResultV2Input, options?: base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityResultV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetDataQualityResultV2 as schema.OperationSchema, input, options) as async.Operation<types.BatchGetDataQualityResultV2Output>
 end
 
 function C:batchGetDataQualityRulesetEvaluationRun(input: types.BatchGetDataQualityRulesetEvaluationRunInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityRulesetEvaluationRunOutput>
@@ -892,6 +900,10 @@ function C:getDataQualityResult(input: types.GetDataQualityResultInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataQualityResult as schema.OperationSchema, input, options) as async.Operation<types.GetDataQualityResultOutput>
 end
 
+function C:getDataQualityResultV2(input: types.GetDataQualityResultV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetDataQualityResultV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataQualityResultV2 as schema.OperationSchema, input, options) as async.Operation<types.GetDataQualityResultV2Output>
+end
+
 function C:getDataQualityRuleRecommendationRun(input: types.GetDataQualityRuleRecommendationRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataQualityRuleRecommendationRunOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataQualityRuleRecommendationRun as schema.OperationSchema, input, options) as async.Operation<types.GetDataQualityRuleRecommendationRunOutput>
 end
@@ -1164,6 +1176,10 @@ function C:listDataQualityResults(input: types.ListDataQualityResultsInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataQualityResults as schema.OperationSchema, input, options) as async.Operation<types.ListDataQualityResultsOutput>
 end
 
+function C:listDataQualityResultsV2(input: types.ListDataQualityResultsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListDataQualityResultsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataQualityResultsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListDataQualityResultsV2Output>
+end
+
 function C:listDataQualityRuleRecommendationRuns(input: types.ListDataQualityRuleRecommendationRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataQualityRuleRecommendationRunsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataQualityRuleRecommendationRuns as schema.OperationSchema, input, options) as async.Operation<types.ListDataQualityRuleRecommendationRunsOutput>
 end
@@ -1266,6 +1282,10 @@ end
 
 function C:modifyIntegration(input: types.ModifyIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIntegrationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIntegration as schema.OperationSchema, input, options) as async.Operation<types.ModifyIntegrationOutput>
+end
+
+function C:publishDataQualityResultV2(input: types.PublishDataQualityResultV2Input, options?: base_client.InvokeOptions): async.Operation<types.PublishDataQualityResultV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishDataQualityResultV2 as schema.OperationSchema, input, options) as async.Operation<types.PublishDataQualityResultV2Output>
 end
 
 function C:putAsset(input: types.PutAssetInput, options?: base_client.InvokeOptions): async.Operation<types.PutAssetOutput>

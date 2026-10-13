@@ -22,6 +22,7 @@ local record Client
     deleteNetworkConnector: function(Client, types.DeleteNetworkConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkConnectorOutput>
     getNetworkConnector: function(Client, types.GetNetworkConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkConnectorOutput>
     listNetworkConnectors: function(Client, types.ListNetworkConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkConnectorsOutput>
+    listNetworkConnectorVersions: function(Client, types.ListNetworkConnectorVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkConnectorVersionsOutput>
     updateNetworkConnector: function(Client, types.UpdateNetworkConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkConnectorOutput>
 end
 
@@ -81,6 +82,10 @@ end
 
 function C:listNetworkConnectors(input: types.ListNetworkConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkConnectorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkConnectorsOutput>
+end
+
+function C:listNetworkConnectorVersions(input: types.ListNetworkConnectorVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkConnectorVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkConnectorVersions as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkConnectorVersionsOutput>
 end
 
 function C:updateNetworkConnector(input: types.UpdateNetworkConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkConnectorOutput>

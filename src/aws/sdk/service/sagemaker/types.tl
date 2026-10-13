@@ -3657,6 +3657,16 @@ local record M
         PostTrainingReport: MetricsSource
     end
 
+    -- The billable token usage for a training session, broken down by operation type.
+    record BillableTokenUsage
+        -- The number of prefill tokens consumed.
+        PrefillTokenCount: number
+        -- The number of sample tokens consumed.
+        SampleTokenCount: number
+        -- The number of training tokens consumed.
+        TrainingTokenCount: number
+    end
+
     enum CapacitySizeType
         "INSTANCE_COUNT"
         "CAPACITY_PERCENT"
@@ -10367,6 +10377,60 @@ local record M
         TrainingPlanArn: string
     end
 
+    -- The Low-Rank Adaptation (LoRA) configuration for a training session, including the rank and alpha parameters.
+    record LoraConfig
+        -- The rank of the Low-Rank Adaptation (LoRA) adapter matrices.
+        Rank: number
+        -- The Low-Rank Adaptation (LoRA) scaling factor.
+        Alpha: number
+    end
+
+    -- The configuration for the base model used in a training session.
+    record TrainingSessionModelConfig
+        -- The Amazon Resource Name (ARN) of the base foundation model from SageMaker Hub.
+        BaseModelArn: string
+        -- Specifies whether you accept the end-user license agreement (EULA) for gated models.
+        AcceptEula: boolean
+    end
+
+    -- Specifies the Amazon S3 path and optional encryption settings for training session output data, including checkpoints, model artifacts, and invocation results.
+    record TrainingSessionS3Location
+        -- The Amazon S3 path where training session outputs are stored.
+        Path: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt output data. If not specified, the default Amazon S3 encryption is used.
+        KmsKeyArn: string
+    end
+
+    -- The output configuration for a training session, including the Amazon S3 location for checkpoints and model artifacts, and optional encryption settings.
+    record TrainingSessionOutputConfig
+        -- The Amazon S3 location where training session outputs, including checkpoints and model artifacts, are stored.
+        S3Location: TrainingSessionS3Location
+    end
+
+    record CreateTrainingSessionInput
+        -- The name of the training session.
+        TrainingSessionName: string
+        -- The Amazon Resource Name (ARN) of the model package group where checkpoints and fine-tuned model artifacts are published.
+        ModelPackageGroupArn: string
+        -- The Low-Rank Adaptation (LoRA) configuration for the training session, including the rank and alpha parameters.
+        LoraConfig: LoraConfig
+        -- The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to access resources on your behalf. The role must have permissions to access the output S3 path and model package group.
+        RoleArn: string
+        -- The Virtual Private Cloud (VPC) configuration for the training session. Specify subnets and security groups to run the training session in your VPC.
+        VpcConfig: VpcConfig
+        -- The configuration for the base model, including the model ARN and end-user license agreement (EULA) acceptance.
+        ModelConfig: TrainingSessionModelConfig
+        -- The output configuration for the training session, including the S3 location and optional encryption settings.
+        OutputConfig: TrainingSessionOutputConfig
+        -- An array of key-value pairs to apply to the training session as tags. For more information, see Tagging Amazon Web Services Resources.
+        Tags: {Tag}
+    end
+
+    record CreateTrainingSessionOutput
+        -- The Amazon Resource Name (ARN) of the training session.
+        TrainingSessionArn: string
+    end
+
     enum JoinSource
         "Input"
         "None"
@@ -11259,6 +11323,14 @@ local record M
     end
 
     record DeleteTrainingJobOutput
+    end
+
+    record DeleteTrainingSessionInput
+        -- The name of the training session to delete.
+        TrainingSessionName: string
+    end
+
+    record DeleteTrainingSessionOutput
     end
 
     record DeleteTrialInput
@@ -15062,6 +15134,65 @@ local record M
         TrainingPlanExtensions: {TrainingPlanExtension}
         -- A token to continue pagination if more results are available.
         NextToken: string
+    end
+
+    record DescribeTrainingSessionInput
+        -- The name of the training session to describe.
+        TrainingSessionName: string
+    end
+
+    enum TrainingSessionStatus
+        "Created"
+        "Blocked"
+        "Running"
+        "Failed"
+        "Scheduled"
+        "Stopping"
+        "Stopped"
+        "Expired"
+        "Deleting"
+        "DeletionFailed"
+    end
+
+    -- Contains detailed information about a training session.
+    record TrainingSessionDetail
+        -- The Amazon Resource Name (ARN) of the training session.
+        TrainingSessionArn: string
+        -- The name of the training session.
+        TrainingSessionName: string
+        -- The current status of the training session.
+        TrainingSessionStatus: string
+        -- The Amazon Resource Name (ARN) of the model package group where checkpoints are published.
+        ModelPackageGroupArn: string
+        -- The date and time that the training session was created.
+        CreationTime: number
+        -- The date and time that the training session was last modified.
+        LastModifiedTime: number
+        -- The date and time that the training session ended.
+        EndTime: number
+        -- If the training session failed or is blocked, detailed error information.
+        ErrorDetails: string
+        -- The sequence number of the last training operation received by the session.
+        LastReceivedSequenceNumber: number
+        -- The billable token usage for the training session.
+        BillableTokenUsage: BillableTokenUsage
+        -- The Virtual Private Cloud (VPC) configuration for the training session.
+        VpcConfig: VpcConfig
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the training session.
+        RoleArn: string
+        -- The Low-Rank Adaptation (LoRA) configuration for the training session.
+        LoraConfig: LoraConfig
+        -- The configuration for the base model.
+        ModelConfig: TrainingSessionModelConfig
+        -- The output configuration for the training session.
+        OutputConfig: TrainingSessionOutputConfig
+        -- The tags associated with the training session.
+        Tags: {Tag}
+    end
+
+    record DescribeTrainingSessionOutput
+        -- The detailed information about the training session.
+        TrainingSessionDetail: TrainingSessionDetail
     end
 
     record DescribeTransformJobInput
@@ -19868,6 +19999,40 @@ local record M
         TrainingPlanSummaries: {TrainingPlanSummary}
     end
 
+    record ListTrainingSessionsInput
+        -- If the response was truncated, use the token returned in the previous response to retrieve the next page of results.
+        NextToken: string
+        -- The maximum number of training sessions to return in the response.
+        MaxResults: number
+        -- A filter that returns only training sessions created after the specified time.
+        CreationTimeAfter: number
+        -- A filter that returns only training sessions created before the specified time.
+        CreationTimeBefore: number
+        -- A string in the training session name to filter results. Only sessions whose name contains the specified string are returned.
+        NameContains: string
+        -- A filter that returns only training sessions with the specified status.
+        StatusEquals: string
+    end
+
+    -- Contains summary information about a training session.
+    record TrainingSessionSummary
+        -- The Amazon Resource Name (ARN) of the training session.
+        TrainingSessionArn: string
+        -- The current status of the training session.
+        TrainingSessionStatus: string
+        -- The date and time that the training session was created.
+        CreationTime: number
+        -- The date and time that the training session was last modified.
+        LastModifiedTime: number
+    end
+
+    record ListTrainingSessionsOutput
+        -- If the response is truncated, this token retrieves the next set of results.
+        NextToken: string
+        -- An array of TrainingSessionSummary objects that provide summary information about the training sessions.
+        TrainingSessionSummaries: {TrainingSessionSummary}
+    end
+
     record ListTransformJobsInput
         -- A filter that returns only transform jobs created after the specified time.
         CreationTimeAfter: number
@@ -21375,6 +21540,14 @@ local record M
     end
 
     record StopTrainingJobOutput
+    end
+
+    record StopTrainingSessionInput
+        -- The name of the training session to stop.
+        TrainingSessionName: string
+    end
+
+    record StopTrainingSessionOutput
     end
 
     record StopTransformJobInput

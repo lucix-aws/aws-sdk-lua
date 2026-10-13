@@ -344,6 +344,8 @@ local record M
         RouterIntegrationTransitEncryption: FlowTransitEncryption
         -- Controls how MediaConnect generates timecodes for NDI output frames. If you don't specify this field, MediaConnect uses EMBEDDED_TIMECODE. EMBEDDED_TIMECODE (default) - Preserves timecodes from the input transport stream. The timecodes must be embedded in the video stream as SEI timing messages. If no embedded timecode is detected, MediaConnect uses the UTC system time instead. UTC_SYSTEM_TIME - Generates timecodes based on the system clock time when each frame is sent.
         NdiOutputTimecodeSource: string
+        -- The audio reference level of the NDI receiver, in decibels relative to full scale (dBFS). Common values are -20 (NDI and SMPTE) and -18 (EBU). If you don't specify this field, MediaConnect uses -20.
+        NdiAudioReferenceLevel: number
     end
 
     -- Configures settings for the SilentAudio metric.
@@ -755,6 +757,65 @@ local record M
         VpcInterfaceAdapter: string
     end
 
+    enum VideoColorimetry
+        "BT709"
+        "BT470M"
+        "BT470BG"
+        "BT601"
+        "SMPTE240M"
+        "GENERIC_FILM"
+        "BT2020"
+        "SMPTE428"
+        "SMPTE431"
+        "SMPTE432"
+    end
+
+    enum VideoMatrixCoefficients
+        "IDENTITY"
+        "BT709"
+        "FCC"
+        "BT470BG"
+        "BT601"
+        "SMPTE240M"
+        "YCGCO"
+        "BT2020_NCL"
+        "BT2020_CL"
+        "SMPTE2085"
+        "CHROMATICITY_DERIVED_NCL"
+        "CHROMATICITY_DERIVED_CL"
+        "BT2100_ICTCP"
+        "IPT_C2"
+    end
+
+    enum VideoTransferCharacteristics
+        "BT709"
+        "BT470M"
+        "BT470BG"
+        "BT601"
+        "SMPTE240M"
+        "LINEAR"
+        "LOG100"
+        "LOG316"
+        "IEC61966_2_4"
+        "BT1361_ECG"
+        "IEC61966_2_1"
+        "BT2020_10"
+        "BT2020_12"
+        "BT2100_PQ"
+        "SMPTE428"
+        "BT2100_HLG"
+    end
+
+    -- The color signaling of the video stream.
+    record ColorInformation
+        -- The color primaries that the video stream uses (for example, BT709 or BT2020).
+        Colorimetry: string
+        -- The transfer characteristics that the video stream uses (for example, BT601, BT709, BT2100_PQ, or BT2100_HLG).
+        TransferCharacteristics: string
+        -- The YCbCr matrix coefficients that the video stream uses (for example, BT709 or BT2020_NCL).
+        MatrixCoefficients: string
+    end
+
     -- The frame resolution used by the video stream.
     record FrameResolution
         -- The number of pixels in the height of the video frame.
@@ -773,6 +834,8 @@ local record M
         StreamId: number
         -- The method used to display video frames. Used when the streamType is Video.
         ScanMode: string
+        -- The color signaling of the video stream. Used when the streamType is Video.
+        Color: ColorInformation
         -- The width and height dimensions of the video frame in pixels. Used when the streamType is Video.
         FrameResolution: FrameResolution
         -- The number of video frames displayed per second. Used when the streamType is Video.
@@ -829,10 +892,12 @@ local record M
         ResourceSpecification: ResourceSpecification
     end
 
-    -- The settings for the NDI® source. This includes the exact name of the upstream NDI sender that you want to connect to your source.
+    -- The settings for the NDI® source. This includes the exact name of the upstream NDI sender that you want to connect to your source. When you update the NDI source, include only the members you want to change. MediaConnect leaves the members that you don't specify unchanged.
     record NdiSourceSettings
         -- The exact name of an existing NDI sender that's registered with your discovery server. If included, the format of this name must be MACHINENAME (ProgramName).
         SourceName: string
+        -- The audio reference level of the NDI sender, in decibels relative to full scale (dBFS). Common values are -20 (NDI and SMPTE) and -18 (EBU). If you don't specify this field, MediaConnect uses -20.
+        AudioReferenceLevel: number
     end
 
     -- Attributes related to the transport stream that are used in a source or output.
@@ -871,6 +936,8 @@ local record M
         NdiSourceSettings: NdiSourceSettings
         -- The timecode source for NDI output frames. For NDI outputs, this field is always present and defaults to EMBEDDED_TIMECODE. EMBEDDED_TIMECODE - Preserves timecodes from the input transport stream. The timecodes must be embedded in the video stream as SEI timing messages. If no embedded timecode is detected, MediaConnect uses the UTC system time instead. UTC_SYSTEM_TIME - Generates timecodes based on the system clock time when each frame is sent.
         NdiOutputTimecodeSource: string
+        -- The audio reference level of the NDI receiver, in decibels relative to full scale (dBFS). Common values are -20 (NDI and SMPTE) and -18 (EBU). For NDI outputs, this field is always present and defaults to -20.
+        NdiAudioReferenceLevel: number
     end
 
     -- The settings for an output.
@@ -1068,6 +1135,8 @@ local record M
         Channels: number
         -- The codec used by the stream.
         Codec: string
+        -- The color signaling of the video stream.
+        Color: ColorInformation
         -- The frame rate used by the video stream.
         FrameRate: string
         -- The frame resolution used by the video stream.
@@ -1394,7 +1463,7 @@ local record M
         PrimarySourceIndex: number
     end
 
-    -- Configuration settings for connecting a router input to a flow output.
+    -- Configuration settings for connecting a router input to a flow output. To connect the router input to the flow output, provide both flowArn and flowOutputArn. To disconnect it, call the update operation and omit both fields while keeping this configuration object. You can't change sourceTransitDecryption while the router input is connected to a flow output. To change it, first disconnect the router input, then update the decryption.
     record MediaConnectFlowRouterInputConfiguration
         -- The ARN of the flow to connect to.
         FlowArn: string
@@ -1428,7 +1497,7 @@ local record M
         EncryptionKeyConfiguration: MediaLiveTransitEncryptionKeyConfiguration
     end
 
-    -- Configuration settings for connecting a router input to a MediaLive channel output.
+    -- Configuration settings for connecting a router input to a MediaLive channel output. To connect the router input to the MediaLive channel output, provide all three of mediaLiveChannelArn, mediaLivePipelineId, and mediaLiveChannelOutputName. To disconnect it, call the update operation and omit all three fields while keeping this configuration object. You can't change sourceTransitDecryption while the router input is connected to a MediaLive channel output. To change it, first disconnect the router input, then update the decryption.
     record MediaLiveChannelRouterInputConfiguration
         -- The ARN of the MediaLive channel to connect to this router input.
         MediaLiveChannelArn: string
@@ -1685,6 +1754,8 @@ local record M
         "INPUT_100"
         "INPUT_50"
         "INPUT_20"
+        "INPUT_500"
+        "INPUT_250"
     end
 
     -- Defines the configuration settings for transit encryption keys.
@@ -1729,7 +1800,7 @@ local record M
         AvailabilityZone: string
         -- The maximum bitrate for the router input.
         MaximumBitrate: number
-        -- The tier level of the router input.
+        -- The tier level for the router input. The tier sets the maximum bitrate, in Mbps, for the router input. Valid values include the following: INPUT_20 – 20 Mbps INPUT_50 – 50 Mbps INPUT_100 – 100 Mbps INPUT_250 – 250 Mbps INPUT_500 – 500 Mbps The 250 Mbps and 500 Mbps tiers are high-bitrate tiers that support TR-07 (JPEG XS) workflows.
         Tier: string
         -- Indicates whether the router input is configured for Regional or global routing.
         RoutingScope: string
@@ -1870,7 +1941,7 @@ local record M
         Message: string
     end
 
-    -- Configuration settings for connecting a router output to a MediaConnect flow source.
+    -- Configuration settings for connecting a router output to a MediaConnect flow source. To connect the router output to the flow source, provide both flowArn and flowSourceArn. To disconnect it, call the update operation and omit both fields while keeping this configuration object. You can't change destinationTransitEncryption while the router output is connected to a flow source. To change it, first disconnect the router output, then update the encryption.
     record MediaConnectFlowRouterOutputConfiguration
         -- The ARN of the flow to connect to this router output.
         FlowArn: string
@@ -1885,7 +1956,7 @@ local record M
         "PIPELINE_1"
     end
 
-    -- Configuration settings for connecting a router output to a MediaLive input.
+    -- Configuration settings for connecting a router output to a MediaLive input. To connect the router output to the MediaLive input, provide both mediaLiveInputArn and mediaLivePipelineId. To disconnect it, call the update operation and omit both fields while keeping this configuration object. You can't change destinationTransitEncryption while the router output is connected to a MediaLive input. To change it, first disconnect the router output, then update the encryption.
     record MediaLiveInputRouterOutputConfiguration
         -- The ARN of the MediaLive input to connect to this router output.
         MediaLiveInputArn: string
@@ -2082,6 +2153,8 @@ local record M
         "OUTPUT_100"
         "OUTPUT_50"
         "OUTPUT_20"
+        "OUTPUT_500"
+        "OUTPUT_250"
     end
 
     -- A router output in AWS Elemental MediaConnect. A router output is a destination for media content that can receive input from one or more router inputs.
@@ -2107,7 +2180,7 @@ local record M
         MaximumBitrate: number
         -- Indicates whether the router output is configured for Regional or global routing.
         RoutingScope: string
-        -- The tier level of the router output.
+        -- The tier level for the router output. The tier sets the maximum bitrate, in Mbps, for the router output. Valid values include the following: OUTPUT_20 – 20 Mbps OUTPUT_50 – 50 Mbps OUTPUT_100 – 100 Mbps OUTPUT_250 – 250 Mbps OUTPUT_500 – 500 Mbps The 250 Mbps and 500 Mbps tiers are high-bitrate tiers that support TR-07 (JPEG XS) workflows.
         Tier: string
         -- The timestamp when the router output was created.
         CreatedAt: number
@@ -2616,7 +2689,7 @@ local record M
         MaximumBitrate: number
         -- Specifies whether the router input can be assigned to outputs in different Regions. REGIONAL (default) - connects only to outputs in same Region. GLOBAL - connects to outputs in any Region.
         RoutingScope: string
-        -- The tier level for the router input.
+        -- The tier level for the router input. The tier sets the maximum bitrate, in Mbps, for the router input. Valid values include the following: INPUT_20 – 20 Mbps INPUT_50 – 50 Mbps INPUT_100 – 100 Mbps INPUT_250 – 250 Mbps INPUT_500 – 500 Mbps The 250 Mbps and 500 Mbps tiers are high-bitrate tiers that support TR-07 (JPEG XS) workflows.
         Tier: string
         -- The Amazon Web Services Region for the router input. Defaults to the current region if not specified.
         RegionName: string
@@ -2676,7 +2749,7 @@ local record M
         MaximumBitrate: number
         -- Specifies whether the router output can take inputs that are in different Regions. REGIONAL (default) - can only take inputs from same Region. GLOBAL - can take inputs from any Region.
         RoutingScope: string
-        -- The tier level for the router output.
+        -- The tier level for the router output. The tier sets the maximum bitrate, in Mbps, for the router output. Valid values include the following: OUTPUT_20 – 20 Mbps OUTPUT_50 – 50 Mbps OUTPUT_100 – 100 Mbps OUTPUT_250 – 250 Mbps OUTPUT_500 – 500 Mbps The 250 Mbps and 500 Mbps tiers are high-bitrate tiers that support TR-07 (JPEG XS) workflows.
         Tier: string
         -- The Amazon Web Services Region for the router output. Defaults to the current region if not specified.
         RegionName: string
@@ -2825,6 +2898,8 @@ local record M
     record TransportMediaInfo
         -- The list of transport stream programs in the current flow's source.
         Programs: {TransportStreamProgram}
+        -- The transport stream ID (TSID) of the source, from the Program Association Table (PAT).
+        TsId: number
     end
 
     record DescribeFlowSourceMetadataOutput
@@ -3198,6 +3273,8 @@ local record M
         RouterIntegrationTransitEncryption: FlowTransitEncryption
         -- Controls how MediaConnect generates timecodes for NDI output frames. If you don't specify this field, MediaConnect leaves the value unchanged. EMBEDDED_TIMECODE - Preserves timecodes from the input transport stream. The timecodes must be embedded in the video stream as SEI timing messages. If no embedded timecode is detected, MediaConnect uses the UTC system time instead. UTC_SYSTEM_TIME - Generates timecodes based on the system clock time when each frame is sent.
         NdiOutputTimecodeSource: string
+        -- The audio reference level of the NDI receiver, in decibels relative to full scale (dBFS). Common values are -20 (NDI and SMPTE) and -18 (EBU). If you don't specify this field, MediaConnect leaves the value unchanged.
+        NdiAudioReferenceLevel: number
     end
 
     record UpdateFlowOutputOutput
@@ -3719,7 +3796,7 @@ local record M
         MaximumBitrate: number
         -- Specifies whether the router input can be assigned to outputs in different Regions. REGIONAL (default) - can be assigned only to outputs in the same Region. GLOBAL - can be assigned to outputs in any Region.
         RoutingScope: string
-        -- The updated tier level for the router input.
+        -- The updated tier level for the router input. The tier sets the maximum bitrate, in Mbps, for the router input. Valid values include the following: INPUT_20 – 20 Mbps INPUT_50 – 50 Mbps INPUT_100 – 100 Mbps INPUT_250 – 250 Mbps INPUT_500 – 500 Mbps The 250 Mbps and 500 Mbps tiers are high-bitrate tiers that support TR-07 (JPEG XS) workflows.
         Tier: string
         -- The updated transit encryption settings for the router input.
         TransitEncryption: RouterInputTransitEncryption
@@ -3825,7 +3902,7 @@ local record M
         MaximumBitrate: number
         -- Specifies whether the router output can take inputs that are in different Regions. REGIONAL (default) - can only take inputs from same Region. GLOBAL - can take inputs from any Region.
         RoutingScope: string
-        -- The updated tier level for the router output.
+        -- The updated tier level for the router output. The tier sets the maximum bitrate, in Mbps, for the router output. Valid values include the following: OUTPUT_20 – 20 Mbps OUTPUT_50 – 50 Mbps OUTPUT_100 – 100 Mbps OUTPUT_250 – 250 Mbps OUTPUT_500 – 500 Mbps The 250 Mbps and 500 Mbps tiers are high-bitrate tiers that support TR-07 (JPEG XS) workflows.
         Tier: string
         -- The updated maintenance configuration settings for the router output, including any changes to preferred maintenance windows and schedules.
         MaintenanceConfiguration: MaintenanceConfiguration

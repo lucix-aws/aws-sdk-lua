@@ -5075,6 +5075,12 @@ M.PhoneNumberInformation = schema.new({
             target_id = id.from(_N, "MessagingLimits"),
             target = M.MessagingLimits,
         }),
+        PricingTier = schema.new({
+            id = id.from(_N, "PhoneNumberInformation", "PricingTier"),
+            type = "string",
+            name = "PricingTier",
+            target_id = prelude.String.id,
+        }),
         CreatedTimestamp = schema.new({
             id = id.from(_N, "PhoneNumberInformation", "CreatedTimestamp"),
             type = "timestamp",
@@ -7223,6 +7229,12 @@ M.SenderIdInformation = schema.new({
             name = "MessagingLimits",
             target_id = id.from(_N, "MessagingLimits"),
             target = M.MessagingLimits,
+        }),
+        PricingTier = schema.new({
+            id = id.from(_N, "SenderIdInformation", "PricingTier"),
+            type = "string",
+            name = "PricingTier",
+            target_id = prelude.String.id,
         }),
     },
 })

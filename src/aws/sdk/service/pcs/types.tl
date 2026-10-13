@@ -874,6 +874,8 @@ local record M
         computeNodeGroupName: string
         -- The node lifecycle actions configured for the node group, including scripts to run when a compute node finishes bootstrapping or becomes ready to accept jobs.
         nodeLifecycleActions: NodeLifecycleActions
+        -- The scheduler version that the cluster is running. A compute node uses this value to run the matching scheduler version.
+        schedulerVersion: string
     end
 
     -- The scheduler configuration for updating a cluster. Use this to specify the scheduler version to update to.

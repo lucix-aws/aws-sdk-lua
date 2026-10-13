@@ -593,6 +593,7 @@ local record M
         "AWS::MSK::Cluster"
         "AWS::S3::Bucket"
         "AWS::Bedrock::KnowledgeBase"
+        "AWS::XRay::TransactionSearchConfig"
     end
 
     enum TelemetrySourceType

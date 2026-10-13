@@ -2850,7 +2850,7 @@ local record M
         liteLlmModelConfig: HarnessLiteLlmModelConfig
     end
 
-    -- Passed to show that AWS Skills should be included.
+    -- Passed to show that Amazon Web Services Skills should be included.
     record HarnessSkillAwsSkillsSource
         -- Optionally filter allowed skills with glob syntax, e.g., ['core-skills/*'].
         paths: {string}
@@ -2888,7 +2888,7 @@ local record M
         s3: HarnessSkillS3Source
         -- A git repository containing the skill.
         git: HarnessSkillGitSource
-        -- AWS Skills baked into the Harness's underlying Runtime.
+        -- Amazon Web Services Skills baked into the Harness's underlying Runtime.
         awsSkills: HarnessSkillAwsSkillsSource
     end
 
@@ -3237,6 +3237,18 @@ local record M
         stream: function(): string, string
     end
 
+    enum RecordExpiryAction
+        "REMOVE"
+    end
+
+    -- Specifies the record expiry (long-term memory time-to-live) applied to the records in a batch request. Provide exactly one of recordExpiryDurationDays or action. Set recordExpiryDurationDays to configure or update the expiry, or set action to REMOVE to remove a previously configured expiry.
+    record RecordExpirySpecification
+        -- The duration, in days, after which the records in this request expire. The minimum is 31 days.
+        recordExpiryDurationDays: number
+        -- The action to apply to the existing record expiry configuration. Set to REMOVE to remove a previously configured expiry so that the records no longer expire. This value does not apply when creating records.
+        action: string
+    end
+
     -- Contains the content of a memory record.
     record MemoryContent
         -- The text content of the memory record.
@@ -3278,6 +3290,8 @@ local record M
         records: {MemoryRecordCreateInput}
         -- A unique, case-sensitive identifier to ensure idempotent processing of the batch request.
         clientToken: string
+        -- The record expiry (long-term memory time-to-live) applied to every record created by this request. Set recordExpiryDurationDays to the number of days after which the records expire. Only the expiry provided here is applied; the records' strategy association has no effect on their expiry. If you do not provide this value, the records do not expire. The REMOVE action does not apply when creating records.
+        recordExpirySpecification: RecordExpirySpecification
     end
 
     enum MemoryRecordStatus
@@ -3361,6 +3375,8 @@ local record M
         memoryId: string
         -- A list of memory record update inputs to be processed in the batch operation.
         records: {MemoryRecordUpdateInput}
+        -- The record expiry (long-term memory time-to-live) applied to every record updated by this request. Set recordExpiryDurationDays to configure or overwrite the number of days after which the records expire, or set action to REMOVE to clear a previously configured expiry so that the records no longer expire. When you do not provide this value, the service determines each record's expiry from its current state: If the record already has an expiry configured, the service resets and reapplies the expiry based on the last applied recordExpiryDurationDays. If the record does not have an expiry configured, no expiry is applied and the record remains non-expiring. This is the outcome regardless of whether the record's strategy configures an expiry. Providing an explicit recordExpiryDurationDays always takes precedence: it overwrites an existing expiry, or sets one on a record that previously had none.
+        recordExpirySpecification: RecordExpirySpecification
     end
 
     record BatchUpdateMemoryRecordsOutput
@@ -3551,8 +3567,12 @@ local record M
         namespaces: {string}
         -- The timestamp when the memory record was created.
         createdAt: number
+        -- The timestamp based on which the memory record was ingested. This reflects the time of the source content that the record was derived from, which can differ from createdAt, the time the record itself was written.
+        timestamp: number
         -- A map of metadata key-value pairs associated with a memory record.
         metadata: {string : MemoryRecordMetadataValue}
+        -- The timestamp at which the memory record expires and becomes eligible for deletion. This value is set when a record expiry (long-term memory time-to-live) applies to the record, either from the strategy the record belongs to or from a record expiry provided on the batch request that created or updated it. If the record has no expiry configured, this value is not present and the record does not expire.
+        expiresAt: number
     end
 
     record GetMemoryRecordOutput
@@ -3820,6 +3840,8 @@ local record M
         createdAt: number
         -- The relevance score of the memory record when returned as part of a search result. Higher values indicate greater relevance to the search query.
         score: number
+        -- The timestamp based on which the memory record was ingested. This reflects the time of the source content that the record was derived from, which can differ from createdAt, the time the record itself was written.
+        timestamp: number
         -- A map of metadata key-value pairs associated with a memory record.
         metadata: {string : MemoryRecordMetadataValue}
     end

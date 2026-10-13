@@ -94,6 +94,7 @@ local record Client
     createStudioLifecycleConfig: function(Client, types.CreateStudioLifecycleConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateStudioLifecycleConfigOutput>
     createTrainingJob: function(Client, types.CreateTrainingJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrainingJobOutput>
     createTrainingPlan: function(Client, types.CreateTrainingPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrainingPlanOutput>
+    createTrainingSession: function(Client, types.CreateTrainingSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrainingSessionOutput>
     createTransformJob: function(Client, types.CreateTransformJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransformJobOutput>
     createTrial: function(Client, types.CreateTrialInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrialOutput>
     createTrialComponent: function(Client, types.CreateTrialComponentInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrialComponentOutput>
@@ -157,6 +158,7 @@ local record Client
     deleteStudioLifecycleConfig: function(Client, types.DeleteStudioLifecycleConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStudioLifecycleConfigOutput>
     deleteTags: function(Client, types.DeleteTagsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
     deleteTrainingJob: function(Client, types.DeleteTrainingJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrainingJobOutput>
+    deleteTrainingSession: function(Client, types.DeleteTrainingSessionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrainingSessionOutput>
     deleteTrial: function(Client, types.DeleteTrialInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrialOutput>
     deleteTrialComponent: function(Client, types.DeleteTrialComponentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrialComponentOutput>
     deleteUserProfile: function(Client, types.DeleteUserProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserProfileOutput>
@@ -233,6 +235,7 @@ local record Client
     describeTrainingJob: function(Client, types.DescribeTrainingJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrainingJobOutput>
     describeTrainingPlan: function(Client, types.DescribeTrainingPlanInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrainingPlanOutput>
     describeTrainingPlanExtensionHistory: function(Client, types.DescribeTrainingPlanExtensionHistoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrainingPlanExtensionHistoryOutput>
+    describeTrainingSession: function(Client, types.DescribeTrainingSessionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrainingSessionOutput>
     describeTransformJob: function(Client, types.DescribeTransformJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransformJobOutput>
     describeTrial: function(Client, types.DescribeTrialInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrialOutput>
     describeTrialComponent: function(Client, types.DescribeTrialComponentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrialComponentOutput>
@@ -334,6 +337,7 @@ local record Client
     listTrainingJobs: function(Client, types.ListTrainingJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrainingJobsOutput>
     listTrainingJobsForHyperParameterTuningJob: function(Client, types.ListTrainingJobsForHyperParameterTuningJobInput, ? base_client.InvokeOptions): async.Operation<types.ListTrainingJobsForHyperParameterTuningJobOutput>
     listTrainingPlans: function(Client, types.ListTrainingPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListTrainingPlansOutput>
+    listTrainingSessions: function(Client, types.ListTrainingSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrainingSessionsOutput>
     listTransformJobs: function(Client, types.ListTransformJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListTransformJobsOutput>
     listTrialComponents: function(Client, types.ListTrialComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrialComponentsOutput>
     listTrials: function(Client, types.ListTrialsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrialsOutput>
@@ -376,6 +380,7 @@ local record Client
     stopPipelineExecution: function(Client, types.StopPipelineExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StopPipelineExecutionOutput>
     stopProcessingJob: function(Client, types.StopProcessingJobInput, ? base_client.InvokeOptions): async.Operation<types.StopProcessingJobOutput>
     stopTrainingJob: function(Client, types.StopTrainingJobInput, ? base_client.InvokeOptions): async.Operation<types.StopTrainingJobOutput>
+    stopTrainingSession: function(Client, types.StopTrainingSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopTrainingSessionOutput>
     stopTransformJob: function(Client, types.StopTransformJobInput, ? base_client.InvokeOptions): async.Operation<types.StopTransformJobOutput>
     updateAction: function(Client, types.UpdateActionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateActionOutput>
     updateAppImageConfig: function(Client, types.UpdateAppImageConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppImageConfigOutput>
@@ -770,6 +775,10 @@ function C:createTrainingPlan(input: types.CreateTrainingPlanInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrainingPlan as schema.OperationSchema, input, options) as async.Operation<types.CreateTrainingPlanOutput>
 end
 
+function C:createTrainingSession(input: types.CreateTrainingSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrainingSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrainingSession as schema.OperationSchema, input, options) as async.Operation<types.CreateTrainingSessionOutput>
+end
+
 function C:createTransformJob(input: types.CreateTransformJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransformJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransformJob as schema.OperationSchema, input, options) as async.Operation<types.CreateTransformJobOutput>
 end
@@ -1020,6 +1029,10 @@ end
 
 function C:deleteTrainingJob(input: types.DeleteTrainingJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrainingJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrainingJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrainingJobOutput>
+end
+
+function C:deleteTrainingSession(input: types.DeleteTrainingSessionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrainingSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrainingSession as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrainingSessionOutput>
 end
 
 function C:deleteTrial(input: types.DeleteTrialInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrialOutput>
@@ -1324,6 +1337,10 @@ end
 
 function C:describeTrainingPlanExtensionHistory(input: types.DescribeTrainingPlanExtensionHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrainingPlanExtensionHistoryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrainingPlanExtensionHistory as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrainingPlanExtensionHistoryOutput>
+end
+
+function C:describeTrainingSession(input: types.DescribeTrainingSessionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrainingSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrainingSession as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrainingSessionOutput>
 end
 
 function C:describeTransformJob(input: types.DescribeTransformJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransformJobOutput>
@@ -1730,6 +1747,10 @@ function C:listTrainingPlans(input: types.ListTrainingPlansInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrainingPlans as schema.OperationSchema, input, options) as async.Operation<types.ListTrainingPlansOutput>
 end
 
+function C:listTrainingSessions(input: types.ListTrainingSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrainingSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrainingSessions as schema.OperationSchema, input, options) as async.Operation<types.ListTrainingSessionsOutput>
+end
+
 function C:listTransformJobs(input: types.ListTransformJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTransformJobsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTransformJobs as schema.OperationSchema, input, options) as async.Operation<types.ListTransformJobsOutput>
 end
@@ -1896,6 +1917,10 @@ end
 
 function C:stopTrainingJob(input: types.StopTrainingJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopTrainingJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTrainingJob as schema.OperationSchema, input, options) as async.Operation<types.StopTrainingJobOutput>
+end
+
+function C:stopTrainingSession(input: types.StopTrainingSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopTrainingSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTrainingSession as schema.OperationSchema, input, options) as async.Operation<types.StopTrainingSessionOutput>
 end
 
 function C:stopTransformJob(input: types.StopTransformJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopTransformJobOutput>

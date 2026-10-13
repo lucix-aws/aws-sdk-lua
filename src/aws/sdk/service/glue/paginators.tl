@@ -354,6 +354,24 @@ function M.pages_list_data_quality_results(client, input)
     })
 end
 
+--- Returns a page iterator for listDataQualityResultsV2.
+function M.pages_list_data_quality_results_v2(client, input)
+    return paginator.pages(client, "listDataQualityResultsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for listDataQualityResultsV2.
+function M.items_list_data_quality_results_v2(client, input)
+    return paginator.items(client, "listDataQualityResultsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
 --- Returns a page iterator for listDataQualityRuleRecommendationRuns.
 function M.pages_list_data_quality_rule_recommendation_runs(client, input)
     return paginator.pages(client, "listDataQualityRuleRecommendationRuns", input, {

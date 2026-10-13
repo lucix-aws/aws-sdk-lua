@@ -2970,6 +2970,12 @@ M.VpcConfig = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        vpcOwnerAccountId = schema.new({
+            id = id.from(_N, "VpcConfig", "vpcOwnerAccountId"),
+            type = "string",
+            name = "vpcOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3059,6 +3065,12 @@ M.VpcConfigResponse = schema.new({
             id = id.from(_N, "VpcConfigResponse", "vpcId"),
             type = "string",
             name = "vpcId",
+            target_id = prelude.String.id,
+        }),
+        vpcOwnerAccountId = schema.new({
+            id = id.from(_N, "VpcConfigResponse", "vpcOwnerAccountId"),
+            type = "string",
+            name = "vpcOwnerAccountId",
             target_id = prelude.String.id,
         }),
     },

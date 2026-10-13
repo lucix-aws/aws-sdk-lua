@@ -1951,6 +1951,8 @@ local record M
         RegistrationId: string
         -- The messaging limits that apply to the phone number, including the per-capability send rates and any advisory per-provider daily message caps.
         MessagingLimits: MessagingLimits
+        -- The pricing model.
+        PricingTier: string
         -- The time when the phone number was created, in UNIX epoch time format.
         CreatedTimestamp: number
     end
@@ -2678,6 +2680,8 @@ local record M
         RegistrationId: string
         -- The messaging limits that apply to the sender ID, including the per-capability send rates.
         MessagingLimits: MessagingLimits
+        -- The pricing model.
+        PricingTier: string
     end
 
     record DescribeSenderIdsOutput

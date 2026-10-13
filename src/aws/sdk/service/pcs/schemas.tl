@@ -2704,6 +2704,12 @@ M.RegisterComputeNodeGroupInstanceOutput = schema.new({
             target_id = id.from(_N, "NodeLifecycleActions"),
             target = M.NodeLifecycleActions,
         }),
+        schedulerVersion = schema.new({
+            id = id.from(_N, "RegisterComputeNodeGroupInstanceOutput", "schedulerVersion"),
+            type = "string",
+            name = "schedulerVersion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

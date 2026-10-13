@@ -3812,12 +3812,6 @@ M.MetricMetadata = schema.new({
             name = "name",
             target_id = prelude.String.id,
         }),
-        namespace = schema.new({
-            id = id.from(_N, "MetricMetadata", "namespace"),
-            type = "string",
-            name = "namespace",
-            target_id = prelude.String.id,
-        }),
         preferredStat = schema.new({
             id = id.from(_N, "MetricMetadata", "preferredStat"),
             type = "string",
@@ -6401,6 +6395,12 @@ M.UpdateSpaceInput = schema.new({
             id = id.from(_N, "UpdateSpaceInput", "name"),
             type = "string",
             name = "name",
+            target_id = prelude.String.id,
+        }),
+        agentCoreEvaluationRoleArn = schema.new({
+            id = id.from(_N, "UpdateSpaceInput", "agentCoreEvaluationRoleArn"),
+            type = "string",
+            name = "agentCoreEvaluationRoleArn",
             target_id = prelude.String.id,
         }),
         encryptionConfiguration = schema.new({
