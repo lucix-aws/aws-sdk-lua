@@ -1044,6 +1044,8 @@ local record M
         upstreamRepositoryPrefix: string
         -- Account ID of the account that owns the upstream container image.
         ecrAccountId: string
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that holds the credentials for the upstream registry. You must specify this value when Amazon Elastic Container Registry (Amazon ECR) doesn't support pull through cache for the upstream registry. HealthOmics supports only some of these registries. The workflow role must have permission to call the secretsmanager:GetSecretValue operation on the secret. For more information about the supported registries, see Container images in the Amazon Web Services HealthOmics User Guide.
+        credentialArn: string
     end
 
     -- Use a container registry map to specify mappings between the ECR private repository and one or more upstream registries. For more information, see Container images in the Amazon Web Services HealthOmics User Guide.

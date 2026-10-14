@@ -3321,12 +3321,18 @@ M.RegistryMapping = schema.new({
             type = "string",
             name = "upstreamRegistryUrl",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
         ecrRepositoryPrefix = schema.new({
             id = id.from(_N, "RegistryMapping", "ecrRepositoryPrefix"),
             type = "string",
             name = "ecrRepositoryPrefix",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
         upstreamRepositoryPrefix = schema.new({
             id = id.from(_N, "RegistryMapping", "upstreamRepositoryPrefix"),
@@ -3338,6 +3344,12 @@ M.RegistryMapping = schema.new({
             id = id.from(_N, "RegistryMapping", "ecrAccountId"),
             type = "string",
             name = "ecrAccountId",
+            target_id = prelude.String.id,
+        }),
+        credentialArn = schema.new({
+            id = id.from(_N, "RegistryMapping", "credentialArn"),
+            type = "string",
+            name = "credentialArn",
             target_id = prelude.String.id,
         }),
     },

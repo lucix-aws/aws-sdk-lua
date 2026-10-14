@@ -20,6 +20,7 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     addLFTagsToResource: function(Client, types.AddLFTagsToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AddLFTagsToResourceOutput>
     assumeDecoratedRoleWithSAML: function(Client, types.AssumeDecoratedRoleWithSAMLInput, ? base_client.InvokeOptions): async.Operation<types.AssumeDecoratedRoleWithSAMLOutput>
+    attachRLSPolicy: function(Client, types.AttachRLSPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AttachRLSPolicyOutput>
     batchGrantPermissions: function(Client, types.BatchGrantPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGrantPermissionsOutput>
     batchRevokePermissions: function(Client, types.BatchRevokePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchRevokePermissionsOutput>
     cancelTransaction: function(Client, types.CancelTransactionInput, ? base_client.InvokeOptions): async.Operation<types.CancelTransactionOutput>
@@ -29,16 +30,19 @@ local record Client
     createLakeFormationOptIn: function(Client, types.CreateLakeFormationOptInInput, ? base_client.InvokeOptions): async.Operation<types.CreateLakeFormationOptInOutput>
     createLFTag: function(Client, types.CreateLFTagInput, ? base_client.InvokeOptions): async.Operation<types.CreateLFTagOutput>
     createLFTagExpression: function(Client, types.CreateLFTagExpressionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLFTagExpressionOutput>
+    createRLSPolicy: function(Client, types.CreateRLSPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateRLSPolicyOutput>
     deleteDataCellsFilter: function(Client, types.DeleteDataCellsFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataCellsFilterOutput>
     deleteLakeFormationIdentityCenterConfiguration: function(Client, types.DeleteLakeFormationIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLakeFormationIdentityCenterConfigurationOutput>
     deleteLakeFormationOptIn: function(Client, types.DeleteLakeFormationOptInInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLakeFormationOptInOutput>
     deleteLFTag: function(Client, types.DeleteLFTagInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLFTagOutput>
     deleteLFTagExpression: function(Client, types.DeleteLFTagExpressionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLFTagExpressionOutput>
     deleteObjectsOnCancel: function(Client, types.DeleteObjectsOnCancelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteObjectsOnCancelOutput>
+    deleteRLSPolicy: function(Client, types.DeleteRLSPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRLSPolicyOutput>
     deregisterResource: function(Client, types.DeregisterResourceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterResourceOutput>
     describeLakeFormationIdentityCenterConfiguration: function(Client, types.DescribeLakeFormationIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLakeFormationIdentityCenterConfigurationOutput>
     describeResource: function(Client, types.DescribeResourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourceOutput>
     describeTransaction: function(Client, types.DescribeTransactionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransactionOutput>
+    detachRLSPolicy: function(Client, types.DetachRLSPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DetachRLSPolicyOutput>
     extendTransaction: function(Client, types.ExtendTransactionInput, ? base_client.InvokeOptions): async.Operation<types.ExtendTransactionOutput>
     getDataCellsFilter: function(Client, types.GetDataCellsFilterInput, ? base_client.InvokeOptions): async.Operation<types.GetDataCellsFilterOutput>
     getDataLakePrincipal: function(Client, types.GetDataLakePrincipalInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakePrincipalOutput>
@@ -49,6 +53,7 @@ local record Client
     getQueryState: function(Client, types.GetQueryStateInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStateOutput>
     getQueryStatistics: function(Client, types.GetQueryStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatisticsOutput>
     getResourceLFTags: function(Client, types.GetResourceLFTagsInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceLFTagsOutput>
+    getRLSPolicy: function(Client, types.GetRLSPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetRLSPolicyOutput>
     getTableObjects: function(Client, types.GetTableObjectsInput, ? base_client.InvokeOptions): async.Operation<types.GetTableObjectsOutput>
     getTemporaryDataLocationCredentials: function(Client, types.GetTemporaryDataLocationCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
     getTemporaryGluePartitionCredentials: function(Client, types.GetTemporaryGluePartitionCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>
@@ -62,6 +67,8 @@ local record Client
     listLFTags: function(Client, types.ListLFTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListLFTagsOutput>
     listPermissions: function(Client, types.ListPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPermissionsOutput>
     listResources: function(Client, types.ListResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    listRLSPolicies: function(Client, types.ListRLSPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListRLSPoliciesOutput>
+    listRLSPolicyAttachments: function(Client, types.ListRLSPolicyAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListRLSPolicyAttachmentsOutput>
     listTableStorageOptimizers: function(Client, types.ListTableStorageOptimizersInput, ? base_client.InvokeOptions): async.Operation<types.ListTableStorageOptimizersOutput>
     listTransactions: function(Client, types.ListTransactionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTransactionsOutput>
     putDataLakeSettings: function(Client, types.PutDataLakeSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutDataLakeSettingsOutput>
@@ -77,6 +84,7 @@ local record Client
     updateLFTag: function(Client, types.UpdateLFTagInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLFTagOutput>
     updateLFTagExpression: function(Client, types.UpdateLFTagExpressionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLFTagExpressionOutput>
     updateResource: function(Client, types.UpdateResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceOutput>
+    updateRLSPolicy: function(Client, types.UpdateRLSPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRLSPolicyOutput>
     updateTableObjects: function(Client, types.UpdateTableObjectsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableObjectsOutput>
     updateTableStorageOptimizer: function(Client, types.UpdateTableStorageOptimizerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableStorageOptimizerOutput>
 end
@@ -131,6 +139,10 @@ function C:assumeDecoratedRoleWithSAML(input: types.AssumeDecoratedRoleWithSAMLI
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssumeDecoratedRoleWithSAML as schema.OperationSchema, input, options) as async.Operation<types.AssumeDecoratedRoleWithSAMLOutput>
 end
 
+function C:attachRLSPolicy(input: types.AttachRLSPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.AttachRLSPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachRLSPolicy as schema.OperationSchema, input, options) as async.Operation<types.AttachRLSPolicyOutput>
+end
+
 function C:batchGrantPermissions(input: types.BatchGrantPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGrantPermissionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGrantPermissions as schema.OperationSchema, input, options) as async.Operation<types.BatchGrantPermissionsOutput>
 end
@@ -167,6 +179,10 @@ function C:createLFTagExpression(input: types.CreateLFTagExpressionInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLFTagExpression as schema.OperationSchema, input, options) as async.Operation<types.CreateLFTagExpressionOutput>
 end
 
+function C:createRLSPolicy(input: types.CreateRLSPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRLSPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRLSPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateRLSPolicyOutput>
+end
+
 function C:deleteDataCellsFilter(input: types.DeleteDataCellsFilterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataCellsFilterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataCellsFilter as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataCellsFilterOutput>
 end
@@ -191,6 +207,10 @@ function C:deleteObjectsOnCancel(input: types.DeleteObjectsOnCancelInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteObjectsOnCancel as schema.OperationSchema, input, options) as async.Operation<types.DeleteObjectsOnCancelOutput>
 end
 
+function C:deleteRLSPolicy(input: types.DeleteRLSPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRLSPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRLSPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteRLSPolicyOutput>
+end
+
 function C:deregisterResource(input: types.DeregisterResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterResource as schema.OperationSchema, input, options) as async.Operation<types.DeregisterResourceOutput>
 end
@@ -205,6 +225,10 @@ end
 
 function C:describeTransaction(input: types.DescribeTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransactionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransaction as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransactionOutput>
+end
+
+function C:detachRLSPolicy(input: types.DetachRLSPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DetachRLSPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachRLSPolicy as schema.OperationSchema, input, options) as async.Operation<types.DetachRLSPolicyOutput>
 end
 
 function C:extendTransaction(input: types.ExtendTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.ExtendTransactionOutput>
@@ -245,6 +269,10 @@ end
 
 function C:getResourceLFTags(input: types.GetResourceLFTagsInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceLFTagsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceLFTags as schema.OperationSchema, input, options) as async.Operation<types.GetResourceLFTagsOutput>
+end
+
+function C:getRLSPolicy(input: types.GetRLSPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetRLSPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRLSPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetRLSPolicyOutput>
 end
 
 function C:getTableObjects(input: types.GetTableObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableObjectsOutput>
@@ -297,6 +325,14 @@ end
 
 function C:listResources(input: types.ListResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesOutput>
+end
+
+function C:listRLSPolicies(input: types.ListRLSPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRLSPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRLSPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListRLSPoliciesOutput>
+end
+
+function C:listRLSPolicyAttachments(input: types.ListRLSPolicyAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRLSPolicyAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRLSPolicyAttachments as schema.OperationSchema, input, options) as async.Operation<types.ListRLSPolicyAttachmentsOutput>
 end
 
 function C:listTableStorageOptimizers(input: types.ListTableStorageOptimizersInput, options?: base_client.InvokeOptions): async.Operation<types.ListTableStorageOptimizersOutput>
@@ -357,6 +393,10 @@ end
 
 function C:updateResource(input: types.UpdateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResource as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceOutput>
+end
+
+function C:updateRLSPolicy(input: types.UpdateRLSPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRLSPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRLSPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateRLSPolicyOutput>
 end
 
 function C:updateTableObjects(input: types.UpdateTableObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableObjectsOutput>

@@ -1637,6 +1637,12 @@ M.Options = schema.new({
             name = "ObjectTags",
             target_id = prelude.String.id,
         }),
+        ObjectMetadata = schema.new({
+            id = id.from(_N, "Options", "ObjectMetadata"),
+            type = "string",
+            name = "ObjectMetadata",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

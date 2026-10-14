@@ -200,6 +200,8 @@ M.ChildHoursOfOperationsList = schema.new({ type = "list", list_member = M.Hours
 
 M.EvaluationSummaryList = schema.new({ type = "list", list_member = M.EvaluationSummary })
 
+M.ContactFlowAliasSummaryList = schema.new({ type = "list", list_member = M.ContactFlowAliasSummary })
+
 M.ContactFlowModuleAliasSummaryList = schema.new({ type = "list", list_member = M.ContactFlowModuleAliasSummary })
 
 M.ContactFlowModulesSummaryList = schema.new({ type = "list", list_member = M.ContactFlowModuleSummary })
@@ -5387,6 +5389,76 @@ M.InvalidContactFlowException = schema.new({
             name = "problems",
             target_id = prelude.Document.id,
             list_member = M.ProblemDetail,
+        }),
+    },
+})
+
+M.CreateContactFlowAliasInput = schema.new({
+    id = id.from(_N, "CreateContactFlowAliasRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "CreateContactFlowAliasInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateContactFlowAliasInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ContactFlowId = schema.new({
+            id = id.from(_N, "CreateContactFlowAliasInput", "ContactFlowId"),
+            type = "string",
+            name = "ContactFlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactFlowVersion = schema.new({
+            id = id.from(_N, "CreateContactFlowAliasInput", "ContactFlowVersion"),
+            type = "long",
+            name = "ContactFlowVersion",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AliasName = schema.new({
+            id = id.from(_N, "CreateContactFlowAliasInput", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateContactFlowAliasOutput = schema.new({
+    id = id.from(_N, "CreateContactFlowAliasResponse"),
+    type = "structure",
+    members = {
+        ContactFlowArn = schema.new({
+            id = id.from(_N, "CreateContactFlowAliasOutput", "ContactFlowArn"),
+            type = "string",
+            name = "ContactFlowArn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "CreateContactFlowAliasOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -12130,6 +12202,48 @@ M.DeleteContactFlowOutput = schema.new({
     type = "structure",
 })
 
+M.DeleteContactFlowAliasInput = schema.new({
+    id = id.from(_N, "DeleteContactFlowAliasRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DeleteContactFlowAliasInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactFlowId = schema.new({
+            id = id.from(_N, "DeleteContactFlowAliasInput", "ContactFlowId"),
+            type = "string",
+            name = "ContactFlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "DeleteContactFlowAliasInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteContactFlowAliasOutput = schema.new({
+    id = id.from(_N, "DeleteContactFlowAliasResponse"),
+    type = "structure",
+})
+
 M.DeleteContactFlowModuleInput = schema.new({
     id = id.from(_N, "DeleteContactFlowModuleRequest"),
     type = "structure",
@@ -15175,6 +15289,112 @@ M.DescribeContactFlowOutput = schema.new({
             name = "ContactFlow",
             target_id = id.from(_N, "ContactFlow"),
             target = M.ContactFlow,
+        }),
+    },
+})
+
+M.DescribeContactFlowAliasInput = schema.new({
+    id = id.from(_N, "DescribeContactFlowAliasRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DescribeContactFlowAliasInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactFlowId = schema.new({
+            id = id.from(_N, "DescribeContactFlowAliasInput", "ContactFlowId"),
+            type = "string",
+            name = "ContactFlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "DescribeContactFlowAliasInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ContactFlowAliasInfo = schema.new({
+    id = id.from(_N, "ContactFlowAliasInfo"),
+    type = "structure",
+    members = {
+        ContactFlowId = schema.new({
+            id = id.from(_N, "ContactFlowAliasInfo", "ContactFlowId"),
+            type = "string",
+            name = "ContactFlowId",
+            target_id = prelude.String.id,
+        }),
+        ContactFlowArn = schema.new({
+            id = id.from(_N, "ContactFlowAliasInfo", "ContactFlowArn"),
+            type = "string",
+            name = "ContactFlowArn",
+            target_id = prelude.String.id,
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "ContactFlowAliasInfo", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "ContactFlowAliasInfo", "Version"),
+            type = "long",
+            name = "Version",
+            target_id = prelude.Long.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ContactFlowAliasInfo", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ContactFlowAliasInfo", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "ContactFlowAliasInfo", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "ContactFlowAliasInfo", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.DescribeContactFlowAliasOutput = schema.new({
+    id = id.from(_N, "DescribeContactFlowAliasResponse"),
+    type = "structure",
+    members = {
+        ContactFlowAlias = schema.new({
+            id = id.from(_N, "DescribeContactFlowAliasOutput", "ContactFlowAlias"),
+            type = "structure",
+            name = "ContactFlowAlias",
+            target_id = id.from(_N, "ContactFlowAliasInfo"),
+            target = M.ContactFlowAliasInfo,
         }),
     },
 })
@@ -23290,6 +23510,120 @@ M.ListContactEvaluationsOutput = schema.new({
     },
 })
 
+M.ListContactFlowAliasesInput = schema.new({
+    id = id.from(_N, "ListContactFlowAliasesRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "ListContactFlowAliasesInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactFlowId = schema.new({
+            id = id.from(_N, "ListContactFlowAliasesInput", "ContactFlowId"),
+            type = "string",
+            name = "ContactFlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContactFlowAliasesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListContactFlowAliasesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ContactFlowAliasSummary = schema.new({
+    id = id.from(_N, "ContactFlowAliasSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "ContactFlowAliasSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "ContactFlowAliasSummary", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "ContactFlowAliasSummary", "Version"),
+            type = "long",
+            name = "Version",
+            target_id = prelude.Long.id,
+        }),
+        AliasName = schema.new({
+            id = id.from(_N, "ContactFlowAliasSummary", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+        }),
+        AliasDescription = schema.new({
+            id = id.from(_N, "ContactFlowAliasSummary", "AliasDescription"),
+            type = "string",
+            name = "AliasDescription",
+            target_id = prelude.String.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "ContactFlowAliasSummary", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "ContactFlowAliasSummary", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContactFlowAliasesOutput = schema.new({
+    id = id.from(_N, "ListContactFlowAliasesResponse"),
+    type = "structure",
+    members = {
+        ContactFlowAliasSummaryList = schema.new({
+            id = id.from(_N, "ListContactFlowAliasesOutput", "ContactFlowAliasSummaryList"),
+            type = "list",
+            name = "ContactFlowAliasSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.ContactFlowAliasSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContactFlowAliasesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListContactFlowModuleAliasesInput = schema.new({
     id = id.from(_N, "ListContactFlowModuleAliasesRequest"),
     type = "structure",
@@ -23757,6 +24091,18 @@ M.ContactFlowVersionSummary = schema.new({
             type = "long",
             name = "Version",
             target_id = prelude.Long.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "ContactFlowVersionSummary", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "ContactFlowVersionSummary", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -37204,6 +37550,66 @@ M.UpdateContactEvaluationOutput = schema.new({
     },
 })
 
+M.UpdateContactFlowAliasInput = schema.new({
+    id = id.from(_N, "UpdateContactFlowAliasRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "UpdateContactFlowAliasInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactFlowId = schema.new({
+            id = id.from(_N, "UpdateContactFlowAliasInput", "ContactFlowId"),
+            type = "string",
+            name = "ContactFlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "UpdateContactFlowAliasInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateContactFlowAliasInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateContactFlowAliasInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ContactFlowVersion = schema.new({
+            id = id.from(_N, "UpdateContactFlowAliasInput", "ContactFlowVersion"),
+            type = "long",
+            name = "ContactFlowVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.UpdateContactFlowAliasOutput = schema.new({
+    id = id.from(_N, "UpdateContactFlowAliasResponse"),
+    type = "structure",
+})
+
 M.UpdateContactFlowContentInput = schema.new({
     id = id.from(_N, "UpdateContactFlowContentRequest"),
     type = "structure",
@@ -45101,6 +45507,18 @@ M.CreateContactFlow = schema.operation({
     },
 })
 
+M.CreateContactFlowAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateContactFlowAlias"),
+    input = M.CreateContactFlowAliasInput,
+    output = M.CreateContactFlowAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/contact-flows/{InstanceId}/{ContactFlowId}/alias" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateContactFlowModule = schema.operation({
     id = id.from("com.amazonaws.connect", "CreateContactFlowModule"),
     input = M.CreateContactFlowModuleInput,
@@ -45587,6 +46005,18 @@ M.DeleteContactFlow = schema.operation({
     output = M.DeleteContactFlowOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/contact-flows/{InstanceId}/{ContactFlowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactFlowAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteContactFlowAlias"),
+    input = M.DeleteContactFlowAliasInput,
+    output = M.DeleteContactFlowAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/contact-flows/{InstanceId}/{ContactFlowId}/alias/{AliasId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -46091,6 +46521,18 @@ M.DescribeContactFlow = schema.operation({
     output = M.DescribeContactFlowOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/contact-flows/{InstanceId}/{ContactFlowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContactFlowAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeContactFlowAlias"),
+    input = M.DescribeContactFlowAliasInput,
+    output = M.DescribeContactFlowAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flows/{InstanceId}/{ContactFlowId}/alias/{AliasId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -47027,6 +47469,18 @@ M.ListContactEvaluations = schema.operation({
     output = M.ListContactEvaluationsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/contact-evaluations/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContactFlowAliases = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListContactFlowAliases"),
+    input = M.ListContactFlowAliasesInput,
+    output = M.ListContactFlowAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/contact-flows/{InstanceId}/{ContactFlowId}/aliases" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -48659,6 +49113,18 @@ M.UpdateContactEvaluation = schema.operation({
     output = M.UpdateContactEvaluationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/contact-evaluations/{InstanceId}/{EvaluationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactFlowAlias = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactFlowAlias"),
+    input = M.UpdateContactFlowAliasInput,
+    output = M.UpdateContactFlowAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact-flows/{InstanceId}/{ContactFlowId}/alias/{AliasId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

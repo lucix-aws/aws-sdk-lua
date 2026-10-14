@@ -22,7 +22,7 @@ local record M
 
     -- Contains your current web function usage for the current AWS Region.
     record AccountUsage
-        -- The number of web functions in your account in the current AWS Region.
+        -- The number of web functions in your account in the current AWS Region. This count includes web functions in all states, not only functions in the Active state.
         functionCount: number
     end
 

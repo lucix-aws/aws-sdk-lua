@@ -1349,6 +1349,19 @@ M.ThrottlingException = schema.new({
     },
 })
 
+M.DevOpsAgentConfiguration = schema.new({
+    id = id.from(_N, "DevOpsAgentConfiguration"),
+    type = "structure",
+    members = {
+        agentSpaceArn = schema.new({
+            id = id.from(_N, "DevOpsAgentConfiguration", "agentSpaceArn"),
+            type = "string",
+            name = "agentSpaceArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CrossAccountRole = schema.new({
     id = id.from(_N, "CrossAccountRole"),
     type = "structure",
@@ -1521,6 +1534,13 @@ M.CreateServiceInput = schema.new({
             name = "kmsKeyId",
             target_id = prelude.String.id,
         }),
+        devOpsAgentConfiguration = schema.new({
+            id = id.from(_N, "CreateServiceInput", "devOpsAgentConfiguration"),
+            type = "structure",
+            name = "devOpsAgentConfiguration",
+            target_id = id.from(_N, "DevOpsAgentConfiguration"),
+            target = M.DevOpsAgentConfiguration,
+        }),
         tags = schema.new({
             id = id.from(_N, "CreateServiceInput", "tags"),
             type = "map",
@@ -1570,6 +1590,55 @@ M.DependencyDiscoveryConfig = schema.new({
             id = id.from(_N, "DependencyDiscoveryConfig", "message"),
             type = "string",
             name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DevOpsAgentConfigurationView = schema.new({
+    id = id.from(_N, "DevOpsAgentConfigurationView"),
+    type = "structure",
+    members = {
+        agentSpaceArn = schema.new({
+            id = id.from(_N, "DevOpsAgentConfigurationView", "agentSpaceArn"),
+            type = "string",
+            name = "agentSpaceArn",
+            target_id = prelude.String.id,
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "DevOpsAgentConfigurationView", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "DevOpsAgentConfigurationView", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DevOpsAgentConfigurationView", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        operatorAppUrl = schema.new({
+            id = id.from(_N, "DevOpsAgentConfigurationView", "operatorAppUrl"),
+            type = "string",
+            name = "operatorAppUrl",
+            target_id = prelude.String.id,
+        }),
+        connectedAt = schema.new({
+            id = id.from(_N, "DevOpsAgentConfigurationView", "connectedAt"),
+            type = "timestamp",
+            name = "connectedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "DevOpsAgentConfigurationView", "statusReason"),
+            type = "string",
+            name = "statusReason",
             target_id = prelude.String.id,
         }),
     },
@@ -1896,6 +1965,13 @@ M.Service = schema.new({
             type = "string",
             name = "accountId",
             target_id = prelude.String.id,
+        }),
+        devOpsAgentConfiguration = schema.new({
+            id = id.from(_N, "Service", "devOpsAgentConfiguration"),
+            type = "structure",
+            name = "devOpsAgentConfiguration",
+            target_id = id.from(_N, "DevOpsAgentConfigurationView"),
+            target = M.DevOpsAgentConfigurationView,
         }),
         createdAt = schema.new({
             id = id.from(_N, "Service", "createdAt"),
@@ -3303,6 +3379,43 @@ M.DependencySummary = schema.new({
     },
 })
 
+M.DevOpsAgentInvestigation = schema.new({
+    id = id.from(_N, "DevOpsAgentInvestigation"),
+    type = "structure",
+    members = {
+        verdict = schema.new({
+            id = id.from(_N, "DevOpsAgentInvestigation", "verdict"),
+            type = "string",
+            name = "verdict",
+            target_id = prelude.String.id,
+        }),
+        confidence = schema.new({
+            id = id.from(_N, "DevOpsAgentInvestigation", "confidence"),
+            type = "string",
+            name = "confidence",
+            target_id = prelude.String.id,
+        }),
+        deepLink = schema.new({
+            id = id.from(_N, "DevOpsAgentInvestigation", "deepLink"),
+            type = "string",
+            name = "deepLink",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DevOpsAgentInvestigation", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        summary = schema.new({
+            id = id.from(_N, "DevOpsAgentInvestigation", "summary"),
+            type = "string",
+            name = "summary",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EdgePropertySummary = schema.new({
     id = id.from(_N, "EdgePropertySummary"),
     type = "structure",
@@ -3515,6 +3628,12 @@ M.Finding = schema.new({
             name = "updatedAt",
             target_id = prelude.Timestamp.id,
         }),
+        investigationDeepLink = schema.new({
+            id = id.from(_N, "Finding", "investigationDeepLink"),
+            type = "string",
+            name = "investigationDeepLink",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3575,6 +3694,12 @@ M.FindingSummary = schema.new({
             type = "timestamp",
             name = "updatedAt",
             target_id = prelude.Timestamp.id,
+        }),
+        investigationDeepLink = schema.new({
+            id = id.from(_N, "FindingSummary", "investigationDeepLink"),
+            type = "string",
+            name = "investigationDeepLink",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4081,6 +4206,13 @@ M.TestRun = schema.new({
             type = "string",
             name = "accountTargeting",
             target_id = prelude.String.id,
+        }),
+        devOpsAgentInvestigation = schema.new({
+            id = id.from(_N, "TestRun", "devOpsAgentInvestigation"),
+            type = "structure",
+            name = "devOpsAgentInvestigation",
+            target_id = id.from(_N, "DevOpsAgentInvestigation"),
+            target = M.DevOpsAgentInvestigation,
         }),
     },
 })
@@ -5632,6 +5764,30 @@ M.Resource = schema.new({
             name = "resourceType",
             target_id = prelude.String.id,
         }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "Resource", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+        }),
+        availabilityZoneName = schema.new({
+            id = id.from(_N, "Resource", "availabilityZoneName"),
+            type = "string",
+            name = "availabilityZoneName",
+            target_id = prelude.String.id,
+        }),
+        containmentParentId = schema.new({
+            id = id.from(_N, "Resource", "containmentParentId"),
+            type = "string",
+            name = "containmentParentId",
+            target_id = prelude.String.id,
+        }),
+        logicalResourceGroupId = schema.new({
+            id = id.from(_N, "Resource", "logicalResourceGroupId"),
+            type = "string",
+            name = "logicalResourceGroupId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -6541,6 +6697,18 @@ M.ServiceSummary = schema.new({
             id = id.from(_N, "ServiceSummary", "assessmentStatus"),
             type = "string",
             name = "assessmentStatus",
+            target_id = prelude.String.id,
+        }),
+        devOpsAgentStatus = schema.new({
+            id = id.from(_N, "ServiceSummary", "devOpsAgentStatus"),
+            type = "string",
+            name = "devOpsAgentStatus",
+            target_id = prelude.String.id,
+        }),
+        devOpsAgentSpaceArn = schema.new({
+            id = id.from(_N, "ServiceSummary", "devOpsAgentSpaceArn"),
+            type = "string",
+            name = "devOpsAgentSpaceArn",
             target_id = prelude.String.id,
         }),
         openFindingsCount = schema.new({
@@ -9284,6 +9452,13 @@ M.UpdateServiceInput = schema.new({
             name = "reportConfiguration",
             target_id = id.from(_N, "ServiceReportConfiguration"),
             target = M.ServiceReportConfiguration,
+        }),
+        devOpsAgentConfiguration = schema.new({
+            id = id.from(_N, "UpdateServiceInput", "devOpsAgentConfiguration"),
+            type = "structure",
+            name = "devOpsAgentConfiguration",
+            target_id = id.from(_N, "DevOpsAgentConfiguration"),
+            target = M.DevOpsAgentConfiguration,
         }),
     },
 })

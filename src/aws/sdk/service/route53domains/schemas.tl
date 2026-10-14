@@ -353,6 +353,38 @@ M.CheckDomainAvailabilityInput = schema.new({
     },
 })
 
+M.PriceWithCurrency = schema.new({
+    id = id.from(_N, "PriceWithCurrency"),
+    type = "structure",
+    members = {
+        Price = schema.new({
+            id = id.from(_N, "PriceWithCurrency", "Price"),
+            type = "double",
+            name = "Price",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "PriceWithCurrency", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PriceType = schema.new({
+            id = id.from(_N, "PriceWithCurrency", "PriceType"),
+            type = "string",
+            name = "PriceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CheckDomainAvailabilityOutput = schema.new({
     id = id.from(_N, "CheckDomainAvailabilityResponse"),
     type = "structure",
@@ -362,6 +394,13 @@ M.CheckDomainAvailabilityOutput = schema.new({
             type = "string",
             name = "Availability",
             target_id = prelude.String.id,
+        }),
+        Price = schema.new({
+            id = id.from(_N, "CheckDomainAvailabilityOutput", "Price"),
+            type = "structure",
+            name = "Price",
+            target_id = id.from(_N, "PriceWithCurrency"),
+            target = M.PriceWithCurrency,
         }),
     },
 })
@@ -439,6 +478,13 @@ M.CheckDomainTransferabilityOutput = schema.new({
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
+        }),
+        Price = schema.new({
+            id = id.from(_N, "CheckDomainTransferabilityOutput", "Price"),
+            type = "structure",
+            name = "Price",
+            target_id = id.from(_N, "PriceWithCurrency"),
+            target = M.PriceWithCurrency,
         }),
     },
 })
@@ -783,32 +829,6 @@ M.DnssecKey = schema.new({
     },
 })
 
-M.PriceWithCurrency = schema.new({
-    id = id.from(_N, "PriceWithCurrency"),
-    type = "structure",
-    members = {
-        Price = schema.new({
-            id = id.from(_N, "PriceWithCurrency", "Price"),
-            type = "double",
-            name = "Price",
-            target_id = prelude.Double.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = 0 },
-            },
-        }),
-        Currency = schema.new({
-            id = id.from(_N, "PriceWithCurrency", "Currency"),
-            type = "string",
-            name = "Currency",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.DomainPrice = schema.new({
     id = id.from(_N, "DomainPrice"),
     type = "structure",
@@ -872,6 +892,13 @@ M.DomainSuggestion = schema.new({
             type = "string",
             name = "Availability",
             target_id = prelude.String.id,
+        }),
+        Price = schema.new({
+            id = id.from(_N, "DomainSuggestion", "Price"),
+            type = "structure",
+            name = "Price",
+            target_id = id.from(_N, "PriceWithCurrency"),
+            target = M.PriceWithCurrency,
         }),
     },
 })
@@ -1221,6 +1248,36 @@ M.GetDomainDetailOutput = schema.new({
     },
 })
 
+M.GetDomainPricesInput = schema.new({
+    id = id.from(_N, "GetDomainPricesRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "GetDomainPricesInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDomainPricesOutput = schema.new({
+    id = id.from(_N, "GetDomainPricesResponse"),
+    type = "structure",
+    members = {
+        DomainPrice = schema.new({
+            id = id.from(_N, "GetDomainPricesOutput", "DomainPrice"),
+            type = "structure",
+            name = "DomainPrice",
+            target_id = id.from(_N, "DomainPrice"),
+            target = M.DomainPrice,
+        }),
+    },
+})
+
 M.GetDomainSuggestionsInput = schema.new({
     id = id.from(_N, "GetDomainSuggestionsRequest"),
     type = "structure",
@@ -1252,6 +1309,12 @@ M.GetDomainSuggestionsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        OnlyStandardPrices = schema.new({
+            id = id.from(_N, "GetDomainSuggestionsInput", "OnlyStandardPrices"),
+            type = "boolean",
+            name = "OnlyStandardPrices",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1761,6 +1824,13 @@ M.RegisterDomainInput = schema.new({
             name = "PrivacyProtectBillingContact",
             target_id = prelude.Boolean.id,
         }),
+        Consent = schema.new({
+            id = id.from(_N, "RegisterDomainInput", "Consent"),
+            type = "structure",
+            name = "Consent",
+            target_id = id.from(_N, "Consent"),
+            target = M.Consent,
+        }),
     },
 })
 
@@ -1834,6 +1904,13 @@ M.RenewDomainInput = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.DEFAULT] = { value = 0 },
             },
+        }),
+        Consent = schema.new({
+            id = id.from(_N, "RenewDomainInput", "Consent"),
+            type = "structure",
+            name = "Consent",
+            target_id = id.from(_N, "Consent"),
+            target = M.Consent,
         }),
     },
 })
@@ -2040,6 +2117,13 @@ M.TransferDomainInput = schema.new({
             type = "boolean",
             name = "PrivacyProtectBillingContact",
             target_id = prelude.Boolean.id,
+        }),
+        Consent = schema.new({
+            id = id.from(_N, "TransferDomainInput", "Consent"),
+            type = "structure",
+            name = "Consent",
+            target_id = id.from(_N, "Consent"),
+            target = M.Consent,
         }),
     },
 })
@@ -2514,6 +2598,17 @@ M.GetDomainDetail = schema.operation({
     id = id.from("com.amazonaws.route53domains", "GetDomainDetail"),
     input = M.GetDomainDetailInput,
     output = M.GetDomainDetailOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDomainPrices = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "GetDomainPrices"),
+    input = M.GetDomainPricesInput,
+    output = M.GetDomainPricesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

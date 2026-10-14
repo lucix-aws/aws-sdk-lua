@@ -76,11 +76,21 @@ M.RegionAuroraInstanceArnMap = schema.new({ type = "map", map_key = prelude.Stri
 
 M.RegionNeptuneClusterArnMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.RegionSsmDocumentMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SsmDocumentConfig })
+
 M.ArcRoutingControlStates = schema.new({ type = "list", list_member = M.ArcRoutingControlState })
 
 M.KubernetesScalingApplication = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionalScalingResource })
 
 M.RegionalScalingResource = schema.new({ type = "map", map_key = prelude.String, map_value = M.KubernetesScalingResource })
+
+M.SsmTargetList = schema.new({ type = "list", list_member = M.SsmTarget })
+
+M.SsmDocumentParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.SsmParameterValues })
+
+M.SsmParameterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.SsmTargetValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AbbreviatedExecution = schema.new({
     id = id.from(_N, "AbbreviatedExecution"),
@@ -2065,6 +2075,140 @@ M.Route53HealthCheckConfiguration = schema.new({
     },
 })
 
+M.SsmTarget = schema.new({
+    id = id.from(_N, "SsmTarget"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "SsmTarget", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "SsmTarget", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SsmDocumentConfig = schema.new({
+    id = id.from(_N, "SsmDocumentConfig"),
+    type = "structure",
+    members = {
+        crossAccountRole = schema.new({
+            id = id.from(_N, "SsmDocumentConfig", "crossAccountRole"),
+            type = "string",
+            name = "crossAccountRole",
+            target_id = prelude.String.id,
+        }),
+        externalId = schema.new({
+            id = id.from(_N, "SsmDocumentConfig", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+        }),
+        documentArn = schema.new({
+            id = id.from(_N, "SsmDocumentConfig", "documentArn"),
+            type = "string",
+            name = "documentArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targets = schema.new({
+            id = id.from(_N, "SsmDocumentConfig", "targets"),
+            type = "list",
+            name = "targets",
+            target_id = prelude.Document.id,
+            list_member = M.SsmTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "SsmDocumentConfig", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+        documentVersion = schema.new({
+            id = id.from(_N, "SsmDocumentConfig", "documentVersion"),
+            type = "string",
+            name = "documentVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SsmSendCommandUngraceful = schema.new({
+    id = id.from(_N, "SsmSendCommandUngraceful"),
+    type = "structure",
+    members = {
+        behavior = schema.new({
+            id = id.from(_N, "SsmSendCommandUngraceful", "behavior"),
+            type = "string",
+            name = "behavior",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SsmSendCommandConfiguration = schema.new({
+    id = id.from(_N, "SsmSendCommandConfiguration"),
+    type = "structure",
+    members = {
+        timeoutMinutes = schema.new({
+            id = id.from(_N, "SsmSendCommandConfiguration", "timeoutMinutes"),
+            type = "integer",
+            name = "timeoutMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 60 },
+            },
+        }),
+        regionDocuments = schema.new({
+            id = id.from(_N, "SsmSendCommandConfiguration", "regionDocuments"),
+            type = "map",
+            name = "regionDocuments",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.SsmDocumentConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retryIntervalMinutes = schema.new({
+            id = id.from(_N, "SsmSendCommandConfiguration", "retryIntervalMinutes"),
+            type = "float",
+            name = "retryIntervalMinutes",
+            target_id = prelude.Float.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ungraceful = schema.new({
+            id = id.from(_N, "SsmSendCommandConfiguration", "ungraceful"),
+            type = "structure",
+            name = "ungraceful",
+            target_id = id.from(_N, "SsmSendCommandUngraceful"),
+            target = M.SsmSendCommandUngraceful,
+        }),
+    },
+})
+
 M.StepState = schema.new({
     id = id.from(_N, "StepState"),
     type = "structure",
@@ -3247,6 +3391,13 @@ M.ExecutionBlockConfiguration = schema.new({
             name = "rdsSwitchoverReadReplicaConfig",
             target_id = id.from(_N, "RdsSwitchoverReadReplicaConfiguration"),
             target = M.RdsSwitchoverReadReplicaConfiguration,
+        }),
+        ssmSendCommandConfig = schema.new({
+            id = id.from(_N, "ExecutionBlockConfiguration", "ssmSendCommandConfig"),
+            type = "structure",
+            name = "ssmSendCommandConfig",
+            target_id = id.from(_N, "SsmSendCommandConfiguration"),
+            target = M.SsmSendCommandConfiguration,
         }),
     },
 })

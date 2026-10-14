@@ -2567,6 +2567,14 @@ local record M
         OutputCompression: string
     end
 
+    -- The query execution identifier and the result output location for the Amazon Athena query that an Athena step runs.
+    record AthenaStepMetadata
+        -- The unique identifier of the Amazon Athena query execution that was run by this step execution.
+        QueryExecutionId: string
+        -- The Amazon S3 location of the Amazon Athena query results. This is the effective output location reported by GetQueryExecution for the query. This value can be absent when the query uses Athena managed query results.
+        S3OutputLocation: string
+    end
+
     record AttachClusterNodeNetworkInterfaceInput
         -- The name or Amazon Resource Name (ARN) of the SageMaker HyperPod cluster that contains the target node.
         ClusterName: string
@@ -4160,6 +4168,31 @@ local record M
         InferenceConfig: ClarifyInferenceConfig
         -- The configuration for SHAP analysis.
         ShapConfig: ClarifyShapConfig
+    end
+
+    enum CleanupFailureErrorCode
+        "ClientError"
+        "InternalFailure"
+    end
+
+    -- The Amazon S3 output resources associated with an upstream step that the Cleanup step could not delete.
+    record CleanupFailure
+        -- The name of the upstream step whose Amazon S3 output resources the Cleanup step could not delete.
+        StepName: string
+        -- The error code that identifies why the Cleanup step could not delete the output resources associated with the upstream step.
+        ErrorCode: string
+        -- A message describing why the Cleanup step could not delete the output resources associated with the upstream step.
+        ErrorMessage: string
+    end
+
+    -- The cleanup outcomes for Amazon S3 output resources associated with upstream steps.
+    record CleanupStepMetadata
+        -- The names of upstream steps whose Amazon S3 output resources the Cleanup step deleted successfully.
+        CleanedSteps: {string}
+        -- The upstream steps whose Amazon S3 output resources the Cleanup step could not delete.
+        FailedSteps: {CleanupFailure}
+        -- The names of upstream steps that the Cleanup step skipped. The Cleanup step skips a step when the output properties needed to locate its resources are unavailable.
+        SkippedSteps: {string}
     end
 
     -- The external MySQL-compatible database that the Slurm accounting daemon (slurmdbd) connects to for a SageMaker HyperPod cluster. You provide the database credentials in an Amazon Web Services Secrets Manager secret instead of in the request.
@@ -14470,6 +14503,7 @@ local record M
         "Stopped"
         "Failed"
         "Succeeded"
+        "CompletedWithFailures"
     end
 
     -- Specifies the names of the experiment and trial created by a pipeline.
@@ -15839,6 +15873,18 @@ local record M
         LastModifiedTime: number
     end
 
+    -- The configurations and outcomes of an Amazon EMR Serverless step execution.
+    record EMRServerlessStepMetadata
+        -- The identifier of the Amazon EMR Serverless application.
+        ApplicationId: string
+        -- The identifier of the Amazon EMR Serverless job run.
+        JobRunId: string
+        -- The name of the Amazon EMR Serverless job run.
+        JobRunName: string
+        -- The path to the log file for the Amazon EMR Serverless job run.
+        LogFilePath: string
+    end
+
     -- The configurations and outcomes of an Amazon EMR step execution.
     record EMRStepMetadata
         -- The identifier of the EMR cluster.
@@ -16126,6 +16172,38 @@ local record M
         CreationTime: number
         -- The reason why the flow definition creation failed. A failure reason is returned only when the flow definition status is Failed.
         FailureReason: string
+    end
+
+    -- The result of the selector that identifies an iteration of a ForEach step.
+    record ForEachSelectorResult
+        -- The name of the step associated with the iteration.
+        StepName: string
+        -- The index of the iteration within the ForEach step.
+        Index: number
+    end
+
+    enum ForEachStatus
+        "Succeeded"
+        "Failed"
+        "Stopped"
+    end
+
+    -- The status, the iteration-step counts, and the selector information for a ForEach step execution.
+    record ForEachStepMetadata
+        -- The status of the ForEach step execution.
+        Status: string
+        -- The number of input items that the ForEach step iterates over.
+        InputItemCount: number
+        -- The total number of steps generated across all iterations of the ForEach step.
+        TotalStepCount: number
+        -- The number of iteration steps that completed successfully.
+        SucceededStepCount: number
+        -- The number of iteration steps that failed.
+        FailedStepCount: number
+        -- The number of iteration steps that were stopped.
+        StoppedStepCount: number
+        -- Identifies the body step and iteration selected within the ForEach step.
+        Selector: ForEachSelectorResult
     end
 
     record GetDeviceFleetReportInput
@@ -16687,6 +16765,16 @@ local record M
         Status: string
         -- The details for a specific benchmark.
         InferenceBenchmark: RecommendationJobInferenceBenchmark
+    end
+
+    -- The context for an iteration of a ForEach step.
+    record IterationContext
+        -- The name of the ForEach step that generated this iteration.
+        ParentStepName: string
+        -- The index of the iteration within the ForEach step.
+        Index: number
+        -- The input item that is being processed in this iteration.
+        Item: string
     end
 
     -- The properties of a job returned by the Search API.
@@ -19326,6 +19414,8 @@ local record M
         Lambda: LambdaStepMetadata
         -- The configurations and outcomes of an Amazon EMR step execution.
         EMR: EMRStepMetadata
+        -- The configurations and outcomes of an Amazon EMR Serverless step execution.
+        EMRServerless: EMRServerlessStepMetadata
         -- The configurations and outcomes of the check step execution. This includes: The type of the check conducted. The Amazon S3 URIs of baseline constraints and statistics files to be used for the drift check. The Amazon S3 URIs of newly calculated baseline constraints and statistics. The model package group name provided. The Amazon S3 URI of the violation report if violations detected. The Amazon Resource Name (ARN) of check processing job initiated by the step execution. The Boolean flags indicating if the drift check is skipped. If step property BaselineUsedForDriftCheck is set the same as CalculatedBaseline.
         QualityCheck: QualityCheckStepMetadata
         -- Container for the metadata for a Clarify check step. The configurations and outcomes of the check step execution. This includes: The type of the check conducted, The Amazon S3 URIs of baseline constraints and statistics files to be used for the drift check. The Amazon S3 URIs of newly calculated baseline constraints and statistics. The model package group name provided. The Amazon S3 URI of the violation report if violations detected. The Amazon Resource Name (ARN) of check processing job initiated by the step execution. The boolean flags indicating if the drift check is skipped. If step property BaselineUsedForDriftCheck is set the same as CalculatedBaseline.
@@ -19352,6 +19442,12 @@ local record M
         Lineage: LineageMetadata
         -- The metadata for a SageMaker job used in a pipeline execution step.
         Job: JobStepMetadata
+        -- The metadata for the Athena step execution.
+        Athena: AthenaStepMetadata
+        -- The metadata for the cleanup step execution.
+        Cleanup: CleanupStepMetadata
+        -- The metadata for the ForEach step execution.
+        ForEach: ForEachStepMetadata
     end
 
     -- The ARN from an execution of the current pipeline.
@@ -19393,6 +19489,8 @@ local record M
         AttemptCount: number
         -- The ARN from an execution of the current pipeline from which results are reused for this step.
         SelectiveExecutionResult: SelectiveExecutionResult
+        -- The context for the iteration of a ForEach step that generated this step execution.
+        IterationContext: IterationContext
     end
 
     record ListPipelineExecutionStepsOutput

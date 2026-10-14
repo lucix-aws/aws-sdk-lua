@@ -3709,6 +3709,12 @@ M.CreateStackInput = schema.new({
             target_id = id.from(_N, "AgentAccessConfig"),
             target = M.AgentAccessConfig,
         }),
+        StorageConnectorAuthentication = schema.new({
+            id = id.from(_N, "CreateStackInput", "StorageConnectorAuthentication"),
+            type = "string",
+            name = "StorageConnectorAuthentication",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3842,6 +3848,12 @@ M.Stack = schema.new({
             name = "AgentAccessConfig",
             target_id = id.from(_N, "AgentAccessConfig"),
             target = M.AgentAccessConfig,
+        }),
+        StorageConnectorAuthentication = schema.new({
+            id = id.from(_N, "Stack", "StorageConnectorAuthentication"),
+            type = "string",
+            name = "StorageConnectorAuthentication",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -7146,6 +7158,12 @@ M.UpdateStackInput = schema.new({
             name = "AgentAccessConfig",
             target_id = id.from(_N, "AgentAccessConfigForUpdate"),
             target = M.AgentAccessConfigForUpdate,
+        }),
+        StorageConnectorAuthentication = schema.new({
+            id = id.from(_N, "UpdateStackInput", "StorageConnectorAuthentication"),
+            type = "string",
+            name = "StorageConnectorAuthentication",
+            target_id = prelude.String.id,
         }),
     },
 })

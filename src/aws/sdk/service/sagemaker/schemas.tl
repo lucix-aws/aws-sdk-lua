@@ -770,6 +770,10 @@ M.MapString2048 = schema.new({ type = "map", map_key = prelude.String, map_value
 
 M.AssociationInfoList = schema.new({ type = "list", list_member = M.AssociationInfo })
 
+M.CleanupStepNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CleanupFailureList = schema.new({ type = "list", list_member = M.CleanupFailure })
+
 M.EfaEnis = schema.new({ type = "list", list_member = prelude.String })
 
 M.CategoricalParameterRangeValues = schema.new({ type = "list", list_member = prelude.String })
@@ -4384,6 +4388,25 @@ M.AthenaDatasetDefinition = schema.new({
     },
 })
 
+M.AthenaStepMetadata = schema.new({
+    id = id.from(_N, "AthenaStepMetadata"),
+    type = "structure",
+    members = {
+        QueryExecutionId = schema.new({
+            id = id.from(_N, "AthenaStepMetadata", "QueryExecutionId"),
+            type = "string",
+            name = "QueryExecutionId",
+            target_id = prelude.String.id,
+        }),
+        S3OutputLocation = schema.new({
+            id = id.from(_N, "AthenaStepMetadata", "S3OutputLocation"),
+            type = "string",
+            name = "S3OutputLocation",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AttachClusterNodeNetworkInterfaceInput = schema.new({
     id = id.from(_N, "AttachClusterNodeNetworkInterfaceRequest"),
     type = "structure",
@@ -7938,6 +7961,59 @@ M.ClarifyExplainerConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.CleanupFailure = schema.new({
+    id = id.from(_N, "CleanupFailure"),
+    type = "structure",
+    members = {
+        StepName = schema.new({
+            id = id.from(_N, "CleanupFailure", "StepName"),
+            type = "string",
+            name = "StepName",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "CleanupFailure", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "CleanupFailure", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CleanupStepMetadata = schema.new({
+    id = id.from(_N, "CleanupStepMetadata"),
+    type = "structure",
+    members = {
+        CleanedSteps = schema.new({
+            id = id.from(_N, "CleanupStepMetadata", "CleanedSteps"),
+            type = "list",
+            name = "CleanedSteps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        FailedSteps = schema.new({
+            id = id.from(_N, "CleanupStepMetadata", "FailedSteps"),
+            type = "list",
+            name = "FailedSteps",
+            target_id = prelude.Document.id,
+            list_member = M.CleanupFailure,
+        }),
+        SkippedSteps = schema.new({
+            id = id.from(_N, "CleanupStepMetadata", "SkippedSteps"),
+            type = "list",
+            name = "SkippedSteps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -39435,6 +39511,37 @@ M.EdgePackagingJobSummary = schema.new({
     },
 })
 
+M.EMRServerlessStepMetadata = schema.new({
+    id = id.from(_N, "EMRServerlessStepMetadata"),
+    type = "structure",
+    members = {
+        ApplicationId = schema.new({
+            id = id.from(_N, "EMRServerlessStepMetadata", "ApplicationId"),
+            type = "string",
+            name = "ApplicationId",
+            target_id = prelude.String.id,
+        }),
+        JobRunId = schema.new({
+            id = id.from(_N, "EMRServerlessStepMetadata", "JobRunId"),
+            type = "string",
+            name = "JobRunId",
+            target_id = prelude.String.id,
+        }),
+        JobRunName = schema.new({
+            id = id.from(_N, "EMRServerlessStepMetadata", "JobRunName"),
+            type = "string",
+            name = "JobRunName",
+            target_id = prelude.String.id,
+        }),
+        LogFilePath = schema.new({
+            id = id.from(_N, "EMRServerlessStepMetadata", "LogFilePath"),
+            type = "string",
+            name = "LogFilePath",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EMRStepMetadata = schema.new({
     id = id.from(_N, "EMRStepMetadata"),
     type = "structure",
@@ -40212,6 +40319,75 @@ M.FlowDefinitionSummary = schema.new({
             type = "string",
             name = "FailureReason",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ForEachSelectorResult = schema.new({
+    id = id.from(_N, "ForEachSelectorResult"),
+    type = "structure",
+    members = {
+        StepName = schema.new({
+            id = id.from(_N, "ForEachSelectorResult", "StepName"),
+            type = "string",
+            name = "StepName",
+            target_id = prelude.String.id,
+        }),
+        Index = schema.new({
+            id = id.from(_N, "ForEachSelectorResult", "Index"),
+            type = "integer",
+            name = "Index",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ForEachStepMetadata = schema.new({
+    id = id.from(_N, "ForEachStepMetadata"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ForEachStepMetadata", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        InputItemCount = schema.new({
+            id = id.from(_N, "ForEachStepMetadata", "InputItemCount"),
+            type = "integer",
+            name = "InputItemCount",
+            target_id = prelude.Integer.id,
+        }),
+        TotalStepCount = schema.new({
+            id = id.from(_N, "ForEachStepMetadata", "TotalStepCount"),
+            type = "integer",
+            name = "TotalStepCount",
+            target_id = prelude.Integer.id,
+        }),
+        SucceededStepCount = schema.new({
+            id = id.from(_N, "ForEachStepMetadata", "SucceededStepCount"),
+            type = "integer",
+            name = "SucceededStepCount",
+            target_id = prelude.Integer.id,
+        }),
+        FailedStepCount = schema.new({
+            id = id.from(_N, "ForEachStepMetadata", "FailedStepCount"),
+            type = "integer",
+            name = "FailedStepCount",
+            target_id = prelude.Integer.id,
+        }),
+        StoppedStepCount = schema.new({
+            id = id.from(_N, "ForEachStepMetadata", "StoppedStepCount"),
+            type = "integer",
+            name = "StoppedStepCount",
+            target_id = prelude.Integer.id,
+        }),
+        Selector = schema.new({
+            id = id.from(_N, "ForEachStepMetadata", "Selector"),
+            type = "structure",
+            name = "Selector",
+            target_id = id.from(_N, "ForEachSelectorResult"),
+            target = M.ForEachSelectorResult,
         }),
     },
 })
@@ -41830,6 +42006,31 @@ M.InferenceRecommendationsJobStep = schema.new({
             name = "InferenceBenchmark",
             target_id = id.from(_N, "RecommendationJobInferenceBenchmark"),
             target = M.RecommendationJobInferenceBenchmark,
+        }),
+    },
+})
+
+M.IterationContext = schema.new({
+    id = id.from(_N, "IterationContext"),
+    type = "structure",
+    members = {
+        ParentStepName = schema.new({
+            id = id.from(_N, "IterationContext", "ParentStepName"),
+            type = "string",
+            name = "ParentStepName",
+            target_id = prelude.String.id,
+        }),
+        Index = schema.new({
+            id = id.from(_N, "IterationContext", "Index"),
+            type = "integer",
+            name = "Index",
+            target_id = prelude.Integer.id,
+        }),
+        Item = schema.new({
+            id = id.from(_N, "IterationContext", "Item"),
+            type = "string",
+            name = "Item",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -49041,6 +49242,13 @@ M.PipelineExecutionStepMetadata = schema.new({
             target_id = id.from(_N, "EMRStepMetadata"),
             target = M.EMRStepMetadata,
         }),
+        EMRServerless = schema.new({
+            id = id.from(_N, "PipelineExecutionStepMetadata", "EMRServerless"),
+            type = "structure",
+            name = "EMRServerless",
+            target_id = id.from(_N, "EMRServerlessStepMetadata"),
+            target = M.EMRServerlessStepMetadata,
+        }),
         QualityCheck = schema.new({
             id = id.from(_N, "PipelineExecutionStepMetadata", "QualityCheck"),
             type = "structure",
@@ -49132,6 +49340,27 @@ M.PipelineExecutionStepMetadata = schema.new({
             target_id = id.from(_N, "JobStepMetadata"),
             target = M.JobStepMetadata,
         }),
+        Athena = schema.new({
+            id = id.from(_N, "PipelineExecutionStepMetadata", "Athena"),
+            type = "structure",
+            name = "Athena",
+            target_id = id.from(_N, "AthenaStepMetadata"),
+            target = M.AthenaStepMetadata,
+        }),
+        Cleanup = schema.new({
+            id = id.from(_N, "PipelineExecutionStepMetadata", "Cleanup"),
+            type = "structure",
+            name = "Cleanup",
+            target_id = id.from(_N, "CleanupStepMetadata"),
+            target = M.CleanupStepMetadata,
+        }),
+        ForEach = schema.new({
+            id = id.from(_N, "PipelineExecutionStepMetadata", "ForEach"),
+            type = "structure",
+            name = "ForEach",
+            target_id = id.from(_N, "ForEachStepMetadata"),
+            target = M.ForEachStepMetadata,
+        }),
     },
 })
 
@@ -49220,6 +49449,13 @@ M.PipelineExecutionStep = schema.new({
             name = "SelectiveExecutionResult",
             target_id = id.from(_N, "SelectiveExecutionResult"),
             target = M.SelectiveExecutionResult,
+        }),
+        IterationContext = schema.new({
+            id = id.from(_N, "PipelineExecutionStep", "IterationContext"),
+            type = "structure",
+            name = "IterationContext",
+            target_id = id.from(_N, "IterationContext"),
+            target = M.IterationContext,
         }),
     },
 })

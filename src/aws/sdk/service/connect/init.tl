@@ -55,6 +55,7 @@ local record Client
     createAuthCode: function(Client, types.CreateAuthCodeInput, ? base_client.InvokeOptions): async.Operation<types.CreateAuthCodeOutput>
     createContact: function(Client, types.CreateContactInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactOutput>
     createContactFlow: function(Client, types.CreateContactFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowOutput>
+    createContactFlowAlias: function(Client, types.CreateContactFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowAliasOutput>
     createContactFlowModule: function(Client, types.CreateContactFlowModuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowModuleOutput>
     createContactFlowModuleAlias: function(Client, types.CreateContactFlowModuleAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowModuleAliasOutput>
     createContactFlowModuleVersion: function(Client, types.CreateContactFlowModuleVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowModuleVersionOutput>
@@ -96,6 +97,7 @@ local record Client
     deleteContactData: function(Client, types.DeleteContactDataInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactDataOutput>
     deleteContactEvaluation: function(Client, types.DeleteContactEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactEvaluationOutput>
     deleteContactFlow: function(Client, types.DeleteContactFlowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactFlowOutput>
+    deleteContactFlowAlias: function(Client, types.DeleteContactFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactFlowAliasOutput>
     deleteContactFlowModule: function(Client, types.DeleteContactFlowModuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactFlowModuleOutput>
     deleteContactFlowModuleAlias: function(Client, types.DeleteContactFlowModuleAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactFlowModuleAliasOutput>
     deleteContactFlowModuleVersion: function(Client, types.DeleteContactFlowModuleVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactFlowModuleVersionOutput>
@@ -138,6 +140,7 @@ local record Client
     describeContact: function(Client, types.DescribeContactInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContactOutput>
     describeContactEvaluation: function(Client, types.DescribeContactEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContactEvaluationOutput>
     describeContactFlow: function(Client, types.DescribeContactFlowInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContactFlowOutput>
+    describeContactFlowAlias: function(Client, types.DescribeContactFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContactFlowAliasOutput>
     describeContactFlowModule: function(Client, types.DescribeContactFlowModuleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContactFlowModuleOutput>
     describeContactFlowModuleAlias: function(Client, types.DescribeContactFlowModuleAliasInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContactFlowModuleAliasOutput>
     describeDataTable: function(Client, types.DescribeDataTableInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataTableOutput>
@@ -216,6 +219,7 @@ local record Client
     listBots: function(Client, types.ListBotsInput, ? base_client.InvokeOptions): async.Operation<types.ListBotsOutput>
     listChildHoursOfOperations: function(Client, types.ListChildHoursOfOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListChildHoursOfOperationsOutput>
     listContactEvaluations: function(Client, types.ListContactEvaluationsInput, ? base_client.InvokeOptions): async.Operation<types.ListContactEvaluationsOutput>
+    listContactFlowAliases: function(Client, types.ListContactFlowAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListContactFlowAliasesOutput>
     listContactFlowModuleAliases: function(Client, types.ListContactFlowModuleAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListContactFlowModuleAliasesOutput>
     listContactFlowModules: function(Client, types.ListContactFlowModulesInput, ? base_client.InvokeOptions): async.Operation<types.ListContactFlowModulesOutput>
     listContactFlowModuleVersions: function(Client, types.ListContactFlowModuleVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListContactFlowModuleVersionsOutput>
@@ -352,6 +356,7 @@ local record Client
     updateContact: function(Client, types.UpdateContactInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactOutput>
     updateContactAttributes: function(Client, types.UpdateContactAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactAttributesOutput>
     updateContactEvaluation: function(Client, types.UpdateContactEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactEvaluationOutput>
+    updateContactFlowAlias: function(Client, types.UpdateContactFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactFlowAliasOutput>
     updateContactFlowContent: function(Client, types.UpdateContactFlowContentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactFlowContentOutput>
     updateContactFlowMetadata: function(Client, types.UpdateContactFlowMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactFlowMetadataOutput>
     updateContactFlowModuleAlias: function(Client, types.UpdateContactFlowModuleAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactFlowModuleAliasOutput>
@@ -607,6 +612,10 @@ function C:createContactFlow(input: types.CreateContactFlowInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContactFlow as schema.OperationSchema, input, options) as async.Operation<types.CreateContactFlowOutput>
 end
 
+function C:createContactFlowAlias(input: types.CreateContactFlowAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContactFlowAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContactFlowAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateContactFlowAliasOutput>
+end
+
 function C:createContactFlowModule(input: types.CreateContactFlowModuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContactFlowModuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContactFlowModule as schema.OperationSchema, input, options) as async.Operation<types.CreateContactFlowModuleOutput>
 end
@@ -769,6 +778,10 @@ end
 
 function C:deleteContactFlow(input: types.DeleteContactFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContactFlowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContactFlow as schema.OperationSchema, input, options) as async.Operation<types.DeleteContactFlowOutput>
+end
+
+function C:deleteContactFlowAlias(input: types.DeleteContactFlowAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContactFlowAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContactFlowAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteContactFlowAliasOutput>
 end
 
 function C:deleteContactFlowModule(input: types.DeleteContactFlowModuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContactFlowModuleOutput>
@@ -937,6 +950,10 @@ end
 
 function C:describeContactFlow(input: types.DescribeContactFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContactFlowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContactFlow as schema.OperationSchema, input, options) as async.Operation<types.DescribeContactFlowOutput>
+end
+
+function C:describeContactFlowAlias(input: types.DescribeContactFlowAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContactFlowAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContactFlowAlias as schema.OperationSchema, input, options) as async.Operation<types.DescribeContactFlowAliasOutput>
 end
 
 function C:describeContactFlowModule(input: types.DescribeContactFlowModuleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContactFlowModuleOutput>
@@ -1249,6 +1266,10 @@ end
 
 function C:listContactEvaluations(input: types.ListContactEvaluationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContactEvaluationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContactEvaluations as schema.OperationSchema, input, options) as async.Operation<types.ListContactEvaluationsOutput>
+end
+
+function C:listContactFlowAliases(input: types.ListContactFlowAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListContactFlowAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContactFlowAliases as schema.OperationSchema, input, options) as async.Operation<types.ListContactFlowAliasesOutput>
 end
 
 function C:listContactFlowModuleAliases(input: types.ListContactFlowModuleAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListContactFlowModuleAliasesOutput>
@@ -1793,6 +1814,10 @@ end
 
 function C:updateContactEvaluation(input: types.UpdateContactEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactEvaluationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContactEvaluation as schema.OperationSchema, input, options) as async.Operation<types.UpdateContactEvaluationOutput>
+end
+
+function C:updateContactFlowAlias(input: types.UpdateContactFlowAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactFlowAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContactFlowAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateContactFlowAliasOutput>
 end
 
 function C:updateContactFlowContent(input: types.UpdateContactFlowContentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactFlowContentOutput>

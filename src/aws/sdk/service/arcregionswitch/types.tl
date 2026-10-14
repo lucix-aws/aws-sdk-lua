@@ -775,6 +775,52 @@ local record M
         recordSets: {Route53ResourceRecordSet}
     end
 
+    -- A single SendCommand target filter, consisting of a target key and the values matched by that key.
+    record SsmTarget
+        -- The target key, such as tag:Environment or InstanceIds.
+        key: string
+        -- The values matched by this target key. Multiple values combine with a logical OR.
+        values: {string}
+    end
+
+    -- The Systems Manager document to run and the managed nodes to target for a single Amazon Web Services Region.
+    record SsmDocumentConfig
+        -- The cross-account role for the configuration.
+        crossAccountRole: string
+        -- The external ID (secret key) for the configuration.
+        externalId: string
+        -- The Amazon Resource Name (ARN) of the Systems Manager document to run.
+        documentArn: string
+        -- The target filters that Systems Manager resolves to managed nodes when the command runs. To target specific managed nodes, use the InstanceIds key. You can specify up to five target filters.
+        targets: {SsmTarget}
+        -- The parameters that are passed to this Region's Systems Manager document. You set parameters for each document, so each Region can run its document with its own parameters.
+        parameters: {string : {string}}
+        -- The version of the Systems Manager document to run for this Region. When you omit it, Systems Manager runs the document's default version.
+        documentVersion: string
+    end
+
+    enum SsmSendCommandUngracefulBehavior
+        "skip"
+    end
+
+    -- The ungraceful execution settings for an AWS Systems Manager SendCommand execution block.
+    record SsmSendCommandUngraceful
+        -- Specifies whether to skip running this command during an ungraceful execution. Set to skip to skip the command.
+        behavior: string
+    end
+
+    -- Configuration for an AWS Systems Manager SendCommand execution block in a Region switch plan. This execution block runs a Systems Manager document on the managed nodes that you target in each Amazon Web Services Region of the plan.
+    record SsmSendCommandConfiguration
+        -- The timeout value specified for the configuration.
+        timeoutMinutes: number
+        -- The Systems Manager document and target configuration for each Amazon Web Services Region in the plan. Provide an entry for each Amazon Web Services Region that you want the command to run in.
+        regionDocuments: {string : SsmDocumentConfig}
+        -- How often, in minutes, Region switch retries the command if it returns a failure.
+        retryIntervalMinutes: number
+        -- Specifies the settings that determine how the execution block behaves when the plan runs ungracefully, such as whether to skip the command.
+        ungraceful: SsmSendCommandUngraceful
+    end
+
     enum ExecutionBlockType
         "CustomActionLambda"
         "ManualApproval"
@@ -794,6 +840,7 @@ local record M
         "AuroraProvisionedScaling"
         "NeptuneGlobalDatabase"
         "RdsSwitchoverReadReplica"
+        "SSMSendCommand"
     end
 
     enum StepStatus
@@ -1230,6 +1277,8 @@ local record M
         neptuneGlobalDatabaseConfig: NeptuneGlobalDatabaseConfiguration
         -- An Amazon RDS switchover read replica execution block.
         rdsSwitchoverReadReplicaConfig: RdsSwitchoverReadReplicaConfiguration
+        -- Specifies an AWS Systems Manager SendCommand execution block.
+        ssmSendCommandConfig: SsmSendCommandConfiguration
     end
 
     -- Configuration for steps that should be executed in parallel during a Region switch.

@@ -32,6 +32,7 @@ local record Client
     enableDomainTransferLock: function(Client, types.EnableDomainTransferLockInput, ? base_client.InvokeOptions): async.Operation<types.EnableDomainTransferLockOutput>
     getContactReachabilityStatus: function(Client, types.GetContactReachabilityStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetContactReachabilityStatusOutput>
     getDomainDetail: function(Client, types.GetDomainDetailInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainDetailOutput>
+    getDomainPrices: function(Client, types.GetDomainPricesInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainPricesOutput>
     getDomainSuggestions: function(Client, types.GetDomainSuggestionsInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainSuggestionsOutput>
     getOperationDetail: function(Client, types.GetOperationDetailInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationDetailOutput>
     listDomains: function(Client, types.ListDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
@@ -150,6 +151,10 @@ end
 
 function C:getDomainDetail(input: types.GetDomainDetailInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainDetailOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainDetail as schema.OperationSchema, input, options) as async.Operation<types.GetDomainDetailOutput>
+end
+
+function C:getDomainPrices(input: types.GetDomainPricesInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainPricesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainPrices as schema.OperationSchema, input, options) as async.Operation<types.GetDomainPricesOutput>
 end
 
 function C:getDomainSuggestions(input: types.GetDomainSuggestionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainSuggestionsOutput>

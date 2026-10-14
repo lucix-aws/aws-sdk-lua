@@ -170,6 +170,24 @@ function M.items_list_contact_evaluations(client, input)
     })
 end
 
+--- Returns a page iterator for listContactFlowAliases.
+function M.pages_list_contact_flow_aliases(client, input)
+    return paginator.pages(client, "listContactFlowAliases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContactFlowAliasSummaryList",
+    })
+end
+
+--- Returns an item iterator for listContactFlowAliases.
+function M.items_list_contact_flow_aliases(client, input)
+    return paginator.items(client, "listContactFlowAliases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContactFlowAliasSummaryList",
+    })
+end
+
 --- Returns a page iterator for listContactFlowModuleAliases.
 function M.pages_list_contact_flow_module_aliases(client, input)
     return paginator.pages(client, "listContactFlowModuleAliases", input, {

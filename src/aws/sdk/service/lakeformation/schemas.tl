@@ -26,6 +26,8 @@ M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.Expression = schema.new({ type = "list", list_member = M.LFTag })
 
+M.ColumnList = schema.new({ type = "list", list_member = M.Column })
+
 M.VirtualObjectList = schema.new({ type = "list", list_member = M.VirtualObject })
 
 M.PrincipalResourcePermissionsList = schema.new({ type = "list", list_member = M.PrincipalResourcePermissions })
@@ -51,6 +53,10 @@ M.LFTagExpressionsList = schema.new({ type = "list", list_member = M.LFTagExpres
 M.FilterConditionList = schema.new({ type = "list", list_member = M.FilterCondition })
 
 M.ResourceInfoList = schema.new({ type = "list", list_member = M.ResourceInfo })
+
+M.RLSPolicyList = schema.new({ type = "list", list_member = M.RLSPolicy })
+
+M.RLSPolicyAttachmentList = schema.new({ type = "list", list_member = M.RLSPolicyAttachment })
 
 M.StorageOptimizerList = schema.new({ type = "list", list_member = M.StorageOptimizer })
 
@@ -348,6 +354,28 @@ M.LFTagPolicyResource = schema.new({
     },
 })
 
+M.RLSPolicyResource = schema.new({
+    id = id.from(_N, "RLSPolicyResource"),
+    type = "structure",
+    members = {
+        CatalogId = schema.new({
+            id = id.from(_N, "RLSPolicyResource", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RLSPolicyResource", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.TableWildcard = schema.new({
     id = id.from(_N, "TableWildcard"),
     type = "structure",
@@ -513,6 +541,13 @@ M.Resource = schema.new({
             name = "LFTagExpression",
             target_id = id.from(_N, "LFTagExpressionResource"),
             target = M.LFTagExpressionResource,
+        }),
+        RLSPolicy = schema.new({
+            id = id.from(_N, "Resource", "RLSPolicy"),
+            type = "structure",
+            name = "RLSPolicy",
+            target_id = id.from(_N, "RLSPolicyResource"),
+            target = M.RLSPolicyResource,
         }),
     },
 })
@@ -818,19 +853,6 @@ M.AssumeDecoratedRoleWithSAMLOutput = schema.new({
     },
 })
 
-M.AuditContext = schema.new({
-    id = id.from(_N, "AuditContext"),
-    type = "structure",
-    members = {
-        AdditionalAuditContext = schema.new({
-            id = id.from(_N, "AuditContext", "AdditionalAuditContext"),
-            type = "string",
-            name = "AdditionalAuditContext",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.Condition = schema.new({
     id = id.from(_N, "Condition"),
     type = "structure",
@@ -852,6 +874,86 @@ M.DataLakePrincipal = schema.new({
             id = id.from(_N, "DataLakePrincipal", "DataLakePrincipalIdentifier"),
             type = "string",
             name = "DataLakePrincipalIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AttachRLSPolicyInput = schema.new({
+    id = id.from(_N, "AttachRLSPolicyRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "AttachRLSPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Resource = schema.new({
+            id = id.from(_N, "AttachRLSPolicyInput", "Resource"),
+            type = "structure",
+            name = "Resource",
+            target_id = id.from(_N, "Resource"),
+            target = M.Resource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Principal = schema.new({
+            id = id.from(_N, "AttachRLSPolicyInput", "Principal"),
+            type = "structure",
+            name = "Principal",
+            target_id = id.from(_N, "DataLakePrincipal"),
+            target = M.DataLakePrincipal,
+        }),
+        Condition = schema.new({
+            id = id.from(_N, "AttachRLSPolicyInput", "Condition"),
+            type = "structure",
+            name = "Condition",
+            target_id = id.from(_N, "Condition"),
+            target = M.Condition,
+        }),
+        SetDefault = schema.new({
+            id = id.from(_N, "AttachRLSPolicyInput", "SetDefault"),
+            type = "boolean",
+            name = "SetDefault",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AttachRLSPolicyOutput = schema.new({
+    id = id.from(_N, "AttachRLSPolicyResponse"),
+    type = "structure",
+})
+
+M.ResourceNumberLimitExceededException = schema.new({
+    id = id.from(_N, "ResourceNumberLimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNumberLimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AuditContext = schema.new({
+    id = id.from(_N, "AuditContext"),
+    type = "structure",
+    members = {
+        AdditionalAuditContext = schema.new({
+            id = id.from(_N, "AuditContext", "AdditionalAuditContext"),
+            type = "string",
+            name = "AdditionalAuditContext",
             target_id = prelude.String.id,
         }),
     },
@@ -1213,22 +1315,6 @@ M.CreateDataCellsFilterOutput = schema.new({
     type = "structure",
 })
 
-M.ResourceNumberLimitExceededException = schema.new({
-    id = id.from(_N, "ResourceNumberLimitExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ResourceNumberLimitExceededException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.ExternalFilteringConfiguration = schema.new({
     id = id.from(_N, "ExternalFilteringConfiguration"),
     type = "structure",
@@ -1468,6 +1554,68 @@ M.CreateLFTagExpressionInput = schema.new({
 
 M.CreateLFTagExpressionOutput = schema.new({
     id = id.from(_N, "CreateLFTagExpressionResponse"),
+    type = "structure",
+})
+
+M.Column = schema.new({
+    id = id.from(_N, "Column"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "Column", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "Column", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateRLSPolicyInput = schema.new({
+    id = id.from(_N, "CreateRLSPolicyRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateRLSPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttachmentColumns = schema.new({
+            id = id.from(_N, "CreateRLSPolicyInput", "AttachmentColumns"),
+            type = "list",
+            name = "AttachmentColumns",
+            target_id = prelude.Document.id,
+            list_member = M.Column,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterExpression = schema.new({
+            id = id.from(_N, "CreateRLSPolicyInput", "FilterExpression"),
+            type = "string",
+            name = "FilterExpression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateRLSPolicyOutput = schema.new({
+    id = id.from(_N, "CreateRLSPolicyResponse"),
     type = "structure",
 })
 
@@ -1711,6 +1859,27 @@ M.ResourceNotReadyException = schema.new({
     },
 })
 
+M.DeleteRLSPolicyInput = schema.new({
+    id = id.from(_N, "DeleteRLSPolicyRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DeleteRLSPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRLSPolicyOutput = schema.new({
+    id = id.from(_N, "DeleteRLSPolicyResponse"),
+    type = "structure",
+})
+
 M.DeregisterResourceInput = schema.new({
     id = id.from(_N, "DeregisterResourceRequest"),
     type = "structure",
@@ -1941,6 +2110,57 @@ M.DescribeTransactionOutput = schema.new({
             target = M.TransactionDescription,
         }),
     },
+})
+
+M.DetachRLSPolicyInput = schema.new({
+    id = id.from(_N, "DetachRLSPolicyRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DetachRLSPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Resource = schema.new({
+            id = id.from(_N, "DetachRLSPolicyInput", "Resource"),
+            type = "structure",
+            name = "Resource",
+            target_id = id.from(_N, "Resource"),
+            target = M.Resource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Principal = schema.new({
+            id = id.from(_N, "DetachRLSPolicyInput", "Principal"),
+            type = "structure",
+            name = "Principal",
+            target_id = id.from(_N, "DataLakePrincipal"),
+            target = M.DataLakePrincipal,
+        }),
+        Condition = schema.new({
+            id = id.from(_N, "DetachRLSPolicyInput", "Condition"),
+            type = "structure",
+            name = "Condition",
+            target_id = id.from(_N, "Condition"),
+            target = M.Condition,
+        }),
+        RemoveDefault = schema.new({
+            id = id.from(_N, "DetachRLSPolicyInput", "RemoveDefault"),
+            type = "boolean",
+            name = "RemoveDefault",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DetachRLSPolicyOutput = schema.new({
+    id = id.from(_N, "DetachRLSPolicyResponse"),
+    type = "structure",
 })
 
 M.ExtendTransactionInput = schema.new({
@@ -2689,6 +2909,68 @@ M.GlueEncryptionException = schema.new({
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetRLSPolicyInput = schema.new({
+    id = id.from(_N, "GetRLSPolicyRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "GetRLSPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RLSPolicy = schema.new({
+    id = id.from(_N, "RLSPolicy"),
+    type = "structure",
+    members = {
+        CatalogId = schema.new({
+            id = id.from(_N, "RLSPolicy", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RLSPolicy", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        AttachmentColumns = schema.new({
+            id = id.from(_N, "RLSPolicy", "AttachmentColumns"),
+            type = "list",
+            name = "AttachmentColumns",
+            target_id = prelude.Document.id,
+            list_member = M.Column,
+        }),
+        FilterExpression = schema.new({
+            id = id.from(_N, "RLSPolicy", "FilterExpression"),
+            type = "string",
+            name = "FilterExpression",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetRLSPolicyOutput = schema.new({
+    id = id.from(_N, "GetRLSPolicyResponse"),
+    type = "structure",
+    members = {
+        RLSPolicy = schema.new({
+            id = id.from(_N, "GetRLSPolicyOutput", "RLSPolicy"),
+            type = "structure",
+            name = "RLSPolicy",
+            target_id = id.from(_N, "RLSPolicy"),
+            target = M.RLSPolicy,
         }),
     },
 })
@@ -3821,6 +4103,150 @@ M.ListResourcesOutput = schema.new({
     },
 })
 
+M.ListRLSPoliciesInput = schema.new({
+    id = id.from(_N, "ListRLSPoliciesRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRLSPoliciesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRLSPoliciesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRLSPoliciesOutput = schema.new({
+    id = id.from(_N, "ListRLSPoliciesResponse"),
+    type = "structure",
+    members = {
+        RLSPolicies = schema.new({
+            id = id.from(_N, "ListRLSPoliciesOutput", "RLSPolicies"),
+            type = "list",
+            name = "RLSPolicies",
+            target_id = prelude.Document.id,
+            list_member = M.RLSPolicy,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRLSPoliciesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRLSPolicyAttachmentsInput = schema.new({
+    id = id.from(_N, "ListRLSPolicyAttachmentsRequest"),
+    type = "structure",
+    members = {
+        Resource = schema.new({
+            id = id.from(_N, "ListRLSPolicyAttachmentsInput", "Resource"),
+            type = "structure",
+            name = "Resource",
+            target_id = id.from(_N, "Resource"),
+            target = M.Resource,
+        }),
+        Principal = schema.new({
+            id = id.from(_N, "ListRLSPolicyAttachmentsInput", "Principal"),
+            type = "structure",
+            name = "Principal",
+            target_id = id.from(_N, "DataLakePrincipal"),
+            target = M.DataLakePrincipal,
+        }),
+        PolicyName = schema.new({
+            id = id.from(_N, "ListRLSPolicyAttachmentsInput", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRLSPolicyAttachmentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRLSPolicyAttachmentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RLSPolicyAttachment = schema.new({
+    id = id.from(_N, "RLSPolicyAttachment"),
+    type = "structure",
+    members = {
+        CatalogId = schema.new({
+            id = id.from(_N, "RLSPolicyAttachment", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+        }),
+        PolicyName = schema.new({
+            id = id.from(_N, "RLSPolicyAttachment", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
+            target_id = prelude.String.id,
+        }),
+        Principal = schema.new({
+            id = id.from(_N, "RLSPolicyAttachment", "Principal"),
+            type = "structure",
+            name = "Principal",
+            target_id = id.from(_N, "DataLakePrincipal"),
+            target = M.DataLakePrincipal,
+        }),
+        Resource = schema.new({
+            id = id.from(_N, "RLSPolicyAttachment", "Resource"),
+            type = "structure",
+            name = "Resource",
+            target_id = id.from(_N, "Resource"),
+            target = M.Resource,
+        }),
+        Condition = schema.new({
+            id = id.from(_N, "RLSPolicyAttachment", "Condition"),
+            type = "structure",
+            name = "Condition",
+            target_id = id.from(_N, "Condition"),
+            target = M.Condition,
+        }),
+        DefaultRLSPolicy = schema.new({
+            id = id.from(_N, "RLSPolicyAttachment", "DefaultRLSPolicy"),
+            type = "boolean",
+            name = "DefaultRLSPolicy",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ListRLSPolicyAttachmentsOutput = schema.new({
+    id = id.from(_N, "ListRLSPolicyAttachmentsResponse"),
+    type = "structure",
+    members = {
+        RLSPolicyAttachments = schema.new({
+            id = id.from(_N, "ListRLSPolicyAttachmentsOutput", "RLSPolicyAttachments"),
+            type = "list",
+            name = "RLSPolicyAttachments",
+            target_id = prelude.Document.id,
+            list_member = M.RLSPolicyAttachment,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRLSPolicyAttachmentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTableStorageOptimizersInput = schema.new({
     id = id.from(_N, "ListTableStorageOptimizersRequest"),
     type = "structure",
@@ -4652,6 +5078,33 @@ M.UpdateResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateRLSPolicyInput = schema.new({
+    id = id.from(_N, "UpdateRLSPolicyRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UpdateRLSPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterExpression = schema.new({
+            id = id.from(_N, "UpdateRLSPolicyInput", "FilterExpression"),
+            type = "string",
+            name = "FilterExpression",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRLSPolicyOutput = schema.new({
+    id = id.from(_N, "UpdateRLSPolicyResponse"),
+    type = "structure",
+})
+
 M.DeleteObjectInput = schema.new({
     id = id.from(_N, "DeleteObjectInput"),
     type = "structure",
@@ -4858,6 +5311,18 @@ M.AssumeDecoratedRoleWithSAML = schema.operation({
     },
 })
 
+M.AttachRLSPolicy = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "AttachRLSPolicy"),
+    input = M.AttachRLSPolicyInput,
+    output = M.AttachRLSPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/AttachRLSPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BatchGrantPermissions = schema.operation({
     id = id.from("com.amazonaws.lakeformation", "BatchGrantPermissions"),
     input = M.BatchGrantPermissionsInput,
@@ -4966,6 +5431,18 @@ M.CreateLFTagExpression = schema.operation({
     },
 })
 
+M.CreateRLSPolicy = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "CreateRLSPolicy"),
+    input = M.CreateRLSPolicyInput,
+    output = M.CreateRLSPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateRLSPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteDataCellsFilter = schema.operation({
     id = id.from("com.amazonaws.lakeformation", "DeleteDataCellsFilter"),
     input = M.DeleteDataCellsFilterInput,
@@ -5038,6 +5515,18 @@ M.DeleteObjectsOnCancel = schema.operation({
     },
 })
 
+M.DeleteRLSPolicy = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DeleteRLSPolicy"),
+    input = M.DeleteRLSPolicyInput,
+    output = M.DeleteRLSPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteRLSPolicy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeregisterResource = schema.operation({
     id = id.from("com.amazonaws.lakeformation", "DeregisterResource"),
     input = M.DeregisterResourceInput,
@@ -5080,6 +5569,18 @@ M.DescribeTransaction = schema.operation({
     output = M.DescribeTransactionOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/DescribeTransaction" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachRLSPolicy = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "DetachRLSPolicy"),
+    input = M.DetachRLSPolicyInput,
+    output = M.DetachRLSPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DetachRLSPolicy" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -5200,6 +5701,18 @@ M.GetResourceLFTags = schema.operation({
     output = M.GetResourceLFTagsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/GetResourceLFTags" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRLSPolicy = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetRLSPolicy"),
+    input = M.GetRLSPolicyInput,
+    output = M.GetRLSPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetRLSPolicy" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -5356,6 +5869,30 @@ M.ListResources = schema.operation({
     output = M.ListResourcesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/ListResources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRLSPolicies = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListRLSPolicies"),
+    input = M.ListRLSPoliciesInput,
+    output = M.ListRLSPoliciesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRLSPolicies" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRLSPolicyAttachments = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "ListRLSPolicyAttachments"),
+    input = M.ListRLSPolicyAttachmentsInput,
+    output = M.ListRLSPolicyAttachmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListRLSPolicyAttachments" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -5536,6 +6073,18 @@ M.UpdateResource = schema.operation({
     output = M.UpdateResourceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/UpdateResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRLSPolicy = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "UpdateRLSPolicy"),
+    input = M.UpdateRLSPolicyInput,
+    output = M.UpdateRLSPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateRLSPolicy" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

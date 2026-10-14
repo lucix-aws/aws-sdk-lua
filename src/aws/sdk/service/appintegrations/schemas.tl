@@ -142,6 +142,12 @@ M.AuthConfig = schema.new({
             name = "CredentialProviderIdentifier",
             target_id = prelude.String.id,
         }),
+        AudienceOverride = schema.new({
+            id = id.from(_N, "AuthConfig", "AudienceOverride"),
+            type = "string",
+            name = "AudienceOverride",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

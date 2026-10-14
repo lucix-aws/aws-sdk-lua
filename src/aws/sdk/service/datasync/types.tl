@@ -126,12 +126,22 @@ local record M
         -- vpce-01234d5aff67890e1.
         -- The VPC service endpoint you use must include the DataSync service name (for
         -- example, com.amazonaws.us-east-2.datasync).
+        -- The endpoint ID is informational. DataSync doesn't verify it or use it to connect
+        -- to your agent. For more information, see Using a single VPC service endpoint across multiple subnets.
         VpcEndpointId: string
-        -- Specifies the ARN of the subnet where your VPC service endpoint is located. You can only
-        -- specify one ARN.
+        -- Specifies the ARN of the subnet where DataSync creates the network
+        -- interfaces that handle data transfer traffic for your tasks. You can only specify one
+        -- ARN.
+        -- The subnet doesn't have to be the subnet that contains your VPC service endpoint. The
+        -- subnet can be one that another Amazon Web Services account shared with you through RAM, in
+        -- which case the ARN must specify the account that owns the subnet. For more information, see
+        -- Using a single VPC service endpoint across multiple subnets.
         SubnetArns: {string}
         -- Specifies the Amazon Resource Name (ARN) of the security group that allows traffic between
         -- your agent and VPC service endpoint. You can only specify one ARN.
+        -- The ARN must specify your own account, even when the security group was shared with you
+        -- from the account that owns the VPC. The security group must belong to the same VPC as the
+        -- subnet that you specify in SubnetArns.
         SecurityGroupArns: {string}
     end
 
@@ -320,6 +330,7 @@ local record M
         "NFS3"
         "NFS4_0"
         "NFS4_1"
+        "NFS4_2"
     end
 
     -- Specifies how DataSync can access a location using the NFS protocol.
@@ -327,7 +338,9 @@ local record M
         -- Specifies the NFS version that you want DataSync to use when mounting your NFS
         -- share. If the server refuses to use the version specified, the task fails.
         -- You can specify the following options:
-        -- AUTOMATIC (default): DataSync chooses NFS version 4.1.
+        -- AUTOMATIC (default): DataSync chooses NFS version 4.1. For
+        -- Amazon FSx for OpenZFS locations, DataSync first attempts to use NFS
+        -- version 4.2, then falls back to version 4.1, and then to earlier versions if needed.
         -- NFS3: Stateless protocol version that allows for asynchronous writes on
         -- the server.
         -- NFSv4_0: Stateful, firewall-friendly protocol version that supports
@@ -335,6 +348,10 @@ local record M
         -- NFSv4_1: Stateful protocol version that supports sessions, directory
         -- delegations, and parallel data processing. NFS version 4.1 also includes all features
         -- available in version 4.0.
+        -- NFSv4_2: Stateful protocol version that supports sparse file
+        -- operations, space reservation, and server-side copy operations, in addition to all
+        -- features available in version 4.1. Selecting NFS version 4.2 requires an Enhanced mode
+        -- task.
         -- DataSync currently only supports NFS version 3 with Amazon FSx for NetApp ONTAP locations.
         Version: string
     end
@@ -1077,6 +1094,11 @@ local record M
         "PRESERVE"
     end
 
+    enum ObjectMetadata
+        "PRESERVE"
+        "NONE"
+    end
+
     enum ObjectTags
         "PRESERVE"
         "NONE"
@@ -1304,6 +1326,12 @@ local record M
         -- Specifies whether you want DataSync to PRESERVE object tags
         -- (default behavior) when transferring between object storage systems. If you want your DataSync task to ignore object tags, specify the NONE value.
         ObjectTags: string
+        -- Specifies whether you want DataSync to PRESERVE object metadata
+        -- (default behavior) when transferring between object storage systems. If you want your
+        -- DataSync task to ignore object metadata, specify the NONE value.
+        -- Even if you specify NONE, metadata for the last modified time is still
+        -- preserved.
+        ObjectMetadata: string
     end
 
     enum ScheduleStatus
@@ -1551,12 +1579,16 @@ local record M
     -- virtual private cloud (VPC) service endpoint. An agent that uses a VPC endpoint
     -- isn't accessible over the public internet.
     record PrivateLinkConfig
-        -- Specifies the ID of the VPC endpoint that your agent connects to.
+        -- Specifies the ID of the VPC service endpoint that's recorded for your agent. The endpoint ID
+        -- is informational and isn't verified by DataSync. Your agent communicates through the
+        -- private IP address in PrivateLinkEndpoint, which is set when you activate the
+        -- agent.
         VpcEndpointId: string
         -- Specifies the VPC endpoint provided by Amazon Web Services PrivateLink that your agent connects to.
         PrivateLinkEndpoint: string
-        -- Specifies the ARN of the subnet where your VPC endpoint is located. You can only specify
-        -- one ARN.
+        -- Specifies the ARN of the subnet where DataSync creates the network interfaces
+        -- that handle data transfer traffic for your tasks. You can only specify one ARN.
+        -- The subnet doesn't have to be the subnet that contains your VPC endpoint.
         SubnetArns: {string}
         -- Specifies the Amazon Resource Names (ARN) of the security group that provides DataSync access to your VPC endpoint. You can only specify one ARN.
         SecurityGroupArns: {string}

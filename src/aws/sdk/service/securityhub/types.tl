@@ -636,9 +636,24 @@ local record M
         StatusId: number
     end
 
+    enum ResourceCriticality
+        "Very High"
+        "High"
+        "Medium"
+        "Low"
+        "Unknown"
+    end
+
+    -- Allows you to define the structure for modifying specific fields of resources.
+    record AutomationRulesResourceFieldsUpdateV2
+        -- The criticality level to be assigned to resources that match the automation rule criteria.
+        Criticality: string
+    end
+
     enum AutomationRulesActionTypeV2
         "FINDING_FIELDS_UPDATE"
         "EXTERNAL_INTEGRATION"
+        "RESOURCE_FIELDS_UPDATE"
     end
 
     -- Allows you to configure automated responses.
@@ -649,6 +664,8 @@ local record M
         FindingFieldsUpdate: AutomationRulesFindingFieldsUpdateV2
         -- The settings for integrating automation rule actions with external systems or service.
         ExternalIntegrationConfiguration: ExternalIntegrationConfiguration
+        -- The changes to be applied to resource fields when an automation rule is triggered.
+        ResourceFieldsUpdate: AutomationRulesResourceFieldsUpdateV2
     end
 
     -- Allows you to customize security response workflows.
@@ -11809,12 +11826,15 @@ local record M
         "finding_info.related_events.uid"
         "finding_info.related_events.product.uid"
         "finding_info.related_events.title"
+        "impact"
+        "likelihood"
         "metadata.product.name"
         "metadata.product.uid"
         "metadata.product.vendor_name"
         "remediation.desc"
         "remediation.references"
         "resources.cloud_partition"
+        "resources.criticality"
         "resources.name"
         "resources.owner.account.uid"
         "resources.owner.org.uid"
@@ -12169,6 +12189,87 @@ local record M
         RuleArn: string
     end
 
+    enum ResourcesDateField
+        "ResourceDetailCaptureTime"
+        "ResourceCreationTime"
+    end
+
+    -- Enables the filtering of Amazon Web Services resources based on date and timestamp attributes.
+    record ResourcesDateFilter
+        -- The name of the field.
+        FieldName: string
+        Filter: DateFilter
+    end
+
+    enum ResourcesMapField
+        "ResourceTags"
+    end
+
+    -- Enables filtering of Amazon Web Services resources based on key-value map attributes.
+    record ResourcesMapFilter
+        -- The name of the field.
+        FieldName: string
+        Filter: MapFilter
+    end
+
+    enum ResourcesNumberField
+        "FindingsSummary.TotalFindings"
+        "FindingsSummary.Severities.Other"
+        "FindingsSummary.Severities.Fatal"
+        "FindingsSummary.Severities.Critical"
+        "FindingsSummary.Severities.High"
+        "FindingsSummary.Severities.Medium"
+        "FindingsSummary.Severities.Low"
+        "FindingsSummary.Severities.Informational"
+        "FindingsSummary.Severities.Unknown"
+        "ResourceInfo.AIDetails.SelfHostedAIModelResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIAgentResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIModelServingResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIExternalEndpointResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIDevelopmentResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIAgentFrameworkResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIAgentToolsAndIdentityResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedTotalAIResourceCount"
+    end
+
+    -- Enables filtering of Amazon Web Services resources based on numerical values.
+    record ResourcesNumberFilter
+        -- The name of the field.
+        FieldName: string
+        Filter: NumberFilter
+    end
+
+    enum ResourcesStringField
+        "ResourceGuid"
+        "ResourceId"
+        "AccountId"
+        "AccountName"
+        "Region"
+        "ResourceProvider"
+        "ResourceOwnerAccountId"
+        "ResourceOwnerOrgId"
+        "ResourceCloudPartition"
+        "ResourceRegion"
+        "ResourceCategory"
+        "ResourceType"
+        "ResourceName"
+        "FindingsSummary.FindingType"
+        "FindingsSummary.ProductName"
+        "ResourceSubCategory"
+        "DiscoveryType"
+        "ResourceInfo.AIDetails.HostResourceGuid"
+        "ResourceInfo.AIDetails.HostResourceType"
+        "ResourceInfo.AIDetails.CanonicalId"
+        "ResourceCriticality"
+    end
+
+    -- Enables filtering of Amazon Web Services resources based on string field values.
+    record ResourcesStringFilter
+        -- The name of the field.
+        FieldName: string
+        Filter: StringFilter
+    end
+
     record CreateAutomationRuleV2Output
         -- The ARN of the V2 automation rule.
         RuleArn: string
@@ -12444,6 +12545,20 @@ local record M
         TicketId: string
         -- The url to the created ticket.
         TicketSrcUrl: string
+    end
+
+    enum CriticalitySourceType
+        "AutomationRule"
+        "ResourceName"
+        "TagInference"
+    end
+
+    -- Details the source and reason of a criticality.
+    record CriticalitySource
+        -- The source of the criticality.
+        Source: string
+        -- The reason the criticality was assigned.
+        Reason: string
     end
 
     enum CspmConnectorProviderName
@@ -13760,10 +13875,13 @@ local record M
         "finding_info.title"
         "finding_info.related_events.traits.category"
         "finding_info.types"
+        "impact"
+        "likelihood"
         "metadata.product.name"
         "metadata.product.uid"
         "resources.type"
         "resources.cloud_partition"
+        "resources.criticality"
         "resources.name"
         "resources.owner.account.uid"
         "resources.owner.org.uid"
@@ -14388,86 +14506,6 @@ local record M
         NextToken: string
     end
 
-    enum ResourcesDateField
-        "ResourceDetailCaptureTime"
-        "ResourceCreationTime"
-    end
-
-    -- Enables the filtering of Amazon Web Services resources based on date and timestamp attributes.
-    record ResourcesDateFilter
-        -- The name of the field.
-        FieldName: string
-        Filter: DateFilter
-    end
-
-    enum ResourcesMapField
-        "ResourceTags"
-    end
-
-    -- Enables filtering of Amazon Web Services resources based on key-value map attributes.
-    record ResourcesMapFilter
-        -- The name of the field.
-        FieldName: string
-        Filter: MapFilter
-    end
-
-    enum ResourcesNumberField
-        "FindingsSummary.TotalFindings"
-        "FindingsSummary.Severities.Other"
-        "FindingsSummary.Severities.Fatal"
-        "FindingsSummary.Severities.Critical"
-        "FindingsSummary.Severities.High"
-        "FindingsSummary.Severities.Medium"
-        "FindingsSummary.Severities.Low"
-        "FindingsSummary.Severities.Informational"
-        "FindingsSummary.Severities.Unknown"
-        "ResourceInfo.AIDetails.SelfHostedAIModelResourceCount"
-        "ResourceInfo.AIDetails.SelfHostedAIAgentResourceCount"
-        "ResourceInfo.AIDetails.SelfHostedAIModelServingResourceCount"
-        "ResourceInfo.AIDetails.SelfHostedAIExternalEndpointResourceCount"
-        "ResourceInfo.AIDetails.SelfHostedAIDevelopmentResourceCount"
-        "ResourceInfo.AIDetails.SelfHostedAIAgentFrameworkResourceCount"
-        "ResourceInfo.AIDetails.SelfHostedAIAgentToolsAndIdentityResourceCount"
-        "ResourceInfo.AIDetails.SelfHostedTotalAIResourceCount"
-    end
-
-    -- Enables filtering of Amazon Web Services resources based on numerical values.
-    record ResourcesNumberFilter
-        -- The name of the field.
-        FieldName: string
-        Filter: NumberFilter
-    end
-
-    enum ResourcesStringField
-        "ResourceGuid"
-        "ResourceId"
-        "AccountId"
-        "AccountName"
-        "Region"
-        "ResourceProvider"
-        "ResourceOwnerAccountId"
-        "ResourceOwnerOrgId"
-        "ResourceCloudPartition"
-        "ResourceRegion"
-        "ResourceCategory"
-        "ResourceType"
-        "ResourceName"
-        "FindingsSummary.FindingType"
-        "FindingsSummary.ProductName"
-        "ResourceSubCategory"
-        "DiscoveryType"
-        "ResourceInfo.AIDetails.HostResourceGuid"
-        "ResourceInfo.AIDetails.HostResourceType"
-        "ResourceInfo.AIDetails.CanonicalId"
-    end
-
-    -- Enables filtering of Amazon Web Services resources based on string field values.
-    record ResourcesStringFilter
-        -- The name of the field.
-        FieldName: string
-        Filter: StringFilter
-    end
-
     enum ResourceGroupByField
         "AccountId"
         "AccountName"
@@ -14485,6 +14523,7 @@ local record M
         "DiscoveryType"
         "ResourceInfo.AIDetails.HostResourceType"
         "ResourceInfo.AIDetails.CanonicalId"
+        "ResourceCriticality"
     end
 
     -- Defines the data boundary for a resources query. Scopes determine which organizational units or organizations to retrieve data from.
@@ -14669,6 +14708,10 @@ local record M
         DiscoveryType: string
         -- Additional resource-type-specific details. For self-hosted AI resources and their host resources, contains an AIDetails structure.
         ResourceInfo: ResourceInfo
+        -- The criticality assigned to a resource.
+        ResourceCriticality: string
+        -- The sources of criticalities determined from a resource.
+        CriticalitySources: {CriticalitySource}
     end
 
     record GetResourcesV2Output
@@ -15578,12 +15621,6 @@ local record M
         CompositeOperator: string
     end
 
-    -- Defines the parameters and conditions used to evaluate and filter security findings.
-    record Criteria
-        -- The filtering conditions that align with OCSF standards.
-        OcsfFindingCriteria: OcsfFindingFilters
-    end
-
     -- The configuration for a findings export: the output format, an optional set of filters, and the fields to include.
     record FindingsOutput
         -- The output format of the export. CSV produces comma-separated rows that are suitable for spreadsheets and analysis tools. OCSF_JSON produces newline-delimited JSON records in the Open Cybersecurity Schema Framework (OCSF) format used elsewhere in Security Hub.
@@ -15677,69 +15714,10 @@ local record M
         Filters: ResourcesFilters
     end
 
-    record CreateAutomationRuleV2Input
-        -- The name of the V2 automation rule.
-        RuleName: string
-        -- The status of the V2 automation rule.
-        RuleStatus: string
-        -- A description of the V2 automation rule.
-        Description: string
-        -- The value for the rule priority.
-        RuleOrder: number
-        -- The filtering type and configuration of the automation rule.
-        Criteria: Criteria
-        -- A list of actions to be performed when the rule criteria is met.
-        Actions: {AutomationRulesActionV2}
-        -- A list of key-value pairs associated with the V2 automation rule.
-        Tags: {string : string}
-        -- A unique identifier used to ensure idempotency.
-        ClientToken: string
-    end
-
     -- Specifies what data to export and how to format it. This is a union: you must specify exactly one member. Currently, the only supported member is Findings.
     record ExportOutput
         -- Configures an export of Security Hub findings, including the output format and any filters or selected fields.
         Findings: FindingsOutput
-    end
-
-    record GetAutomationRuleV2Output
-        -- The ARN of the V2 automation rule.
-        RuleArn: string
-        -- The ID of the V2 automation rule.
-        RuleId: string
-        -- The value for the rule priority.
-        RuleOrder: number
-        -- The name of the V2 automation rule.
-        RuleName: string
-        -- The status of the V2 automation automation rule.
-        RuleStatus: string
-        -- A description of the automation rule.
-        Description: string
-        -- The filtering type and configuration of the V2 automation rule.
-        Criteria: Criteria
-        -- A list of actions performed when the rule criteria is met.
-        Actions: {AutomationRulesActionV2}
-        -- The timestamp when the V2 automation rule was created.
-        CreatedAt: number
-        -- The timestamp when the V2 automation rule was updated.
-        UpdatedAt: number
-    end
-
-    record UpdateAutomationRuleV2Input
-        -- The ARN of the automation rule.
-        Identifier: string
-        -- The status of the automation rule.
-        RuleStatus: string
-        -- Represents a value for the rule priority.
-        RuleOrder: number
-        -- A description of the automation rule.
-        Description: string
-        -- The name of the automation rule.
-        RuleName: string
-        -- The filtering type and configuration of the automation rule.
-        Criteria: Criteria
-        -- A list of actions to be performed when the rule criteria is met.
-        Actions: {AutomationRulesActionV2}
     end
 
     record GetExportJobV2Output
@@ -15812,6 +15790,73 @@ local record M
         Scopes: ExportScopes
         -- A unique identifier used to ensure idempotency.
         ClientToken: string
+    end
+
+    -- Defines the parameters and conditions used to evaluate and filter security findings or resources.
+    record Criteria
+        -- The filtering conditions that align with OCSF standards.
+        OcsfFindingCriteria: OcsfFindingFilters
+        -- The filtering conditions for resources.
+        ResourceCriteria: ResourcesFilters
+    end
+
+    record CreateAutomationRuleV2Input
+        -- The name of the V2 automation rule.
+        RuleName: string
+        -- The status of the V2 automation rule.
+        RuleStatus: string
+        -- A description of the V2 automation rule.
+        Description: string
+        -- The value for the rule priority.
+        RuleOrder: number
+        -- The filtering type and configuration of the automation rule.
+        Criteria: Criteria
+        -- A list of actions to be performed when the rule criteria is met.
+        Actions: {AutomationRulesActionV2}
+        -- A list of key-value pairs associated with the V2 automation rule.
+        Tags: {string : string}
+        -- A unique identifier used to ensure idempotency.
+        ClientToken: string
+    end
+
+    record GetAutomationRuleV2Output
+        -- The ARN of the V2 automation rule.
+        RuleArn: string
+        -- The ID of the V2 automation rule.
+        RuleId: string
+        -- The value for the rule priority.
+        RuleOrder: number
+        -- The name of the V2 automation rule.
+        RuleName: string
+        -- The status of the V2 automation automation rule.
+        RuleStatus: string
+        -- A description of the automation rule.
+        Description: string
+        -- The filtering type and configuration of the V2 automation rule.
+        Criteria: Criteria
+        -- A list of actions performed when the rule criteria is met.
+        Actions: {AutomationRulesActionV2}
+        -- The timestamp when the V2 automation rule was created.
+        CreatedAt: number
+        -- The timestamp when the V2 automation rule was updated.
+        UpdatedAt: number
+    end
+
+    record UpdateAutomationRuleV2Input
+        -- The ARN of the automation rule.
+        Identifier: string
+        -- The status of the automation rule.
+        RuleStatus: string
+        -- Represents a value for the rule priority.
+        RuleOrder: number
+        -- A description of the automation rule.
+        Description: string
+        -- The name of the automation rule.
+        RuleName: string
+        -- The filtering type and configuration of the automation rule.
+        Criteria: Criteria
+        -- A list of actions to be performed when the rule criteria is met.
+        Actions: {AutomationRulesActionV2}
     end
 
 end

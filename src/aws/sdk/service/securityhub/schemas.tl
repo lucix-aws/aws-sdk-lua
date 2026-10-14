@@ -238,6 +238,8 @@ M.ResourceFindingsSummaryList = schema.new({ type = "list", list_member = M.Reso
 
 M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
 
+M.CriticalitySourceList = schema.new({ type = "list", list_member = M.CriticalitySource })
+
 M.AutomationRulesActionTypeListV2 = schema.new({ type = "list", list_member = M.AutomationRulesActionTypeObjectV2 })
 
 M.FreeTrialStatusList = schema.new({ type = "list", list_member = M.FreeTrialStatus })
@@ -1974,6 +1976,22 @@ M.AutomationRulesFindingFieldsUpdateV2 = schema.new({
     },
 })
 
+M.AutomationRulesResourceFieldsUpdateV2 = schema.new({
+    id = id.from(_N, "AutomationRulesResourceFieldsUpdateV2"),
+    type = "structure",
+    members = {
+        Criticality = schema.new({
+            id = id.from(_N, "AutomationRulesResourceFieldsUpdateV2", "Criticality"),
+            type = "string",
+            name = "Criticality",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AutomationRulesActionV2 = schema.new({
     id = id.from(_N, "AutomationRulesActionV2"),
     type = "structure",
@@ -2000,6 +2018,13 @@ M.AutomationRulesActionV2 = schema.new({
             name = "ExternalIntegrationConfiguration",
             target_id = id.from(_N, "ExternalIntegrationConfiguration"),
             target = M.ExternalIntegrationConfiguration,
+        }),
+        ResourceFieldsUpdate = schema.new({
+            id = id.from(_N, "AutomationRulesActionV2", "ResourceFieldsUpdate"),
+            type = "structure",
+            name = "ResourceFieldsUpdate",
+            target_id = id.from(_N, "AutomationRulesResourceFieldsUpdateV2"),
+            target = M.AutomationRulesResourceFieldsUpdateV2,
         }),
     },
 })
@@ -27510,6 +27535,86 @@ M.CreateAutomationRuleOutput = schema.new({
     },
 })
 
+M.ResourcesDateFilter = schema.new({
+    id = id.from(_N, "ResourcesDateFilter"),
+    type = "structure",
+    members = {
+        FieldName = schema.new({
+            id = id.from(_N, "ResourcesDateFilter", "FieldName"),
+            type = "string",
+            name = "FieldName",
+            target_id = prelude.String.id,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "ResourcesDateFilter", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "DateFilter"),
+            target = M.DateFilter,
+        }),
+    },
+})
+
+M.ResourcesMapFilter = schema.new({
+    id = id.from(_N, "ResourcesMapFilter"),
+    type = "structure",
+    members = {
+        FieldName = schema.new({
+            id = id.from(_N, "ResourcesMapFilter", "FieldName"),
+            type = "string",
+            name = "FieldName",
+            target_id = prelude.String.id,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "ResourcesMapFilter", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "MapFilter"),
+            target = M.MapFilter,
+        }),
+    },
+})
+
+M.ResourcesNumberFilter = schema.new({
+    id = id.from(_N, "ResourcesNumberFilter"),
+    type = "structure",
+    members = {
+        FieldName = schema.new({
+            id = id.from(_N, "ResourcesNumberFilter", "FieldName"),
+            type = "string",
+            name = "FieldName",
+            target_id = prelude.String.id,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "ResourcesNumberFilter", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "NumberFilter"),
+            target = M.NumberFilter,
+        }),
+    },
+})
+
+M.ResourcesStringFilter = schema.new({
+    id = id.from(_N, "ResourcesStringFilter"),
+    type = "structure",
+    members = {
+        FieldName = schema.new({
+            id = id.from(_N, "ResourcesStringFilter", "FieldName"),
+            type = "string",
+            name = "FieldName",
+            target_id = prelude.String.id,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "ResourcesStringFilter", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "StringFilter"),
+            target = M.StringFilter,
+        }),
+    },
+})
+
 M.CreateAutomationRuleV2Output = schema.new({
     id = id.from(_N, "CreateAutomationRuleV2Response"),
     type = "structure",
@@ -28193,6 +28298,31 @@ M.CreateTicketV2Output = schema.new({
             type = "string",
             name = "TicketSrcUrl",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CriticalitySource = schema.new({
+    id = id.from(_N, "CriticalitySource"),
+    type = "structure",
+    members = {
+        Source = schema.new({
+            id = id.from(_N, "CriticalitySource", "Source"),
+            type = "string",
+            name = "Source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "CriticalitySource", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -32425,86 +32555,6 @@ M.GetRemediationsV2Output = schema.new({
     },
 })
 
-M.ResourcesDateFilter = schema.new({
-    id = id.from(_N, "ResourcesDateFilter"),
-    type = "structure",
-    members = {
-        FieldName = schema.new({
-            id = id.from(_N, "ResourcesDateFilter", "FieldName"),
-            type = "string",
-            name = "FieldName",
-            target_id = prelude.String.id,
-        }),
-        Filter = schema.new({
-            id = id.from(_N, "ResourcesDateFilter", "Filter"),
-            type = "structure",
-            name = "Filter",
-            target_id = id.from(_N, "DateFilter"),
-            target = M.DateFilter,
-        }),
-    },
-})
-
-M.ResourcesMapFilter = schema.new({
-    id = id.from(_N, "ResourcesMapFilter"),
-    type = "structure",
-    members = {
-        FieldName = schema.new({
-            id = id.from(_N, "ResourcesMapFilter", "FieldName"),
-            type = "string",
-            name = "FieldName",
-            target_id = prelude.String.id,
-        }),
-        Filter = schema.new({
-            id = id.from(_N, "ResourcesMapFilter", "Filter"),
-            type = "structure",
-            name = "Filter",
-            target_id = id.from(_N, "MapFilter"),
-            target = M.MapFilter,
-        }),
-    },
-})
-
-M.ResourcesNumberFilter = schema.new({
-    id = id.from(_N, "ResourcesNumberFilter"),
-    type = "structure",
-    members = {
-        FieldName = schema.new({
-            id = id.from(_N, "ResourcesNumberFilter", "FieldName"),
-            type = "string",
-            name = "FieldName",
-            target_id = prelude.String.id,
-        }),
-        Filter = schema.new({
-            id = id.from(_N, "ResourcesNumberFilter", "Filter"),
-            type = "structure",
-            name = "Filter",
-            target_id = id.from(_N, "NumberFilter"),
-            target = M.NumberFilter,
-        }),
-    },
-})
-
-M.ResourcesStringFilter = schema.new({
-    id = id.from(_N, "ResourcesStringFilter"),
-    type = "structure",
-    members = {
-        FieldName = schema.new({
-            id = id.from(_N, "ResourcesStringFilter", "FieldName"),
-            type = "string",
-            name = "FieldName",
-            target_id = prelude.String.id,
-        }),
-        Filter = schema.new({
-            id = id.from(_N, "ResourcesStringFilter", "Filter"),
-            type = "structure",
-            name = "Filter",
-            target_id = id.from(_N, "StringFilter"),
-            target = M.StringFilter,
-        }),
-    },
-})
-
 M.ResourceScopes = schema.new({
     id = id.from(_N, "ResourceScopes"),
     type = "structure",
@@ -32936,6 +32986,19 @@ M.ResourceResult = schema.new({
             name = "ResourceInfo",
             target_id = id.from(_N, "ResourceInfo"),
             target = M.ResourceInfo,
+        }),
+        ResourceCriticality = schema.new({
+            id = id.from(_N, "ResourceResult", "ResourceCriticality"),
+            type = "string",
+            name = "ResourceCriticality",
+            target_id = prelude.String.id,
+        }),
+        CriticalitySources = schema.new({
+            id = id.from(_N, "ResourceResult", "CriticalitySources"),
+            type = "list",
+            name = "CriticalitySources",
+            target_id = prelude.Document.id,
+            list_member = M.CriticalitySource,
         }),
     },
 })
@@ -35331,20 +35394,6 @@ M.ResourcesTrendsFilters = schema.new({
     },
 })
 
-M.Criteria = schema.new({
-    id = id.from(_N, "Criteria"),
-    type = "union",
-    members = {
-        OcsfFindingCriteria = schema.new({
-            id = id.from(_N, "Criteria", "OcsfFindingCriteria"),
-            type = "structure",
-            name = "OcsfFindingCriteria",
-            target_id = id.from(_N, "OcsfFindingFilters"),
-            target = M.OcsfFindingFilters,
-        }),
-    },
-})
-
 M.FindingsOutput = schema.new({
     id = id.from(_N, "FindingsOutput"),
     type = "structure",
@@ -35605,83 +35654,6 @@ M.ResourceGroupByRule = schema.new({
     },
 })
 
-M.CreateAutomationRuleV2Input = schema.new({
-    id = id.from(_N, "CreateAutomationRuleV2Request"),
-    type = "structure",
-    members = {
-        RuleName = schema.new({
-            id = id.from(_N, "CreateAutomationRuleV2Input", "RuleName"),
-            type = "string",
-            name = "RuleName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RuleStatus = schema.new({
-            id = id.from(_N, "CreateAutomationRuleV2Input", "RuleStatus"),
-            type = "string",
-            name = "RuleStatus",
-            target_id = prelude.String.id,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "CreateAutomationRuleV2Input", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RuleOrder = schema.new({
-            id = id.from(_N, "CreateAutomationRuleV2Input", "RuleOrder"),
-            type = "float",
-            name = "RuleOrder",
-            target_id = prelude.Float.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Criteria = schema.new({
-            id = id.from(_N, "CreateAutomationRuleV2Input", "Criteria"),
-            type = "union",
-            name = "Criteria",
-            target_id = id.from(_N, "Criteria"),
-            target = M.Criteria,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Actions = schema.new({
-            id = id.from(_N, "CreateAutomationRuleV2Input", "Actions"),
-            type = "list",
-            name = "Actions",
-            target_id = prelude.Document.id,
-            list_member = M.AutomationRulesActionV2,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "CreateAutomationRuleV2Input", "Tags"),
-            type = "map",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-        }),
-        ClientToken = schema.new({
-            id = id.from(_N, "CreateAutomationRuleV2Input", "ClientToken"),
-            type = "string",
-            name = "ClientToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.IDEMPOTENCY_TOKEN] = {},
-            },
-        }),
-    },
-})
-
 M.ExportOutput = schema.new({
     id = id.from(_N, "ExportOutput"),
     type = "union",
@@ -35692,136 +35664,6 @@ M.ExportOutput = schema.new({
             name = "Findings",
             target_id = id.from(_N, "FindingsOutput"),
             target = M.FindingsOutput,
-        }),
-    },
-})
-
-M.GetAutomationRuleV2Output = schema.new({
-    id = id.from(_N, "GetAutomationRuleV2Response"),
-    type = "structure",
-    members = {
-        RuleArn = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "RuleArn"),
-            type = "string",
-            name = "RuleArn",
-            target_id = prelude.String.id,
-        }),
-        RuleId = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "RuleId"),
-            type = "string",
-            name = "RuleId",
-            target_id = prelude.String.id,
-        }),
-        RuleOrder = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "RuleOrder"),
-            type = "float",
-            name = "RuleOrder",
-            target_id = prelude.Float.id,
-        }),
-        RuleName = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "RuleName"),
-            type = "string",
-            name = "RuleName",
-            target_id = prelude.String.id,
-        }),
-        RuleStatus = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "RuleStatus"),
-            type = "string",
-            name = "RuleStatus",
-            target_id = prelude.String.id,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        Criteria = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "Criteria"),
-            type = "union",
-            name = "Criteria",
-            target_id = id.from(_N, "Criteria"),
-            target = M.Criteria,
-        }),
-        Actions = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "Actions"),
-            type = "list",
-            name = "Actions",
-            target_id = prelude.Document.id,
-            list_member = M.AutomationRulesActionV2,
-        }),
-        CreatedAt = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "CreatedAt"),
-            type = "timestamp",
-            name = "CreatedAt",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
-            },
-        }),
-        UpdatedAt = schema.new({
-            id = id.from(_N, "GetAutomationRuleV2Output", "UpdatedAt"),
-            type = "timestamp",
-            name = "UpdatedAt",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
-            },
-        }),
-    },
-})
-
-M.UpdateAutomationRuleV2Input = schema.new({
-    id = id.from(_N, "UpdateAutomationRuleV2Request"),
-    type = "structure",
-    members = {
-        Identifier = schema.new({
-            id = id.from(_N, "UpdateAutomationRuleV2Input", "Identifier"),
-            type = "string",
-            name = "Identifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        RuleStatus = schema.new({
-            id = id.from(_N, "UpdateAutomationRuleV2Input", "RuleStatus"),
-            type = "string",
-            name = "RuleStatus",
-            target_id = prelude.String.id,
-        }),
-        RuleOrder = schema.new({
-            id = id.from(_N, "UpdateAutomationRuleV2Input", "RuleOrder"),
-            type = "float",
-            name = "RuleOrder",
-            target_id = prelude.Float.id,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "UpdateAutomationRuleV2Input", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        RuleName = schema.new({
-            id = id.from(_N, "UpdateAutomationRuleV2Input", "RuleName"),
-            type = "string",
-            name = "RuleName",
-            target_id = prelude.String.id,
-        }),
-        Criteria = schema.new({
-            id = id.from(_N, "UpdateAutomationRuleV2Input", "Criteria"),
-            type = "union",
-            name = "Criteria",
-            target_id = id.from(_N, "Criteria"),
-            target = M.Criteria,
-        }),
-        Actions = schema.new({
-            id = id.from(_N, "UpdateAutomationRuleV2Input", "Actions"),
-            type = "list",
-            name = "Actions",
-            target_id = prelude.Document.id,
-            list_member = M.AutomationRulesActionV2,
         }),
     },
 })
@@ -36041,6 +35883,234 @@ M.StartExportJobV2Input = schema.new({
             traits = {
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
+        }),
+    },
+})
+
+M.Criteria = schema.new({
+    id = id.from(_N, "Criteria"),
+    type = "union",
+    members = {
+        OcsfFindingCriteria = schema.new({
+            id = id.from(_N, "Criteria", "OcsfFindingCriteria"),
+            type = "structure",
+            name = "OcsfFindingCriteria",
+            target_id = id.from(_N, "OcsfFindingFilters"),
+            target = M.OcsfFindingFilters,
+        }),
+        ResourceCriteria = schema.new({
+            id = id.from(_N, "Criteria", "ResourceCriteria"),
+            type = "structure",
+            name = "ResourceCriteria",
+            target_id = id.from(_N, "ResourcesFilters"),
+            target = M.ResourcesFilters,
+        }),
+    },
+})
+
+M.CreateAutomationRuleV2Input = schema.new({
+    id = id.from(_N, "CreateAutomationRuleV2Request"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "CreateAutomationRuleV2Input", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleStatus = schema.new({
+            id = id.from(_N, "CreateAutomationRuleV2Input", "RuleStatus"),
+            type = "string",
+            name = "RuleStatus",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateAutomationRuleV2Input", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleOrder = schema.new({
+            id = id.from(_N, "CreateAutomationRuleV2Input", "RuleOrder"),
+            type = "float",
+            name = "RuleOrder",
+            target_id = prelude.Float.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Criteria = schema.new({
+            id = id.from(_N, "CreateAutomationRuleV2Input", "Criteria"),
+            type = "union",
+            name = "Criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "CreateAutomationRuleV2Input", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationRulesActionV2,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAutomationRuleV2Input", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateAutomationRuleV2Input", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.GetAutomationRuleV2Output = schema.new({
+    id = id.from(_N, "GetAutomationRuleV2Response"),
+    type = "structure",
+    members = {
+        RuleArn = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        RuleId = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+        }),
+        RuleOrder = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "RuleOrder"),
+            type = "float",
+            name = "RuleOrder",
+            target_id = prelude.Float.id,
+        }),
+        RuleName = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+        }),
+        RuleStatus = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "RuleStatus"),
+            type = "string",
+            name = "RuleStatus",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Criteria = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "Criteria"),
+            type = "union",
+            name = "Criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationRulesActionV2,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetAutomationRuleV2Output", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.UpdateAutomationRuleV2Input = schema.new({
+    id = id.from(_N, "UpdateAutomationRuleV2Request"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleV2Input", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RuleStatus = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleV2Input", "RuleStatus"),
+            type = "string",
+            name = "RuleStatus",
+            target_id = prelude.String.id,
+        }),
+        RuleOrder = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleV2Input", "RuleOrder"),
+            type = "float",
+            name = "RuleOrder",
+            target_id = prelude.Float.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleV2Input", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        RuleName = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleV2Input", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+        }),
+        Criteria = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleV2Input", "Criteria"),
+            type = "union",
+            name = "Criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleV2Input", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationRulesActionV2,
         }),
     },
 })

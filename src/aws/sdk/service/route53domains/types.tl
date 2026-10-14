@@ -196,6 +196,24 @@ local record M
         "PENDING"
     end
 
+    enum PriceType
+        "STANDARD"
+        "REGISTRY_PREMIUM"
+    end
+
+    -- Currency-specific price information.
+    record PriceWithCurrency
+        -- The price of a domain, in a specific currency.
+        Price: number
+        -- The currency specifier.
+        Currency: string
+        -- Indicates whether the domain has standard or premium pricing. A value of
+        -- STANDARD means the domain is priced at the regular rate for its TLD. A
+        -- value of REGISTRY_PREMIUM means the domain has registry premium pricing,
+        -- which may be different than the standard rate.
+        PriceType: string
+    end
+
     -- The CheckDomainAvailability response includes the following elements.
     record CheckDomainAvailabilityOutput
         -- Whether the domain name is available for registering.
@@ -228,6 +246,13 @@ local record M
         -- UNAVAILABLE_RESTRICTED
         -- The domain name is forbidden.
         Availability: string
+        -- The price to register the domain name, in the currency that Currency
+        -- specifies. If the domain has registry premium pricing, this price is different from the
+        -- standard rate for the TLD that ListPrices returns. Use
+        -- PriceType to determine which rate applies.
+        -- This element is returned only when Availability is
+        -- AVAILABLE.
+        Price: PriceWithCurrency
     end
 
     -- The top-level domain is currently undergoing maintenance and the request cannot be processed. Try again later.
@@ -265,6 +290,7 @@ local record M
         "DOMAIN_IN_OWN_ACCOUNT"
         "DOMAIN_IN_ANOTHER_ACCOUNT"
         "PREMIUM_DOMAIN"
+        "PENDING"
     end
 
     -- A complex type that contains information about whether the specified domain can be
@@ -280,13 +306,21 @@ local record M
         Transferability: DomainTransferability
         -- Provides an explanation for when a domain can't be transferred.
         Message: string
+        -- The price to transfer the domain name to Route 53, in the currency that
+        -- Currency specifies. If the domain has registry premium pricing, this
+        -- price is different from the standard rate for the TLD that ListPrices
+        -- returns. Use PriceType to determine which rate applies.
+        -- This element is returned only when Route 53 can determine whether the domain is
+        -- transferable.
+        Price: PriceWithCurrency
     end
 
-    -- Customer's consent for the owner change request.
+    -- The maximum amount that you agree to pay for an operation, and the
+    -- currency for that amount.
     record Consent
-        -- Maximum amount the customer agreed to accept.
+        -- The maximum amount that you agree to accept.
         MaxPrice: number
-        -- Currency for the MaxPrice.
+        -- The currency for the MaxPrice.
         Currency: string
     end
 
@@ -976,14 +1010,11 @@ local record M
         -- If Route 53 is your DNS service, set this to 13.
         -- For more information about enabling DNSSEC signing, see Enabling DNSSEC signing and establishing a chain of trust.
         Algorithm: number
-        -- Defines the type of key. It can be either a KSK (key-signing-key, value 257) or ZSK
-        -- (zone-signing-key, value 256). Using KSK is always encouraged. Only use ZSK if your DNS
-        -- provider isn't Route 53 and you don’t have KSK available.
-        -- If you have KSK and ZSK keys, always use KSK to create a delegations signer (DS)
-        -- record. If you have ZSK keys only – use ZSK to create a DS record.
+        -- The DNSKEY flags that indicate the key type. This field is deprecated; the
+        -- DnssecKey response no longer returns the flags.
         Flags: number
-        -- The base64-encoded public key part of the key pair that is passed to the registry
-        -- .
+        -- The base64-encoded public key of the key pair. This field is deprecated; the
+        -- DnssecKey response no longer returns the public key.
         PublicKey: string
         -- The number of the DS digest algorithm according to an IANA assignment.
         -- For more information, see IANA
@@ -1000,17 +1031,9 @@ local record M
         Id: string
     end
 
-    -- Currency-specific price information.
-    record PriceWithCurrency
-        -- The price of a domain, in a specific currency.
-        Price: number
-        -- The currency specifier.
-        Currency: string
-    end
-
-    -- Information about the domain price associated with a TLD.
+    -- Information about the prices associated with a TLD or a domain name.
     record DomainPrice
-        -- The name of the TLD for which the prices apply.
+        -- The TLD or domain name that the prices apply to.
         Name: string
         -- The price for domain registration with Route 53.
         RegistrationPrice: PriceWithCurrency
@@ -1028,7 +1051,9 @@ local record M
     record DomainSuggestion
         -- A suggested domain name.
         DomainName: string
-        -- Whether the domain name is available for registering.
+        -- Specifies whether the domain name is available for registering. This element is
+        -- populated only if you specified true for OnlyAvailable in the
+        -- request.
         -- You can register only the domains that are designated as
         -- AVAILABLE.
         -- Valid values:
@@ -1057,6 +1082,10 @@ local record M
         -- UNAVAILABLE_RESTRICTED
         -- The domain name is forbidden.
         Availability: string
+        -- The price to register the suggested domain name, in the currency that
+        -- Currency specifies. This element is populated only if you specified
+        -- true for OnlyAvailable in the request.
+        Price: PriceWithCurrency
     end
 
     -- Summary information about one domain.
@@ -1247,6 +1276,19 @@ local record M
         BillingPrivacy: boolean
     end
 
+    -- The GetDomainPrices request includes the following element.
+    record GetDomainPricesInput
+        -- The name of the domain that you want to get the prices for.
+        DomainName: string
+    end
+
+    -- The GetDomainPrices response includes the following element.
+    record GetDomainPricesOutput
+        -- The registration, transfer, owner change, renewal, and restoration prices for
+        -- the specified domain.
+        DomainPrice: DomainPrice
+    end
+
     record GetDomainSuggestionsInput
         -- A domain name that you want to use as the basis for a list of possible domain names.
         -- The top-level domain (TLD), such as .com, must be a TLD that Route 53 supports. For a
@@ -1270,9 +1312,16 @@ local record M
         -- If OnlyAvailable is true, Route 53 returns only domain names
         -- that are available. If OnlyAvailable is false, Route 53
         -- returns domain names without checking whether they're available to be registered. To
-        -- determine whether the domain is available, you can call
-        -- checkDomainAvailability for each suggestion.
+        -- determine whether the domain is available, call checkDomainAvailability for
+        -- each suggestion.
+        -- If OnlyAvailable is false, Route 53 does not return pricing
+        -- information for the suggested domain names.
         OnlyAvailable: boolean
+        -- If true, Route 53 returns only domain names that are priced at the
+        -- standard registration rate for their TLD. If false, Route 53 includes
+        -- domain names with premium pricing in the suggestions list. The default is
+        -- true.
+        OnlyStandardPrices: boolean
     end
 
     record GetDomainSuggestionsOutput
@@ -1603,6 +1652,11 @@ local record M
         -- You must specify the same privacy setting for the administrative, billing, registrant, and
         -- technical contacts.
         PrivacyProtectBillingContact: boolean
+        -- Specifies the maximum price that you agree to pay to register the domain name. This element is
+        -- required if the domain has registry premium pricing, and optional if the domain
+        -- is priced at the standard rate for its TLD. If you include it and the registration
+        -- price is more than MaxPrice, the request fails.
+        Consent: Consent
     end
 
     -- The RegisterDomain response includes the following element.
@@ -1645,6 +1699,11 @@ local record M
         -- The year when the registration for the domain is set to expire. This value must match
         -- the current expiration date for the domain.
         CurrentExpiryYear: number
+        -- Specifies the maximum price that you agree to pay to renew the domain name. This element is
+        -- required if the domain has registry premium pricing, and optional if the domain
+        -- is priced at the standard rate for its TLD. If you include it and the renewal
+        -- price is more than MaxPrice, the request fails.
+        Consent: Consent
     end
 
     record RenewDomainOutput
@@ -1763,6 +1822,11 @@ local record M
         -- You must specify the same privacy setting for the administrative, billing, registrant, and
         -- technical contacts.
         PrivacyProtectBillingContact: boolean
+        -- Specifies the maximum price that you agree to pay to transfer the domain name to Route 53. This element is
+        -- required if the domain has registry premium pricing, and optional if the domain
+        -- is priced at the standard rate for its TLD. If you include it and the transfer
+        -- price is more than MaxPrice, the request fails.
+        Consent: Consent
     end
 
     -- The TransferDomain response includes the following element.
@@ -1804,7 +1868,7 @@ local record M
         RegistrantContact: ContactDetail
         -- Provides detailed contact information.
         TechContact: ContactDetail
-        -- Customer's consent for the owner change request. Required if the domain is not free (consent price is more than $0.00).
+        -- The maximum amount that you agree to pay for the owner change. Required if the domain is not free (consent price is more than USD $0.00).
         Consent: Consent
         -- Provides detailed contact information.
         BillingContact: ContactDetail

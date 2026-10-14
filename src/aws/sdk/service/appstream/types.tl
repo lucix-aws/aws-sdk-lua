@@ -1767,6 +1767,11 @@ local record M
         Message: string
     end
 
+    enum StorageConnectorAuthentication
+        "FORCE_REAUTHENTICATION"
+        "REUSE_CREDENTIALS"
+    end
+
     enum StorageConnectorType
         "HOMEFOLDERS"
         "GOOGLE_DRIVE"
@@ -1841,6 +1846,8 @@ local record M
         ContentRedirection: ContentRedirection
         -- The configuration for agent access on the stack. If specified, agent access is enabled for the stack.
         AgentAccessConfig: AgentAccessConfig
+        -- Specifies whether users' cloud storage authentication persists across streaming sessions. When you specify FORCE_REAUTHENTICATION, WorkSpaces Applications removes the stored authentication for the stack's OneDrive and Google Drive connectors when a user's session ends. The user links their cloud storage again on their next session. The default is REUSE_CREDENTIALS.
+        StorageConnectorAuthentication: string
     end
 
     enum StackErrorCode
@@ -1890,6 +1897,8 @@ local record M
         ContentRedirection: ContentRedirection
         -- The agent access configuration of the stack, if agent access is enabled.
         AgentAccessConfig: AgentAccessConfig
+        -- Indicates whether users' cloud storage authentication persists across streaming sessions. When this attribute is FORCE_REAUTHENTICATION, WorkSpaces Applications removes the stored authentication for the stack's OneDrive and Google Drive connectors when a user's session ends. The user links their cloud storage again on their next session. The default is REUSE_CREDENTIALS.
+        StorageConnectorAuthentication: string
     end
 
     record CreateStackOutput
@@ -3234,6 +3243,7 @@ local record M
         "STREAMING_EXPERIENCE_SETTINGS"
         "CONTENT_REDIRECTION"
         "AGENT_ACCESS_CONFIG"
+        "STORAGE_CONNECTOR_AUTHENTICATION"
     end
 
     record UpdateStackInput
@@ -3266,6 +3276,8 @@ local record M
         ContentRedirection: ContentRedirection
         -- The configuration for agent access on the stack. Specify this to update agent access settings. To remove agent access, use AttributesToDelete with the AGENT_ACCESS_CONFIG value.
         AgentAccessConfig: AgentAccessConfigForUpdate
+        -- Specifies whether users' cloud storage authentication persists across streaming sessions. When you specify FORCE_REAUTHENTICATION, WorkSpaces Applications removes the stored authentication for the stack's OneDrive and Google Drive connectors when a user's session ends. The user links their cloud storage again on their next session. To clear this attribute, add STORAGE_CONNECTOR_AUTHENTICATION to AttributesToDelete.
+        StorageConnectorAuthentication: string
     end
 
     record UpdateStackOutput

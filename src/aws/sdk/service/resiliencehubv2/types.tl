@@ -476,6 +476,12 @@ local record M
         "DISABLED"
     end
 
+    -- The AWS DevOps Agent (DevOps Agent) integration configuration that you supply when creating or updating a service. Connecting a service to a DevOps Agent Agent Space lets DevOps Agent investigate the service's resilience test runs and attach its analysis to the results. Include this block with an Agent Space Amazon Resource Name (ARN) to connect or reconnect the service to an Agent Space. Include it without an Agent Space ARN to disconnect the service. Omit it to leave the existing linkage unchanged.
+    record DevOpsAgentConfiguration
+        -- The ARN of the DevOps Agent Agent Space to link to this service.
+        agentSpaceArn: string
+    end
+
     -- Specifies a cross-account IAM role ARN and optional external ID.
     record CrossAccountRole
         crossAccountRoleArn: string
@@ -522,6 +528,8 @@ local record M
         dependencyDiscovery: string
         reportConfiguration: ServiceReportConfiguration
         kmsKeyId: string
+        -- The optional DevOps Agent integration configuration to apply to the new service. If you omit this field, the new service has no DevOps Agent integration.
+        devOpsAgentConfiguration: DevOpsAgentConfiguration
         tags: {string : string}
         clientToken: string
     end
@@ -542,6 +550,31 @@ local record M
         eligibleResourceCount: number
         -- A status message for dependency discovery, displayed during the initialization state.
         message: string
+    end
+
+    enum DevOpsAgentConnectionStatus
+        "CONNECTING"
+        "CONNECTED"
+        "DISCONNECTED"
+        "FAILED"
+    end
+
+    -- The current DevOps Agent integration state for a service. Read operations return this state.
+    record DevOpsAgentConfigurationView
+        -- The ARN of the linked DevOps Agent Agent Space.
+        agentSpaceArn: string
+        -- The identifier of the linked DevOps Agent Agent Space.
+        agentSpaceId: string
+        -- The AWS Region of the linked DevOps Agent Agent Space.
+        region: string
+        -- The connection status of the DevOps Agent integration for this service. Valid values: CONNECTING - The service is being connected to the Agent Space. CONNECTED - The service is connected to the Agent Space. DISCONNECTED - The service is not connected to an Agent Space. FAILED - The connection attempt failed. See statusReason for details.
+        status: string
+        -- The URL of the DevOps Agent Operator App for the linked Agent Space. This URL is present when the connection status is CONNECTED.
+        operatorAppUrl: string
+        -- The timestamp when the service successfully connected to the DevOps Agent Agent Space.
+        connectedAt: number
+        -- A human-readable explanation of the current connection status. This field explains the status when the connection fails.
+        statusReason: string
     end
 
     enum PolicyValueSource
@@ -665,6 +698,8 @@ local record M
         ouId: string
         -- The AWS account ID that owns the service.
         accountId: string
+        -- The current DevOps Agent integration state for the service.
+        devOpsAgentConfiguration: DevOpsAgentConfigurationView
         -- The timestamp when the service was created.
         createdAt: number
         -- The timestamp when the service was last updated.
@@ -1090,6 +1125,40 @@ local record M
         comment: string
     end
 
+    enum DevOpsAgentConfidence
+        "HIGH"
+        "MEDIUM"
+        "LOW"
+    end
+
+    enum DevOpsAgentInvestigationStatus
+        "PENDING"
+        "IN_PROGRESS"
+        "COMPLETED"
+        "FAILED"
+        "TIMED_OUT"
+        "CANCELED"
+    end
+
+    enum DevOpsAgentVerdict
+        "PASS"
+        "FAIL"
+    end
+
+    -- The result when DevOps Agent investigates a resilience test run. The verdict is advisory and builds on the test run's own result, which remains authoritative.
+    record DevOpsAgentInvestigation
+        -- The investigation verdict. Valid values: PASS - The resilience test run passed. FAIL - The resilience test run failed. INCONCLUSIVE - The investigation could not determine a clear outcome.
+        verdict: string
+        -- The confidence level of the verdict. Valid values: HIGH - The verdict is highly reliable. MEDIUM - The verdict has moderate reliability. LOW - The verdict has low reliability.
+        confidence: string
+        -- A deep link to the interactive DevOps Agent investigation session.
+        deepLink: string
+        -- The lifecycle status of the investigation. Valid values: PENDING - The investigation has been created but has not started. IN_PROGRESS - The investigation is running. COMPLETED - The investigation finished successfully. FAILED - The investigation failed to complete. TIMED_OUT - The investigation did not complete within the allotted time. CANCELED - The investigation was canceled.
+        status: string
+        -- The DevOps Agent analysis summary for the investigation.
+        summary: string
+    end
+
     enum TopologyType
         "CONTAINMENT"
         "DATA_FLOW"
@@ -1197,6 +1266,8 @@ local record M
         testingRecommendations: {TestingRecommendation}
         -- The timestamp when the finding was last updated.
         updatedAt: number
+        -- A deep link to an interactive DevOps Agent investigation seeded with this finding. This value is null until DevOps Agent creates an investigation.
+        investigationDeepLink: string
     end
 
     -- Contains summary information about a finding.
@@ -1217,6 +1288,8 @@ local record M
         policyComponent: string
         -- The timestamp when the finding was last updated.
         updatedAt: number
+        -- A deep link to an interactive DevOps Agent investigation seeded with this finding. This value is null until DevOps Agent creates an investigation.
+        investigationDeepLink: string
     end
 
     record GetDependencyInsightsInput
@@ -1373,6 +1446,8 @@ local record M
         regions: {string}
         -- Indicates whether the test run targets resources in a single AWS account or across multiple accounts.
         accountTargeting: string
+        -- The DevOps Agent investigation result for the test run, present when the integration is enabled for the service.
+        devOpsAgentInvestigation: DevOpsAgentInvestigation
     end
 
     record GetTestRunOutput
@@ -1778,6 +1853,14 @@ local record M
         awsAccountId: string
         -- The type of the resource.
         resourceType: string
+        -- The Availability Zone ID of the Availability Zone that hosts the resource, such as use1-az1. The Availability Zone ID is consistent across Amazon Web Services (AWS) accounts, unlike the Availability Zone name.
+        availabilityZoneId: string
+        -- The name of the Availability Zone that hosts the resource, such as us-west-2a.
+        availabilityZoneName: string
+        -- The identifier of the single parent resource that contains this resource, used to represent containment relationships in the resource topology. A resource has at most one containment parent.
+        containmentParentId: string
+        -- The identifier of the logical resource group that this resource belongs to. Resources that share this identifier are managed as a single unit.
+        logicalResourceGroupId: string
     end
 
     -- Represents a resource associated with a service.
@@ -2084,6 +2167,10 @@ local record M
         policyArn: string
         -- The current assessment status of the service.
         assessmentStatus: string
+        -- The DevOps Agent connection status for the service. Valid values: CONNECTING - The service is being connected to the Agent Space. CONNECTED - The service is connected to the Agent Space. DISCONNECTED - The service is not connected to an Agent Space. FAILED - The connection attempt failed.
+        devOpsAgentStatus: string
+        -- The ARN of the DevOps Agent Agent Space linked to the service, when the service is linked to one.
+        devOpsAgentSpaceArn: string
         -- The number of open findings.
         openFindingsCount: number
         -- The number of resolved findings.
@@ -2875,6 +2962,8 @@ local record M
         permissionModel: PermissionModel
         dependencyDiscovery: string
         reportConfiguration: ServiceReportConfiguration
+        -- The optional DevOps Agent integration configuration to set, replace, or disconnect for the service. If you omit this field, the existing DevOps Agent linkage stays unchanged.
+        devOpsAgentConfiguration: DevOpsAgentConfiguration
     end
 
     record UpdateServiceOutput

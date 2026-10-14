@@ -14139,6 +14139,12 @@ M.IntegrationConfig = schema.new({
             name = "ContinuousSync",
             target_id = prelude.Boolean.id,
         }),
+        TargetNamespace = schema.new({
+            id = id.from(_N, "IntegrationConfig", "TargetNamespace"),
+            type = "string",
+            name = "TargetNamespace",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

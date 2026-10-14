@@ -108,6 +108,42 @@ function M.pages_list_permissions(client, input)
     })
 end
 
+--- Returns a page iterator for listRLSPolicies.
+function M.pages_list_r_l_s_policies(client, input)
+    return paginator.pages(client, "listRLSPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RLSPolicies",
+    })
+end
+
+--- Returns an item iterator for listRLSPolicies.
+function M.items_list_r_l_s_policies(client, input)
+    return paginator.items(client, "listRLSPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RLSPolicies",
+    })
+end
+
+--- Returns a page iterator for listRLSPolicyAttachments.
+function M.pages_list_r_l_s_policy_attachments(client, input)
+    return paginator.pages(client, "listRLSPolicyAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RLSPolicyAttachments",
+    })
+end
+
+--- Returns an item iterator for listRLSPolicyAttachments.
+function M.items_list_r_l_s_policy_attachments(client, input)
+    return paginator.items(client, "listRLSPolicyAttachments", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "RLSPolicyAttachments",
+    })
+end
+
 --- Returns a page iterator for listResources.
 function M.pages_list_resources(client, input)
     return paginator.pages(client, "listResources", input, {

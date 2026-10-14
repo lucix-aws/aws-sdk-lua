@@ -99,6 +99,14 @@ local record M
         ExpressionName: string
     end
 
+    -- A structure that identifies a row-level security policy as a resource, used when granting permissions on the policy.
+    record RLSPolicyResource
+        -- The identifier for the Data Catalog that contains the policy. By default, the account ID.
+        CatalogId: string
+        -- The name of the row-level security policy.
+        Name: string
+    end
+
     -- A wildcard object representing every table under a database.
     record TableWildcard
     end
@@ -157,6 +165,8 @@ local record M
         LFTagPolicy: LFTagPolicyResource
         -- LF-Tag expression resource. A logical expression composed of one or more LF-Tag key:value pairs.
         LFTagExpression: LFTagExpressionResource
+        -- A row-level security policy resource. Specify this when granting or revoking permissions on a row-level security policy.
+        RLSPolicy: RLSPolicyResource
     end
 
     record AddLFTagsToResourceInput
@@ -269,16 +279,45 @@ local record M
         Expiration: number
     end
 
-    -- A structure used to include auditing information on the privileged API.
-    record AuditContext
-        -- The filter engine can populate the 'AdditionalAuditContext' information with the request ID for you to track. This information will be displayed in CloudTrail log in your account.
-        AdditionalAuditContext: string
-    end
-
     -- A Lake Formation condition, which applies to permissions and opt-ins that contain an expression.
     record Condition
         -- An expression written based on the Cedar Policy Language used to match the principal attributes.
         Expression: string
+    end
+
+    -- The Lake Formation principal. Supported principals are IAM users
+    -- or IAM roles.
+    record DataLakePrincipal
+        -- An identifier for the Lake Formation principal.
+        DataLakePrincipalIdentifier: string
+    end
+
+    record AttachRLSPolicyInput
+        -- The name of the row-level security policy to attach.
+        Name: string
+        -- The resource to which the row-level security policy is attached.
+        Resource: Resource
+        -- The principal to which the row-level security policy applies.
+        Principal: DataLakePrincipal
+        -- A Lake Formation condition, which applies to the row-level security policy attachment and contains an expression.
+        Condition: Condition
+        -- Indicates whether this policy becomes the default row-level security policy for the resource. The default policy applies to all principals by default.
+        SetDefault: boolean
+    end
+
+    record AttachRLSPolicyOutput
+    end
+
+    -- A resource numerical limit was exceeded.
+    record ResourceNumberLimitExceededException
+        -- A message describing the problem.
+        Message: string
+    end
+
+    -- A structure used to include auditing information on the privileged API.
+    record AuditContext
+        -- The filter engine can populate the 'AdditionalAuditContext' information with the request ID for you to track. This information will be displayed in CloudTrail log in your account.
+        AdditionalAuditContext: string
     end
 
     enum Permission
@@ -298,13 +337,6 @@ local record M
         "CREATE_LF_TAG_EXPRESSION"
         "CREATE_CATALOG"
         "SUPER_USER"
-    end
-
-    -- The Lake Formation principal. Supported principals are IAM users
-    -- or IAM roles.
-    record DataLakePrincipal
-        -- An identifier for the Lake Formation principal.
-        DataLakePrincipalIdentifier: string
     end
 
     -- A permission to a resource granted by batch operation to the principal.
@@ -435,12 +467,6 @@ local record M
     record CreateDataCellsFilterOutput
     end
 
-    -- A resource numerical limit was exceeded.
-    record ResourceNumberLimitExceededException
-        -- A message describing the problem.
-        Message: string
-    end
-
     enum EnableStatus
         "ENABLED"
         "DISABLED"
@@ -541,6 +567,26 @@ local record M
     record CreateLFTagExpressionOutput
     end
 
+    -- A column in a table that a row-level security policy's filter expression can reference.
+    record Column
+        -- The name of the column.
+        Name: string
+        -- The data type of the column.
+        Type: string
+    end
+
+    record CreateRLSPolicyInput
+        -- A unique name for the row-level security policy within the Data Catalog.
+        Name: string
+        -- The list of columns that the filter expression references. These columns define the shape of the data that the policy can be attached to.
+        AttachmentColumns: {Column}
+        -- A filter predicate, written in a SQL-like syntax, that Lake Formation evaluates against each row. Only the rows for which the expression evaluates to true are returned to the principal.
+        FilterExpression: string
+    end
+
+    record CreateRLSPolicyOutput
+    end
+
     record DeleteDataCellsFilterInput
         -- The ID of the catalog to which the table belongs.
         TableCatalogId: string
@@ -623,6 +669,14 @@ local record M
     record ResourceNotReadyException
         -- A message describing the error.
         Message: string
+    end
+
+    record DeleteRLSPolicyInput
+        -- The name of the row-level security policy to delete.
+        Name: string
+    end
+
+    record DeleteRLSPolicyOutput
     end
 
     record DeregisterResourceInput
@@ -717,6 +771,22 @@ local record M
     record DescribeTransactionOutput
         -- Returns a TransactionDescription object containing information about the transaction.
         TransactionDescription: TransactionDescription
+    end
+
+    record DetachRLSPolicyInput
+        -- The name of the row-level security policy to detach.
+        Name: string
+        -- The resource from which the row-level security policy is detached.
+        Resource: Resource
+        -- The principal for which the row-level security policy is detached.
+        Principal: DataLakePrincipal
+        -- A Lake Formation condition, which applies to the row-level security policy attachment and contains an expression.
+        Condition: Condition
+        -- Indicates whether to remove this policy as the default row-level security policy for the resource.
+        RemoveDefault: boolean
+    end
+
+    record DetachRLSPolicyOutput
     end
 
     record ExtendTransactionInput
@@ -993,6 +1063,28 @@ local record M
     record GlueEncryptionException
         -- A message describing the problem.
         Message: string
+    end
+
+    record GetRLSPolicyInput
+        -- The name of the row-level security policy to retrieve.
+        Name: string
+    end
+
+    -- A structure that describes a row-level security policy, including the columns its filter expression references and the filter expression itself.
+    record RLSPolicy
+        -- The identifier for the Data Catalog that contains the policy. By default, the account ID.
+        CatalogId: string
+        -- The name of the row-level security policy.
+        Name: string
+        -- The list of columns that the filter expression references.
+        AttachmentColumns: {Column}
+        -- The filter predicate, written in a SQL-like syntax, that determines which rows are returned to the principal.
+        FilterExpression: string
+    end
+
+    record GetRLSPolicyOutput
+        -- An RLSPolicy structure containing the definition of the requested row-level security policy.
+        RLSPolicy: RLSPolicy
     end
 
     record GetTableObjectsInput
@@ -1430,6 +1522,56 @@ local record M
         NextToken: string
     end
 
+    record ListRLSPoliciesInput
+        -- The maximum number of row-level security policies to return in a single response.
+        MaxResults: number
+        -- A continuation token, if this is a continuation call.
+        NextToken: string
+    end
+
+    record ListRLSPoliciesOutput
+        -- A list of RLSPolicy structures.
+        RLSPolicies: {RLSPolicy}
+        -- A continuation token, if not all row-level security policies have been returned.
+        NextToken: string
+    end
+
+    record ListRLSPolicyAttachmentsInput
+        -- If specified, returns only the attachments for the given resource.
+        Resource: Resource
+        -- If specified, returns only the attachments for the given principal.
+        Principal: DataLakePrincipal
+        -- If specified, returns only the attachments for the row-level security policy with this name.
+        PolicyName: string
+        -- The maximum number of attachments to return in a single response.
+        MaxResults: number
+        -- A continuation token, if this is a continuation call.
+        NextToken: string
+    end
+
+    -- A structure that describes the attachment of a row-level security policy to a resource for a principal.
+    record RLSPolicyAttachment
+        -- The identifier for the Data Catalog that contains the attachment. By default, the account ID.
+        CatalogId: string
+        -- The name of the attached row-level security policy.
+        PolicyName: string
+        -- The principal to which the attached policy applies.
+        Principal: DataLakePrincipal
+        -- The resource to which the policy is attached.
+        Resource: Resource
+        -- A Lake Formation condition, which applies to the row-level security policy attachment and contains an expression.
+        Condition: Condition
+        -- Indicates whether this attachment is the default row-level security policy for the resource.
+        DefaultRLSPolicy: boolean
+    end
+
+    record ListRLSPolicyAttachmentsOutput
+        -- A list of RLSPolicyAttachment structures.
+        RLSPolicyAttachments: {RLSPolicyAttachment}
+        -- A continuation token, if not all attachments have been returned.
+        NextToken: string
+    end
+
     enum OptimizerType
         "COMPACTION"
         "GARBAGE_COLLECTION"
@@ -1737,6 +1879,16 @@ local record M
     end
 
     record UpdateResourceOutput
+    end
+
+    record UpdateRLSPolicyInput
+        -- The name of the row-level security policy to update.
+        Name: string
+        -- The new filter predicate, written in a SQL-like syntax, that replaces the policy's current filter expression.
+        FilterExpression: string
+    end
+
+    record UpdateRLSPolicyOutput
     end
 
     -- An object to delete from the governed table.

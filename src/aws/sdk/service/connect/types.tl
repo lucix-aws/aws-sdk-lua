@@ -1968,6 +1968,26 @@ local record M
         problems: {ProblemDetail}
     end
 
+    record CreateContactFlowAliasInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The description of the alias.
+        Description: string
+        -- The identifier of the flow.
+        ContactFlowId: string
+        -- The version of the flow.
+        ContactFlowVersion: number
+        -- The name of the alias.
+        AliasName: string
+    end
+
+    record CreateContactFlowAliasOutput
+        -- The Amazon Resource Name (ARN) of the flow.
+        ContactFlowArn: string
+        -- The identifier of the alias.
+        Id: string
+    end
+
     -- The external invocation configuration for the flow module
     record ExternalInvocationConfiguration
         -- Enable external invocation.
@@ -4832,6 +4852,18 @@ local record M
     record DeleteContactFlowOutput
     end
 
+    record DeleteContactFlowAliasInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the flow.
+        ContactFlowId: string
+        -- The identifier of the alias.
+        AliasId: string
+    end
+
+    record DeleteContactFlowAliasOutput
+    end
+
     record DeleteContactFlowModuleInput
         -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -5999,6 +6031,40 @@ local record M
     record DescribeContactFlowOutput
         -- Information about the flow.
         ContactFlow: ContactFlow
+    end
+
+    record DescribeContactFlowAliasInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the flow.
+        ContactFlowId: string
+        -- The identifier of the alias.
+        AliasId: string
+    end
+
+    -- Contains information about a flow alias.
+    record ContactFlowAliasInfo
+        -- The identifier of the flow.
+        ContactFlowId: string
+        -- The Amazon Resource Name (ARN) of the flow.
+        ContactFlowArn: string
+        -- The identifier of the alias.
+        AliasId: string
+        -- The version of the flow.
+        Version: number
+        -- The name of the alias.
+        Name: string
+        -- The description of the alias.
+        Description: string
+        -- The Amazon Web Services Region where this resource was last modified.
+        LastModifiedRegion: string
+        -- The timestamp when this resource was last modified.
+        LastModifiedTime: number
+    end
+
+    record DescribeContactFlowAliasOutput
+        -- Information about the flow alias.
+        ContactFlowAlias: ContactFlowAliasInfo
     end
 
     record DescribeContactFlowModuleInput
@@ -10703,6 +10769,43 @@ local record M
         NextToken: string
     end
 
+    record ListContactFlowAliasesInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the flow.
+        ContactFlowId: string
+        -- The token for the next set of results. Use the value returned in the previous
+        -- response in the next request to retrieve the next set of results.
+        NextToken: string
+        -- The maximum number of results to return per page.
+        MaxResults: number
+    end
+
+    -- Contains summary information about a flow alias.
+    record ContactFlowAliasSummary
+        -- The Amazon Resource Name (ARN) of the flow alias.
+        Arn: string
+        -- The identifier of the alias.
+        AliasId: string
+        -- The version of the flow.
+        Version: number
+        -- The name of the alias.
+        AliasName: string
+        -- The description of the alias.
+        AliasDescription: string
+        -- The timestamp when this resource was last modified.
+        LastModifiedTime: number
+        -- The Amazon Web Services Region where this resource was last modified.
+        LastModifiedRegion: string
+    end
+
+    record ListContactFlowAliasesOutput
+        -- Information about the flow aliases.
+        ContactFlowAliasSummaryList: {ContactFlowAliasSummary}
+        -- If there are additional results, this is the token for the next set of results.
+        NextToken: string
+    end
+
     record ListContactFlowModuleAliasesInput
         -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -10849,12 +10952,16 @@ local record M
 
     -- A summary of a flow version's metadata.
     record ContactFlowVersionSummary
-        -- The Amazon Resource Name (ARN) of the view version.
+        -- The Amazon Resource Name (ARN) of the flow version.
         Arn: string
         -- The description of the flow version.
         VersionDescription: string
         -- The identifier of the flow version.
         Version: number
+        -- The timestamp when this resource was last modified.
+        LastModifiedTime: number
+        -- The Amazon Web Services Region where this resource was last modified.
+        LastModifiedRegion: string
     end
 
     record ListContactFlowVersionsOutput
@@ -15813,6 +15920,24 @@ local record M
         EvaluationId: string
         -- The Amazon Resource Name (ARN) for the contact evaluation resource.
         EvaluationArn: string
+    end
+
+    record UpdateContactFlowAliasInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the flow.
+        ContactFlowId: string
+        -- The identifier of the alias.
+        AliasId: string
+        -- The name of the alias.
+        Name: string
+        -- The description of the alias.
+        Description: string
+        -- The version of the flow.
+        ContactFlowVersion: number
+    end
+
+    record UpdateContactFlowAliasOutput
     end
 
     record UpdateContactFlowContentInput
