@@ -8082,6 +8082,54 @@ M.Detection = schema.new({
     },
 })
 
+M.DetectionRuleEc2Requirements = schema.new({
+    id = id.from(_N, "DetectionRuleEc2Requirements"),
+    type = "structure",
+    members = {
+        MinAgentVersion = schema.new({
+            id = id.from(_N, "DetectionRuleEc2Requirements", "MinAgentVersion"),
+            type = "string",
+            name = "MinAgentVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "minAgentVersion" },
+            },
+        }),
+    },
+})
+
+M.DetectionRuleEcsFargateRequirements = schema.new({
+    id = id.from(_N, "DetectionRuleEcsFargateRequirements"),
+    type = "structure",
+    members = {
+        MinAgentVersion = schema.new({
+            id = id.from(_N, "DetectionRuleEcsFargateRequirements", "MinAgentVersion"),
+            type = "string",
+            name = "MinAgentVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "minAgentVersion" },
+            },
+        }),
+    },
+})
+
+M.DetectionRuleEksRequirements = schema.new({
+    id = id.from(_N, "DetectionRuleEksRequirements"),
+    type = "structure",
+    members = {
+        MinAgentVersion = schema.new({
+            id = id.from(_N, "DetectionRuleEksRequirements", "MinAgentVersion"),
+            type = "string",
+            name = "MinAgentVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "minAgentVersion" },
+            },
+        }),
+    },
+})
+
 M.DetectionRuleFilter = schema.new({
     id = id.from(_N, "DetectionRuleFilter"),
     type = "structure",
@@ -8286,6 +8334,60 @@ M.DetectionRuleOrgConfigurationSummary = schema.new({
             target_id = prelude.Timestamp.id,
             traits = {
                 [traits.JSON_NAME] = { name = "expiresAt" },
+            },
+        }),
+    },
+})
+
+M.DetectionRuleRuntimePlatforms = schema.new({
+    id = id.from(_N, "DetectionRuleRuntimePlatforms"),
+    type = "structure",
+    members = {
+        Eks = schema.new({
+            id = id.from(_N, "DetectionRuleRuntimePlatforms", "Eks"),
+            type = "structure",
+            name = "Eks",
+            target_id = id.from(_N, "DetectionRuleEksRequirements"),
+            target = M.DetectionRuleEksRequirements,
+            traits = {
+                [traits.JSON_NAME] = { name = "eks" },
+            },
+        }),
+        Ec2 = schema.new({
+            id = id.from(_N, "DetectionRuleRuntimePlatforms", "Ec2"),
+            type = "structure",
+            name = "Ec2",
+            target_id = id.from(_N, "DetectionRuleEc2Requirements"),
+            target = M.DetectionRuleEc2Requirements,
+            traits = {
+                [traits.JSON_NAME] = { name = "ec2" },
+            },
+        }),
+        EcsFargate = schema.new({
+            id = id.from(_N, "DetectionRuleRuntimePlatforms", "EcsFargate"),
+            type = "structure",
+            name = "EcsFargate",
+            target_id = id.from(_N, "DetectionRuleEcsFargateRequirements"),
+            target = M.DetectionRuleEcsFargateRequirements,
+            traits = {
+                [traits.JSON_NAME] = { name = "ecsFargate" },
+            },
+        }),
+    },
+})
+
+M.DetectionRuleRuntimeMonitoringDetails = schema.new({
+    id = id.from(_N, "DetectionRuleRuntimeMonitoringDetails"),
+    type = "structure",
+    members = {
+        Platforms = schema.new({
+            id = id.from(_N, "DetectionRuleRuntimeMonitoringDetails", "Platforms"),
+            type = "structure",
+            name = "Platforms",
+            target_id = id.from(_N, "DetectionRuleRuntimePlatforms"),
+            target = M.DetectionRuleRuntimePlatforms,
+            traits = {
+                [traits.JSON_NAME] = { name = "platforms" },
             },
         }),
     },
@@ -11593,6 +11695,15 @@ M.Finding = schema.new({
                 [traits.JSON_NAME] = { name = "associatedAttackSequenceArn" },
             },
         }),
+        CustomDetectionRuleName = schema.new({
+            id = id.from(_N, "Finding", "CustomDetectionRuleName"),
+            type = "string",
+            name = "CustomDetectionRuleName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "customDetectionRuleName" },
+            },
+        }),
     },
 })
 
@@ -12029,6 +12140,16 @@ M.RuleDetail = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "schema" },
+            },
+        }),
+        RuntimeMonitoringDetails = schema.new({
+            id = id.from(_N, "RuleDetail", "RuntimeMonitoringDetails"),
+            type = "structure",
+            name = "RuntimeMonitoringDetails",
+            target_id = id.from(_N, "DetectionRuleRuntimeMonitoringDetails"),
+            target = M.DetectionRuleRuntimeMonitoringDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "runtimeMonitoringDetails" },
             },
         }),
         CreatedAt = schema.new({

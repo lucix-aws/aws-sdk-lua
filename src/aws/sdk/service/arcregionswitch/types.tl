@@ -379,6 +379,8 @@ local record M
         externalId: string
         -- The Amazon Resource Name (ARN) of the Lambda function.
         arn: string
+        -- The JSON payload to send to the Lambda function invocation. If you don't specify a payload, Region switch invokes the function with only the execution metadata. If you provide a JSON object, Region switch merges execution metadata keys (InvokedBy, PlanArn, ExecutionId, StepName) into the top level. If one of your keys has the same name as a metadata key, your key takes precedence. If you provide any other JSON type (string, number, boolean, or array), Region switch forwards it to the Lambda function unchanged, without adding metadata.
+        payload: string
     end
 
     enum RegionToRunIn
@@ -599,9 +601,9 @@ local record M
         "failover"
     end
 
-    -- Configuration for handling failures when performing operations on Aurora global databases.
+    -- Configuration for an Aurora global database execution block in ungraceful mode.
     record GlobalAuroraUngraceful
-        -- The settings for ungraceful execution.
+        -- The ungraceful behavior. The only valid value is failover, which calls FailoverGlobalCluster with AllowDataLoss set to true and might cause data loss.
         ungraceful: string
     end
 
@@ -613,9 +615,9 @@ local record M
         crossAccountRole: string
         -- The external ID (secret key) for the configuration.
         externalId: string
-        -- The behavior for a global database, that is, only allow switchover or also allow failover.
+        -- The default behavior for the Aurora global database execution block. Valid values: switchoverOnly - Calls SwitchoverGlobalCluster for a zero-data-loss switchover during graceful execution. failover - Calls FailoverGlobalCluster with AllowDataLoss set to true. This operation might cause data loss, including during graceful execution.
         behavior: string
-        -- The settings for ungraceful execution.
+        -- The behavior to use when the plan runs in ungraceful mode. If you omit this value, Region switch uses the value of behavior.
         ungraceful: GlobalAuroraUngraceful
         -- The global cluster identifier for a global database.
         globalClusterIdentifier: string

@@ -1057,6 +1057,12 @@ M.Lambdas = schema.new({
             name = "arn",
             target_id = prelude.String.id,
         }),
+        payload = schema.new({
+            id = id.from(_N, "Lambdas", "payload"),
+            type = "string",
+            name = "payload",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

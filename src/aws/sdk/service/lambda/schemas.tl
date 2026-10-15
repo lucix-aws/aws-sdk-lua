@@ -1884,6 +1884,12 @@ M.ChainedInvokeOptions = schema.new({
             name = "TenantId",
             target_id = prelude.String.id,
         }),
+        XAmznTraceId = schema.new({
+            id = id.from(_N, "ChainedInvokeOptions", "XAmznTraceId"),
+            type = "string",
+            name = "XAmznTraceId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

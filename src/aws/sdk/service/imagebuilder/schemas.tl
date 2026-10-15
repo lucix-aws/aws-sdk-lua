@@ -547,6 +547,28 @@ M.AutoDisablePolicy = schema.new({
     },
 })
 
+M.AutoScalingGroupConfiguration = schema.new({
+    id = id.from(_N, "AutoScalingGroupConfiguration"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "AutoScalingGroupConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        capacityWaitTimeoutSeconds = schema.new({
+            id = id.from(_N, "AutoScalingGroupConfiguration", "capacityWaitTimeoutSeconds"),
+            type = "integer",
+            name = "capacityWaitTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.CallRateLimitExceededException = schema.new({
     id = id.from(_N, "CallRateLimitExceededException"),
     type = "structure",
@@ -2959,6 +2981,23 @@ M.Logging = schema.new({
     },
 })
 
+M.ParentInstanceConfiguration = schema.new({
+    id = id.from(_N, "ParentInstanceConfiguration"),
+    type = "structure",
+    members = {
+        autoScalingGroup = schema.new({
+            id = id.from(_N, "ParentInstanceConfiguration", "autoScalingGroup"),
+            type = "structure",
+            name = "autoScalingGroup",
+            target_id = id.from(_N, "AutoScalingGroupConfiguration"),
+            target = M.AutoScalingGroupConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.Placement = schema.new({
     id = id.from(_N, "Placement"),
     type = "structure",
@@ -3057,6 +3096,12 @@ M.CreateInfrastructureConfigurationInput = schema.new({
             name = "terminateInstanceOnFailure",
             target_id = prelude.Boolean.id,
         }),
+        terminateInstanceOnCompletion = schema.new({
+            id = id.from(_N, "CreateInfrastructureConfigurationInput", "terminateInstanceOnCompletion"),
+            type = "boolean",
+            name = "terminateInstanceOnCompletion",
+            target_id = prelude.Boolean.id,
+        }),
         snsTopicArn = schema.new({
             id = id.from(_N, "CreateInfrastructureConfigurationInput", "snsTopicArn"),
             type = "string",
@@ -3092,6 +3137,13 @@ M.CreateInfrastructureConfigurationInput = schema.new({
             name = "placement",
             target_id = id.from(_N, "Placement"),
             target = M.Placement,
+        }),
+        parentInstance = schema.new({
+            id = id.from(_N, "CreateInfrastructureConfigurationInput", "parentInstance"),
+            type = "structure",
+            name = "parentInstance",
+            target_id = id.from(_N, "ParentInstanceConfiguration"),
+            target = M.ParentInstanceConfiguration,
         }),
         clientToken = schema.new({
             id = id.from(_N, "CreateInfrastructureConfigurationInput", "clientToken"),
@@ -4740,6 +4792,19 @@ M.InfrastructureConfiguration = schema.new({
             name = "placement",
             target_id = id.from(_N, "Placement"),
             target = M.Placement,
+        }),
+        terminateInstanceOnCompletion = schema.new({
+            id = id.from(_N, "InfrastructureConfiguration", "terminateInstanceOnCompletion"),
+            type = "boolean",
+            name = "terminateInstanceOnCompletion",
+            target_id = prelude.Boolean.id,
+        }),
+        parentInstance = schema.new({
+            id = id.from(_N, "InfrastructureConfiguration", "parentInstance"),
+            type = "structure",
+            name = "parentInstance",
+            target_id = id.from(_N, "ParentInstanceConfiguration"),
+            target = M.ParentInstanceConfiguration,
         }),
     },
 })
@@ -9831,6 +9896,12 @@ M.UpdateInfrastructureConfigurationInput = schema.new({
             name = "terminateInstanceOnFailure",
             target_id = prelude.Boolean.id,
         }),
+        terminateInstanceOnCompletion = schema.new({
+            id = id.from(_N, "UpdateInfrastructureConfigurationInput", "terminateInstanceOnCompletion"),
+            type = "boolean",
+            name = "terminateInstanceOnCompletion",
+            target_id = prelude.Boolean.id,
+        }),
         snsTopicArn = schema.new({
             id = id.from(_N, "UpdateInfrastructureConfigurationInput", "snsTopicArn"),
             type = "string",
@@ -9858,6 +9929,13 @@ M.UpdateInfrastructureConfigurationInput = schema.new({
             name = "placement",
             target_id = id.from(_N, "Placement"),
             target = M.Placement,
+        }),
+        parentInstance = schema.new({
+            id = id.from(_N, "UpdateInfrastructureConfigurationInput", "parentInstance"),
+            type = "structure",
+            name = "parentInstance",
+            target_id = id.from(_N, "ParentInstanceConfiguration"),
+            target = M.ParentInstanceConfiguration,
         }),
         clientToken = schema.new({
             id = id.from(_N, "UpdateInfrastructureConfigurationInput", "clientToken"),

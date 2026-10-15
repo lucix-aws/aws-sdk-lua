@@ -3103,6 +3103,11 @@ local record M
         ETag: string
     end
 
+    enum VpcIpAddressType
+        "ipv4"
+        "dualstack"
+    end
+
     -- An Amazon CloudFront VPC origin endpoint configuration.
     record VpcOriginEndpointConfig
         -- The name of the CloudFront VPC origin endpoint configuration.
@@ -3116,6 +3121,8 @@ local record M
         -- The origin protocol policy for the CloudFront VPC origin endpoint configuration.
         OriginProtocolPolicy: string
         OriginSslProtocols: OriginSslProtocols
+        -- The IP address type of the CloudFront VPC origin endpoint configuration. Valid values are ipv4 and dualstack. IPv6-only is not supported for VPC origins.
+        IpAddressType: string
     end
 
     record CreateVpcOriginInput
@@ -5197,6 +5204,8 @@ local record M
         AccountId: string
         -- The VPC origin summary origin endpoint ARN.
         OriginEndpointArn: string
+        -- The IP address type of the CloudFront VPC origin. Valid values are ipv4 and dualstack. IPv6-only is not supported for VPC origins.
+        IpAddressType: string
     end
 
     -- A list of CloudFront VPC origins.

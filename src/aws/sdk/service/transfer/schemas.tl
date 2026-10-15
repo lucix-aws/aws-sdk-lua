@@ -2504,6 +2504,12 @@ M.CreateServerInput = schema.new({
             name = "IpAddressType",
             target_id = prelude.String.id,
         }),
+        HostKeyStorageType = schema.new({
+            id = id.from(_N, "CreateServerInput", "HostKeyStorageType"),
+            type = "string",
+            name = "HostKeyStorageType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3668,6 +3674,18 @@ M.DescribedHostKey = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        StorageType = schema.new({
+            id = id.from(_N, "DescribedHostKey", "StorageType"),
+            type = "string",
+            name = "StorageType",
+            target_id = prelude.String.id,
+        }),
+        SecretId = schema.new({
+            id = id.from(_N, "DescribedHostKey", "SecretId"),
+            type = "string",
+            name = "SecretId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4686,6 +4704,18 @@ M.ImportHostKeyInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        StorageType = schema.new({
+            id = id.from(_N, "ImportHostKeyInput", "StorageType"),
+            type = "string",
+            name = "StorageType",
+            target_id = prelude.String.id,
+        }),
+        KmsKey = schema.new({
+            id = id.from(_N, "ImportHostKeyInput", "KmsKey"),
+            type = "string",
+            name = "KmsKey",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4948,6 +4978,18 @@ M.ListedHostKey = schema.new({
             type = "timestamp",
             name = "DateImported",
             target_id = prelude.Timestamp.id,
+        }),
+        StorageType = schema.new({
+            id = id.from(_N, "ListedHostKey", "StorageType"),
+            type = "string",
+            name = "StorageType",
+            target_id = prelude.String.id,
+        }),
+        SecretId = schema.new({
+            id = id.from(_N, "ListedHostKey", "SecretId"),
+            type = "string",
+            name = "SecretId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -6457,9 +6499,18 @@ M.UpdateHostKeyInput = schema.new({
             type = "string",
             name = "Description",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        StorageType = schema.new({
+            id = id.from(_N, "UpdateHostKeyInput", "StorageType"),
+            type = "string",
+            name = "StorageType",
+            target_id = prelude.String.id,
+        }),
+        KmsKey = schema.new({
+            id = id.from(_N, "UpdateHostKeyInput", "KmsKey"),
+            type = "string",
+            name = "KmsKey",
+            target_id = prelude.String.id,
         }),
     },
 })

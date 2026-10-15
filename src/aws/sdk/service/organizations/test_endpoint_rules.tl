@@ -8,62 +8,37 @@ local endpoint = require("smithy.endpoint")
 local ruleset = require("aws.sdk.service.organizations.endpoint_rules")
 
 describe("endpoint rules", function()
-    it("For region aws-global with FIPS disabled and DualStack disabled", function()
+    it("For custom endpoint with region not set and fips disabled", function()
         local params = {
-            Region = "aws-global",
+            Endpoint = "https://example.com",
             UseFIPS = false,
-            UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.us-east-1.amazonaws.com", result.url)
-        assert.is_not_nil(result.properties, "missing properties")
-        local expected_props = {
-            authSchemes = {
-            {
-            name = "sigv4",
-            signingName = "organizations",
-            signingRegion = "us-east-1",
-        },
-        },
-        }
-        local function deep_eq(a, b)
-            if type(a) ~= type(b) then return false end
-            if type(a) ~= "table" then return a == b end
-            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-            for k, _ in pairs(b) do if a[k] == nil then return false end end
-            return true
-        end
-        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+        assert.are.equal("https://example.com", result.url)
     end)
 
-    it("For region aws-global with FIPS enabled and DualStack disabled", function()
+    it("For custom endpoint with fips enabled", function()
         local params = {
-            Region = "aws-global",
+            Endpoint = "https://example.com",
             UseFIPS = true,
-            UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations-fips.us-east-1.amazonaws.com", result.url)
-        assert.is_not_nil(result.properties, "missing properties")
-        local expected_props = {
-            authSchemes = {
-            {
-            name = "sigv4",
-            signingName = "organizations",
-            signingRegion = "us-east-1",
-        },
-        },
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("For custom endpoint with fips disabled and dualstack enabled", function()
+        local params = {
+            Endpoint = "https://example.com",
+            UseFIPS = false,
+            UseDualStack = true,
         }
-        local function deep_eq(a, b)
-            if type(a) ~= type(b) then return false end
-            if type(a) ~= "table" then return a == b end
-            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-            for k, _ in pairs(b) do if a[k] == nil then return false end end
-            return true
-        end
-        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
     end)
 
     it("For region us-east-1 with FIPS enabled and DualStack enabled", function()
@@ -75,6 +50,23 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://organizations-fips.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
     it("For region us-east-1 with FIPS enabled and DualStack disabled", function()
@@ -91,7 +83,6 @@ describe("endpoint rules", function()
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
             signingRegion = "us-east-1",
         },
         },
@@ -115,6 +106,23 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://organizations.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
     it("For region us-east-1 with FIPS disabled and DualStack disabled", function()
@@ -131,7 +139,6 @@ describe("endpoint rules", function()
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
             signingRegion = "us-east-1",
         },
         },
@@ -146,21 +153,20 @@ describe("endpoint rules", function()
         assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For region aws-cn-global with FIPS disabled and DualStack disabled", function()
+    it("For region cn-northwest-1 with FIPS enabled and DualStack enabled", function()
         local params = {
-            Region = "aws-cn-global",
-            UseFIPS = false,
-            UseDualStack = false,
+            Region = "cn-northwest-1",
+            UseFIPS = true,
+            UseDualStack = true,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.cn-northwest-1.amazonaws.com.cn", result.url)
+        assert.are.equal("https://organizations-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
         assert.is_not_nil(result.properties, "missing properties")
         local expected_props = {
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
             signingRegion = "cn-northwest-1",
         },
         },
@@ -175,54 +181,20 @@ describe("endpoint rules", function()
         assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For region cn-north-1 with FIPS enabled and DualStack enabled", function()
+    it("For region cn-northwest-1 with FIPS enabled and DualStack disabled", function()
         local params = {
-            Region = "cn-north-1",
-            UseFIPS = true,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
-    end)
-
-    it("For region cn-north-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "cn-north-1",
+            Region = "cn-northwest-1",
             UseFIPS = true,
             UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations-fips.cn-north-1.amazonaws.com.cn", result.url)
-    end)
-
-    it("For region cn-north-1 with FIPS disabled and DualStack enabled", function()
-        local params = {
-            Region = "cn-north-1",
-            UseFIPS = false,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.cn-north-1.api.amazonwebservices.com.cn", result.url)
-    end)
-
-    it("For region cn-north-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "cn-north-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.cn-northwest-1.amazonaws.com.cn", result.url)
+        assert.are.equal("https://organizations-fips.cn-northwest-1.amazonaws.com.cn", result.url)
         assert.is_not_nil(result.properties, "missing properties")
         local expected_props = {
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
             signingRegion = "cn-northwest-1",
         },
         },
@@ -237,131 +209,21 @@ describe("endpoint rules", function()
         assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For region aws-us-gov-global with FIPS disabled and DualStack disabled", function()
+    it("For region cn-northwest-1 with FIPS disabled and DualStack enabled", function()
         local params = {
-            Region = "aws-us-gov-global",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.us-gov-west-1.amazonaws.com", result.url)
-        assert.is_not_nil(result.properties, "missing properties")
-        local expected_props = {
-            authSchemes = {
-            {
-            name = "sigv4",
-            signingName = "organizations",
-            signingRegion = "us-gov-west-1",
-        },
-        },
-        }
-        local function deep_eq(a, b)
-            if type(a) ~= type(b) then return false end
-            if type(a) ~= "table" then return a == b end
-            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-            for k, _ in pairs(b) do if a[k] == nil then return false end end
-            return true
-        end
-        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
-    end)
-
-    it("For region aws-us-gov-global with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "aws-us-gov-global",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.us-gov-west-1.amazonaws.com", result.url)
-        assert.is_not_nil(result.properties, "missing properties")
-        local expected_props = {
-            authSchemes = {
-            {
-            name = "sigv4",
-            signingName = "organizations",
-            signingRegion = "us-gov-west-1",
-        },
-        },
-        }
-        local function deep_eq(a, b)
-            if type(a) ~= type(b) then return false end
-            if type(a) ~= "table" then return a == b end
-            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-            for k, _ in pairs(b) do if a[k] == nil then return false end end
-            return true
-        end
-        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
-    end)
-
-    it("For region us-gov-east-1 with FIPS enabled and DualStack enabled", function()
-        local params = {
-            Region = "us-gov-east-1",
-            UseFIPS = true,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations-fips.us-gov-east-1.api.aws", result.url)
-    end)
-
-    it("For region us-gov-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-gov-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.us-gov-west-1.amazonaws.com", result.url)
-        assert.is_not_nil(result.properties, "missing properties")
-        local expected_props = {
-            authSchemes = {
-            {
-            name = "sigv4",
-            signingName = "organizations",
-            signingRegion = "us-gov-west-1",
-        },
-        },
-        }
-        local function deep_eq(a, b)
-            if type(a) ~= type(b) then return false end
-            if type(a) ~= "table" then return a == b end
-            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-            for k, _ in pairs(b) do if a[k] == nil then return false end end
-            return true
-        end
-        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
-    end)
-
-    it("For region us-gov-east-1 with FIPS disabled and DualStack enabled", function()
-        local params = {
-            Region = "us-gov-east-1",
+            Region = "cn-northwest-1",
             UseFIPS = false,
             UseDualStack = true,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.us-gov-east-1.api.aws", result.url)
-    end)
-
-    it("For region us-gov-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-gov-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.us-gov-west-1.amazonaws.com", result.url)
+        assert.are.equal("https://organizations.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
         assert.is_not_nil(result.properties, "missing properties")
         local expected_props = {
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
-            signingRegion = "us-gov-west-1",
+            signingRegion = "cn-northwest-1",
         },
         },
         }
@@ -375,22 +237,77 @@ describe("endpoint rules", function()
         assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For region aws-iso-global with FIPS disabled and DualStack disabled", function()
+    it("For region cn-northwest-1 with FIPS disabled and DualStack disabled", function()
         local params = {
-            Region = "aws-iso-global",
+            Region = "cn-northwest-1",
             UseFIPS = false,
             UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.us-iso-east-1.c2s.ic.gov", result.url)
+        assert.are.equal("https://organizations.cn-northwest-1.amazonaws.com.cn", result.url)
         assert.is_not_nil(result.properties, "missing properties")
         local expected_props = {
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
-            signingRegion = "us-iso-east-1",
+            signingRegion = "cn-northwest-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("For region eusc-de-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "eusc-de-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://organizations-fips.eusc-de-east-1.amazonaws.eu", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "eusc-de-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("For region eusc-de-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eusc-de-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://organizations.eusc-de-east-1.amazonaws.eu", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "eusc-de-east-1",
         },
         },
         }
@@ -413,6 +330,23 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://organizations-fips.us-iso-east-1.c2s.ic.gov", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-iso-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
     it("For region us-iso-east-1 with FIPS disabled and DualStack disabled", function()
@@ -429,37 +363,7 @@ describe("endpoint rules", function()
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
             signingRegion = "us-iso-east-1",
-        },
-        },
-        }
-        local function deep_eq(a, b)
-            if type(a) ~= type(b) then return false end
-            if type(a) ~= "table" then return a == b end
-            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
-            for k, _ in pairs(b) do if a[k] == nil then return false end end
-            return true
-        end
-        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
-    end)
-
-    it("For region aws-iso-b-global with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "aws-iso-b-global",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://organizations.us-isob-east-1.sc2s.sgov.gov", result.url)
-        assert.is_not_nil(result.properties, "missing properties")
-        local expected_props = {
-            authSchemes = {
-            {
-            name = "sigv4",
-            signingName = "organizations",
-            signingRegion = "us-isob-east-1",
         },
         },
         }
@@ -482,6 +386,23 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://organizations-fips.us-isob-east-1.sc2s.sgov.gov", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-isob-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
     it("For region us-isob-east-1 with FIPS disabled and DualStack disabled", function()
@@ -498,8 +419,91 @@ describe("endpoint rules", function()
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
             signingRegion = "us-isob-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("For region eu-isoe-west-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-isoe-west-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://organizations-fips.eu-isoe-west-1.cloud.adc-e.uk", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "eu-isoe-west-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("For region eu-isoe-west-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-isoe-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://organizations.eu-isoe-west-1.cloud.adc-e.uk", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "eu-isoe-west-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("For region us-isof-south-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-isof-south-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://organizations-fips.us-isof-south-1.csp.hci.ic.gov", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-isof-south-1",
         },
         },
         }
@@ -527,7 +531,6 @@ describe("endpoint rules", function()
             authSchemes = {
             {
             name = "sigv4",
-            signingName = "organizations",
             signingRegion = "us-isof-south-1",
         },
         },
@@ -542,53 +545,116 @@ describe("endpoint rules", function()
         assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For custom endpoint with region set and fips disabled and dualstack disabled", function()
+    it("For region us-gov-west-1 with FIPS enabled and DualStack enabled", function()
         local params = {
-            Region = "us-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-            Endpoint = "https://example.com",
+            Region = "us-gov-west-1",
+            UseFIPS = true,
+            UseDualStack = true,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://example.com", result.url)
-    end)
-
-    it("For custom endpoint with region not set and fips disabled and dualstack disabled", function()
-        local params = {
-            UseFIPS = false,
-            UseDualStack = false,
-            Endpoint = "https://example.com",
+        assert.are.equal("https://organizations.us-gov-west-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-gov-west-1",
+        },
+        },
         }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://example.com", result.url)
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For custom endpoint with fips enabled and dualstack disabled", function()
+    it("For region us-gov-west-1 with FIPS enabled and DualStack disabled", function()
         local params = {
-            Region = "us-east-1",
+            Region = "us-gov-west-1",
             UseFIPS = true,
             UseDualStack = false,
-            Endpoint = "https://example.com",
         }
         local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://organizations.us-gov-west-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-gov-west-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For custom endpoint with fips disabled and dualstack enabled", function()
+    it("For region us-gov-west-1 with FIPS disabled and DualStack enabled", function()
         local params = {
-            Region = "us-east-1",
+            Region = "us-gov-west-1",
             UseFIPS = false,
             UseDualStack = true,
-            Endpoint = "https://example.com",
         }
         local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://organizations.us-gov-west-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-gov-west-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("For region us-gov-west-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://organizations.us-gov-west-1.amazonaws.com", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingRegion = "us-gov-west-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
     it("Missing region", function()

@@ -9475,6 +9475,12 @@ M.VpcOriginEndpointConfig = schema.new({
             target_id = id.from(_N, "OriginSslProtocols"),
             target = M.OriginSslProtocols,
         }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "VpcOriginEndpointConfig", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -16426,6 +16432,12 @@ M.VpcOriginSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "VpcOriginSummary", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
         }),
     },
 })

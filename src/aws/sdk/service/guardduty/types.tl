@@ -2564,6 +2564,25 @@ local record M
 
     enum DetectionRuleDataSource
         "CloudTrailManagementEvent"
+        "RuntimeMonitoring"
+    end
+
+    -- The requirements for running a Runtime Monitoring custom detection rule on Amazon EC2.
+    record DetectionRuleEc2Requirements
+        -- The minimum GuardDuty agent version required to run the rule on Amazon EC2.
+        MinAgentVersion: string
+    end
+
+    -- The requirements for running a Runtime Monitoring custom detection rule on Amazon ECS with the Fargate launch type.
+    record DetectionRuleEcsFargateRequirements
+        -- The minimum GuardDuty agent version required to run the rule on Amazon ECS with the Fargate launch type.
+        MinAgentVersion: string
+    end
+
+    -- The requirements for running a Runtime Monitoring custom detection rule on Amazon EKS.
+    record DetectionRuleEksRequirements
+        -- The minimum GuardDuty agent version required to run the rule on Amazon EKS.
+        MinAgentVersion: string
     end
 
     enum DetectionRuleFilterCondition
@@ -2629,6 +2648,22 @@ local record M
         UpdatedAt: number
         -- The timestamp when the organization configuration expires.
         ExpiresAt: number
+    end
+
+    -- The platforms on which a Runtime Monitoring custom detection rule can run. A member's presence is the support statement: when present, the rule runs on that platform and minAgentVersion is the minimum GuardDuty agent version required there. When absent, the rule cannot run on that platform at any agent version.
+    record DetectionRuleRuntimePlatforms
+        -- The requirements for running the rule on Amazon EKS.
+        Eks: DetectionRuleEksRequirements
+        -- The requirements for running the rule on Amazon EC2.
+        Ec2: DetectionRuleEc2Requirements
+        -- The requirements for running the rule on Amazon ECS with the Fargate launch type.
+        EcsFargate: DetectionRuleEcsFargateRequirements
+    end
+
+    -- Contains Runtime Monitoring-specific details for a custom detection rule.
+    record DetectionRuleRuntimeMonitoringDetails
+        -- The platforms on which the rule can run. The presence of a platform member indicates that the rule is supported on that platform; the absence of a member indicates that the rule cannot run on that platform at any agent version.
+        Platforms: DetectionRuleRuntimePlatforms
     end
 
     enum DetectionRuleSeverity
@@ -3539,6 +3574,8 @@ local record M
         UpdatedAt: string
         -- Amazon Resource Name (ARN) associated with the attack sequence finding.
         AssociatedAttackSequenceArn: string
+        -- The name of the custom detection rule that generated this finding.
+        CustomDetectionRuleName: string
     end
 
     -- Information about each finding type associated with the groupedByFindingType statistics.
@@ -3664,6 +3701,8 @@ local record M
         Language: string
         -- The schema version used by the rule definition.
         Schema: string
+        -- Runtime Monitoring-specific details for the rule, including the platforms on which the rule can run and the minimum GuardDuty agent version required on each.
+        RuntimeMonitoringDetails: DetectionRuleRuntimeMonitoringDetails
         -- The timestamp when the rule was created.
         CreatedAt: number
         -- The timestamp when the rule was last updated.

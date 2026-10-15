@@ -818,6 +818,11 @@ local record M
         "VPC_ENDPOINT"
     end
 
+    enum HostKeyStorageType
+        "SERVICE_MANAGED"
+        "SECRETS_MANAGER"
+    end
+
     enum SftpAuthenticationMethods
         "PASSWORD"
         "PUBLIC_KEY"
@@ -968,6 +973,8 @@ local record M
         S3StorageOptions: S3StorageOptions
         -- Specifies whether to use IPv4 only, or to use dual-stack (IPv4 and IPv6) for your Transfer Family endpoint. The default value is IPV4. The IpAddressType parameter has the following limitations: It cannot be changed while the server is online. You must stop the server before modifying this parameter. It cannot be updated to DUALSTACK if the server has AddressAllocationIds specified. When using DUALSTACK as the IpAddressType, you cannot set the AddressAllocationIds parameter for the EndpointDetails for the server.
         IpAddressType: string
+        -- Specifies whether the host key is stored by Transfer Family (SERVICE_MANAGED) or in Secrets Manager (SECRETS_MANAGER). When you specify SECRETS_MANAGER, Transfer Family stores the private host key material in an Secrets Manager secret.
+        HostKeyStorageType: string
     end
 
     record CreateServerOutput
@@ -1420,6 +1427,10 @@ local record M
         DateImported: number
         -- Key-value pairs that can be used to group and search for host keys.
         Tags: {Tag}
+        -- Specifies whether the host key is stored by Transfer Family (SERVICE_MANAGED) or in Secrets Manager (SECRETS_MANAGER).
+        StorageType: string
+        -- The ARN of the Secrets Manager secret that stores the host key material, when StorageType is SECRETS_MANAGER.
+        SecretId: string
     end
 
     -- A structure that contains the details of the IAM Identity Center used for your web app. Returned during a call to DescribeWebApp.
@@ -1765,6 +1776,10 @@ local record M
         Description: string
         -- Key-value pairs that can be used to group and search for host keys.
         Tags: {Tag}
+        -- Specifies whether the host key is stored by Transfer Family (SERVICE_MANAGED) or in Secrets Manager (SECRETS_MANAGER). When you specify SECRETS_MANAGER, Transfer Family stores the private host key material in an Secrets Manager secret.
+        StorageType: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the Secrets Manager secret that stores the host key. If you specify a customer managed key, its key policy must allow the AWSServiceRoleForTransfer service-linked role to decrypt the secret. If you don't specify a value, Transfer Family uses the Amazon Web Services managed key for Secrets Manager.
+        KmsKey: string
     end
 
     record ImportHostKeyOutput
@@ -1849,6 +1864,10 @@ local record M
         Type: string
         -- The date on which the host key was added to the server.
         DateImported: number
+        -- Specifies whether the host key is stored by Transfer Family (SERVICE_MANAGED) or in Secrets Manager (SECRETS_MANAGER).
+        StorageType: string
+        -- The ARN of the Secrets Manager secret that stores the host key material, when StorageType is SECRETS_MANAGER.
+        SecretId: string
     end
 
     -- Returns the properties of the profile that was specified.
@@ -2331,6 +2350,10 @@ local record M
         HostKeyId: string
         -- An updated description for the host key.
         Description: string
+        -- Specifies whether the host key is stored by Transfer Family (SERVICE_MANAGED) or in Secrets Manager (SECRETS_MANAGER). When you specify SECRETS_MANAGER, Transfer Family stores the private host key material in an Secrets Manager secret.
+        StorageType: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the Secrets Manager secret that stores the host key. If you specify a customer managed key, its key policy must allow the AWSServiceRoleForTransfer service-linked role to decrypt the secret. If you don't specify a value, Transfer Family uses the Amazon Web Services managed key for Secrets Manager.
+        KmsKey: string
     end
 
     record UpdateHostKeyOutput

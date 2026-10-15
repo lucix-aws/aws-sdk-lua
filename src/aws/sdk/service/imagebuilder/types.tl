@@ -275,6 +275,19 @@ local record M
         failureCount: number
     end
 
+    -- Identifies the Amazon EC2 Auto Scaling group that Image Builder takes the build instance from,
+    -- and how long Image Builder waits when the group has no instance available.
+    record AutoScalingGroupConfiguration
+        -- The name of the Auto Scaling group, in the same account and Amazon Web Services Region as the
+        -- infrastructure configuration. To specify a group, you must have permissions to describe
+        -- it.
+        name: string
+        -- The number of seconds that Image Builder waits for an instance to become available in the
+        -- group before the build fails. If you set this value to 0 or omit it, the build fails as
+        -- soon as the group has no instance available.
+        capacityWaitTimeoutSeconds: number
+    end
+
     enum BuildType
         "USER_INITIATED"
         "SCHEDULED"
@@ -1577,6 +1590,14 @@ local record M
         s3Logs: S3Logs
     end
 
+    -- Settings for building on an instance that is already running, instead of an
+    -- instance that Image Builder launches for the build.
+    record ParentInstanceConfiguration
+        -- The Amazon EC2 Auto Scaling group that Image Builder takes the build instance from. This is
+        -- required when you specify parentInstance.
+        autoScalingGroup: AutoScalingGroupConfiguration
+    end
+
     enum TenancyType
         "default"
         "dedicated"
@@ -1644,6 +1665,10 @@ local record M
         -- false if you want Image Builder to retain the instance used to configure your AMI if the build or
         -- test phase of your workflow fails. Defaults to true.
         terminateInstanceOnFailure: boolean
+        -- Specifies whether Image Builder terminates build and test instances when image creation
+        -- ends without a failure (success, cancellation, or expiration). Defaults to
+        -- true.
+        terminateInstanceOnCompletion: boolean
         -- The Amazon Resource Name (ARN) of the SNS topic to which Image Builder sends image build event notifications.
         -- Specify a standard topic. Image Builder doesn't support FIFO topics.
         -- Image Builder validates the topic when you create or update the configuration. You
@@ -1677,6 +1702,14 @@ local record M
         -- instances that Image Builder launches during image creation run. These settings
         -- don't affect instances that you launch from the output image.
         placement: Placement
+        -- The Amazon EC2 Auto Scaling group that Image Builder takes the build instance from, instead of
+        -- launching a new instance. This applies only to the build phase.
+        -- To use this feature, the execution role for the build must have permissions to
+        -- describe the Auto Scaling group, tag the instance while it's still in the group, and
+        -- detach it from the group. For more information, see Build on an
+        -- instance from an Auto Scaling group in the EC2 Image Builder User
+        -- Guide.
+        parentInstance: ParentInstanceConfiguration
         -- A unique, case-sensitive identifier you provide to ensure
         -- that the operation runs no more than one time. If you retry a request with the same client
         -- token, Image Builder returns the original response without running the operation again. For more
@@ -2419,6 +2452,12 @@ local record M
         -- instances that Image Builder launches during image creation run. These settings
         -- don't affect instances that you launch from the output image.
         placement: Placement
+        -- Specifies whether Image Builder terminates build and test instances when image creation
+        -- ends without a failure.
+        terminateInstanceOnCompletion: boolean
+        -- The Amazon EC2 Auto Scaling group that Image Builder takes the build instance from, instead of
+        -- launching a new instance. This applies only to the build phase.
+        parentInstance: ParentInstanceConfiguration
     end
 
     -- The resources produced by this image.
@@ -4872,6 +4911,10 @@ local record M
         -- false if you want Image Builder to retain the instance used to configure your AMI if the build or
         -- test phase of your workflow fails. Defaults to true.
         terminateInstanceOnFailure: boolean
+        -- Specifies whether Image Builder terminates build and test instances when image creation
+        -- ends without a failure (success, cancellation, or expiration). Defaults to
+        -- true.
+        terminateInstanceOnCompletion: boolean
         -- The Amazon Resource Name (ARN) of the SNS topic to which Image Builder
         -- sends image build event notifications. Specify a standard topic. Image Builder doesn't support FIFO
         -- topics. Image Builder validates the topic when you create or update the configuration.
@@ -4902,6 +4945,14 @@ local record M
         -- instances that Image Builder launches during image creation run. These settings
         -- don't affect instances that you launch from the output image.
         placement: Placement
+        -- The Amazon EC2 Auto Scaling group that Image Builder takes the build instance from, instead of
+        -- launching a new instance. This applies only to the build phase.
+        -- To use this feature, the execution role for the build must have permissions to
+        -- describe the Auto Scaling group, tag the instance while it's still in the group, and
+        -- detach it from the group. For more information, see Build on an
+        -- instance from an Auto Scaling group in the EC2 Image Builder User
+        -- Guide.
+        parentInstance: ParentInstanceConfiguration
         -- A unique, case-sensitive identifier you provide to ensure
         -- that the operation runs no more than one time. If you retry a request with the same client
         -- token, Image Builder returns the original response without running the operation again. For more

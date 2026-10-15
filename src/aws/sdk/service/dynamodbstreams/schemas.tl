@@ -389,6 +389,12 @@ M.GetShardIteratorInput = schema.new({
             name = "SequenceNumber",
             target_id = prelude.String.id,
         }),
+        Timestamp = schema.new({
+            id = id.from(_N, "GetShardIteratorInput", "Timestamp"),
+            type = "timestamp",
+            name = "Timestamp",
+            target_id = prelude.Timestamp.id,
+        }),
     },
 })
 

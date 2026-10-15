@@ -650,6 +650,8 @@ local record M
         FunctionName: string
         -- The tenant identifier for the chained invocation.
         TenantId: string
+        -- The optional X-Ray trace header to use when starting the chained invocation. If you omit this value, the child invocation inherits the parent durable execution's trace header. Specify this value on the START update for the chained invocation operation. For more information about the header format, see Tracing header in the X-Ray Developer Guide.
+        XAmznTraceId: string
     end
 
     -- Configuration options for a durable execution context.
