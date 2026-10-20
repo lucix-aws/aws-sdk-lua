@@ -1326,6 +1326,18 @@ M.LinkedWhatsAppBusinessAccount = schema.new({
             name = "marketingMessagesOnboardingStatus",
             target_id = prelude.String.id,
         }),
+        directSendEnforcementStatus = schema.new({
+            id = id.from(_N, "LinkedWhatsAppBusinessAccount", "directSendEnforcementStatus"),
+            type = "string",
+            name = "directSendEnforcementStatus",
+            target_id = prelude.String.id,
+        }),
+        directSendEnforcementStatusExpiresAt = schema.new({
+            id = id.from(_N, "LinkedWhatsAppBusinessAccount", "directSendEnforcementStatusExpiresAt"),
+            type = "timestamp",
+            name = "directSendEnforcementStatusExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
         datasetId = schema.new({
             id = id.from(_N, "LinkedWhatsAppBusinessAccount", "datasetId"),
             type = "string",
@@ -2401,6 +2413,18 @@ M.LinkedWhatsAppBusinessAccountSummary = schema.new({
             name = "marketingMessagesOnboardingStatus",
             target_id = prelude.String.id,
         }),
+        directSendEnforcementStatus = schema.new({
+            id = id.from(_N, "LinkedWhatsAppBusinessAccountSummary", "directSendEnforcementStatus"),
+            type = "string",
+            name = "directSendEnforcementStatus",
+            target_id = prelude.String.id,
+        }),
+        directSendEnforcementStatusExpiresAt = schema.new({
+            id = id.from(_N, "LinkedWhatsAppBusinessAccountSummary", "directSendEnforcementStatusExpiresAt"),
+            type = "timestamp",
+            name = "directSendEnforcementStatusExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
         datasetId = schema.new({
             id = id.from(_N, "LinkedWhatsAppBusinessAccountSummary", "datasetId"),
             type = "string",
@@ -2717,6 +2741,18 @@ M.TemplateSummary = schema.new({
             id = id.from(_N, "TemplateSummary", "templateCategory"),
             type = "string",
             name = "templateCategory",
+            target_id = prelude.String.id,
+        }),
+        templateSource = schema.new({
+            id = id.from(_N, "TemplateSummary", "templateSource"),
+            type = "string",
+            name = "templateSource",
+            target_id = prelude.String.id,
+        }),
+        correctCategory = schema.new({
+            id = id.from(_N, "TemplateSummary", "correctCategory"),
+            type = "string",
+            name = "correctCategory",
             target_id = prelude.String.id,
         }),
     },

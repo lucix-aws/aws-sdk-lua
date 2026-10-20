@@ -838,6 +838,46 @@ local record M
         NextToken: string
     end
 
+    -- Contains the parameters for modifying a volume, including the target size, volume type, IOPS, or throughput.
+    record ModifyVolumeInput
+        -- Specifies the identifier of the volume to modify.
+        VolumeId: string
+        -- Specifies the target size of the volume, in GiB. The target size must be greater than or equal to the current size of the volume. If you don't specify a size, the current size is retained.
+        SizeInGB: number
+        -- Specifies the target Amazon Elastic Block Store (Amazon EBS) volume type. If you don't specify a volume type, the current volume type is retained.
+        VolumeType: string
+        -- Specifies the target IOPS rate of the volume. This parameter is valid only for gp3, io1, and io2 volumes. If you don't specify IOPS and keep the same volume type, the current IOPS rate is retained.
+        Iops: number
+        -- Specifies the target throughput of the volume, in MiB/s. This parameter is valid only for gp3 volumes. If you don't specify throughput and the volume remains gp3, the current throughput is retained.
+        Throughput: number
+        -- Unique token to ensure idempotent volume modification, preventing duplicate volume modifications.
+        ClientToken: string
+    end
+
+    -- Contains the target configuration of the volume after the modification, including the size, volume type, IOPS, and throughput where applicable.
+    record ModifyVolumeOutput
+        -- Specifies the identifier of the modified volume.
+        VolumeId: string
+        -- Specifies the target size of the volume, in GiB.
+        TargetSize: number
+        -- Specifies the target Amazon EBS volume type.
+        TargetVolumeType: string
+        -- Specifies the target IOPS rate of the volume.
+        TargetIops: number
+        -- Specifies the target throughput of the volume, in MiB/s.
+        TargetThroughput: number
+    end
+
+    -- The volume has a previous modification that is still in progress, or has reached the limit of four modifications in a rolling 24-hour period. Wait for the current modification to finish, or wait until the time indicated in the error message, and then retry the request.
+    record VolumeModificationRateExceededException
+        -- Specifies the reason that the modification request was rejected.
+        Message: string
+        -- Specifies the identifier of the volume for which the modification request was rejected.
+        ResourceId: string
+        -- Specifies the type of the resource for which the modification request was rejected.
+        ResourceType: string
+    end
+
     -- Specifies tags to add to a WorkSpace Instance.
     record TagResourceInput
         -- Unique identifier of the WorkSpace Instance to tag.

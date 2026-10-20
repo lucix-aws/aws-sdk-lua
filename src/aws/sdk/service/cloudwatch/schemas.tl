@@ -128,6 +128,8 @@ M.MetricStreamStatisticsAdditionalStatistics = schema.new({ type = "list", list_
 
 M.OTelEnrichmentMetricNameList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AlarmTagsPropagationTagKeys = schema.new({ type = "list", list_member = prelude.String })
+
 M.Values = schema.new({ type = "list", list_member = prelude.Double })
 
 M.Counts = schema.new({ type = "list", list_member = prelude.Double })
@@ -135,6 +137,50 @@ M.Counts = schema.new({ type = "list", list_member = prelude.Double })
 M.EntityKeyAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.EntityAttributesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AlarmTagsPropagation = schema.new({
+    id = id.from(_N, "AlarmTagsPropagation"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "AlarmTagsPropagation", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IncludedTagKeys = schema.new({
+            id = id.from(_N, "AlarmTagsPropagation", "IncludedTagKeys"),
+            type = "list",
+            name = "IncludedTagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludedTagKeys = schema.new({
+            id = id.from(_N, "AlarmTagsPropagation", "ExcludedTagKeys"),
+            type = "list",
+            name = "ExcludedTagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ActionConfiguration = schema.new({
+    id = id.from(_N, "ActionConfiguration"),
+    type = "structure",
+    members = {
+        AlarmTagsPropagation = schema.new({
+            id = id.from(_N, "ActionConfiguration", "AlarmTagsPropagation"),
+            type = "structure",
+            name = "AlarmTagsPropagation",
+            target_id = id.from(_N, "AlarmTagsPropagation"),
+            target = M.AlarmTagsPropagation,
+        }),
+    },
+})
 
 M.AlarmContributor = schema.new({
     id = id.from(_N, "AlarmContributor"),
@@ -910,6 +956,13 @@ M.CompositeAlarm = schema.new({
             type = "integer",
             name = "ActionsSuppressorExtensionPeriod",
             target_id = prelude.Integer.id,
+        }),
+        ActionConfiguration = schema.new({
+            id = id.from(_N, "CompositeAlarm", "ActionConfiguration"),
+            type = "structure",
+            name = "ActionConfiguration",
+            target_id = id.from(_N, "ActionConfiguration"),
+            target = M.ActionConfiguration,
         }),
     },
 })
@@ -1964,6 +2017,13 @@ M.LogAlarm = schema.new({
             target_id = id.from(_N, "WarmUpConfiguration"),
             target = M.WarmUpConfiguration,
         }),
+        ActionConfiguration = schema.new({
+            id = id.from(_N, "LogAlarm", "ActionConfiguration"),
+            type = "structure",
+            name = "ActionConfiguration",
+            target_id = id.from(_N, "ActionConfiguration"),
+            target = M.ActionConfiguration,
+        }),
     },
 })
 
@@ -2229,6 +2289,13 @@ M.MetricAlarm = schema.new({
             type = "integer",
             name = "EvaluationInterval",
             target_id = prelude.Integer.id,
+        }),
+        ActionConfiguration = schema.new({
+            id = id.from(_N, "MetricAlarm", "ActionConfiguration"),
+            type = "structure",
+            name = "ActionConfiguration",
+            target_id = id.from(_N, "ActionConfiguration"),
+            target = M.ActionConfiguration,
         }),
     },
 })
@@ -4470,6 +4537,13 @@ M.PutCompositeAlarmInput = schema.new({
             name = "ActionsSuppressorExtensionPeriod",
             target_id = prelude.Integer.id,
         }),
+        ActionConfiguration = schema.new({
+            id = id.from(_N, "PutCompositeAlarmInput", "ActionConfiguration"),
+            type = "structure",
+            name = "ActionConfiguration",
+            target_id = id.from(_N, "ActionConfiguration"),
+            target = M.ActionConfiguration,
+        }),
     },
 })
 
@@ -4693,6 +4767,13 @@ M.PutLogAlarmInput = schema.new({
             name = "WarmUpConfiguration",
             target_id = id.from(_N, "WarmUpConfiguration"),
             target = M.WarmUpConfiguration,
+        }),
+        ActionConfiguration = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "ActionConfiguration"),
+            type = "structure",
+            name = "ActionConfiguration",
+            target_id = id.from(_N, "ActionConfiguration"),
+            target = M.ActionConfiguration,
         }),
     },
 })
@@ -4933,6 +5014,13 @@ M.PutMetricAlarmInput = schema.new({
             type = "integer",
             name = "EvaluationInterval",
             target_id = prelude.Integer.id,
+        }),
+        ActionConfiguration = schema.new({
+            id = id.from(_N, "PutMetricAlarmInput", "ActionConfiguration"),
+            type = "structure",
+            name = "ActionConfiguration",
+            target_id = id.from(_N, "ActionConfiguration"),
+            target = M.ActionConfiguration,
         }),
     },
 })

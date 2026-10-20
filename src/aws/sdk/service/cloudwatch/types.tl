@@ -2,6 +2,46 @@
 
 local record M
 
+    -- Includes the alarm's tags in the notifications that the alarm sends to Amazon SNS
+    -- topics and Lambda functions. The tags are also included in the alarm's
+    -- state-change events in Amazon EventBridge. Other types of alarm actions don't receive
+    -- the tags.
+    -- By default, the alarm's tags aren't included.
+    -- Use this to route or filter notifications and events by tag, such as by team or
+    -- environment. You can also use it to read the alarm's tags without looking them up
+    -- separately.
+    -- To limit which tags are included, specify either IncludedTagKeys or
+    -- ExcludedTagKeys. You can't specify both. If you specify neither, all of
+    -- the alarm's tags are included. This includes tags that you add to the alarm later.
+    record AlarmTagsPropagation
+        -- Set to true to include the alarm's tags. Set to false to
+        -- stop including them.
+        -- When this is true, you must have the
+        -- cloudwatch:ListTagsForResource permission on the alarm to create or
+        -- update it.
+        Enabled: boolean
+        -- The tag keys to include. Only the alarm's tags with these keys are included.
+        -- You can specify 1 to 50 tag keys. Each tag key must be 1 to 128 characters long.
+        -- You can't specify both IncludedTagKeys and
+        -- ExcludedTagKeys.
+        IncludedTagKeys: {string}
+        -- The tag keys to exclude. All of the alarm's tags except those with these keys are
+        -- included.
+        -- You can specify 1 to 50 tag keys. Each tag key must be 1 to 128 characters long.
+        -- You can't specify both IncludedTagKeys and
+        -- ExcludedTagKeys.
+        ExcludedTagKeys: {string}
+    end
+
+    -- Settings that change the content of the notifications and events that an alarm sends
+    -- when its state changes. These settings apply to the alarm's actions, whichever state
+    -- triggers them.
+    record ActionConfiguration
+        -- Settings for including the alarm's tags in its action notifications and
+        -- state-change events.
+        AlarmTagsPropagation: AlarmTagsPropagation
+    end
+
     enum ActionsSuppressedBy
         "WaitPeriod"
         "ExtensionPeriod"
@@ -552,6 +592,10 @@ local record M
         -- ExtensionPeriod is required only when ActionsSuppressor is
         -- specified.
         ActionsSuppressorExtensionPeriod: number
+        -- Settings that change the content of the notifications and events that the alarm
+        -- sends when its state changes. These settings apply to the alarm's actions, whichever
+        -- state triggers them.
+        ActionConfiguration: ActionConfiguration
     end
 
     -- More than one process tried to modify a resource at the same time.
@@ -1032,6 +1076,10 @@ local record M
         -- For more information, see Alarm warm-up
         -- periods in the Amazon CloudWatch User Guide.
         WarmUpConfiguration: WarmUpConfiguration
+        -- Settings that change the content of the notifications and events that the alarm
+        -- sends when its state changes. These settings apply to the alarm's actions, whichever
+        -- state triggers them.
+        ActionConfiguration: ActionConfiguration
     end
 
     -- The evaluation criteria for an alarm. This is a union type that currently supports
@@ -1208,6 +1256,10 @@ local record M
         EvaluationCriteria: EvaluationCriteria
         -- The frequency, in seconds, at which the alarm is evaluated.
         EvaluationInterval: number
+        -- Settings that change the content of the notifications and events that the alarm
+        -- sends when its state changes. These settings apply to the alarm's actions, whichever
+        -- state triggers them.
+        ActionConfiguration: ActionConfiguration
     end
 
     record DescribeAlarmsOutput
@@ -2584,6 +2636,10 @@ local record M
         -- ExtensionPeriod is required only when ActionsSuppressor is
         -- specified.
         ActionsSuppressorExtensionPeriod: number
+        -- Settings that change the content of the notifications and events that the alarm
+        -- sends when its state changes. These settings apply to the alarm's actions, whichever
+        -- state triggers them.
+        ActionConfiguration: ActionConfiguration
     end
 
     record PutCompositeAlarmOutput
@@ -2730,6 +2786,10 @@ local record M
         -- For more information, see Alarm warm-up
         -- periods in the Amazon CloudWatch User Guide.
         WarmUpConfiguration: WarmUpConfiguration
+        -- Settings that change the content of the notifications and events that the alarm
+        -- sends when its state changes. These settings apply to the alarm's actions, whichever
+        -- state triggers them.
+        ActionConfiguration: ActionConfiguration
     end
 
     record PutLogAlarmOutput
@@ -3049,6 +3109,10 @@ local record M
         -- cannot be specified for alarms configured with MetricName or
         -- Metrics.
         EvaluationInterval: number
+        -- Settings that change the content of the notifications and events that the alarm
+        -- sends when its state changes. These settings apply to the alarm's actions, whichever
+        -- state triggers them.
+        ActionConfiguration: ActionConfiguration
     end
 
     record PutMetricAlarmOutput

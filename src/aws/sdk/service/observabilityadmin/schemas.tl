@@ -317,6 +317,12 @@ M.DestinationLogsConfiguration = schema.new({
             target_id = id.from(_N, "TagPropagationConfiguration"),
             target = M.TagPropagationConfiguration,
         }),
+        LogGroupDeletionProtection = schema.new({
+            id = id.from(_N, "DestinationLogsConfiguration", "LogGroupDeletionProtection"),
+            type = "string",
+            name = "LogGroupDeletionProtection",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

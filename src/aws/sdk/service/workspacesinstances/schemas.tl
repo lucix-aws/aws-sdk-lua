@@ -1971,6 +1971,129 @@ M.ListWorkspaceInstancesOutput = schema.new({
     },
 })
 
+M.ModifyVolumeInput = schema.new({
+    id = id.from(_N, "ModifyVolumeRequest"),
+    type = "structure",
+    members = {
+        VolumeId = schema.new({
+            id = id.from(_N, "ModifyVolumeInput", "VolumeId"),
+            type = "string",
+            name = "VolumeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SizeInGB = schema.new({
+            id = id.from(_N, "ModifyVolumeInput", "SizeInGB"),
+            type = "integer",
+            name = "SizeInGB",
+            target_id = prelude.Integer.id,
+        }),
+        VolumeType = schema.new({
+            id = id.from(_N, "ModifyVolumeInput", "VolumeType"),
+            type = "string",
+            name = "VolumeType",
+            target_id = prelude.String.id,
+        }),
+        Iops = schema.new({
+            id = id.from(_N, "ModifyVolumeInput", "Iops"),
+            type = "integer",
+            name = "Iops",
+            target_id = prelude.Integer.id,
+        }),
+        Throughput = schema.new({
+            id = id.from(_N, "ModifyVolumeInput", "Throughput"),
+            type = "integer",
+            name = "Throughput",
+            target_id = prelude.Integer.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "ModifyVolumeInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.ModifyVolumeOutput = schema.new({
+    id = id.from(_N, "ModifyVolumeResponse"),
+    type = "structure",
+    members = {
+        VolumeId = schema.new({
+            id = id.from(_N, "ModifyVolumeOutput", "VolumeId"),
+            type = "string",
+            name = "VolumeId",
+            target_id = prelude.String.id,
+        }),
+        TargetSize = schema.new({
+            id = id.from(_N, "ModifyVolumeOutput", "TargetSize"),
+            type = "integer",
+            name = "TargetSize",
+            target_id = prelude.Integer.id,
+        }),
+        TargetVolumeType = schema.new({
+            id = id.from(_N, "ModifyVolumeOutput", "TargetVolumeType"),
+            type = "string",
+            name = "TargetVolumeType",
+            target_id = prelude.String.id,
+        }),
+        TargetIops = schema.new({
+            id = id.from(_N, "ModifyVolumeOutput", "TargetIops"),
+            type = "integer",
+            name = "TargetIops",
+            target_id = prelude.Integer.id,
+        }),
+        TargetThroughput = schema.new({
+            id = id.from(_N, "ModifyVolumeOutput", "TargetThroughput"),
+            type = "integer",
+            name = "TargetThroughput",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.VolumeModificationRateExceededException = schema.new({
+    id = id.from(_N, "VolumeModificationRateExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "VolumeModificationRateExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "VolumeModificationRateExceededException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "VolumeModificationRateExceededException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
     type = "structure",
@@ -2172,6 +2295,17 @@ M.ListWorkspaceInstances = schema.operation({
     id = id.from("com.amazonaws.workspacesinstances", "ListWorkspaceInstances"),
     input = M.ListWorkspaceInstancesInput,
     output = M.ListWorkspaceInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyVolume = schema.operation({
+    id = id.from("com.amazonaws.workspacesinstances", "ModifyVolume"),
+    input = M.ModifyVolumeInput,
+    output = M.ModifyVolumeOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

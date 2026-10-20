@@ -138,6 +138,8 @@ M.DeploymentLifecycleHookList = schema.new({ type = "list", list_member = M.Depl
 
 M.ServiceConnectServiceList = schema.new({ type = "list", list_member = M.ServiceConnectService })
 
+M.ServiceConnectContainerConfigurations = schema.new({ type = "list", list_member = M.ServiceConnectContainerConfiguration })
+
 M.MetricConfigurationList = schema.new({ type = "list", list_member = M.MetricConfiguration })
 
 M.Deployments = schema.new({ type = "list", list_member = M.Deployment })
@@ -8840,6 +8842,19 @@ M.ServiceConnectAccessLogConfiguration = schema.new({
     },
 })
 
+M.ServiceConnectContainerConfiguration = schema.new({
+    id = id.from(_N, "ServiceConnectContainerConfiguration"),
+    type = "union",
+    members = {
+        logLevel = schema.new({
+            id = id.from(_N, "ServiceConnectContainerConfiguration", "logLevel"),
+            type = "string",
+            name = "logLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ServiceConnectTestTrafficHeaderMatchRules = schema.new({
     id = id.from(_N, "ServiceConnectTestTrafficHeaderMatchRules"),
     type = "structure",
@@ -9075,6 +9090,13 @@ M.ServiceConnectConfiguration = schema.new({
             name = "accessLogConfiguration",
             target_id = id.from(_N, "ServiceConnectAccessLogConfiguration"),
             target = M.ServiceConnectAccessLogConfiguration,
+        }),
+        containerConfigurations = schema.new({
+            id = id.from(_N, "ServiceConnectConfiguration", "containerConfigurations"),
+            type = "list",
+            name = "containerConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ServiceConnectContainerConfiguration,
         }),
     },
 })

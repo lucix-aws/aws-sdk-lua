@@ -29,6 +29,7 @@ local record Client
     listRegions: function(Client, types.ListRegionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegionsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listWorkspaceInstances: function(Client, types.ListWorkspaceInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkspaceInstancesOutput>
+    modifyVolume: function(Client, types.ModifyVolumeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVolumeOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
@@ -117,6 +118,10 @@ end
 
 function C:listWorkspaceInstances(input: types.ListWorkspaceInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkspaceInstancesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkspaceInstances as schema.OperationSchema, input, options) as async.Operation<types.ListWorkspaceInstancesOutput>
+end
+
+function C:modifyVolume(input: types.ModifyVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVolume as schema.OperationSchema, input, options) as async.Operation<types.ModifyVolumeOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

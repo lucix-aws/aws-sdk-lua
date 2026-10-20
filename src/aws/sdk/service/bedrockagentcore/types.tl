@@ -1776,6 +1776,70 @@ local record M
         failures: {FailureCategoryCluster}
     end
 
+    enum FindingTargetType
+        "SPAN_ID"
+        "TRACE_ID"
+        "SPAN_NAME"
+    end
+
+    -- A failure found in a session.
+    record SessionFinding
+        -- The identifier or name of the location in the session where the failure was found, interpreted according to targetType.
+        targetId: string
+        -- The type of location that targetId refers to.
+        targetType: string
+        -- A description of the failure.
+        description: string
+        -- The category of the failure.
+        category: string
+        -- The confidence that the finding is a failure, from 0 to 1.
+        confidence: number
+    end
+
+    -- A session affected by an insight or root cause. Use the session ID to find the per-session evaluation results in CloudWatch Logs.
+    record SampleSession
+        -- The unique identifier of the session.
+        sessionId: string
+        -- The latest timestamp observed for the session in the batch evaluation input.
+        lastSeenAt: number
+        -- The failures found in the session that belong to the insight or root cause, up to 10.
+        findings: {SessionFinding}
+    end
+
+    -- A root cause that contributes to an insight.
+    record InsightRootCause
+        -- A generated label for the root cause.
+        name: string
+        -- An explanation of how the root cause leads to the failures in the insight.
+        explanation: string
+        -- The number of distinct sessions affected by the root cause. A session can be affected by more than one root cause of the same insight.
+        affectedSessionCount: number
+        -- A suggested change to the agent that addresses the root cause.
+        suggestedFix: string
+        -- A sample of up to 10 sessions affected by the root cause.
+        sampleSessions: {SampleSession}
+    end
+
+    enum InsightType
+        "FAILURE"
+    end
+
+    -- An insight that groups related failures found across the sessions in a batch evaluation.
+    record InsightResult
+        -- A generated label for the insight. The name is not an identifier and can differ between batch evaluations.
+        name: string
+        -- A description of the failure pattern that the insight represents.
+        description: string
+        -- The timestamp when the insight was generated.
+        createdAt: number
+        -- The number of distinct sessions affected by the insight.
+        affectedSessionCount: number
+        -- A sample of up to 10 sessions affected by the insight. Returned only when the insight has no root causes. Otherwise, sample sessions are returned for each root cause.
+        sampleSessions: {SampleSession}
+        -- The root causes identified for the insight.
+        rootCauses: {InsightRootCause}
+    end
+
     -- A reference to an insight analysis to run against sessions during batch evaluation. Insights provide deeper analysis beyond individual evaluator scores, including failure detection, user intent clustering, and execution summarization.
     record Insight
         -- The unique identifier of the insight to run.
@@ -1854,6 +1918,8 @@ local record M
         outputConfig: OutputConfig
         -- The aggregated evaluation results, including session completion counts and evaluator score summaries.
         evaluationResults: EvaluationJobResults
+        -- The insights generated when the batch evaluation includes the Builtin.FailureAnalysis evaluator. Each insight groups related failures found across the evaluated sessions. An empty list means that no failures were found. If the analysis fails, this field is omitted and errorDetails describes the error.
+        insightResults: {InsightResult}
         -- The failure analysis results from insights, containing categorized failure clusters with root causes and recommendations.
         failureAnalysisResult: FailureAnalysisResultContent
         -- The user intent clustering results from insights, containing grouped user intents across evaluated sessions.
@@ -2939,7 +3005,7 @@ local record M
         awsIam: Unit
         -- No authentication.
         none: Unit
-        -- OAuth 2.0 authentication via AgentCore Identity.
+        -- OAuth 2.0 authentication via AgentCore Identity. The AUTHORIZATION_CODE grant type is not supported for outbound authentication from a harness to an AgentCore Gateway, even when defaultReturnUrl is specified.
         oauth: OAuthCredentialProvider
     end
 
@@ -3812,7 +3878,7 @@ local record M
     record ListMemoryRecordsInput
         -- The identifier of the AgentCore Memory resource for which to list memory records.
         memoryId: string
-        -- The namespace prefix to filter memory records by. Returns all memory records in namespaces that start with the provided prefix. Either namespace or namespacePath is required.
+        -- The exact namespace to filter memory records by. Returns all memory records that matches the provided namespace. Either namespace or namespacePath is required.
         namespace: string
         -- Use namespacePath for hierarchical retrievals. Return all memory records where namespace falls under the same parent hierarchy. Either namespace or namespacePath is required.
         namespacePath: string
@@ -3908,7 +3974,7 @@ local record M
     record RetrieveMemoryRecordsInput
         -- The identifier of the AgentCore Memory resource from which to retrieve memory records.
         memoryId: string
-        -- The namespace prefix to filter memory records by. Searches for memory records in namespaces that start with the provided prefix. Either namespace or namespacePath is required.
+        -- The exact namespace to filter memory records by. Searches for memory records that matches the provided namespace value. Either namespace or namespacePath is required.
         namespace: string
         -- Use namespacePath for hierarchical retrievals. Return all memory records where namespace falls under the same parent hierarchy. Either namespace or namespacePath is required.
         namespacePath: string

@@ -4331,6 +4331,32 @@ M.InfluxDBv3EnterpriseParameters = schema.new({
             target_id = id.from(_N, "Duration"),
             target = M.Duration,
         }),
+        upgradePachaTree = schema.new({
+            id = id.from(_N, "InfluxDBv3EnterpriseParameters", "upgradePachaTree"),
+            type = "boolean",
+            name = "upgradePachaTree",
+            target_id = prelude.Boolean.id,
+        }),
+        walBufferSize = schema.new({
+            id = id.from(_N, "InfluxDBv3EnterpriseParameters", "walBufferSize"),
+            type = "long",
+            name = "walBufferSize",
+            target_id = prelude.Long.id,
+        }),
+        snapshotSize = schema.new({
+            id = id.from(_N, "InfluxDBv3EnterpriseParameters", "snapshotSize"),
+            type = "union",
+            name = "snapshotSize",
+            target_id = id.from(_N, "PercentOrAbsoluteLong"),
+            target = M.PercentOrAbsoluteLong,
+        }),
+        snapshotDuration = schema.new({
+            id = id.from(_N, "InfluxDBv3EnterpriseParameters", "snapshotDuration"),
+            type = "structure",
+            name = "snapshotDuration",
+            target_id = id.from(_N, "Duration"),
+            target = M.Duration,
+        }),
     },
 })
 

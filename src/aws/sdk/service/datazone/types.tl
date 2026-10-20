@@ -1840,6 +1840,9 @@ local record M
         "SQLSERVER"
         "TERADATA"
         "VERTICA"
+        "ICEBERGRESTCATALOG"
+        "SNOWFLAKEICEBERGRESTCATALOG"
+        "DATABRICKSICEBERGRESTCATALOG"
     end
 
     -- Physical connection requirements of a connection.
@@ -2646,6 +2649,9 @@ local record M
         "MLFLOW"
         "VPC"
         "GIT"
+        "ICEBERGRESTCATALOG"
+        "SNOWFLAKEICEBERGRESTCATALOG"
+        "DATABRICKSICEBERGRESTCATALOG"
     end
 
     -- The Amazon Web Services Glue connection.

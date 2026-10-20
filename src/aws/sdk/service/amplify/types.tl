@@ -51,7 +51,8 @@ local record M
 
     -- Describes the cache configuration for an Amplify app.
     -- For more information about how Amplify applies an optimal cache
-    -- configuration for your app based on the type of content that is being served, see Managing cache configuration in the Amplify User
+    -- configuration for your app based on the type of content that is being served, see Managing cache configuration in the
+    -- Amplify User
     -- guide.
     record CacheConfig
     end
@@ -88,7 +89,8 @@ local record M
     -- Describes the configuration details that apply to the jobs for an Amplify app.
     -- Use JobConfig to apply configuration to jobs, such as customizing the build instance size when you create or
     -- update an Amplify app. For more information about customizable build
-    -- instances, see Custom build instances in the Amplify User Guide.
+    -- instances, see Custom build instances in the
+    -- Amplify User Guide.
     record JobConfig
         -- Specifies the size of the build instance. Amplify supports three
         -- instance sizes: STANDARD_8GB, LARGE_16GB, and
@@ -139,7 +141,8 @@ local record M
         -- The SSR Compute role allows the Amplify Hosting compute service to
         -- securely access specific Amazon Web Services resources based on the role's permissions.
         -- For more information about the SSR Compute role, see Adding an SSR Compute
-        -- role in the Amplify User Guide.
+        -- role in the
+        -- Amplify User Guide.
         computeRoleArn: string
         -- The Amazon Resource Name (ARN) of the IAM service role for the Amplify app.
         iamServiceRoleArn: string
@@ -236,7 +239,8 @@ local record M
     -- Firewall support enables you to protect your web applications with a direct integration
     -- with WAF. For more information about using WAF protections
     -- for an Amplify application, see Firewall support for hosted
-    -- sites in the Amplify User Guide.
+    -- sites in the
+    -- Amplify User Guide.
     record WafConfiguration
         -- The Amazon Resource Name (ARN) for the web ACL associated with an Amplify app.
         webAclArn: string
@@ -276,7 +280,8 @@ local record M
         -- Compute role allows the Amplify Hosting compute service to securely
         -- access specific Amazon Web Services resources based on the role's permissions. For more
         -- information about the SSR Compute role, see Adding an SSR Compute
-        -- role in the Amplify User Guide.
+        -- role in the
+        -- Amplify User Guide.
         computeRoleArn: string
         -- The Amazon Resource Name (ARN) of the IAM service role for the Amplify app.
         iamServiceRoleArn: string
@@ -433,7 +438,8 @@ local record M
         -- eliminate version skew issues between client and servers in web applications. When you
         -- apply skew protection to a branch, you can ensure that your clients always interact with
         -- the correct version of server-side assets, regardless of when a deployment occurs. For
-        -- more information about skew protection, see Skew protection for Amplify deployments in the Amplify User
+        -- more information about skew protection, see Skew protection for Amplify deployments in the
+        -- Amplify User
         -- Guide.
         enableSkewProtection: boolean
         -- The environment variables for the branch.
@@ -476,7 +482,8 @@ local record M
         -- The Amazon Resource Name (ARN) of the IAM role to assign to a branch of
         -- an SSR app. The SSR Compute role allows the Amplify Hosting compute
         -- service to securely access specific Amazon Web Services resources based on the role's
-        -- permissions. For more information about the SSR Compute role, see Adding an SSR Compute role in the Amplify User
+        -- permissions. For more information about the SSR Compute role, see Adding an SSR Compute role in the
+        -- Amplify User
         -- Guide.
         computeRoleArn: string
     end
@@ -510,7 +517,8 @@ local record M
         -- eliminate version skew issues between client and servers in web applications. When you
         -- apply skew protection to a branch, you can ensure that your clients always interact with
         -- the correct version of server-side assets, regardless of when a deployment occurs. For
-        -- more information about skew protection, see Skew protection for Amplify deployments in the Amplify User
+        -- more information about skew protection, see Skew protection for Amplify deployments in the
+        -- Amplify User
         -- Guide.
         enableSkewProtection: boolean
         -- The custom domains for a branch of an Amplify app.
@@ -558,7 +566,8 @@ local record M
         -- app. The Compute role allows the Amplify Hosting compute service to
         -- securely access specific Amazon Web Services resources based on the role's permissions.
         -- For more information about the SSR Compute role, see Adding an SSR Compute
-        -- role in the Amplify User Guide.
+        -- role in the
+        -- Amplify User Guide.
         computeRoleArn: string
     end
 
@@ -720,7 +729,8 @@ local record M
         -- subdomains to be propagated. If your custom domain is on Route 53,
         -- Amplify handles this for you automatically. For more
         -- information about custom domains, see Setting up custom
-        -- domains in the Amplify Hosting User
+        -- domains in the
+        -- Amplify Hosting User
         -- Guide.
         -- UPDATE_COMPLETE
         -- The certificate has been associated with a domain.
@@ -1366,7 +1376,8 @@ local record M
         -- The SSR Compute role allows the Amplify Hosting compute service to
         -- securely access specific Amazon Web Services resources based on the role's permissions.
         -- For more information about the SSR Compute role, see Adding an SSR Compute
-        -- role in the Amplify User Guide.
+        -- role in the
+        -- Amplify User Guide.
         computeRoleArn: string
         -- The Amazon Resource Name (ARN) of the IAM service role for the Amplify app.
         iamServiceRoleArn: string
@@ -1456,7 +1467,8 @@ local record M
         -- eliminate version skew issues between client and servers in web applications. When you
         -- apply skew protection to a branch, you can ensure that your clients always interact with
         -- the correct version of server-side assets, regardless of when a deployment occurs. For
-        -- more information about skew protection, see Skew protection for Amplify deployments in the Amplify User
+        -- more information about skew protection, see Skew protection for Amplify deployments in the
+        -- Amplify User
         -- Guide.
         enableSkewProtection: boolean
         -- The environment variables for the branch.
@@ -1497,7 +1509,8 @@ local record M
         -- The Amazon Resource Name (ARN) of the IAM role to assign to a branch of
         -- an SSR app. The SSR Compute role allows the Amplify Hosting compute
         -- service to securely access specific Amazon Web Services resources based on the role's
-        -- permissions. For more information about the SSR Compute role, see Adding an SSR Compute role in the Amplify User
+        -- permissions. For more information about the SSR Compute role, see Adding an SSR Compute role in the
+        -- Amplify User
         -- Guide.
         computeRoleArn: string
     end

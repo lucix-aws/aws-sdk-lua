@@ -20180,6 +20180,15 @@ M.GetAttachedFileInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "associatedResourceArn" },
             },
         }),
+        UrlContentDisposition = schema.new({
+            id = id.from(_N, "GetAttachedFileInput", "UrlContentDisposition"),
+            type = "string",
+            name = "UrlContentDisposition",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "urlContentDisposition" },
+            },
+        }),
     },
 })
 

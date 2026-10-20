@@ -1233,6 +1233,7 @@ local record M
         "Policy-Min-TLS-1-2-2019-07"
         "Policy-Min-TLS-1-2-PFS-2023-10"
         "Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08"
+        "Policy-Min-TLS-1-2-FIPS-PQ-2026-10"
     end
 
     -- Options to configure a custom endpoint for an OpenSearch Service domain.
@@ -1250,6 +1251,8 @@ local record M
         -- secrecy cipher suites
         -- Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08: TLS
         -- security policy that supports TLS version 1.3 with FIPS
+        -- Policy-Min-TLS-1-2-FIPS-PQ-2026-10: TLS
+        -- security policy that supports TLS version 1.2 to TLS version 1.3 with FIPS and post-quantum cipher suites
         TLSSecurityPolicy: string
         -- Whether to enable a custom endpoint for the domain.
         CustomEndpointEnabled: boolean

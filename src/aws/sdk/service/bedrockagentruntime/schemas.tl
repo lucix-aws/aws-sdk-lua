@@ -1285,6 +1285,28 @@ M.AgenticRetrieveAction = schema.new({
     },
 })
 
+M.AgenticRetrieveAppliedInstruction = schema.new({
+    id = id.from(_N, "AgenticRetrieveAppliedInstruction"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "AgenticRetrieveAppliedInstruction", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        version = schema.new({
+            id = id.from(_N, "AgenticRetrieveAppliedInstruction", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AgenticRetrieveBedrockGuardrailConfiguration = schema.new({
     id = id.from(_N, "AgenticRetrieveBedrockGuardrailConfiguration"),
     type = "structure",
@@ -1638,6 +1660,28 @@ M.AgenticRetrieveGuardrailWarning = schema.new({
             id = id.from(_N, "AgenticRetrieveGuardrailWarning", "message"),
             type = "string",
             name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveInstructionConfiguration = schema.new({
+    id = id.from(_N, "AgenticRetrieveInstructionConfiguration"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "AgenticRetrieveInstructionConfiguration", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        version = schema.new({
+            id = id.from(_N, "AgenticRetrieveInstructionConfiguration", "version"),
+            type = "string",
+            name = "version",
             target_id = prelude.String.id,
         }),
     },
@@ -2298,6 +2342,13 @@ M.AgenticRetrieveTraceEventAttributes = schema.new({
             name = "retrievalResponse",
             target_id = prelude.Document.id,
             list_member = M.AgenticRetrieveTraceResultItem,
+        }),
+        appliedInstruction = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "appliedInstruction"),
+            type = "structure",
+            name = "appliedInstruction",
+            target_id = id.from(_N, "AgenticRetrieveAppliedInstruction"),
+            target = M.AgenticRetrieveAppliedInstruction,
         }),
     },
 })
@@ -10781,6 +10832,13 @@ M.AgenticRetrieveStreamInput = schema.new({
             name = "memoryConfiguration",
             target_id = id.from(_N, "AgenticRetrieveMemoryConfiguration"),
             target = M.AgenticRetrieveMemoryConfiguration,
+        }),
+        retrievalInstructionConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "retrievalInstructionConfiguration"),
+            type = "structure",
+            name = "retrievalInstructionConfiguration",
+            target_id = id.from(_N, "AgenticRetrieveInstructionConfiguration"),
+            target = M.AgenticRetrieveInstructionConfiguration,
         }),
         generateResponse = schema.new({
             id = id.from(_N, "AgenticRetrieveStreamInput", "generateResponse"),

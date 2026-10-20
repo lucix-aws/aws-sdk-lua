@@ -56,6 +56,8 @@ M.EvaluatorList = schema.new({ type = "list", list_member = M.Evaluator })
 
 M.InsightList = schema.new({ type = "list", list_member = M.Insight })
 
+M.InsightResultList = schema.new({ type = "list", list_member = M.InsightResult })
+
 M.ABTestSummaryList = schema.new({ type = "list", list_member = M.ABTestSummary })
 
 M.BatchEvaluationSummaryList = schema.new({ type = "list", list_member = M.BatchEvaluationSummary })
@@ -148,6 +150,10 @@ M.LogGroupNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LogGroupNamePrefixList = schema.new({ type = "list", list_member = prelude.String })
 
+M.InsightSampleSessionList = schema.new({ type = "list", list_member = M.SampleSession })
+
+M.InsightRootCauseList = schema.new({ type = "list", list_member = M.InsightRootCause })
+
 M.ToolDescriptionResultList = schema.new({ type = "list", list_member = M.ToolDescriptionOutput })
 
 M.IngestPayloadList = schema.new({ type = "list", list_member = M.IngestPayloadType })
@@ -181,6 +187,8 @@ M.StringValueList = schema.new({ type = "list", list_member = prelude.String })
 M.MessagesList = schema.new({ type = "list", list_member = M.MessageMetadata })
 
 M.HttpHeadersMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.SessionFindingList = schema.new({ type = "list", list_member = M.SessionFinding })
 
 M.LogGroupArnList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -5722,6 +5730,186 @@ M.FailureAnalysisResultContent = schema.new({
     },
 })
 
+M.SessionFinding = schema.new({
+    id = id.from(_N, "SessionFinding"),
+    type = "structure",
+    members = {
+        targetId = schema.new({
+            id = id.from(_N, "SessionFinding", "targetId"),
+            type = "string",
+            name = "targetId",
+            target_id = prelude.String.id,
+        }),
+        targetType = schema.new({
+            id = id.from(_N, "SessionFinding", "targetType"),
+            type = "string",
+            name = "targetType",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "SessionFinding", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        category = schema.new({
+            id = id.from(_N, "SessionFinding", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+        }),
+        confidence = schema.new({
+            id = id.from(_N, "SessionFinding", "confidence"),
+            type = "double",
+            name = "confidence",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.SampleSession = schema.new({
+    id = id.from(_N, "SampleSession"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "SampleSession", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastSeenAt = schema.new({
+            id = id.from(_N, "SampleSession", "lastSeenAt"),
+            type = "timestamp",
+            name = "lastSeenAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        findings = schema.new({
+            id = id.from(_N, "SampleSession", "findings"),
+            type = "list",
+            name = "findings",
+            target_id = prelude.Document.id,
+            list_member = M.SessionFinding,
+        }),
+    },
+})
+
+M.InsightRootCause = schema.new({
+    id = id.from(_N, "InsightRootCause"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "InsightRootCause", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        explanation = schema.new({
+            id = id.from(_N, "InsightRootCause", "explanation"),
+            type = "string",
+            name = "explanation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessionCount = schema.new({
+            id = id.from(_N, "InsightRootCause", "affectedSessionCount"),
+            type = "integer",
+            name = "affectedSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        suggestedFix = schema.new({
+            id = id.from(_N, "InsightRootCause", "suggestedFix"),
+            type = "string",
+            name = "suggestedFix",
+            target_id = prelude.String.id,
+        }),
+        sampleSessions = schema.new({
+            id = id.from(_N, "InsightRootCause", "sampleSessions"),
+            type = "list",
+            name = "sampleSessions",
+            target_id = prelude.Document.id,
+            list_member = M.SampleSession,
+        }),
+    },
+})
+
+M.InsightResult = schema.new({
+    id = id.from(_N, "InsightResult"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "InsightResult", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "InsightResult", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "InsightResult", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "InsightResult", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        affectedSessionCount = schema.new({
+            id = id.from(_N, "InsightResult", "affectedSessionCount"),
+            type = "integer",
+            name = "affectedSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        sampleSessions = schema.new({
+            id = id.from(_N, "InsightResult", "sampleSessions"),
+            type = "list",
+            name = "sampleSessions",
+            target_id = prelude.Document.id,
+            list_member = M.SampleSession,
+        }),
+        rootCauses = schema.new({
+            id = id.from(_N, "InsightResult", "rootCauses"),
+            type = "list",
+            name = "rootCauses",
+            target_id = prelude.Document.id,
+            list_member = M.InsightRootCause,
+        }),
+    },
+})
+
 M.Insight = schema.new({
     id = id.from(_N, "Insight"),
     type = "structure",
@@ -5972,6 +6160,13 @@ M.GetBatchEvaluationOutput = schema.new({
             name = "evaluationResults",
             target_id = id.from(_N, "EvaluationJobResults"),
             target = M.EvaluationJobResults,
+        }),
+        insightResults = schema.new({
+            id = id.from(_N, "GetBatchEvaluationOutput", "insightResults"),
+            type = "list",
+            name = "insightResults",
+            target_id = prelude.Document.id,
+            list_member = M.InsightResult,
         }),
         failureAnalysisResult = schema.new({
             id = id.from(_N, "GetBatchEvaluationOutput", "failureAnalysisResult"),

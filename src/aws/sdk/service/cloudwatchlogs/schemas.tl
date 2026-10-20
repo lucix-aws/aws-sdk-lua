@@ -30,9 +30,15 @@ M.DeliveryDestinationTypes = schema.new({ type = "list", list_member = prelude.S
 
 M.ConfigurationTemplates = schema.new({ type = "list", list_member = M.ConfigurationTemplate })
 
+M.DeliverySourceNames = schema.new({ type = "list", list_member = prelude.String })
+
 M.Deliveries = schema.new({ type = "list", list_member = M.Delivery })
 
+M.DeliveryDestinationNames = schema.new({ type = "list", list_member = prelude.String })
+
 M.DeliveryDestinations = schema.new({ type = "list", list_member = M.DeliveryDestination })
+
+M.FilterResourceArns = schema.new({ type = "list", list_member = prelude.String })
 
 M.DeliverySources = schema.new({ type = "list", list_member = M.DeliverySource })
 
@@ -2935,6 +2941,13 @@ M.DescribeDeliveriesInput = schema.new({
             name = "limit",
             target_id = prelude.Integer.id,
         }),
+        deliverySourceNames = schema.new({
+            id = id.from(_N, "DescribeDeliveriesInput", "deliverySourceNames"),
+            type = "list",
+            name = "deliverySourceNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -2974,6 +2987,13 @@ M.DescribeDeliveryDestinationsInput = schema.new({
             name = "limit",
             target_id = prelude.Integer.id,
         }),
+        names = schema.new({
+            id = id.from(_N, "DescribeDeliveryDestinationsInput", "names"),
+            type = "list",
+            name = "names",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -3012,6 +3032,13 @@ M.DescribeDeliverySourcesInput = schema.new({
             type = "integer",
             name = "limit",
             target_id = prelude.Integer.id,
+        }),
+        resourceArns = schema.new({
+            id = id.from(_N, "DescribeDeliverySourcesInput", "resourceArns"),
+            type = "list",
+            name = "resourceArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

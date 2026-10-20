@@ -203,6 +203,13 @@ local record M
         terminationHook: string
     end
 
+    enum AutoScalingGroupProcess
+        "Terminate"
+        "AZRebalance"
+        "InstanceRefresh"
+        "ScheduledActions"
+    end
+
     -- Information about the location of application artifacts stored in GitHub.
     record GitHubLocation
         -- The GitHub account and repository pair that stores a reference to the commit that
@@ -481,6 +488,32 @@ local record M
         deploymentOption: string
     end
 
+    -- Options that control how CodeDeploy manages Amazon EC2 Auto Scaling groups
+    -- during a deployment.
+    record EC2DeploymentOptions
+        -- The Amazon EC2 Auto Scaling processes to suspend during the deployment.
+        -- CodeDeploy suspends these processes before it deploys to instances in an
+        -- Auto Scaling group, and resumes them when the deployment succeeds, fails, or is
+        -- stopped. Valid values are Terminate, AZRebalance,
+        -- InstanceRefresh, and ScheduledActions.
+        -- This parameter applies only to in-place deployments on the EC2/On-premises compute
+        -- platform. If the list is empty, or if the deployment does not target instances in an
+        -- Auto Scaling group, no processes are suspended.
+        -- The service role for the deployment group must have permission to call
+        -- autoscaling:SuspendProcesses and autoscaling:ResumeProcesses
+        -- on the target Auto Scaling groups. If the processes cannot be suspended, the
+        -- deployment fails before any instance is updated.
+        -- If you suspend ScheduledActions, scheduled actions with a start time
+        -- during the deployment are skipped and do not run after the process resumes.
+        -- If CodeDeploy cannot resume the processes, the deployment fails and the
+        -- processes stay suspended until you resume them with the Auto Scaling
+        -- ResumeProcesses action. While Terminate is suspended,
+        -- Auto Scaling does not replace unhealthy instances. If you suspend
+        -- Terminate, configure a trigger that notifies you when a deployment
+        -- fails.
+        autoScalingGroupProcessesToSuspend: {string}
+    end
+
     enum EC2TagFilterType
         "KEY_ONLY"
         "VALUE_ONLY"
@@ -738,6 +771,7 @@ local record M
         -- deployment groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified as an Amazon ECS cluster and service name
         -- pair using the format :.
         ecsServices: {ECSService}
+        ec2DeploymentOptions: EC2DeploymentOptions
         -- Indicates whether the deployment group was configured to have CodeDeploy
         -- install a termination hook into an Auto Scaling group.
         -- For more information about the termination hook, see How Amazon EC2 Auto Scaling works with CodeDeploy in the
@@ -1199,6 +1233,7 @@ local record M
         externalId: string
         relatedDeployments: RelatedDeployments
         overrideAlarmConfiguration: AlarmConfiguration
+        ec2DeploymentOptions: EC2DeploymentOptions
     end
 
     -- Represents the output of a BatchGetDeployments operation.
@@ -1668,6 +1703,7 @@ local record M
         -- UpdateDeploymentGroup
         -- IAM permission when calling CreateDeployment.
         overrideAlarmConfiguration: AlarmConfiguration
+        ec2DeploymentOptions: EC2DeploymentOptions
     end
 
     -- Represents the output of a CreateDeployment operation.
@@ -1717,6 +1753,15 @@ local record M
     -- The Auto Scaling group was specified in an invalid format or does not
     -- exist.
     record InvalidAutoScalingGroupException
+        -- The message that corresponds to the exception thrown by CodeDeploy.
+        message: string
+    end
+
+    -- The autoScalingGroupProcessesToSuspend list in
+    -- ec2DeploymentOptions contains a process that is not valid. Valid values
+    -- are Terminate, AZRebalance, InstanceRefresh,
+    -- and ScheduledActions. Process names are case sensitive.
+    record InvalidAutoScalingGroupProcessToSuspendException
         -- The message that corresponds to the exception thrown by CodeDeploy.
         message: string
     end
@@ -2054,6 +2099,7 @@ local record M
         -- categorize them. Each tag consists of a key and an optional value, both of which you
         -- define.
         tags: {Tag}
+        ec2DeploymentOptions: EC2DeploymentOptions
         -- This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling. For more information, see Integrating
         -- CodeDeploy with Amazon EC2 Auto Scaling in the CodeDeploy User Guide.
         -- Set terminationHookEnabled to true to have CodeDeploy install a termination hook into your Auto Scaling group when you create a
@@ -3066,6 +3112,7 @@ local record M
         -- Information about an on-premises instance tag set. The deployment group includes only
         -- on-premises instances identified by all the tag groups.
         onPremisesTagSet: OnPremisesTagSet
+        ec2DeploymentOptions: EC2DeploymentOptions
         -- This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling. For more information, see Integrating
         -- CodeDeploy with Amazon EC2 Auto Scaling in the CodeDeploy User Guide.
         -- Set terminationHookEnabled to true to have CodeDeploy install a termination hook into your Auto Scaling group when you update a

@@ -1478,6 +1478,7 @@ local record M
         "REJECTED"
         "PROCESSING"
         "FAILED"
+        "DRAFTING"
     end
 
     enum FileUseCaseType
@@ -8011,6 +8012,11 @@ local record M
         NextToken: string
     end
 
+    enum ContentDisposition
+        "INLINE"
+        "ATTACHMENT"
+    end
+
     -- Request to GetAttachedFile API.
     record GetAttachedFileInput
         -- The unique identifier of the Connect Customer instance.
@@ -8022,6 +8028,13 @@ local record M
         -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases, Email, and Task.
         -- This value must be a valid ARN.
         AssociatedResourceArn: string
+        -- Specifies how a browser handles the file at the pre-signed URL. The valid values are the
+        -- following:
+        -- INLINE
+        -- Displays the file in the browser.
+        -- ATTACHMENT
+        -- Downloads the file. This is the default.
+        UrlContentDisposition: string
     end
 
     -- Metadata used to download the attached file.

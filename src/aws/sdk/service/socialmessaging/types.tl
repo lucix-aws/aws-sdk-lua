@@ -451,6 +451,10 @@ local record M
         eventDestinations: {WhatsAppBusinessAccountEventDestination}
         -- The onboarding status for the Marketing Messages API. This value is fetched from Meta and indicates whether the WhatsApp Business Account is onboarded for Meta's Marketing Messages API.
         marketingMessagesOnboardingStatus: string
+        -- The Direct Send enforcement status for the WhatsApp Business Account. Enforcement applies when an account repeatedly sends messages in a category that does not match the content. This field is not present when no enforcement is active.
+        directSendEnforcementStatus: string
+        -- The time when the current Direct Send enforcement is expected to lift. This field is not present for permanent enforcement or when no enforcement is active.
+        directSendEnforcementStatusExpiresAt: number
         -- The Meta Conversions API dataset ID associated with this WhatsApp Business Account. This value is a numeric string of 10 to 20 digits. This field is not present when no dataset has been created for this account.
         datasetId: string
         -- The phone numbers associated with the Linked WhatsApp Business Account.
@@ -790,6 +794,10 @@ local record M
         eventDestinations: {WhatsAppBusinessAccountEventDestination}
         -- The onboarding status for the Marketing Messages API. This value is fetched from Meta and indicates whether the WhatsApp Business Account is onboarded for Meta's Marketing Messages API.
         marketingMessagesOnboardingStatus: string
+        -- The Direct Send enforcement status for the WhatsApp Business Account. Enforcement applies when an account repeatedly sends messages in a category that does not match the content. This field is not present when no enforcement is active.
+        directSendEnforcementStatus: string
+        -- The time when the current Direct Send enforcement is expected to lift. This field is not present for permanent enforcement or when no enforcement is active.
+        directSendEnforcementStatusExpiresAt: number
         -- The Meta Conversions API dataset ID associated with this WhatsApp Business Account. This value is a numeric string of 10 to 20 digits. This field is not present when no dataset has been created for this account.
         datasetId: string
     end
@@ -882,6 +890,10 @@ local record M
         templateLanguage: string
         -- The category of the template (for example, UTILITY or MARKETING).
         templateCategory: string
+        -- The source of the template. A value of AUTO_GENERATED indicates that the template was created automatically from a message that you sent. This field is not present for templates that you created manually.
+        templateSource: string
+        -- The category that the template content actually belongs to, when it differs from the template's current category. This field is present only when the template has been flagged as miscategorized.
+        correctCategory: string
     end
 
     record ListWhatsAppMessageTemplatesOutput

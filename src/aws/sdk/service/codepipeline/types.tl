@@ -152,12 +152,14 @@ local record M
         -- The creator of the action being called. There are three valid values for the
         -- Owner field in the action category section within your pipeline
         -- structure: AWS, ThirdParty, and Custom. For more
-        -- information, see Valid Action Types and Providers in CodePipeline.
+        -- information, see Valid Action Types and Providers in CodePipeline
+        -- .
         owner: string
         -- The provider of the service being called by the action. Valid providers are
         -- determined by the action category. For example, an action in the Deploy category type
         -- might have a provider of CodeDeploy, which would be specified as
-        -- CodeDeploy. For more information, see Valid Action Types and Providers in CodePipeline.
+        -- CodeDeploy. For more information, see Valid Action Types and Providers in CodePipeline
+        -- .
         provider: string
         -- A string that describes the action version.
         version: string
@@ -216,8 +218,10 @@ local record M
         -- The order in which actions are run.
         runOrder: number
         -- The action's configuration. These are key-value pairs that specify input values for
-        -- an action. For more information, see Action Structure Requirements in CodePipeline. For the list of
-        -- configuration properties for the CloudFormation action type in CodePipeline, see Configuration Properties Reference in the CloudFormation
+        -- an action. For more information, see Action Structure Requirements in CodePipeline
+        -- . For the list of
+        -- configuration properties for the CloudFormation action type in CodePipeline, see Configuration Properties Reference in the
+        -- CloudFormation
         -- User Guide. For template snippets with examples, see Using Parameter Override Functions with CodePipeline Pipelines in the
         -- CloudFormation User Guide.
         -- The values can be represented in either JSON or YAML format. For example, the JSON
@@ -820,7 +824,8 @@ local record M
 
     -- The ID for the rule type, which is made up of the combined values for category, owner,
     -- provider, and version. For more information about conditions, see Stage
-    -- conditions. For more information about rules, see the CodePipeline rule reference.
+    -- conditions. For more information about rules, see the
+    -- CodePipeline rule reference.
     record RuleTypeId
         -- A category defines what kind of rule can be run in the stage, and constrains the
         -- provider type for the rule. The valid category is Rule.
@@ -829,7 +834,8 @@ local record M
         -- in the rule category is AWS.
         owner: string
         -- The rule provider, such as the DeploymentWindow rule. For a list of rule
-        -- provider names, see the rules listed in the CodePipeline rule
+        -- provider names, see the rules listed in the
+        -- CodePipeline rule
         -- reference.
         provider: string
         -- A string that describes the rule version.
@@ -841,7 +847,8 @@ local record M
     -- for a test result before allowing the run to enter the deployment stage. For more
     -- information about conditions, see Stage conditions
     -- and How do
-    -- stage conditions work?. For more information about rules, see the CodePipeline rule reference.
+    -- stage conditions work?. For more information about rules, see the
+    -- CodePipeline rule reference.
     record RuleDeclaration
         -- The name of the rule that is created for the condition, such as
         -- VariableCheck.
@@ -870,7 +877,8 @@ local record M
     -- The condition for the stage. A condition is made up of the rules and the result for
     -- the condition. For more information about conditions, see Stage conditions
     -- and How do
-    -- stage conditions work?.. For more information about rules, see the CodePipeline rule reference.
+    -- stage conditions work?.. For more information about rules, see the
+    -- CodePipeline rule reference.
     record Condition
         -- The action to be done when the condition is met. For example, rolling back an
         -- execution for a failure condition.
@@ -1490,7 +1498,8 @@ local record M
         -- You can migrate (update) a polling pipeline to use event-based change detection. For
         -- example, for a pipeline with a CodeCommit source, we recommend you migrate
         -- (update) your pipeline to use CloudWatch Events. To learn more, see Migrate polling
-        -- pipelines to use event-based change detection in the CodePipeline User Guide.
+        -- pipelines to use event-based change detection in the
+        -- CodePipeline User Guide.
         pollingDisabledAt: number
     end
 
@@ -2211,7 +2220,8 @@ local record M
     record RuleExecutionInput
         -- The ID for the rule type, which is made up of the combined values for category, owner,
         -- provider, and version. For more information about conditions, see Stage
-        -- conditions. For more information about rules, see the CodePipeline rule reference.
+        -- conditions. For more information about rules, see the
+        -- CodePipeline rule reference.
         ruleTypeId: RuleTypeId
         -- Configuration data for a rule execution, such as the resolved values for that
         -- run.

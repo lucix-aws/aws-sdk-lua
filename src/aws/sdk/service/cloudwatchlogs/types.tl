@@ -1331,6 +1331,9 @@ local record M
         nextToken: string
         -- Optionally specify the maximum number of deliveries to return in the response.
         limit: number
+        -- An array of delivery source names that filters the results to deliveries associated with
+        -- any specified delivery source.
+        deliverySourceNames: {string}
     end
 
     record DescribeDeliveriesOutput
@@ -1345,6 +1348,9 @@ local record M
         -- Optionally specify the maximum number of delivery destinations to return in the
         -- response.
         limit: number
+        -- An array of delivery destination names that filters the results to delivery destinations
+        -- with any specified name.
+        names: {string}
     end
 
     record DescribeDeliveryDestinationsOutput
@@ -1359,6 +1365,9 @@ local record M
         -- Optionally specify the maximum number of delivery sources to return in the
         -- response.
         limit: number
+        -- An array of Amazon Resource Names (ARNs) that filters the results to delivery sources
+        -- associated with any specified ARN.
+        resourceArns: {string}
     end
 
     record DescribeDeliverySourcesOutput
@@ -4244,14 +4253,18 @@ local record M
         -- INGRESS_ACCESS_LOGS.
         -- For Elemental MediaTailor, the valid values are AD_DECISION_SERVER_LOGS,
         -- MANIFEST_SERVICE_LOGS, and TRANSCODE_LOGS.
+        -- For Amazon ECS, the valid value is ACTION_LOGS.
         -- For Entity Resolution, the valid value is WORKFLOW_LOGS.
+        -- For Amazon EventBridge Event Bus (Custom), the valid values are INFO_LOGS and
+        -- ERROR_LOGS.
         -- For IAM Identity Center, the valid value is
         -- ERROR_LOGS.
         -- For Network Firewall Proxy, the valid values are ALERT_LOGS,
         -- ALLOW_LOGS, and DENY_LOGS.
         -- For Network Load Balancer, the valid value is NLB_ACCESS_LOGS.
         -- For PCS, the valid values are PCS_SCHEDULER_LOGS,
-        -- PCS_JOBCOMP_LOGS, and PCS_SCHEDULER_AUDIT_LOGS.
+        -- PCS_JOBCOMP_LOGS, PCS_SCHEDULER_AUDIT_LOGS, and
+        -- PCS_SCALING_LOGS.
         -- For Amazon Q, the valid values are EVENT_LOGS and
         -- SYNC_JOB_LOGS.
         -- For Amazon Q in Connect AI agents, the valid value is

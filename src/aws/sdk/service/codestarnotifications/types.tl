@@ -34,6 +34,7 @@ local record M
         -- The target type. Can be an Amazon Q Developer in chat applications topic or Amazon Q Developer in chat applications client.
         -- Amazon Q Developer in chat applications topics are specified as SNS.
         -- Amazon Q Developer in chat applications clients are specified as AWSChatbotSlack.
+        -- Amazon Q Developer in chat applications clients for Microsoft Teams are specified as AWSChatbotMicrosoftTeams.
         TargetType: string
         -- The Amazon Resource Name (ARN) of the Amazon Q Developer in chat applications topic or Amazon Q Developer in chat applications client.
         TargetAddress: string
@@ -147,7 +148,8 @@ local record M
         TargetAddress: string
         -- The type of the target (for example, SNS).
         -- Amazon Q Developer in chat applications topics are specified as SNS.
-        -- Amazon Q Developer in chat applications clients are specified as AWSChatbotSlack.
+        -- Amazon Q Developer in chat applications clients for Slack are specified as AWSChatbotSlack.
+        -- Amazon Q Developer in chat applications clients for Microsoft Teams are specified as AWSChatbotMicrosoftTeams.
         TargetType: string
         -- The status of the target.
         TargetStatus: string

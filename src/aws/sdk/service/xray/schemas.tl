@@ -4300,6 +4300,19 @@ M.UpdateSamplingRuleOutput = schema.new({
     },
 })
 
+M.CloudWatchLogsConfiguration = schema.new({
+    id = id.from(_N, "CloudWatchLogsConfiguration"),
+    type = "structure",
+    members = {
+        SpansLogGroupKmsKeyId = schema.new({
+            id = id.from(_N, "CloudWatchLogsConfiguration", "SpansLogGroupKmsKeyId"),
+            type = "string",
+            name = "SpansLogGroupKmsKeyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.UpdateTraceSegmentDestinationInput = schema.new({
     id = id.from(_N, "UpdateTraceSegmentDestinationRequest"),
     type = "structure",
@@ -4309,6 +4322,13 @@ M.UpdateTraceSegmentDestinationInput = schema.new({
             type = "string",
             name = "Destination",
             target_id = prelude.String.id,
+        }),
+        CloudWatchLogsConfiguration = schema.new({
+            id = id.from(_N, "UpdateTraceSegmentDestinationInput", "CloudWatchLogsConfiguration"),
+            type = "structure",
+            name = "CloudWatchLogsConfiguration",
+            target_id = id.from(_N, "CloudWatchLogsConfiguration"),
+            target = M.CloudWatchLogsConfiguration,
         }),
     },
 })

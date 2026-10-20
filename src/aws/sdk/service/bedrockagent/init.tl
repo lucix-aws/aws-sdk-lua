@@ -30,6 +30,8 @@ local record Client
     createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
     createPrompt: function(Client, types.CreatePromptInput, ? base_client.InvokeOptions): async.Operation<types.CreatePromptOutput>
     createPromptVersion: function(Client, types.CreatePromptVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePromptVersionOutput>
+    createRetrievalInstruction: function(Client, types.CreateRetrievalInstructionInput, ? base_client.InvokeOptions): async.Operation<types.CreateRetrievalInstructionOutput>
+    createRetrievalInstructionVersion: function(Client, types.CreateRetrievalInstructionVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateRetrievalInstructionVersionOutput>
     createVpcConfiguration: function(Client, types.CreateVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcConfigurationOutput>
     deleteAgent: function(Client, types.DeleteAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
     deleteAgentActionGroup: function(Client, types.DeleteAgentActionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentActionGroupOutput>
@@ -43,6 +45,7 @@ local record Client
     deleteKnowledgeBaseDocuments: function(Client, types.DeleteKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
     deletePrompt: function(Client, types.DeletePromptInput, ? base_client.InvokeOptions): async.Operation<types.DeletePromptOutput>
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteRetrievalInstruction: function(Client, types.DeleteRetrievalInstructionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRetrievalInstructionOutput>
     deleteVpcConfiguration: function(Client, types.DeleteVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcConfigurationOutput>
     disassociateAgentCollaborator: function(Client, types.DisassociateAgentCollaboratorInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAgentCollaboratorOutput>
     disassociateAgentKnowledgeBase: function(Client, types.DisassociateAgentKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
@@ -61,6 +64,7 @@ local record Client
     getKnowledgeBaseDocuments: function(Client, types.GetKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseDocumentsOutput>
     getPrompt: function(Client, types.GetPromptInput, ? base_client.InvokeOptions): async.Operation<types.GetPromptOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getRetrievalInstruction: function(Client, types.GetRetrievalInstructionInput, ? base_client.InvokeOptions): async.Operation<types.GetRetrievalInstructionOutput>
     getVpcConfiguration: function(Client, types.GetVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetVpcConfigurationOutput>
     ingestKnowledgeBaseDocuments: function(Client, types.IngestKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
     listAgentActionGroups: function(Client, types.ListAgentActionGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentActionGroupsOutput>
@@ -77,6 +81,8 @@ local record Client
     listKnowledgeBaseDocuments: function(Client, types.ListKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.ListKnowledgeBaseDocumentsOutput>
     listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput, ? base_client.InvokeOptions): async.Operation<types.ListKnowledgeBasesOutput>
     listPrompts: function(Client, types.ListPromptsInput, ? base_client.InvokeOptions): async.Operation<types.ListPromptsOutput>
+    listRetrievalInstructions: function(Client, types.ListRetrievalInstructionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRetrievalInstructionsOutput>
+    listRetrievalInstructionVersions: function(Client, types.ListRetrievalInstructionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRetrievalInstructionVersionsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listVpcConfigurations: function(Client, types.ListVpcConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcConfigurationsOutput>
     prepareAgent: function(Client, types.PrepareAgentInput, ? base_client.InvokeOptions): async.Operation<types.PrepareAgentOutput>
@@ -96,6 +102,7 @@ local record Client
     updateFlowAlias: function(Client, types.UpdateFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowAliasOutput>
     updateKnowledgeBase: function(Client, types.UpdateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBaseOutput>
     updatePrompt: function(Client, types.UpdatePromptInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePromptOutput>
+    updateRetrievalInstruction: function(Client, types.UpdateRetrievalInstructionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRetrievalInstructionOutput>
     validateFlowDefinition: function(Client, types.ValidateFlowDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.ValidateFlowDefinitionOutput>
 end
 
@@ -189,6 +196,14 @@ function C:createPromptVersion(input: types.CreatePromptVersionInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePromptVersion as schema.OperationSchema, input, options) as async.Operation<types.CreatePromptVersionOutput>
 end
 
+function C:createRetrievalInstruction(input: types.CreateRetrievalInstructionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRetrievalInstructionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRetrievalInstruction as schema.OperationSchema, input, options) as async.Operation<types.CreateRetrievalInstructionOutput>
+end
+
+function C:createRetrievalInstructionVersion(input: types.CreateRetrievalInstructionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRetrievalInstructionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRetrievalInstructionVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateRetrievalInstructionVersionOutput>
+end
+
 function C:createVpcConfiguration(input: types.CreateVpcConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcConfigurationOutput>
 end
@@ -239,6 +254,10 @@ end
 
 function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+end
+
+function C:deleteRetrievalInstruction(input: types.DeleteRetrievalInstructionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRetrievalInstructionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRetrievalInstruction as schema.OperationSchema, input, options) as async.Operation<types.DeleteRetrievalInstructionOutput>
 end
 
 function C:deleteVpcConfiguration(input: types.DeleteVpcConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcConfigurationOutput>
@@ -313,6 +332,10 @@ function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
+function C:getRetrievalInstruction(input: types.GetRetrievalInstructionInput, options?: base_client.InvokeOptions): async.Operation<types.GetRetrievalInstructionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRetrievalInstruction as schema.OperationSchema, input, options) as async.Operation<types.GetRetrievalInstructionOutput>
+end
+
 function C:getVpcConfiguration(input: types.GetVpcConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpcConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpcConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetVpcConfigurationOutput>
 end
@@ -375,6 +398,14 @@ end
 
 function C:listPrompts(input: types.ListPromptsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPromptsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrompts as schema.OperationSchema, input, options) as async.Operation<types.ListPromptsOutput>
+end
+
+function C:listRetrievalInstructions(input: types.ListRetrievalInstructionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRetrievalInstructionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRetrievalInstructions as schema.OperationSchema, input, options) as async.Operation<types.ListRetrievalInstructionsOutput>
+end
+
+function C:listRetrievalInstructionVersions(input: types.ListRetrievalInstructionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRetrievalInstructionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRetrievalInstructionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListRetrievalInstructionVersionsOutput>
 end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -451,6 +482,10 @@ end
 
 function C:updatePrompt(input: types.UpdatePromptInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePromptOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePrompt as schema.OperationSchema, input, options) as async.Operation<types.UpdatePromptOutput>
+end
+
+function C:updateRetrievalInstruction(input: types.UpdateRetrievalInstructionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRetrievalInstructionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRetrievalInstruction as schema.OperationSchema, input, options) as async.Operation<types.UpdateRetrievalInstructionOutput>
 end
 
 function C:validateFlowDefinition(input: types.ValidateFlowDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateFlowDefinitionOutput>

@@ -207,7 +207,8 @@ local record M
 
     -- The name of the approval rule template is not valid. Template names must be between 1
     -- and 100 valid characters in length. For more information about limits in CodeCommit,
-    -- see Quotas in the CodeCommit User Guide.
+    -- see Quotas in the
+    -- CodeCommit User Guide.
     record InvalidApprovalRuleTemplateNameException
         -- Any message associated with the exception.
         message: string
@@ -836,7 +837,8 @@ local record M
         -- requires an Amazon Web Services account and a resource. It can be used for both IAM users
         -- and federated access users whose name matches the provided resource name.
         -- This is a very powerful option that offers a great deal of flexibility. For
-        -- example, if you specify the Amazon Web Services account 123456789012
+        -- example, if you specify the Amazon Web Services account
+        -- 123456789012
         -- and Mary_Major, all of the following are counted as
         -- approvals coming from that user:
         -- An IAM user in the account
@@ -873,7 +875,8 @@ local record M
 
     -- The description for the approval rule template is not valid because it exceeds the
     -- maximum characters allowed for a description. For more information about limits in CodeCommit,
-    -- see Quotas in the CodeCommit User Guide.
+    -- see Quotas in the
+    -- CodeCommit User Guide.
     record InvalidApprovalRuleTemplateDescriptionException
         -- Any message associated with the exception.
         message: string
@@ -1396,7 +1399,8 @@ local record M
         -- requires an Amazon Web Services account and a resource. It can be used for both IAM users
         -- and federated access users whose name matches the provided resource name.
         -- This is a very powerful option that offers a great deal of flexibility. For
-        -- example, if you specify the Amazon Web Services account 123456789012
+        -- example, if you specify the Amazon Web Services account
+        -- 123456789012
         -- and Mary_Major, all of the following would be counted
         -- as approvals coming from that user:
         -- An IAM user in the account
@@ -1470,7 +1474,8 @@ local record M
         -- The repository name must be unique across the calling Amazon Web Services account. Repository names
         -- are limited to 100 alphanumeric, dash, and underscore characters, and cannot include
         -- certain characters. For more information about the limits on repository names, see
-        -- Quotas in the CodeCommit User Guide. The
+        -- Quotas in the
+        -- CodeCommit User Guide. The
         -- suffix .git is prohibited.
         repositoryName: string
         -- A comment or description about the new repository.
@@ -1485,8 +1490,10 @@ local record M
         -- The ID of the encryption key. You can view the ID of an encryption key in the KMS console, or use the KMS APIs to
         -- programmatically retrieve a key ID. For more information about acceptable values for kmsKeyID, see
         -- KeyId in the Decrypt API description in
-        -- the Key Management Service API Reference.
-        -- If no key is specified, the default aws/codecommit Amazon Web Services managed key is used.
+        -- the
+        -- Key Management Service API Reference.
+        -- If no key is specified, the default aws/codecommit
+        -- Amazon Web Services managed key is used.
         kmsKeyId: string
     end
 
@@ -2081,7 +2088,8 @@ local record M
     end
 
     -- The specified file exceeds the file size limit for CodeCommit. For more information about limits in CodeCommit, see
-    -- Quotas in the CodeCommit User Guide.
+    -- Quotas in the
+    -- CodeCommit User Guide.
     record FileTooLargeException
         -- Any message associated with the exception.
         message: string
@@ -3396,7 +3404,8 @@ local record M
         comment: Comment
     end
 
-    -- The value of the reaction is not valid. For more information, see the CodeCommit User Guide.
+    -- The value of the reaction is not valid. For more information, see the
+    -- CodeCommit User Guide.
     record InvalidReactionValueException
         -- Any message associated with the exception.
         message: string
@@ -3406,7 +3415,8 @@ local record M
         -- The ID of the comment to which you want to add or update a reaction.
         commentId: string
         -- The emoji reaction you want to add or update. To remove a reaction, provide a value of blank or null. You can also provide the value of none.
-        -- For information about emoji reaction values supported in CodeCommit, see the CodeCommit User Guide.
+        -- For information about emoji reaction values supported in CodeCommit, see the
+        -- CodeCommit User Guide.
         reactionValue: string
     end
 
@@ -3728,7 +3738,8 @@ local record M
         -- requires an Amazon Web Services account and a resource. It can be used for both IAM users
         -- and federated access users whose name matches the provided resource name.
         -- This is a very powerful option that offers a great deal of flexibility. For
-        -- example, if you specify the Amazon Web Services account 123456789012
+        -- example, if you specify the Amazon Web Services account
+        -- 123456789012
         -- and Mary_Major, all of the following are counted as
         -- approvals coming from that user:
         -- An IAM user in the account
@@ -3858,7 +3869,8 @@ local record M
         -- The ID of the encryption key. You can view the ID of an encryption key in the KMS console, or use the KMS APIs to
         -- programmatically retrieve a key ID. For more information about acceptable values for keyID, see
         -- KeyId in the Decrypt API description in
-        -- the Key Management Service API Reference.
+        -- the
+        -- Key Management Service API Reference.
         kmsKeyId: string
     end
 

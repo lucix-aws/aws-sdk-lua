@@ -70,6 +70,8 @@ M.AutoRollbackEventsList = schema.new({ type = "list", list_member = prelude.Str
 
 M.AlarmList = schema.new({ type = "list", list_member = M.Alarm })
 
+M.AutoScalingGroupProcessesToSuspendList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ELBInfoList = schema.new({ type = "list", list_member = M.ELBInfo })
 
 M.TargetGroupInfoList = schema.new({ type = "list", list_member = M.TargetGroupInfo })
@@ -958,6 +960,20 @@ M.DeploymentStyle = schema.new({
     },
 })
 
+M.EC2DeploymentOptions = schema.new({
+    id = id.from(_N, "EC2DeploymentOptions"),
+    type = "structure",
+    members = {
+        autoScalingGroupProcessesToSuspend = schema.new({
+            id = id.from(_N, "EC2DeploymentOptions", "autoScalingGroupProcessesToSuspend"),
+            type = "list",
+            name = "autoScalingGroupProcessesToSuspend",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.EC2TagFilter = schema.new({
     id = id.from(_N, "EC2TagFilter"),
     type = "structure",
@@ -1358,6 +1374,13 @@ M.DeploymentGroupInfo = schema.new({
             name = "ecsServices",
             target_id = prelude.Document.id,
             list_member = M.ECSService,
+        }),
+        ec2DeploymentOptions = schema.new({
+            id = id.from(_N, "DeploymentGroupInfo", "ec2DeploymentOptions"),
+            type = "structure",
+            name = "ec2DeploymentOptions",
+            target_id = id.from(_N, "EC2DeploymentOptions"),
+            target = M.EC2DeploymentOptions,
         }),
         terminationHookEnabled = schema.new({
             id = id.from(_N, "DeploymentGroupInfo", "terminationHookEnabled"),
@@ -2059,6 +2082,13 @@ M.DeploymentInfo = schema.new({
             name = "overrideAlarmConfiguration",
             target_id = id.from(_N, "AlarmConfiguration"),
             target = M.AlarmConfiguration,
+        }),
+        ec2DeploymentOptions = schema.new({
+            id = id.from(_N, "DeploymentInfo", "ec2DeploymentOptions"),
+            type = "structure",
+            name = "ec2DeploymentOptions",
+            target_id = id.from(_N, "EC2DeploymentOptions"),
+            target = M.EC2DeploymentOptions,
         }),
     },
 })
@@ -2928,6 +2958,13 @@ M.CreateDeploymentInput = schema.new({
             target_id = id.from(_N, "AlarmConfiguration"),
             target = M.AlarmConfiguration,
         }),
+        ec2DeploymentOptions = schema.new({
+            id = id.from(_N, "CreateDeploymentInput", "ec2DeploymentOptions"),
+            type = "structure",
+            name = "ec2DeploymentOptions",
+            target_id = id.from(_N, "EC2DeploymentOptions"),
+            target = M.EC2DeploymentOptions,
+        }),
     },
 })
 
@@ -3033,6 +3070,22 @@ M.InvalidAutoScalingGroupException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InvalidAutoScalingGroupException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidAutoScalingGroupProcessToSuspendException = schema.new({
+    id = id.from(_N, "InvalidAutoScalingGroupProcessToSuspendException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidAutoScalingGroupProcessToSuspendException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -3648,6 +3701,13 @@ M.CreateDeploymentGroupInput = schema.new({
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        ec2DeploymentOptions = schema.new({
+            id = id.from(_N, "CreateDeploymentGroupInput", "ec2DeploymentOptions"),
+            type = "structure",
+            name = "ec2DeploymentOptions",
+            target_id = id.from(_N, "EC2DeploymentOptions"),
+            target = M.EC2DeploymentOptions,
         }),
         terminationHookEnabled = schema.new({
             id = id.from(_N, "CreateDeploymentGroupInput", "terminationHookEnabled"),
@@ -5814,6 +5874,13 @@ M.UpdateDeploymentGroupInput = schema.new({
             name = "onPremisesTagSet",
             target_id = id.from(_N, "OnPremisesTagSet"),
             target = M.OnPremisesTagSet,
+        }),
+        ec2DeploymentOptions = schema.new({
+            id = id.from(_N, "UpdateDeploymentGroupInput", "ec2DeploymentOptions"),
+            type = "structure",
+            name = "ec2DeploymentOptions",
+            target_id = id.from(_N, "EC2DeploymentOptions"),
+            target = M.EC2DeploymentOptions,
         }),
         terminationHookEnabled = schema.new({
             id = id.from(_N, "UpdateDeploymentGroupInput", "terminationHookEnabled"),

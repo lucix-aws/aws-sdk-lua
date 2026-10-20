@@ -5797,6 +5797,12 @@ M.ImportCustomWorkspaceImageInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        ImageValidationMode = schema.new({
+            id = id.from(_N, "ImportCustomWorkspaceImageInput", "ImageValidationMode"),
+            type = "string",
+            name = "ImageValidationMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

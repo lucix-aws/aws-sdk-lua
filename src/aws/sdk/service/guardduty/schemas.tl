@@ -4719,6 +4719,15 @@ M.DestinationProperties = schema.new({
                 [traits.JSON_NAME] = { name = "kmsKeyArn" },
             },
         }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "DestinationProperties", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "expectedBucketOwner" },
+            },
+        }),
     },
 })
 

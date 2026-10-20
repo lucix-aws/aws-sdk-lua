@@ -443,6 +443,14 @@ local record M
         memoryRetrieve: AgenticRetrieveMemoryRetrieveDetails
     end
 
+    -- The retrieval instruction, identified by its ID and version, that was applied to the request.
+    record AgenticRetrieveAppliedInstruction
+        -- The identifier of the retrieval instruction applied.
+        id: string
+        -- The version that was applied: a version number, or DRAFT. The service reports this version whenever it reports appliedInstruction, including DRAFT when the request did not specify a version.
+        version: string
+    end
+
     -- Configuration for a Bedrock guardrail applied during agentic retrieval.
     record AgenticRetrieveBedrockGuardrailConfiguration
         -- The unique identifier of the guardrail.
@@ -582,6 +590,14 @@ local record M
         action: string
         -- A message describing the guardrail evaluation result.
         message: string
+    end
+
+    -- The retrieval instruction, identified by its ID and optional version, to apply to this request.
+    record AgenticRetrieveInstructionConfiguration
+        -- The identifier of the retrieval instruction. The instruction must exist in the caller's account and its status must be ACTIVE.
+        retrievalInstructionId: string
+        -- The version of the retrieval instruction to apply: a version number, or DRAFT for the instruction's current reviewed content. When omitted, DRAFT is used. This default is permanent.
+        version: string
     end
 
     enum AgenticRetrieveMemoryPersistenceMode
@@ -847,6 +863,8 @@ local record M
         retrievalMetadata: {AgenticRetrieveSourceMetadata}
         -- The retrieval results from this step.
         retrievalResponse: {AgenticRetrieveTraceResultItem}
+        -- The agent reports the retrieval instruction applied to this request on the first planning step.
+        appliedInstruction: AgenticRetrieveAppliedInstruction
     end
 
     -- A trace event providing visibility into the agentic retrieval process.
@@ -3850,6 +3868,8 @@ local record M
         userContext: UserContext
         -- The configuration for using an Amazon Bedrock AgentCore Memory resource with this retrieval.
         memoryConfiguration: AgenticRetrieveMemoryConfiguration
+        -- A retrieval instruction to apply to this request.
+        retrievalInstructionConfiguration: AgenticRetrieveInstructionConfiguration
         -- Whether to generate a response based on the retrieved results.
         generateResponse: boolean
     end

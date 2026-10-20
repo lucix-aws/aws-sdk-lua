@@ -256,6 +256,42 @@ function M.items_list_prompts(client, input)
     })
 end
 
+--- Returns a page iterator for listRetrievalInstructionVersions.
+function M.pages_list_retrieval_instruction_versions(client, input)
+    return paginator.pages(client, "listRetrievalInstructionVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "retrievalInstructionVersionSummaries",
+    })
+end
+
+--- Returns an item iterator for listRetrievalInstructionVersions.
+function M.items_list_retrieval_instruction_versions(client, input)
+    return paginator.items(client, "listRetrievalInstructionVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "retrievalInstructionVersionSummaries",
+    })
+end
+
+--- Returns a page iterator for listRetrievalInstructions.
+function M.pages_list_retrieval_instructions(client, input)
+    return paginator.pages(client, "listRetrievalInstructions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "retrievalInstructionSummaries",
+    })
+end
+
+--- Returns an item iterator for listRetrievalInstructions.
+function M.items_list_retrieval_instructions(client, input)
+    return paginator.items(client, "listRetrievalInstructions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "retrievalInstructionSummaries",
+    })
+end
+
 --- Returns a page iterator for listVpcConfigurations.
 function M.pages_list_vpc_configurations(client, input)
     return paginator.pages(client, "listVpcConfigurations", input, {

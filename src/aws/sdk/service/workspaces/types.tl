@@ -2685,6 +2685,11 @@ local record M
         "GRAPHICS_G7"
     end
 
+    enum ImageValidationMode
+        "CUSTOMER_MANAGED"
+        "SERVICE_MANAGED"
+    end
+
     -- The client branding attributes to import for iOS device types. These attributes are
     -- displayed on the iOS client login screen.
     -- Client branding attributes are public facing. Ensure you do not include sensitive
@@ -2791,6 +2796,8 @@ local record M
         OsVersion: string
         -- The resource tags. Each WorkSpaces resource can have a maximum of 50 tags.
         Tags: {Tag}
+        -- The image validation mode for the WorkSpace image import.
+        ImageValidationMode: string
     end
 
     record ImportCustomWorkspaceImageOutput

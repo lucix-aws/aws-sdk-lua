@@ -3464,6 +3464,17 @@ local record M
         includeQueryParameters: string
     end
 
+    enum ServiceConnectContainerLogLevel
+        "debug"
+        "info"
+    end
+
+    -- Contains a configuration setting for the Service Connect proxy container, such as the log level. Specify exactly one member in each object.
+    record ServiceConnectContainerConfiguration
+        -- The log level of the Service Connect proxy container. Set the log level to debug to collect more detailed proxy logs when you troubleshoot connectivity issues between services, and set it back to info when you finish. Debug logging increases the volume of logs that the proxy container writes. If you don't specify a log level, the default is info.
+        logLevel: string
+    end
+
     -- The header matching rules for test traffic routing in Amazon ECS blue/green deployments. These rules determine how incoming requests are matched based on HTTP headers to route test traffic to the new service revision.
     record ServiceConnectTestTrafficHeaderMatchRules
         -- The exact value that the HTTP header must match for the test traffic routing rule to apply. This provides precise control over which requests are routed to the new service revision during blue/green deployments.
@@ -3545,6 +3556,8 @@ local record M
         logConfiguration: LogConfiguration
         -- The configuration for Service Connect access logging. Access logs capture detailed information about requests made to your service, including request patterns, response codes, and timing data. They can be useful for debugging connectivity issues, monitoring service performance, and auditing service-to-service communication for security and compliance purposes. To enable access logs, you must also specify a logConfiguration in the serviceConnectConfiguration.
         accessLogConfiguration: ServiceConnectAccessLogConfiguration
+        -- The settings for the Service Connect proxy container that Amazon ECS adds to each task in this service. Each object in the list sets exactly one setting, and each setting can appear only once in the list. Your changes to these settings apply only to tasks that Amazon ECS launches after you update the service. Your running tasks keep their existing settings until Amazon ECS replaces them. If you update the serviceConnectConfiguration of your service and don't include containerConfigurations, the proxy container settings return to their defaults.
+        containerConfigurations: {ServiceConnectContainerConfiguration}
     end
 
     -- The details for the service registry. Each service may be associated with one service registry. Multiple service registries for each service are not supported. When you add, update, or remove the service registries configuration, Amazon ECS starts a new deployment. New tasks are registered and deregistered to the updated service registry configuration.

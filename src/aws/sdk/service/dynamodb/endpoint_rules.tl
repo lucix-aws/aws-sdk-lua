@@ -311,8 +311,8 @@ return
                                             authSchemes = {
                                                 {
                                                     signingRegion = "us-east-1",
-                                                    signingName = "dynamodb",
                                                     name = "sigv4",
+                                                    signingName = "dynamodb",
                                                 },
                                             },
                                         },
@@ -399,11 +399,124 @@ return
                                                     },
                                                 },
                                             },
+                                            error = "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported",
+                                            type = "error",
+                                        },
+                                        {
+                                            conditions = {
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    fn = "getAttr",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "PartitionResult",
+                                                                        },
+                                                                        "name",
+                                                                    },
+                                                                },
+                                                                "aws",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "us-gov-east-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "us-gov-west-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "cn-north-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "cn-northwest-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                            },
                                             rules = {
                                                 {
+                                                    conditions = {
+                                                        {
+                                                            fn = "isSet",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "booleanEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                                true,
+                                                            },
+                                                        },
+                                                    },
+                                                    endpoint = {
+                                                        url = "https://search-dynamodb-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
+                                                {
                                                     conditions = {},
-                                                    error = "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported",
-                                                    type = "error",
+                                                    endpoint = {
+                                                        url = "https://dynamodb-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
                                                 },
                                             },
                                             type = "tree",
@@ -490,6 +603,29 @@ return
                                         {
                                             conditions = {
                                                 {
+                                                    fn = "isSet",
+                                                    argv = {
+                                                        {
+                                                            ref = "AccountIdEndpointMode",
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "stringEquals",
+                                                    argv = {
+                                                        {
+                                                            ref = "AccountIdEndpointMode",
+                                                        },
+                                                        "required",
+                                                    },
+                                                },
+                                            },
+                                            error = "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported",
+                                            type = "error",
+                                        },
+                                        {
+                                            conditions = {
+                                                {
                                                     fn = "stringEquals",
                                                     argv = {
                                                         {
@@ -509,28 +645,118 @@ return
                                                 {
                                                     conditions = {
                                                         {
-                                                            fn = "isSet",
+                                                            fn = "not",
                                                             argv = {
                                                                 {
-                                                                    ref = "AccountIdEndpointMode",
+                                                                    fn = "stringEquals",
+                                                                    argv = {
+                                                                        {
+                                                                            fn = "getAttr",
+                                                                            argv = {
+                                                                                {
+                                                                                    ref = "PartitionResult",
+                                                                                },
+                                                                                "name",
+                                                                            },
+                                                                        },
+                                                                        "aws",
+                                                                    },
                                                                 },
                                                             },
                                                         },
                                                         {
-                                                            fn = "stringEquals",
+                                                            fn = "not",
                                                             argv = {
                                                                 {
-                                                                    ref = "AccountIdEndpointMode",
+                                                                    fn = "stringEquals",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "Region",
+                                                                        },
+                                                                        "us-gov-east-1",
+                                                                    },
                                                                 },
-                                                                "required",
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "not",
+                                                            argv = {
+                                                                {
+                                                                    fn = "stringEquals",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "Region",
+                                                                        },
+                                                                        "us-gov-west-1",
+                                                                    },
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "not",
+                                                            argv = {
+                                                                {
+                                                                    fn = "stringEquals",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "Region",
+                                                                        },
+                                                                        "cn-north-1",
+                                                                    },
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "not",
+                                                            argv = {
+                                                                {
+                                                                    fn = "stringEquals",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "Region",
+                                                                        },
+                                                                        "cn-northwest-1",
+                                                                    },
+                                                                },
                                                             },
                                                         },
                                                     },
                                                     rules = {
                                                         {
+                                                            conditions = {
+                                                                {
+                                                                    fn = "isSet",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "IsSearchOperation",
+                                                                        },
+                                                                    },
+                                                                },
+                                                                {
+                                                                    fn = "booleanEquals",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "IsSearchOperation",
+                                                                        },
+                                                                        true,
+                                                                    },
+                                                                },
+                                                            },
+                                                            endpoint = {
+                                                                url = "https://search-dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                                                                properties = {},
+                                                                headers = {},
+                                                            },
+                                                            type = "endpoint",
+                                                        },
+                                                        {
                                                             conditions = {},
-                                                            error = "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported",
-                                                            type = "error",
+                                                            endpoint = {
+                                                                url = "https://dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                                                                properties = {},
+                                                                headers = {},
+                                                            },
+                                                            type = "endpoint",
                                                         },
                                                     },
                                                     type = "tree",
@@ -577,28 +803,118 @@ return
                                         {
                                             conditions = {
                                                 {
-                                                    fn = "isSet",
+                                                    fn = "not",
                                                     argv = {
                                                         {
-                                                            ref = "AccountIdEndpointMode",
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    fn = "getAttr",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "PartitionResult",
+                                                                        },
+                                                                        "name",
+                                                                    },
+                                                                },
+                                                                "aws",
+                                                            },
                                                         },
                                                     },
                                                 },
                                                 {
-                                                    fn = "stringEquals",
+                                                    fn = "not",
                                                     argv = {
                                                         {
-                                                            ref = "AccountIdEndpointMode",
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "us-gov-east-1",
+                                                            },
                                                         },
-                                                        "required",
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "us-gov-west-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "cn-north-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "cn-northwest-1",
+                                                            },
+                                                        },
                                                     },
                                                 },
                                             },
                                             rules = {
                                                 {
+                                                    conditions = {
+                                                        {
+                                                            fn = "isSet",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "booleanEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                                true,
+                                                            },
+                                                        },
+                                                    },
+                                                    endpoint = {
+                                                        url = "https://search-dynamodb-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
+                                                {
                                                     conditions = {},
-                                                    error = "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported",
-                                                    type = "error",
+                                                    endpoint = {
+                                                        url = "https://dynamodb-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
                                                 },
                                             },
                                             type = "tree",
@@ -685,6 +1001,148 @@ return
                                         {
                                             conditions = {
                                                 {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    fn = "getAttr",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "PartitionResult",
+                                                                        },
+                                                                        "name",
+                                                                    },
+                                                                },
+                                                                "aws",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "us-gov-east-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "us-gov-west-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "cn-north-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "not",
+                                                    argv = {
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "Region",
+                                                                },
+                                                                "cn-northwest-1",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                            rules = {
+                                                {
+                                                    conditions = {
+                                                        {
+                                                            fn = "isSet",
+                                                            argv = {
+                                                                {
+                                                                    ref = "AccountIdEndpointMode",
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "stringEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "AccountIdEndpointMode",
+                                                                },
+                                                                "required",
+                                                            },
+                                                        },
+                                                    },
+                                                    error = "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region",
+                                                    type = "error",
+                                                },
+                                                {
+                                                    conditions = {
+                                                        {
+                                                            fn = "isSet",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "booleanEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                                true,
+                                                            },
+                                                        },
+                                                    },
+                                                    endpoint = {
+                                                        url = "https://search-dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
+                                                {
+                                                    conditions = {},
+                                                    endpoint = {
+                                                        url = "https://dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
+                                            },
+                                            type = "tree",
+                                        },
+                                        {
+                                            conditions = {
+                                                {
                                                     fn = "isSet",
                                                     argv = {
                                                         {
@@ -704,21 +1162,6 @@ return
                                                                 "disabled",
                                                             },
                                                         },
-                                                    },
-                                                },
-                                                {
-                                                    fn = "stringEquals",
-                                                    argv = {
-                                                        {
-                                                            fn = "getAttr",
-                                                            argv = {
-                                                                {
-                                                                    ref = "PartitionResult",
-                                                                },
-                                                                "name",
-                                                            },
-                                                        },
-                                                        "aws",
                                                     },
                                                 },
                                                 {
@@ -883,21 +1326,6 @@ return
                                                                 "disabled",
                                                             },
                                                         },
-                                                    },
-                                                },
-                                                {
-                                                    fn = "stringEquals",
-                                                    argv = {
-                                                        {
-                                                            fn = "getAttr",
-                                                            argv = {
-                                                                {
-                                                                    ref = "PartitionResult",
-                                                                },
-                                                                "name",
-                                                            },
-                                                        },
-                                                        "aws",
                                                     },
                                                 },
                                                 {
@@ -1075,21 +1503,6 @@ return
                                                     },
                                                 },
                                                 {
-                                                    fn = "stringEquals",
-                                                    argv = {
-                                                        {
-                                                            fn = "getAttr",
-                                                            argv = {
-                                                                {
-                                                                    ref = "PartitionResult",
-                                                                },
-                                                                "name",
-                                                            },
-                                                        },
-                                                        "aws",
-                                                    },
-                                                },
-                                                {
                                                     fn = "not",
                                                     argv = {
                                                         {
@@ -1201,67 +1614,8 @@ return
                                                     },
                                                 },
                                             },
-                                            rules = {
-                                                {
-                                                    conditions = {
-                                                        {
-                                                            fn = "not",
-                                                            argv = {
-                                                                {
-                                                                    fn = "booleanEquals",
-                                                                    argv = {
-                                                                        {
-                                                                            ref = "UseFIPS",
-                                                                        },
-                                                                        true,
-                                                                    },
-                                                                },
-                                                            },
-                                                        },
-                                                    },
-                                                    rules = {
-                                                        {
-                                                            conditions = {
-                                                                {
-                                                                    fn = "stringEquals",
-                                                                    argv = {
-                                                                        {
-                                                                            fn = "getAttr",
-                                                                            argv = {
-                                                                                {
-                                                                                    ref = "PartitionResult",
-                                                                                },
-                                                                                "name",
-                                                                            },
-                                                                        },
-                                                                        "aws",
-                                                                    },
-                                                                },
-                                                            },
-                                                            rules = {
-                                                                {
-                                                                    conditions = {},
-                                                                    error = "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded",
-                                                                    type = "error",
-                                                                },
-                                                            },
-                                                            type = "tree",
-                                                        },
-                                                        {
-                                                            conditions = {},
-                                                            error = "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition",
-                                                            type = "error",
-                                                        },
-                                                    },
-                                                    type = "tree",
-                                                },
-                                                {
-                                                    conditions = {},
-                                                    error = "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported",
-                                                    type = "error",
-                                                },
-                                            },
-                                            type = "tree",
+                                            error = "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded",
+                                            type = "error",
                                         },
                                         {
                                             conditions = {
@@ -1313,6 +1667,148 @@ return
                         {
                             conditions = {
                                 {
+                                    fn = "not",
+                                    argv = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws",
+                                            },
+                                        },
+                                    },
+                                },
+                                {
+                                    fn = "not",
+                                    argv = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    ref = "Region",
+                                                },
+                                                "us-gov-east-1",
+                                            },
+                                        },
+                                    },
+                                },
+                                {
+                                    fn = "not",
+                                    argv = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    ref = "Region",
+                                                },
+                                                "us-gov-west-1",
+                                            },
+                                        },
+                                    },
+                                },
+                                {
+                                    fn = "not",
+                                    argv = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    ref = "Region",
+                                                },
+                                                "cn-north-1",
+                                            },
+                                        },
+                                    },
+                                },
+                                {
+                                    fn = "not",
+                                    argv = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    ref = "Region",
+                                                },
+                                                "cn-northwest-1",
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                            rules = {
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "isSet",
+                                            argv = {
+                                                {
+                                                    ref = "AccountIdEndpointMode",
+                                                },
+                                            },
+                                        },
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    ref = "AccountIdEndpointMode",
+                                                },
+                                                "required",
+                                            },
+                                        },
+                                    },
+                                    error = "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region",
+                                    type = "error",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "isSet",
+                                            argv = {
+                                                {
+                                                    ref = "IsSearchOperation",
+                                                },
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "IsSearchOperation",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://search-dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                                        properties = {},
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {},
+                                    endpoint = {
+                                        url = "https://dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                                        properties = {},
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                            },
+                            type = "tree",
+                        },
+                        {
+                            conditions = {
+                                {
                                     fn = "isSet",
                                     argv = {
                                         {
@@ -1332,21 +1828,6 @@ return
                                                 "disabled",
                                             },
                                         },
-                                    },
-                                },
-                                {
-                                    fn = "stringEquals",
-                                    argv = {
-                                        {
-                                            fn = "getAttr",
-                                            argv = {
-                                                {
-                                                    ref = "PartitionResult",
-                                                },
-                                                "name",
-                                            },
-                                        },
-                                        "aws",
                                     },
                                 },
                                 {
@@ -1511,21 +1992,6 @@ return
                                                 "disabled",
                                             },
                                         },
-                                    },
-                                },
-                                {
-                                    fn = "stringEquals",
-                                    argv = {
-                                        {
-                                            fn = "getAttr",
-                                            argv = {
-                                                {
-                                                    ref = "PartitionResult",
-                                                },
-                                                "name",
-                                            },
-                                        },
-                                        "aws",
                                     },
                                 },
                                 {
@@ -1703,21 +2169,6 @@ return
                                     },
                                 },
                                 {
-                                    fn = "stringEquals",
-                                    argv = {
-                                        {
-                                            fn = "getAttr",
-                                            argv = {
-                                                {
-                                                    ref = "PartitionResult",
-                                                },
-                                                "name",
-                                            },
-                                        },
-                                        "aws",
-                                    },
-                                },
-                                {
                                     fn = "not",
                                     argv = {
                                         {
@@ -1829,67 +2280,8 @@ return
                                     },
                                 },
                             },
-                            rules = {
-                                {
-                                    conditions = {
-                                        {
-                                            fn = "not",
-                                            argv = {
-                                                {
-                                                    fn = "booleanEquals",
-                                                    argv = {
-                                                        {
-                                                            ref = "UseFIPS",
-                                                        },
-                                                        true,
-                                                    },
-                                                },
-                                            },
-                                        },
-                                    },
-                                    rules = {
-                                        {
-                                            conditions = {
-                                                {
-                                                    fn = "stringEquals",
-                                                    argv = {
-                                                        {
-                                                            fn = "getAttr",
-                                                            argv = {
-                                                                {
-                                                                    ref = "PartitionResult",
-                                                                },
-                                                                "name",
-                                                            },
-                                                        },
-                                                        "aws",
-                                                    },
-                                                },
-                                            },
-                                            rules = {
-                                                {
-                                                    conditions = {},
-                                                    error = "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded",
-                                                    type = "error",
-                                                },
-                                            },
-                                            type = "tree",
-                                        },
-                                        {
-                                            conditions = {},
-                                            error = "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition",
-                                            type = "error",
-                                        },
-                                    },
-                                    type = "tree",
-                                },
-                                {
-                                    conditions = {},
-                                    error = "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported",
-                                    type = "error",
-                                },
-                            },
-                            type = "tree",
+                            error = "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded",
+                            type = "error",
                         },
                         {
                             conditions = {

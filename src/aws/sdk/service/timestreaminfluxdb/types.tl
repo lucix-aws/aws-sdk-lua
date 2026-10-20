@@ -1599,6 +1599,14 @@ local record M
         -- Defines how often the catalog synchronizes across cluster nodes.
         -- Default: 10s
         catalogSyncInterval: Duration
+        -- Specifies whether to migrate the cluster from the Parquet storage engine to PachaTree. This action cannot be reversed. To create a new cluster on Parquet, set this to false.
+        upgradePachaTree: boolean
+        -- The maximum size, in bytes, of the in-memory WAL buffer before a flush is triggered regardless of the flush interval. Increase this value if WAL files are flushed before the interval elapses.
+        walBufferSize: number
+        -- The maximum size of the active snapshot bucket before it is rotated for snapshotting.
+        snapshotSize: PercentOrAbsoluteLong
+        -- The time-based trigger that controls how often the ingester creates snapshots. This value is also used on query nodes as the bucket rotation interval for the replica buffer.
+        snapshotDuration: Duration
     end
 
     -- The parameters that comprise the parameter group.

@@ -54,6 +54,12 @@ M.PromptSummaries = schema.new({ type = "list", list_member = M.PromptSummary })
 
 M.PromptVariantList = schema.new({ type = "list", list_member = M.PromptVariant })
 
+M.RetrievalInstructionSummaries = schema.new({ type = "list", list_member = M.RetrievalInstructionSummary })
+
+M.RetrievalInstructionFailureReasons = schema.new({ type = "list", list_member = M.RetrievalInstructionFailureReason })
+
+M.RetrievalInstructionVersionSummaries = schema.new({ type = "list", list_member = M.RetrievalInstructionVersionSummary })
+
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AgentVersionSummaries = schema.new({ type = "list", list_member = M.AgentVersionSummary })
@@ -13258,6 +13264,824 @@ M.PutResourcePolicyOutput = schema.new({
     },
 })
 
+M.RetrievalInstructionContent = schema.new({
+    id = id.from(_N, "RetrievalInstructionContent"),
+    type = "structure",
+    members = {
+        retrievalGuidance = schema.new({
+            id = id.from(_N, "RetrievalInstructionContent", "retrievalGuidance"),
+            type = "string",
+            name = "retrievalGuidance",
+            target_id = prelude.String.id,
+        }),
+        persona = schema.new({
+            id = id.from(_N, "RetrievalInstructionContent", "persona"),
+            type = "string",
+            name = "persona",
+            target_id = prelude.String.id,
+        }),
+        answerFormat = schema.new({
+            id = id.from(_N, "RetrievalInstructionContent", "answerFormat"),
+            type = "string",
+            name = "answerFormat",
+            target_id = prelude.String.id,
+        }),
+        answerPolicy = schema.new({
+            id = id.from(_N, "RetrievalInstructionContent", "answerPolicy"),
+            type = "string",
+            name = "answerPolicy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateRetrievalInstructionInput = schema.new({
+    id = id.from(_N, "CreateRetrievalInstructionRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instruction = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionInput", "instruction"),
+            type = "structure",
+            name = "instruction",
+            target_id = id.from(_N, "RetrievalInstructionContent"),
+            target = M.RetrievalInstructionContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        customerEncryptionKeyArn = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionInput", "customerEncryptionKeyArn"),
+            type = "string",
+            name = "customerEncryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateRetrievalInstructionOutput = schema.new({
+    id = id.from(_N, "CreateRetrievalInstructionResponse"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionOutput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retrievalInstructionArn = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionOutput", "retrievalInstructionArn"),
+            type = "string",
+            name = "retrievalInstructionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastTransitionStatus = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionOutput", "lastTransitionStatus"),
+            type = "string",
+            name = "lastTransitionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateRetrievalInstructionVersionInput = schema.new({
+    id = id.from(_N, "CreateRetrievalInstructionVersionRequest"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionVersionInput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionVersionInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionVersionInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateRetrievalInstructionVersionOutput = schema.new({
+    id = id.from(_N, "CreateRetrievalInstructionVersionResponse"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionVersionOutput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retrievalInstructionArn = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionVersionOutput", "retrievalInstructionArn"),
+            type = "string",
+            name = "retrievalInstructionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        version = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionVersionOutput", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionVersionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateRetrievalInstructionVersionOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteRetrievalInstructionInput = schema.new({
+    id = id.from(_N, "DeleteRetrievalInstructionRequest"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "DeleteRetrievalInstructionInput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        retrievalInstructionVersion = schema.new({
+            id = id.from(_N, "DeleteRetrievalInstructionInput", "retrievalInstructionVersion"),
+            type = "string",
+            name = "retrievalInstructionVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "retrievalInstructionVersion" },
+            },
+        }),
+    },
+})
+
+M.DeleteRetrievalInstructionOutput = schema.new({
+    id = id.from(_N, "DeleteRetrievalInstructionResponse"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "DeleteRetrievalInstructionOutput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retrievalInstructionArn = schema.new({
+            id = id.from(_N, "DeleteRetrievalInstructionOutput", "retrievalInstructionArn"),
+            type = "string",
+            name = "retrievalInstructionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        version = schema.new({
+            id = id.from(_N, "DeleteRetrievalInstructionOutput", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetRetrievalInstructionInput = schema.new({
+    id = id.from(_N, "GetRetrievalInstructionRequest"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionInput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        retrievalInstructionVersion = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionInput", "retrievalInstructionVersion"),
+            type = "string",
+            name = "retrievalInstructionVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "retrievalInstructionVersion" },
+            },
+        }),
+    },
+})
+
+M.RetrievalInstructionFailureReason = schema.new({
+    id = id.from(_N, "RetrievalInstructionFailureReason"),
+    type = "structure",
+    members = {
+        fieldName = schema.new({
+            id = id.from(_N, "RetrievalInstructionFailureReason", "fieldName"),
+            type = "string",
+            name = "fieldName",
+            target_id = prelude.String.id,
+        }),
+        code = schema.new({
+            id = id.from(_N, "RetrievalInstructionFailureReason", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "RetrievalInstructionFailureReason", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRetrievalInstructionOutput = schema.new({
+    id = id.from(_N, "GetRetrievalInstructionResponse"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retrievalInstructionArn = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "retrievalInstructionArn"),
+            type = "string",
+            name = "retrievalInstructionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastTransitionStatus = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "lastTransitionStatus"),
+            type = "string",
+            name = "lastTransitionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instruction = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "instruction"),
+            type = "structure",
+            name = "instruction",
+            target_id = id.from(_N, "RetrievalInstructionContent"),
+            target = M.RetrievalInstructionContent,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        customerEncryptionKeyArn = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "customerEncryptionKeyArn"),
+            type = "string",
+            name = "customerEncryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        lastTransitionStatusReasons = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "lastTransitionStatusReasons"),
+            type = "list",
+            name = "lastTransitionStatusReasons",
+            target_id = prelude.Document.id,
+            list_member = M.RetrievalInstructionFailureReason,
+        }),
+        version = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+        }),
+        latestVersion = schema.new({
+            id = id.from(_N, "GetRetrievalInstructionOutput", "latestVersion"),
+            type = "string",
+            name = "latestVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRetrievalInstructionsInput = schema.new({
+    id = id.from(_N, "ListRetrievalInstructionsRequest"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionsInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.RetrievalInstructionSummary = schema.new({
+    id = id.from(_N, "RetrievalInstructionSummary"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "RetrievalInstructionSummary", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retrievalInstructionArn = schema.new({
+            id = id.from(_N, "RetrievalInstructionSummary", "retrievalInstructionArn"),
+            type = "string",
+            name = "retrievalInstructionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "RetrievalInstructionSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "RetrievalInstructionSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastTransitionStatus = schema.new({
+            id = id.from(_N, "RetrievalInstructionSummary", "lastTransitionStatus"),
+            type = "string",
+            name = "lastTransitionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "RetrievalInstructionSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "RetrievalInstructionSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "RetrievalInstructionSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRetrievalInstructionsOutput = schema.new({
+    id = id.from(_N, "ListRetrievalInstructionsResponse"),
+    type = "structure",
+    members = {
+        retrievalInstructionSummaries = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionsOutput", "retrievalInstructionSummaries"),
+            type = "list",
+            name = "retrievalInstructionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.RetrievalInstructionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRetrievalInstructionVersionsInput = schema.new({
+    id = id.from(_N, "ListRetrievalInstructionVersionsRequest"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionVersionsInput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionVersionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionVersionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.RetrievalInstructionVersionSummary = schema.new({
+    id = id.from(_N, "RetrievalInstructionVersionSummary"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "RetrievalInstructionVersionSummary", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "RetrievalInstructionVersionSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRetrievalInstructionVersionsOutput = schema.new({
+    id = id.from(_N, "ListRetrievalInstructionVersionsResponse"),
+    type = "structure",
+    members = {
+        retrievalInstructionVersionSummaries = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionVersionsOutput", "retrievalInstructionVersionSummaries"),
+            type = "list",
+            name = "retrievalInstructionVersionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.RetrievalInstructionVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRetrievalInstructionVersionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRetrievalInstructionInput = schema.new({
+    id = id.from(_N, "UpdateRetrievalInstructionRequest"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionInput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        instruction = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionInput", "instruction"),
+            type = "structure",
+            name = "instruction",
+            target_id = id.from(_N, "RetrievalInstructionContent"),
+            target = M.RetrievalInstructionContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRetrievalInstructionOutput = schema.new({
+    id = id.from(_N, "UpdateRetrievalInstructionResponse"),
+    type = "structure",
+    members = {
+        retrievalInstructionId = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionOutput", "retrievalInstructionId"),
+            type = "string",
+            name = "retrievalInstructionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retrievalInstructionArn = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionOutput", "retrievalInstructionArn"),
+            type = "string",
+            name = "retrievalInstructionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastTransitionStatus = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionOutput", "lastTransitionStatus"),
+            type = "string",
+            name = "lastTransitionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "UpdateRetrievalInstructionOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -14555,6 +15379,30 @@ M.CreatePromptVersion = schema.operation({
     },
 })
 
+M.CreateRetrievalInstruction = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateRetrievalInstruction"),
+    input = M.CreateRetrievalInstructionInput,
+    output = M.CreateRetrievalInstructionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/retrievalinstructions/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRetrievalInstructionVersion = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "CreateRetrievalInstructionVersion"),
+    input = M.CreateRetrievalInstructionVersionInput,
+    output = M.CreateRetrievalInstructionVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/retrievalinstructions/{retrievalInstructionId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateVpcConfiguration = schema.operation({
     id = id.from("com.amazonaws.bedrockagent", "CreateVpcConfiguration"),
     input = M.CreateVpcConfigurationInput,
@@ -14705,6 +15553,18 @@ M.DeleteResourcePolicy = schema.operation({
     output = M.DeleteResourcePolicyOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRetrievalInstruction = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteRetrievalInstruction"),
+    input = M.DeleteRetrievalInstructionInput,
+    output = M.DeleteRetrievalInstructionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/retrievalinstructions/{retrievalInstructionId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14927,6 +15787,18 @@ M.GetResourcePolicy = schema.operation({
     },
 })
 
+M.GetRetrievalInstruction = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetRetrievalInstruction"),
+    input = M.GetRetrievalInstructionInput,
+    output = M.GetRetrievalInstructionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/retrievalinstructions/{retrievalInstructionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetVpcConfiguration = schema.operation({
     id = id.from("com.amazonaws.bedrockagent", "GetVpcConfiguration"),
     input = M.GetVpcConfigurationInput,
@@ -15113,6 +15985,30 @@ M.ListPrompts = schema.operation({
     output = M.ListPromptsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/prompts/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRetrievalInstructions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListRetrievalInstructions"),
+    input = M.ListRetrievalInstructionsInput,
+    output = M.ListRetrievalInstructionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/retrievalinstructions/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRetrievalInstructionVersions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "ListRetrievalInstructionVersions"),
+    input = M.ListRetrievalInstructionVersionsInput,
+    output = M.ListRetrievalInstructionVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/retrievalinstructions/{retrievalInstructionId}/versions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -15341,6 +16237,18 @@ M.UpdatePrompt = schema.operation({
     output = M.UpdatePromptOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/prompts/{promptIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRetrievalInstruction = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "UpdateRetrievalInstruction"),
+    input = M.UpdateRetrievalInstructionInput,
+    output = M.UpdateRetrievalInstructionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/retrievalinstructions/{retrievalInstructionId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

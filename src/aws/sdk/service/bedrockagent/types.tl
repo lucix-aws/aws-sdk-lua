@@ -4362,6 +4362,247 @@ local record M
         revisionId: string
     end
 
+    -- The instruction content, as a set of named fields. Every field is optional; at least one must be present. Service-side validation enforces per-field and aggregate size limits.
+    record RetrievalInstructionContent
+        -- How to interpret and decompose the question, and what to prioritise when searching.
+        retrievalGuidance: string
+        -- Who the assistant is: identity, tone and language.
+        persona: string
+        -- How the answer is structured, including how sources are cited.
+        answerFormat: string
+        -- Whether and how to answer: how strongly an answer must be supported, and what to do with questions outside scope.
+        answerPolicy: string
+    end
+
+    record CreateRetrievalInstructionInput
+        -- A caller-supplied token that makes a retried create return the existing resource rather than a second one. The window is 8 hours.
+        clientToken: string
+        -- Specifies the name of the retrieval instruction.
+        name: string
+        -- The instruction content, as a set of named fields. Get does not return this field until the create review passes.
+        instruction: RetrievalInstructionContent
+        -- Specifies a description of the retrieval instruction.
+        description: string
+        -- The Amazon Resource Name (ARN) of a customer managed AWS Key Management Service (AWS KMS) key used to encrypt the instruction content at rest. If you omit it, the service uses an AWS owned key. You fix the key at create and cannot change it later.
+        customerEncryptionKeyArn: string
+        -- Tags for the retrieval instruction.
+        tags: {string : string}
+    end
+
+    enum RetrievalInstructionLastTransitionStatus
+        "CREATING"
+        "UPDATING"
+        "CREATE_SUCCESSFUL"
+        "CREATE_FAILED"
+        "UPDATE_SUCCESSFUL"
+        "UPDATE_FAILED"
+    end
+
+    enum RetrievalInstructionStatus
+        "ACTIVE"
+        "INACTIVE"
+    end
+
+    record CreateRetrievalInstructionOutput
+        -- The identifier of the newly created retrieval instruction.
+        retrievalInstructionId: string
+        -- The ARN of the newly created retrieval instruction.
+        retrievalInstructionArn: string
+        -- The name of the retrieval instruction.
+        name: string
+        -- Always INACTIVE on this response. The content review has not run when this call returns, so the resource is not yet usable.
+        status: string
+        -- Always CREATING on this response. Poll GetRetrievalInstruction until this member is neither CREATING nor UPDATING, then read the outcome from it.
+        lastTransitionStatus: string
+        -- When you created the retrieval instruction.
+        createdAt: number
+        -- When the retrieval instruction was last updated.
+        updatedAt: number
+    end
+
+    record CreateRetrievalInstructionVersionInput
+        -- The identifier of the retrieval instruction to version.
+        retrievalInstructionId: string
+        -- A description of this version. Independent of the retrieval instruction's own description.
+        description: string
+        -- A caller-supplied token that makes a retried call return the version created by the first call rather than a second version. The window is 8 hours.
+        clientToken: string
+    end
+
+    record CreateRetrievalInstructionVersionOutput
+        -- The identifier of the retrieval instruction.
+        retrievalInstructionId: string
+        -- The ARN of the retrieval instruction. Versions do not have their own ARN.
+        retrievalInstructionArn: string
+        -- The number of the version created. Versions are numbered from 1 and allocated monotonically; a number is never reused, even after the version is deleted.
+        version: string
+        -- When this version was created.
+        createdAt: number
+        -- The description of this version, when one was supplied.
+        description: string
+    end
+
+    record DeleteRetrievalInstructionInput
+        -- The identifier of the retrieval instruction to delete.
+        retrievalInstructionId: string
+        -- The version to delete. Omit this field to delete the retrieval instruction itself, which you can do only when it has no versions; while any version exists the service rejects the request with ConflictException. You cannot delete DRAFT on its own; deleting the retrieval instruction removes it.
+        retrievalInstructionVersion: string
+    end
+
+    record DeleteRetrievalInstructionOutput
+        -- The identifier of the deleted retrieval instruction.
+        retrievalInstructionId: string
+        -- The ARN of the retrieval instruction.
+        retrievalInstructionArn: string
+        -- The version that you deleted. Absent when you deleted the whole retrieval instruction.
+        version: string
+    end
+
+    record GetRetrievalInstructionInput
+        -- The identifier of the retrieval instruction to get.
+        retrievalInstructionId: string
+        -- The version to return: a version number, or DRAFT for the retrieval instruction's current reviewed content. When omitted, DRAFT is used. This default is permanent: omitting retrievalInstructionVersion will never resolve to a numbered version.
+        retrievalInstructionVersion: string
+    end
+
+    enum RetrievalInstructionFailureReasonCode
+        "CONTENT_REJECTED"
+        "CLIENT_ERROR"
+        "INTERNAL_ERROR"
+    end
+
+    enum RetrievalInstructionFieldName
+        "RETRIEVAL_GUIDANCE"
+        "PERSONA"
+        "ANSWER_FORMAT"
+        "ANSWER_POLICY"
+    end
+
+    -- One reason the most recent create or update did not succeed. code drives programmatic branching (fix the text, fix the configuration, or retry); message carries the specific cause.
+    record RetrievalInstructionFailureReason
+        -- The instruction field this entry is about. Present on review rejections of a specific field; absent when the failure applies to the whole review, because a client-side execution failure or a service fault has no single field.
+        fieldName: string
+        -- Stable, machine-readable classification by fault attribution. Valid values: CONTENT_REJECTED – The review rejected the named field's content; revise the text and resubmit. CLIENT_ERROR – The review could not run for a customer-side reason, for example the customer managed AWS KMS key could not be used; fix the configuration and resubmit. INTERNAL_ERROR – The review could not complete due to a service fault; retry the create or update. New values may be added over time; your client should tolerate values it does not recognize and treat them as a failure.
+        code: string
+        -- Human-readable explanation of the specific cause. Never contains the customer's own text.
+        message: string
+    end
+
+    record GetRetrievalInstructionOutput
+        -- The identifier of the retrieval instruction.
+        retrievalInstructionId: string
+        -- The ARN of the retrieval instruction.
+        retrievalInstructionArn: string
+        -- The name of the retrieval instruction.
+        name: string
+        -- Specifies whether you can use the instruction. You can resolve only an ACTIVE instruction at retrieval time. Monotone: INACTIVE to ACTIVE once, never back. Numbered versions are always ACTIVE.
+        status: string
+        -- The outcome or in-progress state of the most recent create or update. CREATING or UPDATING means the operation is still running. Independent of status. Always has a value from the create 202 onward. On a numbered version this is always CREATE_SUCCESSFUL: a version is created once, from reviewed content, and is immutable.
+        lastTransitionStatus: string
+        -- The reviewed content this instruction serves — what AgenticRetrieveStream resolves while status is ACTIVE. Absent until the first create review passes. Always present on a numbered version.
+        instruction: RetrievalInstructionContent
+        -- When the retrieval instruction was created. On a numbered version, when that version was created.
+        createdAt: number
+        -- When the retrieval instruction was last updated. Equal to createdAt on a numbered version, which is immutable.
+        updatedAt: number
+        -- A description of the retrieval instruction. On a numbered version, the description of that version.
+        description: string
+        -- The ARN of the customer managed KMS key protecting this content, when one was supplied at create.
+        customerEncryptionKeyArn: string
+        -- Why the most recent create or update was rejected. One entry for each rejected field, or a single entry when the review itself failed. Each entry has a machine-readable code and a message, and names the field when it applies to one. The service includes this field only when lastTransitionStatus is CREATE_FAILED or UPDATE_FAILED. Never present on a numbered version.
+        lastTransitionStatusReasons: {RetrievalInstructionFailureReason}
+        -- The version this response describes: a version number, or DRAFT.
+        version: string
+        -- The largest version number that currently exists for this retrieval instruction, that is, the newest version you can retrieve. Present only on a DRAFT read, and only when at least one version exists. Because version numbers are never reused, deleting versions can leave gaps: this is the newest existing version, not a count and not the highest number ever created.
+        latestVersion: string
+    end
+
+    record ListRetrievalInstructionsInput
+        -- Return only instructions with this availability status.
+        status: string
+        -- The maximum number of results to return in a single page. The effective upper bound is enforced service-side.
+        maxResults: number
+        -- The pagination token from a previous ListRetrievalInstructions response.
+        nextToken: string
+    end
+
+    -- A summary of a retrieval instruction, without the content.
+    record RetrievalInstructionSummary
+        -- The identifier of the retrieval instruction.
+        retrievalInstructionId: string
+        -- The ARN of the retrieval instruction.
+        retrievalInstructionArn: string
+        -- The name of the retrieval instruction.
+        name: string
+        -- Whether the instruction can be used. Only ACTIVE is resolvable at retrieval time.
+        status: string
+        -- The outcome or in-progress state of the most recent create or update of the retrieval instruction.
+        lastTransitionStatus: string
+        -- When you created the retrieval instruction.
+        createdAt: number
+        -- When the retrieval instruction was last updated.
+        updatedAt: number
+        -- A description of the retrieval instruction.
+        description: string
+    end
+
+    record ListRetrievalInstructionsOutput
+        -- The retrieval instruction summaries in this page.
+        retrievalInstructionSummaries: {RetrievalInstructionSummary}
+        -- The pagination token to pass to the next ListRetrievalInstructions call, absent on the last page.
+        nextToken: string
+    end
+
+    record ListRetrievalInstructionVersionsInput
+        -- The identifier of the retrieval instruction whose versions to list.
+        retrievalInstructionId: string
+        -- Specifies the maximum number of versions to return in a single page. The service enforces the effective upper bound.
+        maxResults: number
+        -- The pagination token from a previous ListRetrievalInstructionVersions response.
+        nextToken: string
+    end
+
+    -- A summary of one numbered version of a retrieval instruction, without the content.
+    record RetrievalInstructionVersionSummary
+        -- The version number.
+        version: string
+        -- When this version was created.
+        createdAt: number
+    end
+
+    record ListRetrievalInstructionVersionsOutput
+        -- The version summaries in this page, newest first.
+        retrievalInstructionVersionSummaries: {RetrievalInstructionVersionSummary}
+        -- The pagination token to pass to the next ListRetrievalInstructionVersions call, absent on the last page.
+        nextToken: string
+    end
+
+    record UpdateRetrievalInstructionInput
+        -- The identifier of the retrieval instruction to update.
+        retrievalInstructionId: string
+        -- The replacement instruction content. This is a full replacement of all four fields, not a patch. During UPDATING, Get continues to return the previously-served content until the update review passes.
+        instruction: RetrievalInstructionContent
+        -- A replacement description; applied together with the content when the review passes. Omit to clear.
+        description: string
+    end
+
+    record UpdateRetrievalInstructionOutput
+        -- The identifier of the retrieval instruction.
+        retrievalInstructionId: string
+        -- The ARN of the retrieval instruction.
+        retrievalInstructionArn: string
+        -- The name of the retrieval instruction.
+        name: string
+        -- Whether the instruction can be used. An update never lowers status. Unchanged from the previous value on this response.
+        status: string
+        -- Always UPDATING on this response. Poll GetRetrievalInstruction until this member is neither CREATING nor UPDATING, then read the outcome from it.
+        lastTransitionStatus: string
+        -- When you created the retrieval instruction.
+        createdAt: number
+        -- When the retrieval instruction was last updated.
+        updatedAt: number
+    end
+
     record ListTagsForResourceInput
         -- The Amazon Resource Name (ARN) of the resource for which to list tags.
         resourceArn: string

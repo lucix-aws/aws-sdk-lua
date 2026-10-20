@@ -1442,6 +1442,8 @@ local record M
         DestinationArn: string
         -- The ARN of the KMS key to use for encryption.
         KmsKeyArn: string
+        -- The 12-digit Amazon Web Services account ID of the account that owns the Amazon S3 bucket specified in the DestinationArn parameter. When you provide this value, GuardDuty verifies that the specified account owns the bucket before it exports findings. If the account ID doesn't match the actual owner of the bucket, GuardDuty doesn't export findings to that bucket. This helps prevent GuardDuty from exporting your findings to a bucket that a different Amazon Web Services account owns (for example, if the original bucket was deleted and its name was later claimed by another account). If you don't specify this value, GuardDuty doesn't perform this verification. GuardDuty strongly recommends that you provide the expected bucket owner when possible. When you update a publishing destination, omitting this field leaves the currently stored value unchanged. This field appears in the response only if it was provided when the publishing destination was created or updated. For more information, see Verifying the Amazon S3 bucket owner in the Amazon GuardDuty User Guide.
+        ExpectedBucketOwner: string
     end
 
     enum DestinationType

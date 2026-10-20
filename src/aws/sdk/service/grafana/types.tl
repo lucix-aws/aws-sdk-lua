@@ -364,7 +364,7 @@ local record M
     record UpdateWorkspaceAuthenticationInput
         -- The ID of the workspace to update the authentication for.
         workspaceId: string
-        -- Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both to authenticate users for using the Grafana console within a workspace. For more information, see User authentication in Amazon Managed Grafana.
+        -- Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both to authenticate users for using the Grafana console within a workspace. For more information, see User authentication in Amazon Managed Grafana .
         authenticationProviders: {string}
         -- If the workspace uses SAML, use this structure to map SAML assertion attributes to workspace user information and define which groups in the assertion attribute are to have the Admin and Editor roles in the workspace.
         samlConfiguration: SamlConfiguration
@@ -712,7 +712,7 @@ local record M
         workspaceOrganizationalUnits: {string}
         -- Specified the IAM role that grants permissions to the Amazon Web Services resources that the workspace will view data from, including both data sources and notification channels. You are responsible for managing the permissions for this role as new data sources or notification channels are added.
         workspaceRoleArn: string
-        -- Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both to authenticate users for using the Grafana console within a workspace. For more information, see User authentication in Amazon Managed Grafana.
+        -- Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both to authenticate users for using the Grafana console within a workspace. For more information, see User authentication in Amazon Managed Grafana .
         authenticationProviders: {string}
         -- The list of tags associated with the workspace.
         tags: {string : string}
