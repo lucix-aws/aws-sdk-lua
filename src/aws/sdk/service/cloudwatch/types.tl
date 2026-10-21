@@ -140,6 +140,12 @@ local record M
         RecoveryPeriod: number
     end
 
+    enum AnomalyDetectorAdaptationSpeed
+        "FAST"
+        "NORMAL"
+        "SLOW"
+    end
+
     -- Specifies one range of days or times to exclude from use for training an anomaly
     -- detection model.
     record Range
@@ -151,6 +157,12 @@ local record M
         -- yyyy-MM-dd'T'HH:mm:ss. For example,
         -- 2019-07-01T23:59:59.
         EndTime: number
+    end
+
+    enum AnomalyDetectorOutlierFilteringStrength
+        "MINIMAL"
+        "MODERATE"
+        "STRICT"
     end
 
     -- The configuration specifies details about how the anomaly detection model is to be
@@ -167,6 +179,23 @@ local record M
         -- To specify a time zone, use the name of the time zone as specified in the standard
         -- tz database. For more information, see tz database.
         MetricTimezone: string
+        -- The speed at which the anomaly detection model adapts to sustained changes in the
+        -- metric's baseline. Faster adaptation lets the model track shifting workloads sooner, but
+        -- increases the chance that the model treats a real, lasting change as normal.
+        -- Valid values:
+        -- FAST - The model adapts quickly to sustained changes in the baseline.
+        -- NORMAL - The model adapts at a moderate pace. This is the default value.
+        -- SLOW - The model adapts slowly, reducing the risk of treating a real change as normal.
+        AdaptationSpeed: string
+        -- The aggressiveness with which CloudWatch filters outliers from the metric data
+        -- that the anomaly detection model uses. Stronger filtering excludes more extreme values,
+        -- which can produce a tighter band of expected values but may also suppress legitimate
+        -- spikes.
+        -- Valid values:
+        -- MINIMAL - Excludes only the most extreme outliers.
+        -- MODERATE - Excludes a moderate range of outliers. This is the default value.
+        -- STRICT - Excludes a wider range of outliers, which can suppress legitimate spikes.
+        OutlierFilteringStrength: string
     end
 
     -- A dimension is a name/value pair that is part of the identity of a metric. Because

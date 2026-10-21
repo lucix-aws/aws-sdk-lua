@@ -118,9 +118,9 @@ M.NodeGroupsToRemoveList = schema.new({ type = "list", list_member = prelude.Str
 
 M.NodeGroupsToRetainList = schema.new({ type = "list", list_member = prelude.String })
 
-M.KeyList = schema.new({ type = "list", list_member = prelude.String })
-
 M.CustomerNodeEndpointList = schema.new({ type = "list", list_member = M.CustomerNodeEndpoint })
+
+M.KeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EC2SecurityGroupList = schema.new({ type = "list", list_member = M.EC2SecurityGroup })
 
@@ -889,9 +889,12 @@ M.CompleteMigrationInput = schema.new({
             type = "string",
             name = "ReplicationGroupId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        ServerlessCacheName = schema.new({
+            id = id.from(_N, "CompleteMigrationInput", "ServerlessCacheName"),
+            type = "string",
+            name = "ServerlessCacheName",
+            target_id = prelude.String.id,
         }),
         Force = schema.new({
             id = id.from(_N, "CompleteMigrationInput", "Force"),
@@ -1490,6 +1493,239 @@ M.ReplicationGroup = schema.new({
     },
 })
 
+M.DataStorage = schema.new({
+    id = id.from(_N, "DataStorage"),
+    type = "structure",
+    members = {
+        Maximum = schema.new({
+            id = id.from(_N, "DataStorage", "Maximum"),
+            type = "integer",
+            name = "Maximum",
+            target_id = prelude.Integer.id,
+        }),
+        Minimum = schema.new({
+            id = id.from(_N, "DataStorage", "Minimum"),
+            type = "integer",
+            name = "Minimum",
+            target_id = prelude.Integer.id,
+        }),
+        Unit = schema.new({
+            id = id.from(_N, "DataStorage", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ECPUPerSecond = schema.new({
+    id = id.from(_N, "ECPUPerSecond"),
+    type = "structure",
+    members = {
+        Maximum = schema.new({
+            id = id.from(_N, "ECPUPerSecond", "Maximum"),
+            type = "integer",
+            name = "Maximum",
+            target_id = prelude.Integer.id,
+        }),
+        Minimum = schema.new({
+            id = id.from(_N, "ECPUPerSecond", "Minimum"),
+            type = "integer",
+            name = "Minimum",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CacheUsageLimits = schema.new({
+    id = id.from(_N, "CacheUsageLimits"),
+    type = "structure",
+    members = {
+        DataStorage = schema.new({
+            id = id.from(_N, "CacheUsageLimits", "DataStorage"),
+            type = "structure",
+            name = "DataStorage",
+            target_id = id.from(_N, "DataStorage"),
+            target = M.DataStorage,
+        }),
+        ECPUPerSecond = schema.new({
+            id = id.from(_N, "CacheUsageLimits", "ECPUPerSecond"),
+            type = "structure",
+            name = "ECPUPerSecond",
+            target_id = id.from(_N, "ECPUPerSecond"),
+            target = M.ECPUPerSecond,
+        }),
+    },
+})
+
+M.MigrationSummary = schema.new({
+    id = id.from(_N, "MigrationSummary"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "MigrationSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        MigrationEndpoint = schema.new({
+            id = id.from(_N, "MigrationSummary", "MigrationEndpoint"),
+            type = "structure",
+            name = "MigrationEndpoint",
+            target_id = id.from(_N, "Endpoint"),
+            target = M.Endpoint,
+        }),
+        CutoverMode = schema.new({
+            id = id.from(_N, "MigrationSummary", "CutoverMode"),
+            type = "string",
+            name = "CutoverMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServerlessCache = schema.new({
+    id = id.from(_N, "ServerlessCache"),
+    type = "structure",
+    members = {
+        ServerlessCacheName = schema.new({
+            id = id.from(_N, "ServerlessCache", "ServerlessCacheName"),
+            type = "string",
+            name = "ServerlessCacheName",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ServerlessCache", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        CreateTime = schema.new({
+            id = id.from(_N, "ServerlessCache", "CreateTime"),
+            type = "timestamp",
+            name = "CreateTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ServerlessCache", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Engine = schema.new({
+            id = id.from(_N, "ServerlessCache", "Engine"),
+            type = "string",
+            name = "Engine",
+            target_id = prelude.String.id,
+        }),
+        MajorEngineVersion = schema.new({
+            id = id.from(_N, "ServerlessCache", "MajorEngineVersion"),
+            type = "string",
+            name = "MajorEngineVersion",
+            target_id = prelude.String.id,
+        }),
+        FullEngineVersion = schema.new({
+            id = id.from(_N, "ServerlessCache", "FullEngineVersion"),
+            type = "string",
+            name = "FullEngineVersion",
+            target_id = prelude.String.id,
+        }),
+        CacheUsageLimits = schema.new({
+            id = id.from(_N, "ServerlessCache", "CacheUsageLimits"),
+            type = "structure",
+            name = "CacheUsageLimits",
+            target_id = id.from(_N, "CacheUsageLimits"),
+            target = M.CacheUsageLimits,
+        }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "ServerlessCache", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        StorageEncryptionType = schema.new({
+            id = id.from(_N, "ServerlessCache", "StorageEncryptionType"),
+            type = "string",
+            name = "StorageEncryptionType",
+            target_id = prelude.String.id,
+        }),
+        SecurityGroupIds = schema.new({
+            id = id.from(_N, "ServerlessCache", "SecurityGroupIds"),
+            type = "list",
+            name = "SecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
+        }),
+        Endpoint = schema.new({
+            id = id.from(_N, "ServerlessCache", "Endpoint"),
+            type = "structure",
+            name = "Endpoint",
+            target_id = id.from(_N, "Endpoint"),
+            target = M.Endpoint,
+        }),
+        ReaderEndpoint = schema.new({
+            id = id.from(_N, "ServerlessCache", "ReaderEndpoint"),
+            type = "structure",
+            name = "ReaderEndpoint",
+            target_id = id.from(_N, "Endpoint"),
+            target = M.Endpoint,
+        }),
+        ARN = schema.new({
+            id = id.from(_N, "ServerlessCache", "ARN"),
+            type = "string",
+            name = "ARN",
+            target_id = prelude.String.id,
+        }),
+        UserGroupId = schema.new({
+            id = id.from(_N, "ServerlessCache", "UserGroupId"),
+            type = "string",
+            name = "UserGroupId",
+            target_id = prelude.String.id,
+        }),
+        SubnetIds = schema.new({
+            id = id.from(_N, "ServerlessCache", "SubnetIds"),
+            type = "list",
+            name = "SubnetIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetId" } } }),
+        }),
+        SnapshotRetentionLimit = schema.new({
+            id = id.from(_N, "ServerlessCache", "SnapshotRetentionLimit"),
+            type = "integer",
+            name = "SnapshotRetentionLimit",
+            target_id = prelude.Integer.id,
+        }),
+        DailySnapshotTime = schema.new({
+            id = id.from(_N, "ServerlessCache", "DailySnapshotTime"),
+            type = "string",
+            name = "DailySnapshotTime",
+            target_id = prelude.String.id,
+        }),
+        NetworkType = schema.new({
+            id = id.from(_N, "ServerlessCache", "NetworkType"),
+            type = "string",
+            name = "NetworkType",
+            target_id = prelude.String.id,
+        }),
+        ConnectionType = schema.new({
+            id = id.from(_N, "ServerlessCache", "ConnectionType"),
+            type = "string",
+            name = "ConnectionType",
+            target_id = prelude.String.id,
+        }),
+        Migration = schema.new({
+            id = id.from(_N, "ServerlessCache", "Migration"),
+            type = "structure",
+            name = "Migration",
+            target_id = id.from(_N, "MigrationSummary"),
+            target = M.MigrationSummary,
+        }),
+    },
+})
+
 M.CompleteMigrationOutput = schema.new({
     id = id.from(_N, "CompleteMigrationResponse"),
     type = "structure",
@@ -1500,6 +1736,47 @@ M.CompleteMigrationOutput = schema.new({
             name = "ReplicationGroup",
             target_id = id.from(_N, "ReplicationGroup"),
             target = M.ReplicationGroup,
+        }),
+        ServerlessCache = schema.new({
+            id = id.from(_N, "CompleteMigrationOutput", "ServerlessCache"),
+            type = "structure",
+            name = "ServerlessCache",
+            target_id = id.from(_N, "ServerlessCache"),
+            target = M.ServerlessCache,
+        }),
+    },
+})
+
+M.InvalidCacheClusterStateFault = schema.new({
+    id = id.from(_N, "InvalidCacheClusterStateFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidCacheClusterState", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidCacheClusterStateFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MigrationHealthFault = schema.new({
+    id = id.from(_N, "MigrationHealthFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "MigrationHealthFault", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "MigrationHealthFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1514,6 +1791,23 @@ M.ReplicationGroupNotUnderMigrationFault = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "ReplicationGroupNotUnderMigrationFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServerlessCacheNotUnderMigrationFault = schema.new({
+    id = id.from(_N, "ServerlessCacheNotUnderMigrationFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServerlessCacheNotUnderMigrationFault", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServerlessCacheNotUnderMigrationFault", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -3845,23 +4139,6 @@ M.CreateReplicationGroupOutput = schema.new({
     },
 })
 
-M.InvalidCacheClusterStateFault = schema.new({
-    id = id.from(_N, "InvalidCacheClusterStateFault"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "InvalidCacheClusterState", httpResponseCode = 400 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InvalidCacheClusterStateFault", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.InvalidGlobalReplicationGroupStateFault = schema.new({
     id = id.from(_N, "InvalidGlobalReplicationGroupStateFault"),
     type = "structure",
@@ -3926,74 +4203,6 @@ M.ReplicationGroupAlreadyExistsFault = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DataStorage = schema.new({
-    id = id.from(_N, "DataStorage"),
-    type = "structure",
-    members = {
-        Maximum = schema.new({
-            id = id.from(_N, "DataStorage", "Maximum"),
-            type = "integer",
-            name = "Maximum",
-            target_id = prelude.Integer.id,
-        }),
-        Minimum = schema.new({
-            id = id.from(_N, "DataStorage", "Minimum"),
-            type = "integer",
-            name = "Minimum",
-            target_id = prelude.Integer.id,
-        }),
-        Unit = schema.new({
-            id = id.from(_N, "DataStorage", "Unit"),
-            type = "string",
-            name = "Unit",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ECPUPerSecond = schema.new({
-    id = id.from(_N, "ECPUPerSecond"),
-    type = "structure",
-    members = {
-        Maximum = schema.new({
-            id = id.from(_N, "ECPUPerSecond", "Maximum"),
-            type = "integer",
-            name = "Maximum",
-            target_id = prelude.Integer.id,
-        }),
-        Minimum = schema.new({
-            id = id.from(_N, "ECPUPerSecond", "Minimum"),
-            type = "integer",
-            name = "Minimum",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.CacheUsageLimits = schema.new({
-    id = id.from(_N, "CacheUsageLimits"),
-    type = "structure",
-    members = {
-        DataStorage = schema.new({
-            id = id.from(_N, "CacheUsageLimits", "DataStorage"),
-            type = "structure",
-            name = "DataStorage",
-            target_id = id.from(_N, "DataStorage"),
-            target = M.DataStorage,
-        }),
-        ECPUPerSecond = schema.new({
-            id = id.from(_N, "CacheUsageLimits", "ECPUPerSecond"),
-            type = "structure",
-            name = "ECPUPerSecond",
-            target_id = id.from(_N, "ECPUPerSecond"),
-            target = M.ECPUPerSecond,
         }),
     },
 })
@@ -4099,138 +4308,6 @@ M.CreateServerlessCacheInput = schema.new({
         }),
         ConnectionType = schema.new({
             id = id.from(_N, "CreateServerlessCacheInput", "ConnectionType"),
-            type = "string",
-            name = "ConnectionType",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ServerlessCache = schema.new({
-    id = id.from(_N, "ServerlessCache"),
-    type = "structure",
-    members = {
-        ServerlessCacheName = schema.new({
-            id = id.from(_N, "ServerlessCache", "ServerlessCacheName"),
-            type = "string",
-            name = "ServerlessCacheName",
-            target_id = prelude.String.id,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "ServerlessCache", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        CreateTime = schema.new({
-            id = id.from(_N, "ServerlessCache", "CreateTime"),
-            type = "timestamp",
-            name = "CreateTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        Status = schema.new({
-            id = id.from(_N, "ServerlessCache", "Status"),
-            type = "string",
-            name = "Status",
-            target_id = prelude.String.id,
-        }),
-        Engine = schema.new({
-            id = id.from(_N, "ServerlessCache", "Engine"),
-            type = "string",
-            name = "Engine",
-            target_id = prelude.String.id,
-        }),
-        MajorEngineVersion = schema.new({
-            id = id.from(_N, "ServerlessCache", "MajorEngineVersion"),
-            type = "string",
-            name = "MajorEngineVersion",
-            target_id = prelude.String.id,
-        }),
-        FullEngineVersion = schema.new({
-            id = id.from(_N, "ServerlessCache", "FullEngineVersion"),
-            type = "string",
-            name = "FullEngineVersion",
-            target_id = prelude.String.id,
-        }),
-        CacheUsageLimits = schema.new({
-            id = id.from(_N, "ServerlessCache", "CacheUsageLimits"),
-            type = "structure",
-            name = "CacheUsageLimits",
-            target_id = id.from(_N, "CacheUsageLimits"),
-            target = M.CacheUsageLimits,
-        }),
-        KmsKeyId = schema.new({
-            id = id.from(_N, "ServerlessCache", "KmsKeyId"),
-            type = "string",
-            name = "KmsKeyId",
-            target_id = prelude.String.id,
-        }),
-        StorageEncryptionType = schema.new({
-            id = id.from(_N, "ServerlessCache", "StorageEncryptionType"),
-            type = "string",
-            name = "StorageEncryptionType",
-            target_id = prelude.String.id,
-        }),
-        SecurityGroupIds = schema.new({
-            id = id.from(_N, "ServerlessCache", "SecurityGroupIds"),
-            type = "list",
-            name = "SecurityGroupIds",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
-        }),
-        Endpoint = schema.new({
-            id = id.from(_N, "ServerlessCache", "Endpoint"),
-            type = "structure",
-            name = "Endpoint",
-            target_id = id.from(_N, "Endpoint"),
-            target = M.Endpoint,
-        }),
-        ReaderEndpoint = schema.new({
-            id = id.from(_N, "ServerlessCache", "ReaderEndpoint"),
-            type = "structure",
-            name = "ReaderEndpoint",
-            target_id = id.from(_N, "Endpoint"),
-            target = M.Endpoint,
-        }),
-        ARN = schema.new({
-            id = id.from(_N, "ServerlessCache", "ARN"),
-            type = "string",
-            name = "ARN",
-            target_id = prelude.String.id,
-        }),
-        UserGroupId = schema.new({
-            id = id.from(_N, "ServerlessCache", "UserGroupId"),
-            type = "string",
-            name = "UserGroupId",
-            target_id = prelude.String.id,
-        }),
-        SubnetIds = schema.new({
-            id = id.from(_N, "ServerlessCache", "SubnetIds"),
-            type = "list",
-            name = "SubnetIds",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetId" } } }),
-        }),
-        SnapshotRetentionLimit = schema.new({
-            id = id.from(_N, "ServerlessCache", "SnapshotRetentionLimit"),
-            type = "integer",
-            name = "SnapshotRetentionLimit",
-            target_id = prelude.Integer.id,
-        }),
-        DailySnapshotTime = schema.new({
-            id = id.from(_N, "ServerlessCache", "DailySnapshotTime"),
-            type = "string",
-            name = "DailySnapshotTime",
-            target_id = prelude.String.id,
-        }),
-        NetworkType = schema.new({
-            id = id.from(_N, "ServerlessCache", "NetworkType"),
-            type = "string",
-            name = "NetworkType",
-            target_id = prelude.String.id,
-        }),
-        ConnectionType = schema.new({
-            id = id.from(_N, "ServerlessCache", "ConnectionType"),
             type = "string",
             name = "ConnectionType",
             target_id = prelude.String.id,
@@ -8819,6 +8896,142 @@ M.ModifyUserGroupOutput = schema.new({
     },
 })
 
+M.CustomerNodeEndpoint = schema.new({
+    id = id.from(_N, "CustomerNodeEndpoint"),
+    type = "structure",
+    members = {
+        Address = schema.new({
+            id = id.from(_N, "CustomerNodeEndpoint", "Address"),
+            type = "string",
+            name = "Address",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "CustomerNodeEndpoint", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SecretManagerAuthConfig = schema.new({
+    id = id.from(_N, "SecretManagerAuthConfig"),
+    type = "structure",
+    members = {
+        SecretArn = schema.new({
+            id = id.from(_N, "SecretManagerAuthConfig", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SourceAuthenticationConfiguration = schema.new({
+    id = id.from(_N, "SourceAuthenticationConfiguration"),
+    type = "structure",
+    members = {
+        SecretManagerConfig = schema.new({
+            id = id.from(_N, "SourceAuthenticationConfiguration", "SecretManagerConfig"),
+            type = "structure",
+            name = "SecretManagerConfig",
+            target_id = id.from(_N, "SecretManagerAuthConfig"),
+            target = M.SecretManagerAuthConfig,
+        }),
+    },
+})
+
+M.SourceTlsConfiguration = schema.new({
+    id = id.from(_N, "SourceTlsConfiguration"),
+    type = "structure",
+    members = {
+        SourceTlsMode = schema.new({
+            id = id.from(_N, "SourceTlsConfiguration", "SourceTlsMode"),
+            type = "string",
+            name = "SourceTlsMode",
+            target_id = prelude.String.id,
+        }),
+        SourceTlsCertificate = schema.new({
+            id = id.from(_N, "SourceTlsConfiguration", "SourceTlsCertificate"),
+            type = "string",
+            name = "SourceTlsCertificate",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PrepareMigrationInput = schema.new({
+    id = id.from(_N, "PrepareMigrationRequest"),
+    type = "structure",
+    members = {
+        ServerlessCacheName = schema.new({
+            id = id.from(_N, "PrepareMigrationInput", "ServerlessCacheName"),
+            type = "string",
+            name = "ServerlessCacheName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CustomerNodeEndpointList = schema.new({
+            id = id.from(_N, "PrepareMigrationInput", "CustomerNodeEndpointList"),
+            type = "list",
+            name = "CustomerNodeEndpointList",
+            target_id = prelude.Document.id,
+            list_member = M.CustomerNodeEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceAuthenticationConfiguration = schema.new({
+            id = id.from(_N, "PrepareMigrationInput", "SourceAuthenticationConfiguration"),
+            type = "structure",
+            name = "SourceAuthenticationConfiguration",
+            target_id = id.from(_N, "SourceAuthenticationConfiguration"),
+            target = M.SourceAuthenticationConfiguration,
+        }),
+        SourceTlsConfiguration = schema.new({
+            id = id.from(_N, "PrepareMigrationInput", "SourceTlsConfiguration"),
+            type = "structure",
+            name = "SourceTlsConfiguration",
+            target_id = id.from(_N, "SourceTlsConfiguration"),
+            target = M.SourceTlsConfiguration,
+        }),
+    },
+})
+
+M.PrepareMigrationOutput = schema.new({
+    id = id.from(_N, "PrepareMigrationResponse"),
+    type = "structure",
+    members = {
+        ServerlessCache = schema.new({
+            id = id.from(_N, "PrepareMigrationOutput", "ServerlessCache"),
+            type = "structure",
+            name = "ServerlessCache",
+            target_id = id.from(_N, "ServerlessCache"),
+            target = M.ServerlessCache,
+        }),
+    },
+})
+
+M.ServerlessCacheAlreadyUnderMigrationFault = schema.new({
+    id = id.from(_N, "ServerlessCacheAlreadyUnderMigrationFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ServerlessCacheAlreadyUnderMigrationFault", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServerlessCacheAlreadyUnderMigrationFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PurchaseReservedCacheNodesOfferingInput = schema.new({
     id = id.from(_N, "PurchaseReservedCacheNodesOfferingMessage"),
     type = "structure",
@@ -9162,37 +9375,21 @@ M.ReplicationGroupAlreadyUnderMigrationFault = schema.new({
     },
 })
 
-M.CustomerNodeEndpoint = schema.new({
-    id = id.from(_N, "CustomerNodeEndpoint"),
-    type = "structure",
-    members = {
-        Address = schema.new({
-            id = id.from(_N, "CustomerNodeEndpoint", "Address"),
-            type = "string",
-            name = "Address",
-            target_id = prelude.String.id,
-        }),
-        Port = schema.new({
-            id = id.from(_N, "CustomerNodeEndpoint", "Port"),
-            type = "integer",
-            name = "Port",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
 M.StartMigrationInput = schema.new({
     id = id.from(_N, "StartMigrationMessage"),
     type = "structure",
     members = {
+        ServerlessCacheName = schema.new({
+            id = id.from(_N, "StartMigrationInput", "ServerlessCacheName"),
+            type = "string",
+            name = "ServerlessCacheName",
+            target_id = prelude.String.id,
+        }),
         ReplicationGroupId = schema.new({
             id = id.from(_N, "StartMigrationInput", "ReplicationGroupId"),
             type = "string",
             name = "ReplicationGroupId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         CustomerNodeEndpointList = schema.new({
             id = id.from(_N, "StartMigrationInput", "CustomerNodeEndpointList"),
@@ -9200,9 +9397,18 @@ M.StartMigrationInput = schema.new({
             name = "CustomerNodeEndpointList",
             target_id = prelude.Document.id,
             list_member = M.CustomerNodeEndpoint,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        AutoCutover = schema.new({
+            id = id.from(_N, "StartMigrationInput", "AutoCutover"),
+            type = "boolean",
+            name = "AutoCutover",
+            target_id = prelude.Boolean.id,
+        }),
+        ClearTargetCacheData = schema.new({
+            id = id.from(_N, "StartMigrationInput", "ClearTargetCacheData"),
+            type = "boolean",
+            name = "ClearTargetCacheData",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -9217,6 +9423,43 @@ M.StartMigrationOutput = schema.new({
             name = "ReplicationGroup",
             target_id = id.from(_N, "ReplicationGroup"),
             target = M.ReplicationGroup,
+        }),
+        ServerlessCache = schema.new({
+            id = id.from(_N, "StartMigrationOutput", "ServerlessCache"),
+            type = "structure",
+            name = "ServerlessCache",
+            target_id = id.from(_N, "ServerlessCache"),
+            target = M.ServerlessCache,
+        }),
+    },
+})
+
+M.StopMigrationInput = schema.new({
+    id = id.from(_N, "StopMigrationRequest"),
+    type = "structure",
+    members = {
+        ServerlessCacheName = schema.new({
+            id = id.from(_N, "StopMigrationInput", "ServerlessCacheName"),
+            type = "string",
+            name = "ServerlessCacheName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopMigrationOutput = schema.new({
+    id = id.from(_N, "StopMigrationResponse"),
+    type = "structure",
+    members = {
+        ServerlessCache = schema.new({
+            id = id.from(_N, "StopMigrationOutput", "ServerlessCache"),
+            type = "structure",
+            name = "ServerlessCache",
+            target_id = id.from(_N, "ServerlessCache"),
+            target = M.ServerlessCache,
         }),
     },
 })
@@ -10102,6 +10345,17 @@ M.ModifyUserGroup = schema.operation({
     },
 })
 
+M.PrepareMigration = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "PrepareMigration"),
+    input = M.PrepareMigrationInput,
+    output = M.PrepareMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.PurchaseReservedCacheNodesOffering = schema.operation({
     id = id.from("com.amazonaws.elasticache", "PurchaseReservedCacheNodesOffering"),
     input = M.PurchaseReservedCacheNodesOfferingInput,
@@ -10172,6 +10426,17 @@ M.StartMigration = schema.operation({
     id = id.from("com.amazonaws.elasticache", "StartMigration"),
     input = M.StartMigrationInput,
     output = M.StartMigrationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopMigration = schema.operation({
+    id = id.from("com.amazonaws.elasticache", "StopMigration"),
+    input = M.StopMigrationInput,
+    output = M.StopMigrationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

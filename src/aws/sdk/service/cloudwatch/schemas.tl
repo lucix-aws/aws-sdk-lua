@@ -388,6 +388,18 @@ M.AnomalyDetectorConfiguration = schema.new({
             name = "MetricTimezone",
             target_id = prelude.String.id,
         }),
+        AdaptationSpeed = schema.new({
+            id = id.from(_N, "AnomalyDetectorConfiguration", "AdaptationSpeed"),
+            type = "string",
+            name = "AdaptationSpeed",
+            target_id = prelude.String.id,
+        }),
+        OutlierFilteringStrength = schema.new({
+            id = id.from(_N, "AnomalyDetectorConfiguration", "OutlierFilteringStrength"),
+            type = "string",
+            name = "OutlierFilteringStrength",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

@@ -76,6 +76,60 @@ function M.items_list_container_instances(client, input)
     })
 end
 
+--- Returns a page iterator for listGatewayClusterAssociations.
+function M.pages_list_gateway_cluster_associations(client, input)
+    return paginator.pages(client, "listGatewayClusterAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewayClusterAssociations",
+    })
+end
+
+--- Returns an item iterator for listGatewayClusterAssociations.
+function M.items_list_gateway_cluster_associations(client, input)
+    return paginator.items(client, "listGatewayClusterAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewayClusterAssociations",
+    })
+end
+
+--- Returns a page iterator for listGatewayRoutes.
+function M.pages_list_gateway_routes(client, input)
+    return paginator.pages(client, "listGatewayRoutes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewayRoutes",
+    })
+end
+
+--- Returns an item iterator for listGatewayRoutes.
+function M.items_list_gateway_routes(client, input)
+    return paginator.items(client, "listGatewayRoutes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gatewayRoutes",
+    })
+end
+
+--- Returns a page iterator for listGateways.
+function M.pages_list_gateways(client, input)
+    return paginator.pages(client, "listGateways", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gateways",
+    })
+end
+
+--- Returns an item iterator for listGateways.
+function M.items_list_gateways(client, input)
+    return paginator.items(client, "listGateways", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "gateways",
+    })
+end
+
 --- Returns a page iterator for listServices.
 function M.pages_list_services(client, input)
     return paginator.pages(client, "listServices", input, {

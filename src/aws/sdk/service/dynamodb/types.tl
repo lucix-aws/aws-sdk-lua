@@ -1921,6 +1921,9 @@ local record M
         -- in use, if the table is replicated across Amazon Web Services Regions.
         GlobalTableVersion: string
         -- Represents replicas of the table.
+        -- After a successful disassociation, this list is absent or empty. To confirm
+        -- disassociation, also verify that TableStatus is
+        -- ACTIVE.
         Replicas: {ReplicaDescription}
         -- The witness Region and its current status in the MRSC global table. Only one witness
         -- Region can be configured per MRSC global table.
@@ -1944,6 +1947,10 @@ local record M
         -- Indicates whether deletion protection is enabled (true) or disabled (false) on the
         -- table.
         DeletionProtectionEnabled: boolean
+        -- Specifies whether disassociation protection is enabled (true) or
+        -- disabled (false) for the local global table replica. Protection is
+        -- enabled by default.
+        DisassociationProtectionEnabled: boolean
         -- The maximum number of read and write units for the specified on-demand table. If you
         -- use this parameter, you must specify MaxReadRequestUnits,
         -- MaxWriteRequestUnits, or both.
@@ -2655,6 +2662,29 @@ local record M
         DestinationStatus: string
         -- The destination for the Kinesis streaming information that is being enabled.
         EnableKinesisStreamingConfiguration: EnableKinesisStreamingConfiguration
+    end
+
+    enum DisassociationMode
+        "WAIT_FOR_REPLICATION"
+    end
+
+    -- The parameters for disassociating the local replica from a global table using
+    -- Version 2019.11.21 with multi-Region eventual consistency (MREC).
+    -- After disassociation completes, the replica remains a standalone regional table
+    -- that keeps its data, indexes, and table settings.
+    -- For request requirements, see UpdateTable.
+    -- For prerequisites, the protection update, and completion checks, see Disassociating a global table replica in the Amazon DynamoDB
+    -- Developer Guide.
+    record DisassociateReplicationGroupMemberAction
+        -- The Region of the replica to disassociate. Set this value to the Region where
+        -- you send the UpdateTable request. You must use credentials for the
+        -- account that owns the replica.
+        RegionName: string
+        -- The mode for handling pending replication before disassociation completes.
+        -- You must specify WAIT_FOR_REPLICATION. For more information, see
+        -- Disassociating a global table replica in the Amazon DynamoDB
+        -- Developer Guide.
+        DisassociationMode: string
     end
 
     -- There was an attempt to insert an item with the same primary key as an item that
@@ -3434,6 +3464,11 @@ local record M
     -- An existing replica to be deleted. The request invokes the
     -- DeleteTableReplica action in the destination Region, deleting
     -- the replica and all if its items in the destination Region.
+    -- The local replica to be disassociated from a global table and retained as
+    -- a standalone regional table.
+    -- Each ReplicationGroupUpdate contains exactly one action. A
+    -- Disassociate action must be the only replica update in the request;
+    -- including other updates causes the request to fail.
     -- When you manually remove a table or global table replica, you do not automatically
     -- remove any associated scalable targets, scaling policies, or CloudWatch
     -- alarms.
@@ -3444,6 +3479,9 @@ local record M
         Update: UpdateReplicationGroupMemberAction
         -- The parameters required for deleting a replica for the table.
         Delete: DeleteReplicationGroupMemberAction
+        -- The parameters for disassociating the local replica from the global table and
+        -- retaining it as a standalone regional table.
+        Disassociate: DisassociateReplicationGroupMemberAction
     end
 
     -- A vector index to be added to or removed from a table.
@@ -3496,7 +3534,8 @@ local record M
         StreamSpecification: StreamSpecification
         -- The new server-side encryption settings for the specified table.
         SSESpecification: SSESpecification
-        -- A list of replica update actions (create, delete, or update) for the table.
+        -- A list of replica update actions (create, delete, update, or disassociate) for the
+        -- table.
         ReplicaUpdates: {ReplicationGroupUpdate}
         -- The table class of the table to be updated. Valid values are STANDARD and
         -- STANDARD_INFREQUENT_ACCESS.
@@ -3542,6 +3581,15 @@ local record M
         -- DISABLED: Remove settings replication on a regional table. Settings replication needs
         -- to be defined to ENABLED again in order to create a Multi-Account Global Table using this table.
         GlobalTableSettingsReplicationMode: string
+        -- Specifies whether disassociation protection is enabled (true) or
+        -- disabled (false) for the local replica of a multi-Region eventual
+        -- consistency (MREC) global table using Version 2019.11.21.
+        -- Disassociation protection is enabled by default. If you omit this parameter, the
+        -- existing setting is unchanged. This setting is independent of
+        -- DeletionProtectionEnabled.
+        -- You can't combine this change with any other change in the same
+        -- UpdateTable request.
+        DisassociationProtectionEnabled: boolean
         -- A list of vector indexes to be added to or removed from the table. You can add or
         -- remove one vector index for each UpdateTable operation.
         -- To add a vector index, specify IndexName,

@@ -40,6 +40,24 @@ function M.items_describe_certificates(client, input)
     })
 end
 
+--- Returns a page iterator for describeDBCapacityReservations.
+function M.pages_describe_d_b_capacity_reservations(client, input)
+    return paginator.pages(client, "describeDBCapacityReservations", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "DBCapacityReservations",
+    })
+end
+
+--- Returns an item iterator for describeDBCapacityReservations.
+function M.items_describe_d_b_capacity_reservations(client, input)
+    return paginator.items(client, "describeDBCapacityReservations", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "DBCapacityReservations",
+    })
+end
+
 --- Returns a page iterator for describeDBClusterAutomatedBackups.
 function M.pages_describe_d_b_cluster_automated_backups(client, input)
     return paginator.pages(client, "describeDBClusterAutomatedBackups", input, {

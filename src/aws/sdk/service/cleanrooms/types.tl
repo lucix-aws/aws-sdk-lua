@@ -2610,6 +2610,32 @@ local record M
         analysisRule: ConfiguredTableAssociationAnalysisRule
     end
 
+    -- Details about Delta Sharing Connector for Databricks
+    record DatabricksDeltaSharingConnection
+        -- The base URL of a Delta Sharing server that hosts shared datasets.
+        deltaShareEndpoint: string
+        -- Name of the Share used for OpenSharing (Delta Sharing) the Databricks Table.
+        shareName: string
+    end
+
+    -- Type of the connector to be used for connecting to Databricks. Supported connector: Delta Sharing
+    record DatabricksConnectionType
+        -- Details about Connector for Databricks
+        deltaSharing: DatabricksDeltaSharingConnection
+    end
+
+    -- A reference to a table within Databricks.
+    record DatabricksTableReference
+        -- Name of the Schema within Databricks.
+        schemaName: string
+        -- Name of the Table within Databricks.
+        tableName: string
+        -- URL for the Databricks Workspace.
+        workspaceUrl: string
+        -- Type of the connector to be used for connecting to Databricks. Supported connector: Delta Sharing
+        connectionType: DatabricksConnectionType
+    end
+
     -- A reference to a table within an Glue data catalog.
     record GlueTableReference
         -- The Amazon Web Services Region where the Glue table is located. This parameter is required to uniquely identify and access tables across different Regions.
@@ -2658,6 +2684,8 @@ local record M
         snowflake: SnowflakeTableReference
         -- If present, a reference to the Athena table referred to by this table reference.
         athena: AthenaTableReference
+        -- If present, a reference to the Databricks table referred to by this table reference.
+        databricks: DatabricksTableReference
     end
 
     record CreateConfiguredTableInput
@@ -2683,6 +2711,13 @@ local record M
         "CUSTOM"
     end
 
+    enum TableReferenceType
+        "GLUE"
+        "SNOWFLAKE"
+        "ATHENA"
+        "DATABRICKS"
+    end
+
     -- A table that has been configured for use in a collaboration.
     record ConfiguredTable
         -- The unique ID for the configured table.
@@ -2695,6 +2730,8 @@ local record M
         description: string
         -- The table that this configured table represents.
         tableReference: TableReference
+        -- Type of the Configured Table DataSource, example: Glue, Snowflake, Athena, Databricks
+        tableType: string
         -- The time the configured table was created.
         createTime: number
         -- The time the configured table was last updated
@@ -2814,6 +2851,8 @@ local record M
         arn: string
         -- The name of the configured table.
         name: string
+        -- Type of the Configured Table DataSource, example: Glue, Snowflake, Athena, Databricks
+        tableType: string
         -- The time the configured table was created.
         createTime: number
         -- The time the configured table was last updated.

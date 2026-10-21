@@ -25,6 +25,7 @@ local record Client
     applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput, ? base_client.InvokeOptions): async.Operation<types.ApplyPendingMaintenanceActionOutput>
     authorizeDBSecurityGroupIngress: function(Client, types.AuthorizeDBSecurityGroupIngressInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeDBSecurityGroupIngressOutput>
     backtrackDBCluster: function(Client, types.BacktrackDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.BacktrackDBClusterOutput>
+    cancelDBCapacityReservation: function(Client, types.CancelDBCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CancelDBCapacityReservationOutput>
     cancelExportTask: function(Client, types.CancelExportTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelExportTaskOutput>
     copyDBClusterParameterGroup: function(Client, types.CopyDBClusterParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.CopyDBClusterParameterGroupOutput>
     copyDBClusterSnapshot: function(Client, types.CopyDBClusterSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CopyDBClusterSnapshotOutput>
@@ -33,6 +34,7 @@ local record Client
     copyOptionGroup: function(Client, types.CopyOptionGroupInput, ? base_client.InvokeOptions): async.Operation<types.CopyOptionGroupOutput>
     createBlueGreenDeployment: function(Client, types.CreateBlueGreenDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CreateBlueGreenDeploymentOutput>
     createCustomDBEngineVersion: function(Client, types.CreateCustomDBEngineVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomDBEngineVersionOutput>
+    createDBCapacityReservation: function(Client, types.CreateDBCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBCapacityReservationOutput>
     createDBCluster: function(Client, types.CreateDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBClusterOutput>
     createDBClusterEndpoint: function(Client, types.CreateDBClusterEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBClusterEndpointOutput>
     createDBClusterParameterGroup: function(Client, types.CreateDBClusterParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBClusterParameterGroupOutput>
@@ -76,6 +78,7 @@ local record Client
     describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
     describeBlueGreenDeployments: function(Client, types.DescribeBlueGreenDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBlueGreenDeploymentsOutput>
     describeCertificates: function(Client, types.DescribeCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificatesOutput>
+    describeDBCapacityReservations: function(Client, types.DescribeDBCapacityReservationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBCapacityReservationsOutput>
     describeDBClusterAutomatedBackups: function(Client, types.DescribeDBClusterAutomatedBackupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBClusterAutomatedBackupsOutput>
     describeDBClusterBacktracks: function(Client, types.DescribeDBClusterBacktracksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBClusterBacktracksOutput>
     describeDBClusterEndpoints: function(Client, types.DescribeDBClusterEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBClusterEndpointsOutput>
@@ -130,6 +133,7 @@ local record Client
     modifyCertificates: function(Client, types.ModifyCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCertificatesOutput>
     modifyCurrentDBClusterCapacity: function(Client, types.ModifyCurrentDBClusterCapacityInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCurrentDBClusterCapacityOutput>
     modifyCustomDBEngineVersion: function(Client, types.ModifyCustomDBEngineVersionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCustomDBEngineVersionOutput>
+    modifyDBCapacityReservation: function(Client, types.ModifyDBCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBCapacityReservationOutput>
     modifyDBCluster: function(Client, types.ModifyDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBClusterOutput>
     modifyDBClusterEndpoint: function(Client, types.ModifyDBClusterEndpointInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBClusterEndpointOutput>
     modifyDBClusterParameterGroup: function(Client, types.ModifyDBClusterParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBClusterParameterGroupOutput>
@@ -254,6 +258,10 @@ function C:backtrackDBCluster(input: types.BacktrackDBClusterInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BacktrackDBCluster as schema.OperationSchema, input, options) as async.Operation<types.BacktrackDBClusterOutput>
 end
 
+function C:cancelDBCapacityReservation(input: types.CancelDBCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelDBCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelDBCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.CancelDBCapacityReservationOutput>
+end
+
 function C:cancelExportTask(input: types.CancelExportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelExportTaskOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelExportTask as schema.OperationSchema, input, options) as async.Operation<types.CancelExportTaskOutput>
 end
@@ -284,6 +292,10 @@ end
 
 function C:createCustomDBEngineVersion(input: types.CreateCustomDBEngineVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomDBEngineVersionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomDBEngineVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomDBEngineVersionOutput>
+end
+
+function C:createDBCapacityReservation(input: types.CreateDBCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDBCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDBCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.CreateDBCapacityReservationOutput>
 end
 
 function C:createDBCluster(input: types.CreateDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDBClusterOutput>
@@ -456,6 +468,10 @@ end
 
 function C:describeCertificates(input: types.DescribeCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificatesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCertificates as schema.OperationSchema, input, options) as async.Operation<types.DescribeCertificatesOutput>
+end
+
+function C:describeDBCapacityReservations(input: types.DescribeDBCapacityReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBCapacityReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBCapacityReservations as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBCapacityReservationsOutput>
 end
 
 function C:describeDBClusterAutomatedBackups(input: types.DescribeDBClusterAutomatedBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBClusterAutomatedBackupsOutput>
@@ -672,6 +688,10 @@ end
 
 function C:modifyCustomDBEngineVersion(input: types.ModifyCustomDBEngineVersionInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyCustomDBEngineVersionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyCustomDBEngineVersion as schema.OperationSchema, input, options) as async.Operation<types.ModifyCustomDBEngineVersionOutput>
+end
+
+function C:modifyDBCapacityReservation(input: types.ModifyDBCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDBCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyDBCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.ModifyDBCapacityReservationOutput>
 end
 
 function C:modifyDBCluster(input: types.ModifyDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDBClusterOutput>

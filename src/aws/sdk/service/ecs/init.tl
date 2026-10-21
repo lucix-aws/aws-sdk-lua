@@ -18,11 +18,13 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateGatewayWithCluster: function(Client, types.AssociateGatewayWithClusterInput, ? base_client.InvokeOptions): async.Operation<types.AssociateGatewayWithClusterOutput>
     continueServiceDeployment: function(Client, types.ContinueServiceDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.ContinueServiceDeploymentOutput>
     createCapacityProvider: function(Client, types.CreateCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityProviderOutput>
     createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
     createDaemon: function(Client, types.CreateDaemonInput, ? base_client.InvokeOptions): async.Operation<types.CreateDaemonOutput>
     createExpressGatewayService: function(Client, types.CreateExpressGatewayServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateExpressGatewayServiceOutput>
+    createGateway: function(Client, types.CreateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
     createService: function(Client, types.CreateServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
     createTaskSet: function(Client, types.CreateTaskSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateTaskSetOutput>
     deleteAccountSetting: function(Client, types.DeleteAccountSettingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountSettingOutput>
@@ -32,6 +34,7 @@ local record Client
     deleteDaemon: function(Client, types.DeleteDaemonInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDaemonOutput>
     deleteDaemonTaskDefinition: function(Client, types.DeleteDaemonTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDaemonTaskDefinitionOutput>
     deleteExpressGatewayService: function(Client, types.DeleteExpressGatewayServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExpressGatewayServiceOutput>
+    deleteGateway: function(Client, types.DeleteGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
     deleteService: function(Client, types.DeleteServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
     deleteTaskDefinitions: function(Client, types.DeleteTaskDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTaskDefinitionsOutput>
     deleteTaskSet: function(Client, types.DeleteTaskSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTaskSetOutput>
@@ -45,12 +48,16 @@ local record Client
     describeDaemonRevisions: function(Client, types.DescribeDaemonRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDaemonRevisionsOutput>
     describeDaemonTaskDefinition: function(Client, types.DescribeDaemonTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDaemonTaskDefinitionOutput>
     describeExpressGatewayService: function(Client, types.DescribeExpressGatewayServiceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExpressGatewayServiceOutput>
+    describeGateway: function(Client, types.DescribeGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayOutput>
+    describeGatewayResources: function(Client, types.DescribeGatewayResourcesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayResourcesOutput>
+    describeGatewayRoute: function(Client, types.DescribeGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayRouteOutput>
     describeServiceDeployments: function(Client, types.DescribeServiceDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceDeploymentsOutput>
     describeServiceRevisions: function(Client, types.DescribeServiceRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceRevisionsOutput>
     describeServices: function(Client, types.DescribeServicesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServicesOutput>
     describeTaskDefinition: function(Client, types.DescribeTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTaskDefinitionOutput>
     describeTasks: function(Client, types.DescribeTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTasksOutput>
     describeTaskSets: function(Client, types.DescribeTaskSetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTaskSetsOutput>
+    disassociateGatewayFromCluster: function(Client, types.DisassociateGatewayFromClusterInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateGatewayFromClusterOutput>
     discoverPollEndpoint: function(Client, types.DiscoverPollEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DiscoverPollEndpointOutput>
     executeCommand: function(Client, types.ExecuteCommandInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteCommandOutput>
     getTaskProtection: function(Client, types.GetTaskProtectionInput, ? base_client.InvokeOptions): async.Operation<types.GetTaskProtectionOutput>
@@ -61,6 +68,9 @@ local record Client
     listDaemonDeployments: function(Client, types.ListDaemonDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDaemonDeploymentsOutput>
     listDaemons: function(Client, types.ListDaemonsInput, ? base_client.InvokeOptions): async.Operation<types.ListDaemonsOutput>
     listDaemonTaskDefinitions: function(Client, types.ListDaemonTaskDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDaemonTaskDefinitionsOutput>
+    listGatewayClusterAssociations: function(Client, types.ListGatewayClusterAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayClusterAssociationsOutput>
+    listGatewayRoutes: function(Client, types.ListGatewayRoutesInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayRoutesOutput>
+    listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
     listServiceDeployments: function(Client, types.ListServiceDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceDeploymentsOutput>
     listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
     listServicesByNamespace: function(Client, types.ListServicesByNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesByNamespaceOutput>
@@ -91,6 +101,7 @@ local record Client
     updateContainerInstancesState: function(Client, types.UpdateContainerInstancesStateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContainerInstancesStateOutput>
     updateDaemon: function(Client, types.UpdateDaemonInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDaemonOutput>
     updateExpressGatewayService: function(Client, types.UpdateExpressGatewayServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExpressGatewayServiceOutput>
+    updateGateway: function(Client, types.UpdateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayOutput>
     updateService: function(Client, types.UpdateServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
     updateServicePrimaryTaskSet: function(Client, types.UpdateServicePrimaryTaskSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServicePrimaryTaskSetOutput>
     updateTaskProtection: function(Client, types.UpdateTaskProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTaskProtectionOutput>
@@ -139,6 +150,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:associateGatewayWithCluster(input: types.AssociateGatewayWithClusterInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateGatewayWithClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateGatewayWithCluster as schema.OperationSchema, input, options) as async.Operation<types.AssociateGatewayWithClusterOutput>
+end
+
 function C:continueServiceDeployment(input: types.ContinueServiceDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.ContinueServiceDeploymentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ContinueServiceDeployment as schema.OperationSchema, input, options) as async.Operation<types.ContinueServiceDeploymentOutput>
 end
@@ -157,6 +172,10 @@ end
 
 function C:createExpressGatewayService(input: types.CreateExpressGatewayServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExpressGatewayServiceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExpressGatewayService as schema.OperationSchema, input, options) as async.Operation<types.CreateExpressGatewayServiceOutput>
+end
+
+function C:createGateway(input: types.CreateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateGatewayOutput>
 end
 
 function C:createService(input: types.CreateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
@@ -193,6 +212,10 @@ end
 
 function C:deleteExpressGatewayService(input: types.DeleteExpressGatewayServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExpressGatewayServiceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExpressGatewayService as schema.OperationSchema, input, options) as async.Operation<types.DeleteExpressGatewayServiceOutput>
+end
+
+function C:deleteGateway(input: types.DeleteGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayOutput>
 end
 
 function C:deleteService(input: types.DeleteServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
@@ -247,6 +270,18 @@ function C:describeExpressGatewayService(input: types.DescribeExpressGatewayServ
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExpressGatewayService as schema.OperationSchema, input, options) as async.Operation<types.DescribeExpressGatewayServiceOutput>
 end
 
+function C:describeGateway(input: types.DescribeGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGateway as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayOutput>
+end
+
+function C:describeGatewayResources(input: types.DescribeGatewayResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGatewayResources as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayResourcesOutput>
+end
+
+function C:describeGatewayRoute(input: types.DescribeGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayRouteOutput>
+end
+
 function C:describeServiceDeployments(input: types.DescribeServiceDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceDeploymentsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceDeployments as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceDeploymentsOutput>
 end
@@ -269,6 +304,10 @@ end
 
 function C:describeTaskSets(input: types.DescribeTaskSetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTaskSetsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTaskSets as schema.OperationSchema, input, options) as async.Operation<types.DescribeTaskSetsOutput>
+end
+
+function C:disassociateGatewayFromCluster(input: types.DisassociateGatewayFromClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateGatewayFromClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateGatewayFromCluster as schema.OperationSchema, input, options) as async.Operation<types.DisassociateGatewayFromClusterOutput>
 end
 
 function C:discoverPollEndpoint(input: types.DiscoverPollEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DiscoverPollEndpointOutput>
@@ -309,6 +348,18 @@ end
 
 function C:listDaemonTaskDefinitions(input: types.ListDaemonTaskDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDaemonTaskDefinitionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDaemonTaskDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListDaemonTaskDefinitionsOutput>
+end
+
+function C:listGatewayClusterAssociations(input: types.ListGatewayClusterAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewayClusterAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGatewayClusterAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListGatewayClusterAssociationsOutput>
+end
+
+function C:listGatewayRoutes(input: types.ListGatewayRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewayRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGatewayRoutes as schema.OperationSchema, input, options) as async.Operation<types.ListGatewayRoutesOutput>
+end
+
+function C:listGateways(input: types.ListGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGateways as schema.OperationSchema, input, options) as async.Operation<types.ListGatewaysOutput>
 end
 
 function C:listServiceDeployments(input: types.ListServiceDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceDeploymentsOutput>
@@ -429,6 +480,10 @@ end
 
 function C:updateExpressGatewayService(input: types.UpdateExpressGatewayServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExpressGatewayServiceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExpressGatewayService as schema.OperationSchema, input, options) as async.Operation<types.UpdateExpressGatewayServiceOutput>
+end
+
+function C:updateGateway(input: types.UpdateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayOutput>
 end
 
 function C:updateService(input: types.UpdateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>

@@ -2847,6 +2847,12 @@ M.TableDescription = schema.new({
             name = "DeletionProtectionEnabled",
             target_id = prelude.Boolean.id,
         }),
+        DisassociationProtectionEnabled = schema.new({
+            id = id.from(_N, "TableDescription", "DisassociationProtectionEnabled"),
+            type = "boolean",
+            name = "DisassociationProtectionEnabled",
+            target_id = prelude.Boolean.id,
+        }),
         OnDemandThroughput = schema.new({
             id = id.from(_N, "TableDescription", "OnDemandThroughput"),
             type = "structure",
@@ -4317,6 +4323,31 @@ M.DisableKinesisStreamingDestinationOutput = schema.new({
             name = "EnableKinesisStreamingConfiguration",
             target_id = id.from(_N, "EnableKinesisStreamingConfiguration"),
             target = M.EnableKinesisStreamingConfiguration,
+        }),
+    },
+})
+
+M.DisassociateReplicationGroupMemberAction = schema.new({
+    id = id.from(_N, "DisassociateReplicationGroupMemberAction"),
+    type = "structure",
+    members = {
+        RegionName = schema.new({
+            id = id.from(_N, "DisassociateReplicationGroupMemberAction", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DisassociationMode = schema.new({
+            id = id.from(_N, "DisassociateReplicationGroupMemberAction", "DisassociationMode"),
+            type = "string",
+            name = "DisassociationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -6011,6 +6042,13 @@ M.ReplicationGroupUpdate = schema.new({
             target_id = id.from(_N, "DeleteReplicationGroupMemberAction"),
             target = M.DeleteReplicationGroupMemberAction,
         }),
+        Disassociate = schema.new({
+            id = id.from(_N, "ReplicationGroupUpdate", "Disassociate"),
+            type = "structure",
+            name = "Disassociate",
+            target_id = id.from(_N, "DisassociateReplicationGroupMemberAction"),
+            target = M.DisassociateReplicationGroupMemberAction,
+        }),
     },
 })
 
@@ -6140,6 +6178,12 @@ M.UpdateTableInput = schema.new({
             type = "string",
             name = "GlobalTableSettingsReplicationMode",
             target_id = prelude.String.id,
+        }),
+        DisassociationProtectionEnabled = schema.new({
+            id = id.from(_N, "UpdateTableInput", "DisassociationProtectionEnabled"),
+            type = "boolean",
+            name = "DisassociationProtectionEnabled",
+            target_id = prelude.Boolean.id,
         }),
         VectorIndexUpdates = schema.new({
             id = id.from(_N, "UpdateTableInput", "VectorIndexUpdates"),

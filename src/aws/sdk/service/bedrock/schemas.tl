@@ -9240,6 +9240,22 @@ M.GuardrailContextualGroundingFilterConfig = schema.new({
     },
 })
 
+M.GuardrailContextualGroundingTierConfig = schema.new({
+    id = id.from(_N, "GuardrailContextualGroundingTierConfig"),
+    type = "structure",
+    members = {
+        tierName = schema.new({
+            id = id.from(_N, "GuardrailContextualGroundingTierConfig", "tierName"),
+            type = "string",
+            name = "tierName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GuardrailContextualGroundingPolicyConfig = schema.new({
     id = id.from(_N, "GuardrailContextualGroundingPolicyConfig"),
     type = "structure",
@@ -9253,6 +9269,13 @@ M.GuardrailContextualGroundingPolicyConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        tierConfig = schema.new({
+            id = id.from(_N, "GuardrailContextualGroundingPolicyConfig", "tierConfig"),
+            type = "structure",
+            name = "tierConfig",
+            target_id = id.from(_N, "GuardrailContextualGroundingTierConfig"),
+            target = M.GuardrailContextualGroundingTierConfig,
         }),
     },
 })
@@ -10054,6 +10077,22 @@ M.GuardrailContextualGroundingFilter = schema.new({
     },
 })
 
+M.GuardrailContextualGroundingTier = schema.new({
+    id = id.from(_N, "GuardrailContextualGroundingTier"),
+    type = "structure",
+    members = {
+        tierName = schema.new({
+            id = id.from(_N, "GuardrailContextualGroundingTier", "tierName"),
+            type = "string",
+            name = "tierName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GuardrailContextualGroundingPolicy = schema.new({
     id = id.from(_N, "GuardrailContextualGroundingPolicy"),
     type = "structure",
@@ -10067,6 +10106,13 @@ M.GuardrailContextualGroundingPolicy = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        tier = schema.new({
+            id = id.from(_N, "GuardrailContextualGroundingPolicy", "tier"),
+            type = "structure",
+            name = "tier",
+            target_id = id.from(_N, "GuardrailContextualGroundingTier"),
+            target = M.GuardrailContextualGroundingTier,
         }),
     },
 })

@@ -8031,6 +8031,89 @@ M.UpdateConfiguredTableAssociationAnalysisRuleOutput = schema.new({
     },
 })
 
+M.DatabricksDeltaSharingConnection = schema.new({
+    id = id.from(_N, "DatabricksDeltaSharingConnection"),
+    type = "structure",
+    members = {
+        deltaShareEndpoint = schema.new({
+            id = id.from(_N, "DatabricksDeltaSharingConnection", "deltaShareEndpoint"),
+            type = "string",
+            name = "deltaShareEndpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        shareName = schema.new({
+            id = id.from(_N, "DatabricksDeltaSharingConnection", "shareName"),
+            type = "string",
+            name = "shareName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DatabricksConnectionType = schema.new({
+    id = id.from(_N, "DatabricksConnectionType"),
+    type = "union",
+    members = {
+        deltaSharing = schema.new({
+            id = id.from(_N, "DatabricksConnectionType", "deltaSharing"),
+            type = "structure",
+            name = "deltaSharing",
+            target_id = id.from(_N, "DatabricksDeltaSharingConnection"),
+            target = M.DatabricksDeltaSharingConnection,
+        }),
+    },
+})
+
+M.DatabricksTableReference = schema.new({
+    id = id.from(_N, "DatabricksTableReference"),
+    type = "structure",
+    members = {
+        schemaName = schema.new({
+            id = id.from(_N, "DatabricksTableReference", "schemaName"),
+            type = "string",
+            name = "schemaName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableName = schema.new({
+            id = id.from(_N, "DatabricksTableReference", "tableName"),
+            type = "string",
+            name = "tableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        workspaceUrl = schema.new({
+            id = id.from(_N, "DatabricksTableReference", "workspaceUrl"),
+            type = "string",
+            name = "workspaceUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectionType = schema.new({
+            id = id.from(_N, "DatabricksTableReference", "connectionType"),
+            type = "union",
+            name = "connectionType",
+            target_id = id.from(_N, "DatabricksConnectionType"),
+            target = M.DatabricksConnectionType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GlueTableReference = schema.new({
     id = id.from(_N, "GlueTableReference"),
     type = "structure",
@@ -8188,6 +8271,13 @@ M.TableReference = schema.new({
             target_id = id.from(_N, "AthenaTableReference"),
             target = M.AthenaTableReference,
         }),
+        databricks = schema.new({
+            id = id.from(_N, "TableReference", "databricks"),
+            type = "structure",
+            name = "databricks",
+            target_id = id.from(_N, "DatabricksTableReference"),
+            target = M.DatabricksTableReference,
+        }),
     },
 })
 
@@ -8303,6 +8393,12 @@ M.ConfiguredTable = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        tableType = schema.new({
+            id = id.from(_N, "ConfiguredTable", "tableType"),
+            type = "string",
+            name = "tableType",
+            target_id = prelude.String.id,
         }),
         createTime = schema.new({
             id = id.from(_N, "ConfiguredTable", "createTime"),
@@ -8722,6 +8818,12 @@ M.ConfiguredTableSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        tableType = schema.new({
+            id = id.from(_N, "ConfiguredTableSummary", "tableType"),
+            type = "string",
+            name = "tableType",
+            target_id = prelude.String.id,
         }),
         createTime = schema.new({
             id = id.from(_N, "ConfiguredTableSummary", "createTime"),

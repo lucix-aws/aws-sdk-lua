@@ -134,6 +134,12 @@ M.OfferSetAssociatedOfferIdsFilterValueList = schema.new({ type = "list", list_m
 
 M.OfferSetSolutionIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ExpressPrivateOfferConfigurationEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExpressPrivateOfferConfigurationProductIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExpressPrivateOfferConfigurationStateFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.OfferBuyerAccountsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.OfferTargetingList = schema.new({ type = "list", list_member = prelude.String })
@@ -1758,6 +1764,76 @@ M.DataProductFilters = schema.new({
     },
 })
 
+M.ExpressPrivateOfferConfigurationEntityIdFilter = schema.new({
+    id = id.from(_N, "ExpressPrivateOfferConfigurationEntityIdFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationEntityIdFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ExpressPrivateOfferConfigurationProductIdFilter = schema.new({
+    id = id.from(_N, "ExpressPrivateOfferConfigurationProductIdFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationProductIdFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ExpressPrivateOfferConfigurationStateFilter = schema.new({
+    id = id.from(_N, "ExpressPrivateOfferConfigurationStateFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationStateFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ExpressPrivateOfferConfigurationFilters = schema.new({
+    id = id.from(_N, "ExpressPrivateOfferConfigurationFilters"),
+    type = "structure",
+    members = {
+        EntityId = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationFilters", "EntityId"),
+            type = "structure",
+            name = "EntityId",
+            target_id = id.from(_N, "ExpressPrivateOfferConfigurationEntityIdFilter"),
+            target = M.ExpressPrivateOfferConfigurationEntityIdFilter,
+        }),
+        ProductId = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationFilters", "ProductId"),
+            type = "structure",
+            name = "ProductId",
+            target_id = id.from(_N, "ExpressPrivateOfferConfigurationProductIdFilter"),
+            target = M.ExpressPrivateOfferConfigurationProductIdFilter,
+        }),
+        State = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationFilters", "State"),
+            type = "structure",
+            name = "State",
+            target_id = id.from(_N, "ExpressPrivateOfferConfigurationStateFilter"),
+            target = M.ExpressPrivateOfferConfigurationStateFilter,
+        }),
+    },
+})
+
 M.MachineLearningProductEntityIdFilter = schema.new({
     id = id.from(_N, "MachineLearningProductEntityIdFilter"),
     type = "structure",
@@ -3061,6 +3137,13 @@ M.EntityTypeFilters = schema.new({
             target_id = id.from(_N, "OfferSetFilters"),
             target = M.OfferSetFilters,
         }),
+        ExpressPrivateOfferConfigurationFilters = schema.new({
+            id = id.from(_N, "EntityTypeFilters", "ExpressPrivateOfferConfigurationFilters"),
+            type = "structure",
+            name = "ExpressPrivateOfferConfigurationFilters",
+            target_id = id.from(_N, "ExpressPrivateOfferConfigurationFilters"),
+            target = M.ExpressPrivateOfferConfigurationFilters,
+        }),
     },
 })
 
@@ -3095,6 +3178,25 @@ M.DataProductSort = schema.new({
         }),
         SortOrder = schema.new({
             id = id.from(_N, "DataProductSort", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExpressPrivateOfferConfigurationSort = schema.new({
+    id = id.from(_N, "ExpressPrivateOfferConfigurationSort"),
+    type = "structure",
+    members = {
+        SortBy = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationSort", "SortBy"),
+            type = "string",
+            name = "SortBy",
+            target_id = prelude.String.id,
+        }),
+        SortOrder = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationSort", "SortOrder"),
             type = "string",
             name = "SortOrder",
             target_id = prelude.String.id,
@@ -3257,6 +3359,13 @@ M.EntityTypeSort = schema.new({
             target_id = id.from(_N, "OfferSetSort"),
             target = M.OfferSetSort,
         }),
+        ExpressPrivateOfferConfigurationSort = schema.new({
+            id = id.from(_N, "EntityTypeSort", "ExpressPrivateOfferConfigurationSort"),
+            type = "structure",
+            name = "ExpressPrivateOfferConfigurationSort",
+            target_id = id.from(_N, "ExpressPrivateOfferConfigurationSort"),
+            target = M.ExpressPrivateOfferConfigurationSort,
+        }),
     },
 })
 
@@ -3364,6 +3473,25 @@ M.DataProductSummary = schema.new({
             id = id.from(_N, "DataProductSummary", "Visibility"),
             type = "string",
             name = "Visibility",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExpressPrivateOfferConfigurationSummary = schema.new({
+    id = id.from(_N, "ExpressPrivateOfferConfigurationSummary"),
+    type = "structure",
+    members = {
+        ProductId = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationSummary", "ProductId"),
+            type = "string",
+            name = "ProductId",
+            target_id = prelude.String.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "ExpressPrivateOfferConfigurationSummary", "State"),
+            type = "string",
+            name = "State",
             target_id = prelude.String.id,
         }),
     },
@@ -3712,6 +3840,13 @@ M.EntitySummary = schema.new({
             name = "OfferSetSummary",
             target_id = id.from(_N, "OfferSetSummary"),
             target = M.OfferSetSummary,
+        }),
+        ExpressPrivateOfferConfigurationSummary = schema.new({
+            id = id.from(_N, "EntitySummary", "ExpressPrivateOfferConfigurationSummary"),
+            type = "structure",
+            name = "ExpressPrivateOfferConfigurationSummary",
+            target_id = id.from(_N, "ExpressPrivateOfferConfigurationSummary"),
+            target = M.ExpressPrivateOfferConfigurationSummary,
         }),
     },
 })

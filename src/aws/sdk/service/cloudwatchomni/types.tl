@@ -2162,12 +2162,10 @@ local record M
         -- A search term to match against user names, display names, and IDs. Pass * to list
         -- all principals. Maximum 128 characters.
         searchQuery: string
-        -- The maximum number of results to return. Defaults to 10. Valid only when searchQuery
-        -- is *; other searches reject this parameter and return at most 10 results.
+        -- The maximum number of results to return. Defaults to 100.
         maxResults: number
-        -- A token to retrieve the next page of results. Valid only when searchQuery is *;
-        -- other searches do not paginate and reject this parameter. Tokens expire after
-        -- 24 hours.
+        -- A token to retrieve the next page of results. Supply the same searchQuery used
+        -- on the request that returned it. Tokens expire after 24 hours.
         nextToken: string
     end
 

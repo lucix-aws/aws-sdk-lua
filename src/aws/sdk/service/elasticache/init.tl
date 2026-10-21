@@ -84,6 +84,7 @@ local record Client
     modifyServerlessCache: function(Client, types.ModifyServerlessCacheInput, ? base_client.InvokeOptions): async.Operation<types.ModifyServerlessCacheOutput>
     modifyUser: function(Client, types.ModifyUserInput, ? base_client.InvokeOptions): async.Operation<types.ModifyUserOutput>
     modifyUserGroup: function(Client, types.ModifyUserGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyUserGroupOutput>
+    prepareMigration: function(Client, types.PrepareMigrationInput, ? base_client.InvokeOptions): async.Operation<types.PrepareMigrationOutput>
     purchaseReservedCacheNodesOffering: function(Client, types.PurchaseReservedCacheNodesOfferingInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseReservedCacheNodesOfferingOutput>
     rebalanceSlotsInGlobalReplicationGroup: function(Client, types.RebalanceSlotsInGlobalReplicationGroupInput, ? base_client.InvokeOptions): async.Operation<types.RebalanceSlotsInGlobalReplicationGroupOutput>
     rebootCacheCluster: function(Client, types.RebootCacheClusterInput, ? base_client.InvokeOptions): async.Operation<types.RebootCacheClusterOutput>
@@ -91,6 +92,7 @@ local record Client
     resetCacheParameterGroup: function(Client, types.ResetCacheParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.ResetCacheParameterGroupOutput>
     revokeCacheSecurityGroupIngress: function(Client, types.RevokeCacheSecurityGroupIngressInput, ? base_client.InvokeOptions): async.Operation<types.RevokeCacheSecurityGroupIngressOutput>
     startMigration: function(Client, types.StartMigrationInput, ? base_client.InvokeOptions): async.Operation<types.StartMigrationOutput>
+    stopMigration: function(Client, types.StopMigrationInput, ? base_client.InvokeOptions): async.Operation<types.StopMigrationOutput>
     testFailover: function(Client, types.TestFailoverInput, ? base_client.InvokeOptions): async.Operation<types.TestFailoverOutput>
     testMigration: function(Client, types.TestMigrationInput, ? base_client.InvokeOptions): async.Operation<types.TestMigrationOutput>
 end
@@ -401,6 +403,10 @@ function C:modifyUserGroup(input: types.ModifyUserGroupInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyUserGroup as schema.OperationSchema, input, options) as async.Operation<types.ModifyUserGroupOutput>
 end
 
+function C:prepareMigration(input: types.PrepareMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.PrepareMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PrepareMigration as schema.OperationSchema, input, options) as async.Operation<types.PrepareMigrationOutput>
+end
+
 function C:purchaseReservedCacheNodesOffering(input: types.PurchaseReservedCacheNodesOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseReservedCacheNodesOfferingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseReservedCacheNodesOffering as schema.OperationSchema, input, options) as async.Operation<types.PurchaseReservedCacheNodesOfferingOutput>
 end
@@ -427,6 +433,10 @@ end
 
 function C:startMigration(input: types.StartMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.StartMigrationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMigration as schema.OperationSchema, input, options) as async.Operation<types.StartMigrationOutput>
+end
+
+function C:stopMigration(input: types.StopMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.StopMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopMigration as schema.OperationSchema, input, options) as async.Operation<types.StopMigrationOutput>
 end
 
 function C:testFailover(input: types.TestFailoverInput, options?: base_client.InvokeOptions): async.Operation<types.TestFailoverOutput>

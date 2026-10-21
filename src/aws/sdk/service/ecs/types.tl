@@ -2780,6 +2780,551 @@ local record M
         serviceConnectEndpoint: string
     end
 
+    record AssociateGatewayWithClusterInput
+        -- The name or Amazon Resource Name (ARN) of the gateway to associate.
+        gateway: string
+        -- The name or Amazon Resource Name (ARN) of the cluster to associate the gateway with.
+        cluster: string
+    end
+
+    enum GatewayClusterAssociationStatus
+        "ACTIVE"
+        "DISASSOCIATING"
+        "INACTIVE"
+    end
+
+    record AssociateGatewayWithClusterOutput
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The Amazon Resource Name (ARN) of the cluster.
+        clusterArn: string
+        -- The status of the association. A new association is ACTIVE.
+        status: string
+    end
+
+    -- The specified gateway wasn't found. Check that the gateway name or ARN is correct and that the gateway exists in your account and Region.
+    record GatewayNotFoundException
+        -- Message that describes the cause of the exception.
+        message: string
+    end
+
+    -- The Amazon S3 destination for the access logs of a gateway's load balancers.
+    record GatewayElbAccessLogS3Destination
+        -- The name of the Amazon S3 bucket where access logs are delivered.
+        bucket: string
+        -- The object key prefix for the access logs in the Amazon S3 bucket.
+        prefix: string
+    end
+
+    -- The destination where the access logs for a gateway's load balancers are delivered.
+    record GatewayElbAccessLogDestination
+        -- The Amazon S3 destination for access logs.
+        s3: GatewayElbAccessLogS3Destination
+    end
+
+    -- The access log configuration for the load balancers that a gateway manages.
+    record GatewayElbAccessLogConfiguration
+        -- The destination where access logs are delivered.
+        destination: GatewayElbAccessLogDestination
+    end
+
+    enum GatewayAlbDesyncMitigationMode
+        "monitor"
+        "defensive"
+        "strictest"
+    end
+
+    enum GatewayElbIpAddressType
+        "ipv4"
+        "dualstack"
+        "dualstack-without-public-ipv4"
+    end
+
+    -- The network configuration for the load balancers that a gateway manages.
+    record GatewayElbNetworkConfiguration
+        -- The ID of a security group that you provide to control inbound traffic to the load balancers that the gateway manages. When you specify a security group, the gateway doesn't create inbound rules on the security group it manages.
+        inboundSecurityGroup: string
+        -- The subnets for the load balancers that the gateway manages. The default is the subnets in the default VPC.
+        subnets: {string}
+        -- The IP address type for the load balancers that the gateway manages. The default is dualstack.
+        ipAddressType: string
+    end
+
+    enum GatewayAlbProtocol
+        "HTTP"
+        "HTTPS"
+    end
+
+    enum GatewayElbScheme
+        "internet-facing"
+        "internal"
+    end
+
+    -- A header-based rule that identifies test traffic for progressive deployments.
+    record GatewayTestTrafficHeader
+        -- The name of the header to match for test traffic routing.
+        name: string
+        -- The header values to match for test traffic routing.
+        values: {string}
+    end
+
+    -- The rules that route test traffic to services behind a gateway during progressive deployments.
+    record GatewayAlbTestTrafficRules
+        -- The header-based rule that identifies test traffic.
+        header: GatewayTestTrafficHeader
+    end
+
+    -- The configuration for a gateway that uses shared Application Load Balancers with host-based routing. Where they apply, the field names and values are kept consistent with the Elastic Load Balancing API.
+    record HostSharedAlbConfiguration
+        -- The network configuration for the load balancers that the gateway manages.
+        networkConfiguration: GatewayElbNetworkConfiguration
+        -- Specifies whether the load balancers the gateway manages are internet-facing or internal. The default is internet-facing.
+        scheme: string
+        -- The Amazon Resource Name (ARN) of the WAF web ACL to associate with the load balancers that the gateway manages.
+        webACLArn: string
+        -- The access log configuration for the load balancers that the gateway manages.
+        accessLogs: GatewayElbAccessLogConfiguration
+        -- The port that the load balancer listener uses is 443. The gateway supports only HTTPS at port 443.
+        port: number
+        -- The protocol for the load balancer listener is HTTPS. No other protocol is supported.
+        protocol: string
+        -- The maximum number of Application Load Balancers that the gateway manages. The default is 10.
+        maxAlbCount: number
+        -- The desync mitigation mode for the load balancers that the gateway manages, which determines how the load balancers handle requests that might pose a security risk. The default is defensive.
+        httpDesync: string
+        -- The rules that route test traffic for progressive deployments. During a progressive deployment, requests whose headers match these rules are routed to the new service revision so that it can be validated before production traffic shifts to it.
+        testTrafficRules: GatewayAlbTestTrafficRules
+    end
+
+    -- The type-specific configuration for a gateway that you provide when you create it. Exactly one variant is set, and it determines the gateway type.
+    record GatewayConfiguration
+        -- The configuration for a host-based, shared Application Load Balancer gateway. Each service that uses the gateway is assigned a unique DNS host name.
+        hostSharedAlb: HostSharedAlbConfiguration
+    end
+
+    enum PropagateGatewayTags
+        "NONE"
+        "GATEWAY"
+    end
+
+    record CreateGatewayInput
+        -- The name for the gateway. The name must be unique within your account and can be up to 255 characters.
+        name: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the gateway assumes to create and manage infrastructure on your behalf.
+        infrastructureRoleArn: string
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.
+        clientToken: string
+        -- Specifies whether to enable deletion protection for the gateway. When enabled, the gateway can't be deleted, and the gateway propagates this setting to the load balancers it manages. The default is true.
+        deletionProtection: boolean
+        -- The type-specific configuration for the gateway. Exactly one configuration variant must be set, and it determines the gateway type. For example, hostSharedAlb configures a gateway that uses Application Load Balancers with host-based routing.
+        configuration: GatewayConfiguration
+        -- The metadata that you apply to the gateway to help you categorize and organize it. Each tag consists of a key and an optional value. Depending on propagateTags, these tags can be applied to the infrastructure the gateway manages.
+        tags: {Tag}
+        -- Specifies whether to propagate the tags from the gateway to the infrastructure that the gateway manages. The default is GATEWAY.
+        propagateTags: string
+    end
+
+    enum GatewayStatus
+        "ACTIVE"
+        "UPDATE_IN_PROGRESS"
+        "UPDATE_COMPLETE"
+        "UPDATE_FAILED"
+        "DELETED"
+    end
+
+    record CreateGatewayOutput
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The name of the gateway.
+        name: string
+        -- The status of the gateway. A newly created gateway is always ACTIVE.
+        status: string
+    end
+
+    record DeleteGatewayInput
+        -- The name or Amazon Resource Name (ARN) of the gateway to delete.
+        gateway: string
+    end
+
+    record DeleteGatewayOutput
+        -- The Amazon Resource Name (ARN) of the deleted gateway.
+        gatewayArn: string
+        -- The name of the deleted gateway.
+        name: string
+        -- The status of the gateway. After a successful delete, the status is DELETED.
+        status: string
+    end
+
+    record DescribeGatewayInput
+        -- The name or Amazon Resource Name (ARN) of the gateway to describe.
+        gateway: string
+    end
+
+    -- The configuration for a gateway that uses shared Application Load Balancers, as returned by DescribeGateway. This includes the current number of load balancers in addition to the configured settings.
+    record DescribeGatewayAlbConfiguration
+        -- The network configuration for the load balancers that the gateway manages.
+        networkConfiguration: GatewayElbNetworkConfiguration
+        -- Specifies whether the load balancers the gateway manages are internet-facing or internal.
+        scheme: string
+        -- The access log configuration for the load balancers that the gateway manages.
+        accessLogs: GatewayElbAccessLogConfiguration
+        -- The Amazon Resource Name (ARN) of the WAF web ACL associated with the load balancers that the gateway manages.
+        webACLArn: string
+        -- The port that the load balancer listener uses is 443. The gateway supports only HTTPS at port 443.
+        port: number
+        -- The protocol for the load balancer listener is HTTPS. No other protocol is supported.
+        protocol: string
+        -- The maximum number of Application Load Balancers that the gateway manages.
+        maxAlbCount: number
+        -- The current number of Application Load Balancers that the gateway has allocated.
+        currentAlbCount: number
+        -- The desync mitigation mode for the load balancers that the gateway manages.
+        httpDesync: string
+        -- The rules that route test traffic for progressive deployments.
+        testTrafficRules: GatewayAlbTestTrafficRules
+    end
+
+    -- The type-specific configuration for a gateway that is returned by DescribeGateway.
+    record DescribeGatewayConfiguration
+        -- The configuration for a host-based, shared Application Load Balancer gateway.
+        hostSharedAlb: DescribeGatewayAlbConfiguration
+    end
+
+    -- A single failed operation against a resource that a gateway manages.
+    record GatewayOperationError
+        -- The IAM-style action identifier of the operation that failed, such as elasticloadbalancing:ModifyLoadBalancerAttributes.
+        operation: string
+        -- The error code returned by the failed operation, passed through from the downstream service, such as AccessDenied.
+        code: string
+        -- The detailed error message.
+        message: string
+    end
+
+    -- The failures for a single resource that was touched by an asynchronous gateway process.
+    record GatewayResourceFailure
+        -- The Amazon Resource Name (ARN) of the resource that failed to update, such as a load balancer ARN.
+        arn: string
+        -- The errors that were encountered while operating on the resource.
+        errors: {GatewayOperationError}
+    end
+
+    -- The details of a gateway, including its configuration, status, and the infrastructure settings for its type.
+    record Gateway
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The name of the gateway.
+        name: string
+        -- The status of the gateway.
+        status: string
+        -- A human-readable explanation of the current status. This value is populated when the gateway is in a failure state, such as UPDATE_FAILED.
+        statusReason: string
+        -- The per-resource failure details for asynchronous gateway processes, such as an UpdateGateway operation that couldn't update every load balancer.
+        failures: {GatewayResourceFailure}
+        -- The Amazon Resource Name (ARN) of the IAM role that the gateway uses to manage infrastructure on your behalf.
+        infrastructureRoleArn: string
+        -- Specifies whether deletion protection is enabled for the gateway.
+        deletionProtection: boolean
+        -- The type-specific configuration for the gateway.
+        configuration: DescribeGatewayConfiguration
+        -- Specifies whether the gateway is publicly accessible (PUBLIC) or private (PRIVATE). The gateway derives this value from its scheme when you create the gateway, and the value is immutable.
+        accessType: string
+        -- Specifies whether the gateway propagates its tags to the infrastructure it manages.
+        propagateTags: string
+        -- The metadata applied to the gateway. Each tag consists of a key and an optional value.
+        tags: {Tag}
+        -- The Unix timestamp for the time when the gateway was created.
+        createdAt: number
+        -- The Unix timestamp for the time when the gateway was last updated.
+        updatedAt: number
+    end
+
+    record DescribeGatewayOutput
+        -- The details of the gateway.
+        gateway: Gateway
+    end
+
+    record DescribeGatewayResourcesInput
+        -- The name or Amazon Resource Name (ARN) of the gateway.
+        gateway: string
+        -- The maximum number of results that the operation returns in a single page. The maximum value is 20 and the default is 10.
+        maxResults: number
+        -- The nextToken value returned from a previous paginated request.
+        nextToken: string
+    end
+
+    -- An Application Load Balancer and its associated resources that a gateway manages.
+    record ElbGatewayResources
+        -- The Amazon Resource Name (ARN) of the load balancer.
+        loadBalancerArn: string
+        -- The Amazon Resource Name (ARN) of the listener on the load balancer.
+        listenerArn: string
+        -- The ID of the security group attached to the load balancer.
+        securityGroup: string
+        -- The Amazon Resource Names (ARNs) of the gateway routes that use this load balancer for ingress.
+        gatewayRouteArns: {string}
+    end
+
+    -- The gateway-managed infrastructure in a DescribeGatewayResources response, as a union keyed by gateway type.
+    record GatewayInfrastructureResources
+        -- The Application Load Balancer resource groups for a host-based, shared ALB gateway.
+        hostSharedAlb: {ElbGatewayResources}
+    end
+
+    -- DescribeGatewayResources returns the gateway-managed infrastructure, grouped by gateway type.
+    record GatewayResources
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The infrastructure resources that the gateway manages.
+        resources: GatewayInfrastructureResources
+    end
+
+    record DescribeGatewayResourcesOutput
+        -- The infrastructure resources that the gateway manages, grouped by gateway type.
+        gatewayResources: GatewayResources
+        -- The nextToken value to include in a future request to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
+    end
+
+    record DisassociateGatewayFromClusterInput
+        -- The name or Amazon Resource Name (ARN) of the gateway to disassociate.
+        gateway: string
+        -- The name or Amazon Resource Name (ARN) of the cluster to disassociate the gateway from.
+        cluster: string
+    end
+
+    record DisassociateGatewayFromClusterOutput
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The Amazon Resource Name (ARN) of the cluster.
+        clusterArn: string
+        -- The status of the association. After a successful request, the status is DISASSOCIATING until all routes are removed, after which the association is deleted.
+        status: string
+    end
+
+    -- The specified resource wasn't found.
+    record ResourceNotFoundException
+        -- Message that describes the cause of the exception.
+        message: string
+    end
+
+    record ListGatewayClusterAssociationsInput
+        -- The name or Amazon Resource Name (ARN) of a gateway to filter the results by.
+        gateway: string
+        -- The name or Amazon Resource Name (ARN) of a cluster to filter the results by.
+        cluster: string
+        -- The association status to filter the results by.
+        status: {string}
+        -- The maximum number of results that the operation returns in a single page. The default is 100.
+        maxResults: number
+        -- The nextToken value returned from a previous paginated request.
+        nextToken: string
+    end
+
+    -- A summary of an association between a gateway and a cluster.
+    record GatewayClusterAssociationSummary
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The Amazon Resource Name (ARN) of the cluster.
+        clusterArn: string
+        -- The status of the association.
+        status: string
+    end
+
+    record ListGatewayClusterAssociationsOutput
+        -- The gateway-cluster associations that match the request.
+        gatewayClusterAssociations: {GatewayClusterAssociationSummary}
+        -- The nextToken value to include in a future request to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
+    end
+
+    record ListGatewaysInput
+        -- The gateway names to filter the results by. You can specify up to 10 names.
+        names: {string}
+        -- The gateway statuses to filter the results by.
+        status: {string}
+        -- The maximum number of gateway results that ListGateways returns in a single page. The default is 100.
+        maxResults: number
+        -- The nextToken value returned from a previous paginated ListGateways request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results.
+        nextToken: string
+    end
+
+    -- A summary of a gateway that is returned by the ListGateways operation.
+    record GatewaySummary
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The name of the gateway.
+        name: string
+        -- The status of the gateway.
+        status: string
+        -- The Unix timestamp for the time when the gateway was created.
+        createdAt: number
+    end
+
+    record ListGatewaysOutput
+        -- The list of gateways that match the request.
+        gateways: {GatewaySummary}
+        -- The nextToken value to include in a future ListGateways request. When the results of a ListGateways request exceed maxResults, this value can be used to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
+    end
+
+    -- The mutable network configuration for the load balancers that a gateway manages.
+    record UpdateGatewayNetworkConfiguration
+        -- The ID of a security group that you provide to control inbound traffic to the load balancers that the gateway manages. When you specify a security group, the gateway doesn't create inbound rules on the security group it manages.
+        inboundSecurityGroup: string
+    end
+
+    -- The mutable configuration fields for a gateway that uses shared Application Load Balancers. Only fields that can be changed without interrupting traffic are included.
+    record UpdateGatewayAlbConfiguration
+        -- The mutable network configuration for the load balancers that the gateway manages.
+        networkConfiguration: UpdateGatewayNetworkConfiguration
+        -- The maximum number of Application Load Balancers that the gateway manages.
+        maxAlbCount: number
+        -- The Amazon Resource Name (ARN) of the WAF web ACL to associate with the load balancers that the gateway manages.
+        webACLArn: string
+        -- The access log configuration for the load balancers that the gateway manages.
+        accessLogs: GatewayElbAccessLogConfiguration
+        -- The desync mitigation mode for the load balancers that the gateway manages.
+        httpDesync: string
+        -- The rules that route test traffic for progressive deployments.
+        testTrafficRules: GatewayAlbTestTrafficRules
+    end
+
+    -- The type-specific configuration to change on a gateway. The variant must match the gateway's existing type.
+    record UpdateGatewayConfiguration
+        -- The mutable configuration for a host-based, shared Application Load Balancer gateway.
+        hostSharedAlb: UpdateGatewayAlbConfiguration
+    end
+
+    record UpdateGatewayInput
+        -- The name or Amazon Resource Name (ARN) of the gateway to update.
+        gateway: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the gateway assumes to manage infrastructure on your behalf.
+        infrastructureRoleArn: string
+        -- Specifies whether to enable deletion protection for the gateway. When enabled, the gateway can't be deleted.
+        deletionProtection: boolean
+        -- The updated type-specific configuration for the gateway. The configuration variant must match the gateway's existing type, and only mutable fields can be changed.
+        configuration: UpdateGatewayConfiguration
+        -- Specifies whether to propagate the tags from the gateway to the infrastructure that the gateway manages. If you don't specify a value, the gateway's existing setting is unchanged.
+        propagateTags: string
+    end
+
+    record UpdateGatewayOutput
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The name of the gateway.
+        name: string
+        -- The status of the gateway. After a successful update request, the status is UPDATE_IN_PROGRESS.
+        status: string
+    end
+
+    record DescribeGatewayRouteInput
+        -- The Amazon Resource Name (ARN) of the gateway route to describe.
+        gatewayRouteArn: string
+    end
+
+    -- A security group attached to the load balancer for a gateway route.
+    record GatewayRouteLoadBalancerSecurityGroup
+        -- The Amazon Resource Name (ARN) of the security group.
+        arn: string
+        -- The Amazon Resource Names (ARNs) of the security group rules.
+        ruleArns: {string}
+    end
+
+    -- The Application Load Balancer resources that a gateway manages for a route.
+    record GatewayRouteAlbResources
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager certificate.
+        acmCertificateArn: string
+        -- The Amazon Resource Name (ARN) of the load balancer.
+        loadBalancerArn: string
+        -- The Amazon Resource Name (ARN) of the listener.
+        listenerArn: string
+        -- The Amazon Resource Name (ARN) of the listener rule for production traffic.
+        listenerRuleArn: string
+        -- The Amazon Resource Names (ARNs) of the listener rules for test traffic. There is one rule except when a test header configuration is being changed to another.
+        testListenerRuleArns: {string}
+        -- The security groups attached to the load balancer.
+        loadBalancerSecurityGroups: {GatewayRouteLoadBalancerSecurityGroup}
+        -- The Amazon Resource Name (ARN) of the service security group in which the gateway manages the ingress rule for this route.
+        serviceSecurityGroupArn: string
+    end
+
+    -- The service-specific infrastructure that a gateway manages for a route, keyed by gateway type.
+    record GatewayRouteResources
+        -- The Application Load Balancer resources for a host-based, shared ALB gateway.
+        hostSharedAlb: {GatewayRouteAlbResources}
+    end
+
+    enum GatewayRouteStatus
+        "ACTIVE"
+        "CREATE_IN_PROGRESS"
+        "CREATE_FAILED"
+        "UPDATE_IN_PROGRESS"
+        "UPDATE_FAILED"
+        "DELETE_IN_PROGRESS"
+        "DELETE_FAILED"
+    end
+
+    -- A gateway route, which represents the association between a service and a gateway and the service-specific infrastructure that the gateway manages for the service's revisions.
+    record GatewayRoute
+        -- The Amazon Resource Name (ARN) of the gateway route.
+        gatewayRouteArn: string
+        -- The Amazon Resource Name (ARN) of the service associated with the route.
+        serviceArn: string
+        -- The task definition container port name that the route targets on the service.
+        serviceContainerPortName: string
+        -- The status of the gateway route.
+        status: string
+        -- The URL for accessing the service, including the https:// scheme.
+        serviceUrl: string
+        -- The service-specific infrastructure that the gateway manages for the route, keyed by gateway type.
+        resources: GatewayRouteResources
+    end
+
+    record DescribeGatewayRouteOutput
+        -- The details of the gateway route.
+        gatewayRoute: GatewayRoute
+    end
+
+    record ListGatewayRoutesInput
+        -- The name or Amazon Resource Name (ARN) of a gateway to filter the results by.
+        gateway: string
+        -- The name or Amazon Resource Name (ARN) of a cluster to filter the results by.
+        cluster: string
+        -- The name or Amazon Resource Name (ARN) of a service to filter the results by. Because services can span clusters, a service name isn't necessarily unique and can match multiple services.
+        service: string
+        -- The name of a task definition container port to filter the results by.
+        serviceContainerPortName: string
+        -- The gateway route status to filter the results by.
+        status: {string}
+        -- The maximum number of results that the operation returns in a single page. The default is 100.
+        maxResults: number
+        -- The nextToken value returned from a previous paginated request.
+        nextToken: string
+    end
+
+    -- A summary of a gateway route that is returned by the ListGatewayRoutes operation.
+    record GatewayRouteSummary
+        -- The Amazon Resource Name (ARN) of the gateway route.
+        gatewayRouteArn: string
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The Amazon Resource Name (ARN) of the cluster.
+        clusterArn: string
+        -- The Amazon Resource Name (ARN) of the service.
+        serviceArn: string
+        -- The task definition container port name that the route targets on the service.
+        serviceContainerPortName: string
+        -- The status of the gateway route.
+        status: string
+    end
+
+    record ListGatewayRoutesOutput
+        -- The gateway routes that match the request.
+        gatewayRoutes: {GatewayRouteSummary}
+        -- The nextToken value to include in a future request to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
+    end
+
     record ListAccountSettingsInput
         -- The name of the account setting you want to list the settings for.
         name: string
@@ -3363,6 +3908,55 @@ local record M
     record DeploymentController
     end
 
+    -- The filters that determine which gateway ingress paths a connector applies to.
+    record GatewayConnectorFilters
+        -- The access types of the gateway ingress paths that the connector applies to. The access type can be one of the following values: PUBLIC - The ingress path is publicly accessible. PRIVATE - The ingress path is only accessible privately.
+        accessTypes: {string}
+    end
+
+    enum GatewayConnectorHealthCheckProtocol
+        "HTTP"
+        "HTTPS"
+    end
+
+    -- The codes that indicate a successful health check response from a target.
+    record GatewayConnectorHealthCheckMatcher
+        -- The HTTP codes that indicate a successful response from a target.
+        httpCode: string
+        -- The gRPC codes that indicate a successful response from a target.
+        grpcCode: string
+    end
+
+    -- The health check configuration that a gateway uses to evaluate the targets associated with a gateway connector.
+    record GatewayConnectorHealthCheck
+        -- The protocol that the gateway uses to perform health checks. Valid values: HTTP - Health checks are performed over HTTP. HTTPS - Health checks are performed over HTTPS.
+        healthCheckProtocol: string
+        -- The port that the gateway uses to perform health checks on the targets.
+        healthCheckPort: number
+        -- The destination path for health check requests.
+        healthCheckPath: string
+        -- The amount of time, in seconds, during which no response from a target means a failed health check.
+        healthCheckTimeoutSeconds: number
+        -- The approximate amount of time, in seconds, between health checks of an individual target.
+        healthCheckIntervalSeconds: number
+        -- The number of consecutive successful health checks that a target must pass before the gateway considers it healthy.
+        healthyThresholdCount: number
+        -- The number of consecutive failed health checks that a target must fail before the gateway considers it unhealthy.
+        unhealthyThresholdCount: number
+        -- The HTTP or gRPC codes that indicate a successful health check response from a target.
+        matcher: GatewayConnectorHealthCheckMatcher
+    end
+
+    -- A gateway connector that attaches an Amazon ECS service to a gateway ingress path. The connector specifies the service port that receives gateway-managed ingress traffic, along with the health check and traffic filters that the gateway applies. A service can have at most one gateway connector.
+    record GatewayConnector
+        -- The name of the service port that the gateway routes ingress traffic to.
+        portName: string
+        -- The health check that the gateway uses to determine whether the targets for this connector are healthy.
+        healthCheck: GatewayConnectorHealthCheck
+        -- The filters that control which gateway ingress paths the connector applies to.
+        filters: GatewayConnectorFilters
+    end
+
     -- The load balancer configuration to use with a service or task set. When you add, update, or remove a load balancer configuration, Amazon ECS starts a new deployment with the updated Elastic Load Balancing configuration. This causes tasks to register to and deregister from load balancers. We recommend that you verify this on a test environment before you update the Elastic Load Balancing configuration. A service-linked role is required for services that use multiple target groups. For more information, see Using service-linked roles in the Amazon Elastic Container Service Developer Guide.
     record LoadBalancer
         -- The full Amazon Resource Name (ARN) of the Elastic Load Balancing target group or groups associated with a service or task set. A target group ARN is only specified when using an Application Load Balancer or Network Load Balancer. For services using the ECS deployment controller, you can specify one or multiple target groups. For more information, see Registering multiple target groups with a service in the Amazon Elastic Container Service Developer Guide. For services using the CODE_DEPLOY deployment controller, you're required to define two target groups for the load balancer. For more information, see Blue/green deployment with CodeDeploy in the Amazon Elastic Container Service Developer Guide. If your service's task definition uses the awsvpc network mode, you must choose ip as the target type, not instance. Do this when creating your target groups because tasks that use the awsvpc network mode are associated with an elastic network interface, not an Amazon EC2 instance. This network mode is required for the Fargate launch type.
@@ -3701,6 +4295,8 @@ local record M
         volumeConfigurations: {ServiceVolumeConfiguration}
         -- The VPC Lattice configuration for the service being created.
         vpcLatticeConfigurations: {VpcLatticeConfiguration}
+        -- The gateway connectors that attach the service to a gateway ingress path. You can specify at most one gateway connector.
+        gatewayConnectors: {GatewayConnector}
         -- The optional monitoring configuration for the service, which defines the resolution for the service-level CPUUtilization and MemoryUtilization Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of 60 seconds.
         monitoring: MonitoringConfiguration
     end
@@ -3994,12 +4590,6 @@ local record M
         service: ECSExpressGatewayService
     end
 
-    -- The specified resource wasn't found.
-    record ResourceNotFoundException
-        -- Message that describes the cause of the exception.
-        message: string
-    end
-
     enum ServiceField
         "TAGS"
     end
@@ -4203,6 +4793,8 @@ local record M
         volumeConfigurations: {ServiceVolumeConfiguration}
         -- An object representing the VPC Lattice configuration for the service being updated. This parameter triggers a new service deployment.
         vpcLatticeConfigurations: {VpcLatticeConfiguration}
+        -- The updated set of gateway connectors that connect the service to a gateway ingress path. A service supports no more than one gateway connector.
+        gatewayConnectors: {GatewayConnector}
         -- The optional monitoring configuration for the service, which defines the resolution for the service-level CPUUtilization and MemoryUtilization Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of 60 seconds.
         monitoring: MonitoringConfiguration
     end
@@ -4295,6 +4887,50 @@ local record M
         scalableTarget: ManagedScalableTarget
         -- The policy used for auto scaling.
         applicationAutoScalingPolicies: {ManagedApplicationAutoScalingPolicy}
+    end
+
+    -- The Application Load Balancer resources that a gateway created and manages for a connection.
+    record GatewayConnectionAlbResources
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager certificate that is attached to the load balancer listener.
+        acmCertificateArn: string
+        -- The Amazon Resource Name (ARN) of the load balancer.
+        loadBalancerArn: string
+        -- The Amazon Resource Names (ARNs) of the security groups that the gateway attaches to the load balancer.
+        loadBalancerSecurityGroupArns: {string}
+        -- The Amazon Resource Name (ARN) of the listener on the load balancer.
+        listenerArn: string
+        -- The Amazon Resource Name (ARN) of the listener rule that routes production traffic to the service.
+        listenerRuleArn: string
+        -- The Amazon Resource Name (ARN) of the listener rule that routes test traffic to the service during progressive deployments.
+        testListenerRuleArn: string
+        -- The Amazon Resource Name (ARN) of the target group that receives production traffic.
+        targetGroupArn: string
+        -- The Amazon Resource Name (ARN) of the alternate target group that the gateway uses during progressive deployments.
+        alternateTargetGroupArn: string
+    end
+
+    -- The gateway-managed infrastructure resources for a connection, as a union keyed by gateway type.
+    record GatewayConnectionResources
+        -- The Application Load Balancer resources for a host-based, shared ALB gateway.
+        hostSharedAlb: {GatewayConnectionAlbResources}
+    end
+
+    -- A gateway-managed connection for a service revision. A connection represents the association between the service's gateway connector and a specific gateway, along with the infrastructure that the gateway created for it.
+    record GatewayConnection
+        -- The Amazon Resource Name (ARN) of the gateway.
+        gatewayArn: string
+        -- The Amazon Resource Name (ARN) of the gateway route for the connection.
+        gatewayRouteArn: string
+        -- The name of the service port that receives gateway-managed ingress traffic.
+        portName: string
+        -- The URL that the gateway uses to route ingress traffic to the service.
+        serviceUrl: string
+        -- The access type of the gateway ingress path. Valid values: PUBLIC - The ingress path is publicly accessible. PRIVATE - The ingress path is only accessible privately.
+        accessType: string
+        -- The status of the gateway route for the connection.
+        status: string
+        -- The gateway-managed infrastructure resources for the connection.
+        resources: GatewayConnectionResources
     end
 
     -- The ACM certificate associated with the HTTPS domain created for the Express service.
@@ -4441,6 +5077,8 @@ local record M
         serviceSecurityGroups: {ManagedSecurityGroup}
         -- The log groups managed by the Express service.
         logGroups: {ManagedLogGroup}
+        -- The gateway-managed connections for the service revision, including the gateway routes and infrastructure that a gateway created for the service's connector.
+        gatewayConnections: {GatewayConnection}
     end
 
     -- The runtime platform that Amazon ECS applies to a service revision. This value overrides the runtime platform specified in the task definition. You can't set this value.
@@ -4520,6 +5158,8 @@ local record M
         ecsManagedResources: ECSManagedResources
         -- The effective runtime overrides that Amazon ECS applies to this service revision. This value is present only when Amazon ECS detects a difference between the task definition and the actual runtime configuration.
         overrides: ServiceRevisionOverrides
+        -- The gateway connectors that are associated with the service revision.
+        gatewayConnectors: {GatewayConnector}
         -- The optional monitoring configuration for the service, which defines the resolution for the service-level CPUUtilization and MemoryUtilization Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of 60 seconds.
         monitoring: MonitoringConfiguration
     end

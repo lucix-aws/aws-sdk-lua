@@ -64,6 +64,8 @@ M.BlueGreenDeploymentList = schema.new({ type = "list", list_member = M.BlueGree
 
 M.CertificateList = schema.new({ type = "list", list_member = M.Certificate })
 
+M.DBCapacityReservationList = schema.new({ type = "list", list_member = M.DBCapacityReservation })
+
 M.DBClusterAutomatedBackupList = schema.new({ type = "list", list_member = M.DBClusterAutomatedBackup })
 
 M.DBClusterBacktrackList = schema.new({ type = "list", list_member = M.DBClusterBacktrack })
@@ -157,6 +159,8 @@ M.PendingMaintenanceActionDetails = schema.new({ type = "list", list_member = M.
 M.EC2SecurityGroupList = schema.new({ type = "list", list_member = M.EC2SecurityGroup })
 
 M.IPRangeList = schema.new({ type = "list", list_member = M.IPRange })
+
+M.AvailableCapacityPerAvailabilityZoneList = schema.new({ type = "list", list_member = M.AvailableCapacityPerAvailabilityZone })
 
 M.OptionsList = schema.new({ type = "list", list_member = M.Option })
 
@@ -799,6 +803,23 @@ M.BlueGreenDeploymentNotFoundFault = schema.new({
     },
 })
 
+M.DBCapacityReservationNotFoundFault = schema.new({
+    id = id.from(_N, "DBCapacityReservationNotFoundFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DBCapacityReservationNotFound", httpResponseCode = 404 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "DBCapacityReservationNotFoundFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DBProxyEndpointNotFoundFault = schema.new({
     id = id.from(_N, "DBProxyEndpointNotFoundFault"),
     type = "structure",
@@ -1378,6 +1399,185 @@ M.BacktrackDBClusterOutput = schema.new({
             id = id.from(_N, "BacktrackDBClusterOutput", "Status"),
             type = "string",
             name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CancelDBCapacityReservationInput = schema.new({
+    id = id.from(_N, "CancelDBCapacityReservationRequest"),
+    type = "structure",
+    members = {
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "CancelDBCapacityReservationInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AvailableCapacityPerAvailabilityZone = schema.new({
+    id = id.from(_N, "AvailableCapacityPerAvailabilityZone"),
+    type = "structure",
+    members = {
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "AvailableCapacityPerAvailabilityZone", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AvailableCapacity = schema.new({
+            id = id.from(_N, "AvailableCapacityPerAvailabilityZone", "AvailableCapacity"),
+            type = "integer",
+            name = "AvailableCapacity",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DBCapacityReservationCommitmentInfo = schema.new({
+    id = id.from(_N, "DBCapacityReservationCommitmentInfo"),
+    type = "structure",
+    members = {
+        CommittedCapacityPerAvailabilityZone = schema.new({
+            id = id.from(_N, "DBCapacityReservationCommitmentInfo", "CommittedCapacityPerAvailabilityZone"),
+            type = "integer",
+            name = "CommittedCapacityPerAvailabilityZone",
+            target_id = prelude.Integer.id,
+        }),
+        CommitmentEndDate = schema.new({
+            id = id.from(_N, "DBCapacityReservationCommitmentInfo", "CommitmentEndDate"),
+            type = "timestamp",
+            name = "CommitmentEndDate",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.DBCapacityReservation = schema.new({
+    id = id.from(_N, "DBCapacityReservation"),
+    type = "structure",
+    members = {
+        DBCapacityReservationName = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "DBCapacityReservationName"),
+            type = "string",
+            name = "DBCapacityReservationName",
+            target_id = prelude.String.id,
+        }),
+        DBInstanceClass = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "DBInstanceClass"),
+            type = "string",
+            name = "DBInstanceClass",
+            target_id = prelude.String.id,
+        }),
+        Engine = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "Engine"),
+            type = "string",
+            name = "Engine",
+            target_id = prelude.String.id,
+        }),
+        LicenseModel = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "LicenseModel"),
+            type = "string",
+            name = "LicenseModel",
+            target_id = prelude.String.id,
+        }),
+        ReservedCapacityPerAvailabilityZone = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "ReservedCapacityPerAvailabilityZone"),
+            type = "integer",
+            name = "ReservedCapacityPerAvailabilityZone",
+            target_id = prelude.Integer.id,
+        }),
+        AvailableCapacityPerAvailabilityZoneList = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "AvailableCapacityPerAvailabilityZoneList"),
+            type = "list",
+            name = "AvailableCapacityPerAvailabilityZoneList",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.AvailableCapacityPerAvailabilityZone, traits = { [traits.XML_NAME] = { name = "AvailableCapacityPerAvailabilityZone" } } }),
+        }),
+        EndDate = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "EndDate"),
+            type = "timestamp",
+            name = "EndDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreateDate = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "CreateDate"),
+            type = "timestamp",
+            name = "CreateDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        StartDate = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "StartDate"),
+            type = "timestamp",
+            name = "StartDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        CommitmentInfo = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "CommitmentInfo"),
+            type = "structure",
+            name = "CommitmentInfo",
+            target_id = id.from(_N, "DBCapacityReservationCommitmentInfo"),
+            target = M.DBCapacityReservationCommitmentInfo,
+        }),
+        State = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        DBCapacityReservationArn = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "DBCapacityReservationArn"),
+            type = "string",
+            name = "DBCapacityReservationArn",
+            target_id = prelude.String.id,
+        }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+        }),
+        TagList = schema.new({
+            id = id.from(_N, "DBCapacityReservation", "TagList"),
+            type = "list",
+            name = "TagList",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
+        }),
+    },
+})
+
+M.CancelDBCapacityReservationOutput = schema.new({
+    id = id.from(_N, "CancelDBCapacityReservationResponse"),
+    type = "structure",
+    members = {
+        DBCapacityReservation = schema.new({
+            id = id.from(_N, "CancelDBCapacityReservationOutput", "DBCapacityReservation"),
+            type = "structure",
+            name = "DBCapacityReservation",
+            target_id = id.from(_N, "DBCapacityReservation"),
+            target = M.DBCapacityReservation,
+        }),
+    },
+})
+
+M.InvalidDBCapacityReservationStateFault = schema.new({
+    id = id.from(_N, "InvalidDBCapacityReservationStateFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidDBCapacityReservationState", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidDBCapacityReservationStateFault", "message"),
+            type = "string",
+            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -3810,6 +4010,155 @@ M.InvalidCustomDBEngineVersionStateFault = schema.new({
     },
 })
 
+M.CreateDBCapacityReservationInput = schema.new({
+    id = id.from(_N, "CreateDBCapacityReservationRequest"),
+    type = "structure",
+    members = {
+        DBCapacityReservationName = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "DBCapacityReservationName"),
+            type = "string",
+            name = "DBCapacityReservationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DBInstanceClass = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "DBInstanceClass"),
+            type = "string",
+            name = "DBInstanceClass",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Engine = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "Engine"),
+            type = "string",
+            name = "Engine",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CapacityPerAvailabilityZone = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "CapacityPerAvailabilityZone"),
+            type = "integer",
+            name = "CapacityPerAvailabilityZone",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AvailabilityZones = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "AvailabilityZones"),
+            type = "list",
+            name = "AvailabilityZones",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndDate = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "EndDate"),
+            type = "timestamp",
+            name = "EndDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        StartDate = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "StartDate"),
+            type = "timestamp",
+            name = "StartDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        CommitmentDuration = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "CommitmentDuration"),
+            type = "long",
+            name = "CommitmentDuration",
+            target_id = prelude.Long.id,
+        }),
+        LicenseModel = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "LicenseModel"),
+            type = "string",
+            name = "LicenseModel",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
+        }),
+    },
+})
+
+M.CreateDBCapacityReservationOutput = schema.new({
+    id = id.from(_N, "CreateDBCapacityReservationResponse"),
+    type = "structure",
+    members = {
+        DBCapacityReservation = schema.new({
+            id = id.from(_N, "CreateDBCapacityReservationOutput", "DBCapacityReservation"),
+            type = "structure",
+            name = "DBCapacityReservation",
+            target_id = id.from(_N, "DBCapacityReservation"),
+            target = M.DBCapacityReservation,
+        }),
+    },
+})
+
+M.DBCapacityReservationAlreadyExistsFault = schema.new({
+    id = id.from(_N, "DBCapacityReservationAlreadyExistsFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DBCapacityReservationAlreadyExists", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "DBCapacityReservationAlreadyExistsFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DBCapacityReservationUnsupportedFault = schema.new({
+    id = id.from(_N, "DBCapacityReservationUnsupportedFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "DBCapacityReservationUnsupported", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "DBCapacityReservationUnsupportedFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InsufficientDBInstanceCapacityFault = schema.new({
+    id = id.from(_N, "InsufficientDBInstanceCapacityFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InsufficientDBInstanceCapacity", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InsufficientDBInstanceCapacityFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DBClusterAssociatedRole = schema.new({
     id = id.from(_N, "DBClusterAssociatedRole"),
     type = "structure",
@@ -5363,23 +5712,6 @@ M.GlobalClusterNotFoundFault = schema.new({
     },
 })
 
-M.InsufficientDBInstanceCapacityFault = schema.new({
-    id = id.from(_N, "InsufficientDBInstanceCapacityFault"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "InsufficientDBInstanceCapacity", httpResponseCode = 400 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InsufficientDBInstanceCapacityFault", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.InsufficientStorageClusterCapacityFault = schema.new({
     id = id.from(_N, "InsufficientStorageClusterCapacityFault"),
     type = "structure",
@@ -6260,6 +6592,12 @@ M.CreateDBInstanceInput = schema.new({
             target_id = prelude.Document.id,
             list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "CreateDBInstanceInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+        }),
         MasterUserAuthenticationType = schema.new({
             id = id.from(_N, "CreateDBInstanceInput", "MasterUserAuthenticationType"),
             type = "string",
@@ -6624,6 +6962,12 @@ M.PendingModifiedValues = schema.new({
             name = "AdditionalStorageVolumes",
             target_id = prelude.Document.id,
             list_member = M.AdditionalStorageVolume,
+        }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "PendingModifiedValues", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -7241,6 +7585,12 @@ M.DBInstance = schema.new({
             name = "StorageOperationPercentProgress",
             target_id = prelude.Integer.id,
         }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "DBInstance", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -7616,6 +7966,12 @@ M.CreateDBInstanceReadReplicaInput = schema.new({
             name = "TagSpecifications",
             target_id = prelude.Document.id,
             list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "CreateDBInstanceReadReplicaInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -11649,6 +12005,58 @@ M.DescribeCertificatesOutput = schema.new({
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeCertificatesOutput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeDBCapacityReservationsInput = schema.new({
+    id = id.from(_N, "DescribeDBCapacityReservationsRequest"),
+    type = "structure",
+    members = {
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "DescribeDBCapacityReservationsInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "DescribeDBCapacityReservationsInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+        }),
+        MaxRecords = schema.new({
+            id = id.from(_N, "DescribeDBCapacityReservationsInput", "MaxRecords"),
+            type = "integer",
+            name = "MaxRecords",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeDBCapacityReservationsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+        }),
+    },
+})
+
+M.DescribeDBCapacityReservationsOutput = schema.new({
+    id = id.from(_N, "DescribeDBCapacityReservationsResponse"),
+    type = "structure",
+    members = {
+        DBCapacityReservations = schema.new({
+            id = id.from(_N, "DescribeDBCapacityReservationsOutput", "DBCapacityReservations"),
+            type = "list",
+            name = "DBCapacityReservations",
+            target_id = prelude.Document.id,
+            list_member = M.DBCapacityReservation,
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "DescribeDBCapacityReservationsOutput", "Marker"),
             type = "string",
             name = "Marker",
             target_id = prelude.String.id,
@@ -17733,6 +18141,54 @@ M.ModifyCustomDBEngineVersionOutput = schema.new({
     },
 })
 
+M.ModifyDBCapacityReservationInput = schema.new({
+    id = id.from(_N, "ModifyDBCapacityReservationRequest"),
+    type = "structure",
+    members = {
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "ModifyDBCapacityReservationInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CapacityPerAvailabilityZone = schema.new({
+            id = id.from(_N, "ModifyDBCapacityReservationInput", "CapacityPerAvailabilityZone"),
+            type = "integer",
+            name = "CapacityPerAvailabilityZone",
+            target_id = prelude.Integer.id,
+        }),
+        EndDateType = schema.new({
+            id = id.from(_N, "ModifyDBCapacityReservationInput", "EndDateType"),
+            type = "string",
+            name = "EndDateType",
+            target_id = prelude.String.id,
+        }),
+        EndDate = schema.new({
+            id = id.from(_N, "ModifyDBCapacityReservationInput", "EndDate"),
+            type = "timestamp",
+            name = "EndDate",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ModifyDBCapacityReservationOutput = schema.new({
+    id = id.from(_N, "ModifyDBCapacityReservationResponse"),
+    type = "structure",
+    members = {
+        DBCapacityReservation = schema.new({
+            id = id.from(_N, "ModifyDBCapacityReservationOutput", "DBCapacityReservation"),
+            type = "structure",
+            name = "DBCapacityReservation",
+            target_id = id.from(_N, "DBCapacityReservation"),
+            target = M.DBCapacityReservation,
+        }),
+    },
+})
+
 M.CloudwatchLogsExportConfiguration = schema.new({
     id = id.from(_N, "CloudwatchLogsExportConfiguration"),
     type = "structure",
@@ -18754,6 +19210,12 @@ M.ModifyDBInstanceInput = schema.new({
             name = "AdditionalStorageVolumes",
             target_id = prelude.Document.id,
             list_member = M.ModifyAdditionalStorageVolume,
+        }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "ModifyDBInstanceInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
         }),
         TagSpecifications = schema.new({
             id = id.from(_N, "ModifyDBInstanceInput", "TagSpecifications"),
@@ -21627,6 +22089,12 @@ M.RestoreDBInstanceFromDBSnapshotInput = schema.new({
             name = "PreferredBackupWindow",
             target_id = prelude.String.id,
         }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "RestoreDBInstanceFromDBSnapshotInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+        }),
         DedicatedLogVolume = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromDBSnapshotInput", "DedicatedLogVolume"),
             type = "boolean",
@@ -22012,6 +22480,12 @@ M.RestoreDBInstanceFromS3Input = schema.new({
             name = "MasterUserSecretKmsKeyId",
             target_id = prelude.String.id,
         }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "RestoreDBInstanceFromS3Input", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+        }),
         DedicatedLogVolume = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromS3Input", "DedicatedLogVolume"),
             type = "boolean",
@@ -22360,6 +22834,12 @@ M.RestoreDBInstanceToPointInTimeInput = schema.new({
             name = "PreferredBackupWindow",
             target_id = prelude.String.id,
         }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "RestoreDBInstanceToPointInTimeInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
+        }),
         DedicatedLogVolume = schema.new({
             id = id.from(_N, "RestoreDBInstanceToPointInTimeInput", "DedicatedLogVolume"),
             type = "boolean",
@@ -22606,6 +23086,12 @@ M.StartDBInstanceInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        DBCapacityReservationIdentifier = schema.new({
+            id = id.from(_N, "StartDBInstanceInput", "DBCapacityReservationIdentifier"),
+            type = "string",
+            name = "DBCapacityReservationIdentifier",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -23029,6 +23515,12 @@ M.StopDBInstanceInput = schema.new({
             name = "DBSnapshotIdentifier",
             target_id = prelude.String.id,
         }),
+        DetachFromDBCapacityReservation = schema.new({
+            id = id.from(_N, "StopDBInstanceInput", "DetachFromDBCapacityReservation"),
+            type = "boolean",
+            name = "DetachFromDBCapacityReservation",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -23283,6 +23775,17 @@ M.BacktrackDBCluster = schema.operation({
     },
 })
 
+M.CancelDBCapacityReservation = schema.operation({
+    id = id.from("com.amazonaws.rds", "CancelDBCapacityReservation"),
+    input = M.CancelDBCapacityReservationInput,
+    output = M.CancelDBCapacityReservationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CancelExportTask = schema.operation({
     id = id.from("com.amazonaws.rds", "CancelExportTask"),
     input = M.CancelExportTaskInput,
@@ -23364,6 +23867,17 @@ M.CreateCustomDBEngineVersion = schema.operation({
     id = id.from("com.amazonaws.rds", "CreateCustomDBEngineVersion"),
     input = M.CreateCustomDBEngineVersionInput,
     output = M.CreateCustomDBEngineVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateDBCapacityReservation = schema.operation({
+    id = id.from("com.amazonaws.rds", "CreateDBCapacityReservation"),
+    input = M.CreateDBCapacityReservationInput,
+    output = M.CreateDBCapacityReservationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -23837,6 +24351,17 @@ M.DescribeCertificates = schema.operation({
     id = id.from("com.amazonaws.rds", "DescribeCertificates"),
     input = M.DescribeCertificatesInput,
     output = M.DescribeCertificatesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDBCapacityReservations = schema.operation({
+    id = id.from("com.amazonaws.rds", "DescribeDBCapacityReservations"),
+    input = M.DescribeDBCapacityReservationsInput,
+    output = M.DescribeDBCapacityReservationsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -24431,6 +24956,17 @@ M.ModifyCustomDBEngineVersion = schema.operation({
     id = id.from("com.amazonaws.rds", "ModifyCustomDBEngineVersion"),
     input = M.ModifyCustomDBEngineVersionInput,
     output = M.ModifyCustomDBEngineVersionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyDBCapacityReservation = schema.operation({
+    id = id.from("com.amazonaws.rds", "ModifyDBCapacityReservation"),
+    input = M.ModifyDBCapacityReservationInput,
+    output = M.ModifyDBCapacityReservationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -275,6 +275,8 @@ local record M
     record CompleteMigrationInput
         -- The ID of the replication group to which data is being migrated.
         ReplicationGroupId: string
+        -- The name of the serverless cache to which data is being migrated.
+        ServerlessCacheName: string
         -- Forces the migration to stop without ensuring that data is in sync. It is recommended
         -- to use this option only to abort the migration and not recommended when application
         -- wants to continue migration to ElastiCache.
@@ -665,12 +667,131 @@ local record M
         EffectiveDurability: string
     end
 
+    enum DataStorageUnit
+        "GB"
+    end
+
+    -- The data storage limit.
+    record DataStorage
+        -- The upper limit for data storage the cache is set to use.
+        Maximum: number
+        -- The lower limit for data storage the cache is set to use.
+        Minimum: number
+        -- The unit that the storage is measured in, in GB.
+        Unit: string
+    end
+
+    -- The configuration for the number of ElastiCache Processing Units (ECPU) the cache can consume per second.
+    record ECPUPerSecond
+        -- The configuration for the maximum number of ECPUs the cache can consume per second.
+        Maximum: number
+        -- The configuration for the minimum number of ECPUs the cache should be able consume per second.
+        Minimum: number
+    end
+
+    -- The usage limits for storage and ElastiCache Processing Units for the cache.
+    record CacheUsageLimits
+        -- The maximum data storage limit in the cache, expressed in Gigabytes.
+        DataStorage: DataStorage
+        ECPUPerSecond: ECPUPerSecond
+    end
+
+    enum ConnectionType
+        "vpc"
+        "public"
+    end
+
+    -- Provides a summary of the current migration status for a serverless cache.
+    record MigrationSummary
+        -- The current status of the migration.
+        Status: string
+        -- The migration endpoint, which is the standard endpoint of the serverless cache. Point your
+        -- application at this endpoint during the migration. Until cutover, ElastiCache routes requests
+        -- on this endpoint to your source.
+        MigrationEndpoint: Endpoint
+        -- The cutover configuration for the migration.
+        CutoverMode: string
+    end
+
+    -- The resource representing a serverless cache.
+    record ServerlessCache
+        -- The unique identifier of the serverless cache.
+        ServerlessCacheName: string
+        -- A description of the serverless cache.
+        Description: string
+        -- When the serverless cache was created.
+        CreateTime: number
+        -- The current status of the serverless cache. The allowed values are CREATING, AVAILABLE, DELETING, CREATE-FAILED and MODIFYING.
+        Status: string
+        -- The engine the serverless cache is compatible with.
+        Engine: string
+        -- The version number of the engine the serverless cache is compatible with.
+        MajorEngineVersion: string
+        -- The name and version number of the engine the serverless cache is compatible with.
+        FullEngineVersion: string
+        -- The cache usage limit for the serverless cache.
+        CacheUsageLimits: CacheUsageLimits
+        -- The ID of the Amazon Web Services Key Management Service (KMS) key that is used to encrypt data at rest in the serverless cache.
+        KmsKeyId: string
+        -- Indicates the type of encryption for data stored at rest in the serverless cache.
+        -- Serverless caches are always encrypted at rest. The value is
+        -- sse-elasticache if an ElastiCache service-managed key is used, or
+        -- sse-kms if a customer-managed KMS key is used.
+        StorageEncryptionType: string
+        -- The IDs of the EC2 security groups associated with the serverless
+        -- cache.
+        SecurityGroupIds: {string}
+        Endpoint: Endpoint
+        ReaderEndpoint: Endpoint
+        -- The Amazon Resource Name (ARN) of the serverless cache.
+        ARN: string
+        -- The identifier of the user group associated with the serverless cache. Available for Valkey and Redis OSS only. Default is NULL.
+        UserGroupId: string
+        -- If no subnet IDs are given and your VPC is in us-west-1, then ElastiCache will select 2 default subnets across AZs in your VPC.
+        -- For all other Regions, if no subnet IDs are given then ElastiCache will select 3 default subnets across AZs in your default VPC.
+        SubnetIds: {string}
+        -- The number of days for which ElastiCache retains automatic snapshots before deleting them. Available for Valkey, Redis OSS and Serverless Memcached only. The maximum value allowed is 35 days.
+        SnapshotRetentionLimit: number
+        -- The daily time that a cache snapshot will be created. Default is NULL, i.e. snapshots will not be created at a
+        -- specific time on a daily basis. Available for Valkey, Redis OSS and Serverless Memcached only.
+        DailySnapshotTime: string
+        -- The type of IP address protocol used by the serverless cache.
+        -- Must be either ipv4 | ipv6 | dual_stack.
+        -- ipv6 is only supported with IPv6-only subnets.
+        -- If not specified, defaults to ipv4, unless all provided subnets are IPv6-only, in which case it defaults to ipv6.
+        NetworkType: string
+        -- The connection type for the serverless cache.
+        -- Must be either vpc | public.
+        -- If not specified, defaults to vpc.
+        ConnectionType: string
+        -- Provides a summary of the migration status for the serverless cache.
+        Migration: MigrationSummary
+    end
+
     record CompleteMigrationOutput
         ReplicationGroup: ReplicationGroup
+        -- Provides the details of the serverless cache for which the migration completed.
+        ServerlessCache: ServerlessCache
+    end
+
+    -- The requested cluster is not in the available state.
+    record InvalidCacheClusterStateFault
+        message: string
+    end
+
+    -- The migration is not healthy. Check the events for this serverless cache for more details. For
+    -- CompleteMigration, set Force to true to bypass this check.
+    record MigrationHealthFault
+        message: string
     end
 
     -- The designated replication group is not available for data migration.
     record ReplicationGroupNotUnderMigrationFault
+        message: string
+    end
+
+    -- The serverless cache is not currently under migration.
+    record ServerlessCacheNotUnderMigrationFault
         message: string
     end
 
@@ -2492,11 +2613,6 @@ local record M
         ReplicationGroup: ReplicationGroup
     end
 
-    -- The requested cluster is not in the available state.
-    record InvalidCacheClusterStateFault
-        message: string
-    end
-
     -- The Global datastore is not available or in primary-only state.
     record InvalidGlobalReplicationGroupStateFault
         message: string
@@ -2516,40 +2632,6 @@ local record M
     -- The specified replication group already exists.
     record ReplicationGroupAlreadyExistsFault
         message: string
-    end
-
-    enum DataStorageUnit
-        "GB"
-    end
-
-    -- The data storage limit.
-    record DataStorage
-        -- The upper limit for data storage the cache is set to use.
-        Maximum: number
-        -- The lower limit for data storage the cache is set to use.
-        Minimum: number
-        -- The unit that the storage is measured in, in GB.
-        Unit: string
-    end
-
-    -- The configuration for the number of ElastiCache Processing Units (ECPU) the cache can consume per second.
-    record ECPUPerSecond
-        -- The configuration for the maximum number of ECPUs the cache can consume per second.
-        Maximum: number
-        -- The configuration for the minimum number of ECPUs the cache should be able consume per second.
-        Minimum: number
-    end
-
-    -- The usage limits for storage and ElastiCache Processing Units for the cache.
-    record CacheUsageLimits
-        -- The maximum data storage limit in the cache, expressed in Gigabytes.
-        DataStorage: DataStorage
-        ECPUPerSecond: ECPUPerSecond
-    end
-
-    enum ConnectionType
-        "vpc"
-        "public"
     end
 
     record CreateServerlessCacheInput
@@ -2598,59 +2680,6 @@ local record M
         -- If not specified, defaults to vpc.
         -- This value cannot be changed after the serverless cache is created.
         -- Setting this to public requires Valkey 9 or above.
-        ConnectionType: string
-    end
-
-    -- The resource representing a serverless cache.
-    record ServerlessCache
-        -- The unique identifier of the serverless cache.
-        ServerlessCacheName: string
-        -- A description of the serverless cache.
-        Description: string
-        -- When the serverless cache was created.
-        CreateTime: number
-        -- The current status of the serverless cache. The allowed values are CREATING, AVAILABLE, DELETING, CREATE-FAILED and MODIFYING.
-        Status: string
-        -- The engine the serverless cache is compatible with.
-        Engine: string
-        -- The version number of the engine the serverless cache is compatible with.
-        MajorEngineVersion: string
-        -- The name and version number of the engine the serverless cache is compatible with.
-        FullEngineVersion: string
-        -- The cache usage limit for the serverless cache.
-        CacheUsageLimits: CacheUsageLimits
-        -- The ID of the Amazon Web Services Key Management Service (KMS) key that is used to encrypt data at rest in the serverless cache.
-        KmsKeyId: string
-        -- Indicates the type of encryption for data stored at rest in the serverless cache.
-        -- Serverless caches are always encrypted at rest. The value is
-        -- sse-elasticache if an ElastiCache service-managed key is used, or
-        -- sse-kms if a customer-managed KMS key is used.
-        StorageEncryptionType: string
-        -- The IDs of the EC2 security groups associated with the serverless
-        -- cache.
-        SecurityGroupIds: {string}
-        Endpoint: Endpoint
-        ReaderEndpoint: Endpoint
-        -- The Amazon Resource Name (ARN) of the serverless cache.
-        ARN: string
-        -- The identifier of the user group associated with the serverless cache. Available for Valkey and Redis OSS only. Default is NULL.
-        UserGroupId: string
-        -- If no subnet IDs are given and your VPC is in us-west-1, then ElastiCache will select 2 default subnets across AZs in your VPC.
-        -- For all other Regions, if no subnet IDs are given then ElastiCache will select 3 default subnets across AZs in your default VPC.
-        SubnetIds: {string}
-        -- The number of days for which ElastiCache retains automatic snapshots before deleting them. Available for Valkey, Redis OSS and Serverless Memcached only. The maximum value allowed is 35 days.
-        SnapshotRetentionLimit: number
-        -- The daily time that a cache snapshot will be created. Default is NULL, i.e. snapshots will not be created at a
-        -- specific time on a daily basis. Available for Valkey, Redis OSS and Serverless Memcached only.
-        DailySnapshotTime: string
-        -- The type of IP address protocol used by the serverless cache.
-        -- Must be either ipv4 | ipv6 | dual_stack.
-        -- ipv6 is only supported with IPv6-only subnets.
-        -- If not specified, defaults to ipv4, unless all provided subnets are IPv6-only, in which case it defaults to ipv6.
-        NetworkType: string
-        -- The connection type for the serverless cache.
-        -- Must be either vpc | public.
-        -- If not specified, defaults to vpc.
         ConnectionType: string
     end
 
@@ -5367,6 +5396,62 @@ local record M
         ARN: string
     end
 
+    -- The endpoint from which data should be migrated.
+    record CustomerNodeEndpoint
+        -- The address of the node endpoint
+        Address: string
+        -- The port of the node endpoint
+        Port: number
+    end
+
+    -- Configuration for authenticating with the source using Secrets Manager during migration.
+    record SecretManagerAuthConfig
+        -- The ARN of the secret in AWS Secrets Manager that contains the credentials for authenticating
+        -- with the source.
+        SecretArn: string
+    end
+
+    -- The authentication configuration for connecting to the source during migration.
+    record SourceAuthenticationConfiguration
+        -- The Secrets Manager configuration used for authenticating with the source during migration.
+        SecretManagerConfig: SecretManagerAuthConfig
+    end
+
+    enum TlsMode
+        "none"
+        "verify-ca"
+    end
+
+    -- The TLS configuration for connecting to the source during migration.
+    record SourceTlsConfiguration
+        -- The TLS mode to use when connecting to the source. Valid values are none and verify-ca.
+        SourceTlsMode: string
+        -- The TLS certificate used to verify the identity of the source during migration.
+        SourceTlsCertificate: string
+    end
+
+    record PrepareMigrationInput
+        -- The name of the serverless cache to prepare for migration.
+        ServerlessCacheName: string
+        -- The list of endpoints from which to migrate data. For serverless cache migrations, the
+        -- list should have only one element.
+        CustomerNodeEndpointList: {CustomerNodeEndpoint}
+        -- The authentication configuration for connecting to the source during migration.
+        SourceAuthenticationConfiguration: SourceAuthenticationConfiguration
+        -- The TLS configuration for connecting to the source during migration.
+        SourceTlsConfiguration: SourceTlsConfiguration
+    end
+
+    record PrepareMigrationOutput
+        -- Provides the details of the serverless cache prepared for migration.
+        ServerlessCache: ServerlessCache
+    end
+
+    -- A migration is already in progress for this serverless cache. You cannot start another migration until the current one completes.
+    record ServerlessCacheAlreadyUnderMigrationFault
+        message: string
+    end
+
     -- Represents the input of a PurchaseReservedCacheNodesOffering
     -- operation.
     record PurchaseReservedCacheNodesOfferingInput
@@ -5505,24 +5590,38 @@ local record M
         message: string
     end
 
-    -- The endpoint from which data should be migrated.
-    record CustomerNodeEndpoint
-        -- The address of the node endpoint
-        Address: string
-        -- The port of the node endpoint
-        Port: number
-    end
-
     record StartMigrationInput
+        -- The name of the serverless cache to which data is being migrated.
+        ServerlessCacheName: string
         -- The ID of the replication group to which data should be migrated.
         ReplicationGroupId: string
-        -- List of endpoints from which data should be migrated. For Valkey or Redis OSS (cluster mode
-        -- disabled), the list should have only one element.
+        -- The list of endpoints from which to migrate data. For Valkey or Redis OSS (cluster mode
+        -- disabled), the list should have only one element. For serverless cache migrations, ElastiCache
+        -- uses the endpoint that you provided in PrepareMigration.
         CustomerNodeEndpointList: {CustomerNodeEndpoint}
+        -- Specifies whether ElastiCache automatically attempts to complete the migration after data
+        -- sync is established.
+        AutoCutover: boolean
+        -- Specifies whether ElastiCache deletes existing data in the serverless cache before migration
+        -- begins. After StopMigration, StartMigration requires this option to
+        -- restart the data sync.
+        ClearTargetCacheData: boolean
     end
 
     record StartMigrationOutput
         ReplicationGroup: ReplicationGroup
+        -- Provides the details of the serverless cache to which ElastiCache is migrating data.
+        ServerlessCache: ServerlessCache
+    end
+
+    record StopMigrationInput
+        -- The name of the serverless cache for which to stop the data sync.
+        ServerlessCacheName: string
+    end
+
+    record StopMigrationOutput
+        -- Provides the details of the serverless cache for which the data sync stopped.
+        ServerlessCache: ServerlessCache
     end
 
     -- The customer has exceeded the allowed rate of API calls.

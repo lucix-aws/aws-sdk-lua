@@ -37,6 +37,7 @@ local record M
         "deleted"
         "error"
         "updating"
+        "misconfigured"
     end
 
     -- Contains information about an S3 File System Access Point returned in list operations.
@@ -181,7 +182,7 @@ local record M
         clientToken: string
         -- The ARN or alias of the KMS key used for encryption.
         kmsKeyId: string
-        -- The lifecycle state of the file system. Valid values are: AVAILABLE (the file system is available for use), CREATING (the file system is being created), DELETING (the file system is being deleted), DELETED (the file system has been deleted), ERROR (the file system is in an error state), or UPDATING (the file system is being updated).
+        -- The lifecycle state of the file system. Valid values are: AVAILABLE (the file system is available for use), CREATING (the file system is being created), DELETING (the file system is being deleted), DELETED (the file system has been deleted), ERROR (the file system is in an error state), MISCONFIGURED (the file system has a misconfiguration), or UPDATING (the file system is being updated).
         status: string
         -- Additional information about the file system status. This field provides more details when the status is ERROR, or during state transitions.
         statusMessage: string

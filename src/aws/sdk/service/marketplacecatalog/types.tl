@@ -774,6 +774,41 @@ local record M
         LastModifiedDate: DataProductLastModifiedDateFilter
     end
 
+    -- The filter for the EntityId of an express private offer configuration.
+    record ExpressPrivateOfferConfigurationEntityIdFilter
+        -- A list of EntityId values to filter on.
+        ValueList: {string}
+    end
+
+    -- The filter for the ProductId of an express private offer configuration.
+    record ExpressPrivateOfferConfigurationProductIdFilter
+        -- A list of ProductId values to filter on.
+        ValueList: {string}
+    end
+
+    enum ExpressPrivateOfferConfigurationStateString
+        "ACTIVE"
+        "INACTIVE"
+    end
+
+    -- The filter for the State of an express private offer configuration.
+    record ExpressPrivateOfferConfigurationStateFilter
+        -- A list of State values to filter on. Valid values are ACTIVE and INACTIVE.
+        ValueList: {string}
+    end
+
+    -- The filter fields for the express private offer configuration entity.
+    record ExpressPrivateOfferConfigurationFilters
+        -- You can filter on the EntityId of an express private offer configuration.
+        EntityId: ExpressPrivateOfferConfigurationEntityIdFilter
+        -- You can filter on the ProductId of an express private offer configuration.
+        ProductId: ExpressPrivateOfferConfigurationProductIdFilter
+        -- The state of the express private offer configuration to filter on. Valid values are the following:
+        -- ACTIVE – The configuration is active and you can use it to generate offers.
+        -- INACTIVE – The configuration is deprecated or deleted.
+        State: ExpressPrivateOfferConfigurationStateFilter
+    end
+
     -- The filter for machine learning product entity IDs.
     record MachineLearningProductEntityIdFilter
         -- A list of entity IDs to filter by. The operation returns machine learning products with entity IDs that match the values in this list.
@@ -1331,6 +1366,8 @@ local record M
         MachineLearningProductFilters: MachineLearningProductFilters
         -- A filter for offer sets.
         OfferSetFilters: OfferSetFilters
+        -- A filter for express private offer configurations.
+        ExpressPrivateOfferConfigurationFilters: ExpressPrivateOfferConfigurationFilters
     end
 
     enum ContainerProductSortBy
@@ -1361,6 +1398,21 @@ local record M
         -- Field to sort the data products by.
         SortBy: string
         -- The sorting order. Can be ASCENDING or DESCENDING. The default value is DESCENDING.
+        SortOrder: string
+    end
+
+    enum ExpressPrivateOfferConfigurationSortBy
+        "EntityId"
+        "LastModifiedDate"
+        "ProductId"
+        "State"
+    end
+
+    -- The sort fields for express private offer configurations.
+    record ExpressPrivateOfferConfigurationSort
+        -- The field to sort by. Valid values are EntityId, LastModifiedDate, ProductId, and State.
+        SortBy: string
+        -- The sorting order. Valid values are ASCENDING and DESCENDING.
         SortOrder: string
     end
 
@@ -1481,6 +1533,8 @@ local record M
         MachineLearningProductSort: MachineLearningProductSort
         -- A sort for offer sets.
         OfferSetSort: OfferSetSort
+        -- A sort for express private offer configurations.
+        ExpressPrivateOfferConfigurationSort: ExpressPrivateOfferConfigurationSort
     end
 
     enum OwnershipType
@@ -1541,6 +1595,16 @@ local record M
         ProductTitle: string
         -- The lifecycle of the data product.
         Visibility: string
+    end
+
+    -- Summarized information about an express private offer configuration.
+    record ExpressPrivateOfferConfigurationSummary
+        -- The product ID associated with the express private offer configuration.
+        ProductId: string
+        -- The state of the express private offer configuration. Valid values are the following:
+        -- ACTIVE – The configuration is active and you can use it to generate offers.
+        -- INACTIVE – The configuration is deprecated or deleted.
+        State: string
     end
 
     -- A summary of a machine learning product.
@@ -1668,6 +1732,8 @@ local record M
         MachineLearningProductSummary: MachineLearningProductSummary
         -- An object that contains summary information about the offer set.
         OfferSetSummary: OfferSetSummary
+        -- An object that contains summary information about the express private offer configuration.
+        ExpressPrivateOfferConfigurationSummary: ExpressPrivateOfferConfigurationSummary
     end
 
     record ListEntitiesOutput

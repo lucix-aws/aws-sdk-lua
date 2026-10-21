@@ -3001,10 +3001,23 @@ local record M
         enabled: boolean
     end
 
+    enum GuardrailContextualGroundingTierName
+        "CLASSIC"
+        "STANDARD"
+    end
+
+    -- Specifies the tier that your guardrail uses for contextual grounding checks.
+    record GuardrailContextualGroundingTierConfig
+        -- The tier that your guardrail uses for contextual grounding. Valid values include: CLASSIC tier – Provides established contextual grounding functionality supporting English, French, and Spanish languages. STANDARD tier – Provides a more robust solution than the CLASSIC tier, with support for reasoning, conversational content and more comprehensive language support. This tier requires that your guardrail use cross-Region inference.
+        tierName: string
+    end
+
     -- The policy configuration details for the guardrails contextual grounding policy.
     record GuardrailContextualGroundingPolicyConfig
         -- The filter configuration details for the guardrails contextual grounding policy.
         filtersConfig: {GuardrailContextualGroundingFilterConfig}
+        -- The tier that your guardrail uses for contextual grounding.
+        tierConfig: GuardrailContextualGroundingTierConfig
     end
 
     -- The system-defined guardrail profile that you're using with your guardrail. Guardrail profiles define the destination Amazon Web Services Regions where guardrail inference requests can be automatically routed. Using guardrail profiles helps maintain guardrail performance and reliability when demand increases. For more information, see the Amazon Bedrock User Guide.
@@ -3311,10 +3324,18 @@ local record M
         enabled: boolean
     end
 
+    -- Specifies the tier that your guardrail uses for contextual grounding checks.
+    record GuardrailContextualGroundingTier
+        -- The tier that your guardrail uses for contextual grounding. Valid values include: CLASSIC tier – Provides established contextual grounding functionality supporting English, French, and Spanish languages. STANDARD tier – Provides a more robust solution than the CLASSIC tier, with support for reasoning, conversational content and more comprehensive language support. This tier requires that your guardrail use cross-Region inference.
+        tierName: string
+    end
+
     -- The details for the guardrails contextual grounding policy.
     record GuardrailContextualGroundingPolicy
         -- The filter details for the guardrails contextual grounding policy.
         filters: {GuardrailContextualGroundingFilter}
+        -- The tier that your guardrail uses for contextual grounding.
+        tier: GuardrailContextualGroundingTier
     end
 
     -- Contains details about the system-defined guardrail profile that you're using with your guardrail for cross-Region inference. For more information, see the Amazon Bedrock User Guide.

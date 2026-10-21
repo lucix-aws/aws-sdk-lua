@@ -68,6 +68,18 @@ M.DaemonContainerDefinitionList = schema.new({ type = "list", list_member = M.Da
 
 M.DaemonVolumeList = schema.new({ type = "list", list_member = M.DaemonVolume })
 
+M.GatewayClusterAssociationStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GatewayClusterAssociationSummaryList = schema.new({ type = "list", list_member = M.GatewayClusterAssociationSummary })
+
+M.GatewayStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GatewaySummaryList = schema.new({ type = "list", list_member = M.GatewaySummary })
+
+M.GatewayRouteStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GatewayRouteSummaryList = schema.new({ type = "list", list_member = M.GatewayRouteSummary })
+
 M.ServiceDeployments = schema.new({ type = "list", list_member = M.ServiceDeployment })
 
 M.LoadBalancers = schema.new({ type = "list", list_member = M.LoadBalancer })
@@ -81,6 +93,8 @@ M.PlacementStrategies = schema.new({ type = "list", list_member = M.PlacementStr
 M.ServiceVolumeConfigurations = schema.new({ type = "list", list_member = M.ServiceVolumeConfiguration })
 
 M.VpcLatticeConfigurations = schema.new({ type = "list", list_member = M.VpcLatticeConfiguration })
+
+M.GatewayConnectorList = schema.new({ type = "list", list_member = M.GatewayConnector })
 
 M.ExpressGatewayServiceIncludeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -128,6 +142,8 @@ M.Attachments = schema.new({ type = "list", list_member = M.Attachment })
 
 M.DaemonRevisionDetailList = schema.new({ type = "list", list_member = M.DaemonRevisionDetail })
 
+M.GatewayResourceFailureList = schema.new({ type = "list", list_member = M.GatewayResourceFailure })
+
 M.EnvironmentVariables = schema.new({ type = "list", list_member = M.KeyValuePair })
 
 M.SecretList = schema.new({ type = "list", list_member = M.Secret })
@@ -171,6 +187,10 @@ M.UlimitList = schema.new({ type = "list", list_member = M.Ulimit })
 M.ContainerDependencies = schema.new({ type = "list", list_member = M.ContainerDependency })
 
 M.SystemControls = schema.new({ type = "list", list_member = M.SystemControl })
+
+M.ElbGatewayResourcesList = schema.new({ type = "list", list_member = M.ElbGatewayResources })
+
+M.GatewayRouteAlbResourcesList = schema.new({ type = "list", list_member = M.GatewayRouteAlbResources })
 
 M.ServiceRevisionsSummaryList = schema.new({ type = "list", list_member = M.ServiceRevisionSummary })
 
@@ -222,11 +242,15 @@ M.TmpfsList = schema.new({ type = "list", list_member = M.Tmpfs })
 
 M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
 
+M.GatewayOperationErrorList = schema.new({ type = "list", list_member = M.GatewayOperationError })
+
 M.DeploymentLifecycleHookStageList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ServiceConnectClientAliasList = schema.new({ type = "list", list_member = M.ServiceConnectClientAlias })
 
 M.EBSTagSpecifications = schema.new({ type = "list", list_member = M.EBSTagSpecification })
+
+M.AccessTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MetricNamesList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -244,6 +268,8 @@ M.ManagedSecurityGroups = schema.new({ type = "list", list_member = M.ManagedSec
 
 M.ManagedLogGroups = schema.new({ type = "list", list_member = M.ManagedLogGroup })
 
+M.GatewayConnectionList = schema.new({ type = "list", list_member = M.GatewayConnection })
+
 M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
@@ -254,11 +280,15 @@ M.GpuIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.NeuronDeviceIds = schema.new({ type = "list", list_member = prelude.String })
 
+M.GatewayRouteLoadBalancerSecurityGroupList = schema.new({ type = "list", list_member = M.GatewayRouteLoadBalancerSecurityGroup })
+
 M.ManagedApplicationAutoScalingPolicies = schema.new({ type = "list", list_member = M.ManagedApplicationAutoScalingPolicy })
 
 M.DeviceCgroupPermissions = schema.new({ type = "list", list_member = prelude.String })
 
 M.ManagedTargetGroups = schema.new({ type = "list", list_member = M.ManagedTargetGroup })
+
+M.GatewayConnectionAlbResourcesList = schema.new({ type = "list", list_member = M.GatewayConnectionAlbResources })
 
 M.AcceleratorCountRequest = schema.new({
     id = id.from(_N, "AcceleratorCountRequest"),
@@ -7221,6 +7251,1400 @@ M.DiscoverPollEndpointOutput = schema.new({
     },
 })
 
+M.AssociateGatewayWithClusterInput = schema.new({
+    id = id.from(_N, "AssociateGatewayWithClusterRequest"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "AssociateGatewayWithClusterInput", "gateway"),
+            type = "string",
+            name = "gateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cluster = schema.new({
+            id = id.from(_N, "AssociateGatewayWithClusterInput", "cluster"),
+            type = "string",
+            name = "cluster",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateGatewayWithClusterOutput = schema.new({
+    id = id.from(_N, "AssociateGatewayWithClusterResponse"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "AssociateGatewayWithClusterOutput", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        clusterArn = schema.new({
+            id = id.from(_N, "AssociateGatewayWithClusterOutput", "clusterArn"),
+            type = "string",
+            name = "clusterArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AssociateGatewayWithClusterOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayNotFoundException = schema.new({
+    id = id.from(_N, "GatewayNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "GatewayNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayElbAccessLogS3Destination = schema.new({
+    id = id.from(_N, "GatewayElbAccessLogS3Destination"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "GatewayElbAccessLogS3Destination", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        prefix = schema.new({
+            id = id.from(_N, "GatewayElbAccessLogS3Destination", "prefix"),
+            type = "string",
+            name = "prefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayElbAccessLogDestination = schema.new({
+    id = id.from(_N, "GatewayElbAccessLogDestination"),
+    type = "union",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "GatewayElbAccessLogDestination", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "GatewayElbAccessLogS3Destination"),
+            target = M.GatewayElbAccessLogS3Destination,
+        }),
+    },
+})
+
+M.GatewayElbAccessLogConfiguration = schema.new({
+    id = id.from(_N, "GatewayElbAccessLogConfiguration"),
+    type = "structure",
+    members = {
+        destination = schema.new({
+            id = id.from(_N, "GatewayElbAccessLogConfiguration", "destination"),
+            type = "union",
+            name = "destination",
+            target_id = id.from(_N, "GatewayElbAccessLogDestination"),
+            target = M.GatewayElbAccessLogDestination,
+        }),
+    },
+})
+
+M.GatewayElbNetworkConfiguration = schema.new({
+    id = id.from(_N, "GatewayElbNetworkConfiguration"),
+    type = "structure",
+    members = {
+        inboundSecurityGroup = schema.new({
+            id = id.from(_N, "GatewayElbNetworkConfiguration", "inboundSecurityGroup"),
+            type = "string",
+            name = "inboundSecurityGroup",
+            target_id = prelude.String.id,
+        }),
+        subnets = schema.new({
+            id = id.from(_N, "GatewayElbNetworkConfiguration", "subnets"),
+            type = "list",
+            name = "subnets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ipAddressType = schema.new({
+            id = id.from(_N, "GatewayElbNetworkConfiguration", "ipAddressType"),
+            type = "string",
+            name = "ipAddressType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayTestTrafficHeader = schema.new({
+    id = id.from(_N, "GatewayTestTrafficHeader"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "GatewayTestTrafficHeader", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "GatewayTestTrafficHeader", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GatewayAlbTestTrafficRules = schema.new({
+    id = id.from(_N, "GatewayAlbTestTrafficRules"),
+    type = "structure",
+    members = {
+        header = schema.new({
+            id = id.from(_N, "GatewayAlbTestTrafficRules", "header"),
+            type = "structure",
+            name = "header",
+            target_id = id.from(_N, "GatewayTestTrafficHeader"),
+            target = M.GatewayTestTrafficHeader,
+        }),
+    },
+})
+
+M.HostSharedAlbConfiguration = schema.new({
+    id = id.from(_N, "HostSharedAlbConfiguration"),
+    type = "structure",
+    members = {
+        networkConfiguration = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "networkConfiguration"),
+            type = "structure",
+            name = "networkConfiguration",
+            target_id = id.from(_N, "GatewayElbNetworkConfiguration"),
+            target = M.GatewayElbNetworkConfiguration,
+        }),
+        scheme = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "scheme"),
+            type = "string",
+            name = "scheme",
+            target_id = prelude.String.id,
+        }),
+        webACLArn = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "webACLArn"),
+            type = "string",
+            name = "webACLArn",
+            target_id = prelude.String.id,
+        }),
+        accessLogs = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "accessLogs"),
+            type = "structure",
+            name = "accessLogs",
+            target_id = id.from(_N, "GatewayElbAccessLogConfiguration"),
+            target = M.GatewayElbAccessLogConfiguration,
+        }),
+        port = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+        }),
+        maxAlbCount = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "maxAlbCount"),
+            type = "integer",
+            name = "maxAlbCount",
+            target_id = prelude.Integer.id,
+        }),
+        httpDesync = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "httpDesync"),
+            type = "string",
+            name = "httpDesync",
+            target_id = prelude.String.id,
+        }),
+        testTrafficRules = schema.new({
+            id = id.from(_N, "HostSharedAlbConfiguration", "testTrafficRules"),
+            type = "structure",
+            name = "testTrafficRules",
+            target_id = id.from(_N, "GatewayAlbTestTrafficRules"),
+            target = M.GatewayAlbTestTrafficRules,
+        }),
+    },
+})
+
+M.GatewayConfiguration = schema.new({
+    id = id.from(_N, "GatewayConfiguration"),
+    type = "union",
+    members = {
+        hostSharedAlb = schema.new({
+            id = id.from(_N, "GatewayConfiguration", "hostSharedAlb"),
+            type = "structure",
+            name = "hostSharedAlb",
+            target_id = id.from(_N, "HostSharedAlbConfiguration"),
+            target = M.HostSharedAlbConfiguration,
+        }),
+    },
+})
+
+M.CreateGatewayInput = schema.new({
+    id = id.from(_N, "CreateGatewayRequest"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateGatewayInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        infrastructureRoleArn = schema.new({
+            id = id.from(_N, "CreateGatewayInput", "infrastructureRoleArn"),
+            type = "string",
+            name = "infrastructureRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateGatewayInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateGatewayInput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "CreateGatewayInput", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "GatewayConfiguration"),
+            target = M.GatewayConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateGatewayInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        propagateTags = schema.new({
+            id = id.from(_N, "CreateGatewayInput", "propagateTags"),
+            type = "string",
+            name = "propagateTags",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateGatewayOutput = schema.new({
+    id = id.from(_N, "CreateGatewayResponse"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "CreateGatewayOutput", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateGatewayOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateGatewayOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteGatewayInput = schema.new({
+    id = id.from(_N, "DeleteGatewayRequest"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "DeleteGatewayInput", "gateway"),
+            type = "string",
+            name = "gateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteGatewayOutput = schema.new({
+    id = id.from(_N, "DeleteGatewayResponse"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "DeleteGatewayOutput", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "DeleteGatewayOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteGatewayOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGatewayInput = schema.new({
+    id = id.from(_N, "DescribeGatewayRequest"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "DescribeGatewayInput", "gateway"),
+            type = "string",
+            name = "gateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeGatewayAlbConfiguration = schema.new({
+    id = id.from(_N, "DescribeGatewayAlbConfiguration"),
+    type = "structure",
+    members = {
+        networkConfiguration = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "networkConfiguration"),
+            type = "structure",
+            name = "networkConfiguration",
+            target_id = id.from(_N, "GatewayElbNetworkConfiguration"),
+            target = M.GatewayElbNetworkConfiguration,
+        }),
+        scheme = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "scheme"),
+            type = "string",
+            name = "scheme",
+            target_id = prelude.String.id,
+        }),
+        accessLogs = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "accessLogs"),
+            type = "structure",
+            name = "accessLogs",
+            target_id = id.from(_N, "GatewayElbAccessLogConfiguration"),
+            target = M.GatewayElbAccessLogConfiguration,
+        }),
+        webACLArn = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "webACLArn"),
+            type = "string",
+            name = "webACLArn",
+            target_id = prelude.String.id,
+        }),
+        port = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+        }),
+        maxAlbCount = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "maxAlbCount"),
+            type = "integer",
+            name = "maxAlbCount",
+            target_id = prelude.Integer.id,
+        }),
+        currentAlbCount = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "currentAlbCount"),
+            type = "integer",
+            name = "currentAlbCount",
+            target_id = prelude.Integer.id,
+        }),
+        httpDesync = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "httpDesync"),
+            type = "string",
+            name = "httpDesync",
+            target_id = prelude.String.id,
+        }),
+        testTrafficRules = schema.new({
+            id = id.from(_N, "DescribeGatewayAlbConfiguration", "testTrafficRules"),
+            type = "structure",
+            name = "testTrafficRules",
+            target_id = id.from(_N, "GatewayAlbTestTrafficRules"),
+            target = M.GatewayAlbTestTrafficRules,
+        }),
+    },
+})
+
+M.DescribeGatewayConfiguration = schema.new({
+    id = id.from(_N, "DescribeGatewayConfiguration"),
+    type = "union",
+    members = {
+        hostSharedAlb = schema.new({
+            id = id.from(_N, "DescribeGatewayConfiguration", "hostSharedAlb"),
+            type = "structure",
+            name = "hostSharedAlb",
+            target_id = id.from(_N, "DescribeGatewayAlbConfiguration"),
+            target = M.DescribeGatewayAlbConfiguration,
+        }),
+    },
+})
+
+M.GatewayOperationError = schema.new({
+    id = id.from(_N, "GatewayOperationError"),
+    type = "structure",
+    members = {
+        operation = schema.new({
+            id = id.from(_N, "GatewayOperationError", "operation"),
+            type = "string",
+            name = "operation",
+            target_id = prelude.String.id,
+        }),
+        code = schema.new({
+            id = id.from(_N, "GatewayOperationError", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "GatewayOperationError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayResourceFailure = schema.new({
+    id = id.from(_N, "GatewayResourceFailure"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GatewayResourceFailure", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        errors = schema.new({
+            id = id.from(_N, "GatewayResourceFailure", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayOperationError,
+        }),
+    },
+})
+
+M.Gateway = schema.new({
+    id = id.from(_N, "Gateway"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "Gateway", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "Gateway", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "Gateway", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "Gateway", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        failures = schema.new({
+            id = id.from(_N, "Gateway", "failures"),
+            type = "list",
+            name = "failures",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayResourceFailure,
+        }),
+        infrastructureRoleArn = schema.new({
+            id = id.from(_N, "Gateway", "infrastructureRoleArn"),
+            type = "string",
+            name = "infrastructureRoleArn",
+            target_id = prelude.String.id,
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "Gateway", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "Gateway", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "DescribeGatewayConfiguration"),
+            target = M.DescribeGatewayConfiguration,
+        }),
+        accessType = schema.new({
+            id = id.from(_N, "Gateway", "accessType"),
+            type = "string",
+            name = "accessType",
+            target_id = prelude.String.id,
+        }),
+        propagateTags = schema.new({
+            id = id.from(_N, "Gateway", "propagateTags"),
+            type = "string",
+            name = "propagateTags",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "Gateway", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Gateway", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "Gateway", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.DescribeGatewayOutput = schema.new({
+    id = id.from(_N, "DescribeGatewayResponse"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "DescribeGatewayOutput", "gateway"),
+            type = "structure",
+            name = "gateway",
+            target_id = id.from(_N, "Gateway"),
+            target = M.Gateway,
+        }),
+    },
+})
+
+M.DescribeGatewayResourcesInput = schema.new({
+    id = id.from(_N, "DescribeGatewayResourcesRequest"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "DescribeGatewayResourcesInput", "gateway"),
+            type = "string",
+            name = "gateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "DescribeGatewayResourcesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeGatewayResourcesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ElbGatewayResources = schema.new({
+    id = id.from(_N, "ElbGatewayResources"),
+    type = "structure",
+    members = {
+        loadBalancerArn = schema.new({
+            id = id.from(_N, "ElbGatewayResources", "loadBalancerArn"),
+            type = "string",
+            name = "loadBalancerArn",
+            target_id = prelude.String.id,
+        }),
+        listenerArn = schema.new({
+            id = id.from(_N, "ElbGatewayResources", "listenerArn"),
+            type = "string",
+            name = "listenerArn",
+            target_id = prelude.String.id,
+        }),
+        securityGroup = schema.new({
+            id = id.from(_N, "ElbGatewayResources", "securityGroup"),
+            type = "string",
+            name = "securityGroup",
+            target_id = prelude.String.id,
+        }),
+        gatewayRouteArns = schema.new({
+            id = id.from(_N, "ElbGatewayResources", "gatewayRouteArns"),
+            type = "list",
+            name = "gatewayRouteArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GatewayInfrastructureResources = schema.new({
+    id = id.from(_N, "GatewayInfrastructureResources"),
+    type = "union",
+    members = {
+        hostSharedAlb = schema.new({
+            id = id.from(_N, "GatewayInfrastructureResources", "hostSharedAlb"),
+            type = "list",
+            name = "hostSharedAlb",
+            target_id = prelude.Document.id,
+            list_member = M.ElbGatewayResources,
+        }),
+    },
+})
+
+M.GatewayResources = schema.new({
+    id = id.from(_N, "GatewayResources"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "GatewayResources", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        resources = schema.new({
+            id = id.from(_N, "GatewayResources", "resources"),
+            type = "union",
+            name = "resources",
+            target_id = id.from(_N, "GatewayInfrastructureResources"),
+            target = M.GatewayInfrastructureResources,
+        }),
+    },
+})
+
+M.DescribeGatewayResourcesOutput = schema.new({
+    id = id.from(_N, "DescribeGatewayResourcesResponse"),
+    type = "structure",
+    members = {
+        gatewayResources = schema.new({
+            id = id.from(_N, "DescribeGatewayResourcesOutput", "gatewayResources"),
+            type = "structure",
+            name = "gatewayResources",
+            target_id = id.from(_N, "GatewayResources"),
+            target = M.GatewayResources,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeGatewayResourcesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DisassociateGatewayFromClusterInput = schema.new({
+    id = id.from(_N, "DisassociateGatewayFromClusterRequest"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "DisassociateGatewayFromClusterInput", "gateway"),
+            type = "string",
+            name = "gateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cluster = schema.new({
+            id = id.from(_N, "DisassociateGatewayFromClusterInput", "cluster"),
+            type = "string",
+            name = "cluster",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateGatewayFromClusterOutput = schema.new({
+    id = id.from(_N, "DisassociateGatewayFromClusterResponse"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "DisassociateGatewayFromClusterOutput", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        clusterArn = schema.new({
+            id = id.from(_N, "DisassociateGatewayFromClusterOutput", "clusterArn"),
+            type = "string",
+            name = "clusterArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DisassociateGatewayFromClusterOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGatewayClusterAssociationsInput = schema.new({
+    id = id.from(_N, "ListGatewayClusterAssociationsRequest"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "ListGatewayClusterAssociationsInput", "gateway"),
+            type = "string",
+            name = "gateway",
+            target_id = prelude.String.id,
+        }),
+        cluster = schema.new({
+            id = id.from(_N, "ListGatewayClusterAssociationsInput", "cluster"),
+            type = "string",
+            name = "cluster",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListGatewayClusterAssociationsInput", "status"),
+            type = "list",
+            name = "status",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListGatewayClusterAssociationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGatewayClusterAssociationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayClusterAssociationSummary = schema.new({
+    id = id.from(_N, "GatewayClusterAssociationSummary"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "GatewayClusterAssociationSummary", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        clusterArn = schema.new({
+            id = id.from(_N, "GatewayClusterAssociationSummary", "clusterArn"),
+            type = "string",
+            name = "clusterArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GatewayClusterAssociationSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGatewayClusterAssociationsOutput = schema.new({
+    id = id.from(_N, "ListGatewayClusterAssociationsResponse"),
+    type = "structure",
+    members = {
+        gatewayClusterAssociations = schema.new({
+            id = id.from(_N, "ListGatewayClusterAssociationsOutput", "gatewayClusterAssociations"),
+            type = "list",
+            name = "gatewayClusterAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayClusterAssociationSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGatewayClusterAssociationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGatewaysInput = schema.new({
+    id = id.from(_N, "ListGatewaysRequest"),
+    type = "structure",
+    members = {
+        names = schema.new({
+            id = id.from(_N, "ListGatewaysInput", "names"),
+            type = "list",
+            name = "names",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListGatewaysInput", "status"),
+            type = "list",
+            name = "status",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListGatewaysInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGatewaysInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewaySummary = schema.new({
+    id = id.from(_N, "GatewaySummary"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "GatewaySummary", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "GatewaySummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GatewaySummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GatewaySummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListGatewaysOutput = schema.new({
+    id = id.from(_N, "ListGatewaysResponse"),
+    type = "structure",
+    members = {
+        gateways = schema.new({
+            id = id.from(_N, "ListGatewaysOutput", "gateways"),
+            type = "list",
+            name = "gateways",
+            target_id = prelude.Document.id,
+            list_member = M.GatewaySummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGatewaysOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGatewayNetworkConfiguration = schema.new({
+    id = id.from(_N, "UpdateGatewayNetworkConfiguration"),
+    type = "structure",
+    members = {
+        inboundSecurityGroup = schema.new({
+            id = id.from(_N, "UpdateGatewayNetworkConfiguration", "inboundSecurityGroup"),
+            type = "string",
+            name = "inboundSecurityGroup",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGatewayAlbConfiguration = schema.new({
+    id = id.from(_N, "UpdateGatewayAlbConfiguration"),
+    type = "structure",
+    members = {
+        networkConfiguration = schema.new({
+            id = id.from(_N, "UpdateGatewayAlbConfiguration", "networkConfiguration"),
+            type = "structure",
+            name = "networkConfiguration",
+            target_id = id.from(_N, "UpdateGatewayNetworkConfiguration"),
+            target = M.UpdateGatewayNetworkConfiguration,
+        }),
+        maxAlbCount = schema.new({
+            id = id.from(_N, "UpdateGatewayAlbConfiguration", "maxAlbCount"),
+            type = "integer",
+            name = "maxAlbCount",
+            target_id = prelude.Integer.id,
+        }),
+        webACLArn = schema.new({
+            id = id.from(_N, "UpdateGatewayAlbConfiguration", "webACLArn"),
+            type = "string",
+            name = "webACLArn",
+            target_id = prelude.String.id,
+        }),
+        accessLogs = schema.new({
+            id = id.from(_N, "UpdateGatewayAlbConfiguration", "accessLogs"),
+            type = "structure",
+            name = "accessLogs",
+            target_id = id.from(_N, "GatewayElbAccessLogConfiguration"),
+            target = M.GatewayElbAccessLogConfiguration,
+        }),
+        httpDesync = schema.new({
+            id = id.from(_N, "UpdateGatewayAlbConfiguration", "httpDesync"),
+            type = "string",
+            name = "httpDesync",
+            target_id = prelude.String.id,
+        }),
+        testTrafficRules = schema.new({
+            id = id.from(_N, "UpdateGatewayAlbConfiguration", "testTrafficRules"),
+            type = "structure",
+            name = "testTrafficRules",
+            target_id = id.from(_N, "GatewayAlbTestTrafficRules"),
+            target = M.GatewayAlbTestTrafficRules,
+        }),
+    },
+})
+
+M.UpdateGatewayConfiguration = schema.new({
+    id = id.from(_N, "UpdateGatewayConfiguration"),
+    type = "union",
+    members = {
+        hostSharedAlb = schema.new({
+            id = id.from(_N, "UpdateGatewayConfiguration", "hostSharedAlb"),
+            type = "structure",
+            name = "hostSharedAlb",
+            target_id = id.from(_N, "UpdateGatewayAlbConfiguration"),
+            target = M.UpdateGatewayAlbConfiguration,
+        }),
+    },
+})
+
+M.UpdateGatewayInput = schema.new({
+    id = id.from(_N, "UpdateGatewayRequest"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "UpdateGatewayInput", "gateway"),
+            type = "string",
+            name = "gateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        infrastructureRoleArn = schema.new({
+            id = id.from(_N, "UpdateGatewayInput", "infrastructureRoleArn"),
+            type = "string",
+            name = "infrastructureRoleArn",
+            target_id = prelude.String.id,
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateGatewayInput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "UpdateGatewayInput", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "UpdateGatewayConfiguration"),
+            target = M.UpdateGatewayConfiguration,
+        }),
+        propagateTags = schema.new({
+            id = id.from(_N, "UpdateGatewayInput", "propagateTags"),
+            type = "string",
+            name = "propagateTags",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGatewayOutput = schema.new({
+    id = id.from(_N, "UpdateGatewayResponse"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "UpdateGatewayOutput", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateGatewayOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateGatewayOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGatewayRouteInput = schema.new({
+    id = id.from(_N, "DescribeGatewayRouteRequest"),
+    type = "structure",
+    members = {
+        gatewayRouteArn = schema.new({
+            id = id.from(_N, "DescribeGatewayRouteInput", "gatewayRouteArn"),
+            type = "string",
+            name = "gatewayRouteArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GatewayRouteLoadBalancerSecurityGroup = schema.new({
+    id = id.from(_N, "GatewayRouteLoadBalancerSecurityGroup"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GatewayRouteLoadBalancerSecurityGroup", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        ruleArns = schema.new({
+            id = id.from(_N, "GatewayRouteLoadBalancerSecurityGroup", "ruleArns"),
+            type = "list",
+            name = "ruleArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GatewayRouteAlbResources = schema.new({
+    id = id.from(_N, "GatewayRouteAlbResources"),
+    type = "structure",
+    members = {
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "GatewayRouteAlbResources", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+        }),
+        loadBalancerArn = schema.new({
+            id = id.from(_N, "GatewayRouteAlbResources", "loadBalancerArn"),
+            type = "string",
+            name = "loadBalancerArn",
+            target_id = prelude.String.id,
+        }),
+        listenerArn = schema.new({
+            id = id.from(_N, "GatewayRouteAlbResources", "listenerArn"),
+            type = "string",
+            name = "listenerArn",
+            target_id = prelude.String.id,
+        }),
+        listenerRuleArn = schema.new({
+            id = id.from(_N, "GatewayRouteAlbResources", "listenerRuleArn"),
+            type = "string",
+            name = "listenerRuleArn",
+            target_id = prelude.String.id,
+        }),
+        testListenerRuleArns = schema.new({
+            id = id.from(_N, "GatewayRouteAlbResources", "testListenerRuleArns"),
+            type = "list",
+            name = "testListenerRuleArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        loadBalancerSecurityGroups = schema.new({
+            id = id.from(_N, "GatewayRouteAlbResources", "loadBalancerSecurityGroups"),
+            type = "list",
+            name = "loadBalancerSecurityGroups",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayRouteLoadBalancerSecurityGroup,
+        }),
+        serviceSecurityGroupArn = schema.new({
+            id = id.from(_N, "GatewayRouteAlbResources", "serviceSecurityGroupArn"),
+            type = "string",
+            name = "serviceSecurityGroupArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayRouteResources = schema.new({
+    id = id.from(_N, "GatewayRouteResources"),
+    type = "union",
+    members = {
+        hostSharedAlb = schema.new({
+            id = id.from(_N, "GatewayRouteResources", "hostSharedAlb"),
+            type = "list",
+            name = "hostSharedAlb",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayRouteAlbResources,
+        }),
+    },
+})
+
+M.GatewayRoute = schema.new({
+    id = id.from(_N, "GatewayRoute"),
+    type = "structure",
+    members = {
+        gatewayRouteArn = schema.new({
+            id = id.from(_N, "GatewayRoute", "gatewayRouteArn"),
+            type = "string",
+            name = "gatewayRouteArn",
+            target_id = prelude.String.id,
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "GatewayRoute", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+        }),
+        serviceContainerPortName = schema.new({
+            id = id.from(_N, "GatewayRoute", "serviceContainerPortName"),
+            type = "string",
+            name = "serviceContainerPortName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GatewayRoute", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        serviceUrl = schema.new({
+            id = id.from(_N, "GatewayRoute", "serviceUrl"),
+            type = "string",
+            name = "serviceUrl",
+            target_id = prelude.String.id,
+        }),
+        resources = schema.new({
+            id = id.from(_N, "GatewayRoute", "resources"),
+            type = "union",
+            name = "resources",
+            target_id = id.from(_N, "GatewayRouteResources"),
+            target = M.GatewayRouteResources,
+        }),
+    },
+})
+
+M.DescribeGatewayRouteOutput = schema.new({
+    id = id.from(_N, "DescribeGatewayRouteResponse"),
+    type = "structure",
+    members = {
+        gatewayRoute = schema.new({
+            id = id.from(_N, "DescribeGatewayRouteOutput", "gatewayRoute"),
+            type = "structure",
+            name = "gatewayRoute",
+            target_id = id.from(_N, "GatewayRoute"),
+            target = M.GatewayRoute,
+        }),
+    },
+})
+
+M.ListGatewayRoutesInput = schema.new({
+    id = id.from(_N, "ListGatewayRoutesRequest"),
+    type = "structure",
+    members = {
+        gateway = schema.new({
+            id = id.from(_N, "ListGatewayRoutesInput", "gateway"),
+            type = "string",
+            name = "gateway",
+            target_id = prelude.String.id,
+        }),
+        cluster = schema.new({
+            id = id.from(_N, "ListGatewayRoutesInput", "cluster"),
+            type = "string",
+            name = "cluster",
+            target_id = prelude.String.id,
+        }),
+        service = schema.new({
+            id = id.from(_N, "ListGatewayRoutesInput", "service"),
+            type = "string",
+            name = "service",
+            target_id = prelude.String.id,
+        }),
+        serviceContainerPortName = schema.new({
+            id = id.from(_N, "ListGatewayRoutesInput", "serviceContainerPortName"),
+            type = "string",
+            name = "serviceContainerPortName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListGatewayRoutesInput", "status"),
+            type = "list",
+            name = "status",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListGatewayRoutesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGatewayRoutesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayRouteSummary = schema.new({
+    id = id.from(_N, "GatewayRouteSummary"),
+    type = "structure",
+    members = {
+        gatewayRouteArn = schema.new({
+            id = id.from(_N, "GatewayRouteSummary", "gatewayRouteArn"),
+            type = "string",
+            name = "gatewayRouteArn",
+            target_id = prelude.String.id,
+        }),
+        gatewayArn = schema.new({
+            id = id.from(_N, "GatewayRouteSummary", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        clusterArn = schema.new({
+            id = id.from(_N, "GatewayRouteSummary", "clusterArn"),
+            type = "string",
+            name = "clusterArn",
+            target_id = prelude.String.id,
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "GatewayRouteSummary", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+        }),
+        serviceContainerPortName = schema.new({
+            id = id.from(_N, "GatewayRouteSummary", "serviceContainerPortName"),
+            type = "string",
+            name = "serviceContainerPortName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GatewayRouteSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGatewayRoutesOutput = schema.new({
+    id = id.from(_N, "ListGatewayRoutesResponse"),
+    type = "structure",
+    members = {
+        gatewayRoutes = schema.new({
+            id = id.from(_N, "ListGatewayRoutesOutput", "gatewayRoutes"),
+            type = "list",
+            name = "gatewayRoutes",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayRouteSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGatewayRoutesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListAccountSettingsInput = schema.new({
     id = id.from(_N, "ListAccountSettingsRequest"),
     type = "structure",
@@ -8660,6 +10084,125 @@ M.DeploymentController = schema.new({
     },
 })
 
+M.GatewayConnectorFilters = schema.new({
+    id = id.from(_N, "GatewayConnectorFilters"),
+    type = "structure",
+    members = {
+        accessTypes = schema.new({
+            id = id.from(_N, "GatewayConnectorFilters", "accessTypes"),
+            type = "list",
+            name = "accessTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GatewayConnectorHealthCheckMatcher = schema.new({
+    id = id.from(_N, "GatewayConnectorHealthCheckMatcher"),
+    type = "structure",
+    members = {
+        httpCode = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheckMatcher", "httpCode"),
+            type = "string",
+            name = "httpCode",
+            target_id = prelude.String.id,
+        }),
+        grpcCode = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheckMatcher", "grpcCode"),
+            type = "string",
+            name = "grpcCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayConnectorHealthCheck = schema.new({
+    id = id.from(_N, "GatewayConnectorHealthCheck"),
+    type = "structure",
+    members = {
+        healthCheckProtocol = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheck", "healthCheckProtocol"),
+            type = "string",
+            name = "healthCheckProtocol",
+            target_id = prelude.String.id,
+        }),
+        healthCheckPort = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheck", "healthCheckPort"),
+            type = "integer",
+            name = "healthCheckPort",
+            target_id = prelude.Integer.id,
+        }),
+        healthCheckPath = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheck", "healthCheckPath"),
+            type = "string",
+            name = "healthCheckPath",
+            target_id = prelude.String.id,
+        }),
+        healthCheckTimeoutSeconds = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheck", "healthCheckTimeoutSeconds"),
+            type = "integer",
+            name = "healthCheckTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        healthCheckIntervalSeconds = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheck", "healthCheckIntervalSeconds"),
+            type = "integer",
+            name = "healthCheckIntervalSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        healthyThresholdCount = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheck", "healthyThresholdCount"),
+            type = "integer",
+            name = "healthyThresholdCount",
+            target_id = prelude.Integer.id,
+        }),
+        unhealthyThresholdCount = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheck", "unhealthyThresholdCount"),
+            type = "integer",
+            name = "unhealthyThresholdCount",
+            target_id = prelude.Integer.id,
+        }),
+        matcher = schema.new({
+            id = id.from(_N, "GatewayConnectorHealthCheck", "matcher"),
+            type = "structure",
+            name = "matcher",
+            target_id = id.from(_N, "GatewayConnectorHealthCheckMatcher"),
+            target = M.GatewayConnectorHealthCheckMatcher,
+        }),
+    },
+})
+
+M.GatewayConnector = schema.new({
+    id = id.from(_N, "GatewayConnector"),
+    type = "structure",
+    members = {
+        portName = schema.new({
+            id = id.from(_N, "GatewayConnector", "portName"),
+            type = "string",
+            name = "portName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        healthCheck = schema.new({
+            id = id.from(_N, "GatewayConnector", "healthCheck"),
+            type = "structure",
+            name = "healthCheck",
+            target_id = id.from(_N, "GatewayConnectorHealthCheck"),
+            target = M.GatewayConnectorHealthCheck,
+        }),
+        filters = schema.new({
+            id = id.from(_N, "GatewayConnector", "filters"),
+            type = "structure",
+            name = "filters",
+            target_id = id.from(_N, "GatewayConnectorFilters"),
+            target = M.GatewayConnectorFilters,
+        }),
+    },
+})
+
 M.LoadBalancer = schema.new({
     id = id.from(_N, "LoadBalancer"),
     type = "structure",
@@ -9508,6 +11051,13 @@ M.CreateServiceInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.VpcLatticeConfiguration,
         }),
+        gatewayConnectors = schema.new({
+            id = id.from(_N, "CreateServiceInput", "gatewayConnectors"),
+            type = "list",
+            name = "gatewayConnectors",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayConnector,
+        }),
         monitoring = schema.new({
             id = id.from(_N, "CreateServiceInput", "monitoring"),
             type = "structure",
@@ -10346,22 +11896,6 @@ M.DescribeExpressGatewayServiceOutput = schema.new({
     },
 })
 
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.DescribeServicesInput = schema.new({
     id = id.from(_N, "DescribeServicesRequest"),
     type = "structure",
@@ -10960,6 +12494,13 @@ M.UpdateServiceInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.VpcLatticeConfiguration,
         }),
+        gatewayConnectors = schema.new({
+            id = id.from(_N, "UpdateServiceInput", "gatewayConnectors"),
+            type = "list",
+            name = "gatewayConnectors",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayConnector,
+        }),
         monitoring = schema.new({
             id = id.from(_N, "UpdateServiceInput", "monitoring"),
             type = "structure",
@@ -11229,6 +12770,126 @@ M.ManagedAutoScaling = schema.new({
             name = "applicationAutoScalingPolicies",
             target_id = prelude.Document.id,
             list_member = M.ManagedApplicationAutoScalingPolicy,
+        }),
+    },
+})
+
+M.GatewayConnectionAlbResources = schema.new({
+    id = id.from(_N, "GatewayConnectionAlbResources"),
+    type = "structure",
+    members = {
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "GatewayConnectionAlbResources", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+        }),
+        loadBalancerArn = schema.new({
+            id = id.from(_N, "GatewayConnectionAlbResources", "loadBalancerArn"),
+            type = "string",
+            name = "loadBalancerArn",
+            target_id = prelude.String.id,
+        }),
+        loadBalancerSecurityGroupArns = schema.new({
+            id = id.from(_N, "GatewayConnectionAlbResources", "loadBalancerSecurityGroupArns"),
+            type = "list",
+            name = "loadBalancerSecurityGroupArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        listenerArn = schema.new({
+            id = id.from(_N, "GatewayConnectionAlbResources", "listenerArn"),
+            type = "string",
+            name = "listenerArn",
+            target_id = prelude.String.id,
+        }),
+        listenerRuleArn = schema.new({
+            id = id.from(_N, "GatewayConnectionAlbResources", "listenerRuleArn"),
+            type = "string",
+            name = "listenerRuleArn",
+            target_id = prelude.String.id,
+        }),
+        testListenerRuleArn = schema.new({
+            id = id.from(_N, "GatewayConnectionAlbResources", "testListenerRuleArn"),
+            type = "string",
+            name = "testListenerRuleArn",
+            target_id = prelude.String.id,
+        }),
+        targetGroupArn = schema.new({
+            id = id.from(_N, "GatewayConnectionAlbResources", "targetGroupArn"),
+            type = "string",
+            name = "targetGroupArn",
+            target_id = prelude.String.id,
+        }),
+        alternateTargetGroupArn = schema.new({
+            id = id.from(_N, "GatewayConnectionAlbResources", "alternateTargetGroupArn"),
+            type = "string",
+            name = "alternateTargetGroupArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayConnectionResources = schema.new({
+    id = id.from(_N, "GatewayConnectionResources"),
+    type = "union",
+    members = {
+        hostSharedAlb = schema.new({
+            id = id.from(_N, "GatewayConnectionResources", "hostSharedAlb"),
+            type = "list",
+            name = "hostSharedAlb",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayConnectionAlbResources,
+        }),
+    },
+})
+
+M.GatewayConnection = schema.new({
+    id = id.from(_N, "GatewayConnection"),
+    type = "structure",
+    members = {
+        gatewayArn = schema.new({
+            id = id.from(_N, "GatewayConnection", "gatewayArn"),
+            type = "string",
+            name = "gatewayArn",
+            target_id = prelude.String.id,
+        }),
+        gatewayRouteArn = schema.new({
+            id = id.from(_N, "GatewayConnection", "gatewayRouteArn"),
+            type = "string",
+            name = "gatewayRouteArn",
+            target_id = prelude.String.id,
+        }),
+        portName = schema.new({
+            id = id.from(_N, "GatewayConnection", "portName"),
+            type = "string",
+            name = "portName",
+            target_id = prelude.String.id,
+        }),
+        serviceUrl = schema.new({
+            id = id.from(_N, "GatewayConnection", "serviceUrl"),
+            type = "string",
+            name = "serviceUrl",
+            target_id = prelude.String.id,
+        }),
+        accessType = schema.new({
+            id = id.from(_N, "GatewayConnection", "accessType"),
+            type = "string",
+            name = "accessType",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GatewayConnection", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        resources = schema.new({
+            id = id.from(_N, "GatewayConnection", "resources"),
+            type = "union",
+            name = "resources",
+            target_id = id.from(_N, "GatewayConnectionResources"),
+            target = M.GatewayConnectionResources,
         }),
     },
 })
@@ -11705,6 +13366,13 @@ M.ECSManagedResources = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ManagedLogGroup,
         }),
+        gatewayConnections = schema.new({
+            id = id.from(_N, "ECSManagedResources", "gatewayConnections"),
+            type = "list",
+            name = "gatewayConnections",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayConnection,
+        }),
     },
 })
 
@@ -11938,6 +13606,13 @@ M.ServiceRevision = schema.new({
             name = "overrides",
             target_id = id.from(_N, "ServiceRevisionOverrides"),
             target = M.ServiceRevisionOverrides,
+        }),
+        gatewayConnectors = schema.new({
+            id = id.from(_N, "ServiceRevision", "gatewayConnectors"),
+            type = "list",
+            name = "gatewayConnectors",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayConnector,
         }),
         monitoring = schema.new({
             id = id.from(_N, "ServiceRevision", "monitoring"),
@@ -13811,6 +15486,17 @@ M.Service = schema.service({
     },
 })
 
+M.AssociateGatewayWithCluster = schema.operation({
+    id = id.from("com.amazonaws.ecs", "AssociateGatewayWithCluster"),
+    input = M.AssociateGatewayWithClusterInput,
+    output = M.AssociateGatewayWithClusterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ContinueServiceDeployment = schema.operation({
     id = id.from("com.amazonaws.ecs", "ContinueServiceDeployment"),
     input = M.ContinueServiceDeploymentInput,
@@ -13859,6 +15545,17 @@ M.CreateExpressGatewayService = schema.operation({
     id = id.from("com.amazonaws.ecs", "CreateExpressGatewayService"),
     input = M.CreateExpressGatewayServiceInput,
     output = M.CreateExpressGatewayServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGateway = schema.operation({
+    id = id.from("com.amazonaws.ecs", "CreateGateway"),
+    input = M.CreateGatewayInput,
+    output = M.CreateGatewayOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -13958,6 +15655,17 @@ M.DeleteExpressGatewayService = schema.operation({
     id = id.from("com.amazonaws.ecs", "DeleteExpressGatewayService"),
     input = M.DeleteExpressGatewayServiceInput,
     output = M.DeleteExpressGatewayServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGateway = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DeleteGateway"),
+    input = M.DeleteGatewayInput,
+    output = M.DeleteGatewayOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -14108,6 +15816,39 @@ M.DescribeExpressGatewayService = schema.operation({
     },
 })
 
+M.DescribeGateway = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeGateway"),
+    input = M.DescribeGatewayInput,
+    output = M.DescribeGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGatewayResources = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeGatewayResources"),
+    input = M.DescribeGatewayResourcesInput,
+    output = M.DescribeGatewayResourcesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeGatewayRoute = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DescribeGatewayRoute"),
+    input = M.DescribeGatewayRouteInput,
+    output = M.DescribeGatewayRouteOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeServiceDeployments = schema.operation({
     id = id.from("com.amazonaws.ecs", "DescribeServiceDeployments"),
     input = M.DescribeServiceDeploymentsInput,
@@ -14167,6 +15908,17 @@ M.DescribeTaskSets = schema.operation({
     id = id.from("com.amazonaws.ecs", "DescribeTaskSets"),
     input = M.DescribeTaskSetsInput,
     output = M.DescribeTaskSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateGatewayFromCluster = schema.operation({
+    id = id.from("com.amazonaws.ecs", "DisassociateGatewayFromCluster"),
+    input = M.DisassociateGatewayFromClusterInput,
+    output = M.DisassociateGatewayFromClusterOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -14277,6 +16029,39 @@ M.ListDaemonTaskDefinitions = schema.operation({
     id = id.from("com.amazonaws.ecs", "ListDaemonTaskDefinitions"),
     input = M.ListDaemonTaskDefinitionsInput,
     output = M.ListDaemonTaskDefinitionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGatewayClusterAssociations = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListGatewayClusterAssociations"),
+    input = M.ListGatewayClusterAssociationsInput,
+    output = M.ListGatewayClusterAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGatewayRoutes = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListGatewayRoutes"),
+    input = M.ListGatewayRoutesInput,
+    output = M.ListGatewayRoutesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGateways = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ListGateways"),
+    input = M.ListGatewaysInput,
+    output = M.ListGatewaysOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -14607,6 +16392,17 @@ M.UpdateExpressGatewayService = schema.operation({
     id = id.from("com.amazonaws.ecs", "UpdateExpressGatewayService"),
     input = M.UpdateExpressGatewayServiceInput,
     output = M.UpdateExpressGatewayServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGateway = schema.operation({
+    id = id.from("com.amazonaws.ecs", "UpdateGateway"),
+    input = M.UpdateGatewayInput,
+    output = M.UpdateGatewayOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
