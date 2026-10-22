@@ -812,6 +812,7 @@ local record M
     enum AssistedNluMode
         "Primary"
         "Fallback"
+        "DialogManager"
     end
 
     -- The object containing information that associates the recommended
@@ -2419,7 +2420,7 @@ local record M
     record NluImprovementSpecification
         -- Determines whether the Assisted NLU feature is enabled for the bot. When set to true, Amazon Lex uses advanced models to improve intent recognition and slot resolution, with the default being false.
         enabled: boolean
-        -- Specifies the mode for Assisted NLU operation. Use Primary to make Assisted NLU the primary intent recognition method, or Fallback to use it only when standard NLU confidence is low.
+        -- Specifies the mode for Assisted NLU operation. Use Primary to make Assisted NLU the primary intent recognition method, Fallback to use it only when standard NLU confidence is low, or DialogManager to use a large language model to manage the conversation, including intent recognition, slot elicitation, and confirmation.
         assistedNluMode: string
         -- An object containing specifications for the Intent Disambiguation feature within the Assisted NLU settings. These settings determine how the bot handles ambiguous user inputs that could match multiple intents.
         intentDisambiguationSettings: IntentDisambiguationSettings
@@ -3053,10 +3054,12 @@ local record M
     -- customer input.
     record WaitAndContinueSpecification
         -- The response that Amazon Lex sends to indicate that the bot is waiting
-        -- for the conversation to continue.
+        -- for the conversation to continue. Required unless the bot locale's
+        -- assistedNluMode is DialogManager.
         waitingResponse: ResponseSpecification
         -- The response that Amazon Lex sends to indicate that the bot is ready to
-        -- continue the conversation.
+        -- continue the conversation. Required unless the bot locale's
+        -- assistedNluMode is DialogManager.
         continueResponse: ResponseSpecification
         -- A response that Amazon Lex sends periodically to the user to indicate
         -- that the bot is still waiting for input from the user.
@@ -3113,7 +3116,7 @@ local record M
 
     -- Contains information about whether assisted slot resolution is turned on for the slot or not.
     record SlotResolutionSetting
-        -- Specifies whether assisted slot resolution is turned on for the slot or not. If the value is EnhancedFallback, assisted slot resolution is activated when Amazon Lex defaults to the AMAZON.FallbackIntent. If the value is Default, assisted slot resolution is turned off.
+        -- Specifies whether assisted slot resolution is turned on for the slot or not. If the value is EnhancedFallback, assisted slot resolution is activated when Amazon Lex V2 defaults to the AMAZON.FallbackIntent. If the value is Default, assisted slot resolution is turned off.
         slotResolutionStrategy: string
     end
 
@@ -7688,6 +7691,9 @@ local record M
         -- order is correct before placing it. For other intents, such as intents
         -- that simply respond to user questions, you might not need to ask the
         -- user for confirmation before providing the information.
+        -- Required unless the bot locale's assistedNluMode is
+        -- DialogManager, in which case Amazon Lex generates the
+        -- confirmation prompt.
         promptSpecification: PromptSpecification
         -- When the user answers "no" to the question defined in
         -- promptSpecification, Amazon Lex responds with this response
@@ -8012,7 +8018,7 @@ local record M
         -- the beginning of a conversation, before eliciting slot values.
         initialResponseSetting: InitialResponseSetting
         -- Specifies the configuration of the built-in Amazon.QnAIntent. The AMAZON.QnAIntent intent is called when
-        -- Amazon Lex can't determine another intent to invoke. If you specify this field, you can't specify the kendraConfiguration field.
+        -- Amazon Lex V2 can't determine another intent to invoke. If you specify this field, you can't specify the kendraConfiguration field.
         qnAIntentConfiguration: QnAIntentConfiguration
         -- Qinconnect intent configuration details for the create intent request.
         qInConnectIntentConfiguration: QInConnectIntentConfiguration
@@ -8170,7 +8176,7 @@ local record M
         -- Configuration settings for a response sent to the user before Amazon Lex starts eliciting slots.
         initialResponseSetting: InitialResponseSetting
         -- Specifies the configuration of the built-in Amazon.QnAIntent. The AMAZON.QnAIntent intent is called when
-        -- Amazon Lex can't determine another intent to invoke. If you specify this field, you can't specify the kendraConfiguration field.
+        -- Amazon Lex V2 can't determine another intent to invoke. If you specify this field, you can't specify the kendraConfiguration field.
         qnAIntentConfiguration: QnAIntentConfiguration
         -- Qinconnect intent configuration details for the update intent request.
         qInConnectIntentConfiguration: QInConnectIntentConfiguration

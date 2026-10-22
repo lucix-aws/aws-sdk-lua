@@ -43,6 +43,22 @@ local record M
         "inference"
     end
 
+    -- Describes an account setting for Amazon EC2 Auto Scaling. Account settings control how certain features behave for your account. Some settings can be enforced after a specified date, meaning that after the enforcement date, you can no longer modify the setting.
+    record AccountSetting
+        -- The name of the account setting. Each account setting has a unique name that identifies the specific feature it controls.
+        Name: string
+        -- The current value of the account setting.
+        Value: string
+        -- The type of enforcement for the account setting. Valid values include: hard (the setting has a hard enforcement date after which the setting will be enforced and cannot be modified), flexible (the setting has a flexible enforcement where you can always modify the setting value), and none (the setting has no enforcement and can always be modified).
+        EnforcementType: string
+        -- The date when the account setting will be enforced. After this date, for settings with hard enforcement type, you can no longer modify the setting value. This parameter is only returned for settings with hard or flexible enforcement types.
+        EnforcementDate: number
+        -- The default value of the account setting before the enforcement date. Valid values are enabled and disabled. This parameter is only returned for settings with hard or flexible enforcement types.
+        DefaultValue: string
+        -- The value that will be enforced after the enforcement date. Valid values are enabled and disabled. This parameter is only returned for settings with hard or flexible enforcement types.
+        EnforcedValue: string
+    end
+
     -- The request failed because an active instance refresh or rollback for the specified
     -- Auto Scaling group was not found.
     record ActiveInstanceRefreshNotFoundFault
@@ -1670,6 +1686,27 @@ local record M
         NumberOfLaunchConfigurations: number
     end
 
+    record DescribeAccountSettingsInput
+        -- The name of the account setting to describe. If you omit this parameter, all account settings are described.
+        Name: string
+        -- The token for the next set of items to return. (You received this token from a previous call.)
+        NextToken: string
+        -- The maximum number of items to return with this call. The default value is 50 and the maximum value is 100.
+        MaxRecords: number
+    end
+
+    record DescribeAccountSettingsOutput
+        -- Information about the account settings.
+        Settings: {AccountSetting}
+        -- A string that indicates that the response contains more items than can be returned in a single response. To receive additional items, specify this string for the NextToken value when requesting the next set of items. This value is null when there are no more items to return.
+        NextToken: string
+    end
+
+    -- The NextToken value is not valid.
+    record InvalidNextToken
+        message: string
+    end
+
     record DescribeAdjustmentTypesInput
     end
 
@@ -2025,11 +2062,6 @@ local record M
         -- NextToken value when requesting the next set of items. This value is
         -- null when there are no more items to return.
         NextToken: string
-    end
-
-    -- The NextToken value is not valid.
-    record InvalidNextToken
-        message: string
     end
 
     record DescribeAutoScalingInstancesInput
@@ -3883,6 +3915,16 @@ local record M
         Instances: {InstanceCollection}
         -- A list of errors encountered during the launch attempt including details about failed instance launches with their corresponding error codes and messages.
         Errors: {LaunchInstancesError}
+    end
+
+    record PutAccountSettingInput
+        -- The name of the account setting to modify. Each account setting has a unique name that identifies the specific feature it controls.
+        Name: string
+        -- The value for the account setting.
+        Value: string
+    end
+
+    record PutAccountSettingOutput
     end
 
     record PutLifecycleHookInput

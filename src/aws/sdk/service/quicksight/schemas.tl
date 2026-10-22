@@ -35387,6 +35387,90 @@ M.OAuthClientCredentials = schema.new({
     },
 })
 
+M.OneDriveClientCredentials = schema.new({
+    id = id.from(_N, "OneDriveClientCredentials"),
+    type = "structure",
+    members = {
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "OneDriveClientCredentials", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CertThumbprint = schema.new({
+            id = id.from(_N, "OneDriveClientCredentials", "CertThumbprint"),
+            type = "string",
+            name = "CertThumbprint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceAccountCredentials = schema.new({
+    id = id.from(_N, "ServiceAccountCredentials"),
+    type = "structure",
+    members = {
+        AdminAccountEmail = schema.new({
+            id = id.from(_N, "ServiceAccountCredentials", "AdminAccountEmail"),
+            type = "string",
+            name = "AdminAccountEmail",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceAccountPrivateKey = schema.new({
+            id = id.from(_N, "ServiceAccountCredentials", "ServiceAccountPrivateKey"),
+            type = "string",
+            name = "ServiceAccountPrivateKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientEmail = schema.new({
+            id = id.from(_N, "ServiceAccountCredentials", "ClientEmail"),
+            type = "string",
+            name = "ClientEmail",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SharePointClientCredentials = schema.new({
+    id = id.from(_N, "SharePointClientCredentials"),
+    type = "structure",
+    members = {
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "SharePointClientCredentials", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CertThumbprint = schema.new({
+            id = id.from(_N, "SharePointClientCredentials", "CertThumbprint"),
+            type = "string",
+            name = "CertThumbprint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.WebProxyCredentials = schema.new({
     id = id.from(_N, "WebProxyCredentials"),
     type = "structure",
@@ -35455,6 +35539,27 @@ M.DataSourceCredentials = schema.new({
             name = "OAuthClientCredentials",
             target_id = id.from(_N, "OAuthClientCredentials"),
             target = M.OAuthClientCredentials,
+        }),
+        ServiceAccountCredentials = schema.new({
+            id = id.from(_N, "DataSourceCredentials", "ServiceAccountCredentials"),
+            type = "structure",
+            name = "ServiceAccountCredentials",
+            target_id = id.from(_N, "ServiceAccountCredentials"),
+            target = M.ServiceAccountCredentials,
+        }),
+        SharePointClientCredentials = schema.new({
+            id = id.from(_N, "DataSourceCredentials", "SharePointClientCredentials"),
+            type = "structure",
+            name = "SharePointClientCredentials",
+            target_id = id.from(_N, "SharePointClientCredentials"),
+            target = M.SharePointClientCredentials,
+        }),
+        OneDriveClientCredentials = schema.new({
+            id = id.from(_N, "DataSourceCredentials", "OneDriveClientCredentials"),
+            type = "structure",
+            name = "OneDriveClientCredentials",
+            target_id = id.from(_N, "OneDriveClientCredentials"),
+            target = M.OneDriveClientCredentials,
         }),
     },
 })

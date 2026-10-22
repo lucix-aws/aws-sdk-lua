@@ -32,9 +32,9 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DefaultProfiles = schema.new({ type = "list", list_member = prelude.String })
 
-M.DataTransformationChatOptionsList = schema.new({ type = "list", list_member = prelude.String })
-
 M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DataTransformationChatOptionsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -1120,101 +1120,6 @@ M.UpdateDataTransformationProfileOutput = schema.new({
     },
 })
 
-M.AgentMessageOutOfContextException = schema.new({
-    id = id.from(_N, "AgentMessageOutOfContextException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "AgentMessageOutOfContextException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ConversationNotFoundException = schema.new({
-    id = id.from(_N, "ConversationNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ConversationNotFoundException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.NotImplementedOperationException = schema.new({
-    id = id.from(_N, "NotImplementedOperationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "NotImplementedOperationException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.UnauthorizedException = schema.new({
-    id = id.from(_N, "UnauthorizedException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "UnauthorizedException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.UnsupportedMIMETypeException = schema.new({
-    id = id.from(_N, "UnsupportedMIMETypeException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "UnsupportedMIMETypeException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.AgentInputMessage = schema.new({
     id = id.from(_N, "AgentInputMessage"),
     type = "structure",
@@ -1253,15 +1158,6 @@ M.UpdateProfileWithAgentInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        SourceFormat = schema.new({
-            id = id.from(_N, "UpdateProfileWithAgentInput", "SourceFormat"),
-            type = "string",
-            name = "SourceFormat",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
         InputMessage = schema.new({
             id = id.from(_N, "UpdateProfileWithAgentInput", "InputMessage"),
             type = "structure",
@@ -1281,34 +1177,135 @@ M.UpdateProfileWithAgentInput = schema.new({
     },
 })
 
-M.AgentOutputMessage = schema.new({
-    id = id.from(_N, "AgentOutputMessage"),
+M.EndOfOutputEvent = schema.new({
+    id = id.from(_N, "EndOfOutputEvent"),
     type = "structure",
     members = {
-        Body = schema.new({
-            id = id.from(_N, "AgentOutputMessage", "Body"),
+        FinalResponseMessage = schema.new({
+            id = id.from(_N, "EndOfOutputEvent", "FinalResponseMessage"),
             type = "string",
-            name = "Body",
+            name = "FinalResponseMessage",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        Type = schema.new({
-            id = id.from(_N, "AgentOutputMessage", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        OptionsList = schema.new({
-            id = id.from(_N, "AgentOutputMessage", "OptionsList"),
+        Options = schema.new({
+            id = id.from(_N, "EndOfOutputEvent", "Options"),
             type = "list",
-            name = "OptionsList",
+            name = "Options",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        ConversationId = schema.new({
+            id = id.from(_N, "EndOfOutputEvent", "ConversationId"),
+            type = "string",
+            name = "ConversationId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ErrorEvent = schema.new({
+    id = id.from(_N, "ErrorEvent"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "ErrorEvent", "Error"),
+            type = "string",
+            name = "Error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ErrorEvent", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HeartbeatEvent = schema.new({
+    id = id.from(_N, "HeartbeatEvent"),
+    type = "structure",
+})
+
+M.ProgressEvent = schema.new({
+    id = id.from(_N, "ProgressEvent"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ProgressEvent", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TextMessageEvent = schema.new({
+    id = id.from(_N, "TextMessageEvent"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "TextMessageEvent", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentOutputMessageStream = schema.new({
+    id = id.from(_N, "AgentOutputMessageStream"),
+    type = "union",
+    members = {
+        TextMessageEvent = schema.new({
+            id = id.from(_N, "AgentOutputMessageStream", "TextMessageEvent"),
+            type = "structure",
+            name = "TextMessageEvent",
+            target_id = id.from(_N, "TextMessageEvent"),
+            target = M.TextMessageEvent,
+        }),
+        ProgressEvent = schema.new({
+            id = id.from(_N, "AgentOutputMessageStream", "ProgressEvent"),
+            type = "structure",
+            name = "ProgressEvent",
+            target_id = id.from(_N, "ProgressEvent"),
+            target = M.ProgressEvent,
+        }),
+        HeartbeatEvent = schema.new({
+            id = id.from(_N, "AgentOutputMessageStream", "HeartbeatEvent"),
+            type = "structure",
+            name = "HeartbeatEvent",
+            target_id = id.from(_N, "HeartbeatEvent"),
+            target = M.HeartbeatEvent,
+        }),
+        ErrorEvent = schema.new({
+            id = id.from(_N, "AgentOutputMessageStream", "ErrorEvent"),
+            type = "structure",
+            name = "ErrorEvent",
+            target_id = id.from(_N, "ErrorEvent"),
+            target = M.ErrorEvent,
+        }),
+        EndOfOutputEvent = schema.new({
+            id = id.from(_N, "AgentOutputMessageStream", "EndOfOutputEvent"),
+            type = "structure",
+            name = "EndOfOutputEvent",
+            target_id = id.from(_N, "EndOfOutputEvent"),
+            target = M.EndOfOutputEvent,
         }),
     },
 })
@@ -1319,21 +1316,18 @@ M.UpdateProfileWithAgentOutput = schema.new({
     members = {
         AgentResponse = schema.new({
             id = id.from(_N, "UpdateProfileWithAgentOutput", "AgentResponse"),
-            type = "structure",
+            type = "union",
             name = "AgentResponse",
-            target_id = id.from(_N, "AgentOutputMessage"),
-            target = M.AgentOutputMessage,
+            target_id = id.from(_N, "AgentOutputMessageStream"),
+            target = M.AgentOutputMessageStream,
             traits = {
                 [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
             },
-        }),
-        ConversationId = schema.new({
-            id = id.from(_N, "UpdateProfileWithAgentOutput", "ConversationId"),
-            type = "string",
-            name = "ConversationId",
-            target_id = prelude.String.id,
-            traits = {
+            direct_traits = {
                 [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -3771,6 +3765,7 @@ M.UpdateProfileWithAgent = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.EVENT_STREAM] = M.AgentOutputMessageStream,
     },
 })
 

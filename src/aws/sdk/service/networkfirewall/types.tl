@@ -520,11 +520,37 @@ local record M
     end
 
     -- A key-value filter pair used in container association monitoring configurations to narrow which containers
-    -- are tracked.
+    -- are tracked. The key must match exactly. The value can be an exact value or a wildcard pattern.
     record ContainerAttribute
-        -- The attribute key to filter on.
+        -- The attribute key to filter on. For Amazon EKS, specify namespace to filter by namespace, or
+        -- specify a Kubernetes label key. For Amazon ECS, specify a container instance attribute name. Keys don't support
+        -- wildcards.
+        -- Valid characters are letters, numbers, spaces, hyphens (-), underscores (_),
+        -- periods (.), forward slashes (/), and colons (:).
         Key: string
-        -- The attribute value to match.
+        -- The attribute value to match. You can specify an exact value, such as payments-api, or a
+        -- wildcard pattern, such as payments-*.
+        -- Valid characters are letters, numbers, spaces, hyphens (-), underscores (_),
+        -- periods (.), forward slashes (/), colons (:), asterisks
+        -- (*), and backslashes (\).
+        -- Network Firewall evaluates the value using the following rules:
+        -- An asterisk (*) matches zero or more characters. For example, payments-*
+        -- matches payments-, payments-api, and payments-api-v2, and
+        -- *-prod matches web-prod.
+        -- The pattern must match the entire value. For example, payments-* doesn't match
+        -- my-payments-api. To match a value that contains payments anywhere, use
+        -- *payments*.
+        -- Matching is case sensitive. For example, Payments-* doesn't match
+        -- payments-api.
+        -- To match a literal asterisk, escape it with a backslash (\*). To match a literal
+        -- backslash, use \\. A backslash followed by any other character matches a literal backslash
+        -- followed by that character.
+        -- A wildcard pattern matches only containers that have the attribute. For example, a filter with key
+        -- app and value * matches every container that has an app label, but
+        -- doesn't match a container without an app label.
+        -- A value that doesn't contain * or \ matches only that exact value.
+        -- A value can contain at most 10 unescaped asterisks. Escaped asterisks (\*) don't count toward
+        -- this limit. A value can't end with a single unescaped backslash.
         Value: string
     end
 
@@ -536,6 +562,8 @@ local record M
         ClusterArn: string
         -- Key-value pairs that filter which containers are tracked. For Amazon EKS, you can filter by namespace and
         -- Kubernetes labels. For Amazon ECS, you can filter by container instance attributes (EC2 launch type only).
+        -- Attribute values can contain wildcard patterns, for example payments-*. Attribute keys must
+        -- match exactly.
         AttributeFilters: {ContainerAttribute}
     end
 
@@ -909,6 +937,84 @@ local record M
         RuleVariables: {string : IPSet}
     end
 
+    enum Route53ResolvedIPValidationAction
+        "REJECT"
+        "DROP"
+        "ALERT"
+    end
+
+    enum DNSExpiryExceptionPolicy
+        "REJECT"
+        "DROP"
+        "CONTINUE"
+    end
+
+    -- The policy-level configuration for resolved IP validation. When you set this on a firewall policy, you require that the destination IP address of a
+    -- connection is one that the Amazon Route 53 Resolver returned in a DNS response for a domain. The Route 53 Resolver
+    -- must have returned the response in a VPC that's associated with the Route 53 Resolver DNS
+    -- Firewall rule group identified by DNSFirewallRuleGroupId. At the policy level,
+    -- this verifies that the destination IP address was resolved for some domain. To match specific
+    -- domains, also configure stateful rule groups that use the
+    -- AWS_ROUTE_53_RESOLVED_DOMAIN target type or the
+    -- aws_route_53_resolved_domain rule keyword.
+    record Route53ResolvedIPValidation
+        -- The action that Network Firewall takes for a connection whose destination IP address fails
+        -- resolved IP validation. A destination IP address fails validation when the Route 53 Resolver
+        -- didn't return it in a DNS response in an associated VPC. Valid values are the following:
+        -- ALERT – Tags the matching connection in the firewall's flow logs
+        -- without blocking it, when you enable logging. Use this to observe the effect of
+        -- resolved IP validation before you enforce it.
+        -- DROP – Silently blocks the connection without sending any response to the
+        -- client.
+        -- REJECT – Blocks the connection and sends a TCP reset (RST) to the
+        -- client. Because a TCP reset applies only to TCP connections, Network Firewall drops non-TCP
+        -- traffic instead of resetting it.
+        Action: string
+        -- The ID of the Route 53 Resolver DNS Firewall rule group that determines which VPCs'
+        -- DNS resolutions count for resolved IP validation. A destination IP address counts as resolved for a domain only when the Route 53 Resolver returned it in a DNS response within a VPC
+        -- that's associated with this rule group. Associate the rule group with the VPCs that send
+        -- traffic to the firewall. The ID must match the pattern ^rslvr-frg-[0-9a-f]+$. It must also exist and
+        -- be accessible from your account. Network Firewall validates this when you create or update the
+        -- policy.
+        -- Changing this value swaps the managed rule group association. Network Firewall processes
+        -- the swap asynchronously. Each policy can have only one managed Route 53 Resolver DNS
+        -- Firewall association. While a swap is in progress, Network Firewall rejects further changes to this setting. Wait
+        -- until the swap completes, then retry.
+        DNSFirewallRuleGroupId: string
+        -- The action that Network Firewall takes when the DNS resolution recorded for a destination IP
+        -- address has expired from the resolved IP cache. This applies when Network Firewall still sees
+        -- traffic to that IP address after the expiry. Network Firewall keeps a resolution for longer than
+        -- the DNS record's time to live (TTL). Valid values are the following:
+        -- CONTINUE – Treats the expired resolution as still valid and doesn't
+        -- block the connection because of expiry.
+        -- DROP – Silently blocks traffic to the IP address after its resolution
+        -- has expired, without sending any response to the client.
+        -- REJECT – Blocks traffic to the IP address after its resolution has
+        -- expired and sends a TCP reset (RST) to the client. Network Firewall drops non-TCP traffic
+        -- instead of resetting it.
+        DNSExpiryExceptionPolicy: string
+        -- The destination IP address ranges that are exempt from the policy-level resolved IP check.
+        -- Network Firewall doesn't apply the Action in this configuration to a connection
+        -- whose destination falls in these ranges, even if the Route 53 Resolver didn't return that IP
+        -- address in an associated VPC. Specify each entry as an IPv4 or IPv6 address or CIDR range, up
+        -- to 100 entries.
+        -- This exemption applies only to the policy-level check. Stateful rules that use the
+        -- AWS_ROUTE_53_RESOLVED_DOMAIN target type or the
+        -- aws_route_53_resolved_domain keyword still evaluate connections to these
+        -- destinations and match them independently of this list.
+        BypassDestinationValidationIPRanges: {Address}
+        -- The client source IP address ranges whose connections are subject to resolved IP
+        -- validation. Specify each entry as an IPv4 or IPv6 address or CIDR range, up to 100 entries. If
+        -- you omit this field, resolved IP validation applies to the CIDR ranges of the firewall's VPC and of any additional
+        -- VPCs attached to the firewall. Specifying an
+        -- empty list is not the same as omitting the field: an empty list means that Network Firewall doesn't validate any source addresses.
+        -- This scope applies to the policy-level check only. Stateful rules that use the
+        -- AWS_ROUTE_53_RESOLVED_DOMAIN target type or the
+        -- aws_route_53_resolved_domain keyword still evaluate their destinations
+        -- regardless of SourceIPRanges.
+        SourceIPRanges: {Address}
+    end
+
     -- Describes the amount of time that can pass without any traffic sent through the firewall before the firewall determines that the connection is idle and Network Firewall removes the flow entry from its flow table.
     -- When you update this value, existing connections will be treated according to your stream exception policy configuration.
     record FlowTimeouts
@@ -1080,6 +1186,14 @@ local record M
         PolicyVariables: PolicyVariables
         -- When true, prevents TCP and TLS packets from reaching destination servers until TLS Inspection has evaluated Server Name Indication (SNI) rules. Requires an associated TLS Inspection configuration.
         EnableTLSSessionHolding: boolean
+        -- The settings that enable resolved IP validation for the policy. Resolved IP validation
+        -- verifies that a connection's destination IP address is one that the Amazon Route 53 Resolver
+        -- returned in a DNS response for a domain. The response must come from a VPC that's associated
+        -- with the Route 53 Resolver DNS Firewall rule group that you specify. This checks how the
+        -- destination IP address was obtained, instead of relying only on the domain that the client
+        -- asserts in its TLS Server Name Indication (SNI) or HTTP Host header. For more
+        -- information, see Route53ResolvedIPValidation.
+        Route53ResolvedIPValidation: Route53ResolvedIPValidation
     end
 
     record CreateFirewallPolicyInput
@@ -1102,10 +1216,36 @@ local record M
         EncryptionConfiguration: EncryptionConfiguration
     end
 
+    enum FirewallPolicyErrorCode
+        "DNS_FIREWALL_RULE_GROUP_UNAVAILABLE"
+        "ROUTE53_RESOLVED_IP_VALIDATION_MISSING"
+    end
+
+    -- A configuration error that Network Firewall detected for a firewall policy.
+    record FirewallPolicyError
+        -- The error code identifies the type of error. Valid values are the following:
+        -- DNS_FIREWALL_RULE_GROUP_UNAVAILABLE – The Amazon Route 53 Resolver DNS
+        -- Firewall rule group that resolved IP validation references is unavailable, for example,
+        -- because it was deleted or is no longer accessible from your account. Update the rule
+        -- group ID or remove the resolved IP validation configuration.
+        -- ROUTE53_RESOLVED_IP_VALIDATION_MISSING – An associated stateful rule
+        -- group uses the aws_route_53_resolved_domain keyword, but the policy doesn't
+        -- have resolved IP validation configured. The affected rules are inactive until you add
+        -- resolved IP validation to the policy or remove the keyword rules.
+        Code: string
+        -- A description of the error and how to resolve it.
+        Message: string
+        -- The ID of the resource that the error relates to, when applicable. For example, for
+        -- DNS_FIREWALL_RULE_GROUP_UNAVAILABLE this is the Amazon Route 53 Resolver DNS
+        -- Firewall rule group ID.
+        ResourceId: string
+    end
+
     enum ResourceStatus
         "ACTIVE"
         "DELETING"
         "ERROR"
+        "UPDATING"
     end
 
     -- The high-level properties of a firewall policy. This, along with the FirewallPolicy, define the policy. You can retrieve all objects for a firewall policy by calling DescribeFirewallPolicy.
@@ -1125,6 +1265,11 @@ local record M
         -- by calling DescribeFirewallPolicy and providing the firewall policy's
         -- name or ARN.
         FirewallPolicyStatus: string
+        -- Additional detail about the firewall policy's current status, when applicable. For
+        -- example, while an Amazon Route 53 Resolver DNS Firewall rule group change is in progress, the
+        -- status is UPDATING and this message is "A DNS Firewall rule group change is in
+        -- progress."
+        StatusMessage: string
         -- The key:value pairs to associate with the resource.
         Tags: {Tag}
         -- The number of capacity units currently consumed by the policy's stateless rules.
@@ -1137,6 +1282,11 @@ local record M
         NumberOfAssociations: number
         -- A complex type that contains the Amazon Web Services KMS encryption configuration settings for your firewall policy.
         EncryptionConfiguration: EncryptionConfiguration
+        -- Any configuration errors that apply to the firewall policy. Network Firewall detects these
+        -- errors asynchronously, after you create or update the policy, so an error can appear after
+        -- the request that caused it has already succeeded. Each entry describes the problem and how to
+        -- resolve it, and Network Firewall clears it automatically after you resolve the problem.
+        Errors: {FirewallPolicyError}
         -- The last time that the firewall policy was changed.
         LastModifiedTime: number
     end
@@ -1427,6 +1577,7 @@ local record M
     enum TargetType
         "TLS_SNI"
         "HTTP_HOST"
+        "AWS_ROUTE_53_RESOLVED_DOMAIN"
     end
 
     -- Stateful inspection criteria for a domain list rule group.
@@ -1438,7 +1589,16 @@ local record M
         -- Explicit names. For example, abc.example.com matches only the domain abc.example.com.
         -- Names that use a domain wildcard, which you indicate with an initial '.'. For example,.example.com matches example.com and matches all subdomains of example.com, such as abc.example.com and www.example.com.
         Targets: {string}
-        -- The protocols you want to inspect. Specify TLS_SNI for HTTPS. Specify HTTP_HOST for HTTP. You can specify either or both.
+        -- The types of matching to perform against the domains in Targets. You can specify any combination of the following:
+        -- AWS_ROUTE_53_RESOLVED_DOMAIN – Match the domain against the domain that the Amazon Route 53 Resolver resolved the connection's destination IP address for.
+        -- HTTP_HOST – Match the domain against the Host header of HTTP traffic.
+        -- TLS_SNI – Match the domain against the Server Name Indication (SNI) of HTTPS traffic.
+        -- AWS_ROUTE_53_RESOLVED_DOMAIN matches on how the destination IP address was resolved, rather than on the domain that the client asserts in its TLS SNI or HTTP Host header. This target type takes effect when you configure resolved IP validation on the firewall policy. For more information, see Route53ResolvedIPValidation.
+        -- Whether you include AWS_ROUTE_53_RESOLVED_DOMAIN changes what the generated rules match, together with GeneratedRulesType:
+        -- Combining AWS_ROUTE_53_RESOLVED_DOMAIN with TLS_SNI or HTTP_HOST in an ALLOWLIST requires both conditions to match. The SNI or Host header must match the domain, and the Route 53 Resolver must have resolved the destination IP address for that domain. Network Firewall allows traffic only in that case. Traffic that matches one condition, such as a spoofed Host header sent to an unresolved IP address, is not allowed.
+        -- In a DENYLIST, or when AWS_ROUTE_53_RESOLVED_DOMAIN is the only target type, Network Firewall evaluates each condition independently: a match on either the domain (SNI or Host) or the resolved destination IP address triggers the rule.
+        -- When you don't include AWS_ROUTE_53_RESOLVED_DOMAIN, the generated rules match only on the SNI or Host header, without checking how the destination IP address was resolved.
+        -- An ALLOWLIST whose only target type is AWS_ROUTE_53_RESOLVED_DOMAIN is additive: it allows matching traffic but doesn't generate a default rule that drops non-matching traffic. Only the TLS_SNI and HTTP_HOST target types generate that default drop. To allow only the resolved domains and drop all other traffic, include a protocol target type as well.
         TargetTypes: {string}
         -- Whether you want to apply allow, reject, alert, or drop behavior to the domains in your target list.
         -- When logging is enabled and you choose Alert, traffic that matches the domain specifications
@@ -2370,9 +2530,11 @@ local record M
     record DescribeFlowOperationInput
         -- The Amazon Resource Name (ARN) of the firewall.
         FirewallArn: string
-        -- The ID of the Availability Zone where the firewall is located. For example, us-east-2a.
+        -- The name of the Availability Zone where the firewall is located. For example, us-east-2a.
         -- Defines the scope a flow operation. You can use up to 20 filters to configure a single flow operation.
         AvailabilityZone: string
+        -- The ID of the Availability Zone where the firewall is located. For example, use2-az1. Availability Zone IDs are the same in every Amazon Web Services account, so use this parameter when you coordinate resources across accounts. Specify either AvailabilityZone or AvailabilityZoneId, not both. If you specify both, the request fails.
+        AvailabilityZoneId: string
         -- The Amazon Resource Name (ARN) of a VPC endpoint association.
         VpcEndpointAssociationArn: string
         -- A unique identifier for the primary endpoint associated with a firewall.
@@ -2425,9 +2587,11 @@ local record M
     record DescribeFlowOperationOutput
         -- The Amazon Resource Name (ARN) of the firewall.
         FirewallArn: string
-        -- The ID of the Availability Zone where the firewall is located. For example, us-east-2a.
+        -- The name of the Availability Zone where the firewall is located. For example, us-east-2a.
         -- Defines the scope a flow operation. You can use up to 20 filters to configure a single flow operation.
         AvailabilityZone: string
+        -- The ID of the Availability Zone where the firewall is located. For example, use2-az1.
+        AvailabilityZoneId: string
         -- The Amazon Resource Name (ARN) of a VPC endpoint association.
         VpcEndpointAssociationArn: string
         -- A unique identifier for the primary endpoint associated with a firewall.
@@ -3078,9 +3242,11 @@ local record M
         -- objects are available, in the response, Network Firewall provides a
         -- NextToken value that you can use in a subsequent call to get the next batch of objects.
         MaxResults: number
-        -- The ID of the Availability Zone where the firewall is located. For example, us-east-2a.
+        -- The name of the Availability Zone where the firewall is located. For example, us-east-2a.
         -- Defines the scope a flow operation. You can use up to 20 filters to configure a single flow operation.
         AvailabilityZone: string
+        -- The ID of the Availability Zone where the firewall is located. For example, use2-az1. Availability Zone IDs are the same in every Amazon Web Services account, so use this parameter when you coordinate resources across accounts. Specify either AvailabilityZone or AvailabilityZoneId, not both. If you specify both, the request fails.
+        AvailabilityZoneId: string
         -- A unique identifier for the primary endpoint associated with a firewall.
         VpcEndpointId: string
         -- The Amazon Resource Name (ARN) of a VPC endpoint association.
@@ -3090,9 +3256,11 @@ local record M
     record ListFlowOperationResultsOutput
         -- The Amazon Resource Name (ARN) of the firewall.
         FirewallArn: string
-        -- The ID of the Availability Zone where the firewall is located. For example, us-east-2a.
+        -- The name of the Availability Zone where the firewall is located. For example, us-east-2a.
         -- Defines the scope a flow operation. You can use up to 20 filters to configure a single flow operation.
         AvailabilityZone: string
+        -- The ID of the Availability Zone where the firewall is located. For example, use2-az1.
+        AvailabilityZoneId: string
         VpcEndpointAssociationArn: string
         VpcEndpointId: string
         -- A unique identifier for the flow operation. This ID is returned in the responses to start and list commands. You provide to describe commands.
@@ -3118,9 +3286,11 @@ local record M
     record ListFlowOperationsInput
         -- The Amazon Resource Name (ARN) of the firewall.
         FirewallArn: string
-        -- The ID of the Availability Zone where the firewall is located. For example, us-east-2a.
+        -- The name of the Availability Zone where the firewall is located. For example, us-east-2a.
         -- Defines the scope a flow operation. You can use up to 20 filters to configure a single flow operation.
         AvailabilityZone: string
+        -- The ID of the Availability Zone where the firewall is located. For example, use2-az1. Availability Zone IDs are the same in every Amazon Web Services account, so use this parameter when you coordinate resources across accounts. Specify either AvailabilityZone or AvailabilityZoneId, not both. If you specify both, the request fails.
+        AvailabilityZoneId: string
         -- The Amazon Resource Name (ARN) of a VPC endpoint association.
         VpcEndpointAssociationArn: string
         -- A unique identifier for the primary endpoint associated with a firewall.
@@ -3453,9 +3623,11 @@ local record M
     record StartFlowCaptureInput
         -- The Amazon Resource Name (ARN) of the firewall.
         FirewallArn: string
-        -- The ID of the Availability Zone where the firewall is located. For example, us-east-2a.
+        -- The name of the Availability Zone where the firewall is located. For example, us-east-2a.
         -- Defines the scope a flow operation. You can use up to 20 filters to configure a single flow operation.
         AvailabilityZone: string
+        -- The ID of the Availability Zone where the firewall is located. For example, use2-az1. Availability Zone IDs are the same in every Amazon Web Services account, so use this parameter when you coordinate resources across accounts. Specify either AvailabilityZone or AvailabilityZoneId, not both. If you specify both, the request fails.
+        AvailabilityZoneId: string
         -- The Amazon Resource Name (ARN) of a VPC endpoint association.
         VpcEndpointAssociationArn: string
         -- A unique identifier for the primary endpoint associated with a firewall.
@@ -3482,9 +3654,11 @@ local record M
     record StartFlowFlushInput
         -- The Amazon Resource Name (ARN) of the firewall.
         FirewallArn: string
-        -- The ID of the Availability Zone where the firewall is located. For example, us-east-2a.
+        -- The name of the Availability Zone where the firewall is located. For example, us-east-2a.
         -- Defines the scope a flow operation. You can use up to 20 filters to configure a single flow operation.
         AvailabilityZone: string
+        -- The ID of the Availability Zone where the firewall is located. For example, use2-az1. Availability Zone IDs are the same in every Amazon Web Services account, so use this parameter when you coordinate resources across accounts. Specify either AvailabilityZone or AvailabilityZoneId, not both. If you specify both, the request fails.
+        AvailabilityZoneId: string
         -- The Amazon Resource Name (ARN) of a VPC endpoint association.
         VpcEndpointAssociationArn: string
         -- A unique identifier for the primary endpoint associated with a firewall.

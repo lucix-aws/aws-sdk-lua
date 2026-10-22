@@ -609,6 +609,7 @@ local record M
         "OWNER"
         "CONTRIBUTOR"
         "PROJECT_CATALOG_STEWARD"
+        "USER_CREATED_DESIGNATION"
     end
 
     -- The domain unit filter of the project grant filter.
@@ -629,6 +630,8 @@ local record M
     record ProjectPolicyGrantPrincipal
         -- The project designation of the project policy grant principal.
         projectDesignation: string
+        -- The ID of the user-created designation granted to the project principal. Required when projectDesignation is USER_CREATED_DESIGNATION; must not be provided otherwise.
+        userCreatedDesignationId: string
         -- The project ID of the project policy grant principal.
         projectIdentifier: string
         -- The project grant filter of the project policy grant principal.
@@ -3221,6 +3224,53 @@ local record M
         updatedAt: number
     end
 
+    record CreateDesignationInput
+        -- The identifier of the Amazon DataZone domain in which the designation is created.
+        domainIdentifier: string
+        -- The name of the designation. The name must be unique within the domain.
+        name: string
+        -- A human-readable description of the designation and its intended use.
+        description: string
+        -- The Cedar permit policy that defines what actions holders of this
+        -- designation are allowed to perform.
+        policy: string
+        -- Whether deletion protection is enabled for this designation. Defaults to true when omitted.
+        deletionProtection: boolean
+    end
+
+    enum DesignationType
+        "MANAGED"
+        "USER_CREATED"
+    end
+
+    -- A designation defines a named role with a Cedar permit policy that controls
+    -- what actions members holding this designation can perform within a project.
+    record CreateDesignationOutput
+        -- The identifier of the Amazon DataZone domain in which the designation was created.
+        domainId: string
+        -- The unique ID of the designation.
+        id: string
+        -- The name of the designation. The name is unique within the domain.
+        name: string
+        -- A human-readable description of the designation and its intended use.
+        description: string
+        -- The classification of this designation. MANAGED designations are
+        -- system-defined and cannot be modified or deleted.
+        designationType: string
+        -- The Cedar permit policy that governs what actions holders of this
+        -- designation are allowed to perform.
+        policy: string
+        -- Whether deletion protection is enabled for this designation. When true,
+        -- DeleteDesignation is rejected until protection is disabled via UpdateDesignation.
+        deletionProtection: boolean
+        -- The identifier of the Amazon DataZone user who created the designation.
+        createdBy: string
+        -- The date and time when the designation was created.
+        createdAt: number
+        -- The date and time when the designation was last updated.
+        lastUpdatedAt: number
+    end
+
     enum DomainVersion
         "V1"
         "V2"
@@ -3968,6 +4018,7 @@ local record M
         "PROJECT_CATALOG_VIEWER"
         "PROJECT_CATALOG_CONSUMER"
         "PROJECT_CATALOG_STEWARD"
+        "USER_CREATED_DESIGNATION"
     end
 
     -- The details about a project member.
@@ -3984,6 +4035,8 @@ local record M
         member: Member
         -- The designation of the project membership.
         designation: string
+        -- The ID of the user-created designation to assign to this member when creating the project. Required when designation is USER_CREATED_DESIGNATION; must not be provided otherwise.
+        userCreatedDesignationId: string
     end
 
     -- Specifies the account/Region that is to be used during project creation for a particular blueprint.
@@ -4125,6 +4178,8 @@ local record M
         member: Member
         -- The designation of the project membership.
         designation: string
+        -- The ID of the user-created designation to assign to the project member. Required when designation is USER_CREATED_DESIGNATION; must not be provided otherwise.
+        userCreatedDesignationId: string
     end
 
     record CreateProjectMembershipOutput
@@ -5390,6 +5445,16 @@ local record M
     record DeleteDataExportConfigurationOutput
     end
 
+    record DeleteDesignationInput
+        -- The identifier of the Amazon DataZone domain that contains the designation to delete.
+        domainIdentifier: string
+        -- The unique ID of the designation to delete.
+        identifier: string
+    end
+
+    record DeleteDesignationOutput
+    end
+
     record DeleteEnvironmentInput
         -- The ID of the Amazon DataZone domain in which the environment is deleted.
         domainIdentifier: string
@@ -6172,6 +6237,41 @@ local record M
         createdAt: number
         -- The timestamp at which the data export configuration report was updated.
         updatedAt: number
+    end
+
+    record GetDesignationInput
+        -- The identifier of the Amazon DataZone domain that contains the designation.
+        domainIdentifier: string
+        -- The unique ID of the designation to retrieve.
+        identifier: string
+    end
+
+    -- A designation defines a named role with a Cedar permit policy that controls
+    -- what actions members holding this designation can perform within a project.
+    record GetDesignationOutput
+        -- The identifier of the Amazon DataZone domain that contains the designation.
+        domainId: string
+        -- The unique ID of the designation.
+        id: string
+        -- The name of the designation. The name is unique within the domain.
+        name: string
+        -- A human-readable description of the designation and its intended use.
+        description: string
+        -- The classification of this designation. MANAGED designations are
+        -- system-defined and cannot be modified or deleted.
+        designationType: string
+        -- The Cedar permit policy that governs what actions holders of this
+        -- designation are allowed to perform.
+        policy: string
+        -- Whether deletion protection is enabled for this designation. When true,
+        -- DeleteDesignation is rejected until protection is disabled via UpdateDesignation.
+        deletionProtection: boolean
+        -- The identifier of the Amazon DataZone user who created the designation.
+        createdBy: string
+        -- The date and time when the designation was created.
+        createdAt: number
+        -- The date and time when the designation was last updated.
+        lastUpdatedAt: number
     end
 
     record GetEnvironmentInput
@@ -7135,6 +7235,44 @@ local record M
         nextToken: string
     end
 
+    record ListDesignationsInput
+        -- The identifier of the Amazon DataZone domain that contains the designations to list.
+        domainIdentifier: string
+        -- If the results exceed the value of MaxResults, the previous call returns a pagination token. Specify this token in a subsequent call to ListDesignations to retrieve the next set of results. If not specified, the operation returns the first page of results.
+        nextToken: string
+        -- The maximum number of designations to return in a single call to ListDesignations. If the number of designations exceeds MaxResults, the response includes a NextToken value. Use that token in a subsequent call to ListDesignations to retrieve the next set of designations. The default value is 20.
+        maxResults: number
+    end
+
+    -- Summary representation of a designation returned by list operations.
+    record DesignationSummary
+        -- The identifier of the Amazon DataZone domain that contains the designation.
+        domainId: string
+        -- The unique ID of the designation.
+        id: string
+        -- The name of the designation. The name is unique within the domain.
+        name: string
+        -- A human-readable description of the designation and its intended use.
+        description: string
+        -- The classification of this designation.
+        designationType: string
+        -- Whether deletion protection is enabled for this designation.
+        deletionProtection: boolean
+        -- The identifier of the Amazon DataZone user who created the designation.
+        createdBy: string
+        -- The date and time when the designation was created.
+        createdAt: number
+        -- The date and time when the designation was last updated.
+        updatedAt: number
+    end
+
+    record ListDesignationsOutput
+        -- The designation summaries that ListDesignations returned. Each item contains summary information about a designation in the domain.
+        items: {DesignationSummary}
+        -- A pagination token that indicates that more results are available. Pass this token to a subsequent call to ListDesignations to retrieve the next page of results. If there are no more results, this value is null.
+        nextToken: string
+    end
+
     record ListEntityOwnersInput
         -- The ID of the domain where you want to list entity owners.
         domainIdentifier: string
@@ -7772,6 +7910,8 @@ local record M
         memberDetails: MemberDetails
         -- The designated role of a project member.
         designation: string
+        -- The ID of the user-created designation held by the project member when designation is USER_CREATED_DESIGNATION.
+        userCreatedDesignationId: string
     end
 
     record ListProjectMembershipsOutput
@@ -8616,7 +8756,7 @@ local record M
 
     -- The notification configuration for a notebook run in Amazon SageMaker Unified Studio.
     record NotificationConfig
-        -- Notebook run states that trigger notifications. Ordering is not significant.
+        -- The notebook run states that trigger notifications. You can specify up to 7 states, and the ordering of the states is not significant.
         notifyOn: {string}
     end
 
@@ -9816,6 +9956,49 @@ local record M
         props: ConnectionPropertiesOutput
         -- The scope of the connection.
         scope: string
+    end
+
+    record UpdateDesignationInput
+        -- The identifier of the Amazon DataZone domain that contains the designation to update.
+        domainIdentifier: string
+        -- The unique ID of the designation to update.
+        identifier: string
+        -- The updated name of the designation. The name must be unique within the domain.
+        name: string
+        -- The updated human-readable description of the designation and its intended use.
+        description: string
+        -- The updated Cedar permit policy.
+        policy: string
+        -- Whether deletion protection is enabled for this designation. Omit to keep the existing value.
+        deletionProtection: boolean
+    end
+
+    -- A designation defines a named role with a Cedar permit policy that controls
+    -- what actions members holding this designation can perform within a project.
+    record UpdateDesignationOutput
+        -- The identifier of the Amazon DataZone domain that contains the designation.
+        domainId: string
+        -- The unique ID of the designation.
+        id: string
+        -- The name of the designation. The name is unique within the domain.
+        name: string
+        -- A human-readable description of the designation and its intended use.
+        description: string
+        -- The classification of this designation. MANAGED designations are
+        -- system-defined and cannot be modified or deleted.
+        designationType: string
+        -- The Cedar permit policy that governs what actions holders of this
+        -- designation are allowed to perform.
+        policy: string
+        -- Whether deletion protection is enabled for this designation. When true,
+        -- DeleteDesignation is rejected until protection is disabled via UpdateDesignation.
+        deletionProtection: boolean
+        -- The identifier of the Amazon DataZone user who created the designation.
+        createdBy: string
+        -- The date and time when the designation was created.
+        createdAt: number
+        -- The date and time when the designation was last updated.
+        lastUpdatedAt: number
     end
 
     record UpdateEnvironmentInput

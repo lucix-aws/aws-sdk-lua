@@ -1240,6 +1240,87 @@ M.MCPServerSplunkConfiguration = schema.new({
     type = "structure",
 })
 
+M.MSTeamsChannel = schema.new({
+    id = id.from(_N, "MSTeamsChannel"),
+    type = "structure",
+    members = {
+        channelName = schema.new({
+            id = id.from(_N, "MSTeamsChannel", "channelName"),
+            type = "string",
+            name = "channelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelId = schema.new({
+            id = id.from(_N, "MSTeamsChannel", "channelId"),
+            type = "string",
+            name = "channelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MSTeamsTransmissionTarget = schema.new({
+    id = id.from(_N, "MSTeamsTransmissionTarget"),
+    type = "structure",
+    members = {
+        opsOncallTarget = schema.new({
+            id = id.from(_N, "MSTeamsTransmissionTarget", "opsOncallTarget"),
+            type = "structure",
+            name = "opsOncallTarget",
+            target_id = id.from(_N, "MSTeamsChannel"),
+            target = M.MSTeamsChannel,
+        }),
+        opsSRETarget = schema.new({
+            id = id.from(_N, "MSTeamsTransmissionTarget", "opsSRETarget"),
+            type = "structure",
+            name = "opsSRETarget",
+            target_id = id.from(_N, "MSTeamsChannel"),
+            target = M.MSTeamsChannel,
+        }),
+    },
+})
+
+M.MSTeamsConfiguration = schema.new({
+    id = id.from(_N, "MSTeamsConfiguration"),
+    type = "structure",
+    members = {
+        teamId = schema.new({
+            id = id.from(_N, "MSTeamsConfiguration", "teamId"),
+            type = "string",
+            name = "teamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        teamName = schema.new({
+            id = id.from(_N, "MSTeamsConfiguration", "teamName"),
+            type = "string",
+            name = "teamName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        transmissionTarget = schema.new({
+            id = id.from(_N, "MSTeamsConfiguration", "transmissionTarget"),
+            type = "structure",
+            name = "transmissionTarget",
+            target_id = id.from(_N, "MSTeamsTransmissionTarget"),
+            target = M.MSTeamsTransmissionTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PagerDutyConfiguration = schema.new({
     id = id.from(_N, "PagerDutyConfiguration"),
     type = "structure",
@@ -1659,6 +1740,13 @@ M.ServiceConfiguration = schema.new({
             name = "remoteagentsigv4",
             target_id = id.from(_N, "RemoteAgentSigV4Configuration"),
             target = M.RemoteAgentSigV4Configuration,
+        }),
+        msteams = schema.new({
+            id = id.from(_N, "ServiceConfiguration", "msteams"),
+            type = "structure",
+            name = "msteams",
+            target_id = id.from(_N, "MSTeamsConfiguration"),
+            target = M.MSTeamsConfiguration,
         }),
         releaseManagement = schema.new({
             id = id.from(_N, "ServiceConfiguration", "releaseManagement"),

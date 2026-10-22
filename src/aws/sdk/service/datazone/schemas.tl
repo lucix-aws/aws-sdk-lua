@@ -128,6 +128,8 @@ M.DataProductRevisions = schema.new({ type = "list", list_member = M.DataProduct
 
 M.DataSourceRunActivities = schema.new({ type = "list", list_member = M.DataSourceRunActivity })
 
+M.DesignationSummaries = schema.new({ type = "list", list_member = M.DesignationSummary })
+
 M.EntityOwners = schema.new({ type = "list", list_member = M.OwnerPropertiesOutput })
 
 M.ListEnvironmentActionSummaries = schema.new({ type = "list", list_member = M.EnvironmentActionSummary })
@@ -2003,6 +2005,12 @@ M.ProjectPolicyGrantPrincipal = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        userCreatedDesignationId = schema.new({
+            id = id.from(_N, "ProjectPolicyGrantPrincipal", "userCreatedDesignationId"),
+            type = "string",
+            name = "userCreatedDesignationId",
+            target_id = prelude.String.id,
         }),
         projectIdentifier = schema.new({
             id = id.from(_N, "ProjectPolicyGrantPrincipal", "projectIdentifier"),
@@ -9276,6 +9284,150 @@ M.CreateDataSourceOutput = schema.new({
     },
 })
 
+M.CreateDesignationInput = schema.new({
+    id = id.from(_N, "CreateDesignationInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "CreateDesignationInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateDesignationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateDesignationInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        policy = schema.new({
+            id = id.from(_N, "CreateDesignationInput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateDesignationInput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+    },
+})
+
+M.CreateDesignationOutput = schema.new({
+    id = id.from(_N, "CreateDesignationOutput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        designationType = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "designationType"),
+            type = "string",
+            name = "designationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "CreateDesignationOutput", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.SingleSignOn = schema.new({
     id = id.from(_N, "SingleSignOn"),
     type = "structure",
@@ -11540,6 +11692,12 @@ M.ProjectMembershipAssignment = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        userCreatedDesignationId = schema.new({
+            id = id.from(_N, "ProjectMembershipAssignment", "userCreatedDesignationId"),
+            type = "string",
+            name = "userCreatedDesignationId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -11934,6 +12092,12 @@ M.CreateProjectMembershipInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        userCreatedDesignationId = schema.new({
+            id = id.from(_N, "CreateProjectMembershipInput", "userCreatedDesignationId"),
+            type = "string",
+            name = "userCreatedDesignationId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -15987,6 +16151,38 @@ M.DeleteDataExportConfigurationOutput = schema.new({
     type = "structure",
 })
 
+M.DeleteDesignationInput = schema.new({
+    id = id.from(_N, "DeleteDesignationInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "DeleteDesignationInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        identifier = schema.new({
+            id = id.from(_N, "DeleteDesignationInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDesignationOutput = schema.new({
+    id = id.from(_N, "DeleteDesignationOutput"),
+    type = "structure",
+})
+
 M.DeleteEnvironmentInput = schema.new({
     id = id.from(_N, "DeleteEnvironmentInput"),
     type = "structure",
@@ -18660,6 +18856,127 @@ M.GetDataExportConfigurationOutput = schema.new({
             type = "timestamp",
             name = "updatedAt",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetDesignationInput = schema.new({
+    id = id.from(_N, "GetDesignationInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "GetDesignationInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        identifier = schema.new({
+            id = id.from(_N, "GetDesignationInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetDesignationOutput = schema.new({
+    id = id.from(_N, "GetDesignationOutput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        designationType = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "designationType"),
+            type = "string",
+            name = "designationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "GetDesignationOutput", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })
@@ -22056,6 +22373,144 @@ M.ListDataSourceRunActivitiesOutput = schema.new({
     },
 })
 
+M.ListDesignationsInput = schema.new({
+    id = id.from(_N, "ListDesignationsInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "ListDesignationsInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDesignationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListDesignationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 20 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.DesignationSummary = schema.new({
+    id = id.from(_N, "DesignationSummary"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "DesignationSummary", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "DesignationSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "DesignationSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "DesignationSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        designationType = schema.new({
+            id = id.from(_N, "DesignationSummary", "designationType"),
+            type = "string",
+            name = "designationType",
+            target_id = prelude.String.id,
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "DesignationSummary", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "DesignationSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "DesignationSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "DesignationSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ListDesignationsOutput = schema.new({
+    id = id.from(_N, "ListDesignationsOutput"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListDesignationsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.DesignationSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDesignationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListEntityOwnersInput = schema.new({
     id = id.from(_N, "ListEntityOwnersInput"),
     type = "structure",
@@ -24173,6 +24628,12 @@ M.ProjectMember = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        userCreatedDesignationId = schema.new({
+            id = id.from(_N, "ProjectMember", "userCreatedDesignationId"),
+            type = "string",
+            name = "userCreatedDesignationId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -31066,6 +31527,151 @@ M.UpdateConnectionOutput = schema.new({
     },
 })
 
+M.UpdateDesignationInput = schema.new({
+    id = id.from(_N, "UpdateDesignationInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "UpdateDesignationInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        identifier = schema.new({
+            id = id.from(_N, "UpdateDesignationInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateDesignationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateDesignationInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        policy = schema.new({
+            id = id.from(_N, "UpdateDesignationInput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateDesignationInput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateDesignationOutput = schema.new({
+    id = id.from(_N, "UpdateDesignationOutput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        designationType = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "designationType"),
+            type = "string",
+            name = "designationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "UpdateDesignationOutput", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.UpdateEnvironmentInput = schema.new({
     id = id.from(_N, "UpdateEnvironmentInput"),
     type = "structure",
@@ -33946,6 +34552,18 @@ M.CreateDataSource = schema.operation({
     },
 })
 
+M.CreateDesignation = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateDesignation"),
+    input = M.CreateDesignationInput,
+    output = M.CreateDesignationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/designations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateDomain = schema.operation({
     id = id.from("com.amazonaws.datazone", "CreateDomain"),
     input = M.CreateDomainInput,
@@ -34276,6 +34894,18 @@ M.DeleteDataSource = schema.operation({
     output = M.DeleteDataSourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/data-sources/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDesignation = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteDesignation"),
+    input = M.DeleteDesignationInput,
+    output = M.DeleteDesignationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/designations/{identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -34660,6 +35290,18 @@ M.GetDataSourceRun = schema.operation({
     output = M.GetDataSourceRunOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-source-runs/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDesignation = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetDesignation"),
+    input = M.GetDesignationInput,
+    output = M.GetDesignationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/designations/{identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -35128,6 +35770,18 @@ M.ListDataSources = schema.operation({
     output = M.ListDataSourcesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDesignations = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListDesignations"),
+    input = M.ListDesignationsInput,
+    output = M.ListDesignationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/designations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -35776,6 +36430,18 @@ M.UpdateDataSource = schema.operation({
     output = M.UpdateDataSourceOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/data-sources/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDesignation = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateDesignation"),
+    input = M.UpdateDesignationInput,
+    output = M.UpdateDesignationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/designations/{identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

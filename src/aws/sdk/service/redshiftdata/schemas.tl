@@ -660,6 +660,12 @@ M.SubStatementData = schema.new({
                 [traits.DEFAULT] = { value = 0 },
             },
         }),
+        RedshiftQueryUuid = schema.new({
+            id = id.from(_N, "SubStatementData", "RedshiftQueryUuid"),
+            type = "string",
+            name = "RedshiftQueryUuid",
+            target_id = prelude.String.id,
+        }),
         HasResultSet = schema.new({
             id = id.from(_N, "SubStatementData", "HasResultSet"),
             type = "boolean",
@@ -786,6 +792,12 @@ M.DescribeStatementOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 0 },
             },
+        }),
+        RedshiftQueryUuid = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "RedshiftQueryUuid"),
+            type = "string",
+            name = "RedshiftQueryUuid",
+            target_id = prelude.String.id,
         }),
         QueryParameters = schema.new({
             id = id.from(_N, "DescribeStatementOutput", "QueryParameters"),

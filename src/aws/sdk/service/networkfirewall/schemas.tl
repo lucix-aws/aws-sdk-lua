@@ -90,6 +90,8 @@ M.StatefulRuleGroupReferences = schema.new({ type = "list", list_member = M.Stat
 
 M.StatefulActions = schema.new({ type = "list", list_member = prelude.String })
 
+M.FirewallPolicyErrors = schema.new({ type = "list", list_member = M.FirewallPolicyError })
+
 M.ProxyRuleList = schema.new({ type = "list", list_member = M.ProxyRule })
 
 M.CreateProxyRuleList = schema.new({ type = "list", list_member = M.CreateProxyRule })
@@ -111,6 +113,8 @@ M.RuleSummaries = schema.new({ type = "list", list_member = M.RuleSummary })
 M.ContainerAttributes = schema.new({ type = "list", list_member = M.ContainerAttribute })
 
 M.IPSets = schema.new({ type = "map", map_key = prelude.String, map_value = M.IPSet })
+
+M.Route53ResolvedIPValidationAddresses = schema.new({ type = "list", list_member = M.Address })
 
 M.PortSets = schema.new({ type = "map", map_key = prelude.String, map_value = M.PortSet })
 
@@ -1947,6 +1951,54 @@ M.PolicyVariables = schema.new({
     },
 })
 
+M.Route53ResolvedIPValidation = schema.new({
+    id = id.from(_N, "Route53ResolvedIPValidation"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "Route53ResolvedIPValidation", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DNSFirewallRuleGroupId = schema.new({
+            id = id.from(_N, "Route53ResolvedIPValidation", "DNSFirewallRuleGroupId"),
+            type = "string",
+            name = "DNSFirewallRuleGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DNSExpiryExceptionPolicy = schema.new({
+            id = id.from(_N, "Route53ResolvedIPValidation", "DNSExpiryExceptionPolicy"),
+            type = "string",
+            name = "DNSExpiryExceptionPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BypassDestinationValidationIPRanges = schema.new({
+            id = id.from(_N, "Route53ResolvedIPValidation", "BypassDestinationValidationIPRanges"),
+            type = "list",
+            name = "BypassDestinationValidationIPRanges",
+            target_id = prelude.Document.id,
+            list_member = M.Address,
+        }),
+        SourceIPRanges = schema.new({
+            id = id.from(_N, "Route53ResolvedIPValidation", "SourceIPRanges"),
+            type = "list",
+            name = "SourceIPRanges",
+            target_id = prelude.Document.id,
+            list_member = M.Address,
+        }),
+    },
+})
+
 M.FlowTimeouts = schema.new({
     id = id.from(_N, "FlowTimeouts"),
     type = "structure",
@@ -2163,6 +2215,13 @@ M.FirewallPolicy = schema.new({
             name = "EnableTLSSessionHolding",
             target_id = prelude.Boolean.id,
         }),
+        Route53ResolvedIPValidation = schema.new({
+            id = id.from(_N, "FirewallPolicy", "Route53ResolvedIPValidation"),
+            type = "structure",
+            name = "Route53ResolvedIPValidation",
+            target_id = id.from(_N, "Route53ResolvedIPValidation"),
+            target = M.Route53ResolvedIPValidation,
+        }),
     },
 })
 
@@ -2221,6 +2280,37 @@ M.CreateFirewallPolicyInput = schema.new({
     },
 })
 
+M.FirewallPolicyError = schema.new({
+    id = id.from(_N, "FirewallPolicyError"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "FirewallPolicyError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "FirewallPolicyError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "FirewallPolicyError", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.FirewallPolicyResponse = schema.new({
     id = id.from(_N, "FirewallPolicyResponse"),
     type = "structure",
@@ -2264,6 +2354,12 @@ M.FirewallPolicyResponse = schema.new({
             name = "FirewallPolicyStatus",
             target_id = prelude.String.id,
         }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "FirewallPolicyResponse", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
         Tags = schema.new({
             id = id.from(_N, "FirewallPolicyResponse", "Tags"),
             type = "list",
@@ -2301,6 +2397,13 @@ M.FirewallPolicyResponse = schema.new({
             name = "EncryptionConfiguration",
             target_id = id.from(_N, "EncryptionConfiguration"),
             target = M.EncryptionConfiguration,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "FirewallPolicyResponse", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.FirewallPolicyError,
         }),
         LastModifiedTime = schema.new({
             id = id.from(_N, "FirewallPolicyResponse", "LastModifiedTime"),
@@ -4901,6 +5004,12 @@ M.DescribeFlowOperationInput = schema.new({
             name = "AvailabilityZone",
             target_id = prelude.String.id,
         }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "DescribeFlowOperationInput", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+        }),
         VpcEndpointAssociationArn = schema.new({
             id = id.from(_N, "DescribeFlowOperationInput", "VpcEndpointAssociationArn"),
             type = "string",
@@ -4999,6 +5108,12 @@ M.DescribeFlowOperationOutput = schema.new({
             id = id.from(_N, "DescribeFlowOperationOutput", "AvailabilityZone"),
             type = "string",
             name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "DescribeFlowOperationOutput", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
             target_id = prelude.String.id,
         }),
         VpcEndpointAssociationArn = schema.new({
@@ -6441,6 +6556,12 @@ M.ListFlowOperationResultsInput = schema.new({
             name = "AvailabilityZone",
             target_id = prelude.String.id,
         }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "ListFlowOperationResultsInput", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+        }),
         VpcEndpointId = schema.new({
             id = id.from(_N, "ListFlowOperationResultsInput", "VpcEndpointId"),
             type = "string",
@@ -6470,6 +6591,12 @@ M.ListFlowOperationResultsOutput = schema.new({
             id = id.from(_N, "ListFlowOperationResultsOutput", "AvailabilityZone"),
             type = "string",
             name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "ListFlowOperationResultsOutput", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
             target_id = prelude.String.id,
         }),
         VpcEndpointAssociationArn = schema.new({
@@ -6541,6 +6668,12 @@ M.ListFlowOperationsInput = schema.new({
             id = id.from(_N, "ListFlowOperationsInput", "AvailabilityZone"),
             type = "string",
             name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "ListFlowOperationsInput", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
             target_id = prelude.String.id,
         }),
         VpcEndpointAssociationArn = schema.new({
@@ -7172,6 +7305,12 @@ M.StartFlowCaptureInput = schema.new({
             name = "AvailabilityZone",
             target_id = prelude.String.id,
         }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "StartFlowCaptureInput", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+        }),
         VpcEndpointAssociationArn = schema.new({
             id = id.from(_N, "StartFlowCaptureInput", "VpcEndpointAssociationArn"),
             type = "string",
@@ -7245,6 +7384,12 @@ M.StartFlowFlushInput = schema.new({
             id = id.from(_N, "StartFlowFlushInput", "AvailabilityZone"),
             type = "string",
             name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "StartFlowFlushInput", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
             target_id = prelude.String.id,
         }),
         VpcEndpointAssociationArn = schema.new({

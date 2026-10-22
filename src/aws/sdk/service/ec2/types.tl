@@ -881,6 +881,24 @@ local record M
         Protocol: string
     end
 
+    -- Describes an entry in a transit gateway policy table.
+    record AnalysisTransitGatewayPolicyTableEntry
+        -- The rule number for the policy table entry. Entries are evaluated in ascending order of rule number.
+        RuleNumber: number
+        -- The protocol number. A value of -1 means that the entry matches all protocols.
+        Protocol: string
+        -- The source CIDR block. If this value is not present, the entry matches any source address.
+        SourceCidr: string
+        -- The destination CIDR block. If this value is not present, the entry matches any destination address.
+        DestinationCidr: string
+        -- The source port range. If this value is not present, the entry matches any source port.
+        SourcePortRange: PortRange
+        -- The destination port range. If this value is not present, the entry matches any destination port.
+        DestinationPortRange: PortRange
+        -- The ID of the transit gateway route table to which the entry routes matching traffic.
+        TargetRouteTableId: string
+    end
+
     -- Describes a route in a transit gateway route table.
     record TransitGatewayRouteTableRoute
         -- The CIDR block used for destination matches.
@@ -1003,6 +1021,10 @@ local record M
         TransitGatewayRouteTable: AnalysisComponent
         -- The transit gateway route table route.
         TransitGatewayRouteTableRoute: TransitGatewayRouteTableRoute
+        -- The transit gateway policy table.
+        TransitGatewayPolicyTable: AnalysisComponent
+        -- The transit gateway policy table entry.
+        TransitGatewayPolicyTableEntry: AnalysisTransitGatewayPolicyTableEntry
         -- The transit gateway attachment.
         TransitGatewayAttachment: AnalysisComponent
         -- The Amazon Web Services account for the component.
@@ -1062,6 +1084,8 @@ local record M
         TransitGateway: AnalysisComponent
         -- The route in a transit gateway route table.
         TransitGatewayRouteTableRoute: TransitGatewayRouteTableRoute
+        -- The entry in a transit gateway policy table.
+        TransitGatewayPolicyTableEntry: AnalysisTransitGatewayPolicyTableEntry
         -- The explanation codes.
         Explanations: {Explanation}
         -- The load balancer listener.
@@ -26254,8 +26278,19 @@ local record M
         Status: string
     end
 
+    -- Provides a summary of the performance status check results for an instance.
+    record PerformanceStatusSummary
+        -- The current status.
+        Status: string
+        -- The date and time when the performance status became impaired.
+        ImpairedSince: number
+        -- The recommended action to remediate the impaired instance, if one is available. This
+        -- value is returned only when the instance is impaired.
+        Remediation: string
+    end
+
     -- Describes the status of an instance, including system status, instance status,
-    -- attached EBS status, and application status.
+    -- attached EBS status, application status, and performance status.
     record InstanceStatus
         -- The Availability Zone of the instance.
         AvailabilityZone: string
@@ -26283,6 +26318,9 @@ local record M
         AttachedEbsStatus: EbsStatusSummary
         -- Reports the application-level health status for the instance.
         ApplicationStatus: ApplicationStatusSummary
+        -- Reports the performance-related health status for the instance. This information is
+        -- returned only when performance status checks are enabled for the instance.
+        PerformanceStatus: PerformanceStatusSummary
     end
 
     record DescribeInstanceStatusOutput
@@ -39067,7 +39105,7 @@ local record M
         DisconnectOnSessionTimeout: boolean
         -- The Transit Gateway configuration for the Client VPN endpoint. This option is currently not supported.
         TransitGatewayConfiguration: TransitGatewayConfigurationInputStructure
-        -- The device posture options for the Client VPN endpoint. Specifying this parameter replaces the entire device posture configuration for the endpoint. To remove all device trust providers, specify an empty list.
+        -- The device posture options for the Client VPN endpoint. Specifying this parameter replaces the entire device posture configuration for the endpoint. To disable device posture and remove all device trust providers, specify false for Enabled.
         DevicePostureOptions: DevicePostureOptions
     end
 

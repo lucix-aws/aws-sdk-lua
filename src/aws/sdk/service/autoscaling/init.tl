@@ -38,6 +38,7 @@ local record Client
     deleteTags: function(Client, types.DeleteTagsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
     deleteWarmPool: function(Client, types.DeleteWarmPoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWarmPoolOutput>
     describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountSettingsOutput>
     describeAdjustmentTypes: function(Client, types.DescribeAdjustmentTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAdjustmentTypesOutput>
     describeAutoScalingGroups: function(Client, types.DescribeAutoScalingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingGroupsOutput>
     describeAutoScalingInstances: function(Client, types.DescribeAutoScalingInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingInstancesOutput>
@@ -69,6 +70,7 @@ local record Client
     exitStandby: function(Client, types.ExitStandbyInput, ? base_client.InvokeOptions): async.Operation<types.ExitStandbyOutput>
     getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput, ? base_client.InvokeOptions): async.Operation<types.GetPredictiveScalingForecastOutput>
     launchInstances: function(Client, types.LaunchInstancesInput, ? base_client.InvokeOptions): async.Operation<types.LaunchInstancesOutput>
+    putAccountSetting: function(Client, types.PutAccountSettingInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingOutput>
     putLifecycleHook: function(Client, types.PutLifecycleHookInput, ? base_client.InvokeOptions): async.Operation<types.PutLifecycleHookOutput>
     putNotificationConfiguration: function(Client, types.PutNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutNotificationConfigurationOutput>
     putScalingPolicy: function(Client, types.PutScalingPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutScalingPolicyOutput>
@@ -208,6 +210,10 @@ function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
 end
 
+function C:describeAccountSettings(input: types.DescribeAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountSettingsOutput>
+end
+
 function C:describeAdjustmentTypes(input: types.DescribeAdjustmentTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAdjustmentTypesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAdjustmentTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAdjustmentTypesOutput>
 end
@@ -330,6 +336,10 @@ end
 
 function C:launchInstances(input: types.LaunchInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.LaunchInstancesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.LaunchInstances as schema.OperationSchema, input, options) as async.Operation<types.LaunchInstancesOutput>
+end
+
+function C:putAccountSetting(input: types.PutAccountSettingInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSetting as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSettingOutput>
 end
 
 function C:putLifecycleHook(input: types.PutLifecycleHookInput, options?: base_client.InvokeOptions): async.Operation<types.PutLifecycleHookOutput>

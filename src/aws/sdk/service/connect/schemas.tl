@@ -18142,6 +18142,12 @@ M.SecurityProfile = schema.new({
             target_id = id.from(_N, "GranularAccessControlConfiguration"),
             target = M.GranularAccessControlConfiguration,
         }),
+        Type = schema.new({
+            id = id.from(_N, "SecurityProfile", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -29037,6 +29043,12 @@ M.SecurityProfileSummary = schema.new({
             name = "LastModifiedRegion",
             target_id = prelude.String.id,
         }),
+        Type = schema.new({
+            id = id.from(_N, "SecurityProfileSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -33543,6 +33555,12 @@ M.SecurityProfileSearchSummary = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "SecurityProfileSearchSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
         }),
     },
 })

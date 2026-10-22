@@ -13857,6 +13857,32 @@ local record M
         Username: string
     end
 
+    -- The client credentials for connecting to a Microsoft OneDrive data source using two-legged OAuth (2LO) certificate-based authentication. OneDrive connections access files stored in your OneDrive storage. The tenant ID and client ID are supplied through OneDriveParameters.
+    record OneDriveClientCredentials
+        -- The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) key used to encrypt the OneDrive certificate credentials. This field is required.
+        KmsKeyArn: string
+        -- The thumbprint of the certificate used for two-legged OAuth (2LO) authentication to OneDrive. This field is required.
+        CertThumbprint: string
+    end
+
+    -- The service account credentials used for Google Workspace domain-wide delegation. Use this structure when you authenticate a data source connection using domain-wide delegation across your Google Workspace domain.
+    record ServiceAccountCredentials
+        -- The email address of the Google Workspace administrator account that the service account impersonates through domain-wide delegation. This field is required.
+        AdminAccountEmail: string
+        -- The private key of the Google service account used for domain-wide delegation. This field is required.
+        ServiceAccountPrivateKey: string
+        -- The client email address of the Google service account used for domain-wide delegation. This field is required.
+        ClientEmail: string
+    end
+
+    -- The client credentials for connecting to a Microsoft SharePoint data source using two-legged OAuth (2LO) certificate-based authentication. SharePoint connections access documents stored in SharePoint sites and libraries. The tenant ID and client ID are supplied through SharePointParameters.
+    record SharePointClientCredentials
+        -- The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) key used to encrypt the SharePoint certificate credentials. This field is required.
+        KmsKeyArn: string
+        -- The thumbprint of the certificate used for two-legged OAuth (2LO) authentication to SharePoint. This field is required.
+        CertThumbprint: string
+    end
+
     -- The credentials for authenticating with a web proxy server.
     record WebProxyCredentials
         -- The username for authenticating with the web proxy server.
@@ -13888,6 +13914,12 @@ local record M
         -- OAuthClientCredentials
         -- .
         OAuthClientCredentials: OAuthClientCredentials
+        -- The service account credentials for connecting to a data source that uses Google Workspace domain-wide delegation.
+        ServiceAccountCredentials: ServiceAccountCredentials
+        -- The client credentials for connecting to a Microsoft SharePoint data source using two-legged OAuth (2LO) certificate-based authentication.
+        SharePointClientCredentials: SharePointClientCredentials
+        -- The client credentials for connecting to a Microsoft OneDrive data source using two-legged OAuth (2LO) certificate-based authentication.
+        OneDriveClientCredentials: OneDriveClientCredentials
     end
 
     enum DataSourceType

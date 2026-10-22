@@ -7290,6 +7290,11 @@ local record M
         InstanceId: string
     end
 
+    enum SecurityProfileType
+        "AWS_MANAGED"
+        "CUSTOMER_MANAGED"
+    end
+
     -- Contains information about a security profile.
     record SecurityProfile
         -- The identifier for the security profile.
@@ -7319,6 +7324,8 @@ local record M
         AllowedAccessControlHierarchyGroupId: string
         -- The granular access control configuration for the security profile, including data table permissions.
         GranularAccessControlConfiguration: GranularAccessControlConfiguration
+        -- The type of the security profile: AWS_MANAGED or CUSTOMER_MANAGED.
+        Type: string
     end
 
     record DescribeSecurityProfileOutput
@@ -12641,6 +12648,8 @@ local record M
         LastModifiedTime: number
         -- The Amazon Web Services Region where this resource was last modified.
         LastModifiedRegion: string
+        -- The type of the security profile: AWS_MANAGED or CUSTOMER_MANAGED.
+        Type: string
     end
 
     record ListSecurityProfilesOutput
@@ -14335,6 +14344,8 @@ local record M
         Description: string
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
         Tags: {string : string}
+        -- The type of the security profile: AWS_MANAGED or CUSTOMER_MANAGED.
+        Type: string
     end
 
     record SearchSecurityProfilesOutput

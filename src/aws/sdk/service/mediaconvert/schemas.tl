@@ -108,6 +108,8 @@ M.__listOfAutomatedAbrRule = schema.new({ type = "list", list_member = M.Automat
 
 M.__listOfCmafAdditionalManifest = schema.new({ type = "list", list_member = M.CmafAdditionalManifest })
 
+M.__listOfDashAdaptationSetGrouping = schema.new({ type = "list", list_member = prelude.String })
+
 M.__listOfCmafImageBasedTrickPlayVariant = schema.new({ type = "list", list_member = M.CmafImageBasedTrickPlayVariant })
 
 M.__listOfDashAdditionalManifest = schema.new({ type = "list", list_member = M.DashAdditionalManifest })
@@ -6399,6 +6401,16 @@ M.CmafGroupSettings = schema.new({
                 [traits.JSON_NAME] = { name = "codecSpecification" },
             },
         }),
+        DashAdaptationSetGrouping = schema.new({
+            id = id.from(_N, "CmafGroupSettings", "DashAdaptationSetGrouping"),
+            type = "list",
+            name = "DashAdaptationSetGrouping",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "dashAdaptationSetGrouping" },
+            },
+        }),
         DashIFrameTrickPlayNameModifier = schema.new({
             id = id.from(_N, "CmafGroupSettings", "DashIFrameTrickPlayNameModifier"),
             type = "string",
@@ -6802,6 +6814,16 @@ M.DashIsoGroupSettings = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "baseUrl" },
+            },
+        }),
+        DashAdaptationSetGrouping = schema.new({
+            id = id.from(_N, "DashIsoGroupSettings", "DashAdaptationSetGrouping"),
+            type = "list",
+            name = "DashAdaptationSetGrouping",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "dashAdaptationSetGrouping" },
             },
         }),
         DashIFrameTrickPlayNameModifier = schema.new({
@@ -9134,6 +9156,15 @@ M.Av1Settings = schema.new({
                 [traits.JSON_NAME] = { name = "bitDepth" },
             },
         }),
+        Bitrate = schema.new({
+            id = id.from(_N, "Av1Settings", "Bitrate"),
+            type = "integer",
+            name = "Bitrate",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bitrate" },
+            },
+        }),
         FilmGrainSynthesis = schema.new({
             id = id.from(_N, "Av1Settings", "FilmGrainSynthesis"),
             type = "string",
@@ -9235,6 +9266,15 @@ M.Av1Settings = schema.new({
                 [traits.JSON_NAME] = { name = "rateControlMode" },
             },
         }),
+        SceneChangeDetect = schema.new({
+            id = id.from(_N, "Av1Settings", "SceneChangeDetect"),
+            type = "string",
+            name = "SceneChangeDetect",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sceneChangeDetect" },
+            },
+        }),
         Slices = schema.new({
             id = id.from(_N, "Av1Settings", "Slices"),
             type = "integer",
@@ -9242,6 +9282,24 @@ M.Av1Settings = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "slices" },
+            },
+        }),
+        SlidingWindowMs = schema.new({
+            id = id.from(_N, "Av1Settings", "SlidingWindowMs"),
+            type = "integer",
+            name = "SlidingWindowMs",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "slidingWindowMs" },
+            },
+        }),
+        SlidingWindowPeakBitrate = schema.new({
+            id = id.from(_N, "Av1Settings", "SlidingWindowPeakBitrate"),
+            type = "integer",
+            name = "SlidingWindowPeakBitrate",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "slidingWindowPeakBitrate" },
             },
         }),
         SpatialAdaptiveQuantization = schema.new({
@@ -9883,6 +9941,24 @@ M.H264Settings = schema.new({
                 [traits.JSON_NAME] = { name = "slices" },
             },
         }),
+        SlidingWindowMs = schema.new({
+            id = id.from(_N, "H264Settings", "SlidingWindowMs"),
+            type = "integer",
+            name = "SlidingWindowMs",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "slidingWindowMs" },
+            },
+        }),
+        SlidingWindowPeakBitrate = schema.new({
+            id = id.from(_N, "H264Settings", "SlidingWindowPeakBitrate"),
+            type = "integer",
+            name = "SlidingWindowPeakBitrate",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "slidingWindowPeakBitrate" },
+            },
+        }),
         SlowPal = schema.new({
             id = id.from(_N, "H264Settings", "SlowPal"),
             type = "string",
@@ -10350,6 +10426,24 @@ M.H265Settings = schema.new({
                 [traits.JSON_NAME] = { name = "slices" },
             },
         }),
+        SlidingWindowMs = schema.new({
+            id = id.from(_N, "H265Settings", "SlidingWindowMs"),
+            type = "integer",
+            name = "SlidingWindowMs",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "slidingWindowMs" },
+            },
+        }),
+        SlidingWindowPeakBitrate = schema.new({
+            id = id.from(_N, "H265Settings", "SlidingWindowPeakBitrate"),
+            type = "integer",
+            name = "SlidingWindowPeakBitrate",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "slidingWindowPeakBitrate" },
+            },
+        }),
         SlowPal = schema.new({
             id = id.from(_N, "H265Settings", "SlowPal"),
             type = "string",
@@ -10716,6 +10810,24 @@ M.Mpeg2Settings = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "sceneChangeDetect" },
+            },
+        }),
+        SlidingWindowMs = schema.new({
+            id = id.from(_N, "Mpeg2Settings", "SlidingWindowMs"),
+            type = "integer",
+            name = "SlidingWindowMs",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "slidingWindowMs" },
+            },
+        }),
+        SlidingWindowPeakBitrate = schema.new({
+            id = id.from(_N, "Mpeg2Settings", "SlidingWindowPeakBitrate"),
+            type = "integer",
+            name = "SlidingWindowPeakBitrate",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "slidingWindowPeakBitrate" },
             },
         }),
         SlowPal = schema.new({

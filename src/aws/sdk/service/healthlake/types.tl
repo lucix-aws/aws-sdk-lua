@@ -348,31 +348,6 @@ local record M
         LastUpdatedAt: number
     end
 
-    -- The agent message does not fit within the current conversation context. Start a new conversation or provide a message that relates to the current profile customization session.
-    record AgentMessageOutOfContextException
-        Message: string
-    end
-
-    -- The specified conversation identifier does not exist. Verify the conversation ID or omit it to start a new conversation.
-    record ConversationNotFoundException
-        Message: string
-    end
-
-    -- The requested operation is not yet available. Check the service documentation for a list of supported operations.
-    record NotImplementedOperationException
-        Message: string
-    end
-
-    -- You are not authorized to make this request. Verify that your Amazon Web Services credentials are valid and that you have the required permissions.
-    record UnauthorizedException
-        Message: string
-    end
-
-    -- The content type in your request is not supported. Use a supported content type for this operation.
-    record UnsupportedMIMETypeException
-        Message: string
-    end
-
     enum AgentInputMessageType
         "normal"
         "confirmation_response"
@@ -390,40 +365,72 @@ local record M
     record UpdateProfileWithAgentInput
         -- The unique identifier of the profile to update via the agent.
         ProfileId: string
-        -- The source data format for the transformation.
-        SourceFormat: string
         -- The message to send to the agent.
         InputMessage: AgentInputMessage
         -- The conversation identifier for multi-turn interactions. Omit to start a new conversation.
         ConversationId: string
     end
 
-    enum AgentOutputMessageType
-        "INITIAL_GREETING"
-        "normal"
-        "confirmation"
-        "complete"
-        "error"
-        "options"
-        "choices"
+    -- Contains the final response event from the agent, including the response message, response options, and conversation ID.
+    record EndOfOutputEvent
+        -- The final response message from the agent.
+        FinalResponseMessage: string
+        -- The response options that you can use to easily answer follow-up questions from the agent.
+        Options: {string}
+        -- The conversation ID of the request. You can use this ID to continue the profile mapping based on this request's context at a later time.
+        ConversationId: string
     end
 
-    -- Represents a response message from the agent during chat-based profile customization.
-    record AgentOutputMessage
-        -- The text of the agent's response.
-        Body: string
-        -- The type of output message, which indicates how to interpret the agent's response.
-        Type: string
-        -- A list of selectable options presented when the response type is options.
-        OptionsList: {string}
+    enum AgentErrorType
+        "InternalServerException"
+        "ResourceNotFoundException"
+        "ValidationException"
+        "AccessDeniedException"
+        "ThrottlingException"
+    end
+
+    -- The type of an event that returns an exception encountered while serving the request.
+    record ErrorEvent
+        -- The type of the exception.
+        Error: string
+        -- The exception message.
+        Message: string
+    end
+
+    -- The type for a periodically emitted event to keep the connection alive.
+    record HeartbeatEvent
+    end
+
+    -- The type for an incremental progress update from the agent.
+    record ProgressEvent
+        -- An incremental progress update message by the agent
+        Message: string
+    end
+
+    -- The type for an incremental text update from the agent.
+    record TextMessageEvent
+        -- An incremental text update from the agent.
+        Message: string
+    end
+
+    -- Represents the response stream type from the agent during chat-based profile customization.
+    record AgentOutputMessageStream
+        -- An incremental text update from the agent.
+        TextMessageEvent: TextMessageEvent
+        -- An incremental progress update from the agent.
+        ProgressEvent: ProgressEvent
+        -- Periodically emitted event to keep the connection alive.
+        HeartbeatEvent: HeartbeatEvent
+        -- An exception encountered while serving the request.
+        ErrorEvent: ErrorEvent
+        -- The final event in the response stream from the agent during chat-based profile customization. The caller can assume that the stream has ended upon receiving this event.
+        EndOfOutputEvent: EndOfOutputEvent
     end
 
     -- The response from the UpdateProfileWithAgent operation.
     record UpdateProfileWithAgentOutput
-        -- The response message from the agent.
-        AgentResponse: AgentOutputMessage
-        -- The conversation identifier to use for follow-up messages in this conversation.
-        ConversationId: string
+        -- The streaming response from the agent.
+        AgentResponse: function(): string, string
     end
 
     enum AnalyticsStatus

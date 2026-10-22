@@ -3819,6 +3819,85 @@ M.AnalysisSecurityGroupRule = schema.new({
     },
 })
 
+M.AnalysisTransitGatewayPolicyTableEntry = schema.new({
+    id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry"),
+    type = "structure",
+    members = {
+        RuleNumber = schema.new({
+            id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry", "RuleNumber"),
+            type = "integer",
+            name = "RuleNumber",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ruleNumber" },
+                [traits.EC2_QUERY_NAME] = { name = "RuleNumber" },
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "protocol" },
+                [traits.EC2_QUERY_NAME] = { name = "Protocol" },
+            },
+        }),
+        SourceCidr = schema.new({
+            id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry", "SourceCidr"),
+            type = "string",
+            name = "SourceCidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "sourceCidr" },
+                [traits.EC2_QUERY_NAME] = { name = "SourceCidr" },
+            },
+        }),
+        DestinationCidr = schema.new({
+            id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry", "DestinationCidr"),
+            type = "string",
+            name = "DestinationCidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "destinationCidr" },
+                [traits.EC2_QUERY_NAME] = { name = "DestinationCidr" },
+            },
+        }),
+        SourcePortRange = schema.new({
+            id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry", "SourcePortRange"),
+            type = "structure",
+            name = "SourcePortRange",
+            target_id = id.from(_N, "PortRange"),
+            target = M.PortRange,
+            traits = {
+                [traits.XML_NAME] = { name = "sourcePortRange" },
+                [traits.EC2_QUERY_NAME] = { name = "SourcePortRange" },
+            },
+        }),
+        DestinationPortRange = schema.new({
+            id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry", "DestinationPortRange"),
+            type = "structure",
+            name = "DestinationPortRange",
+            target_id = id.from(_N, "PortRange"),
+            target = M.PortRange,
+            traits = {
+                [traits.XML_NAME] = { name = "destinationPortRange" },
+                [traits.EC2_QUERY_NAME] = { name = "DestinationPortRange" },
+            },
+        }),
+        TargetRouteTableId = schema.new({
+            id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry", "TargetRouteTableId"),
+            type = "string",
+            name = "TargetRouteTableId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "targetRouteTableId" },
+                [traits.EC2_QUERY_NAME] = { name = "TargetRouteTableId" },
+            },
+        }),
+    },
+})
+
 M.TransitGatewayRouteTableRoute = schema.new({
     id = id.from(_N, "TransitGatewayRouteTableRoute"),
     type = "structure",
@@ -4429,6 +4508,28 @@ M.Explanation = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "TransitGatewayRouteTableRoute" },
             },
         }),
+        TransitGatewayPolicyTable = schema.new({
+            id = id.from(_N, "Explanation", "TransitGatewayPolicyTable"),
+            type = "structure",
+            name = "TransitGatewayPolicyTable",
+            target_id = id.from(_N, "AnalysisComponent"),
+            target = M.AnalysisComponent,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayPolicyTable" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayPolicyTable" },
+            },
+        }),
+        TransitGatewayPolicyTableEntry = schema.new({
+            id = id.from(_N, "Explanation", "TransitGatewayPolicyTableEntry"),
+            type = "structure",
+            name = "TransitGatewayPolicyTableEntry",
+            target_id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry"),
+            target = M.AnalysisTransitGatewayPolicyTableEntry,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayPolicyTableEntry" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayPolicyTableEntry" },
+            },
+        }),
         TransitGatewayAttachment = schema.new({
             id = id.from(_N, "Explanation", "TransitGatewayAttachment"),
             type = "structure",
@@ -4712,6 +4813,17 @@ M.PathComponent = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "transitGatewayRouteTableRoute" },
                 [traits.EC2_QUERY_NAME] = { name = "TransitGatewayRouteTableRoute" },
+            },
+        }),
+        TransitGatewayPolicyTableEntry = schema.new({
+            id = id.from(_N, "PathComponent", "TransitGatewayPolicyTableEntry"),
+            type = "structure",
+            name = "TransitGatewayPolicyTableEntry",
+            target_id = id.from(_N, "AnalysisTransitGatewayPolicyTableEntry"),
+            target = M.AnalysisTransitGatewayPolicyTableEntry,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayPolicyTableEntry" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayPolicyTableEntry" },
             },
         }),
         Explanations = schema.new({
@@ -63805,6 +63917,43 @@ M.InstanceStatusSummary = schema.new({
     },
 })
 
+M.PerformanceStatusSummary = schema.new({
+    id = id.from(_N, "PerformanceStatusSummary"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "PerformanceStatusSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "status" },
+                [traits.EC2_QUERY_NAME] = { name = "Status" },
+            },
+        }),
+        ImpairedSince = schema.new({
+            id = id.from(_N, "PerformanceStatusSummary", "ImpairedSince"),
+            type = "timestamp",
+            name = "ImpairedSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "impairedSince" },
+                [traits.EC2_QUERY_NAME] = { name = "ImpairedSince" },
+            },
+        }),
+        Remediation = schema.new({
+            id = id.from(_N, "PerformanceStatusSummary", "Remediation"),
+            type = "string",
+            name = "Remediation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "remediation" },
+                [traits.EC2_QUERY_NAME] = { name = "Remediation" },
+            },
+        }),
+    },
+})
+
 M.InstanceStatus = schema.new({
     id = id.from(_N, "InstanceStatus"),
     type = "structure",
@@ -63924,6 +64073,17 @@ M.InstanceStatus = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "applicationStatus" },
                 [traits.EC2_QUERY_NAME] = { name = "ApplicationStatus" },
+            },
+        }),
+        PerformanceStatus = schema.new({
+            id = id.from(_N, "InstanceStatus", "PerformanceStatus"),
+            type = "structure",
+            name = "PerformanceStatus",
+            target_id = id.from(_N, "PerformanceStatusSummary"),
+            target = M.PerformanceStatusSummary,
+            traits = {
+                [traits.XML_NAME] = { name = "performanceStatus" },
+                [traits.EC2_QUERY_NAME] = { name = "PerformanceStatus" },
             },
         }),
     },

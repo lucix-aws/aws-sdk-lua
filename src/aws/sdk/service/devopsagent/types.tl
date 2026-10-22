@@ -416,6 +416,32 @@ local record M
     record MCPServerSplunkConfiguration
     end
 
+    -- Represents a channel in a Microsoft Teams team that the DevOps Agent service can send notifications to.
+    record MSTeamsChannel
+        -- The name of the Microsoft Teams channel.
+        channelName: string
+        -- The unique identifier of the Microsoft Teams channel, for example 19:abc123def456@thread.tacv2.
+        channelId: string
+    end
+
+    -- Specifies the Microsoft Teams channels that receive different types of agent notifications.
+    record MSTeamsTransmissionTarget
+        -- The Microsoft Teams channel that receives notifications from the On-call Agent.
+        opsOncallTarget: MSTeamsChannel
+        -- The Microsoft Teams channel that receives notifications from the SRE Agent.
+        opsSRETarget: MSTeamsChannel
+    end
+
+    -- Configuration for connecting a Microsoft Teams team to the DevOps Agent service. Use this configuration to specify which team to connect and how to route agent notifications to channels within that team.
+    record MSTeamsConfiguration
+        -- The identifier of the Microsoft Teams team to connect to the DevOps Agent service.
+        teamId: string
+        -- The name of the Microsoft Teams team to connect to the DevOps Agent service.
+        teamName: string
+        -- The Microsoft Teams channels that receive agent notifications.
+        transmissionTarget: MSTeamsTransmissionTarget
+    end
+
     -- Configuration for Pagerduty integration.
     record PagerDutyConfiguration
         -- List of Pagerduty service available for the association.
@@ -558,6 +584,8 @@ local record M
         remoteagent: RemoteAgentConfiguration
         -- Remote A2A agent integration configuration (SigV4 auth).
         remoteagentsigv4: RemoteAgentSigV4Configuration
+        -- The configuration for connecting a Microsoft Teams team to the DevOps Agent service.
+        msteams: MSTeamsConfiguration
         -- Release management network environment configuration
         releaseManagement: ReleaseManagementConfiguration
     end
@@ -2525,6 +2553,7 @@ local record M
         "slack"
         "azure"
         "azuredevops"
+        "msteams"
         "dynatrace"
         "servicenow"
         "pagerduty"

@@ -40,6 +40,8 @@ M.ClassicLinkVPCSecurityGroups = schema.new({ type = "list", list_member = prelu
 
 M.BlockDeviceMappings = schema.new({ type = "list", list_member = M.BlockDeviceMapping })
 
+M.AccountSettings = schema.new({ type = "list", list_member = M.AccountSetting })
+
 M.AdjustmentTypes = schema.new({ type = "list", list_member = M.AdjustmentType })
 
 M.AutoScalingGroupNames = schema.new({ type = "list", list_member = prelude.String })
@@ -200,6 +202,49 @@ M.AcceleratorTotalMemoryMiBRequest = schema.new({
             type = "integer",
             name = "Max",
             target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.AccountSetting = schema.new({
+    id = id.from(_N, "AccountSetting"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "AccountSetting", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "AccountSetting", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+        EnforcementType = schema.new({
+            id = id.from(_N, "AccountSetting", "EnforcementType"),
+            type = "string",
+            name = "EnforcementType",
+            target_id = prelude.String.id,
+        }),
+        EnforcementDate = schema.new({
+            id = id.from(_N, "AccountSetting", "EnforcementDate"),
+            type = "timestamp",
+            name = "EnforcementDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        DefaultValue = schema.new({
+            id = id.from(_N, "AccountSetting", "DefaultValue"),
+            type = "string",
+            name = "DefaultValue",
+            target_id = prelude.String.id,
+        }),
+        EnforcedValue = schema.new({
+            id = id.from(_N, "AccountSetting", "EnforcedValue"),
+            type = "string",
+            name = "EnforcedValue",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2393,6 +2438,68 @@ M.DescribeAccountLimitsOutput = schema.new({
     },
 })
 
+M.DescribeAccountSettingsInput = schema.new({
+    id = id.from(_N, "DescribeAccountSettingsType"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DescribeAccountSettingsInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeAccountSettingsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxRecords = schema.new({
+            id = id.from(_N, "DescribeAccountSettingsInput", "MaxRecords"),
+            type = "integer",
+            name = "MaxRecords",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DescribeAccountSettingsOutput = schema.new({
+    id = id.from(_N, "DescribeAccountSettingsAnswer"),
+    type = "structure",
+    members = {
+        Settings = schema.new({
+            id = id.from(_N, "DescribeAccountSettingsOutput", "Settings"),
+            type = "list",
+            name = "Settings",
+            target_id = prelude.Document.id,
+            list_member = M.AccountSetting,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeAccountSettingsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidNextToken = schema.new({
+    id = id.from(_N, "InvalidNextToken"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidNextToken", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidNextToken", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DescribeAdjustmentTypesInput = prelude.Unit
 
 M.DescribeAdjustmentTypesOutput = schema.new({
@@ -3003,23 +3110,6 @@ M.DescribeAutoScalingGroupsOutput = schema.new({
             id = id.from(_N, "DescribeAutoScalingGroupsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidNextToken = schema.new({
-    id = id.from(_N, "InvalidNextToken"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "InvalidNextToken", httpResponseCode = 400 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InvalidNextToken", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -5947,6 +6037,36 @@ M.LaunchInstancesOutput = schema.new({
     },
 })
 
+M.PutAccountSettingInput = schema.new({
+    id = id.from(_N, "PutAccountSettingType"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "PutAccountSettingInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "PutAccountSettingInput", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAccountSettingOutput = schema.new({
+    id = id.from(_N, "PutAccountSettingAnswer"),
+    type = "structure",
+})
+
 M.PutLifecycleHookInput = schema.new({
     id = id.from(_N, "PutLifecycleHookType"),
     type = "structure",
@@ -7081,6 +7201,17 @@ M.DescribeAccountLimits = schema.operation({
     },
 })
 
+M.DescribeAccountSettings = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "DescribeAccountSettings"),
+    input = M.DescribeAccountSettingsInput,
+    output = M.DescribeAccountSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeAdjustmentTypes = schema.operation({
     id = id.from("com.amazonaws.autoscaling", "DescribeAdjustmentTypes"),
     input = M.DescribeAdjustmentTypesInput,
@@ -7415,6 +7546,17 @@ M.LaunchInstances = schema.operation({
     id = id.from("com.amazonaws.autoscaling", "LaunchInstances"),
     input = M.LaunchInstancesInput,
     output = M.LaunchInstancesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountSetting = schema.operation({
+    id = id.from("com.amazonaws.autoscaling", "PutAccountSetting"),
+    input = M.PutAccountSettingInput,
+    output = M.PutAccountSettingOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

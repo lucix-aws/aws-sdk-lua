@@ -5996,9 +5996,6 @@ M.WaitAndContinueSpecification = schema.new({
             name = "waitingResponse",
             target_id = id.from(_N, "ResponseSpecification"),
             target = M.ResponseSpecification,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         continueResponse = schema.new({
             id = id.from(_N, "WaitAndContinueSpecification", "continueResponse"),
@@ -6006,9 +6003,6 @@ M.WaitAndContinueSpecification = schema.new({
             name = "continueResponse",
             target_id = id.from(_N, "ResponseSpecification"),
             target = M.ResponseSpecification,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         stillWaitingResponse = schema.new({
             id = id.from(_N, "WaitAndContinueSpecification", "stillWaitingResponse"),
@@ -16870,9 +16864,6 @@ M.IntentConfirmationSetting = schema.new({
             name = "promptSpecification",
             target_id = id.from(_N, "PromptSpecification"),
             target = M.PromptSpecification,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         declinationResponse = schema.new({
             id = id.from(_N, "IntentConfirmationSetting", "declinationResponse"),

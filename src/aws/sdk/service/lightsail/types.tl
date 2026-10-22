@@ -351,6 +351,13 @@ local record M
         "SwapUsage"
         "BurstCapacityTime"
         "BurstCapacityPercentage"
+        "DiskReadOps"
+        "DiskWriteOps"
+        "DiskReadBytes"
+        "DiskWriteBytes"
+        "DiskTotalReadTime"
+        "DiskTotalWriteTime"
+        "DiskQueueLength"
     end
 
     enum ResourceType
@@ -5157,6 +5164,13 @@ local record M
         "BurstCapacityTime"
         "BurstCapacityPercentage"
         "MetadataNoToken"
+        "DiskReadOps"
+        "DiskWriteOps"
+        "DiskReadBytes"
+        "DiskWriteBytes"
+        "DiskTotalReadTime"
+        "DiskTotalWriteTime"
+        "DiskQueueLength"
     end
 
     record GetInstanceMetricDataInput
@@ -5242,6 +5256,51 @@ local record M
         -- sessions, such as Instance Metadata Service Version 2, then the value is 0.
         -- Statistics: The most useful statistic is Sum.
         -- Unit: The published unit is Count.
+        -- DiskReadOps
+        -- - The number of read
+        -- operations completed on the system disk of the instance during the period. This metric
+        -- doesn't include activity on additional disks that you attach to the instance.
+        -- Statistics: The most useful statistic is Sum.
+        -- Unit: The published unit is Count.
+        -- DiskWriteOps
+        -- - The number of write
+        -- operations completed on the system disk of the instance during the period. This metric
+        -- doesn't include activity on additional disks that you attach to the instance.
+        -- Statistics: The most useful statistic is Sum.
+        -- Unit: The published unit is Count.
+        -- DiskReadBytes
+        -- - The number of bytes read
+        -- from the system disk of the instance during the period. This metric doesn't include
+        -- activity on additional disks that you attach to the instance.
+        -- Statistics: The most useful statistic is Sum.
+        -- Unit: The published unit is Bytes.
+        -- DiskWriteBytes
+        -- - The number of bytes
+        -- written to the system disk of the instance during the period. This metric doesn't include
+        -- activity on additional disks that you attach to the instance.
+        -- Statistics: The most useful statistic is Sum.
+        -- Unit: The published unit is Bytes.
+        -- DiskTotalReadTime
+        -- - The total number of
+        -- seconds spent by all read operations that completed on the system disk of the instance
+        -- during the period. This metric doesn't include activity on additional disks that you
+        -- attach to the instance.
+        -- Statistics: The most useful statistic is Average.
+        -- Unit: The published unit is Seconds.
+        -- DiskTotalWriteTime
+        -- - The total number of
+        -- seconds spent by all write operations that completed on the system disk of the instance
+        -- during the period. This metric doesn't include activity on additional disks that you
+        -- attach to the instance.
+        -- Statistics: The most useful statistic is Average.
+        -- Unit: The published unit is Seconds.
+        -- DiskQueueLength
+        -- - The number of read and
+        -- write requests that are waiting to access the system disk of the instance. This metric
+        -- doesn't include activity on additional disks that you attach to the instance.
+        -- Statistics: The most useful statistic is Average.
+        -- Unit: The published unit is Count.
+        -- For more information about system disk performance metrics, see View system disk performance metrics for your Lightsail instance.
         metricName: string
         -- The granularity, in seconds, of the returned data points.
         -- The StatusCheckFailed, StatusCheckFailed_Instance, and
@@ -7096,8 +7155,10 @@ local record M
         -- Instances: BurstCapacityPercentage,
         -- BurstCapacityTime, CPUUtilization, NetworkIn,
         -- NetworkOut, StatusCheckFailed,
-        -- StatusCheckFailed_Instance, and
-        -- StatusCheckFailed_System.
+        -- StatusCheckFailed_Instance, StatusCheckFailed_System,
+        -- DiskReadOps, DiskWriteOps, DiskReadBytes,
+        -- DiskWriteBytes, DiskTotalReadTime,
+        -- DiskTotalWriteTime, and DiskQueueLength.
         -- Load balancers:
         -- ClientTLSNegotiationErrorCount, HealthyHostCount,
         -- UnhealthyHostCount, HTTPCode_LB_4XX_Count,

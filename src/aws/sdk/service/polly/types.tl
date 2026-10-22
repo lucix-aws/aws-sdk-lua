@@ -224,6 +224,16 @@ local record M
         "Lennart"
         "Lorenzo"
         "Tiffany"
+        "Arjun"
+        "Carlos"
+        "Carolina"
+        "Curtis"
+        "Hyunduk"
+        "Kenneth"
+        "Kiara"
+        "Leo"
+        "Nate"
+        "Tina"
     end
 
     -- Description of the voice.
@@ -302,7 +312,9 @@ local record M
     -- lexemes, language code, and so on. For more information, see Managing Lexicons.
     record LexiconAttributes
         -- Phonetic alphabet used in the lexicon. Valid values are
-        -- ipa and x-sampa.
+        -- ipa, x-sampa, x-amazon-pinyin,
+        -- x-amazon-jyutping, x-amazon-pron-kana, and
+        -- x-amazon-yomigana.
         Alphabet: string
         -- Language code that the lexicon applies to. A lexicon with a
         -- language code such as "en" would be applied to all English languages
@@ -567,7 +579,11 @@ local record M
     end
 
     -- The alphabet specified by the lexicon is not a supported alphabet.
-    -- Valid values are x-sampa and ipa.
+    -- Valid values are ipa, x-sampa,
+    -- x-amazon-pinyin, x-amazon-jyutping,
+    -- x-amazon-pron-kana, and
+    -- x-amazon-yomigana. Replace the unsupported alphabet
+    -- with one of the valid values and resubmit your request.
     record UnsupportedPlsAlphabetException
         message: string
     end

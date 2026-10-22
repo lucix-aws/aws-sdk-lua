@@ -37,6 +37,7 @@ local record Client
     createDataProduct: function(Client, types.CreateDataProductInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataProductOutput>
     createDataProductRevision: function(Client, types.CreateDataProductRevisionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataProductRevisionOutput>
     createDataSource: function(Client, types.CreateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    createDesignation: function(Client, types.CreateDesignationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDesignationOutput>
     createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
     createDomainUnit: function(Client, types.CreateDomainUnitInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainUnitOutput>
     createEnvironment: function(Client, types.CreateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
@@ -65,6 +66,7 @@ local record Client
     deleteDataExportConfiguration: function(Client, types.DeleteDataExportConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataExportConfigurationOutput>
     deleteDataProduct: function(Client, types.DeleteDataProductInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataProductOutput>
     deleteDataSource: function(Client, types.DeleteDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    deleteDesignation: function(Client, types.DeleteDesignationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDesignationOutput>
     deleteDomain: function(Client, types.DeleteDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
     deleteDomainUnit: function(Client, types.DeleteDomainUnitInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainUnitOutput>
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
@@ -97,6 +99,7 @@ local record Client
     getDataProduct: function(Client, types.GetDataProductInput, ? base_client.InvokeOptions): async.Operation<types.GetDataProductOutput>
     getDataSource: function(Client, types.GetDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
     getDataSourceRun: function(Client, types.GetDataSourceRunInput, ? base_client.InvokeOptions): async.Operation<types.GetDataSourceRunOutput>
+    getDesignation: function(Client, types.GetDesignationInput, ? base_client.InvokeOptions): async.Operation<types.GetDesignationOutput>
     getDomain: function(Client, types.GetDomainInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
     getDomainUnit: function(Client, types.GetDomainUnitInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainUnitOutput>
     getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
@@ -136,6 +139,7 @@ local record Client
     listDataSourceRunActivities: function(Client, types.ListDataSourceRunActivitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourceRunActivitiesOutput>
     listDataSourceRuns: function(Client, types.ListDataSourceRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourceRunsOutput>
     listDataSources: function(Client, types.ListDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    listDesignations: function(Client, types.ListDesignationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDesignationsOutput>
     listDomains: function(Client, types.ListDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
     listDomainUnitsForParent: function(Client, types.ListDomainUnitsForParentInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainUnitsForParentOutput>
     listEntityOwners: function(Client, types.ListEntityOwnersInput, ? base_client.InvokeOptions): async.Operation<types.ListEntityOwnersOutput>
@@ -190,6 +194,7 @@ local record Client
     updateAssetFilter: function(Client, types.UpdateAssetFilterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetFilterOutput>
     updateConnection: function(Client, types.UpdateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
     updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    updateDesignation: function(Client, types.UpdateDesignationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDesignationOutput>
     updateDomain: function(Client, types.UpdateDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainOutput>
     updateDomainUnit: function(Client, types.UpdateDomainUnitInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainUnitOutput>
     updateEnvironment: function(Client, types.UpdateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
@@ -328,6 +333,10 @@ function C:createDataSource(input: types.CreateDataSourceInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSource as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceOutput>
 end
 
+function C:createDesignation(input: types.CreateDesignationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDesignationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDesignation as schema.OperationSchema, input, options) as async.Operation<types.CreateDesignationOutput>
+end
+
 function C:createDomain(input: types.CreateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainOutput>
 end
@@ -438,6 +447,10 @@ end
 
 function C:deleteDataSource(input: types.DeleteDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataSourceOutput>
+end
+
+function C:deleteDesignation(input: types.DeleteDesignationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDesignationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDesignation as schema.OperationSchema, input, options) as async.Operation<types.DeleteDesignationOutput>
 end
 
 function C:deleteDomain(input: types.DeleteDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
@@ -566,6 +579,10 @@ end
 
 function C:getDataSourceRun(input: types.GetDataSourceRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataSourceRunOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataSourceRun as schema.OperationSchema, input, options) as async.Operation<types.GetDataSourceRunOutput>
+end
+
+function C:getDesignation(input: types.GetDesignationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDesignationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDesignation as schema.OperationSchema, input, options) as async.Operation<types.GetDesignationOutput>
 end
 
 function C:getDomain(input: types.GetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
@@ -722,6 +739,10 @@ end
 
 function C:listDataSources(input: types.ListDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataSources as schema.OperationSchema, input, options) as async.Operation<types.ListDataSourcesOutput>
+end
+
+function C:listDesignations(input: types.ListDesignationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDesignationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDesignations as schema.OperationSchema, input, options) as async.Operation<types.ListDesignationsOutput>
 end
 
 function C:listDomains(input: types.ListDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
@@ -938,6 +959,10 @@ end
 
 function C:updateDataSource(input: types.UpdateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataSourceOutput>
+end
+
+function C:updateDesignation(input: types.UpdateDesignationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDesignationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDesignation as schema.OperationSchema, input, options) as async.Operation<types.UpdateDesignationOutput>
 end
 
 function C:updateDomain(input: types.UpdateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainOutput>

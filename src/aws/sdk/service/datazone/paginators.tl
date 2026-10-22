@@ -166,6 +166,24 @@ function M.items_list_data_sources(client, input)
     })
 end
 
+--- Returns a page iterator for listDesignations.
+function M.pages_list_designations(client, input)
+    return paginator.pages(client, "listDesignations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listDesignations.
+function M.items_list_designations(client, input)
+    return paginator.items(client, "listDesignations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listDomainUnitsForParent.
 function M.pages_list_domain_units_for_parent(client, input)
     return paginator.pages(client, "listDomainUnitsForParent", input, {
