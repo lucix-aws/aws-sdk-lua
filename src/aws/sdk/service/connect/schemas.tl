@@ -290,6 +290,12 @@ M.RealTimeContactAnalysisSegmentTypes = schema.new({ type = "list", list_member 
 
 M.RealtimeContactAnalysisSegments = schema.new({ type = "list", list_member = M.RealtimeContactAnalysisSegment })
 
+M.ReplicationFindingsList = schema.new({ type = "list", list_member = M.ReplicationFinding })
+
+M.ApproximateDriftedResourceCounts = schema.new({ type = "list", list_member = M.ApproximateDriftedResourceCount })
+
+M.ResourceReplicationStatuses = schema.new({ type = "list", list_member = M.ResourceReplicationStatus })
+
 M.RoutingProfileManualAssignmentQueueConfigSummaryList = schema.new({ type = "list", list_member = M.RoutingProfileManualAssignmentQueueConfigSummary })
 
 M.RoutingProfileQueueConfigSummaryList = schema.new({ type = "list", list_member = M.RoutingProfileQueueConfigSummary })
@@ -22453,6 +22459,12 @@ M.GetTrafficDistributionOutput = schema.new({
             target_id = id.from(_N, "AgentConfig"),
             target = M.AgentConfig,
         }),
+        LastFailoverTime = schema.new({
+            id = id.from(_N, "GetTrafficDistributionOutput", "LastFailoverTime"),
+            type = "timestamp",
+            name = "LastFailoverTime",
+            target_id = prelude.Timestamp.id,
+        }),
     },
 })
 
@@ -28068,6 +28080,211 @@ M.OutputTypeNotFoundException = schema.new({
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListReplicationFindingsInput = schema.new({
+    id = id.from(_N, "ListReplicationFindingsRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "ListReplicationFindingsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ListReplicationFindingsInput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "resourceType" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListReplicationFindingsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListReplicationFindingsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ApproximateDriftedResourceCount = schema.new({
+    id = id.from(_N, "ApproximateDriftedResourceCount"),
+    type = "structure",
+    members = {
+        Region = schema.new({
+            id = id.from(_N, "ApproximateDriftedResourceCount", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Count = schema.new({
+            id = id.from(_N, "ApproximateDriftedResourceCount", "Count"),
+            type = "long",
+            name = "Count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Timestamp = schema.new({
+            id = id.from(_N, "ApproximateDriftedResourceCount", "Timestamp"),
+            type = "timestamp",
+            name = "Timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ReplicationFinding = schema.new({
+    id = id.from(_N, "ReplicationFinding"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "ReplicationFinding", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "ReplicationFinding", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Region = schema.new({
+            id = id.from(_N, "ReplicationFinding", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ReplicationFinding", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ReplicationFinding", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Operation = schema.new({
+            id = id.from(_N, "ReplicationFinding", "Operation"),
+            type = "string",
+            name = "Operation",
+            target_id = prelude.String.id,
+        }),
+        ReferenceCode = schema.new({
+            id = id.from(_N, "ReplicationFinding", "ReferenceCode"),
+            type = "string",
+            name = "ReferenceCode",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ReplicationFinding", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceReplicationStatus = schema.new({
+    id = id.from(_N, "ResourceReplicationStatus"),
+    type = "structure",
+    members = {
+        Region = schema.new({
+            id = id.from(_N, "ResourceReplicationStatus", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ResourceReplicationStatus", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListReplicationFindingsOutput = schema.new({
+    id = id.from(_N, "ListReplicationFindingsResponse"),
+    type = "structure",
+    members = {
+        ReplicationFindingsList = schema.new({
+            id = id.from(_N, "ListReplicationFindingsOutput", "ReplicationFindingsList"),
+            type = "list",
+            name = "ReplicationFindingsList",
+            target_id = prelude.Document.id,
+            list_member = M.ReplicationFinding,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApproximateDriftedResourceCounts = schema.new({
+            id = id.from(_N, "ListReplicationFindingsOutput", "ApproximateDriftedResourceCounts"),
+            type = "list",
+            name = "ApproximateDriftedResourceCounts",
+            target_id = prelude.Document.id,
+            list_member = M.ApproximateDriftedResourceCount,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListReplicationFindingsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        ResourceReplicationStatuses = schema.new({
+            id = id.from(_N, "ListReplicationFindingsOutput", "ResourceReplicationStatuses"),
+            type = "list",
+            name = "ResourceReplicationStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceReplicationStatus,
         }),
     },
 })
@@ -47940,6 +48157,18 @@ M.ListRealtimeContactAnalysisSegmentsV2 = schema.operation({
     output = M.ListRealtimeContactAnalysisSegmentsV2Output,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/contact/list-real-time-analysis-segments-v2/{InstanceId}/{ContactId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListReplicationFindings = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListReplicationFindings"),
+    input = M.ListReplicationFindingsInput,
+    output = M.ListReplicationFindingsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/replication-findings/{InstanceId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

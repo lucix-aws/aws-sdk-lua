@@ -256,6 +256,7 @@ local record Client
     listQueues: function(Client, types.ListQueuesInput, ? base_client.InvokeOptions): async.Operation<types.ListQueuesOutput>
     listQuickConnects: function(Client, types.ListQuickConnectsInput, ? base_client.InvokeOptions): async.Operation<types.ListQuickConnectsOutput>
     listRealtimeContactAnalysisSegmentsV2: function(Client, types.ListRealtimeContactAnalysisSegmentsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListRealtimeContactAnalysisSegmentsV2Output>
+    listReplicationFindings: function(Client, types.ListReplicationFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListReplicationFindingsOutput>
     listRoutingProfileManualAssignmentQueues: function(Client, types.ListRoutingProfileManualAssignmentQueuesInput, ? base_client.InvokeOptions): async.Operation<types.ListRoutingProfileManualAssignmentQueuesOutput>
     listRoutingProfileQueues: function(Client, types.ListRoutingProfileQueuesInput, ? base_client.InvokeOptions): async.Operation<types.ListRoutingProfileQueuesOutput>
     listRoutingProfiles: function(Client, types.ListRoutingProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListRoutingProfilesOutput>
@@ -1414,6 +1415,10 @@ end
 
 function C:listRealtimeContactAnalysisSegmentsV2(input: types.ListRealtimeContactAnalysisSegmentsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListRealtimeContactAnalysisSegmentsV2Output>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRealtimeContactAnalysisSegmentsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListRealtimeContactAnalysisSegmentsV2Output>
+end
+
+function C:listReplicationFindings(input: types.ListReplicationFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReplicationFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReplicationFindings as schema.OperationSchema, input, options) as async.Operation<types.ListReplicationFindingsOutput>
 end
 
 function C:listRoutingProfileManualAssignmentQueues(input: types.ListRoutingProfileManualAssignmentQueuesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoutingProfileManualAssignmentQueuesOutput>

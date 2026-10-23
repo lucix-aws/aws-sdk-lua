@@ -918,6 +918,8 @@ M.SpotPlacementScores = schema.new({ type = "list", list_member = M.SpotPlacemen
 
 M.SubnetCidrReservationList = schema.new({ type = "list", list_member = M.SubnetCidrReservation })
 
+M.TransitGatewayNatRuleList = schema.new({ type = "list", list_member = M.TransitGatewayNatRule })
+
 M.TransitGatewayAttachmentPropagationList = schema.new({ type = "list", list_member = M.TransitGatewayAttachmentPropagation })
 
 M.TransitGatewayMeteringPolicyEntryList = schema.new({ type = "list", list_member = M.TransitGatewayMeteringPolicyEntry })
@@ -999,6 +1001,8 @@ M.TrafficMirrorNetworkServiceList = schema.new({ type = "list", list_member = pr
 M.TrafficMirrorFilterRuleFieldList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TrafficMirrorSessionFieldList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayNatRuleRequestList = schema.new({ type = "list", list_member = M.TransitGatewayNatRuleRequest })
 
 M.PayerResponsibilitySet = schema.new({ type = "list", list_member = M.PayerResponsibilityEntry })
 
@@ -77358,6 +77362,16 @@ M.TransitGatewayAttachment = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "TagSet" },
             },
         }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "TransitGatewayAttachment", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "natGatewaySupport" },
+                [traits.EC2_QUERY_NAME] = { name = "NatGatewaySupport" },
+            },
+        }),
     },
 })
 
@@ -94255,6 +94269,123 @@ M.GetSubnetCidrReservationsOutput = schema.new({
     },
 })
 
+M.GetTransitGatewayAttachmentNatConfigurationInput = schema.new({
+    id = id.from(_N, "GetTransitGatewayAttachmentNatConfigurationRequest"),
+    type = "structure",
+    members = {
+        TransitGatewayAttachmentId = schema.new({
+            id = id.from(_N, "GetTransitGatewayAttachmentNatConfigurationInput", "TransitGatewayAttachmentId"),
+            type = "string",
+            name = "TransitGatewayAttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "GetTransitGatewayAttachmentNatConfigurationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.TransitGatewayNatRule = schema.new({
+    id = id.from(_N, "TransitGatewayNatRule"),
+    type = "structure",
+    members = {
+        RuleNumber = schema.new({
+            id = id.from(_N, "TransitGatewayNatRule", "RuleNumber"),
+            type = "integer",
+            name = "RuleNumber",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ruleNumber" },
+                [traits.EC2_QUERY_NAME] = { name = "RuleNumber" },
+            },
+        }),
+        MatchSourceCidr = schema.new({
+            id = id.from(_N, "TransitGatewayNatRule", "MatchSourceCidr"),
+            type = "string",
+            name = "MatchSourceCidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "matchSourceCidr" },
+                [traits.EC2_QUERY_NAME] = { name = "MatchSourceCidr" },
+            },
+        }),
+        NatCidr = schema.new({
+            id = id.from(_N, "TransitGatewayNatRule", "NatCidr"),
+            type = "string",
+            name = "NatCidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "natCidr" },
+                [traits.EC2_QUERY_NAME] = { name = "NatCidr" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "TransitGatewayNatRule", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "state" },
+                [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+    },
+})
+
+M.GetTransitGatewayAttachmentNatConfigurationOutput = schema.new({
+    id = id.from(_N, "GetTransitGatewayAttachmentNatConfigurationResult"),
+    type = "structure",
+    members = {
+        TransitGatewayAttachmentId = schema.new({
+            id = id.from(_N, "GetTransitGatewayAttachmentNatConfigurationOutput", "TransitGatewayAttachmentId"),
+            type = "string",
+            name = "TransitGatewayAttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayAttachmentId" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayAttachmentId" },
+            },
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "GetTransitGatewayAttachmentNatConfigurationOutput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "natGatewaySupport" },
+                [traits.EC2_QUERY_NAME] = { name = "NatGatewaySupport" },
+            },
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "GetTransitGatewayAttachmentNatConfigurationOutput", "NatSystemRouteSupport"),
+            type = "string",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "natSystemRouteSupport" },
+                [traits.EC2_QUERY_NAME] = { name = "NatSystemRouteSupport" },
+            },
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "GetTransitGatewayAttachmentNatConfigurationOutput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TransitGatewayNatRule, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "natGatewayRuleSet" },
+                [traits.EC2_QUERY_NAME] = { name = "NatGatewayRuleSet" },
+            },
+        }),
+    },
+})
+
 M.GetTransitGatewayAttachmentPropagationsInput = schema.new({
     id = id.from(_N, "GetTransitGatewayAttachmentPropagationsRequest"),
     type = "structure",
@@ -101954,6 +102085,129 @@ M.ModifyTransitGatewayOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "transitGateway" },
                 [traits.EC2_QUERY_NAME] = { name = "TransitGateway" },
+            },
+        }),
+    },
+})
+
+M.TransitGatewayNatRuleRequest = schema.new({
+    id = id.from(_N, "TransitGatewayNatRuleRequest"),
+    type = "structure",
+    members = {
+        RuleNumber = schema.new({
+            id = id.from(_N, "TransitGatewayNatRuleRequest", "RuleNumber"),
+            type = "integer",
+            name = "RuleNumber",
+            target_id = prelude.Integer.id,
+        }),
+        MatchSourceCidr = schema.new({
+            id = id.from(_N, "TransitGatewayNatRuleRequest", "MatchSourceCidr"),
+            type = "string",
+            name = "MatchSourceCidr",
+            target_id = prelude.String.id,
+        }),
+        NatCidr = schema.new({
+            id = id.from(_N, "TransitGatewayNatRuleRequest", "NatCidr"),
+            type = "string",
+            name = "NatCidr",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ModifyTransitGatewayAttachmentNatConfigurationInput = schema.new({
+    id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationRequest"),
+    type = "structure",
+    members = {
+        TransitGatewayAttachmentId = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationInput", "TransitGatewayAttachmentId"),
+            type = "string",
+            name = "TransitGatewayAttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationInput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationInput", "NatSystemRouteSupport"),
+            type = "string",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.String.id,
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationInput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TransitGatewayNatRuleRequest, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "NatGatewayRule" },
+            },
+        }),
+        ResetNatGatewayRules = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationInput", "ResetNatGatewayRules"),
+            type = "boolean",
+            name = "ResetNatGatewayRules",
+            target_id = prelude.Boolean.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ModifyTransitGatewayAttachmentNatConfigurationOutput = schema.new({
+    id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationResult"),
+    type = "structure",
+    members = {
+        TransitGatewayAttachmentId = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationOutput", "TransitGatewayAttachmentId"),
+            type = "string",
+            name = "TransitGatewayAttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayAttachmentId" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayAttachmentId" },
+            },
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationOutput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "natGatewaySupport" },
+                [traits.EC2_QUERY_NAME] = { name = "NatGatewaySupport" },
+            },
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationOutput", "NatSystemRouteSupport"),
+            type = "string",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "natSystemRouteSupport" },
+                [traits.EC2_QUERY_NAME] = { name = "NatSystemRouteSupport" },
+            },
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayAttachmentNatConfigurationOutput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TransitGatewayNatRule, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "natGatewayRuleSet" },
+                [traits.EC2_QUERY_NAME] = { name = "NatGatewayRuleSet" },
             },
         }),
     },
@@ -118495,6 +118749,17 @@ M.GetSubnetCidrReservations = schema.operation({
     },
 })
 
+M.GetTransitGatewayAttachmentNatConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetTransitGatewayAttachmentNatConfiguration"),
+    input = M.GetTransitGatewayAttachmentNatConfigurationInput,
+    output = M.GetTransitGatewayAttachmentNatConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetTransitGatewayAttachmentPropagations = schema.operation({
     id = id.from("com.amazonaws.ec2", "GetTransitGatewayAttachmentPropagations"),
     input = M.GetTransitGatewayAttachmentPropagationsInput,
@@ -119379,6 +119644,17 @@ M.ModifyTransitGateway = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyTransitGateway"),
     input = M.ModifyTransitGatewayInput,
     output = M.ModifyTransitGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyTransitGatewayAttachmentNatConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyTransitGatewayAttachmentNatConfiguration"),
+    input = M.ModifyTransitGatewayAttachmentNatConfigurationInput,
+    output = M.ModifyTransitGatewayAttachmentNatConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -4908,6 +4908,12 @@ M.EvaluationResultContent = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        evaluationDimensionName = schema.new({
+            id = id.from(_N, "EvaluationResultContent", "evaluationDimensionName"),
+            type = "string",
+            name = "evaluationDimensionName",
+            target_id = prelude.String.id,
+        }),
         explanation = schema.new({
             id = id.from(_N, "EvaluationResultContent", "explanation"),
             type = "string",
@@ -5357,6 +5363,12 @@ M.EvaluatorSummary = schema.new({
             id = id.from(_N, "EvaluatorSummary", "evaluatorId"),
             type = "string",
             name = "evaluatorId",
+            target_id = prelude.String.id,
+        }),
+        evaluationDimensionName = schema.new({
+            id = id.from(_N, "EvaluatorSummary", "evaluationDimensionName"),
+            type = "string",
+            name = "evaluationDimensionName",
             target_id = prelude.String.id,
         }),
         statistics = schema.new({

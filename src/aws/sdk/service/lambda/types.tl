@@ -707,9 +707,9 @@ local record M
         SubType: string
         -- The action to take on the operation.
         Action: string
-        -- The payload for successful operations. The maximum payload size is 6 MB for synchronous EXECUTION operations (RequestResponse invocationType), 1 MB for asynchronous EXECUTION (Event invocationType) and CHAINED_INVOKE operations, and 256 KB for CONTEXT, STEP, WAIT, and CALLBACK operations.
+        -- The payload for successful operations. The maximum payload size is 6 MB for synchronous EXECUTION operations (RequestResponse invocationType), and 1 MB for asynchronous EXECUTION (Event invocationType), CHAINED_INVOKE, CONTEXT, STEP, WAIT, and CALLBACK operations.
         Payload: string
-        -- The error information for failed operations.
+        -- The error information for failed operations. The combined size of all error fields is limited to 1 MB.
         Error: ErrorObject
         -- Options for context operations.
         ContextOptions: ContextOptions
@@ -904,11 +904,11 @@ local record M
         DurableExecutionName: string
         -- The Amazon Resource Name (ARN) of the Lambda function that was invoked to start this durable execution.
         FunctionArn: string
-        -- The JSON input payload that was provided when the durable execution was started. For asynchronous invocations, this is limited to 256 KB. For synchronous invocations, this can be up to 6 MB.
+        -- The JSON input payload that you provided when you started the durable execution. Asynchronous invocations support up to 1 MB, and synchronous invocations support up to 6 MB.
         InputPayload: string
-        -- The JSON result returned by the durable execution if it completed successfully. This field is only present when the execution status is SUCCEEDED. The result is limited to 256 KB.
+        -- The JSON result returned by the durable execution if it completed successfully. This field is only present when the execution status is SUCCEEDED. Asynchronous invocations support up to 1 MB, and synchronous invocations support up to 6 MB.
         Result: string
-        -- Error information if the durable execution failed. This field is only present when the execution status is FAILED, TIMED_OUT, or STOPPED. The combined size of all error fields is limited to 256 KB.
+        -- Error information if the durable execution failed. This field is only present when the execution status is FAILED, TIMED_OUT, or STOPPED. The combined size of all error fields is limited to 1 MB.
         Error: ErrorObject
         -- The date and time when the durable execution started, in Unix timestamp format.
         StartTimestamp: number
@@ -1254,7 +1254,7 @@ local record M
     record StopDurableExecutionInput
         -- The Amazon Resource Name (ARN) of the durable execution.
         DurableExecutionArn: string
-        -- Optional error details explaining why the execution is being stopped.
+        -- Optional error details explaining why the execution is being stopped. The combined size of all error fields is limited to 1 MB.
         Error: ErrorObject
     end
 
@@ -4398,7 +4398,7 @@ local record M
     record SendDurableExecutionCallbackFailureInput
         -- The unique identifier for the callback operation.
         CallbackId: string
-        -- Error details describing why the callback operation failed.
+        -- Error details describing why the callback operation failed. The combined size of all error fields is limited to 1 MB.
         Error: ErrorObject
     end
 
@@ -4416,7 +4416,7 @@ local record M
     record SendDurableExecutionCallbackSuccessInput
         -- The unique identifier for the callback operation.
         CallbackId: string
-        -- The result data from the successful callback operation. Maximum size is 256 KB.
+        -- The result data from the successful callback operation. Maximum size is 1 MB.
         Result: string
     end
 

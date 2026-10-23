@@ -512,6 +512,37 @@ local record M
         vpcEndpointErrorDetails: {VpcEndpointErrorDetail}
     end
 
+    record CancelIngestionJobInput
+        -- The unique identifier of the collection that the ingestion job belongs to.
+        collectionId: string
+        -- The unique identifier of the ingestion job to cancel.
+        ingestionJobId: string
+        -- Unique, case-sensitive identifier to ensure idempotency of the request.
+        clientToken: string
+    end
+
+    enum IngestionJobStatus
+        "CREATING"
+        "ACTIVE"
+        "COMPLETED"
+        "CANCELLING"
+        "CANCELLED"
+        "FAILED"
+        "CREATE_FAILED"
+        "CANCEL_FAILED"
+    end
+
+    record CancelIngestionJobOutput
+        -- The unique identifier of the cancelled ingestion job.
+        ingestionJobId: string
+        -- The unique identifier of the collection that the ingestion job belongs to.
+        collectionId: string
+        -- The name of the cancelled ingestion job.
+        ingestionJobName: string
+        -- The current status of the ingestion job.
+        status: string
+    end
+
     -- Encryption settings for a collection.
     record EncryptionConfig
         -- Indicates whether to use an Amazon Web Services-owned key for encryption.
@@ -655,6 +686,7 @@ local record M
         vectorOptions: VectorOptions
         -- Indicates whether to enable or disable deletion protection for the collection. When set to ENABLED, the collection cannot be deleted.
         deletionProtection: string
+        encryptionConfig: EncryptionConfig
         -- Unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
     end
@@ -671,6 +703,8 @@ local record M
         description: string
         -- Configuration options for vector search capabilities in the collection.
         vectorOptions: VectorOptions
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Key Management Service (Amazon Web Services KMS) key used to encrypt the collection.
+        kmsKeyArn: string
         -- The Amazon Resource Name (ARN) of the collection.
         arn: string
         -- The date and time when the collection was created.
@@ -776,7 +810,7 @@ local record M
         id: string
         -- A new description for the collection group.
         description: string
-        -- Updated capacity limits for the collection group, in OpenSearch Compute Units (OCUs).
+        -- The updated capacity limits for the collection group, in OpenSearch Compute Units (OCUs). Updates to capacity limits are not incremental. Any field not specified resets to its default value.
         capacityLimits: CollectionGroupCapacityLimits
         -- Unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
@@ -838,6 +872,236 @@ local record M
     end
 
     record CreateIndexOutput
+    end
+
+    -- The Amazon S3 source configuration for an ingestion job.
+    record IngestionJobS3Source
+        -- The name or Amazon Resource Name (ARN) of the Amazon S3 bucket to ingest data from.
+        bucket: string
+        -- The Amazon Web Services account ID that owns the Amazon S3 bucket.
+        bucketOwnerAccountId: string
+        -- A key prefix that limits ingestion to objects in the Amazon S3 bucket whose keys begin with the prefix.
+        keyPrefix: string
+    end
+
+    -- The source that an ingestion job ingests data from.
+    record IngestionJobSource
+        -- The Amazon S3 source configuration for the ingestion job.
+        s3: IngestionJobS3Source
+    end
+
+    record CreateIngestionJobInput
+        -- The unique identifier of the collection to ingest data into.
+        collectionId: string
+        -- The name of the ingestion job. The name must be unique within the collection.
+        ingestionJobName: string
+        -- The name of the index to ingest documents into.
+        indexName: string
+        -- The name of the index where documents that fail to be ingested are recorded.
+        failureIndexName: string
+        -- The Amazon S3 source to ingest data from.
+        source: IngestionJobSource
+        -- An arbitrary set of tags (key–value pairs) to associate with the ingestion job.
+        tags: {Tag}
+        -- Unique, case-sensitive identifier to ensure idempotency of the request.
+        clientToken: string
+    end
+
+    enum IngestionAlertCode
+        "SOURCE_ACCESS_DENIED"
+        "SOURCE_RESOURCE_NOT_FOUND"
+        "DESTINATION_ACCESS_DENIED"
+        "DESTINATION_RESOURCE_NOT_FOUND"
+        "INTERNAL_SERVER_ERROR"
+    end
+
+    -- An active alert about a running ingestion — operational issues
+    -- or updates to processing state. Cleared when the issue resolves.
+    record IngestionAlert
+        -- The code that identifies the alert.
+        code: string
+        -- A description of the alert.
+        message: string
+    end
+
+    enum IngestionFailureCode
+        "SOURCE_ACCESS_DENIED"
+        "SOURCE_RESOURCE_NOT_FOUND"
+        "DESTINATION_ACCESS_DENIED"
+        "DESTINATION_RESOURCE_NOT_FOUND"
+        "INTERNAL_SERVER_ERROR"
+    end
+
+    -- A terminal failure reason explaining why an ingestion stopped.
+    record IngestionFailureReason
+        -- The code that identifies the reason for the failure.
+        code: string
+        -- A description of the reason for the failure.
+        message: string
+    end
+
+    enum IngestionState
+        "STARTING"
+        "SCANNING"
+        "INGESTION_IN_PROGRESS"
+        "INGESTION_COMPLETE"
+        "STOPPED"
+        "FAILED"
+    end
+
+    -- Processing statistics for the Amazon S3 objects in an ingestion source.
+    record S3Statistics
+        -- The number of Amazon S3 objects discovered for ingestion.
+        objectsDiscovered: number
+        -- The number of Amazon S3 objects successfully ingested.
+        objectsIngested: number
+        -- The number of Amazon S3 objects that failed to be ingested.
+        objectsFailed: number
+    end
+
+    -- Processing statistics for an ingestion job or ingestion stream.
+    record IngestionStatistics
+        -- Processing statistics for the Amazon S3 source.
+        s3: S3Statistics
+    end
+
+    -- Details about an ingestion job.
+    record IngestionJobDetail
+        -- The unique identifier of the ingestion job.
+        ingestionJobId: string
+        -- The Amazon Resource Name (ARN) of the ingestion job.
+        arn: string
+        -- The unique identifier of the collection that the ingestion job belongs to.
+        collectionId: string
+        -- The name of the ingestion job.
+        ingestionJobName: string
+        -- The name of the index that documents are ingested into.
+        indexName: string
+        -- The name of the index where documents that fail to be ingested are recorded.
+        failureIndexName: string
+        -- The Amazon S3 source that the ingestion job ingests data from.
+        source: IngestionJobSource
+        -- The current lifecycle status of the ingestion job. For example, CREATING, ACTIVE, COMPLETED, or CANCELLED.
+        status: string
+        -- The current processing state of the ingestion job. For example, SCANNING, INGESTION_IN_PROGRESS, or INGESTION_COMPLETE.
+        state: string
+        -- Processing statistics for the ingestion job, such as the number of Amazon S3 objects discovered, ingested, and failed.
+        statistics: IngestionStatistics
+        -- The revision number of the ingestion job.
+        revision: number
+        -- The date and time when the ingestion job was created.
+        createdAt: number
+        -- The date and time when the ingestion job was last updated.
+        updatedAt: number
+        -- The reasons that the ingestion job reached a terminal failure state, if applicable.
+        failureReasons: {IngestionFailureReason}
+        -- Active alerts about operational issues that currently affect the ingestion job. Alerts are cleared when the issue is resolved.
+        activeAlerts: {IngestionAlert}
+    end
+
+    record CreateIngestionJobOutput
+        -- Details about the created ingestion job.
+        ingestionJobDetail: IngestionJobDetail
+    end
+
+    enum InitialScan
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- S3 bucket configuration for SQS-driven ingestion. The scan mode controls only
+    -- the optional one-time delta scan of existing objects in this bucket.
+    record StreamBucketConfig
+        -- The name or Amazon Resource Name (ARN) of the Amazon S3 bucket to ingest data from.
+        bucket: string
+        -- The AWS account ID that owns the S3 bucket. Optional. If omitted, the
+        -- control plane derives it from the account segment of sqsArn.
+        bucketOwnerAccountId: string
+        -- Specifies whether to perform a one-time scan of the objects that already exist in the bucket before the stream begins processing Amazon S3 event notifications. If DISABLED, only new objects are ingested.
+        initialScan: string
+    end
+
+    -- The Amazon S3 source configuration for an ingestion stream.
+    record IngestionStreamS3Source
+        -- The Amazon Resource Name (ARN) of the Amazon SQS queue that receives Amazon S3 event notifications for the source buckets.
+        sqsArn: string
+        -- The configuration for each Amazon S3 bucket that the ingestion stream ingests data from.
+        buckets: {StreamBucketConfig}
+    end
+
+    -- The source that an ingestion stream ingests data from.
+    record IngestionStreamSource
+        -- The Amazon S3 source configuration for the ingestion stream.
+        s3: IngestionStreamS3Source
+    end
+
+    record CreateIngestionStreamInput
+        -- The unique identifier of the collection to ingest data into.
+        collectionId: string
+        -- The name of the ingestion stream. The name must be unique within the collection.
+        ingestionStreamName: string
+        -- The name of the index to ingest documents into.
+        indexName: string
+        -- The name of the index where documents that fail to be ingested are recorded.
+        failureIndexName: string
+        -- The Amazon S3 source to ingest data from, including the Amazon SQS queue that receives S3 event notifications.
+        source: IngestionStreamSource
+        -- The Amazon Resource Name (ARN) of the IAM role that OpenSearch Serverless assumes to read data from the source. The role must be in the same account as the collection.
+        roleArn: string
+        -- An arbitrary set of tags (key–value pairs) to associate with the ingestion stream.
+        tags: {Tag}
+        -- Unique, case-sensitive identifier to ensure idempotency of the request.
+        clientToken: string
+    end
+
+    enum IngestionStreamStatus
+        "CREATING"
+        "ACTIVE"
+        "DELETING"
+        "DELETED"
+        "CREATE_FAILED"
+        "DELETE_FAILED"
+    end
+
+    -- Details about an ingestion stream.
+    record IngestionStreamDetail
+        -- The unique identifier of the ingestion stream.
+        ingestionStreamId: string
+        -- The Amazon Resource Name (ARN) of the ingestion stream.
+        arn: string
+        -- The unique identifier of the collection that the ingestion stream belongs to.
+        collectionId: string
+        -- The name of the ingestion stream.
+        ingestionStreamName: string
+        -- The name of the index that documents are ingested into.
+        indexName: string
+        -- The name of the index where documents that fail to be ingested are recorded.
+        failureIndexName: string
+        -- The Amazon S3 source that the ingestion stream ingests data from.
+        source: IngestionStreamSource
+        -- The Amazon Resource Name (ARN) of the IAM role that OpenSearch Serverless assumes to read data from the source.
+        roleArn: string
+        -- The current lifecycle status of the ingestion stream. For example, CREATING, ACTIVE, or DELETING.
+        status: string
+        -- The current processing state of the ingestion stream. For example, STARTING or INGESTION_IN_PROGRESS.
+        state: string
+        -- Processing statistics for the ingestion stream, such as the number of Amazon S3 objects discovered, ingested, and failed.
+        statistics: IngestionStatistics
+        -- The revision number of the ingestion stream.
+        revision: number
+        -- The date and time when the ingestion stream was created.
+        createdAt: number
+        -- The date and time when the ingestion stream was last updated.
+        updatedAt: number
+        -- The reasons that the ingestion stream reached a terminal failure state, if applicable.
+        failureReasons: {IngestionFailureReason}
+        -- Active alerts about operational issues that currently affect the ingestion stream. Alerts are cleared when the issue is resolved.
+        activeAlerts: {IngestionAlert}
+    end
+
+    record CreateIngestionStreamOutput
+        -- Details about the created ingestion stream.
+        ingestionStreamDetail: IngestionStreamDetail
     end
 
     record CreateLifecyclePolicyInput
@@ -1015,6 +1279,26 @@ local record M
     record DeleteIndexOutput
     end
 
+    record DeleteIngestionStreamInput
+        -- The unique identifier of the collection that the ingestion stream belongs to.
+        collectionId: string
+        -- The unique identifier of the ingestion stream to delete.
+        ingestionStreamId: string
+        -- Unique, case-sensitive identifier to ensure idempotency of the request.
+        clientToken: string
+    end
+
+    record DeleteIngestionStreamOutput
+        -- The unique identifier of the deleted ingestion stream.
+        ingestionStreamId: string
+        -- The unique identifier of the collection that the ingestion stream belonged to.
+        collectionId: string
+        -- The name of the deleted ingestion stream.
+        ingestionStreamName: string
+        -- The current status of the ingestion stream.
+        status: string
+    end
+
     record DeleteLifecyclePolicyInput
         -- The name of the policy to delete.
         name: string
@@ -1087,6 +1371,30 @@ local record M
         indexSchema: any
     end
 
+    record GetIngestionJobInput
+        -- The unique identifier of the collection that the ingestion job belongs to.
+        collectionId: string
+        -- The unique identifier of the ingestion job to retrieve.
+        ingestionJobId: string
+    end
+
+    record GetIngestionJobOutput
+        -- Details about the requested ingestion job.
+        ingestionJobDetail: IngestionJobDetail
+    end
+
+    record GetIngestionStreamInput
+        -- The unique identifier of the collection that the ingestion stream belongs to.
+        collectionId: string
+        -- The unique identifier of the ingestion stream to retrieve.
+        ingestionStreamId: string
+    end
+
+    record GetIngestionStreamOutput
+        -- Details about the requested ingestion stream.
+        ingestionStreamDetail: IngestionStreamDetail
+    end
+
     record GetPoliciesStatsInput
     end
 
@@ -1153,6 +1461,74 @@ local record M
     end
 
     record UpdateIndexOutput
+    end
+
+    record ListIngestionJobsInput
+        -- The unique identifier of the collection to list ingestion jobs for.
+        collectionId: string
+        -- If your initial ListIngestionJobs operation returns a nextToken, you can include the returned nextToken in subsequent ListIngestionJobs operations, which returns results in the next page.
+        nextToken: string
+        -- The maximum number of results to return. Valid values are 1–100. If you don't specify a value, the default is 100. You can use nextToken to get the next page of results. A response can contain fewer results than maxResults, or no results, and still include a nextToken. To retrieve all results, continue to make the call with the returned nextToken until no nextToken is returned.
+        maxResults: number
+    end
+
+    -- Summary information about an ingestion job.
+    record IngestionJobSummary
+        -- The unique identifier of the ingestion job.
+        ingestionJobId: string
+        -- The Amazon Resource Name (ARN) of the ingestion job.
+        arn: string
+        -- The name of the ingestion job.
+        ingestionJobName: string
+        -- The name of the index that documents are ingested into.
+        indexName: string
+        -- The current lifecycle status of the ingestion job.
+        status: string
+        -- The date and time when the ingestion job was created.
+        createdAt: number
+        -- The date and time when the ingestion job was last updated.
+        updatedAt: number
+    end
+
+    record ListIngestionJobsOutput
+        -- Summary information about each ingestion job.
+        ingestionJobSummaries: {IngestionJobSummary}
+        -- When nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.
+        nextToken: string
+    end
+
+    record ListIngestionStreamsInput
+        -- The unique identifier of the collection to list ingestion streams for.
+        collectionId: string
+        -- If your initial ListIngestionStreams operation returns a nextToken, you can include the returned nextToken in subsequent ListIngestionStreams operations, which returns results in the next page.
+        nextToken: string
+        -- The maximum number of results to return. Valid values are 1–100. If you don't specify a value, the default is 100. You can use nextToken to get the next page of results. A response can contain fewer results than maxResults, or no results, and still include a nextToken. To retrieve all results, continue to make the call with the returned nextToken until no nextToken is returned.
+        maxResults: number
+    end
+
+    -- Summary information about an ingestion stream.
+    record IngestionStreamSummary
+        -- The unique identifier of the ingestion stream.
+        ingestionStreamId: string
+        -- The Amazon Resource Name (ARN) of the ingestion stream.
+        arn: string
+        -- The name of the ingestion stream.
+        ingestionStreamName: string
+        -- The name of the index that documents are ingested into.
+        indexName: string
+        -- The current lifecycle status of the ingestion stream.
+        status: string
+        -- The date and time when the ingestion stream was created.
+        createdAt: number
+        -- The date and time when the ingestion stream was last updated.
+        updatedAt: number
+    end
+
+    record ListIngestionStreamsOutput
+        -- Summary information about each ingestion stream.
+        ingestionStreamSummaries: {IngestionStreamSummary}
+        -- When nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.
+        nextToken: string
     end
 
     record ListLifecyclePoliciesInput

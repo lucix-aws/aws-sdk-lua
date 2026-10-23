@@ -83,6 +83,7 @@ local record Client
     getTransitGatewayRegistrations: function(Client, types.GetTransitGatewayRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRegistrationsOutput>
     getTransitGatewayRouteTableAttachment: function(Client, types.GetTransitGatewayRouteTableAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRouteTableAttachmentOutput>
     getVpcAttachment: function(Client, types.GetVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.GetVpcAttachmentOutput>
+    listAttachmentNatConfigurations: function(Client, types.ListAttachmentNatConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachmentNatConfigurationsOutput>
     listAttachmentRoutingPolicyAssociations: function(Client, types.ListAttachmentRoutingPolicyAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
     listAttachments: function(Client, types.ListAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachmentsOutput>
     listConnectPeers: function(Client, types.ListConnectPeersInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectPeersOutput>
@@ -104,6 +105,7 @@ local record Client
     startRouteAnalysis: function(Client, types.StartRouteAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartRouteAnalysisOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAttachmentNatConfiguration: function(Client, types.UpdateAttachmentNatConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAttachmentNatConfigurationOutput>
     updateConnection: function(Client, types.UpdateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
     updateCoreNetwork: function(Client, types.UpdateCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCoreNetworkOutput>
     updateDevice: function(Client, types.UpdateDeviceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeviceOutput>
@@ -417,6 +419,10 @@ function C:getVpcAttachment(input: types.GetVpcAttachmentInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.GetVpcAttachmentOutput>
 end
 
+function C:listAttachmentNatConfigurations(input: types.ListAttachmentNatConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttachmentNatConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttachmentNatConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListAttachmentNatConfigurationsOutput>
+end
+
 function C:listAttachmentRoutingPolicyAssociations(input: types.ListAttachmentRoutingPolicyAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttachmentRoutingPolicyAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
 end
@@ -499,6 +505,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateAttachmentNatConfiguration(input: types.UpdateAttachmentNatConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAttachmentNatConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAttachmentNatConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateAttachmentNatConfigurationOutput>
 end
 
 function C:updateConnection(input: types.UpdateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>

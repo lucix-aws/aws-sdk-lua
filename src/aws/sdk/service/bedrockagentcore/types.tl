@@ -1528,6 +1528,8 @@ local record M
         evaluatorId: string
         -- The human-readable name of the evaluator used for this evaluation. For built-in evaluators, this is the descriptive name (e.g., "Helpfulness", "Correctness"); for custom evaluators, this is the user-defined name.
         evaluatorName: string
+        -- The name of the dimension that this result scores. This field is set only on results produced by an evaluator that uses a multi-dimensional rating scale, where each dimension is scored independently. For evaluators with a single rating scale, this field is absent.
+        evaluationDimensionName: string
         -- The detailed explanation provided by the evaluator describing the reasoning behind the assigned score. This qualitative feedback helps understand why specific ratings were given and provides actionable insights for improvement.
         explanation: string
         -- The contextual information associated with this evaluation result, including span context details that identify the specific traces and sessions that were evaluated.
@@ -1666,6 +1668,8 @@ local record M
     record EvaluatorSummary
         -- The unique identifier of the evaluator.
         evaluatorId: string
+        -- The name of the dimension that this summary covers. This field is set only for evaluators that use a multi-dimensional rating scale, where each dimension is summarized separately. For single-scale evaluators, this field is not set.
+        evaluationDimensionName: string
         -- The aggregated statistics for this evaluator.
         statistics: EvaluatorStatistics
         -- The total number of sessions evaluated by this evaluator.

@@ -248,9 +248,13 @@ M.NumericalScaleDefinitions = schema.new({ type = "list", list_member = M.Numeri
 
 M.CategoricalScaleDefinitions = schema.new({ type = "list", list_member = M.CategoricalScaleDefinition })
 
+M.EvaluationDimensions = schema.new({ type = "list", list_member = M.EvaluationDimension })
+
 M.MatchPrincipalEntries = schema.new({ type = "list", list_member = M.MatchPrincipalEntry })
 
 M.MatchPathPatterns = schema.new({ type = "list", list_member = prelude.String })
+
+M.MatchModelEntries = schema.new({ type = "list", list_member = M.MatchModelEntry })
 
 M.EnabledConnectors = schema.new({ type = "list", list_member = prelude.String })
 
@@ -300,6 +304,8 @@ M.InstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
 
+M.TargetFallbacks = schema.new({ type = "list", list_member = M.FallbackTarget })
+
 M.ConnectorParameterOverrides = schema.new({ type = "list", list_member = M.ConnectorParameterOverride })
 
 M.ModelEntries = schema.new({ type = "list", list_member = M.ModelEntry })
@@ -311,6 +317,10 @@ M.TriggerConditionsList = schema.new({ type = "list", list_member = M.TriggerCon
 M.MatchValueStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TrafficSplitMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.ErrorStatusCodePatterns = schema.new({ type = "list", list_member = prelude.String })
+
+M.FallbackErrors = schema.new({ type = "list", list_member = prelude.String })
 
 M.RestApiMethods = schema.new({ type = "list", list_member = prelude.String })
 
@@ -512,6 +522,115 @@ M.ConfigurationBundleAction = schema.new({
     },
 })
 
+M.CircuitBreakerConfiguration = schema.new({
+    id = id.from(_N, "CircuitBreakerConfiguration"),
+    type = "structure",
+    members = {
+        mode = schema.new({
+            id = id.from(_N, "CircuitBreakerConfiguration", "mode"),
+            type = "string",
+            name = "mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ENABLED" },
+            },
+        }),
+    },
+})
+
+M.FallbackTriggers = schema.new({
+    id = id.from(_N, "FallbackTriggers"),
+    type = "structure",
+    members = {
+        statusCodes = schema.new({
+            id = id.from(_N, "FallbackTriggers", "statusCodes"),
+            type = "list",
+            name = "statusCodes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        errors = schema.new({
+            id = id.from(_N, "FallbackTriggers", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.FallbackTarget = schema.new({
+    id = id.from(_N, "FallbackTarget"),
+    type = "structure",
+    members = {
+        targetName = schema.new({
+            id = id.from(_N, "FallbackTarget", "targetName"),
+            type = "string",
+            name = "targetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        model = schema.new({
+            id = id.from(_N, "FallbackTarget", "model"),
+            type = "string",
+            name = "model",
+            target_id = prelude.String.id,
+        }),
+        triggerOn = schema.new({
+            id = id.from(_N, "FallbackTarget", "triggerOn"),
+            type = "structure",
+            name = "triggerOn",
+            target_id = id.from(_N, "FallbackTriggers"),
+            target = M.FallbackTriggers,
+        }),
+        firstByteTimeoutMilliseconds = schema.new({
+            id = id.from(_N, "FallbackTarget", "firstByteTimeoutMilliseconds"),
+            type = "integer",
+            name = "firstByteTimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.Fallback = schema.new({
+    id = id.from(_N, "Fallback"),
+    type = "structure",
+    members = {
+        triggerOn = schema.new({
+            id = id.from(_N, "Fallback", "triggerOn"),
+            type = "structure",
+            name = "triggerOn",
+            target_id = id.from(_N, "FallbackTriggers"),
+            target = M.FallbackTriggers,
+        }),
+        firstByteTimeoutMilliseconds = schema.new({
+            id = id.from(_N, "Fallback", "firstByteTimeoutMilliseconds"),
+            type = "integer",
+            name = "firstByteTimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+        circuitBreaker = schema.new({
+            id = id.from(_N, "Fallback", "circuitBreaker"),
+            type = "structure",
+            name = "circuitBreaker",
+            target_id = id.from(_N, "CircuitBreakerConfiguration"),
+            target = M.CircuitBreakerConfiguration,
+        }),
+        targetFallback = schema.new({
+            id = id.from(_N, "Fallback", "targetFallback"),
+            type = "list",
+            name = "targetFallback",
+            target_id = prelude.Document.id,
+            list_member = M.FallbackTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.StaticRoute = schema.new({
     id = id.from(_N, "StaticRoute"),
     type = "structure",
@@ -525,6 +644,19 @@ M.StaticRoute = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        model = schema.new({
+            id = id.from(_N, "StaticRoute", "model"),
+            type = "string",
+            name = "model",
+            target_id = prelude.String.id,
+        }),
+        fallback = schema.new({
+            id = id.from(_N, "StaticRoute", "fallback"),
+            type = "structure",
+            name = "fallback",
+            target_id = id.from(_N, "Fallback"),
+            target = M.Fallback,
+        }),
     },
 })
 
@@ -532,6 +664,28 @@ M.TargetTrafficSplitEntry = schema.new({
     id = id.from(_N, "TargetTrafficSplitEntry"),
     type = "structure",
     members = {
+        targetName = schema.new({
+            id = id.from(_N, "TargetTrafficSplitEntry", "targetName"),
+            type = "string",
+            name = "targetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        model = schema.new({
+            id = id.from(_N, "TargetTrafficSplitEntry", "model"),
+            type = "string",
+            name = "model",
+            target_id = prelude.String.id,
+        }),
+        fallback = schema.new({
+            id = id.from(_N, "TargetTrafficSplitEntry", "fallback"),
+            type = "structure",
+            name = "fallback",
+            target_id = id.from(_N, "Fallback"),
+            target = M.Fallback,
+        }),
         name = schema.new({
             id = id.from(_N, "TargetTrafficSplitEntry", "name"),
             type = "string",
@@ -546,15 +700,6 @@ M.TargetTrafficSplitEntry = schema.new({
             type = "integer",
             name = "weight",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        targetName = schema.new({
-            id = id.from(_N, "TargetTrafficSplitEntry", "targetName"),
-            type = "string",
-            name = "targetName",
-            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -9084,6 +9229,62 @@ M.NumericalScaleDefinition = schema.new({
     },
 })
 
+M.DimensionRatingScale = schema.new({
+    id = id.from(_N, "DimensionRatingScale"),
+    type = "union",
+    members = {
+        numerical = schema.new({
+            id = id.from(_N, "DimensionRatingScale", "numerical"),
+            type = "list",
+            name = "numerical",
+            target_id = prelude.Document.id,
+            list_member = M.NumericalScaleDefinition,
+        }),
+        categorical = schema.new({
+            id = id.from(_N, "DimensionRatingScale", "categorical"),
+            type = "list",
+            name = "categorical",
+            target_id = prelude.Document.id,
+            list_member = M.CategoricalScaleDefinition,
+        }),
+    },
+})
+
+M.EvaluationDimension = schema.new({
+    id = id.from(_N, "EvaluationDimension"),
+    type = "structure",
+    members = {
+        dimensionName = schema.new({
+            id = id.from(_N, "EvaluationDimension", "dimensionName"),
+            type = "string",
+            name = "dimensionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dimensionInstruction = schema.new({
+            id = id.from(_N, "EvaluationDimension", "dimensionInstruction"),
+            type = "string",
+            name = "dimensionInstruction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dimensionRatingScale = schema.new({
+            id = id.from(_N, "EvaluationDimension", "dimensionRatingScale"),
+            type = "union",
+            name = "dimensionRatingScale",
+            target_id = id.from(_N, "DimensionRatingScale"),
+            target = M.DimensionRatingScale,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RatingScale = schema.new({
     id = id.from(_N, "RatingScale"),
     type = "union",
@@ -9101,6 +9302,13 @@ M.RatingScale = schema.new({
             name = "categorical",
             target_id = prelude.Document.id,
             list_member = M.CategoricalScaleDefinition,
+        }),
+        multiDimensional = schema.new({
+            id = id.from(_N, "RatingScale", "multiDimensional"),
+            type = "list",
+            name = "multiDimensional",
+            target_id = prelude.Document.id,
+            list_member = M.EvaluationDimension,
         }),
     },
 })
@@ -11665,6 +11873,48 @@ M.UpdateGatewayOutput = schema.new({
     },
 })
 
+M.MatchModelEntry = schema.new({
+    id = id.from(_N, "MatchModelEntry"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "MatchModelEntry", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operator = schema.new({
+            id = id.from(_N, "MatchModelEntry", "operator"),
+            type = "string",
+            name = "operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "StringLike" },
+            },
+        }),
+    },
+})
+
+M.MatchModels = schema.new({
+    id = id.from(_N, "MatchModels"),
+    type = "structure",
+    members = {
+        anyOf = schema.new({
+            id = id.from(_N, "MatchModels", "anyOf"),
+            type = "list",
+            name = "anyOf",
+            target_id = prelude.Document.id,
+            list_member = M.MatchModelEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.MatchPaths = schema.new({
     id = id.from(_N, "MatchPaths"),
     type = "structure",
@@ -11752,6 +12002,13 @@ M.Condition = schema.new({
             name = "matchPaths",
             target_id = id.from(_N, "MatchPaths"),
             target = M.MatchPaths,
+        }),
+        matchModels = schema.new({
+            id = id.from(_N, "Condition", "matchModels"),
+            type = "structure",
+            name = "matchModels",
+            target_id = id.from(_N, "MatchModels"),
+            target = M.MatchModels,
         }),
     },
 })

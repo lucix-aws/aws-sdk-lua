@@ -23,10 +23,13 @@ local record Client
     batchGetEffectiveLifecyclePolicy: function(Client, types.BatchGetEffectiveLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetEffectiveLifecyclePolicyOutput>
     batchGetLifecyclePolicy: function(Client, types.BatchGetLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetLifecyclePolicyOutput>
     batchGetVpcEndpoint: function(Client, types.BatchGetVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetVpcEndpointOutput>
+    cancelIngestionJob: function(Client, types.CancelIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelIngestionJobOutput>
     createAccessPolicy: function(Client, types.CreateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPolicyOutput>
     createCollection: function(Client, types.CreateCollectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCollectionOutput>
     createCollectionGroup: function(Client, types.CreateCollectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateCollectionGroupOutput>
     createIndex: function(Client, types.CreateIndexInput, ? base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    createIngestionJob: function(Client, types.CreateIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngestionJobOutput>
+    createIngestionStream: function(Client, types.CreateIngestionStreamInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngestionStreamOutput>
     createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateLifecyclePolicyOutput>
     createSecurityConfig: function(Client, types.CreateSecurityConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecurityConfigOutput>
     createSecurityPolicy: function(Client, types.CreateSecurityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecurityPolicyOutput>
@@ -35,6 +38,7 @@ local record Client
     deleteCollection: function(Client, types.DeleteCollectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCollectionOutput>
     deleteCollectionGroup: function(Client, types.DeleteCollectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCollectionGroupOutput>
     deleteIndex: function(Client, types.DeleteIndexInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    deleteIngestionStream: function(Client, types.DeleteIngestionStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIngestionStreamOutput>
     deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
     deleteSecurityConfig: function(Client, types.DeleteSecurityConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityConfigOutput>
     deleteSecurityPolicy: function(Client, types.DeleteSecurityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityPolicyOutput>
@@ -42,12 +46,16 @@ local record Client
     getAccessPolicy: function(Client, types.GetAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPolicyOutput>
     getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
     getIndex: function(Client, types.GetIndexInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    getIngestionJob: function(Client, types.GetIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.GetIngestionJobOutput>
+    getIngestionStream: function(Client, types.GetIngestionStreamInput, ? base_client.InvokeOptions): async.Operation<types.GetIngestionStreamOutput>
     getPoliciesStats: function(Client, types.GetPoliciesStatsInput, ? base_client.InvokeOptions): async.Operation<types.GetPoliciesStatsOutput>
     getSecurityConfig: function(Client, types.GetSecurityConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityConfigOutput>
     getSecurityPolicy: function(Client, types.GetSecurityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityPolicyOutput>
     listAccessPolicies: function(Client, types.ListAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPoliciesOutput>
     listCollectionGroups: function(Client, types.ListCollectionGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollectionGroupsOutput>
     listCollections: function(Client, types.ListCollectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollectionsOutput>
+    listIngestionJobs: function(Client, types.ListIngestionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngestionJobsOutput>
+    listIngestionStreams: function(Client, types.ListIngestionStreamsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngestionStreamsOutput>
     listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListLifecyclePoliciesOutput>
     listSecurityConfigs: function(Client, types.ListSecurityConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityConfigsOutput>
     listSecurityPolicies: function(Client, types.ListSecurityPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityPoliciesOutput>
@@ -128,6 +136,10 @@ function C:batchGetVpcEndpoint(input: types.BatchGetVpcEndpointInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.BatchGetVpcEndpointOutput>
 end
 
+function C:cancelIngestionJob(input: types.CancelIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.CancelIngestionJobOutput>
+end
+
 function C:createAccessPolicy(input: types.CreateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessPolicyOutput>
 end
@@ -142,6 +154,14 @@ end
 
 function C:createIndex(input: types.CreateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIndex as schema.OperationSchema, input, options) as async.Operation<types.CreateIndexOutput>
+end
+
+function C:createIngestionJob(input: types.CreateIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.CreateIngestionJobOutput>
+end
+
+function C:createIngestionStream(input: types.CreateIngestionStreamInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIngestionStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIngestionStream as schema.OperationSchema, input, options) as async.Operation<types.CreateIngestionStreamOutput>
 end
 
 function C:createLifecyclePolicy(input: types.CreateLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLifecyclePolicyOutput>
@@ -176,6 +196,10 @@ function C:deleteIndex(input: types.DeleteIndexInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIndex as schema.OperationSchema, input, options) as async.Operation<types.DeleteIndexOutput>
 end
 
+function C:deleteIngestionStream(input: types.DeleteIngestionStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIngestionStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIngestionStream as schema.OperationSchema, input, options) as async.Operation<types.DeleteIngestionStreamOutput>
+end
+
 function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
 end
@@ -204,6 +228,14 @@ function C:getIndex(input: types.GetIndexInput, options?: base_client.InvokeOpti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndex as schema.OperationSchema, input, options) as async.Operation<types.GetIndexOutput>
 end
 
+function C:getIngestionJob(input: types.GetIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.GetIngestionJobOutput>
+end
+
+function C:getIngestionStream(input: types.GetIngestionStreamInput, options?: base_client.InvokeOptions): async.Operation<types.GetIngestionStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIngestionStream as schema.OperationSchema, input, options) as async.Operation<types.GetIngestionStreamOutput>
+end
+
 function C:getPoliciesStats(input: types.GetPoliciesStatsInput, options?: base_client.InvokeOptions): async.Operation<types.GetPoliciesStatsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPoliciesStats as schema.OperationSchema, input, options) as async.Operation<types.GetPoliciesStatsOutput>
 end
@@ -226,6 +258,14 @@ end
 
 function C:listCollections(input: types.ListCollectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollectionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollections as schema.OperationSchema, input, options) as async.Operation<types.ListCollectionsOutput>
+end
+
+function C:listIngestionJobs(input: types.ListIngestionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIngestionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIngestionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListIngestionJobsOutput>
+end
+
+function C:listIngestionStreams(input: types.ListIngestionStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIngestionStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIngestionStreams as schema.OperationSchema, input, options) as async.Operation<types.ListIngestionStreamsOutput>
 end
 
 function C:listLifecyclePolicies(input: types.ListLifecyclePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLifecyclePoliciesOutput>

@@ -34,6 +34,12 @@ local record M
         "ROLLBACK_IN_PROGRESS"
         "ROLLBACK_FAILED"
         "ROLLBACK_COMPLETE"
+        "PAUSE_COMPLETE"
+        "PAUSE_FAILED"
+        "RESUME_COMPLETE"
+        "RESUME_FAILED"
+        "PAUSE_IN_PROGRESS"
+        "RESUME_IN_PROGRESS"
         "RESTART_IN_PROGRESS"
         "RESTART_COMPLETE"
         "RESTART_FAILED"
@@ -45,6 +51,8 @@ local record M
         "ISOLATE_CONNECTOR"
         "RESTORE_CONNECTOR"
         "RESTART_CONNECTOR"
+        "PAUSE_CONNECTOR"
+        "RESUME_CONNECTOR"
     end
 
     -- Summary of a connector operation.
@@ -111,7 +119,10 @@ local record M
         "UPDATING"
         "DELETING"
         "FAILED"
+        "PAUSED"
         "RESTARTING"
+        "PAUSING"
+        "RESUMING"
     end
 
     -- The description of the VPC in which the connector resides.
@@ -948,6 +959,18 @@ local record M
         workerConfigurations: {WorkerConfigurationSummary}
     end
 
+    record PauseConnectorInput
+        -- The Amazon Resource Name (ARN) of the connector that you want to pause.
+        connectorArn: string
+    end
+
+    record PauseConnectorOutput
+        -- The Amazon Resource Name (ARN) of the connector.
+        connectorArn: string
+        -- The Amazon Resource Name (ARN) of the connector operation created to perform the pause.
+        connectorOperationArn: string
+    end
+
     record RestartConnectorInput
         -- The Amazon Resource Name (ARN) of the connector that you want to restart.
         connectorArn: string
@@ -959,6 +982,18 @@ local record M
         -- The Amazon Resource Name (ARN) of the connector.
         connectorArn: string
         -- The Amazon Resource Name (ARN) of the connector operation created to perform the restart.
+        connectorOperationArn: string
+    end
+
+    record ResumeConnectorInput
+        -- The Amazon Resource Name (ARN) of the connector that you want to resume.
+        connectorArn: string
+    end
+
+    record ResumeConnectorOutput
+        -- The Amazon Resource Name (ARN) of the connector.
+        connectorArn: string
+        -- The Amazon Resource Name (ARN) of the connector operation created to perform the resume.
         connectorOperationArn: string
     end
 
@@ -987,6 +1022,8 @@ local record M
         capacity: CapacityUpdate
         -- A map of keys to values that represent the configuration for the connector.
         connectorConfiguration: {string : string}
+        -- Specifies whether the update bypasses connector-level and task-level health checks. If true, the update skips the health checks. The update stays in effect even if the connector or its tasks are unhealthy, and Amazon MSK Connect doesn't roll it back. If false or not specified, the health checks run. If they fail, MSK Connect automatically rolls the connector back to its previous configuration, and the update doesn't take effect. To update a connector that is in the PAUSED state, you must set this parameter to true.
+        skipHealthValidation: boolean
         -- The Amazon Resource Name (ARN) of the connector that you want to update.
         connectorArn: string
         -- The current version of the connector that you want to update.

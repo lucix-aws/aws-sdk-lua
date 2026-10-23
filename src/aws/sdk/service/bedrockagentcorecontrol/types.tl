@@ -65,20 +65,77 @@ local record M
         weightedOverride: WeightedOverride
     end
 
+    enum CircuitBreakerMode
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- Specifies whether the circuit breaker monitors failures for the targets in a fallback chain.
+    record CircuitBreakerConfiguration
+        -- Specifies whether you want the circuit breaker turned on. To turn it off, set this value to DISABLED. The default is ENABLED.
+        mode: string
+    end
+
+    enum FallbackError
+        "CONNECTION_ERROR"
+        "FIRST_BYTE_TIMEOUT"
+        "UNROUTABLE"
+    end
+
+    -- The conditions that trigger a fallback to the next target. A fallback occurs if the response matches any of the specified status codes or errors.
+    record FallbackTriggers
+        -- The HTTP status codes returned by the target that trigger a fallback. You can specify the following: An exact status code – A three-digit code, such as 429. A class of status codes – The first digit followed by XX, such as 5XX, which matches every code from 500 to 599. Only 4XX and 5XX codes are supported. Throttling by the gateway itself doesn't trigger a fallback.
+        statusCodes: {string}
+        -- The errors that trigger a fallback. You can specify the following: CONNECTION_ERROR – The gateway couldn't connect to the target because the connection was refused, reset, or timed out. The request didn't reach the target. FIRST_BYTE_TIMEOUT – The target accepted the connection but didn't return the first byte of the response within firstByteTimeoutMilliseconds. The gateway abandons the request before any of the response reaches you. UNROUTABLE – The gateway couldn't route the request to the target, for example because the target doesn't exist or doesn't support the request path. These errors don't count toward the circuit breaker.
+        errors: {string}
+    end
+
+    -- Specifies a target to send the request to when the previous target in the fallback chain fails. Includes the target name, the model to send, and the conditions that trigger a fallback from this target to the next one.
+    record FallbackTarget
+        -- The name of the gateway target to fall back to. The target must be an inference target.
+        targetName: string
+        -- The model ID to send to this fallback target. If you don't specify a model, the gateway sends the model from the original request.
+        model: string
+        -- The status codes and errors from this target that cause the gateway to send the request to the next fallback target. This setting isn't inherited from the route. If you omit it, the gateway uses the default triggers: 5XX status codes and the CONNECTION_ERROR, FIRST_BYTE_TIMEOUT, and UNROUTABLE errors.
+        triggerOn: FallbackTriggers
+        -- The maximum time, in milliseconds, from sending the request to this target until the first byte of the response body arrives. This setting isn't inherited from the route. If you don't specify a value, no timeout is enforced.
+        firstByteTimeoutMilliseconds: number
+    end
+
+    -- The fallback configuration for a route to an inference target. Defines an ordered list of fallback targets to try when a request to the route's target fails, and the conditions that trigger a fallback. A fallback can occur only before the gateway sends the first byte of the response to the caller. After a streaming response starts, the gateway doesn't fall back.
+    record Fallback
+        -- The status codes and errors from the route's target that cause the gateway to send the request to the first fallback target. If you omit triggerOn, the gateway falls back on 5XX status codes and on the CONNECTION_ERROR, FIRST_BYTE_TIMEOUT, and UNROUTABLE errors. If you specify triggerOn, only the status codes and errors that you list trigger a fallback.
+        triggerOn: FallbackTriggers
+        -- The maximum time, in milliseconds, from sending the request to the route's target until the first byte of the response body arrives. If the time expires, the gateway abandons the request and treats it as a FIRST_BYTE_TIMEOUT error. If you don't specify a value, no timeout is enforced.
+        firstByteTimeoutMilliseconds: number
+        -- Specifies whether the gateway temporarily stops sending your requests to a failing target. The circuit breaker tracks each combination of target and model separately. With the circuit breaker enabled, the gateway skips one or more targets and models that fail repeatedly, and your requests go to the next target in the chain. The gateway always tries the last remaining target in the chain. The gateway enables the circuit breaker by default.
+        circuitBreaker: CircuitBreakerConfiguration
+        -- The ordered list of fallback targets. The gateway tries each target in order until a response doesn't match that target's triggers, and returns that response to the caller. If every target fails, the gateway returns the last response. You can specify up to two fallback targets. Each combination of target and model, including the route's target, can appear only once.
+        targetFallback: {FallbackTarget}
+    end
+
     -- A static route to a single gateway target.
     record StaticRoute
         -- The name of the target to route requests to.
         targetName: string
+        -- The model ID to send to the target. Supported only for inference targets. If you don't specify a model, the gateway sends the model from the original request.
+        model: string
+        -- The fallback configuration for this route. Supported only for inference targets.
+        fallback: Fallback
     end
 
     -- An entry in a target traffic split configuration.
     record TargetTrafficSplitEntry
+        -- The name of the target to route traffic to.
+        targetName: string
+        -- The model ID to send to the target for this variant. Supported only for inference targets. If you don't specify a model, the gateway sends the model from the original request.
+        model: string
+        -- The fallback configuration for this variant. Supported only for inference targets.
+        fallback: Fallback
         -- The name of this traffic split variant.
         name: string
         -- The percentage of traffic to route to this variant.
         weight: number
-        -- The name of the target to route traffic to.
-        targetName: string
         -- The description of this traffic split variant.
         description: string
         -- Key-value metadata associated with this traffic split variant.
@@ -2704,12 +2761,32 @@ local record M
         label: string
     end
 
+    -- The rating scale for one dimension of an LLM-as-a-judge evaluator, supporting either a numerical or a categorical scale.
+    record DimensionRatingScale
+        -- The numerical rating scale with defined score values and descriptions for quantitative evaluation of the dimension.
+        numerical: {NumericalScaleDefinition}
+        -- The categorical rating scale with named categories and definitions for qualitative evaluation of the dimension.
+        categorical: {CategoricalScaleDefinition}
+    end
+
+    -- A single dimension of an LLM-as-a-judge evaluator, defining what the evaluator model should judge for that dimension and how it should be scored.
+    record EvaluationDimension
+        -- The name of the dimension. This name is unique within the evaluator and identifies the dimension's results.
+        dimensionName: string
+        -- The instruction to the evaluator model for this dimension, describing what the model should judge when scoring the dimension.
+        dimensionInstruction: string
+        -- The rating scale for this dimension, which can be numerical or categorical. A dimension's rating scale cannot itself be multi-dimensional.
+        dimensionRatingScale: DimensionRatingScale
+    end
+
     -- The rating scale that defines how evaluators should score agent performance, supporting both numerical and categorical scales.
     record RatingScale
         -- The numerical rating scale with defined score values and descriptions for quantitative evaluation.
         numerical: {NumericalScaleDefinition}
         -- The categorical rating scale with named categories and definitions for qualitative evaluation.
         categorical: {CategoricalScaleDefinition}
+        -- A list of dimensions that lets an LLM-as-a-judge evaluator score several dimensions of the same target in a single evaluation. Each dimension has its own instruction and rating scale, and produces its own result.
+        multiDimensional: {EvaluationDimension}
     end
 
     -- The configuration for LLM-as-a-Judge evaluation that uses a language model to assess agent performance based on custom instructions and rating scales.
@@ -3217,7 +3294,7 @@ local record M
         sessionConfiguration: SessionConfiguration
         -- The streaming configuration for the MCP gateway. This configuration controls whether response streaming is enabled for the gateway.
         streamingConfiguration: StreamingConfiguration
-        -- Specifies whether pagination is disabled for the Model Context Protocol (MCP) tools/list operation. When set to true, the gateway returns the complete list of tools in a single response without a pagination cursor. When set to false or omitted, the gateway returns tools in paginated responses.
+        -- Specifies whether the gateway disables pagination for the Model Context Protocol (MCP) tools/list operation. When set to true, the gateway returns the complete list of tools in a single response without a pagination cursor. When set to false or omitted, the gateway returns tools in paginated responses. For information about changing this value on an existing gateway, see UpdateGateway.
         disableMcpListToolsPagination: boolean
     end
 
@@ -3514,6 +3591,25 @@ local record M
         wafConfiguration: WafConfiguration
     end
 
+    enum MatchOperator
+        "StringEquals"
+        "StringLike"
+    end
+
+    -- A model ID or pattern to match against the requested model, and the operator to use for the comparison.
+    record MatchModelEntry
+        -- The model ID or pattern to match. With the StringLike operator, you can use * and ? as wildcards, for example anthropic.claude-*.
+        value: string
+        -- The operator to use when comparing the requested model to the value: StringEquals – Requires an exact match. StringLike – Supports wildcard patterns using * and ?. This is the default.
+        operator: string
+    end
+
+    -- A condition that matches inference requests based on the requested model.
+    record MatchModels
+        -- A list of model entries. The condition is met if the requested model matches any of the entries.
+        anyOf: {MatchModelEntry}
+    end
+
     -- A condition that matches requests based on the request path.
     record MatchPaths
         -- A list of path patterns. The condition is met if the request path matches any of the patterns.
@@ -3545,12 +3641,14 @@ local record M
         anyOf: {MatchPrincipalEntry}
     end
 
-    -- A condition that determines when a gateway rule applies. Conditions can match on principals or request paths.
+    -- A condition that determines when a gateway rule applies. Conditions can match on principals, request paths, or the requested model.
     record Condition
         -- A condition that matches on the identity of the caller making the request.
         matchPrincipals: MatchPrincipals
         -- A condition that matches on the request path.
         matchPaths: MatchPaths
+        -- A condition that matches on the model requested in an inference request.
+        matchModels: MatchModels
     end
 
     record CreateGatewayRuleInput

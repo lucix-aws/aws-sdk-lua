@@ -16299,6 +16299,7 @@ local record M
     enum TransitGatewayRouteType
         "static"
         "propagated"
+        "system"
     end
 
     -- Describes a route for a transit gateway route table.
@@ -31649,6 +31650,13 @@ local record M
         State: string
     end
 
+    enum TransitGatewayAttachmentNatGatewaySupportState
+        "enabled"
+        "disabled"
+        "enabling"
+        "disabling"
+    end
+
     -- Describes an attachment between a resource and a transit gateway.
     record TransitGatewayAttachment
         -- The ID of the attachment.
@@ -31671,6 +31679,8 @@ local record M
         CreationTime: number
         -- The tags for the attachment.
         Tags: {Tag}
+        -- The state of NAT gateway support for the attachment. Only the owner of the transit gateway receives this parameter.
+        NatGatewaySupport: string
     end
 
     record DescribeTransitGatewayAttachmentsOutput
@@ -37763,6 +37773,53 @@ local record M
         NextToken: string
     end
 
+    record GetTransitGatewayAttachmentNatConfigurationInput
+        -- The ID of the transit gateway attachment.
+        TransitGatewayAttachmentId: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    enum TransitGatewayNatRuleState
+        "pending"
+        "activated"
+        "deactivated"
+        "deleting"
+    end
+
+    -- Contains information about a NAT gateway rule for a transit gateway attachment, including the rule number, the source CIDR block, the translated CIDR block, and the state of the rule.
+    record TransitGatewayNatRule
+        -- The rule number.
+        RuleNumber: number
+        -- The IPv4 CIDR block of the source addresses to translate.
+        MatchSourceCidr: string
+        -- The IPv4 CIDR block that the transit gateway translates the source addresses to.
+        NatCidr: string
+        -- The state of the NAT gateway rule. The possible values are:
+        -- pending - The transit gateway is applying a change to the rule.
+        -- activated - The rule is in effect because NAT gateway support is enabled for the attachment.
+        -- deactivated - The rule isn't in effect because NAT gateway support is disabled for the attachment.
+        State: string
+    end
+
+    enum TransitGatewayAttachmentNatSystemRouteSupportValue
+        "enable"
+        "disable"
+    end
+
+    record GetTransitGatewayAttachmentNatConfigurationOutput
+        -- The ID of the transit gateway attachment.
+        TransitGatewayAttachmentId: string
+        -- The state of NAT gateway support for the attachment.
+        NatGatewaySupport: string
+        -- Specifies whether the transit gateway installs routes for the NAT CIDRs in the route tables to which the attachment propagates.
+        NatSystemRouteSupport: string
+        -- The NAT gateway rules for the attachment.
+        NatGatewayRules: {TransitGatewayNatRule}
+    end
+
     record GetTransitGatewayAttachmentPropagationsInput
         -- The ID of the attachment.
         TransitGatewayAttachmentId: string
@@ -40888,6 +40945,63 @@ local record M
     record ModifyTransitGatewayOutput
         -- Information about the transit gateway.
         TransitGateway: TransitGateway
+    end
+
+    -- Describes a NAT gateway rule to apply to a transit gateway attachment. A NAT gateway rule translates source addresses in the
+    -- MatchSourceCidr range to the corresponding addresses in the NatCidr range.
+    record TransitGatewayNatRuleRequest
+        -- The rule number. Valid values are 1 to 32766. Each rule number must be unique within the request.
+        RuleNumber: number
+        -- The IPv4 CIDR block of the source addresses to translate. The CIDR block can't overlap the multicast
+        -- range (224.0.0.0/4) or the link-local range (169.254.0.0/16).
+        MatchSourceCidr: string
+        -- The IPv4 CIDR block to translate the source addresses to. The CIDR block must be in a private (RFC 1918)
+        -- or shared address space (RFC 6598) range, and must have the same prefix length as MatchSourceCidr.
+        -- The CIDR blocks in the rules for an attachment can't overlap each other.
+        NatCidr: string
+    end
+
+    enum TransitGatewayAttachmentNatGatewaySupportValue
+        "enable"
+        "disable"
+    end
+
+    record ModifyTransitGatewayAttachmentNatConfigurationInput
+        -- The ID of the transit gateway attachment.
+        TransitGatewayAttachmentId: string
+        -- Specifies whether to enable or disable NAT gateway support for the attachment. To enable NAT gateway support, the attachment
+        -- must have at least one NAT gateway rule. You can't modify the NAT configuration while NAT gateway support is enabling
+        -- or disabling. If you omit this parameter, the current value doesn't change.
+        NatGatewaySupport: string
+        -- Specifies whether the transit gateway installs routes for the NAT CIDRs in the route tables to which the attachment
+        -- propagates. For VPC attachments, the transit gateway always installs these routes. You can enable or disable this option only for
+        -- Amazon Web Services Direct Connect gateway attachments and Site-to-Site VPN attachments that use dynamic routing. For these
+        -- attachments, the default is enable. If you omit this parameter, the current value doesn't change.
+        NatSystemRouteSupport: string
+        -- The NAT gateway rules for the attachment. The rules that you specify replace all existing NAT gateway rules for the attachment.
+        -- You can specify up to 50 rules for an attachment. If you omit this parameter, the existing rules don't change.
+        -- To remove all rules, use ResetNatGatewayRules.
+        NatGatewayRules: {TransitGatewayNatRuleRequest}
+        -- Specifies whether to remove all NAT gateway rules from the attachment. If you omit this parameter, the transit gateway doesn't
+        -- remove any rules. You can't specify this parameter together with NatGatewayRules. Because you can't enable
+        -- NAT gateway support without rules, also set NatGatewaySupport to disable in the same request
+        -- if NAT gateway support is currently enabled.
+        ResetNatGatewayRules: boolean
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ModifyTransitGatewayAttachmentNatConfigurationOutput
+        -- The ID of the transit gateway attachment.
+        TransitGatewayAttachmentId: string
+        -- The state of NAT gateway support for the attachment.
+        NatGatewaySupport: string
+        -- Specifies whether the transit gateway installs routes for the NAT CIDRs in the route tables to which the attachment propagates.
+        NatSystemRouteSupport: string
+        -- The NAT gateway rules for the attachment.
+        NatGatewayRules: {TransitGatewayNatRule}
     end
 
     record ModifyTransitGatewayMeteringPolicyInput

@@ -33,7 +33,9 @@ local record Client
     listCustomPlugins: function(Client, types.ListCustomPluginsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomPluginsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listWorkerConfigurations: function(Client, types.ListWorkerConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkerConfigurationsOutput>
+    pauseConnector: function(Client, types.PauseConnectorInput, ? base_client.InvokeOptions): async.Operation<types.PauseConnectorOutput>
     restartConnector: function(Client, types.RestartConnectorInput, ? base_client.InvokeOptions): async.Operation<types.RestartConnectorOutput>
+    resumeConnector: function(Client, types.ResumeConnectorInput, ? base_client.InvokeOptions): async.Operation<types.ResumeConnectorOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateConnector: function(Client, types.UpdateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
@@ -141,8 +143,16 @@ function C:listWorkerConfigurations(input: types.ListWorkerConfigurationsInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkerConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListWorkerConfigurationsOutput>
 end
 
+function C:pauseConnector(input: types.PauseConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.PauseConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PauseConnector as schema.OperationSchema, input, options) as async.Operation<types.PauseConnectorOutput>
+end
+
 function C:restartConnector(input: types.RestartConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.RestartConnectorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestartConnector as schema.OperationSchema, input, options) as async.Operation<types.RestartConnectorOutput>
+end
+
+function C:resumeConnector(input: types.ResumeConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.ResumeConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResumeConnector as schema.OperationSchema, input, options) as async.Operation<types.ResumeConnectorOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

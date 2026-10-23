@@ -633,6 +633,7 @@ local record Client
     getSnapshotBlockPublicAccessState: function(Client, types.GetSnapshotBlockPublicAccessStateInput, ? base_client.InvokeOptions): async.Operation<types.GetSnapshotBlockPublicAccessStateOutput>
     getSpotPlacementScores: function(Client, types.GetSpotPlacementScoresInput, ? base_client.InvokeOptions): async.Operation<types.GetSpotPlacementScoresOutput>
     getSubnetCidrReservations: function(Client, types.GetSubnetCidrReservationsInput, ? base_client.InvokeOptions): async.Operation<types.GetSubnetCidrReservationsOutput>
+    getTransitGatewayAttachmentNatConfiguration: function(Client, types.GetTransitGatewayAttachmentNatConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayAttachmentNatConfigurationOutput>
     getTransitGatewayAttachmentPropagations: function(Client, types.GetTransitGatewayAttachmentPropagationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
     getTransitGatewayMeteringPolicyEntries: function(Client, types.GetTransitGatewayMeteringPolicyEntriesInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayMeteringPolicyEntriesOutput>
     getTransitGatewayMulticastDomainAssociations: function(Client, types.GetTransitGatewayMulticastDomainAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayMulticastDomainAssociationsOutput>
@@ -714,6 +715,7 @@ local record Client
     modifyTrafficMirrorFilterRule: function(Client, types.ModifyTrafficMirrorFilterRuleInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorFilterRuleOutput>
     modifyTrafficMirrorSession: function(Client, types.ModifyTrafficMirrorSessionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorSessionOutput>
     modifyTransitGateway: function(Client, types.ModifyTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayOutput>
+    modifyTransitGatewayAttachmentNatConfiguration: function(Client, types.ModifyTransitGatewayAttachmentNatConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayAttachmentNatConfigurationOutput>
     modifyTransitGatewayMeteringPolicy: function(Client, types.ModifyTransitGatewayMeteringPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
     modifyTransitGatewayPolicyTableEntry: function(Client, types.ModifyTransitGatewayPolicyTableEntryInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPolicyTableEntryOutput>
     modifyTransitGatewayPrefixListReference: function(Client, types.ModifyTransitGatewayPrefixListReferenceInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
@@ -3329,6 +3331,10 @@ function C:getSubnetCidrReservations(input: types.GetSubnetCidrReservationsInput
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubnetCidrReservations as schema.OperationSchema, input, options) as async.Operation<types.GetSubnetCidrReservationsOutput>
 end
 
+function C:getTransitGatewayAttachmentNatConfiguration(input: types.GetTransitGatewayAttachmentNatConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayAttachmentNatConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayAttachmentNatConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayAttachmentNatConfigurationOutput>
+end
+
 function C:getTransitGatewayAttachmentPropagations(input: types.GetTransitGatewayAttachmentPropagationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayAttachmentPropagations as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
 end
@@ -3651,6 +3657,10 @@ end
 
 function C:modifyTransitGateway(input: types.ModifyTransitGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGateway as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayOutput>
+end
+
+function C:modifyTransitGatewayAttachmentNatConfiguration(input: types.ModifyTransitGatewayAttachmentNatConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayAttachmentNatConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGatewayAttachmentNatConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayAttachmentNatConfigurationOutput>
 end
 
 function C:modifyTransitGatewayMeteringPolicy(input: types.ModifyTransitGatewayMeteringPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>

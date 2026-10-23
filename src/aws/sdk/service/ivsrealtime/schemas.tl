@@ -3867,6 +3867,27 @@ M.ListTagsForResourceOutput = schema.new({
     },
 })
 
+M.RevokeConnectionTokenInput = schema.new({
+    id = id.from(_N, "RevokeConnectionTokenRequest"),
+    type = "structure",
+    members = {
+        tokenId = schema.new({
+            id = id.from(_N, "RevokeConnectionTokenInput", "tokenId"),
+            type = "string",
+            name = "tokenId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RevokeConnectionTokenOutput = schema.new({
+    id = id.from(_N, "RevokeConnectionTokenResponse"),
+    type = "structure",
+})
+
 M.StartCompositionInput = schema.new({
     id = id.from(_N, "StartCompositionRequest"),
     type = "structure",
@@ -4782,6 +4803,18 @@ M.ListTagsForResource = schema.operation({
     output = M.ListTagsForResourceOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeConnectionToken = schema.operation({
+    id = id.from("com.amazonaws.ivsrealtime", "RevokeConnectionToken"),
+    input = M.RevokeConnectionTokenInput,
+    output = M.RevokeConnectionTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/RevokeConnectionToken" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

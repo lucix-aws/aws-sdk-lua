@@ -28,6 +28,42 @@ function M.pages_list_collections(client, input)
     })
 end
 
+--- Returns a page iterator for listIngestionJobs.
+function M.pages_list_ingestion_jobs(client, input)
+    return paginator.pages(client, "listIngestionJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ingestionJobSummaries",
+    })
+end
+
+--- Returns an item iterator for listIngestionJobs.
+function M.items_list_ingestion_jobs(client, input)
+    return paginator.items(client, "listIngestionJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ingestionJobSummaries",
+    })
+end
+
+--- Returns a page iterator for listIngestionStreams.
+function M.pages_list_ingestion_streams(client, input)
+    return paginator.pages(client, "listIngestionStreams", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ingestionStreamSummaries",
+    })
+end
+
+--- Returns an item iterator for listIngestionStreams.
+function M.items_list_ingestion_streams(client, input)
+    return paginator.items(client, "listIngestionStreams", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "ingestionStreamSummaries",
+    })
+end
+
 --- Returns a page iterator for listLifecyclePolicies.
 function M.pages_list_lifecycle_policies(client, input)
     return paginator.pages(client, "listLifecyclePolicies", input, {

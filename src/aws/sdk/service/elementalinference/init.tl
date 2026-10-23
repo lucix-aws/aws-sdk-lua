@@ -21,9 +21,11 @@ local record Client
     associateFeed: function(Client, types.AssociateFeedInput, ? base_client.InvokeOptions): async.Operation<types.AssociateFeedOutput>
     createDictionary: function(Client, types.CreateDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.CreateDictionaryOutput>
     createFeed: function(Client, types.CreateFeedInput, ? base_client.InvokeOptions): async.Operation<types.CreateFeedOutput>
+    createScheduleAction: function(Client, types.CreateScheduleActionInput, ? base_client.InvokeOptions): async.Operation<types.CreateScheduleActionOutput>
     deleteDictionary: function(Client, types.DeleteDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDictionaryOutput>
     deleteFeed: function(Client, types.DeleteFeedInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFeedOutput>
     deleteFeedPolicy: function(Client, types.DeleteFeedPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFeedPolicyOutput>
+    deleteScheduleAction: function(Client, types.DeleteScheduleActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduleActionOutput>
     disassociateFeed: function(Client, types.DisassociateFeedInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFeedOutput>
     exportDictionaryEntries: function(Client, types.ExportDictionaryEntriesInput, ? base_client.InvokeOptions): async.Operation<types.ExportDictionaryEntriesOutput>
     getDictionary: function(Client, types.GetDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.GetDictionaryOutput>
@@ -32,6 +34,7 @@ local record Client
     getFixture: function(Client, types.GetFixtureInput, ? base_client.InvokeOptions): async.Operation<types.GetFixtureOutput>
     listDictionaries: function(Client, types.ListDictionariesInput, ? base_client.InvokeOptions): async.Operation<types.ListDictionariesOutput>
     listFeeds: function(Client, types.ListFeedsInput, ? base_client.InvokeOptions): async.Operation<types.ListFeedsOutput>
+    listScheduleActions: function(Client, types.ListScheduleActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListScheduleActionsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putFeedPolicy: function(Client, types.PutFeedPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutFeedPolicyOutput>
     searchFixtures: function(Client, types.SearchFixturesInput, ? base_client.InvokeOptions): async.Operation<types.SearchFixturesOutput>
@@ -95,6 +98,10 @@ function C:createFeed(input: types.CreateFeedInput, options?: base_client.Invoke
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFeed as schema.OperationSchema, input, options) as async.Operation<types.CreateFeedOutput>
 end
 
+function C:createScheduleAction(input: types.CreateScheduleActionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScheduleActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateScheduleAction as schema.OperationSchema, input, options) as async.Operation<types.CreateScheduleActionOutput>
+end
+
 function C:deleteDictionary(input: types.DeleteDictionaryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDictionaryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDictionary as schema.OperationSchema, input, options) as async.Operation<types.DeleteDictionaryOutput>
 end
@@ -105,6 +112,10 @@ end
 
 function C:deleteFeedPolicy(input: types.DeleteFeedPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFeedPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFeedPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteFeedPolicyOutput>
+end
+
+function C:deleteScheduleAction(input: types.DeleteScheduleActionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduleActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScheduleAction as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduleActionOutput>
 end
 
 function C:disassociateFeed(input: types.DisassociateFeedInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateFeedOutput>
@@ -137,6 +148,10 @@ end
 
 function C:listFeeds(input: types.ListFeedsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFeedsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFeeds as schema.OperationSchema, input, options) as async.Operation<types.ListFeedsOutput>
+end
+
+function C:listScheduleActions(input: types.ListScheduleActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListScheduleActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScheduleActions as schema.OperationSchema, input, options) as async.Operation<types.ListScheduleActionsOutput>
 end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>

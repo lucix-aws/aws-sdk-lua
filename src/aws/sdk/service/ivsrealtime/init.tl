@@ -49,6 +49,7 @@ local record Client
     listStageSessions: function(Client, types.ListStageSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListStageSessionsOutput>
     listStorageConfigurations: function(Client, types.ListStorageConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListStorageConfigurationsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    revokeConnectionToken: function(Client, types.RevokeConnectionTokenInput, ? base_client.InvokeOptions): async.Operation<types.RevokeConnectionTokenOutput>
     startComposition: function(Client, types.StartCompositionInput, ? base_client.InvokeOptions): async.Operation<types.StartCompositionOutput>
     startParticipantReplication: function(Client, types.StartParticipantReplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartParticipantReplicationOutput>
     stopComposition: function(Client, types.StopCompositionInput, ? base_client.InvokeOptions): async.Operation<types.StopCompositionOutput>
@@ -223,6 +224,10 @@ end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
+end
+
+function C:revokeConnectionToken(input: types.RevokeConnectionTokenInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeConnectionTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeConnectionToken as schema.OperationSchema, input, options) as async.Operation<types.RevokeConnectionTokenOutput>
 end
 
 function C:startComposition(input: types.StartCompositionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCompositionOutput>

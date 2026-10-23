@@ -22,13 +22,19 @@ local record M
         "SUBNET_NO_FREE_ADDRESSES"
         "SUBNET_UNSUPPORTED_AVAILABILITY_ZONE"
         "SUBNET_NO_IPV6_CIDRS"
+        "SECURITY_GROUP_REFERENCING_UNSUPPORTED_AVAILABILITY_ZONE"
         "VPN_CONNECTION_NOT_FOUND"
         "MAXIMUM_NO_ENCAP_LIMIT_EXCEEDED"
         "DIRECT_CONNECT_GATEWAY_NOT_FOUND"
         "DIRECT_CONNECT_GATEWAY_EXISTING_ATTACHMENTS"
         "DIRECT_CONNECT_GATEWAY_NO_PRIVATE_VIF"
         "VPN_EXISTING_ASSOCIATIONS"
+        "VPN_STATIC_ROUTES_NAT_UNSUPPORTED"
         "VPC_UNSUPPORTED_FEATURES"
+        "DIRECT_CONNECT_GATEWAY_TOPOLOGY_RESTRICTIONS"
+        "CREATION_FAILED"
+        "UPDATE_FAILED"
+        "DELETION_FAILED"
     end
 
     -- Describes the error associated with an attachment request.
@@ -41,6 +47,14 @@ local record M
         ResourceArn: string
         -- The ID of the attachment request.
         RequestId: string
+    end
+
+    enum NatGatewaySupportState
+        "ENABLED"
+        "ENABLING"
+        "DISABLED"
+        "DISABLING"
+        "PENDING_ATTACHMENT_ACCEPTANCE"
     end
 
     -- Describes a tag.
@@ -111,6 +125,10 @@ local record M
         SegmentName: string
         -- The name of the network function group.
         NetworkFunctionGroupName: string
+        -- The state of NAT gateway support on the attachment. This is returned only to the core network owner for attachment types that support NAT.
+        NatGatewaySupport: string
+        -- Indicates whether the core network installs system routes for the NAT CIDR blocks of the attachment's NAT rules. This is returned only to the core network owner for attachment types that support NAT.
+        NatSystemRouteSupport: boolean
         -- The tags associated with the attachment.
         Tags: {Tag}
         -- The attachment to move from one segment to another.
@@ -360,6 +378,51 @@ local record M
         TransitGatewayConnectPeerAssociation: TransitGatewayConnectPeerAssociation
     end
 
+    enum NatRuleState
+        "CREATING"
+        "MODIFYING"
+        "DELETING"
+        "ACTIVATED"
+        "ACTIVATING"
+        "DEACTIVATED"
+        "DEACTIVATING"
+        "FAILED"
+        "PENDING_ATTACHMENT_ACCEPTANCE"
+    end
+
+    -- Describes a NAT rule of an attachment.
+    record NatRule
+        -- The rule number. Rule numbers identify the rules of an attachment and don't set the order in which rules are evaluated.
+        RuleNumber: number
+        -- The source CIDR block that the rule matches for traffic from the attachment.
+        MatchSourceCidr: string
+        -- The CIDR block that matching source addresses are translated to.
+        NatCidr: string
+        -- The state of the NAT rule. The possible values are the following:
+        -- CREATING: The rule is being created.
+        -- MODIFYING: The rule is being modified.
+        -- DELETING: The rule is being deleted.
+        -- ACTIVATING: NAT gateway support is being enabled, and the rule is being applied.
+        -- ACTIVATED: NAT gateway support is enabled, and the rule is applied.
+        -- DEACTIVATING: NAT gateway support is being disabled, and the rule is being removed from use.
+        -- DEACTIVATED: NAT gateway support is disabled, and the rule isn't applied.
+        -- FAILED: The attachment failed to be created, and the rule isn't applied.
+        -- PENDING_ATTACHMENT_ACCEPTANCE: The attachment is pending acceptance. The rule is applied after the attachment is accepted.
+        State: string
+    end
+
+    -- Describes the NAT configuration of a core network attachment.
+    record AttachmentNatConfiguration
+        -- The ID of the attachment.
+        AttachmentId: string
+        -- The state of NAT gateway support on the attachment.
+        NatGatewaySupport: string
+        -- Indicates whether the core network installs system routes for the NAT CIDR blocks of the attachment's NAT rules.
+        NatSystemRouteSupport: boolean
+        -- The NAT rules of the attachment.
+        NatGatewayRules: {NatRule}
+    end
+
     -- Summary information about routing policy associations for an attachment.
     record AttachmentRoutingPolicyAssociationSummary
         -- The ID of the attachment associated with the routing policy.
@@ -541,6 +604,8 @@ local record M
         "IP_OUTSIDE_SUBNET_CIDR_RANGE"
         "INVALID_INSIDE_CIDR_BLOCK"
         "NO_ASSOCIATED_CIDR_BLOCK"
+        "CREATION_FAILED"
+        "DELETION_FAILED"
     end
 
     -- Describes an error associated with a Connect peer request
@@ -772,7 +837,7 @@ local record M
         DnsSupport: boolean
         -- Indicates whether security group referencing is enabled for the core network.
         SecurityGroupReferencingSupport: boolean
-        -- The routing policy direction (inbound/outbound) in a core network change event.
+        -- The routing policy direction (inbound/outbound) in the core network change values.
         RoutingPolicyDirection: string
         -- The routing policy configuration in the core network change values.
         RoutingPolicy: string
@@ -816,7 +881,7 @@ local record M
         AttachmentId: string
         -- For a STATIC_ROUTE event, this is the IP address.
         Cidr: string
-        -- The names of the routing policies and other association details in the core network change values.
+        -- The names of the routing policies and other association details in a core network change event.
         RoutingPolicyAssociationDetails: {RoutingPolicyAssociationDetail}
     end
 
@@ -964,6 +1029,21 @@ local record M
         Tags: {Tag}
     end
 
+    -- Describes a NAT rule to configure on an attachment. Source addresses in the source CIDR block of traffic from the attachment are translated to the same host addresses in the NAT CIDR block. Traffic to an address in the NAT CIDR block is translated back to the matching address in the source CIDR block.
+    record NatRuleRequest
+        -- The rule number, from 1 to 32766. Each rule number must be unique for the attachment.
+        RuleNumber: number
+        -- The IPv4 CIDR block to match against the source address of traffic from the attachment. The CIDR block can't overlap with the multicast range (224.0.0.0/4).
+        MatchSourceCidr: string
+        -- The IPv4 CIDR block to translate matching source addresses to. The prefix length must be the same as the prefix length of MatchSourceCidr. The CIDR block must be within a private (RFC 1918) or shared address space (RFC 6598) range. The CIDR blocks of the NAT rules of an attachment can't overlap with each other.
+        NatCidr: string
+    end
+
+    enum NatGatewaySupportValue
+        "ENABLE"
+        "DISABLE"
+    end
+
     record CreateConnectAttachmentInput
         -- The ID of a core network where you want to create the attachment.
         CoreNetworkId: string
@@ -973,6 +1053,10 @@ local record M
         TransportAttachmentId: string
         -- The routing policy label to apply to the Connect attachment for traffic routing decisions.
         RoutingPolicyLabel: string
+        -- Specifies whether to enable NAT gateway support on the Connect attachment. NAT is supported only on Connect attachments that use the GRE tunnel protocol. Tunnel-less Connect attachments aren't supported. To enable NAT gateway support, you must also specify at least one NAT rule. If you don't specify a value, NAT gateway support is disabled. Only the core network owner can configure NAT on an attachment.
+        NatGatewaySupport: string
+        -- The NAT rules for the Connect attachment, up to 50 rules.
+        NatGatewayRules: {NatRuleRequest}
         -- Options for creating an attachment.
         Options: ConnectAttachmentOptions
         -- The list of key-value tags associated with the request.
@@ -1161,6 +1245,12 @@ local record M
         RoutingPolicyLabel: string
         -- One or more core network edge locations that the Direct Connect gateway attachment is associated with.
         EdgeLocations: {string}
+        -- Specifies whether to enable NAT gateway support on the Direct Connect gateway attachment. To enable NAT gateway support, you must also specify at least one NAT rule. If you don't specify a value, NAT gateway support is disabled. Only the core network owner can configure NAT on an attachment.
+        NatGatewaySupport: string
+        -- Specifies whether the core network installs system routes for the NAT CIDR blocks of the attachment's NAT rules. System routes have a route type of SYSTEM. NAT is applied to traffic whether or not this option is enabled. The default is true.
+        NatSystemRouteSupport: boolean
+        -- The NAT rules for the Direct Connect gateway attachment, up to 50 rules.
+        NatGatewayRules: {NatRuleRequest}
         -- The key value tags to apply to the Direct Connect gateway attachment during creation.
         Tags: {Tag}
         -- client token
@@ -1327,6 +1417,12 @@ local record M
         VpnConnectionArn: string
         -- The routing policy label to apply to the Site-to-Site VPN attachment for traffic routing decisions.
         RoutingPolicyLabel: string
+        -- Specifies whether to enable NAT gateway support on the Site-to-Site VPN attachment. To enable NAT gateway support, you must also specify at least one NAT rule. If you don't specify a value, NAT gateway support is disabled. Only the core network owner can configure NAT on an attachment.
+        NatGatewaySupport: string
+        -- Specifies whether the core network installs system routes for the NAT CIDR blocks of the attachment's NAT rules. System routes have a route type of SYSTEM. NAT is applied to traffic whether or not this option is enabled. The default is true for VPN connections that use BGP and false for VPN connections that use static routing. If the VPN connection uses static routing, you must specify false or omit this parameter.
+        NatSystemRouteSupport: boolean
+        -- The NAT rules for the Site-to-Site VPN attachment, up to 50 rules.
+        NatGatewayRules: {NatRuleRequest}
         -- The tags associated with the request.
         Tags: {Tag}
         -- The client token associated with the request.
@@ -1364,6 +1460,9 @@ local record M
         "INTERNAL_ERROR"
         "EDGE_LOCATION_PEER_DUPLICATE"
         "INVALID_TRANSIT_GATEWAY_STATE"
+        "TRANSIT_GATEWAY_ENCRYPTION_NOT_SUPPORTED"
+        "CREATION_FAILED"
+        "DELETION_FAILED"
     end
 
     -- Describes additional information about missing permissions.
@@ -1420,7 +1519,7 @@ local record M
         Tags: {Tag}
         -- The timestamp when the attachment peer was created.
         CreatedAt: number
-        -- Describes the error associated with the Connect peer request.
+        -- Describes the error associated with the peering request.
         LastModificationErrors: {PeeringError}
     end
 
@@ -1489,6 +1588,10 @@ local record M
         Options: VpcOptions
         -- The routing policy label to apply to the VPC attachment for traffic routing decisions.
         RoutingPolicyLabel: string
+        -- Specifies whether to enable NAT gateway support on the VPC attachment. To enable NAT gateway support, you must also specify at least one NAT rule. If you don't specify a value, NAT gateway support is disabled. Only the core network owner can configure NAT on an attachment.
+        NatGatewaySupport: string
+        -- The NAT rules for the VPC attachment, up to 50 rules.
+        NatGatewayRules: {NatRuleRequest}
         -- The key-value tags associated with the request.
         Tags: {Tag}
         -- The client token associated with the request.
@@ -2180,6 +2283,7 @@ local record M
     enum RouteType
         "PROPAGATED"
         "STATIC"
+        "SYSTEM"
     end
 
     record GetNetworkRoutesInput
@@ -2203,6 +2307,10 @@ local record M
         Types: {string}
         -- Filter by route table destination. Possible Values: TRANSIT_GATEWAY_ATTACHMENT_ID, RESOURCE_ID, or RESOURCE_TYPE.
         DestinationFilters: {string : {string}}
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
     end
 
     -- Describes the destination of a network route.
@@ -2233,7 +2341,7 @@ local record M
         PrefixListId: string
         -- The route state. The possible values are active and blackhole.
         State: string
-        -- The route type. The possible values are propagated and static.
+        -- The route type. The possible values are PROPAGATED, STATIC, and SYSTEM. A SYSTEM route is installed by the core network for the NAT CIDR block of an attachment's NAT rule.
         Type: string
     end
 
@@ -2248,12 +2356,16 @@ local record M
         RouteTableArn: string
         -- Describes a core network segment edge.
         CoreNetworkSegmentEdge: CoreNetworkSegmentEdgeIdentifier
+        -- Describes the network function group route table that the routes are from. This field is present only when you specify CoreNetworkNetworkFunctionGroup in RouteTableIdentifier.
+        CoreNetworkNetworkFunctionGroup: CoreNetworkNetworkFunctionGroupIdentifier
         -- The route table type.
         RouteTableType: string
         -- The route table creation time.
         RouteTableTimestamp: number
         -- The network routes.
         NetworkRoutes: {NetworkRoute}
+        -- The token for the next page of results.
+        NextToken: string
     end
 
     record GetNetworkTelemetryInput
@@ -2542,6 +2654,32 @@ local record M
         VpcAttachment: VpcAttachment
     end
 
+    record ListAttachmentNatConfigurationsInput
+        -- The ID of a core network. Returns the NAT configurations of attachments in the core network that support NAT.
+        CoreNetworkId: string
+        -- The ID of an attachment. Returns the NAT configuration of the specified attachment. If you specify both an attachment ID and a core network ID, the attachment ID is used.
+        AttachmentId: string
+        -- The filters to apply to the results. Values for the same filter are joined with OR, and different filters are joined with AND. You can specify up to 10 filter values in total. The following filters are supported:
+        -- nat-gateway-support: The state of NAT gateway support on the attachment, for example ENABLED.
+        -- nat-system-route-support: Whether system routes are installed for the attachment, true or false.
+        -- rule-number: The rule number of a NAT rule.
+        -- match-source-cidr: The source CIDR block of a NAT rule. The value must exactly match the CIDR block of the rule.
+        -- nat-cidr: The NAT CIDR block of a NAT rule. The value must exactly match the CIDR block of the rule.
+        -- nat-rule-state: The state of a NAT rule, for example ACTIVATED.
+        Filters: {string : {string}}
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record ListAttachmentNatConfigurationsOutput
+        -- The NAT configurations of the attachments.
+        AttachmentNatConfigurations: {AttachmentNatConfiguration}
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
     record ListAttachmentRoutingPolicyAssociationsInput
         -- The ID of the core network to list attachment routing policy associations for.
         CoreNetworkId: string
@@ -2629,7 +2767,7 @@ local record M
 
     -- Information about a prefix list association with a core network.
     record PrefixListAssociation
-        -- The core network id in the association.
+        -- The ID of the core network in the association.
         CoreNetworkId: string
         -- The ARN of the prefix list in the association.
         PrefixListArn: string
@@ -2651,8 +2789,23 @@ local record M
         SegmentName: string
         -- The edge location to filter routing information by.
         EdgeLocation: string
-        -- Filters to apply based on next hop information.
+        -- Filters to apply based on next hop information. Each filter value must exactly match the corresponding next hop value. Values for the same filter are joined with OR, and different filters are joined with AND. The following filters are supported:
+        -- core-network-attachment-id: The ID of the core network attachment for the next hop, for example attachment-0123456789abcdef0.
+        -- segment-name: The name of the segment for the next hop.
+        -- edge-location: The edge location for the next hop, for example us-east-1.
+        -- resource-id: The ID of the resource for the next hop.
+        -- resource-type: The type of resource for the next hop. The possible values are vpc, vpn, connect-peer, direct-connect-gateway, transit-gateway-route-table, attachment, and blackhole.
+        -- ip-address: The IP address of the next hop. For a Site-to-Site VPN next hop, this is the outside IP address of the AWS side of the VPN tunnel. For a Connect peer next hop, this is the core network BGP address of the Connect peer. The value must be a single IPv4 or IPv6 address.
+        -- You can specify up to 10 filter values in total across NextHopFilters and the other match parameters in the request. Each filter value can be up to 256 characters.
         NextHopFilters: {string : {string}}
+        -- Exact prefix values to match when filtering routing information.
+        ExactPrefixMatches: {string}
+        -- Filters routing information based on the longest prefix that matches each provided IP address.
+        LongestPrefixMatches: {string}
+        -- Prefix values to filter routing information whose prefix is a subnet of the prefixes provided.
+        SubnetOfMatches: {string}
+        -- Prefix values to filter routing information whose prefix is a supernet of the prefixes provided.
+        SupernetOfMatches: {string}
         -- Local preference values to match when filtering routing information.
         LocalPreferenceMatches: {string}
         -- Exact AS path values to match when filtering routing information.
@@ -2899,6 +3052,30 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateAttachmentNatConfigurationInput
+        -- The ID of the attachment to update the NAT configuration for.
+        AttachmentId: string
+        -- Specifies whether to enable or disable NAT gateway support on the attachment. When you disable NAT gateway support, the attachment keeps its NAT rules but doesn't apply them. To enable NAT gateway support, the attachment must have at least one NAT rule, either specified in this request or already configured on the attachment. If you omit this parameter, NAT gateway support is unchanged.
+        NatGatewaySupport: string
+        -- Specifies whether the core network installs system routes for the NAT CIDR blocks of the attachment's NAT rules. System routes have a route type of SYSTEM. NAT is applied to traffic whether or not this option is enabled. If you omit this parameter, the current value is unchanged.
+        NatSystemRouteSupport: boolean
+        -- The complete set of NAT rules for the attachment, up to 50 rules. The rules that you specify replace the existing rules of the attachment, matched by rule number. Existing rules that aren't included in the request are deleted. To delete all NAT rules, specify an empty list. You can delete all NAT rules only when NAT gateway support is disabled, or when you disable it in the same request. If you omit this parameter, the existing rules are unchanged.
+        NatGatewayRules: {NatRuleRequest}
+        -- The client token associated with the request.
+        ClientToken: string
+    end
+
+    record UpdateAttachmentNatConfigurationOutput
+        -- The ID of the attachment.
+        AttachmentId: string
+        -- The state of NAT gateway support on the attachment. The transitional states ENABLING and DISABLING change to ENABLED or DISABLED after the update is applied. The state is PENDING_ATTACHMENT_ACCEPTANCE when NAT gateway support is enabled on an attachment that is pending acceptance.
+        NatGatewaySupport: string
+        -- Indicates whether the core network installs system routes for the NAT CIDR blocks of the attachment's NAT rules.
+        NatSystemRouteSupport: boolean
+        -- The NAT rules of the attachment, including rules that are being deleted.
+        NatGatewayRules: {NatRule}
     end
 
     record UpdateConnectionInput

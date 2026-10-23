@@ -34,6 +34,10 @@ M.GetOutputList = schema.new({ type = "list", list_member = M.GetOutput })
 
 M.UpdateOutputList = schema.new({ type = "list", list_member = M.UpdateOutput })
 
+M.ScheduleActionOperations = schema.new({ type = "list", list_member = M.ScheduleActionOperation })
+
+M.ScheduleActionList = schema.new({ type = "list", list_member = M.ScheduleAction })
+
 M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TemplateGroupList = schema.new({ type = "list", list_member = M.TemplateGroup })
@@ -787,6 +791,254 @@ M.CreateFeedOutput = schema.new({
     },
 })
 
+M.RemoveClippingDataSourceConfiguration = schema.new({
+    id = id.from(_N, "RemoveClippingDataSourceConfiguration"),
+    type = "structure",
+    members = {
+        outputName = schema.new({
+            id = id.from(_N, "RemoveClippingDataSourceConfiguration", "outputName"),
+            type = "string",
+            name = "outputName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateClippingDataSourceConfiguration = schema.new({
+    id = id.from(_N, "UpdateClippingDataSourceConfiguration"),
+    type = "structure",
+    members = {
+        outputName = schema.new({
+            id = id.from(_N, "UpdateClippingDataSourceConfiguration", "outputName"),
+            type = "string",
+            name = "outputName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dataSourceConfiguration = schema.new({
+            id = id.from(_N, "UpdateClippingDataSourceConfiguration", "dataSourceConfiguration"),
+            type = "structure",
+            name = "dataSourceConfiguration",
+            target_id = id.from(_N, "DataSourceConfiguration"),
+            target = M.DataSourceConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateOutputStatus = schema.new({
+    id = id.from(_N, "UpdateOutputStatus"),
+    type = "structure",
+    members = {
+        outputName = schema.new({
+            id = id.from(_N, "UpdateOutputStatus", "outputName"),
+            type = "string",
+            name = "outputName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateOutputStatus", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ScheduleActionOperation = schema.new({
+    id = id.from(_N, "ScheduleActionOperation"),
+    type = "union",
+    members = {
+        updateOutputStatus = schema.new({
+            id = id.from(_N, "ScheduleActionOperation", "updateOutputStatus"),
+            type = "structure",
+            name = "updateOutputStatus",
+            target_id = id.from(_N, "UpdateOutputStatus"),
+            target = M.UpdateOutputStatus,
+        }),
+        updateClippingDataSourceConfiguration = schema.new({
+            id = id.from(_N, "ScheduleActionOperation", "updateClippingDataSourceConfiguration"),
+            type = "structure",
+            name = "updateClippingDataSourceConfiguration",
+            target_id = id.from(_N, "UpdateClippingDataSourceConfiguration"),
+            target = M.UpdateClippingDataSourceConfiguration,
+        }),
+        removeClippingDataSourceConfiguration = schema.new({
+            id = id.from(_N, "ScheduleActionOperation", "removeClippingDataSourceConfiguration"),
+            type = "structure",
+            name = "removeClippingDataSourceConfiguration",
+            target_id = id.from(_N, "RemoveClippingDataSourceConfiguration"),
+            target = M.RemoveClippingDataSourceConfiguration,
+        }),
+    },
+})
+
+M.FixedModeScheduleActionStartSettings = schema.new({
+    id = id.from(_N, "FixedModeScheduleActionStartSettings"),
+    type = "structure",
+    members = {
+        scheduledAt = schema.new({
+            id = id.from(_N, "FixedModeScheduleActionStartSettings", "scheduledAt"),
+            type = "timestamp",
+            name = "scheduledAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ScheduleActionStartConfiguration = schema.new({
+    id = id.from(_N, "ScheduleActionStartConfiguration"),
+    type = "union",
+    members = {
+        fixedModeScheduleActionStartSettings = schema.new({
+            id = id.from(_N, "ScheduleActionStartConfiguration", "fixedModeScheduleActionStartSettings"),
+            type = "structure",
+            name = "fixedModeScheduleActionStartSettings",
+            target_id = id.from(_N, "FixedModeScheduleActionStartSettings"),
+            target = M.FixedModeScheduleActionStartSettings,
+        }),
+    },
+})
+
+M.CreateScheduleActionInput = schema.new({
+    id = id.from(_N, "CreateScheduleActionRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "CreateScheduleActionInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        actionName = schema.new({
+            id = id.from(_N, "CreateScheduleActionInput", "actionName"),
+            type = "string",
+            name = "actionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startConfiguration = schema.new({
+            id = id.from(_N, "CreateScheduleActionInput", "startConfiguration"),
+            type = "union",
+            name = "startConfiguration",
+            target_id = id.from(_N, "ScheduleActionStartConfiguration"),
+            target = M.ScheduleActionStartConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operations = schema.new({
+            id = id.from(_N, "CreateScheduleActionInput", "operations"),
+            type = "list",
+            name = "operations",
+            target_id = prelude.Document.id,
+            list_member = M.ScheduleActionOperation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ScheduleActionError = schema.new({
+    id = id.from(_N, "ScheduleActionError"),
+    type = "structure",
+    members = {
+        errorCode = schema.new({
+            id = id.from(_N, "ScheduleActionError", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "ScheduleActionError", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateScheduleActionOutput = schema.new({
+    id = id.from(_N, "CreateScheduleActionResponse"),
+    type = "structure",
+    members = {
+        actionName = schema.new({
+            id = id.from(_N, "CreateScheduleActionOutput", "actionName"),
+            type = "string",
+            name = "actionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startConfiguration = schema.new({
+            id = id.from(_N, "CreateScheduleActionOutput", "startConfiguration"),
+            type = "union",
+            name = "startConfiguration",
+            target_id = id.from(_N, "ScheduleActionStartConfiguration"),
+            target = M.ScheduleActionStartConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operations = schema.new({
+            id = id.from(_N, "CreateScheduleActionOutput", "operations"),
+            type = "list",
+            name = "operations",
+            target_id = prelude.Document.id,
+            list_member = M.ScheduleActionOperation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateScheduleActionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        error = schema.new({
+            id = id.from(_N, "CreateScheduleActionOutput", "error"),
+            type = "structure",
+            name = "error",
+            target_id = id.from(_N, "ScheduleActionError"),
+            target = M.ScheduleActionError,
+        }),
+    },
+})
+
 M.DeleteDictionaryInput = schema.new({
     id = id.from(_N, "DeleteDictionaryRequest"),
     type = "structure",
@@ -907,6 +1159,49 @@ M.DeleteFeedPolicyInput = schema.new({
 })
 
 M.DeleteFeedPolicyOutput = prelude.Unit
+
+M.DeleteScheduleActionInput = schema.new({
+    id = id.from(_N, "DeleteScheduleActionRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteScheduleActionInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        actionName = schema.new({
+            id = id.from(_N, "DeleteScheduleActionInput", "actionName"),
+            type = "string",
+            name = "actionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "actionName" },
+            },
+        }),
+    },
+})
+
+M.DeleteScheduleActionOutput = schema.new({
+    id = id.from(_N, "DeleteScheduleActionResponse"),
+    type = "structure",
+    members = {
+        actionName = schema.new({
+            id = id.from(_N, "DeleteScheduleActionOutput", "actionName"),
+            type = "string",
+            name = "actionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
 
 M.ExportDictionaryEntriesInput = schema.new({
     id = id.from(_N, "ExportDictionaryEntriesRequest"),
@@ -1510,6 +1805,116 @@ M.ListFeedsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListFeedsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListScheduleActionsInput = schema.new({
+    id = id.from(_N, "ListScheduleActionsRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ListScheduleActionsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListScheduleActionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListScheduleActionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ScheduleAction = schema.new({
+    id = id.from(_N, "ScheduleAction"),
+    type = "structure",
+    members = {
+        actionName = schema.new({
+            id = id.from(_N, "ScheduleAction", "actionName"),
+            type = "string",
+            name = "actionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startConfiguration = schema.new({
+            id = id.from(_N, "ScheduleAction", "startConfiguration"),
+            type = "union",
+            name = "startConfiguration",
+            target_id = id.from(_N, "ScheduleActionStartConfiguration"),
+            target = M.ScheduleActionStartConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operations = schema.new({
+            id = id.from(_N, "ScheduleAction", "operations"),
+            type = "list",
+            name = "operations",
+            target_id = prelude.Document.id,
+            list_member = M.ScheduleActionOperation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ScheduleAction", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        error = schema.new({
+            id = id.from(_N, "ScheduleAction", "error"),
+            type = "structure",
+            name = "error",
+            target_id = id.from(_N, "ScheduleActionError"),
+            target = M.ScheduleActionError,
+        }),
+    },
+})
+
+M.ListScheduleActionsOutput = schema.new({
+    id = id.from(_N, "ListScheduleActionsResponse"),
+    type = "structure",
+    members = {
+        scheduleActions = schema.new({
+            id = id.from(_N, "ListScheduleActionsOutput", "scheduleActions"),
+            type = "list",
+            name = "scheduleActions",
+            target_id = prelude.Document.id,
+            list_member = M.ScheduleAction,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListScheduleActionsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -2146,6 +2551,18 @@ M.CreateFeed = schema.operation({
     },
 })
 
+M.CreateScheduleAction = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "CreateScheduleAction"),
+    input = M.CreateScheduleActionInput,
+    output = M.CreateScheduleActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/feed/{id}/schedule-actions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteDictionary = schema.operation({
     id = id.from("com.amazonaws.elementalinference", "DeleteDictionary"),
     input = M.DeleteDictionaryInput,
@@ -2176,6 +2593,18 @@ M.DeleteFeedPolicy = schema.operation({
     output = M.DeleteFeedPolicyOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v1/feed/{id}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteScheduleAction = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "DeleteScheduleAction"),
+    input = M.DeleteScheduleActionInput,
+    output = M.DeleteScheduleActionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/feed/{id}/schedule-actions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2272,6 +2701,18 @@ M.ListFeeds = schema.operation({
     output = M.ListFeedsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/feeds" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListScheduleActions = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "ListScheduleActions"),
+    input = M.ListScheduleActionsInput,
+    output = M.ListScheduleActionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/feed/{id}/schedule-actions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

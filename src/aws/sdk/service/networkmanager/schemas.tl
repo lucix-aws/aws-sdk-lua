@@ -14,6 +14,8 @@ M.ExceptionContextMap = schema.new({ type = "map", map_key = prelude.String, map
 
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
 
+M.NatRuleRequestList = schema.new({ type = "list", list_member = M.NatRuleRequest })
+
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.ConstrainedStringList = schema.new({ type = "list", list_member = prelude.String })
@@ -82,6 +84,8 @@ M.TransitGatewayArnList = schema.new({ type = "list", list_member = prelude.Stri
 
 M.TransitGatewayRegistrationList = schema.new({ type = "list", list_member = M.TransitGatewayRegistration })
 
+M.AttachmentNatConfigurationList = schema.new({ type = "list", list_member = M.AttachmentNatConfiguration })
+
 M.AttachmentRoutingPolicyAssociationsList = schema.new({ type = "list", list_member = M.AttachmentRoutingPolicyAssociationSummary })
 
 M.AttachmentList = schema.new({ type = "list", list_member = M.Attachment })
@@ -99,6 +103,8 @@ M.CoreNetworkSummaryList = schema.new({ type = "list", list_member = M.CoreNetwo
 M.PeeringList = schema.new({ type = "list", list_member = M.Peering })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NatRuleList = schema.new({ type = "list", list_member = M.NatRule })
 
 M.NetworkResourceMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -335,6 +341,18 @@ M.Attachment = schema.new({
             type = "string",
             name = "NetworkFunctionGroupName",
             target_id = prelude.String.id,
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "Attachment", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "Attachment", "NatSystemRouteSupport"),
+            type = "boolean",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.Boolean.id,
         }),
         Tags = schema.new({
             id = id.from(_N, "Attachment", "Tags"),
@@ -1027,6 +1045,69 @@ M.AssociateTransitGatewayConnectPeerOutput = schema.new({
             name = "TransitGatewayConnectPeerAssociation",
             target_id = id.from(_N, "TransitGatewayConnectPeerAssociation"),
             target = M.TransitGatewayConnectPeerAssociation,
+        }),
+    },
+})
+
+M.NatRule = schema.new({
+    id = id.from(_N, "NatRule"),
+    type = "structure",
+    members = {
+        RuleNumber = schema.new({
+            id = id.from(_N, "NatRule", "RuleNumber"),
+            type = "integer",
+            name = "RuleNumber",
+            target_id = prelude.Integer.id,
+        }),
+        MatchSourceCidr = schema.new({
+            id = id.from(_N, "NatRule", "MatchSourceCidr"),
+            type = "string",
+            name = "MatchSourceCidr",
+            target_id = prelude.String.id,
+        }),
+        NatCidr = schema.new({
+            id = id.from(_N, "NatRule", "NatCidr"),
+            type = "string",
+            name = "NatCidr",
+            target_id = prelude.String.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "NatRule", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AttachmentNatConfiguration = schema.new({
+    id = id.from(_N, "AttachmentNatConfiguration"),
+    type = "structure",
+    members = {
+        AttachmentId = schema.new({
+            id = id.from(_N, "AttachmentNatConfiguration", "AttachmentId"),
+            type = "string",
+            name = "AttachmentId",
+            target_id = prelude.String.id,
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "AttachmentNatConfiguration", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "AttachmentNatConfiguration", "NatSystemRouteSupport"),
+            type = "boolean",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.Boolean.id,
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "AttachmentNatConfiguration", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = M.NatRule,
         }),
     },
 })
@@ -2392,6 +2473,40 @@ M.CoreNetworkSummary = schema.new({
     },
 })
 
+M.NatRuleRequest = schema.new({
+    id = id.from(_N, "NatRuleRequest"),
+    type = "structure",
+    members = {
+        RuleNumber = schema.new({
+            id = id.from(_N, "NatRuleRequest", "RuleNumber"),
+            type = "integer",
+            name = "RuleNumber",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MatchSourceCidr = schema.new({
+            id = id.from(_N, "NatRuleRequest", "MatchSourceCidr"),
+            type = "string",
+            name = "MatchSourceCidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NatCidr = schema.new({
+            id = id.from(_N, "NatRuleRequest", "NatCidr"),
+            type = "string",
+            name = "NatCidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateConnectAttachmentInput = schema.new({
     id = id.from(_N, "CreateConnectAttachmentRequest"),
     type = "structure",
@@ -2428,6 +2543,19 @@ M.CreateConnectAttachmentInput = schema.new({
             type = "string",
             name = "RoutingPolicyLabel",
             target_id = prelude.String.id,
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "CreateConnectAttachmentInput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "CreateConnectAttachmentInput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = M.NatRuleRequest,
         }),
         Options = schema.new({
             id = id.from(_N, "CreateConnectAttachmentInput", "Options"),
@@ -2998,6 +3126,25 @@ M.CreateDirectConnectGatewayAttachmentInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "CreateDirectConnectGatewayAttachmentInput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "CreateDirectConnectGatewayAttachmentInput", "NatSystemRouteSupport"),
+            type = "boolean",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.Boolean.id,
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "CreateDirectConnectGatewayAttachmentInput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = M.NatRuleRequest,
+        }),
         Tags = schema.new({
             id = id.from(_N, "CreateDirectConnectGatewayAttachmentInput", "Tags"),
             type = "list",
@@ -3414,6 +3561,25 @@ M.CreateSiteToSiteVpnAttachmentInput = schema.new({
             type = "string",
             name = "RoutingPolicyLabel",
             target_id = prelude.String.id,
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "CreateSiteToSiteVpnAttachmentInput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "CreateSiteToSiteVpnAttachmentInput", "NatSystemRouteSupport"),
+            type = "boolean",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.Boolean.id,
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "CreateSiteToSiteVpnAttachmentInput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = M.NatRuleRequest,
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateSiteToSiteVpnAttachmentInput", "Tags"),
@@ -3849,6 +4015,19 @@ M.CreateVpcAttachmentInput = schema.new({
             type = "string",
             name = "RoutingPolicyLabel",
             target_id = prelude.String.id,
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "CreateVpcAttachmentInput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "CreateVpcAttachmentInput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = M.NatRuleRequest,
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateVpcAttachmentInput", "Tags"),
@@ -5936,6 +6115,18 @@ M.GetNetworkRoutesInput = schema.new({
             map_key = prelude.String,
             map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetNetworkRoutesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetNetworkRoutesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -6043,6 +6234,13 @@ M.GetNetworkRoutesOutput = schema.new({
             target_id = id.from(_N, "CoreNetworkSegmentEdgeIdentifier"),
             target = M.CoreNetworkSegmentEdgeIdentifier,
         }),
+        CoreNetworkNetworkFunctionGroup = schema.new({
+            id = id.from(_N, "GetNetworkRoutesOutput", "CoreNetworkNetworkFunctionGroup"),
+            type = "structure",
+            name = "CoreNetworkNetworkFunctionGroup",
+            target_id = id.from(_N, "CoreNetworkNetworkFunctionGroupIdentifier"),
+            target = M.CoreNetworkNetworkFunctionGroupIdentifier,
+        }),
         RouteTableType = schema.new({
             id = id.from(_N, "GetNetworkRoutesOutput", "RouteTableType"),
             type = "string",
@@ -6061,6 +6259,12 @@ M.GetNetworkRoutesOutput = schema.new({
             name = "NetworkRoutes",
             target_id = prelude.Document.id,
             list_member = M.NetworkRoute,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetNetworkRoutesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -6857,6 +7061,68 @@ M.GetVpcAttachmentOutput = schema.new({
     },
 })
 
+M.ListAttachmentNatConfigurationsInput = schema.new({
+    id = id.from(_N, "ListAttachmentNatConfigurationsRequest"),
+    type = "structure",
+    members = {
+        CoreNetworkId = schema.new({
+            id = id.from(_N, "ListAttachmentNatConfigurationsInput", "CoreNetworkId"),
+            type = "string",
+            name = "CoreNetworkId",
+            target_id = prelude.String.id,
+        }),
+        AttachmentId = schema.new({
+            id = id.from(_N, "ListAttachmentNatConfigurationsInput", "AttachmentId"),
+            type = "string",
+            name = "AttachmentId",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListAttachmentNatConfigurationsInput", "Filters"),
+            type = "map",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAttachmentNatConfigurationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAttachmentNatConfigurationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAttachmentNatConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListAttachmentNatConfigurationsResponse"),
+    type = "structure",
+    members = {
+        AttachmentNatConfigurations = schema.new({
+            id = id.from(_N, "ListAttachmentNatConfigurationsOutput", "AttachmentNatConfigurations"),
+            type = "list",
+            name = "AttachmentNatConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.AttachmentNatConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAttachmentNatConfigurationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListAttachmentRoutingPolicyAssociationsInput = schema.new({
     id = id.from(_N, "ListAttachmentRoutingPolicyAssociationsRequest"),
     type = "structure",
@@ -7248,6 +7514,34 @@ M.ListCoreNetworkRoutingInformationInput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+        ExactPrefixMatches = schema.new({
+            id = id.from(_N, "ListCoreNetworkRoutingInformationInput", "ExactPrefixMatches"),
+            type = "list",
+            name = "ExactPrefixMatches",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        LongestPrefixMatches = schema.new({
+            id = id.from(_N, "ListCoreNetworkRoutingInformationInput", "LongestPrefixMatches"),
+            type = "list",
+            name = "LongestPrefixMatches",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SubnetOfMatches = schema.new({
+            id = id.from(_N, "ListCoreNetworkRoutingInformationInput", "SubnetOfMatches"),
+            type = "list",
+            name = "SubnetOfMatches",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SupernetOfMatches = schema.new({
+            id = id.from(_N, "ListCoreNetworkRoutingInformationInput", "SupernetOfMatches"),
+            type = "list",
+            name = "SupernetOfMatches",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
         LocalPreferenceMatches = schema.new({
             id = id.from(_N, "ListCoreNetworkRoutingInformationInput", "LocalPreferenceMatches"),
@@ -8068,6 +8362,83 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
+})
+
+M.UpdateAttachmentNatConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateAttachmentNatConfigurationRequest"),
+    type = "structure",
+    members = {
+        AttachmentId = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationInput", "AttachmentId"),
+            type = "string",
+            name = "AttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationInput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationInput", "NatSystemRouteSupport"),
+            type = "boolean",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.Boolean.id,
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationInput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = M.NatRuleRequest,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAttachmentNatConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateAttachmentNatConfigurationResponse"),
+    type = "structure",
+    members = {
+        AttachmentId = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationOutput", "AttachmentId"),
+            type = "string",
+            name = "AttachmentId",
+            target_id = prelude.String.id,
+        }),
+        NatGatewaySupport = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationOutput", "NatGatewaySupport"),
+            type = "string",
+            name = "NatGatewaySupport",
+            target_id = prelude.String.id,
+        }),
+        NatSystemRouteSupport = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationOutput", "NatSystemRouteSupport"),
+            type = "boolean",
+            name = "NatSystemRouteSupport",
+            target_id = prelude.Boolean.id,
+        }),
+        NatGatewayRules = schema.new({
+            id = id.from(_N, "UpdateAttachmentNatConfigurationOutput", "NatGatewayRules"),
+            type = "list",
+            name = "NatGatewayRules",
+            target_id = prelude.Document.id,
+            list_member = M.NatRule,
+        }),
+    },
 })
 
 M.UpdateConnectionInput = schema.new({
@@ -9368,6 +9739,18 @@ M.GetVpcAttachment = schema.operation({
     },
 })
 
+M.ListAttachmentNatConfigurations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListAttachmentNatConfigurations"),
+    input = M.ListAttachmentNatConfigurationsInput,
+    output = M.ListAttachmentNatConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/nat-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListAttachmentRoutingPolicyAssociations = schema.operation({
     id = id.from("com.amazonaws.networkmanager", "ListAttachmentRoutingPolicyAssociations"),
     input = M.ListAttachmentRoutingPolicyAssociationsInput,
@@ -9614,6 +9997,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAttachmentNatConfiguration = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateAttachmentNatConfiguration"),
+    input = M.UpdateAttachmentNatConfigurationInput,
+    output = M.UpdateAttachmentNatConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/attachments/{AttachmentId}/nat-configuration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

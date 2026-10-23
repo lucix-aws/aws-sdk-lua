@@ -1261,6 +1261,14 @@ local record M
         tags: {string : string}
     end
 
+    record RevokeConnectionTokenInput
+        -- The ID of the connection token to revoke.
+        tokenId: string
+    end
+
+    record RevokeConnectionTokenOutput
+    end
+
     record StartCompositionInput
         -- ARN of the stage to be used for compositing.
         stageArn: string

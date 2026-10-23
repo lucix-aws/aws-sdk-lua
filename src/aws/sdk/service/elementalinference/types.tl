@@ -283,6 +283,93 @@ local record M
         tags: {string : string}
     end
 
+    -- Removes the game from an event clipping output at the action's scheduled time. This is a type of ScheduleActionOperation, and the output must be an event clipping output.
+    record RemoveClippingDataSourceConfiguration
+        -- The name of the output that you want to remove the game from.
+        outputName: string
+    end
+
+    -- Attaches a game to an event clipping output at the action's scheduled time. This is a type of ScheduleActionOperation, and the output must be an event clipping output.
+    record UpdateClippingDataSourceConfiguration
+        -- The name of the output that you want to attach the game to.
+        outputName: string
+        -- The game that you want to attach to the output.
+        dataSourceConfiguration: DataSourceConfiguration
+    end
+
+    -- Enables or disables an output at the action's scheduled time. This is a type of ScheduleActionOperation.
+    record UpdateOutputStatus
+        -- The name of the output that you want to enable or disable. The output must exist in the feed when you create the action.
+        outputName: string
+        -- Specifies whether the output is enabled or disabled after the action runs.
+        status: string
+    end
+
+    -- Holds one typed configuration change that a schedule action makes to a feed. Each operation must contain exactly one property.
+    record ScheduleActionOperation
+        -- The operation type that enables or disables an output.
+        updateOutputStatus: UpdateOutputStatus
+        -- The operation type that attaches a game to an event clipping output.
+        updateClippingDataSourceConfiguration: UpdateClippingDataSourceConfiguration
+        -- The operation type that removes the game from an event clipping output.
+        removeClippingDataSourceConfiguration: RemoveClippingDataSourceConfiguration
+    end
+
+    -- Sets the time at which a schedule action runs once. This is a type of ScheduleActionStartConfiguration.
+    record FixedModeScheduleActionStartSettings
+        -- The UTC time at which the action runs. Specify the time in whole seconds. For the range of times that you can specify, see the AWS Elemental Inference User Guide. This time is approximate. The change can take a few minutes to take effect on the media that the feed is processing.
+        scheduledAt: number
+    end
+
+    -- Holds the typed start settings that determine when a schedule action runs. Currently, only fixed mode is supported.
+    record ScheduleActionStartConfiguration
+        -- The start settings type for an action that runs once, at a fixed time.
+        fixedModeScheduleActionStartSettings: FixedModeScheduleActionStartSettings
+    end
+
+    record CreateScheduleActionInput
+        -- Specifies the ID of the feed that you want to add the schedule action to.
+        id: string
+        -- A name for the schedule action. The name must be unique within the feed. You can reuse the name of an action that you deleted.
+        actionName: string
+        -- Specifies when the action runs.
+        startConfiguration: ScheduleActionStartConfiguration
+        -- Specifies the list of configuration changes that you want to make to the feed. Elemental Inference applies all the operations in an action together, in the order that you specify them. If any operation fails, Elemental Inference doesn't apply any of them.
+        operations: {ScheduleActionOperation}
+    end
+
+    enum ScheduleActionErrorCode
+        "INVALID_ACTION_TARGET"
+        "INTERNAL_ERROR"
+    end
+
+    -- Describes the cause of a schedule action failure, including the failure type and a description of what went wrong.
+    record ScheduleActionError
+        -- The type of failure. Valid values are the following: INVALID_ACTION_TARGET The action referred to something that didn't exist or wasn't valid at the scheduled time, for example an output that you deleted. INTERNAL_ERROR An unexpected error prevented the action from completing.
+        errorCode: string
+        -- A description of the failure.
+        errorMessage: string
+    end
+
+    enum ScheduleActionStatus
+        "PENDING"
+        "COMPLETED"
+        "FAILED"
+    end
+
+    record CreateScheduleActionOutput
+        -- The name that you specified.
+        actionName: string
+        -- Specifies when the action runs.
+        startConfiguration: ScheduleActionStartConfiguration
+        -- The configuration changes that the action makes to the feed.
+        operations: {ScheduleActionOperation}
+        -- The status of the action. After you create the action successfully, Elemental Inference sets the status to PENDING.
+        status: string
+        -- A description of why the action failed. Elemental Inference returns this property only when the status is FAILED.
+        error: ScheduleActionError
+    end
+
     enum DataSourceSport
         "basketball"
         "american-football"
@@ -322,6 +409,18 @@ local record M
     end
 
     record DeleteFeedPolicyOutput
+    end
+
+    record DeleteScheduleActionInput
+        -- The ID of the feed that holds the schedule action.
+        id: string
+        -- The name of the schedule action that you want to delete.
+        actionName: string
+    end
+
+    record DeleteScheduleActionOutput
+        -- The name of the schedule action that Elemental Inference deleted.
+        actionName: string
     end
 
     record ExportDictionaryEntriesInput
@@ -489,6 +588,36 @@ local record M
         -- A list of FeedSummary objects.
         feeds: {FeedSummary}
         -- The token that identifies the batch of results that you want to see. For example, you submit a list request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the list request a second time and specify the NextToken value.
+        nextToken: string
+    end
+
+    record ListScheduleActionsInput
+        -- The ID of the feed that you want to query.
+        id: string
+        -- The maximum number of results to return for each API request. If you don't specify MaxResults, Elemental Inference returns a maximum of 10 results for each page.
+        maxResults: number
+        -- The token that identifies the batch of results that you want to see. To see the next batch, submit the request a second time and specify the NextToken value that Elemental Inference returned.
+        nextToken: string
+    end
+
+    -- Describes one schedule action on a feed, including the changes it makes and whether it has run yet. Elemental Inference returns this structure in the ListScheduleActions operation.
+    record ScheduleAction
+        -- The name of the schedule action. The name is unique within the feed.
+        actionName: string
+        -- Specifies when the action runs.
+        startConfiguration: ScheduleActionStartConfiguration
+        -- The configuration changes that the action makes to the feed.
+        operations: {ScheduleActionOperation}
+        -- The status of the action. Valid values are the following: PENDING The action is waiting for its scheduled time. COMPLETED Elemental Inference applied all the action's operations to the feed. FAILED Elemental Inference couldn't apply the action.
+        status: string
+        -- A description of why the action failed. Elemental Inference returns this property only when the status is FAILED.
+        error: ScheduleActionError
+    end
+
+    record ListScheduleActionsOutput
+        -- A list of the schedule actions on the feed.
+        scheduleActions: {ScheduleAction}
+        -- The token that identifies the next batch of results. Elemental Inference returns it only when more results are available.
         nextToken: string
     end
 

@@ -220,6 +220,24 @@ function M.items_get_network_resources(client, input)
     })
 end
 
+--- Returns a page iterator for getNetworkRoutes.
+function M.pages_get_network_routes(client, input)
+    return paginator.pages(client, "getNetworkRoutes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkRoutes",
+    })
+end
+
+--- Returns an item iterator for getNetworkRoutes.
+function M.items_get_network_routes(client, input)
+    return paginator.items(client, "getNetworkRoutes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "NetworkRoutes",
+    })
+end
+
 --- Returns a page iterator for getNetworkTelemetry.
 function M.pages_get_network_telemetry(client, input)
     return paginator.pages(client, "getNetworkTelemetry", input, {
@@ -289,6 +307,24 @@ function M.items_get_transit_gateway_registrations(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "TransitGatewayRegistrations",
+    })
+end
+
+--- Returns a page iterator for listAttachmentNatConfigurations.
+function M.pages_list_attachment_nat_configurations(client, input)
+    return paginator.pages(client, "listAttachmentNatConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AttachmentNatConfigurations",
+    })
+end
+
+--- Returns an item iterator for listAttachmentNatConfigurations.
+function M.items_list_attachment_nat_configurations(client, input)
+    return paginator.items(client, "listAttachmentNatConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AttachmentNatConfigurations",
     })
 end
 

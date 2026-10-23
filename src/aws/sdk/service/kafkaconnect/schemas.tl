@@ -2731,6 +2731,42 @@ M.ListWorkerConfigurationsOutput = schema.new({
     },
 })
 
+M.PauseConnectorInput = schema.new({
+    id = id.from(_N, "PauseConnectorRequest"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "PauseConnectorInput", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.PauseConnectorOutput = schema.new({
+    id = id.from(_N, "PauseConnectorResponse"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "PauseConnectorOutput", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+        }),
+        connectorOperationArn = schema.new({
+            id = id.from(_N, "PauseConnectorOutput", "connectorOperationArn"),
+            type = "string",
+            name = "connectorOperationArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RestartConnectorInput = schema.new({
     id = id.from(_N, "RestartConnectorRequest"),
     type = "structure",
@@ -2770,6 +2806,42 @@ M.RestartConnectorOutput = schema.new({
         }),
         connectorOperationArn = schema.new({
             id = id.from(_N, "RestartConnectorOutput", "connectorOperationArn"),
+            type = "string",
+            name = "connectorOperationArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResumeConnectorInput = schema.new({
+    id = id.from(_N, "ResumeConnectorRequest"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "ResumeConnectorInput", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ResumeConnectorOutput = schema.new({
+    id = id.from(_N, "ResumeConnectorResponse"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "ResumeConnectorOutput", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+        }),
+        connectorOperationArn = schema.new({
+            id = id.from(_N, "ResumeConnectorOutput", "connectorOperationArn"),
             type = "string",
             name = "connectorOperationArn",
             target_id = prelude.String.id,
@@ -2861,6 +2933,15 @@ M.UpdateConnectorInput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        skipHealthValidation = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "skipHealthValidation"),
+            type = "boolean",
+            name = "skipHealthValidation",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
         }),
         connectorArn = schema.new({
             id = id.from(_N, "UpdateConnectorInput", "connectorArn"),
@@ -3115,12 +3196,36 @@ M.ListWorkerConfigurations = schema.operation({
     },
 })
 
+M.PauseConnector = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "PauseConnector"),
+    input = M.PauseConnectorInput,
+    output = M.PauseConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/connectors/{connectorArn}/pause" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.RestartConnector = schema.operation({
     id = id.from("com.amazonaws.kafkaconnect", "RestartConnector"),
     input = M.RestartConnectorInput,
     output = M.RestartConnectorOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/connectors/{connectorArn}/restart" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResumeConnector = schema.operation({
+    id = id.from("com.amazonaws.kafkaconnect", "ResumeConnector"),
+    input = M.ResumeConnectorInput,
+    output = M.ResumeConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/connectors/{connectorArn}/resume" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

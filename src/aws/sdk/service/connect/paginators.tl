@@ -790,6 +790,24 @@ function M.pages_list_realtime_contact_analysis_segments_v2(client, input)
     })
 end
 
+--- Returns a page iterator for listReplicationFindings.
+function M.pages_list_replication_findings(client, input)
+    return paginator.pages(client, "listReplicationFindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReplicationFindingsList",
+    })
+end
+
+--- Returns an item iterator for listReplicationFindings.
+function M.items_list_replication_findings(client, input)
+    return paginator.items(client, "listReplicationFindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ReplicationFindingsList",
+    })
+end
+
 --- Returns a page iterator for listRoutingProfileManualAssignmentQueues.
 function M.pages_list_routing_profile_manual_assignment_queues(client, input)
     return paginator.pages(client, "listRoutingProfileManualAssignmentQueues", input, {

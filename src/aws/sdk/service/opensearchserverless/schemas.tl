@@ -60,6 +60,10 @@ M.CollectionSummaries = schema.new({ type = "list", list_member = M.CollectionSu
 
 M.CollectionGroupSummaries = schema.new({ type = "list", list_member = M.CollectionGroupSummary })
 
+M.IngestionJobSummaries = schema.new({ type = "list", list_member = M.IngestionJobSummary })
+
+M.IngestionStreamSummaries = schema.new({ type = "list", list_member = M.IngestionStreamSummary })
+
 M.LifecycleResourceFilter = schema.new({ type = "list", list_member = prelude.String })
 
 M.LifecyclePolicySummaries = schema.new({ type = "list", list_member = M.LifecyclePolicySummary })
@@ -69,6 +73,12 @@ M.SecurityConfigSummaries = schema.new({ type = "list", list_member = M.Security
 M.SecurityPolicySummaries = schema.new({ type = "list", list_member = M.SecurityPolicySummary })
 
 M.VpcEndpointSummaries = schema.new({ type = "list", list_member = M.VpcEndpointSummary })
+
+M.IngestionFailureReasons = schema.new({ type = "list", list_member = M.IngestionFailureReason })
+
+M.IngestionAlerts = schema.new({ type = "list", list_member = M.IngestionAlert })
+
+M.StreamBucketConfigs = schema.new({ type = "list", list_member = M.StreamBucketConfig })
 
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
@@ -1459,6 +1469,71 @@ M.BatchGetVpcEndpointOutput = schema.new({
     },
 })
 
+M.CancelIngestionJobInput = schema.new({
+    id = id.from(_N, "CancelIngestionJobRequest"),
+    type = "structure",
+    members = {
+        collectionId = schema.new({
+            id = id.from(_N, "CancelIngestionJobInput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ingestionJobId = schema.new({
+            id = id.from(_N, "CancelIngestionJobInput", "ingestionJobId"),
+            type = "string",
+            name = "ingestionJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CancelIngestionJobInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CancelIngestionJobOutput = schema.new({
+    id = id.from(_N, "CancelIngestionJobResponse"),
+    type = "structure",
+    members = {
+        ingestionJobId = schema.new({
+            id = id.from(_N, "CancelIngestionJobOutput", "ingestionJobId"),
+            type = "string",
+            name = "ingestionJobId",
+            target_id = prelude.String.id,
+        }),
+        collectionId = schema.new({
+            id = id.from(_N, "CancelIngestionJobOutput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+        }),
+        ingestionJobName = schema.new({
+            id = id.from(_N, "CancelIngestionJobOutput", "ingestionJobName"),
+            type = "string",
+            name = "ingestionJobName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CancelIngestionJobOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EncryptionConfig = schema.new({
     id = id.from(_N, "EncryptionConfig"),
     type = "structure",
@@ -1889,6 +1964,13 @@ M.UpdateCollectionInput = schema.new({
             name = "deletionProtection",
             target_id = prelude.String.id,
         }),
+        encryptionConfig = schema.new({
+            id = id.from(_N, "UpdateCollectionInput", "encryptionConfig"),
+            type = "structure",
+            name = "encryptionConfig",
+            target_id = id.from(_N, "EncryptionConfig"),
+            target = M.EncryptionConfig,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "UpdateCollectionInput", "clientToken"),
             type = "string",
@@ -1941,6 +2023,12 @@ M.UpdateCollectionDetail = schema.new({
             name = "vectorOptions",
             target_id = id.from(_N, "VectorOptions"),
             target = M.VectorOptions,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "UpdateCollectionDetail", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
         arn = schema.new({
             id = id.from(_N, "UpdateCollectionDetail", "arn"),
@@ -2409,6 +2497,570 @@ M.CreateIndexInput = schema.new({
 M.CreateIndexOutput = schema.new({
     id = id.from(_N, "CreateIndexResponse"),
     type = "structure",
+})
+
+M.IngestionJobS3Source = schema.new({
+    id = id.from(_N, "IngestionJobS3Source"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "IngestionJobS3Source", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+        }),
+        bucketOwnerAccountId = schema.new({
+            id = id.from(_N, "IngestionJobS3Source", "bucketOwnerAccountId"),
+            type = "string",
+            name = "bucketOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+        keyPrefix = schema.new({
+            id = id.from(_N, "IngestionJobS3Source", "keyPrefix"),
+            type = "string",
+            name = "keyPrefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IngestionJobSource = schema.new({
+    id = id.from(_N, "IngestionJobSource"),
+    type = "structure",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "IngestionJobSource", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "IngestionJobS3Source"),
+            target = M.IngestionJobS3Source,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateIngestionJobInput = schema.new({
+    id = id.from(_N, "CreateIngestionJobRequest"),
+    type = "structure",
+    members = {
+        collectionId = schema.new({
+            id = id.from(_N, "CreateIngestionJobInput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ingestionJobName = schema.new({
+            id = id.from(_N, "CreateIngestionJobInput", "ingestionJobName"),
+            type = "string",
+            name = "ingestionJobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        indexName = schema.new({
+            id = id.from(_N, "CreateIngestionJobInput", "indexName"),
+            type = "string",
+            name = "indexName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failureIndexName = schema.new({
+            id = id.from(_N, "CreateIngestionJobInput", "failureIndexName"),
+            type = "string",
+            name = "failureIndexName",
+            target_id = prelude.String.id,
+        }),
+        source = schema.new({
+            id = id.from(_N, "CreateIngestionJobInput", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "IngestionJobSource"),
+            target = M.IngestionJobSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateIngestionJobInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateIngestionJobInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.IngestionAlert = schema.new({
+    id = id.from(_N, "IngestionAlert"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "IngestionAlert", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "IngestionAlert", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IngestionFailureReason = schema.new({
+    id = id.from(_N, "IngestionFailureReason"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "IngestionFailureReason", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "IngestionFailureReason", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.S3Statistics = schema.new({
+    id = id.from(_N, "S3Statistics"),
+    type = "structure",
+    members = {
+        objectsDiscovered = schema.new({
+            id = id.from(_N, "S3Statistics", "objectsDiscovered"),
+            type = "long",
+            name = "objectsDiscovered",
+            target_id = prelude.Long.id,
+        }),
+        objectsIngested = schema.new({
+            id = id.from(_N, "S3Statistics", "objectsIngested"),
+            type = "long",
+            name = "objectsIngested",
+            target_id = prelude.Long.id,
+        }),
+        objectsFailed = schema.new({
+            id = id.from(_N, "S3Statistics", "objectsFailed"),
+            type = "long",
+            name = "objectsFailed",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.IngestionStatistics = schema.new({
+    id = id.from(_N, "IngestionStatistics"),
+    type = "structure",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "IngestionStatistics", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "S3Statistics"),
+            target = M.S3Statistics,
+        }),
+    },
+})
+
+M.IngestionJobDetail = schema.new({
+    id = id.from(_N, "IngestionJobDetail"),
+    type = "structure",
+    members = {
+        ingestionJobId = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "ingestionJobId"),
+            type = "string",
+            name = "ingestionJobId",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        collectionId = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+        }),
+        ingestionJobName = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "ingestionJobName"),
+            type = "string",
+            name = "ingestionJobName",
+            target_id = prelude.String.id,
+        }),
+        indexName = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "indexName"),
+            type = "string",
+            name = "indexName",
+            target_id = prelude.String.id,
+        }),
+        failureIndexName = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "failureIndexName"),
+            type = "string",
+            name = "failureIndexName",
+            target_id = prelude.String.id,
+        }),
+        source = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "IngestionJobSource"),
+            target = M.IngestionJobSource,
+        }),
+        status = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        statistics = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "statistics"),
+            type = "structure",
+            name = "statistics",
+            target_id = id.from(_N, "IngestionStatistics"),
+            target = M.IngestionStatistics,
+        }),
+        revision = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "revision"),
+            type = "long",
+            name = "revision",
+            target_id = prelude.Long.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        failureReasons = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "failureReasons"),
+            type = "list",
+            name = "failureReasons",
+            target_id = prelude.Document.id,
+            list_member = M.IngestionFailureReason,
+        }),
+        activeAlerts = schema.new({
+            id = id.from(_N, "IngestionJobDetail", "activeAlerts"),
+            type = "list",
+            name = "activeAlerts",
+            target_id = prelude.Document.id,
+            list_member = M.IngestionAlert,
+        }),
+    },
+})
+
+M.CreateIngestionJobOutput = schema.new({
+    id = id.from(_N, "CreateIngestionJobResponse"),
+    type = "structure",
+    members = {
+        ingestionJobDetail = schema.new({
+            id = id.from(_N, "CreateIngestionJobOutput", "ingestionJobDetail"),
+            type = "structure",
+            name = "ingestionJobDetail",
+            target_id = id.from(_N, "IngestionJobDetail"),
+            target = M.IngestionJobDetail,
+        }),
+    },
+})
+
+M.StreamBucketConfig = schema.new({
+    id = id.from(_N, "StreamBucketConfig"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "StreamBucketConfig", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        bucketOwnerAccountId = schema.new({
+            id = id.from(_N, "StreamBucketConfig", "bucketOwnerAccountId"),
+            type = "string",
+            name = "bucketOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+        initialScan = schema.new({
+            id = id.from(_N, "StreamBucketConfig", "initialScan"),
+            type = "string",
+            name = "initialScan",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IngestionStreamS3Source = schema.new({
+    id = id.from(_N, "IngestionStreamS3Source"),
+    type = "structure",
+    members = {
+        sqsArn = schema.new({
+            id = id.from(_N, "IngestionStreamS3Source", "sqsArn"),
+            type = "string",
+            name = "sqsArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        buckets = schema.new({
+            id = id.from(_N, "IngestionStreamS3Source", "buckets"),
+            type = "list",
+            name = "buckets",
+            target_id = prelude.Document.id,
+            list_member = M.StreamBucketConfig,
+        }),
+    },
+})
+
+M.IngestionStreamSource = schema.new({
+    id = id.from(_N, "IngestionStreamSource"),
+    type = "structure",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "IngestionStreamSource", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "IngestionStreamS3Source"),
+            target = M.IngestionStreamS3Source,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateIngestionStreamInput = schema.new({
+    id = id.from(_N, "CreateIngestionStreamRequest"),
+    type = "structure",
+    members = {
+        collectionId = schema.new({
+            id = id.from(_N, "CreateIngestionStreamInput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ingestionStreamName = schema.new({
+            id = id.from(_N, "CreateIngestionStreamInput", "ingestionStreamName"),
+            type = "string",
+            name = "ingestionStreamName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        indexName = schema.new({
+            id = id.from(_N, "CreateIngestionStreamInput", "indexName"),
+            type = "string",
+            name = "indexName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failureIndexName = schema.new({
+            id = id.from(_N, "CreateIngestionStreamInput", "failureIndexName"),
+            type = "string",
+            name = "failureIndexName",
+            target_id = prelude.String.id,
+        }),
+        source = schema.new({
+            id = id.from(_N, "CreateIngestionStreamInput", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "IngestionStreamSource"),
+            target = M.IngestionStreamSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "CreateIngestionStreamInput", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateIngestionStreamInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateIngestionStreamInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.IngestionStreamDetail = schema.new({
+    id = id.from(_N, "IngestionStreamDetail"),
+    type = "structure",
+    members = {
+        ingestionStreamId = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "ingestionStreamId"),
+            type = "string",
+            name = "ingestionStreamId",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        collectionId = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+        }),
+        ingestionStreamName = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "ingestionStreamName"),
+            type = "string",
+            name = "ingestionStreamName",
+            target_id = prelude.String.id,
+        }),
+        indexName = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "indexName"),
+            type = "string",
+            name = "indexName",
+            target_id = prelude.String.id,
+        }),
+        failureIndexName = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "failureIndexName"),
+            type = "string",
+            name = "failureIndexName",
+            target_id = prelude.String.id,
+        }),
+        source = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "IngestionStreamSource"),
+            target = M.IngestionStreamSource,
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        statistics = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "statistics"),
+            type = "structure",
+            name = "statistics",
+            target_id = id.from(_N, "IngestionStatistics"),
+            target = M.IngestionStatistics,
+        }),
+        revision = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "revision"),
+            type = "long",
+            name = "revision",
+            target_id = prelude.Long.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        failureReasons = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "failureReasons"),
+            type = "list",
+            name = "failureReasons",
+            target_id = prelude.Document.id,
+            list_member = M.IngestionFailureReason,
+        }),
+        activeAlerts = schema.new({
+            id = id.from(_N, "IngestionStreamDetail", "activeAlerts"),
+            type = "list",
+            name = "activeAlerts",
+            target_id = prelude.Document.id,
+            list_member = M.IngestionAlert,
+        }),
+    },
+})
+
+M.CreateIngestionStreamOutput = schema.new({
+    id = id.from(_N, "CreateIngestionStreamResponse"),
+    type = "structure",
+    members = {
+        ingestionStreamDetail = schema.new({
+            id = id.from(_N, "CreateIngestionStreamOutput", "ingestionStreamDetail"),
+            type = "structure",
+            name = "ingestionStreamDetail",
+            target_id = id.from(_N, "IngestionStreamDetail"),
+            target = M.IngestionStreamDetail,
+        }),
+    },
 })
 
 M.CreateLifecyclePolicyInput = schema.new({
@@ -2947,6 +3599,71 @@ M.DeleteIndexOutput = schema.new({
     type = "structure",
 })
 
+M.DeleteIngestionStreamInput = schema.new({
+    id = id.from(_N, "DeleteIngestionStreamRequest"),
+    type = "structure",
+    members = {
+        collectionId = schema.new({
+            id = id.from(_N, "DeleteIngestionStreamInput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ingestionStreamId = schema.new({
+            id = id.from(_N, "DeleteIngestionStreamInput", "ingestionStreamId"),
+            type = "string",
+            name = "ingestionStreamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteIngestionStreamInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteIngestionStreamOutput = schema.new({
+    id = id.from(_N, "DeleteIngestionStreamResponse"),
+    type = "structure",
+    members = {
+        ingestionStreamId = schema.new({
+            id = id.from(_N, "DeleteIngestionStreamOutput", "ingestionStreamId"),
+            type = "string",
+            name = "ingestionStreamId",
+            target_id = prelude.String.id,
+        }),
+        collectionId = schema.new({
+            id = id.from(_N, "DeleteIngestionStreamOutput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+        }),
+        ingestionStreamName = schema.new({
+            id = id.from(_N, "DeleteIngestionStreamOutput", "ingestionStreamName"),
+            type = "string",
+            name = "ingestionStreamName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteIngestionStreamOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteLifecyclePolicyInput = schema.new({
     id = id.from(_N, "DeleteLifecyclePolicyRequest"),
     type = "structure",
@@ -3176,6 +3893,84 @@ M.GetIndexOutput = schema.new({
     },
 })
 
+M.GetIngestionJobInput = schema.new({
+    id = id.from(_N, "GetIngestionJobRequest"),
+    type = "structure",
+    members = {
+        collectionId = schema.new({
+            id = id.from(_N, "GetIngestionJobInput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ingestionJobId = schema.new({
+            id = id.from(_N, "GetIngestionJobInput", "ingestionJobId"),
+            type = "string",
+            name = "ingestionJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetIngestionJobOutput = schema.new({
+    id = id.from(_N, "GetIngestionJobResponse"),
+    type = "structure",
+    members = {
+        ingestionJobDetail = schema.new({
+            id = id.from(_N, "GetIngestionJobOutput", "ingestionJobDetail"),
+            type = "structure",
+            name = "ingestionJobDetail",
+            target_id = id.from(_N, "IngestionJobDetail"),
+            target = M.IngestionJobDetail,
+        }),
+    },
+})
+
+M.GetIngestionStreamInput = schema.new({
+    id = id.from(_N, "GetIngestionStreamRequest"),
+    type = "structure",
+    members = {
+        collectionId = schema.new({
+            id = id.from(_N, "GetIngestionStreamInput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ingestionStreamId = schema.new({
+            id = id.from(_N, "GetIngestionStreamInput", "ingestionStreamId"),
+            type = "string",
+            name = "ingestionStreamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetIngestionStreamOutput = schema.new({
+    id = id.from(_N, "GetIngestionStreamResponse"),
+    type = "structure",
+    members = {
+        ingestionStreamDetail = schema.new({
+            id = id.from(_N, "GetIngestionStreamOutput", "ingestionStreamDetail"),
+            type = "structure",
+            name = "ingestionStreamDetail",
+            target_id = id.from(_N, "IngestionStreamDetail"),
+            target = M.IngestionStreamDetail,
+        }),
+    },
+})
+
 M.GetPoliciesStatsInput = schema.new({
     id = id.from(_N, "GetPoliciesStatsRequest"),
     type = "structure",
@@ -3370,6 +4165,200 @@ M.UpdateIndexInput = schema.new({
 M.UpdateIndexOutput = schema.new({
     id = id.from(_N, "UpdateIndexResponse"),
     type = "structure",
+})
+
+M.ListIngestionJobsInput = schema.new({
+    id = id.from(_N, "ListIngestionJobsRequest"),
+    type = "structure",
+    members = {
+        collectionId = schema.new({
+            id = id.from(_N, "ListIngestionJobsInput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListIngestionJobsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListIngestionJobsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.IngestionJobSummary = schema.new({
+    id = id.from(_N, "IngestionJobSummary"),
+    type = "structure",
+    members = {
+        ingestionJobId = schema.new({
+            id = id.from(_N, "IngestionJobSummary", "ingestionJobId"),
+            type = "string",
+            name = "ingestionJobId",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "IngestionJobSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        ingestionJobName = schema.new({
+            id = id.from(_N, "IngestionJobSummary", "ingestionJobName"),
+            type = "string",
+            name = "ingestionJobName",
+            target_id = prelude.String.id,
+        }),
+        indexName = schema.new({
+            id = id.from(_N, "IngestionJobSummary", "indexName"),
+            type = "string",
+            name = "indexName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "IngestionJobSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "IngestionJobSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "IngestionJobSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListIngestionJobsOutput = schema.new({
+    id = id.from(_N, "ListIngestionJobsResponse"),
+    type = "structure",
+    members = {
+        ingestionJobSummaries = schema.new({
+            id = id.from(_N, "ListIngestionJobsOutput", "ingestionJobSummaries"),
+            type = "list",
+            name = "ingestionJobSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.IngestionJobSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListIngestionJobsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListIngestionStreamsInput = schema.new({
+    id = id.from(_N, "ListIngestionStreamsRequest"),
+    type = "structure",
+    members = {
+        collectionId = schema.new({
+            id = id.from(_N, "ListIngestionStreamsInput", "collectionId"),
+            type = "string",
+            name = "collectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListIngestionStreamsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListIngestionStreamsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.IngestionStreamSummary = schema.new({
+    id = id.from(_N, "IngestionStreamSummary"),
+    type = "structure",
+    members = {
+        ingestionStreamId = schema.new({
+            id = id.from(_N, "IngestionStreamSummary", "ingestionStreamId"),
+            type = "string",
+            name = "ingestionStreamId",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "IngestionStreamSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        ingestionStreamName = schema.new({
+            id = id.from(_N, "IngestionStreamSummary", "ingestionStreamName"),
+            type = "string",
+            name = "ingestionStreamName",
+            target_id = prelude.String.id,
+        }),
+        indexName = schema.new({
+            id = id.from(_N, "IngestionStreamSummary", "indexName"),
+            type = "string",
+            name = "indexName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "IngestionStreamSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "IngestionStreamSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "IngestionStreamSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListIngestionStreamsOutput = schema.new({
+    id = id.from(_N, "ListIngestionStreamsResponse"),
+    type = "structure",
+    members = {
+        ingestionStreamSummaries = schema.new({
+            id = id.from(_N, "ListIngestionStreamsOutput", "ingestionStreamSummaries"),
+            type = "list",
+            name = "ingestionStreamSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.IngestionStreamSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListIngestionStreamsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.ListLifecyclePoliciesInput = schema.new({
@@ -4287,6 +5276,17 @@ M.BatchGetVpcEndpoint = schema.operation({
     },
 })
 
+M.CancelIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CancelIngestionJob"),
+    input = M.CancelIngestionJobInput,
+    output = M.CancelIngestionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateAccessPolicy = schema.operation({
     id = id.from("com.amazonaws.opensearchserverless", "CreateAccessPolicy"),
     input = M.CreateAccessPolicyInput,
@@ -4324,6 +5324,28 @@ M.CreateIndex = schema.operation({
     id = id.from("com.amazonaws.opensearchserverless", "CreateIndex"),
     input = M.CreateIndexInput,
     output = M.CreateIndexOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateIngestionJob"),
+    input = M.CreateIngestionJobInput,
+    output = M.CreateIngestionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIngestionStream = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "CreateIngestionStream"),
+    input = M.CreateIngestionStreamInput,
+    output = M.CreateIngestionStreamOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -4419,6 +5441,17 @@ M.DeleteIndex = schema.operation({
     },
 })
 
+M.DeleteIngestionStream = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "DeleteIngestionStream"),
+    input = M.DeleteIngestionStreamInput,
+    output = M.DeleteIngestionStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteLifecyclePolicy = schema.operation({
     id = id.from("com.amazonaws.opensearchserverless", "DeleteLifecyclePolicy"),
     input = M.DeleteLifecyclePolicyInput,
@@ -4496,6 +5529,28 @@ M.GetIndex = schema.operation({
     },
 })
 
+M.GetIngestionJob = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "GetIngestionJob"),
+    input = M.GetIngestionJobInput,
+    output = M.GetIngestionJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIngestionStream = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "GetIngestionStream"),
+    input = M.GetIngestionStreamInput,
+    output = M.GetIngestionStreamOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetPoliciesStats = schema.operation({
     id = id.from("com.amazonaws.opensearchserverless", "GetPoliciesStats"),
     input = M.GetPoliciesStatsInput,
@@ -4555,6 +5610,28 @@ M.ListCollections = schema.operation({
     id = id.from("com.amazonaws.opensearchserverless", "ListCollections"),
     input = M.ListCollectionsInput,
     output = M.ListCollectionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIngestionJobs = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListIngestionJobs"),
+    input = M.ListIngestionJobsInput,
+    output = M.ListIngestionJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIngestionStreams = schema.operation({
+    id = id.from("com.amazonaws.opensearchserverless", "ListIngestionStreams"),
+    input = M.ListIngestionStreamsInput,
+    output = M.ListIngestionStreamsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

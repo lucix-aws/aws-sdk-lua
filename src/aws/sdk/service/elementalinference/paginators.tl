@@ -40,6 +40,24 @@ function M.items_list_feeds(client, input)
     })
 end
 
+--- Returns a page iterator for listScheduleActions.
+function M.pages_list_schedule_actions(client, input)
+    return paginator.pages(client, "listScheduleActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "scheduleActions",
+    })
+end
+
+--- Returns an item iterator for listScheduleActions.
+function M.items_list_schedule_actions(client, input)
+    return paginator.items(client, "listScheduleActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "scheduleActions",
+    })
+end
+
 --- Returns a page iterator for searchFixtures.
 function M.pages_search_fixtures(client, input)
     return paginator.pages(client, "searchFixtures", input, {
