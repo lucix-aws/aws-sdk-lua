@@ -1372,6 +1372,381 @@ local record M
         MaintenanceStartHour: string
     end
 
+    -- The configuration for automatic endpoint encryption. In this mode, MediaConnect determines the encryption key when the endpoint connects. This type does not require any additional settings.
+    record AutomaticEndpointEncryptionConfiguration
+    end
+
+    record BatchGetDestinationEndpointInput
+        -- The Amazon Resource Names (ARNs) of one or more destination endpoints to retrieve. You can specify from 1 to 20 ARNs.
+        Arns: {string}
+    end
+
+    -- A message associated with a router input, including a code and a message.
+    record RouterInputMessage
+        -- The code associated with the router input message.
+        Code: string
+        -- The message text associated with the router input message.
+        Message: string
+    end
+
+    enum RouterInputState
+        "CREATING"
+        "STANDBY"
+        "STARTING"
+        "ACTIVE"
+        "STOPPING"
+        "DELETING"
+        "UPDATING"
+        "ERROR"
+        "RECOVERING"
+        "MIGRATING"
+    end
+
+    -- The details of the router input that is associated with a destination endpoint.
+    record RouterInputDestinationEndpointAssociatedResourceDetails
+        -- The name of the router input.
+        Name: string
+        -- The maximum bitrate of the router input, in bits per second.
+        MaximumBitrate: number
+        -- The state of the router input.
+        State: string
+        -- The status messages for the router input.
+        Messages: {RouterInputMessage}
+    end
+
+    -- The associated resource details for a standard destination endpoint. This type does not require any additional settings.
+    record StandardDestinationEndpointAssociatedResourceDetails
+    end
+
+    -- The details of the resource that is associated with a destination endpoint. This is a union type, so exactly one of its members is set, depending on the type of the destination endpoint.
+    record DestinationEndpointAssociatedResourceDetails
+        -- The associated resource details for a standard destination endpoint.
+        Standard: StandardDestinationEndpointAssociatedResourceDetails
+        -- The associated resource details for a destination endpoint that represents a router input.
+        RouterInput: RouterInputDestinationEndpointAssociatedResourceDetails
+    end
+
+    -- The configuration settings for a destination endpoint that represents a router input.
+    record RouterInputDestinationEndpointConfiguration
+        -- The Amazon Resource Name (ARN) of the router input that the destination endpoint represents.
+        RouterInputArn: string
+    end
+
+    -- A rule that allows a specific CIDR block to connect to the public destination endpoint.
+    record PublicDestinationEndpointNetworkingConfigurationAllowRule
+        -- The CIDR block that is allowed to connect to the destination endpoint, in CIDR notation.
+        Cidr: string
+    end
+
+    -- The networking configuration for a publicly accessible destination endpoint, including the CIDR blocks that are allowed to connect.
+    record PublicDestinationEndpointNetworkingConfiguration
+        -- The rules that specify which CIDR blocks can connect to the destination endpoint. You can specify up to 10 rules.
+        DestinationAllowRules: {PublicDestinationEndpointNetworkingConfigurationAllowRule}
+    end
+
+    -- The networking configuration for a destination endpoint in a virtual private cloud (VPC).
+    record VpcDestinationEndpointNetworkingConfiguration
+        -- The IDs of the security groups to associate with the destination endpoint. You can specify from 1 to 5 security groups.
+        SecurityGroupIds: {string}
+        -- The ID of the subnet to use for the destination endpoint.
+        SubnetId: string
+    end
+
+    -- The networking configuration for a standard destination endpoint. This is a union type, so exactly one of its members is set: public for a publicly accessible endpoint, or vpc for an endpoint in a virtual private cloud (VPC).
+    record StandardDestinationEndpointNetworkingConfiguration
+        -- The configuration for a publicly accessible destination endpoint.
+        Public: PublicDestinationEndpointNetworkingConfiguration
+        -- The configuration for a destination endpoint in a virtual private cloud (VPC).
+        Vpc: VpcDestinationEndpointNetworkingConfiguration
+    end
+
+    enum DestinationEndpointNetworkingType
+        "PUBLIC"
+        "VPC"
+    end
+
+    enum DestinationEndpointProtocol
+        "RTP"
+        "RIST"
+        "SRT_CALLER"
+        "SRT_LISTENER"
+    end
+
+    -- The configuration settings for a destination endpoint that uses the RIST protocol.
+    record RistStandardDestinationEndpointConfiguration
+        -- The IP address on which the destination endpoint receives content.
+        DestinationAddress: string
+        -- The port on which the destination endpoint receives content. The valid range is 1024 to 65531.
+        DestinationIngestPort: number
+    end
+
+    enum ForwardErrorCorrectionState
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- The configuration settings for a destination endpoint that uses the RTP protocol.
+    record RtpStandardDestinationEndpointConfiguration
+        -- The IP address on which the destination endpoint receives content.
+        DestinationAddress: string
+        -- The port on which the destination endpoint receives content. The valid range is 1024 to 65531.
+        DestinationIngestPort: number
+        -- Indicates whether forward error correction (FEC) is enabled for the destination endpoint.
+        ForwardErrorCorrectionState: string
+    end
+
+    -- The configuration for the Secrets Manager secret that holds the key or passphrase used to encrypt an endpoint connection.
+    record EndpointEncryptionSecretConfiguration
+        -- The ARN of the Secrets Manager secret that holds the key or passphrase. The secret must be encrypted with a customer managed Amazon Web Services KMS key that is enabled and symmetric; it cannot use the Amazon Web Services managed key aws/secretsmanager. The secret must be in the same Amazon Web Services account and Region as the endpoint.
+        SecretArn: string
+    end
+
+    -- The configuration settings for a destination endpoint that uses SRT in caller mode.
+    record SrtCallerStandardDestinationEndpointConfiguration
+        -- The port on which the source listens for the connection. The valid range is 3000 to 30000.
+        SourceListenerPort: number
+        -- The minimum latency, in milliseconds, for the SRT connection. The valid range is 10 to 10000.
+        MinimumLatencyMilliseconds: number
+        EncryptionPassphrase: EndpointEncryptionSecretConfiguration
+    end
+
+    -- The configuration settings for a destination endpoint that uses SRT in listener mode.
+    record SrtListenerStandardDestinationEndpointConfiguration
+        -- The IP address on which the destination endpoint listens for incoming connections.
+        DestinationAddress: string
+        -- The port on which the destination endpoint listens for incoming connections. The valid range is 0 to 65531.
+        DestinationIngestPort: number
+        -- The minimum latency, in milliseconds, for the SRT connection. The valid range is 10 to 10000.
+        MinimumLatencyMilliseconds: number
+        -- The stream ID that identifies the content for the SRT connection.
+        StreamId: string
+        EncryptionPassphrase: EndpointEncryptionSecretConfiguration
+    end
+
+    -- The protocol configuration for a standard destination endpoint. This is a union type, so exactly one of its members is set, depending on the protocol that the destination endpoint uses.
+    record StandardDestinationEndpointProtocolConfiguration
+        -- The configuration settings for a destination endpoint that uses the RIST protocol.
+        Rist: RistStandardDestinationEndpointConfiguration
+        -- The configuration settings for a destination endpoint that uses SRT in listener mode.
+        SrtListener: SrtListenerStandardDestinationEndpointConfiguration
+        -- The configuration settings for a destination endpoint that uses SRT in caller mode.
+        SrtCaller: SrtCallerStandardDestinationEndpointConfiguration
+        -- The configuration settings for a destination endpoint that uses the RTP protocol.
+        Rtp: RtpStandardDestinationEndpointConfiguration
+    end
+
+    -- The configuration settings for a standard destination endpoint.
+    record StandardDestinationEndpointConfiguration
+        -- The name of the destination endpoint.
+        Name: string
+        -- The networking configuration for the destination endpoint, which determines whether it is publicly accessible or in a virtual private cloud (VPC).
+        DestinationNetworkingConfiguration: StandardDestinationEndpointNetworkingConfiguration
+        -- The protocol configuration for the destination endpoint.
+        ProtocolConfiguration: StandardDestinationEndpointProtocolConfiguration
+        -- The networking type of the destination endpoint. Valid values include the following: PUBLIC – The destination endpoint is publicly accessible. VPC – The destination endpoint is in a virtual private cloud (VPC).
+        DestinationNetworkingType: string
+        -- The protocol used by the destination endpoint. Valid values include the following: RTP – Real-time Transport Protocol. RIST – Reliable Internet Stream Transport. SRT_CALLER – Secure Reliable Transport (SRT) in caller mode. SRT_LISTENER – Secure Reliable Transport (SRT) in listener mode.
+        Protocol: string
+    end
+
+    -- The configuration settings for a destination endpoint. This is a union type, so exactly one of its members is set, depending on the type of the destination endpoint.
+    record DestinationEndpointConfiguration
+        -- The configuration settings for a standard destination endpoint, which represents an external destination.
+        Standard: StandardDestinationEndpointConfiguration
+        -- The configuration settings for a destination endpoint that represents a router input.
+        RouterInput: RouterInputDestinationEndpointConfiguration
+    end
+
+    enum EndpointEncryptionSecretType
+        "AES_128_KEY"
+        "AES_192_KEY"
+        "AES_256_KEY"
+        "SRT_PASSPHRASE"
+    end
+
+    -- The endpoint encryption configuration for connections that use a key or passphrase that you store in Secrets Manager.
+    record SecretsManagerEndpointEncryptionConfiguration
+        -- The type of secret used to encrypt the connection. Valid values include the following: AES_128_KEY – A 128-bit AES encryption key. AES_192_KEY – A 192-bit AES encryption key. AES_256_KEY – A 256-bit AES encryption key. SRT_PASSPHRASE – An SRT passphrase.
+        EncryptionSecretType: string
+        -- The Secrets Manager secret that holds the key or passphrase used to encrypt the connection.
+        EncryptionSecret: EndpointEncryptionSecretConfiguration
+    end
+
+    -- The encryption settings for an endpoint connection. This is a union type, so exactly one of its members is set: secretsManager when you store the encryption key or passphrase in Secrets Manager, or automatic when you let MediaConnect determine the encryption key when the endpoint connects.
+    record EndpointEncryptionConfiguration
+        -- The encryption configuration for a connection that uses a key or passphrase that you store in Secrets Manager.
+        SecretsManager: SecretsManagerEndpointEncryptionConfiguration
+        -- The configuration for automatic encryption, where MediaConnect determines the encryption key when the endpoint connects.
+        Automatic: AutomaticEndpointEncryptionConfiguration
+    end
+
+    enum EndpointEncryptionType
+        "SECRETS_MANAGER"
+        "AUTOMATIC"
+    end
+
+    enum SourceEndpointType
+        "STANDARD"
+        "ROUTER_OUTPUT"
+    end
+
+    -- The connection details for a destination endpoint that represents a router input.
+    record RouterInputDestinationEndpointConnectionDetails
+        -- The type of encryption that the source uses for the connection.
+        SourceEncryptionType: string
+        SourceEncryptionConfiguration: EndpointEncryptionConfiguration
+        -- The type of the connected source endpoint.
+        SourceEndpointType: string
+    end
+
+    -- The connection details for a standard destination endpoint.
+    record StandardDestinationEndpointConnectionDetails
+        -- The IP address of the source that is connected to the destination endpoint.
+        SourceIpAddress: string
+        -- The port on which the source listens for the connection.
+        SourceListenerPort: number
+        -- The type of encryption that the source uses for the connection.
+        SourceEncryptionType: string
+        SourceEncryptionConfiguration: EndpointEncryptionConfiguration
+        -- The type of the connected source endpoint.
+        SourceEndpointType: string
+    end
+
+    -- The connection details for a destination endpoint. After the destination endpoint connects to a source endpoint, MediaConnect populates these details to describe the connected source. This is a union type, so exactly one of its members is set, depending on the destination endpoint type.
+    record DestinationEndpointConnectionDetails
+        -- The connection details for a standard destination endpoint.
+        Standard: StandardDestinationEndpointConnectionDetails
+        -- The connection details for a destination endpoint that represents a router input.
+        RouterInput: RouterInputDestinationEndpointConnectionDetails
+    end
+
+    enum DestinationEndpointConnectionState
+        "CONNECTED"
+        "DISCONNECTED"
+        "CONNECTING"
+        "DISCONNECTING"
+    end
+
+    enum DestinationEndpointType
+        "STANDARD"
+        "ROUTER_INPUT"
+    end
+
+    enum EndpointLifecycle
+        "MANAGED"
+        "UNMANAGED"
+    end
+
+    -- A status message for a destination endpoint.
+    record DestinationEndpointMessage
+        -- The message code.
+        Code: string
+        -- The message text.
+        Message: string
+    end
+
+    enum DestinationEndpointRegistrationState
+        "REGISTERED"
+        "REGISTERING"
+        "DEREGISTERING"
+        "REGISTRATION_FAILED"
+    end
+
+    -- The cross-account sharing details for an endpoint that another account shares with this account.
+    record ConsumedResourceShareDetails
+        -- The ID of the Amazon Web Services account that owns the shared endpoint.
+        OwnerAccountId: string
+    end
+
+    enum ResourceShareState
+        "SHARED"
+        "UNSHARED"
+    end
+
+    -- The cross-account sharing details for an endpoint that this account owns and shares with other accounts.
+    record OwnedResourceShareDetails
+        -- The sharing state of the endpoint. Valid values include the following: SHARED – The endpoint is shared with one or more accounts. UNSHARED – The endpoint is not shared with other accounts.
+        ShareState: string
+    end
+
+    -- The cross-account sharing details for an endpoint. Endpoints are shared through Resource Access Manager (RAM). This is a union type, so exactly one of its members is set: owned when this account owns the endpoint and shares it with other accounts, or consumed when this account consumes an endpoint that another account shares. To change how an endpoint is shared, use RAM.
+    record ResourceShareDetails
+        -- The sharing details for an endpoint that this account owns and shares with other accounts through RAM.
+        Owned: OwnedResourceShareDetails
+        -- The sharing details for an endpoint that another account shares with this account through RAM.
+        Consumed: ConsumedResourceShareDetails
+    end
+
+    enum ResourceShareOwnership
+        "OWNED"
+        "CONSUMED"
+    end
+
+    -- The details of a destination endpoint in MediaConnect, including its configuration, state, and connection details.
+    record DestinationEndpoint
+        -- The name of the destination endpoint.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the destination endpoint.
+        Arn: string
+        -- The unique identifier of the destination endpoint.
+        Id: string
+        -- The description of the destination endpoint.
+        Description: string
+        -- The name of the Amazon Web Services Region in which the destination endpoint is located.
+        RegionName: string
+        -- The Availability Zone in which the destination endpoint is located.
+        AvailabilityZone: string
+        -- The ID of the Availability Zone in which the destination endpoint is located.
+        AvailabilityZoneId: string
+        -- The date and time when the destination endpoint was created.
+        CreatedAt: number
+        -- The date and time when the destination endpoint was last updated.
+        UpdatedAt: number
+        -- The entity that manages the lifecycle of the destination endpoint.
+        LifecycleManagement: string
+        -- The status messages for the destination endpoint.
+        Messages: {DestinationEndpointMessage}
+        -- The type of the destination endpoint. Valid values include the following: STANDARD – A destination endpoint that represents an external destination over a standard protocol, such as RTP, RIST, or SRT. ROUTER_INPUT – A destination endpoint that represents a router input.
+        DestinationType: string
+        -- The configuration settings for the destination endpoint.
+        Configuration: DestinationEndpointConfiguration
+        -- Indicates whether this account owns the destination endpoint or consumes it from another account through RAM.
+        ResourceShareOwnership: string
+        ResourceShareDetails: ResourceShareDetails
+        -- The registration state of the destination endpoint. Valid values include the following: REGISTERED – The destination endpoint is registered and ready to use. REGISTERING – MediaConnect is registering the destination endpoint. DEREGISTERING – MediaConnect is deregistering the destination endpoint. REGISTRATION_FAILED – MediaConnect couldn't register the destination endpoint.
+        RegistrationState: string
+        -- The connection details for the destination endpoint.
+        ConnectionDetails: DestinationEndpointConnectionDetails
+        -- The connection state of the destination endpoint. Valid values include the following: CONNECTED – The destination endpoint is connected to a source endpoint. DISCONNECTED – The destination endpoint isn't connected to a source endpoint. CONNECTING – The destination endpoint is connecting to a source endpoint. DISCONNECTING – The destination endpoint is disconnecting from a source endpoint.
+        ConnectionState: string
+        -- The Amazon Resource Name (ARN) of the source endpoint that is connected to the destination endpoint.
+        ConnectedSource: string
+        -- The type of decryption used for the destination endpoint connection.
+        DecryptionType: string
+        DecryptionConfiguration: EndpointEncryptionConfiguration
+        -- The details of the resource that is associated with the destination endpoint.
+        AssociatedResourceDetails: DestinationEndpointAssociatedResourceDetails
+        -- The tags associated with the destination endpoint. Each tag is a key-value pair.
+        Tags: {string : string}
+    end
+
+    -- An error for a destination endpoint that MediaConnect couldn't retrieve in a BatchGetDestinationEndpoint request.
+    record BatchGetDestinationEndpointError
+        -- The Amazon Resource Name (ARN) of the destination endpoint that MediaConnect couldn't retrieve.
+        Arn: string
+        -- The error code.
+        Code: string
+        -- A description of the error.
+        Message: string
+    end
+
+    record BatchGetDestinationEndpointOutput
+        -- The destination endpoints that MediaConnect successfully retrieved.
+        DestinationEndpoints: {DestinationEndpoint}
+        -- The errors for any destination endpoints that MediaConnect couldn't retrieve.
+        Errors: {BatchGetDestinationEndpointError}
+    end
+
     record BatchGetRouterInputInput
         -- The Amazon Resource Names (ARNs) of the router inputs you want to retrieve information about.
         Arns: {string}
@@ -1387,17 +1762,21 @@ local record M
         Message: string
     end
 
+    -- Configuration settings for a router input that is represented by a destination endpoint.
+    record DestinationEndpointRouterInputConfiguration
+        -- The entity that manages the lifecycle of the associated destination endpoint. Valid values include the following: MANAGED – MediaConnect manages the lifecycle of the associated destination endpoint. UNMANAGED – You manage the lifecycle of the associated destination endpoint.
+        EndpointLifecycleManagement: string
+        -- The type of transit decryption applied to the source content that this router input receives. Valid values include the following: SECRETS_MANAGER – The decryption key or passphrase is stored in Secrets Manager. AUTOMATIC – MediaConnect determines the decryption key when the endpoint connects.
+        SourceTransitDecryptionType: string
+        SourceTransitDecryption: EndpointEncryptionConfiguration
+    end
+
     -- The configuration settings for a router input using the RIST (Reliable Internet Stream Transport) protocol, including the port and recovery latency.
     record RistRouterInputConfiguration
         -- The port number used for the RIST protocol in the router input configuration.
         Port: number
         -- The recovery latency in milliseconds for the RIST protocol in the router input configuration.
         RecoveryLatencyMilliseconds: number
-    end
-
-    enum ForwardErrorCorrectionState
-        "ENABLED"
-        "DISABLED"
     end
 
     -- The configuration settings for a Router Input using the RTP (Real-Time Transport Protocol) protocol, including the port and forward error correction state.
@@ -1551,6 +1930,8 @@ local record M
 
     -- The configuration settings for a router input.
     record RouterInputConfiguration
+        -- Configuration settings for a router input that is represented by a destination endpoint.
+        DestinationEndpoint: DestinationEndpointRouterInputConfiguration
         Standard: StandardRouterInputConfiguration
         MediaLiveChannel: MediaLiveChannelRouterInputConfiguration
         Failover: FailoverRouterInputConfiguration
@@ -1613,6 +1994,7 @@ local record M
         "MERGE"
         "MEDIACONNECT_FLOW"
         "MEDIALIVE_CHANNEL"
+        "DESTINATION_ENDPOINT"
     end
 
     -- Configuration settings for default maintenance scheduling.
@@ -1669,30 +2051,13 @@ local record M
         "DEFAULT"
     end
 
-    -- A message associated with a router input, including a code and a message.
-    record RouterInputMessage
-        -- The code associated with the router input message.
-        Code: string
-        -- The message text associated with the router input message.
-        Message: string
-    end
-
     enum RoutingScope
         "REGIONAL"
         "GLOBAL"
     end
 
-    enum RouterInputState
-        "CREATING"
-        "STANDBY"
-        "STARTING"
-        "ACTIVE"
-        "STOPPING"
-        "DELETING"
-        "UPDATING"
-        "ERROR"
-        "RECOVERING"
-        "MIGRATING"
+    -- Configuration details for a router input stream that is represented by a destination endpoint.
+    record DestinationEndpointRouterInputStreamDetails
     end
 
     -- Configuration details for an indexed stream in a failover router input setup.
@@ -1743,6 +2108,8 @@ local record M
 
     -- Configuration details for the router input stream.
     record RouterInputStreamDetails
+        -- Configuration details for a router input stream that is represented by a destination endpoint.
+        DestinationEndpoint: DestinationEndpointRouterInputStreamDetails
         Standard: StandardRouterInputStreamDetails
         MediaLiveChannel: MediaLiveChannelRouterInputStreamDetails
         Failover: FailoverRouterInputStreamDetails
@@ -1828,6 +2195,8 @@ local record M
         ContentQualityAnalysisType: string
         -- The content quality analysis configuration for the router input.
         ContentQualityAnalysisConfiguration: RouterContentQualityAnalysisConfiguration
+        -- The Amazon Resource Names (ARNs) of one or more destination endpoints that are associated with this router input.
+        AssociatedDestinationEndpointArns: {string}
     end
 
     record BatchGetRouterInputOutput
@@ -1966,6 +2335,15 @@ local record M
         DestinationTransitEncryption: MediaLiveTransitEncryption
     end
 
+    -- Configuration settings for a router output that is represented by a source endpoint.
+    record SourceEndpointRouterOutputConfiguration
+        -- The entity that manages the lifecycle of the associated source endpoint. Valid values include the following: MANAGED – MediaConnect manages the lifecycle of the associated source endpoint. UNMANAGED – You manage the lifecycle of the associated source endpoint.
+        EndpointLifecycleManagement: string
+        -- The type of transit encryption applied to the destination content that this router output sends. Valid values include the following: SECRETS_MANAGER – The encryption key or passphrase is stored in Secrets Manager. AUTOMATIC – MediaConnect determines the encryption key when the endpoint connects.
+        DestinationTransitEncryptionType: string
+        DestinationTransitEncryption: EndpointEncryptionConfiguration
+    end
+
     enum RouterOutputProtocol
         "RTP"
         "RIST"
@@ -2082,6 +2460,8 @@ local record M
         Standard: StandardRouterOutputConfiguration
         MediaConnectFlow: MediaConnectFlowRouterOutputConfiguration
         MediaLiveInput: MediaLiveInputRouterOutputConfiguration
+        -- Configuration settings for a router output that is represented by a source endpoint.
+        SourceEndpoint: SourceEndpointRouterOutputConfiguration
     end
 
     enum FabricLatencyMode
@@ -2107,6 +2487,7 @@ local record M
         "STANDARD"
         "MEDIACONNECT_FLOW"
         "MEDIALIVE_INPUT"
+        "SOURCE_ENDPOINT"
     end
 
     enum RouterOutputRoutedState
@@ -2136,6 +2517,10 @@ local record M
     record MediaLiveInputRouterOutputStreamDetails
     end
 
+    -- Configuration details for a router output stream that is represented by a source endpoint.
+    record SourceEndpointRouterOutputStreamDetails
+    end
+
     -- Configuration details for a standard router output stream type. Contains information about the destination IP address and connection state for basic output routing.
     record StandardRouterOutputStreamDetails
         -- The IP address where the output stream will be sent. This is the destination address that will receive the routed media content.
@@ -2147,6 +2532,8 @@ local record M
         Standard: StandardRouterOutputStreamDetails
         MediaConnectFlow: MediaConnectFlowRouterOutputStreamDetails
         MediaLiveInput: MediaLiveInputRouterOutputStreamDetails
+        -- Configuration details for a router output stream that is represented by a source endpoint.
+        SourceEndpoint: SourceEndpointRouterOutputStreamDetails
     end
 
     enum RouterOutputTier
@@ -2205,6 +2592,8 @@ local record M
         MaintenanceSchedule: MaintenanceSchedule
         -- The fabric configuration settings for the router output.
         FabricConfiguration: FabricConfiguration
+        -- The Amazon Resource Names (ARNs) of one or more source endpoints that are associated with this router output.
+        AssociatedSourceEndpointArns: {string}
     end
 
     record BatchGetRouterOutputOutput
@@ -2212,6 +2601,270 @@ local record M
         RouterOutputs: {RouterOutput}
         -- An array of errors that occurred when retrieving the requested router outputs.
         Errors: {BatchGetRouterOutputError}
+    end
+
+    record BatchGetSourceEndpointInput
+        -- The Amazon Resource Names (ARNs) of one or more source endpoints to retrieve. You can specify from 1 to 20 ARNs.
+        Arns: {string}
+    end
+
+    -- An error for a source endpoint that MediaConnect couldn't retrieve in a BatchGetSourceEndpoint request.
+    record BatchGetSourceEndpointError
+        -- The Amazon Resource Name (ARN) of the source endpoint that MediaConnect couldn't retrieve.
+        Arn: string
+        -- The error code.
+        Code: string
+        -- A description of the error.
+        Message: string
+    end
+
+    -- The details of the router output that is associated with a source endpoint.
+    record RouterOutputSourceEndpointAssociatedResourceDetails
+        -- The name of the router output.
+        Name: string
+        -- The maximum bitrate of the router output, in bits per second.
+        MaximumBitrate: number
+        -- The state of the router output.
+        State: string
+        -- The status messages for the router output.
+        Messages: {RouterOutputMessage}
+    end
+
+    -- The associated resource details for a standard source endpoint. This type does not require any additional settings.
+    record StandardSourceEndpointAssociatedResourceDetails
+    end
+
+    -- The details of the resource that is associated with a source endpoint. This is a union type, so exactly one of its members is set, depending on the type of the source endpoint.
+    record SourceEndpointAssociatedResourceDetails
+        -- The associated resource details for a standard source endpoint.
+        Standard: StandardSourceEndpointAssociatedResourceDetails
+        -- The associated resource details for a source endpoint that represents a router output.
+        RouterOutput: RouterOutputSourceEndpointAssociatedResourceDetails
+    end
+
+    -- The configuration settings for a source endpoint that represents a router output.
+    record RouterOutputSourceEndpointConfiguration
+        -- The Amazon Resource Name (ARN) of the router output that the source endpoint represents.
+        RouterOutputArn: string
+    end
+
+    enum SourceEndpointProtocol
+        "RTP"
+        "RIST"
+        "SRT_CALLER"
+        "SRT_LISTENER"
+    end
+
+    -- The configuration settings for a source endpoint that uses the RIST protocol.
+    record RistStandardSourceEndpointConfiguration
+        -- The port on the destination that receives the content. The valid range is 3000 to 30000.
+        DestinationIngestPort: number
+        -- The amount of time, in milliseconds, that the source endpoint allows for recovering lost packets. The valid range is 10 to 10000.
+        RecoveryLatencyMilliseconds: number
+    end
+
+    -- The configuration settings for a source endpoint that uses the RTP protocol.
+    record RtpStandardSourceEndpointConfiguration
+        -- The port on the destination that receives the content. The valid range is 3000 to 30000.
+        DestinationIngestPort: number
+        -- Indicates whether forward error correction (FEC) is enabled for the source endpoint.
+        ForwardErrorCorrectionState: string
+    end
+
+    -- The configuration settings for a source endpoint that uses SRT in caller mode.
+    record SrtCallerStandardSourceEndpointConfiguration
+        -- The port on which the destination listens for the connection. The valid range is 3000 to 30000.
+        DestinationIngestPort: number
+        -- The minimum latency, in milliseconds, for the SRT connection. The valid range is 10 to 10000.
+        MinimumLatencyMilliseconds: number
+        EncryptionPassphrase: EndpointEncryptionSecretConfiguration
+    end
+
+    -- The configuration settings for a source endpoint that uses SRT in listener mode.
+    record SrtListenerStandardSourceEndpointConfiguration
+        -- The port that the source endpoint listens on for incoming connections. The valid range is 1024 to 65535.
+        SourceListenerPort: number
+        -- The IP address that the source endpoint listens on for incoming connections.
+        SourceAddress: string
+        -- The minimum latency, in milliseconds, for the SRT connection. The valid range is 10 to 10000.
+        MinimumLatencyMilliseconds: number
+        -- The stream ID that identifies the content for the SRT connection.
+        StreamId: string
+        EncryptionPassphrase: EndpointEncryptionSecretConfiguration
+    end
+
+    -- The protocol configuration for a standard source endpoint. This is a union type, so exactly one of its members is set, depending on the protocol that the source endpoint uses.
+    record StandardSourceEndpointProtocolConfiguration
+        -- The configuration settings for a source endpoint that uses the RIST protocol.
+        Rist: RistStandardSourceEndpointConfiguration
+        -- The configuration settings for a source endpoint that uses SRT in listener mode.
+        SrtListener: SrtListenerStandardSourceEndpointConfiguration
+        -- The configuration settings for a source endpoint that uses SRT in caller mode.
+        SrtCaller: SrtCallerStandardSourceEndpointConfiguration
+        -- The configuration settings for a source endpoint that uses the RTP protocol.
+        Rtp: RtpStandardSourceEndpointConfiguration
+    end
+
+    -- A rule that allows a specific CIDR block to connect to the public source endpoint.
+    record PublicSourceEndpointNetworkingConfigurationAllowRule
+        -- The CIDR block that is allowed to connect to the source endpoint, in CIDR notation.
+        Cidr: string
+    end
+
+    -- The networking configuration for a publicly accessible source endpoint, including the CIDR blocks that are allowed to connect.
+    record PublicSourceEndpointNetworkingConfiguration
+        -- The rules that specify which CIDR blocks can connect to the source endpoint. You can specify up to 10 rules.
+        SourceAllowRules: {PublicSourceEndpointNetworkingConfigurationAllowRule}
+    end
+
+    -- The networking configuration for a source endpoint in a virtual private cloud (VPC).
+    record VpcSourceEndpointNetworkingConfiguration
+        -- The IDs of the security groups to associate with the source endpoint. You can specify from 1 to 5 security groups.
+        SecurityGroupIds: {string}
+        -- The ID of the subnet to use for the source endpoint.
+        SubnetId: string
+    end
+
+    -- The networking configuration for a standard source endpoint. This is a union type, so exactly one of its members is set: public for a publicly accessible endpoint, or vpc for an endpoint in a virtual private cloud (VPC).
+    record StandardSourceEndpointNetworkingConfiguration
+        -- The configuration for a publicly accessible source endpoint.
+        Public: PublicSourceEndpointNetworkingConfiguration
+        -- The configuration for a source endpoint in a virtual private cloud (VPC).
+        Vpc: VpcSourceEndpointNetworkingConfiguration
+    end
+
+    enum SourceEndpointNetworkingType
+        "PUBLIC"
+        "VPC"
+    end
+
+    -- The configuration settings for a standard source endpoint.
+    record StandardSourceEndpointConfiguration
+        -- The name of the source endpoint.
+        Name: string
+        -- The networking configuration for the source endpoint, which determines whether it is publicly accessible or in a virtual private cloud (VPC).
+        SourceNetworkingConfiguration: StandardSourceEndpointNetworkingConfiguration
+        -- The protocol configuration for the source endpoint.
+        ProtocolConfiguration: StandardSourceEndpointProtocolConfiguration
+        -- The networking type of the source endpoint. Valid values include the following: PUBLIC – The source endpoint is publicly accessible. VPC – The source endpoint is in a virtual private cloud (VPC).
+        SourceNetworkingType: string
+        -- The protocol used by the source endpoint. Valid values include the following: RTP – Real-time Transport Protocol. RIST – Reliable Internet Stream Transport. SRT_CALLER – Secure Reliable Transport (SRT) in caller mode. SRT_LISTENER – Secure Reliable Transport (SRT) in listener mode.
+        Protocol: string
+    end
+
+    -- The configuration settings for a source endpoint. This is a union type, so exactly one of its members is set, depending on the type of the source endpoint.
+    record SourceEndpointConfiguration
+        -- The configuration settings for a standard source endpoint, which represents an external source.
+        Standard: StandardSourceEndpointConfiguration
+        -- The configuration settings for a source endpoint that represents a router output.
+        RouterOutput: RouterOutputSourceEndpointConfiguration
+    end
+
+    -- The connection details for a source endpoint that represents a router output.
+    record RouterOutputSourceEndpointConnectionDetails
+        -- The type of decryption that the destination uses for the connection.
+        DestinationDecryptionType: string
+        DestinationDecryptionConfiguration: EndpointEncryptionConfiguration
+        -- The type of the connected destination endpoint.
+        DestinationEndpointType: string
+    end
+
+    -- The connection details for a standard source endpoint.
+    record StandardSourceEndpointConnectionDetails
+        -- The IP address of the destination that receives the content.
+        DestinationIpAddress: string
+        -- The port on the destination that receives the content.
+        DestinationIngestPort: number
+        -- The type of decryption that the destination uses for the connection.
+        DestinationDecryptionType: string
+        DestinationDecryptionConfiguration: EndpointEncryptionConfiguration
+        -- The type of the connected destination endpoint.
+        DestinationEndpointType: string
+    end
+
+    -- The connection details for a source endpoint. After the source endpoint connects to a destination endpoint, MediaConnect populates these details to describe the connected destination and how the source delivers content to it. This is a union type, so exactly one of its members is set, depending on the source endpoint type.
+    record SourceEndpointConnectionDetails
+        -- The connection details for a standard source endpoint.
+        Standard: StandardSourceEndpointConnectionDetails
+        -- The connection details for a source endpoint that represents a router output.
+        RouterOutput: RouterOutputSourceEndpointConnectionDetails
+    end
+
+    enum SourceEndpointConnectionState
+        "CONNECTED"
+        "DISCONNECTED"
+        "CONNECTING"
+        "DISCONNECTING"
+    end
+
+    -- A status message for a source endpoint.
+    record SourceEndpointMessage
+        -- The message code.
+        Code: string
+        -- The message text.
+        Message: string
+    end
+
+    enum SourceEndpointRegistrationState
+        "REGISTERED"
+        "REGISTERING"
+        "DEREGISTERING"
+        "REGISTRATION_FAILED"
+    end
+
+    -- The details of a source endpoint in MediaConnect, including its configuration, state, and connection details.
+    record SourceEndpoint
+        -- The name of the source endpoint.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the source endpoint.
+        Arn: string
+        -- The unique identifier of the source endpoint.
+        Id: string
+        -- The description of the source endpoint.
+        Description: string
+        -- The name of the Amazon Web Services Region in which the source endpoint is located.
+        RegionName: string
+        -- The Availability Zone in which the source endpoint is located.
+        AvailabilityZone: string
+        -- The ID of the Availability Zone in which the source endpoint is located.
+        AvailabilityZoneId: string
+        -- The date and time when the source endpoint was created.
+        CreatedAt: number
+        -- The date and time when the source endpoint was last updated.
+        UpdatedAt: number
+        -- The entity that manages the lifecycle of the source endpoint.
+        LifecycleManagement: string
+        -- The status messages for the source endpoint.
+        Messages: {SourceEndpointMessage}
+        -- The type of the source endpoint. Valid values include the following: STANDARD – A source endpoint that represents an external source over a standard protocol, such as RTP, RIST, or SRT. ROUTER_OUTPUT – A source endpoint that represents a router output.
+        SourceType: string
+        -- The configuration settings for the source endpoint.
+        Configuration: SourceEndpointConfiguration
+        -- Indicates whether this account owns the source endpoint or consumes it from another account through RAM.
+        ResourceShareOwnership: string
+        ResourceShareDetails: ResourceShareDetails
+        -- The registration state of the source endpoint. Valid values include the following: REGISTERED – The source endpoint is registered and ready to use. REGISTERING – MediaConnect is registering the source endpoint. DEREGISTERING – MediaConnect is deregistering the source endpoint. REGISTRATION_FAILED – MediaConnect couldn't register the source endpoint.
+        RegistrationState: string
+        -- The connection state of the source endpoint. Valid values include the following: CONNECTED – The source endpoint is connected to a destination endpoint. DISCONNECTED – The source endpoint isn't connected to a destination endpoint. CONNECTING – The source endpoint is connecting to a destination endpoint. DISCONNECTING – The source endpoint is disconnecting from a destination endpoint.
+        ConnectionState: string
+        -- The connection details for the source endpoint.
+        ConnectionDetails: SourceEndpointConnectionDetails
+        -- The Amazon Resource Names (ARNs) of the destination endpoints that are connected to the source endpoint.
+        ConnectedDestinations: {string}
+        -- The type of encryption used for the source endpoint connection.
+        EncryptionType: string
+        EncryptionConfiguration: EndpointEncryptionConfiguration
+        -- The details of the resource that is associated with the source endpoint.
+        AssociatedResourceDetails: SourceEndpointAssociatedResourceDetails
+        -- The tags associated with the source endpoint. Each tag is a key-value pair.
+        Tags: {string : string}
+    end
+
+    record BatchGetSourceEndpointOutput
+        -- The source endpoints that MediaConnect successfully retrieved.
+        SourceEndpoints: {SourceEndpoint}
+        -- The errors for any source endpoints that MediaConnect couldn't retrieve.
+        Errors: {BatchGetSourceEndpointError}
     end
 
     -- Create a bridge with the egress bridge type. An egress bridge is a cloud-to-ground bridge. The content comes from an existing MediaConnect flow and is delivered to your premises.
@@ -2505,6 +3158,24 @@ local record M
         BridgeArn: string
         -- The new state of the bridge.
         DesiredState: string
+    end
+
+    record ConnectEndpointsInput
+        -- The Amazon Resource Name (ARN) of the destination endpoint to connect.
+        DestinationEndpointArn: string
+        -- The Amazon Resource Name (ARN) of the source endpoint to connect.
+        SourceEndpointArn: string
+    end
+
+    record ConnectEndpointsOutput
+        -- The Amazon Resource Name (ARN) of the connected destination endpoint.
+        DestinationEndpointArn: string
+        -- The name of the connected destination endpoint.
+        DestinationEndpointName: string
+        -- The Amazon Resource Name (ARN) of the connected source endpoint.
+        SourceEndpointArn: string
+        -- The name of the connected source endpoint.
+        SourceEndpointName: string
     end
 
     enum ConnectionStatus
@@ -2839,6 +3510,18 @@ local record M
         State: string
     end
 
+    record DeregisterDestinationEndpointInput
+        -- The Amazon Resource Name (ARN) of the destination endpoint to deregister.
+        Arn: string
+    end
+
+    record DeregisterDestinationEndpointOutput
+        -- The Amazon Resource Name (ARN) of the destination endpoint that was deregistered.
+        Arn: string
+        -- The name of the destination endpoint that was deregistered.
+        Name: string
+    end
+
     record DeregisterGatewayInstanceInput
         -- Force the deregistration of an instance. Force will deregister an instance, even if there are bridges running on it.
         Force: boolean
@@ -2851,6 +3534,18 @@ local record M
         GatewayInstanceArn: string
         -- The status of the instance.
         InstanceState: string
+    end
+
+    record DeregisterSourceEndpointInput
+        -- The Amazon Resource Name (ARN) of the source endpoint to deregister.
+        Arn: string
+    end
+
+    record DeregisterSourceEndpointOutput
+        -- The Amazon Resource Name (ARN) of the source endpoint that was deregistered.
+        Arn: string
+        -- The name of the source endpoint that was deregistered.
+        Name: string
     end
 
     record DescribeFlowInput
@@ -2997,6 +3692,137 @@ local record M
     record DescribeReservationOutput
         -- A pricing agreement for a discounted rate for a specific outbound bandwidth that your MediaConnect account will use each month over a specific time period. The discounted rate in the reservation applies to outbound bandwidth for all flows from your account until your account reaches the amount of bandwidth in your reservation. If you use more outbound bandwidth than the agreed upon amount in a single month, the overage is charged at the on-demand rate.
         Reservation: Reservation
+    end
+
+    -- A filter to apply when listing destination endpoints. This is a union type, so exactly one of its members is set.
+    record DestinationEndpointFilter
+        -- Filters the results to destination endpoints in the specified Amazon Web Services Regions.
+        RegionNames: {string}
+        -- Filters the results to destination endpoints of the specified types.
+        DestinationTypes: {string}
+        -- Filters the results to destination endpoints whose names contain the specified strings.
+        NameContains: {string}
+    end
+
+    record DisconnectEndpointsInput
+        -- The Amazon Resource Name (ARN) of the destination endpoint to disconnect.
+        DestinationEndpointArn: string
+        -- The Amazon Resource Name (ARN) of the source endpoint to disconnect.
+        SourceEndpointArn: string
+    end
+
+    record DisconnectEndpointsOutput
+        -- The Amazon Resource Name (ARN) of the disconnected destination endpoint.
+        DestinationEndpointArn: string
+        -- The name of the disconnected destination endpoint.
+        DestinationEndpointName: string
+        -- The Amazon Resource Name (ARN) of the disconnected source endpoint.
+        SourceEndpointArn: string
+        -- The name of the disconnected source endpoint.
+        SourceEndpointName: string
+    end
+
+    record GetDestinationEndpointInput
+        -- The Amazon Resource Name (ARN) of the destination endpoint to retrieve.
+        Arn: string
+    end
+
+    record GetDestinationEndpointOutput
+        -- The details of the destination endpoint.
+        DestinationEndpoint: DestinationEndpoint
+    end
+
+    record ListDestinationEndpointsInput
+        -- The maximum number of results to return in a single request. The valid range is 1 to 100. If you don't specify a value, the service returns up to 100 results.
+        MaxResults: number
+        -- The token that identifies the next page of results to return. Use the token that a previous request returned.
+        NextToken: string
+        -- The filters to apply to the list of destination endpoints.
+        Filters: {DestinationEndpointFilter}
+    end
+
+    -- A summary of a destination endpoint that the ListDestinationEndpoints operation returns.
+    record ListedDestinationEndpoint
+        -- The name of the destination endpoint.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the destination endpoint.
+        Arn: string
+        -- The unique identifier of the destination endpoint.
+        Id: string
+        -- The type of the destination endpoint. Valid values include the following: STANDARD – A destination endpoint that represents an external destination over a standard protocol, such as RTP, RIST, or SRT. ROUTER_INPUT – A destination endpoint that represents a router input.
+        DestinationType: string
+        -- The name of the Amazon Web Services Region in which the destination endpoint is located.
+        RegionName: string
+        -- The Availability Zone in which the destination endpoint is located.
+        AvailabilityZone: string
+        -- The ID of the Availability Zone in which the destination endpoint is located.
+        AvailabilityZoneId: string
+        -- The date and time when the destination endpoint was created.
+        CreatedAt: number
+        -- The date and time when the destination endpoint was last updated.
+        UpdatedAt: number
+        -- The entity that manages the lifecycle of the destination endpoint.
+        LifecycleManagement: string
+        -- The number of status messages for the destination endpoint.
+        MessageCount: number
+        -- Indicates whether this account owns the destination endpoint or consumes it from another account through RAM.
+        ResourceShareOwnership: string
+        -- The sharing state of the destination endpoint.
+        ResourceShareState: string
+        -- The registration state of the destination endpoint. Valid values include the following: REGISTERED – The destination endpoint is registered and ready to use. REGISTERING – MediaConnect is registering the destination endpoint. DEREGISTERING – MediaConnect is deregistering the destination endpoint. REGISTRATION_FAILED – MediaConnect couldn't register the destination endpoint.
+        RegistrationState: string
+        -- The connection state of the destination endpoint. Valid values include the following: CONNECTED – The destination endpoint is connected to a source endpoint. DISCONNECTED – The destination endpoint isn't connected to a source endpoint. CONNECTING – The destination endpoint is connecting to a source endpoint. DISCONNECTING – The destination endpoint is disconnecting from a source endpoint.
+        ConnectionState: string
+        -- The type of decryption used for the destination endpoint connection.
+        DecryptionType: string
+        -- The Amazon Resource Name (ARN) of the source endpoint that is connected to the destination endpoint.
+        ConnectedSource: string
+        -- The Amazon Resource Name (ARN) of the resource that is associated with the destination endpoint.
+        AssociatedResourceArn: string
+    end
+
+    record ListDestinationEndpointsOutput
+        -- The destination endpoints that match the request.
+        DestinationEndpoints: {ListedDestinationEndpoint}
+        -- The token to use in the next request to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
+    end
+
+    -- The request would cause you to exceed a service quota for destination endpoints. Delete unused destination endpoints or request a quota increase, then try your request again.
+    record DestinationEndpointServiceQuotaExceededException
+        Message: string
+    end
+
+    record RegisterDestinationEndpointInput
+        -- A description to help you identify the destination endpoint.
+        Description: string
+        -- The configuration settings for the destination endpoint.
+        Configuration: DestinationEndpointConfiguration
+        -- The name of the Amazon Web Services Region in which to register the destination endpoint. Defaults to the current region if not specified.
+        RegionName: string
+        -- The tags to apply to the destination endpoint. Each tag is a key-value pair.
+        Tags: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If this token matches a previous request, the service ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    record RegisterDestinationEndpointOutput
+        -- The details of the destination endpoint that was registered.
+        DestinationEndpoint: DestinationEndpoint
+    end
+
+    record UpdateDestinationEndpointInput
+        -- The Amazon Resource Name (ARN) of the destination endpoint to update.
+        Arn: string
+        -- A description to help you identify the destination endpoint.
+        Description: string
+        -- The updated configuration settings for the destination endpoint.
+        Configuration: DestinationEndpointConfiguration
+    end
+
+    record UpdateDestinationEndpointOutput
+        -- The details of the updated destination endpoint.
+        DestinationEndpoint: DestinationEndpoint
     end
 
     -- Exception raised by Elemental MediaConnect when granting the entitlement. See the error message for the operation for more information on the cause of this exception.
@@ -3477,6 +4303,16 @@ local record M
         RouterOutput: RouterOutput
     end
 
+    record GetSourceEndpointInput
+        -- The Amazon Resource Name (ARN) of the source endpoint to retrieve.
+        Arn: string
+    end
+
+    record GetSourceEndpointOutput
+        -- The details of the source endpoint.
+        SourceEndpoint: SourceEndpoint
+    end
+
     -- A summary of a router input, including its name, type, ARN, ID, state, and other key details. This structure is used in the response of the ListRouterInputs operation.
     record ListedRouterInput
         -- The name of the router input.
@@ -3573,6 +4409,46 @@ local record M
         MaintenanceScheduleType: string
         -- The details of the maintenance schedule for the listed router output.
         MaintenanceSchedule: MaintenanceSchedule
+    end
+
+    -- A summary of a source endpoint that the ListSourceEndpoints operation returns.
+    record ListedSourceEndpoint
+        -- The name of the source endpoint.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the source endpoint.
+        Arn: string
+        -- The unique identifier of the source endpoint.
+        Id: string
+        -- The type of the source endpoint. Valid values include the following: STANDARD – A source endpoint that represents an external source over a standard protocol, such as RTP, RIST, or SRT. ROUTER_OUTPUT – A source endpoint that represents a router output.
+        SourceType: string
+        -- The name of the Amazon Web Services Region in which the source endpoint is located.
+        RegionName: string
+        -- The Availability Zone in which the source endpoint is located.
+        AvailabilityZone: string
+        -- The ID of the Availability Zone in which the source endpoint is located.
+        AvailabilityZoneId: string
+        -- The date and time when the source endpoint was created.
+        CreatedAt: number
+        -- The date and time when the source endpoint was last updated.
+        UpdatedAt: number
+        -- The entity that manages the lifecycle of the source endpoint.
+        LifecycleManagement: string
+        -- The number of status messages for the source endpoint.
+        MessageCount: number
+        -- Indicates whether this account owns the source endpoint or consumes it from another account through RAM.
+        ResourceShareOwnership: string
+        -- The sharing state of the source endpoint.
+        ResourceShareState: string
+        -- The registration state of the source endpoint. Valid values include the following: REGISTERED – The source endpoint is registered and ready to use. REGISTERING – MediaConnect is registering the source endpoint. DEREGISTERING – MediaConnect is deregistering the source endpoint. REGISTRATION_FAILED – MediaConnect couldn't register the source endpoint.
+        RegistrationState: string
+        -- The connection state of the source endpoint. Valid values include the following: CONNECTED – The source endpoint is connected to a destination endpoint. DISCONNECTED – The source endpoint isn't connected to a destination endpoint. CONNECTING – The source endpoint is connecting to a destination endpoint. DISCONNECTING – The source endpoint is disconnecting from a destination endpoint.
+        ConnectionState: string
+        -- The type of encryption used for the source endpoint connection.
+        EncryptionType: string
+        -- The number of destination endpoints that are connected to the source endpoint.
+        ConnectedDestinationCount: number
+        -- The Amazon Resource Name (ARN) of the resource that is associated with the source endpoint.
+        AssociatedResourceArn: string
     end
 
     record ListEntitlementsInput
@@ -3702,6 +4578,32 @@ local record M
         -- The summary information for the retrieved router outputs.
         RouterOutputs: {ListedRouterOutput}
         -- The token to use to retrieve the next page of results.
+        NextToken: string
+    end
+
+    -- A filter to apply when listing source endpoints. This is a union type, so exactly one of its members is set.
+    record SourceEndpointFilter
+        -- Filters the results to source endpoints in the specified Amazon Web Services Regions.
+        RegionNames: {string}
+        -- Filters the results to source endpoints of the specified types.
+        SourceTypes: {string}
+        -- Filters the results to source endpoints whose names contain the specified strings.
+        NameContains: {string}
+    end
+
+    record ListSourceEndpointsInput
+        -- The maximum number of results to return in a single request. The valid range is 1 to 100. If you don't specify a value, the service returns up to 100 results.
+        MaxResults: number
+        -- The token that identifies the next page of results to return. Use the token that a previous request returned.
+        NextToken: string
+        -- The filters to apply to the list of source endpoints.
+        Filters: {SourceEndpointFilter}
+    end
+
+    record ListSourceEndpointsOutput
+        -- The source endpoints that match the request.
+        SourceEndpoints: {ListedSourceEndpoint}
+        -- The token to use in the next request to retrieve the next page of results. This value is null when there are no more results to return.
         NextToken: string
     end
 
@@ -3913,6 +4815,43 @@ local record M
     record UpdateRouterOutputOutput
         -- The updated router output.
         RouterOutput: RouterOutput
+    end
+
+    record RegisterSourceEndpointInput
+        -- The name of the Amazon Web Services Region in which to register the source endpoint. Defaults to the current region if not specified.
+        RegionName: string
+        -- A description to help you identify the source endpoint.
+        Description: string
+        -- The configuration settings for the source endpoint.
+        Configuration: SourceEndpointConfiguration
+        -- The tags to apply to the source endpoint. Each tag is a key-value pair.
+        Tags: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If this token matches a previous request, the service ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    record RegisterSourceEndpointOutput
+        -- The details of the source endpoint that was registered.
+        SourceEndpoint: SourceEndpoint
+    end
+
+    -- The request would cause you to exceed a service quota for source endpoints. Delete unused source endpoints or request a quota increase, then try your request again.
+    record SourceEndpointServiceQuotaExceededException
+        Message: string
+    end
+
+    record UpdateSourceEndpointInput
+        -- The Amazon Resource Name (ARN) of the source endpoint to update.
+        Arn: string
+        -- A description to help you identify the source endpoint.
+        Description: string
+        -- The updated configuration settings for the source endpoint.
+        Configuration: SourceEndpointConfiguration
+    end
+
+    record UpdateSourceEndpointOutput
+        -- The details of the updated source endpoint.
+        SourceEndpoint: SourceEndpoint
     end
 
     record TagGlobalResourceInput

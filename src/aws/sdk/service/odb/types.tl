@@ -2176,6 +2176,18 @@ local record M
         unallocatedAdbStorageInTBs: number
     end
 
+    -- The Exascale storage configuration of an Exadata infrastructure.
+    record ExascaleConfiguration
+        -- The total amount of Exascale storage, in gigabytes (GB), configured on the Exadata infrastructure.
+        totalStorageSizeInGBs: number
+        -- The amount of Exascale storage, in gigabytes (GB), that's available on the Exadata infrastructure.
+        availableStorageSizeInGBs: number
+        -- The total amount of Exascale VM storage, in gigabytes (GB), on the Exadata infrastructure. VM clusters use Exascale VM storage for their VM file systems and VM backups.
+        totalVmStorageSizeInGBs: number
+        -- The amount of Exascale VM storage, in gigabytes (GB), that's available on the Exadata infrastructure.
+        availableVmStorageSizeInGBs: number
+    end
+
     -- Information about an Exadata infrastructure.
     record CloudExadataInfrastructure
         -- The unique identifier for the Exadata infrastructure.
@@ -2244,7 +2256,7 @@ local record M
         storageServerVersion: string
         -- The date and time when the Exadata infrastructure was created.
         createdAt: number
-        -- The total amount of storage, in gigabytes (GB), on the the Exadata infrastructure.
+        -- The total amount of storage, in gigabytes (GB), on the Exadata infrastructure.
         totalStorageSizeInGBs: number
         -- The amount of progress made on the current operation on the Exadata infrastructure, expressed as a percentage.
         percentProgress: number
@@ -2254,6 +2266,8 @@ local record M
         storageServerType: string
         -- The OCI model compute model used when you create or clone an instance: ECPU or OCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers. An OCPU is a legacy physical measure of compute resources. OCPUs are based on the physical core of a processor with hyper-threading enabled.
         computeModel: string
+        -- The Exascale storage configuration of the Exadata infrastructure. This value is present only when Exascale storage is configured on the infrastructure.
+        exascaleConfiguration: ExascaleConfiguration
     end
 
     -- Information about an Exadata infrastructure.
@@ -2324,7 +2338,7 @@ local record M
         storageServerVersion: string
         -- The date and time when the Exadata infrastructure was created.
         createdAt: number
-        -- The total amount of storage, in gigabytes (GB), on the the Exadata infrastructure.
+        -- The total amount of storage, in gigabytes (GB), on the Exadata infrastructure.
         totalStorageSizeInGBs: number
         -- The amount of progress made on the current operation on the Exadata infrastructure, expressed as a percentage.
         percentProgress: number
@@ -2334,6 +2348,8 @@ local record M
         storageServerType: string
         -- The OCI model compute model used when you create or clone an instance: ECPU or OCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers. An OCPU is a legacy physical measure of compute resources. OCPUs are based on the physical core of a processor with hyper-threading enabled.
         computeModel: string
+        -- The Exascale storage configuration of the Exadata infrastructure. This value is present only when Exascale storage is configured on the infrastructure.
+        exascaleConfiguration: ExascaleConfiguration
     end
 
     record CreateCloudExadataInfrastructureInput
@@ -2587,6 +2603,26 @@ local record M
         cloudExadataInfrastructureId: string
     end
 
+    record UpdateExascaleCloudExadataInfrastructureInput
+        -- The unique identifier or Amazon Resource Name (ARN) of the Exadata infrastructure to update.
+        cloudExadataInfrastructureId: string
+        -- The total amount of Exascale storage, in gigabytes (GB), to configure on the Exadata infrastructure.
+        totalStorageSizeInGBs: number
+        -- The total amount of Exascale storage, in gigabytes (GB), to allocate for VM storage on the Exadata infrastructure. VM clusters that store their VM file systems or VM backups in Exascale storage use this capacity.
+        totalVmStorageSizeInGBs: number
+    end
+
+    record UpdateExascaleCloudExadataInfrastructureOutput
+        -- The user-friendly name of the updated Exadata infrastructure.
+        displayName: string
+        -- The current status of the Exadata infrastructure after the update operation.
+        status: string
+        -- Additional information about the status of the Exadata infrastructure after the update operation.
+        statusReason: string
+        -- The unique identifier of the updated Exadata infrastructure.
+        cloudExadataInfrastructureId: string
+    end
+
     -- Information about the data collection options enabled for a VM cluster.
     record DataCollectionOptions
         -- Indicates whether diagnostic collection is enabled for the VM cluster.
@@ -2600,6 +2636,14 @@ local record M
     enum DiskRedundancy
         "HIGH"
         "NORMAL"
+    end
+
+    -- The configuration of a file system on a VM cluster.
+    record FileSystemConfigurationDetails
+        -- The mount point of the file system.
+        mountPoint: string
+        -- The size of the file system, in gigabytes (GB).
+        fileSystemSizeInGBs: number
     end
 
     -- The IORM configuration settings for the database.
@@ -2640,6 +2684,16 @@ local record M
         objective: string
     end
 
+    enum StorageManagementType
+        "ASM"
+        "EXASCALE"
+    end
+
+    enum VmStorageType
+        "LOCAL"
+        "EXASCALE"
+    end
+
     -- Information about a VM cluster.
     record CloudVmCluster
         -- The unique identifier of the VM cluster.
@@ -2656,6 +2710,18 @@ local record M
         cloudExadataInfrastructureId: string
         -- The Amazon Resource Name (ARN) of the Exadata infrastructure that this VM cluster belongs to.
         cloudExadataInfrastructureArn: string
+        -- The unique identifier of the Exascale storage vault that the VM cluster uses. This value is present only for VM clusters that use an Exascale storage vault.
+        exascaleDbStorageVaultId: string
+        -- The Amazon Resource Name (ARN) of the Exascale storage vault that the VM cluster uses. This value is present only for VM clusters that use an Exascale storage vault.
+        exascaleDbStorageVaultArn: string
+        -- The type of storage management for the VM cluster. A value of ASM indicates Oracle Automatic Storage Management, and EXASCALE indicates Exascale storage.
+        storageManagementType: string
+        -- The type of storage that the VM cluster uses for its VM file systems.
+        vmFileSystemStorageType: string
+        -- The type of storage that the VM cluster uses for VM backups.
+        vmBackupStorageType: string
+        -- The list of file system configurations for the VM cluster.
+        fileSystemConfigurationDetails: {FileSystemConfigurationDetails}
         -- The name of the Grid Infrastructure (GI) cluster.
         clusterName: string
         -- The number of CPU cores enabled on the VM cluster.
@@ -2746,6 +2812,18 @@ local record M
         cloudExadataInfrastructureId: string
         -- The Amazon Resource Name (ARN) of the Exadata infrastructure that this VM cluster belongs to.
         cloudExadataInfrastructureArn: string
+        -- The unique identifier of the Exascale storage vault that the VM cluster uses. This value is present only for VM clusters that use an Exascale storage vault.
+        exascaleDbStorageVaultId: string
+        -- The Amazon Resource Name (ARN) of the Exascale storage vault that the VM cluster uses. This value is present only for VM clusters that use an Exascale storage vault.
+        exascaleDbStorageVaultArn: string
+        -- The type of storage management for the VM cluster. A value of ASM indicates Oracle Automatic Storage Management, and EXASCALE indicates Exascale storage.
+        storageManagementType: string
+        -- The type of storage that the VM cluster uses for its VM file systems.
+        vmFileSystemStorageType: string
+        -- The type of storage that the VM cluster uses for VM backups.
+        vmBackupStorageType: string
+        -- The list of file system configurations for the VM cluster.
+        fileSystemConfigurationDetails: {FileSystemConfigurationDetails}
         -- The name of the Grid Infrastructure (GI) cluster.
         clusterName: string
         -- The number of CPU cores enabled on the VM cluster.
@@ -2821,6 +2899,14 @@ local record M
     record CreateCloudVmClusterInput
         -- The unique identifier of the Exadata infrastructure for this VM cluster.
         cloudExadataInfrastructureId: string
+        -- The unique identifier or Amazon Resource Name (ARN) of the Exascale storage vault to use for the VM cluster. Specify this value to create a VM cluster that uses Exascale storage on dedicated Exadata infrastructure.
+        exascaleDbStorageVaultId: string
+        -- The type of storage to use for the VM file systems. Specify EXASCALE to store the VM file systems in Exascale storage on the storage servers, or LOCAL to store them on the database servers.
+        vmFileSystemStorageType: string
+        -- The type of storage to use for VM backups. Specify EXASCALE to store VM backups in Exascale storage on the storage servers, or LOCAL to store them on the database servers.
+        vmBackupStorageType: string
+        -- The list of file system configurations for the VM cluster. Each entry specifies the mount point of a file system and its size, in gigabytes (GB).
+        fileSystemConfigurationDetails: {FileSystemConfigurationDetails}
         -- The number of CPU cores to enable on the VM cluster.
         cpuCoreCount: number
         -- A user-friendly name for the VM cluster.
@@ -2944,7 +3030,7 @@ local record M
         licenseModel: string
         -- The port number for TCP connections to the Single Client Access Name (SCAN) listener.
         scanListenerPortTcp: number
-        -- The port number for TCP connections with SSL to the Single Client Access Name (SCAN) listener.
+        -- Reserved for future use.
         scanListenerPortTcpSsl: number
         -- The shape attribute for the Exascale VM cluster.
         shapeAttribute: string
@@ -2978,6 +3064,8 @@ local record M
         additionalFlashCacheInPercent: number
         -- The autoscale limit in gigabytes (GB) for the Exascale storage vault.
         autoscaleLimitInGBs: number
+        -- The unique identifier or Amazon Resource Name (ARN) of the Exadata infrastructure on which to create the Exascale storage vault. Specify this value to create the Exascale storage vault on dedicated Exadata infrastructure that has Exascale storage configured. If you specify availabilityZone or availabilityZoneId, the value must match the Availability Zone of the Exadata infrastructure. If you specify neither, the service uses the Availability Zone of the Exadata infrastructure.
+        cloudExadataInfrastructureId: string
         -- The Availability Zone ID for the Exascale storage vault.
         availabilityZoneId: string
         -- The Availability Zone for the Exascale storage vault.
@@ -3515,7 +3603,7 @@ local record M
         scanIpIds: {string}
         -- The port number for TCP connections to the Single Client Access Name (SCAN) listener for the Exascale VM cluster.
         scanListenerPortTcp: number
-        -- The port number for TCP connections with SSL to the Single Client Access Name (SCAN) listener for the Exascale VM cluster.
+        -- Reserved for future use.
         scanListenerPortTcpSsl: number
         -- The hardware model name of the Exadata infrastructure that's running the Exascale VM cluster.
         shape: string
@@ -3607,7 +3695,7 @@ local record M
         scanIpIds: {string}
         -- The port number for TCP connections to the Single Client Access Name (SCAN) listener for the Exascale VM cluster.
         scanListenerPortTcp: number
-        -- The port number for TCP connections with SSL to the Single Client Access Name (SCAN) listener for the Exascale VM cluster.
+        -- Reserved for future use.
         scanListenerPortTcpSsl: number
         -- The hardware model name of the Exadata infrastructure that's running the Exascale VM cluster.
         shape: string
@@ -3712,6 +3800,11 @@ local record M
         totalSizeInGBs: number
     end
 
+    enum ExascaleDbStorageVaultType
+        "EXASCALE_INFRASTRUCTURE"
+        "DEDICATED_INFRASTRUCTURE"
+    end
+
     -- Information about an Exascale storage vault.
     record ExascaleDbStorageVault
         -- The unique identifier of the Exascale storage vault.
@@ -3726,6 +3819,10 @@ local record M
         availabilityZone: string
         -- The Availability Zone ID for the Exascale storage vault.
         availabilityZoneId: string
+        -- The Amazon Resource Name (ARN) of the Exadata infrastructure that hosts the Exascale storage vault. This value is present only for vaults on dedicated Exadata infrastructure.
+        cloudExadataInfrastructureArn: string
+        -- The unique identifier of the Exadata infrastructure that hosts the Exascale storage vault. This value is present only for vaults on dedicated Exadata infrastructure.
+        cloudExadataInfrastructureId: string
         -- The date and time when the Exascale storage vault was created.
         createdAt: number
         -- The description of the Exascale storage vault.
@@ -3758,6 +3855,8 @@ local record M
         statusReason: string
         -- The time zone of the Exascale storage vault.
         timeZone: string
+        -- The type of infrastructure that hosts the Exascale storage vault.
+        vaultType: string
     end
 
     -- Summary information about an Exascale storage vault.
@@ -3774,6 +3873,10 @@ local record M
         availabilityZone: string
         -- The Availability Zone ID for the Exascale storage vault.
         availabilityZoneId: string
+        -- The Amazon Resource Name (ARN) of the Exadata infrastructure that hosts the Exascale storage vault. This value is present only for vaults on dedicated Exadata infrastructure.
+        cloudExadataInfrastructureArn: string
+        -- The unique identifier of the Exadata infrastructure that hosts the Exascale storage vault. This value is present only for vaults on dedicated Exadata infrastructure.
+        cloudExadataInfrastructureId: string
         -- The date and time when the Exascale storage vault was created.
         createdAt: number
         -- The description of the Exascale storage vault.
@@ -3806,6 +3909,8 @@ local record M
         statusReason: string
         -- The time zone of the Exascale storage vault.
         timeZone: string
+        -- The type of infrastructure that hosts the Exascale storage vault.
+        vaultType: string
     end
 
     record GetExascaleDbStorageVaultInput
@@ -3823,6 +3928,10 @@ local record M
         maxResults: number
         -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
         nextToken: string
+        -- The unique identifier or Amazon Resource Name (ARN) of an Exadata infrastructure. If you specify this value, the operation returns only the Exascale storage vaults on that infrastructure that you own or that are shared with you. The infrastructure can be one that's shared with you through Amazon Web Services Resource Access Manager (Amazon Web Services RAM). You can't combine this filter with a vaultType of EXASCALE_INFRASTRUCTURE.
+        cloudExadataInfrastructureId: string
+        -- The type of Exascale storage vaults to return. Specify DEDICATED_INFRASTRUCTURE to return Exascale storage vaults on dedicated Exadata infrastructure, or EXASCALE_INFRASTRUCTURE to return Exascale storage vaults for Exascale VM clusters. If you don't specify a value, the operation returns both types. You can't combine EXASCALE_INFRASTRUCTURE with the cloudExadataInfrastructureId filter.
+        vaultType: string
     end
 
     record ListExascaleDbStorageVaultsOutput

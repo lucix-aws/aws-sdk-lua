@@ -5080,6 +5080,41 @@ local record M
         Hlg2020Settings: Hlg2020Settings
     end
 
+    -- System-managed filter selection. Resolves to the perceptual filter at strength 1 where the codec
+    -- is eligible (AV1 and H.265 unconditionally; H.264 only at enhanced_quality), and to no filter
+    -- otherwise. An empty / undefined filter_settings_choice is treated as "auto".
+    -- Carries no body (extends EmptySettings, which sets additionalProperties: false), mirroring the
+    -- ColorSpacePassthroughSettings empty-settings pattern.
+    record AutoFilterSettings
+    end
+
+    -- Explicitly disables the video filter. This is the customer opt-out: a video description set to
+    -- "none" never has a filter applied and is never overridden by the system-managed "auto" default.
+    -- Carries no body (extends EmptySettings, which sets additionalProperties: false), mirroring the
+    -- ColorSpacePassthroughSettings empty-settings pattern.
+    record NoneFilterSettings
+    end
+
+    enum PerceptualFilterStrength
+        "STRENGTH_1"
+        "STRENGTH_2"
+    end
+
+    -- Perceptual Filter Settings
+    record PerceptualFilterSettings
+        -- Selects the perceptual noise filter strength. Strength 1 (perceptual lite) is the recommended default and adds
+        -- approximately 30% of an AVC encode of compute on the highest rendition. Strength 2 adds approximately 60% of an
+        -- AVC encode of compute and can introduce slight softening on noisy content.
+        Strength: string
+    end
+
+    -- Av1 Filter Settings
+    record Av1FilterSettings
+        AutoFilterSettings: AutoFilterSettings
+        NoneFilterSettings: NoneFilterSettings
+        PerceptualFilterSettings: PerceptualFilterSettings
+    end
+
     enum FixedAfd
         "AFD_0000"
         "AFD_0010"
@@ -5251,6 +5286,8 @@ local record M
         TimecodeInsertion: string
         -- Specifies the bit depth for the output encode. Choose a value. Or leave the field empty to use the default, which is 8 bit.
         BitDepth: string
+        -- Optional filters that you can apply to an encode.
+        FilterSettings: Av1FilterSettings
     end
 
     enum FrameCaptureIntervalUnit
@@ -5276,6 +5313,11 @@ local record M
         "MAX"
         "MEDIUM"
         "OFF"
+    end
+
+    enum H264AllowExplicitWeightedPrediction
+        "DISABLED"
+        "ENABLED"
     end
 
     enum H264ColorMetadata
@@ -5362,6 +5404,9 @@ local record M
     record H264FilterSettings
         TemporalFilterSettings: TemporalFilterSettings
         BandwidthReductionFilterSettings: BandwidthReductionFilterSettings
+        AutoFilterSettings: AutoFilterSettings
+        NoneFilterSettings: NoneFilterSettings
+        PerceptualFilterSettings: PerceptualFilterSettings
     end
 
     enum H264FlickerAq
@@ -5599,6 +5644,8 @@ local record M
         -- Optional.
         -- Enter a minimum bitrate if you want to keep the output bitrate about a threshold, in order to prevent the downstream system from de-allocating network bandwidth for this output.
         MinBitrate: number
+        -- Specifies whether the encoder may apply explicit weighted prediction (EWP), an H.264 coding tool that can improve compression. EWP applies a scaling factor and offset to reference frames, which helps when brightness changes between frames, such as during a fade. When this setting is enabled, the encoder decides whether to apply EWP based on the output's other codec settings, such as profile and quality level. We recommend that you keep the default, enabled. When disabled, the encoder never applies EWP.
+        AllowExplicitWeightedPrediction: string
     end
 
     enum H265AdaptiveQuantization
@@ -5644,6 +5691,9 @@ local record M
     record H265FilterSettings
         TemporalFilterSettings: TemporalFilterSettings
         BandwidthReductionFilterSettings: BandwidthReductionFilterSettings
+        AutoFilterSettings: AutoFilterSettings
+        NoneFilterSettings: NoneFilterSettings
+        PerceptualFilterSettings: PerceptualFilterSettings
     end
 
     enum H265FlickerAq

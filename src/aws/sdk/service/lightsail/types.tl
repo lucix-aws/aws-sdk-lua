@@ -2656,6 +2656,148 @@ local record M
         "TLSv1.2_2021"
     end
 
+    enum WafPayloadTypeEnum
+        "JSON"
+        "FORM_ENCODED"
+    end
+
+    -- Describes the HTTP status codes that your application returns to indicate successful and
+    -- failed attempts. The Web Application Firewall (WAF) rule group uses these status codes to
+    -- track successful and failed attempts.
+    record WafResponseInspection
+        -- The HTTP status codes that indicate a successful attempt (for example,
+        -- 200).
+        -- Constraints:
+        -- Must contain from 1 to 10 status codes.
+        -- Each status code must be from 0 to 999.
+        -- Can't contain a status code that is also in
+        -- failureCodes.
+        successCodes: {number}
+        -- The HTTP status codes that indicate a failed attempt (for example,
+        -- 401).
+        -- Constraints:
+        -- Must contain from 1 to 10 status codes.
+        -- Each status code must be from 0 to 999.
+        -- Can't contain a status code that is also in
+        -- successCodes.
+        failureCodes: {number}
+    end
+
+    -- Describes the configuration of the account creation fraud prevention Web Application
+    -- Firewall (WAF) rule group. The rule group inspects account creation requests to your
+    -- application.
+    record WafAcfpConfig
+        -- The content type of the request body of account creation requests.
+        -- The following content types are possible:
+        -- JSON – The request body is in JSON format.
+        -- FORM_ENCODED – The request body is form encoded.
+        payloadType: string
+        -- The path of the endpoint that accepts completed account creation forms (for example,
+        -- /signup/submit). This endpoint must accept POST requests.
+        -- Constraints:
+        -- Must start with a forward slash (/).
+        -- Must contain from 1 to 256 characters.
+        creationPath: string
+        -- The path of the page that displays the account creation form (for example,
+        -- /signup).
+        -- Constraints:
+        -- Must start with a forward slash (/).
+        -- Must contain from 1 to 256 characters.
+        registrationPagePath: string
+        -- An object that describes the HTTP status codes that your application returns for
+        -- successful and failed account creation attempts.
+        responseInspection: WafResponseInspection
+    end
+
+    -- Describes the configuration of the account takeover prevention Web Application Firewall
+    -- (WAF) rule group. The rule group inspects login requests to the login path of your
+    -- application.
+    record WafAtpConfig
+        -- The path of the login endpoint of your application (for example,
+        -- /login). Login paths that start with the path that you specify are a
+        -- match.
+        -- Constraints:
+        -- Must start with a forward slash (/).
+        -- Must contain from 1 to 256 characters.
+        loginPath: string
+        -- The content type of the request body of login requests.
+        -- The following content types are possible:
+        -- JSON – The request body is in JSON format.
+        -- FORM_ENCODED – The request body is form encoded.
+        payloadType: string
+        -- The name of the field in the request body that contains the username (for example,
+        -- /username for JSON or username for
+        -- FORM_ENCODED).
+        -- Constraints:
+        -- For a JSON payload, must be a JSON pointer that starts with a forward
+        -- slash (/).
+        -- Must contain from 1 to 512 characters.
+        usernameField: string
+        -- The name of the field in the request body that contains the password (for example,
+        -- /password for JSON or password for
+        -- FORM_ENCODED).
+        -- Constraints:
+        -- For a JSON payload, must be a JSON pointer that starts with a forward
+        -- slash (/).
+        -- Must contain from 1 to 512 characters.
+        passwordField: string
+        -- An object that describes the HTTP status codes that your application returns for
+        -- successful and failed login attempts.
+        responseInspection: WafResponseInspection
+    end
+
+    enum WafInspectionLevelEnum
+        "COMMON"
+        "TARGETED"
+    end
+
+    -- Describes the configuration of the bot control Web Application Firewall (WAF) rule
+    -- group.
+    record WafBotControlConfig
+        -- The inspection level of the bot control rule group.
+        -- The following inspection levels are possible:
+        -- COMMON – Detects a variety of bots that identify themselves, such as
+        -- web scraping frameworks, search engines, and automated browsers.
+        -- TARGETED – Includes the COMMON protections, and adds
+        -- detection for sophisticated bots that don't identify themselves. This level uses rate
+        -- limiting, CAPTCHA, and background browser challenges.
+        inspectionLevel: string
+    end
+
+    -- Describes a Web Application Firewall (WAF) rule group for a Lightsail distribution. A
+    -- WAF rule group is a set of rules managed by AWS. The rules inspect viewer requests and block
+    -- requests that match them.
+    record WafRule
+        -- The name of the WAF rule group (for example,
+        -- AWSManagedRulesCommonRuleSet).
+        -- For the WAF rule groups that you can specify for each bundle, see the
+        -- wafRules parameter of the CreateDistribution action.
+        name: string
+        -- An object that describes the configuration of the account takeover prevention rule
+        -- group.
+        -- Constraints:
+        -- Define this parameter only when the name is
+        -- AWSManagedRulesATPRuleSet.
+        -- This parameter is required when the name is
+        -- AWSManagedRulesATPRuleSet.
+        atpConfig: WafAtpConfig
+        -- An object that describes the configuration of the account creation fraud prevention
+        -- rule group.
+        -- Constraints:
+        -- Define this parameter only when the name is
+        -- AWSManagedRulesACFPRuleSet.
+        -- This parameter is required when the name is
+        -- AWSManagedRulesACFPRuleSet.
+        acfpConfig: WafAcfpConfig
+        -- An object that describes the configuration of the bot control rule group.
+        -- Constraints:
+        -- Define this parameter only when the name is
+        -- AWSManagedRulesBotControlRuleSet.
+        -- This parameter is required when the name is
+        -- AWSManagedRulesBotControlRuleSet.
+        botControlConfig: WafBotControlConfig
+    end
+
     record CreateDistributionInput
         -- The name for the distribution.
         distributionName: string
@@ -2706,6 +2848,30 @@ local record M
         -- custom error response, you can specify the page to return when the origin responds with a
         -- given HTTP error code. You can also specify the HTTP status code to send to the viewer.
         customErrorResponses: {DistributionCustomErrorResponse}
+        -- Specifies whether to enable Web Application Firewall (WAF) for the distribution. WAF
+        -- inspects viewer requests and blocks requests that match the WAF rule groups that you
+        -- enable.
+        -- When you enable WAF without specifying the wafRules parameter, the
+        -- distribution has no WAF rule groups enabled and doesn't block any requests.
+        -- WAF is available only for distributions that use the medium_1_0 or
+        -- large_1_0 bundle.
+        enableWaf: boolean
+        -- An array of objects that describe the WAF rule groups to enable for the
+        -- distribution.
+        -- The WAF rule groups that you can specify depend on the bundle of the
+        -- distribution:
+        -- medium_1_0 – Supports the AWSManagedRulesCommonRuleSet,
+        -- AWSManagedRulesKnownBadInputsRuleSet, and
+        -- AWSManagedRulesAnonymousIpList rule groups.
+        -- large_1_0 – Supports the rule groups for medium_1_0, plus
+        -- AWSManagedRulesAdminProtectionRuleSet,
+        -- AWSManagedRulesSQLiRuleSet, AWSManagedRulesLinuxRuleSet,
+        -- AWSManagedRulesUnixRuleSet, AWSManagedRulesWindowsRuleSet,
+        -- AWSManagedRulesPHPRuleSet, AWSManagedRulesWordPressRuleSet,
+        -- AWSManagedRulesAmazonIpReputationList,
+        -- AWSManagedRulesATPRuleSet, AWSManagedRulesACFPRuleSet, and
+        -- AWSManagedRulesBotControlRuleSet rule groups.
+        wafRules: {WafRule}
     end
 
     -- Describes the origin resource of an Amazon Lightsail content delivery network (CDN)
@@ -2738,6 +2904,16 @@ local record M
         -- private. It also applies when you set getObject to public
         -- but set individual objects to private.
         isPrivateOriginAccessEnabled: boolean
+    end
+
+    -- Describes the Web Application Firewall (WAF) configuration of a Lightsail
+    -- distribution.
+    record WafConfig
+        -- Specifies whether WAF is enabled for the distribution.
+        isWafEnabled: boolean
+        -- An array of objects that describe the WAF rule groups enabled for the
+        -- distribution.
+        wafRules: {WafRule}
     end
 
     -- Describes an Amazon Lightsail content delivery network (CDN) distribution.
@@ -2806,6 +2982,9 @@ local record M
         -- An array of objects that describe the custom error responses configured for the
         -- distribution.
         customErrorResponses: {DistributionCustomErrorResponse}
+        -- An object that describes the Web Application Firewall (WAF) configuration of the
+        -- distribution.
+        waf: WafConfig
     end
 
     record CreateDistributionOutput
@@ -3868,6 +4047,8 @@ local record M
         "TotalErrorRate"
         "Http4xxErrorRate"
         "Http5xxErrorRate"
+        "WafAllowedRequests"
+        "WafBlockedRequests"
     end
 
     enum NameServersUpdateStateCode
@@ -4685,6 +4866,18 @@ local record M
         -- Unavailable) means that the origin server is currently unavailable.
         -- Statistics: The most useful statistic is Average.
         -- Unit: The published unit is Percent.
+        -- WafAllowedRequests
+        -- - The number of
+        -- viewer requests that Web Application Firewall (WAF) allowed. This metric is available only
+        -- when WAF is enabled for the distribution.
+        -- Statistics: The most useful statistic is Sum.
+        -- Unit: The published unit is None.
+        -- WafBlockedRequests
+        -- - The number of
+        -- viewer requests that WAF blocked. This metric is available only when WAF is enabled for
+        -- the distribution.
+        -- Statistics: The most useful statistic is Sum.
+        -- Unit: The published unit is None.
         metricName: string
         -- The start of the time interval for which to get metric data.
         -- Constraints:
@@ -7707,6 +7900,37 @@ local record M
         -- custom error response, you can specify the page to return when the origin responds with a
         -- given HTTP error code. You can also specify the HTTP status code to send to the viewer.
         customErrorResponses: {DistributionCustomErrorResponse}
+        -- Specifies whether to enable Web Application Firewall (WAF) for the distribution. WAF
+        -- inspects viewer requests and blocks requests that match the WAF rule groups that you
+        -- enable.
+        -- When you enable WAF without specifying the wafRules parameter, the
+        -- distribution has no WAF rule groups enabled and doesn't block any requests.
+        -- WAF is available only for distributions that use the medium_1_0 or
+        -- large_1_0 bundle.
+        -- Setting this parameter to false disables WAF for the distribution and
+        -- removes its WAF rule groups. You must enable the WAF rule groups again if you enable WAF
+        -- again.
+        enableWaf: boolean
+        -- An array of objects that describe the WAF rule groups to enable for the
+        -- distribution.
+        -- The array that you specify replaces the existing WAF rule groups of the distribution.
+        -- To keep a WAF rule group enabled, include it in the array. To disable all WAF rule groups,
+        -- specify an empty array.
+        -- You can specify this parameter only when WAF is enabled for the distribution.
+        -- The WAF rule groups that you can specify depend on the bundle of the
+        -- distribution:
+        -- medium_1_0 – Supports the AWSManagedRulesCommonRuleSet,
+        -- AWSManagedRulesKnownBadInputsRuleSet, and
+        -- AWSManagedRulesAnonymousIpList rule groups.
+        -- large_1_0 – Supports the rule groups for medium_1_0, plus
+        -- AWSManagedRulesAdminProtectionRuleSet,
+        -- AWSManagedRulesSQLiRuleSet, AWSManagedRulesLinuxRuleSet,
+        -- AWSManagedRulesUnixRuleSet, AWSManagedRulesWindowsRuleSet,
+        -- AWSManagedRulesPHPRuleSet, AWSManagedRulesWordPressRuleSet,
+        -- AWSManagedRulesAmazonIpReputationList,
+        -- AWSManagedRulesATPRuleSet, AWSManagedRulesACFPRuleSet, and
+        -- AWSManagedRulesBotControlRuleSet rule groups.
+        wafRules: {WafRule}
     end
 
     record UpdateDistributionOutput

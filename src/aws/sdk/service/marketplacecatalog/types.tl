@@ -1349,6 +1349,133 @@ local record M
         LastModifiedDate: SaaSProductLastModifiedDateFilter
     end
 
+    -- A date range for filtering subsidiary authorizations by creation date.
+    record SubsidiaryAuthorizationCreatedDateFilterDateRange
+        -- The start date (inclusive) of the date range. The operation returns subsidiary authorizations
+        -- created on or after this date.
+        AfterValue: string
+        -- The end date (inclusive) of the date range. The operation returns subsidiary authorizations
+        -- created on or before this date.
+        BeforeValue: string
+    end
+
+    -- The filter for the date a subsidiary authorization was created.
+    record SubsidiaryAuthorizationCreatedDateFilter
+        -- A date range to filter by. The operation returns subsidiary authorizations with creation dates
+        -- that fall within this range.
+        DateRange: SubsidiaryAuthorizationCreatedDateFilterDateRange
+    end
+
+    -- The filter for subsidiary authorization entity IDs. Each ID begins with subauthz-
+    -- followed by 13 alphanumeric characters.
+    record SubsidiaryAuthorizationEntityIdFilter
+        -- A list of entity IDs to filter by. The operation returns subsidiary authorizations with an
+        -- entity ID that matches any value in this list. You can include up to 10 entity IDs in
+        -- this list.
+        ValueList: {string}
+    end
+
+    -- A date range for filtering subsidiary authorizations by last modified date.
+    record SubsidiaryAuthorizationLastModifiedDateFilterDateRange
+        -- The start date (inclusive) of the date range. The operation returns subsidiary authorizations
+        -- last modified on or after this date.
+        AfterValue: string
+        -- The end date (inclusive) of the date range. The operation returns subsidiary authorizations
+        -- last modified on or before this date.
+        BeforeValue: string
+    end
+
+    -- The filter for the date a subsidiary authorization was last modified.
+    record SubsidiaryAuthorizationLastModifiedDateFilter
+        -- A date range to filter by. The operation returns subsidiary authorizations with last modified
+        -- dates that fall within this range.
+        DateRange: SubsidiaryAuthorizationLastModifiedDateFilterDateRange
+    end
+
+    -- The filter for subsidiary authorization names.
+    record SubsidiaryAuthorizationNameFilter
+        -- A list of names to filter by. The operation returns subsidiary authorizations with a name that
+        -- matches any value in this list. You can include up to 10 names in this list.
+        ValueList: {string}
+        -- A partial name to filter by. The operation returns subsidiary authorizations whose
+        -- name contains this value. The value must be at least 3 characters.
+        WildCardValue: string
+    end
+
+    -- The filter for the IDs of resources that subsidiary authorizations apply to.
+    record SubsidiaryAuthorizationResourceIdFilter
+        -- A list of resource IDs to filter by. The operation returns subsidiary authorizations for
+        -- resources with an ID that matches any value in this list. You can include up to 10
+        -- resource IDs in this list.
+        ValueList: {string}
+    end
+
+    -- The filter for the names of resources that subsidiary authorizations apply to.
+    record SubsidiaryAuthorizationResourceNameFilter
+        -- A list of resource names to filter by. The operation returns subsidiary authorizations for
+        -- resources with a name that matches any value in this list. You can include up to 10
+        -- resource names in this list.
+        ValueList: {string}
+        -- A partial resource name to filter by. The operation returns subsidiary authorizations
+        -- for resources whose name contains this value. The value must be at least 3
+        -- characters.
+        WildCardValue: string
+    end
+
+    enum SubsidiaryAuthorizationStatusString
+        "Draft"
+        "Active"
+        "Restricted"
+    end
+
+    -- The filter for subsidiary authorization statuses.
+    record SubsidiaryAuthorizationStatusFilter
+        -- A list of statuses to filter by. The operation returns subsidiary authorizations with a status
+        -- that matches a value in this list. Valid values are:
+        -- Draft - The subsidiary authorization was created but not yet released.
+        -- The subsidiary account can't see it.
+        -- Active - The subsidiary account can use the subsidiary authorization to
+        -- create offers for the authorized product.
+        -- Restricted - The subsidiary authorization was discarded while in
+        -- Draft or revoked while Active. It can't be used to create new
+        -- offers. This status is final.
+        ValueList: {string}
+    end
+
+    -- The filter for the AWS account IDs of subsidiary accounts.
+    record SubsidiaryAuthorizationSubsidiaryAccountIdFilter
+        -- A list of AWS account IDs to filter by. The operation returns subsidiary authorizations whose
+        -- subsidiary account ID matches any value in this list. You can include up to 10 account
+        -- IDs in this list.
+        ValueList: {string}
+    end
+
+    -- The filters that you can use with the ListEntities operation to filter subsidiary
+    -- authorizations. You can filter by EntityId, Status,
+    -- ResourceId, ResourceName, Name,
+    -- SubsidiaryAccountId, CreatedDate, and
+    -- LastModifiedDate. You can add only one wildcard filter in a single
+    -- ListEntities request.
+    record SubsidiaryAuthorizationFilters
+        -- A filter that matches subsidiary authorizations by entity ID.
+        EntityId: SubsidiaryAuthorizationEntityIdFilter
+        -- A filter that matches subsidiary authorizations by status.
+        Status: SubsidiaryAuthorizationStatusFilter
+        -- A filter that matches subsidiary authorizations by the ID of the authorized resource.
+        ResourceId: SubsidiaryAuthorizationResourceIdFilter
+        -- A filter that matches subsidiary authorizations by the name of the authorized resource.
+        ResourceName: SubsidiaryAuthorizationResourceNameFilter
+        -- A filter that matches subsidiary authorizations by name.
+        Name: SubsidiaryAuthorizationNameFilter
+        -- A filter that matches subsidiary authorizations by the AWS account ID of the subsidiary
+        -- account.
+        SubsidiaryAccountId: SubsidiaryAuthorizationSubsidiaryAccountIdFilter
+        -- A filter that matches subsidiary authorizations by creation date.
+        CreatedDate: SubsidiaryAuthorizationCreatedDateFilter
+        -- A filter that matches subsidiary authorizations by last modified date.
+        LastModifiedDate: SubsidiaryAuthorizationLastModifiedDateFilter
+    end
+
     -- Object containing all the filter fields per entity type.
     record EntityTypeFilters
         -- A filter for data products.
@@ -1368,6 +1495,8 @@ local record M
         OfferSetFilters: OfferSetFilters
         -- A filter for express private offer configurations.
         ExpressPrivateOfferConfigurationFilters: ExpressPrivateOfferConfigurationFilters
+        -- A filter for subsidiary authorizations.
+        SubsidiaryAuthorizationFilters: SubsidiaryAuthorizationFilters
     end
 
     enum ContainerProductSortBy
@@ -1516,6 +1645,27 @@ local record M
         SortOrder: string
     end
 
+    enum SubsidiaryAuthorizationSortBy
+        "EntityId"
+        "Status"
+        "ResourceId"
+        "SubsidiaryAccountId"
+        "CreatedDate"
+        "LastModifiedDate"
+    end
+
+    -- Specifies the field to sort subsidiary authorizations by and the order (ascending or
+    -- descending) to apply.
+    record SubsidiaryAuthorizationSort
+        -- The field to sort subsidiary authorizations by. Valid values are EntityId,
+        -- Status, ResourceId, SubsidiaryAccountId,
+        -- CreatedDate, and LastModifiedDate.
+        SortBy: string
+        -- The sorting order. Can be ASCENDING or DESCENDING. The
+        -- default value is DESCENDING.
+        SortOrder: string
+    end
+
     -- Object containing all the sort fields per entity type.
     record EntityTypeSort
         -- A sort for data products.
@@ -1535,6 +1685,8 @@ local record M
         OfferSetSort: OfferSetSort
         -- A sort for express private offer configurations.
         ExpressPrivateOfferConfigurationSort: ExpressPrivateOfferConfigurationSort
+        -- A sort for subsidiary authorizations.
+        SubsidiaryAuthorizationSort: SubsidiaryAuthorizationSort
     end
 
     enum OwnershipType
@@ -1551,7 +1703,8 @@ local record M
         -- DataProduct, SaaSProduct, ProcurementPolicy,
         -- Experience, Audience, BrandingSettings,
         -- Offer, OfferSet, Seller,
-        -- ResaleAuthorization, Solution.
+        -- ResaleAuthorization, Solution,
+        -- SubsidiaryAuthorization.
         EntityType: string
         -- An array of filter objects. Each filter object contains two attributes,
         -- filterName and filterValues.
@@ -1697,6 +1850,34 @@ local record M
         Visibility: string
     end
 
+    -- An object that contains summary information about a subsidiary authorization, including its
+    -- name, status, authorized resource, subsidiary account, and creation date. A subsidiary
+    -- authorization lets a seller authorize one of its subsidiary accounts to create offers
+    -- for one of its products.
+    record SubsidiaryAuthorizationSummary
+        -- The name of the subsidiary authorization.
+        Name: string
+        -- The status of the subsidiary authorization. Valid values are:
+        -- Draft - The subsidiary authorization was created but not yet released.
+        -- The subsidiary account can't see it.
+        -- Active - The subsidiary account can use the subsidiary authorization to
+        -- create offers for the authorized product.
+        -- Restricted - The subsidiary authorization was discarded while in
+        -- Draft or revoked while Active. It can't be used to create new
+        -- offers. This status is final.
+        Status: string
+        -- The ID of the resource that the subsidiary authorization applies to. Currently, this is always
+        -- a product ID, such as prod-example123.
+        ResourceId: string
+        -- The name of the resource that the subsidiary authorization applies to. Currently, this is
+        -- always a product name.
+        ResourceName: string
+        -- The 12-digit AWS account ID of the subsidiary account.
+        SubsidiaryAccountId: string
+        -- The date the subsidiary authorization was created.
+        CreatedDate: string
+    end
+
     -- This object is a container for common summary information about the entity. The
     -- summary doesn't contain the whole entity structure, but it does contain information
     -- common across all entities.
@@ -1734,6 +1915,10 @@ local record M
         OfferSetSummary: OfferSetSummary
         -- An object that contains summary information about the express private offer configuration.
         ExpressPrivateOfferConfigurationSummary: ExpressPrivateOfferConfigurationSummary
+        -- An object that contains summary information about the subsidiary authorization, such as its
+        -- status and authorized resource, when the entity type is
+        -- SubsidiaryAuthorization.
+        SubsidiaryAuthorizationSummary: SubsidiaryAuthorizationSummary
     end
 
     record ListEntitiesOutput

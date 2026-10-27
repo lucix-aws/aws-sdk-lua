@@ -552,6 +552,8 @@ M.UrlMetadataSignedHeaders = schema.new({ type = "map", map_key = prelude.String
 
 M.AllowedExtensionsList = schema.new({ type = "list", list_member = M.AllowedExtension })
 
+M.OptionalEmailAddressRecipientList = schema.new({ type = "list", list_member = M.EmailAddressInfo })
+
 M.RoutingCriteriaInputSteps = schema.new({ type = "list", list_member = M.RoutingCriteriaInputStep })
 
 M.PrimaryValuesResponseSet = schema.new({ type = "list", list_member = M.PrimaryValueResponse })
@@ -37660,6 +37662,20 @@ M.UpdateAuthenticationProfileInput = schema.new({
 
 M.UpdateAuthenticationProfileOutput = prelude.Unit
 
+M.NullableAdditionalRecipients = schema.new({
+    id = id.from(_N, "NullableAdditionalRecipients"),
+    type = "structure",
+    members = {
+        CcEmailAddresses = schema.new({
+            id = id.from(_N, "NullableAdditionalRecipients", "CcEmailAddresses"),
+            type = "list",
+            name = "CcEmailAddresses",
+            target_id = prelude.Document.id,
+            list_member = M.EmailAddressInfo,
+        }),
+    },
+})
+
 M.QueueInfoInput = schema.new({
     id = id.from(_N, "QueueInfoInput"),
     type = "structure",
@@ -39069,6 +39085,110 @@ M.UpdateNotificationContentInput = schema.new({
 M.UpdateNotificationContentOutput = schema.new({
     id = id.from(_N, "UpdateNotificationContentResponse"),
     type = "structure",
+})
+
+M.UpdateOutboundRawMessage = schema.new({
+    id = id.from(_N, "UpdateOutboundRawMessage"),
+    type = "structure",
+    members = {
+        Body = schema.new({
+            id = id.from(_N, "UpdateOutboundRawMessage", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContentType = schema.new({
+            id = id.from(_N, "UpdateOutboundRawMessage", "ContentType"),
+            type = "string",
+            name = "ContentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateOutboundEmailContent = schema.new({
+    id = id.from(_N, "UpdateOutboundEmailContent"),
+    type = "structure",
+    members = {
+        MessageSourceType = schema.new({
+            id = id.from(_N, "UpdateOutboundEmailContent", "MessageSourceType"),
+            type = "string",
+            name = "MessageSourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RawMessage = schema.new({
+            id = id.from(_N, "UpdateOutboundEmailContent", "RawMessage"),
+            type = "structure",
+            name = "RawMessage",
+            target_id = id.from(_N, "UpdateOutboundRawMessage"),
+            target = M.UpdateOutboundRawMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateOutboundEmailContactMessageInput = schema.new({
+    id = id.from(_N, "UpdateOutboundEmailContactMessageRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "UpdateOutboundEmailContactMessageInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactId = schema.new({
+            id = id.from(_N, "UpdateOutboundEmailContactMessageInput", "ContactId"),
+            type = "string",
+            name = "ContactId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EmailMessage = schema.new({
+            id = id.from(_N, "UpdateOutboundEmailContactMessageInput", "EmailMessage"),
+            type = "structure",
+            name = "EmailMessage",
+            target_id = id.from(_N, "UpdateOutboundEmailContent"),
+            target = M.UpdateOutboundEmailContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateOutboundEmailContactMessageOutput = schema.new({
+    id = id.from(_N, "UpdateOutboundEmailContactMessageResponse"),
+    type = "structure",
+    members = {
+        ContactId = schema.new({
+            id = id.from(_N, "UpdateOutboundEmailContactMessageOutput", "ContactId"),
+            type = "string",
+            name = "ContactId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.UpdateParticipantAuthenticationInput = schema.new({
@@ -44062,6 +44182,13 @@ M.UpdateContactInput = schema.new({
             name = "SystemEndpoint",
             target_id = id.from(_N, "Endpoint"),
             target = M.Endpoint,
+        }),
+        AdditionalRecipients = schema.new({
+            id = id.from(_N, "UpdateContactInput", "AdditionalRecipients"),
+            type = "structure",
+            name = "AdditionalRecipients",
+            target_id = id.from(_N, "NullableAdditionalRecipients"),
+            target = M.NullableAdditionalRecipients,
         }),
     },
 })
@@ -49657,6 +49784,18 @@ M.UpdateNotificationContent = schema.operation({
     output = M.UpdateNotificationContentOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/notifications/{InstanceId}/{NotificationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOutboundEmailContactMessage = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateOutboundEmailContactMessage"),
+    input = M.UpdateOutboundEmailContactMessageInput,
+    output = M.UpdateOutboundEmailContactMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/instances/{InstanceId}/contacts/{ContactId}/outbound-email-message" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

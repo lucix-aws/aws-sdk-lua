@@ -25,6 +25,12 @@ local record M
         chargeType: string
     end
 
+    -- A recipient copied as a viewer on the executive approval request, in addition to the approver.
+    record AdditionalRecipient
+        -- The email address of the recipient. This value is 3–256 characters and must be a valid email address.
+        email: string
+    end
+
     -- A monetary amount with a currency code. Used throughout the Billing API to represent credit balances, allocations, and adjustments.
     record Amount
         -- The ISO 4217 currency code for the amount (for example, USD).
@@ -38,21 +44,24 @@ local record M
         "AFTER_DISCOUNTS"
     end
 
-    record AssociateSourceViewsInput
-        -- The Amazon Resource Name (ARN) of the billing view to associate source views with.
-        arn: string
-        -- A list of ARNs of the source billing views to associate.
-        sourceViews: {string}
+    -- Information about the executive approver who signs off on an investment attestation.
+    record ApproverDetails
+        -- The name of the approver as it appears on the contract. This value can be up to 256 characters.
+        name: string
+        -- The title of the approver, such as Chief Financial Officer. This value can be up to 256 characters.
+        title: string
+        -- The email address of the approver. This value is 3–256 characters and must be a valid email address.
+        email: string
     end
 
-    record AssociateSourceViewsOutput
-        -- The ARN of the billing view that the source views were associated with.
-        arn: string
+    record AssociateContractInput
+        -- The Amazon Resource Name (ARN) of the contract to associate with your account.
+        contractArn: string
+        -- The contract ID from the contract document. It can be found in the top right corner of your contract's pages. This value confirms that you have access to the contract you are associating.
+        contractDocumentId: string
     end
 
-    -- Exception thrown when a billing view's health status prevents an operation from being performed. This may occur if the billing view is in a state other than HEALTHY.
-    record BillingViewHealthStatusException
-        message: string
+    record AssociateContractOutput
     end
 
     -- The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request.
@@ -76,19 +85,6 @@ local record M
         resourceId: string
         -- Value is the type of resource that was not found.
         resourceType: string
-    end
-
-    -- You've reached the limit of resources you can create, or exceeded the size of an individual resource.
-    record ServiceQuotaExceededException
-        message: string
-        -- The ID of the resource.
-        resourceId: string
-        -- The type of Amazon Web Services resource.
-        resourceType: string
-        -- The container for the serviceCode.
-        serviceCode: string
-        -- The container for the quotaCode.
-        quotaCode: string
     end
 
     -- The request was denied due to request throttling.
@@ -118,6 +114,85 @@ local record M
         reason: string
         -- The input fails to satisfy the constraints specified by an Amazon Web Services service.
         fieldList: {ValidationExceptionField}
+    end
+
+    record AssociateSourceViewsInput
+        -- The Amazon Resource Name (ARN) of the billing view to associate source views with.
+        arn: string
+        -- A list of ARNs of the source billing views to associate.
+        sourceViews: {string}
+    end
+
+    record AssociateSourceViewsOutput
+        -- The ARN of the billing view that the source views were associated with.
+        arn: string
+    end
+
+    -- Exception thrown when a billing view's health status prevents an operation from being performed. This may occur if the billing view is in a state other than HEALTHY.
+    record BillingViewHealthStatusException
+        message: string
+    end
+
+    -- You've reached the limit of resources you can create, or exceeded the size of an individual resource.
+    record ServiceQuotaExceededException
+        message: string
+        -- The ID of the resource.
+        resourceId: string
+        -- The type of Amazon Web Services resource.
+        resourceType: string
+        -- The container for the serviceCode.
+        serviceCode: string
+        -- The container for the quotaCode.
+        quotaCode: string
+    end
+
+    enum AssociationStatus
+        "ASSOCIATED"
+        "NOT_ASSOCIATED"
+    end
+
+    -- A quantity-based attestation value, such as a count of workloads migrated.
+    record AttestationQuantity
+        -- The number of units being attested, expressed as a decimal string to preserve precision. The value is digits with an optional decimal point and is 1–1000 characters.
+        attestationVolume: string
+        -- The unit of the attestation, such as workloads migrated. This value is 1–1000 characters.
+        attestationUnit: string
+    end
+
+    -- The value being attested. This is a union in which exactly one member is set. Set attestationAmount to attest a monetary amount directly, or set attestationQuantities to attest one or more quantities that are converted to a value using the investment's multipliers.
+    record AttestationValue
+        -- The value attested as a monetary amount. This form is valid only when the investment has no multiplier.
+        attestationAmount: Amount
+        -- The value attested as one or more quantities, each with its own unit. The list contains at most 50 quantities.
+        attestationQuantities: {AttestationQuantity}
+    end
+
+    -- An allocation of an investment disbursement to a specific recipient account. The account is the target account that receives the investment, not your account.
+    record InvestmentDistribution
+        -- The recipient Amazon Web Services account ID that receives this portion of the investment. This must be one of the eligible investment accounts on the contract.
+        accountId: string
+        -- The monetary value allocated to the recipient account.
+        investmentAmount: Amount
+    end
+
+    -- The details of an investment attestation submission, including the value being attested and how the resulting investment is distributed.
+    record AttestationDetails
+        -- The value being attested, expressed as either a monetary amount or one or more quantities. Exactly one form is set.
+        attestationValue: AttestationValue
+        -- The distribution of the resulting investment across the eligible investment accounts on the contract. If you omit this value, the full investment is allocated to the single eligible investment account on the contract. This value is required when multiple investment accounts are eligible. When you provide this value, the sum of all distributions must equal the resulting monetary investment value (the attested amount, or the value computed from the attested quantities using the investment multipliers). The list contains at most 200 distributions.
+        investmentDistributions: {InvestmentDistribution}
+    end
+
+    record CancelContractualInvestmentAttestationInput
+        -- The identifier of the investment attestation to cancel.
+        attestationId: string
+        -- The Amazon Resource Name (ARN) of the contract that contains the attested investment.
+        contractArn: string
+        -- The reason for the cancellation. This value can be 1 to 80 characters.
+        reason: string
+    end
+
+    record CancelContractualInvestmentAttestationOutput
     end
 
     -- The Cost Categories values used for filtering the costs.
@@ -198,6 +273,32 @@ local record M
         createdAt: number
     end
 
+    record CreateContractualInvestmentAttestationInput
+        -- The Amazon Resource Name (ARN) of the contract that contains the investment being attested.
+        contractArn: string
+        -- The identifier of the investment summary being attested. This is the parent to the investmentId.
+        investmentSummaryId: string
+        -- The identifier of the investment (outcome) being attested.
+        investmentId: string
+        -- The contract ID from the contract document, located in the top-right corner of the private pricing contract pages. This value confirms that you have access to the contract.
+        contractDocumentId: string
+        -- The details of the executive who authorized the attestation, under the terms of the private pricing contract. The executive receives a click-to-accept email to confirm the attestation.
+        approverDetails: ApproverDetails
+        -- The date on which the investment is disbursed to the investment accounts. The disbursement date is subject to review timelines.
+        investmentDisbursedAt: number
+        -- The details of the attestation, including the value being claimed and how the resulting investment is distributed across investment accounts.
+        attestationDetails: AttestationDetails
+        -- The email addresses to copy as viewers on the executive approval request.
+        additionalRecipients: {AdditionalRecipient}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client token and parameters, the retry completes without performing any further actions.
+        clientToken: string
+    end
+
+    record CreateContractualInvestmentAttestationOutput
+        -- The identifier of the submitted attestation.
+        attestationId: string
+    end
+
     record DeleteBillingViewInput
         -- The Amazon Resource Name (ARN) that can be used to uniquely identify the billing view.
         arn: string
@@ -208,6 +309,14 @@ local record M
     record DeleteBillingViewOutput
         -- The Amazon Resource Name (ARN) that can be used to uniquely identify the billing view.
         arn: string
+    end
+
+    record DisassociateContractInput
+        -- The Amazon Resource Name (ARN) of the contract to disassociate from your account.
+        contractArn: string
+    end
+
+    record DisassociateContractOutput
     end
 
     record DisassociateSourceViewsInput
@@ -363,6 +472,56 @@ local record M
     record GetBillingViewOutput
         -- The billing view element associated with the specified ARN.
         billingView: BillingViewElement
+    end
+
+    record GetContractInformationInput
+        -- The Amazon Resource Name (ARN) of the contract to retrieve information about.
+        contractArn: string
+    end
+
+    enum ContractRestriction
+        "ATTESTATION_SELF_SERVICE_BLOCKED"
+    end
+
+    -- A time period bounded by an inclusive start date and an inclusive end date.
+    record Interval
+        -- The start date of the interval. This date is included in the interval.
+        startDateInclusive: number
+        -- The end date of the interval. This date is included in the interval.
+        endDateInclusive: number
+    end
+
+    -- A legal entity on a private pricing contract. It can be found on your contract's signature page.
+    record LegalEntity
+        -- The name of the legal entity as it appears on the contract document. This value can be up to 256 characters.
+        legalEntityName: string
+    end
+
+    -- The details of a private pricing addendum contract.
+    record PrivatePricingAddendum
+        -- The Amazon Resource Name (ARN) of the private pricing addendum.
+        contractArn: string
+        -- The contract term period of the private pricing addendum, expressed as an interval with an inclusive start date and an inclusive end date.
+        contractTerm: Interval
+        -- The payer accounts that are eligible under the private pricing addendum. The list contains at most 100 account IDs.
+        eligiblePayerAccounts: {string}
+        -- The accounts that are eligible to receive investments under the private pricing addendum. An InvestmentDistribution must target one of these accounts. The list contains at most 100 account IDs.
+        investmentAccounts: {string}
+        -- The legal entities on the private pricing addendum. The list contains at most 10 legal entities.
+        legalEntities: {LegalEntity}
+        -- The restrictions that limit the self-service actions you can take on the private pricing addendum. An empty or absent value indicates that no restrictions apply. The list contains at most 10 restrictions.
+        contractRestrictions: {string}
+    end
+
+    -- The details of a contract returned by GetContractInformation. This is a union in which exactly one member is set, corresponding to the contract type. For a private pricing addendum, the privatePricingAddendum member is set. Check which member is present to determine the contract type.
+    record ContractDetails
+        -- The details of a private pricing addendum contract. This member is set when the contract is a private pricing addendum.
+        privatePricingAddendum: PrivatePricingAddendum
+    end
+
+    record GetContractInformationOutput
+        -- The contract details such as term (duration), eligible payer accounts, investment accounts, and legal entities.
+        contract: ContractDetails
     end
 
     record GetCreditAllocationHistoryInput
@@ -851,6 +1010,203 @@ local record M
         -- The list of Business Support subscription contracts.
         subscriptionContracts: {BusinessSupportSubscriptionContract}
         -- The pagination token for the next page of results.
+        nextToken: string
+    end
+
+    record ListContractsInput
+        -- The pagination token that indicates the next set of results to retrieve.
+        nextToken: string
+        -- The maximum number of contracts to return in a single call. Minimum value of 1, maximum value of 100.
+        maxResults: number
+    end
+
+    enum ContractType
+        "Cross-Service"
+        "Service-Specific"
+        "Other"
+    end
+
+    -- A summary of a private pricing contract visible to your account. ListContracts returns these summaries.
+    record ContractSummary
+        -- The Amazon Resource Name (ARN) of the contract. Pass this value to operations such as GetContractInformation, ListContractualInvestmentSummaries, and AssociateContract.
+        contractArn: string
+        -- The contract term period of the contract, expressed as an interval with an inclusive start date and an inclusive end date.
+        contractTerm: Interval
+        -- The classification of the contract. Valid values are Cross-Service, Service-Specific, and Other. Cross-Service applies across multiple Amazon Web Services services. Service-Specific applies to a specific Amazon Web Services service. Other applies to other arrangements.
+        contractType: string
+        -- Indicates whether the contract is currently associated with your account. Valid values are ASSOCIATED and NOT_ASSOCIATED. ASSOCIATED means the contract is associated with your account. NOT_ASSOCIATED means the contract is not associated with your account.
+        associationStatus: string
+        -- The time when the contract was last associated with your account.
+        lastUpdatedAt: number
+    end
+
+    record ListContractsOutput
+        -- The list of contracts that your Amazon Web Services account is an eligible payer account of.
+        items: {ContractSummary}
+        -- The pagination token to use on subsequent calls to retrieve the next set of results.
+        nextToken: string
+    end
+
+    record ListContractualInvestmentAttestationsInput
+        -- The Amazon Resource Name (ARN) of the contract whose attestations you want to list.
+        contractArn: string
+        -- The identifier of a specific investment summary to filter the attestations by. If omitted, attestations for all investment summaries in the contract are returned.
+        investmentSummaryId: string
+        -- The pagination token that indicates the next set of results to retrieve.
+        nextToken: string
+        -- The maximum number of attestations to return in a single call. Minimum value of 1, maximum value of 100.
+        maxResults: number
+    end
+
+    enum InvestmentAttestationStatus
+        "PENDING_REVIEW"
+        "PENDING_C_LEVEL_APPROVAL"
+        "PENDING_CANCELLATION"
+        "REJECTED"
+        "CANCELLED"
+        "DISBURSED"
+    end
+
+    -- A summary of a submitted investment attestation, as returned by ListContractualInvestmentAttestations.
+    record InvestmentAttestation
+        -- The identifier of the attestation. This value is returned by CreateContractualInvestmentAttestation and is used to cancel the attestation with CancelContractualInvestmentAttestation. This value is 1–36 characters.
+        attestationId: string
+        -- The name of the investment summary that contains the attested outcome. This value is 1–400 characters.
+        investmentName: string
+        -- The description of the attested outcome. This value is 1–2048 characters.
+        outcomeDescription: string
+        -- The identifier of the investment summary that was attested, as returned by ListContractualInvestmentSummaries.
+        investmentSummaryId: string
+        -- The identifier of the investment that was attested, as returned by ListContractualInvestments.
+        investmentId: string
+        -- The date on which the attestation was submitted.
+        attestedAt: number
+        -- The date on which the attestation was last updated.
+        updatedAt: number
+        -- The current status of the attestation. Valid values are PENDING_REVIEW, PENDING_C_LEVEL_APPROVAL, PENDING_CANCELLATION, REJECTED, CANCELLED, and DISBURSED. The values DISBURSED, REJECTED, and CANCELLED are terminal. The other values indicate the attestation is still in progress.
+        attestationStatus: string
+        -- The start date on which the investment is disbursed to the investment accounts. This is not the same as the time of disbursement, but reflects the date you submitted with the attestation.
+        investmentDisbursedAt: number
+        -- The monetary value attested.
+        attestedValue: Amount
+        -- The distribution of the attested investment across the eligible investment accounts. The list contains at most 200 distributions.
+        investmentDistributions: {InvestmentDistribution}
+        -- The reasons the attestation was rejected. This value is present only when attestationStatus is REJECTED. The list contains at most 30 reasons.
+        rejectionReasons: {string}
+        -- Indicates whether the attestation can be canceled with CancelContractualInvestmentAttestation.
+        isCancellable: boolean
+    end
+
+    record ListContractualInvestmentAttestationsOutput
+        -- The list of investment attestations submitted under the contract.
+        items: {InvestmentAttestation}
+        -- The pagination token to use on subsequent calls to retrieve the next set of results.
+        nextToken: string
+    end
+
+    record ListContractualInvestmentsInput
+        -- The Amazon Resource Name (ARN) of the contract that contains the investment summary.
+        contractArn: string
+        -- The identifier of the investment summary whose investments you want to list.
+        investmentSummaryId: string
+        -- The pagination token that indicates the next set of results to retrieve.
+        nextToken: string
+        -- The maximum number of investments to return in a single call. Minimum value of 1, maximum value of 100.
+        maxResults: number
+    end
+
+    -- An investment with a fixed value that is disbursed on a schedule. This corresponds to the MILESTONE_BASED investment type.
+    record MilestoneBasedInvestment
+        -- The identifier of the investment, as returned by ListContractualInvestments. This value is 1–36 characters.
+        investmentId: string
+        -- The total value of the investment, including its currency and amount.
+        investmentValue: Amount
+        -- The date on which the investment is disbursed to the investment accounts.
+        investmentDisbursedAt: number
+    end
+
+    enum MultiplierType
+        "PERCENTAGE"
+        "CURRENCY_AMOUNT"
+    end
+
+    -- A multiplier used to convert attestation input into an investment value.
+    record InvestmentMultiplier
+        -- The multiplier value, expressed as a decimal string to preserve precision. The value is digits with an optional decimal point and is 1–1000 characters. The terms of the contract define this value.
+        value: string
+        -- The unit of the attestation input that the multiplier applies to, such as workloads migrated. This value is 1–1000 characters. The terms of the contract define this value.
+        investmentAttestationInputUnit: string
+        -- The type of the multiplier. A value of PERCENTAGE applies a percentage of a value. A value of CURRENCY_AMOUNT applies a currency amount per unit of attestation input. The terms of the contract define this value.
+        multiplierType: string
+    end
+
+    -- A restriction that caps the value that can be disbursed for an investment. The cap applies for each attestation window.
+    record InvestmentRestriction
+        -- The maximum monetary amount allowed under the restriction.
+        amount: Amount
+    end
+
+    -- An investment that is awarded upon completion of a defined outcome. This corresponds to the OUTCOME_BASED investment type and is claimed through CreateContractualInvestmentAttestation.
+    record OutcomeBasedInvestment
+        -- The identifier of the investment, as returned by ListContractualInvestments. This value is 1–36 characters.
+        investmentId: string
+        -- The description of what must be completed to attest the outcome. This value is 1–2048 characters.
+        outcomeDescription: string
+        -- The time window, expressed as an interval with inclusive start and end dates, during which outcomes can be attested to.
+        attestationWindow: Interval
+        -- The restrictions that cap the value that can be disbursed for the investment. The list contains at most 10 restrictions.
+        investmentRestrictions: {InvestmentRestriction}
+        -- The multipliers used to compute the investment value from the attestation input. The list contains at most 200 multipliers. Multipliers are derived from the terms of the private pricing contract.
+        investmentMultipliers: {InvestmentMultiplier}
+        -- The total value already disbursed against the investment. This value can be distributed among the investment accounts distribution.
+        disbursedValue: Amount
+    end
+
+    -- An investment within an investment summary. This is a union in which exactly one member is set. The milestoneBasedInvestment member represents a fixed, scheduled investment. The outcomeBasedInvestment member represents an attestable investment awarded upon completion of a defined outcome. Check which member is present to determine the investment type.
+    record Investment
+        -- An investment with a fixed value that is disbursed on a schedule. This member is set for a milestone-based investment and corresponds to the MILESTONE_BASED investment type.
+        milestoneBasedInvestment: MilestoneBasedInvestment
+        -- An investment that is awarded upon completion of a defined outcome. This member is set for an outcome-based (attestable) investment and corresponds to the OUTCOME_BASED investment type.
+        outcomeBasedInvestment: OutcomeBasedInvestment
+    end
+
+    record ListContractualInvestmentsOutput
+        -- The list of investments for the investment summary.
+        items: {Investment}
+        -- The pagination token to use on subsequent calls to retrieve the next set of results.
+        nextToken: string
+    end
+
+    record ListContractualInvestmentSummariesInput
+        -- The Amazon Resource Name (ARN) of the contract whose investment summaries you want to list.
+        contractArn: string
+        -- The pagination token that indicates the next set of results to retrieve.
+        nextToken: string
+        -- The maximum number of investment summaries to return in a single call. Minimum value of 1, maximum value of 100.
+        maxResults: number
+    end
+
+    enum InvestmentType
+        "MILESTONE_BASED"
+        "OUTCOME_BASED"
+    end
+
+    -- Detailed information about an investment summary within a contract or a private pricing addendum.
+    record InvestmentSummary
+        -- The identifier of the investment summary. Pass this value to ListContractualInvestments to list the investments within the summary, and to CreateContractualInvestmentAttestation to attest an investment. This value is 1–36 characters.
+        investmentSummaryId: string
+        -- The name of the investment summary, used to reference the investment against a term in the physical contract. This value is 1–400 characters.
+        investmentName: string
+        -- The type of the investment summary. Valid values are MILESTONE_BASED and OUTCOME_BASED. OUTCOME_BASED investments can be attested to, upon completion of outcomes. MILESTONE_BASED are automatically triggered by Amazon Web Services, based on the time schedule in the contract.
+        investmentType: string
+        -- The maximum monetary value that can be disbursed against the investment summary, inclusive of all outcomes combined under the summary.
+        maxAllowedInvestmentDisbursementValue: Amount
+    end
+
+    record ListContractualInvestmentSummariesOutput
+        -- The list of investment summaries under the contract. It includes the investment name, maximum investment amount, and investment type. It does not provide investment details. Use this to know if the contract has investment terms and what type.
+        items: {InvestmentSummary}
+        -- The pagination token to use on subsequent calls to retrieve the next set of results.
         nextToken: string
     end
 

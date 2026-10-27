@@ -2501,6 +2501,33 @@ M.KubeControllerManagerConfigRequest = schema.new({
     },
 })
 
+M.CrdManagementConfiguration = schema.new({
+    id = id.from(_N, "CrdManagementConfiguration"),
+    type = "structure",
+    members = {
+        managed = schema.new({
+            id = id.from(_N, "CrdManagementConfiguration", "managed"),
+            type = "boolean",
+            name = "managed",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GatewayApiConfiguration = schema.new({
+    id = id.from(_N, "GatewayApiConfiguration"),
+    type = "structure",
+    members = {
+        crds = schema.new({
+            id = id.from(_N, "GatewayApiConfiguration", "crds"),
+            type = "structure",
+            name = "crds",
+            target_id = id.from(_N, "CrdManagementConfiguration"),
+            target = M.CrdManagementConfiguration,
+        }),
+    },
+})
+
 M.ElasticLoadBalancing = schema.new({
     id = id.from(_N, "ElasticLoadBalancing"),
     type = "structure",
@@ -2510,6 +2537,13 @@ M.ElasticLoadBalancing = schema.new({
             type = "boolean",
             name = "enabled",
             target_id = prelude.Boolean.id,
+        }),
+        gatewayApi = schema.new({
+            id = id.from(_N, "ElasticLoadBalancing", "gatewayApi"),
+            type = "structure",
+            name = "gatewayApi",
+            target_id = id.from(_N, "GatewayApiConfiguration"),
+            target = M.GatewayApiConfiguration,
         }),
     },
 })

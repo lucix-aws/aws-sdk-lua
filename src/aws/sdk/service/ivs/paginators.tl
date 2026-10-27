@@ -30,6 +30,24 @@ function M.pages_list_channels(client, input)
     })
 end
 
+--- Returns a page iterator for listFailoverSlateConfigurations.
+function M.pages_list_failover_slate_configurations(client, input)
+    return paginator.pages(client, "listFailoverSlateConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "failoverSlateConfigurations",
+    })
+end
+
+--- Returns an item iterator for listFailoverSlateConfigurations.
+function M.items_list_failover_slate_configurations(client, input)
+    return paginator.items(client, "listFailoverSlateConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "failoverSlateConfigurations",
+    })
+end
+
 --- Returns a page iterator for listPlaybackKeyPairs.
 function M.pages_list_playback_key_pairs(client, input)
     return paginator.pages(client, "listPlaybackKeyPairs", input, {

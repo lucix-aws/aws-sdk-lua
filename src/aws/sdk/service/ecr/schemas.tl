@@ -48,6 +48,8 @@ M.PullThroughCacheRuleRepositoryPrefixList = schema.new({ type = "list", list_me
 
 M.PullThroughCacheRuleList = schema.new({ type = "list", list_member = M.PullThroughCacheRule })
 
+M.ReplicationBackfillResultList = schema.new({ type = "list", list_member = M.ReplicationBackfillResult })
+
 M.RepositoryNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RepositoryList = schema.new({ type = "list", list_member = M.Repository })
@@ -66,6 +68,8 @@ M.ImageReferrerList = schema.new({ type = "list", list_member = M.ImageReferrer 
 
 M.PullTimeUpdateExclusionList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ReplicationBackfillSummaryList = schema.new({ type = "list", list_member = M.ReplicationBackfillSummary })
+
 M.RegistryScanningRuleList = schema.new({ type = "list", list_member = M.RegistryScanningRule })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -79,6 +83,8 @@ M.ImageScanFindingList = schema.new({ type = "list", list_member = M.ImageScanFi
 M.EnhancedImageScanFindingList = schema.new({ type = "list", list_member = M.EnhancedImageScanFinding })
 
 M.ReplicationRuleList = schema.new({ type = "list", list_member = M.ReplicationRule })
+
+M.ReplicationErrorList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TransitioningImageTotalCounts = schema.new({ type = "list", list_member = M.TransitioningImageTotalCount })
 
@@ -3395,6 +3401,224 @@ M.DescribeRegistryOutput = schema.new({
     },
 })
 
+M.DescribeReplicationBackfillResultsInput = schema.new({
+    id = id.from(_N, "DescribeReplicationBackfillResultsRequest"),
+    type = "structure",
+    members = {
+        registryId = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsInput", "registryId"),
+            type = "string",
+            name = "registryId",
+            target_id = prelude.String.id,
+        }),
+        replicationBackfillId = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsInput", "replicationBackfillId"),
+            type = "string",
+            name = "replicationBackfillId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resultStatusFilter = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsInput", "resultStatusFilter"),
+            type = "string",
+            name = "resultStatusFilter",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReplicationBackfillProgress = schema.new({
+    id = id.from(_N, "ReplicationBackfillProgress"),
+    type = "structure",
+    members = {
+        totalReplicationCount = schema.new({
+            id = id.from(_N, "ReplicationBackfillProgress", "totalReplicationCount"),
+            type = "integer",
+            name = "totalReplicationCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        completedReplicationCount = schema.new({
+            id = id.from(_N, "ReplicationBackfillProgress", "completedReplicationCount"),
+            type = "integer",
+            name = "completedReplicationCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failedReplicationCount = schema.new({
+            id = id.from(_N, "ReplicationBackfillProgress", "failedReplicationCount"),
+            type = "integer",
+            name = "failedReplicationCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failureCodes = schema.new({
+            id = id.from(_N, "ReplicationBackfillProgress", "failureCodes"),
+            type = "list",
+            name = "failureCodes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ReplicationBackfillResult = schema.new({
+    id = id.from(_N, "ReplicationBackfillResult"),
+    type = "structure",
+    members = {
+        repositoryName = schema.new({
+            id = id.from(_N, "ReplicationBackfillResult", "repositoryName"),
+            type = "string",
+            name = "repositoryName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        imageId = schema.new({
+            id = id.from(_N, "ReplicationBackfillResult", "imageId"),
+            type = "structure",
+            name = "imageId",
+            target_id = id.from(_N, "ImageIdentifier"),
+            target = M.ImageIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ReplicationBackfillResult", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failureCode = schema.new({
+            id = id.from(_N, "ReplicationBackfillResult", "failureCode"),
+            type = "string",
+            name = "failureCode",
+            target_id = prelude.String.id,
+        }),
+        subImageFailureCodes = schema.new({
+            id = id.from(_N, "ReplicationBackfillResult", "subImageFailureCodes"),
+            type = "list",
+            name = "subImageFailureCodes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.DescribeReplicationBackfillResultsOutput = schema.new({
+    id = id.from(_N, "DescribeReplicationBackfillResultsResponse"),
+    type = "structure",
+    members = {
+        registryId = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "registryId"),
+            type = "string",
+            name = "registryId",
+            target_id = prelude.String.id,
+        }),
+        replicationBackfillId = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "replicationBackfillId"),
+            type = "string",
+            name = "replicationBackfillId",
+            target_id = prelude.String.id,
+        }),
+        destination = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "destination"),
+            type = "structure",
+            name = "destination",
+            target_id = id.from(_N, "ReplicationDestination"),
+            target = M.ReplicationDestination,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        failureCode = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "failureCode"),
+            type = "string",
+            name = "failureCode",
+            target_id = prelude.String.id,
+        }),
+        progress = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "progress"),
+            type = "structure",
+            name = "progress",
+            target_id = id.from(_N, "ReplicationBackfillProgress"),
+            target = M.ReplicationBackfillProgress,
+        }),
+        results = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "results"),
+            type = "list",
+            name = "results",
+            target_id = prelude.Document.id,
+            list_member = M.ReplicationBackfillResult,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        endedAt = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "endedAt"),
+            type = "timestamp",
+            name = "endedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeReplicationBackfillResultsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReplicationBackfillNotFoundException = schema.new({
+    id = id.from(_N, "ReplicationBackfillNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ReplicationBackfillNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DescribeRepositoriesInput = schema.new({
     id = id.from(_N, "DescribeRepositoriesRequest"),
     type = "structure",
@@ -4473,6 +4697,120 @@ M.ListPullTimeUpdateExclusionsOutput = schema.new({
     },
 })
 
+M.ListReplicationBackfillsInput = schema.new({
+    id = id.from(_N, "ListReplicationBackfillsRequest"),
+    type = "structure",
+    members = {
+        registryId = schema.new({
+            id = id.from(_N, "ListReplicationBackfillsInput", "registryId"),
+            type = "string",
+            name = "registryId",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListReplicationBackfillsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListReplicationBackfillsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReplicationBackfillSummary = schema.new({
+    id = id.from(_N, "ReplicationBackfillSummary"),
+    type = "structure",
+    members = {
+        replicationBackfillId = schema.new({
+            id = id.from(_N, "ReplicationBackfillSummary", "replicationBackfillId"),
+            type = "string",
+            name = "replicationBackfillId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destination = schema.new({
+            id = id.from(_N, "ReplicationBackfillSummary", "destination"),
+            type = "structure",
+            name = "destination",
+            target_id = id.from(_N, "ReplicationDestination"),
+            target = M.ReplicationDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ReplicationBackfillSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failureCode = schema.new({
+            id = id.from(_N, "ReplicationBackfillSummary", "failureCode"),
+            type = "string",
+            name = "failureCode",
+            target_id = prelude.String.id,
+        }),
+        progress = schema.new({
+            id = id.from(_N, "ReplicationBackfillSummary", "progress"),
+            type = "structure",
+            name = "progress",
+            target_id = id.from(_N, "ReplicationBackfillProgress"),
+            target = M.ReplicationBackfillProgress,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "ReplicationBackfillSummary", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endedAt = schema.new({
+            id = id.from(_N, "ReplicationBackfillSummary", "endedAt"),
+            type = "timestamp",
+            name = "endedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListReplicationBackfillsOutput = schema.new({
+    id = id.from(_N, "ListReplicationBackfillsResponse"),
+    type = "structure",
+    members = {
+        registryId = schema.new({
+            id = id.from(_N, "ListReplicationBackfillsOutput", "registryId"),
+            type = "string",
+            name = "registryId",
+            target_id = prelude.String.id,
+        }),
+        backfills = schema.new({
+            id = id.from(_N, "ListReplicationBackfillsOutput", "backfills"),
+            type = "list",
+            name = "backfills",
+            target_id = prelude.Document.id,
+            list_member = M.ReplicationBackfillSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListReplicationBackfillsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -5293,6 +5631,159 @@ M.StartLifecyclePolicyPreviewOutput = schema.new({
     },
 })
 
+M.ReplicationBackfillInProgressException = schema.new({
+    id = id.from(_N, "ReplicationBackfillInProgressException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ReplicationBackfillInProgressException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartReplicationBackfillInput = schema.new({
+    id = id.from(_N, "StartReplicationBackfillRequest"),
+    type = "structure",
+    members = {
+        registryId = schema.new({
+            id = id.from(_N, "StartReplicationBackfillInput", "registryId"),
+            type = "string",
+            name = "registryId",
+            target_id = prelude.String.id,
+        }),
+        destination = schema.new({
+            id = id.from(_N, "StartReplicationBackfillInput", "destination"),
+            type = "structure",
+            name = "destination",
+            target_id = id.from(_N, "ReplicationDestination"),
+            target = M.ReplicationDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartReplicationBackfillOutput = schema.new({
+    id = id.from(_N, "StartReplicationBackfillResponse"),
+    type = "structure",
+    members = {
+        replicationBackfillId = schema.new({
+            id = id.from(_N, "StartReplicationBackfillOutput", "replicationBackfillId"),
+            type = "string",
+            name = "replicationBackfillId",
+            target_id = prelude.String.id,
+        }),
+        registryId = schema.new({
+            id = id.from(_N, "StartReplicationBackfillOutput", "registryId"),
+            type = "string",
+            name = "registryId",
+            target_id = prelude.String.id,
+        }),
+        destination = schema.new({
+            id = id.from(_N, "StartReplicationBackfillOutput", "destination"),
+            type = "structure",
+            name = "destination",
+            target_id = id.from(_N, "ReplicationDestination"),
+            target = M.ReplicationDestination,
+        }),
+        status = schema.new({
+            id = id.from(_N, "StartReplicationBackfillOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "StartReplicationBackfillOutput", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ReplicationBackfillInvalidStatusException = schema.new({
+    id = id.from(_N, "ReplicationBackfillInvalidStatusException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ReplicationBackfillInvalidStatusException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopReplicationBackfillInput = schema.new({
+    id = id.from(_N, "StopReplicationBackfillRequest"),
+    type = "structure",
+    members = {
+        registryId = schema.new({
+            id = id.from(_N, "StopReplicationBackfillInput", "registryId"),
+            type = "string",
+            name = "registryId",
+            target_id = prelude.String.id,
+        }),
+        replicationBackfillId = schema.new({
+            id = id.from(_N, "StopReplicationBackfillInput", "replicationBackfillId"),
+            type = "string",
+            name = "replicationBackfillId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopReplicationBackfillOutput = schema.new({
+    id = id.from(_N, "StopReplicationBackfillResponse"),
+    type = "structure",
+    members = {
+        registryId = schema.new({
+            id = id.from(_N, "StopReplicationBackfillOutput", "registryId"),
+            type = "string",
+            name = "registryId",
+            target_id = prelude.String.id,
+        }),
+        replicationBackfillId = schema.new({
+            id = id.from(_N, "StopReplicationBackfillOutput", "replicationBackfillId"),
+            type = "string",
+            name = "replicationBackfillId",
+            target_id = prelude.String.id,
+        }),
+        destination = schema.new({
+            id = id.from(_N, "StopReplicationBackfillOutput", "destination"),
+            type = "structure",
+            name = "destination",
+            target_id = id.from(_N, "ReplicationDestination"),
+            target = M.ReplicationDestination,
+        }),
+        status = schema.new({
+            id = id.from(_N, "StopReplicationBackfillOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "StopReplicationBackfillOutput", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
     type = "structure",
@@ -6091,6 +6582,17 @@ M.DescribeRegistry = schema.operation({
     },
 })
 
+M.DescribeReplicationBackfillResults = schema.operation({
+    id = id.from("com.amazonaws.ecr", "DescribeReplicationBackfillResults"),
+    input = M.DescribeReplicationBackfillResultsInput,
+    output = M.DescribeReplicationBackfillResultsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeRepositories = schema.operation({
     id = id.from("com.amazonaws.ecr", "DescribeRepositories"),
     input = M.DescribeRepositoriesInput,
@@ -6256,6 +6758,17 @@ M.ListPullTimeUpdateExclusions = schema.operation({
     },
 })
 
+M.ListReplicationBackfills = schema.operation({
+    id = id.from("com.amazonaws.ecr", "ListReplicationBackfills"),
+    input = M.ListReplicationBackfillsInput,
+    output = M.ListReplicationBackfillsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTagsForResource = schema.operation({
     id = id.from("com.amazonaws.ecr", "ListTagsForResource"),
     input = M.ListTagsForResourceInput,
@@ -6403,6 +6916,28 @@ M.StartLifecyclePolicyPreview = schema.operation({
     id = id.from("com.amazonaws.ecr", "StartLifecyclePolicyPreview"),
     input = M.StartLifecyclePolicyPreviewInput,
     output = M.StartLifecyclePolicyPreviewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartReplicationBackfill = schema.operation({
+    id = id.from("com.amazonaws.ecr", "StartReplicationBackfill"),
+    input = M.StartReplicationBackfillInput,
+    output = M.StartReplicationBackfillOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopReplicationBackfill = schema.operation({
+    id = id.from("com.amazonaws.ecr", "StopReplicationBackfill"),
+    input = M.StopReplicationBackfillInput,
+    output = M.StopReplicationBackfillOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

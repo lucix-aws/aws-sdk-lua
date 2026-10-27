@@ -48,6 +48,24 @@ function M.items_describe_pull_through_cache_rules(client, input)
     })
 end
 
+--- Returns a page iterator for describeReplicationBackfillResults.
+function M.pages_describe_replication_backfill_results(client, input)
+    return paginator.pages(client, "describeReplicationBackfillResults", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "results",
+    })
+end
+
+--- Returns an item iterator for describeReplicationBackfillResults.
+function M.items_describe_replication_backfill_results(client, input)
+    return paginator.items(client, "describeReplicationBackfillResults", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "results",
+    })
+end
+
 --- Returns a page iterator for describeRepositories.
 function M.pages_describe_repositories(client, input)
     return paginator.pages(client, "describeRepositories", input, {
@@ -117,6 +135,24 @@ function M.items_list_images(client, input)
         input_token = "nextToken",
         output_token = "nextToken",
         items = "imageIds",
+    })
+end
+
+--- Returns a page iterator for listReplicationBackfills.
+function M.pages_list_replication_backfills(client, input)
+    return paginator.pages(client, "listReplicationBackfills", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "backfills",
+    })
+end
+
+--- Returns an item iterator for listReplicationBackfills.
+function M.items_list_replication_backfills(client, input)
+    return paginator.items(client, "listReplicationBackfills", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "backfills",
     })
 end
 

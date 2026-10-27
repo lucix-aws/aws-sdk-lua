@@ -4,6 +4,204 @@ local waiter = require("smithy.waiter")
 
 local M = {}
 
+--- Wait until DestinationEndpointConnected.
+function M.wait_until_destination_endpoint_connected(client, input, options)
+    return waiter.wait(client, "getDestinationEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "DestinationEndpoint.ConnectionState",
+                        expected = "CONNECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "DestinationEndpoint.ConnectionState",
+                        expected = "DISCONNECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until DestinationEndpointDeregistered.
+function M.wait_until_destination_endpoint_deregistered(client, input, options)
+    return waiter.wait(client, "getDestinationEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "NotFoundException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "DestinationEndpoint.RegistrationState",
+                        expected = "REGISTRATION_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until DestinationEndpointDisconnected.
+function M.wait_until_destination_endpoint_disconnected(client, input, options)
+    return waiter.wait(client, "getDestinationEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "DestinationEndpoint.ConnectionState",
+                        expected = "DISCONNECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "DestinationEndpoint.ConnectionState",
+                        expected = "CONNECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until DestinationEndpointRegistered.
+function M.wait_until_destination_endpoint_registered(client, input, options)
+    return waiter.wait(client, "getDestinationEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "DestinationEndpoint.RegistrationState",
+                        expected = "REGISTERED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "DestinationEndpoint.RegistrationState",
+                        expected = "REGISTRATION_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "DestinationEndpoint.RegistrationState",
+                        expected = "DEREGISTERING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
 --- Wait until FlowActive.
 function M.wait_until_flow_active(client, input, options)
     return waiter.wait(client, "describeFlow", input, {
@@ -598,6 +796,280 @@ function M.wait_until_output_unrouted(client, input, options)
                 state = "retry",
                 matcher = {
                     errorType = "ServiceUnavailableException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SourceEndpointConnected.
+function M.wait_until_source_endpoint_connected(client, input, options)
+    return waiter.wait(client, "getSourceEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.ConnectionState",
+                        expected = "CONNECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SourceEndpointConnecting.
+function M.wait_until_source_endpoint_connecting(client, input, options)
+    return waiter.wait(client, "getSourceEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.ConnectionState",
+                        expected = "CONNECTING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.ConnectionState",
+                        expected = "CONNECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SourceEndpointDeregistered.
+function M.wait_until_source_endpoint_deregistered(client, input, options)
+    return waiter.wait(client, "getSourceEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "NotFoundException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.RegistrationState",
+                        expected = "REGISTRATION_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SourceEndpointDisconnected.
+function M.wait_until_source_endpoint_disconnected(client, input, options)
+    return waiter.wait(client, "getSourceEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.ConnectionState",
+                        expected = "DISCONNECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SourceEndpointDisconnecting.
+function M.wait_until_source_endpoint_disconnecting(client, input, options)
+    return waiter.wait(client, "getSourceEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.ConnectionState",
+                        expected = "DISCONNECTING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.ConnectionState",
+                        expected = "DISCONNECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SourceEndpointRegistered.
+function M.wait_until_source_endpoint_registered(client, input, options)
+    return waiter.wait(client, "getSourceEndpoint", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.RegistrationState",
+                        expected = "REGISTERED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.RegistrationState",
+                        expected = "REGISTRATION_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "SourceEndpoint.RegistrationState",
+                        expected = "DEREGISTERING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ServiceUnavailableException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestsException",
                 },
             },
         },

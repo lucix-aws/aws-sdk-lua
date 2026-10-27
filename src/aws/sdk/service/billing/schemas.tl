@@ -10,11 +10,13 @@ local _N = "com.amazonaws.billing"
 
 local M: {string:any} = {}
 
-M.BillingViewSourceViewsList = schema.new({ type = "list", list_member = prelude.String })
-
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
 
+M.BillingViewSourceViewsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
+
+M.AdditionalRecipients = schema.new({ type = "list", list_member = M.AdditionalRecipient })
 
 M.BillingFeatures = schema.new({ type = "list", list_member = prelude.String })
 
@@ -50,19 +52,37 @@ M.BusinessSupportAccountChargeList = schema.new({ type = "list", list_member = M
 
 M.BusinessSupportSubscriptionContractList = schema.new({ type = "list", list_member = M.BusinessSupportSubscriptionContract })
 
+M.ContractSummaries = schema.new({ type = "list", list_member = M.ContractSummary })
+
+M.InvestmentAttestations = schema.new({ type = "list", list_member = M.InvestmentAttestation })
+
+M.Investments = schema.new({ type = "list", list_member = M.Investment })
+
+M.InvestmentSummaries = schema.new({ type = "list", list_member = M.InvestmentSummary })
+
 M.LinkedAccountChargeList = schema.new({ type = "list", list_member = M.LinkedAccountCharge })
 
 M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.BillingPreferencesPerKey = schema.new({ type = "list", list_member = M.BillingPreferenceForKey })
 
+M.InvestmentDistributions = schema.new({ type = "list", list_member = M.InvestmentDistribution })
+
 M.PricingPlanTierList = schema.new({ type = "list", list_member = M.PricingPlanTier })
 
 M.Values = schema.new({ type = "list", list_member = prelude.String })
 
+M.AttestationQuantities = schema.new({ type = "list", list_member = M.AttestationQuantity })
+
 M.BillingFeatureFilterValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.BillingViewStatusReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountList = schema.new({ type = "list", list_member = prelude.String })
+
+M.LegalEntities = schema.new({ type = "list", list_member = M.LegalEntity })
+
+M.ContractRestrictions = schema.new({ type = "list", list_member = prelude.String })
 
 M.ProductNames = schema.new({ type = "list", list_member = prelude.String })
 
@@ -74,9 +94,15 @@ M.BusinessSupportTierChargeList = schema.new({ type = "list", list_member = M.Bu
 
 M.BusinessSupportServiceSpendList = schema.new({ type = "list", list_member = M.BusinessSupportServiceSpend })
 
+M.RejectionReasons = schema.new({ type = "list", list_member = prelude.String })
+
 M.TimePeriodList = schema.new({ type = "list", list_member = M.EnterpriseSupportTimePeriod })
 
 M.ServiceLevelAccountUsageList = schema.new({ type = "list", list_member = M.ServiceLevelAccountUsage })
+
+M.InvestmentRestrictions = schema.new({ type = "list", list_member = M.InvestmentRestriction })
+
+M.InvestmentMultipliers = schema.new({ type = "list", list_member = M.InvestmentMultiplier })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -151,6 +177,22 @@ M.AdditionalCharge = schema.new({
     },
 })
 
+M.AdditionalRecipient = schema.new({
+    id = id.from(_N, "AdditionalRecipient"),
+    type = "structure",
+    members = {
+        email = schema.new({
+            id = id.from(_N, "AdditionalRecipient", "email"),
+            type = "string",
+            name = "email",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.Amount = schema.new({
     id = id.from(_N, "Amount"),
     type = "structure",
@@ -176,40 +218,32 @@ M.Amount = schema.new({
     },
 })
 
-M.AssociateSourceViewsInput = schema.new({
-    id = id.from(_N, "AssociateSourceViewsRequest"),
+M.ApproverDetails = schema.new({
+    id = id.from(_N, "ApproverDetails"),
     type = "structure",
     members = {
-        arn = schema.new({
-            id = id.from(_N, "AssociateSourceViewsInput", "arn"),
+        name = schema.new({
+            id = id.from(_N, "ApproverDetails", "name"),
             type = "string",
-            name = "arn",
+            name = "name",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        sourceViews = schema.new({
-            id = id.from(_N, "AssociateSourceViewsInput", "sourceViews"),
-            type = "list",
-            name = "sourceViews",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
+        title = schema.new({
+            id = id.from(_N, "ApproverDetails", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-    },
-})
-
-M.AssociateSourceViewsOutput = schema.new({
-    id = id.from(_N, "AssociateSourceViewsResponse"),
-    type = "structure",
-    members = {
-        arn = schema.new({
-            id = id.from(_N, "AssociateSourceViewsOutput", "arn"),
+        email = schema.new({
+            id = id.from(_N, "ApproverDetails", "email"),
             type = "string",
-            name = "arn",
+            name = "email",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -218,23 +252,34 @@ M.AssociateSourceViewsOutput = schema.new({
     },
 })
 
-M.BillingViewHealthStatusException = schema.new({
-    id = id.from(_N, "BillingViewHealthStatusException"),
+M.AssociateContractInput = schema.new({
+    id = id.from(_N, "AssociateContractRequest"),
     type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
     members = {
-        message = schema.new({
-            id = id.from(_N, "BillingViewHealthStatusException", "message"),
+        contractArn = schema.new({
+            id = id.from(_N, "AssociateContractInput", "contractArn"),
             type = "string",
-            name = "message",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractDocumentId = schema.new({
+            id = id.from(_N, "AssociateContractInput", "contractDocumentId"),
+            type = "string",
+            name = "contractDocumentId",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
     },
+})
+
+M.AssociateContractOutput = schema.new({
+    id = id.from(_N, "AssociateContractResponse"),
+    type = "structure",
 })
 
 M.ConflictException = schema.new({
@@ -333,62 +378,6 @@ M.ResourceNotFoundException = schema.new({
     },
 })
 
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "BillingServiceQuotaExceeded", httpResponseCode = 402 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        resourceId = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
-            type = "string",
-            name = "resourceId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        resourceType = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
-            type = "string",
-            name = "resourceType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        serviceCode = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "serviceCode"),
-            type = "string",
-            name = "serviceCode",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        quotaCode = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
-            type = "string",
-            name = "quotaCode",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.ThrottlingException = schema.new({
     id = id.from(_N, "ThrottlingException"),
     type = "structure",
@@ -468,6 +457,258 @@ M.ValidationException = schema.new({
             list_member = M.ValidationExceptionField,
         }),
     },
+})
+
+M.AssociateSourceViewsInput = schema.new({
+    id = id.from(_N, "AssociateSourceViewsRequest"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "AssociateSourceViewsInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceViews = schema.new({
+            id = id.from(_N, "AssociateSourceViewsInput", "sourceViews"),
+            type = "list",
+            name = "sourceViews",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateSourceViewsOutput = schema.new({
+    id = id.from(_N, "AssociateSourceViewsResponse"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "AssociateSourceViewsOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BillingViewHealthStatusException = schema.new({
+    id = id.from(_N, "BillingViewHealthStatusException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "BillingViewHealthStatusException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "BillingServiceQuotaExceeded", httpResponseCode = 402 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "serviceCode"),
+            type = "string",
+            name = "serviceCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttestationQuantity = schema.new({
+    id = id.from(_N, "AttestationQuantity"),
+    type = "structure",
+    members = {
+        attestationVolume = schema.new({
+            id = id.from(_N, "AttestationQuantity", "attestationVolume"),
+            type = "string",
+            name = "attestationVolume",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attestationUnit = schema.new({
+            id = id.from(_N, "AttestationQuantity", "attestationUnit"),
+            type = "string",
+            name = "attestationUnit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttestationValue = schema.new({
+    id = id.from(_N, "AttestationValue"),
+    type = "union",
+    members = {
+        attestationAmount = schema.new({
+            id = id.from(_N, "AttestationValue", "attestationAmount"),
+            type = "structure",
+            name = "attestationAmount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+        }),
+        attestationQuantities = schema.new({
+            id = id.from(_N, "AttestationValue", "attestationQuantities"),
+            type = "list",
+            name = "attestationQuantities",
+            target_id = prelude.Document.id,
+            list_member = M.AttestationQuantity,
+        }),
+    },
+})
+
+M.InvestmentDistribution = schema.new({
+    id = id.from(_N, "InvestmentDistribution"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "InvestmentDistribution", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentAmount = schema.new({
+            id = id.from(_N, "InvestmentDistribution", "investmentAmount"),
+            type = "structure",
+            name = "investmentAmount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttestationDetails = schema.new({
+    id = id.from(_N, "AttestationDetails"),
+    type = "structure",
+    members = {
+        attestationValue = schema.new({
+            id = id.from(_N, "AttestationDetails", "attestationValue"),
+            type = "union",
+            name = "attestationValue",
+            target_id = id.from(_N, "AttestationValue"),
+            target = M.AttestationValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentDistributions = schema.new({
+            id = id.from(_N, "AttestationDetails", "investmentDistributions"),
+            type = "list",
+            name = "investmentDistributions",
+            target_id = prelude.Document.id,
+            list_member = M.InvestmentDistribution,
+        }),
+    },
+})
+
+M.CancelContractualInvestmentAttestationInput = schema.new({
+    id = id.from(_N, "CancelContractualInvestmentAttestationRequest"),
+    type = "structure",
+    members = {
+        attestationId = schema.new({
+            id = id.from(_N, "CancelContractualInvestmentAttestationInput", "attestationId"),
+            type = "string",
+            name = "attestationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractArn = schema.new({
+            id = id.from(_N, "CancelContractualInvestmentAttestationInput", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "CancelContractualInvestmentAttestationInput", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CancelContractualInvestmentAttestationOutput = schema.new({
+    id = id.from(_N, "CancelContractualInvestmentAttestationResponse"),
+    type = "structure",
 })
 
 M.CostCategoryValues = schema.new({
@@ -702,6 +943,107 @@ M.CreateBillingViewOutput = schema.new({
     },
 })
 
+M.CreateContractualInvestmentAttestationInput = schema.new({
+    id = id.from(_N, "CreateContractualInvestmentAttestationRequest"),
+    type = "structure",
+    members = {
+        contractArn = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentSummaryId = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "investmentSummaryId"),
+            type = "string",
+            name = "investmentSummaryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentId = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "investmentId"),
+            type = "string",
+            name = "investmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractDocumentId = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "contractDocumentId"),
+            type = "string",
+            name = "contractDocumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        approverDetails = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "approverDetails"),
+            type = "structure",
+            name = "approverDetails",
+            target_id = id.from(_N, "ApproverDetails"),
+            target = M.ApproverDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentDisbursedAt = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "investmentDisbursedAt"),
+            type = "timestamp",
+            name = "investmentDisbursedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        attestationDetails = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "attestationDetails"),
+            type = "structure",
+            name = "attestationDetails",
+            target_id = id.from(_N, "AttestationDetails"),
+            target = M.AttestationDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        additionalRecipients = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "additionalRecipients"),
+            type = "list",
+            name = "additionalRecipients",
+            target_id = prelude.Document.id,
+            list_member = M.AdditionalRecipient,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateContractualInvestmentAttestationOutput = schema.new({
+    id = id.from(_N, "CreateContractualInvestmentAttestationResponse"),
+    type = "structure",
+    members = {
+        attestationId = schema.new({
+            id = id.from(_N, "CreateContractualInvestmentAttestationOutput", "attestationId"),
+            type = "string",
+            name = "attestationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteBillingViewInput = schema.new({
     id = id.from(_N, "DeleteBillingViewRequest"),
     type = "structure",
@@ -741,6 +1083,27 @@ M.DeleteBillingViewOutput = schema.new({
             },
         }),
     },
+})
+
+M.DisassociateContractInput = schema.new({
+    id = id.from(_N, "DisassociateContractRequest"),
+    type = "structure",
+    members = {
+        contractArn = schema.new({
+            id = id.from(_N, "DisassociateContractInput", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateContractOutput = schema.new({
+    id = id.from(_N, "DisassociateContractResponse"),
+    type = "structure",
 })
 
 M.DisassociateSourceViewsInput = schema.new({
@@ -1075,6 +1438,157 @@ M.GetBillingViewOutput = schema.new({
             name = "billingView",
             target_id = id.from(_N, "BillingViewElement"),
             target = M.BillingViewElement,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetContractInformationInput = schema.new({
+    id = id.from(_N, "GetContractInformationRequest"),
+    type = "structure",
+    members = {
+        contractArn = schema.new({
+            id = id.from(_N, "GetContractInformationInput", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Interval = schema.new({
+    id = id.from(_N, "Interval"),
+    type = "structure",
+    members = {
+        startDateInclusive = schema.new({
+            id = id.from(_N, "Interval", "startDateInclusive"),
+            type = "timestamp",
+            name = "startDateInclusive",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endDateInclusive = schema.new({
+            id = id.from(_N, "Interval", "endDateInclusive"),
+            type = "timestamp",
+            name = "endDateInclusive",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LegalEntity = schema.new({
+    id = id.from(_N, "LegalEntity"),
+    type = "structure",
+    members = {
+        legalEntityName = schema.new({
+            id = id.from(_N, "LegalEntity", "legalEntityName"),
+            type = "string",
+            name = "legalEntityName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PrivatePricingAddendum = schema.new({
+    id = id.from(_N, "PrivatePricingAddendum"),
+    type = "structure",
+    members = {
+        contractArn = schema.new({
+            id = id.from(_N, "PrivatePricingAddendum", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractTerm = schema.new({
+            id = id.from(_N, "PrivatePricingAddendum", "contractTerm"),
+            type = "structure",
+            name = "contractTerm",
+            target_id = id.from(_N, "Interval"),
+            target = M.Interval,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eligiblePayerAccounts = schema.new({
+            id = id.from(_N, "PrivatePricingAddendum", "eligiblePayerAccounts"),
+            type = "list",
+            name = "eligiblePayerAccounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentAccounts = schema.new({
+            id = id.from(_N, "PrivatePricingAddendum", "investmentAccounts"),
+            type = "list",
+            name = "investmentAccounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        legalEntities = schema.new({
+            id = id.from(_N, "PrivatePricingAddendum", "legalEntities"),
+            type = "list",
+            name = "legalEntities",
+            target_id = prelude.Document.id,
+            list_member = M.LegalEntity,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractRestrictions = schema.new({
+            id = id.from(_N, "PrivatePricingAddendum", "contractRestrictions"),
+            type = "list",
+            name = "contractRestrictions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ContractDetails = schema.new({
+    id = id.from(_N, "ContractDetails"),
+    type = "union",
+    members = {
+        privatePricingAddendum = schema.new({
+            id = id.from(_N, "ContractDetails", "privatePricingAddendum"),
+            type = "structure",
+            name = "privatePricingAddendum",
+            target_id = id.from(_N, "PrivatePricingAddendum"),
+            target = M.PrivatePricingAddendum,
+        }),
+    },
+})
+
+M.GetContractInformationOutput = schema.new({
+    id = id.from(_N, "GetContractInformationResponse"),
+    type = "structure",
+    members = {
+        contract = schema.new({
+            id = id.from(_N, "GetContractInformationOutput", "contract"),
+            type = "union",
+            name = "contract",
+            target_id = id.from(_N, "ContractDetails"),
+            target = M.ContractDetails,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2622,6 +3136,582 @@ M.ListBusinessSupportSubscriptionHistoryOutput = schema.new({
     },
 })
 
+M.ListContractsInput = schema.new({
+    id = id.from(_N, "ListContractsRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListContractsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListContractsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ContractSummary = schema.new({
+    id = id.from(_N, "ContractSummary"),
+    type = "structure",
+    members = {
+        contractArn = schema.new({
+            id = id.from(_N, "ContractSummary", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractTerm = schema.new({
+            id = id.from(_N, "ContractSummary", "contractTerm"),
+            type = "structure",
+            name = "contractTerm",
+            target_id = id.from(_N, "Interval"),
+            target = M.Interval,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contractType = schema.new({
+            id = id.from(_N, "ContractSummary", "contractType"),
+            type = "string",
+            name = "contractType",
+            target_id = prelude.String.id,
+        }),
+        associationStatus = schema.new({
+            id = id.from(_N, "ContractSummary", "associationStatus"),
+            type = "string",
+            name = "associationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "ContractSummary", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListContractsOutput = schema.new({
+    id = id.from(_N, "ListContractsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListContractsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.ContractSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListContractsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContractualInvestmentAttestationsInput = schema.new({
+    id = id.from(_N, "ListContractualInvestmentAttestationsRequest"),
+    type = "structure",
+    members = {
+        contractArn = schema.new({
+            id = id.from(_N, "ListContractualInvestmentAttestationsInput", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentSummaryId = schema.new({
+            id = id.from(_N, "ListContractualInvestmentAttestationsInput", "investmentSummaryId"),
+            type = "string",
+            name = "investmentSummaryId",
+            target_id = prelude.String.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListContractualInvestmentAttestationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListContractualInvestmentAttestationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.InvestmentAttestation = schema.new({
+    id = id.from(_N, "InvestmentAttestation"),
+    type = "structure",
+    members = {
+        attestationId = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "attestationId"),
+            type = "string",
+            name = "attestationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentName = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "investmentName"),
+            type = "string",
+            name = "investmentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outcomeDescription = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "outcomeDescription"),
+            type = "string",
+            name = "outcomeDescription",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentSummaryId = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "investmentSummaryId"),
+            type = "string",
+            name = "investmentSummaryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentId = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "investmentId"),
+            type = "string",
+            name = "investmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attestedAt = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "attestedAt"),
+            type = "timestamp",
+            name = "attestedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attestationStatus = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "attestationStatus"),
+            type = "string",
+            name = "attestationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentDisbursedAt = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "investmentDisbursedAt"),
+            type = "timestamp",
+            name = "investmentDisbursedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        attestedValue = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "attestedValue"),
+            type = "structure",
+            name = "attestedValue",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+        }),
+        investmentDistributions = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "investmentDistributions"),
+            type = "list",
+            name = "investmentDistributions",
+            target_id = prelude.Document.id,
+            list_member = M.InvestmentDistribution,
+        }),
+        rejectionReasons = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "rejectionReasons"),
+            type = "list",
+            name = "rejectionReasons",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        isCancellable = schema.new({
+            id = id.from(_N, "InvestmentAttestation", "isCancellable"),
+            type = "boolean",
+            name = "isCancellable",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ListContractualInvestmentAttestationsOutput = schema.new({
+    id = id.from(_N, "ListContractualInvestmentAttestationsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListContractualInvestmentAttestationsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.InvestmentAttestation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListContractualInvestmentAttestationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContractualInvestmentsInput = schema.new({
+    id = id.from(_N, "ListContractualInvestmentsRequest"),
+    type = "structure",
+    members = {
+        contractArn = schema.new({
+            id = id.from(_N, "ListContractualInvestmentsInput", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentSummaryId = schema.new({
+            id = id.from(_N, "ListContractualInvestmentsInput", "investmentSummaryId"),
+            type = "string",
+            name = "investmentSummaryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListContractualInvestmentsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListContractualInvestmentsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.MilestoneBasedInvestment = schema.new({
+    id = id.from(_N, "MilestoneBasedInvestment"),
+    type = "structure",
+    members = {
+        investmentId = schema.new({
+            id = id.from(_N, "MilestoneBasedInvestment", "investmentId"),
+            type = "string",
+            name = "investmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentValue = schema.new({
+            id = id.from(_N, "MilestoneBasedInvestment", "investmentValue"),
+            type = "structure",
+            name = "investmentValue",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentDisbursedAt = schema.new({
+            id = id.from(_N, "MilestoneBasedInvestment", "investmentDisbursedAt"),
+            type = "timestamp",
+            name = "investmentDisbursedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InvestmentMultiplier = schema.new({
+    id = id.from(_N, "InvestmentMultiplier"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "InvestmentMultiplier", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentAttestationInputUnit = schema.new({
+            id = id.from(_N, "InvestmentMultiplier", "investmentAttestationInputUnit"),
+            type = "string",
+            name = "investmentAttestationInputUnit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        multiplierType = schema.new({
+            id = id.from(_N, "InvestmentMultiplier", "multiplierType"),
+            type = "string",
+            name = "multiplierType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InvestmentRestriction = schema.new({
+    id = id.from(_N, "InvestmentRestriction"),
+    type = "structure",
+    members = {
+        amount = schema.new({
+            id = id.from(_N, "InvestmentRestriction", "amount"),
+            type = "structure",
+            name = "amount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OutcomeBasedInvestment = schema.new({
+    id = id.from(_N, "OutcomeBasedInvestment"),
+    type = "structure",
+    members = {
+        investmentId = schema.new({
+            id = id.from(_N, "OutcomeBasedInvestment", "investmentId"),
+            type = "string",
+            name = "investmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outcomeDescription = schema.new({
+            id = id.from(_N, "OutcomeBasedInvestment", "outcomeDescription"),
+            type = "string",
+            name = "outcomeDescription",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attestationWindow = schema.new({
+            id = id.from(_N, "OutcomeBasedInvestment", "attestationWindow"),
+            type = "structure",
+            name = "attestationWindow",
+            target_id = id.from(_N, "Interval"),
+            target = M.Interval,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentRestrictions = schema.new({
+            id = id.from(_N, "OutcomeBasedInvestment", "investmentRestrictions"),
+            type = "list",
+            name = "investmentRestrictions",
+            target_id = prelude.Document.id,
+            list_member = M.InvestmentRestriction,
+        }),
+        investmentMultipliers = schema.new({
+            id = id.from(_N, "OutcomeBasedInvestment", "investmentMultipliers"),
+            type = "list",
+            name = "investmentMultipliers",
+            target_id = prelude.Document.id,
+            list_member = M.InvestmentMultiplier,
+        }),
+        disbursedValue = schema.new({
+            id = id.from(_N, "OutcomeBasedInvestment", "disbursedValue"),
+            type = "structure",
+            name = "disbursedValue",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Investment = schema.new({
+    id = id.from(_N, "Investment"),
+    type = "union",
+    members = {
+        milestoneBasedInvestment = schema.new({
+            id = id.from(_N, "Investment", "milestoneBasedInvestment"),
+            type = "structure",
+            name = "milestoneBasedInvestment",
+            target_id = id.from(_N, "MilestoneBasedInvestment"),
+            target = M.MilestoneBasedInvestment,
+        }),
+        outcomeBasedInvestment = schema.new({
+            id = id.from(_N, "Investment", "outcomeBasedInvestment"),
+            type = "structure",
+            name = "outcomeBasedInvestment",
+            target_id = id.from(_N, "OutcomeBasedInvestment"),
+            target = M.OutcomeBasedInvestment,
+        }),
+    },
+})
+
+M.ListContractualInvestmentsOutput = schema.new({
+    id = id.from(_N, "ListContractualInvestmentsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListContractualInvestmentsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.Investment,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListContractualInvestmentsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContractualInvestmentSummariesInput = schema.new({
+    id = id.from(_N, "ListContractualInvestmentSummariesRequest"),
+    type = "structure",
+    members = {
+        contractArn = schema.new({
+            id = id.from(_N, "ListContractualInvestmentSummariesInput", "contractArn"),
+            type = "string",
+            name = "contractArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListContractualInvestmentSummariesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListContractualInvestmentSummariesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.InvestmentSummary = schema.new({
+    id = id.from(_N, "InvestmentSummary"),
+    type = "structure",
+    members = {
+        investmentSummaryId = schema.new({
+            id = id.from(_N, "InvestmentSummary", "investmentSummaryId"),
+            type = "string",
+            name = "investmentSummaryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentName = schema.new({
+            id = id.from(_N, "InvestmentSummary", "investmentName"),
+            type = "string",
+            name = "investmentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        investmentType = schema.new({
+            id = id.from(_N, "InvestmentSummary", "investmentType"),
+            type = "string",
+            name = "investmentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxAllowedInvestmentDisbursementValue = schema.new({
+            id = id.from(_N, "InvestmentSummary", "maxAllowedInvestmentDisbursementValue"),
+            type = "structure",
+            name = "maxAllowedInvestmentDisbursementValue",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+        }),
+    },
+})
+
+M.ListContractualInvestmentSummariesOutput = schema.new({
+    id = id.from(_N, "ListContractualInvestmentSummariesResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListContractualInvestmentSummariesOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.InvestmentSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListContractualInvestmentSummariesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListEnterpriseSupportLinkedAccountChargesInput = schema.new({
     id = id.from(_N, "ListEnterpriseSupportLinkedAccountChargesRequest"),
     type = "structure",
@@ -3122,10 +4212,32 @@ M.Service = schema.service({
     },
 })
 
+M.AssociateContract = schema.operation({
+    id = id.from("com.amazonaws.billing", "AssociateContract"),
+    input = M.AssociateContractInput,
+    output = M.AssociateContractOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AssociateSourceViews = schema.operation({
     id = id.from("com.amazonaws.billing", "AssociateSourceViews"),
     input = M.AssociateSourceViewsInput,
     output = M.AssociateSourceViewsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelContractualInvestmentAttestation = schema.operation({
+    id = id.from("com.amazonaws.billing", "CancelContractualInvestmentAttestation"),
+    input = M.CancelContractualInvestmentAttestationInput,
+    output = M.CancelContractualInvestmentAttestationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -3144,10 +4256,32 @@ M.CreateBillingView = schema.operation({
     },
 })
 
+M.CreateContractualInvestmentAttestation = schema.operation({
+    id = id.from("com.amazonaws.billing", "CreateContractualInvestmentAttestation"),
+    input = M.CreateContractualInvestmentAttestationInput,
+    output = M.CreateContractualInvestmentAttestationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteBillingView = schema.operation({
     id = id.from("com.amazonaws.billing", "DeleteBillingView"),
     input = M.DeleteBillingViewInput,
     output = M.DeleteBillingViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateContract = schema.operation({
+    id = id.from("com.amazonaws.billing", "DisassociateContract"),
+    input = M.DisassociateContractInput,
+    output = M.DisassociateContractOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -3181,6 +4315,17 @@ M.GetBillingView = schema.operation({
     id = id.from("com.amazonaws.billing", "GetBillingView"),
     input = M.GetBillingViewInput,
     output = M.GetBillingViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContractInformation = schema.operation({
+    id = id.from("com.amazonaws.billing", "GetContractInformation"),
+    input = M.GetContractInformationInput,
+    output = M.GetContractInformationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -3281,6 +4426,50 @@ M.ListBusinessSupportSubscriptionHistory = schema.operation({
     id = id.from("com.amazonaws.billing", "ListBusinessSupportSubscriptionHistory"),
     input = M.ListBusinessSupportSubscriptionHistoryInput,
     output = M.ListBusinessSupportSubscriptionHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContracts = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListContracts"),
+    input = M.ListContractsInput,
+    output = M.ListContractsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContractualInvestmentAttestations = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListContractualInvestmentAttestations"),
+    input = M.ListContractualInvestmentAttestationsInput,
+    output = M.ListContractualInvestmentAttestationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContractualInvestments = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListContractualInvestments"),
+    input = M.ListContractualInvestmentsInput,
+    output = M.ListContractualInvestmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContractualInvestmentSummaries = schema.operation({
+    id = id.from("com.amazonaws.billing", "ListContractualInvestmentSummaries"),
+    input = M.ListContractualInvestmentSummariesInput,
+    output = M.ListContractualInvestmentSummariesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

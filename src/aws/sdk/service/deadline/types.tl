@@ -22,7 +22,7 @@ local record M
     record AcceleratorSelection
         -- The name of the chip used by the GPU accelerator. The available GPU accelerators are: t4 - NVIDIA T4 Tensor Core GPU (16 GiB memory) a10g - NVIDIA A10G Tensor Core GPU (24 GiB memory) l4 - NVIDIA L4 Tensor Core GPU (24 GiB memory) l40s - NVIDIA L40S Tensor Core GPU (48 GiB memory) rtx-pro-server-6000 - NVIDIA RTX PRO Server 6000 GPU (96 GiB memory)
         name: string
-        -- Specifies the runtime driver to use for the GPU accelerator. You must use the same runtime for all GPUs in a fleet. You can choose from the following runtimes: latest - Use the latest runtime available for the chip. If you specify latest and a new version of the runtime is released, the new version of the runtime is used. grid:r580 - NVIDIA vGPU software 19 grid:r570 - NVIDIA vGPU software 18 grid:r535 - NVIDIA vGPU software 16 If you don't specify a runtime, Amazon Web Services Deadline Cloud uses latest as the default. However, if you have multiple accelerators and specify latest for some and leave others blank, Amazon Web Services Deadline Cloud raises an exception. Not all runtimes are compatible with all accelerator types: t4 and a10g: Support all runtimes (grid:r580, grid:r570, grid:r535) l4 and l40s: Only support grid:r570 and newer rtx-pro-server-6000: Only supports grid:r580 All accelerators in a fleet must use the same runtime version. You cannot mix different runtime versions within a single fleet. When you specify latest, it resolves to grid:r580 for all currently supported accelerators.
+        -- Specifies the runtime driver to use for the GPU accelerator. You must use the same runtime for all GPUs in a fleet. You can choose from the following runtimes: latest - Use the latest runtime available for the chip. If you specify latest and a new version of the runtime is released, the new version of the runtime is used. grid:r580 - NVIDIA vGPU software 19 If you don't specify a runtime, Amazon Web Services Deadline Cloud uses latest as the default. However, if you have multiple accelerators and specify latest for some and leave others blank, Amazon Web Services Deadline Cloud raises an exception. All accelerator types support grid:r580. All accelerators in a fleet must use the same runtime version. You cannot mix different runtime versions within a single fleet. When you specify latest, it resolves to grid:r580 for all currently supported accelerators.
         runtime: string
     end
 
@@ -161,8 +161,6 @@ local record M
         "GROUP"
     end
 
-    -- Shared member fields for Associate inputs and {Resource}Member response structures.
-    -- principalId is excluded because it has @httpLabel on inputs but not on responses.
     record AssociateMemberToFarmInput
         -- The ID of the farm to associate with the member.
         farmId: string
@@ -261,8 +259,6 @@ local record M
         context: {string : string}
     end
 
-    -- Shared member fields for Associate inputs and {Resource}Member response structures.
-    -- principalId is excluded because it has @httpLabel on inputs but not on responses.
     record AssociateMemberToFleetInput
         -- The farm ID of the fleet to associate with the member.
         farmId: string
@@ -283,8 +279,6 @@ local record M
     record AssociateMemberToFleetOutput
     end
 
-    -- Shared member fields for Associate inputs and {Resource}Member response structures.
-    -- principalId is excluded because it has @httpLabel on inputs but not on responses.
     record AssociateMemberToJobInput
         -- The farm ID of the job to associate with the member.
         farmId: string
@@ -307,8 +301,6 @@ local record M
     record AssociateMemberToJobOutput
     end
 
-    -- Shared member fields for Associate inputs and {Resource}Member response structures.
-    -- principalId is excluded because it has @httpLabel on inputs but not on responses.
     record AssociateMemberToQueueInput
         -- The farm ID of the queue to associate with the member.
         farmId: string
@@ -348,9 +340,6 @@ local record M
         expiration: number
     end
 
-    -- Shared response body for AssumeRole operations where credentials are required.
-    -- AssumeQueueRoleForWorkerResponse is excluded because credentials is optional there
-    -- because Queue.roleArn is optional, so the mixin's @required trait would be incorrect.
     record AssumeFleetRoleForReadOutput
         -- The credentials for the fleet role.
         credentials: AwsCredentials
@@ -365,9 +354,6 @@ local record M
         workerId: string
     end
 
-    -- Shared response body for AssumeRole operations where credentials are required.
-    -- AssumeQueueRoleForWorkerResponse is excluded because credentials is optional there
-    -- because Queue.roleArn is optional, so the mixin's @required trait would be incorrect.
     record AssumeFleetRoleForWorkerOutput
         -- The credentials for the worker.
         credentials: AwsCredentials
@@ -401,9 +387,6 @@ local record M
         queueId: string
     end
 
-    -- Shared response body for AssumeRole operations where credentials are required.
-    -- AssumeQueueRoleForWorkerResponse is excluded because credentials is optional there
-    -- because Queue.roleArn is optional, so the mixin's @required trait would be incorrect.
     record AssumeQueueRoleForReadOutput
         -- The credentials for the queue role.
         credentials: AwsCredentials
@@ -416,9 +399,6 @@ local record M
         queueId: string
     end
 
-    -- Shared response body for AssumeRole operations where credentials are required.
-    -- AssumeQueueRoleForWorkerResponse is excluded because credentials is optional there
-    -- because Queue.roleArn is optional, so the mixin's @required trait would be incorrect.
     record AssumeQueueRoleForUserOutput
         -- The credentials for the queue role that a user has access to.
         credentials: AwsCredentials
@@ -1673,8 +1653,6 @@ local record M
         queueId: string
     end
 
-    -- Shared displayName + description for Create operations where both are present.
-    -- displayName is @required here - this mixin is Create-only by design (Update has optional displayName).
     record CreateBudgetInput
         -- The farm ID to include in this budget.
         farmId: string
@@ -1696,8 +1674,6 @@ local record M
         tags: {string : string}
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record CreateBudgetOutput
         -- The budget ID.
         budgetId: string
@@ -1739,8 +1715,6 @@ local record M
         approximateDollarUsage: number
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetBudgetOutput
         -- The budget ID.
         budgetId: string
@@ -1772,7 +1746,6 @@ local record M
         queueStoppedAt: number
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListBudgetsInput
         -- The farm ID associated with the budgets.
         farmId: string
@@ -1810,7 +1783,6 @@ local record M
         description: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListBudgetsOutput
         -- The budgets to include on the list.
         budgets: {BudgetSummary}
@@ -1897,8 +1869,6 @@ local record M
         "arm64"
     end
 
-    -- Shared displayName + description for Create operations where both are present.
-    -- displayName is @required here - this mixin is Create-only by design (Update has optional displayName).
     record CreateFarmInput
         -- The unique token which the server uses to recognize retries of the same request.
         clientToken: string
@@ -1914,8 +1884,6 @@ local record M
         tags: {string : string}
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record CreateFarmOutput
         -- The farm ID.
         farmId: string
@@ -2061,9 +2029,9 @@ local record M
         rootEbsVolume: Ec2EbsVolume
         -- Describes the GPU accelerator capabilities required for worker host instances in this fleet.
         acceleratorCapabilities: AcceleratorCapabilities
-        -- The allowable Amazon EC2 instance types.
+        -- The allowable Amazon EC2 instance types. If you specify allowedInstanceTypes, you can't specify excludedInstanceTypes.
         allowedInstanceTypes: {string}
-        -- The instance types to exclude from the fleet.
+        -- The instance types to exclude from the fleet. If you specify excludedInstanceTypes, you can't specify allowedInstanceTypes.
         excludedInstanceTypes: {string}
         -- The custom capability amounts to require for instances in this fleet.
         customAmounts: {FleetAmountCapability}
@@ -2093,7 +2061,7 @@ local record M
         throughputMiB: number
         -- The file system path where the persistent volume is mounted on the worker instance.
         mountPath: string
-        -- The number of hours a persistent volume can remain unused before it is deleted. The default is 168 (7 days).
+        -- The number of hours a persistent volume can remain unused before it is deleted. The default is 12.
         lastUsedTtlHours: number
     end
 
@@ -2135,8 +2103,6 @@ local record M
         scriptTimeoutSeconds: number
     end
 
-    -- Shared displayName + description for Create operations where both are present.
-    -- displayName is @required here - this mixin is Create-only by design (Update has optional displayName).
     record CreateFleetInput
         -- The farm ID of the farm to connect to the fleet.
         farmId: string
@@ -2150,7 +2116,8 @@ local record M
         roleArn: string
         -- The minimum number of workers for the fleet.
         minWorkerCount: number
-        -- The maximum number of workers for the fleet. Deadline Cloud limits the number of workers to less than or equal to the fleet's maximum worker count. The service maintains eventual consistency for the worker count. If you make multiple rapid calls to CreateWorker before the field updates, you might exceed your fleet's maximum worker count. For example, if your maxWorkerCount is 10 and you currently have 9 workers, making two quick CreateWorker calls might successfully create 2 workers instead of 1, resulting in 11 total workers.
+        -- The maximum number of workers for the fleet.
+        -- Deadline Cloud limits the number of workers to less than or equal to the fleet's maximum worker count. The service maintains eventual consistency for the worker count. If you make multiple rapid calls to CreateWorker before the field updates, you might exceed your fleet's maximum worker count. For example, if your maxWorkerCount is 10 and you currently have 9 workers, making two quick CreateWorker calls might successfully create 2 workers instead of 1, resulting in 11 total workers.
         maxWorkerCount: number
         -- The configuration settings for the fleet. Customer managed fleets are self-managed. Service managed Amazon EC2 fleets are managed by Deadline Cloud.
         configuration: FleetConfiguration
@@ -2160,8 +2127,6 @@ local record M
         hostConfiguration: HostConfiguration
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record CreateFleetOutput
         -- The fleet ID.
         fleetId: string
@@ -2197,7 +2162,9 @@ local record M
         maxFailedTasksCount: number
         -- The maximum number of retries for each task.
         maxRetriesPerTask: number
-        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers. You can't set the maxWorkerCount to 0. If you set it to -1, there is no maximum number of workers. If you don't specify the maxWorkerCount, Deadline Cloud won't throttle the number of workers used to process the job.
+        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers.
+        -- You can't set the maxWorkerCount to 0. If you set it to -1, there is no maximum number of workers.
+        -- If you don't specify the maxWorkerCount, Deadline Cloud won't throttle the number of workers used to process the job.
         maxWorkerCount: number
         -- The job ID for the source job.
         sourceJobId: string
@@ -2209,8 +2176,6 @@ local record M
         tags: {string : string}
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record CreateJobOutput
         -- The job ID.
         jobId: string
@@ -2229,8 +2194,6 @@ local record M
         tags: {string : string}
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record CreateLicenseEndpointOutput
         -- The license endpoint ID.
         licenseEndpointId: string
@@ -2273,8 +2236,6 @@ local record M
         tags: {string : string}
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record CreateMonitorOutput
         -- The unique identifier of the monitor.
         monitorId: string
@@ -2354,8 +2315,6 @@ local record M
         weightedBalanced: WeightedBalancedSchedulingConfiguration
     end
 
-    -- Shared displayName + description for Create operations where both are present.
-    -- displayName is @required here - this mixin is Create-only by design (Update has optional displayName).
     record CreateQueueInput
         -- The farm ID of the farm to connect to the queue.
         farmId: string
@@ -2379,12 +2338,11 @@ local record M
         allowedStorageProfileIds: {string}
         -- Each tag consists of a tag key and a tag value. Tag keys and values are both required, but tag values can be empty strings.
         tags: {string : string}
-        -- The scheduling configuration for the queue. This configuration determines how workers are assigned to jobs in the queue. If not specified, the queue defaults to the priorityFifo scheduling configuration.
+        -- The scheduling configuration for the queue. This configuration determines how workers are assigned to jobs in the queue.
+        -- If not specified, the queue defaults to the priorityFifo scheduling configuration.
         schedulingConfiguration: SchedulingConfiguration
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record CreateQueueOutput
         -- The queue ID.
         queueId: string
@@ -2497,8 +2455,6 @@ local record M
         tags: {string : string}
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record CreateWorkerOutput
         -- The worker ID.
         workerId: string
@@ -2514,8 +2470,6 @@ local record M
         dateTime: number
     end
 
-    -- Identifier mixin for queue-fleet association operations.
-    -- Composes QueueIdentifierMixin (farmId + queueId) and adds fleetId.
     record DeleteQueueFleetAssociationInput
         -- The farm ID of the farm that holds the queue-fleet association.
         farmId: string
@@ -2626,8 +2580,6 @@ local record M
         "SUSPENDED"
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetFleetOutput
         -- The fleet ID.
         fleetId: string
@@ -2669,7 +2621,6 @@ local record M
         roleArn: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListFleetMembersInput
         -- The farm ID of the fleet.
         farmId: string
@@ -2697,7 +2648,6 @@ local record M
         membershipLevel: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListFleetMembersOutput
         -- The members on the list.
         members: {FleetMember}
@@ -2705,7 +2655,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListFleetsInput
         -- The farm ID of the fleets.
         farmId: string
@@ -2755,7 +2704,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListFleetsOutput
         -- The fleets on the list.
         fleets: {FleetSummary}
@@ -2778,7 +2726,8 @@ local record M
         roleArn: string
         -- The minimum number of workers in the fleet.
         minWorkerCount: number
-        -- The maximum number of workers in the fleet. Deadline Cloud limits the number of workers to less than or equal to the fleet's maximum worker count. The service maintains eventual consistency for the worker count. If you make multiple rapid calls to CreateWorker before the field updates, you might exceed your fleet's maximum worker count. For example, if your maxWorkerCount is 10 and you currently have 9 workers, making two quick CreateWorker calls might successfully create 2 workers instead of 1, resulting in 11 total workers.
+        -- The maximum number of workers in the fleet.
+        -- Deadline Cloud limits the number of workers to less than or equal to the fleet's maximum worker count. The service maintains eventual consistency for the worker count. If you make multiple rapid calls to CreateWorker before the field updates, you might exceed your fleet's maximum worker count. For example, if your maxWorkerCount is 10 and you currently have 9 workers, making two quick CreateWorker calls might successfully create 2 workers instead of 1, resulting in 11 total workers.
         maxWorkerCount: number
         -- The fleet configuration to update.
         configuration: FleetConfiguration
@@ -2822,8 +2771,6 @@ local record M
         "gp3"
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetVolumeOutput
         -- The volume ID.
         volumeId: string
@@ -2855,7 +2802,6 @@ local record M
         expiresAt: number
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListVolumesInput
         -- The farm ID of the farm that contains the fleet.
         farmId: string
@@ -2885,7 +2831,6 @@ local record M
         attachedWorkerId: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListVolumesOutput
         -- The volumes on the list.
         volumes: {VolumeSummary}
@@ -2914,8 +2859,6 @@ local record M
         workerId: string
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetWorkerOutput
         -- The farm ID.
         farmId: string
@@ -2939,7 +2882,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListSessionsForWorkerInput
         -- The farm ID for the session.
         farmId: string
@@ -2971,7 +2913,6 @@ local record M
         targetLifecycleStatus: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListSessionsForWorkerOutput
         -- The sessions in the response.
         sessions: {WorkerSessionSummary}
@@ -2979,7 +2920,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListWorkersInput
         -- The farm ID connected to the workers.
         farmId: string
@@ -3015,7 +2955,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListWorkersOutput
         -- The workers on the list.
         workers: {WorkerSummary}
@@ -3134,8 +3073,6 @@ local record M
         farmId: string
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetFarmOutput
         -- The farm ID of the farm to get.
         farmId: string
@@ -3164,7 +3101,6 @@ local record M
         limitId: string
     end
 
-    -- Domain fields for Limit summary/response shapes, ordered before timestamps.
     record GetLimitOutput
         -- The unique identifier of the farm that contains the limit.
         farmId: string
@@ -3184,7 +3120,8 @@ local record M
         displayName: string
         -- The value that you specify as the name in the amounts field of the hostRequirements in a step of a job template to declare the limit requirement.
         amountRequirementName: string
-        -- The maximum number of resources constrained by this limit. When all of the resources are in use, steps that require the limit won't be scheduled until the resource is available. The maxValue must not be 0. If the value is -1, there is no restriction on the number of resources that can be acquired for this limit.
+        -- The maximum number of resources constrained by this limit. When all of the resources are in use, steps that require the limit won't be scheduled until the resource is available.
+        -- The maxValue must not be 0. If the value is -1, there is no restriction on the number of resources that can be acquired for this limit.
         maxCount: number
         -- The description of the limit that helps identify what the limit is used for. This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field.
         description: string
@@ -3216,7 +3153,6 @@ local record M
         fileSystemLocations: {FileSystemLocation}
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListFarmMembersInput
         -- The farm ID.
         farmId: string
@@ -3240,7 +3176,6 @@ local record M
         membershipLevel: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListFarmMembersOutput
         -- The members on the list.
         members: {FarmMember}
@@ -3248,7 +3183,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListFarmsInput
         -- The token for the next set of results, or null to start from the beginning.
         nextToken: string
@@ -3276,7 +3210,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListFarmsOutput
         -- Farms on the list.
         farms: {FarmSummary}
@@ -3284,7 +3217,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListLimitsInput
         -- The unique identifier of the farm that contains the limits.
         farmId: string
@@ -3314,11 +3246,11 @@ local record M
         displayName: string
         -- The value that you specify as the name in the amounts field of the hostRequirements in a step of a job template to declare the limit requirement.
         amountRequirementName: string
-        -- The maximum number of resources constrained by this limit. When all of the resources are in use, steps that require the limit won't be scheduled until the resource is available. The maxValue must not be 0. If the value is -1, there is no restriction on the number of resources that can be acquired for this limit.
+        -- The maximum number of resources constrained by this limit. When all of the resources are in use, steps that require the limit won't be scheduled until the resource is available.
+        -- The maxValue must not be 0. If the value is -1, there is no restriction on the number of resources that can be acquired for this limit.
         maxCount: number
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListLimitsOutput
         -- A list of limits that the farm contains.
         limits: {LimitSummary}
@@ -3326,7 +3258,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListStorageProfilesInput
         -- The farm ID of the storage profile.
         farmId: string
@@ -3346,7 +3277,6 @@ local record M
         osFamily: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListStorageProfilesOutput
         -- The storage profiles.
         storageProfiles: {StorageProfileSummary}
@@ -3406,8 +3336,6 @@ local record M
         "SCHEDULING_BLOCKED"
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetQueueOutput
         -- The farm ID for the queue.
         farmId: string
@@ -3518,8 +3446,6 @@ local record M
         jobId: string
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetJobOutput
         -- The job ID.
         jobId: string
@@ -3563,7 +3489,8 @@ local record M
         attachments: Attachments
         -- The description of the job. This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field.
         description: string
-        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers. If you don't set the maxWorkerCount when you create a job, this value is not returned in the response.
+        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers.
+        -- If you don't set the maxWorkerCount when you create a job, this value is not returned in the response.
         maxWorkerCount: number
         -- The job ID for the source job.
         sourceJobId: string
@@ -3580,7 +3507,6 @@ local record M
         sessionId: string
     end
 
-    -- Session lifecycle/status fields, ordered after IDs in session shapes.
     record GetSessionOutput
         -- The session ID.
         sessionId: string
@@ -3736,7 +3662,6 @@ local record M
         parameters: {string : TaskParameterValue}
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListJobMembersInput
         -- The farm ID of the job to list.
         farmId: string
@@ -3768,7 +3693,6 @@ local record M
         membershipLevel: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListJobMembersOutput
         -- The members on the list.
         members: {JobMember}
@@ -3776,7 +3700,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListJobParameterDefinitionsInput
         -- The farm ID of the job to list.
         farmId: string
@@ -3790,7 +3713,6 @@ local record M
         maxResults: number
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListJobParameterDefinitionsOutput
         -- Lists parameter definitions of a job.
         jobParameterDefinitions: {any}
@@ -3798,7 +3720,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListJobsInput
         -- The farm ID for the jobs.
         farmId: string
@@ -3848,13 +3769,14 @@ local record M
         maxFailedTasksCount: number
         -- The maximum number of retries for a job.
         maxRetriesPerTask: number
-        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers. You can't set the maxWorkerCount to 0. If you set it to -1, there is no maximum number of workers. If you don't specify the maxWorkerCount, the default is -1.
+        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers.
+        -- You can't set the maxWorkerCount to 0. If you set it to -1, there is no maximum number of workers.
+        -- If you don't specify the maxWorkerCount, the default is -1.
         maxWorkerCount: number
         -- The job ID for the source job.
         sourceJobId: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListJobsOutput
         -- The jobs on the list.
         jobs: {JobSummary}
@@ -3862,7 +3784,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListSessionActionsInput
         -- The farm ID for the session actions list.
         farmId: string
@@ -3940,7 +3861,6 @@ local record M
         definition: SessionActionDefinitionSummary
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListSessionActionsOutput
         -- The session actions.
         sessionActions: {SessionActionSummary}
@@ -3948,7 +3868,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListSessionsInput
         -- The farm ID for the list of sessions.
         farmId: string
@@ -3984,7 +3903,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListSessionsOutput
         -- The sessions on the list.
         sessions: {SessionSummary}
@@ -4020,7 +3938,6 @@ local record M
         status: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListStepConsumersOutput
         -- The consumers on the list.
         consumers: {StepConsumer}
@@ -4051,7 +3968,6 @@ local record M
         status: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListStepDependenciesOutput
         -- The dependencies on the list.
         dependencies: {StepDependency}
@@ -4059,7 +3975,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListStepsInput
         -- The farm ID to include on the list of steps.
         farmId: string
@@ -4107,7 +4022,6 @@ local record M
         dependencyCounts: DependencyCounts
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListStepsOutput
         -- The steps on the list.
         steps: {StepSummary}
@@ -4115,7 +4029,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListTasksInput
         -- The farm ID connected to the tasks.
         farmId: string
@@ -4159,7 +4072,6 @@ local record M
         parameters: {string : TaskParameterValue}
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListTasksOutput
         -- Tasks for the job.
         tasks: {TaskSummary}
@@ -4186,7 +4098,10 @@ local record M
         maxRetriesPerTask: number
         -- The status of a job in its lifecycle. When you change the status of the job to ARCHIVED, the job can't be scheduled or archived. An archived jobs and its steps and tasks are deleted after 120 days. The job can't be recovered.
         lifecycleStatus: string
-        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers. You can't set the maxWorkerCount to 0. If you set it to -1, there is no maximum number of workers. If you don't specify the maxWorkerCount, the default is -1. The maximum number of workers that can process tasks in the job.
+        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers.
+        -- You can't set the maxWorkerCount to 0. If you set it to -1, there is no maximum number of workers.
+        -- If you don't specify the maxWorkerCount, the default is -1.
+        -- The maximum number of workers that can process tasks in the job.
         maxWorkerCount: number
         -- The updated job name.
         name: string
@@ -4253,7 +4168,6 @@ local record M
     record UpdateTaskOutput
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListQueueEnvironmentsInput
         -- The farm ID for the queue environment list.
         farmId: string
@@ -4275,7 +4189,6 @@ local record M
         priority: number
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListQueueEnvironmentsOutput
         -- The environments to include in the queue environments list.
         environments: {QueueEnvironmentSummary}
@@ -4283,7 +4196,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListQueueMembersInput
         -- The farm ID for the queue.
         farmId: string
@@ -4311,7 +4223,6 @@ local record M
         membershipLevel: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListQueueMembersOutput
         -- The members on the list.
         members: {QueueMember}
@@ -4319,7 +4230,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListQueuesInput
         -- The farm ID of the queue.
         farmId: string
@@ -4357,7 +4267,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListQueuesOutput
         -- The queues on the list.
         queues: {QueueSummary}
@@ -4365,7 +4274,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListStorageProfilesForQueueInput
         -- The farm ID of the queue's storage profile.
         farmId: string
@@ -4377,7 +4285,6 @@ local record M
         maxResults: number
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListStorageProfilesForQueueOutput
         -- The storage profiles in the queue.
         storageProfiles: {StorageProfileSummary}
@@ -4412,7 +4319,9 @@ local record M
         allowedStorageProfileIdsToAdd: {string}
         -- The storage profile ID to remove.
         allowedStorageProfileIdsToRemove: {string}
-        -- The scheduling configuration for the queue. This configuration determines how workers are assigned to jobs in the queue. When updating the scheduling configuration, the entire configuration is replaced. In-progress tasks run to completion before the new scheduling configuration takes effect.
+        -- The scheduling configuration for the queue. This configuration determines how workers are assigned to jobs in the queue.
+        -- When updating the scheduling configuration, the entire configuration is replaced.
+        -- In-progress tasks run to completion before the new scheduling configuration takes effect.
         schedulingConfiguration: SchedulingConfiguration
     end
 
@@ -4462,7 +4371,9 @@ local record M
         displayName: string
         -- The new description of the limit. This field can store any content. Escape or encode this content before displaying it on a webpage or any other system that might interpret the content of this field.
         description: string
-        -- The maximum number of resources constrained by this limit. When all of the resources are in use, steps that require the limit won't be scheduled until the resource is available. If more than the new maximum number is currently in use, running jobs finish but no new jobs are started until the number of resources in use is below the new maximum number. The maxCount must not be 0. If the value is -1, there is no restriction on the number of resources that can be acquired for this limit.
+        -- The maximum number of resources constrained by this limit. When all of the resources are in use, steps that require the limit won't be scheduled until the resource is available.
+        -- If more than the new maximum number is currently in use, running jobs finish but no new jobs are started until the number of resources in use is below the new maximum number.
+        -- The maxCount must not be 0. If the value is -1, there is no restriction on the number of resources that can be acquired for this limit.
         maxCount: number
     end
 
@@ -4489,8 +4400,6 @@ local record M
     record UpdateStorageProfileOutput
     end
 
-    -- Identifier mixin for queue-fleet association operations.
-    -- Composes QueueIdentifierMixin (farmId + queueId) and adds fleetId.
     record GetQueueFleetAssociationInput
         -- The farm ID of the farm that contains the queue-fleet association.
         farmId: string
@@ -4507,7 +4416,6 @@ local record M
         "STOPPED"
     end
 
-    -- Domain fields for QueueFleetAssociation summary/response shapes, ordered before timestamps.
     record GetQueueFleetAssociationOutput
         -- The queue ID for the queue-fleet association.
         queueId: string
@@ -4541,7 +4449,6 @@ local record M
         "STOPPED"
     end
 
-    -- Domain fields for QueueLimitAssociation summary/response shapes, ordered before timestamps.
     record GetQueueLimitAssociationOutput
         -- The unique identifier of the queue associated with the limit.
         queueId: string
@@ -4559,7 +4466,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record GetSessionsStatisticsAggregationInput
         -- The identifier of the farm to include in the statistics. This should be the same as the farm ID used in the call to the StartSessionsStatisticsAggregation operation.
         farmId: string
@@ -4626,11 +4532,11 @@ local record M
         "COMPLETED"
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record GetSessionsStatisticsAggregationOutput
         -- The statistics for the specified fleets or queues.
         statistics: {Statistics}
-        -- The status of the aggregated results. An aggregation may fail or time out if the results are too large. If this happens, you can call the StartSessionsStatisticsAggregation operation after you reduce the aggregation time frame, reduce the number of queues or fleets in the aggregation, or increase the period length. If you call the StartSessionsStatisticsAggregation operation when the status is IN_PROGRESS, you will receive a ThrottlingException.
+        -- The status of the aggregated results. An aggregation may fail or time out if the results are too large. If this happens, you can call the StartSessionsStatisticsAggregation operation after you reduce the aggregation time frame, reduce the number of queues or fleets in the aggregation, or increase the period length.
+        -- If you call the StartSessionsStatisticsAggregation operation when the status is IN_PROGRESS, you will receive a ThrottlingException.
         status: string
         -- A message that describes the status.
         statusMessage: string
@@ -4668,8 +4574,6 @@ local record M
         "NOT_READY"
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetLicenseEndpointOutput
         -- The license endpoint ID.
         licenseEndpointId: string
@@ -4687,7 +4591,6 @@ local record M
         securityGroupIds: {string}
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListLicenseEndpointsInput
         -- The token for the next set of results, or null to start from the beginning.
         nextToken: string
@@ -4707,7 +4610,6 @@ local record M
         vpcId: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListLicenseEndpointsOutput
         -- The license endpoints.
         licenseEndpoints: {LicenseEndpointSummary}
@@ -4715,7 +4617,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListMeteredProductsInput
         -- The license endpoint ID to include on the list of metered products.
         licenseEndpointId: string
@@ -4737,7 +4638,6 @@ local record M
         port: number
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListMeteredProductsOutput
         -- The metered products to list.
         meteredProducts: {MeteredProductSummary}
@@ -4755,7 +4655,6 @@ local record M
     record PutMeteredProductOutput
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListAvailableMeteredProductsInput
         -- The token for the next set of results, or null to start from the beginning.
         nextToken: string
@@ -4763,7 +4662,6 @@ local record M
         maxResults: number
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListAvailableMeteredProductsOutput
         -- The metered products.
         meteredProducts: {MeteredProductSummary}
@@ -4778,7 +4676,6 @@ local record M
         "JOB"
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListMembershipsInput
         -- The token for the next set of results, or null to start from the beginning.
         nextToken: string
@@ -4806,7 +4703,6 @@ local record M
         job: JobMember
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListMembershipsOutput
         -- The memberships associated with the specified principal.
         memberships: {MembershipSummary}
@@ -4814,7 +4710,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListQueueFleetAssociationsInput
         -- The farm ID for the queue-fleet association list.
         farmId: string
@@ -4846,7 +4741,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListQueueFleetAssociationsOutput
         -- The queue-fleet associations on the list.
         queueFleetAssociations: {QueueFleetAssociationSummary}
@@ -4854,7 +4748,6 @@ local record M
         nextToken: string
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListQueueLimitAssociationsInput
         -- The unique identifier of the farm that contains the limits and associations.
         farmId: string
@@ -4886,7 +4779,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListQueueLimitAssociationsOutput
         -- A list of associations between limits and queues in the farm specified in the request.
         queueLimitAssociations: {QueueLimitAssociationSummary}
@@ -4917,8 +4809,6 @@ local record M
         monitorId: string
     end
 
-    -- Mixin that adds an optional ARN field to response structures.
-    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
     record GetMonitorOutput
         -- The unique identifier for the monitor.
         monitorId: string
@@ -4956,7 +4846,6 @@ local record M
         settings: {string : string}
     end
 
-    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
     record ListMonitorsInput
         -- The token for the next set of results, or null to start from the beginning.
         nextToken: string
@@ -4992,7 +4881,6 @@ local record M
         updatedBy: string
     end
 
-    -- Shared pagination field for List operation outputs (nextToken).
     record ListMonitorsOutput
         -- A list of MonitorSummary objects that describe your monitors in the Deadline Cloud.
         monitors: {MonitorSummary}
@@ -5149,13 +5037,14 @@ local record M
         updatedBy: string
         -- The job parameters.
         jobParameters: {string : JobParameter}
-        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers. You can't set the maxWorkerCount to 0. If you set it to -1, there is no maximum number of workers. If you don't specify the maxWorkerCount, the default is -1.
+        -- The maximum number of worker hosts that can concurrently process a job. When the maxWorkerCount is reached, no more workers will be assigned to process the job, even if the fleets assigned to the job's queue has available workers.
+        -- You can't set the maxWorkerCount to 0. If you set it to -1, there is no maximum number of workers.
+        -- If you don't specify the maxWorkerCount, the default is -1.
         maxWorkerCount: number
         -- The job ID for the source job.
         sourceJobId: string
     end
 
-    -- Shared output fields for all Search operations (nextItemOffset, totalResults).
     record SearchJobsOutput
         -- The jobs in the search.
         jobs: {JobSearchSummary}
@@ -5203,7 +5092,6 @@ local record M
         parameterSpace: ParameterSpace
     end
 
-    -- Shared output fields for all Search operations (nextItemOffset, totalResults).
     record SearchStepsOutput
         -- The steps in the search.
         steps: {StepSearchSummary}
@@ -5243,7 +5131,6 @@ local record M
         latestSessionActionId: string
     end
 
-    -- Shared output fields for all Search operations (nextItemOffset, totalResults).
     record SearchTasksOutput
         -- Tasks in the search.
         tasks: {TaskSearchSummary}
@@ -5273,7 +5160,6 @@ local record M
         updatedAt: number
     end
 
-    -- Shared output fields for all Search operations (nextItemOffset, totalResults).
     record SearchWorkersOutput
         -- The workers for the search.
         workers: {WorkerSearchSummary}
@@ -5365,8 +5251,6 @@ local record M
         "STOP_SCHEDULING_AND_CANCEL_TASKS"
     end
 
-    -- Identifier mixin for queue-fleet association operations.
-    -- Composes QueueIdentifierMixin (farmId + queueId) and adds fleetId.
     record UpdateQueueFleetAssociationInput
         -- The farm ID to update.
         farmId: string
@@ -5425,7 +5309,6 @@ local record M
         operator: string
     end
 
-    -- Shared input fields for all Search operations (filterExpressions, sortExpressions, itemOffset, pageSize).
     record SearchJobsInput
         -- The farm ID of the job.
         farmId: string
@@ -5441,7 +5324,6 @@ local record M
         queueIds: {string}
     end
 
-    -- Shared input fields for all Search operations (filterExpressions, sortExpressions, itemOffset, pageSize).
     record SearchStepsInput
         -- The farm ID to use for the step search.
         farmId: string
@@ -5459,7 +5341,6 @@ local record M
         jobId: string
     end
 
-    -- Shared input fields for all Search operations (filterExpressions, sortExpressions, itemOffset, pageSize).
     record SearchTasksInput
         -- The farm ID of the task.
         farmId: string
@@ -5477,7 +5358,6 @@ local record M
         jobId: string
     end
 
-    -- Shared input fields for all Search operations (filterExpressions, sortExpressions, itemOffset, pageSize).
     record SearchWorkersInput
         -- The farm ID in the workers search.
         farmId: string

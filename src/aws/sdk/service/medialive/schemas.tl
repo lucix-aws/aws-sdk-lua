@@ -13410,6 +13410,70 @@ M.Av1ColorSpaceSettings = schema.new({
     },
 })
 
+M.AutoFilterSettings = schema.new({
+    id = id.from(_N, "AutoFilterSettings"),
+    type = "structure",
+})
+
+M.NoneFilterSettings = schema.new({
+    id = id.from(_N, "NoneFilterSettings"),
+    type = "structure",
+})
+
+M.PerceptualFilterSettings = schema.new({
+    id = id.from(_N, "PerceptualFilterSettings"),
+    type = "structure",
+    members = {
+        Strength = schema.new({
+            id = id.from(_N, "PerceptualFilterSettings", "Strength"),
+            type = "string",
+            name = "Strength",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "strength" },
+            },
+        }),
+    },
+})
+
+M.Av1FilterSettings = schema.new({
+    id = id.from(_N, "Av1FilterSettings"),
+    type = "structure",
+    members = {
+        AutoFilterSettings = schema.new({
+            id = id.from(_N, "Av1FilterSettings", "AutoFilterSettings"),
+            type = "structure",
+            name = "AutoFilterSettings",
+            target_id = id.from(_N, "AutoFilterSettings"),
+            target = M.AutoFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "autoFilterSettings" },
+            },
+        }),
+        NoneFilterSettings = schema.new({
+            id = id.from(_N, "Av1FilterSettings", "NoneFilterSettings"),
+            type = "structure",
+            name = "NoneFilterSettings",
+            target_id = id.from(_N, "NoneFilterSettings"),
+            target = M.NoneFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "noneFilterSettings" },
+            },
+        }),
+        PerceptualFilterSettings = schema.new({
+            id = id.from(_N, "Av1FilterSettings", "PerceptualFilterSettings"),
+            type = "structure",
+            name = "PerceptualFilterSettings",
+            target_id = id.from(_N, "PerceptualFilterSettings"),
+            target = M.PerceptualFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "perceptualFilterSettings" },
+            },
+        }),
+    },
+})
+
 M.TimecodeBurninSettings = schema.new({
     id = id.from(_N, "TimecodeBurninSettings"),
     type = "structure",
@@ -13670,6 +13734,16 @@ M.Av1Settings = schema.new({
                 [traits.JSON_NAME] = { name = "bitDepth" },
             },
         }),
+        FilterSettings = schema.new({
+            id = id.from(_N, "Av1Settings", "FilterSettings"),
+            type = "structure",
+            name = "FilterSettings",
+            target_id = id.from(_N, "Av1FilterSettings"),
+            target = M.Av1FilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "filterSettings" },
+            },
+        }),
     },
 })
 
@@ -13817,6 +13891,36 @@ M.H264FilterSettings = schema.new({
             target = M.BandwidthReductionFilterSettings,
             traits = {
                 [traits.JSON_NAME] = { name = "bandwidthReductionFilterSettings" },
+            },
+        }),
+        AutoFilterSettings = schema.new({
+            id = id.from(_N, "H264FilterSettings", "AutoFilterSettings"),
+            type = "structure",
+            name = "AutoFilterSettings",
+            target_id = id.from(_N, "AutoFilterSettings"),
+            target = M.AutoFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "autoFilterSettings" },
+            },
+        }),
+        NoneFilterSettings = schema.new({
+            id = id.from(_N, "H264FilterSettings", "NoneFilterSettings"),
+            type = "structure",
+            name = "NoneFilterSettings",
+            target_id = id.from(_N, "NoneFilterSettings"),
+            target = M.NoneFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "noneFilterSettings" },
+            },
+        }),
+        PerceptualFilterSettings = schema.new({
+            id = id.from(_N, "H264FilterSettings", "PerceptualFilterSettings"),
+            type = "structure",
+            name = "PerceptualFilterSettings",
+            target_id = id.from(_N, "PerceptualFilterSettings"),
+            target = M.PerceptualFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "perceptualFilterSettings" },
             },
         }),
     },
@@ -14225,6 +14329,15 @@ M.H264Settings = schema.new({
                 [traits.JSON_NAME] = { name = "minBitrate" },
             },
         }),
+        AllowExplicitWeightedPrediction = schema.new({
+            id = id.from(_N, "H264Settings", "AllowExplicitWeightedPrediction"),
+            type = "string",
+            name = "AllowExplicitWeightedPrediction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowExplicitWeightedPrediction" },
+            },
+        }),
     },
 })
 
@@ -14322,6 +14435,36 @@ M.H265FilterSettings = schema.new({
             target = M.BandwidthReductionFilterSettings,
             traits = {
                 [traits.JSON_NAME] = { name = "bandwidthReductionFilterSettings" },
+            },
+        }),
+        AutoFilterSettings = schema.new({
+            id = id.from(_N, "H265FilterSettings", "AutoFilterSettings"),
+            type = "structure",
+            name = "AutoFilterSettings",
+            target_id = id.from(_N, "AutoFilterSettings"),
+            target = M.AutoFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "autoFilterSettings" },
+            },
+        }),
+        NoneFilterSettings = schema.new({
+            id = id.from(_N, "H265FilterSettings", "NoneFilterSettings"),
+            type = "structure",
+            name = "NoneFilterSettings",
+            target_id = id.from(_N, "NoneFilterSettings"),
+            target = M.NoneFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "noneFilterSettings" },
+            },
+        }),
+        PerceptualFilterSettings = schema.new({
+            id = id.from(_N, "H265FilterSettings", "PerceptualFilterSettings"),
+            type = "structure",
+            name = "PerceptualFilterSettings",
+            target_id = id.from(_N, "PerceptualFilterSettings"),
+            target = M.PerceptualFilterSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "perceptualFilterSettings" },
             },
         }),
     },

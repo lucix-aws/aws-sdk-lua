@@ -381,6 +381,7 @@ local record Client
     updateMetricContent: function(Client, types.UpdateMetricContentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMetricContentOutput>
     updateMetricMetadata: function(Client, types.UpdateMetricMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMetricMetadataOutput>
     updateNotificationContent: function(Client, types.UpdateNotificationContentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotificationContentOutput>
+    updateOutboundEmailContactMessage: function(Client, types.UpdateOutboundEmailContactMessageInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOutboundEmailContactMessageOutput>
     updateParticipantAuthentication: function(Client, types.UpdateParticipantAuthenticationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateParticipantAuthenticationOutput>
     updateParticipantRoleConfig: function(Client, types.UpdateParticipantRoleConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateParticipantRoleConfigOutput>
     updatePhoneNumber: function(Client, types.UpdatePhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePhoneNumberOutput>
@@ -1915,6 +1916,10 @@ end
 
 function C:updateNotificationContent(input: types.UpdateNotificationContentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotificationContentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotificationContent as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotificationContentOutput>
+end
+
+function C:updateOutboundEmailContactMessage(input: types.UpdateOutboundEmailContactMessageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOutboundEmailContactMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOutboundEmailContactMessage as schema.OperationSchema, input, options) as async.Operation<types.UpdateOutboundEmailContactMessageOutput>
 end
 
 function C:updateParticipantAuthentication(input: types.UpdateParticipantAuthenticationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateParticipantAuthenticationOutput>

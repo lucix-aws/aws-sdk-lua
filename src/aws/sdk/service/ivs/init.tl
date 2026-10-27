@@ -23,17 +23,20 @@ local record Client
     batchStartViewerSessionRevocation: function(Client, types.BatchStartViewerSessionRevocationInput, ? base_client.InvokeOptions): async.Operation<types.BatchStartViewerSessionRevocationOutput>
     createAdConfiguration: function(Client, types.CreateAdConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAdConfigurationOutput>
     createChannel: function(Client, types.CreateChannelInput, ? base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
+    createFailoverSlateConfiguration: function(Client, types.CreateFailoverSlateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateFailoverSlateConfigurationOutput>
     createPlaybackRestrictionPolicy: function(Client, types.CreatePlaybackRestrictionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreatePlaybackRestrictionPolicyOutput>
     createRecordingConfiguration: function(Client, types.CreateRecordingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecordingConfigurationOutput>
     createStreamKey: function(Client, types.CreateStreamKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamKeyOutput>
     deleteAdConfiguration: function(Client, types.DeleteAdConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAdConfigurationOutput>
     deleteChannel: function(Client, types.DeleteChannelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
+    deleteFailoverSlateConfiguration: function(Client, types.DeleteFailoverSlateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFailoverSlateConfigurationOutput>
     deletePlaybackKeyPair: function(Client, types.DeletePlaybackKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.DeletePlaybackKeyPairOutput>
     deletePlaybackRestrictionPolicy: function(Client, types.DeletePlaybackRestrictionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePlaybackRestrictionPolicyOutput>
     deleteRecordingConfiguration: function(Client, types.DeleteRecordingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecordingConfigurationOutput>
     deleteStreamKey: function(Client, types.DeleteStreamKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamKeyOutput>
     getAdConfiguration: function(Client, types.GetAdConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetAdConfigurationOutput>
     getChannel: function(Client, types.GetChannelInput, ? base_client.InvokeOptions): async.Operation<types.GetChannelOutput>
+    getFailoverSlateConfiguration: function(Client, types.GetFailoverSlateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetFailoverSlateConfigurationOutput>
     getPlaybackKeyPair: function(Client, types.GetPlaybackKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.GetPlaybackKeyPairOutput>
     getPlaybackRestrictionPolicy: function(Client, types.GetPlaybackRestrictionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPlaybackRestrictionPolicyOutput>
     getRecordingConfiguration: function(Client, types.GetRecordingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetRecordingConfigurationOutput>
@@ -44,6 +47,7 @@ local record Client
     insertAdBreak: function(Client, types.InsertAdBreakInput, ? base_client.InvokeOptions): async.Operation<types.InsertAdBreakOutput>
     listAdConfigurations: function(Client, types.ListAdConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAdConfigurationsOutput>
     listChannels: function(Client, types.ListChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    listFailoverSlateConfigurations: function(Client, types.ListFailoverSlateConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFailoverSlateConfigurationsOutput>
     listPlaybackKeyPairs: function(Client, types.ListPlaybackKeyPairsInput, ? base_client.InvokeOptions): async.Operation<types.ListPlaybackKeyPairsOutput>
     listPlaybackRestrictionPolicies: function(Client, types.ListPlaybackRestrictionPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPlaybackRestrictionPoliciesOutput>
     listRecordingConfigurations: function(Client, types.ListRecordingConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecordingConfigurationsOutput>
@@ -58,6 +62,7 @@ local record Client
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAdConfiguration: function(Client, types.UpdateAdConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAdConfigurationOutput>
     updateChannel: function(Client, types.UpdateChannelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
+    updateFailoverSlateConfiguration: function(Client, types.UpdateFailoverSlateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFailoverSlateConfigurationOutput>
     updatePlaybackRestrictionPolicy: function(Client, types.UpdatePlaybackRestrictionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePlaybackRestrictionPolicyOutput>
 end
 
@@ -123,6 +128,10 @@ function C:createChannel(input: types.CreateChannelInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChannel as schema.OperationSchema, input, options) as async.Operation<types.CreateChannelOutput>
 end
 
+function C:createFailoverSlateConfiguration(input: types.CreateFailoverSlateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFailoverSlateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFailoverSlateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateFailoverSlateConfigurationOutput>
+end
+
 function C:createPlaybackRestrictionPolicy(input: types.CreatePlaybackRestrictionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePlaybackRestrictionPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePlaybackRestrictionPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreatePlaybackRestrictionPolicyOutput>
 end
@@ -141,6 +150,10 @@ end
 
 function C:deleteChannel(input: types.DeleteChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChannel as schema.OperationSchema, input, options) as async.Operation<types.DeleteChannelOutput>
+end
+
+function C:deleteFailoverSlateConfiguration(input: types.DeleteFailoverSlateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFailoverSlateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFailoverSlateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteFailoverSlateConfigurationOutput>
 end
 
 function C:deletePlaybackKeyPair(input: types.DeletePlaybackKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePlaybackKeyPairOutput>
@@ -165,6 +178,10 @@ end
 
 function C:getChannel(input: types.GetChannelInput, options?: base_client.InvokeOptions): async.Operation<types.GetChannelOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChannel as schema.OperationSchema, input, options) as async.Operation<types.GetChannelOutput>
+end
+
+function C:getFailoverSlateConfiguration(input: types.GetFailoverSlateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetFailoverSlateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFailoverSlateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetFailoverSlateConfigurationOutput>
 end
 
 function C:getPlaybackKeyPair(input: types.GetPlaybackKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.GetPlaybackKeyPairOutput>
@@ -205,6 +222,10 @@ end
 
 function C:listChannels(input: types.ListChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannels as schema.OperationSchema, input, options) as async.Operation<types.ListChannelsOutput>
+end
+
+function C:listFailoverSlateConfigurations(input: types.ListFailoverSlateConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFailoverSlateConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFailoverSlateConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListFailoverSlateConfigurationsOutput>
 end
 
 function C:listPlaybackKeyPairs(input: types.ListPlaybackKeyPairsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlaybackKeyPairsOutput>
@@ -261,6 +282,10 @@ end
 
 function C:updateChannel(input: types.UpdateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChannel as schema.OperationSchema, input, options) as async.Operation<types.UpdateChannelOutput>
+end
+
+function C:updateFailoverSlateConfiguration(input: types.UpdateFailoverSlateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFailoverSlateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFailoverSlateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateFailoverSlateConfigurationOutput>
 end
 
 function C:updatePlaybackRestrictionPolicy(input: types.UpdatePlaybackRestrictionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePlaybackRestrictionPolicyOutput>

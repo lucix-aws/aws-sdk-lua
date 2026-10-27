@@ -1863,6 +1863,7 @@ local record M
         "REJECTED"
         "PROCESSING"
         "FAILED"
+        "DRAFTING"
     end
 
     enum ReferenceType
@@ -9229,8 +9230,9 @@ local record M
         -- FLOWS_OUTCOME_TYPE | FLOWS_RESOURCE_ID | FORM_VERSION |
         -- INITIATING_FLOW | INITIATION_METHOD |
         -- INVOKING_RESOURCE_PUBLISHED_TIMESTAMP | INVOKING_RESOURCE_TYPE |
-        -- KNOWLEDGE_BASE_NAME | PARENT_FLOWS_RESOURCE_ID |
-        -- Q_CONNECT_ENABLED | QUEUE | RESOURCE_PUBLISHED_TIMESTAMP |
+        -- KNOWLEDGE_BASE_NAME | LIFETIME_VALUE | PARENT_FLOWS_RESOURCE_ID |
+        -- Q_CONNECT_ENABLED | QUEUE | REPEAT_CALLER |
+        -- RESOURCE_PUBLISHED_TIMESTAMP |
         -- ROUTING_PROFILE | ROUTING_STEP_EXPRESSION | SESSION_ID |
         -- TEST_CASE | TEST_CASE_EXECUTION_FAILURE_REASON |
         -- TEST_CASE_EXECUTION_RESULT | TEST_CASE_EXECUTION_STATE |
@@ -9265,6 +9267,18 @@ local record M
         -- Campaign ARNs are valid filter values for the CAMPAIGN filter key.
         -- To filter by phone number, see Create a historical metrics report in
         -- the Connect Customer Administrator Guide.
+        -- LIFETIME_VALUE filters and groups by customer lifetime value segment (High lifetime value,
+        -- Medium lifetime value, Low lifetime value). For more information about the calculated attributes that drive these
+        -- segments, see Default calculated
+        -- attributes in the Connect Customer Administrator Guide.
+        -- REPEAT_CALLER filters and groups by repeat caller status.
+        -- The LIFETIME_VALUE and REPEAT_CALLER filters and groupings use customer segment
+        -- data from Customer Profiles. For more information, see Default segments in the
+        -- Connect Customer Administrator Guide.
+        -- To use the LIFETIME_VALUE and REPEAT_CALLER filters and groupings, users must have
+        -- the Customer segments - View permission enabled in their security profile. For
+        -- more information, see List
+        -- of security profile permissions in the Connect Customer Administrator Guide.
         Filters: {FilterV2}
         -- The grouping applied to the metrics that are returned. For example, when results are grouped by queue, the
         -- metrics returned are grouped by queue. The values that are returned apply to the metrics for each queue. They are not
@@ -9289,9 +9303,9 @@ local record M
         -- FLOWS_MODULE_RESOURCE_ID | FLOW_ACTION_ID | FLOW_TYPE |
         -- FLOWS_OUTCOME_TYPE | FORM_VERSION | INITIATION_METHOD |
         -- INVOKING_RESOURCE_PUBLISHED_TIMESTAMP | INVOKING_RESOURCE_TYPE |
-        -- KNOWLEDGE_ARTICLE_NAME | KNOWLEDGE_BASE_NAME |
+        -- KNOWLEDGE_ARTICLE_NAME | KNOWLEDGE_BASE_NAME | LIFETIME_VALUE |
         -- PARENT_FLOWS_RESOURCE_ID | Q_CONNECT_ENABLED | QUEUE |
-        -- RESOURCE_PUBLISHED_TIMESTAMP | ROUTING_PROFILE | ROUTING_STEP_EXPRESSION |
+        -- REPEAT_CALLER | RESOURCE_PUBLISHED_TIMESTAMP | ROUTING_PROFILE | ROUTING_STEP_EXPRESSION |
         -- SESSION_ID | TEST_CASE | TEST_CASE_EXECUTION_FAILURE_REASON |
         -- TEST_CASE_INVOCATION_METHOD | WEB_NOTIFICATION_TYPE
         -- AI_PROMPT_NAME_VERSION and KNOWLEDGE_ARTICLE_NAME are valid groupings but not valid filters.
@@ -9982,6 +9996,111 @@ local record M
         -- Campaign Delivery Event Type filter and grouping are only available for SMS, Email, WhatsApp, and web
         -- notification campaign delivery modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and
         -- Disconnect Reason are only available for agent assisted voice and automated voice delivery modes.
+        -- EVALUATED_CHURN_PROPENSITY_RATE
+        -- This metric requires an evaluation form with business outcome questions. For more information, see Create an evaluation
+        -- form in the Connect Customer Administrator Guide.
+        -- Unit: Percent
+        -- Valid groupings and filters: Agent, Agent Hierarchy Level One, Agent Hierarchy Level Two, Agent
+        -- Hierarchy Level Three, Agent Hierarchy Level Four, Agent Hierarchy Level Five, AI Agent ID, AI Agent Name, AI Agent
+        -- Name Version, AI Agent Type, AI Use Case, Bot ID, Bot Intent Name, Bot Locale, Campaign, Campaign Delivery Event
+        -- Type, Channel, Contact Category, Disconnect Reason, Email Address, Evaluation Form, Evaluation Question, Evaluation
+        -- Section, Evaluation Source, Evaluator, Feature, Flow Type, Flows Module Resource ID, Flows Next Resource ID, Flows
+        -- Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type, Flows Resource Alias, Flows Resource ID,
+        -- Flows Resource Type, Flows Resource Version, Initiation Method, Lifetime Value,
+        -- Proficiency, Q Connect Enabled, Queue, Queue Agent Group Name, Queue Agent Group Type, Queue Type, Repeat Caller, Resource Published Timestamp, Routing Profile, Routing Step Expression,
+        -- Session ID, Subtype, Telephone Number
+        -- UI name: Evaluated churn propensity rate
+        -- Feature, Flows Next Resource ID, Flows Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type,
+        -- Flows Resource Type, Proficiency, Resource Published Timestamp, and Session ID are valid filters but not valid
+        -- groupings. AI Agent Name Version, Campaign Delivery Event Type, and Queue Agent Group Name are valid groupings but
+        -- not valid filters.
+        -- When requesting business outcome metrics, the filters and groupings used in a single request must belong to
+        -- the same metric scope. Filters and groupings from different metric scopes cannot be combined in one
+        -- request.
+        -- EVALUATED_CSAT_PERCENT
+        -- This metric requires an evaluation form with business outcome questions. For more information, see Create an evaluation
+        -- form in the Connect Customer Administrator Guide.
+        -- Unit: Percent
+        -- Valid groupings and filters: Agent, Agent Hierarchy Level One, Agent Hierarchy Level Two, Agent
+        -- Hierarchy Level Three, Agent Hierarchy Level Four, Agent Hierarchy Level Five, AI Agent ID, AI Agent Name, AI Agent
+        -- Name Version, AI Agent Type, AI Use Case, Bot ID, Bot Intent Name, Bot Locale, Campaign, Campaign Delivery Event
+        -- Type, Channel, Contact Category, Disconnect Reason, Email Address, Evaluation Form, Evaluation Question, Evaluation
+        -- Section, Evaluation Source, Evaluator, Feature, Flow Type, Flows Module Resource ID, Flows Next Resource ID, Flows
+        -- Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type, Flows Resource Alias, Flows Resource ID,
+        -- Flows Resource Type, Flows Resource Version, Initiation Method, Lifetime Value,
+        -- Proficiency, Q Connect Enabled, Queue, Queue Agent Group Name, Queue Agent Group Type, Queue Type, Repeat Caller, Resource Published Timestamp, Routing Profile, Routing Step Expression,
+        -- Session ID, Subtype, Telephone Number
+        -- UI name: Evaluated CSAT percent
+        -- Feature, Flows Next Resource ID, Flows Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type,
+        -- Flows Resource Type, Proficiency, Resource Published Timestamp, and Session ID are valid filters but not valid
+        -- groupings. AI Agent Name Version, Campaign Delivery Event Type, and Queue Agent Group Name are valid groupings but
+        -- not valid filters.
+        -- When requesting business outcome metrics, the filters and groupings used in a single request must belong to
+        -- the same metric scope. Filters and groupings from different metric scopes cannot be combined in one
+        -- request.
+        -- EVALUATED_PARTIAL_SELF_SERVICE_SUCCESS_RATE
+        -- This metric requires an evaluation form with business outcome questions. For more information, see Create an evaluation
+        -- form in the Connect Customer Administrator Guide.
+        -- Unit: Percent
+        -- Valid groupings and filters: Agent, Agent Hierarchy Level One, Agent Hierarchy Level Two, Agent
+        -- Hierarchy Level Three, Agent Hierarchy Level Four, Agent Hierarchy Level Five, AI Agent ID, AI Agent Name, AI Agent
+        -- Name Version, AI Agent Type, AI Use Case, Bot ID, Bot Intent Name, Bot Locale, Campaign, Campaign Delivery Event
+        -- Type, Channel, Contact Category, Disconnect Reason, Email Address, Evaluation Form, Evaluation Question, Evaluation
+        -- Section, Evaluation Source, Evaluator, Feature, Flow Type, Flows Module Resource ID, Flows Next Resource ID, Flows
+        -- Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type, Flows Resource Alias, Flows Resource ID,
+        -- Flows Resource Type, Flows Resource Version, Initiation Method, Lifetime Value,
+        -- Proficiency, Q Connect Enabled, Queue, Queue Agent Group Name, Queue Agent Group Type, Queue Type, Repeat Caller, Resource Published Timestamp, Routing Profile, Routing Step Expression,
+        -- Session ID, Subtype, Telephone Number
+        -- UI name: Evaluated partial self-service resolution rate
+        -- Feature, Flows Next Resource ID, Flows Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type,
+        -- Flows Resource Type, Proficiency, Resource Published Timestamp, and Session ID are valid filters but not valid
+        -- groupings. AI Agent Name Version, Campaign Delivery Event Type, and Queue Agent Group Name are valid groupings but
+        -- not valid filters.
+        -- When requesting business outcome metrics, the filters and groupings used in a single request must belong to
+        -- the same metric scope. Filters and groupings from different metric scopes cannot be combined in one
+        -- request.
+        -- EVALUATED_SELF_SERVICE_SUCCESS_RATE
+        -- This metric requires an evaluation form with business outcome questions. For more information, see Create an evaluation
+        -- form in the Connect Customer Administrator Guide.
+        -- Unit: Percent
+        -- Valid groupings and filters: Agent, Agent Hierarchy Level One, Agent Hierarchy Level Two, Agent
+        -- Hierarchy Level Three, Agent Hierarchy Level Four, Agent Hierarchy Level Five, AI Agent ID, AI Agent Name, AI Agent
+        -- Name Version, AI Agent Type, AI Use Case, Bot ID, Bot Intent Name, Bot Locale, Campaign, Campaign Delivery Event
+        -- Type, Channel, Contact Category, Disconnect Reason, Email Address, Evaluation Form, Evaluation Question, Evaluation
+        -- Section, Evaluation Source, Evaluator, Feature, Flow Type, Flows Module Resource ID, Flows Next Resource ID, Flows
+        -- Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type, Flows Resource Alias, Flows Resource ID,
+        -- Flows Resource Type, Flows Resource Version, Initiation Method, Lifetime Value,
+        -- Proficiency, Q Connect Enabled, Queue, Queue Agent Group Name, Queue Agent Group Type, Queue Type, Repeat Caller, Resource Published Timestamp, Routing Profile, Routing Step Expression,
+        -- Session ID, Subtype, Telephone Number
+        -- UI name: Evaluated self-service resolution rate
+        -- Feature, Flows Next Resource ID, Flows Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type,
+        -- Flows Resource Type, Proficiency, Resource Published Timestamp, and Session ID are valid filters but not valid
+        -- groupings. AI Agent Name Version, Campaign Delivery Event Type, and Queue Agent Group Name are valid groupings but
+        -- not valid filters.
+        -- When requesting business outcome metrics, the filters and groupings used in a single request must belong to
+        -- the same metric scope. Filters and groupings from different metric scopes cannot be combined in one
+        -- request.
+        -- EVALUATED_SUCCESSFUL_SALE_RATE
+        -- This metric requires an evaluation form with business outcome questions. For more information, see Create an evaluation
+        -- form in the Connect Customer Administrator Guide.
+        -- Unit: Percent
+        -- Valid groupings and filters: Agent, Agent Hierarchy Level One, Agent Hierarchy Level Two, Agent
+        -- Hierarchy Level Three, Agent Hierarchy Level Four, Agent Hierarchy Level Five, AI Agent ID, AI Agent Name, AI Agent
+        -- Name Version, AI Agent Type, AI Use Case, Bot ID, Bot Intent Name, Bot Locale, Campaign, Campaign Delivery Event
+        -- Type, Channel, Contact Category, Disconnect Reason, Email Address, Evaluation Form, Evaluation Question, Evaluation
+        -- Section, Evaluation Source, Evaluator, Feature, Flow Type, Flows Module Resource ID, Flows Next Resource ID, Flows
+        -- Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type, Flows Resource Alias, Flows Resource ID,
+        -- Flows Resource Type, Flows Resource Version, Initiation Method, Lifetime Value,
+        -- Proficiency, Q Connect Enabled, Queue, Queue Agent Group Name, Queue Agent Group Type, Queue Type, Repeat Caller, Resource Published Timestamp, Routing Profile, Routing Step Expression,
+        -- Session ID, Subtype, Telephone Number
+        -- UI name: Evaluated successful sale rate
+        -- Feature, Flows Next Resource ID, Flows Next Resource Queue ID, Flows Next Resource Type, Flows Outcome Type,
+        -- Flows Resource Type, Proficiency, Resource Published Timestamp, and Session ID are valid filters but not valid
+        -- groupings. AI Agent Name Version, Campaign Delivery Event Type, and Queue Agent Group Name are valid groupings but
+        -- not valid filters.
+        -- When requesting business outcome metrics, the filters and groupings used in a single request must belong to
+        -- the same metric scope. Filters and groupings from different metric scopes cannot be combined in one
+        -- request.
         -- EVALUATIONS_PERFORMED
         -- Unit: Count
         -- Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Source, Form Version, Queue,
@@ -15990,6 +16109,13 @@ local record M
     record UpdateAuthenticationProfileOutput
     end
 
+    -- Additional recipients for UpdateContact, allowing an empty list to clear CC recipients.
+    record NullableAdditionalRecipients
+        -- The additional CC email address recipients. You can specify up to 50 addresses. Provide an empty list to clear
+        -- the existing CC recipients.
+        CcEmailAddresses: {EmailAddressInfo}
+    end
+
     -- Information about a queue.
     record QueueInfoInput
         -- The identifier of the queue.
@@ -16460,6 +16586,42 @@ local record M
 
     -- The response from updating notification content.
     record UpdateNotificationContentOutput
+    end
+
+    enum UpdateOutboundEmailMessageSourceType
+        "RAW"
+    end
+
+    -- Contains the raw body content of an outbound email draft.
+    record UpdateOutboundRawMessage
+        -- The email message body.
+        Body: string
+        -- The content type of the email body. Valid values:
+        -- text/plain – Plain text content.
+        -- text/html – HTML-formatted content.
+        ContentType: string
+    end
+
+    -- Contains the updated body content for an outbound email draft.
+    record UpdateOutboundEmailContent
+        -- The message source type. The only supported value is RAW.
+        MessageSourceType: string
+        -- The raw email body content.
+        RawMessage: UpdateOutboundRawMessage
+    end
+
+    record UpdateOutboundEmailContactMessageInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the contact in this instance of Connect Customer.
+        ContactId: string
+        -- The email message body to update on the outbound email draft.
+        EmailMessage: UpdateOutboundEmailContent
+    end
+
+    record UpdateOutboundEmailContactMessageOutput
+        -- The identifier of the contact in this instance of Connect Customer.
+        ContactId: string
     end
 
     record UpdateParticipantAuthenticationInput
@@ -18340,13 +18502,19 @@ local record M
         -- The endpoint of the customer for which the contact was initiated. For external audio contacts, this is usually
         -- the end customer's phone number. This value can only be updated for external audio contacts. For more information,
         -- see Connect Customer
-        -- Contact Lens integration in the Connect Customer Administrator Guide.
+        -- Contact Lens integration in the Connect Customer Administrator Guide. For email
+        -- contacts with an OUTBOUND or AGENT_REPLY initiation method, this value can be updated
+        -- while the outbound email is still a draft, before you send it.
         CustomerEndpoint: Endpoint
         -- External system endpoint for the contact was initiated. For external audio contacts, this is the phone number of
         -- the external system such as the contact center. This value can only be updated for external audio contacts. For more
         -- information, see Connect Customer Contact Lens integration in the Connect Customer Administrator
-        -- Guide.
+        -- Guide. For email contacts with an OUTBOUND or AGENT_REPLY initiation method,
+        -- this value can be updated while the outbound email is still a draft, before you send it.
         SystemEndpoint: Endpoint
+        -- The additional recipients of an outbound email. Use this field to update the CC email address recipients of a
+        -- contact. An empty list clears the existing CC recipients.
+        AdditionalRecipients: NullableAdditionalRecipients
     end
 
     -- Information about an item from an evaluation form. The item must be either a section or a question.

@@ -95,6 +95,7 @@ local record Client
     updateAutonomousDatabaseBackup: function(Client, types.UpdateAutonomousDatabaseBackupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAutonomousDatabaseBackupOutput>
     updateCloudExadataInfrastructure: function(Client, types.UpdateCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloudExadataInfrastructureOutput>
     updateExadbVmCluster: function(Client, types.UpdateExadbVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExadbVmClusterOutput>
+    updateExascaleCloudExadataInfrastructure: function(Client, types.UpdateExascaleCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExascaleCloudExadataInfrastructureOutput>
     updateExascaleDbStorageVault: function(Client, types.UpdateExascaleDbStorageVaultInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExascaleDbStorageVaultOutput>
     updateOdbNetwork: function(Client, types.UpdateOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOdbNetworkOutput>
     updateOdbPeeringConnection: function(Client, types.UpdateOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOdbPeeringConnectionOutput>
@@ -448,6 +449,10 @@ end
 
 function C:updateExadbVmCluster(input: types.UpdateExadbVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExadbVmClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExadbVmCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateExadbVmClusterOutput>
+end
+
+function C:updateExascaleCloudExadataInfrastructure(input: types.UpdateExascaleCloudExadataInfrastructureInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExascaleCloudExadataInfrastructureOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExascaleCloudExadataInfrastructure as schema.OperationSchema, input, options) as async.Operation<types.UpdateExascaleCloudExadataInfrastructureOutput>
 end
 
 function C:updateExascaleDbStorageVault(input: types.UpdateExascaleDbStorageVaultInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExascaleDbStorageVaultOutput>

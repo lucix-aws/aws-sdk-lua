@@ -22,6 +22,24 @@ function M.items_list_bridges(client, input)
     })
 end
 
+--- Returns a page iterator for listDestinationEndpoints.
+function M.pages_list_destination_endpoints(client, input)
+    return paginator.pages(client, "listDestinationEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DestinationEndpoints",
+    })
+end
+
+--- Returns an item iterator for listDestinationEndpoints.
+function M.items_list_destination_endpoints(client, input)
+    return paginator.items(client, "listDestinationEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DestinationEndpoints",
+    })
+end
+
 --- Returns a page iterator for listEntitlements.
 function M.pages_list_entitlements(client, input)
     return paginator.pages(client, "listEntitlements", input, {
@@ -181,6 +199,24 @@ function M.items_list_router_outputs(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "RouterOutputs",
+    })
+end
+
+--- Returns a page iterator for listSourceEndpoints.
+function M.pages_list_source_endpoints(client, input)
+    return paginator.pages(client, "listSourceEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SourceEndpoints",
+    })
+end
+
+--- Returns an item iterator for listSourceEndpoints.
+function M.items_list_source_endpoints(client, input)
+    return paginator.items(client, "listSourceEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SourceEndpoints",
     })
 end
 

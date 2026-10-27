@@ -4631,6 +4631,7 @@ local record M
     enum DeepHealthCheckType
         "InstanceStress"
         "InstanceConnectivity"
+        "MultiNodeTrainingValidation"
     end
 
     -- The configuration object of the schedule that SageMaker follows when updating the AMI.

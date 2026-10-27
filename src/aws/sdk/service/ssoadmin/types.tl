@@ -1419,11 +1419,18 @@ local record M
         NextToken: string
     end
 
+    enum RegionScope
+        "CURRENT_REGION"
+        "ALL_REGIONS"
+    end
+
     record ListInstancesInput
         -- The maximum number of results to display for the instance.
         MaxResults: number
         -- The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.
         NextToken: string
+        -- Specifies which Amazon Web Services Regions to list IAM Identity Center instances from. Valid values: CURRENT_REGION - Lists only the instances in the Region that you call this API from. ALL_REGIONS - Lists the instances that the caller owns or that are shared with the caller across all Regions. If you don't specify a value, the default is CURRENT_REGION.
+        RegionScope: string
     end
 
     record ListInstancesOutput
@@ -1712,7 +1719,7 @@ local record M
         InstanceArn: string
         -- Specifies the encryption configuration for your IAM Identity Center instance. You can use this to configure customer managed KMS keys or Amazon Web Services owned KMS keys for encrypting your instance data.
         EncryptionConfiguration: EncryptionConfiguration
-        -- Enables permission sets for this Identity Center instance. The only accepted value is true . After permission sets are enabled, they cannot be disabled. You can't set EncryptionConfiguration and PermissionSetsEnabled in the same request. To configure both, make two separate UpdateInstance calls. These calls can be made in parallel.
+        -- Enables permission sets for this Identity Center instance. The only accepted value is true . After permission sets are enabled, they cannot be disabled. You can't set EncryptionConfiguration and PermissionSetsEnabled in the same request. To configure both, make two separate UpdateInstance calls. You can make these calls in parallel.
         PermissionSetsEnabled: boolean
     end
 

@@ -28,6 +28,8 @@ M.SigningAlgorithmSpecList = schema.new({ type = "list", list_member = prelude.S
 
 M.KeyAgreementAlgorithmSpecList = schema.new({ type = "list", list_member = prelude.String })
 
+M.EncapsulationAlgorithmSpecList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AliasList = schema.new({ type = "list", list_member = M.AliasListEntry })
 
 M.GrantList = schema.new({ type = "list", list_member = M.GrantListEntry })
@@ -1201,6 +1203,13 @@ M.KeyMetadata = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        EncapsulationAlgorithms = schema.new({
+            id = id.from(_N, "KeyMetadata", "EncapsulationAlgorithms"),
+            type = "list",
+            name = "EncapsulationAlgorithms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         MultiRegion = schema.new({
             id = id.from(_N, "KeyMetadata", "MultiRegion"),
             type = "boolean",
@@ -1481,6 +1490,129 @@ M.CustomKeyStoresListEntry = schema.new({
     },
 })
 
+M.DecapsulateInput = schema.new({
+    id = id.from(_N, "DecapsulateRequest"),
+    type = "structure",
+    members = {
+        KeyId = schema.new({
+            id = id.from(_N, "DecapsulateInput", "KeyId"),
+            type = "string",
+            name = "KeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SharedSecretCiphertextBlob = schema.new({
+            id = id.from(_N, "DecapsulateInput", "SharedSecretCiphertextBlob"),
+            type = "blob",
+            name = "SharedSecretCiphertextBlob",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EncapsulationAlgorithm = schema.new({
+            id = id.from(_N, "DecapsulateInput", "EncapsulationAlgorithm"),
+            type = "string",
+            name = "EncapsulationAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GrantTokens = schema.new({
+            id = id.from(_N, "DecapsulateInput", "GrantTokens"),
+            type = "list",
+            name = "GrantTokens",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DecapsulateInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DecapsulateOutput = schema.new({
+    id = id.from(_N, "DecapsulateResponse"),
+    type = "structure",
+    members = {
+        KeyId = schema.new({
+            id = id.from(_N, "DecapsulateOutput", "KeyId"),
+            type = "string",
+            name = "KeyId",
+            target_id = prelude.String.id,
+        }),
+        SharedSecret = schema.new({
+            id = id.from(_N, "DecapsulateOutput", "SharedSecret"),
+            type = "blob",
+            name = "SharedSecret",
+            target_id = prelude.Blob.id,
+        }),
+        EncapsulationAlgorithm = schema.new({
+            id = id.from(_N, "DecapsulateOutput", "EncapsulationAlgorithm"),
+            type = "string",
+            name = "EncapsulationAlgorithm",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidCiphertextException = schema.new({
+    id = id.from(_N, "InvalidCiphertextException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidCiphertext", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidCiphertextException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidKeyUsageException = schema.new({
+    id = id.from(_N, "InvalidKeyUsageException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidKeyUsage", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidKeyUsageException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KeyUnavailableException = schema.new({
+    id = id.from(_N, "KeyUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+        [traits.AWS_QUERY_ERROR] = { code = "KeyUnavailable", httpResponseCode = 500 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KeyUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RecipientInfo = schema.new({
     id = id.from(_N, "RecipientInfo"),
     type = "structure",
@@ -1607,57 +1739,6 @@ M.IncorrectKeyException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "IncorrectKeyException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidCiphertextException = schema.new({
-    id = id.from(_N, "InvalidCiphertextException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "InvalidCiphertext", httpResponseCode = 400 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InvalidCiphertextException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidKeyUsageException = schema.new({
-    id = id.from(_N, "InvalidKeyUsageException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "InvalidKeyUsage", httpResponseCode = 400 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InvalidKeyUsageException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KeyUnavailableException = schema.new({
-    id = id.from(_N, "KeyUnavailableException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-        [traits.AWS_QUERY_ERROR] = { code = "KeyUnavailable", httpResponseCode = 500 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "KeyUnavailableException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -2048,6 +2129,75 @@ M.EnableKeyRotationInput = schema.new({
 })
 
 M.EnableKeyRotationOutput = prelude.Unit
+
+M.EncapsulateInput = schema.new({
+    id = id.from(_N, "EncapsulateRequest"),
+    type = "structure",
+    members = {
+        KeyId = schema.new({
+            id = id.from(_N, "EncapsulateInput", "KeyId"),
+            type = "string",
+            name = "KeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EncapsulationAlgorithm = schema.new({
+            id = id.from(_N, "EncapsulateInput", "EncapsulationAlgorithm"),
+            type = "string",
+            name = "EncapsulationAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GrantTokens = schema.new({
+            id = id.from(_N, "EncapsulateInput", "GrantTokens"),
+            type = "list",
+            name = "GrantTokens",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "EncapsulateInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.EncapsulateOutput = schema.new({
+    id = id.from(_N, "EncapsulateResponse"),
+    type = "structure",
+    members = {
+        KeyId = schema.new({
+            id = id.from(_N, "EncapsulateOutput", "KeyId"),
+            type = "string",
+            name = "KeyId",
+            target_id = prelude.String.id,
+        }),
+        SharedSecret = schema.new({
+            id = id.from(_N, "EncapsulateOutput", "SharedSecret"),
+            type = "blob",
+            name = "SharedSecret",
+            target_id = prelude.Blob.id,
+        }),
+        SharedSecretCiphertextBlob = schema.new({
+            id = id.from(_N, "EncapsulateOutput", "SharedSecretCiphertextBlob"),
+            type = "blob",
+            name = "SharedSecretCiphertextBlob",
+            target_id = prelude.Blob.id,
+        }),
+        EncapsulationAlgorithm = schema.new({
+            id = id.from(_N, "EncapsulateOutput", "EncapsulationAlgorithm"),
+            type = "string",
+            name = "EncapsulationAlgorithm",
+            target_id = prelude.String.id,
+        }),
+    },
+})
 
 M.EncryptInput = schema.new({
     id = id.from(_N, "EncryptRequest"),
@@ -2928,6 +3078,13 @@ M.GetPublicKeyOutput = schema.new({
             id = id.from(_N, "GetPublicKeyOutput", "KeyAgreementAlgorithms"),
             type = "list",
             name = "KeyAgreementAlgorithms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EncapsulationAlgorithms = schema.new({
+            id = id.from(_N, "GetPublicKeyOutput", "EncapsulationAlgorithms"),
+            type = "list",
+            name = "EncapsulationAlgorithms",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -4622,6 +4779,17 @@ M.CreateKey = schema.operation({
     },
 })
 
+M.Decapsulate = schema.operation({
+    id = id.from("com.amazonaws.kms", "Decapsulate"),
+    input = M.DecapsulateInput,
+    output = M.DecapsulateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.Decrypt = schema.operation({
     id = id.from("com.amazonaws.kms", "Decrypt"),
     input = M.DecryptInput,
@@ -4747,6 +4915,17 @@ M.EnableKeyRotation = schema.operation({
     id = id.from("com.amazonaws.kms", "EnableKeyRotation"),
     input = M.EnableKeyRotationInput,
     output = M.EnableKeyRotationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Encapsulate = schema.operation({
+    id = id.from("com.amazonaws.kms", "Encapsulate"),
+    input = M.EncapsulateInput,
+    output = M.EncapsulateOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -40,6 +40,7 @@ local record Client
     describeImageSigningStatus: function(Client, types.DescribeImageSigningStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageSigningStatusOutput>
     describePullThroughCacheRules: function(Client, types.DescribePullThroughCacheRulesInput, ? base_client.InvokeOptions): async.Operation<types.DescribePullThroughCacheRulesOutput>
     describeRegistry: function(Client, types.DescribeRegistryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistryOutput>
+    describeReplicationBackfillResults: function(Client, types.DescribeReplicationBackfillResultsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReplicationBackfillResultsOutput>
     describeRepositories: function(Client, types.DescribeRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRepositoriesOutput>
     describeRepositoryCreationTemplates: function(Client, types.DescribeRepositoryCreationTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRepositoryCreationTemplatesOutput>
     getAccountSetting: function(Client, types.GetAccountSettingInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingOutput>
@@ -55,6 +56,7 @@ local record Client
     listImageReferrers: function(Client, types.ListImageReferrersInput, ? base_client.InvokeOptions): async.Operation<types.ListImageReferrersOutput>
     listImages: function(Client, types.ListImagesInput, ? base_client.InvokeOptions): async.Operation<types.ListImagesOutput>
     listPullTimeUpdateExclusions: function(Client, types.ListPullTimeUpdateExclusionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPullTimeUpdateExclusionsOutput>
+    listReplicationBackfills: function(Client, types.ListReplicationBackfillsInput, ? base_client.InvokeOptions): async.Operation<types.ListReplicationBackfillsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putAccountSetting: function(Client, types.PutAccountSettingInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingOutput>
     putImage: function(Client, types.PutImageInput, ? base_client.InvokeOptions): async.Operation<types.PutImageOutput>
@@ -69,6 +71,8 @@ local record Client
     setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.SetRepositoryPolicyOutput>
     startImageScan: function(Client, types.StartImageScanInput, ? base_client.InvokeOptions): async.Operation<types.StartImageScanOutput>
     startLifecyclePolicyPreview: function(Client, types.StartLifecyclePolicyPreviewInput, ? base_client.InvokeOptions): async.Operation<types.StartLifecyclePolicyPreviewOutput>
+    startReplicationBackfill: function(Client, types.StartReplicationBackfillInput, ? base_client.InvokeOptions): async.Operation<types.StartReplicationBackfillOutput>
+    stopReplicationBackfill: function(Client, types.StopReplicationBackfillInput, ? base_client.InvokeOptions): async.Operation<types.StopReplicationBackfillOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateImageStorageClass: function(Client, types.UpdateImageStorageClassInput, ? base_client.InvokeOptions): async.Operation<types.UpdateImageStorageClassOutput>
@@ -208,6 +212,10 @@ function C:describeRegistry(input: types.DescribeRegistryInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistry as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistryOutput>
 end
 
+function C:describeReplicationBackfillResults(input: types.DescribeReplicationBackfillResultsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReplicationBackfillResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReplicationBackfillResults as schema.OperationSchema, input, options) as async.Operation<types.DescribeReplicationBackfillResultsOutput>
+end
+
 function C:describeRepositories(input: types.DescribeRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRepositoriesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRepositories as schema.OperationSchema, input, options) as async.Operation<types.DescribeRepositoriesOutput>
 end
@@ -268,6 +276,10 @@ function C:listPullTimeUpdateExclusions(input: types.ListPullTimeUpdateExclusion
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPullTimeUpdateExclusions as schema.OperationSchema, input, options) as async.Operation<types.ListPullTimeUpdateExclusionsOutput>
 end
 
+function C:listReplicationBackfills(input: types.ListReplicationBackfillsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReplicationBackfillsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReplicationBackfills as schema.OperationSchema, input, options) as async.Operation<types.ListReplicationBackfillsOutput>
+end
+
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
@@ -322,6 +334,14 @@ end
 
 function C:startLifecyclePolicyPreview(input: types.StartLifecyclePolicyPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.StartLifecyclePolicyPreviewOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartLifecyclePolicyPreview as schema.OperationSchema, input, options) as async.Operation<types.StartLifecyclePolicyPreviewOutput>
+end
+
+function C:startReplicationBackfill(input: types.StartReplicationBackfillInput, options?: base_client.InvokeOptions): async.Operation<types.StartReplicationBackfillOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartReplicationBackfill as schema.OperationSchema, input, options) as async.Operation<types.StartReplicationBackfillOutput>
+end
+
+function C:stopReplicationBackfill(input: types.StopReplicationBackfillInput, options?: base_client.InvokeOptions): async.Operation<types.StopReplicationBackfillOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopReplicationBackfill as schema.OperationSchema, input, options) as async.Operation<types.StopReplicationBackfillOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

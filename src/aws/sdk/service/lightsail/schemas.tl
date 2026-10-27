@@ -30,6 +30,8 @@ M.CacheBehaviorList = schema.new({ type = "list", list_member = M.CacheBehaviorP
 
 M.DistributionCustomErrorResponseList = schema.new({ type = "list", list_member = M.DistributionCustomErrorResponse })
 
+M.WafRuleList = schema.new({ type = "list", list_member = M.WafRule })
+
 M.Sessions = schema.new({ type = "list", list_member = M.Session })
 
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
@@ -201,6 +203,8 @@ M.BucketCorsAllowedOrigins = schema.new({ type = "list", list_member = prelude.S
 M.BucketCorsAllowedHeaders = schema.new({ type = "list", list_member = prelude.String })
 
 M.BucketCorsExposeHeaders = schema.new({ type = "list", list_member = prelude.String })
+
+M.WafStatusCodeList = schema.new({ type = "list", list_member = prelude.Integer })
 
 M.EstimatesByTime = schema.new({ type = "list", list_member = M.EstimateByTime })
 
@@ -3827,6 +3831,147 @@ M.InputOrigin = schema.new({
     },
 })
 
+M.WafResponseInspection = schema.new({
+    id = id.from(_N, "WafResponseInspection"),
+    type = "structure",
+    members = {
+        successCodes = schema.new({
+            id = id.from(_N, "WafResponseInspection", "successCodes"),
+            type = "list",
+            name = "successCodes",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        failureCodes = schema.new({
+            id = id.from(_N, "WafResponseInspection", "failureCodes"),
+            type = "list",
+            name = "failureCodes",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+    },
+})
+
+M.WafAcfpConfig = schema.new({
+    id = id.from(_N, "WafAcfpConfig"),
+    type = "structure",
+    members = {
+        payloadType = schema.new({
+            id = id.from(_N, "WafAcfpConfig", "payloadType"),
+            type = "string",
+            name = "payloadType",
+            target_id = prelude.String.id,
+        }),
+        creationPath = schema.new({
+            id = id.from(_N, "WafAcfpConfig", "creationPath"),
+            type = "string",
+            name = "creationPath",
+            target_id = prelude.String.id,
+        }),
+        registrationPagePath = schema.new({
+            id = id.from(_N, "WafAcfpConfig", "registrationPagePath"),
+            type = "string",
+            name = "registrationPagePath",
+            target_id = prelude.String.id,
+        }),
+        responseInspection = schema.new({
+            id = id.from(_N, "WafAcfpConfig", "responseInspection"),
+            type = "structure",
+            name = "responseInspection",
+            target_id = id.from(_N, "WafResponseInspection"),
+            target = M.WafResponseInspection,
+        }),
+    },
+})
+
+M.WafAtpConfig = schema.new({
+    id = id.from(_N, "WafAtpConfig"),
+    type = "structure",
+    members = {
+        loginPath = schema.new({
+            id = id.from(_N, "WafAtpConfig", "loginPath"),
+            type = "string",
+            name = "loginPath",
+            target_id = prelude.String.id,
+        }),
+        payloadType = schema.new({
+            id = id.from(_N, "WafAtpConfig", "payloadType"),
+            type = "string",
+            name = "payloadType",
+            target_id = prelude.String.id,
+        }),
+        usernameField = schema.new({
+            id = id.from(_N, "WafAtpConfig", "usernameField"),
+            type = "string",
+            name = "usernameField",
+            target_id = prelude.String.id,
+        }),
+        passwordField = schema.new({
+            id = id.from(_N, "WafAtpConfig", "passwordField"),
+            type = "string",
+            name = "passwordField",
+            target_id = prelude.String.id,
+        }),
+        responseInspection = schema.new({
+            id = id.from(_N, "WafAtpConfig", "responseInspection"),
+            type = "structure",
+            name = "responseInspection",
+            target_id = id.from(_N, "WafResponseInspection"),
+            target = M.WafResponseInspection,
+        }),
+    },
+})
+
+M.WafBotControlConfig = schema.new({
+    id = id.from(_N, "WafBotControlConfig"),
+    type = "structure",
+    members = {
+        inspectionLevel = schema.new({
+            id = id.from(_N, "WafBotControlConfig", "inspectionLevel"),
+            type = "string",
+            name = "inspectionLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WafRule = schema.new({
+    id = id.from(_N, "WafRule"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "WafRule", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        atpConfig = schema.new({
+            id = id.from(_N, "WafRule", "atpConfig"),
+            type = "structure",
+            name = "atpConfig",
+            target_id = id.from(_N, "WafAtpConfig"),
+            target = M.WafAtpConfig,
+        }),
+        acfpConfig = schema.new({
+            id = id.from(_N, "WafRule", "acfpConfig"),
+            type = "structure",
+            name = "acfpConfig",
+            target_id = id.from(_N, "WafAcfpConfig"),
+            target = M.WafAcfpConfig,
+        }),
+        botControlConfig = schema.new({
+            id = id.from(_N, "WafRule", "botControlConfig"),
+            type = "structure",
+            name = "botControlConfig",
+            target_id = id.from(_N, "WafBotControlConfig"),
+            target = M.WafBotControlConfig,
+        }),
+    },
+})
+
 M.CreateDistributionInput = schema.new({
     id = id.from(_N, "CreateDistributionRequest"),
     type = "structure",
@@ -3927,6 +4072,19 @@ M.CreateDistributionInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.DistributionCustomErrorResponse,
         }),
+        enableWaf = schema.new({
+            id = id.from(_N, "CreateDistributionInput", "enableWaf"),
+            type = "boolean",
+            name = "enableWaf",
+            target_id = prelude.Boolean.id,
+        }),
+        wafRules = schema.new({
+            id = id.from(_N, "CreateDistributionInput", "wafRules"),
+            type = "list",
+            name = "wafRules",
+            target_id = prelude.Document.id,
+            list_member = M.WafRule,
+        }),
     },
 })
 
@@ -3975,6 +4133,26 @@ M.Origin = schema.new({
             type = "boolean",
             name = "isPrivateOriginAccessEnabled",
             target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.WafConfig = schema.new({
+    id = id.from(_N, "WafConfig"),
+    type = "structure",
+    members = {
+        isWafEnabled = schema.new({
+            id = id.from(_N, "WafConfig", "isWafEnabled"),
+            type = "boolean",
+            name = "isWafEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        wafRules = schema.new({
+            id = id.from(_N, "WafConfig", "wafRules"),
+            type = "list",
+            name = "wafRules",
+            target_id = prelude.Document.id,
+            list_member = M.WafRule,
         }),
     },
 })
@@ -4128,6 +4306,13 @@ M.LightsailDistribution = schema.new({
             name = "customErrorResponses",
             target_id = prelude.Document.id,
             list_member = M.DistributionCustomErrorResponse,
+        }),
+        waf = schema.new({
+            id = id.from(_N, "LightsailDistribution", "waf"),
+            type = "structure",
+            name = "waf",
+            target_id = id.from(_N, "WafConfig"),
+            target = M.WafConfig,
         }),
     },
 })
@@ -12637,6 +12822,19 @@ M.UpdateDistributionInput = schema.new({
             name = "customErrorResponses",
             target_id = prelude.Document.id,
             list_member = M.DistributionCustomErrorResponse,
+        }),
+        enableWaf = schema.new({
+            id = id.from(_N, "UpdateDistributionInput", "enableWaf"),
+            type = "boolean",
+            name = "enableWaf",
+            target_id = prelude.Boolean.id,
+        }),
+        wafRules = schema.new({
+            id = id.from(_N, "UpdateDistributionInput", "wafRules"),
+            type = "list",
+            name = "wafRules",
+            target_id = prelude.Document.id,
+            list_member = M.WafRule,
         }),
     },
 })

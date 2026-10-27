@@ -140,6 +140,18 @@ M.ExpressPrivateOfferConfigurationProductIdFilterValueList = schema.new({ type =
 
 M.ExpressPrivateOfferConfigurationStateFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
+M.SubsidiaryAuthorizationEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubsidiaryAuthorizationStatusFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubsidiaryAuthorizationResourceIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubsidiaryAuthorizationResourceNameFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubsidiaryAuthorizationNameFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SubsidiaryAuthorizationSubsidiaryAccountIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.OfferBuyerAccountsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.OfferTargetingList = schema.new({ type = "list", list_member = prelude.String })
@@ -3077,6 +3089,231 @@ M.SaaSProductFilters = schema.new({
     },
 })
 
+M.SubsidiaryAuthorizationCreatedDateFilterDateRange = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationCreatedDateFilterDateRange"),
+    type = "structure",
+    members = {
+        AfterValue = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationCreatedDateFilterDateRange", "AfterValue"),
+            type = "string",
+            name = "AfterValue",
+            target_id = prelude.String.id,
+        }),
+        BeforeValue = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationCreatedDateFilterDateRange", "BeforeValue"),
+            type = "string",
+            name = "BeforeValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationCreatedDateFilter = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationCreatedDateFilter"),
+    type = "structure",
+    members = {
+        DateRange = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationCreatedDateFilter", "DateRange"),
+            type = "structure",
+            name = "DateRange",
+            target_id = id.from(_N, "SubsidiaryAuthorizationCreatedDateFilterDateRange"),
+            target = M.SubsidiaryAuthorizationCreatedDateFilterDateRange,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationEntityIdFilter = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationEntityIdFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationEntityIdFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationLastModifiedDateFilterDateRange = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationLastModifiedDateFilterDateRange"),
+    type = "structure",
+    members = {
+        AfterValue = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationLastModifiedDateFilterDateRange", "AfterValue"),
+            type = "string",
+            name = "AfterValue",
+            target_id = prelude.String.id,
+        }),
+        BeforeValue = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationLastModifiedDateFilterDateRange", "BeforeValue"),
+            type = "string",
+            name = "BeforeValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationLastModifiedDateFilter = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationLastModifiedDateFilter"),
+    type = "structure",
+    members = {
+        DateRange = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationLastModifiedDateFilter", "DateRange"),
+            type = "structure",
+            name = "DateRange",
+            target_id = id.from(_N, "SubsidiaryAuthorizationLastModifiedDateFilterDateRange"),
+            target = M.SubsidiaryAuthorizationLastModifiedDateFilterDateRange,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationNameFilter = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationNameFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationNameFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        WildCardValue = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationNameFilter", "WildCardValue"),
+            type = "string",
+            name = "WildCardValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationResourceIdFilter = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationResourceIdFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationResourceIdFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationResourceNameFilter = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationResourceNameFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationResourceNameFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        WildCardValue = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationResourceNameFilter", "WildCardValue"),
+            type = "string",
+            name = "WildCardValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationStatusFilter = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationStatusFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationStatusFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationSubsidiaryAccountIdFilter = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationSubsidiaryAccountIdFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSubsidiaryAccountIdFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SubsidiaryAuthorizationFilters = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationFilters"),
+    type = "structure",
+    members = {
+        EntityId = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationFilters", "EntityId"),
+            type = "structure",
+            name = "EntityId",
+            target_id = id.from(_N, "SubsidiaryAuthorizationEntityIdFilter"),
+            target = M.SubsidiaryAuthorizationEntityIdFilter,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationFilters", "Status"),
+            type = "structure",
+            name = "Status",
+            target_id = id.from(_N, "SubsidiaryAuthorizationStatusFilter"),
+            target = M.SubsidiaryAuthorizationStatusFilter,
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationFilters", "ResourceId"),
+            type = "structure",
+            name = "ResourceId",
+            target_id = id.from(_N, "SubsidiaryAuthorizationResourceIdFilter"),
+            target = M.SubsidiaryAuthorizationResourceIdFilter,
+        }),
+        ResourceName = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationFilters", "ResourceName"),
+            type = "structure",
+            name = "ResourceName",
+            target_id = id.from(_N, "SubsidiaryAuthorizationResourceNameFilter"),
+            target = M.SubsidiaryAuthorizationResourceNameFilter,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationFilters", "Name"),
+            type = "structure",
+            name = "Name",
+            target_id = id.from(_N, "SubsidiaryAuthorizationNameFilter"),
+            target = M.SubsidiaryAuthorizationNameFilter,
+        }),
+        SubsidiaryAccountId = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationFilters", "SubsidiaryAccountId"),
+            type = "structure",
+            name = "SubsidiaryAccountId",
+            target_id = id.from(_N, "SubsidiaryAuthorizationSubsidiaryAccountIdFilter"),
+            target = M.SubsidiaryAuthorizationSubsidiaryAccountIdFilter,
+        }),
+        CreatedDate = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationFilters", "CreatedDate"),
+            type = "structure",
+            name = "CreatedDate",
+            target_id = id.from(_N, "SubsidiaryAuthorizationCreatedDateFilter"),
+            target = M.SubsidiaryAuthorizationCreatedDateFilter,
+        }),
+        LastModifiedDate = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationFilters", "LastModifiedDate"),
+            type = "structure",
+            name = "LastModifiedDate",
+            target_id = id.from(_N, "SubsidiaryAuthorizationLastModifiedDateFilter"),
+            target = M.SubsidiaryAuthorizationLastModifiedDateFilter,
+        }),
+    },
+})
+
 M.EntityTypeFilters = schema.new({
     id = id.from(_N, "EntityTypeFilters"),
     type = "union",
@@ -3143,6 +3380,13 @@ M.EntityTypeFilters = schema.new({
             name = "ExpressPrivateOfferConfigurationFilters",
             target_id = id.from(_N, "ExpressPrivateOfferConfigurationFilters"),
             target = M.ExpressPrivateOfferConfigurationFilters,
+        }),
+        SubsidiaryAuthorizationFilters = schema.new({
+            id = id.from(_N, "EntityTypeFilters", "SubsidiaryAuthorizationFilters"),
+            type = "structure",
+            name = "SubsidiaryAuthorizationFilters",
+            target_id = id.from(_N, "SubsidiaryAuthorizationFilters"),
+            target = M.SubsidiaryAuthorizationFilters,
         }),
     },
 })
@@ -3299,6 +3543,25 @@ M.SaaSProductSort = schema.new({
     },
 })
 
+M.SubsidiaryAuthorizationSort = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationSort"),
+    type = "structure",
+    members = {
+        SortBy = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSort", "SortBy"),
+            type = "string",
+            name = "SortBy",
+            target_id = prelude.String.id,
+        }),
+        SortOrder = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSort", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EntityTypeSort = schema.new({
     id = id.from(_N, "EntityTypeSort"),
     type = "union",
@@ -3365,6 +3628,13 @@ M.EntityTypeSort = schema.new({
             name = "ExpressPrivateOfferConfigurationSort",
             target_id = id.from(_N, "ExpressPrivateOfferConfigurationSort"),
             target = M.ExpressPrivateOfferConfigurationSort,
+        }),
+        SubsidiaryAuthorizationSort = schema.new({
+            id = id.from(_N, "EntityTypeSort", "SubsidiaryAuthorizationSort"),
+            type = "structure",
+            name = "SubsidiaryAuthorizationSort",
+            target_id = id.from(_N, "SubsidiaryAuthorizationSort"),
+            target = M.SubsidiaryAuthorizationSort,
         }),
     },
 })
@@ -3745,6 +4015,49 @@ M.SaaSProductSummary = schema.new({
     },
 })
 
+M.SubsidiaryAuthorizationSummary = schema.new({
+    id = id.from(_N, "SubsidiaryAuthorizationSummary"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSummary", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+        ResourceName = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSummary", "ResourceName"),
+            type = "string",
+            name = "ResourceName",
+            target_id = prelude.String.id,
+        }),
+        SubsidiaryAccountId = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSummary", "SubsidiaryAccountId"),
+            type = "string",
+            name = "SubsidiaryAccountId",
+            target_id = prelude.String.id,
+        }),
+        CreatedDate = schema.new({
+            id = id.from(_N, "SubsidiaryAuthorizationSummary", "CreatedDate"),
+            type = "string",
+            name = "CreatedDate",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EntitySummary = schema.new({
     id = id.from(_N, "EntitySummary"),
     type = "structure",
@@ -3847,6 +4160,13 @@ M.EntitySummary = schema.new({
             name = "ExpressPrivateOfferConfigurationSummary",
             target_id = id.from(_N, "ExpressPrivateOfferConfigurationSummary"),
             target = M.ExpressPrivateOfferConfigurationSummary,
+        }),
+        SubsidiaryAuthorizationSummary = schema.new({
+            id = id.from(_N, "EntitySummary", "SubsidiaryAuthorizationSummary"),
+            type = "structure",
+            name = "SubsidiaryAuthorizationSummary",
+            target_id = id.from(_N, "SubsidiaryAuthorizationSummary"),
+            target = M.SubsidiaryAuthorizationSummary,
         }),
     },
 })

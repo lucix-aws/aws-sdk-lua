@@ -563,6 +563,8 @@ local record M
         "GenerateMac"
         "VerifyMac"
         "DeriveSharedSecret"
+        "Encapsulate"
+        "Decapsulate"
     end
 
     record CreateGrantInput
@@ -733,6 +735,9 @@ local record M
         "ML_DSA_65"
         "ML_DSA_87"
         "ECC_NIST_EDWARDS25519"
+        "ML_KEM_512"
+        "ML_KEM_768"
+        "ML_KEM_1024"
     end
 
     enum KeyUsageType
@@ -740,6 +745,7 @@ local record M
         "ENCRYPT_DECRYPT"
         "GENERATE_VERIFY_MAC"
         "KEY_AGREEMENT"
+        "ENCAPSULATE_DECAPSULATE"
     end
 
     enum OriginType
@@ -814,6 +820,8 @@ local record M
         -- SIGN_VERIFY.
         -- For asymmetric KMS keys with ML-DSA key pairs, specify
         -- SIGN_VERIFY.
+        -- For asymmetric KMS keys with ML-KEM key pairs, specify
+        -- ENCAPSULATE_DECAPSULATE.
         -- For asymmetric KMS keys with SM2 key pairs (China Regions only), specify
         -- ENCRYPT_DECRYPT, SIGN_VERIFY, or
         -- KEY_AGREEMENT.
@@ -872,6 +880,11 @@ local record M
         -- ML_DSA_44
         -- ML_DSA_65
         -- ML_DSA_87
+        -- Asymmetric ML-KEM key pairs (establishing shared secrets)
+        -- ML_KEM_512
+        -- ML_KEM_768
+        -- ML_KEM_1024
+        -- The ML-KEM key specs are not available in China Regions.
         -- SM2 key pairs (encryption and decryption -or- signing and verification -or- deriving
         -- shared secrets)
         -- SM2 (China Regions only)
@@ -963,6 +976,10 @@ local record M
         -- details, see Double
         -- encryption in the Key Management Service Developer Guide.
         XksKeyId: string
+    end
+
+    enum EncapsulationAlgorithmSpec
+        "ML_KEM"
     end
 
     enum EncryptionAlgorithmSpec
@@ -1139,6 +1156,9 @@ local record M
         SigningAlgorithms: {string}
         -- The key agreement algorithm used to derive a shared secret.
         KeyAgreementAlgorithms: {string}
+        -- The key encapsulation algorithm that the KMS key supports. This field appears only for KMS
+        -- keys with a KeyUsage value of ENCAPSULATE_DECAPSULATE.
+        EncapsulationAlgorithms: {string}
         -- Indicates whether the KMS key is a multi-Region (True) or regional
         -- (False) key. This value is True for multi-Region primary and
         -- replica keys and False for regional KMS keys.
@@ -1429,11 +1449,90 @@ local record M
         "ECC_SECG_P256K1"
         "SM2"
         "ECC_NIST_EDWARDS25519"
+        "ML_KEM_512"
+        "ML_KEM_768"
+        "ML_KEM_1024"
     end
 
     enum DataKeySpec
         "AES_256"
         "AES_128"
+    end
+
+    record DecapsulateInput
+        -- Identifies the asymmetric ML-KEM KMS key whose public key was used to produce the
+        -- encapsulated shared secret. KMS uses the private key in the specified key pair to decapsulate
+        -- the shared secret.
+        -- To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with "alias/". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.
+        -- For example:
+        -- Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+        -- Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+        -- Alias name: alias/ExampleAlias
+        -- Alias ARN: arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias
+        -- To get the key ID and key ARN for a KMS key, use ListKeys or DescribeKey. To get the alias name and alias ARN, use ListAliases.
+        KeyId: string
+        -- The encapsulated (ciphertext) form of the shared secret to recover. This is the
+        -- SharedSecretCiphertextBlob value that the Encapsulate operation
+        -- returns. When you use the HTTP API or the Amazon Web Services CLI, the value is Base64-encoded. Otherwise, it is not Base64-encoded.
+        SharedSecretCiphertextBlob: string
+        -- Specifies the key encapsulation algorithm used to recover the shared secret. The only valid
+        -- value is ML_KEM.
+        EncapsulationAlgorithm: string
+        -- A list of grant tokens.
+        -- Use a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the
+        -- Key Management Service Developer Guide.
+        GrantTokens: {string}
+        -- Checks if your request will succeed. DryRun is an optional parameter.
+        -- To learn more about how to use this parameter, see Testing your permissions in the Key Management Service Developer Guide.
+        DryRun: boolean
+    end
+
+    record DecapsulateOutput
+        -- The identifier of the ML-KEM KMS key used to decapsulate the shared secret.
+        KeyId: string
+        -- The plaintext shared secret recovered from the encapsulated form. It is a 32-byte value that
+        -- matches the shared secret held by the encapsulating party. When you use the HTTP API or the Amazon Web Services CLI, the value is Base64-encoded. Otherwise, it is not Base64-encoded.
+        SharedSecret: string
+        -- The key encapsulation algorithm used to recover the shared secret.
+        EncapsulationAlgorithm: string
+    end
+
+    -- From the Decrypt or ReEncrypt operation, the request
+    -- was rejected because the specified ciphertext, or additional authenticated data incorporated
+    -- into the ciphertext, such as the encryption context, is corrupted, missing, or otherwise
+    -- invalid.
+    -- From the ImportKeyMaterial operation, the request was rejected because
+    -- KMS could not decrypt the encrypted (wrapped) key material.
+    -- From the Decapsulate operation, the request was rejected because the
+    -- length of the SharedSecretCiphertextBlob is inconsistent with the specified ML-KEM
+    -- key spec.
+    record InvalidCiphertextException
+        message: string
+    end
+
+    -- The request was rejected for one of the following reasons:
+    -- The KeyUsage value of the KMS key is incompatible with the API
+    -- operation.
+    -- The encryption algorithm or signing algorithm specified for the operation is
+    -- incompatible with the type of key material in the KMS key (KeySpec).
+    -- For encrypting, decrypting, re-encrypting, and generating data keys, the
+    -- KeyUsage must be ENCRYPT_DECRYPT. For signing and verifying
+    -- messages, the KeyUsage must be SIGN_VERIFY. For generating and
+    -- verifying message authentication codes (MACs), the KeyUsage must be
+    -- GENERATE_VERIFY_MAC. For deriving key agreement secrets, the
+    -- KeyUsage must be KEY_AGREEMENT. For encapsulating and decapsulating
+    -- shared secrets, the KeyUsage must be ENCAPSULATE_DECAPSULATE. To find
+    -- the KeyUsage of a KMS key, use the DescribeKey operation.
+    -- To find the encryption or signing algorithms supported for a particular KMS key, use the
+    -- DescribeKey operation.
+    record InvalidKeyUsageException
+        message: string
+    end
+
+    -- The request was rejected because the specified KMS key was not available. You can retry
+    -- the request.
+    record KeyUnavailableException
+        message: string
     end
 
     enum DryRunModifierType
@@ -1548,40 +1647,6 @@ local record M
     -- in a ReEncrypt request must identify the same KMS key that was used to
     -- encrypt the ciphertext.
     record IncorrectKeyException
-        message: string
-    end
-
-    -- From the Decrypt or ReEncrypt operation, the request
-    -- was rejected because the specified ciphertext, or additional authenticated data incorporated
-    -- into the ciphertext, such as the encryption context, is corrupted, missing, or otherwise
-    -- invalid.
-    -- From the ImportKeyMaterial operation, the request was rejected because
-    -- KMS could not decrypt the encrypted (wrapped) key material.
-    record InvalidCiphertextException
-        message: string
-    end
-
-    -- The request was rejected for one of the following reasons:
-    -- The KeyUsage value of the KMS key is incompatible with the API
-    -- operation.
-    -- The encryption algorithm or signing algorithm specified for the operation is
-    -- incompatible with the type of key material in the KMS key (KeySpec).
-    -- For encrypting, decrypting, re-encrypting, and generating data keys, the
-    -- KeyUsage must be ENCRYPT_DECRYPT. For signing and verifying
-    -- messages, the KeyUsage must be SIGN_VERIFY. For generating and
-    -- verifying message authentication codes (MACs), the KeyUsage must be
-    -- GENERATE_VERIFY_MAC. For deriving key agreement secrets, the
-    -- KeyUsage must be KEY_AGREEMENT. To find the KeyUsage
-    -- of a KMS key, use the DescribeKey operation.
-    -- To find the encryption or signing algorithms supported for a particular KMS key, use the
-    -- DescribeKey operation.
-    record InvalidKeyUsageException
-        message: string
-    end
-
-    -- The request was rejected because the specified KMS key was not available. You can retry
-    -- the request.
-    record KeyUnavailableException
         message: string
     end
 
@@ -1847,6 +1912,48 @@ local record M
     record EnableKeyRotationOutput
     end
 
+    record EncapsulateInput
+        -- Identifies an asymmetric ML-KEM KMS key. KMS uses the public key in the specified key pair
+        -- to encapsulate the shared secret. ML-KEM KMS keys have a KeySpec value of ML_KEM_512,
+        -- ML_KEM_768, or ML_KEM_1024 and a KeyUsage value of
+        -- ENCAPSULATE_DECAPSULATE. To find the KeySpec and KeyUsage of a
+        -- KMS key, use the DescribeKey operation.
+        -- To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with "alias/". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.
+        -- For example:
+        -- Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+        -- Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+        -- Alias name: alias/ExampleAlias
+        -- Alias ARN: arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias
+        -- To get the key ID and key ARN for a KMS key, use ListKeys or DescribeKey. To get the alias name and alias ARN, use ListAliases.
+        KeyId: string
+        -- Specifies the key encapsulation algorithm used to generate the shared secret and its
+        -- encapsulated form. The only valid value is ML_KEM.
+        EncapsulationAlgorithm: string
+        -- A list of grant tokens.
+        -- Use a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the
+        -- Key Management Service Developer Guide.
+        GrantTokens: {string}
+        -- Checks if your request will succeed. DryRun is an optional parameter.
+        -- To learn more about how to use this parameter, see Testing your permissions in the Key Management Service Developer Guide.
+        DryRun: boolean
+    end
+
+    record EncapsulateOutput
+        -- The identifier of the ML-KEM KMS key used to encapsulate the shared secret.
+        KeyId: string
+        -- The plaintext shared secret. It is a 32-byte cryptographically random value that both
+        -- parties can use directly as key material or pass through a key derivation function to generate
+        -- multiple keys and nonces. When you use the HTTP API or the Amazon Web Services CLI, the value is Base64-encoded. Otherwise, it is not Base64-encoded.
+        SharedSecret: string
+        -- The encapsulated form of the shared secret. Pass this value to the Decapsulate operation to recover the shared secret. When you use the HTTP API or the Amazon Web Services CLI, the value is Base64-encoded. Otherwise, it is not Base64-encoded.
+        -- The length of SharedSecretCiphertextBlob depends on the ML-KEM key spec.
+        -- Before Base64 encoding, the encapsulated shared secret is 768 bytes for ML_KEM_512,
+        -- 1088 bytes for ML_KEM_768, and 1568 bytes for ML_KEM_1024.
+        SharedSecretCiphertextBlob: string
+        -- The key encapsulation algorithm used to generate the shared secret.
+        EncapsulationAlgorithm: string
+    end
+
     record EncryptInput
         -- Identifies the KMS key to use in the encryption operation. The KMS key must have a
         -- KeyUsage of ENCRYPT_DECRYPT. To find the KeyUsage of
@@ -1999,7 +2106,7 @@ local record M
         -- To get the key ID and key ARN for a KMS key, use ListKeys or DescribeKey. To get the alias name and alias ARN, use ListAliases.
         KeyId: string
         -- Determines the type of data key pair that is generated.
-        -- The KMS rule that restricts the use of asymmetric RSA and SM2 KMS keys to encrypt and decrypt or to sign and verify (but not both), the rule that permits you to use ECC KMS keys only to sign and verify, and the rule that permits you to use ML-DSA key pairs to sign and verify only are not effective on data key pairs, which are used outside of KMS. The SM2 key spec is only available in China Regions.
+        -- The KMS rule that restricts the use of asymmetric RSA and SM2 KMS keys to encrypt and decrypt or to sign and verify (but not both), the rule that permits you to use ECC KMS keys only to sign and verify, and the rule that permits you to use ML-DSA key pairs to sign and verify only are not effective on data key pairs, which are used outside of KMS. The SM2 key spec is only available in China Regions. The ML-KEM key specs are not available in China Regions.
         KeyPairSpec: string
         -- A list of grant tokens.
         -- Use a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the
@@ -2074,7 +2181,7 @@ local record M
         -- To get the key ID and key ARN for a KMS key, use ListKeys or DescribeKey. To get the alias name and alias ARN, use ListAliases.
         KeyId: string
         -- Determines the type of data key pair that is generated.
-        -- The KMS rule that restricts the use of asymmetric RSA and SM2 KMS keys to encrypt and decrypt or to sign and verify (but not both), the rule that permits you to use ECC KMS keys only to sign and verify, and the rule that permits you to use ML-DSA key pairs to sign and verify only are not effective on data key pairs, which are used outside of KMS. The SM2 key spec is only available in China Regions.
+        -- The KMS rule that restricts the use of asymmetric RSA and SM2 KMS keys to encrypt and decrypt or to sign and verify (but not both), the rule that permits you to use ECC KMS keys only to sign and verify, and the rule that permits you to use ML-DSA key pairs to sign and verify only are not effective on data key pairs, which are used outside of KMS. The SM2 key spec is only available in China Regions. The ML-KEM key specs are not available in China Regions.
         KeyPairSpec: string
         -- A list of grant tokens.
         -- Use a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the
@@ -2240,6 +2347,8 @@ local record M
         "Sign"
         "Verify"
         "VerifyMac"
+        "Encapsulate"
+        "Decapsulate"
     end
 
     -- Contains usage information about the last time the KMS key was used for a successful cryptographic
@@ -2263,8 +2372,8 @@ local record M
         -- The globally unique identifier for the KMS key.
         KeyId: string
         -- Contains usage information about the last time the KMS key was used for a successful cryptographic
-        -- operation. If the key has not been used since tracking began, this response element is
-        -- empty.
+        -- operation. If the key has not been used since tracking began, this response element is an
+        -- empty object.
         KeyLastUsage: KeyLastUsageData
         -- The date from which KMS began recording cryptographic activity for this key, or the date
         -- the KMS key was created, whichever is later.
@@ -2434,6 +2543,10 @@ local record M
         -- The key agreement algorithm used to derive a shared secret. This field is present only
         -- when the KMS key has a KeyUsage value of KEY_AGREEMENT.
         KeyAgreementAlgorithms: {string}
+        -- The key encapsulation algorithm used to establish a shared secret. This field is present
+        -- only when the KMS key has a KeyUsage value of
+        -- ENCAPSULATE_DECAPSULATE.
+        EncapsulationAlgorithms: {string}
     end
 
     -- Contains information about a grant.

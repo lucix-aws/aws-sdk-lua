@@ -366,6 +366,25 @@ M.GeorgiaAdditionalInfo = schema.new({
     },
 })
 
+M.GermanyAdditionalInfo = schema.new({
+    id = id.from(_N, "GermanyAdditionalInfo"),
+    type = "structure",
+    members = {
+        economicIdentificationNumber = schema.new({
+            id = id.from(_N, "GermanyAdditionalInfo", "economicIdentificationNumber"),
+            type = "string",
+            name = "economicIdentificationNumber",
+            target_id = prelude.String.id,
+        }),
+        steuernummer = schema.new({
+            id = id.from(_N, "GermanyAdditionalInfo", "steuernummer"),
+            type = "string",
+            name = "steuernummer",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GreeceAdditionalInfo = schema.new({
     id = id.from(_N, "GreeceAdditionalInfo"),
     type = "structure",
@@ -519,6 +538,31 @@ M.MalaysiaAdditionalInfo = schema.new({
             id = id.from(_N, "MalaysiaAdditionalInfo", "businessRegistrationNumber"),
             type = "string",
             name = "businessRegistrationNumber",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MexicoAdditionalInfo = schema.new({
+    id = id.from(_N, "MexicoAdditionalInfo"),
+    type = "structure",
+    members = {
+        taxRegime = schema.new({
+            id = id.from(_N, "MexicoAdditionalInfo", "taxRegime"),
+            type = "string",
+            name = "taxRegime",
+            target_id = prelude.String.id,
+        }),
+        taxRegimeFullName = schema.new({
+            id = id.from(_N, "MexicoAdditionalInfo", "taxRegimeFullName"),
+            type = "string",
+            name = "taxRegimeFullName",
+            target_id = prelude.String.id,
+        }),
+        cfdiUsageCode = schema.new({
+            id = id.from(_N, "MexicoAdditionalInfo", "cfdiUsageCode"),
+            type = "string",
+            name = "cfdiUsageCode",
             target_id = prelude.String.id,
         }),
     },
@@ -940,6 +984,20 @@ M.AdditionalInfoResponse = schema.new({
             target_id = id.from(_N, "MonacoAdditionalInfo"),
             target = M.MonacoAdditionalInfo,
         }),
+        germanyAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "germanyAdditionalInfo"),
+            type = "structure",
+            name = "germanyAdditionalInfo",
+            target_id = id.from(_N, "GermanyAdditionalInfo"),
+            target = M.GermanyAdditionalInfo,
+        }),
+        mexicoAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "mexicoAdditionalInfo"),
+            type = "structure",
+            name = "mexicoAdditionalInfo",
+            target_id = id.from(_N, "MexicoAdditionalInfo"),
+            target = M.MexicoAdditionalInfo,
+        }),
     },
 })
 
@@ -1252,6 +1310,20 @@ M.AdditionalInfoRequest = schema.new({
             name = "monacoAdditionalInfo",
             target_id = id.from(_N, "MonacoAdditionalInfo"),
             target = M.MonacoAdditionalInfo,
+        }),
+        germanyAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "germanyAdditionalInfo"),
+            type = "structure",
+            name = "germanyAdditionalInfo",
+            target_id = id.from(_N, "GermanyAdditionalInfo"),
+            target = M.GermanyAdditionalInfo,
+        }),
+        mexicoAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "mexicoAdditionalInfo"),
+            type = "structure",
+            name = "mexicoAdditionalInfo",
+            target_id = id.from(_N, "MexicoAdditionalInfo"),
+            target = M.MexicoAdditionalInfo,
         }),
     },
 })

@@ -531,8 +531,8 @@ local record M
     -- An object representing a repository.
     record Repository
         -- The Amazon Resource Name (ARN) that identifies the repository. The ARN contains the arn:aws:ecr namespace, followed by the region of the
-        -- repository, Amazon Web Services account ID of the repository owner, repository namespace, and repository name.
-        -- For example, arn:aws:ecr:region:012345678910:repository-namespace/repository-name.
+        -- repository, Amazon Web Services account ID of the repository owner, and repository name.
+        -- For example, arn:aws:ecr:region:012345678910:repository/repository-name.
         repositoryArn: string
         -- The Amazon Web Services account ID associated with the registry that contains the repository.
         registryId: string
@@ -1563,6 +1563,126 @@ local record M
         replicationConfiguration: ReplicationConfiguration
     end
 
+    enum ReplicationBackfillResultStatus
+        "COMPLETE"
+        "FAILED"
+    end
+
+    record DescribeReplicationBackfillResultsInput
+        -- The Amazon Web Services account ID associated with the registry that contains the replication
+        -- backfill to describe. If you do not specify a registry, the default registry is assumed.
+        registryId: string
+        -- The ID of the replication backfill to describe.
+        replicationBackfillId: string
+        -- The status used to filter the returned results. Each result has a status of
+        -- COMPLETE or FAILED. If you omit this parameter, results
+        -- with both statuses are returned.
+        resultStatusFilter: string
+        -- The maximum number of replication backfill results returned by
+        -- DescribeReplicationBackfillResults in paginated output. When this
+        -- parameter is used, DescribeReplicationBackfillResults only returns
+        -- maxResults results in a single page along with a nextToken
+        -- response element. The remaining results of the initial request can be seen by sending
+        -- another DescribeReplicationBackfillResults request with the returned
+        -- nextToken value. This value can be between 1 and
+        -- 1000. If this parameter is not used, then
+        -- DescribeReplicationBackfillResults returns up to 100
+        -- results and a nextToken value, if applicable.
+        maxResults: number
+        -- The nextToken value returned from a previous paginated
+        -- DescribeReplicationBackfillResults request where maxResults
+        -- was used and the results exceeded the value of that parameter. Pagination continues from
+        -- the end of the previous results that returned the nextToken value. This
+        -- value is null when there are no more results to return.
+        -- This token should be treated as an opaque identifier that is only used to
+        -- retrieve the next items in a list and not for other programmatic purposes.
+        nextToken: string
+    end
+
+    -- An object representing the progress of a replication backfill, including the total,
+    -- completed, and failed replication counts.
+    record ReplicationBackfillProgress
+        -- The total number of replications that the backfill will perform. Each image and tag
+        -- combination is counted as a single replication.
+        totalReplicationCount: number
+        -- The number of replications that have completed successfully.
+        completedReplicationCount: number
+        -- The number of replications that have failed.
+        failedReplicationCount: number
+        -- The distinct failure codes for the replications that have failed. Each failure code
+        -- appears at most once, regardless of how many replications failed with that code.
+        failureCodes: {string}
+    end
+
+    -- An object representing the result of a single replication during a replication
+    -- backfill. Each image and tag combination is replicated as a single replication.
+    record ReplicationBackfillResult
+        -- The name of the repository that contains the image.
+        repositoryName: string
+        -- An object with identifying information for the image.
+        imageId: ImageIdentifier
+        -- The replication status of the image.
+        status: string
+        -- The failure code for a replication that has failed.
+        failureCode: string
+        -- The distinct failure codes for the images referenced by a manifest list that failed to
+        -- replicate. Each failure code appears at most once, regardless of how many referenced
+        -- images failed with that code. This field is present only when the image is a manifest
+        -- list.
+        subImageFailureCodes: {string}
+    end
+
+    enum ReplicationBackfillStatus
+        "PREPARING"
+        "IN_PROGRESS"
+        "COMPLETE"
+        "FAILED"
+        "STOPPING"
+        "STOPPED"
+    end
+
+    record DescribeReplicationBackfillResultsOutput
+        -- The registry ID associated with the request.
+        registryId: string
+        -- The ID of the replication backfill.
+        replicationBackfillId: string
+        -- The destination Region and registry to which the images are replicated.
+        destination: ReplicationDestination
+        -- The current status of the replication backfill.
+        status: string
+        -- The failure code for a replication backfill that has failed.
+        failureCode: string
+        -- The progress of the replication backfill, including the total, completed, and failed
+        -- replication counts. This value is null until the replication backfill
+        -- finishes preparing the set of images to replicate. It is therefore null
+        -- while the replication backfill is PREPARING, and remains null
+        -- if the replication backfill is stopped before preparation completes.
+        progress: ReplicationBackfillProgress
+        -- The per-image results for the replication backfill. Results are available only after
+        -- the replication backfill reaches a terminal status.
+        results: {ReplicationBackfillResult}
+        -- The date and time, in JavaScript date format, when the replication backfill was
+        -- started.
+        startedAt: number
+        -- The date and time, in JavaScript date format, when the replication backfill ended.
+        -- This value is null while the replication backfill is still in
+        -- progress.
+        endedAt: number
+        -- The nextToken value to include in a future
+        -- DescribeReplicationBackfillResults request. When the results of a
+        -- DescribeReplicationBackfillResults request exceed
+        -- maxResults, this value can be used to retrieve the next page of results.
+        -- This value is null when there are no more results to return.
+        nextToken: string
+    end
+
+    -- The specified replication backfill could not be found. Check the specified replication
+    -- backfill ID and ensure that you are operating on the correct registry.
+    record ReplicationBackfillNotFoundException
+        -- The error message associated with the exception.
+        message: string
+    end
+
     record DescribeRepositoriesInput
         -- The Amazon Web Services account ID associated with the registry that contains the repositories to be
         -- described. If you do not specify a registry, the default registry is assumed.
@@ -2133,6 +2253,69 @@ local record M
         nextToken: string
     end
 
+    record ListReplicationBackfillsInput
+        -- The Amazon Web Services account ID associated with the registry for which to list replication
+        -- backfills. If you do not specify a registry, the default registry is assumed.
+        registryId: string
+        -- The maximum number of replication backfill results returned by
+        -- ListReplicationBackfills in paginated output. When this parameter is
+        -- used, ListReplicationBackfills only returns maxResults results
+        -- in a single page along with a nextToken response element. The remaining
+        -- results of the initial request can be seen by sending another
+        -- ListReplicationBackfills request with the returned
+        -- nextToken value. This value can be between 1 and 50. If this parameter
+        -- is not used, then ListReplicationBackfills returns up to 25 results and a
+        -- nextToken value, if applicable.
+        maxResults: number
+        -- The nextToken value returned from a previous paginated
+        -- ListReplicationBackfills request where maxResults was used
+        -- and the results exceeded the value of that parameter. Pagination continues from the end
+        -- of the previous results that returned the nextToken value. This value is
+        -- null when there are no more results to return.
+        -- This token should be treated as an opaque identifier that is only used to
+        -- retrieve the next items in a list and not for other programmatic purposes.
+        nextToken: string
+    end
+
+    -- An object representing a summary of a replication backfill, including its status,
+    -- destination, progress, and start and end times.
+    record ReplicationBackfillSummary
+        -- The ID of the replication backfill.
+        replicationBackfillId: string
+        -- The destination Region and registry to which the images are replicated.
+        destination: ReplicationDestination
+        -- The current status of the replication backfill.
+        status: string
+        -- The failure code for a replication backfill that has failed.
+        failureCode: string
+        -- The progress of the replication backfill, including the total, completed, and failed
+        -- replication counts. This value is null until the replication backfill
+        -- finishes preparing the set of images to replicate. It is therefore null
+        -- while the replication backfill is PREPARING, and remains null
+        -- if the replication backfill is stopped before preparation completes.
+        progress: ReplicationBackfillProgress
+        -- The date and time, in JavaScript date format, when the replication backfill was
+        -- started.
+        startedAt: number
+        -- The date and time, in JavaScript date format, when the replication backfill ended.
+        -- This value is null while the replication backfill is still in
+        -- progress.
+        endedAt: number
+    end
+
+    record ListReplicationBackfillsOutput
+        -- The registry ID associated with the request.
+        registryId: string
+        -- A list of the replication backfills for the registry.
+        backfills: {ReplicationBackfillSummary}
+        -- The nextToken value to include in a future
+        -- ListReplicationBackfills request. When the results of a
+        -- ListReplicationBackfills request exceed maxResults, this
+        -- value can be used to retrieve the next page of results. This value is null
+        -- when there are no more results to return.
+        nextToken: string
+    end
+
     record ListTagsForResourceInput
         -- The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the
         -- only supported resource is an Amazon ECR repository.
@@ -2437,6 +2620,74 @@ local record M
         lifecyclePolicyText: string
         -- The status of the lifecycle policy preview request.
         status: string
+    end
+
+    -- A replication backfill is already in progress for the specified destination Region.
+    -- This occurs because only one replication backfill can be in progress for a given
+    -- destination Region at a time. Wait for the in progress backfill to reach a terminal
+    -- status, or stop it with the StopReplicationBackfill operation, before
+    -- starting another one.
+    record ReplicationBackfillInProgressException
+        -- The error message associated with the exception.
+        message: string
+    end
+
+    record StartReplicationBackfillInput
+        -- The Amazon Web Services account ID associated with the registry from which to start the replication
+        -- backfill. If you do not specify a registry, the default registry is assumed.
+        registryId: string
+        -- The destination Region and registry to which the images are replicated.
+        destination: ReplicationDestination
+    end
+
+    record StartReplicationBackfillOutput
+        -- The ID of the replication backfill that was started. Use this value to describe or
+        -- stop the backfill.
+        replicationBackfillId: string
+        -- The registry ID associated with the request.
+        registryId: string
+        -- The destination Region and registry to which the images are replicated.
+        destination: ReplicationDestination
+        -- The current status of the replication backfill. A newly started replication backfill
+        -- is returned with a status of PREPARING.
+        status: string
+        -- The date and time, in JavaScript date format, when the replication backfill was
+        -- started.
+        startedAt: number
+    end
+
+    -- The requested operation can't be performed on the replication backfill because it is
+    -- not in a valid status for that operation. For example, you can't stop a replication
+    -- backfill that has already reached a terminal status. Use the DescribeReplicationBackfillResults operation to check the current status
+    -- before retrying.
+    record ReplicationBackfillInvalidStatusException
+        -- The error message associated with the exception.
+        message: string
+    end
+
+    record StopReplicationBackfillInput
+        -- The Amazon Web Services account ID associated with the registry that contains the replication
+        -- backfill to stop. If you do not specify a registry, the default registry is assumed.
+        registryId: string
+        -- The ID of the replication backfill to stop.
+        replicationBackfillId: string
+    end
+
+    record StopReplicationBackfillOutput
+        -- The registry ID associated with the request.
+        registryId: string
+        -- The ID of the replication backfill.
+        replicationBackfillId: string
+        -- The destination Region and registry to which the images are replicated.
+        destination: ReplicationDestination
+        -- The current status of the replication backfill. When you stop a replication backfill,
+        -- its status is STOPPED if the backfill is stopped immediately, or
+        -- STOPPING if there are replications still in progress that must complete
+        -- before the backfill stops.
+        status: string
+        -- The date and time, in JavaScript date format, when the replication backfill was
+        -- started.
+        startedAt: number
     end
 
     record TagResourceInput

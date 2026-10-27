@@ -20,6 +20,7 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     createOAuth2Token: function(Client, types.CreateOAuth2TokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenOutput>
     createOAuth2TokenWithIAM: function(Client, types.CreateOAuth2TokenWithIAMInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenWithIAMOutput>
+    createOAuth2TokenWithTokenExchange: function(Client, types.CreateOAuth2TokenWithTokenExchangeInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenWithTokenExchangeOutput>
     deleteConsoleAuthorizationConfiguration: function(Client, types.DeleteConsoleAuthorizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConsoleAuthorizationConfigurationOutput>
     deleteResourcePermissionStatement: function(Client, types.DeleteResourcePermissionStatementInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePermissionStatementOutput>
     getConsoleAuthorizationConfiguration: function(Client, types.GetConsoleAuthorizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetConsoleAuthorizationConfigurationOutput>
@@ -79,6 +80,10 @@ end
 
 function C:createOAuth2TokenWithIAM(input: types.CreateOAuth2TokenWithIAMInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenWithIAMOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOAuth2TokenWithIAM as schema.OperationSchema, input, options) as async.Operation<types.CreateOAuth2TokenWithIAMOutput>
+end
+
+function C:createOAuth2TokenWithTokenExchange(input: types.CreateOAuth2TokenWithTokenExchangeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenWithTokenExchangeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOAuth2TokenWithTokenExchange as schema.OperationSchema, input, options) as async.Operation<types.CreateOAuth2TokenWithTokenExchangeOutput>
 end
 
 function C:deleteConsoleAuthorizationConfiguration(input: types.DeleteConsoleAuthorizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConsoleAuthorizationConfigurationOutput>

@@ -24,6 +24,7 @@ local record Client
     createCustomKeyStore: function(Client, types.CreateCustomKeyStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomKeyStoreOutput>
     createGrant: function(Client, types.CreateGrantInput, ? base_client.InvokeOptions): async.Operation<types.CreateGrantOutput>
     createKey: function(Client, types.CreateKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyOutput>
+    decapsulate: function(Client, types.DecapsulateInput, ? base_client.InvokeOptions): async.Operation<types.DecapsulateOutput>
     decrypt: function(Client, types.DecryptInput, ? base_client.InvokeOptions): async.Operation<types.DecryptOutput>
     deleteAlias: function(Client, types.DeleteAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAliasOutput>
     deleteCustomKeyStore: function(Client, types.DeleteCustomKeyStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomKeyStoreOutput>
@@ -36,6 +37,7 @@ local record Client
     disconnectCustomKeyStore: function(Client, types.DisconnectCustomKeyStoreInput, ? base_client.InvokeOptions): async.Operation<types.DisconnectCustomKeyStoreOutput>
     enableKey: function(Client, types.EnableKeyInput, ? base_client.InvokeOptions): async.Operation<types.EnableKeyOutput>
     enableKeyRotation: function(Client, types.EnableKeyRotationInput, ? base_client.InvokeOptions): async.Operation<types.EnableKeyRotationOutput>
+    encapsulate: function(Client, types.EncapsulateInput, ? base_client.InvokeOptions): async.Operation<types.EncapsulateOutput>
     encrypt: function(Client, types.EncryptInput, ? base_client.InvokeOptions): async.Operation<types.EncryptOutput>
     generateDataKey: function(Client, types.GenerateDataKeyInput, ? base_client.InvokeOptions): async.Operation<types.GenerateDataKeyOutput>
     generateDataKeyPair: function(Client, types.GenerateDataKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.GenerateDataKeyPairOutput>
@@ -140,6 +142,10 @@ function C:createKey(input: types.CreateKeyInput, options?: base_client.InvokeOp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKey as schema.OperationSchema, input, options) as async.Operation<types.CreateKeyOutput>
 end
 
+function C:decapsulate(input: types.DecapsulateInput, options?: base_client.InvokeOptions): async.Operation<types.DecapsulateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Decapsulate as schema.OperationSchema, input, options) as async.Operation<types.DecapsulateOutput>
+end
+
 function C:decrypt(input: types.DecryptInput, options?: base_client.InvokeOptions): async.Operation<types.DecryptOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Decrypt as schema.OperationSchema, input, options) as async.Operation<types.DecryptOutput>
 end
@@ -186,6 +192,10 @@ end
 
 function C:enableKeyRotation(input: types.EnableKeyRotationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableKeyRotationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableKeyRotation as schema.OperationSchema, input, options) as async.Operation<types.EnableKeyRotationOutput>
+end
+
+function C:encapsulate(input: types.EncapsulateInput, options?: base_client.InvokeOptions): async.Operation<types.EncapsulateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Encapsulate as schema.OperationSchema, input, options) as async.Operation<types.EncapsulateOutput>
 end
 
 function C:encrypt(input: types.EncryptInput, options?: base_client.InvokeOptions): async.Operation<types.EncryptOutput>

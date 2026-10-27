@@ -137,6 +137,14 @@ local record M
         personType: string
     end
 
+    -- Contains additional tax information associated with your Tax Registration Number (TRN) in Germany, such as the economic identification number and Steuernummer.
+    record GermanyAdditionalInfo
+        -- The economic identification number (Wirtschafts-Identifikationsnummer, or W-IdNr) in Germany.
+        economicIdentificationNumber: string
+        -- The Steuernummer (tax number issued by the local tax office) in Germany.
+        steuernummer: string
+    end
+
     -- Additional tax information to specify for a TRN in Greece.
     record GreeceAdditionalInfo
         -- The code of contracting authority for e-invoicing.
@@ -224,6 +232,16 @@ local record M
         taxInformationNumber: string
         -- The tax registration number (TRN) in Malaysia. For individual, you can specify the taxInformationNumber in MalaysiaAdditionalInfo with NRIC type, and a valid MyKad or NRIC number. For business, you must specify a businessRegistrationNumber in MalaysiaAdditionalInfo with a TIN type and tax identification number. For business resellers, you must specify a businessRegistrationNumber and taxInformationNumber in MalaysiaAdditionalInfo with a sales and service tax (SST) type and a valid SST number. For business resellers with service codes, you must specify businessRegistrationNumber, taxInformationNumber, and distinct serviceTaxCodes in MalaysiaAdditionalInfo with a SST type and valid sales and service tax (SST) number. By using this API operation, Amazon Web Services registers your self-declaration that you’re an authorized business reseller registered with the Royal Malaysia Customs Department (RMCD), and have a valid SST number.
         businessRegistrationNumber: string
+    end
+
+    -- Contains additional tax information associated with your Tax Registration Number (TRN) in Mexico, such as the SAT tax regime and CFDI usage code.
+    record MexicoAdditionalInfo
+        -- The SAT-assigned tax regime code for your business in Mexico. Must be a 3-digit number (for example, 601 for General de Ley Personas Morales).
+        taxRegime: string
+        -- The full name of the SAT tax regime associated with your business in Mexico.
+        taxRegimeFullName: string
+        -- The SAT CFDI usage code that identifies the purpose of the invoice in Mexico (for example, G01 for goods acquisition, S01 for no tax effects).
+        cfdiUsageCode: string
     end
 
     -- Additional tax information associated with your TRN in Monaco.
@@ -409,6 +427,10 @@ local record M
         franceAdditionalInfo: FranceAdditionalInfo
         -- Additional tax information associated with your TRN in Monaco.
         monacoAdditionalInfo: MonacoAdditionalInfo
+        -- Additional tax information associated with your Tax Registration Number (TRN) in Germany.
+        germanyAdditionalInfo: GermanyAdditionalInfo
+        -- Additional tax information associated with your Tax Registration Number (TRN) in Mexico.
+        mexicoAdditionalInfo: MexicoAdditionalInfo
     end
 
     enum TaxRegistrationType
@@ -527,6 +549,10 @@ local record M
         franceAdditionalInfo: FranceAdditionalInfo
         -- Additional tax information to specify for a TRN in Monaco.
         monacoAdditionalInfo: MonacoAdditionalInfo
+        -- Additional tax information to specify for a Tax Registration Number (TRN) in Germany.
+        germanyAdditionalInfo: GermanyAdditionalInfo
+        -- Additional tax information to specify for a Tax Registration Number (TRN) in Mexico.
+        mexicoAdditionalInfo: MexicoAdditionalInfo
     end
 
     -- Failed to upload the tax exemption document to Amazon Web Services Support case.

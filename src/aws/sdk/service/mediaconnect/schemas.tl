@@ -26,6 +26,16 @@ M.__listOfBridgeOutput = schema.new({ type = "list", list_member = M.BridgeOutpu
 
 M.__listOfBridgeSource = schema.new({ type = "list", list_member = M.BridgeSource })
 
+M.DestinationEndpointFilterList = schema.new({ type = "list", list_member = M.DestinationEndpointFilter })
+
+M.ListedDestinationEndpointList = schema.new({ type = "list", list_member = M.ListedDestinationEndpoint })
+
+M.DestinationEndpointArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationEndpointList = schema.new({ type = "list", list_member = M.DestinationEndpoint })
+
+M.BatchGetDestinationEndpointErrorList = schema.new({ type = "list", list_member = M.BatchGetDestinationEndpointError })
+
 M.__listOfListedFlow = schema.new({ type = "list", list_member = M.ListedFlow })
 
 M.__listOfGrantEntitlementRequest = schema.new({ type = "list", list_member = M.GrantEntitlementRequest })
@@ -94,6 +104,18 @@ M.RouterOutputList = schema.new({ type = "list", list_member = M.RouterOutput })
 
 M.BatchGetRouterOutputErrorList = schema.new({ type = "list", list_member = M.BatchGetRouterOutputError })
 
+M.SourceEndpointFilterList = schema.new({ type = "list", list_member = M.SourceEndpointFilter })
+
+M.ListedSourceEndpointList = schema.new({ type = "list", list_member = M.ListedSourceEndpoint })
+
+M.SourceEndpointArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SourceEndpointList = schema.new({ type = "list", list_member = M.SourceEndpoint })
+
+M.BatchGetSourceEndpointErrorList = schema.new({ type = "list", list_member = M.BatchGetSourceEndpointError })
+
+M.DestinationEndpointMessageList = schema.new({ type = "list", list_member = M.DestinationEndpointMessage })
+
 M.__listOfAudioMonitoringSetting = schema.new({ type = "list", list_member = M.AudioMonitoringSetting })
 
 M.__listOfVideoMonitoringSetting = schema.new({ type = "list", list_member = M.VideoMonitoringSetting })
@@ -114,13 +136,17 @@ M.RouterInputMessages = schema.new({ type = "list", list_member = M.RouterInputM
 
 M.RouterOutputMessages = schema.new({ type = "list", list_member = M.RouterOutputMessage })
 
+M.SourceEndpointMessageList = schema.new({ type = "list", list_member = M.SourceEndpointMessage })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationEndpointTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.__listOfNdiMediaStreamInfo = schema.new({ type = "list", list_member = M.NdiMediaStreamInfo })
 
 M.__listOfDestinationConfigurationRequest = schema.new({ type = "list", list_member = M.DestinationConfigurationRequest })
 
 M.__listOfInputConfigurationRequest = schema.new({ type = "list", list_member = M.InputConfigurationRequest })
-
-M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RoutingScopeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -138,11 +164,17 @@ M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String
 
 M.RouterOutputTypeList = schema.new({ type = "list", list_member = prelude.String })
 
+M.SourceEndpointTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.__listOfTransportStream = schema.new({ type = "list", list_member = M.TransportStream })
 
 M.__listOfDestinationConfiguration = schema.new({ type = "list", list_member = M.DestinationConfiguration })
 
 M.__listOfInputConfiguration = schema.new({ type = "list", list_member = M.InputConfiguration })
+
+M.PublicDestinationEndpointNetworkingConfigurationAllowRuleList = schema.new({ type = "list", list_member = M.PublicDestinationEndpointNetworkingConfigurationAllowRule })
+
+M.PublicSourceEndpointNetworkingConfigurationAllowRuleList = schema.new({ type = "list", list_member = M.PublicSourceEndpointNetworkingConfigurationAllowRule })
 
 M.AddBridgeNetworkOutputRequest = schema.new({
     id = id.from(_N, "AddBridgeNetworkOutputRequest"),
@@ -4608,6 +4640,1112 @@ M.AddMaintenance = schema.new({
     },
 })
 
+M.AutomaticEndpointEncryptionConfiguration = schema.new({
+    id = id.from(_N, "AutomaticEndpointEncryptionConfiguration"),
+    type = "structure",
+})
+
+M.BatchGetDestinationEndpointInput = schema.new({
+    id = id.from(_N, "BatchGetDestinationEndpointRequest"),
+    type = "structure",
+    members = {
+        Arns = schema.new({
+            id = id.from(_N, "BatchGetDestinationEndpointInput", "Arns"),
+            type = "list",
+            name = "Arns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "arns" },
+            },
+        }),
+    },
+})
+
+M.RouterInputMessage = schema.new({
+    id = id.from(_N, "RouterInputMessage"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "RouterInputMessage", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "RouterInputMessage", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.RouterInputDestinationEndpointAssociatedResourceDetails = schema.new({
+    id = id.from(_N, "RouterInputDestinationEndpointAssociatedResourceDetails"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RouterInputDestinationEndpointAssociatedResourceDetails", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        MaximumBitrate = schema.new({
+            id = id.from(_N, "RouterInputDestinationEndpointAssociatedResourceDetails", "MaximumBitrate"),
+            type = "long",
+            name = "MaximumBitrate",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "maximumBitrate" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "RouterInputDestinationEndpointAssociatedResourceDetails", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "state" },
+            },
+        }),
+        Messages = schema.new({
+            id = id.from(_N, "RouterInputDestinationEndpointAssociatedResourceDetails", "Messages"),
+            type = "list",
+            name = "Messages",
+            target_id = prelude.Document.id,
+            list_member = M.RouterInputMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "messages" },
+            },
+        }),
+    },
+})
+
+M.StandardDestinationEndpointAssociatedResourceDetails = schema.new({
+    id = id.from(_N, "StandardDestinationEndpointAssociatedResourceDetails"),
+    type = "structure",
+})
+
+M.DestinationEndpointAssociatedResourceDetails = schema.new({
+    id = id.from(_N, "DestinationEndpointAssociatedResourceDetails"),
+    type = "union",
+    members = {
+        Standard = schema.new({
+            id = id.from(_N, "DestinationEndpointAssociatedResourceDetails", "Standard"),
+            type = "structure",
+            name = "Standard",
+            target_id = id.from(_N, "StandardDestinationEndpointAssociatedResourceDetails"),
+            target = M.StandardDestinationEndpointAssociatedResourceDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "standard" },
+            },
+        }),
+        RouterInput = schema.new({
+            id = id.from(_N, "DestinationEndpointAssociatedResourceDetails", "RouterInput"),
+            type = "structure",
+            name = "RouterInput",
+            target_id = id.from(_N, "RouterInputDestinationEndpointAssociatedResourceDetails"),
+            target = M.RouterInputDestinationEndpointAssociatedResourceDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "routerInput" },
+            },
+        }),
+    },
+})
+
+M.RouterInputDestinationEndpointConfiguration = schema.new({
+    id = id.from(_N, "RouterInputDestinationEndpointConfiguration"),
+    type = "structure",
+    members = {
+        RouterInputArn = schema.new({
+            id = id.from(_N, "RouterInputDestinationEndpointConfiguration", "RouterInputArn"),
+            type = "string",
+            name = "RouterInputArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "routerInputArn" },
+            },
+        }),
+    },
+})
+
+M.PublicDestinationEndpointNetworkingConfigurationAllowRule = schema.new({
+    id = id.from(_N, "PublicDestinationEndpointNetworkingConfigurationAllowRule"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "PublicDestinationEndpointNetworkingConfigurationAllowRule", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "cidr" },
+            },
+        }),
+    },
+})
+
+M.PublicDestinationEndpointNetworkingConfiguration = schema.new({
+    id = id.from(_N, "PublicDestinationEndpointNetworkingConfiguration"),
+    type = "structure",
+    members = {
+        DestinationAllowRules = schema.new({
+            id = id.from(_N, "PublicDestinationEndpointNetworkingConfiguration", "DestinationAllowRules"),
+            type = "list",
+            name = "DestinationAllowRules",
+            target_id = prelude.Document.id,
+            list_member = M.PublicDestinationEndpointNetworkingConfigurationAllowRule,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationAllowRules" },
+            },
+        }),
+    },
+})
+
+M.VpcDestinationEndpointNetworkingConfiguration = schema.new({
+    id = id.from(_N, "VpcDestinationEndpointNetworkingConfiguration"),
+    type = "structure",
+    members = {
+        SecurityGroupIds = schema.new({
+            id = id.from(_N, "VpcDestinationEndpointNetworkingConfiguration", "SecurityGroupIds"),
+            type = "list",
+            name = "SecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "securityGroupIds" },
+            },
+        }),
+        SubnetId = schema.new({
+            id = id.from(_N, "VpcDestinationEndpointNetworkingConfiguration", "SubnetId"),
+            type = "string",
+            name = "SubnetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "subnetId" },
+            },
+        }),
+    },
+})
+
+M.StandardDestinationEndpointNetworkingConfiguration = schema.new({
+    id = id.from(_N, "StandardDestinationEndpointNetworkingConfiguration"),
+    type = "union",
+    members = {
+        Public = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointNetworkingConfiguration", "Public"),
+            type = "structure",
+            name = "Public",
+            target_id = id.from(_N, "PublicDestinationEndpointNetworkingConfiguration"),
+            target = M.PublicDestinationEndpointNetworkingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "public" },
+            },
+        }),
+        Vpc = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointNetworkingConfiguration", "Vpc"),
+            type = "structure",
+            name = "Vpc",
+            target_id = id.from(_N, "VpcDestinationEndpointNetworkingConfiguration"),
+            target = M.VpcDestinationEndpointNetworkingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "vpc" },
+            },
+        }),
+    },
+})
+
+M.RistStandardDestinationEndpointConfiguration = schema.new({
+    id = id.from(_N, "RistStandardDestinationEndpointConfiguration"),
+    type = "structure",
+    members = {
+        DestinationAddress = schema.new({
+            id = id.from(_N, "RistStandardDestinationEndpointConfiguration", "DestinationAddress"),
+            type = "string",
+            name = "DestinationAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationAddress" },
+            },
+        }),
+        DestinationIngestPort = schema.new({
+            id = id.from(_N, "RistStandardDestinationEndpointConfiguration", "DestinationIngestPort"),
+            type = "integer",
+            name = "DestinationIngestPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationIngestPort" },
+            },
+        }),
+    },
+})
+
+M.RtpStandardDestinationEndpointConfiguration = schema.new({
+    id = id.from(_N, "RtpStandardDestinationEndpointConfiguration"),
+    type = "structure",
+    members = {
+        DestinationAddress = schema.new({
+            id = id.from(_N, "RtpStandardDestinationEndpointConfiguration", "DestinationAddress"),
+            type = "string",
+            name = "DestinationAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationAddress" },
+            },
+        }),
+        DestinationIngestPort = schema.new({
+            id = id.from(_N, "RtpStandardDestinationEndpointConfiguration", "DestinationIngestPort"),
+            type = "integer",
+            name = "DestinationIngestPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationIngestPort" },
+            },
+        }),
+        ForwardErrorCorrectionState = schema.new({
+            id = id.from(_N, "RtpStandardDestinationEndpointConfiguration", "ForwardErrorCorrectionState"),
+            type = "string",
+            name = "ForwardErrorCorrectionState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "forwardErrorCorrectionState" },
+            },
+        }),
+    },
+})
+
+M.EndpointEncryptionSecretConfiguration = schema.new({
+    id = id.from(_N, "EndpointEncryptionSecretConfiguration"),
+    type = "structure",
+    members = {
+        SecretArn = schema.new({
+            id = id.from(_N, "EndpointEncryptionSecretConfiguration", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "secretArn" },
+            },
+        }),
+    },
+})
+
+M.SrtCallerStandardDestinationEndpointConfiguration = schema.new({
+    id = id.from(_N, "SrtCallerStandardDestinationEndpointConfiguration"),
+    type = "structure",
+    members = {
+        SourceListenerPort = schema.new({
+            id = id.from(_N, "SrtCallerStandardDestinationEndpointConfiguration", "SourceListenerPort"),
+            type = "integer",
+            name = "SourceListenerPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceListenerPort" },
+            },
+        }),
+        MinimumLatencyMilliseconds = schema.new({
+            id = id.from(_N, "SrtCallerStandardDestinationEndpointConfiguration", "MinimumLatencyMilliseconds"),
+            type = "long",
+            name = "MinimumLatencyMilliseconds",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "minimumLatencyMilliseconds" },
+            },
+        }),
+        EncryptionPassphrase = schema.new({
+            id = id.from(_N, "SrtCallerStandardDestinationEndpointConfiguration", "EncryptionPassphrase"),
+            type = "structure",
+            name = "EncryptionPassphrase",
+            target_id = id.from(_N, "EndpointEncryptionSecretConfiguration"),
+            target = M.EndpointEncryptionSecretConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionPassphrase" },
+            },
+        }),
+    },
+})
+
+M.SrtListenerStandardDestinationEndpointConfiguration = schema.new({
+    id = id.from(_N, "SrtListenerStandardDestinationEndpointConfiguration"),
+    type = "structure",
+    members = {
+        DestinationAddress = schema.new({
+            id = id.from(_N, "SrtListenerStandardDestinationEndpointConfiguration", "DestinationAddress"),
+            type = "string",
+            name = "DestinationAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationAddress" },
+            },
+        }),
+        DestinationIngestPort = schema.new({
+            id = id.from(_N, "SrtListenerStandardDestinationEndpointConfiguration", "DestinationIngestPort"),
+            type = "integer",
+            name = "DestinationIngestPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationIngestPort" },
+            },
+        }),
+        MinimumLatencyMilliseconds = schema.new({
+            id = id.from(_N, "SrtListenerStandardDestinationEndpointConfiguration", "MinimumLatencyMilliseconds"),
+            type = "long",
+            name = "MinimumLatencyMilliseconds",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "minimumLatencyMilliseconds" },
+            },
+        }),
+        StreamId = schema.new({
+            id = id.from(_N, "SrtListenerStandardDestinationEndpointConfiguration", "StreamId"),
+            type = "string",
+            name = "StreamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "streamId" },
+            },
+        }),
+        EncryptionPassphrase = schema.new({
+            id = id.from(_N, "SrtListenerStandardDestinationEndpointConfiguration", "EncryptionPassphrase"),
+            type = "structure",
+            name = "EncryptionPassphrase",
+            target_id = id.from(_N, "EndpointEncryptionSecretConfiguration"),
+            target = M.EndpointEncryptionSecretConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionPassphrase" },
+            },
+        }),
+    },
+})
+
+M.StandardDestinationEndpointProtocolConfiguration = schema.new({
+    id = id.from(_N, "StandardDestinationEndpointProtocolConfiguration"),
+    type = "union",
+    members = {
+        Rist = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointProtocolConfiguration", "Rist"),
+            type = "structure",
+            name = "Rist",
+            target_id = id.from(_N, "RistStandardDestinationEndpointConfiguration"),
+            target = M.RistStandardDestinationEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "rist" },
+            },
+        }),
+        SrtListener = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointProtocolConfiguration", "SrtListener"),
+            type = "structure",
+            name = "SrtListener",
+            target_id = id.from(_N, "SrtListenerStandardDestinationEndpointConfiguration"),
+            target = M.SrtListenerStandardDestinationEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "srtListener" },
+            },
+        }),
+        SrtCaller = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointProtocolConfiguration", "SrtCaller"),
+            type = "structure",
+            name = "SrtCaller",
+            target_id = id.from(_N, "SrtCallerStandardDestinationEndpointConfiguration"),
+            target = M.SrtCallerStandardDestinationEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "srtCaller" },
+            },
+        }),
+        Rtp = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointProtocolConfiguration", "Rtp"),
+            type = "structure",
+            name = "Rtp",
+            target_id = id.from(_N, "RtpStandardDestinationEndpointConfiguration"),
+            target = M.RtpStandardDestinationEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtp" },
+            },
+        }),
+    },
+})
+
+M.StandardDestinationEndpointConfiguration = schema.new({
+    id = id.from(_N, "StandardDestinationEndpointConfiguration"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConfiguration", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        DestinationNetworkingConfiguration = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConfiguration", "DestinationNetworkingConfiguration"),
+            type = "union",
+            name = "DestinationNetworkingConfiguration",
+            target_id = id.from(_N, "StandardDestinationEndpointNetworkingConfiguration"),
+            target = M.StandardDestinationEndpointNetworkingConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationNetworkingConfiguration" },
+            },
+        }),
+        ProtocolConfiguration = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConfiguration", "ProtocolConfiguration"),
+            type = "union",
+            name = "ProtocolConfiguration",
+            target_id = id.from(_N, "StandardDestinationEndpointProtocolConfiguration"),
+            target = M.StandardDestinationEndpointProtocolConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "protocolConfiguration" },
+            },
+        }),
+        DestinationNetworkingType = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConfiguration", "DestinationNetworkingType"),
+            type = "string",
+            name = "DestinationNetworkingType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationNetworkingType" },
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConfiguration", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "protocol" },
+            },
+        }),
+    },
+})
+
+M.DestinationEndpointConfiguration = schema.new({
+    id = id.from(_N, "DestinationEndpointConfiguration"),
+    type = "union",
+    members = {
+        Standard = schema.new({
+            id = id.from(_N, "DestinationEndpointConfiguration", "Standard"),
+            type = "structure",
+            name = "Standard",
+            target_id = id.from(_N, "StandardDestinationEndpointConfiguration"),
+            target = M.StandardDestinationEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "standard" },
+            },
+        }),
+        RouterInput = schema.new({
+            id = id.from(_N, "DestinationEndpointConfiguration", "RouterInput"),
+            type = "structure",
+            name = "RouterInput",
+            target_id = id.from(_N, "RouterInputDestinationEndpointConfiguration"),
+            target = M.RouterInputDestinationEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "routerInput" },
+            },
+        }),
+    },
+})
+
+M.SecretsManagerEndpointEncryptionConfiguration = schema.new({
+    id = id.from(_N, "SecretsManagerEndpointEncryptionConfiguration"),
+    type = "structure",
+    members = {
+        EncryptionSecretType = schema.new({
+            id = id.from(_N, "SecretsManagerEndpointEncryptionConfiguration", "EncryptionSecretType"),
+            type = "string",
+            name = "EncryptionSecretType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionSecretType" },
+            },
+        }),
+        EncryptionSecret = schema.new({
+            id = id.from(_N, "SecretsManagerEndpointEncryptionConfiguration", "EncryptionSecret"),
+            type = "structure",
+            name = "EncryptionSecret",
+            target_id = id.from(_N, "EndpointEncryptionSecretConfiguration"),
+            target = M.EndpointEncryptionSecretConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "encryptionSecret" },
+            },
+        }),
+    },
+})
+
+M.EndpointEncryptionConfiguration = schema.new({
+    id = id.from(_N, "EndpointEncryptionConfiguration"),
+    type = "union",
+    members = {
+        SecretsManager = schema.new({
+            id = id.from(_N, "EndpointEncryptionConfiguration", "SecretsManager"),
+            type = "structure",
+            name = "SecretsManager",
+            target_id = id.from(_N, "SecretsManagerEndpointEncryptionConfiguration"),
+            target = M.SecretsManagerEndpointEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "secretsManager" },
+            },
+        }),
+        Automatic = schema.new({
+            id = id.from(_N, "EndpointEncryptionConfiguration", "Automatic"),
+            type = "structure",
+            name = "Automatic",
+            target_id = id.from(_N, "AutomaticEndpointEncryptionConfiguration"),
+            target = M.AutomaticEndpointEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "automatic" },
+            },
+        }),
+    },
+})
+
+M.RouterInputDestinationEndpointConnectionDetails = schema.new({
+    id = id.from(_N, "RouterInputDestinationEndpointConnectionDetails"),
+    type = "structure",
+    members = {
+        SourceEncryptionType = schema.new({
+            id = id.from(_N, "RouterInputDestinationEndpointConnectionDetails", "SourceEncryptionType"),
+            type = "string",
+            name = "SourceEncryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceEncryptionType" },
+            },
+        }),
+        SourceEncryptionConfiguration = schema.new({
+            id = id.from(_N, "RouterInputDestinationEndpointConnectionDetails", "SourceEncryptionConfiguration"),
+            type = "union",
+            name = "SourceEncryptionConfiguration",
+            target_id = id.from(_N, "EndpointEncryptionConfiguration"),
+            target = M.EndpointEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceEncryptionConfiguration" },
+            },
+        }),
+        SourceEndpointType = schema.new({
+            id = id.from(_N, "RouterInputDestinationEndpointConnectionDetails", "SourceEndpointType"),
+            type = "string",
+            name = "SourceEndpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceEndpointType" },
+            },
+        }),
+    },
+})
+
+M.StandardDestinationEndpointConnectionDetails = schema.new({
+    id = id.from(_N, "StandardDestinationEndpointConnectionDetails"),
+    type = "structure",
+    members = {
+        SourceIpAddress = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConnectionDetails", "SourceIpAddress"),
+            type = "string",
+            name = "SourceIpAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceIpAddress" },
+            },
+        }),
+        SourceListenerPort = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConnectionDetails", "SourceListenerPort"),
+            type = "integer",
+            name = "SourceListenerPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceListenerPort" },
+            },
+        }),
+        SourceEncryptionType = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConnectionDetails", "SourceEncryptionType"),
+            type = "string",
+            name = "SourceEncryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceEncryptionType" },
+            },
+        }),
+        SourceEncryptionConfiguration = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConnectionDetails", "SourceEncryptionConfiguration"),
+            type = "union",
+            name = "SourceEncryptionConfiguration",
+            target_id = id.from(_N, "EndpointEncryptionConfiguration"),
+            target = M.EndpointEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceEncryptionConfiguration" },
+            },
+        }),
+        SourceEndpointType = schema.new({
+            id = id.from(_N, "StandardDestinationEndpointConnectionDetails", "SourceEndpointType"),
+            type = "string",
+            name = "SourceEndpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceEndpointType" },
+            },
+        }),
+    },
+})
+
+M.DestinationEndpointConnectionDetails = schema.new({
+    id = id.from(_N, "DestinationEndpointConnectionDetails"),
+    type = "union",
+    members = {
+        Standard = schema.new({
+            id = id.from(_N, "DestinationEndpointConnectionDetails", "Standard"),
+            type = "structure",
+            name = "Standard",
+            target_id = id.from(_N, "StandardDestinationEndpointConnectionDetails"),
+            target = M.StandardDestinationEndpointConnectionDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "standard" },
+            },
+        }),
+        RouterInput = schema.new({
+            id = id.from(_N, "DestinationEndpointConnectionDetails", "RouterInput"),
+            type = "structure",
+            name = "RouterInput",
+            target_id = id.from(_N, "RouterInputDestinationEndpointConnectionDetails"),
+            target = M.RouterInputDestinationEndpointConnectionDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "routerInput" },
+            },
+        }),
+    },
+})
+
+M.DestinationEndpointMessage = schema.new({
+    id = id.from(_N, "DestinationEndpointMessage"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "DestinationEndpointMessage", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "DestinationEndpointMessage", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ConsumedResourceShareDetails = schema.new({
+    id = id.from(_N, "ConsumedResourceShareDetails"),
+    type = "structure",
+    members = {
+        OwnerAccountId = schema.new({
+            id = id.from(_N, "ConsumedResourceShareDetails", "OwnerAccountId"),
+            type = "string",
+            name = "OwnerAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "ownerAccountId" },
+            },
+        }),
+    },
+})
+
+M.OwnedResourceShareDetails = schema.new({
+    id = id.from(_N, "OwnedResourceShareDetails"),
+    type = "structure",
+    members = {
+        ShareState = schema.new({
+            id = id.from(_N, "OwnedResourceShareDetails", "ShareState"),
+            type = "string",
+            name = "ShareState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "shareState" },
+            },
+        }),
+    },
+})
+
+M.ResourceShareDetails = schema.new({
+    id = id.from(_N, "ResourceShareDetails"),
+    type = "union",
+    members = {
+        Owned = schema.new({
+            id = id.from(_N, "ResourceShareDetails", "Owned"),
+            type = "structure",
+            name = "Owned",
+            target_id = id.from(_N, "OwnedResourceShareDetails"),
+            target = M.OwnedResourceShareDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "owned" },
+            },
+        }),
+        Consumed = schema.new({
+            id = id.from(_N, "ResourceShareDetails", "Consumed"),
+            type = "structure",
+            name = "Consumed",
+            target_id = id.from(_N, "ConsumedResourceShareDetails"),
+            target = M.ConsumedResourceShareDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "consumed" },
+            },
+        }),
+    },
+})
+
+M.DestinationEndpoint = schema.new({
+    id = id.from(_N, "DestinationEndpoint"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        RegionName = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "regionName" },
+            },
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "availabilityZone" },
+            },
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "availabilityZoneId" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        LifecycleManagement = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "LifecycleManagement"),
+            type = "string",
+            name = "LifecycleManagement",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "lifecycleManagement" },
+            },
+        }),
+        Messages = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "Messages"),
+            type = "list",
+            name = "Messages",
+            target_id = prelude.Document.id,
+            list_member = M.DestinationEndpointMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "messages" },
+            },
+        }),
+        DestinationType = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "DestinationType"),
+            type = "string",
+            name = "DestinationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationType" },
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "DestinationEndpointConfiguration"),
+            target = M.DestinationEndpointConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+        ResourceShareOwnership = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "ResourceShareOwnership"),
+            type = "string",
+            name = "ResourceShareOwnership",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceShareOwnership" },
+            },
+        }),
+        ResourceShareDetails = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "ResourceShareDetails"),
+            type = "union",
+            name = "ResourceShareDetails",
+            target_id = id.from(_N, "ResourceShareDetails"),
+            target = M.ResourceShareDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceShareDetails" },
+            },
+        }),
+        RegistrationState = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "RegistrationState"),
+            type = "string",
+            name = "RegistrationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "registrationState" },
+            },
+        }),
+        ConnectionDetails = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "ConnectionDetails"),
+            type = "union",
+            name = "ConnectionDetails",
+            target_id = id.from(_N, "DestinationEndpointConnectionDetails"),
+            target = M.DestinationEndpointConnectionDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "connectionDetails" },
+            },
+        }),
+        ConnectionState = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "ConnectionState"),
+            type = "string",
+            name = "ConnectionState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "connectionState" },
+            },
+        }),
+        ConnectedSource = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "ConnectedSource"),
+            type = "string",
+            name = "ConnectedSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "connectedSource" },
+            },
+        }),
+        DecryptionType = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "DecryptionType"),
+            type = "string",
+            name = "DecryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "decryptionType" },
+            },
+        }),
+        DecryptionConfiguration = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "DecryptionConfiguration"),
+            type = "union",
+            name = "DecryptionConfiguration",
+            target_id = id.from(_N, "EndpointEncryptionConfiguration"),
+            target = M.EndpointEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "decryptionConfiguration" },
+            },
+        }),
+        AssociatedResourceDetails = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "AssociatedResourceDetails"),
+            type = "union",
+            name = "AssociatedResourceDetails",
+            target_id = id.from(_N, "DestinationEndpointAssociatedResourceDetails"),
+            target = M.DestinationEndpointAssociatedResourceDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "associatedResourceDetails" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "DestinationEndpoint", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.BatchGetDestinationEndpointError = schema.new({
+    id = id.from(_N, "BatchGetDestinationEndpointError"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "BatchGetDestinationEndpointError", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "BatchGetDestinationEndpointError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BatchGetDestinationEndpointError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.BatchGetDestinationEndpointOutput = schema.new({
+    id = id.from(_N, "BatchGetDestinationEndpointResponse"),
+    type = "structure",
+    members = {
+        DestinationEndpoints = schema.new({
+            id = id.from(_N, "BatchGetDestinationEndpointOutput", "DestinationEndpoints"),
+            type = "list",
+            name = "DestinationEndpoints",
+            target_id = prelude.Document.id,
+            list_member = M.DestinationEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpoints" },
+            },
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "BatchGetDestinationEndpointOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchGetDestinationEndpointError,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "errors" },
+            },
+        }),
+    },
+})
+
 M.BatchGetRouterInputInput = schema.new({
     id = id.from(_N, "BatchGetRouterInputRequest"),
     type = "structure",
@@ -4658,6 +5796,43 @@ M.BatchGetRouterInputError = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.DestinationEndpointRouterInputConfiguration = schema.new({
+    id = id.from(_N, "DestinationEndpointRouterInputConfiguration"),
+    type = "structure",
+    members = {
+        EndpointLifecycleManagement = schema.new({
+            id = id.from(_N, "DestinationEndpointRouterInputConfiguration", "EndpointLifecycleManagement"),
+            type = "string",
+            name = "EndpointLifecycleManagement",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "endpointLifecycleManagement" },
+            },
+        }),
+        SourceTransitDecryptionType = schema.new({
+            id = id.from(_N, "DestinationEndpointRouterInputConfiguration", "SourceTransitDecryptionType"),
+            type = "string",
+            name = "SourceTransitDecryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceTransitDecryptionType" },
+            },
+        }),
+        SourceTransitDecryption = schema.new({
+            id = id.from(_N, "DestinationEndpointRouterInputConfiguration", "SourceTransitDecryption"),
+            type = "union",
+            name = "SourceTransitDecryption",
+            target_id = id.from(_N, "EndpointEncryptionConfiguration"),
+            target = M.EndpointEncryptionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceTransitDecryption" },
             },
         }),
     },
@@ -5209,6 +6384,16 @@ M.RouterInputConfiguration = schema.new({
     id = id.from(_N, "RouterInputConfiguration"),
     type = "union",
     members = {
+        DestinationEndpoint = schema.new({
+            id = id.from(_N, "RouterInputConfiguration", "DestinationEndpoint"),
+            type = "structure",
+            name = "DestinationEndpoint",
+            target_id = id.from(_N, "DestinationEndpointRouterInputConfiguration"),
+            target = M.DestinationEndpointRouterInputConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationEndpoint" },
+            },
+        }),
         Standard = schema.new({
             id = id.from(_N, "RouterInputConfiguration", "Standard"),
             type = "structure",
@@ -5513,31 +6698,9 @@ M.MaintenanceSchedule = schema.new({
     },
 })
 
-M.RouterInputMessage = schema.new({
-    id = id.from(_N, "RouterInputMessage"),
+M.DestinationEndpointRouterInputStreamDetails = schema.new({
+    id = id.from(_N, "DestinationEndpointRouterInputStreamDetails"),
     type = "structure",
-    members = {
-        Code = schema.new({
-            id = id.from(_N, "RouterInputMessage", "Code"),
-            type = "string",
-            name = "Code",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.JSON_NAME] = { name = "code" },
-            },
-        }),
-        Message = schema.new({
-            id = id.from(_N, "RouterInputMessage", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.JSON_NAME] = { name = "message" },
-            },
-        }),
-    },
 })
 
 M.FailoverRouterInputIndexedStreamDetails = schema.new({
@@ -5680,6 +6843,16 @@ M.RouterInputStreamDetails = schema.new({
     id = id.from(_N, "RouterInputStreamDetails"),
     type = "union",
     members = {
+        DestinationEndpoint = schema.new({
+            id = id.from(_N, "RouterInputStreamDetails", "DestinationEndpoint"),
+            type = "structure",
+            name = "DestinationEndpoint",
+            target_id = id.from(_N, "DestinationEndpointRouterInputStreamDetails"),
+            target = M.DestinationEndpointRouterInputStreamDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationEndpoint" },
+            },
+        }),
         Standard = schema.new({
             id = id.from(_N, "RouterInputStreamDetails", "Standard"),
             type = "structure",
@@ -6056,6 +7229,16 @@ M.RouterInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "contentQualityAnalysisConfiguration" },
+            },
+        }),
+        AssociatedDestinationEndpointArns = schema.new({
+            id = id.from(_N, "RouterInput", "AssociatedDestinationEndpointArns"),
+            type = "list",
+            name = "AssociatedDestinationEndpointArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "associatedDestinationEndpointArns" },
             },
         }),
     },
@@ -6523,6 +7706,43 @@ M.MediaLiveInputRouterOutputConfiguration = schema.new({
     },
 })
 
+M.SourceEndpointRouterOutputConfiguration = schema.new({
+    id = id.from(_N, "SourceEndpointRouterOutputConfiguration"),
+    type = "structure",
+    members = {
+        EndpointLifecycleManagement = schema.new({
+            id = id.from(_N, "SourceEndpointRouterOutputConfiguration", "EndpointLifecycleManagement"),
+            type = "string",
+            name = "EndpointLifecycleManagement",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "endpointLifecycleManagement" },
+            },
+        }),
+        DestinationTransitEncryptionType = schema.new({
+            id = id.from(_N, "SourceEndpointRouterOutputConfiguration", "DestinationTransitEncryptionType"),
+            type = "string",
+            name = "DestinationTransitEncryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationTransitEncryptionType" },
+            },
+        }),
+        DestinationTransitEncryption = schema.new({
+            id = id.from(_N, "SourceEndpointRouterOutputConfiguration", "DestinationTransitEncryption"),
+            type = "union",
+            name = "DestinationTransitEncryption",
+            target_id = id.from(_N, "EndpointEncryptionConfiguration"),
+            target = M.EndpointEncryptionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationTransitEncryption" },
+            },
+        }),
+    },
+})
+
 M.RistRouterOutputConfiguration = schema.new({
     id = id.from(_N, "RistRouterOutputConfiguration"),
     type = "structure",
@@ -6931,6 +8151,16 @@ M.RouterOutputConfiguration = schema.new({
                 [traits.JSON_NAME] = { name = "mediaLiveInput" },
             },
         }),
+        SourceEndpoint = schema.new({
+            id = id.from(_N, "RouterOutputConfiguration", "SourceEndpoint"),
+            type = "structure",
+            name = "SourceEndpoint",
+            target_id = id.from(_N, "SourceEndpointRouterOutputConfiguration"),
+            target = M.SourceEndpointRouterOutputConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceEndpoint" },
+            },
+        }),
     },
 })
 
@@ -6988,6 +8218,11 @@ M.MediaLiveInputRouterOutputStreamDetails = schema.new({
     type = "structure",
 })
 
+M.SourceEndpointRouterOutputStreamDetails = schema.new({
+    id = id.from(_N, "SourceEndpointRouterOutputStreamDetails"),
+    type = "structure",
+})
+
 M.StandardRouterOutputStreamDetails = schema.new({
     id = id.from(_N, "StandardRouterOutputStreamDetails"),
     type = "structure",
@@ -7036,6 +8271,16 @@ M.RouterOutputStreamDetails = schema.new({
             target = M.MediaLiveInputRouterOutputStreamDetails,
             traits = {
                 [traits.JSON_NAME] = { name = "mediaLiveInput" },
+            },
+        }),
+        SourceEndpoint = schema.new({
+            id = id.from(_N, "RouterOutputStreamDetails", "SourceEndpoint"),
+            type = "structure",
+            name = "SourceEndpoint",
+            target_id = id.from(_N, "SourceEndpointRouterOutputStreamDetails"),
+            target = M.SourceEndpointRouterOutputStreamDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceEndpoint" },
             },
         }),
     },
@@ -7291,6 +8536,16 @@ M.RouterOutput = schema.new({
                 [traits.JSON_NAME] = { name = "fabricConfiguration" },
             },
         }),
+        AssociatedSourceEndpointArns = schema.new({
+            id = id.from(_N, "RouterOutput", "AssociatedSourceEndpointArns"),
+            type = "list",
+            name = "AssociatedSourceEndpointArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "associatedSourceEndpointArns" },
+            },
+        }),
     },
 })
 
@@ -7315,6 +8570,940 @@ M.BatchGetRouterOutputOutput = schema.new({
             name = "Errors",
             target_id = prelude.Document.id,
             list_member = M.BatchGetRouterOutputError,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "errors" },
+            },
+        }),
+    },
+})
+
+M.BatchGetSourceEndpointInput = schema.new({
+    id = id.from(_N, "BatchGetSourceEndpointRequest"),
+    type = "structure",
+    members = {
+        Arns = schema.new({
+            id = id.from(_N, "BatchGetSourceEndpointInput", "Arns"),
+            type = "list",
+            name = "Arns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "arns" },
+            },
+        }),
+    },
+})
+
+M.BatchGetSourceEndpointError = schema.new({
+    id = id.from(_N, "BatchGetSourceEndpointError"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "BatchGetSourceEndpointError", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "BatchGetSourceEndpointError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BatchGetSourceEndpointError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.RouterOutputSourceEndpointAssociatedResourceDetails = schema.new({
+    id = id.from(_N, "RouterOutputSourceEndpointAssociatedResourceDetails"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RouterOutputSourceEndpointAssociatedResourceDetails", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        MaximumBitrate = schema.new({
+            id = id.from(_N, "RouterOutputSourceEndpointAssociatedResourceDetails", "MaximumBitrate"),
+            type = "long",
+            name = "MaximumBitrate",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "maximumBitrate" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "RouterOutputSourceEndpointAssociatedResourceDetails", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "state" },
+            },
+        }),
+        Messages = schema.new({
+            id = id.from(_N, "RouterOutputSourceEndpointAssociatedResourceDetails", "Messages"),
+            type = "list",
+            name = "Messages",
+            target_id = prelude.Document.id,
+            list_member = M.RouterOutputMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "messages" },
+            },
+        }),
+    },
+})
+
+M.StandardSourceEndpointAssociatedResourceDetails = schema.new({
+    id = id.from(_N, "StandardSourceEndpointAssociatedResourceDetails"),
+    type = "structure",
+})
+
+M.SourceEndpointAssociatedResourceDetails = schema.new({
+    id = id.from(_N, "SourceEndpointAssociatedResourceDetails"),
+    type = "union",
+    members = {
+        Standard = schema.new({
+            id = id.from(_N, "SourceEndpointAssociatedResourceDetails", "Standard"),
+            type = "structure",
+            name = "Standard",
+            target_id = id.from(_N, "StandardSourceEndpointAssociatedResourceDetails"),
+            target = M.StandardSourceEndpointAssociatedResourceDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "standard" },
+            },
+        }),
+        RouterOutput = schema.new({
+            id = id.from(_N, "SourceEndpointAssociatedResourceDetails", "RouterOutput"),
+            type = "structure",
+            name = "RouterOutput",
+            target_id = id.from(_N, "RouterOutputSourceEndpointAssociatedResourceDetails"),
+            target = M.RouterOutputSourceEndpointAssociatedResourceDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "routerOutput" },
+            },
+        }),
+    },
+})
+
+M.RouterOutputSourceEndpointConfiguration = schema.new({
+    id = id.from(_N, "RouterOutputSourceEndpointConfiguration"),
+    type = "structure",
+    members = {
+        RouterOutputArn = schema.new({
+            id = id.from(_N, "RouterOutputSourceEndpointConfiguration", "RouterOutputArn"),
+            type = "string",
+            name = "RouterOutputArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "routerOutputArn" },
+            },
+        }),
+    },
+})
+
+M.RistStandardSourceEndpointConfiguration = schema.new({
+    id = id.from(_N, "RistStandardSourceEndpointConfiguration"),
+    type = "structure",
+    members = {
+        DestinationIngestPort = schema.new({
+            id = id.from(_N, "RistStandardSourceEndpointConfiguration", "DestinationIngestPort"),
+            type = "integer",
+            name = "DestinationIngestPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationIngestPort" },
+            },
+        }),
+        RecoveryLatencyMilliseconds = schema.new({
+            id = id.from(_N, "RistStandardSourceEndpointConfiguration", "RecoveryLatencyMilliseconds"),
+            type = "long",
+            name = "RecoveryLatencyMilliseconds",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "recoveryLatencyMilliseconds" },
+            },
+        }),
+    },
+})
+
+M.RtpStandardSourceEndpointConfiguration = schema.new({
+    id = id.from(_N, "RtpStandardSourceEndpointConfiguration"),
+    type = "structure",
+    members = {
+        DestinationIngestPort = schema.new({
+            id = id.from(_N, "RtpStandardSourceEndpointConfiguration", "DestinationIngestPort"),
+            type = "integer",
+            name = "DestinationIngestPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationIngestPort" },
+            },
+        }),
+        ForwardErrorCorrectionState = schema.new({
+            id = id.from(_N, "RtpStandardSourceEndpointConfiguration", "ForwardErrorCorrectionState"),
+            type = "string",
+            name = "ForwardErrorCorrectionState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "forwardErrorCorrectionState" },
+            },
+        }),
+    },
+})
+
+M.SrtCallerStandardSourceEndpointConfiguration = schema.new({
+    id = id.from(_N, "SrtCallerStandardSourceEndpointConfiguration"),
+    type = "structure",
+    members = {
+        DestinationIngestPort = schema.new({
+            id = id.from(_N, "SrtCallerStandardSourceEndpointConfiguration", "DestinationIngestPort"),
+            type = "integer",
+            name = "DestinationIngestPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationIngestPort" },
+            },
+        }),
+        MinimumLatencyMilliseconds = schema.new({
+            id = id.from(_N, "SrtCallerStandardSourceEndpointConfiguration", "MinimumLatencyMilliseconds"),
+            type = "long",
+            name = "MinimumLatencyMilliseconds",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "minimumLatencyMilliseconds" },
+            },
+        }),
+        EncryptionPassphrase = schema.new({
+            id = id.from(_N, "SrtCallerStandardSourceEndpointConfiguration", "EncryptionPassphrase"),
+            type = "structure",
+            name = "EncryptionPassphrase",
+            target_id = id.from(_N, "EndpointEncryptionSecretConfiguration"),
+            target = M.EndpointEncryptionSecretConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionPassphrase" },
+            },
+        }),
+    },
+})
+
+M.SrtListenerStandardSourceEndpointConfiguration = schema.new({
+    id = id.from(_N, "SrtListenerStandardSourceEndpointConfiguration"),
+    type = "structure",
+    members = {
+        SourceListenerPort = schema.new({
+            id = id.from(_N, "SrtListenerStandardSourceEndpointConfiguration", "SourceListenerPort"),
+            type = "integer",
+            name = "SourceListenerPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceListenerPort" },
+            },
+        }),
+        SourceAddress = schema.new({
+            id = id.from(_N, "SrtListenerStandardSourceEndpointConfiguration", "SourceAddress"),
+            type = "string",
+            name = "SourceAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceAddress" },
+            },
+        }),
+        MinimumLatencyMilliseconds = schema.new({
+            id = id.from(_N, "SrtListenerStandardSourceEndpointConfiguration", "MinimumLatencyMilliseconds"),
+            type = "long",
+            name = "MinimumLatencyMilliseconds",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "minimumLatencyMilliseconds" },
+            },
+        }),
+        StreamId = schema.new({
+            id = id.from(_N, "SrtListenerStandardSourceEndpointConfiguration", "StreamId"),
+            type = "string",
+            name = "StreamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "streamId" },
+            },
+        }),
+        EncryptionPassphrase = schema.new({
+            id = id.from(_N, "SrtListenerStandardSourceEndpointConfiguration", "EncryptionPassphrase"),
+            type = "structure",
+            name = "EncryptionPassphrase",
+            target_id = id.from(_N, "EndpointEncryptionSecretConfiguration"),
+            target = M.EndpointEncryptionSecretConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionPassphrase" },
+            },
+        }),
+    },
+})
+
+M.StandardSourceEndpointProtocolConfiguration = schema.new({
+    id = id.from(_N, "StandardSourceEndpointProtocolConfiguration"),
+    type = "union",
+    members = {
+        Rist = schema.new({
+            id = id.from(_N, "StandardSourceEndpointProtocolConfiguration", "Rist"),
+            type = "structure",
+            name = "Rist",
+            target_id = id.from(_N, "RistStandardSourceEndpointConfiguration"),
+            target = M.RistStandardSourceEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "rist" },
+            },
+        }),
+        SrtListener = schema.new({
+            id = id.from(_N, "StandardSourceEndpointProtocolConfiguration", "SrtListener"),
+            type = "structure",
+            name = "SrtListener",
+            target_id = id.from(_N, "SrtListenerStandardSourceEndpointConfiguration"),
+            target = M.SrtListenerStandardSourceEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "srtListener" },
+            },
+        }),
+        SrtCaller = schema.new({
+            id = id.from(_N, "StandardSourceEndpointProtocolConfiguration", "SrtCaller"),
+            type = "structure",
+            name = "SrtCaller",
+            target_id = id.from(_N, "SrtCallerStandardSourceEndpointConfiguration"),
+            target = M.SrtCallerStandardSourceEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "srtCaller" },
+            },
+        }),
+        Rtp = schema.new({
+            id = id.from(_N, "StandardSourceEndpointProtocolConfiguration", "Rtp"),
+            type = "structure",
+            name = "Rtp",
+            target_id = id.from(_N, "RtpStandardSourceEndpointConfiguration"),
+            target = M.RtpStandardSourceEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtp" },
+            },
+        }),
+    },
+})
+
+M.PublicSourceEndpointNetworkingConfigurationAllowRule = schema.new({
+    id = id.from(_N, "PublicSourceEndpointNetworkingConfigurationAllowRule"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "PublicSourceEndpointNetworkingConfigurationAllowRule", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "cidr" },
+            },
+        }),
+    },
+})
+
+M.PublicSourceEndpointNetworkingConfiguration = schema.new({
+    id = id.from(_N, "PublicSourceEndpointNetworkingConfiguration"),
+    type = "structure",
+    members = {
+        SourceAllowRules = schema.new({
+            id = id.from(_N, "PublicSourceEndpointNetworkingConfiguration", "SourceAllowRules"),
+            type = "list",
+            name = "SourceAllowRules",
+            target_id = prelude.Document.id,
+            list_member = M.PublicSourceEndpointNetworkingConfigurationAllowRule,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceAllowRules" },
+            },
+        }),
+    },
+})
+
+M.VpcSourceEndpointNetworkingConfiguration = schema.new({
+    id = id.from(_N, "VpcSourceEndpointNetworkingConfiguration"),
+    type = "structure",
+    members = {
+        SecurityGroupIds = schema.new({
+            id = id.from(_N, "VpcSourceEndpointNetworkingConfiguration", "SecurityGroupIds"),
+            type = "list",
+            name = "SecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "securityGroupIds" },
+            },
+        }),
+        SubnetId = schema.new({
+            id = id.from(_N, "VpcSourceEndpointNetworkingConfiguration", "SubnetId"),
+            type = "string",
+            name = "SubnetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "subnetId" },
+            },
+        }),
+    },
+})
+
+M.StandardSourceEndpointNetworkingConfiguration = schema.new({
+    id = id.from(_N, "StandardSourceEndpointNetworkingConfiguration"),
+    type = "union",
+    members = {
+        Public = schema.new({
+            id = id.from(_N, "StandardSourceEndpointNetworkingConfiguration", "Public"),
+            type = "structure",
+            name = "Public",
+            target_id = id.from(_N, "PublicSourceEndpointNetworkingConfiguration"),
+            target = M.PublicSourceEndpointNetworkingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "public" },
+            },
+        }),
+        Vpc = schema.new({
+            id = id.from(_N, "StandardSourceEndpointNetworkingConfiguration", "Vpc"),
+            type = "structure",
+            name = "Vpc",
+            target_id = id.from(_N, "VpcSourceEndpointNetworkingConfiguration"),
+            target = M.VpcSourceEndpointNetworkingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "vpc" },
+            },
+        }),
+    },
+})
+
+M.StandardSourceEndpointConfiguration = schema.new({
+    id = id.from(_N, "StandardSourceEndpointConfiguration"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConfiguration", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        SourceNetworkingConfiguration = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConfiguration", "SourceNetworkingConfiguration"),
+            type = "union",
+            name = "SourceNetworkingConfiguration",
+            target_id = id.from(_N, "StandardSourceEndpointNetworkingConfiguration"),
+            target = M.StandardSourceEndpointNetworkingConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceNetworkingConfiguration" },
+            },
+        }),
+        ProtocolConfiguration = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConfiguration", "ProtocolConfiguration"),
+            type = "union",
+            name = "ProtocolConfiguration",
+            target_id = id.from(_N, "StandardSourceEndpointProtocolConfiguration"),
+            target = M.StandardSourceEndpointProtocolConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "protocolConfiguration" },
+            },
+        }),
+        SourceNetworkingType = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConfiguration", "SourceNetworkingType"),
+            type = "string",
+            name = "SourceNetworkingType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceNetworkingType" },
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConfiguration", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "protocol" },
+            },
+        }),
+    },
+})
+
+M.SourceEndpointConfiguration = schema.new({
+    id = id.from(_N, "SourceEndpointConfiguration"),
+    type = "union",
+    members = {
+        Standard = schema.new({
+            id = id.from(_N, "SourceEndpointConfiguration", "Standard"),
+            type = "structure",
+            name = "Standard",
+            target_id = id.from(_N, "StandardSourceEndpointConfiguration"),
+            target = M.StandardSourceEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "standard" },
+            },
+        }),
+        RouterOutput = schema.new({
+            id = id.from(_N, "SourceEndpointConfiguration", "RouterOutput"),
+            type = "structure",
+            name = "RouterOutput",
+            target_id = id.from(_N, "RouterOutputSourceEndpointConfiguration"),
+            target = M.RouterOutputSourceEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "routerOutput" },
+            },
+        }),
+    },
+})
+
+M.RouterOutputSourceEndpointConnectionDetails = schema.new({
+    id = id.from(_N, "RouterOutputSourceEndpointConnectionDetails"),
+    type = "structure",
+    members = {
+        DestinationDecryptionType = schema.new({
+            id = id.from(_N, "RouterOutputSourceEndpointConnectionDetails", "DestinationDecryptionType"),
+            type = "string",
+            name = "DestinationDecryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationDecryptionType" },
+            },
+        }),
+        DestinationDecryptionConfiguration = schema.new({
+            id = id.from(_N, "RouterOutputSourceEndpointConnectionDetails", "DestinationDecryptionConfiguration"),
+            type = "union",
+            name = "DestinationDecryptionConfiguration",
+            target_id = id.from(_N, "EndpointEncryptionConfiguration"),
+            target = M.EndpointEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationDecryptionConfiguration" },
+            },
+        }),
+        DestinationEndpointType = schema.new({
+            id = id.from(_N, "RouterOutputSourceEndpointConnectionDetails", "DestinationEndpointType"),
+            type = "string",
+            name = "DestinationEndpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationEndpointType" },
+            },
+        }),
+    },
+})
+
+M.StandardSourceEndpointConnectionDetails = schema.new({
+    id = id.from(_N, "StandardSourceEndpointConnectionDetails"),
+    type = "structure",
+    members = {
+        DestinationIpAddress = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConnectionDetails", "DestinationIpAddress"),
+            type = "string",
+            name = "DestinationIpAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationIpAddress" },
+            },
+        }),
+        DestinationIngestPort = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConnectionDetails", "DestinationIngestPort"),
+            type = "integer",
+            name = "DestinationIngestPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationIngestPort" },
+            },
+        }),
+        DestinationDecryptionType = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConnectionDetails", "DestinationDecryptionType"),
+            type = "string",
+            name = "DestinationDecryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationDecryptionType" },
+            },
+        }),
+        DestinationDecryptionConfiguration = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConnectionDetails", "DestinationDecryptionConfiguration"),
+            type = "union",
+            name = "DestinationDecryptionConfiguration",
+            target_id = id.from(_N, "EndpointEncryptionConfiguration"),
+            target = M.EndpointEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationDecryptionConfiguration" },
+            },
+        }),
+        DestinationEndpointType = schema.new({
+            id = id.from(_N, "StandardSourceEndpointConnectionDetails", "DestinationEndpointType"),
+            type = "string",
+            name = "DestinationEndpointType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationEndpointType" },
+            },
+        }),
+    },
+})
+
+M.SourceEndpointConnectionDetails = schema.new({
+    id = id.from(_N, "SourceEndpointConnectionDetails"),
+    type = "union",
+    members = {
+        Standard = schema.new({
+            id = id.from(_N, "SourceEndpointConnectionDetails", "Standard"),
+            type = "structure",
+            name = "Standard",
+            target_id = id.from(_N, "StandardSourceEndpointConnectionDetails"),
+            target = M.StandardSourceEndpointConnectionDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "standard" },
+            },
+        }),
+        RouterOutput = schema.new({
+            id = id.from(_N, "SourceEndpointConnectionDetails", "RouterOutput"),
+            type = "structure",
+            name = "RouterOutput",
+            target_id = id.from(_N, "RouterOutputSourceEndpointConnectionDetails"),
+            target = M.RouterOutputSourceEndpointConnectionDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "routerOutput" },
+            },
+        }),
+    },
+})
+
+M.SourceEndpointMessage = schema.new({
+    id = id.from(_N, "SourceEndpointMessage"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "SourceEndpointMessage", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "SourceEndpointMessage", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.SourceEndpoint = schema.new({
+    id = id.from(_N, "SourceEndpoint"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "SourceEndpoint", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "SourceEndpoint", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "SourceEndpoint", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "SourceEndpoint", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        RegionName = schema.new({
+            id = id.from(_N, "SourceEndpoint", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "regionName" },
+            },
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "SourceEndpoint", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "availabilityZone" },
+            },
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "SourceEndpoint", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "availabilityZoneId" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "SourceEndpoint", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "SourceEndpoint", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        LifecycleManagement = schema.new({
+            id = id.from(_N, "SourceEndpoint", "LifecycleManagement"),
+            type = "string",
+            name = "LifecycleManagement",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "lifecycleManagement" },
+            },
+        }),
+        Messages = schema.new({
+            id = id.from(_N, "SourceEndpoint", "Messages"),
+            type = "list",
+            name = "Messages",
+            target_id = prelude.Document.id,
+            list_member = M.SourceEndpointMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "messages" },
+            },
+        }),
+        SourceType = schema.new({
+            id = id.from(_N, "SourceEndpoint", "SourceType"),
+            type = "string",
+            name = "SourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceType" },
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "SourceEndpoint", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "SourceEndpointConfiguration"),
+            target = M.SourceEndpointConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+        ResourceShareOwnership = schema.new({
+            id = id.from(_N, "SourceEndpoint", "ResourceShareOwnership"),
+            type = "string",
+            name = "ResourceShareOwnership",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceShareOwnership" },
+            },
+        }),
+        ResourceShareDetails = schema.new({
+            id = id.from(_N, "SourceEndpoint", "ResourceShareDetails"),
+            type = "union",
+            name = "ResourceShareDetails",
+            target_id = id.from(_N, "ResourceShareDetails"),
+            target = M.ResourceShareDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceShareDetails" },
+            },
+        }),
+        RegistrationState = schema.new({
+            id = id.from(_N, "SourceEndpoint", "RegistrationState"),
+            type = "string",
+            name = "RegistrationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "registrationState" },
+            },
+        }),
+        ConnectionState = schema.new({
+            id = id.from(_N, "SourceEndpoint", "ConnectionState"),
+            type = "string",
+            name = "ConnectionState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "connectionState" },
+            },
+        }),
+        ConnectionDetails = schema.new({
+            id = id.from(_N, "SourceEndpoint", "ConnectionDetails"),
+            type = "union",
+            name = "ConnectionDetails",
+            target_id = id.from(_N, "SourceEndpointConnectionDetails"),
+            target = M.SourceEndpointConnectionDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "connectionDetails" },
+            },
+        }),
+        ConnectedDestinations = schema.new({
+            id = id.from(_N, "SourceEndpoint", "ConnectedDestinations"),
+            type = "list",
+            name = "ConnectedDestinations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "connectedDestinations" },
+            },
+        }),
+        EncryptionType = schema.new({
+            id = id.from(_N, "SourceEndpoint", "EncryptionType"),
+            type = "string",
+            name = "EncryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionType" },
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "SourceEndpoint", "EncryptionConfiguration"),
+            type = "union",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EndpointEncryptionConfiguration"),
+            target = M.EndpointEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionConfiguration" },
+            },
+        }),
+        AssociatedResourceDetails = schema.new({
+            id = id.from(_N, "SourceEndpoint", "AssociatedResourceDetails"),
+            type = "union",
+            name = "AssociatedResourceDetails",
+            target_id = id.from(_N, "SourceEndpointAssociatedResourceDetails"),
+            target = M.SourceEndpointAssociatedResourceDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "associatedResourceDetails" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "SourceEndpoint", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.BatchGetSourceEndpointOutput = schema.new({
+    id = id.from(_N, "BatchGetSourceEndpointResponse"),
+    type = "structure",
+    members = {
+        SourceEndpoints = schema.new({
+            id = id.from(_N, "BatchGetSourceEndpointOutput", "SourceEndpoints"),
+            type = "list",
+            name = "SourceEndpoints",
+            target_id = prelude.Document.id,
+            list_member = M.SourceEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpoints" },
+            },
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "BatchGetSourceEndpointOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchGetSourceEndpointError,
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "errors" },
@@ -8361,6 +10550,80 @@ M.UpdateBridgeStateOutput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "desiredState" },
+            },
+        }),
+    },
+})
+
+M.ConnectEndpointsInput = schema.new({
+    id = id.from(_N, "ConnectEndpointsRequest"),
+    type = "structure",
+    members = {
+        DestinationEndpointArn = schema.new({
+            id = id.from(_N, "ConnectEndpointsInput", "DestinationEndpointArn"),
+            type = "string",
+            name = "DestinationEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SourceEndpointArn = schema.new({
+            id = id.from(_N, "ConnectEndpointsInput", "SourceEndpointArn"),
+            type = "string",
+            name = "SourceEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpointArn" },
+            },
+        }),
+    },
+})
+
+M.ConnectEndpointsOutput = schema.new({
+    id = id.from(_N, "ConnectEndpointsResponse"),
+    type = "structure",
+    members = {
+        DestinationEndpointArn = schema.new({
+            id = id.from(_N, "ConnectEndpointsOutput", "DestinationEndpointArn"),
+            type = "string",
+            name = "DestinationEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpointArn" },
+            },
+        }),
+        DestinationEndpointName = schema.new({
+            id = id.from(_N, "ConnectEndpointsOutput", "DestinationEndpointName"),
+            type = "string",
+            name = "DestinationEndpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpointName" },
+            },
+        }),
+        SourceEndpointArn = schema.new({
+            id = id.from(_N, "ConnectEndpointsOutput", "SourceEndpointArn"),
+            type = "string",
+            name = "SourceEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpointArn" },
+            },
+        }),
+        SourceEndpointName = schema.new({
+            id = id.from(_N, "ConnectEndpointsOutput", "SourceEndpointName"),
+            type = "string",
+            name = "SourceEndpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpointName" },
             },
         }),
     },
@@ -9648,6 +11911,50 @@ M.DeleteRouterOutputOutput = schema.new({
     },
 })
 
+M.DeregisterDestinationEndpointInput = schema.new({
+    id = id.from(_N, "DeregisterDestinationEndpointRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeregisterDestinationEndpointInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeregisterDestinationEndpointOutput = schema.new({
+    id = id.from(_N, "DeregisterDestinationEndpointResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeregisterDestinationEndpointOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DeregisterDestinationEndpointOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
 M.DeregisterGatewayInstanceInput = schema.new({
     id = id.from(_N, "DeregisterGatewayInstanceRequest"),
     type = "structure",
@@ -9694,6 +12001,50 @@ M.DeregisterGatewayInstanceOutput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "instanceState" },
+            },
+        }),
+    },
+})
+
+M.DeregisterSourceEndpointInput = schema.new({
+    id = id.from(_N, "DeregisterSourceEndpointRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeregisterSourceEndpointInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeregisterSourceEndpointOutput = schema.new({
+    id = id.from(_N, "DeregisterSourceEndpointResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeregisterSourceEndpointOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DeregisterSourceEndpointOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
             },
         }),
     },
@@ -10237,6 +12588,547 @@ M.DescribeReservationOutput = schema.new({
             target = M.Reservation,
             traits = {
                 [traits.JSON_NAME] = { name = "reservation" },
+            },
+        }),
+    },
+})
+
+M.DestinationEndpointFilter = schema.new({
+    id = id.from(_N, "DestinationEndpointFilter"),
+    type = "union",
+    members = {
+        RegionNames = schema.new({
+            id = id.from(_N, "DestinationEndpointFilter", "RegionNames"),
+            type = "list",
+            name = "RegionNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "regionNames" },
+            },
+        }),
+        DestinationTypes = schema.new({
+            id = id.from(_N, "DestinationEndpointFilter", "DestinationTypes"),
+            type = "list",
+            name = "DestinationTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationTypes" },
+            },
+        }),
+        NameContains = schema.new({
+            id = id.from(_N, "DestinationEndpointFilter", "NameContains"),
+            type = "list",
+            name = "NameContains",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "nameContains" },
+            },
+        }),
+    },
+})
+
+M.DisconnectEndpointsInput = schema.new({
+    id = id.from(_N, "DisconnectEndpointsRequest"),
+    type = "structure",
+    members = {
+        DestinationEndpointArn = schema.new({
+            id = id.from(_N, "DisconnectEndpointsInput", "DestinationEndpointArn"),
+            type = "string",
+            name = "DestinationEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SourceEndpointArn = schema.new({
+            id = id.from(_N, "DisconnectEndpointsInput", "SourceEndpointArn"),
+            type = "string",
+            name = "SourceEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpointArn" },
+            },
+        }),
+    },
+})
+
+M.DisconnectEndpointsOutput = schema.new({
+    id = id.from(_N, "DisconnectEndpointsResponse"),
+    type = "structure",
+    members = {
+        DestinationEndpointArn = schema.new({
+            id = id.from(_N, "DisconnectEndpointsOutput", "DestinationEndpointArn"),
+            type = "string",
+            name = "DestinationEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpointArn" },
+            },
+        }),
+        DestinationEndpointName = schema.new({
+            id = id.from(_N, "DisconnectEndpointsOutput", "DestinationEndpointName"),
+            type = "string",
+            name = "DestinationEndpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpointName" },
+            },
+        }),
+        SourceEndpointArn = schema.new({
+            id = id.from(_N, "DisconnectEndpointsOutput", "SourceEndpointArn"),
+            type = "string",
+            name = "SourceEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpointArn" },
+            },
+        }),
+        SourceEndpointName = schema.new({
+            id = id.from(_N, "DisconnectEndpointsOutput", "SourceEndpointName"),
+            type = "string",
+            name = "SourceEndpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpointName" },
+            },
+        }),
+    },
+})
+
+M.GetDestinationEndpointInput = schema.new({
+    id = id.from(_N, "GetDestinationEndpointRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetDestinationEndpointInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetDestinationEndpointOutput = schema.new({
+    id = id.from(_N, "GetDestinationEndpointResponse"),
+    type = "structure",
+    members = {
+        DestinationEndpoint = schema.new({
+            id = id.from(_N, "GetDestinationEndpointOutput", "DestinationEndpoint"),
+            type = "structure",
+            name = "DestinationEndpoint",
+            target_id = id.from(_N, "DestinationEndpoint"),
+            target = M.DestinationEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpoint" },
+            },
+        }),
+    },
+})
+
+M.ListDestinationEndpointsInput = schema.new({
+    id = id.from(_N, "ListDestinationEndpointsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDestinationEndpointsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDestinationEndpointsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListDestinationEndpointsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.DestinationEndpointFilter,
+            traits = {
+                [traits.JSON_NAME] = { name = "filters" },
+            },
+        }),
+    },
+})
+
+M.ListedDestinationEndpoint = schema.new({
+    id = id.from(_N, "ListedDestinationEndpoint"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        DestinationType = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "DestinationType"),
+            type = "string",
+            name = "DestinationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationType" },
+            },
+        }),
+        RegionName = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "regionName" },
+            },
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "availabilityZone" },
+            },
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "availabilityZoneId" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        LifecycleManagement = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "LifecycleManagement"),
+            type = "string",
+            name = "LifecycleManagement",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "lifecycleManagement" },
+            },
+        }),
+        MessageCount = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "MessageCount"),
+            type = "integer",
+            name = "MessageCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "messageCount" },
+            },
+        }),
+        ResourceShareOwnership = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "ResourceShareOwnership"),
+            type = "string",
+            name = "ResourceShareOwnership",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceShareOwnership" },
+            },
+        }),
+        ResourceShareState = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "ResourceShareState"),
+            type = "string",
+            name = "ResourceShareState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceShareState" },
+            },
+        }),
+        RegistrationState = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "RegistrationState"),
+            type = "string",
+            name = "RegistrationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "registrationState" },
+            },
+        }),
+        ConnectionState = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "ConnectionState"),
+            type = "string",
+            name = "ConnectionState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "connectionState" },
+            },
+        }),
+        DecryptionType = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "DecryptionType"),
+            type = "string",
+            name = "DecryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "decryptionType" },
+            },
+        }),
+        ConnectedSource = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "ConnectedSource"),
+            type = "string",
+            name = "ConnectedSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "connectedSource" },
+            },
+        }),
+        AssociatedResourceArn = schema.new({
+            id = id.from(_N, "ListedDestinationEndpoint", "AssociatedResourceArn"),
+            type = "string",
+            name = "AssociatedResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "associatedResourceArn" },
+            },
+        }),
+    },
+})
+
+M.ListDestinationEndpointsOutput = schema.new({
+    id = id.from(_N, "ListDestinationEndpointsResponse"),
+    type = "structure",
+    members = {
+        DestinationEndpoints = schema.new({
+            id = id.from(_N, "ListDestinationEndpointsOutput", "DestinationEndpoints"),
+            type = "list",
+            name = "DestinationEndpoints",
+            target_id = prelude.Document.id,
+            list_member = M.ListedDestinationEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpoints" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDestinationEndpointsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.DestinationEndpointServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "DestinationEndpointServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "DestinationEndpointServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.RegisterDestinationEndpointInput = schema.new({
+    id = id.from(_N, "RegisterDestinationEndpointRequest"),
+    type = "structure",
+    members = {
+        Description = schema.new({
+            id = id.from(_N, "RegisterDestinationEndpointInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "RegisterDestinationEndpointInput", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "DestinationEndpointConfiguration"),
+            target = M.DestinationEndpointConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+        RegionName = schema.new({
+            id = id.from(_N, "RegisterDestinationEndpointInput", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "regionName" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "RegisterDestinationEndpointInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "RegisterDestinationEndpointInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterDestinationEndpointOutput = schema.new({
+    id = id.from(_N, "RegisterDestinationEndpointResponse"),
+    type = "structure",
+    members = {
+        DestinationEndpoint = schema.new({
+            id = id.from(_N, "RegisterDestinationEndpointOutput", "DestinationEndpoint"),
+            type = "structure",
+            name = "DestinationEndpoint",
+            target_id = id.from(_N, "DestinationEndpoint"),
+            target = M.DestinationEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpoint" },
+            },
+        }),
+    },
+})
+
+M.UpdateDestinationEndpointInput = schema.new({
+    id = id.from(_N, "UpdateDestinationEndpointRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateDestinationEndpointInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateDestinationEndpointInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "UpdateDestinationEndpointInput", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "DestinationEndpointConfiguration"),
+            target = M.DestinationEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+    },
+})
+
+M.UpdateDestinationEndpointOutput = schema.new({
+    id = id.from(_N, "UpdateDestinationEndpointResponse"),
+    type = "structure",
+    members = {
+        DestinationEndpoint = schema.new({
+            id = id.from(_N, "UpdateDestinationEndpointOutput", "DestinationEndpoint"),
+            type = "structure",
+            name = "DestinationEndpoint",
+            target_id = id.from(_N, "DestinationEndpoint"),
+            target = M.DestinationEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationEndpoint" },
             },
         }),
     },
@@ -12134,6 +15026,41 @@ M.GetRouterOutputOutput = schema.new({
     },
 })
 
+M.GetSourceEndpointInput = schema.new({
+    id = id.from(_N, "GetSourceEndpointRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetSourceEndpointInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetSourceEndpointOutput = schema.new({
+    id = id.from(_N, "GetSourceEndpointResponse"),
+    type = "structure",
+    members = {
+        SourceEndpoint = schema.new({
+            id = id.from(_N, "GetSourceEndpointOutput", "SourceEndpoint"),
+            type = "structure",
+            name = "SourceEndpoint",
+            target_id = id.from(_N, "SourceEndpoint"),
+            target = M.SourceEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpoint" },
+            },
+        }),
+    },
+})
+
 M.ListedRouterInput = schema.new({
     id = id.from(_N, "ListedRouterInput"),
     type = "structure",
@@ -12581,6 +15508,191 @@ M.ListedRouterOutput = schema.new({
             target = M.MaintenanceSchedule,
             traits = {
                 [traits.JSON_NAME] = { name = "maintenanceSchedule" },
+            },
+        }),
+    },
+})
+
+M.ListedSourceEndpoint = schema.new({
+    id = id.from(_N, "ListedSourceEndpoint"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        SourceType = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "SourceType"),
+            type = "string",
+            name = "SourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceType" },
+            },
+        }),
+        RegionName = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "regionName" },
+            },
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "availabilityZone" },
+            },
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "availabilityZoneId" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        LifecycleManagement = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "LifecycleManagement"),
+            type = "string",
+            name = "LifecycleManagement",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "lifecycleManagement" },
+            },
+        }),
+        MessageCount = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "MessageCount"),
+            type = "integer",
+            name = "MessageCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "messageCount" },
+            },
+        }),
+        ResourceShareOwnership = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "ResourceShareOwnership"),
+            type = "string",
+            name = "ResourceShareOwnership",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceShareOwnership" },
+            },
+        }),
+        ResourceShareState = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "ResourceShareState"),
+            type = "string",
+            name = "ResourceShareState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceShareState" },
+            },
+        }),
+        RegistrationState = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "RegistrationState"),
+            type = "string",
+            name = "RegistrationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "registrationState" },
+            },
+        }),
+        ConnectionState = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "ConnectionState"),
+            type = "string",
+            name = "ConnectionState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "connectionState" },
+            },
+        }),
+        EncryptionType = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "EncryptionType"),
+            type = "string",
+            name = "EncryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionType" },
+            },
+        }),
+        ConnectedDestinationCount = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "ConnectedDestinationCount"),
+            type = "integer",
+            name = "ConnectedDestinationCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "connectedDestinationCount" },
+            },
+        }),
+        AssociatedResourceArn = schema.new({
+            id = id.from(_N, "ListedSourceEndpoint", "AssociatedResourceArn"),
+            type = "string",
+            name = "AssociatedResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "associatedResourceArn" },
             },
         }),
     },
@@ -13076,6 +16188,105 @@ M.ListRouterOutputsOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListRouterOutputsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.SourceEndpointFilter = schema.new({
+    id = id.from(_N, "SourceEndpointFilter"),
+    type = "union",
+    members = {
+        RegionNames = schema.new({
+            id = id.from(_N, "SourceEndpointFilter", "RegionNames"),
+            type = "list",
+            name = "RegionNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "regionNames" },
+            },
+        }),
+        SourceTypes = schema.new({
+            id = id.from(_N, "SourceEndpointFilter", "SourceTypes"),
+            type = "list",
+            name = "SourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceTypes" },
+            },
+        }),
+        NameContains = schema.new({
+            id = id.from(_N, "SourceEndpointFilter", "NameContains"),
+            type = "list",
+            name = "NameContains",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "nameContains" },
+            },
+        }),
+    },
+})
+
+M.ListSourceEndpointsInput = schema.new({
+    id = id.from(_N, "ListSourceEndpointsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSourceEndpointsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSourceEndpointsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListSourceEndpointsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.SourceEndpointFilter,
+            traits = {
+                [traits.JSON_NAME] = { name = "filters" },
+            },
+        }),
+    },
+})
+
+M.ListSourceEndpointsOutput = schema.new({
+    id = id.from(_N, "ListSourceEndpointsResponse"),
+    type = "structure",
+    members = {
+        SourceEndpoints = schema.new({
+            id = id.from(_N, "ListSourceEndpointsOutput", "SourceEndpoints"),
+            type = "list",
+            name = "SourceEndpoints",
+            target_id = prelude.Document.id,
+            list_member = M.ListedSourceEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpoints" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSourceEndpointsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -13923,6 +17134,155 @@ M.UpdateRouterOutputOutput = schema.new({
     },
 })
 
+M.RegisterSourceEndpointInput = schema.new({
+    id = id.from(_N, "RegisterSourceEndpointRequest"),
+    type = "structure",
+    members = {
+        RegionName = schema.new({
+            id = id.from(_N, "RegisterSourceEndpointInput", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "regionName" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RegisterSourceEndpointInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "RegisterSourceEndpointInput", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "SourceEndpointConfiguration"),
+            target = M.SourceEndpointConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "RegisterSourceEndpointInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "RegisterSourceEndpointInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterSourceEndpointOutput = schema.new({
+    id = id.from(_N, "RegisterSourceEndpointResponse"),
+    type = "structure",
+    members = {
+        SourceEndpoint = schema.new({
+            id = id.from(_N, "RegisterSourceEndpointOutput", "SourceEndpoint"),
+            type = "structure",
+            name = "SourceEndpoint",
+            target_id = id.from(_N, "SourceEndpoint"),
+            target = M.SourceEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpoint" },
+            },
+        }),
+    },
+})
+
+M.SourceEndpointServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "SourceEndpointServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "SourceEndpointServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.UpdateSourceEndpointInput = schema.new({
+    id = id.from(_N, "UpdateSourceEndpointRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateSourceEndpointInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateSourceEndpointInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "UpdateSourceEndpointInput", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "SourceEndpointConfiguration"),
+            target = M.SourceEndpointConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+    },
+})
+
+M.UpdateSourceEndpointOutput = schema.new({
+    id = id.from(_N, "UpdateSourceEndpointResponse"),
+    type = "structure",
+    members = {
+        SourceEndpoint = schema.new({
+            id = id.from(_N, "UpdateSourceEndpointOutput", "SourceEndpoint"),
+            type = "structure",
+            name = "SourceEndpoint",
+            target_id = id.from(_N, "SourceEndpoint"),
+            target = M.SourceEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sourceEndpoint" },
+            },
+        }),
+    },
+})
+
 M.TagGlobalResourceInput = schema.new({
     id = id.from(_N, "TagGlobalResourceRequest"),
     type = "structure",
@@ -14142,6 +17502,18 @@ M.AddFlowVpcInterfaces = schema.operation({
     },
 })
 
+M.BatchGetDestinationEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "BatchGetDestinationEndpoint"),
+    input = M.BatchGetDestinationEndpointInput,
+    output = M.BatchGetDestinationEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/destinationEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BatchGetRouterInput = schema.operation({
     id = id.from("com.amazonaws.mediaconnect", "BatchGetRouterInput"),
     input = M.BatchGetRouterInputInput,
@@ -14172,6 +17544,30 @@ M.BatchGetRouterOutput = schema.operation({
     output = M.BatchGetRouterOutputOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/routerOutputs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetSourceEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "BatchGetSourceEndpoint"),
+    input = M.BatchGetSourceEndpointInput,
+    output = M.BatchGetSourceEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/sourceEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConnectEndpoints = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ConnectEndpoints"),
+    input = M.ConnectEndpointsInput,
+    output = M.ConnectEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/connectEndpoints/{DestinationEndpointArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14322,12 +17718,36 @@ M.DeleteRouterOutput = schema.operation({
     },
 })
 
+M.DeregisterDestinationEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeregisterDestinationEndpoint"),
+    input = M.DeregisterDestinationEndpointInput,
+    output = M.DeregisterDestinationEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/destinationEndpoint/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeregisterGatewayInstance = schema.operation({
     id = id.from("com.amazonaws.mediaconnect", "DeregisterGatewayInstance"),
     input = M.DeregisterGatewayInstanceInput,
     output = M.DeregisterGatewayInstanceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v1/gateway-instances/{GatewayInstanceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeregisterSourceEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DeregisterSourceEndpoint"),
+    input = M.DeregisterSourceEndpointInput,
+    output = M.DeregisterSourceEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/sourceEndpoint/{Arn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14430,6 +17850,30 @@ M.DescribeReservation = schema.operation({
     },
 })
 
+M.DisconnectEndpoints = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "DisconnectEndpoints"),
+    input = M.DisconnectEndpointsInput,
+    output = M.DisconnectEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/disconnectEndpoints/{DestinationEndpointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDestinationEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "GetDestinationEndpoint"),
+    input = M.GetDestinationEndpointInput,
+    output = M.GetDestinationEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/destinationEndpoint/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetRouterInput = schema.operation({
     id = id.from("com.amazonaws.mediaconnect", "GetRouterInput"),
     input = M.GetRouterInputInput,
@@ -14490,6 +17934,18 @@ M.GetRouterOutput = schema.operation({
     },
 })
 
+M.GetSourceEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "GetSourceEndpoint"),
+    input = M.GetSourceEndpointInput,
+    output = M.GetSourceEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/sourceEndpoint/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GrantFlowEntitlements = schema.operation({
     id = id.from("com.amazonaws.mediaconnect", "GrantFlowEntitlements"),
     input = M.GrantFlowEntitlementsInput,
@@ -14508,6 +17964,18 @@ M.ListBridges = schema.operation({
     output = M.ListBridgesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/bridges" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDestinationEndpoints = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListDestinationEndpoints"),
+    input = M.ListDestinationEndpointsInput,
+    output = M.ListDestinationEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/destinationEndpoints" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14622,6 +18090,18 @@ M.ListRouterOutputs = schema.operation({
     },
 })
 
+M.ListSourceEndpoints = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "ListSourceEndpoints"),
+    input = M.ListSourceEndpointsInput,
+    output = M.ListSourceEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/sourceEndpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTagsForGlobalResource = schema.operation({
     id = id.from("com.amazonaws.mediaconnect", "ListTagsForGlobalResource"),
     input = M.ListTagsForGlobalResourceInput,
@@ -14652,6 +18132,30 @@ M.PurchaseOffering = schema.operation({
     output = M.PurchaseOfferingOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/offerings/{OfferingArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDestinationEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RegisterDestinationEndpoint"),
+    input = M.RegisterDestinationEndpointInput,
+    output = M.RegisterDestinationEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/destinationEndpoint" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterSourceEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "RegisterSourceEndpoint"),
+    input = M.RegisterSourceEndpointInput,
+    output = M.RegisterSourceEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/sourceEndpoint" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14946,6 +18450,18 @@ M.UpdateBridgeState = schema.operation({
     },
 })
 
+M.UpdateDestinationEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateDestinationEndpoint"),
+    input = M.UpdateDestinationEndpointInput,
+    output = M.UpdateDestinationEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/destinationEndpoint/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateFlow = schema.operation({
     id = id.from("com.amazonaws.mediaconnect", "UpdateFlow"),
     input = M.UpdateFlowInput,
@@ -15048,6 +18564,18 @@ M.UpdateRouterOutput = schema.operation({
     output = M.UpdateRouterOutputOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/v1/routerOutput/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSourceEndpoint = schema.operation({
+    id = id.from("com.amazonaws.mediaconnect", "UpdateSourceEndpoint"),
+    input = M.UpdateSourceEndpointInput,
+    output = M.UpdateSourceEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/sourceEndpoint/{Arn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

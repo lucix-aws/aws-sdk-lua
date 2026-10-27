@@ -18,12 +18,17 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateContract: function(Client, types.AssociateContractInput, ? base_client.InvokeOptions): async.Operation<types.AssociateContractOutput>
     associateSourceViews: function(Client, types.AssociateSourceViewsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSourceViewsOutput>
+    cancelContractualInvestmentAttestation: function(Client, types.CancelContractualInvestmentAttestationInput, ? base_client.InvokeOptions): async.Operation<types.CancelContractualInvestmentAttestationOutput>
     createBillingView: function(Client, types.CreateBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.CreateBillingViewOutput>
+    createContractualInvestmentAttestation: function(Client, types.CreateContractualInvestmentAttestationInput, ? base_client.InvokeOptions): async.Operation<types.CreateContractualInvestmentAttestationOutput>
     deleteBillingView: function(Client, types.DeleteBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBillingViewOutput>
+    disassociateContract: function(Client, types.DisassociateContractInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateContractOutput>
     disassociateSourceViews: function(Client, types.DisassociateSourceViewsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSourceViewsOutput>
     getBillingPreferences: function(Client, types.GetBillingPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingPreferencesOutput>
     getBillingView: function(Client, types.GetBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingViewOutput>
+    getContractInformation: function(Client, types.GetContractInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetContractInformationOutput>
     getCreditAllocationHistory: function(Client, types.GetCreditAllocationHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetCreditAllocationHistoryOutput>
     getCredits: function(Client, types.GetCreditsInput, ? base_client.InvokeOptions): async.Operation<types.GetCreditsOutput>
     getEnterpriseSupportChargeSummary: function(Client, types.GetEnterpriseSupportChargeSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetEnterpriseSupportChargeSummaryOutput>
@@ -33,6 +38,10 @@ local record Client
     listBillingViewSegments: function(Client, types.ListBillingViewSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingViewSegmentsOutput>
     listBusinessSupportAccountCharges: function(Client, types.ListBusinessSupportAccountChargesInput, ? base_client.InvokeOptions): async.Operation<types.ListBusinessSupportAccountChargesOutput>
     listBusinessSupportSubscriptionHistory: function(Client, types.ListBusinessSupportSubscriptionHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListBusinessSupportSubscriptionHistoryOutput>
+    listContracts: function(Client, types.ListContractsInput, ? base_client.InvokeOptions): async.Operation<types.ListContractsOutput>
+    listContractualInvestmentAttestations: function(Client, types.ListContractualInvestmentAttestationsInput, ? base_client.InvokeOptions): async.Operation<types.ListContractualInvestmentAttestationsOutput>
+    listContractualInvestments: function(Client, types.ListContractualInvestmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListContractualInvestmentsOutput>
+    listContractualInvestmentSummaries: function(Client, types.ListContractualInvestmentSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListContractualInvestmentSummariesOutput>
     listEnterpriseSupportLinkedAccountCharges: function(Client, types.ListEnterpriseSupportLinkedAccountChargesInput, ? base_client.InvokeOptions): async.Operation<types.ListEnterpriseSupportLinkedAccountChargesOutput>
     listSourceViewsForBillingView: function(Client, types.ListSourceViewsForBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceViewsForBillingViewOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -85,16 +94,32 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:associateContract(input: types.AssociateContractInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateContractOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateContract as schema.OperationSchema, input, options) as async.Operation<types.AssociateContractOutput>
+end
+
 function C:associateSourceViews(input: types.AssociateSourceViewsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSourceViewsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSourceViews as schema.OperationSchema, input, options) as async.Operation<types.AssociateSourceViewsOutput>
+end
+
+function C:cancelContractualInvestmentAttestation(input: types.CancelContractualInvestmentAttestationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelContractualInvestmentAttestationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelContractualInvestmentAttestation as schema.OperationSchema, input, options) as async.Operation<types.CancelContractualInvestmentAttestationOutput>
 end
 
 function C:createBillingView(input: types.CreateBillingViewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBillingViewOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBillingView as schema.OperationSchema, input, options) as async.Operation<types.CreateBillingViewOutput>
 end
 
+function C:createContractualInvestmentAttestation(input: types.CreateContractualInvestmentAttestationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContractualInvestmentAttestationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContractualInvestmentAttestation as schema.OperationSchema, input, options) as async.Operation<types.CreateContractualInvestmentAttestationOutput>
+end
+
 function C:deleteBillingView(input: types.DeleteBillingViewInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBillingViewOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBillingView as schema.OperationSchema, input, options) as async.Operation<types.DeleteBillingViewOutput>
+end
+
+function C:disassociateContract(input: types.DisassociateContractInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateContractOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateContract as schema.OperationSchema, input, options) as async.Operation<types.DisassociateContractOutput>
 end
 
 function C:disassociateSourceViews(input: types.DisassociateSourceViewsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateSourceViewsOutput>
@@ -107,6 +132,10 @@ end
 
 function C:getBillingView(input: types.GetBillingViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetBillingViewOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBillingView as schema.OperationSchema, input, options) as async.Operation<types.GetBillingViewOutput>
+end
+
+function C:getContractInformation(input: types.GetContractInformationInput, options?: base_client.InvokeOptions): async.Operation<types.GetContractInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContractInformation as schema.OperationSchema, input, options) as async.Operation<types.GetContractInformationOutput>
 end
 
 function C:getCreditAllocationHistory(input: types.GetCreditAllocationHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetCreditAllocationHistoryOutput>
@@ -143,6 +172,22 @@ end
 
 function C:listBusinessSupportSubscriptionHistory(input: types.ListBusinessSupportSubscriptionHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListBusinessSupportSubscriptionHistoryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBusinessSupportSubscriptionHistory as schema.OperationSchema, input, options) as async.Operation<types.ListBusinessSupportSubscriptionHistoryOutput>
+end
+
+function C:listContracts(input: types.ListContractsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContractsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContracts as schema.OperationSchema, input, options) as async.Operation<types.ListContractsOutput>
+end
+
+function C:listContractualInvestmentAttestations(input: types.ListContractualInvestmentAttestationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContractualInvestmentAttestationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContractualInvestmentAttestations as schema.OperationSchema, input, options) as async.Operation<types.ListContractualInvestmentAttestationsOutput>
+end
+
+function C:listContractualInvestments(input: types.ListContractualInvestmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContractualInvestmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContractualInvestments as schema.OperationSchema, input, options) as async.Operation<types.ListContractualInvestmentsOutput>
+end
+
+function C:listContractualInvestmentSummaries(input: types.ListContractualInvestmentSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListContractualInvestmentSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContractualInvestmentSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListContractualInvestmentSummariesOutput>
 end
 
 function C:listEnterpriseSupportLinkedAccountCharges(input: types.ListEnterpriseSupportLinkedAccountChargesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnterpriseSupportLinkedAccountChargesOutput>

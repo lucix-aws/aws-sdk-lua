@@ -146,6 +146,8 @@ local record M
         containerFormat: string
         -- ARN of the ad configuration associated with the channel.
         adConfigurationArn: string
+        -- Failover-slate-configuration ARN. A valid ARN value here both specifies the ARN and enables failover slate. Default: "" (empty string, no failover slate configuration is applied).
+        failoverSlateConfigurationArn: string
     end
 
     -- Error related to a specific channel, specified by its ARN.
@@ -410,11 +412,56 @@ local record M
         containerFormat: string
         -- ARN of the ad configuration associated with the channel.
         adConfigurationArn: string
+        -- Failover-slate-configuration ARN. A valid ARN value here both specifies the ARN and enables failover slate. Default: "" (empty string, no failover slate configuration is applied).
+        failoverSlateConfigurationArn: string
     end
 
     record CreateChannelOutput
         channel: Channel
         streamKey: StreamKey
+    end
+
+    record CreateFailoverSlateConfigurationInput
+        -- Failover-slate-configuration name. The value does not need to be unique.
+        name: string
+        -- Number of seconds of ingest interruption before the failover slate activates. Minimum: 3. Maximum: 5. Default: 3.
+        activationThresholdSeconds: number
+        -- Minimum number of seconds that the failover slate displays after activation. Minimum: 3. Maximum: 10. Default: 3.
+        minSlateDisplaySeconds: number
+        -- Maximum number of seconds that the failover slate displays. Minimum: 60. Maximum: 180. Default: 60.
+        maxSlateDisplaySeconds: number
+        -- Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
+        tags: {string : string}
+    end
+
+    enum FailoverSlateConfigurationState
+        "CREATING"
+        "CREATE_FAILED"
+        "CREATED"
+        "UPDATING"
+    end
+
+    -- Object specifying a failover slate configuration.
+    record FailoverSlateConfiguration
+        -- Failover-slate-configuration ARN.
+        arn: string
+        -- Failover-slate-configuration name.
+        name: string
+        -- Number of seconds of ingest interruption before the failover slate activates. Minimum: 3. Maximum: 5. Default: 3.
+        activationThresholdSeconds: number
+        -- Minimum number of seconds that the failover slate displays after activation. Minimum: 3. Maximum: 10. Default: 3.
+        minSlateDisplaySeconds: number
+        -- Maximum number of seconds that the failover slate displays. Minimum: 60. Maximum: 180. Default: 60.
+        maxSlateDisplaySeconds: number
+        -- Current state of the failover slate configuration.
+        state: string
+        -- Tags attached to the resource. Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
+        tags: {string : string}
+    end
+
+    record CreateFailoverSlateConfigurationOutput
+        -- The failover slate configuration that was created.
+        failoverSlateConfiguration: FailoverSlateConfiguration
     end
 
     record CreatePlaybackRestrictionPolicyInput
@@ -585,6 +632,14 @@ local record M
     record DeleteChannelOutput
     end
 
+    record DeleteFailoverSlateConfigurationInput
+        -- ARN of the failover slate configuration to be deleted.
+        arn: string
+    end
+
+    record DeleteFailoverSlateConfigurationOutput
+    end
+
     record DeletePlaybackKeyPairInput
         -- ARN of the key pair to be deleted.
         arn: string
@@ -633,6 +688,16 @@ local record M
 
     record GetChannelOutput
         channel: Channel
+    end
+
+    record GetFailoverSlateConfigurationInput
+        -- ARN of the failover slate configuration to be retrieved.
+        arn: string
+    end
+
+    record GetFailoverSlateConfigurationOutput
+        -- The failover slate configuration that was retrieved.
+        failoverSlateConfiguration: FailoverSlateConfiguration
     end
 
     record GetPlaybackKeyPairInput
@@ -826,6 +891,8 @@ local record M
         recordingConfiguration: RecordingConfiguration
         -- List of Amazon IVS events that the stream encountered. The list is sorted by most recent events and contains up to 500 events. For Amazon IVS events, see Using Amazon EventBridge with Amazon IVS.
         truncatedEvents: {StreamEvent}
+        -- The properties of the failover slate configuration at the time of going live.
+        failoverSlateConfiguration: FailoverSlateConfiguration
     end
 
     record GetStreamSessionOutput
@@ -881,6 +948,8 @@ local record M
         filterByPlaybackRestrictionPolicyArn: string
         -- Filters the channel list to match the specified ad configuration ARN.
         filterByAdConfigurationArn: string
+        -- Filters the channel list to match the specified failover-slate-configuration ARN.
+        filterByFailoverSlateConfigurationArn: string
         -- The first channel to retrieve. This is used for pagination; see the nextToken response field.
         nextToken: string
         -- Maximum number of channels to return. Default: 100.
@@ -909,12 +978,46 @@ local record M
         playbackRestrictionPolicyArn: string
         -- ARN of the ad configuration associated with the channel.
         adConfigurationArn: string
+        -- Failover-slate-configuration ARN. A valid ARN value here both specifies the ARN and enables failover slate. Default: "" (empty string, no failover slate configuration is applied).
+        failoverSlateConfigurationArn: string
     end
 
     record ListChannelsOutput
         -- List of the matching channels.
         channels: {ChannelSummary}
         -- If there are more channels than maxResults, use nextToken in the request to get the next set.
+        nextToken: string
+    end
+
+    record ListFailoverSlateConfigurationsInput
+        -- The first failover slate configuration to retrieve. This is used for pagination; see the nextToken response field.
+        nextToken: string
+        -- Maximum number of failover slate configurations to return. Default: your service quota or 100, whichever is smaller.
+        maxResults: number
+    end
+
+    -- Summary information about a failover slate configuration.
+    record FailoverSlateConfigurationSummary
+        -- Failover-slate-configuration ARN.
+        arn: string
+        -- Failover-slate-configuration name.
+        name: string
+        -- Number of seconds of ingest interruption before the failover slate activates. Minimum: 3. Maximum: 5. Default: 3.
+        activationThresholdSeconds: number
+        -- Minimum number of seconds that the failover slate displays after activation. Minimum: 3. Maximum: 10. Default: 3.
+        minSlateDisplaySeconds: number
+        -- Maximum number of seconds that the failover slate displays. Minimum: 60. Maximum: 180. Default: 60.
+        maxSlateDisplaySeconds: number
+        -- Current state of the failover slate configuration.
+        state: string
+        -- Tags attached to the resource. Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
+        tags: {string : string}
+    end
+
+    record ListFailoverSlateConfigurationsOutput
+        -- List of the matching failover slate configurations.
+        failoverSlateConfigurations: {FailoverSlateConfigurationSummary}
+        -- If there are more failover slate configurations than maxResults, use nextToken in the request to get the next set.
         nextToken: string
     end
 
@@ -1205,11 +1308,31 @@ local record M
         containerFormat: string
         -- ARN of the ad configuration associated with the channel.
         adConfigurationArn: string
+        -- Failover-slate-configuration ARN. A valid ARN value here both specifies the ARN and enables failover slate. If this is set to an empty string, failover slate configuration is disabled.
+        failoverSlateConfigurationArn: string
     end
 
     record UpdateChannelOutput
         -- Object specifying the updated channel.
         channel: Channel
+    end
+
+    record UpdateFailoverSlateConfigurationInput
+        -- ARN of the failover slate configuration to be updated.
+        arn: string
+        -- Failover-slate-configuration name. The value does not need to be unique.
+        name: string
+        -- Number of seconds of ingest interruption before the failover slate activates. Minimum: 3. Maximum: 5. Default: 3.
+        activationThresholdSeconds: number
+        -- Minimum number of seconds that the failover slate displays after activation. Minimum: 3. Maximum: 10. Default: 3.
+        minSlateDisplaySeconds: number
+        -- Maximum number of seconds that the failover slate displays. Minimum: 60. Maximum: 180. Default: 60.
+        maxSlateDisplaySeconds: number
+    end
+
+    record UpdateFailoverSlateConfigurationOutput
+        -- Object specifying the updated failover slate configuration.
+        failoverSlateConfiguration: FailoverSlateConfiguration
     end
 
     record UpdatePlaybackRestrictionPolicyInput

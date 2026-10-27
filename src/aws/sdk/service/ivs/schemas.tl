@@ -36,6 +36,8 @@ M.AdConfigurationList = schema.new({ type = "list", list_member = M.AdConfigurat
 
 M.ChannelList = schema.new({ type = "list", list_member = M.ChannelSummary })
 
+M.FailoverSlateConfigurationList = schema.new({ type = "list", list_member = M.FailoverSlateConfigurationSummary })
+
 M.PlaybackKeyPairList = schema.new({ type = "list", list_member = M.PlaybackKeyPairSummary })
 
 M.PlaybackRestrictionPolicyList = schema.new({ type = "list", list_member = M.PlaybackRestrictionPolicySummary })
@@ -453,6 +455,12 @@ M.Channel = schema.new({
             id = id.from(_N, "Channel", "adConfigurationArn"),
             type = "string",
             name = "adConfigurationArn",
+            target_id = prelude.String.id,
+        }),
+        failoverSlateConfigurationArn = schema.new({
+            id = id.from(_N, "Channel", "failoverSlateConfigurationArn"),
+            type = "string",
+            name = "failoverSlateConfigurationArn",
             target_id = prelude.String.id,
         }),
     },
@@ -1710,6 +1718,12 @@ M.CreateChannelInput = schema.new({
             name = "adConfigurationArn",
             target_id = prelude.String.id,
         }),
+        failoverSlateConfigurationArn = schema.new({
+            id = id.from(_N, "CreateChannelInput", "failoverSlateConfigurationArn"),
+            type = "string",
+            name = "failoverSlateConfigurationArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1730,6 +1744,119 @@ M.CreateChannelOutput = schema.new({
             name = "streamKey",
             target_id = id.from(_N, "StreamKey"),
             target = M.StreamKey,
+        }),
+    },
+})
+
+M.CreateFailoverSlateConfigurationInput = schema.new({
+    id = id.from(_N, "CreateFailoverSlateConfigurationRequest"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateFailoverSlateConfigurationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        activationThresholdSeconds = schema.new({
+            id = id.from(_N, "CreateFailoverSlateConfigurationInput", "activationThresholdSeconds"),
+            type = "integer",
+            name = "activationThresholdSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        minSlateDisplaySeconds = schema.new({
+            id = id.from(_N, "CreateFailoverSlateConfigurationInput", "minSlateDisplaySeconds"),
+            type = "integer",
+            name = "minSlateDisplaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        maxSlateDisplaySeconds = schema.new({
+            id = id.from(_N, "CreateFailoverSlateConfigurationInput", "maxSlateDisplaySeconds"),
+            type = "integer",
+            name = "maxSlateDisplaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateFailoverSlateConfigurationInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.FailoverSlateConfiguration = schema.new({
+    id = id.from(_N, "FailoverSlateConfiguration"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "FailoverSlateConfiguration", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "FailoverSlateConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        activationThresholdSeconds = schema.new({
+            id = id.from(_N, "FailoverSlateConfiguration", "activationThresholdSeconds"),
+            type = "integer",
+            name = "activationThresholdSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        minSlateDisplaySeconds = schema.new({
+            id = id.from(_N, "FailoverSlateConfiguration", "minSlateDisplaySeconds"),
+            type = "integer",
+            name = "minSlateDisplaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        maxSlateDisplaySeconds = schema.new({
+            id = id.from(_N, "FailoverSlateConfiguration", "maxSlateDisplaySeconds"),
+            type = "integer",
+            name = "maxSlateDisplaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "FailoverSlateConfiguration", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "FailoverSlateConfiguration", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateFailoverSlateConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateFailoverSlateConfigurationResponse"),
+    type = "structure",
+    members = {
+        failoverSlateConfiguration = schema.new({
+            id = id.from(_N, "CreateFailoverSlateConfigurationOutput", "failoverSlateConfiguration"),
+            type = "structure",
+            name = "failoverSlateConfiguration",
+            target_id = id.from(_N, "FailoverSlateConfiguration"),
+            target = M.FailoverSlateConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -2141,6 +2268,24 @@ M.DeleteChannelInput = schema.new({
 
 M.DeleteChannelOutput = prelude.Unit
 
+M.DeleteFailoverSlateConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteFailoverSlateConfigurationRequest"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "DeleteFailoverSlateConfigurationInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFailoverSlateConfigurationOutput = prelude.Unit
+
 M.DeletePlaybackKeyPairInput = schema.new({
     id = id.from(_N, "DeletePlaybackKeyPairRequest"),
     type = "structure",
@@ -2272,6 +2417,39 @@ M.GetChannelOutput = schema.new({
             name = "channel",
             target_id = id.from(_N, "Channel"),
             target = M.Channel,
+        }),
+    },
+})
+
+M.GetFailoverSlateConfigurationInput = schema.new({
+    id = id.from(_N, "GetFailoverSlateConfigurationRequest"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetFailoverSlateConfigurationInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetFailoverSlateConfigurationOutput = schema.new({
+    id = id.from(_N, "GetFailoverSlateConfigurationResponse"),
+    type = "structure",
+    members = {
+        failoverSlateConfiguration = schema.new({
+            id = id.from(_N, "GetFailoverSlateConfigurationOutput", "failoverSlateConfiguration"),
+            type = "structure",
+            name = "failoverSlateConfiguration",
+            target_id = id.from(_N, "FailoverSlateConfiguration"),
+            target = M.FailoverSlateConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -2900,6 +3078,13 @@ M.StreamSession = schema.new({
             target_id = prelude.Document.id,
             list_member = M.StreamEvent,
         }),
+        failoverSlateConfiguration = schema.new({
+            id = id.from(_N, "StreamSession", "failoverSlateConfiguration"),
+            type = "structure",
+            name = "failoverSlateConfiguration",
+            target_id = id.from(_N, "FailoverSlateConfiguration"),
+            target = M.FailoverSlateConfiguration,
+        }),
     },
 })
 
@@ -3069,6 +3254,12 @@ M.ListChannelsInput = schema.new({
             name = "filterByAdConfigurationArn",
             target_id = prelude.String.id,
         }),
+        filterByFailoverSlateConfigurationArn = schema.new({
+            id = id.from(_N, "ListChannelsInput", "filterByFailoverSlateConfigurationArn"),
+            type = "string",
+            name = "filterByFailoverSlateConfigurationArn",
+            target_id = prelude.String.id,
+        }),
         nextToken = schema.new({
             id = id.from(_N, "ListChannelsInput", "nextToken"),
             type = "string",
@@ -3162,6 +3353,12 @@ M.ChannelSummary = schema.new({
             name = "adConfigurationArn",
             target_id = prelude.String.id,
         }),
+        failoverSlateConfigurationArn = schema.new({
+            id = id.from(_N, "ChannelSummary", "failoverSlateConfigurationArn"),
+            type = "string",
+            name = "failoverSlateConfigurationArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3181,6 +3378,105 @@ M.ListChannelsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListChannelsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFailoverSlateConfigurationsInput = schema.new({
+    id = id.from(_N, "ListFailoverSlateConfigurationsRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListFailoverSlateConfigurationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListFailoverSlateConfigurationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.FailoverSlateConfigurationSummary = schema.new({
+    id = id.from(_N, "FailoverSlateConfigurationSummary"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "FailoverSlateConfigurationSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "FailoverSlateConfigurationSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        activationThresholdSeconds = schema.new({
+            id = id.from(_N, "FailoverSlateConfigurationSummary", "activationThresholdSeconds"),
+            type = "integer",
+            name = "activationThresholdSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        minSlateDisplaySeconds = schema.new({
+            id = id.from(_N, "FailoverSlateConfigurationSummary", "minSlateDisplaySeconds"),
+            type = "integer",
+            name = "minSlateDisplaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        maxSlateDisplaySeconds = schema.new({
+            id = id.from(_N, "FailoverSlateConfigurationSummary", "maxSlateDisplaySeconds"),
+            type = "integer",
+            name = "maxSlateDisplaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "FailoverSlateConfigurationSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "FailoverSlateConfigurationSummary", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListFailoverSlateConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListFailoverSlateConfigurationsResponse"),
+    type = "structure",
+    members = {
+        failoverSlateConfigurations = schema.new({
+            id = id.from(_N, "ListFailoverSlateConfigurationsOutput", "failoverSlateConfigurations"),
+            type = "list",
+            name = "failoverSlateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.FailoverSlateConfigurationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListFailoverSlateConfigurationsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -4141,6 +4437,12 @@ M.UpdateChannelInput = schema.new({
             name = "adConfigurationArn",
             target_id = prelude.String.id,
         }),
+        failoverSlateConfigurationArn = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "failoverSlateConfigurationArn"),
+            type = "string",
+            name = "failoverSlateConfigurationArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4154,6 +4456,63 @@ M.UpdateChannelOutput = schema.new({
             name = "channel",
             target_id = id.from(_N, "Channel"),
             target = M.Channel,
+        }),
+    },
+})
+
+M.UpdateFailoverSlateConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateFailoverSlateConfigurationRequest"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateFailoverSlateConfigurationInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateFailoverSlateConfigurationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        activationThresholdSeconds = schema.new({
+            id = id.from(_N, "UpdateFailoverSlateConfigurationInput", "activationThresholdSeconds"),
+            type = "integer",
+            name = "activationThresholdSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        minSlateDisplaySeconds = schema.new({
+            id = id.from(_N, "UpdateFailoverSlateConfigurationInput", "minSlateDisplaySeconds"),
+            type = "integer",
+            name = "minSlateDisplaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        maxSlateDisplaySeconds = schema.new({
+            id = id.from(_N, "UpdateFailoverSlateConfigurationInput", "maxSlateDisplaySeconds"),
+            type = "integer",
+            name = "maxSlateDisplaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.UpdateFailoverSlateConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateFailoverSlateConfigurationResponse"),
+    type = "structure",
+    members = {
+        failoverSlateConfiguration = schema.new({
+            id = id.from(_N, "UpdateFailoverSlateConfigurationOutput", "failoverSlateConfiguration"),
+            type = "structure",
+            name = "failoverSlateConfiguration",
+            target_id = id.from(_N, "FailoverSlateConfiguration"),
+            target = M.FailoverSlateConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -4299,6 +4658,18 @@ M.CreateChannel = schema.operation({
     },
 })
 
+M.CreateFailoverSlateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "CreateFailoverSlateConfiguration"),
+    input = M.CreateFailoverSlateConfigurationInput,
+    output = M.CreateFailoverSlateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateFailoverSlateConfiguration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreatePlaybackRestrictionPolicy = schema.operation({
     id = id.from("com.amazonaws.ivs", "CreatePlaybackRestrictionPolicy"),
     input = M.CreatePlaybackRestrictionPolicyInput,
@@ -4353,6 +4724,18 @@ M.DeleteChannel = schema.operation({
     output = M.DeleteChannelOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/DeleteChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFailoverSlateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "DeleteFailoverSlateConfiguration"),
+    input = M.DeleteFailoverSlateConfigurationInput,
+    output = M.DeleteFailoverSlateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/DeleteFailoverSlateConfiguration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -4425,6 +4808,18 @@ M.GetChannel = schema.operation({
     output = M.GetChannelOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/GetChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFailoverSlateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "GetFailoverSlateConfiguration"),
+    input = M.GetFailoverSlateConfigurationInput,
+    output = M.GetFailoverSlateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetFailoverSlateConfiguration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -4545,6 +4940,18 @@ M.ListChannels = schema.operation({
     output = M.ListChannelsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/ListChannels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFailoverSlateConfigurations = schema.operation({
+    id = id.from("com.amazonaws.ivs", "ListFailoverSlateConfigurations"),
+    input = M.ListFailoverSlateConfigurationsInput,
+    output = M.ListFailoverSlateConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListFailoverSlateConfigurations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -4713,6 +5120,18 @@ M.UpdateChannel = schema.operation({
     output = M.UpdateChannelOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/UpdateChannel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFailoverSlateConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "UpdateFailoverSlateConfiguration"),
+    input = M.UpdateFailoverSlateConfigurationInput,
+    output = M.UpdateFailoverSlateConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateFailoverSlateConfiguration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

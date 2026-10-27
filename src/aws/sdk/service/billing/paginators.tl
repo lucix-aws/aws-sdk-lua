@@ -94,6 +94,78 @@ function M.items_list_business_support_subscription_history(client, input)
     })
 end
 
+--- Returns a page iterator for listContracts.
+function M.pages_list_contracts(client, input)
+    return paginator.pages(client, "listContracts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listContracts.
+function M.items_list_contracts(client, input)
+    return paginator.items(client, "listContracts", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listContractualInvestmentAttestations.
+function M.pages_list_contractual_investment_attestations(client, input)
+    return paginator.pages(client, "listContractualInvestmentAttestations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listContractualInvestmentAttestations.
+function M.items_list_contractual_investment_attestations(client, input)
+    return paginator.items(client, "listContractualInvestmentAttestations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listContractualInvestmentSummaries.
+function M.pages_list_contractual_investment_summaries(client, input)
+    return paginator.pages(client, "listContractualInvestmentSummaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listContractualInvestmentSummaries.
+function M.items_list_contractual_investment_summaries(client, input)
+    return paginator.items(client, "listContractualInvestmentSummaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listContractualInvestments.
+function M.pages_list_contractual_investments(client, input)
+    return paginator.pages(client, "listContractualInvestments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listContractualInvestments.
+function M.items_list_contractual_investments(client, input)
+    return paginator.items(client, "listContractualInvestments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listEnterpriseSupportLinkedAccountCharges.
 function M.pages_list_enterprise_support_linked_account_charges(client, input)
     return paginator.pages(client, "listEnterpriseSupportLinkedAccountCharges", input, {

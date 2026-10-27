@@ -4024,6 +4024,12 @@ M.ListInstancesInput = schema.new({
             name = "NextToken",
             target_id = prelude.String.id,
         }),
+        RegionScope = schema.new({
+            id = id.from(_N, "ListInstancesInput", "RegionScope"),
+            type = "string",
+            name = "RegionScope",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

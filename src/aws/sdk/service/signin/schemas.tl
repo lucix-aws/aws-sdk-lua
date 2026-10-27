@@ -417,6 +417,183 @@ M.CreateOAuth2TokenWithIAMOutput = schema.new({
     },
 })
 
+M.CreateOAuth2TokenWithTokenExchangeInput = schema.new({
+    id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeRequest"),
+    type = "structure",
+    members = {
+        grantType = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeInput", "grantType"),
+            type = "string",
+            name = "grantType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "grant_type" },
+            },
+        }),
+        subjectToken = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeInput", "subjectToken"),
+            type = "string",
+            name = "subjectToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "subject_token" },
+            },
+        }),
+        subjectTokenType = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeInput", "subjectTokenType"),
+            type = "string",
+            name = "subjectTokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "subject_token_type" },
+            },
+        }),
+        resource = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeInput", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+        }),
+        scope = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeInput", "scope"),
+            type = "string",
+            name = "scope",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateOAuth2TokenWithTokenExchangeOutput = schema.new({
+    id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeResponse"),
+    type = "structure",
+    members = {
+        accessToken = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeOutput", "accessToken"),
+            type = "string",
+            name = "accessToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "access_token" },
+            },
+        }),
+        issuedTokenType = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeOutput", "issuedTokenType"),
+            type = "string",
+            name = "issuedTokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "issued_token_type" },
+            },
+        }),
+        tokenType = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeOutput", "tokenType"),
+            type = "string",
+            name = "tokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "token_type" },
+            },
+        }),
+        expiresIn = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithTokenExchangeOutput", "expiresIn"),
+            type = "integer",
+            name = "expiresIn",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "expires_in" },
+            },
+        }),
+    },
+})
+
+M.InvalidGrantException = schema.new({
+    id = id.from(_N, "InvalidGrantException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "InvalidGrantException", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "InvalidGrantException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InvalidScopeException = schema.new({
+    id = id.from(_N, "InvalidScopeException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "InvalidScopeException", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "InvalidScopeException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteConsoleAuthorizationConfigurationInput = schema.new({
     id = id.from(_N, "DeleteConsoleAuthorizationConfigurationInput"),
     type = "structure",
@@ -1118,6 +1295,21 @@ M.CreateOAuth2TokenWithIAM = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/v1/token?x-amz-client-auth-method=iam" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsOAuthEndpoint = { value = true },
+        },
+    },
+})
+
+M.CreateOAuth2TokenWithTokenExchange = schema.operation({
+    id = id.from("com.amazonaws.signin", "CreateOAuth2TokenWithTokenExchange"),
+    input = M.CreateOAuth2TokenWithTokenExchangeInput,
+    output = M.CreateOAuth2TokenWithTokenExchangeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/token?x-amz-oauth-token-method=token-exchange" },
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             IsOAuthEndpoint = { value = true },

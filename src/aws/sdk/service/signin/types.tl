@@ -12,31 +12,30 @@ local record M
         "RESOURCE_NOT_FOUND"
         "CONFLICT"
         "SERVICE_QUOTA_EXCEEDED"
+        "unsupported_grant_type"
+        "invalid_request"
+        "invalid_grant"
+        "invalid_scope"
+        "invalid_target"
+        "rate_exceeded"
+        "service_unavailable"
     end
 
-    -- Error thrown for access denied scenarios with flexible HTTP status mapping
-    -- Runtime HTTP Status Code Mapping:
-    -- - HTTP 401 (Unauthorized): TOKEN_EXPIRED, AUTHCODE_EXPIRED
-    -- - HTTP 403 (Forbidden): USER_CREDENTIALS_CHANGED, INSUFFICIENT_PERMISSIONS
-    -- The specific HTTP status code is determined at runtime based on the error enum value.
-    -- Consumers should use the error field to determine the specific access denial reason.
+    -- You do not have sufficient access to perform this action.
     record AccessDeniedException
-        -- OAuth 2.0 error code indicating the specific type of access denial
-        -- Can be TOKEN_EXPIRED, AUTHCODE_EXPIRED, USER_CREDENTIALS_CHANGED, or INSUFFICIENT_PERMISSIONS
+        -- One of TOKEN_EXPIRED, AUTHCODE_EXPIRED, USER_CREDENTIALS_CHANGED, or INSUFFICIENT_PERMISSIONS.
         error: string
-        -- Detailed message explaining the access denial
-        -- Provides specific information about why access was denied
+        -- The reason access was denied.
         message: string
     end
 
-    -- AWS credentials structure containing temporary access credentials
-    -- Scoped, temporary AWS credentials with a 15-minute duration.
+    -- Contains the scoped, temporary AWS credentials used to sign requests with SigV4. Valid for 15 minutes.
     record AccessToken
-        -- AWS access key ID for temporary credentials
+        -- The AWS access key ID for the temporary credentials.
         accessKeyId: string
-        -- AWS secret access key for temporary credentials
+        -- The AWS secret access key used to sign requests.
         secretAccessKey: string
-        -- AWS session token for temporary credentials
+        -- The session token that validates the temporary security credentials.
         sessionToken: string
     end
 
@@ -52,28 +51,27 @@ local record M
         message: string
     end
 
-    -- Request body payload for CreateOAuth2Token operation
-    -- The operation type is determined by the grant_type parameter:
-    -- - grant_type=authorization_code: Requires code, redirect_uri, code_verifier
-    -- - grant_type=refresh_token: Requires refresh_token
+    -- The request body for creating an OAuth 2.0 token. Supports both the authorization code and
+    -- refresh token flows, selected by the "grant_type" parameter.
     record CreateOAuth2TokenRequestBody
-        -- The client identifier (ARN) used during Sign-In onboarding
-        -- Required for both authorization code and refresh token flows
+        -- The OAuth 2.0 client identifier. Expected values: "arn:aws:signin:::devtools/same-device"
+        -- or "arn:aws:signin:::devtools/cross-device".
         clientId: string
-        -- OAuth 2.0 grant type - determines which flow is used
-        -- Must be "authorization_code" or "refresh_token"
+        -- The OAuth 2.0 grant type. Supported values:
+        -- - "authorization_code" - Exchange an authorization code for tokens.
+        -- - "refresh_token" - Use a refresh token to obtain a new access token.
         grantType: string
-        -- The authorization code received from /v1/authorize
-        -- Required only when grant_type=authorization_code
+        -- The authorization code received from the "/v1/authorize" endpoint.
+        -- Required when "grant_type=authorization_code".
         code: string
-        -- The redirect URI that must match the original authorization request
-        -- Required only when grant_type=authorization_code
+        -- The redirect URI that was used in the original authorization request. Must match exactly.
+        -- Required when "grant_type=authorization_code".
         redirectUri: string
-        -- PKCE code verifier to prove possession of the original code challenge
-        -- Required only when grant_type=authorization_code
+        -- The PKCE code verifier that proves possession of the original code challenge.
+        -- Required when "grant_type=authorization_code".
         codeVerifier: string
-        -- The refresh token returned from auth_code redemption
-        -- Required only when grant_type=refresh_token
+        -- The refresh token issued by a previous token response.
+        -- Required when "grant_type=refresh_token".
         refreshToken: string
     end
 
@@ -81,31 +79,24 @@ local record M
     -- Contains flattened token operation inputs for both authorization code and refresh token flows.
     -- The operation type is determined by the grant_type parameter in the request body.
     record CreateOAuth2TokenInput
-        -- Flattened token operation inputs
-        -- The specific operation is determined by grant_type in the request body
+        -- Flattened token operation inputs. The "grant_type" in the request body determines the specific operation.
         tokenInput: CreateOAuth2TokenRequestBody
     end
 
-    -- Response body payload for CreateOAuth2Token operation
-    -- The response content depends on the grant_type from the request:
-    -- - grant_type=authorization_code: Returns all fields including refresh_token and id_token
-    -- - grant_type=refresh_token: Returns access_token, token_type, expires_in, refresh_token (no id_token)
+    -- The response body for an OAuth 2.0 token request. The fields returned depend on the "grant_type".
+    -- The authorization code flow returns "refresh_token" and "id_token". The refresh token flow omits "id_token".
     record CreateOAuth2TokenResponseBody
-        -- Scoped-down AWS credentials (15 minute duration)
-        -- Present for both authorization code redemption and token refresh
+        -- The access token issued by the authorization server. The token contains temporary
+        -- AWS security credentials that you use to sign requests with SigV4.
         accessToken: AccessToken
-        -- Token type indicating this is AWS SigV4 credentials
-        -- Value is "aws_sigv4" for both flows
+        -- The type of token issued. Value is "aws_sigv4".
         tokenType: string
-        -- Time to expiry in seconds (maximum 900)
-        -- Present for both authorization code redemption and token refresh
+        -- The number of seconds until the access token expires. Maximum value is 900 seconds (15 minutes).
         expiresIn: number
-        -- Encrypted refresh token with cnf.jkt (SHA-256 thumbprint of presented jwk)
-        -- Always present in responses (required for both flows)
+        -- A refresh token that can be used to obtain new access tokens without re-authenticating.
         refreshToken: string
-        -- ID token containing user identity information
-        -- Present only in authorization code redemption response (grant_type=authorization_code)
-        -- Not included in token refresh responses
+        -- A JSON Web Token (JWT) containing user identity claims. Present only when
+        -- "grant_type=authorization_code". Not included in refresh token responses.
         idToken: string
     end
 
@@ -113,57 +104,38 @@ local record M
     -- Contains flattened token operation outputs for both authorization code and refresh token flows.
     -- The response content depends on the grant_type from the original request.
     record CreateOAuth2TokenOutput
-        -- Flattened token operation outputs
-        -- The specific response fields depend on the grant_type used in the request
+        -- Flattened token operation outputs.
+        -- The specific response fields depend on the grant_type used in the request.
         tokenOutput: CreateOAuth2TokenResponseBody
     end
 
-    -- Error thrown when an internal server error occurs
-    -- HTTP Status Code: 500 Internal Server Error
-    -- Used for unexpected server-side errors that prevent request processing.
+    -- The request failed because of an internal server error.
     record InternalServerException
-        -- OAuth 2.0 error code indicating server error
-        -- Will be SERVER_ERROR for internal server errors
+        -- Will be server_error.
         error: string
-        -- Detailed message explaining the server error
-        -- May include error details for debugging purposes
+        -- The server error detail.
         message: string
     end
 
-    -- Error thrown when rate limit is exceeded
-    -- HTTP Status Code: 429 Too Many Requests
-    -- Possible OAuth2ErrorCode values:
-    -- - INVALID_REQUEST: Rate limiting, too many requests, abuse prevention
-    -- Possible causes:
-    -- - Too many token requests from the same client
-    -- - Rate limiting based on client_id or IP address
-    -- - Abuse prevention mechanisms triggered
-    -- - Service protection against excessive token generation
+    -- The request failed because you exceeded the request rate limit for this operation.
     record TooManyRequestsError
-        -- OAuth 2.0 error code indicating the specific type of error
-        -- Will be INVALID_REQUEST for rate limiting scenarios
+        -- Will be rate_exceeded.
         error: string
-        -- Detailed message about the rate limiting
-        -- May include retry-after information or rate limit details
+        -- Details about the rate limit.
         message: string
     end
 
-    -- Error thrown when request validation fails
-    -- HTTP Status Code: 400 Bad Request
-    -- Used for request validation errors such as malformed parameters,
-    -- missing required fields, or invalid parameter values.
+    -- The request failed because it contains a malformed, missing, or invalid parameter.
     record ValidationException
-        -- OAuth 2.0 error code indicating validation failure
-        -- Will be INVALID_REQUEST for validation errors
+        -- The specific code depends on which validation failed.
         error: string
-        -- Detailed message explaining the validation failure
-        -- Provides specific information about which validation failed
+        -- The validation constraint that failed.
         message: string
     end
 
     -- Input structure for CreateOAuth2TokenWithIAM operation
     record CreateOAuth2TokenWithIAMInput
-        -- OAuth 2.0 grant type. Must be "client_credentials".
+        -- The OAuth 2.0 grant type. Must be "client_credentials".
         grantType: string
         -- The OAuth resource for which the access token is requested.
         -- Example: "aws-mcp.amazonaws.com".
@@ -171,14 +143,68 @@ local record M
     end
 
     -- Output structure for CreateOAuth2TokenWithIAM operation
-    -- Contains the JWT access token, token type, and expiration per RFC 6749 §5.1.
+    -- Contains the access token, token type, and expiration as defined in RFC 6749 §5.1.
     record CreateOAuth2TokenWithIAMOutput
-        -- JWT access token containing principal identity, resource scope, and session metadata
+        -- Access token containing principal identity, resource scope, and session metadata.
         accessToken: string
-        -- Always "Bearer" per OAuth 2.1 specification
+        -- The token type. Always "Bearer" as defined in RFC 6749.
         tokenType: string
-        -- Token lifetime in seconds. Value is the minimum of session validity and 1 hour.
+        -- Token lifetime in seconds. Value is the minimum of the caller's session validity and 1 hour (3600 seconds).
         expiresIn: number
+    end
+
+    -- Input structure for CreateOAuth2TokenWithTokenExchange operation
+    record CreateOAuth2TokenWithTokenExchangeInput
+        -- The OAuth 2.0 grant type. Currently only supports "urn:ietf:params:oauth:grant-type:token-exchange".
+        grantType: string
+        -- The subject token that represents the identity of the party on whose behalf the request is made.
+        -- Required when "grant_type=urn:ietf:params:oauth:grant-type:token-exchange".
+        subjectToken: string
+        -- The token type of the subject token. Currently only supports "urn:ietf:params:oauth:token-type:jwt".
+        -- Required when "grant_type=urn:ietf:params:oauth:grant-type:token-exchange".
+        subjectTokenType: string
+        -- The OAuth resource for which the access token is requested.
+        -- Required when "grant_type=urn:ietf:params:oauth:grant-type:token-exchange".
+        -- Example: "glue.amazonaws.com".
+        resource: string
+        -- IAM managed policy Amazon Resource Names (ARNs) to apply as session policies that further
+        -- scope down the permissions of the issued access token, provided as a space-delimited list.
+        -- Example: "arn:aws:iam::444455556666:policy/MyPolicy".
+        scope: string
+    end
+
+    -- Output structure for CreateOAuth2TokenWithTokenExchange operation.
+    -- Contains the access token, issued token type, token type, and expiration as defined in RFC 6749 §5.1 and RFC 8693 §2.2.1.
+    record CreateOAuth2TokenWithTokenExchangeOutput
+        -- Access token containing principal identity, resource scope, and session metadata.
+        accessToken: string
+        -- The token type of the issued token. Always "urn:ietf:params:oauth:token-type:access_token" as defined in RFC 8693 §2.2.1.
+        issuedTokenType: string
+        -- The token type. Currently only supports "Bearer" as defined in RFC 6749.
+        tokenType: string
+        -- Token lifetime in seconds. Value is the minimum of the subject token's validity and 1 hour (3600 seconds).
+        expiresIn: number
+    end
+
+    -- The request failed because the provided grant is invalid or expired.
+    record InvalidGrantException
+        -- Will be invalid_grant.
+        error: string
+        message: string
+    end
+
+    -- The request failed because the requested scope is invalid or exceeds the scope that can be granted.
+    record InvalidScopeException
+        -- Will be invalid_scope.
+        error: string
+        message: string
+    end
+
+    -- The request failed because a dependency is temporarily unavailable. You can retry the request.
+    record ServiceUnavailableException
+        -- Will be service_unavailable.
+        error: string
+        message: string
     end
 
     -- Input for DeleteConsoleAuthorizationConfiguration operation
@@ -273,12 +299,10 @@ local record M
     -- RFC 7662 §2.1 introspection request. Contains the token to inspect and an
     -- optional hint about the token's type.
     record IntrospectOAuth2TokenWithIAMInput
-        -- The string value of the token to introspect.
-        -- May be either an access_token or a refresh_token issued by AWS Sign-In.
+        -- The access token or refresh token issued by AWS Sign-In.
         token: string
-        -- Optional hint about the type of the token submitted for introspection.
-        -- The server uses this hint to optimize lookup, but still falls back to
-        -- the other token type on miss. Allowed values: access_token, refresh_token.
+        -- An optional hint about the type of the token submitted for introspection, as defined in RFC 7662 §2.1.
+        -- The server checks both token types regardless of the hint. Allowed values: "access_token", "refresh_token".
         tokenTypeHint: string
     end
 
@@ -286,15 +310,12 @@ local record M
     -- RFC 7662 §2.2 introspection response. Only `active` is required; all other
     -- claims are omitted when the token is inactive.
     record IntrospectOAuth2TokenWithIAMOutput
-        -- Indicates whether the token is currently active. `true` only when the
-        -- token is valid, has not expired, has not been revoked, and belongs to
-        -- the caller's account.
+        -- Indicates whether the token is currently active. Returns "true" only when the token is valid,
+        -- has not expired, has not been revoked, and belongs to the caller's account.
         active: boolean
         -- Client identifier for the OAuth 2.0 client that requested the token.
         clientId: string
-        -- User identifier matching sts:GetCallerIdentity's `UserId` field for the
-        -- token's subject principal (e.g. "AIDAEXAMPLE" for an IAM user, or
-        -- "AROAEXAMPLE:session-name" for an assumed role).
+        -- User identifier matching the "UserId" field from "sts:GetCallerIdentity" for the token's subject principal.
         userId: string
         -- Indicates which kind of token was introspected.
         -- One of "access_token" or "refresh_token".
@@ -305,12 +326,10 @@ local record M
         iat: number
         -- Token "not before" time as a NumericDate (Unix epoch seconds).
         nbf: number
-        -- Subject of the token: the IAM principal ARN. For assumed-role sessions,
-        -- this is the session ARN (matches sts:GetCallerIdentity's `Arn` field),
-        -- e.g. arn:aws:sts::123456789012:assumed-role/MyRole/session-name.
+        -- The IAM principal Amazon Resource Name (ARN). For assumed-role sessions, this is the session ARN.
         sub: string
-        -- Audience of the token: the OAuth resource the token is scoped to
-        -- (for example, "aws-mcp.amazonaws.com"). Omitted for refresh tokens.
+        -- The OAuth resource the token is scoped to. Omitted for refresh tokens.
+        -- Example: "aws-mcp.amazonaws.com".
         aud: string
         -- Issuer of the token. Always "signin.amazonaws.com" for AWS Sign-In.
         iss: string
@@ -321,8 +340,7 @@ local record M
         -- AWS Sign-In session ARN bound to the token, of the form
         -- arn:aws:signin:{region}:{account}:session/{uuid}.
         signinSession: string
-        -- The OAuth resource the token is scoped to during Human OAuth flow.
-        -- Only present for refresh token introspection.
+        -- The OAuth resource the token is scoped to. Only present for refresh token introspection.
         resource: string
     end
 
@@ -408,8 +426,8 @@ local record M
     -- Input structure for RevokeOAuth2TokenWithIAM operation
     -- RFC 7009 §2.1 revocation request. Contains the refresh_token to revoke.
     record RevokeOAuth2TokenWithIAMInput
-        -- The refresh_token to revoke. Must be a refresh_token issued by AWS
-        -- Sign-In (prefix "ASOR"); access_tokens are not accepted for revocation.
+        -- The refresh token to revoke. Must be a refresh token issued by AWS Sign-In.
+        -- Access tokens are not accepted for revocation.
         token: string
     end
 
