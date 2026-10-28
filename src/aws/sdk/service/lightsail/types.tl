@@ -7307,6 +7307,28 @@ local record M
         operation: Operation
     end
 
+    -- Describes the attributes to update on a Lightsail instance when it starts.
+    record InstanceAttributeUpdates
+        -- The ID of the bundle to update the instance to.
+        -- Specify one of the following values for the bundle ID:
+        -- auto
+        -- – Updates an instance that
+        -- runs on a previous-generation bundle to the newer-generation equivalent of that
+        -- bundle. For example, specify auto to update an instance that runs on
+        -- small_2_0 to small_3_0.
+        -- Newer-generation bundle ID – Updates an
+        -- instance that runs on a previous-generation bundle to the specified bundle. For example,
+        -- specify small_3_0 to update an instance that runs on small_2_0
+        -- to small_3_0.
+        -- Original bundle ID – Updates an instance to
+        -- the previous-generation bundle that it ran on before an earlier update. For example,
+        -- specify small_2_0 to return an instance that runs on small_3_0
+        -- to small_2_0.
+        -- The instance must be in the stopped state to update its bundle.
+        -- There is no additional cost to update an instance to a newer-generation bundle.
+        bundleId: string
+    end
+
     record IsVpcPeeredInput
     end
 
@@ -7638,6 +7660,8 @@ local record M
     record StartInstanceInput
         -- The name of the instance (a virtual private server) to start.
         instanceName: string
+        -- An object that describes the attributes to update on the instance before it starts.
+        attributeUpdates: InstanceAttributeUpdates
     end
 
     record StartInstanceOutput

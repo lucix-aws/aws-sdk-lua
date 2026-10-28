@@ -848,6 +848,8 @@ M.PurchaseSet = schema.new({ type = "list", list_member = M.Purchase })
 
 M.ImageAncestryEntryList = schema.new({ type = "list", list_member = M.ImageAncestryEntry })
 
+M.GetImageFindingsEntrySet = schema.new({ type = "list", list_member = M.ImageFinding })
+
 M.ArchitectureTypeSet = schema.new({ type = "list", list_member = prelude.String })
 
 M.VirtualizationTypeSet = schema.new({ type = "list", list_member = prelude.String })
@@ -1397,6 +1399,8 @@ M.MetricValueSet = schema.new({ type = "list", list_member = M.MetricValue })
 M.CapacityManagerTagDimensionSet = schema.new({ type = "list", list_member = M.CapacityManagerTagDimension })
 
 M.RegionalSummaryList = schema.new({ type = "list", list_member = M.RegionalSummary })
+
+M.ImageFindingPathSet = schema.new({ type = "list", list_member = prelude.String })
 
 M.IpamPublicAddressSecurityGroupList = schema.new({ type = "list", list_member = M.IpamPublicAddressSecurityGroup })
 
@@ -59067,6 +59071,83 @@ M.InstanceTypeSpecification = schema.new({
     },
 })
 
+M.ScanResults = schema.new({
+    id = id.from(_N, "ScanResults"),
+    type = "structure",
+    members = {
+        HighestFindingSeverityLabel = schema.new({
+            id = id.from(_N, "ScanResults", "HighestFindingSeverityLabel"),
+            type = "string",
+            name = "HighestFindingSeverityLabel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "highestFindingSeverityLabel" },
+                [traits.EC2_QUERY_NAME] = { name = "HighestFindingSeverityLabel" },
+            },
+        }),
+        FindingScanDate = schema.new({
+            id = id.from(_N, "ScanResults", "FindingScanDate"),
+            type = "timestamp",
+            name = "FindingScanDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "findingScanDate" },
+                [traits.EC2_QUERY_NAME] = { name = "FindingScanDate" },
+            },
+        }),
+        InformationalFixAvailableSince = schema.new({
+            id = id.from(_N, "ScanResults", "InformationalFixAvailableSince"),
+            type = "timestamp",
+            name = "InformationalFixAvailableSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "informationalFixAvailableSince" },
+                [traits.EC2_QUERY_NAME] = { name = "InformationalFixAvailableSince" },
+            },
+        }),
+        LowFixAvailableSince = schema.new({
+            id = id.from(_N, "ScanResults", "LowFixAvailableSince"),
+            type = "timestamp",
+            name = "LowFixAvailableSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "lowFixAvailableSince" },
+                [traits.EC2_QUERY_NAME] = { name = "LowFixAvailableSince" },
+            },
+        }),
+        MediumFixAvailableSince = schema.new({
+            id = id.from(_N, "ScanResults", "MediumFixAvailableSince"),
+            type = "timestamp",
+            name = "MediumFixAvailableSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "mediumFixAvailableSince" },
+                [traits.EC2_QUERY_NAME] = { name = "MediumFixAvailableSince" },
+            },
+        }),
+        HighFixAvailableSince = schema.new({
+            id = id.from(_N, "ScanResults", "HighFixAvailableSince"),
+            type = "timestamp",
+            name = "HighFixAvailableSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "highFixAvailableSince" },
+                [traits.EC2_QUERY_NAME] = { name = "HighFixAvailableSince" },
+            },
+        }),
+        CriticalFixAvailableSince = schema.new({
+            id = id.from(_N, "ScanResults", "CriticalFixAvailableSince"),
+            type = "timestamp",
+            name = "CriticalFixAvailableSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "criticalFixAvailableSince" },
+                [traits.EC2_QUERY_NAME] = { name = "CriticalFixAvailableSince" },
+            },
+        }),
+    },
+})
+
 M.Image = schema.new({
     id = id.from(_N, "Image"),
     type = "structure",
@@ -59343,6 +59424,17 @@ M.Image = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "imageWatermarkSet" },
                 [traits.EC2_QUERY_NAME] = { name = "ImageWatermarkSet" },
+            },
+        }),
+        ScanResults = schema.new({
+            id = id.from(_N, "Image", "ScanResults"),
+            type = "structure",
+            name = "ScanResults",
+            target_id = id.from(_N, "ScanResults"),
+            target = M.ScanResults,
+            traits = {
+                [traits.XML_NAME] = { name = "scanResults" },
+                [traits.EC2_QUERY_NAME] = { name = "ScanResults" },
             },
         }),
         InstanceTypeSpecification = schema.new({
@@ -86644,6 +86736,83 @@ M.ImageWatermarkFilterResponse = schema.new({
     },
 })
 
+M.ScanResultCondition = schema.new({
+    id = id.from(_N, "ScanResultCondition"),
+    type = "structure",
+    members = {
+        MaxDaysSinceLastFindingScan = schema.new({
+            id = id.from(_N, "ScanResultCondition", "MaxDaysSinceLastFindingScan"),
+            type = "integer",
+            name = "MaxDaysSinceLastFindingScan",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxDaysSinceLastFindingScan" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxDaysSinceLastFindingScan" },
+            },
+        }),
+        MaximumSeverityLabel = schema.new({
+            id = id.from(_N, "ScanResultCondition", "MaximumSeverityLabel"),
+            type = "string",
+            name = "MaximumSeverityLabel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maximumSeverityLabel" },
+                [traits.EC2_QUERY_NAME] = { name = "MaximumSeverityLabel" },
+            },
+        }),
+        MaxDaysSinceInformationalFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultCondition", "MaxDaysSinceInformationalFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceInformationalFixAvailable",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxDaysSinceInformationalFixAvailable" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxDaysSinceInformationalFixAvailable" },
+            },
+        }),
+        MaxDaysSinceLowFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultCondition", "MaxDaysSinceLowFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceLowFixAvailable",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxDaysSinceLowFixAvailable" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxDaysSinceLowFixAvailable" },
+            },
+        }),
+        MaxDaysSinceMediumFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultCondition", "MaxDaysSinceMediumFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceMediumFixAvailable",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxDaysSinceMediumFixAvailable" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxDaysSinceMediumFixAvailable" },
+            },
+        }),
+        MaxDaysSinceHighFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultCondition", "MaxDaysSinceHighFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceHighFixAvailable",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxDaysSinceHighFixAvailable" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxDaysSinceHighFixAvailable" },
+            },
+        }),
+        MaxDaysSinceCriticalFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultCondition", "MaxDaysSinceCriticalFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceCriticalFixAvailable",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxDaysSinceCriticalFixAvailable" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxDaysSinceCriticalFixAvailable" },
+            },
+        }),
+    },
+})
+
 M.ImageCriterion = schema.new({
     id = id.from(_N, "ImageCriterion"),
     type = "structure",
@@ -86712,6 +86881,17 @@ M.ImageCriterion = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "imageWatermarkSet" },
                 [traits.EC2_QUERY_NAME] = { name = "ImageWatermarkSet" },
+            },
+        }),
+        ScanResultCondition = schema.new({
+            id = id.from(_N, "ImageCriterion", "ScanResultCondition"),
+            type = "structure",
+            name = "ScanResultCondition",
+            target_id = id.from(_N, "ScanResultCondition"),
+            target = M.ScanResultCondition,
+            traits = {
+                [traits.XML_NAME] = { name = "scanResultCondition" },
+                [traits.EC2_QUERY_NAME] = { name = "ScanResultCondition" },
             },
         }),
     },
@@ -89327,6 +89507,156 @@ M.GetImageBlockPublicAccessStateOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "managedBy" },
                 [traits.EC2_QUERY_NAME] = { name = "ManagedBy" },
+            },
+        }),
+    },
+})
+
+M.GetImageFindingsInput = schema.new({
+    id = id.from(_N, "GetImageFindingsRequest"),
+    type = "structure",
+    members = {
+        ImageId = schema.new({
+            id = id.from(_N, "GetImageFindingsInput", "ImageId"),
+            type = "string",
+            name = "ImageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetImageFindingsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetImageFindingsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "GetImageFindingsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ImageFinding = schema.new({
+    id = id.from(_N, "ImageFinding"),
+    type = "structure",
+    members = {
+        FixAvailable = schema.new({
+            id = id.from(_N, "ImageFinding", "FixAvailable"),
+            type = "boolean",
+            name = "FixAvailable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fixAvailable" },
+                [traits.EC2_QUERY_NAME] = { name = "FixAvailable" },
+            },
+        }),
+        Score = schema.new({
+            id = id.from(_N, "ImageFinding", "Score"),
+            type = "double",
+            name = "Score",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.XML_NAME] = { name = "score" },
+                [traits.EC2_QUERY_NAME] = { name = "Score" },
+            },
+        }),
+        FirstObservedAt = schema.new({
+            id = id.from(_N, "ImageFinding", "FirstObservedAt"),
+            type = "timestamp",
+            name = "FirstObservedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "firstObservedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "FirstObservedAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ImageFinding", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "updatedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "UpdatedAt" },
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "ImageFinding", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "title" },
+                [traits.EC2_QUERY_NAME] = { name = "Title" },
+            },
+        }),
+        Paths = schema.new({
+            id = id.from(_N, "ImageFinding", "Paths"),
+            type = "list",
+            name = "Paths",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "pathSet" },
+                [traits.EC2_QUERY_NAME] = { name = "PathSet" },
+            },
+        }),
+        SeverityLabel = schema.new({
+            id = id.from(_N, "ImageFinding", "SeverityLabel"),
+            type = "string",
+            name = "SeverityLabel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "severityLabel" },
+                [traits.EC2_QUERY_NAME] = { name = "SeverityLabel" },
+            },
+        }),
+        SnapshotId = schema.new({
+            id = id.from(_N, "ImageFinding", "SnapshotId"),
+            type = "string",
+            name = "SnapshotId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "snapshotId" },
+                [traits.EC2_QUERY_NAME] = { name = "SnapshotId" },
+            },
+        }),
+    },
+})
+
+M.GetImageFindingsOutput = schema.new({
+    id = id.from(_N, "GetImageFindingsResult"),
+    type = "structure",
+    members = {
+        ImageFindings = schema.new({
+            id = id.from(_N, "GetImageFindingsOutput", "ImageFindings"),
+            type = "list",
+            name = "ImageFindings",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ImageFinding, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "imageFindingSet" },
+                [traits.EC2_QUERY_NAME] = { name = "ImageFindingSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetImageFindingsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
             },
         }),
     },
@@ -106864,6 +107194,55 @@ M.ImageWatermarkFilterRequest = schema.new({
     },
 })
 
+M.ScanResultConditionRequest = schema.new({
+    id = id.from(_N, "ScanResultConditionRequest"),
+    type = "structure",
+    members = {
+        MaxDaysSinceLastFindingScan = schema.new({
+            id = id.from(_N, "ScanResultConditionRequest", "MaxDaysSinceLastFindingScan"),
+            type = "integer",
+            name = "MaxDaysSinceLastFindingScan",
+            target_id = prelude.Integer.id,
+        }),
+        MaximumSeverityLabel = schema.new({
+            id = id.from(_N, "ScanResultConditionRequest", "MaximumSeverityLabel"),
+            type = "string",
+            name = "MaximumSeverityLabel",
+            target_id = prelude.String.id,
+        }),
+        MaxDaysSinceInformationalFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultConditionRequest", "MaxDaysSinceInformationalFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceInformationalFixAvailable",
+            target_id = prelude.Integer.id,
+        }),
+        MaxDaysSinceLowFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultConditionRequest", "MaxDaysSinceLowFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceLowFixAvailable",
+            target_id = prelude.Integer.id,
+        }),
+        MaxDaysSinceMediumFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultConditionRequest", "MaxDaysSinceMediumFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceMediumFixAvailable",
+            target_id = prelude.Integer.id,
+        }),
+        MaxDaysSinceHighFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultConditionRequest", "MaxDaysSinceHighFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceHighFixAvailable",
+            target_id = prelude.Integer.id,
+        }),
+        MaxDaysSinceCriticalFixAvailable = schema.new({
+            id = id.from(_N, "ScanResultConditionRequest", "MaxDaysSinceCriticalFixAvailable"),
+            type = "integer",
+            name = "MaxDaysSinceCriticalFixAvailable",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.ImageCriterionRequest = schema.new({
     id = id.from(_N, "ImageCriterionRequest"),
     type = "structure",
@@ -106921,6 +107300,13 @@ M.ImageCriterionRequest = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "ImageWatermark" },
             },
+        }),
+        ScanResultCondition = schema.new({
+            id = id.from(_N, "ImageCriterionRequest", "ScanResultCondition"),
+            type = "structure",
+            name = "ScanResultCondition",
+            target_id = id.from(_N, "ScanResultConditionRequest"),
+            target = M.ScanResultConditionRequest,
         }),
     },
 })
@@ -118313,6 +118699,17 @@ M.GetImageBlockPublicAccessState = schema.operation({
     id = id.from("com.amazonaws.ec2", "GetImageBlockPublicAccessState"),
     input = M.GetImageBlockPublicAccessStateInput,
     output = M.GetImageBlockPublicAccessStateOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetImageFindings = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetImageFindings"),
+    input = M.GetImageFindingsInput,
+    output = M.GetImageFindingsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

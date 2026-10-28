@@ -24106,6 +24106,35 @@ local record M
         -- /dev/sda1).
         -- root-device-type - The type of the root device volume (ebs |
         -- instance-store).
+        -- scan-result.critical-fix-available-since - The earliest date and time, in
+        -- the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon
+        -- Inspector reported a fix as available for a critical severity finding on the
+        -- AMI.
+        -- scan-result.finding-scan-date - The date and time, in the ISO 8601
+        -- format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), of the most recent Amazon
+        -- Inspector scan of the AMI.
+        -- scan-result.high-fix-available-since - The earliest date and time, in the
+        -- ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon Inspector
+        -- reported a fix as available for a high severity finding on the AMI.
+        -- scan-result.highest-finding-severity-label - The highest severity among
+        -- the AMI's Amazon Inspector findings, whether or not a fix is available. The valid values
+        -- are the following Amazon Inspector severity levels:
+        -- informational - CVSS score of 0.
+        -- low - CVSS score of 0.1 to 3.9.
+        -- medium - CVSS score of 4.0 to 6.9.
+        -- high - CVSS score of 7.0 to 8.9.
+        -- critical - CVSS score of 9.0 to 10.0.
+        -- scan-result.informational-fix-available-since - The earliest date and
+        -- time, in the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), at which
+        -- Amazon Inspector reported a fix as available for an informational severity
+        -- finding on the AMI.
+        -- scan-result.low-fix-available-since - The earliest date and time, in the
+        -- ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon Inspector
+        -- reported a fix as available for a low severity finding on the AMI.
+        -- scan-result.medium-fix-available-since - The earliest date and time, in
+        -- the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon
+        -- Inspector reported a fix as available for a medium severity finding on the
+        -- AMI.
         -- source-image-id - The ID of the source AMI from which the AMI was
         -- created.
         -- source-image-region - The Region of the source AMI.
@@ -24193,6 +24222,72 @@ local record M
     enum DeviceType
         "ebs"
         "instance-store"
+    end
+
+    enum SeverityLabel
+        "informational"
+        "low"
+        "medium"
+        "high"
+        "critical"
+    end
+
+    -- The Amazon Inspector scan results for an AMI. This information is present only for AMIs
+    -- that Amazon Inspector has scanned.
+    -- When you share an AMI with other accounts, organizations, or organizational units
+    -- (OUs), or make it public, its scan results are available to the accounts that can use the
+    -- AMI.
+    -- The fix-available dates are specific to the AMI. Each date reflects when a fix became
+    -- available for a finding on that AMI, not when the vendor released the fix. As a result, a date
+    -- can be later than the vendor's release date, and AMIs with the same vulnerability can have
+    -- different dates.
+    record ScanResults
+        -- The highest severity among the AMI's Amazon Inspector findings, whether or not a fix is
+        -- available.
+        -- The valid values are the following Amazon Inspector severity levels, which correspond to
+        -- CVSS score ranges:
+        -- informational - CVSS score of 0.
+        -- low - CVSS score of 0.1 to 3.9.
+        -- medium - CVSS score of 4.0 to 6.9.
+        -- high - CVSS score of 7.0 to 8.9.
+        -- critical - CVSS score of 9.0 to 10.0.
+        -- For more information, see Software
+        -- package vulnerability severity in the Amazon Inspector User Guide.
+        -- This value is present only if the AMI has at least one finding.
+        HighestFindingSeverityLabel: string
+        -- The date and time, in the ISO 8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ), of the most recent Amazon Inspector scan of the AMI.
+        FindingScanDate: number
+        -- The earliest date and time, in the ISO 8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon Inspector reported a fix as available for an
+        -- informational severity finding on the AMI. This value is present only if the AMI
+        -- has at least one informational severity finding with a fix available. Amazon
+        -- Inspector recomputes this value on each scan.
+        InformationalFixAvailableSince: number
+        -- The earliest date and time, in the ISO 8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon Inspector reported a fix as available for a
+        -- low severity finding on the AMI. This value is present only if the AMI has at
+        -- least one low severity finding with a fix available. Amazon Inspector recomputes
+        -- this value on each scan.
+        LowFixAvailableSince: number
+        -- The earliest date and time, in the ISO 8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon Inspector reported a fix as available for a
+        -- medium severity finding on the AMI. This value is present only if the AMI has at
+        -- least one medium severity finding with a fix available. Amazon Inspector
+        -- recomputes this value on each scan.
+        MediumFixAvailableSince: number
+        -- The earliest date and time, in the ISO 8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon Inspector reported a fix as available for a
+        -- high severity finding on the AMI. This value is present only if the AMI has at
+        -- least one high severity finding with a fix available. Amazon Inspector recomputes
+        -- this value on each scan.
+        HighFixAvailableSince: number
+        -- The earliest date and time, in the ISO 8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ), at which Amazon Inspector reported a fix as available for a
+        -- critical severity finding on the AMI. This value is present only if the AMI has
+        -- at least one critical severity finding with a fix available. Amazon Inspector
+        -- recomputes this value on each scan.
+        CriticalFixAvailableSince: number
     end
 
     enum ImageState
@@ -24305,6 +24400,12 @@ local record M
         PublicSsmParameterName: string
         -- The watermarks attached to the AMI.
         ImageWatermarks: {ImageWatermark}
+        -- The Amazon Inspector scan results for the AMI. This information is present only for AMIs
+        -- that Amazon Inspector has scanned.
+        -- When you share an AMI with other accounts, organizations, or organizational units
+        -- (OUs), or make it public, its scan results are available to the accounts that can use the
+        -- AMI.
+        ScanResults: ScanResults
         -- The instance type specification for the AMI, which defines which instance types are
         -- compatible with this image.
         InstanceTypeSpecification: InstanceTypeSpecification
@@ -35039,6 +35140,73 @@ local record M
         MaximumDaysSinceWatermarkCreated: number
     end
 
+    -- The Amazon Inspector scan-result criteria that an AMI must meet to be allowed. The
+    -- criteria can limit the highest finding severity. They can also limit, for each severity, the
+    -- days since Amazon Inspector reported a fix as available.
+    -- The severity limit applies to all findings, whether or not a fix is available. The day
+    -- limits for each severity apply only to findings that have a fix available. A scanned AMI that
+    -- has no fix-available finding of a given severity meets that severity's day limit. AMIs that
+    -- Amazon Inspector has not scanned are not allowed when you specify this condition.
+    record ScanResultCondition
+        -- The maximum number of days that have elapsed since Amazon Inspector last scanned the AMI.
+        -- For example, a value of 7 allows AMIs that were scanned within the last 7 days.
+        -- AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceLastFindingScan: number
+        -- The maximum severity that an AMI's Amazon Inspector findings can have for the AMI to be
+        -- allowed. Findings count whether or not a fix is available. For example, a value of
+        -- medium allows AMIs whose highest severity is informational,
+        -- low, or medium.
+        -- The valid values are the following Amazon Inspector severity levels, which correspond to
+        -- CVSS score ranges:
+        -- informational - CVSS score of 0.
+        -- low - CVSS score of 0.1 to 3.9.
+        -- medium - CVSS score of 4.0 to 6.9.
+        -- high - CVSS score of 7.0 to 8.9.
+        -- critical - CVSS score of 9.0 to 10.0.
+        -- For more information, see Software
+        -- package vulnerability severity in the Amazon Inspector User Guide.
+        -- A scanned AMI that has no findings meets this limit.
+        -- AMIs that Amazon Inspector has not scanned are not allowed when you specify this
+        -- condition.
+        MaximumSeverityLabel: string
+        -- The maximum number of days since Amazon Inspector reported a fix as available for an
+        -- informational severity finding on the AMI. For example, a value of 7
+        -- does not allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no informational severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceInformationalFixAvailable: number
+        -- The maximum number of days since Amazon Inspector reported a fix as available for a
+        -- low severity finding on the AMI. For example, a value of 7 does not
+        -- allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no low severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceLowFixAvailable: number
+        -- The maximum number of days since Amazon Inspector reported a fix as available for a
+        -- medium severity finding on the AMI. For example, a value of 7 does
+        -- not allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no medium severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceMediumFixAvailable: number
+        -- The maximum number of days since Amazon Inspector reported a fix as available for a
+        -- high severity finding on the AMI. For example, a value of 7 does not
+        -- allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no high severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceHighFixAvailable: number
+        -- The maximum number of days since Amazon Inspector reported a fix as available for a
+        -- critical severity finding on the AMI. For example, a value of 7 does
+        -- not allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no critical severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceCriticalFixAvailable: number
+    end
+
     -- The criteria that are evaluated to determine which AMIs are discoverable and usable in
     -- your account for the specified Amazon Web Services Region.
     -- For more information, see How Allowed AMIs
@@ -35080,6 +35248,11 @@ local record M
         -- the watermark of the AMI.
         -- Maximum: 50 values
         ImageWatermarks: {ImageWatermarkFilterResponse}
+        -- The Amazon Inspector scan-result criteria that an AMI must meet to be allowed. The
+        -- criteria can limit the highest finding severity, the number of days since Amazon Inspector
+        -- last scanned the AMI, and the number of days since Amazon Inspector reported a fix as
+        -- available.
+        ScanResultCondition: ScanResultCondition
     end
 
     record GetAllowedImagesSettingsOutput
@@ -36055,6 +36228,62 @@ local record M
         -- declarative-policy - The state is managed by a declarative policy and
         -- can't be modified by the account.
         ManagedBy: string
+    end
+
+    record GetImageFindingsInput
+        -- The ID of the AMI.
+        ImageId: string
+        -- The maximum number of items to return for this request.
+        -- To get the next page of items, make another request with the token returned in the output.
+        -- For more information, see Pagination.
+        MaxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        NextToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes an Amazon Inspector vulnerability finding for an AMI.
+    record ImageFinding
+        -- Specifies whether a fix is available for the finding. This value is true when
+        -- Amazon Inspector reports a full or partial fix for the finding.
+        FixAvailable: boolean
+        -- The Amazon Inspector score for the finding.
+        Score: number
+        -- The date and time, in the ISO 8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ), when Amazon Inspector first observed the finding.
+        FirstObservedAt: number
+        -- The date and time, in the ISO 8601 format in the UTC time zone
+        -- (YYYY-MM-DDThh:mm:ss.sssZ), when Amazon Inspector last updated the finding.
+        UpdatedAt: number
+        -- The title of the finding.
+        Title: string
+        -- The file paths in the AMI that are affected by the finding. Amazon EC2 returns up to 10
+        -- file paths for each finding.
+        Paths: {string}
+        -- The severity of the finding.
+        -- The valid values are the following Amazon Inspector severity levels, which correspond to
+        -- CVSS score ranges:
+        -- informational - CVSS score of 0.
+        -- low - CVSS score of 0.1 to 3.9.
+        -- medium - CVSS score of 4.0 to 6.9.
+        -- high - CVSS score of 7.0 to 8.9.
+        -- critical - CVSS score of 9.0 to 10.0.
+        -- For more information, see Software
+        -- package vulnerability severity in the Amazon Inspector User Guide.
+        SeverityLabel: string
+        -- The ID of the Amazon EBS snapshot of the AMI in which the finding was detected.
+        SnapshotId: string
+    end
+
+    record GetImageFindingsOutput
+        -- The Amazon Inspector findings for the AMI.
+        ImageFindings: {ImageFinding}
+        -- The token to include in another request to get the next page of items. This value is null when there
+        -- are no more items to return.
+        NextToken: string
     end
 
     record GetInstanceMetadataDefaultsInput
@@ -42706,6 +42935,73 @@ local record M
         MaximumDaysSinceWatermarkCreated: number
     end
 
+    -- The Amazon Inspector scan-result criteria that an AMI must meet to be allowed. The
+    -- criteria can limit the highest finding severity. They can also limit, for each severity, the
+    -- days since Amazon Inspector reported a fix as available.
+    -- The severity limit applies to all findings, whether or not a fix is available. The day
+    -- limits for each severity apply only to findings that have a fix available. A scanned AMI that
+    -- has no fix-available finding of a given severity meets that severity's day limit. AMIs that
+    -- Amazon Inspector has not scanned are not allowed when you specify this condition.
+    record ScanResultConditionRequest
+        -- The maximum number of days that have elapsed since Amazon Inspector last scanned the AMI.
+        -- For example, a value of 7 allows AMIs that were scanned within the last 7 days.
+        -- AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceLastFindingScan: number
+        -- The maximum severity that an AMI's Amazon Inspector findings can have for the AMI to be
+        -- allowed. Findings count whether or not a fix is available. For example, a value of
+        -- medium allows AMIs whose highest severity is informational,
+        -- low, or medium.
+        -- The valid values are the following Amazon Inspector severity levels, which correspond to
+        -- CVSS score ranges:
+        -- informational - CVSS score of 0.
+        -- low - CVSS score of 0.1 to 3.9.
+        -- medium - CVSS score of 4.0 to 6.9.
+        -- high - CVSS score of 7.0 to 8.9.
+        -- critical - CVSS score of 9.0 to 10.0.
+        -- For more information, see Software
+        -- package vulnerability severity in the Amazon Inspector User Guide.
+        -- A scanned AMI that has no findings meets this limit.
+        -- AMIs that Amazon Inspector has not scanned are not allowed when you specify this
+        -- condition.
+        MaximumSeverityLabel: string
+        -- The maximum number of days since Amazon Inspector reported a fix as available for an
+        -- informational severity finding on the AMI. For example, a value of 7
+        -- does not allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no informational severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceInformationalFixAvailable: number
+        -- The maximum number of days since Amazon Inspector reported a fix as available for a
+        -- low severity finding on the AMI. For example, a value of 7 does not
+        -- allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no low severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceLowFixAvailable: number
+        -- The maximum number of days since Amazon Inspector reported a fix as available for a
+        -- medium severity finding on the AMI. For example, a value of 7 does
+        -- not allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no medium severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceMediumFixAvailable: number
+        -- The maximum number of days since Amazon Inspector reported a fix as available for a
+        -- high severity finding on the AMI. For example, a value of 7 does not
+        -- allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no high severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceHighFixAvailable: number
+        -- The maximum number of days since Amazon Inspector reported a fix as available for a
+        -- critical severity finding on the AMI. For example, a value of 7 does
+        -- not allow an AMI if Amazon Inspector reported such a fix more than 7 days ago.
+        -- A scanned AMI that has no critical severity finding with a fix available meets
+        -- this limit. AMIs that Amazon Inspector has not scanned are not allowed.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaxDaysSinceCriticalFixAvailable: number
+    end
+
     -- The criteria that are evaluated to determine which AMIs are discoverable and usable in
     -- your account for the specified Amazon Web Services Region.
     -- The ImageCriteria can include up to:
@@ -42755,6 +43051,11 @@ local record M
         -- the watermark of the AMI.
         -- Maximum: 50 values
         ImageWatermarks: {ImageWatermarkFilterRequest}
+        -- The Amazon Inspector scan-result criteria that an AMI must meet to be allowed. The
+        -- criteria can limit the highest finding severity, the number of days since Amazon Inspector
+        -- last scanned the AMI, and the number of days since Amazon Inspector reported a fix as
+        -- available.
+        ScanResultCondition: ScanResultConditionRequest
     end
 
     record ReplaceImageCriteriaInAllowedImagesSettingsInput

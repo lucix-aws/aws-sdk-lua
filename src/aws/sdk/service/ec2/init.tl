@@ -594,6 +594,7 @@ local record Client
     getHostReservationPurchasePreview: function(Client, types.GetHostReservationPurchasePreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetHostReservationPurchasePreviewOutput>
     getImageAncestry: function(Client, types.GetImageAncestryInput, ? base_client.InvokeOptions): async.Operation<types.GetImageAncestryOutput>
     getImageBlockPublicAccessState: function(Client, types.GetImageBlockPublicAccessStateInput, ? base_client.InvokeOptions): async.Operation<types.GetImageBlockPublicAccessStateOutput>
+    getImageFindings: function(Client, types.GetImageFindingsInput, ? base_client.InvokeOptions): async.Operation<types.GetImageFindingsOutput>
     getInstanceMetadataDefaults: function(Client, types.GetInstanceMetadataDefaultsInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceMetadataDefaultsOutput>
     getInstanceTpmEkPub: function(Client, types.GetInstanceTpmEkPubInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceTpmEkPubOutput>
     getInstanceTypesFromInstanceRequirements: function(Client, types.GetInstanceTypesFromInstanceRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceTypesFromInstanceRequirementsOutput>
@@ -3173,6 +3174,10 @@ end
 
 function C:getImageBlockPublicAccessState(input: types.GetImageBlockPublicAccessStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageBlockPublicAccessStateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageBlockPublicAccessState as schema.OperationSchema, input, options) as async.Operation<types.GetImageBlockPublicAccessStateOutput>
+end
+
+function C:getImageFindings(input: types.GetImageFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageFindings as schema.OperationSchema, input, options) as async.Operation<types.GetImageFindingsOutput>
 end
 
 function C:getInstanceMetadataDefaults(input: types.GetInstanceMetadataDefaultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceMetadataDefaultsOutput>

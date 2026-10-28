@@ -2578,6 +2578,24 @@ function M.items_get_groups_for_capacity_reservation(client, input)
     })
 end
 
+--- Returns a page iterator for getImageFindings.
+function M.pages_get_image_findings(client, input)
+    return paginator.pages(client, "getImageFindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImageFindings",
+    })
+end
+
+--- Returns an item iterator for getImageFindings.
+function M.items_get_image_findings(client, input)
+    return paginator.items(client, "getImageFindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ImageFindings",
+    })
+end
+
 --- Returns a page iterator for getInstanceTypesFromInstanceRequirements.
 function M.pages_get_instance_types_from_instance_requirements(client, input)
     return paginator.pages(client, "getInstanceTypesFromInstanceRequirements", input, {

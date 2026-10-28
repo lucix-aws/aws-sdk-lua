@@ -155,6 +155,7 @@ local record Client
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listWorkloadIdentities: function(Client, types.ListWorkloadIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkloadIdentitiesOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    resetTokenVaultKeyMaterial: function(Client, types.ResetTokenVaultKeyMaterialInput, ? base_client.InvokeOptions): async.Operation<types.ResetTokenVaultKeyMaterialOutput>
     rotatePaymentConnectorCredentials: function(Client, types.RotatePaymentConnectorCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.RotatePaymentConnectorCredentialsOutput>
     setTokenVaultCMK: function(Client, types.SetTokenVaultCMKInput, ? base_client.InvokeOptions): async.Operation<types.SetTokenVaultCMKOutput>
     startPolicyGeneration: function(Client, types.StartPolicyGenerationInput, ? base_client.InvokeOptions): async.Operation<types.StartPolicyGenerationOutput>
@@ -779,6 +780,10 @@ end
 
 function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
+end
+
+function C:resetTokenVaultKeyMaterial(input: types.ResetTokenVaultKeyMaterialInput, options?: base_client.InvokeOptions): async.Operation<types.ResetTokenVaultKeyMaterialOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetTokenVaultKeyMaterial as schema.OperationSchema, input, options) as async.Operation<types.ResetTokenVaultKeyMaterialOutput>
 end
 
 function C:rotatePaymentConnectorCredentials(input: types.RotatePaymentConnectorCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.RotatePaymentConnectorCredentialsOutput>

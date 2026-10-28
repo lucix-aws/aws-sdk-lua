@@ -11622,6 +11622,19 @@ M.ImportKeyPairOutput = schema.new({
     },
 })
 
+M.InstanceAttributeUpdates = schema.new({
+    id = id.from(_N, "InstanceAttributeUpdates"),
+    type = "structure",
+    members = {
+        bundleId = schema.new({
+            id = id.from(_N, "InstanceAttributeUpdates", "bundleId"),
+            type = "string",
+            name = "bundleId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.IsVpcPeeredInput = schema.new({
     id = id.from(_N, "IsVpcPeeredRequest"),
     type = "structure",
@@ -12263,6 +12276,13 @@ M.StartInstanceInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        attributeUpdates = schema.new({
+            id = id.from(_N, "StartInstanceInput", "attributeUpdates"),
+            type = "structure",
+            name = "attributeUpdates",
+            target_id = id.from(_N, "InstanceAttributeUpdates"),
+            target = M.InstanceAttributeUpdates,
         }),
     },
 })

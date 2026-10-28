@@ -77,6 +77,7 @@ local record M
         "ExtendConsumptionLicense"
         "ListPurchasedLicenses"
         "CreateToken"
+        "ListReceivedLicenses"
     end
 
     -- Matching rule statement.
@@ -335,6 +336,45 @@ local record M
         LicenseArn: string
     end
 
+    enum GrantType
+        "BuyerGrant"
+        "DelegateGrant"
+    end
+
+    -- The options you can specify when you create a grant or a new version of a grant, such as
+    -- activation override behavior. For more information, see Granted licenses in License Manager in the License Manager User Guide.
+    record Options
+        -- An activation option for your grant that determines the behavior of activating a grant.
+        -- Activation options can only be used with granted licenses sourced from the Amazon Web Services Marketplace. Additionally, the operation must activate the grant. For the
+        -- CreateGrantVersion operation, specify ACTIVE for the
+        -- Status parameter. For the CreateGrant operation, specify
+        -- ACTIVE for the DesiredStatus option.
+        -- As a license administrator, you can optionally specify an
+        -- ActivationOverrideBehavior when activating a grant.
+        -- As a grantor, you can optionally specify an
+        -- ActivationOverrideBehavior when you activate a grant for a grantee
+        -- account in your organization.
+        -- As a grantee, if the grantor creating the distributed grant doesn’t specify an
+        -- ActivationOverrideBehavior, you can optionally specify one when you
+        -- are activating the grant.
+        -- DISTRIBUTED_GRANTS_ONLY
+        -- Use this value to activate a grant without replacing any member account’s
+        -- active grants for the same product.
+        -- ALL_GRANTS_PERMITTED_BY_ISSUER
+        -- Use this value to activate a grant and disable other active grants in any
+        -- member accounts for the same product. This action will also replace their
+        -- previously activated grants with this activated grant.
+        ActivationOverrideBehavior: string
+        -- The status of the grant after License Manager creates it. The only supported value is
+        -- ACTIVE. Specify ACTIVE to create and activate the grant in one
+        -- request.
+        -- You can specify this option only for the CreateGrant operation, and only
+        -- when the grant principal is an organization or an organizational unit (OU). To change the
+        -- status of an existing grant, use the Status parameter of the
+        -- CreateGrantVersion operation.
+        DesiredStatus: string
+    end
+
     -- Details about the tags for a resource. For more information about tagging support in
     -- License Manager, see the TagResource operation.
     record Tag
@@ -364,6 +404,17 @@ local record M
         -- Tags to add to the grant. For more information about tagging support in
         -- License Manager, see the TagResource operation.
         Tags: {Tag}
+        -- The type of grant to create. For more information about each type, see the preceding
+        -- description of this operation. Valid values:
+        -- BuyerGrant - The default grant type if you don't specify a value.
+        -- Conveys the entitlement to use the license.
+        -- DelegateGrant - Gives the grantee read-only visibility into the
+        -- licenses and grants that you have distributed to buyers, with no entitlement to use
+        -- them.
+        GrantType: string
+        -- The options for the grant: the status to set after creation, and how activating the
+        -- grant affects other active grants for the same product.
+        Options: Options
     end
 
     record CreateGrantOutput
@@ -373,30 +424,6 @@ local record M
         Status: string
         -- Grant version.
         Version: string
-    end
-
-    -- The options you can specify when you create a new version of a grant, such as activation
-    -- override behavior. For more information, see Granted licenses in License Manager in the License Manager User Guide.
-    record Options
-        -- An activation option for your grant that determines the behavior of activating a grant.
-        -- Activation options can only be used with granted licenses sourced from the Amazon Web Services Marketplace. Additionally, the operation must specify the value of ACTIVE for the
-        -- Status parameter.
-        -- As a license administrator, you can optionally specify an
-        -- ActivationOverrideBehavior when activating a grant.
-        -- As a grantor, you can optionally specify an
-        -- ActivationOverrideBehavior when you activate a grant for a grantee
-        -- account in your organization.
-        -- As a grantee, if the grantor creating the distributed grant doesn’t specify an
-        -- ActivationOverrideBehavior, you can optionally specify one when you
-        -- are activating the grant.
-        -- DISTRIBUTED_GRANTS_ONLY
-        -- Use this value to activate a grant without replacing any member account’s
-        -- active grants for the same product.
-        -- ALL_GRANTS_PERMITTED_BY_ISSUER
-        -- Use this value to activate a grant and disable other active grants in any
-        -- member accounts for the same product. This action will also replace their
-        -- previously activated grants with this activated grant.
-        ActivationOverrideBehavior: string
     end
 
     record CreateGrantVersionInput
@@ -1090,6 +1117,11 @@ local record M
         GrantedOperations: {string}
         -- The options specified for the grant.
         Options: Options
+        -- The type of the grant. Valid values:
+        -- BuyerGrant - Grants the entitlement to use the license.
+        -- DelegateGrant - Gives the grantee read-only visibility into the
+        -- licenses and grants distributed to buyers, with no entitlement to use them.
+        GrantType: string
     end
 
     record GetGrantOutput
@@ -1878,6 +1910,11 @@ local record M
         ReceivedStatusReason: string
         -- Allowed operations.
         AllowedOperations: {string}
+        -- The type of the grant through which the license was received. Valid values:
+        -- BuyerGrant - Grants you the entitlement to use the license.
+        -- DelegateGrant - Gives you read-only visibility into the licenses and
+        -- grants distributed to buyers, with no entitlement to use them.
+        GrantType: string
     end
 
     -- Describes a license that is granted to a grantee.

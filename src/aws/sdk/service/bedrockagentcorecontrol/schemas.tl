@@ -19286,6 +19286,22 @@ M.Oauth2Discovery = schema.new({
     },
 })
 
+M.OnBehalfOfAuthenticationConfig = schema.new({
+    id = id.from(_N, "OnBehalfOfAuthenticationConfig"),
+    type = "structure",
+    members = {
+        clientAuthenticationMethod = schema.new({
+            id = id.from(_N, "OnBehalfOfAuthenticationConfig", "clientAuthenticationMethod"),
+            type = "string",
+            name = "clientAuthenticationMethod",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.TokenExchangeGrantTypeConfigType = schema.new({
     id = id.from(_N, "TokenExchangeGrantTypeConfigType"),
     type = "structure",
@@ -19328,6 +19344,13 @@ M.OnBehalfOfTokenExchangeConfigType = schema.new({
             name = "tokenExchangeGrantTypeConfig",
             target_id = id.from(_N, "TokenExchangeGrantTypeConfigType"),
             target = M.TokenExchangeGrantTypeConfigType,
+        }),
+        onBehalfOfAuthenticationConfig = schema.new({
+            id = id.from(_N, "OnBehalfOfTokenExchangeConfigType", "onBehalfOfAuthenticationConfig"),
+            type = "structure",
+            name = "onBehalfOfAuthenticationConfig",
+            target_id = id.from(_N, "OnBehalfOfAuthenticationConfig"),
+            target = M.OnBehalfOfAuthenticationConfig,
         }),
     },
 })
@@ -28489,6 +28512,57 @@ M.UpdateRegistryOutput = schema.new({
     },
 })
 
+M.ResetTokenVaultKeyMaterialInput = schema.new({
+    id = id.from(_N, "ResetTokenVaultKeyMaterialRequest"),
+    type = "structure",
+    members = {
+        tokenVaultId = schema.new({
+            id = id.from(_N, "ResetTokenVaultKeyMaterialInput", "tokenVaultId"),
+            type = "string",
+            name = "tokenVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResetTokenVaultKeyMaterialOutput = schema.new({
+    id = id.from(_N, "ResetTokenVaultKeyMaterialResponse"),
+    type = "structure",
+    members = {
+        tokenVaultId = schema.new({
+            id = id.from(_N, "ResetTokenVaultKeyMaterialOutput", "tokenVaultId"),
+            type = "string",
+            name = "tokenVaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        kmsConfiguration = schema.new({
+            id = id.from(_N, "ResetTokenVaultKeyMaterialOutput", "kmsConfiguration"),
+            type = "structure",
+            name = "kmsConfiguration",
+            target_id = id.from(_N, "KmsConfiguration"),
+            target = M.KmsConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastModifiedDate = schema.new({
+            id = id.from(_N, "ResetTokenVaultKeyMaterialOutput", "lastModifiedDate"),
+            type = "timestamp",
+            name = "lastModifiedDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ConcurrentModificationException = schema.new({
     id = id.from(_N, "ConcurrentModificationException"),
     type = "structure",
@@ -31573,6 +31647,18 @@ M.PutResourcePolicy = schema.operation({
     output = M.PutResourcePolicyOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ResetTokenVaultKeyMaterial = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ResetTokenVaultKeyMaterial"),
+    input = M.ResetTokenVaultKeyMaterialInput,
+    output = M.ResetTokenVaultKeyMaterialOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/reset-token-vault-key-material" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

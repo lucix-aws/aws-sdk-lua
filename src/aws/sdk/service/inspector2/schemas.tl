@@ -110,6 +110,8 @@ M.FindingList = schema.new({ type = "list", list_member = M.Finding })
 
 M.MemberList = schema.new({ type = "list", list_member = M.Member })
 
+M.OnDemandScanList = schema.new({ type = "list", list_member = M.OnDemandScan })
+
 M.UsageAccountIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.UsageTotalList = schema.new({ type = "list", list_member = M.UsageTotal })
@@ -224,7 +226,11 @@ M.AzureRegionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ClusterDetailsList = schema.new({ type = "list", list_member = M.ClusterDetails })
 
+M.AmiTagFilterList = schema.new({ type = "list", list_member = M.AmiTagFilter })
+
 M.ConnectorArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ScanSourceList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
 
@@ -347,6 +353,12 @@ M.ResourceStatus = schema.new({
             id = id.from(_N, "ResourceStatus", "codeRepository"),
             type = "string",
             name = "codeRepository",
+            target_id = prelude.String.id,
+        }),
+        ami = schema.new({
+            id = id.from(_N, "ResourceStatus", "ami"),
+            type = "string",
+            name = "ami",
             target_id = prelude.String.id,
         }),
     },
@@ -603,6 +615,13 @@ M.ResourceState = schema.new({
             target_id = id.from(_N, "State"),
             target = M.State,
         }),
+        ami = schema.new({
+            id = id.from(_N, "ResourceState", "ami"),
+            type = "structure",
+            name = "ami",
+            target_id = id.from(_N, "State"),
+            target = M.State,
+        }),
     },
 })
 
@@ -689,6 +708,13 @@ M.AmiAggregation = schema.new({
             type = "string",
             name = "sortBy",
             target_id = prelude.String.id,
+        }),
+        scanSources = schema.new({
+            id = id.from(_N, "AmiAggregation", "scanSources"),
+            type = "list",
+            name = "scanSources",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -1654,6 +1680,12 @@ M.AmiAggregationResponse = schema.new({
             type = "long",
             name = "affectedInstances",
             target_id = prelude.Long.id,
+        }),
+        scanSource = schema.new({
+            id = id.from(_N, "AmiAggregationResponse", "scanSource"),
+            type = "string",
+            name = "scanSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2628,6 +2660,130 @@ M.AggregationResponse = schema.new({
     },
 })
 
+M.AmiTagFilter = schema.new({
+    id = id.from(_N, "AmiTagFilter"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "AmiTagFilter", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "AmiTagFilter", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AmiScanModeConfiguration = schema.new({
+    id = id.from(_N, "AmiScanModeConfiguration"),
+    type = "structure",
+    members = {
+        scanMode = schema.new({
+            id = id.from(_N, "AmiScanModeConfiguration", "scanMode"),
+            type = "string",
+            name = "scanMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "AmiScanModeConfiguration", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.AmiTagFilter,
+        }),
+        excludeCopiedAmis = schema.new({
+            id = id.from(_N, "AmiScanModeConfiguration", "excludeCopiedAmis"),
+            type = "boolean",
+            name = "excludeCopiedAmis",
+            target_id = prelude.Boolean.id,
+        }),
+        excludeBackupDlmAmis = schema.new({
+            id = id.from(_N, "AmiScanModeConfiguration", "excludeBackupDlmAmis"),
+            type = "boolean",
+            name = "excludeBackupDlmAmis",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AmiConfiguration = schema.new({
+    id = id.from(_N, "AmiConfiguration"),
+    type = "structure",
+    members = {
+        lastLaunchedWithin = schema.new({
+            id = id.from(_N, "AmiConfiguration", "lastLaunchedWithin"),
+            type = "string",
+            name = "lastLaunchedWithin",
+            target_id = prelude.String.id,
+        }),
+        createdWithin = schema.new({
+            id = id.from(_N, "AmiConfiguration", "createdWithin"),
+            type = "string",
+            name = "createdWithin",
+            target_id = prelude.String.id,
+        }),
+        scanModeConfiguration = schema.new({
+            id = id.from(_N, "AmiConfiguration", "scanModeConfiguration"),
+            type = "structure",
+            name = "scanModeConfiguration",
+            target_id = id.from(_N, "AmiScanModeConfiguration"),
+            target = M.AmiScanModeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AmiConfigurationState = schema.new({
+    id = id.from(_N, "AmiConfigurationState"),
+    type = "structure",
+    members = {
+        lastLaunchedWithin = schema.new({
+            id = id.from(_N, "AmiConfigurationState", "lastLaunchedWithin"),
+            type = "string",
+            name = "lastLaunchedWithin",
+            target_id = prelude.String.id,
+        }),
+        createdWithin = schema.new({
+            id = id.from(_N, "AmiConfigurationState", "createdWithin"),
+            type = "string",
+            name = "createdWithin",
+            target_id = prelude.String.id,
+        }),
+        scanModeConfiguration = schema.new({
+            id = id.from(_N, "AmiConfigurationState", "scanModeConfiguration"),
+            type = "structure",
+            name = "scanModeConfiguration",
+            target_id = id.from(_N, "AmiScanModeConfiguration"),
+            target = M.AmiScanModeConfiguration,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AmiConfigurationState", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "AmiConfigurationState", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.CodeSecurityResource = schema.new({
     id = id.from(_N, "CodeSecurityResource"),
     type = "union",
@@ -2914,6 +3070,12 @@ M.AutoEnable = schema.new({
             id = id.from(_N, "AutoEnable", "codeRepository"),
             type = "boolean",
             name = "codeRepository",
+            target_id = prelude.Boolean.id,
+        }),
+        ami = schema.new({
+            id = id.from(_N, "AutoEnable", "ami"),
+            type = "boolean",
+            name = "ami",
             target_id = prelude.Boolean.id,
         }),
     },
@@ -6707,6 +6869,13 @@ M.CoverageFilterCriteria = schema.new({
             target_id = prelude.Document.id,
             list_member = M.CoverageStringFilter,
         }),
+        machineImageTags = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "machineImageTags"),
+            type = "list",
+            name = "machineImageTags",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageMapFilter,
+        }),
         lastScannedAt = schema.new({
             id = id.from(_N, "CoverageFilterCriteria", "lastScannedAt"),
             type = "list",
@@ -6962,6 +7131,27 @@ M.LambdaFunctionMetadata = schema.new({
     },
 })
 
+M.MachineImageMetadata = schema.new({
+    id = id.from(_N, "MachineImageMetadata"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "MachineImageMetadata", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        platform = schema.new({
+            id = id.from(_N, "MachineImageMetadata", "platform"),
+            type = "string",
+            name = "platform",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ServerlessFunctionMetadata = schema.new({
     id = id.from(_N, "ServerlessFunctionMetadata"),
     type = "structure",
@@ -7095,6 +7285,13 @@ M.ResourceScanMetadata = schema.new({
             name = "serverlessFunction",
             target_id = id.from(_N, "ServerlessFunctionMetadata"),
             target = M.ServerlessFunctionMetadata,
+        }),
+        machineImage = schema.new({
+            id = id.from(_N, "ResourceScanMetadata", "machineImage"),
+            type = "structure",
+            name = "machineImage",
+            target_id = id.from(_N, "MachineImageMetadata"),
+            target = M.MachineImageMetadata,
         }),
     },
 })
@@ -7964,6 +8161,34 @@ M.FilterCriteria = schema.new({
             target_id = prelude.Document.id,
             list_member = M.StringFilter,
         }),
+        machineImageId = schema.new({
+            id = id.from(_N, "FilterCriteria", "machineImageId"),
+            type = "list",
+            name = "machineImageId",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        machineImageName = schema.new({
+            id = id.from(_N, "FilterCriteria", "machineImageName"),
+            type = "list",
+            name = "machineImageName",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        machineImageOwnerAccountId = schema.new({
+            id = id.from(_N, "FilterCriteria", "machineImageOwnerAccountId"),
+            type = "list",
+            name = "machineImageOwnerAccountId",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        machineImagePlatform = schema.new({
+            id = id.from(_N, "FilterCriteria", "machineImagePlatform"),
+            type = "list",
+            name = "machineImagePlatform",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
         cloudProvider = schema.new({
             id = id.from(_N, "FilterCriteria", "cloudProvider"),
             type = "list",
@@ -8198,6 +8423,12 @@ M.Destination = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        expectedBucketOwner = schema.new({
+            id = id.from(_N, "Destination", "expectedBucketOwner"),
+            type = "string",
+            name = "expectedBucketOwner",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -9775,6 +10006,82 @@ M.Image = schema.new({
     },
 })
 
+M.MachineImageDetails = schema.new({
+    id = id.from(_N, "MachineImageDetails"),
+    type = "structure",
+    members = {
+        machineImageId = schema.new({
+            id = id.from(_N, "MachineImageDetails", "machineImageId"),
+            type = "string",
+            name = "machineImageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "MachineImageDetails", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        ownerAccountId = schema.new({
+            id = id.from(_N, "MachineImageDetails", "ownerAccountId"),
+            type = "string",
+            name = "ownerAccountId",
+            target_id = prelude.String.id,
+        }),
+        platform = schema.new({
+            id = id.from(_N, "MachineImageDetails", "platform"),
+            type = "string",
+            name = "platform",
+            target_id = prelude.String.id,
+        }),
+        architecture = schema.new({
+            id = id.from(_N, "MachineImageDetails", "architecture"),
+            type = "string",
+            name = "architecture",
+            target_id = prelude.String.id,
+        }),
+        creationDate = schema.new({
+            id = id.from(_N, "MachineImageDetails", "creationDate"),
+            type = "timestamp",
+            name = "creationDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "MachineImageDetails", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        isPublic = schema.new({
+            id = id.from(_N, "MachineImageDetails", "isPublic"),
+            type = "boolean",
+            name = "isPublic",
+            target_id = prelude.Boolean.id,
+        }),
+        rootDeviceType = schema.new({
+            id = id.from(_N, "MachineImageDetails", "rootDeviceType"),
+            type = "string",
+            name = "rootDeviceType",
+            target_id = prelude.String.id,
+        }),
+        virtualizationType = schema.new({
+            id = id.from(_N, "MachineImageDetails", "virtualizationType"),
+            type = "string",
+            name = "virtualizationType",
+            target_id = prelude.String.id,
+        }),
+        sourceResourceId = schema.new({
+            id = id.from(_N, "MachineImageDetails", "sourceResourceId"),
+            type = "string",
+            name = "sourceResourceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ServerlessFunction = schema.new({
     id = id.from(_N, "ServerlessFunction"),
     type = "structure",
@@ -9972,6 +10279,13 @@ M.ResourceDetails = schema.new({
             name = "codeRepository",
             target_id = id.from(_N, "CodeRepositoryDetails"),
             target = M.CodeRepositoryDetails,
+        }),
+        machineImage = schema.new({
+            id = id.from(_N, "ResourceDetails", "machineImage"),
+            type = "structure",
+            name = "machineImage",
+            target_id = id.from(_N, "MachineImageDetails"),
+            target = M.MachineImageDetails,
         }),
         vm = schema.new({
             id = id.from(_N, "ResourceDetails", "vm"),
@@ -10728,6 +11042,13 @@ M.GetConfigurationOutput = schema.new({
             target_id = id.from(_N, "Ec2ConfigurationState"),
             target = M.Ec2ConfigurationState,
         }),
+        amiConfiguration = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "amiConfiguration"),
+            type = "structure",
+            name = "amiConfiguration",
+            target_id = id.from(_N, "AmiConfigurationState"),
+            target = M.AmiConfigurationState,
+        }),
     },
 })
 
@@ -10946,6 +11267,108 @@ M.GetMemberOutput = schema.new({
             name = "member",
             target_id = id.from(_N, "Member"),
             target = M.Member,
+        }),
+    },
+})
+
+M.GetOnDemandScanStatusInput = schema.new({
+    id = id.from(_N, "GetOnDemandScanStatusRequest"),
+    type = "structure",
+    members = {
+        resourceId = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusInput", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scanId = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusInput", "scanId"),
+            type = "string",
+            name = "scanId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusInput", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetOnDemandScanStatusOutput = schema.new({
+    id = id.from(_N, "GetOnDemandScanStatusResponse"),
+    type = "structure",
+    members = {
+        scanId = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusOutput", "scanId"),
+            type = "string",
+            name = "scanId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusOutput", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusOutput", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scanStatus = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusOutput", "scanStatus"),
+            type = "string",
+            name = "scanStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scanStatusReason = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusOutput", "scanStatusReason"),
+            type = "string",
+            name = "scanStatusReason",
+            target_id = prelude.String.id,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusOutput", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        completedAt = schema.new({
+            id = id.from(_N, "GetOnDemandScanStatusOutput", "completedAt"),
+            type = "timestamp",
+            name = "completedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })
@@ -12106,6 +12529,134 @@ M.ListMembersOutput = schema.new({
     },
 })
 
+M.ListOnDemandScansInput = schema.new({
+    id = id.from(_N, "ListOnDemandScansRequest"),
+    type = "structure",
+    members = {
+        resourceId = schema.new({
+            id = id.from(_N, "ListOnDemandScansInput", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ListOnDemandScansInput", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListOnDemandScansInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListOnDemandScansInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OnDemandScan = schema.new({
+    id = id.from(_N, "OnDemandScan"),
+    type = "structure",
+    members = {
+        scanId = schema.new({
+            id = id.from(_N, "OnDemandScan", "scanId"),
+            type = "string",
+            name = "scanId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "OnDemandScan", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "OnDemandScan", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scanStatus = schema.new({
+            id = id.from(_N, "OnDemandScan", "scanStatus"),
+            type = "string",
+            name = "scanStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scanStatusReason = schema.new({
+            id = id.from(_N, "OnDemandScan", "scanStatusReason"),
+            type = "string",
+            name = "scanStatusReason",
+            target_id = prelude.String.id,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "OnDemandScan", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        completedAt = schema.new({
+            id = id.from(_N, "OnDemandScan", "completedAt"),
+            type = "timestamp",
+            name = "completedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ListOnDemandScansOutput = schema.new({
+    id = id.from(_N, "ListOnDemandScansResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListOnDemandScansOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.OnDemandScan,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListOnDemandScansOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -12631,6 +13182,56 @@ M.StartCodeSecurityScanOutput = schema.new({
     },
 })
 
+M.StartOnDemandScanInput = schema.new({
+    id = id.from(_N, "StartOnDemandScanRequest"),
+    type = "structure",
+    members = {
+        resourceId = schema.new({
+            id = id.from(_N, "StartOnDemandScanInput", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "StartOnDemandScanInput", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartOnDemandScanInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartOnDemandScanOutput = schema.new({
+    id = id.from(_N, "StartOnDemandScanResponse"),
+    type = "structure",
+    members = {
+        scanId = schema.new({
+            id = id.from(_N, "StartOnDemandScanOutput", "scanId"),
+            type = "string",
+            name = "scanId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.StopCisMessageProgress = schema.new({
     id = id.from(_N, "StopCisMessageProgress"),
     type = "structure",
@@ -13115,6 +13716,12 @@ M.UpdateConfigurationInheritance = schema.new({
             name = "ecrConfiguration",
             target_id = prelude.String.id,
         }),
+        amiConfiguration = schema.new({
+            id = id.from(_N, "UpdateConfigurationInheritance", "amiConfiguration"),
+            type = "string",
+            name = "amiConfiguration",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -13141,6 +13748,13 @@ M.UpdateConfigurationInput = schema.new({
             name = "ec2Configuration",
             target_id = id.from(_N, "Ec2Configuration"),
             target = M.Ec2Configuration,
+        }),
+        amiConfiguration = schema.new({
+            id = id.from(_N, "UpdateConfigurationInput", "amiConfiguration"),
+            type = "structure",
+            name = "amiConfiguration",
+            target_id = id.from(_N, "AmiConfiguration"),
+            target = M.AmiConfiguration,
         }),
         updateConfigurationInheritance = schema.new({
             id = id.from(_N, "UpdateConfigurationInput", "updateConfigurationInheritance"),
@@ -13972,6 +14586,18 @@ M.GetMember = schema.operation({
     },
 })
 
+M.GetOnDemandScanStatus = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "GetOnDemandScanStatus"),
+    input = M.GetOnDemandScanStatusInput,
+    output = M.GetOnDemandScanStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ondemand/scan/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetSbomExport = schema.operation({
     id = id.from("com.amazonaws.inspector2", "GetSbomExport"),
     input = M.GetSbomExportInput,
@@ -14188,6 +14814,18 @@ M.ListMembers = schema.operation({
     },
 })
 
+M.ListOnDemandScans = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListOnDemandScans"),
+    input = M.ListOnDemandScansInput,
+    output = M.ListOnDemandScansOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ondemand/scans" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTagsForResource = schema.operation({
     id = id.from("com.amazonaws.inspector2", "ListTagsForResource"),
     input = M.ListTagsForResourceInput,
@@ -14278,6 +14916,18 @@ M.StartCodeSecurityScan = schema.operation({
     output = M.StartCodeSecurityScanOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/codesecurity/scan/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartOnDemandScan = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "StartOnDemandScan"),
+    input = M.StartOnDemandScanInput,
+    output = M.StartOnDemandScanOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ondemand/scan" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

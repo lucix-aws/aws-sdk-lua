@@ -787,6 +787,25 @@ M.CheckoutLicenseOutput = schema.new({
     },
 })
 
+M.Options = schema.new({
+    id = id.from(_N, "Options"),
+    type = "structure",
+    members = {
+        ActivationOverrideBehavior = schema.new({
+            id = id.from(_N, "Options", "ActivationOverrideBehavior"),
+            type = "string",
+            name = "ActivationOverrideBehavior",
+            target_id = prelude.String.id,
+        }),
+        DesiredStatus = schema.new({
+            id = id.from(_N, "Options", "DesiredStatus"),
+            type = "string",
+            name = "DesiredStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",
@@ -873,6 +892,19 @@ M.CreateGrantInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        GrantType = schema.new({
+            id = id.from(_N, "CreateGrantInput", "GrantType"),
+            type = "string",
+            name = "GrantType",
+            target_id = prelude.String.id,
+        }),
+        Options = schema.new({
+            id = id.from(_N, "CreateGrantInput", "Options"),
+            type = "structure",
+            name = "Options",
+            target_id = id.from(_N, "Options"),
+            target = M.Options,
+        }),
     },
 })
 
@@ -896,19 +928,6 @@ M.CreateGrantOutput = schema.new({
             id = id.from(_N, "CreateGrantOutput", "Version"),
             type = "string",
             name = "Version",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.Options = schema.new({
-    id = id.from(_N, "Options"),
-    type = "structure",
-    members = {
-        ActivationOverrideBehavior = schema.new({
-            id = id.from(_N, "Options", "ActivationOverrideBehavior"),
-            type = "string",
-            name = "ActivationOverrideBehavior",
             target_id = prelude.String.id,
         }),
     },
@@ -2663,6 +2682,12 @@ M.Grant = schema.new({
             name = "Options",
             target_id = id.from(_N, "Options"),
             target = M.Options,
+        }),
+        GrantType = schema.new({
+            id = id.from(_N, "Grant", "GrantType"),
+            type = "string",
+            name = "GrantType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4792,6 +4817,12 @@ M.ReceivedMetadata = schema.new({
             name = "AllowedOperations",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        GrantType = schema.new({
+            id = id.from(_N, "ReceivedMetadata", "GrantType"),
+            type = "string",
+            name = "GrantType",
+            target_id = prelude.String.id,
         }),
     },
 })

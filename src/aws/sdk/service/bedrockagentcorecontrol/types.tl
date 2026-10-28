@@ -6193,6 +6193,16 @@ local record M
         "JWT_AUTHORIZATION_GRANT"
     end
 
+    enum OnBehalfOfClientAuthenticationMethod
+        "NO_CLIENT"
+    end
+
+    -- Specifies the client authentication method to use for the on-behalf-of token exchange.
+    record OnBehalfOfAuthenticationConfig
+        -- The client authentication method to use during the on-behalf-of token exchange. The NO_CLIENT option omits the clientId and clientSecret during the on-behalf-of token exchange with the identity provider.
+        clientAuthenticationMethod: string
+    end
+
     -- Configuration for RFC 8693 token exchange.
     record TokenExchangeGrantTypeConfigType
         -- The content type for the actor token in the token exchange.
@@ -6207,6 +6217,8 @@ local record M
         grantType: string
         -- Configuration specific to the TOKEN_EXCHANGE grant type (RFC 8693).
         tokenExchangeGrantTypeConfig: TokenExchangeGrantTypeConfigType
+        -- Specify the client authentication configuration to use for the on-behalf-of token exchange. With this configuration, you override the provider level client authentication method for the on-behalf-of exchange with the identity provider. If you don't specify this configuration, we use the provider level client authentication method.
+        onBehalfOfAuthenticationConfig: OnBehalfOfAuthenticationConfig
     end
 
     -- Contains the KMS key configuration for a JWT client assertion.
@@ -8893,6 +8905,20 @@ local record M
         createdAt: number
         -- The timestamp when the registry was last updated.
         updatedAt: number
+    end
+
+    record ResetTokenVaultKeyMaterialInput
+        -- The unique identifier of the token vault to reset. To reset your account's default token vault, specify default.
+        tokenVaultId: string
+    end
+
+    record ResetTokenVaultKeyMaterialOutput
+        -- The ID of the token vault.
+        tokenVaultId: string
+        -- The KMS configuration for the token vault after the reset. The token vault uses an Amazon Web Services managed key.
+        kmsConfiguration: KmsConfiguration
+        -- The timestamp when the token vault was last modified.
+        lastModifiedDate: number
     end
 
     -- Exception thrown when a resource is modified concurrently by multiple requests.

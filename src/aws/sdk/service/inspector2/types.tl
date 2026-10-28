@@ -2,9 +2,7 @@
 
 local record M
 
-    -- You do not have sufficient access to perform this action.
-    -- For Enable, you receive this error if you attempt to use a feature in an
-    -- unsupported Amazon Web Services Region.
+    -- You do not have sufficient access to perform this action. For Enable, you receive this error if you attempt to use a feature in an unsupported Amazon Web Services Region.
     record AccessDeniedException
         message: string
     end
@@ -26,11 +24,12 @@ local record M
         ecr: string
         -- The status of Amazon Inspector scanning for Amazon Web Services Lambda function.
         lambda: string
-        -- The status of Amazon Inspector scanning for custom application code for Amazon Web Services Lambda
-        -- functions.
+        -- The status of Amazon Inspector scanning for custom application code for Amazon Web Services Lambda functions.
         lambdaCode: string
         -- The status of Amazon Inspector scanning for code repositories.
         codeRepository: string
+        -- The status of Amazon Machine Image (AMI) scanning for the account.
+        ami: string
     end
 
     -- An Amazon Web Services account within your environment that Amazon Inspector has been enabled for.
@@ -70,8 +69,7 @@ local record M
         "DESC"
     end
 
-    -- An object that contains details about an aggregation response based on
-    -- Amazon Web Services accounts.
+    -- An object that contains details about an aggregation response based on Amazon Web Services accounts.
     record AccountAggregation
         -- The type of finding.
         findingType: string
@@ -168,10 +166,10 @@ local record M
         -- An object that described the state of Amazon Inspector scans for an account.
         lambdaCode: State
         codeRepository: State
+        ami: State
     end
 
-    -- An object with details the status of an Amazon Web Services account within your Amazon Inspector
-    -- environment.
+    -- An object with details the status of an Amazon Web Services account within your Amazon Inspector environment.
     record AccountState
         -- The Amazon Web Services account ID.
         accountId: string
@@ -195,6 +193,11 @@ local record M
         value: string
     end
 
+    enum ScanSource
+        "INSTANCE_SCAN"
+        "MACHINE_IMAGE_SCAN"
+    end
+
     enum AmiSortBy
         "CRITICAL"
         "HIGH"
@@ -210,6 +213,8 @@ local record M
         sortOrder: string
         -- The value to sort results by.
         sortBy: string
+        -- The scan sources to filter the aggregation results by.
+        scanSources: {string}
     end
 
     -- An object that describes the details of a number filter.
@@ -250,8 +255,7 @@ local record M
         sortOrder: string
         -- The value to sort by.
         sortBy: string
-        -- The last time an Amazon ECR image was used in an Amazon ECS task or
-        -- Amazon EKS pod.
+        -- The last time an Amazon ECR image was used in an Amazon ECS task or Amazon EKS pod.
         lastInUseAt: {DateFilter}
         -- The number of Amazon ECS tasks or Amazon EKS pods where the Amazon ECR container image is in use.
         inUseCount: {NumberFilter}
@@ -269,8 +273,7 @@ local record M
         projectNames: {StringFilter}
         -- The repository provider types to include in the aggregation results.
         providerTypes: {StringFilter}
-        -- The order to sort results by (ascending or descending) in the code repository
-        -- aggregation.
+        -- The order to sort results by (ascending or descending) in the code repository aggregation.
         sortOrder: string
         -- The value to sort results by in the code repository aggregation.
         sortBy: string
@@ -298,19 +301,11 @@ local record M
         architectures: {StringFilter}
         -- The image tags to aggregate findings for.
         imageTags: {StringFilter}
-        -- The cloud providers to aggregate findings for. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud providers to aggregate findings for. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProviders: {StringFilter}
-        -- The cloud partitions to aggregate findings for. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud partitions to aggregate findings for. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartitions: {StringFilter}
-        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegions: {StringFilter}
         -- The cloud organization IDs to aggregate findings for.
         cloudOrgIds: {StringFilter}
@@ -351,9 +346,7 @@ local record M
     record Ec2InstanceAggregation
         -- The AMI IDs associated with the Amazon EC2 instances to aggregate findings for.
         amis: {StringFilter}
-        -- The operating system types to aggregate findings for. Valid values must be uppercase and
-        -- underscore separated, examples are ORACLE_LINUX_7 and
-        -- ALPINE_LINUX_3_8.
+        -- The operating system types to aggregate findings for. Valid values must be uppercase and underscore separated, examples are ORACLE_LINUX_7 and ALPINE_LINUX_3_8.
         operatingSystems: {StringFilter}
         -- The Amazon EC2 instance IDs to aggregate findings for.
         instanceIds: {StringFilter}
@@ -397,23 +390,15 @@ local record M
         resourceIds: {StringFilter}
         -- The hashes associated with the layers.
         layerHashes: {StringFilter}
-        -- The cloud providers to aggregate findings for. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud providers to aggregate findings for. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProviders: {StringFilter}
         -- The cloud account IDs to aggregate findings for.
         cloudAccountIds: {StringFilter}
         -- The cloud organization IDs to aggregate findings for.
         cloudOrgIds: {StringFilter}
-        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegions: {StringFilter}
-        -- The cloud partitions to aggregate findings for. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud partitions to aggregate findings for. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartitions: {StringFilter}
         -- The order to sort results by.
         sortOrder: string
@@ -427,16 +412,13 @@ local record M
         "ALL"
     end
 
-    -- The details that define a findings aggregation based on Amazon Web Services Lambda
-    -- functions.
+    -- The details that define a findings aggregation based on Amazon Web Services Lambda functions.
     record LambdaFunctionAggregation
         -- The resource IDs to include in the aggregation results.
         resourceIds: {StringFilter}
-        -- The Amazon Web Services Lambda function names to include in the aggregation
-        -- results.
+        -- The Amazon Web Services Lambda function names to include in the aggregation results.
         functionNames: {StringFilter}
-        -- Returns findings aggregated by Amazon Web Services Lambda function runtime
-        -- environments.
+        -- Returns findings aggregated by Amazon Web Services Lambda function runtime environments.
         runtimes: {StringFilter}
         -- The tags to include in the aggregation results.
         functionTags: {MapFilter}
@@ -452,8 +434,7 @@ local record M
         "ALL"
     end
 
-    -- The details that define a findings aggregation based on an Amazon Web Services Lambda
-    -- function's layers.
+    -- The details that define a findings aggregation based on an Amazon Web Services Lambda function's layers.
     record LambdaLayerAggregation
         -- The names of the Amazon Web Services Lambda functions associated with the layers.
         functionNames: {StringFilter}
@@ -516,19 +497,11 @@ local record M
         runtimes: {StringFilter}
         -- The function tags to aggregate findings for.
         functionTags: {MapFilter}
-        -- The cloud providers to aggregate findings for. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud providers to aggregate findings for. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProviders: {StringFilter}
-        -- The cloud partitions to aggregate findings for. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud partitions to aggregate findings for. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartitions: {StringFilter}
-        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegions: {StringFilter}
         -- The cloud organization IDs to aggregate findings for.
         cloudOrgIds: {StringFilter}
@@ -579,19 +552,11 @@ local record M
         instanceTags: {MapFilter}
         -- The VM image references to aggregate findings for.
         vmImageReferences: {StringFilter}
-        -- The cloud providers to aggregate findings for. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud providers to aggregate findings for. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProviders: {StringFilter}
-        -- The cloud partitions to aggregate findings for. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud partitions to aggregate findings for. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartitions: {StringFilter}
-        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegions: {StringFilter}
         -- The cloud organization IDs to aggregate findings for.
         cloudOrgIds: {StringFilter}
@@ -605,39 +570,29 @@ local record M
 
     -- Contains details about an aggregation request.
     record AggregationRequest
-        -- An object that contains details about an aggregation request based on Amazon Web Services account
-        -- IDs.
+        -- An object that contains details about an aggregation request based on Amazon Web Services account IDs.
         accountAggregation: AccountAggregation
-        -- An object that contains details about an aggregation request based on Amazon Machine
-        -- Images (AMIs).
+        -- An object that contains details about an aggregation request based on Amazon Machine Images (AMIs).
         amiAggregation: AmiAggregation
-        -- An object that contains details about an aggregation request based on Amazon ECR container
-        -- images.
+        -- An object that contains details about an aggregation request based on Amazon ECR container images.
         awsEcrContainerAggregation: AwsEcrContainerAggregation
-        -- An object that contains details about an aggregation request based on Amazon EC2
-        -- instances.
+        -- An object that contains details about an aggregation request based on Amazon EC2 instances.
         ec2InstanceAggregation: Ec2InstanceAggregation
-        -- An object that contains details about an aggregation request based on finding
-        -- types.
+        -- An object that contains details about an aggregation request based on finding types.
         findingTypeAggregation: FindingTypeAggregation
-        -- An object that contains details about an aggregation request based on container image
-        -- layers.
+        -- An object that contains details about an aggregation request based on container image layers.
         imageLayerAggregation: ImageLayerAggregation
-        -- An object that contains details about an aggregation request based on operating system
-        -- package type.
+        -- An object that contains details about an aggregation request based on operating system package type.
         packageAggregation: PackageAggregation
-        -- An object that contains details about an aggregation request based on Amazon ECR
-        -- repositories.
+        -- An object that contains details about an aggregation request based on Amazon ECR repositories.
         repositoryAggregation: RepositoryAggregation
-        -- An object that contains details about an aggregation request based on finding
-        -- title.
+        -- An object that contains details about an aggregation request based on finding title.
         titleAggregation: TitleAggregation
         -- Returns an object with findings aggregated by Amazon Web Services Lambda layer.
         lambdaLayerAggregation: LambdaLayerAggregation
         -- Returns an object with findings aggregated by Amazon Web Services Lambda function.
         lambdaFunctionAggregation: LambdaFunctionAggregation
-        -- An object that contains details about an aggregation request based on code
-        -- repositories.
+        -- An object that contains details about an aggregation request based on code repositories.
         codeRepositoryAggregation: CodeRepositoryAggregation
         -- An object that contains details about an aggregation request based on virtual machine (VM) instances.
         vmInstanceAggregation: VmInstanceAggregation
@@ -658,19 +613,11 @@ local record M
         ami: string
         -- The Amazon Web Services account ID for the AMI.
         accountId: string
-        -- The cloud service provider associated with this Amazon Machine Image (AMI) aggregation. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud service provider associated with this Amazon Machine Image (AMI) aggregation. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProvider: string
-        -- The cloud infrastructure partition associated with this AMI aggregation. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud infrastructure partition associated with this AMI aggregation. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartition: string
-        -- The cloud Region associated with this AMI aggregation. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud Region associated with this AMI aggregation. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegion: string
         -- The cloud organization ID for the AMI aggregation.
         cloudOrgId: string
@@ -680,6 +627,8 @@ local record M
         severityCounts: SeverityCounts
         -- The IDs of Amazon EC2 instances using this AMI.
         affectedInstances: number
+        -- The source of the scan that generated the findings for the Amazon Machine Image (AMI).
+        scanSource: string
     end
 
     -- An aggregation of information about Amazon ECR containers.
@@ -698,8 +647,7 @@ local record M
         accountId: string
         -- The number of finding by severity.
         severityCounts: SeverityCounts
-        -- The last time an Amazon ECR image was used in an Amazon ECS task or
-        -- Amazon EKS pod.
+        -- The last time an Amazon ECR image was used in an Amazon ECS task or Amazon EKS pod.
         lastInUseAt: number
         -- The number of Amazon ECS tasks or Amazon EKS pods where the Amazon ECR container image is in use.
         inUseCount: number
@@ -712,8 +660,7 @@ local record M
         -- The type of repository provider for the code repository.
         providerType: string
         severityCounts: SeverityCounts
-        -- The number of active findings that have an exploit available for the code
-        -- repository.
+        -- The number of active findings that have an exploit available for the code repository.
         exploitAvailableActiveFindingsCount: number
         -- The number of active findings that have a fix available for the code repository.
         fixAvailableActiveFindingsCount: number
@@ -727,21 +674,13 @@ local record M
     record ContainerImageAggregationResponse
         -- The resource ID for the container image.
         resourceId: string
-        -- The cloud service provider associated with this container image aggregation. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud service provider associated with this container image aggregation. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProvider: string
         -- The cloud account ID for the container image aggregation.
         cloudAccountId: string
-        -- The cloud infrastructure partition associated with this container image aggregation. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud infrastructure partition associated with this container image aggregation. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartition: string
-        -- The cloud Region associated with this container image aggregation. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud Region associated with this container image aggregation. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegion: string
         -- The cloud organization ID for the container image aggregation.
         cloudOrgId: string
@@ -796,23 +735,15 @@ local record M
         exploitAvailableCount: number
         -- Details about the number of fixes.
         fixAvailableCount: number
-        -- The cloud service provider associated with this finding type aggregation. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud service provider associated with this finding type aggregation. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProvider: string
         -- The cloud account ID for the finding type aggregation.
         cloudAccountId: string
         -- The cloud organization ID for the finding type aggregation.
         cloudOrgId: string
-        -- The cloud Region associated with this finding type aggregation. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud Region associated with this finding type aggregation. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegion: string
-        -- The cloud infrastructure partition associated with this finding type aggregation. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud infrastructure partition associated with this finding type aggregation. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartition: string
     end
 
@@ -824,33 +755,23 @@ local record M
         resourceId: string
         -- The layer hash.
         layerHash: string
-        -- The ID of the Amazon Web Services account that owns the container image hosting the layer
-        -- image.
+        -- The ID of the Amazon Web Services account that owns the container image hosting the layer image.
         accountId: string
-        -- The cloud service provider associated with this image layer aggregation. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud service provider associated with this image layer aggregation. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProvider: string
         -- The cloud account ID for the image layer aggregation.
         cloudAccountId: string
         -- The cloud organization ID for the image layer aggregation.
         cloudOrgId: string
-        -- The cloud Region associated with this image layer aggregation. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud Region associated with this image layer aggregation. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegion: string
-        -- The cloud infrastructure partition associated with this image layer aggregation. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud infrastructure partition associated with this image layer aggregation. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartition: string
         -- An object that represents the count of matched findings per severity.
         severityCounts: SeverityCounts
     end
 
-    -- A response that contains the results of an Amazon Web Services Lambda function finding
-    -- aggregation.
+    -- A response that contains the results of an Amazon Web Services Lambda function finding aggregation.
     record LambdaFunctionAggregationResponse
         -- The resource IDs included in the aggregation results.
         resourceId: string
@@ -860,18 +781,15 @@ local record M
         runtime: string
         -- The tags included in the aggregation results.
         lambdaTags: {string : string}
-        -- The ID of the Amazon Web Services account that owns the Amazon Web Services Lambda
-        -- function.
+        -- The ID of the Amazon Web Services account that owns the Amazon Web Services Lambda function.
         accountId: string
         -- An object that contains the counts of aggregated finding per severity.
         severityCounts: SeverityCounts
-        -- The date that the Amazon Web Services Lambda function included in the aggregation results
-        -- was last changed.
+        -- The date that the Amazon Web Services Lambda function included in the aggregation results was last changed.
         lastModifiedAt: number
     end
 
-    -- A response that contains the results of an Amazon Web Services Lambda function layer
-    -- finding aggregation.
+    -- A response that contains the results of an Amazon Web Services Lambda function layer finding aggregation.
     record LambdaLayerAggregationResponse
         -- The names of the Amazon Web Services Lambda functions associated with the layers.
         functionName: string
@@ -895,26 +813,17 @@ local record M
         severityCounts: SeverityCounts
     end
 
-    -- A response that contains details on the results of a finding aggregation by
-    -- repository.
+    -- A response that contains details on the results of a finding aggregation by repository.
     record RepositoryAggregationResponse
         -- The name of the repository associated with the findings.
         repository: string
         -- The ID of the Amazon Web Services account associated with the findings.
         accountId: string
-        -- The cloud service provider associated with this repository aggregation. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud service provider associated with this repository aggregation. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProvider: string
-        -- The cloud infrastructure partition associated with this repository aggregation. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud infrastructure partition associated with this repository aggregation. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartition: string
-        -- The cloud Region associated with this repository aggregation. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud Region associated with this repository aggregation. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegion: string
         -- The cloud organization ID for the repository aggregation.
         cloudOrgId: string
@@ -930,21 +839,13 @@ local record M
     record ServerlessFunctionAggregationResponse
         -- The resource ID for the serverless function.
         resourceId: string
-        -- The cloud service provider associated with this serverless function aggregation. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud service provider associated with this serverless function aggregation. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProvider: string
         -- The cloud account ID for the serverless function aggregation.
         cloudAccountId: string
-        -- The cloud infrastructure partition associated with this serverless function aggregation. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud infrastructure partition associated with this serverless function aggregation. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartition: string
-        -- The cloud Region associated with this serverless function aggregation. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud Region associated with this serverless function aggregation. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegion: string
         -- The cloud organization ID for the serverless function aggregation.
         cloudOrgId: string
@@ -965,8 +866,7 @@ local record M
         fixAvailableActiveFindingsCount: number
     end
 
-    -- A response that contains details on the results of a finding aggregation by
-    -- title.
+    -- A response that contains details on the results of a finding aggregation by title.
     record TitleAggregationResponse
         -- The title that the findings were aggregated on.
         title: string
@@ -982,21 +882,13 @@ local record M
     record VmInstanceAggregationResponse
         -- The resource ID for the VM instance.
         resourceId: string
-        -- The cloud service provider associated with this VM instance aggregation. Valid values:
-        -- AWS – Findings from Amazon Web Services resources.
-        -- AZURE – Findings from Microsoft Azure resources.
+        -- The cloud service provider associated with this VM instance aggregation. Valid values: AWS – Findings from Amazon Web Services resources. AZURE – Findings from Microsoft Azure resources.
         cloudProvider: string
         -- The cloud account ID for the VM instance aggregation.
         cloudAccountId: string
-        -- The cloud infrastructure partition associated with this VM instance aggregation. Valid values:
-        -- aws – Amazon Web Services commercial Regions.
-        -- aws-cn – Amazon Web Services China Regions.
-        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
-        -- AzureCloud – Azure commercial Regions.
+        -- The cloud infrastructure partition associated with this VM instance aggregation. Valid values: aws – Amazon Web Services commercial Regions. aws-cn – Amazon Web Services China Regions. aws-us-gov – Amazon Web Services GovCloud (US) Regions. AzureCloud – Azure commercial Regions.
         cloudPartition: string
-        -- The cloud Region associated with this VM instance aggregation. The value format depends on the cloud provider:
-        -- An Amazon Web Services Region, such as us-east-1.
-        -- An Azure region, such as eastus.
+        -- The cloud Region associated with this VM instance aggregation. The value format depends on the cloud provider: An Amazon Web Services Region, such as us-east-1. An Azure region, such as eastus.
         cloudRegion: string
         -- The cloud organization ID for the VM instance aggregation.
         cloudOrgId: string
@@ -1019,39 +911,29 @@ local record M
 
     -- A structure that contains details about the results of an aggregation type.
     record AggregationResponse
-        -- An object that contains details about an aggregation response based on Amazon Web Services account
-        -- IDs.
+        -- An object that contains details about an aggregation response based on Amazon Web Services account IDs.
         accountAggregation: AccountAggregationResponse
-        -- An object that contains details about an aggregation response based on Amazon Machine
-        -- Images (AMIs).
+        -- An object that contains details about an aggregation response based on Amazon Machine Images (AMIs).
         amiAggregation: AmiAggregationResponse
-        -- An object that contains details about an aggregation response based on Amazon ECR container
-        -- images.
+        -- An object that contains details about an aggregation response based on Amazon ECR container images.
         awsEcrContainerAggregation: AwsEcrContainerAggregationResponse
-        -- An object that contains details about an aggregation response based on Amazon EC2
-        -- instances.
+        -- An object that contains details about an aggregation response based on Amazon EC2 instances.
         ec2InstanceAggregation: Ec2InstanceAggregationResponse
-        -- An object that contains details about an aggregation response based on finding
-        -- types.
+        -- An object that contains details about an aggregation response based on finding types.
         findingTypeAggregation: FindingTypeAggregationResponse
-        -- An object that contains details about an aggregation response based on container image
-        -- layers.
+        -- An object that contains details about an aggregation response based on container image layers.
         imageLayerAggregation: ImageLayerAggregationResponse
-        -- An object that contains details about an aggregation response based on operating system
-        -- package type.
+        -- An object that contains details about an aggregation response based on operating system package type.
         packageAggregation: PackageAggregationResponse
-        -- An object that contains details about an aggregation response based on Amazon ECR
-        -- repositories.
+        -- An object that contains details about an aggregation response based on Amazon ECR repositories.
         repositoryAggregation: RepositoryAggregationResponse
-        -- An object that contains details about an aggregation response based on finding
-        -- title.
+        -- An object that contains details about an aggregation response based on finding title.
         titleAggregation: TitleAggregationResponse
         -- An aggregation of findings by Amazon Web Services Lambda layer.
         lambdaLayerAggregation: LambdaLayerAggregationResponse
         -- An aggregation of findings by Amazon Web Services Lambda function.
         lambdaFunctionAggregation: LambdaFunctionAggregationResponse
-        -- An object that contains details about an aggregation response based on code
-        -- repositories.
+        -- An object that contains details about an aggregation response based on code repositories.
         codeRepositoryAggregation: CodeRepositoryAggregationResponse
         -- An object that contains details about an aggregation response based on VM instances.
         vmInstanceAggregation: VmInstanceAggregationResponse
@@ -1079,6 +961,70 @@ local record M
         "SERVERLESS_FUNCTION"
     end
 
+    enum AmiScanDuration
+        "DAYS_180"
+        "DAYS_90"
+        "DAYS_60"
+        "DAYS_30"
+        "DAYS_14"
+        "DAYS_7"
+    end
+
+    enum AmiScanMode
+        "SCAN_ALL"
+        "TARGET_SCANNING"
+    end
+
+    -- A filter that matches Amazon Machine Images (AMIs) by tag key and, optionally, tag value.
+    record AmiTagFilter
+        -- The tag key to match against an AMI's tags.
+        key: string
+        -- The tag value to match against an AMI's tags. If omitted, the filter matches on the tag key alone.
+        value: string
+    end
+
+    -- The scan mode configuration that determines which Amazon Machine Images (AMIs) are scanned.
+    record AmiScanModeConfiguration
+        -- The scan mode that determines whether all AMIs are scanned or only those matching the specified tags.
+        scanMode: string
+        -- The tag filters used to select which AMIs are scanned when using targeted scanning.
+        tags: {AmiTagFilter}
+        -- Whether to exclude AMIs that are copies of other AMIs from scanning.
+        excludeCopiedAmis: boolean
+        -- Whether to exclude AMIs created by Amazon Data Lifecycle Manager (DLM) backups from scanning.
+        excludeBackupDlmAmis: boolean
+    end
+
+    -- The configuration that controls how Amazon Machine Images (AMIs) are scanned for an account.
+    record AmiConfiguration
+        -- Restricts scanning to AMIs that were last launched within the specified duration.
+        lastLaunchedWithin: string
+        -- Restricts scanning to AMIs that were created within the specified duration.
+        createdWithin: string
+        -- The scan mode configuration that determines which AMIs are scanned.
+        scanModeConfiguration: AmiScanModeConfiguration
+    end
+
+    enum AmiConfigurationStatus
+        "SUCCESS"
+        "PENDING"
+        "FAILED"
+    end
+
+    -- The current state of the Amazon Machine Image (AMI) scan configuration for an account.
+    record AmiConfigurationState
+        -- Restricts scanning to AMIs that were last launched within the specified duration.
+        lastLaunchedWithin: string
+        -- Restricts scanning to AMIs that were created within the specified duration.
+        createdWithin: string
+        -- The scan mode configuration that determines which AMIs are scanned.
+        scanModeConfiguration: AmiScanModeConfiguration
+        -- The status of the AMI scan configuration.
+        status: string
+        -- The date and time when the AMI scan configuration was last updated.
+        updatedAt: number
+    end
+
     enum Architecture
         "X86_64"
         "ARM64"
@@ -1090,8 +1036,7 @@ local record M
         projectId: string
     end
 
-    -- Contains details about a request to associate a code repository with a scan
-    -- configuration.
+    -- Contains details about a request to associate a code repository with a scan configuration.
     record AssociateConfigurationRequest
         -- The Amazon Resource Name (ARN) of the scan configuration.
         scanConfigurationArn: string
@@ -1115,8 +1060,7 @@ local record M
         retryAfterSeconds: number
     end
 
-    -- You have exceeded your service quota. To perform the requested action, remove some of
-    -- the relevant resources, or use Service Quotas to request a service quota increase.
+    -- You have exceeded your service quota. To perform the requested action, remove some of the relevant resources, or use Service Quotas to request a service quota increase.
     record ServiceQuotaExceededException
         message: string
         -- The ID of the resource that exceeds a service quota.
@@ -1144,8 +1088,7 @@ local record M
         "OTHER"
     end
 
-    -- The request has failed validation due to missing required fields or having invalid
-    -- inputs.
+    -- The request has failed validation due to missing required fields or having invalid inputs.
     record ValidationException
         message: string
         -- The reason for the validation failure.
@@ -1163,8 +1106,7 @@ local record M
         "QUOTA_EXCEEDED"
     end
 
-    -- The Amazon Web Services Threat Intel Group (ATIG) details for a specific
-    -- vulnerability.
+    -- The Amazon Web Services Threat Intel Group (ATIG) details for a specific vulnerability.
     record AtigData
         -- The date and time this vulnerability was first observed.
         firstSeen: number
@@ -1172,29 +1114,24 @@ local record M
         lastSeen: number
         -- The commercial sectors this vulnerability targets.
         targets: {string}
-        -- The MITRE ATT&CK tactics, techniques,
-        -- and procedures (TTPs) associated with vulnerability.
+        -- The MITRE ATT&CK tactics, techniques, and procedures (TTPs) associated with vulnerability.
         ttps: {string}
     end
 
-    -- Represents which scan types are automatically enabled for new members of your Amazon Inspector
-    -- organization.
+    -- Represents which scan types are automatically enabled for new members of your Amazon Inspector organization.
     record AutoEnable
-        -- Represents whether Amazon EC2 scans are automatically enabled for new members of your Amazon Inspector
-        -- organization.
+        -- Represents whether Amazon EC2 scans are automatically enabled for new members of your Amazon Inspector organization.
         ec2: boolean
-        -- Represents whether Amazon ECR scans are automatically enabled for new members of your Amazon Inspector
-        -- organization.
+        -- Represents whether Amazon ECR scans are automatically enabled for new members of your Amazon Inspector organization.
         ecr: boolean
-        -- Represents whether Amazon Web Services Lambda standard scans are automatically enabled
-        -- for new members of your Amazon Inspector organization.
+        -- Represents whether Amazon Web Services Lambda standard scans are automatically enabled for new members of your Amazon Inspector organization.
         lambda: boolean
-        -- Represents whether Lambda code scans are automatically enabled for new members of your
-        -- Amazon Inspector organization.
+        -- Represents whether Lambda code scans are automatically enabled for new members of your Amazon Inspector organization.
         lambdaCode: boolean
-        -- Represents whether code repository scans are automatically enabled for new members of
-        -- your Amazon Inspector organization.
+        -- Represents whether code repository scans are automatically enabled for new members of your Amazon Inspector organization.
         codeRepository: boolean
+        -- Represents whether Amazon Machine Image (AMI) scans are automatically enabled for new members of your Amazon Inspector organization.
+        ami: boolean
     end
 
     enum AwsConfigConnectorArnComparison
@@ -1249,8 +1186,7 @@ local record M
         registry: string
         -- The platform of the Amazon ECR container image.
         platform: string
-        -- The last time an Amazon ECR image was used in an Amazon ECS task or
-        -- Amazon EKS pod.
+        -- The last time an Amazon ECR image was used in an Amazon ECS task or Amazon EKS pod.
         lastInUseAt: number
         -- The number of Amazon ECS tasks or Amazon EKS pods where the Amazon ECR container image is in use.
         inUseCount: number
@@ -1270,8 +1206,7 @@ local record M
         name: string
     end
 
-    -- The metadata for an Amazon EKS pod where an Amazon ECR image is in
-    -- use.
+    -- The metadata for an Amazon EKS pod where an Amazon ECR image is in use.
     record AwsEksMetadataDetails
         -- The namespace for an Amazon EKS cluster.
         namespace: string
@@ -1319,13 +1254,11 @@ local record M
         "NODEJS_20_X"
     end
 
-    -- The VPC security groups and subnets that are attached to an Amazon Web Services Lambda
-    -- function. For more information, see VPC Settings.
+    -- The VPC security groups and subnets that are attached to an Amazon Web Services Lambda function. For more information, see VPC Settings.
     record LambdaVpcConfig
         -- A list of VPC subnet IDs.
         subnetIds: {string}
-        -- The VPC security groups and subnets that are attached to an Amazon Web Services Lambda
-        -- function. For more information, see VPC Settings.
+        -- The VPC security groups and subnets that are attached to an Amazon Web Services Lambda function. For more information, see VPC Settings.
         securityGroupIds: {string}
         -- The ID of the VPC.
         vpcId: string
@@ -1343,20 +1276,15 @@ local record M
         version: string
         -- The Amazon Web Services Lambda function's execution role.
         executionRoleArn: string
-        -- The Amazon Web Services Lambda function's layers. A
-        -- Lambda function can have up to five layers.
+        -- The Amazon Web Services Lambda function's layers. A Lambda function can have up to five layers.
         layers: {string}
         -- The Amazon Web Services Lambda function's networking configuration.
         vpcConfig: LambdaVpcConfig
-        -- The type of deployment package. Set to Image for container image and set
-        -- Zip for .zip file archive.
+        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
         packageType: string
-        -- The instruction set architecture that the Amazon Web Services Lambda function supports.
-        -- Architecture is a string array with one of the valid values. The default architecture value
-        -- is x86_64.
+        -- The instruction set architecture that the Amazon Web Services Lambda function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         architectures: {string}
-        -- The date and time that a user last updated the configuration, in ISO 8601
-        -- format
+        -- The date and time that a user last updated the configuration, in ISO 8601 format
         lastModifiedAt: number
     end
 
@@ -1444,11 +1372,9 @@ local record M
         associateConfigurationRequests: {AssociateConfigurationRequest}
     end
 
-    -- Details about a failed attempt to associate or disassociate a code repository with a
-    -- scan configuration.
+    -- Details about a failed attempt to associate or disassociate a code repository with a scan configuration.
     record FailedAssociationResult
-        -- The Amazon Resource Name (ARN) of the scan configuration that failed to be associated or
-        -- disassociated.
+        -- The Amazon Resource Name (ARN) of the scan configuration that failed to be associated or disassociated.
         scanConfigurationArn: string
         resource: CodeSecurityResource
         -- The status code indicating why the association or disassociation failed.
@@ -1457,26 +1383,21 @@ local record M
         statusMessage: string
     end
 
-    -- Details about a successful association or disassociation between a code repository and a
-    -- scan configuration.
+    -- Details about a successful association or disassociation between a code repository and a scan configuration.
     record SuccessfulAssociationResult
-        -- The Amazon Resource Name (ARN) of the scan configuration that was successfully
-        -- associated or disassociated.
+        -- The Amazon Resource Name (ARN) of the scan configuration that was successfully associated or disassociated.
         scanConfigurationArn: string
         resource: CodeSecurityResource
     end
 
     record BatchAssociateCodeSecurityScanConfigurationOutput
-        -- Details of any code repositories that failed to be associated with the scan
-        -- configuration.
+        -- Details of any code repositories that failed to be associated with the scan configuration.
         failedAssociations: {FailedAssociationResult}
-        -- Details of code repositories that were successfully associated with the scan
-        -- configuration.
+        -- Details of code repositories that were successfully associated with the scan configuration.
         successfulAssociations: {SuccessfulAssociationResult}
     end
 
-    -- A conflict occurred. This exception occurs when the same resource is being modified by
-    -- concurrent requests.
+    -- A conflict occurred. This exception occurs when the same resource is being modified by concurrent requests.
     record ConflictException
         message: string
         -- The ID of the conflicting resource.
@@ -1485,33 +1406,27 @@ local record M
         resourceType: string
     end
 
-    -- The operation tried to access an invalid resource. Make sure the resource is specified
-    -- correctly.
+    -- The operation tried to access an invalid resource. Make sure the resource is specified correctly.
     record ResourceNotFoundException
         message: string
     end
 
-    -- Contains details about a request to disassociate a code repository from a scan
-    -- configuration.
+    -- Contains details about a request to disassociate a code repository from a scan configuration.
     record DisassociateConfigurationRequest
-        -- The Amazon Resource Name (ARN) of the scan configuration to disassociate from a code
-        -- repository.
+        -- The Amazon Resource Name (ARN) of the scan configuration to disassociate from a code repository.
         scanConfigurationArn: string
         resource: CodeSecurityResource
     end
 
     record BatchDisassociateCodeSecurityScanConfigurationInput
-        -- A list of code repositories to disassociate from the specified scan
-        -- configuration.
+        -- A list of code repositories to disassociate from the specified scan configuration.
         disassociateConfigurationRequests: {DisassociateConfigurationRequest}
     end
 
     record BatchDisassociateCodeSecurityScanConfigurationOutput
-        -- Details of any code repositories that failed to be disassociated from the scan
-        -- configuration.
+        -- Details of any code repositories that failed to be disassociated from the scan configuration.
         failedAssociations: {FailedAssociationResult}
-        -- Details of code repositories that were successfully disassociated from the scan
-        -- configuration.
+        -- Details of code repositories that were successfully disassociated from the scan configuration.
         successfulAssociations: {SuccessfulAssociationResult}
     end
 
@@ -1535,16 +1450,14 @@ local record M
     end
 
     record BatchGetAccountStatusOutput
-        -- An array of objects that provide details on the status of Amazon Inspector for each of the
-        -- requested accounts.
+        -- An array of objects that provide details on the status of Amazon Inspector for each of the requested accounts.
         accounts: {AccountState}
         -- An array of objects detailing any accounts that failed to enable Amazon Inspector and why.
         failedAccounts: {FailedAccount}
     end
 
     record BatchGetCodeSnippetInput
-        -- An array of finding ARNs for the findings you want to retrieve code snippets
-        -- from.
+        -- An array of finding ARNs for the findings you want to retrieve code snippets from.
         findingArns: {string}
     end
 
@@ -1564,8 +1477,7 @@ local record M
         code: string
     end
 
-    -- Contains information on a code snippet retrieved by Amazon Inspector from a code vulnerability
-    -- finding.
+    -- Contains information on a code snippet retrieved by Amazon Inspector from a code vulnerability finding.
     record CodeSnippetResult
         -- The ARN of a finding that the code snippet is associated with.
         findingArn: string
@@ -1586,8 +1498,7 @@ local record M
         "INVALID_INPUT"
     end
 
-    -- Contains information about any errors encountered while trying to retrieve a code
-    -- snippet.
+    -- Contains information about any errors encountered while trying to retrieve a code snippet.
     record CodeSnippetError
         -- The ARN of the finding that a code snippet couldn't be retrieved for.
         findingArn: string
@@ -1600,8 +1511,7 @@ local record M
     record BatchGetCodeSnippetOutput
         -- The retrieved code snippets associated with the provided finding ARNs.
         codeSnippetResults: {CodeSnippetResult}
-        -- Any errors Amazon Inspector encountered while trying to retrieve the requested code
-        -- snippets.
+        -- Any errors Amazon Inspector encountered while trying to retrieve the requested code snippets.
         errors: {CodeSnippetError}
     end
 
@@ -1617,8 +1527,7 @@ local record M
         "INVALID_INPUT"
     end
 
-    -- Details about an error encountered when trying to return vulnerability data for a
-    -- finding.
+    -- Details about an error encountered when trying to return vulnerability data for a finding.
     record FindingDetailsError
         -- The finding ARN that returned an error.
         findingArn: string
@@ -1628,8 +1537,7 @@ local record M
         errorMessage: string
     end
 
-    -- The Cybersecurity and Infrastructure Security Agency (CISA) details for a specific
-    -- vulnerability.
+    -- The Cybersecurity and Infrastructure Security Agency (CISA) details for a specific vulnerability.
     record CisaData
         -- The date and time CISA added this vulnerability to their catalogue.
         dateAdded: number
@@ -1661,15 +1569,13 @@ local record M
     record FindingDetail
         -- The finding ARN that the vulnerability details are associated with.
         findingArn: string
-        -- The Cybersecurity and Infrastructure Security Agency (CISA) details for a specific
-        -- vulnerability.
+        -- The Cybersecurity and Infrastructure Security Agency (CISA) details for a specific vulnerability.
         cisaData: CisaData
         -- The risk score of the vulnerability.
         riskScore: number
         -- Information on the evidence of the vulnerability.
         evidences: {Evidence}
-        -- The MITRE adversary tactics, techniques, or procedures (TTPs) associated with the
-        -- vulnerability.
+        -- The MITRE adversary tactics, techniques, or procedures (TTPs) associated with the vulnerability.
         ttps: {string}
         -- The known malware tools or kits that can exploit the vulnerability.
         tools: {string}
@@ -1715,6 +1621,7 @@ local record M
         "VM"
         "CONTAINER_IMAGE"
         "SERVERLESS_FUNCTION"
+        "MACHINE_IMAGE"
     end
 
     -- An object that contains information about the Amazon Inspector free trial for an account.
@@ -1740,8 +1647,7 @@ local record M
         "INTERNAL_ERROR"
     end
 
-    -- Information about an error received while accessing free trail data for an
-    -- account.
+    -- Information about an error received while accessing free trail data for an account.
     record FreeTrialInfoError
         -- The account associated with the Amazon Inspector free trial information.
         accountId: string
@@ -1752,17 +1658,14 @@ local record M
     end
 
     record BatchGetFreeTrialInfoOutput
-        -- An array of objects that provide Amazon Inspector free trial details for each of the requested
-        -- accounts.
+        -- An array of objects that provide Amazon Inspector free trial details for each of the requested accounts.
         accounts: {FreeTrialAccountInfo}
-        -- An array of objects detailing any accounts that free trial data could not be returned
-        -- for.
+        -- An array of objects detailing any accounts that free trial data could not be returned for.
         failedAccounts: {FreeTrialInfoError}
     end
 
     record BatchGetMemberEc2DeepInspectionStatusInput
-        -- The unique identifiers for the Amazon Web Services accounts to retrieve Amazon Inspector deep inspection
-        -- activation status for.
+        -- The unique identifiers for the Amazon Web Services accounts to retrieve Amazon Inspector deep inspection activation status for.
         accountIds: {string}
     end
 
@@ -1773,63 +1676,50 @@ local record M
         "FAILED"
     end
 
-    -- An object that contains details about the state of Amazon Inspector deep inspection for a member
-    -- account.
+    -- An object that contains details about the state of Amazon Inspector deep inspection for a member account.
     record MemberAccountEc2DeepInspectionStatusState
         -- The unique identifier for the Amazon Web Services account of the organization member
         accountId: string
         -- The state of Amazon Inspector deep inspection in the member account.
         status: string
-        -- The error message explaining why the account failed to activate Amazon Inspector deep
-        -- inspection.
+        -- The error message explaining why the account failed to activate Amazon Inspector deep inspection.
         errorMessage: string
     end
 
-    -- An object that contains details about a member account in your organization that failed
-    -- to activate Amazon Inspector deep inspection.
+    -- An object that contains details about a member account in your organization that failed to activate Amazon Inspector deep inspection.
     record FailedMemberAccountEc2DeepInspectionStatusState
-        -- The unique identifier for the Amazon Web Services account of the organization member that failed to
-        -- activate Amazon Inspector deep inspection.
+        -- The unique identifier for the Amazon Web Services account of the organization member that failed to activate Amazon Inspector deep inspection.
         accountId: string
-        -- The status of EC2 scanning in the account that failed to activate Amazon Inspector deep
-        -- inspection.
+        -- The status of EC2 scanning in the account that failed to activate Amazon Inspector deep inspection.
         ec2ScanStatus: string
-        -- The error message explaining why the account failed to activate Amazon Inspector deep
-        -- inspection.
+        -- The error message explaining why the account failed to activate Amazon Inspector deep inspection.
         errorMessage: string
     end
 
     record BatchGetMemberEc2DeepInspectionStatusOutput
-        -- An array of objects that provide details on the activation status of Amazon Inspector deep
-        -- inspection for each of the requested accounts.
+        -- An array of objects that provide details on the activation status of Amazon Inspector deep inspection for each of the requested accounts.
         accountIds: {MemberAccountEc2DeepInspectionStatusState}
-        -- An array of objects that provide details on any accounts that failed to activate Amazon Inspector
-        -- deep inspection and why.
+        -- An array of objects that provide details on any accounts that failed to activate Amazon Inspector deep inspection and why.
         failedAccountIds: {FailedMemberAccountEc2DeepInspectionStatusState}
     end
 
-    -- An object that contains details about the status of Amazon Inspector deep inspection for a member
-    -- account in your organization.
+    -- An object that contains details about the status of Amazon Inspector deep inspection for a member account in your organization.
     record MemberAccountEc2DeepInspectionStatus
         -- The unique identifier for the Amazon Web Services account of the organization member.
         accountId: string
-        -- Whether Amazon Inspector deep inspection is active in the account. If TRUE Amazon Inspector deep
-        -- inspection is active, if FALSE it is not active.
+        -- Whether Amazon Inspector deep inspection is active in the account. If TRUE Amazon Inspector deep inspection is active, if FALSE it is not active.
         activateDeepInspection: boolean
     end
 
     record BatchUpdateMemberEc2DeepInspectionStatusInput
-        -- The unique identifiers for the Amazon Web Services accounts to change Amazon Inspector deep inspection status
-        -- for.
+        -- The unique identifiers for the Amazon Web Services accounts to change Amazon Inspector deep inspection status for.
         accountIds: {MemberAccountEc2DeepInspectionStatus}
     end
 
     record BatchUpdateMemberEc2DeepInspectionStatusOutput
-        -- An array of objects that provide details for each of the accounts that Amazon Inspector deep
-        -- inspection status was successfully changed for.
+        -- An array of objects that provide details for each of the accounts that Amazon Inspector deep inspection status was successfully changed for.
         accountIds: {MemberAccountEc2DeepInspectionStatusState}
-        -- An array of objects that provide details for each of the accounts that Amazon Inspector deep
-        -- inspection status could not be successfully changed for.
+        -- An array of objects that provide details for each of the accounts that Amazon Inspector deep inspection status could not be successfully changed for.
         failedAccountIds: {FailedMemberAccountEc2DeepInspectionStatusState}
     end
 
@@ -1996,8 +1886,7 @@ local record M
         targets: CisTargets
         -- The account or organization that schedules the CIS scan.
         scheduledBy: string
-        -- The security level for the CIS scan. Security level refers to the Benchmark levels that
-        -- CIS assigns to a profile.
+        -- The security level for the CIS scan. Security level refers to the Benchmark levels that CIS assigns to a profile.
         securityLevel: string
     end
 
@@ -2112,8 +2001,7 @@ local record M
         "EQUALS"
     end
 
-    -- The CIS security level filter. Security level refers to the Benchmark levels that CIS
-    -- assigns to a profile.
+    -- The CIS security level filter. Security level refers to the Benchmark levels that CIS assigns to a profile.
     record CisSecurityLevelFilter
         -- The CIS security filter comparison value.
         comparison: string
@@ -2129,8 +2017,7 @@ local record M
         checkIdFilters: {CisStringFilter}
         -- The criteria's title filters.
         titleFilters: {CisStringFilter}
-        -- The criteria's security level filters. . Security level refers to the Benchmark levels
-        -- that CIS assigns to a profile.
+        -- The criteria's security level filters. . Security level refers to the Benchmark levels that CIS assigns to a profile.
         securityLevelFilters: {CisSecurityLevelFilter}
         -- The criteria's finding ARN filters.
         findingArnFilters: {CisStringFilter}
@@ -2299,13 +2186,11 @@ local record M
 
     -- Details about the task or pod in the cluster.
     record ClusterDetails
-        -- The last timestamp when Amazon Inspector recorded the image in use in the task or pod
-        -- in the cluster.
+        -- The last timestamp when Amazon Inspector recorded the image in use in the task or pod in the cluster.
         lastInUse: number
         -- The number of tasks or pods where an image was running on the cluster.
         runningUnitCount: number
-        -- The number of tasks or pods where an image was stopped on the cluster in the last 24
-        -- hours.
+        -- The number of tasks or pods where an image was stopped on the cluster in the last 24 hours.
         stoppedUnitCount: number
         clusterMetadata: ClusterMetadata
     end
@@ -2324,8 +2209,7 @@ local record M
         clusterDetails: {ClusterDetails}
     end
 
-    -- Contains information on where a code vulnerability is located in your Lambda
-    -- function.
+    -- Contains information on where a code vulnerability is located in your Lambda function.
     record CodeFilePath
         -- The name of the file the code vulnerability was found in.
         fileName: string
@@ -2346,8 +2230,7 @@ local record M
     record CodeRepositoryDetails
         -- The name of the project in the code repository.
         projectName: string
-        -- The Amazon Resource Name (ARN) of the code security integration associated with the
-        -- repository.
+        -- The Amazon Resource Name (ARN) of the code security integration associated with the repository.
         integrationArn: string
         -- The type of repository provider (such as GitHub, GitLab, etc.).
         providerType: string
@@ -2390,6 +2273,9 @@ local record M
         "UNSUPPORTED_CODE_ARTIFACTS"
         "RESOURCE_UNMANAGED"
         "RESOURCE_STOPPED"
+        "EXTRACTION_COLLECTION_TIME_LIMIT_EXCEEDED"
+        "STORAGE_LIMIT_EXCEEDED"
+        "INVALID_ARTIFACT"
     end
 
     enum ScanStatusCode
@@ -2401,79 +2287,7 @@ local record M
     record ScanStatus
         -- The status code of the scan.
         statusCode: string
-        -- The scan status. Possible return values and descriptions are:
-        -- ACCESS_DENIED - Resource access policy restricting Amazon Inspector access. Please
-        -- update the IAM policy.
-        -- ACCESS_DENIED_TO_ENCRYPTION_KEY - The KMS key policy doesn't allow Amazon Inspector
-        -- access. Update the key policy.
-        -- DEEP_INSPECTION_COLLECTION_TIME_LIMIT_EXCEEDED - Amazon Inspector failed to extract
-        -- the package inventory because the package collection time exceeding the maximum threshold
-        -- of 15 minutes.
-        -- DEEP_INSPECTION_DAILY_SSM_INVENTORY_LIMIT_EXCEEDED - The SSM agent couldn't
-        -- send inventory to Amazon Inspector because the SSM quota for Inventory data collected per instance per
-        -- day has already been reached for this instance.
-        -- DEEP_INSPECTION_NO_INVENTORY - The Amazon Inspector plugin hasn't yet been able to
-        -- collect an inventory of packages for this instance. This is usually the result of a pending
-        -- scan, however, if this status persists after 6 hours, use SSM to ensure that
-        -- the required Amazon Inspector associations exist and are running for the instance.
-        -- DEEP_INSPECTION_PACKAGE_COLLECTION_LIMIT_EXCEEDED - The instance has
-        -- exceeded the 5000 package limit for Amazon Inspector Deep inspection. To resume Deep inspection for
-        -- this instance you can try to adjust the custom paths associated with the account.
-        -- EC2_INSTANCE_STOPPED - This EC2 instance is in a stopped state, therefore,
-        -- Amazon Inspector will pause scanning. The existing findings will continue to exist until the instance
-        -- is terminated. Once the instance is re-started, Inspector will automatically start scanning
-        -- the instance again. Please note that you will not be charged for this instance while it's
-        -- in a stopped state.
-        -- EXCLUDED_BY_TAG - This resource was not scanned because it has been
-        -- excluded by a tag.
-        -- IMAGE_SIZE_EXCEEDED - Reserved for future use.
-        -- INTEGRATION_CONNNECTION_LOST - Amazon Inspector couldn't communicate with the source
-        -- code management platform.
-        -- INTERNAL_ERROR - Amazon Inspector has encountered an internal error for this resource.
-        -- Amazon Inspector service will automatically resolve the issue and resume the scanning. No action
-        -- required from the user.
-        -- NO_INVENTORY - Amazon Inspector couldn't find software application inventory to scan
-        -- for vulnerabilities. This might be caused due to required Amazon Inspector associations being deleted
-        -- or failing to run on your resource. Please verify the status of
-        -- InspectorInventoryCollection-do-not-delete association in the SSM console
-        -- for the resource. Additionally, you can verify the instance's inventory in the SSM Fleet
-        -- Manager console.
-        -- NO_RESOURCES_FOUND - Reserved for future use.
-        -- NO_SCAN_CONFIGURATION_ASSOCIATED - The code repository resource doesn't
-        -- have an associated scan configuration.
-        -- PENDING_DISABLE - This resource is pending cleanup during disablement. The
-        -- customer will not be billed while a resource is in the pending disable status.
-        -- PENDING_INITIAL_SCAN - This resource has been identified for scanning,
-        -- results will be available soon.
-        -- RESOURCE_TERMINATED - This resource has been terminated. The findings and
-        -- coverage associated with this resource are in the process of being cleaned up.
-        -- SCAN_ELIGIBILITY_EXPIRED - The configured scan duration has lapsed for this
-        -- image.
-        -- SCAN_FREQUENCY_MANUAL - This image will not be covered by Amazon Inspector due to the
-        -- repository scan frequency configuration.
-        -- SCAN_FREQUENCY_SCAN_ON_PUSH - This image will be scanned one time and will
-        -- not new findings because of the scan frequency configuration.
-        -- SCAN_IN_PROGRESS - The resource is currently being scanned.
-        -- STALE_INVENTORY - Amazon Inspector wasn't able to collect an updated software
-        -- application inventory in the last 7 days. Please confirm the required Amazon Inspector associations
-        -- still exist and you can still see an updated inventory in the SSM console.
-        -- SUCCESSFUL - The scan was successful.
-        -- UNMANAGED_EC2_INSTANCE - The EC2 instance is not managed by SSM, please use
-        -- the following SSM automation to remediate the issue: https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awssupport-troubleshoot-managed-instance.html.
-        -- Once the instance becomes managed by SSM, Inspector will automatically begin scanning this
-        -- instance.
-        -- UNSUPPORTED_CODE_ARTIFACTS - The function was not scanned because it has an unsupported code artifacts.
-        -- UNSUPPORTED_CONFIG_FILE - Reserved for future use.
-        -- UNSUPPORTED_LANGUAGE - The scan was unsuccessful because the repository
-        -- contains files in an unsupported programming language.
-        -- UNSUPPORTED_MEDIA_TYPE - The ECR image has an unsupported media
-        -- type.
-        -- UNSUPPORTED_OS - Amazon Inspector does not support this OS, architecture, or image
-        -- manifest type at this time. To see a complete list of supported operating systems see:
-        -- https://docs.aws.amazon.com/inspector/latest/user/supported.html.
-        -- UNSUPPORTED_RUNTIME - The function was not scanned because it has an
-        -- unsupported runtime. To see a complete list of supported runtimes see: https://docs.aws.amazon.com/inspector/latest/user/supported.html.
-        -- IMAGE_ARCHIVED - This image has been archived in Amazon ECR and is no longer available for scanning in Amazon Inspector.
+        -- The scan status. Possible return values and descriptions are: ACCESS_DENIED - Resource access policy restricting Amazon Inspector access. Please update the IAM policy. ACCESS_DENIED_TO_ENCRYPTION_KEY - The KMS key policy doesn't allow Amazon Inspector access. Update the key policy. DEEP_INSPECTION_COLLECTION_TIME_LIMIT_EXCEEDED - Amazon Inspector failed to extract the package inventory because the package collection time exceeding the maximum threshold of 15 minutes. DEEP_INSPECTION_DAILY_SSM_INVENTORY_LIMIT_EXCEEDED - The SSM agent couldn't send inventory to Amazon Inspector because the SSM quota for Inventory data collected per instance per day has already been reached for this instance. DEEP_INSPECTION_NO_INVENTORY - The Amazon Inspector plugin hasn't yet been able to collect an inventory of packages for this instance. This is usually the result of a pending scan, however, if this status persists after 6 hours, use SSM to ensure that the required Amazon Inspector associations exist and are running for the instance. DEEP_INSPECTION_PACKAGE_COLLECTION_LIMIT_EXCEEDED - The instance has exceeded the 5000 package limit for Amazon Inspector Deep inspection. To resume Deep inspection for this instance you can try to adjust the custom paths associated with the account. EC2_INSTANCE_STOPPED - This EC2 instance is in a stopped state, therefore, Amazon Inspector will pause scanning. The existing findings will continue to exist until the instance is terminated. Once the instance is re-started, Inspector will automatically start scanning the instance again. Please note that you will not be charged for this instance while it's in a stopped state. EXCLUDED_BY_TAG - This resource was not scanned because it has been excluded by a tag. IMAGE_SIZE_EXCEEDED - Reserved for future use. INTEGRATION_CONNNECTION_LOST - Amazon Inspector couldn't communicate with the source code management platform. INTERNAL_ERROR - Amazon Inspector has encountered an internal error for this resource. Amazon Inspector service will automatically resolve the issue and resume the scanning. No action required from the user. INVALID_ARTIFACT - Amazon Inspector couldn't scan this resource because its artifact is malformed and couldn't be safely extracted. NO_INVENTORY - Amazon Inspector couldn't find software application inventory to scan for vulnerabilities. This might be caused due to required Amazon Inspector associations being deleted or failing to run on your resource. Please verify the status of InspectorInventoryCollection-do-not-delete association in the SSM console for the resource. Additionally, you can verify the instance's inventory in the SSM Fleet Manager console. NO_RESOURCES_FOUND - Reserved for future use. NO_SCAN_CONFIGURATION_ASSOCIATED - The code repository resource doesn't have an associated scan configuration. PENDING_DISABLE - This resource is pending cleanup during disablement. The customer will not be billed while a resource is in the pending disable status. PENDING_INITIAL_SCAN - This resource has been identified for scanning, results will be available soon. RESOURCE_TERMINATED - This resource has been terminated. The findings and coverage associated with this resource are in the process of being cleaned up. SCAN_ELIGIBILITY_EXPIRED - The configured scan duration has lapsed for this image. SCAN_FREQUENCY_MANUAL - This image will not be covered by Amazon Inspector due to the repository scan frequency configuration. SCAN_FREQUENCY_SCAN_ON_PUSH - This image will be scanned one time and will not new findings because of the scan frequency configuration. SCAN_IN_PROGRESS - The resource is currently being scanned. STALE_INVENTORY - Amazon Inspector wasn't able to collect an updated software application inventory in the last 7 days. Please confirm the required Amazon Inspector associations still exist and you can still see an updated inventory in the SSM console. SUCCESSFUL - The scan was successful. UNMANAGED_EC2_INSTANCE - The EC2 instance is not managed by SSM, please use the following SSM automation to remediate the issue: https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awssupport-troubleshoot-managed-instance.html. Once the instance becomes managed by SSM, Inspector will automatically begin scanning this instance. UNSUPPORTED_CODE_ARTIFACTS - The function was not scanned because it has an unsupported code artifacts. UNSUPPORTED_CONFIG_FILE - Reserved for future use. UNSUPPORTED_LANGUAGE - The scan was unsuccessful because the repository contains files in an unsupported programming language. UNSUPPORTED_MEDIA_TYPE - The ECR image has an unsupported media type. UNSUPPORTED_OS - Amazon Inspector does not support this OS, architecture, or image manifest type at this time. To see a complete list of supported operating systems see: https://docs.aws.amazon.com/inspector/latest/user/supported.html. UNSUPPORTED_RUNTIME - The function was not scanned because it has an unsupported runtime. To see a complete list of supported runtimes see: https://docs.aws.amazon.com/inspector/latest/user/supported.html. IMAGE_ARCHIVED - This image has been archived in Amazon ECR and is no longer available for scanning in Amazon Inspector.
         reason: string
     end
 
@@ -2497,27 +2311,23 @@ local record M
         "PUSH"
     end
 
-    -- Contains the continuous integration scan configuration settings applied to a specific
-    -- project.
+    -- Contains the continuous integration scan configuration settings applied to a specific project.
     record ProjectContinuousIntegrationScanConfiguration
         -- The repository event that triggers continuous integration scans for the project.
         supportedEvent: string
-        -- The categories of security rules applied during continuous integration scans for the
-        -- project.
+        -- The categories of security rules applied during continuous integration scans for the project.
         ruleSetCategories: {string}
     end
 
     -- Contains the periodic scan configuration settings applied to a specific project.
     record ProjectPeriodicScanConfiguration
-        -- The schedule expression for periodic scans, in cron format, applied to the
-        -- project.
+        -- The schedule expression for periodic scans, in cron format, applied to the project.
         frequencyExpression: string
         -- The categories of security rules applied during periodic scans for the project.
         ruleSetCategories: {string}
     end
 
-    -- Contains the scan configuration settings applied to a specific project in a code
-    -- repository.
+    -- Contains the scan configuration settings applied to a specific project in a code repository.
     record ProjectCodeSecurityScanConfiguration
         -- The periodic scan configurations applied to the project.
         periodicScanConfigurations: {ProjectPeriodicScanConfiguration}
@@ -2525,13 +2335,11 @@ local record M
         continuousIntegrationScanConfigurations: {ProjectContinuousIntegrationScanConfiguration}
     end
 
-    -- Contains metadata information about a code repository that is being scanned by Amazon
-    -- Inspector.
+    -- Contains metadata information about a code repository that is being scanned by Amazon Inspector.
     record CodeRepositoryMetadata
         -- The name of the project in the code repository.
         projectName: string
-        -- The Amazon Resource Name (ARN) of the code security integration associated with the
-        -- repository.
+        -- The Amazon Resource Name (ARN) of the code security integration associated with the repository.
         integrationArn: string
         -- The type of repository provider (such as GitHub, GitLab, etc.).
         providerType: string
@@ -2581,11 +2389,9 @@ local record M
         lastUpdateOn: number
     end
 
-    -- Configuration settings for continuous integration scans that run automatically when code
-    -- changes are made.
+    -- Configuration settings for continuous integration scans that run automatically when code changes are made.
     record ContinuousIntegrationScanConfiguration
-        -- The repository events that trigger continuous integration scans, such as pull requests
-        -- or commits.
+        -- The repository events that trigger continuous integration scans, such as pull requests or commits.
         supportedEvents: {string}
     end
 
@@ -2597,10 +2403,7 @@ local record M
 
     -- Configuration settings for periodic scans that run on a scheduled basis.
     record PeriodicScanConfiguration
-        -- The frequency at which periodic scans are performed (such as weekly or monthly).
-        -- If you don't provide the frequencyExpression Amazon Inspector chooses day for the scan
-        -- to run. If you provide the frequencyExpression, the schedule must match the
-        -- specified frequency.
+        -- The frequency at which periodic scans are performed (such as weekly or monthly). If you don't provide the frequencyExpression Amazon Inspector chooses day for the scan to run. If you provide the frequencyExpression, the schedule must match the specified frequency.
         frequency: string
         -- The schedule expression for periodic scans, in cron format.
         frequencyExpression: string
@@ -2610,8 +2413,7 @@ local record M
     record CodeSecurityScanConfiguration
         -- Configuration settings for periodic scans that run on a scheduled basis.
         periodicScanConfiguration: PeriodicScanConfiguration
-        -- Configuration settings for continuous integration scans that run automatically when code
-        -- changes are made.
+        -- Configuration settings for continuous integration scans that run automatically when code changes are made.
         continuousIntegrationScanConfiguration: ContinuousIntegrationScanConfiguration
         -- The categories of security rules to be applied during the scan.
         ruleSetCategories: {string}
@@ -2628,9 +2430,7 @@ local record M
 
     -- Defines the scope of repositories to be included in code security scans.
     record ScopeSettings
-        -- The scope of projects to be selected for scanning within the integrated repositories.
-        -- Setting the value to ALL applies the scope settings to all existing and future
-        -- projects imported into Amazon Inspector.
+        -- The scope of projects to be selected for scanning within the integrated repositories. Setting the value to ALL applies the scope settings to all existing and future projects imported into Amazon Inspector.
         projectSelectionScope: string
     end
 
@@ -2650,38 +2450,27 @@ local record M
         continuousIntegrationScanSupportedEvents: {string}
         -- The categories of security rules applied during the scan.
         ruleSetCategories: {string}
-        -- The scope settings that define which repositories will be scanned. If the
-        -- ScopeSetting parameter is ALL the scan configuration applies
-        -- to all existing and future projects imported into Amazon Inspector.
+        -- The scope settings that define which repositories will be scanned. If the ScopeSetting parameter is ALL the scan configuration applies to all existing and future projects imported into Amazon Inspector.
         scopeSettings: ScopeSettings
     end
 
-    -- Contains information on the code vulnerability identified in your Lambda
-    -- function.
+    -- Contains information on the code vulnerability identified in your Lambda function.
     record CodeVulnerabilityDetails
         -- Contains information on where the code vulnerability is located in your code.
         filePath: CodeFilePath
-        -- The detector tag associated with the vulnerability. Detector tags group related
-        -- vulnerabilities by common themes or tactics. For a list of available tags by programming
-        -- language, see Java
-        -- tags, or Python tags.
+        -- The detector tag associated with the vulnerability. Detector tags group related vulnerabilities by common themes or tactics. For a list of available tags by programming language, see Java tags, or Python tags.
         detectorTags: {string}
         -- A URL containing supporting documentation about the code vulnerability detected.
         referenceUrls: {string}
         -- The identifier for a rule that was used to detect the code vulnerability.
         ruleId: string
-        -- The Amazon Resource Name (ARN) of the Lambda layer that the code vulnerability was
-        -- detected in.
+        -- The Amazon Resource Name (ARN) of the Lambda layer that the code vulnerability was detected in.
         sourceLambdaLayerArn: string
-        -- The ID for the Amazon CodeGuru detector associated with the finding. For more
-        -- information on detectors see Amazon CodeGuru Detector Library.
+        -- The ID for the Amazon CodeGuru detector associated with the finding. For more information on detectors see Amazon CodeGuru Detector Library.
         detectorId: string
-        -- The name of the detector used to identify the code vulnerability. For more information
-        -- on detectors see CodeGuru
-        -- Detector Library.
+        -- The name of the detector used to identify the code vulnerability. For more information on detectors see CodeGuru Detector Library.
         detectorName: string
-        -- The Common Weakness Enumeration (CWE) item associated with the detected
-        -- vulnerability.
+        -- The Common Weakness Enumeration (CWE) item associated with the detected vulnerability.
         cwes: {string}
     end
 
@@ -2955,12 +2744,9 @@ local record M
         lowerInclusive: number
     end
 
-    -- A structure that identifies filter criteria for
-    -- GetCoverageStatistics.
+    -- A structure that identifies filter criteria for GetCoverageStatistics.
     record CoverageFilterCriteria
-        -- The scan status code to filter on. Valid values are: ValidationException,
-        -- InternalServerException, ResourceNotFoundException,
-        -- BadRequestException, and ThrottlingException.
+        -- The scan status code to filter on. Valid values are: ValidationException, InternalServerException, ResourceNotFoundException, BadRequestException, and ThrottlingException.
         scanStatusCode: {CoverageStringFilter}
         -- The scan status reason to filter on.
         scanStatusReason: {CoverageStringFilter}
@@ -2968,10 +2754,7 @@ local record M
         accountId: {CoverageStringFilter}
         -- An array of Amazon Web Services resource IDs to return coverage statistics for.
         resourceId: {CoverageStringFilter}
-        -- An array of Amazon Web Services resource types to return coverage statistics for. The values can be
-        -- AWS_EC2_INSTANCE, AWS_LAMBDA_FUNCTION,
-        -- AWS_ECR_CONTAINER_IMAGE, AWS_ECR_REPOSITORY or
-        -- AWS_ACCOUNT.
+        -- An array of Amazon Web Services resource types to return coverage statistics for. The values can be AWS_EC2_INSTANCE, AWS_LAMBDA_FUNCTION, AWS_ECR_CONTAINER_IMAGE, AWS_ECR_REPOSITORY or AWS_ACCOUNT.
         resourceType: {CoverageStringFilter}
         -- An array of Amazon Inspector scan types to return coverage statistics for.
         scanType: {CoverageStringFilter}
@@ -2981,20 +2764,17 @@ local record M
         ecrImageTags: {CoverageStringFilter}
         -- The Amazon EC2 instance tags to filter on.
         ec2InstanceTags: {CoverageMapFilter}
-        -- Returns coverage statistics for Amazon Web Services Lambda functions filtered by function
-        -- names.
+        -- Returns coverage statistics for Amazon Web Services Lambda functions filtered by function names.
         lambdaFunctionName: {CoverageStringFilter}
-        -- Returns coverage statistics for Amazon Web Services Lambda functions filtered by
-        -- tag.
+        -- Returns coverage statistics for Amazon Web Services Lambda functions filtered by tag.
         lambdaFunctionTags: {CoverageMapFilter}
-        -- Returns coverage statistics for Amazon Web Services Lambda functions filtered by
-        -- runtime.
+        -- Returns coverage statistics for Amazon Web Services Lambda functions filtered by runtime.
         lambdaFunctionRuntime: {CoverageStringFilter}
-        -- Filters Amazon Web Services resources based on whether Amazon Inspector has checked them for vulnerabilities
-        -- within the specified time range.
+        -- The machine image tags to filter coverage results by.
+        machineImageTags: {CoverageMapFilter}
+        -- Filters Amazon Web Services resources based on whether Amazon Inspector has checked them for vulnerabilities within the specified time range.
         lastScannedAt: {CoverageDateFilter}
-        -- The filter to search for Amazon EC2 instance coverage by scan mode. Valid values are
-        -- EC2_SSM_AGENT_BASED, EC2_AGENTLESS, and EC2_INSPECTOR_AGENT_BASED.
+        -- The filter to search for Amazon EC2 instance coverage by scan mode. Valid values are EC2_SSM_AGENT_BASED, EC2_AGENTLESS, and EC2_INSPECTOR_AGENT_BASED.
         scanMode: {CoverageStringFilter}
         -- The date an image was last pulled at.
         imagePulledAt: {CoverageDateFilter}
@@ -3004,11 +2784,9 @@ local record M
         ecrImageInUseCount: {CoverageNumberFilter}
         -- Filter criteria for code repositories based on project name.
         codeRepositoryProjectName: {CoverageStringFilter}
-        -- Filter criteria for code repositories based on provider type (such as GitHub, GitLab,
-        -- etc.).
+        -- Filter criteria for code repositories based on provider type (such as GitHub, GitLab, etc.).
         codeRepositoryProviderType: {CoverageStringFilter}
-        -- Filter criteria for code repositories based on visibility setting (public or
-        -- private).
+        -- Filter criteria for code repositories based on visibility setting (public or private).
         codeRepositoryProviderTypeVisibility: {CoverageStringFilter}
         -- Filter criteria for code repositories based on the ID of the last scanned commit.
         lastScannedCommitId: {CoverageStringFilter}
@@ -3047,6 +2825,7 @@ local record M
         "Microsoft.ContainerRegistry/registry/containerRepository"
         "Microsoft.Web/sites"
         "Microsoft.ContainerRegistry/registries"
+        "MACHINE_IMAGE"
     end
 
     enum Ec2Platform
@@ -3072,8 +2851,7 @@ local record M
         tags: {string}
         -- The date an image was last pulled at.
         imagePulledAt: number
-        -- The last time an Amazon ECR image was used in an Amazon ECS task or
-        -- Amazon EKS pod.
+        -- The last time an Amazon ECR image was used in an Amazon ECS task or Amazon EKS pod.
         lastInUseAt: number
         -- The number of Amazon ECS tasks or Amazon EKS pods where the Amazon ECR container image is in use.
         inUseCount: number
@@ -3097,13 +2875,26 @@ local record M
     record LambdaFunctionMetadata
         -- The resource tags on an Amazon Web Services Lambda function.
         functionTags: {string : string}
-        -- The layers for an Amazon Web Services Lambda function. A Lambda function can have up to
-        -- five layers.
+        -- The layers for an Amazon Web Services Lambda function. A Lambda function can have up to five layers.
         layers: {string}
         -- The name of a function.
         functionName: string
         -- An Amazon Web Services Lambda function's runtime.
         runtime: string
+    end
+
+    enum MachineImagePlatform
+        "WINDOWS"
+        "LINUX"
+        "UNKNOWN"
+    end
+
+    -- Contains metadata about a machine image associated with a covered resource.
+    record MachineImageMetadata
+        -- The tags associated with the machine image.
+        tags: {string : string}
+        -- The platform of the machine image.
+        platform: string
     end
 
     -- Contains metadata about a serverless function associated with a covered resource.
@@ -3142,8 +2933,7 @@ local record M
         ecrImage: EcrContainerImageMetadata
         -- An object that contains metadata details for an Amazon EC2 instance.
         ec2: Ec2Metadata
-        -- An object that contains metadata details for an Amazon Web Services Lambda
-        -- function.
+        -- An object that contains metadata details for an Amazon Web Services Lambda function.
         lambdaFunction: LambdaFunctionMetadata
         -- Contains metadata about scan coverage for a code repository resource.
         codeRepository: CodeRepositoryMetadata
@@ -3157,6 +2947,8 @@ local record M
         containerRegistry: ContainerRegistryMetadata
         -- The serverless function metadata associated with a covered resource.
         serverlessFunction: ServerlessFunctionMetadata
+        -- The machine image metadata associated with a covered resource.
+        machineImage: MachineImageMetadata
     end
 
     enum ScanMode
@@ -3213,8 +3005,7 @@ local record M
     record CreateCisScanConfigurationInput
         -- The scan name for the CIS scan configuration.
         scanName: string
-        -- The security level for the CIS scan configuration. Security level refers to the
-        -- Benchmark levels that CIS assigns to a profile.
+        -- The security level for the CIS scan configuration. Security level refers to the Benchmark levels that CIS assigns to a profile.
         securityLevel: string
         -- The schedule for the CIS scan configuration.
         schedule: Schedule
@@ -3229,18 +3020,15 @@ local record M
         scanConfigurationArn: string
     end
 
-    -- Contains details required to create an integration with a self-managed GitLab
-    -- instance.
+    -- Contains details required to create an integration with a self-managed GitLab instance.
     record CreateGitLabSelfManagedIntegrationDetail
         -- The URL of the self-managed GitLab instance.
         instanceUrl: string
-        -- The personal access token used to authenticate with the self-managed GitLab
-        -- instance.
+        -- The personal access token used to authenticate with the self-managed GitLab instance.
         accessToken: string
     end
 
-    -- Contains details required to create a code security integration with a specific
-    -- repository provider.
+    -- Contains details required to create a code security integration with a specific repository provider.
     record CreateIntegrationDetail
         -- Details specific to creating an integration with a self-managed GitLab instance.
         gitlabSelfManaged: CreateGitLabSelfManagedIntegrationDetail
@@ -3271,12 +3059,7 @@ local record M
         level: string
         -- The configuration settings for the code security scan.
         configuration: CodeSecurityScanConfiguration
-        -- The scope settings that define which repositories will be scanned. Include this
-        -- parameter to create a default scan configuration. Otherwise Amazon Inspector creates a general scan
-        -- configuration.
-        -- A default scan configuration automatically applies to all existing and future projects
-        -- imported into Amazon Inspector. Use the BatchAssociateCodeSecurityScanConfiguration
-        -- operation to associate a general scan configuration with projects.
+        -- The scope settings that define which repositories will be scanned. Include this parameter to create a default scan configuration. Otherwise Amazon Inspector creates a general scan configuration. A default scan configuration automatically applies to all existing and future projects imported into Amazon Inspector. Use the BatchAssociateCodeSecurityScanConfiguration operation to associate a general scan configuration with projects.
         scopeSettings: ScopeSettings
         -- The tags to apply to the scan configuration.
         tags: {string : string}
@@ -3360,8 +3143,7 @@ local record M
         firstObservedAt: {DateFilter}
         -- Details on the date and time a finding was last seen used to filter findings.
         lastObservedAt: {DateFilter}
-        -- Details on the date and time a finding was last updated at used to filter
-        -- findings.
+        -- Details on the date and time a finding was last updated at used to filter findings.
         updatedAt: {DateFilter}
         -- Details on the finding status types used to filter findings.
         findingStatus: {StringFilter}
@@ -3395,8 +3177,7 @@ local record M
         ecrImageHash: {StringFilter}
         -- Filter criteria indicating when an Amazon ECR image was last used in an Amazon ECS cluster task or Amazon EKS cluster pod.
         ecrImageLastInUseAt: {DateFilter}
-        -- Filter criteria indicating when details for an Amazon ECR image include when an
-        -- Amazon ECR image is in use.
+        -- Filter criteria indicating when details for an Amazon ECR image include when an Amazon ECR image is in use.
         ecrImageInUseCount: {NumberFilter}
         -- Details on the port ranges used to filter findings.
         portRange: {PortRangeFilter}
@@ -3416,46 +3197,40 @@ local record M
         vulnerablePackages: {PackageFilter}
         -- Details on the related vulnerabilities used to filter findings.
         relatedVulnerabilities: {StringFilter}
-        -- Details on whether a fix is available through a version update. This value can be
-        -- YES, NO, or PARTIAL. A PARTIAL fix
-        -- means that some, but not all, of the packages identified in the finding have fixes
-        -- available through updated versions.
+        -- Details on whether a fix is available through a version update. This value can be YES, NO, or PARTIAL. A PARTIAL fix means that some, but not all, of the packages identified in the finding have fixes available through updated versions.
         fixAvailable: {StringFilter}
-        -- Filters the list of Amazon Web Services Lambda functions by the name of the
-        -- function.
+        -- Filters the list of Amazon Web Services Lambda functions by the name of the function.
         lambdaFunctionName: {StringFilter}
-        -- Filters the list of Amazon Web Services Lambda functions by the function's layers. A
-        -- Lambda function can have up to five layers.
+        -- Filters the list of Amazon Web Services Lambda functions by the function's layers. A Lambda function can have up to five layers.
         lambdaFunctionLayers: {StringFilter}
-        -- Filters the list of Amazon Web Services Lambda functions by the runtime environment for
-        -- the Lambda function.
+        -- Filters the list of Amazon Web Services Lambda functions by the runtime environment for the Lambda function.
         lambdaFunctionRuntime: {StringFilter}
-        -- Filters the list of Amazon Web Services Lambda functions by the date and time that a user
-        -- last updated the configuration, in ISO 8601
-        -- format
+        -- Filters the list of Amazon Web Services Lambda functions by the date and time that a user last updated the configuration, in ISO 8601 format
         lambdaFunctionLastModifiedAt: {DateFilter}
         -- Filters the list of Amazon Web Services Lambda functions by execution role.
         lambdaFunctionExecutionRoleArn: {StringFilter}
-        -- Filters the list of Amazon Web Services Lambda findings by the availability of
-        -- exploits.
+        -- Filters the list of Amazon Web Services Lambda findings by the availability of exploits.
         exploitAvailable: {StringFilter}
-        -- The name of the detector used to identify a code vulnerability in a Lambda function used
-        -- to filter findings.
+        -- The name of the detector used to identify a code vulnerability in a Lambda function used to filter findings.
         codeVulnerabilityDetectorName: {StringFilter}
-        -- The detector type tag associated with the vulnerability used to filter findings.
-        -- Detector tags group related vulnerabilities by common themes or tactics. For a list of
-        -- available tags by programming language, see Java tags, or Python tags.
+        -- The detector type tag associated with the vulnerability used to filter findings. Detector tags group related vulnerabilities by common themes or tactics. For a list of available tags by programming language, see Java tags, or Python tags.
         codeVulnerabilityDetectorTags: {StringFilter}
-        -- The file path to the file in a Lambda function that contains a code vulnerability used
-        -- to filter findings.
+        -- The file path to the file in a Lambda function that contains a code vulnerability used to filter findings.
         codeVulnerabilityFilePath: {StringFilter}
         -- The EPSS score used to filter findings.
         epssScore: {NumberFilter}
         -- Filter criteria for findings based on the project name in a code repository.
         codeRepositoryProjectName: {StringFilter}
-        -- Filter criteria for findings based on the repository provider type (such as GitHub,
-        -- GitLab, etc.).
+        -- Filter criteria for findings based on the repository provider type (such as GitHub, GitLab, etc.).
         codeRepositoryProviderType: {StringFilter}
+        -- The ID of the Amazon Machine Image (AMI) used to filter findings.
+        machineImageId: {StringFilter}
+        -- The name of the Amazon Machine Image (AMI) used to filter findings.
+        machineImageName: {StringFilter}
+        -- The ID of the Amazon Web Services account that owns the Amazon Machine Image (AMI) used to filter findings.
+        machineImageOwnerAccountId: {StringFilter}
+        -- The platform of the Amazon Machine Image (AMI) used to filter findings.
+        machineImagePlatform: {StringFilter}
         -- Filter criteria for the cloud provider.
         cloudProvider: {StringFilter}
         -- Filter criteria for the cloud provider region.
@@ -3503,9 +3278,7 @@ local record M
         description: string
         -- Defines the criteria to be used in the filter for querying findings.
         filterCriteria: FilterCriteria
-        -- The name of the filter. Minimum length of 3. Maximum length of 64. Valid characters
-        -- include alphanumeric characters, dot (.), underscore (_), and dash (-). Spaces are not
-        -- allowed.
+        -- The name of the filter. Minimum length of 3. Maximum length of 64. Valid characters include alphanumeric characters, dot (.), underscore (_), and dash (-). Spaces are not allowed.
         name: string
         -- A list of tags for the filter.
         tags: {string : string}
@@ -3531,6 +3304,8 @@ local record M
         keyPrefix: string
         -- The ARN of the KMS key used to encrypt data when exporting findings.
         kmsKeyArn: string
+        -- The Amazon Web Services account ID of the expected owner of the Amazon S3 bucket. If the actual bucket owner does not match, the export request fails.
+        expectedBucketOwner: string
     end
 
     record CreateFindingsReportInput
@@ -3639,8 +3414,7 @@ local record M
         "USD"
     end
 
-    -- The Common Vulnerability Scoring System (CVSS) version 2 details for the
-    -- vulnerability.
+    -- The Common Vulnerability Scoring System (CVSS) version 2 details for the vulnerability.
     record Cvss2
         -- The CVSS v2 base score for the vulnerability.
         baseScore: number
@@ -3648,8 +3422,7 @@ local record M
         scoringVector: string
     end
 
-    -- The Common Vulnerability Scoring System (CVSS) version 3 details for the
-    -- vulnerability.
+    -- The Common Vulnerability Scoring System (CVSS) version 3 details for the vulnerability.
     record Cvss3
         -- The CVSS v3 base score for the vulnerability.
         baseScore: number
@@ -3791,8 +3564,7 @@ local record M
     record DescribeOrganizationConfigurationOutput
         -- The scan types are automatically enabled for new members of your organization.
         autoEnable: AutoEnable
-        -- Represents whether your organization has reached the maximum Amazon Web Services account limit for
-        -- Amazon Inspector.
+        -- Represents whether your organization has reached the maximum Amazon Web Services account limit for Amazon Inspector.
         maxAccountLimitReached: boolean
     end
 
@@ -3812,11 +3584,9 @@ local record M
     end
 
     record DisableOutput
-        -- Information on the accounts that have had Amazon Inspector scans successfully disabled. Details are
-        -- provided for each account.
+        -- Information on the accounts that have had Amazon Inspector scans successfully disabled. Details are provided for each account.
         accounts: {Account}
-        -- Information on any accounts for which Amazon Inspector scans could not be disabled. Details are
-        -- provided for each account.
+        -- Information on any accounts for which Amazon Inspector scans could not be disabled. Details are provided for each account.
         failedAccounts: {FailedAccount}
     end
 
@@ -3932,18 +3702,13 @@ local record M
         "FAILED"
     end
 
-    -- Details about the state of your ECR re-scan duration settings. The ECR re-scan duration
-    -- defines how long an ECR image will be actively scanned by Amazon Inspector. When the number of days
-    -- since an image was last pushed exceeds the duration configured for image pull date, and the
-    -- duration configured for image pull date, the monitoring state of that image becomes
-    -- inactive and all associated findings are scheduled for closure.
+    -- Details about the state of your ECR re-scan duration settings. The ECR re-scan duration defines how long an ECR image will be actively scanned by Amazon Inspector. When the number of days since an image was last pushed exceeds the duration configured for image pull date, and the duration configured for image pull date, the monitoring state of that image becomes inactive and all associated findings are scheduled for closure.
     record EcrRescanDurationState
         -- The rescan duration configured for image push date.
         rescanDuration: string
         -- The status of changes to the ECR automated re-scan duration.
         status: string
-        -- A timestamp representing when the last time the ECR scan duration setting was
-        -- changed.
+        -- A timestamp representing when the last time the ECR scan duration setting was changed.
         updatedAt: number
         -- The rescan duration configured for image pull date.
         pullDateRescanDuration: string
@@ -3967,11 +3732,9 @@ local record M
     end
 
     record EnableOutput
-        -- Information on the accounts that have had Amazon Inspector scans successfully enabled. Details are
-        -- provided for each account.
+        -- Information on the accounts that have had Amazon Inspector scans successfully enabled. Details are provided for each account.
         accounts: {Account}
-        -- Information on any accounts for which Amazon Inspector scans could not be enabled. Details are
-        -- provided for each account.
+        -- Information on any accounts for which Amazon Inspector scans could not be enabled. Details are provided for each account.
         failedAccounts: {FailedAccount}
     end
 
@@ -4001,8 +3764,7 @@ local record M
 
     -- The details of an exploit available for a finding discovered in your environment.
     record ExploitabilityDetails
-        -- The date and time of the last exploit associated with a finding discovered in your
-        -- environment.
+        -- The date and time of the last exploit associated with a finding discovered in your environment.
         lastKnownExploitAt: number
     end
 
@@ -4060,8 +3822,7 @@ local record M
         componentId: string
         -- The component type.
         componentType: string
-        -- The component ARN. The ARN can be null and is not displayed in the Amazon Web Services
-        -- console.
+        -- The component ARN. The ARN can be null and is not displayed in the Amazon Web Services console.
         componentArn: string
     end
 
@@ -4084,8 +3845,7 @@ local record M
 
     -- Contains the details of a network reachability finding.
     record NetworkReachabilityDetails
-        -- An object that contains details about the open port range associated with a
-        -- finding.
+        -- An object that contains details about the open port range associated with a finding.
         openPortRange: PortRange
         -- The protocol associated with a finding.
         protocol: string
@@ -4136,8 +3896,7 @@ local record M
         fixedInVersion: string
         -- The code to run in your environment to update packages with a fix available.
         remediation: string
-        -- The Amazon Resource Number (ARN) of the Amazon Web Services Lambda function affected by a
-        -- finding.
+        -- The Amazon Resource Number (ARN) of the Amazon Web Services Lambda function affected by a finding.
         sourceLambdaLayerArn: string
     end
 
@@ -4157,8 +3916,7 @@ local record M
         sourceUrl: string
         -- The severity the vendor has given to this vulnerability type.
         vendorSeverity: string
-        -- The date and time that this vulnerability was first added to the vendor's
-        -- database.
+        -- The date and time that this vulnerability was first added to the vendor's database.
         vendorCreatedAt: number
         -- The date and time the vendor last updated this vulnerability in their database.
         vendorUpdatedAt: number
@@ -4176,8 +3934,7 @@ local record M
 
     -- Information on how to remediate a finding.
     record Remediation
-        -- An object that contains information about the recommended course of action to remediate
-        -- the finding.
+        -- An object that contains information about the recommended course of action to remediate the finding.
         recommendation: Recommendation
     end
 
@@ -4203,6 +3960,32 @@ local record M
         lastInUseAt: number
         -- The platform of the container image.
         platform: string
+    end
+
+    -- Details about a machine image resource scanned directly by Inspector.
+    record MachineImageDetails
+        -- The machine image ID (e.g., ami-0abcdef1234567890)
+        machineImageId: string
+        -- Human-readable image name
+        name: string
+        -- Account ID that owns the image
+        ownerAccountId: string
+        -- OS platform (Linux/Windows)
+        platform: string
+        -- CPU architecture (x86_64/arm64)
+        architecture: string
+        -- When the image was created
+        creationDate: number
+        -- Image state (available/pending/deregistered)
+        state: string
+        -- Whether the image is publicly shared
+        isPublic: boolean
+        -- Root device type (ebs/instance-store) — AWS-specific
+        rootDeviceType: string
+        -- Virtualization type (hvm/paravirtual) — AWS-specific
+        virtualizationType: string
+        -- Source resource the image was created from (nullable)
+        sourceResourceId: string
     end
 
     -- Contains details about a serverless function involved in a finding.
@@ -4263,14 +4046,13 @@ local record M
     record ResourceDetails
         -- An object that contains details about the Amazon EC2 instance involved in the finding.
         awsEc2Instance: AwsEc2InstanceDetails
-        -- An object that contains details about the Amazon ECR container image involved in the
-        -- finding.
+        -- An object that contains details about the Amazon ECR container image involved in the finding.
         awsEcrContainerImage: AwsEcrContainerImageDetails
-        -- A summary of the information about an Amazon Web Services Lambda function affected by a
-        -- finding.
+        -- A summary of the information about an Amazon Web Services Lambda function affected by a finding.
         awsLambdaFunction: AwsLambdaFunctionDetails
         -- Contains details about a code repository resource associated with a finding.
         codeRepository: CodeRepositoryDetails
+        machineImage: MachineImageDetails
         -- An object that contains details about a VM instance involved in the finding.
         vm: Vm
         -- An object that contains details about a container image involved in the finding.
@@ -4288,6 +4070,7 @@ local record M
         "Microsoft.Compute/virtualMachines"
         "Microsoft.ContainerRegistry/registry/containerImage"
         "Microsoft.Web/sites"
+        "MACHINE_IMAGE"
     end
 
     -- Details about the resource involved in a finding.
@@ -4343,23 +4126,17 @@ local record M
         title: string
         -- An object that contains the details about how to remediate a finding.
         remediation: Remediation
-        -- The severity of the finding. UNTRIAGED applies to
-        -- PACKAGE_VULNERABILITY type findings that the vendor has not assigned a
-        -- severity yet. For more information, see Severity levels for findings in the Amazon Inspector user guide.
+        -- The severity of the finding. UNTRIAGED applies to PACKAGE_VULNERABILITY type findings that the vendor has not assigned a severity yet. For more information, see Severity levels for findings in the Amazon Inspector user guide.
         severity: string
         -- The date and time that the finding was first observed.
         firstObservedAt: number
-        -- The date and time the finding was last observed. This timestamp for this field remains
-        -- unchanged until a finding is updated.
+        -- The date and time the finding was last observed. This timestamp for this field remains unchanged until a finding is updated.
         lastObservedAt: number
         -- The date and time the finding was last updated at.
         updatedAt: number
         -- The status of the finding.
         status: string
-        -- Contains information on the resources involved in a finding. The resource
-        -- value determines the valid values for type in your request. For more
-        -- information, see Finding
-        -- types in the Amazon Inspector user guide.
+        -- Contains information on the resources involved in a finding. The resource value determines the valid values for type in your request. For more information, see Finding types in the Amazon Inspector user guide.
         resources: {Resource}
         -- The Amazon Inspector score given to the finding.
         inspectorScore: number
@@ -4369,17 +4146,13 @@ local record M
         networkReachabilityDetails: NetworkReachabilityDetails
         -- An object that contains the details of a package vulnerability finding.
         packageVulnerabilityDetails: PackageVulnerabilityDetails
-        -- Details on whether a fix is available through a version update. This value can be
-        -- YES, NO, or PARTIAL. A PARTIAL fix
-        -- means that some, but not all, of the packages identified in the finding have fixes
-        -- available through updated versions.
+        -- Details on whether a fix is available through a version update. This value can be YES, NO, or PARTIAL. A PARTIAL fix means that some, but not all, of the packages identified in the finding have fixes available through updated versions.
         fixAvailable: string
         -- If a finding discovered in your environment has an exploit available.
         exploitAvailable: string
         -- The details of an exploit available for a finding discovered in your environment.
         exploitabilityDetails: ExploitabilityDetails
-        -- Details about the code vulnerability identified in a Lambda function used to filter
-        -- findings.
+        -- Details about the code vulnerability identified in a Lambda function used to filter findings.
         codeVulnerabilityDetails: CodeVulnerabilityDetails
         -- The finding's EPSS score.
         epss: EpssDetails
@@ -4390,8 +4163,7 @@ local record M
         scanArn: string
         -- The target accounts.
         targetAccounts: {string}
-        -- The format of the report. Valid values are PDF and CSV. If no
-        -- value is specified, the report format defaults to PDF.
+        -- The format of the report. Valid values are PDF and CSV. If no value is specified, the report format defaults to PDF.
         reportFormat: string
     end
 
@@ -4415,19 +4187,16 @@ local record M
         sortBy: string
         -- The sort order.
         sortOrder: string
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
-        -- The maximum number of CIS scan result details to be returned in a single page of
-        -- results.
+        -- The maximum number of CIS scan result details to be returned in a single page of results.
         maxResults: number
     end
 
     record GetCisScanResultDetailsOutput
         -- The scan result details.
         scanResultDetails: {CisScanResultDetails}
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
     end
 
@@ -4436,16 +4205,14 @@ local record M
         filter: ClusterForImageFilterCriteria
         -- The maximum number of results to be returned in a single page of results.
         maxResults: number
-        -- The pagination token from a previous request used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request used to retrieve the next page of results.
         nextToken: string
     end
 
     record GetClustersForImageOutput
         -- A unit of work inside of a cluster, which can include metadata about the cluster.
         cluster: {ClusterInformation}
-        -- The pagination token from a previous request used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request used to retrieve the next page of results.
         nextToken: string
     end
 
@@ -4469,9 +4236,7 @@ local record M
         createdOn: number
         -- The timestamp when the code security integration was last updated.
         lastUpdateOn: number
-        -- The URL used to authorize the integration with the repository provider. This is only
-        -- returned if reauthorization is required to fix a connection issue. Otherwise, it is
-        -- null.
+        -- The URL used to authorize the integration with the repository provider. This is only returned if reauthorization is required to fix a connection issue. Otherwise, it is null.
         authorizationUrl: string
         -- The tags associated with the code security integration.
         tags: {string : string}
@@ -4499,8 +4264,7 @@ local record M
         createdAt: number
         -- The timestamp when the scan was last updated.
         updatedAt: number
-        -- The identifier of the last commit that was scanned. This is only returned if the scan
-        -- was successful or skipped.
+        -- The identifier of the last commit that was scanned. This is only returned if the scan was successful or skipped.
         lastCommitId: string
     end
 
@@ -4518,9 +4282,7 @@ local record M
         configuration: CodeSecurityScanConfiguration
         -- The security level for the scan configuration.
         level: string
-        -- The scope settings that define which repositories will be scanned. If the
-        -- ScopeSetting parameter is ALL the scan configuration applies
-        -- to all existing and future projects imported into Amazon Inspector.
+        -- The scope settings that define which repositories will be scanned. If the ScopeSetting parameter is ALL the scan configuration applies to all existing and future projects imported into Amazon Inspector.
         scopeSettings: ScopeSettings
         -- The timestamp when the scan configuration was created.
         createdAt: number
@@ -4531,20 +4293,17 @@ local record M
     end
 
     record GetConfigurationInput
-        -- The 12-digit Amazon Web Services account ID of the member account whose scan configuration you want
-        -- to retrieve. When specified, you must be the delegated administrator for this
-        -- member account. If not specified, the operation returns your own
-        -- configuration.
+        -- The 12-digit Amazon Web Services account ID of the member account whose scan configuration you want to retrieve. When specified, you must be the delegated administrator for this member account. If not specified, the operation returns your own configuration.
         accountId: string
     end
 
     record GetConfigurationOutput
-        -- Specifies how the ECR automated re-scan duration is currently configured for your
-        -- environment.
+        -- Specifies how the ECR automated re-scan duration is currently configured for your environment.
         ecrConfiguration: EcrConfigurationState
-        -- Specifies how the Amazon EC2 automated scan mode is currently configured for your
-        -- environment.
+        -- Specifies how the Amazon EC2 automated scan mode is currently configured for your environment.
         ec2Configuration: Ec2ConfigurationState
+        -- The current state of the Amazon Machine Image (AMI) scan configuration for the account.
+        amiConfiguration: AmiConfigurationState
     end
 
     record GetDelegatedAdminAccountInput
@@ -4565,8 +4324,7 @@ local record M
         orgPackagePaths: {string}
         -- The activation status of Amazon Inspector deep inspection in your account.
         status: string
-        -- An error message explaining why Amazon Inspector deep inspection configurations could not be
-        -- retrieved for your account.
+        -- An error message explaining why Amazon Inspector deep inspection configurations could not be retrieved for your account.
         errorMessage: string
     end
 
@@ -4622,8 +4380,7 @@ local record M
         accountId: string
         -- The status of the member account.
         relationshipStatus: string
-        -- The Amazon Web Services account ID of the Amazon Inspector delegated administrator for this member
-        -- account.
+        -- The Amazon Web Services account ID of the Amazon Inspector delegated administrator for this member account.
         delegatedAdminAccountId: string
         -- A timestamp showing when the status of this member was last updated.
         updatedAt: number
@@ -4632,6 +4389,51 @@ local record M
     record GetMemberOutput
         -- Details of the retrieved member account.
         member: Member
+    end
+
+    enum OnDemandResourceType
+        "AMI"
+    end
+
+    record GetOnDemandScanStatusInput
+        -- The ID of the resource whose on-demand scan status is being requested.
+        resourceId: string
+        -- The unique identifier of the on-demand scan whose status is being requested.
+        scanId: string
+        -- The type of the resource whose on-demand scan status is being requested.
+        resourceType: string
+    end
+
+    enum OnDemandScanStatus
+        "IN_PROGRESS"
+        "SUCCESSFUL"
+        "FAILED"
+    end
+
+    enum OnDemandScanStatusReason
+        "ACCESS_DENIED"
+        "INTERNAL_ERROR"
+        "STORAGE_LIMIT_EXCEEDED"
+        "EXTRACTION_COLLECTION_TIME_LIMIT_EXCEEDED"
+        "UNSUPPORTED_OS"
+        "RESOURCE_TERMINATED"
+    end
+
+    record GetOnDemandScanStatusOutput
+        -- The unique identifier of the on-demand scan.
+        scanId: string
+        -- The ID of the resource that was scanned.
+        resourceId: string
+        -- The type of the resource that was scanned.
+        resourceType: string
+        -- The current status of the on-demand scan.
+        scanStatus: string
+        -- The reason associated with the current on-demand scan status.
+        scanStatusReason: string
+        -- The date and time, in ISO 8601 format, when the on-demand scan started.
+        startedAt: number
+        -- The date and time, in ISO 8601 format, when the on-demand scan completed. This field is absent if the scan has not completed.
+        completedAt: number
     end
 
     record GetSbomExportInput
@@ -4652,8 +4454,7 @@ local record M
         errorMessage: string
         -- Contains details of the Amazon S3 bucket and KMS key used to export findings
         s3Destination: Destination
-        -- Contains details about the resource filter criteria used for the software bill of
-        -- materials (SBOM) report.
+        -- Contains details about the resource filter criteria used for the software bill of materials (SBOM) report.
         filterCriteria: ResourceFilterCriteria
     end
 
@@ -4670,15 +4471,9 @@ local record M
     record ListAccountPermissionsInput
         -- The service scan type to check permissions for.
         service: string
-        -- The maximum number of results the response can return. If your request would return more
-        -- than the maximum the response will return a nextToken value, use this value
-        -- when you call the action again to get the remaining results.
+        -- The maximum number of results the response can return. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. If your response returns
-        -- more than the maxResults maximum value it will also return a
-        -- nextToken value. For subsequent calls, use the NextToken value returned
-        -- from the previous request to continue listing results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the maxResults maximum value it will also return a nextToken value. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
@@ -4691,8 +4486,7 @@ local record M
 
     -- Contains information on the permissions an account has within Amazon Inspector.
     record Permission
-        -- The services that the permissions allow an account to perform the given operations
-        -- for.
+        -- The services that the permissions allow an account to perform the given operations for.
         service: string
         -- The operations that can be performed with the given permissions.
         operation: string
@@ -4701,10 +4495,7 @@ local record M
     record ListAccountPermissionsOutput
         -- Contains details on the permissions an account has to configure Amazon Inspector.
         permissions: {Permission}
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
@@ -4725,19 +4516,16 @@ local record M
         sortBy: string
         -- The CIS scan configuration sort order order.
         sortOrder: string
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
-        -- The maximum number of CIS scan configurations to be returned in a single page of
-        -- results.
+        -- The maximum number of CIS scan configurations to be returned in a single page of results.
         maxResults: number
     end
 
     record ListCisScanConfigurationsOutput
         -- The CIS scan configuration scan configurations.
         scanConfigurations: {CisScanConfiguration}
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
     end
 
@@ -4750,19 +4538,16 @@ local record M
         sortBy: string
         -- The sort order.
         sortOrder: string
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
-        -- The maximum number of scan results aggregated by checks to be returned in a single page
-        -- of results.
+        -- The maximum number of scan results aggregated by checks to be returned in a single page of results.
         maxResults: number
     end
 
     record ListCisScanResultsAggregatedByChecksOutput
         -- The check aggregations.
         checkAggregations: {CisCheckAggregation}
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
     end
 
@@ -4775,19 +4560,16 @@ local record M
         sortBy: string
         -- The sort order.
         sortOrder: string
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
-        -- The maximum number of scan results aggregated by a target resource to be returned in a
-        -- single page of results.
+        -- The maximum number of scan results aggregated by a target resource to be returned in a single page of results.
         maxResults: number
     end
 
     record ListCisScanResultsAggregatedByTargetResourceOutput
         -- The resource aggregations.
         targetResourceAggregations: {CisTargetResourceAggregation}
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
     end
 
@@ -4836,8 +4618,7 @@ local record M
         sortBy: string
         -- The CIS scans sort order.
         sortOrder: string
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
         -- The maximum number of results to be returned.
         maxResults: number
@@ -4846,16 +4627,12 @@ local record M
     record ListCisScansOutput
         -- The CIS scans.
         scans: {CisScan}
-        -- The pagination token from a previous request that's used to retrieve the next page of
-        -- results.
+        -- The pagination token from a previous request that's used to retrieve the next page of results.
         nextToken: string
     end
 
     record ListCodeSecurityIntegrationsInput
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request. For subsequent calls, use the NextToken
-        -- value returned from the previous request to continue listing results after the first
-        -- page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
         -- The maximum number of results to return in a single call.
         maxResults: number
@@ -4864,43 +4641,28 @@ local record M
     record ListCodeSecurityIntegrationsOutput
         -- A list of code security integration summaries.
         integrations: {CodeSecurityIntegrationSummary}
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request. For subsequent calls, use the NextToken
-        -- value returned from the previous request to continue listing results after the first
-        -- page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
     record ListCodeSecurityScanConfigurationAssociationsInput
-        -- The Amazon Resource Name (ARN) of the scan configuration to list associations
-        -- for.
+        -- The Amazon Resource Name (ARN) of the scan configuration to list associations for.
         scanConfigurationArn: string
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
-        -- The maximum number of results to return in the response. If your request would return
-        -- more than the maximum the response will return a nextToken value, use this
-        -- value when you call the action again to get the remaining results.
+        -- The maximum number of results to return in the response. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
     end
 
     record ListCodeSecurityScanConfigurationAssociationsOutput
         -- A list of associations between code repositories and scan configurations.
         associations: {CodeSecurityScanConfigurationAssociationSummary}
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
     record ListCodeSecurityScanConfigurationsInput
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request. For subsequent calls, use the NextToken
-        -- value returned from the previous request to continue listing results after the first
-        -- page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
         -- The maximum number of results to return in a single call.
         maxResults: number
@@ -4909,10 +4671,7 @@ local record M
     record ListCodeSecurityScanConfigurationsOutput
         -- A list of code security scan configuration summaries.
         configurations: {CodeSecurityScanConfigurationSummary}
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request. For subsequent calls, use the NextToken
-        -- value returned from the previous request to continue listing results after the first
-        -- page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
@@ -4949,41 +4708,27 @@ local record M
     end
 
     record ListCoverageInput
-        -- The maximum number of results the response can return. If your request would return more
-        -- than the maximum the response will return a nextToken value, use this value
-        -- when you call the action again to get the remaining results.
+        -- The maximum number of results the response can return. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. If your response returns
-        -- more than the maxResults maximum value it will also return a
-        -- nextToken value. For subsequent calls, use the nextToken value
-        -- returned from the previous request to continue listing results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the maxResults maximum value it will also return a nextToken value. For subsequent calls, use the nextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
-        -- An object that contains details on the filters to apply to the coverage data for your
-        -- environment.
+        -- An object that contains details on the filters to apply to the coverage data for your environment.
         filterCriteria: CoverageFilterCriteria
     end
 
     record ListCoverageOutput
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
         -- An object that contains details on the covered resources in your environment.
         coveredResources: {CoveredResource}
     end
 
     record ListCoverageStatisticsInput
-        -- An object that contains details on the filters to apply to the coverage data for your
-        -- environment.
+        -- An object that contains details on the filters to apply to the coverage data for your environment.
         filterCriteria: CoverageFilterCriteria
         -- The value to group the results by.
         groupBy: string
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
@@ -4992,33 +4737,21 @@ local record M
         countsByGroup: {Counts}
         -- The total number for all groups.
         totalCounts: number
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
     record ListDelegatedAdminAccountsInput
-        -- The maximum number of results the response can return. If your request would return more
-        -- than the maximum the response will return a nextToken value, use this value
-        -- when you call the action again to get the remaining results.
+        -- The maximum number of results the response can return. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. If your response returns
-        -- more than the maxResults maximum value it will also return a
-        -- nextToken value. For subsequent calls, use the nextToken value
-        -- returned from the previous request to continue listing results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the maxResults maximum value it will also return a nextToken value. For subsequent calls, use the nextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
     record ListDelegatedAdminAccountsOutput
         -- Details of the Amazon Inspector delegated administrator of your organization.
         delegatedAdminAccounts: {DelegatedAdminAccount}
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
@@ -5027,45 +4760,29 @@ local record M
         arns: {string}
         -- The action the filter applies to matched findings.
         action: string
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. If your response returns
-        -- more than the maxResults maximum value it will also return a
-        -- nextToken value. For subsequent calls, use the nextToken value
-        -- returned from the previous request to continue listing results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the maxResults maximum value it will also return a nextToken value. For subsequent calls, use the nextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
-        -- The maximum number of results the response can return. If your request would return more
-        -- than the maximum the response will return a nextToken value, use this value
-        -- when you call the action again to get the remaining results.
+        -- The maximum number of results the response can return. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
     end
 
     record ListFiltersOutput
         -- Contains details on the filters associated with your account.
         filters: {Filter}
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
     record ListFindingAggregationsInput
         -- The type of the aggregation request.
         aggregationType: string
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. If your response returns
-        -- more than the maxResults maximum value it will also return a
-        -- nextToken value. For subsequent calls, use the nextToken value
-        -- returned from the previous request to continue listing results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the maxResults maximum value it will also return a nextToken value. For subsequent calls, use the nextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
-        -- The maximum number of results the response can return. If your request would return more
-        -- than the maximum the response will return a nextToken value, use this value
-        -- when you call the action again to get the remaining results.
+        -- The maximum number of results the response can return. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
         -- The Amazon Web Services account IDs to retrieve finding aggregation data for.
         accountIds: {StringFilter}
-        -- Details of the aggregation request that is used to filter your aggregation
-        -- results.
+        -- Details of the aggregation request that is used to filter your aggregation results.
         aggregationRequest: AggregationRequest
     end
 
@@ -5074,10 +4791,7 @@ local record M
         aggregationType: string
         -- Objects that contain the results of an aggregation operation.
         responses: {AggregationResponse}
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
@@ -5110,15 +4824,9 @@ local record M
     end
 
     record ListFindingsInput
-        -- The maximum number of results the response can return. If your request would return more
-        -- than the maximum the response will return a nextToken value, use this value
-        -- when you call the action again to get the remaining results.
+        -- The maximum number of results the response can return. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. If your response returns
-        -- more than the maxResults maximum value it will also return a
-        -- nextToken value. For subsequent calls, use the nextToken value
-        -- returned from the previous request to continue listing results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the maxResults maximum value it will also return a nextToken value. For subsequent calls, use the nextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
         -- Details on the filters to apply to your finding results.
         filterCriteria: FilterCriteria
@@ -5127,36 +4835,61 @@ local record M
     end
 
     record ListFindingsOutput
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
         -- Contains details on the findings in your environment.
         findings: {Finding}
     end
 
     record ListMembersInput
-        -- Specifies whether to list only currently associated members if True or to
-        -- list all members within the organization if False.
+        -- Specifies whether to list only currently associated members if True or to list all members within the organization if False.
         onlyAssociated: boolean
-        -- The maximum number of results the response can return. If your request would return more
-        -- than the maximum the response will return a nextToken value, use this value
-        -- when you call the action again to get the remaining results.
+        -- The maximum number of results the response can return. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. If your response returns
-        -- more than the maxResults maximum value it will also return a
-        -- nextToken value. For subsequent calls, use the nextToken value
-        -- returned from the previous request to continue listing results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the maxResults maximum value it will also return a nextToken value. For subsequent calls, use the nextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
     record ListMembersOutput
         -- An object that contains details for each member account.
         members: {Member}
-        -- The pagination parameter to be used on the next list operation to retrieve more
-        -- items.
+        -- The pagination parameter to be used on the next list operation to retrieve more items.
+        nextToken: string
+    end
+
+    record ListOnDemandScansInput
+        -- The ID of the resource whose on-demand scans are being listed.
+        resourceId: string
+        -- The type of the resource whose on-demand scans are being listed.
+        resourceType: string
+        -- The maximum number of results to return in a single page of the response.
+        maxResults: number
+        -- A pagination token from a previous response used to retrieve the next page of results.
+        nextToken: string
+    end
+
+    -- Details of a single on-demand scan of a resource.
+    record OnDemandScan
+        -- The unique identifier of the on-demand scan.
+        scanId: string
+        -- The ID of the resource that was scanned.
+        resourceId: string
+        -- The type of the resource that was scanned.
+        resourceType: string
+        -- The current status of the on-demand scan.
+        scanStatus: string
+        -- The reason associated with the current on-demand scan status.
+        scanStatusReason: string
+        -- The date and time, in ISO 8601 format, when the on-demand scan started.
+        startedAt: number
+        -- The date and time, in ISO 8601 format, when the on-demand scan completed. This field is absent if the scan has not completed.
+        completedAt: number
+    end
+
+    record ListOnDemandScansOutput
+        -- The list of on-demand scans that match the request.
+        items: {OnDemandScan}
+        -- A pagination token to use in a subsequent request to retrieve the next page of results. This field is absent when there are no more results.
         nextToken: string
     end
 
@@ -5171,15 +4904,9 @@ local record M
     end
 
     record ListUsageTotalsInput
-        -- The maximum number of results the response can return. If your request would return more
-        -- than the maximum the response will return a nextToken value, use this value
-        -- when you call the action again to get the remaining results.
+        -- The maximum number of results the response can return. If your request would return more than the maximum the response will return a nextToken value, use this value when you call the action again to get the remaining results.
         maxResults: number
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. If your response returns
-        -- more than the maxResults maximum value it will also return a
-        -- nextToken value. For subsequent calls, use the nextToken value
-        -- returned from the previous request to continue listing results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the maxResults maximum value it will also return a nextToken value. For subsequent calls, use the nextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
         -- The Amazon Web Services account IDs to retrieve usage totals for.
         accountIds: {string}
@@ -5199,6 +4926,7 @@ local record M
         "AZURE_CONTAINER_IMAGE_RESCAN"
         "AZURE_VM_AGENT_BASED_INSTANCE_HOURS"
         "AZURE_SERVERLESS_FUNCTION_HOURS"
+        "EC2_AMI_HOURS"
     end
 
     -- Contains usage information about the cost of Amazon Inspector operation.
@@ -5222,8 +4950,7 @@ local record M
     end
 
     record ListUsageTotalsOutput
-        -- The pagination parameter to be used on the next list operation to retrieve more
-        -- items.
+        -- The pagination parameter to be used on the next list operation to retrieve more items.
         nextToken: string
         -- An object with details on the total usage for the requested account.
         totals: {UsageTotal}
@@ -5248,10 +4975,7 @@ local record M
     record SearchVulnerabilitiesInput
         -- The criteria used to filter the results of a vulnerability search.
         filterCriteria: SearchVulnerabilitiesFilterCriteria
-        -- A token to use for paginating results that are returned in the response. Set the value
-        -- of this parameter to null for the first request to a list action. For subsequent calls, use
-        -- the NextToken value returned from the previous request to continue listing
-        -- results after the first page.
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.
         nextToken: string
     end
 
@@ -5265,28 +4989,23 @@ local record M
         id: string
         -- The Common Weakness Enumeration (CWE) associated with the vulnerability.
         cwes: {string}
-        -- An object that contains the Cybersecurity and Infrastructure Security Agency (CISA)
-        -- details for the vulnerability.
+        -- An object that contains the Cybersecurity and Infrastructure Security Agency (CISA) details for the vulnerability.
         cisaData: CisaData
-        -- The source of the vulnerability information. Possible results are RHEL,
-        -- AMAZON_CVE, DEBIAN or NVD.
+        -- The source of the vulnerability information. Possible results are RHEL, AMAZON_CVE, DEBIAN or NVD.
         source: string
         -- A description of the vulnerability.
         description: string
-        -- An object that contains information about the Amazon Web Services Threat Intel Group
-        -- (ATIG) details for the vulnerability.
+        -- An object that contains information about the Amazon Web Services Threat Intel Group (ATIG) details for the vulnerability.
         atigData: AtigData
         -- The severity assigned by the vendor.
         vendorSeverity: string
         -- An object that contains the Common Vulnerability Scoring System (CVSS) Version 4 details for the vulnerability.
         cvss4: Cvss4
-        -- An object that contains the Common Vulnerability Scoring System (CVSS) Version 3 details
-        -- for the vulnerability.
+        -- An object that contains the Common Vulnerability Scoring System (CVSS) Version 3 details for the vulnerability.
         cvss3: Cvss3
         -- A list of related vulnerabilities.
         relatedVulnerabilities: {string}
-        -- An object that contains the Common Vulnerability Scoring System (CVSS) Version 2 details
-        -- for the vulnerability.
+        -- An object that contains the Common Vulnerability Scoring System (CVSS) Version 2 details for the vulnerability.
         cvss2: Cvss2
         -- The date and time when the vendor created this vulnerability.
         vendorCreatedAt: number
@@ -5300,16 +5019,14 @@ local record M
         exploitObserved: ExploitObserved
         -- Platforms that the vulnerability can be detected on.
         detectionPlatforms: {string}
-        -- An object that contains the Exploit Prediction Scoring System (EPSS) score for a
-        -- vulnerability.
+        -- An object that contains the Exploit Prediction Scoring System (EPSS) score for a vulnerability.
         epss: Epss
     end
 
     record SearchVulnerabilitiesOutput
         -- Details about the listed vulnerability.
         vulnerabilities: {Vulnerability}
-        -- The pagination parameter to be used on the next list operation to retrieve more
-        -- items.
+        -- The pagination parameter to be used on the next list operation to retrieve more items.
         nextToken: string
     end
 
@@ -5352,8 +5069,7 @@ local record M
     end
 
     record StartCodeSecurityScanInput
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        -- request.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
         clientToken: string
         -- The resource identifier for the code repository to scan.
         resource: CodeSecurityResource
@@ -5364,6 +5080,20 @@ local record M
         scanId: string
         -- The current status of the initiated scan.
         status: string
+    end
+
+    record StartOnDemandScanInput
+        -- The ID of the resource to scan on demand.
+        resourceId: string
+        -- The type of the resource to scan on demand.
+        resourceType: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+    end
+
+    record StartOnDemandScanOutput
+        -- The unique identifier assigned to the on-demand scan that was started.
+        scanId: string
     end
 
     -- The stop CIS message progress.
@@ -5454,8 +5184,7 @@ local record M
         scanConfigurationArn: string
         -- The scan name for the CIS scan configuration.
         scanName: string
-        -- The security level for the CIS scan configuration. Security level refers to the
-        -- Benchmark levels that CIS assigns to a profile.
+        -- The security level for the CIS scan configuration. Security level refers to the Benchmark levels that CIS assigns to a profile.
         securityLevel: string
         -- The schedule for the CIS scan configuration.
         schedule: Schedule
@@ -5476,16 +5205,13 @@ local record M
         installationId: string
     end
 
-    -- Contains details required to update an integration with a self-managed GitLab
-    -- instance.
+    -- Contains details required to update an integration with a self-managed GitLab instance.
     record UpdateGitLabSelfManagedIntegrationDetail
-        -- The authorization code received from the self-managed GitLab instance to update the
-        -- integration.
+        -- The authorization code received from the self-managed GitLab instance to update the integration.
         authCode: string
     end
 
-    -- Contains details required to update a code security integration with a specific
-    -- repository provider.
+    -- Contains details required to update a code security integration with a specific repository provider.
     record UpdateIntegrationDetails
         -- Details specific to updating an integration with a self-managed GitLab instance.
         gitlabSelfManaged: UpdateGitLabSelfManagedIntegrationDetail
@@ -5519,39 +5245,25 @@ local record M
         scanConfigurationArn: string
     end
 
-    -- The per-scan-type inheritance reset settings for the UpdateConfiguration
-    -- operation. Each member is independently optional. Including a member in this structure
-    -- resets that scan type's configuration to inherit from the delegated administrator.
+    -- The per-scan-type inheritance reset settings for the UpdateConfiguration operation. Each member is independently optional. Including a member in this structure resets that scan type's configuration to inherit from the delegated administrator.
     record UpdateConfigurationInheritance
-        -- The inheritance mode for Amazon EC2 scan configuration. Set to
-        -- INHERIT_FROM_ADMIN to reset the member account's Amazon EC2 scan configuration to
-        -- inherit from the delegated administrator. If omitted, the member account's existing Amazon EC2
-        -- scan configuration is not changed.
+        -- The inheritance mode for Amazon EC2 scan configuration. Set to INHERIT_FROM_ADMIN to reset the member account's Amazon EC2 scan configuration to inherit from the delegated administrator. If omitted, the member account's existing Amazon EC2 scan configuration is not changed.
         ec2Configuration: string
-        -- The inheritance mode for Amazon ECR scan configuration. Set to
-        -- INHERIT_FROM_ADMIN to reset the member account's Amazon ECR scan configuration to
-        -- inherit from the delegated administrator. If omitted, the member account's existing Amazon ECR
-        -- scan configuration is not changed.
+        -- The inheritance mode for Amazon ECR scan configuration. Set to INHERIT_FROM_ADMIN to reset the member account's Amazon ECR scan configuration to inherit from the delegated administrator. If omitted, the member account's existing Amazon ECR scan configuration is not changed.
         ecrConfiguration: string
+        amiConfiguration: string
     end
 
     record UpdateConfigurationInput
-        -- The 12-digit Amazon Web Services account ID of the member account whose scan configuration you want
-        -- to update. When specified, you must be the delegated administrator for this member
-        -- account. If not specified, the operation updates your own configuration and
-        -- propagates changes to any member accounts that have not been individually configured.
+        -- The 12-digit Amazon Web Services account ID of the member account whose scan configuration you want to update. When specified, you must be the delegated administrator for this member account. If not specified, the operation updates your own configuration and propagates changes to any member accounts that have not been individually configured.
         accountId: string
         -- Specifies how the ECR automated re-scan will be updated for your environment.
         ecrConfiguration: EcrConfiguration
         -- Specifies how the Amazon EC2 automated scan will be updated for your environment.
         ec2Configuration: Ec2Configuration
-        -- Specifies which scan-type configurations to reset to the delegated administrator's
-        -- inherited values for the targeted member account. Each member of this structure is
-        -- independently optional. When specified, ec2Configuration and
-        -- ecrConfiguration must be absent, and accountId must also be
-        -- present. Only INHERIT_FROM_ADMIN is valid for each member. If not specified,
-        -- the operation uses the ec2Configuration and ecrConfiguration
-        -- parameters instead.
+        -- The Amazon Machine Image (AMI) scan configuration to apply to the account.
+        amiConfiguration: AmiConfiguration
+        -- Specifies which scan-type configurations to reset to the delegated administrator's inherited values for the targeted member account. Each member of this structure is independently optional. When specified, ec2Configuration and ecrConfiguration must be absent, and accountId must also be present. Only INHERIT_FROM_ADMIN is valid for each member. If not specified, the operation uses the ec2Configuration and ecrConfiguration parameters instead.
         updateConfigurationInheritance: UpdateConfigurationInheritance
     end
 
@@ -5589,10 +5301,7 @@ local record M
     end
 
     record UpdateEc2DeepInspectionConfigurationInput
-        -- Specify TRUE to activate Amazon Inspector deep inspection in your account, or
-        -- FALSE to deactivate. Member accounts in an organization cannot deactivate
-        -- deep inspection, instead the delegated administrator for the organization can deactivate a
-        -- member account using BatchUpdateMemberEc2DeepInspectionStatus.
+        -- Specify TRUE to activate Amazon Inspector deep inspection in your account, or FALSE to deactivate. Member accounts in an organization cannot deactivate deep inspection, instead the delegated administrator for the organization can deactivate a member account using BatchUpdateMemberEc2DeepInspectionStatus.
         activateDeepInspection: boolean
         -- The Amazon Inspector deep inspection custom paths you are adding for your account.
         packagePaths: {string}
@@ -5605,8 +5314,7 @@ local record M
         orgPackagePaths: {string}
         -- The status of Amazon Inspector deep inspection in your account.
         status: string
-        -- An error message explaining why new Amazon Inspector deep inspection custom paths could not be
-        -- added.
+        -- An error message explaining why new Amazon Inspector deep inspection custom paths could not be added.
         errorMessage: string
     end
 
@@ -5643,14 +5351,12 @@ local record M
     end
 
     record UpdateOrganizationConfigurationInput
-        -- Defines which scan types are enabled automatically for new members of your Amazon Inspector
-        -- organization.
+        -- Defines which scan types are enabled automatically for new members of your Amazon Inspector organization.
         autoEnable: AutoEnable
     end
 
     record UpdateOrganizationConfigurationOutput
-        -- The updated status of scan types automatically enabled for new members of your Amazon Inspector
-        -- organization.
+        -- The updated status of scan types automatically enabled for new members of your Amazon Inspector organization.
         autoEnable: AutoEnable
     end
 

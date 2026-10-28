@@ -140,6 +140,8 @@ M.Statistics = schema.new({ type = "list", list_member = M.KeyValuePair })
 
 M.Attachments = schema.new({ type = "list", list_member = M.Attachment })
 
+M.GpuDevices = schema.new({ type = "list", list_member = M.GpuDevice })
+
 M.DaemonRevisionDetailList = schema.new({ type = "list", list_member = M.DaemonRevisionDetail })
 
 M.GatewayResourceFailureList = schema.new({ type = "list", list_member = M.GatewayResourceFailure })
@@ -2216,6 +2218,43 @@ M.Attribute = schema.new({
     },
 })
 
+M.GpuDevice = schema.new({
+    id = id.from(_N, "GpuDevice"),
+    type = "structure",
+    members = {
+        gpuId = schema.new({
+            id = id.from(_N, "GpuDevice", "gpuId"),
+            type = "string",
+            name = "gpuId",
+            target_id = prelude.String.id,
+        }),
+        sharingMode = schema.new({
+            id = id.from(_N, "GpuDevice", "sharingMode"),
+            type = "string",
+            name = "sharingMode",
+            target_id = prelude.String.id,
+        }),
+        totalMemoryInMiB = schema.new({
+            id = id.from(_N, "GpuDevice", "totalMemoryInMiB"),
+            type = "integer",
+            name = "totalMemoryInMiB",
+            target_id = prelude.Integer.id,
+        }),
+        remainingMemoryInMiB = schema.new({
+            id = id.from(_N, "GpuDevice", "remainingMemoryInMiB"),
+            type = "integer",
+            name = "remainingMemoryInMiB",
+            target_id = prelude.Integer.id,
+        }),
+        containerCount = schema.new({
+            id = id.from(_N, "GpuDevice", "containerCount"),
+            type = "integer",
+            name = "containerCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.InstanceHealthCheckResult = schema.new({
     id = id.from(_N, "InstanceHealthCheckResult"),
     type = "structure",
@@ -2481,6 +2520,13 @@ M.ContainerInstance = schema.new({
             name = "healthStatus",
             target_id = id.from(_N, "ContainerInstanceHealthStatus"),
             target = M.ContainerInstanceHealthStatus,
+        }),
+        gpuDevices = schema.new({
+            id = id.from(_N, "ContainerInstance", "gpuDevices"),
+            type = "list",
+            name = "gpuDevices",
+            target_id = prelude.Document.id,
+            list_member = M.GpuDevice,
         }),
     },
 })
@@ -6283,6 +6329,42 @@ M.PortMapping = schema.new({
     },
 })
 
+M.NvidiaMpsAllocation = schema.new({
+    id = id.from(_N, "NvidiaMpsAllocation"),
+    type = "structure",
+    members = {
+        memory = schema.new({
+            id = id.from(_N, "NvidiaMpsAllocation", "memory"),
+            type = "integer",
+            name = "memory",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxComputePercent = schema.new({
+            id = id.from(_N, "NvidiaMpsAllocation", "maxComputePercent"),
+            type = "integer",
+            name = "maxComputePercent",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SharingStrategy = schema.new({
+    id = id.from(_N, "SharingStrategy"),
+    type = "union",
+    members = {
+        nvidiaMps = schema.new({
+            id = id.from(_N, "SharingStrategy", "nvidiaMps"),
+            type = "structure",
+            name = "nvidiaMps",
+            target_id = id.from(_N, "NvidiaMpsAllocation"),
+            target = M.NvidiaMpsAllocation,
+        }),
+    },
+})
+
 M.ResourceRequirement = schema.new({
     id = id.from(_N, "ResourceRequirement"),
     type = "structure",
@@ -6293,7 +6375,7 @@ M.ResourceRequirement = schema.new({
             name = "value",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         type = schema.new({
@@ -6304,6 +6386,13 @@ M.ResourceRequirement = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        sharingStrategy = schema.new({
+            id = id.from(_N, "ResourceRequirement", "sharingStrategy"),
+            type = "union",
+            name = "sharingStrategy",
+            target_id = id.from(_N, "SharingStrategy"),
+            target = M.SharingStrategy,
         }),
     },
 })
@@ -14124,6 +14213,13 @@ M.Container = schema.new({
             name = "neuronDeviceIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        gpuSharingStrategy = schema.new({
+            id = id.from(_N, "Container", "gpuSharingStrategy"),
+            type = "union",
+            name = "gpuSharingStrategy",
+            target_id = id.from(_N, "SharingStrategy"),
+            target = M.SharingStrategy,
         }),
     },
 })

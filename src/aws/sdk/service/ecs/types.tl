@@ -826,6 +826,26 @@ local record M
         targetId: string
     end
 
+    enum GpuSharingMode
+        "IDLE"
+        "NVIDIA_MPS"
+        "DEDICATED"
+    end
+
+    -- The state of a GPU on a container instance, including its sharing mode and the memory that's available for new containers.
+    record GpuDevice
+        -- The ID of the GPU. This ID matches the GPU IDs in the gpuIds of the containers that Amazon ECS assigned to the GPU.
+        gpuId: string
+        -- How the GPU is shared between containers. Valid values: IDLE - No containers are assigned to the GPU, and all of its memory is available. NVIDIA_MPS - One or more containers share the GPU by using NVIDIA Multi-Process Service (MPS). DEDICATED - One container has exclusive use of the GPU.
+        sharingMode: string
+        -- The total amount of GPU memory, in MiB, that the Amazon ECS container agent reported for the GPU. This is the memory that's available to containers, and it can be less than the nominal memory of the GPU.
+        totalMemoryInMiB: number
+        -- The amount of GPU memory, in MiB, that's available to allocate to new containers that use the nvidiaMps sharing strategy. Amazon ECS calculates this value from the memory that it allocated to containers on the GPU, not from the memory that the containers use.
+        remainingMemoryInMiB: number
+        -- The number of containers that Amazon ECS assigned to the GPU. This value is 0 when the sharing mode is IDLE and 1 when the sharing mode is DEDICATED. Amazon ECS counts the containers that it assigned to the GPU, not the processes that are running on it.
+        containerCount: number
+    end
+
     enum InstanceHealthCheckState
         "OK"
         "IMPAIRED"
@@ -922,6 +942,8 @@ local record M
         tags: {Tag}
         -- An object representing the health status of the container instance.
         healthStatus: ContainerInstanceHealthStatus
+        -- The state of each GPU on the container instance, including its sharing mode and available memory. This field is present only for container instances that support GPU sharing.
+        gpuDevices: {GpuDevice}
     end
 
     record DeregisterContainerInstanceOutput
@@ -2387,6 +2409,20 @@ local record M
         containerPortRange: string
     end
 
+    -- The GPU memory and compute limits for a container that shares a GPU by using NVIDIA Multi-Process Service (MPS). Amazon ECS assigns the container a single GPU that has enough memory available. Other containers that use MPS can share the same GPU.
+    record NvidiaMpsAllocation
+        -- The amount of GPU memory, in MiB, to allocate to the container. Amazon ECS assigns the container a GPU that has at least the specified amount of memory available, and sets the CUDA_MPS_PINNED_DEVICE_MEM_LIMIT environment variable in the container to limit its memory to this amount. The memory must be available on a single GPU. If more than one container in a task uses nvidiaMps, Amazon ECS assigns them the same GPU, which must have enough memory available for all of them.
+        memory: number
+        -- The maximum percentage of the GPU's compute capacity that the container can use. Amazon ECS sets the CUDA_MPS_ACTIVE_THREAD_PERCENTAGE environment variable in the container to this value. This value is a limit, not a reservation. If you don't specify this parameter, Amazon ECS doesn't set CUDA_MPS_ACTIVE_THREAD_PERCENTAGE, and the active thread percentage of the MPS server on the container instance applies. By default, this is 100 percent.
+        maxComputePercent: number
+    end
+
+    -- The strategy that a container uses to share a GPU with other containers. Specify exactly one member.
+    record SharingStrategy
+        -- Shares a GPU between containers by using NVIDIA Multi-Process Service (MPS). You specify the GPU memory to allocate to the container and, optionally, the maximum percentage of the GPU's compute capacity that the container can use.
+        nvidiaMps: NvidiaMpsAllocation
+    end
+
     enum ResourceType
         "GPU"
         "InferenceAccelerator"
@@ -2395,8 +2431,10 @@ local record M
 
     -- The type and amount of a resource to assign to a container. The supported resource types are GPUs, Neuron devices, and Elastic Inference accelerators. For more information, see Working with GPUs on Amazon ECS or Working with Amazon Elastic Inference on Amazon ECS in the Amazon Elastic Container Service Developer Guide
     record ResourceRequirement
-        -- The value for the specified resource type. When the type is GPU, the value is the number of physical GPUs the Amazon ECS container agent reserves for the container. The number of GPUs that's reserved for all containers in a task can't exceed the number of available GPUs on the container instance that the task is launched on. You can also specify ALL to allocate all available GPUs on the instance to the container. When the type is NeuronDevice, the value must be ALL. This allocates all available Neuron devices on the instance to the container. Only one container in a task can specify NeuronDevice resources. This resource type is only supported on Managed Instances. When the type is InferenceAccelerator, the value matches the deviceName for an InferenceAccelerator specified in a task definition.
+        -- The value for the specified resource type. You must specify this parameter unless the type is GPU and you specify sharingStrategy. When the type is GPU, the value is the number of physical GPUs the Amazon ECS container agent reserves for the container. The number of GPUs that's reserved for all containers in a task can't exceed the number of available GPUs on the container instance that the task is launched on. You can also specify ALL to allocate all available GPUs on the instance to the container. When the type is NeuronDevice, the value must be ALL. This allocates all available Neuron devices on the instance to the container. Only one container in a task can specify NeuronDevice resources. This resource type is only supported on Managed Instances. When the type is InferenceAccelerator, the value matches the deviceName for an InferenceAccelerator specified in a task definition.
         value: string
+        -- The strategy that the container uses to share a GPU with other containers. Specify a sharing strategy only when the type is GPU. For a GPU resource requirement, specify either value or sharingStrategy, but not both. If you don't specify a sharing strategy, the container has exclusive use of each GPU that Amazon ECS assigns to it. The containers in a task that request GPUs must all use the same option. You can use GPU sharing with tasks that run on Amazon EC2 instances or Amazon ECS Managed Instances. Task definitions that require EXTERNAL compatibility don't support GPU sharing.
+        sharingStrategy: SharingStrategy
     end
 
     enum VersionConsistency
@@ -5343,6 +5381,8 @@ local record M
         gpuIds: {string}
         -- The IDs of each Neuron device assigned to the container.
         neuronDeviceIds: {string}
+        -- The GPU sharing strategy that the task definition specifies for the container. This field is present only for containers whose resource requirements include sharingStrategy.
+        gpuSharingStrategy: SharingStrategy
     end
 
     -- The amount of ephemeral storage to allocate for the task.

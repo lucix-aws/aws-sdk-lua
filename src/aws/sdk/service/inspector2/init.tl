@@ -59,6 +59,7 @@ local record Client
     getEncryptionKey: function(Client, types.GetEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetEncryptionKeyOutput>
     getFindingsReportStatus: function(Client, types.GetFindingsReportStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsReportStatusOutput>
     getMember: function(Client, types.GetMemberInput, ? base_client.InvokeOptions): async.Operation<types.GetMemberOutput>
+    getOnDemandScanStatus: function(Client, types.GetOnDemandScanStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetOnDemandScanStatusOutput>
     getSbomExport: function(Client, types.GetSbomExportInput, ? base_client.InvokeOptions): async.Operation<types.GetSbomExportOutput>
     listAccountPermissions: function(Client, types.ListAccountPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountPermissionsOutput>
     listCisScanConfigurations: function(Client, types.ListCisScanConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCisScanConfigurationsOutput>
@@ -77,6 +78,7 @@ local record Client
     listFindingAggregations: function(Client, types.ListFindingAggregationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingAggregationsOutput>
     listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
     listMembers: function(Client, types.ListMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    listOnDemandScans: function(Client, types.ListOnDemandScansInput, ? base_client.InvokeOptions): async.Operation<types.ListOnDemandScansOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listUsageTotals: function(Client, types.ListUsageTotalsInput, ? base_client.InvokeOptions): async.Operation<types.ListUsageTotalsOutput>
     resetEncryptionKey: function(Client, types.ResetEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.ResetEncryptionKeyOutput>
@@ -85,6 +87,7 @@ local record Client
     sendCisSessionTelemetry: function(Client, types.SendCisSessionTelemetryInput, ? base_client.InvokeOptions): async.Operation<types.SendCisSessionTelemetryOutput>
     startCisSession: function(Client, types.StartCisSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartCisSessionOutput>
     startCodeSecurityScan: function(Client, types.StartCodeSecurityScanInput, ? base_client.InvokeOptions): async.Operation<types.StartCodeSecurityScanOutput>
+    startOnDemandScan: function(Client, types.StartOnDemandScanInput, ? base_client.InvokeOptions): async.Operation<types.StartOnDemandScanOutput>
     stopCisSession: function(Client, types.StopCisSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopCisSessionOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
@@ -307,6 +310,10 @@ function C:getMember(input: types.GetMemberInput, options?: base_client.InvokeOp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMember as schema.OperationSchema, input, options) as async.Operation<types.GetMemberOutput>
 end
 
+function C:getOnDemandScanStatus(input: types.GetOnDemandScanStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetOnDemandScanStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOnDemandScanStatus as schema.OperationSchema, input, options) as async.Operation<types.GetOnDemandScanStatusOutput>
+end
+
 function C:getSbomExport(input: types.GetSbomExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetSbomExportOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSbomExport as schema.OperationSchema, input, options) as async.Operation<types.GetSbomExportOutput>
 end
@@ -379,6 +386,10 @@ function C:listMembers(input: types.ListMembersInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMembers as schema.OperationSchema, input, options) as async.Operation<types.ListMembersOutput>
 end
 
+function C:listOnDemandScans(input: types.ListOnDemandScansInput, options?: base_client.InvokeOptions): async.Operation<types.ListOnDemandScansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOnDemandScans as schema.OperationSchema, input, options) as async.Operation<types.ListOnDemandScansOutput>
+end
+
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
@@ -409,6 +420,10 @@ end
 
 function C:startCodeSecurityScan(input: types.StartCodeSecurityScanInput, options?: base_client.InvokeOptions): async.Operation<types.StartCodeSecurityScanOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCodeSecurityScan as schema.OperationSchema, input, options) as async.Operation<types.StartCodeSecurityScanOutput>
+end
+
+function C:startOnDemandScan(input: types.StartOnDemandScanInput, options?: base_client.InvokeOptions): async.Operation<types.StartOnDemandScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartOnDemandScan as schema.OperationSchema, input, options) as async.Operation<types.StartOnDemandScanOutput>
 end
 
 function C:stopCisSession(input: types.StopCisSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopCisSessionOutput>

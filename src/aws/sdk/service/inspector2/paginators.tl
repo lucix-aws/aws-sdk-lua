@@ -292,6 +292,24 @@ function M.items_list_members(client, input)
     })
 end
 
+--- Returns a page iterator for listOnDemandScans.
+function M.pages_list_on_demand_scans(client, input)
+    return paginator.pages(client, "listOnDemandScans", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listOnDemandScans.
+function M.items_list_on_demand_scans(client, input)
+    return paginator.items(client, "listOnDemandScans", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listUsageTotals.
 function M.pages_list_usage_totals(client, input)
     return paginator.pages(client, "listUsageTotals", input, {
