@@ -10171,6 +10171,19 @@ M.TaskTemplateConstraints = schema.new({
     },
 })
 
+M.TaskTemplateContactHooks = schema.new({
+    id = id.from(_N, "TaskTemplateContactHooks"),
+    type = "structure",
+    members = {
+        WrapUpFlowId = schema.new({
+            id = id.from(_N, "TaskTemplateContactHooks", "WrapUpFlowId"),
+            type = "string",
+            name = "WrapUpFlowId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.TaskTemplateDefaultFieldValue = schema.new({
     id = id.from(_N, "TaskTemplateDefaultFieldValue"),
     type = "structure",
@@ -10281,6 +10294,13 @@ M.CreateTaskTemplateInput = schema.new({
             type = "string",
             name = "SelfAssignFlowId",
             target_id = prelude.String.id,
+        }),
+        ContactHooks = schema.new({
+            id = id.from(_N, "CreateTaskTemplateInput", "ContactHooks"),
+            type = "structure",
+            name = "ContactHooks",
+            target_id = id.from(_N, "TaskTemplateContactHooks"),
+            target = M.TaskTemplateContactHooks,
         }),
         Constraints = schema.new({
             id = id.from(_N, "CreateTaskTemplateInput", "Constraints"),
@@ -22202,6 +22222,13 @@ M.GetTaskTemplateOutput = schema.new({
             type = "string",
             name = "SelfAssignFlowId",
             target_id = prelude.String.id,
+        }),
+        ContactHooks = schema.new({
+            id = id.from(_N, "GetTaskTemplateOutput", "ContactHooks"),
+            type = "structure",
+            name = "ContactHooks",
+            target_id = id.from(_N, "TaskTemplateContactHooks"),
+            target = M.TaskTemplateContactHooks,
         }),
         Constraints = schema.new({
             id = id.from(_N, "GetTaskTemplateOutput", "Constraints"),
@@ -40298,6 +40325,13 @@ M.UpdateTaskTemplateInput = schema.new({
             name = "SelfAssignFlowId",
             target_id = prelude.String.id,
         }),
+        ContactHooks = schema.new({
+            id = id.from(_N, "UpdateTaskTemplateInput", "ContactHooks"),
+            type = "structure",
+            name = "ContactHooks",
+            target_id = id.from(_N, "TaskTemplateContactHooks"),
+            target = M.TaskTemplateContactHooks,
+        }),
         Constraints = schema.new({
             id = id.from(_N, "UpdateTaskTemplateInput", "Constraints"),
             type = "structure",
@@ -40373,6 +40407,13 @@ M.UpdateTaskTemplateOutput = schema.new({
             type = "string",
             name = "SelfAssignFlowId",
             target_id = prelude.String.id,
+        }),
+        ContactHooks = schema.new({
+            id = id.from(_N, "UpdateTaskTemplateOutput", "ContactHooks"),
+            type = "structure",
+            name = "ContactHooks",
+            target_id = id.from(_N, "TaskTemplateContactHooks"),
+            target = M.TaskTemplateContactHooks,
         }),
         Constraints = schema.new({
             id = id.from(_N, "UpdateTaskTemplateOutput", "Constraints"),

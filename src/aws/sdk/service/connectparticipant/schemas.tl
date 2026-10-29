@@ -16,7 +16,7 @@ M.ConnectionTypeList = schema.new({ type = "list", list_member = prelude.String 
 
 M.Transcript = schema.new({ type = "list", list_member = M.Item })
 
-M.UploadMetadataSignedHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+M.UrlMetadataSignedHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ViewActions = schema.new({ type = "list", list_member = prelude.String })
 
@@ -624,6 +624,12 @@ M.GetAttachmentInput = schema.new({
             type = "integer",
             name = "UrlExpiryInSeconds",
             target_id = prelude.Integer.id,
+        }),
+        UrlContentDisposition = schema.new({
+            id = id.from(_N, "GetAttachmentInput", "UrlContentDisposition"),
+            type = "string",
+            name = "UrlContentDisposition",
+            target_id = prelude.String.id,
         }),
     },
 })

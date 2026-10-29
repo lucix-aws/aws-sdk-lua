@@ -358,6 +358,20 @@ local record M
         customPlugin: CustomPlugin
     end
 
+    -- Details about a custom plugin to use when you update a connector via UpdateConnector.
+    record CustomPluginUpdate
+        -- The Amazon Resource Name (ARN) of the custom plugin.
+        customPluginArn: string
+        -- The revision of the custom plugin.
+        revision: number
+    end
+
+    -- A custom plugin to use when you update a connector via UpdateConnector.
+    record PluginUpdate
+        -- The custom plugin to use for the connector.
+        customPlugin: CustomPluginUpdate
+    end
+
     -- The summary of a worker configuration revision.
     record WorkerConfigurationRevisionSummary
         -- The time that a worker configuration revision was created.
@@ -802,7 +816,14 @@ local record M
 
     -- Details about worker setting of a connector
     record WorkerSetting
+        -- Specifies the compute capacity settings of the connector.
         capacity: CapacityDescription
+        -- Specifies which plugins the connector uses.
+        plugins: {PluginDescription}
+        -- Specifies which worker configuration the connector uses.
+        workerConfiguration: WorkerConfigurationDescription
+        -- Specifies whether the connector uses the default worker configuration instead of a custom worker configuration.
+        useDefaultWorkerConfiguration: boolean
     end
 
     record DescribeConnectorOperationOutput
@@ -1017,6 +1038,14 @@ local record M
     record UntagResourceOutput
     end
 
+    -- The worker configuration to use when you update a connector via UpdateConnector.
+    record WorkerConfigurationUpdate
+        -- The revision of the worker configuration.
+        revision: number
+        -- The Amazon Resource Name (ARN) of the worker configuration.
+        workerConfigurationArn: string
+    end
+
     record UpdateConnectorInput
         -- The target capacity.
         capacity: CapacityUpdate
@@ -1028,6 +1057,12 @@ local record M
         connectorArn: string
         -- The current version of the connector that you want to update.
         currentVersion: string
+        -- Amazon MSK Connect does not currently support specifying multiple plugins as a list. To use more than one plugin for your connector, you can create a single custom plugin using a ZIP file that bundles multiple plugins together. Specifies which plugin to use for the connector. You must specify a single-element list containing one customPlugin object. If you don't specify this parameter, the connector keeps its current plugin.
+        plugins: {PluginUpdate}
+        -- The worker configuration to use with the connector. Specify the Amazon Resource Name (ARN) and the revision of the worker configuration. You can't specify both workerConfiguration and useDefaultWorkerConfiguration in the same request. If you specify neither parameter, the connector keeps its current worker configuration.
+        workerConfiguration: WorkerConfigurationUpdate
+        -- Specifies whether to switch the connector to the default worker configuration that Amazon MSK Connect provides. If true, the connector stops using its custom worker configuration and uses the default worker configuration instead. If false or not specified, the connector keeps its current worker configuration. You can't specify both useDefaultWorkerConfiguration and workerConfiguration in the same request.
+        useDefaultWorkerConfiguration: boolean
     end
 
     record UpdateConnectorOutput

@@ -579,6 +579,7 @@ local record Client
     getCapacityManagerMetricData: function(Client, types.GetCapacityManagerMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMetricDataOutput>
     getCapacityManagerMetricDimensions: function(Client, types.GetCapacityManagerMetricDimensionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMetricDimensionsOutput>
     getCapacityManagerMonitoredTagKeys: function(Client, types.GetCapacityManagerMonitoredTagKeysInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
+    getCapacityManagerSupportabilityScores: function(Client, types.GetCapacityManagerSupportabilityScoresInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerSupportabilityScoresOutput>
     getCapacityReservationUsage: function(Client, types.GetCapacityReservationUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityReservationUsageOutput>
     getClientVpnEndpointAuthorizationPolicy: function(Client, types.GetClientVpnEndpointAuthorizationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetClientVpnEndpointAuthorizationPolicyOutput>
     getCoipPoolUsage: function(Client, types.GetCoipPoolUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetCoipPoolUsageOutput>
@@ -3114,6 +3115,10 @@ end
 
 function C:getCapacityManagerMonitoredTagKeys(input: types.GetCapacityManagerMonitoredTagKeysInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityManagerMonitoredTagKeys as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
+end
+
+function C:getCapacityManagerSupportabilityScores(input: types.GetCapacityManagerSupportabilityScoresInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityManagerSupportabilityScoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityManagerSupportabilityScores as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityManagerSupportabilityScoresOutput>
 end
 
 function C:getCapacityReservationUsage(input: types.GetCapacityReservationUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityReservationUsageOutput>

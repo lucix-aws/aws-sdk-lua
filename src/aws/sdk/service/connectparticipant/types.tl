@@ -241,6 +241,11 @@ local record M
     record DisconnectParticipantOutput
     end
 
+    enum ContentDisposition
+        "INLINE"
+        "ATTACHMENT"
+    end
+
     record GetAttachmentInput
         -- A unique identifier for the attachment.
         AttachmentId: string
@@ -249,6 +254,13 @@ local record M
         -- The expiration time of the URL in ISO timestamp. It's specified in ISO 8601 format:
         -- yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.
         UrlExpiryInSeconds: number
+        -- Specifies how a browser handles the file at the pre-signed URL. The following values
+        -- are valid:
+        -- INLINE
+        -- Displays the file in the browser.
+        -- ATTACHMENT
+        -- Downloads the file. This is the default behavior.
+        UrlContentDisposition: string
     end
 
     record GetAttachmentOutput
@@ -472,14 +484,12 @@ local record M
         -- For Apple Messages for Business, SMS, and WhatsApp Business Messaging contacts, only
         -- text/plain is supported.
         ContentType: string
-        -- The content of the message.
-        -- For text/plain and text/markdown, the Length
-        -- Constraints are Minimum of 1, Maximum of 1024.
-        -- For application/json, the Length Constraints are Minimum of 1,
-        -- Maximum of 12000.
-        -- For
-        -- application/vnd.amazonaws.connect.message.interactive.response,
-        -- the Length Constraints are Minimum of 1, Maximum of 12288.
+        -- The content of the message. Maximum of 16,384 bytes for all content types
+        -- (text/plain, text/markdown, application/json,
+        -- and application/vnd.amazonaws.connect.message.interactive.response).
+        -- Some messaging channels enforce lower limits. For channel-specific message size
+        -- limits, see Chat message size limits by channel in the Amazon Connect Customer
+        -- Administrator Guide.
         Content: string
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services

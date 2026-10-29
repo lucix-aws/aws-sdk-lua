@@ -19,6 +19,7 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     cancelGremlinQuery: function(Client, types.CancelGremlinQueryInput, ? base_client.InvokeOptions): async.Operation<types.CancelGremlinQueryOutput>
+    cancelIndexRebuild: function(Client, types.CancelIndexRebuildInput, ? base_client.InvokeOptions): async.Operation<types.CancelIndexRebuildOutput>
     cancelLoaderJob: function(Client, types.CancelLoaderJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelLoaderJobOutput>
     cancelMLDataProcessingJob: function(Client, types.CancelMLDataProcessingJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelMLDataProcessingJobOutput>
     cancelMLModelTrainingJob: function(Client, types.CancelMLModelTrainingJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelMLModelTrainingJobOutput>
@@ -36,6 +37,7 @@ local record Client
     executeOpenCypherQuery: function(Client, types.ExecuteOpenCypherQueryInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteOpenCypherQueryOutput>
     getEngineStatus: function(Client, types.GetEngineStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetEngineStatusOutput>
     getGremlinQueryStatus: function(Client, types.GetGremlinQueryStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetGremlinQueryStatusOutput>
+    getIndexRebuildStatus: function(Client, types.GetIndexRebuildStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexRebuildStatusOutput>
     getLoaderJobStatus: function(Client, types.GetLoaderJobStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetLoaderJobStatusOutput>
     getMLDataProcessingJob: function(Client, types.GetMLDataProcessingJobInput, ? base_client.InvokeOptions): async.Operation<types.GetMLDataProcessingJobOutput>
     getMLEndpoint: function(Client, types.GetMLEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetMLEndpointOutput>
@@ -48,7 +50,9 @@ local record Client
     getRDFGraphSummary: function(Client, types.GetRDFGraphSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetRDFGraphSummaryOutput>
     getSparqlStatistics: function(Client, types.GetSparqlStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetSparqlStatisticsOutput>
     getSparqlStream: function(Client, types.GetSparqlStreamInput, ? base_client.InvokeOptions): async.Operation<types.GetSparqlStreamOutput>
+    getStorageInfo: function(Client, types.GetStorageInfoInput, ? base_client.InvokeOptions): async.Operation<types.GetStorageInfoOutput>
     listGremlinQueries: function(Client, types.ListGremlinQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListGremlinQueriesOutput>
+    listIndexRebuilds: function(Client, types.ListIndexRebuildsInput, ? base_client.InvokeOptions): async.Operation<types.ListIndexRebuildsOutput>
     listLoaderJobs: function(Client, types.ListLoaderJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListLoaderJobsOutput>
     listMLDataProcessingJobs: function(Client, types.ListMLDataProcessingJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListMLDataProcessingJobsOutput>
     listMLEndpoints: function(Client, types.ListMLEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListMLEndpointsOutput>
@@ -57,6 +61,7 @@ local record Client
     listOpenCypherQueries: function(Client, types.ListOpenCypherQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListOpenCypherQueriesOutput>
     managePropertygraphStatistics: function(Client, types.ManagePropertygraphStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.ManagePropertygraphStatisticsOutput>
     manageSparqlStatistics: function(Client, types.ManageSparqlStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.ManageSparqlStatisticsOutput>
+    startIndexRebuild: function(Client, types.StartIndexRebuildInput, ? base_client.InvokeOptions): async.Operation<types.StartIndexRebuildOutput>
     startLoaderJob: function(Client, types.StartLoaderJobInput, ? base_client.InvokeOptions): async.Operation<types.StartLoaderJobOutput>
     startMLDataProcessingJob: function(Client, types.StartMLDataProcessingJobInput, ? base_client.InvokeOptions): async.Operation<types.StartMLDataProcessingJobOutput>
     startMLModelTrainingJob: function(Client, types.StartMLModelTrainingJobInput, ? base_client.InvokeOptions): async.Operation<types.StartMLModelTrainingJobOutput>
@@ -107,6 +112,10 @@ end
 
 function C:cancelGremlinQuery(input: types.CancelGremlinQueryInput, options?: base_client.InvokeOptions): async.Operation<types.CancelGremlinQueryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelGremlinQuery as schema.OperationSchema, input, options) as async.Operation<types.CancelGremlinQueryOutput>
+end
+
+function C:cancelIndexRebuild(input: types.CancelIndexRebuildInput, options?: base_client.InvokeOptions): async.Operation<types.CancelIndexRebuildOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelIndexRebuild as schema.OperationSchema, input, options) as async.Operation<types.CancelIndexRebuildOutput>
 end
 
 function C:cancelLoaderJob(input: types.CancelLoaderJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelLoaderJobOutput>
@@ -177,6 +186,10 @@ function C:getGremlinQueryStatus(input: types.GetGremlinQueryStatusInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGremlinQueryStatus as schema.OperationSchema, input, options) as async.Operation<types.GetGremlinQueryStatusOutput>
 end
 
+function C:getIndexRebuildStatus(input: types.GetIndexRebuildStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetIndexRebuildStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndexRebuildStatus as schema.OperationSchema, input, options) as async.Operation<types.GetIndexRebuildStatusOutput>
+end
+
 function C:getLoaderJobStatus(input: types.GetLoaderJobStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoaderJobStatusOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoaderJobStatus as schema.OperationSchema, input, options) as async.Operation<types.GetLoaderJobStatusOutput>
 end
@@ -225,8 +238,16 @@ function C:getSparqlStream(input: types.GetSparqlStreamInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSparqlStream as schema.OperationSchema, input, options) as async.Operation<types.GetSparqlStreamOutput>
 end
 
+function C:getStorageInfo(input: types.GetStorageInfoInput, options?: base_client.InvokeOptions): async.Operation<types.GetStorageInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStorageInfo as schema.OperationSchema, input, options) as async.Operation<types.GetStorageInfoOutput>
+end
+
 function C:listGremlinQueries(input: types.ListGremlinQueriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGremlinQueriesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGremlinQueries as schema.OperationSchema, input, options) as async.Operation<types.ListGremlinQueriesOutput>
+end
+
+function C:listIndexRebuilds(input: types.ListIndexRebuildsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndexRebuildsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndexRebuilds as schema.OperationSchema, input, options) as async.Operation<types.ListIndexRebuildsOutput>
 end
 
 function C:listLoaderJobs(input: types.ListLoaderJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLoaderJobsOutput>
@@ -259,6 +280,10 @@ end
 
 function C:manageSparqlStatistics(input: types.ManageSparqlStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.ManageSparqlStatisticsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ManageSparqlStatistics as schema.OperationSchema, input, options) as async.Operation<types.ManageSparqlStatisticsOutput>
+end
+
+function C:startIndexRebuild(input: types.StartIndexRebuildInput, options?: base_client.InvokeOptions): async.Operation<types.StartIndexRebuildOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartIndexRebuild as schema.OperationSchema, input, options) as async.Operation<types.StartIndexRebuildOutput>
 end
 
 function C:startLoaderJob(input: types.StartLoaderJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartLoaderJobOutput>

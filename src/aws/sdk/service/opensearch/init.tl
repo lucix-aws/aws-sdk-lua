@@ -21,6 +21,7 @@ local record Client
     acceptInboundConnection: function(Client, types.AcceptInboundConnectionInput, ? base_client.InvokeOptions): async.Operation<types.AcceptInboundConnectionOutput>
     addDataSource: function(Client, types.AddDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.AddDataSourceOutput>
     addDirectQueryDataSource: function(Client, types.AddDirectQueryDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.AddDirectQueryDataSourceOutput>
+    addReplicationPeer: function(Client, types.AddReplicationPeerInput, ? base_client.InvokeOptions): async.Operation<types.AddReplicationPeerOutput>
     addTags: function(Client, types.AddTagsInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
     associatePackage: function(Client, types.AssociatePackageInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePackageOutput>
     associatePackages: function(Client, types.AssociatePackagesInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePackagesOutput>
@@ -28,6 +29,7 @@ local record Client
     authorizeVpcEndpointAccess: function(Client, types.AuthorizeVpcEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeVpcEndpointAccessOutput>
     cancelDomainConfigChange: function(Client, types.CancelDomainConfigChangeInput, ? base_client.InvokeOptions): async.Operation<types.CancelDomainConfigChangeOutput>
     cancelServiceSoftwareUpdate: function(Client, types.CancelServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.CancelServiceSoftwareUpdateOutput>
+    compareDomainConfiguration: function(Client, types.CompareDomainConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CompareDomainConfigurationOutput>
     createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
     createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
     createIndex: function(Client, types.CreateIndexInput, ? base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
@@ -51,6 +53,7 @@ local record Client
     describeDomainConfig: function(Client, types.DescribeDomainConfigInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainConfigOutput>
     describeDomainHealth: function(Client, types.DescribeDomainHealthInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainHealthOutput>
     describeDomainNodes: function(Client, types.DescribeDomainNodesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainNodesOutput>
+    describeDomainReplication: function(Client, types.DescribeDomainReplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainReplicationOutput>
     describeDomains: function(Client, types.DescribeDomainsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainsOutput>
     describeDryRunProgress: function(Client, types.DescribeDryRunProgressInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDryRunProgressOutput>
     describeInboundConnections: function(Client, types.DescribeInboundConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInboundConnectionsOutput>
@@ -64,6 +67,7 @@ local record Client
     detachDataSource: function(Client, types.DetachDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DetachDataSourceOutput>
     dissociatePackage: function(Client, types.DissociatePackageInput, ? base_client.InvokeOptions): async.Operation<types.DissociatePackageOutput>
     dissociatePackages: function(Client, types.DissociatePackagesInput, ? base_client.InvokeOptions): async.Operation<types.DissociatePackagesOutput>
+    failoverReplication: function(Client, types.FailoverReplicationInput, ? base_client.InvokeOptions): async.Operation<types.FailoverReplicationOutput>
     getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
     getCapability: function(Client, types.GetCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.GetCapabilityOutput>
     getCompatibleVersions: function(Client, types.GetCompatibleVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCompatibleVersionsOutput>
@@ -98,12 +102,14 @@ local record Client
     putDefaultApplicationSetting: function(Client, types.PutDefaultApplicationSettingInput, ? base_client.InvokeOptions): async.Operation<types.PutDefaultApplicationSettingOutput>
     registerCapability: function(Client, types.RegisterCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.RegisterCapabilityOutput>
     rejectInboundConnection: function(Client, types.RejectInboundConnectionInput, ? base_client.InvokeOptions): async.Operation<types.RejectInboundConnectionOutput>
+    removeReplicationPeer: function(Client, types.RemoveReplicationPeerInput, ? base_client.InvokeOptions): async.Operation<types.RemoveReplicationPeerOutput>
     removeTags: function(Client, types.RemoveTagsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
     revokeVpcEndpointAccess: function(Client, types.RevokeVpcEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.RevokeVpcEndpointAccessOutput>
     rollbackServiceSoftwareUpdate: function(Client, types.RollbackServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.RollbackServiceSoftwareUpdateOutput>
     startDomainMaintenance: function(Client, types.StartDomainMaintenanceInput, ? base_client.InvokeOptions): async.Operation<types.StartDomainMaintenanceOutput>
     startMigration: function(Client, types.StartMigrationInput, ? base_client.InvokeOptions): async.Operation<types.StartMigrationOutput>
     startServiceSoftwareUpdate: function(Client, types.StartServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartServiceSoftwareUpdateOutput>
+    switchoverReplication: function(Client, types.SwitchoverReplicationInput, ? base_client.InvokeOptions): async.Operation<types.SwitchoverReplicationOutput>
     updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
     updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
     updateDirectQueryDataSource: function(Client, types.UpdateDirectQueryDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectQueryDataSourceOutput>
@@ -170,6 +176,10 @@ function C:addDirectQueryDataSource(input: types.AddDirectQueryDataSourceInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddDirectQueryDataSource as schema.OperationSchema, input, options) as async.Operation<types.AddDirectQueryDataSourceOutput>
 end
 
+function C:addReplicationPeer(input: types.AddReplicationPeerInput, options?: base_client.InvokeOptions): async.Operation<types.AddReplicationPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddReplicationPeer as schema.OperationSchema, input, options) as async.Operation<types.AddReplicationPeerOutput>
+end
+
 function C:addTags(input: types.AddTagsInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTags as schema.OperationSchema, input, options) as async.Operation<types.AddTagsOutput>
 end
@@ -196,6 +206,10 @@ end
 
 function C:cancelServiceSoftwareUpdate(input: types.CancelServiceSoftwareUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.CancelServiceSoftwareUpdateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelServiceSoftwareUpdate as schema.OperationSchema, input, options) as async.Operation<types.CancelServiceSoftwareUpdateOutput>
+end
+
+function C:compareDomainConfiguration(input: types.CompareDomainConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CompareDomainConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompareDomainConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CompareDomainConfigurationOutput>
 end
 
 function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
@@ -290,6 +304,10 @@ function C:describeDomainNodes(input: types.DescribeDomainNodesInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainNodes as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainNodesOutput>
 end
 
+function C:describeDomainReplication(input: types.DescribeDomainReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainReplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainReplicationOutput>
+end
+
 function C:describeDomains(input: types.DescribeDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomains as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainsOutput>
 end
@@ -340,6 +358,10 @@ end
 
 function C:dissociatePackages(input: types.DissociatePackagesInput, options?: base_client.InvokeOptions): async.Operation<types.DissociatePackagesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DissociatePackages as schema.OperationSchema, input, options) as async.Operation<types.DissociatePackagesOutput>
+end
+
+function C:failoverReplication(input: types.FailoverReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.FailoverReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.FailoverReplication as schema.OperationSchema, input, options) as async.Operation<types.FailoverReplicationOutput>
 end
 
 function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
@@ -478,6 +500,10 @@ function C:rejectInboundConnection(input: types.RejectInboundConnectionInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectInboundConnection as schema.OperationSchema, input, options) as async.Operation<types.RejectInboundConnectionOutput>
 end
 
+function C:removeReplicationPeer(input: types.RemoveReplicationPeerInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveReplicationPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveReplicationPeer as schema.OperationSchema, input, options) as async.Operation<types.RemoveReplicationPeerOutput>
+end
+
 function C:removeTags(input: types.RemoveTagsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTags as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsOutput>
 end
@@ -500,6 +526,10 @@ end
 
 function C:startServiceSoftwareUpdate(input: types.StartServiceSoftwareUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartServiceSoftwareUpdateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartServiceSoftwareUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartServiceSoftwareUpdateOutput>
+end
+
+function C:switchoverReplication(input: types.SwitchoverReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.SwitchoverReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SwitchoverReplication as schema.OperationSchema, input, options) as async.Operation<types.SwitchoverReplicationOutput>
 end
 
 function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>

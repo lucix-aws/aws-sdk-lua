@@ -167,6 +167,105 @@ local record M
         code: string
     end
 
+    record CancelIndexRebuildInput
+        -- The unique identifier of the index rebuild job to cancel.
+        rebuildId: string
+    end
+
+    enum RebuildStatus
+        "PREPARING"
+        "REBUILDING"
+        "COMPLETED"
+        "FAILED"
+        "CANCELLED"
+        "CANCELLING"
+    end
+
+    enum WriteBufferSize
+        "LOW"
+        "MEDIUM"
+        "HIGH"
+    end
+
+    record CancelIndexRebuildOutput
+        -- The status of the cancellation request.
+        status: string
+        -- The concurrency of the rebuild being cancelled, echoed from the original StartIndexRebuild request.
+        concurrency: number
+        -- The WriteBufferSize of the rebuild being cancelled, echoed from the original StartIndexRebuild request.
+        writeBufferSize: string
+    end
+
+    -- Raised when a request is cancelled because the storage layer entered maintenance mode. This typically happens during a customer-initiated operation such as an index rebuild. It should be treated like ConcurrentModificationException.
+    record CancelledByMaintenanceException
+        -- A detailed message describing the problem.
+        detailedMessage: string
+        -- The ID of the request in question.
+        requestId: string
+        -- The HTTP status code returned with the exception.
+        code: string
+    end
+
+    -- Raised when a user cancelled a request.
+    record CancelledByUserException
+        -- A detailed message describing the problem.
+        detailedMessage: string
+        -- The ID of the request in question.
+        requestId: string
+        -- The HTTP status code returned with the exception.
+        code: string
+    end
+
+    -- Raised when the processing of the request failed unexpectedly.
+    record InternalFailureException
+        -- A detailed message describing the problem.
+        detailedMessage: string
+        -- The ID of the request in question.
+        requestId: string
+        -- The HTTP status code returned with the exception.
+        code: string
+    end
+
+    -- Raised when the HTTP method used by a request is not supported by the endpoint being used.
+    record MethodNotAllowedException
+        -- A detailed message describing the problem.
+        detailedMessage: string
+        -- The ID of the request in question.
+        requestId: string
+        -- The HTTP status code returned with the exception.
+        code: string
+    end
+
+    -- Raised when a request attempts to write to a read-only resource.
+    record ReadOnlyViolationException
+        -- A detailed message describing the problem.
+        detailedMessage: string
+        -- The ID of the request in which the parameter is missing.
+        requestId: string
+        -- The HTTP status code returned with the exception.
+        code: string
+    end
+
+    -- Raised when the server shuts down while processing a request.
+    record ServerShutdownException
+        -- A detailed message describing the problem.
+        detailedMessage: string
+        -- The ID of the request in question.
+        requestId: string
+        -- The HTTP status code returned with the exception.
+        code: string
+    end
+
+    -- Raised when a parameter value is not valid or is malformed.
+    record ValidationException
+        -- A detailed message describing the problem.
+        detailedMessage: string
+        -- The ID of the request in question.
+        requestId: string
+        -- The HTTP status code returned with the exception.
+        code: string
+    end
+
     -- Raised when a specified bulk-load job ID cannot be found.
     record BulkLoadIdNotFoundException
         -- A detailed message describing the problem.
@@ -185,16 +284,6 @@ local record M
     record CancelLoaderJobOutput
         -- The cancellation status.
         status: string
-    end
-
-    -- Raised when the processing of the request failed unexpectedly.
-    record InternalFailureException
-        -- A detailed message describing the problem.
-        detailedMessage: string
-        -- The ID of the request in question.
-        requestId: string
-        -- The HTTP status code returned with the exception.
-        code: string
     end
 
     -- Raised when access is denied to a specified load URL.
@@ -347,16 +436,6 @@ local record M
         payload: DeleteStatisticsValueMap
     end
 
-    -- Raised when a request attempts to write to a read-only resource.
-    record ReadOnlyViolationException
-        -- A detailed message describing the problem.
-        detailedMessage: string
-        -- The ID of the request in which the parameter is missing.
-        requestId: string
-        -- The HTTP status code returned with the exception.
-        code: string
-    end
-
     -- Raised when statistics needed to satisfy a request are not available.
     record StatisticsNotAvailableException
         -- A detailed message describing the problem.
@@ -397,36 +476,6 @@ local record M
         status: string
         -- The payload is only returned by the initiateDatabaseReset action, and contains the unique token to use with the performDatabaseReset action to make the reset occur.
         payload: FastResetToken
-    end
-
-    -- Raised when the HTTP method used by a request is not supported by the endpoint being used.
-    record MethodNotAllowedException
-        -- A detailed message describing the problem.
-        detailedMessage: string
-        -- The ID of the request in question.
-        requestId: string
-        -- The HTTP status code returned with the exception.
-        code: string
-    end
-
-    -- Raised when the server shuts down while processing a request.
-    record ServerShutdownException
-        -- A detailed message describing the problem.
-        detailedMessage: string
-        -- The ID of the request in question.
-        requestId: string
-        -- The HTTP status code returned with the exception.
-        code: string
-    end
-
-    -- Raised when a user cancelled a request.
-    record CancelledByUserException
-        -- A detailed message describing the problem.
-        detailedMessage: string
-        -- The ID of the request in question.
-        requestId: string
-        -- The HTTP status code returned with the exception.
-        code: string
     end
 
     record ExecuteGremlinExplainQueryInput
@@ -629,6 +678,38 @@ local record M
         queryString: string
         -- The evaluation status of the Gremlin query.
         queryEvalStats: QueryEvalStats
+    end
+
+    record GetIndexRebuildStatusInput
+        -- The unique identifier of the index rebuild job returned by the StartIndexRebuild operation.
+        rebuildId: string
+    end
+
+    enum Scope
+        "ALL"
+        "QUADS"
+        "DICTIONARIES"
+    end
+
+    record GetIndexRebuildStatusOutput
+        -- The current status of the rebuild operation. See RebuildStatus for possible values: PREPARING, REBUILDING, COMPLETED, FAILED, CANCELLING or CANCELLED.
+        status: string
+        -- The scope of the rebuild operation. See Scope for possible values: ALL, QUADS, or DICTIONARIES.
+        scope: string
+        -- The concurrency in effect for this rebuild, as echoed from the original StartIndexRebuild request.
+        concurrency: number
+        -- The WriteBufferSize in effect for this rebuild, as echoed from the original StartIndexRebuild request.
+        writeBufferSize: string
+        -- The ISO-8601 timestamp indicating when the index rebuild operation started.
+        startTime: number
+        -- The percentage of the index rebuild operation that has been completed, expressed as an integer from 0 to 100.
+        progressPercentage: number
+        -- The estimated ISO-8601 timestamp for when the index rebuild operation will complete. The estimate may change as the operation progresses.
+        estimatedEndTime: number
+        -- The ISO-8601 timestamp indicating when the index rebuild operation completed. This field is only present when the operation has completed (status is COMPLETED, FAILED, or CANCELLED).
+        endTime: number
+        -- The reason for the failure, if the rebuild operation failed. This field is only populated when the status is FAILED.
+        failureReason: string
     end
 
     record GetLoaderJobStatusInput
@@ -1077,6 +1158,74 @@ local record M
         totalRecords: number
     end
 
+    record GetStorageInfoInput
+    end
+
+    -- Contains storage size and entry count metrics.
+    record StorageMetrics
+        -- Storage size in bytes.
+        sizeInBytes: number
+        -- The number of entries.
+        count: number
+    end
+
+    -- Contains dictionary storage metrics for the Neptune database, including total dictionary size and entry count, and the size and count for blob (large value) entries.
+    record DictionariesInfo
+        -- The total size and entry count across all dictionary entries.
+        total: StorageMetrics
+        -- The size and entry count for the blob (large value) dictionary entries.
+        blobs: StorageMetrics
+    end
+
+    -- Contains storage information about quad indexes.
+    record QuadsInfo
+        -- Size and count information for the SPOG quad index.
+        SPOG: StorageMetrics
+        -- Size and count information for the POGS quad index.
+        POGS: StorageMetrics
+        -- Size and count information for the GPSO quad index.
+        GPSO: StorageMetrics
+        -- Size and count information for the OSGP quad index. This index is optional. For details on how to enable it and evaluate the benefits and costs, see Neptune Data Model.
+        OSGP: StorageMetrics
+        -- Size and count information for the PZSOG quad index.
+        PZSOG: StorageMetrics
+    end
+
+    -- Contains storage information about quad indexes for both RDF and Property Graph data models.
+    record QuadsIndexesInfo
+        -- Contains quad index information for the RDF (SPARQL) data model.
+        RDF: QuadsInfo
+        -- Contains quad index information for the Property Graph (Gremlin/openCypher) data model.
+        PG: QuadsInfo
+    end
+
+    -- Contains storage metrics for the Neptune undo logs, including the total size in bytes and the number of entries in the undo log list.
+    record UndoLogsMetrics
+        -- The total size of the undo logs in bytes.
+        sizeInBytes: number
+        -- The number of entries in the undo log list.
+        listSize: number
+    end
+
+    record GetStorageInfoOutput
+        -- The approximate total amount of storage used by the Neptune database instance, in bytes.
+        totalStorageBytesUsed: number
+        -- Contains information about the quad indexes, including counts and sizes for both RDF (SPARQL) and Property Graph (Gremlin/openCypher) data.
+        quads: QuadsIndexesInfo
+        -- Contains information about the dictionaries, including total dictionary storage and the portion used by blob entries. For additional details on the storage of the Neptune dictionary, see Neptune Storage Billing.
+        dictionaries: DictionariesInfo
+        -- Contains information about the undo logs. The sizeInBytes field represents the total size of the undo logs in bytes, and the listSize field represents the number of entries in the undo log list.
+        undoLogs: UndoLogsMetrics
+        -- Contains storage metrics for the Neptune change-log streams, including size in bytes and entry count.
+        streams: StorageMetrics
+        -- Contains storage metrics for the Neptune DFE engine statistics, including size in bytes and entry count.
+        dfeStatistics: StorageMetrics
+        -- Contains storage metrics for the Neptune schema, including size in bytes and entry count.
+        schema: StorageMetrics
+        -- Contains storage metrics for Neptune system metadata, including size in bytes and entry count.
+        internals: StorageMetrics
+    end
+
     record ListGremlinQueriesInput
         -- If set to TRUE, the list returned includes waiting queries. The default is FALSE;
         includeWaiting: boolean
@@ -1099,6 +1248,14 @@ local record M
         runningQueryCount: number
         -- A list of the current queries.
         queries: {GremlinQueryStatus}
+    end
+
+    record ListIndexRebuildsInput
+    end
+
+    record ListIndexRebuildsOutput
+        -- A list of unique identifiers for index rebuild operations. Use each ID with the GetIndexRebuildStatus operation to retrieve detailed status information.
+        rebuildIds: {string}
     end
 
     record ListLoaderJobsInput
@@ -1217,6 +1374,40 @@ local record M
         status: string
         -- This is only returned for refresh mode.
         payload: RefreshStatisticsIdMap
+    end
+
+    -- Raised when the specified resource could not be found. The resource might have been deleted or the identifier might be incorrect.
+    record ResourceNotFoundException
+        -- A detailed message describing the problem.
+        detailedMessage: string
+        -- The ID of the request in question.
+        requestId: string
+        -- The HTTP status code returned with the exception.
+        code: string
+    end
+
+    record StartIndexRebuildInput
+        -- Specifies the scope of the rebuild operation. Possible values are: ALL - Rebuild all (quads and dictionaries). This is the default if not specified. QUADS - Rebuild only the quad indexes. DICTIONARIES - Rebuild only the dictionaries.
+        scope: string
+        -- The number of concurrent indexes to rebuild in parallel. If not specified, defaults to 1. Valid values are between 1 and the number of vCPUs available on the writer instance. If the value exceeds the available vCPUs, it is capped at the maximum instead of returning an InvalidParameterException. The effective (capped) value is returned in the response. Higher concurrency can shorten the overall rebuild, but also increases CPU and I/O load during the operation.
+        concurrency: number
+        -- Controls the buffer size used for tracking concurrent write operations during the index rebuild. If your database has high write traffic during the rebuild, a larger buffer prevents the operation from failing due to buffer overflow. Possible values are: LOW - Suitable for databases with light to moderate write activity. This is the default. MEDIUM - Recommended for databases with sustained write traffic or bulk loading. HIGH - Use when rebuilding indexes during heavy write workloads or continuous bulk data ingestion. If your rebuild fails and you are actively writing data to the database, retry with a higher writeBufferSize value. For bulk load operations, consider using HIGH.
+        writeBufferSize: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, the SDK automatically generates one.
+        clientToken: string
+    end
+
+    record StartIndexRebuildOutput
+        -- The current status of the rebuild operation. See RebuildStatus for possible values.
+        status: string
+        -- The unique identifier for the index rebuild job. Use this ID with the GetIndexRebuildStatus operation to check the progress of the rebuild.
+        rebuildId: string
+        -- The scope of the rebuild operation that was requested. See Scope for possible values: ALL, QUADS, or DICTIONARIES.
+        scope: string
+        -- The effective concurrency used for this rebuild. This is the value supplied in the request, capped at the number of vCPUs on the writer instance.
+        concurrency: number
+        -- The WriteBufferSize applied to this rebuild. See the WriteBufferSize enum for possible values.
+        writeBufferSize: string
     end
 
     -- Raised when there is a problem accessing Amazon S3.

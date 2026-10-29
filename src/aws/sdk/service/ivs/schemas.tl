@@ -3168,6 +3168,21 @@ M.InsertAdBreakInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        adBreakId = schema.new({
+            id = id.from(_N, "InsertAdBreakInput", "adBreakId"),
+            type = "string",
+            name = "adBreakId",
+            target_id = prelude.String.id,
+        }),
+        targetStartAt = schema.new({
+            id = id.from(_N, "InsertAdBreakInput", "targetStartAt"),
+            type = "timestamp",
+            name = "targetStartAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
     },
 })
 
@@ -3180,6 +3195,15 @@ M.InsertAdBreakOutput = schema.new({
             type = "string",
             name = "adBreakId",
             target_id = prelude.String.id,
+        }),
+        targetStartAt = schema.new({
+            id = id.from(_N, "InsertAdBreakOutput", "targetStartAt"),
+            type = "timestamp",
+            name = "targetStartAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })

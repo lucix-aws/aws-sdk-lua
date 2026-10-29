@@ -299,6 +299,41 @@ local record M
         LimitValues: {string}
     end
 
+    record AddReplicationPeerInput
+        DomainName: string
+        -- The Amazon Resource Name (ARN) of the domain to replicate to. The peer must be in a
+        -- different Region from the domain you are calling, and in the same AWS account.
+        PeerDomainArn: string
+        -- When true, validates the request and reports whether replication could be
+        -- established, without changing either domain.
+        DryRun: boolean
+    end
+
+    enum ReplicationStatus
+        "PENDING_SETUP"
+        "ACTIVE"
+        "SWITCHING_OVER"
+        "FAILING_OVER"
+        "PENDING_REMOVAL"
+        "DETACHED"
+        "EJECTED"
+        "FAILED"
+    end
+
+    record AddReplicationPeerOutput
+        -- The Amazon Resource Name (ARN) of the domain that is now replicating to the peer.
+        DomainArn: string
+        -- The state of the replication relationship. This is PENDING_SETUP immediately
+        -- after the request is accepted.
+        Status: string
+    end
+
+    -- An exception for creating a resource that already exists.
+    record ResourceAlreadyExistsException
+        -- A description of the error.
+        message: string
+    end
+
     -- Container for the parameters to the AddTags operation. Specifies the tags
     -- to attach to the domain, data source, or application.
     record AddTagsInput
@@ -862,6 +897,97 @@ local record M
     record CancelServiceSoftwareUpdateOutput
         -- Container for the state of your domain relative to the latest service software.
         ServiceSoftwareOptions: ServiceSoftwareOptions
+    end
+
+    record CompareDomainConfigurationInput
+        -- The Amazon Resource Name (ARN) of the domain to compare from.
+        SourceDomainArn: string
+        -- The Amazon Resource Name (ARN) of the domain to compare against.
+        TargetDomainArn: string
+        -- The metadata categories to compare. At least one is required, and only the categories you
+        -- name are read and returned.
+        -- aliases
+        -- alerting_monitors
+        -- cluster_settings
+        -- component_templates
+        -- ingest_pipelines
+        -- ism_policies — index state management policies
+        -- security_action_groups
+        -- security_internal_users
+        -- security_role_mappings
+        -- security_roles
+        -- templates — index templates
+        -- The set of categories grows over time, so this list is not fixed. A category the service does
+        -- not recognise is rejected with the supported categories named in the error message.
+        Categories: {string}
+    end
+
+    enum DiffFieldPolicy
+        "redacted"
+    end
+
+    -- A single field that differs between the source and target copies of an item.
+    record DivergentField
+        -- The location of the field within the item.
+        Path: string
+        -- The field's value on the source domain.
+        SourceValue: string
+        -- The field's value on the target domain.
+        TargetValue: string
+        -- How the comparison treats this field.
+        Policy: string
+    end
+
+    -- An item that exists on both domains but whose contents differ.
+    record DivergentItem
+        -- The name of the item.
+        Name: string
+        -- The fields of the item that differ.
+        Fields: {DivergentField}
+    end
+
+    -- The items that differ within one metadata category.
+    record DiffItems
+        -- The names of items that exist only on the source domain.
+        SourceOnly: {string}
+        -- The names of items that exist only on the target domain.
+        TargetOnly: {string}
+        -- The items that exist on both domains but differ, with the diverging fields.
+        Diverged: {DivergentItem}
+    end
+
+    enum DiffStatus
+        "compared"
+        "error"
+    end
+
+    -- The result of comparing one metadata category between two domains.
+    record CategoryDiffResult
+        -- Whether the category was compared successfully. compared means the result is
+        -- complete; error means the category could not be read.
+        Status: string
+        -- The number of items that are identical on both domains.
+        InSync: number
+        -- The number of items that exist only on the source domain.
+        SourceOnly: number
+        -- The number of items that exist only on the target domain.
+        TargetOnly: number
+        -- The number of items that exist on both domains but differ.
+        Diverged: number
+        -- The names of the items that differ, and for diverging items, the fields that differ.
+        Items: DiffItems
+        -- Whether Items omits some differences because the category contained more than
+        -- the response can carry. The counts remain complete when this is true.
+        Truncated: boolean
+    end
+
+    record CompareDomainConfigurationOutput
+        -- The Amazon Resource Name (ARN) of the domain that was compared from.
+        SourceDomainArn: string
+        -- The Amazon Resource Name (ARN) of the domain that was compared against.
+        TargetDomainArn: string
+        -- The comparison result for each category you requested, keyed by category name.
+        Categories: {string : CategoryDiffResult}
     end
 
     enum AppConfigType
@@ -1818,12 +1944,6 @@ local record M
 
     -- An exception for trying to create or access a sub-resource that's either invalid or not supported.
     record InvalidTypeException
-        -- A description of the error.
-        message: string
-    end
-
-    -- An exception for creating a resource that already exists.
-    record ResourceAlreadyExistsException
         -- A description of the error.
         message: string
     end
@@ -2910,6 +3030,52 @@ local record M
         DomainNodesStatusList: {DomainNodesStatus}
     end
 
+    record DescribeDomainReplicationInput
+        DomainName: string
+    end
+
+    enum ReplicationRole
+        "PRIMARY"
+        "SECONDARY"
+    end
+
+    -- A domain that another domain replicates with, and the state of that relationship.
+    record ReplicationPeer
+        -- The Amazon Resource Name (ARN) of the peer domain.
+        PeerDomainArn: string
+        -- The peer's role in the relationship, either PRIMARY or
+        -- SECONDARY.
+        PeerRole: string
+        -- The state of the relationship:
+        -- PENDING_SETUP - replication is being established.
+        -- ACTIVE - replication is running.
+        -- SWITCHING_OVER - a planned promotion is in progress.
+        -- FAILING_OVER - an unplanned promotion is in progress.
+        -- PENDING_REMOVAL - replication is being stopped.
+        -- DETACHED - the relationship has ended.
+        -- EJECTED - a failover promoted the other domain. The former primary
+        -- keeps the data it had when it was ejected and stays read-only until you remove the peer, or
+        -- discard that data and pair again.
+        -- FAILED - setup or teardown could not complete. You can still remove
+        -- the relationship.
+        -- A relationship that is removed successfully no longer appears in Peers.
+        Status: string
+        -- An explanation of why the relationship is in its current state, when more detail is
+        -- available.
+        StatusMessage: string
+    end
+
+    record DescribeDomainReplicationOutput
+        -- The Amazon Resource Name (ARN) of the domain described.
+        DomainArn: string
+        -- The domain's role in the arrangement, either PRIMARY or
+        -- SECONDARY. Absent when the domain is not replicating.
+        Role: string
+        -- The domains that this domain replicates with. Each entry carries the state of that one
+        -- relationship. Empty when the domain is not replicating.
+        Peers: {ReplicationPeer}
+    end
+
     -- Container for the parameters to the DescribeDomains operation.
     record DescribeDomainsInput
         -- Array of OpenSearch Service domain names that you want information about. You must
@@ -3419,6 +3585,24 @@ local record M
         -- A list of package details for the packages that were dissociated from the
         -- domain.
         DomainPackageDetailsList: {DomainPackageDetails}
+    end
+
+    record FailoverReplicationInput
+        DomainName: string
+        -- The Amazon Resource Name (ARN) of the relationship's current primary. The request is
+        -- rejected if this domain is no longer the peer of the domain you are calling.
+        PeerDomainArn: string
+        -- Acknowledges that writes which had not yet replicated are lost. You must set this to
+        -- true; the request is rejected otherwise.
+        AllowDataLoss: boolean
+    end
+
+    record FailoverReplicationOutput
+        -- The Amazon Resource Name (ARN) of the domain being promoted.
+        DomainArn: string
+        -- The state of the replication relationship. This is FAILING_OVER while the
+        -- promotion is in progress.
+        Status: string
     end
 
     record GetApplicationInput
@@ -4507,6 +4691,21 @@ local record M
         Connection: InboundConnection
     end
 
+    record RemoveReplicationPeerInput
+        DomainName: string
+        -- The Amazon Resource Name (ARN) of the peer to stop replicating with. Both domains are named
+        -- so that the request identifies exactly one replication relationship.
+        PeerDomainArn: string
+    end
+
+    record RemoveReplicationPeerOutput
+        -- The Amazon Resource Name (ARN) of the domain that is no longer replicating.
+        DomainArn: string
+        -- The state of the replication relationship. This is PENDING_REMOVAL while
+        -- replication is being stopped.
+        Status: string
+    end
+
     -- Container for the request parameters to the RemoveTags operation.
     record RemoveTagsInput
         -- The Amazon Resource Name (ARN) of the domain, data source, or application from which
@@ -4666,6 +4865,21 @@ local record M
     record StartServiceSoftwareUpdateOutput
         -- The current status of the OpenSearch Service software update.
         ServiceSoftwareOptions: ServiceSoftwareOptions
+    end
+
+    record SwitchoverReplicationInput
+        DomainName: string
+        -- The Amazon Resource Name (ARN) of the relationship's current primary. The request is
+        -- rejected if this domain is no longer the peer of the domain you are calling.
+        PeerDomainArn: string
+    end
+
+    record SwitchoverReplicationOutput
+        -- The Amazon Resource Name (ARN) of the domain being promoted.
+        DomainArn: string
+        -- The state of the replication relationship. This is SWITCHING_OVER while the
+        -- promotion is in progress.
+        Status: string
     end
 
     record UpdateApplicationInput

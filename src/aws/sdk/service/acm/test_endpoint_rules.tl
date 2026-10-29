@@ -553,7 +553,7 @@ describe("endpoint rules", function()
         assert.are.equal("https://custom.example.com", result.url)
     end)
 
-    it("ACM-ACME in us-gov-west-1 returns partition error", function()
+    it("ACM-ACME standard endpoint for us-gov-west-1", function()
         local params = {
             Region = "us-gov-west-1",
             UseFIPS = false,
@@ -561,9 +561,20 @@ describe("endpoint rules", function()
             ServiceType = "ACM-ACME",
         }
         local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("ACME operations are only available in commercial AWS partitions", err)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://acm-acme.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("ACM-ACME standard endpoint for us-gov-east-1", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            ServiceType = "ACM-ACME",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://acm-acme.us-gov-east-1.api.aws", result.url)
     end)
 
     it("ACM-ACME in cn-north-1 returns partition error", function()
@@ -576,7 +587,45 @@ describe("endpoint rules", function()
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_nil(result, "expected error but got result")
         assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("ACME operations are only available in commercial AWS partitions", err)
+        assert.are.equal("ACME operations are only available in the aws and aws-us-gov partitions", err)
+    end)
+
+    it("ACM-ACME in cn-northwest-1 returns partition error", function()
+        local params = {
+            Region = "cn-northwest-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            ServiceType = "ACM-ACME",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("ACME operations are only available in the aws and aws-us-gov partitions", err)
+    end)
+
+    it("ACM-ACME with DualStack enabled for us-gov-west-1", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = false,
+            UseDualStack = true,
+            ServiceType = "ACM-ACME",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://acm-acme.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("ACM-ACME FIPS in us-gov-west-1 returns error", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            ServiceType = "ACM-ACME",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("FIPS endpoints are not available for ACME operations", err)
     end)
 
 end)

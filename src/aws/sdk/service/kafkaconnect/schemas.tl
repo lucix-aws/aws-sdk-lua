@@ -32,6 +32,8 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ConnectorConfigurationUpdate = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.__listOfPluginUpdate = schema.new({ type = "list", list_member = M.PluginUpdate })
+
 M.__listOf__string = schema.new({ type = "list", list_member = prelude.String })
 
 M.ConnectorOperationStep = schema.new({
@@ -792,6 +794,49 @@ M.Plugin = schema.new({
             name = "customPlugin",
             target_id = id.from(_N, "CustomPlugin"),
             target = M.CustomPlugin,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomPluginUpdate = schema.new({
+    id = id.from(_N, "CustomPluginUpdate"),
+    type = "structure",
+    members = {
+        customPluginArn = schema.new({
+            id = id.from(_N, "CustomPluginUpdate", "customPluginArn"),
+            type = "string",
+            name = "customPluginArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revision = schema.new({
+            id = id.from(_N, "CustomPluginUpdate", "revision"),
+            type = "long",
+            name = "revision",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.PluginUpdate = schema.new({
+    id = id.from(_N, "PluginUpdate"),
+    type = "structure",
+    members = {
+        customPlugin = schema.new({
+            id = id.from(_N, "PluginUpdate", "customPlugin"),
+            type = "structure",
+            name = "customPlugin",
+            target_id = id.from(_N, "CustomPluginUpdate"),
+            target = M.CustomPluginUpdate,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2214,6 +2259,29 @@ M.WorkerSetting = schema.new({
             target_id = id.from(_N, "CapacityDescription"),
             target = M.CapacityDescription,
         }),
+        plugins = schema.new({
+            id = id.from(_N, "WorkerSetting", "plugins"),
+            type = "list",
+            name = "plugins",
+            target_id = prelude.Document.id,
+            list_member = M.PluginDescription,
+        }),
+        workerConfiguration = schema.new({
+            id = id.from(_N, "WorkerSetting", "workerConfiguration"),
+            type = "structure",
+            name = "workerConfiguration",
+            target_id = id.from(_N, "WorkerConfigurationDescription"),
+            target = M.WorkerConfigurationDescription,
+        }),
+        useDefaultWorkerConfiguration = schema.new({
+            id = id.from(_N, "WorkerSetting", "useDefaultWorkerConfiguration"),
+            type = "boolean",
+            name = "useDefaultWorkerConfiguration",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
     },
 })
 
@@ -2915,6 +2983,32 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.WorkerConfigurationUpdate = schema.new({
+    id = id.from(_N, "WorkerConfigurationUpdate"),
+    type = "structure",
+    members = {
+        revision = schema.new({
+            id = id.from(_N, "WorkerConfigurationUpdate", "revision"),
+            type = "long",
+            name = "revision",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        workerConfigurationArn = schema.new({
+            id = id.from(_N, "WorkerConfigurationUpdate", "workerConfigurationArn"),
+            type = "string",
+            name = "workerConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateConnectorInput = schema.new({
     id = id.from(_N, "UpdateConnectorRequest"),
     type = "structure",
@@ -2961,6 +3055,29 @@ M.UpdateConnectorInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_QUERY] = { name = "currentVersion" },
+            },
+        }),
+        plugins = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "plugins"),
+            type = "list",
+            name = "plugins",
+            target_id = prelude.Document.id,
+            list_member = M.PluginUpdate,
+        }),
+        workerConfiguration = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "workerConfiguration"),
+            type = "structure",
+            name = "workerConfiguration",
+            target_id = id.from(_N, "WorkerConfigurationUpdate"),
+            target = M.WorkerConfigurationUpdate,
+        }),
+        useDefaultWorkerConfiguration = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "useDefaultWorkerConfiguration"),
+            type = "boolean",
+            name = "useDefaultWorkerConfiguration",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
             },
         }),
     },

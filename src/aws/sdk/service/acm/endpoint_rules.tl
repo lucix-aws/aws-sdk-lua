@@ -101,7 +101,7 @@ return
                             type = "endpoint",
                         },
                         {
-                            documentation = "ACME operations are only available in commercial AWS partitions",
+                            documentation = "ACME in the aws partition",
                             conditions = {
                                 {
                                     fn = "stringEquals",
@@ -148,9 +148,56 @@ return
                             type = "tree",
                         },
                         {
-                            documentation = "ACME operations are only available in commercial AWS partitions",
+                            documentation = "ACME in the aws-us-gov partition",
+                            conditions = {
+                                {
+                                    fn = "stringEquals",
+                                    argv = {
+                                        {
+                                            fn = "getAttr",
+                                            argv = {
+                                                {
+                                                    ref = "PartitionResult",
+                                                },
+                                                "name",
+                                            },
+                                        },
+                                        "aws-us-gov",
+                                    },
+                                },
+                            },
+                            rules = {
+                                {
+                                    documentation = "FIPS endpoints are not available for ACME operations",
+                                    conditions = {
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    error = "FIPS endpoints are not available for ACME operations",
+                                    type = "error",
+                                },
+                                {
+                                    documentation = "ACME standard",
+                                    conditions = {},
+                                    endpoint = {
+                                        url = "https://acm-acme.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                    },
+                                    type = "endpoint",
+                                },
+                            },
+                            type = "tree",
+                        },
+                        {
+                            documentation = "ACME operations are only available in the aws and aws-us-gov partitions",
                             conditions = {},
-                            error = "ACME operations are only available in commercial AWS partitions",
+                            error = "ACME operations are only available in the aws and aws-us-gov partitions",
                             type = "error",
                         },
                     },

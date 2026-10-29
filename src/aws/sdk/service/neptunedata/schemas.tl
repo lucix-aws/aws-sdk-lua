@@ -24,6 +24,8 @@ M.SparqlRecordsList = schema.new({ type = "list", list_member = M.SparqlRecord }
 
 M.GremlinQueries = schema.new({ type = "list", list_member = M.GremlinQueryStatus })
 
+M.RebuildIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.OpenCypherQueries = schema.new({ type = "list", list_member = M.GremlinQueryStatus })
@@ -637,6 +639,316 @@ M.UnsupportedOperationException = schema.new({
     },
 })
 
+M.CancelIndexRebuildInput = schema.new({
+    id = id.from(_N, "CancelIndexRebuildInput"),
+    type = "structure",
+    members = {
+        rebuildId = schema.new({
+            id = id.from(_N, "CancelIndexRebuildInput", "rebuildId"),
+            type = "string",
+            name = "rebuildId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.CancelIndexRebuildOutput = schema.new({
+    id = id.from(_N, "CancelIndexRebuildOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "CancelIndexRebuildOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        concurrency = schema.new({
+            id = id.from(_N, "CancelIndexRebuildOutput", "concurrency"),
+            type = "integer",
+            name = "concurrency",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        writeBufferSize = schema.new({
+            id = id.from(_N, "CancelIndexRebuildOutput", "writeBufferSize"),
+            type = "string",
+            name = "writeBufferSize",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CancelledByMaintenanceException = schema.new({
+    id = id.from(_N, "CancelledByMaintenanceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        detailedMessage = schema.new({
+            id = id.from(_N, "CancelledByMaintenanceException", "detailedMessage"),
+            type = "string",
+            name = "detailedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "CancelledByMaintenanceException", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "CancelledByMaintenanceException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CancelledByUserException = schema.new({
+    id = id.from(_N, "CancelledByUserException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        detailedMessage = schema.new({
+            id = id.from(_N, "CancelledByUserException", "detailedMessage"),
+            type = "string",
+            name = "detailedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "CancelledByUserException", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "CancelledByUserException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalFailureException = schema.new({
+    id = id.from(_N, "InternalFailureException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        detailedMessage = schema.new({
+            id = id.from(_N, "InternalFailureException", "detailedMessage"),
+            type = "string",
+            name = "detailedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "InternalFailureException", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "InternalFailureException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MethodNotAllowedException = schema.new({
+    id = id.from(_N, "MethodNotAllowedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        detailedMessage = schema.new({
+            id = id.from(_N, "MethodNotAllowedException", "detailedMessage"),
+            type = "string",
+            name = "detailedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "MethodNotAllowedException", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "MethodNotAllowedException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ReadOnlyViolationException = schema.new({
+    id = id.from(_N, "ReadOnlyViolationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        detailedMessage = schema.new({
+            id = id.from(_N, "ReadOnlyViolationException", "detailedMessage"),
+            type = "string",
+            name = "detailedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "ReadOnlyViolationException", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "ReadOnlyViolationException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServerShutdownException = schema.new({
+    id = id.from(_N, "ServerShutdownException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        detailedMessage = schema.new({
+            id = id.from(_N, "ServerShutdownException", "detailedMessage"),
+            type = "string",
+            name = "detailedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "ServerShutdownException", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "ServerShutdownException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        detailedMessage = schema.new({
+            id = id.from(_N, "ValidationException", "detailedMessage"),
+            type = "string",
+            name = "detailedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "ValidationException", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "ValidationException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.BulkLoadIdNotFoundException = schema.new({
     id = id.from(_N, "BulkLoadIdNotFoundException"),
     type = "structure",
@@ -700,43 +1012,6 @@ M.CancelLoaderJobOutput = schema.new({
             type = "string",
             name = "status",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InternalFailureException = schema.new({
-    id = id.from(_N, "InternalFailureException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        detailedMessage = schema.new({
-            id = id.from(_N, "InternalFailureException", "detailedMessage"),
-            type = "string",
-            name = "detailedMessage",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        requestId = schema.new({
-            id = id.from(_N, "InternalFailureException", "requestId"),
-            type = "string",
-            name = "requestId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        code = schema.new({
-            id = id.from(_N, "InternalFailureException", "code"),
-            type = "string",
-            name = "code",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -1225,43 +1500,6 @@ M.DeletePropertygraphStatisticsOutput = schema.new({
     },
 })
 
-M.ReadOnlyViolationException = schema.new({
-    id = id.from(_N, "ReadOnlyViolationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        detailedMessage = schema.new({
-            id = id.from(_N, "ReadOnlyViolationException", "detailedMessage"),
-            type = "string",
-            name = "detailedMessage",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        requestId = schema.new({
-            id = id.from(_N, "ReadOnlyViolationException", "requestId"),
-            type = "string",
-            name = "requestId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        code = schema.new({
-            id = id.from(_N, "ReadOnlyViolationException", "code"),
-            type = "string",
-            name = "code",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.StatisticsNotAvailableException = schema.new({
     id = id.from(_N, "StatisticsNotAvailableException"),
     type = "structure",
@@ -1384,117 +1622,6 @@ M.ExecuteFastResetOutput = schema.new({
             name = "payload",
             target_id = id.from(_N, "FastResetToken"),
             target = M.FastResetToken,
-        }),
-    },
-})
-
-M.MethodNotAllowedException = schema.new({
-    id = id.from(_N, "MethodNotAllowedException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        detailedMessage = schema.new({
-            id = id.from(_N, "MethodNotAllowedException", "detailedMessage"),
-            type = "string",
-            name = "detailedMessage",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        requestId = schema.new({
-            id = id.from(_N, "MethodNotAllowedException", "requestId"),
-            type = "string",
-            name = "requestId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        code = schema.new({
-            id = id.from(_N, "MethodNotAllowedException", "code"),
-            type = "string",
-            name = "code",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ServerShutdownException = schema.new({
-    id = id.from(_N, "ServerShutdownException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        detailedMessage = schema.new({
-            id = id.from(_N, "ServerShutdownException", "detailedMessage"),
-            type = "string",
-            name = "detailedMessage",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        requestId = schema.new({
-            id = id.from(_N, "ServerShutdownException", "requestId"),
-            type = "string",
-            name = "requestId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        code = schema.new({
-            id = id.from(_N, "ServerShutdownException", "code"),
-            type = "string",
-            name = "code",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CancelledByUserException = schema.new({
-    id = id.from(_N, "CancelledByUserException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        detailedMessage = schema.new({
-            id = id.from(_N, "CancelledByUserException", "detailedMessage"),
-            type = "string",
-            name = "detailedMessage",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        requestId = schema.new({
-            id = id.from(_N, "CancelledByUserException", "requestId"),
-            type = "string",
-            name = "requestId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        code = schema.new({
-            id = id.from(_N, "CancelledByUserException", "code"),
-            type = "string",
-            name = "code",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -2148,6 +2275,109 @@ M.GetGremlinQueryStatusOutput = schema.new({
             name = "queryEvalStats",
             target_id = id.from(_N, "QueryEvalStats"),
             target = M.QueryEvalStats,
+        }),
+    },
+})
+
+M.GetIndexRebuildStatusInput = schema.new({
+    id = id.from(_N, "GetIndexRebuildStatusInput"),
+    type = "structure",
+    members = {
+        rebuildId = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusInput", "rebuildId"),
+            type = "string",
+            name = "rebuildId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetIndexRebuildStatusOutput = schema.new({
+    id = id.from(_N, "GetIndexRebuildStatusOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scope = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "scope"),
+            type = "string",
+            name = "scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        concurrency = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "concurrency"),
+            type = "integer",
+            name = "concurrency",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        writeBufferSize = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "writeBufferSize"),
+            type = "string",
+            name = "writeBufferSize",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        progressPercentage = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "progressPercentage"),
+            type = "integer",
+            name = "progressPercentage",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        estimatedEndTime = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "estimatedEndTime"),
+            type = "timestamp",
+            name = "estimatedEndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        failureReason = schema.new({
+            id = id.from(_N, "GetIndexRebuildStatusOutput", "failureReason"),
+            type = "string",
+            name = "failureReason",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3571,6 +3801,204 @@ M.GetSparqlStreamOutput = schema.new({
     },
 })
 
+M.GetStorageInfoInput = prelude.Unit
+
+M.StorageMetrics = schema.new({
+    id = id.from(_N, "StorageMetrics"),
+    type = "structure",
+    members = {
+        sizeInBytes = schema.new({
+            id = id.from(_N, "StorageMetrics", "sizeInBytes"),
+            type = "long",
+            name = "sizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        count = schema.new({
+            id = id.from(_N, "StorageMetrics", "count"),
+            type = "long",
+            name = "count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DictionariesInfo = schema.new({
+    id = id.from(_N, "DictionariesInfo"),
+    type = "structure",
+    members = {
+        total = schema.new({
+            id = id.from(_N, "DictionariesInfo", "total"),
+            type = "structure",
+            name = "total",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+        blobs = schema.new({
+            id = id.from(_N, "DictionariesInfo", "blobs"),
+            type = "structure",
+            name = "blobs",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+    },
+})
+
+M.QuadsInfo = schema.new({
+    id = id.from(_N, "QuadsInfo"),
+    type = "structure",
+    members = {
+        SPOG = schema.new({
+            id = id.from(_N, "QuadsInfo", "SPOG"),
+            type = "structure",
+            name = "SPOG",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+        POGS = schema.new({
+            id = id.from(_N, "QuadsInfo", "POGS"),
+            type = "structure",
+            name = "POGS",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+        GPSO = schema.new({
+            id = id.from(_N, "QuadsInfo", "GPSO"),
+            type = "structure",
+            name = "GPSO",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+        OSGP = schema.new({
+            id = id.from(_N, "QuadsInfo", "OSGP"),
+            type = "structure",
+            name = "OSGP",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+        PZSOG = schema.new({
+            id = id.from(_N, "QuadsInfo", "PZSOG"),
+            type = "structure",
+            name = "PZSOG",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+    },
+})
+
+M.QuadsIndexesInfo = schema.new({
+    id = id.from(_N, "QuadsIndexesInfo"),
+    type = "structure",
+    members = {
+        RDF = schema.new({
+            id = id.from(_N, "QuadsIndexesInfo", "RDF"),
+            type = "structure",
+            name = "RDF",
+            target_id = id.from(_N, "QuadsInfo"),
+            target = M.QuadsInfo,
+        }),
+        PG = schema.new({
+            id = id.from(_N, "QuadsIndexesInfo", "PG"),
+            type = "structure",
+            name = "PG",
+            target_id = id.from(_N, "QuadsInfo"),
+            target = M.QuadsInfo,
+        }),
+    },
+})
+
+M.UndoLogsMetrics = schema.new({
+    id = id.from(_N, "UndoLogsMetrics"),
+    type = "structure",
+    members = {
+        sizeInBytes = schema.new({
+            id = id.from(_N, "UndoLogsMetrics", "sizeInBytes"),
+            type = "long",
+            name = "sizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        listSize = schema.new({
+            id = id.from(_N, "UndoLogsMetrics", "listSize"),
+            type = "long",
+            name = "listSize",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetStorageInfoOutput = schema.new({
+    id = id.from(_N, "GetStorageOutput"),
+    type = "structure",
+    members = {
+        totalStorageBytesUsed = schema.new({
+            id = id.from(_N, "GetStorageInfoOutput", "totalStorageBytesUsed"),
+            type = "long",
+            name = "totalStorageBytesUsed",
+            target_id = prelude.Long.id,
+        }),
+        quads = schema.new({
+            id = id.from(_N, "GetStorageInfoOutput", "quads"),
+            type = "structure",
+            name = "quads",
+            target_id = id.from(_N, "QuadsIndexesInfo"),
+            target = M.QuadsIndexesInfo,
+        }),
+        dictionaries = schema.new({
+            id = id.from(_N, "GetStorageInfoOutput", "dictionaries"),
+            type = "structure",
+            name = "dictionaries",
+            target_id = id.from(_N, "DictionariesInfo"),
+            target = M.DictionariesInfo,
+        }),
+        undoLogs = schema.new({
+            id = id.from(_N, "GetStorageInfoOutput", "undoLogs"),
+            type = "structure",
+            name = "undoLogs",
+            target_id = id.from(_N, "UndoLogsMetrics"),
+            target = M.UndoLogsMetrics,
+        }),
+        streams = schema.new({
+            id = id.from(_N, "GetStorageInfoOutput", "streams"),
+            type = "structure",
+            name = "streams",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+        dfeStatistics = schema.new({
+            id = id.from(_N, "GetStorageInfoOutput", "dfeStatistics"),
+            type = "structure",
+            name = "dfeStatistics",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+        schema = schema.new({
+            id = id.from(_N, "GetStorageInfoOutput", "schema"),
+            type = "structure",
+            name = "schema",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+        internals = schema.new({
+            id = id.from(_N, "GetStorageInfoOutput", "internals"),
+            type = "structure",
+            name = "internals",
+            target_id = id.from(_N, "StorageMetrics"),
+            target = M.StorageMetrics,
+        }),
+    },
+})
+
 M.ListGremlinQueriesInput = schema.new({
     id = id.from(_N, "ListGremlinQueriesInput"),
     type = "structure",
@@ -3635,6 +4063,25 @@ M.ListGremlinQueriesOutput = schema.new({
             name = "queries",
             target_id = prelude.Document.id,
             list_member = M.GremlinQueryStatus,
+        }),
+    },
+})
+
+M.ListIndexRebuildsInput = prelude.Unit
+
+M.ListIndexRebuildsOutput = schema.new({
+    id = id.from(_N, "ListIndexRebuildsOutput"),
+    type = "structure",
+    members = {
+        rebuildIds = schema.new({
+            id = id.from(_N, "ListIndexRebuildsOutput", "rebuildIds"),
+            type = "list",
+            name = "rebuildIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -3983,6 +4430,138 @@ M.ManageSparqlStatisticsOutput = schema.new({
             name = "payload",
             target_id = id.from(_N, "RefreshStatisticsIdMap"),
             target = M.RefreshStatisticsIdMap,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        detailedMessage = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "detailedMessage"),
+            type = "string",
+            name = "detailedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartIndexRebuildInput = schema.new({
+    id = id.from(_N, "StartIndexRebuildInput"),
+    type = "structure",
+    members = {
+        scope = schema.new({
+            id = id.from(_N, "StartIndexRebuildInput", "scope"),
+            type = "string",
+            name = "scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "scope" },
+            },
+        }),
+        concurrency = schema.new({
+            id = id.from(_N, "StartIndexRebuildInput", "concurrency"),
+            type = "integer",
+            name = "concurrency",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "concurrency" },
+            },
+        }),
+        writeBufferSize = schema.new({
+            id = id.from(_N, "StartIndexRebuildInput", "writeBufferSize"),
+            type = "string",
+            name = "writeBufferSize",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "writeBufferSize" },
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartIndexRebuildInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartIndexRebuildOutput = schema.new({
+    id = id.from(_N, "StartIndexRebuildOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "StartIndexRebuildOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        rebuildId = schema.new({
+            id = id.from(_N, "StartIndexRebuildOutput", "rebuildId"),
+            type = "string",
+            name = "rebuildId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scope = schema.new({
+            id = id.from(_N, "StartIndexRebuildOutput", "scope"),
+            type = "string",
+            name = "scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        concurrency = schema.new({
+            id = id.from(_N, "StartIndexRebuildOutput", "concurrency"),
+            type = "integer",
+            name = "concurrency",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        writeBufferSize = schema.new({
+            id = id.from(_N, "StartIndexRebuildOutput", "writeBufferSize"),
+            type = "string",
+            name = "writeBufferSize",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -4640,6 +5219,18 @@ M.CancelGremlinQuery = schema.operation({
     },
 })
 
+M.CancelIndexRebuild = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "CancelIndexRebuild"),
+    input = M.CancelIndexRebuildInput,
+    output = M.CancelIndexRebuildOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/storage/indexes/rebuilds/{rebuildId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CancelLoaderJob = schema.operation({
     id = id.from("com.amazonaws.neptunedata", "CancelLoaderJob"),
     input = M.CancelLoaderJobInput,
@@ -4844,6 +5435,18 @@ M.GetGremlinQueryStatus = schema.operation({
     },
 })
 
+M.GetIndexRebuildStatus = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetIndexRebuildStatus"),
+    input = M.GetIndexRebuildStatusInput,
+    output = M.GetIndexRebuildStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/storage/indexes/rebuilds/{rebuildId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetLoaderJobStatus = schema.operation({
     id = id.from("com.amazonaws.neptunedata", "GetLoaderJobStatus"),
     input = M.GetLoaderJobStatusInput,
@@ -4988,12 +5591,36 @@ M.GetSparqlStream = schema.operation({
     },
 })
 
+M.GetStorageInfo = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "GetStorageInfo"),
+    input = M.GetStorageInfoInput,
+    output = M.GetStorageInfoOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/storage/info" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListGremlinQueries = schema.operation({
     id = id.from("com.amazonaws.neptunedata", "ListGremlinQueries"),
     input = M.ListGremlinQueriesInput,
     output = M.ListGremlinQueriesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/gremlin/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIndexRebuilds = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "ListIndexRebuilds"),
+    input = M.ListIndexRebuildsInput,
+    output = M.ListIndexRebuildsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/storage/indexes/rebuilds" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -5090,6 +5717,18 @@ M.ManageSparqlStatistics = schema.operation({
     output = M.ManageSparqlStatisticsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/sparql/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartIndexRebuild = schema.operation({
+    id = id.from("com.amazonaws.neptunedata", "StartIndexRebuild"),
+    input = M.StartIndexRebuildInput,
+    output = M.StartIndexRebuildOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/storage/indexes/rebuilds" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

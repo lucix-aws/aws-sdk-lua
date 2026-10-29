@@ -834,6 +834,12 @@ M.MetricDimensionResultSet = schema.new({ type = "list", list_member = M.Capacit
 
 M.CapacityManagerMonitoredTagKeyList = schema.new({ type = "list", list_member = M.CapacityManagerMonitoredTagKey })
 
+M.CapacityAvailabilityZoneIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SupportabilityInstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityManagerSupportabilityScoreSet = schema.new({ type = "list", list_member = M.CapacityManagerSupportabilityScore })
+
 M.InstanceUsageSet = schema.new({ type = "list", list_member = M.InstanceUsage })
 
 M.CoipAddressUsageSet = schema.new({ type = "list", list_member = M.CoipAddressUsage })
@@ -1072,6 +1078,22 @@ M.CapacityAllocations = schema.new({ type = "list", list_member = M.CapacityAllo
 
 M.CancellationTermsSet = schema.new({ type = "list", list_member = M.CancellationTerms })
 
+M.CpuManufacturerSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.ExcludedInstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.InstanceGenerationSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.LocalStorageTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorManufacturerSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AcceleratorNameSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.AllowedInstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
+
 M.ClientVpnAvailabilityZoneSet = schema.new({ type = "list", list_member = prelude.String })
 
 M.ClientVpnAvailabilityZoneIdSet = schema.new({ type = "list", list_member = prelude.String })
@@ -1183,22 +1205,6 @@ M.LoadPermissionList = schema.new({ type = "list", list_member = M.LoadPermissio
 M.OccurrenceDayRequestSet = schema.new({ type = "list", list_member = prelude.Integer })
 
 M.AthenaIntegrationsSet = schema.new({ type = "list", list_member = M.AthenaIntegration })
-
-M.CpuManufacturerSet = schema.new({ type = "list", list_member = prelude.String })
-
-M.ExcludedInstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
-
-M.InstanceGenerationSet = schema.new({ type = "list", list_member = prelude.String })
-
-M.LocalStorageTypeSet = schema.new({ type = "list", list_member = prelude.String })
-
-M.AcceleratorTypeSet = schema.new({ type = "list", list_member = prelude.String })
-
-M.AcceleratorManufacturerSet = schema.new({ type = "list", list_member = prelude.String })
-
-M.AcceleratorNameSet = schema.new({ type = "list", list_member = prelude.String })
-
-M.AllowedInstanceTypeSet = schema.new({ type = "list", list_member = prelude.String })
 
 M.LaunchTemplateBlockDeviceMappingList = schema.new({ type = "list", list_member = M.LaunchTemplateBlockDeviceMapping })
 
@@ -1442,6 +1448,8 @@ M.HealthCheckPathDestinationResponseList = schema.new({ type = "list", list_memb
 
 M.CapacityAllocationMetadataList = schema.new({ type = "list", list_member = M.CapacityAllocationMetadataEntry })
 
+M.PerformanceFactorReferenceSetRequest = schema.new({ type = "list", list_member = M.PerformanceFactorReferenceRequest })
+
 M.DhcpConfigurationValueList = schema.new({ type = "list", list_member = M.AttributeValue })
 
 M.InstanceIpv6AddressListRequest = schema.new({ type = "list", list_member = M.InstanceIpv6AddressRequest })
@@ -1499,8 +1507,6 @@ M.OccurrenceDaySet = schema.new({ type = "list", list_member = prelude.Integer }
 M.VolumeStatusDetailsList = schema.new({ type = "list", list_member = M.VolumeStatusDetails })
 
 M.ConditionValueList = schema.new({ type = "list", list_member = prelude.String })
-
-M.PerformanceFactorReferenceSetRequest = schema.new({ type = "list", list_member = M.PerformanceFactorReferenceRequest })
 
 M.IpamPublicAddressTagList = schema.new({ type = "list", list_member = M.IpamPublicAddressTag })
 
@@ -15550,6 +15556,400 @@ M.CreateCapacityReservationDateChangeQuoteOutput = schema.new({
     },
 })
 
+M.BaselineEbsBandwidthMbpsRequest = schema.new({
+    id = id.from(_N, "BaselineEbsBandwidthMbpsRequest"),
+    type = "structure",
+    members = {
+        Min = schema.new({
+            id = id.from(_N, "BaselineEbsBandwidthMbpsRequest", "Min"),
+            type = "integer",
+            name = "Min",
+            target_id = prelude.Integer.id,
+        }),
+        Max = schema.new({
+            id = id.from(_N, "BaselineEbsBandwidthMbpsRequest", "Max"),
+            type = "integer",
+            name = "Max",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PerformanceFactorReferenceRequest = schema.new({
+    id = id.from(_N, "PerformanceFactorReferenceRequest"),
+    type = "structure",
+    members = {
+        InstanceFamily = schema.new({
+            id = id.from(_N, "PerformanceFactorReferenceRequest", "InstanceFamily"),
+            type = "string",
+            name = "InstanceFamily",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CpuPerformanceFactorRequest = schema.new({
+    id = id.from(_N, "CpuPerformanceFactorRequest"),
+    type = "structure",
+    members = {
+        References = schema.new({
+            id = id.from(_N, "CpuPerformanceFactorRequest", "References"),
+            type = "list",
+            name = "References",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PerformanceFactorReferenceRequest, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Reference" },
+            },
+        }),
+    },
+})
+
+M.BaselinePerformanceFactorsRequest = schema.new({
+    id = id.from(_N, "BaselinePerformanceFactorsRequest"),
+    type = "structure",
+    members = {
+        Cpu = schema.new({
+            id = id.from(_N, "BaselinePerformanceFactorsRequest", "Cpu"),
+            type = "structure",
+            name = "Cpu",
+            target_id = id.from(_N, "CpuPerformanceFactorRequest"),
+            target = M.CpuPerformanceFactorRequest,
+        }),
+    },
+})
+
+M.MemoryGiBPerVCpuRequest = schema.new({
+    id = id.from(_N, "MemoryGiBPerVCpuRequest"),
+    type = "structure",
+    members = {
+        Min = schema.new({
+            id = id.from(_N, "MemoryGiBPerVCpuRequest", "Min"),
+            type = "double",
+            name = "Min",
+            target_id = prelude.Double.id,
+        }),
+        Max = schema.new({
+            id = id.from(_N, "MemoryGiBPerVCpuRequest", "Max"),
+            type = "double",
+            name = "Max",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.MemoryMiBRequest = schema.new({
+    id = id.from(_N, "MemoryMiBRequest"),
+    type = "structure",
+    members = {
+        Min = schema.new({
+            id = id.from(_N, "MemoryMiBRequest", "Min"),
+            type = "integer",
+            name = "Min",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Max = schema.new({
+            id = id.from(_N, "MemoryMiBRequest", "Max"),
+            type = "integer",
+            name = "Max",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.NetworkBandwidthGbpsRequest = schema.new({
+    id = id.from(_N, "NetworkBandwidthGbpsRequest"),
+    type = "structure",
+    members = {
+        Min = schema.new({
+            id = id.from(_N, "NetworkBandwidthGbpsRequest", "Min"),
+            type = "double",
+            name = "Min",
+            target_id = prelude.Double.id,
+        }),
+        Max = schema.new({
+            id = id.from(_N, "NetworkBandwidthGbpsRequest", "Max"),
+            type = "double",
+            name = "Max",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.NetworkInterfaceCountRequest = schema.new({
+    id = id.from(_N, "NetworkInterfaceCountRequest"),
+    type = "structure",
+    members = {
+        Min = schema.new({
+            id = id.from(_N, "NetworkInterfaceCountRequest", "Min"),
+            type = "integer",
+            name = "Min",
+            target_id = prelude.Integer.id,
+        }),
+        Max = schema.new({
+            id = id.from(_N, "NetworkInterfaceCountRequest", "Max"),
+            type = "integer",
+            name = "Max",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.TotalLocalStorageGBRequest = schema.new({
+    id = id.from(_N, "TotalLocalStorageGBRequest"),
+    type = "structure",
+    members = {
+        Min = schema.new({
+            id = id.from(_N, "TotalLocalStorageGBRequest", "Min"),
+            type = "double",
+            name = "Min",
+            target_id = prelude.Double.id,
+        }),
+        Max = schema.new({
+            id = id.from(_N, "TotalLocalStorageGBRequest", "Max"),
+            type = "double",
+            name = "Max",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.VCpuCountRangeRequest = schema.new({
+    id = id.from(_N, "VCpuCountRangeRequest"),
+    type = "structure",
+    members = {
+        Min = schema.new({
+            id = id.from(_N, "VCpuCountRangeRequest", "Min"),
+            type = "integer",
+            name = "Min",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Max = schema.new({
+            id = id.from(_N, "VCpuCountRangeRequest", "Max"),
+            type = "integer",
+            name = "Max",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.InstanceRequirementsRequest = schema.new({
+    id = id.from(_N, "InstanceRequirementsRequest"),
+    type = "structure",
+    members = {
+        VCpuCount = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "VCpuCount"),
+            type = "structure",
+            name = "VCpuCount",
+            target_id = id.from(_N, "VCpuCountRangeRequest"),
+            target = M.VCpuCountRangeRequest,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MemoryMiB = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "MemoryMiB"),
+            type = "structure",
+            name = "MemoryMiB",
+            target_id = id.from(_N, "MemoryMiBRequest"),
+            target = M.MemoryMiBRequest,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CpuManufacturers = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "CpuManufacturers"),
+            type = "list",
+            name = "CpuManufacturers",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "CpuManufacturer" },
+            },
+        }),
+        MemoryGiBPerVCpu = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "MemoryGiBPerVCpu"),
+            type = "structure",
+            name = "MemoryGiBPerVCpu",
+            target_id = id.from(_N, "MemoryGiBPerVCpuRequest"),
+            target = M.MemoryGiBPerVCpuRequest,
+        }),
+        ExcludedInstanceTypes = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "ExcludedInstanceTypes"),
+            type = "list",
+            name = "ExcludedInstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ExcludedInstanceType" },
+            },
+        }),
+        InstanceGenerations = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "InstanceGenerations"),
+            type = "list",
+            name = "InstanceGenerations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "InstanceGeneration" },
+            },
+        }),
+        SpotMaxPricePercentageOverLowestPrice = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "SpotMaxPricePercentageOverLowestPrice"),
+            type = "integer",
+            name = "SpotMaxPricePercentageOverLowestPrice",
+            target_id = prelude.Integer.id,
+        }),
+        OnDemandMaxPricePercentageOverLowestPrice = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "OnDemandMaxPricePercentageOverLowestPrice"),
+            type = "integer",
+            name = "OnDemandMaxPricePercentageOverLowestPrice",
+            target_id = prelude.Integer.id,
+        }),
+        BareMetal = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "BareMetal"),
+            type = "string",
+            name = "BareMetal",
+            target_id = prelude.String.id,
+        }),
+        BurstablePerformance = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "BurstablePerformance"),
+            type = "string",
+            name = "BurstablePerformance",
+            target_id = prelude.String.id,
+        }),
+        RequireHibernateSupport = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "RequireHibernateSupport"),
+            type = "boolean",
+            name = "RequireHibernateSupport",
+            target_id = prelude.Boolean.id,
+        }),
+        NetworkInterfaceCount = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "NetworkInterfaceCount"),
+            type = "structure",
+            name = "NetworkInterfaceCount",
+            target_id = id.from(_N, "NetworkInterfaceCountRequest"),
+            target = M.NetworkInterfaceCountRequest,
+        }),
+        LocalStorage = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "LocalStorage"),
+            type = "string",
+            name = "LocalStorage",
+            target_id = prelude.String.id,
+        }),
+        LocalStorageTypes = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "LocalStorageTypes"),
+            type = "list",
+            name = "LocalStorageTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "LocalStorageType" },
+            },
+        }),
+        TotalLocalStorageGB = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "TotalLocalStorageGB"),
+            type = "structure",
+            name = "TotalLocalStorageGB",
+            target_id = id.from(_N, "TotalLocalStorageGBRequest"),
+            target = M.TotalLocalStorageGBRequest,
+        }),
+        BaselineEbsBandwidthMbps = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "BaselineEbsBandwidthMbps"),
+            type = "structure",
+            name = "BaselineEbsBandwidthMbps",
+            target_id = id.from(_N, "BaselineEbsBandwidthMbpsRequest"),
+            target = M.BaselineEbsBandwidthMbpsRequest,
+        }),
+        AcceleratorTypes = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorTypes"),
+            type = "list",
+            name = "AcceleratorTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "AcceleratorType" },
+            },
+        }),
+        AcceleratorCount = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorCount"),
+            type = "structure",
+            name = "AcceleratorCount",
+            target_id = id.from(_N, "AcceleratorCountRequest"),
+            target = M.AcceleratorCountRequest,
+        }),
+        AcceleratorManufacturers = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorManufacturers"),
+            type = "list",
+            name = "AcceleratorManufacturers",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "AcceleratorManufacturer" },
+            },
+        }),
+        AcceleratorNames = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorNames"),
+            type = "list",
+            name = "AcceleratorNames",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "AcceleratorName" },
+            },
+        }),
+        AcceleratorTotalMemoryMiB = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorTotalMemoryMiB"),
+            type = "structure",
+            name = "AcceleratorTotalMemoryMiB",
+            target_id = id.from(_N, "AcceleratorTotalMemoryMiBRequest"),
+            target = M.AcceleratorTotalMemoryMiBRequest,
+        }),
+        NetworkBandwidthGbps = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "NetworkBandwidthGbps"),
+            type = "structure",
+            name = "NetworkBandwidthGbps",
+            target_id = id.from(_N, "NetworkBandwidthGbpsRequest"),
+            target = M.NetworkBandwidthGbpsRequest,
+        }),
+        AllowedInstanceTypes = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "AllowedInstanceTypes"),
+            type = "list",
+            name = "AllowedInstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "AllowedInstanceType" },
+            },
+        }),
+        MaxSpotPriceAsPercentageOfOptimalOnDemandPrice = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice"),
+            type = "integer",
+            name = "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice",
+            target_id = prelude.Integer.id,
+        }),
+        BaselinePerformanceFactors = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "BaselinePerformanceFactors"),
+            type = "structure",
+            name = "BaselinePerformanceFactors",
+            target_id = id.from(_N, "BaselinePerformanceFactorsRequest"),
+            target = M.BaselinePerformanceFactorsRequest,
+        }),
+        RequireEncryptionInTransit = schema.new({
+            id = id.from(_N, "InstanceRequirementsRequest", "RequireEncryptionInTransit"),
+            type = "boolean",
+            name = "RequireEncryptionInTransit",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.ReservationFleetInstanceSpecification = schema.new({
     id = id.from(_N, "ReservationFleetInstanceSpecification"),
     type = "structure",
@@ -15627,6 +16027,25 @@ M.CreateCapacityReservationFleetInput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "InstanceTypeSpecification" },
             },
+        }),
+        InstanceRequirements = schema.new({
+            id = id.from(_N, "CreateCapacityReservationFleetInput", "InstanceRequirements"),
+            type = "structure",
+            name = "InstanceRequirements",
+            target_id = id.from(_N, "InstanceRequirementsRequest"),
+            target = M.InstanceRequirementsRequest,
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "CreateCapacityReservationFleetInput", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "CreateCapacityReservationFleetInput", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
         }),
         Tenancy = schema.new({
             id = id.from(_N, "CreateCapacityReservationFleetInput", "Tenancy"),
@@ -18379,400 +18798,6 @@ M.FleetIamInstanceProfileSpecificationRequest = schema.new({
             type = "string",
             name = "Name",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.BaselineEbsBandwidthMbpsRequest = schema.new({
-    id = id.from(_N, "BaselineEbsBandwidthMbpsRequest"),
-    type = "structure",
-    members = {
-        Min = schema.new({
-            id = id.from(_N, "BaselineEbsBandwidthMbpsRequest", "Min"),
-            type = "integer",
-            name = "Min",
-            target_id = prelude.Integer.id,
-        }),
-        Max = schema.new({
-            id = id.from(_N, "BaselineEbsBandwidthMbpsRequest", "Max"),
-            type = "integer",
-            name = "Max",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.PerformanceFactorReferenceRequest = schema.new({
-    id = id.from(_N, "PerformanceFactorReferenceRequest"),
-    type = "structure",
-    members = {
-        InstanceFamily = schema.new({
-            id = id.from(_N, "PerformanceFactorReferenceRequest", "InstanceFamily"),
-            type = "string",
-            name = "InstanceFamily",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.CpuPerformanceFactorRequest = schema.new({
-    id = id.from(_N, "CpuPerformanceFactorRequest"),
-    type = "structure",
-    members = {
-        References = schema.new({
-            id = id.from(_N, "CpuPerformanceFactorRequest", "References"),
-            type = "list",
-            name = "References",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "structure", target = M.PerformanceFactorReferenceRequest, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "Reference" },
-            },
-        }),
-    },
-})
-
-M.BaselinePerformanceFactorsRequest = schema.new({
-    id = id.from(_N, "BaselinePerformanceFactorsRequest"),
-    type = "structure",
-    members = {
-        Cpu = schema.new({
-            id = id.from(_N, "BaselinePerformanceFactorsRequest", "Cpu"),
-            type = "structure",
-            name = "Cpu",
-            target_id = id.from(_N, "CpuPerformanceFactorRequest"),
-            target = M.CpuPerformanceFactorRequest,
-        }),
-    },
-})
-
-M.MemoryGiBPerVCpuRequest = schema.new({
-    id = id.from(_N, "MemoryGiBPerVCpuRequest"),
-    type = "structure",
-    members = {
-        Min = schema.new({
-            id = id.from(_N, "MemoryGiBPerVCpuRequest", "Min"),
-            type = "double",
-            name = "Min",
-            target_id = prelude.Double.id,
-        }),
-        Max = schema.new({
-            id = id.from(_N, "MemoryGiBPerVCpuRequest", "Max"),
-            type = "double",
-            name = "Max",
-            target_id = prelude.Double.id,
-        }),
-    },
-})
-
-M.MemoryMiBRequest = schema.new({
-    id = id.from(_N, "MemoryMiBRequest"),
-    type = "structure",
-    members = {
-        Min = schema.new({
-            id = id.from(_N, "MemoryMiBRequest", "Min"),
-            type = "integer",
-            name = "Min",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Max = schema.new({
-            id = id.from(_N, "MemoryMiBRequest", "Max"),
-            type = "integer",
-            name = "Max",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.NetworkBandwidthGbpsRequest = schema.new({
-    id = id.from(_N, "NetworkBandwidthGbpsRequest"),
-    type = "structure",
-    members = {
-        Min = schema.new({
-            id = id.from(_N, "NetworkBandwidthGbpsRequest", "Min"),
-            type = "double",
-            name = "Min",
-            target_id = prelude.Double.id,
-        }),
-        Max = schema.new({
-            id = id.from(_N, "NetworkBandwidthGbpsRequest", "Max"),
-            type = "double",
-            name = "Max",
-            target_id = prelude.Double.id,
-        }),
-    },
-})
-
-M.NetworkInterfaceCountRequest = schema.new({
-    id = id.from(_N, "NetworkInterfaceCountRequest"),
-    type = "structure",
-    members = {
-        Min = schema.new({
-            id = id.from(_N, "NetworkInterfaceCountRequest", "Min"),
-            type = "integer",
-            name = "Min",
-            target_id = prelude.Integer.id,
-        }),
-        Max = schema.new({
-            id = id.from(_N, "NetworkInterfaceCountRequest", "Max"),
-            type = "integer",
-            name = "Max",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.TotalLocalStorageGBRequest = schema.new({
-    id = id.from(_N, "TotalLocalStorageGBRequest"),
-    type = "structure",
-    members = {
-        Min = schema.new({
-            id = id.from(_N, "TotalLocalStorageGBRequest", "Min"),
-            type = "double",
-            name = "Min",
-            target_id = prelude.Double.id,
-        }),
-        Max = schema.new({
-            id = id.from(_N, "TotalLocalStorageGBRequest", "Max"),
-            type = "double",
-            name = "Max",
-            target_id = prelude.Double.id,
-        }),
-    },
-})
-
-M.VCpuCountRangeRequest = schema.new({
-    id = id.from(_N, "VCpuCountRangeRequest"),
-    type = "structure",
-    members = {
-        Min = schema.new({
-            id = id.from(_N, "VCpuCountRangeRequest", "Min"),
-            type = "integer",
-            name = "Min",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Max = schema.new({
-            id = id.from(_N, "VCpuCountRangeRequest", "Max"),
-            type = "integer",
-            name = "Max",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.InstanceRequirementsRequest = schema.new({
-    id = id.from(_N, "InstanceRequirementsRequest"),
-    type = "structure",
-    members = {
-        VCpuCount = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "VCpuCount"),
-            type = "structure",
-            name = "VCpuCount",
-            target_id = id.from(_N, "VCpuCountRangeRequest"),
-            target = M.VCpuCountRangeRequest,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        MemoryMiB = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "MemoryMiB"),
-            type = "structure",
-            name = "MemoryMiB",
-            target_id = id.from(_N, "MemoryMiBRequest"),
-            target = M.MemoryMiBRequest,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        CpuManufacturers = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "CpuManufacturers"),
-            type = "list",
-            name = "CpuManufacturers",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "CpuManufacturer" },
-            },
-        }),
-        MemoryGiBPerVCpu = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "MemoryGiBPerVCpu"),
-            type = "structure",
-            name = "MemoryGiBPerVCpu",
-            target_id = id.from(_N, "MemoryGiBPerVCpuRequest"),
-            target = M.MemoryGiBPerVCpuRequest,
-        }),
-        ExcludedInstanceTypes = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "ExcludedInstanceTypes"),
-            type = "list",
-            name = "ExcludedInstanceTypes",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "ExcludedInstanceType" },
-            },
-        }),
-        InstanceGenerations = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "InstanceGenerations"),
-            type = "list",
-            name = "InstanceGenerations",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "InstanceGeneration" },
-            },
-        }),
-        SpotMaxPricePercentageOverLowestPrice = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "SpotMaxPricePercentageOverLowestPrice"),
-            type = "integer",
-            name = "SpotMaxPricePercentageOverLowestPrice",
-            target_id = prelude.Integer.id,
-        }),
-        OnDemandMaxPricePercentageOverLowestPrice = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "OnDemandMaxPricePercentageOverLowestPrice"),
-            type = "integer",
-            name = "OnDemandMaxPricePercentageOverLowestPrice",
-            target_id = prelude.Integer.id,
-        }),
-        BareMetal = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "BareMetal"),
-            type = "string",
-            name = "BareMetal",
-            target_id = prelude.String.id,
-        }),
-        BurstablePerformance = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "BurstablePerformance"),
-            type = "string",
-            name = "BurstablePerformance",
-            target_id = prelude.String.id,
-        }),
-        RequireHibernateSupport = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "RequireHibernateSupport"),
-            type = "boolean",
-            name = "RequireHibernateSupport",
-            target_id = prelude.Boolean.id,
-        }),
-        NetworkInterfaceCount = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "NetworkInterfaceCount"),
-            type = "structure",
-            name = "NetworkInterfaceCount",
-            target_id = id.from(_N, "NetworkInterfaceCountRequest"),
-            target = M.NetworkInterfaceCountRequest,
-        }),
-        LocalStorage = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "LocalStorage"),
-            type = "string",
-            name = "LocalStorage",
-            target_id = prelude.String.id,
-        }),
-        LocalStorageTypes = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "LocalStorageTypes"),
-            type = "list",
-            name = "LocalStorageTypes",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "LocalStorageType" },
-            },
-        }),
-        TotalLocalStorageGB = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "TotalLocalStorageGB"),
-            type = "structure",
-            name = "TotalLocalStorageGB",
-            target_id = id.from(_N, "TotalLocalStorageGBRequest"),
-            target = M.TotalLocalStorageGBRequest,
-        }),
-        BaselineEbsBandwidthMbps = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "BaselineEbsBandwidthMbps"),
-            type = "structure",
-            name = "BaselineEbsBandwidthMbps",
-            target_id = id.from(_N, "BaselineEbsBandwidthMbpsRequest"),
-            target = M.BaselineEbsBandwidthMbpsRequest,
-        }),
-        AcceleratorTypes = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorTypes"),
-            type = "list",
-            name = "AcceleratorTypes",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "AcceleratorType" },
-            },
-        }),
-        AcceleratorCount = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorCount"),
-            type = "structure",
-            name = "AcceleratorCount",
-            target_id = id.from(_N, "AcceleratorCountRequest"),
-            target = M.AcceleratorCountRequest,
-        }),
-        AcceleratorManufacturers = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorManufacturers"),
-            type = "list",
-            name = "AcceleratorManufacturers",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "AcceleratorManufacturer" },
-            },
-        }),
-        AcceleratorNames = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorNames"),
-            type = "list",
-            name = "AcceleratorNames",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "AcceleratorName" },
-            },
-        }),
-        AcceleratorTotalMemoryMiB = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "AcceleratorTotalMemoryMiB"),
-            type = "structure",
-            name = "AcceleratorTotalMemoryMiB",
-            target_id = id.from(_N, "AcceleratorTotalMemoryMiBRequest"),
-            target = M.AcceleratorTotalMemoryMiBRequest,
-        }),
-        NetworkBandwidthGbps = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "NetworkBandwidthGbps"),
-            type = "structure",
-            name = "NetworkBandwidthGbps",
-            target_id = id.from(_N, "NetworkBandwidthGbpsRequest"),
-            target = M.NetworkBandwidthGbpsRequest,
-        }),
-        AllowedInstanceTypes = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "AllowedInstanceTypes"),
-            type = "list",
-            name = "AllowedInstanceTypes",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "AllowedInstanceType" },
-            },
-        }),
-        MaxSpotPriceAsPercentageOfOptimalOnDemandPrice = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice"),
-            type = "integer",
-            name = "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice",
-            target_id = prelude.Integer.id,
-        }),
-        BaselinePerformanceFactors = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "BaselinePerformanceFactors"),
-            type = "structure",
-            name = "BaselinePerformanceFactors",
-            target_id = id.from(_N, "BaselinePerformanceFactorsRequest"),
-            target = M.BaselinePerformanceFactorsRequest,
-        }),
-        RequireEncryptionInTransit = schema.new({
-            id = id.from(_N, "InstanceRequirementsRequest", "RequireEncryptionInTransit"),
-            type = "boolean",
-            name = "RequireEncryptionInTransit",
-            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -52022,6 +52047,37 @@ M.CapacityReservationFleet = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "instanceTypeSpecificationSet" },
                 [traits.EC2_QUERY_NAME] = { name = "InstanceTypeSpecificationSet" },
+            },
+        }),
+        InstanceRequirements = schema.new({
+            id = id.from(_N, "CapacityReservationFleet", "InstanceRequirements"),
+            type = "structure",
+            name = "InstanceRequirements",
+            target_id = id.from(_N, "InstanceRequirementsRequest"),
+            target = M.InstanceRequirementsRequest,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceRequirements" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceRequirements" },
+            },
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "CapacityReservationFleet", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZone" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZone" },
+            },
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "CapacityReservationFleet", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZoneId" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZoneId" },
             },
         }),
         Tags = schema.new({
@@ -88096,6 +88152,173 @@ M.GetCapacityManagerMonitoredTagKeysOutput = schema.new({
     },
 })
 
+M.InstanceRequirementsWithMetadataRequest = schema.new({
+    id = id.from(_N, "InstanceRequirementsWithMetadataRequest"),
+    type = "structure",
+    members = {
+        ArchitectureTypes = schema.new({
+            id = id.from(_N, "InstanceRequirementsWithMetadataRequest", "ArchitectureTypes"),
+            type = "list",
+            name = "ArchitectureTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ArchitectureType" },
+            },
+        }),
+        VirtualizationTypes = schema.new({
+            id = id.from(_N, "InstanceRequirementsWithMetadataRequest", "VirtualizationTypes"),
+            type = "list",
+            name = "VirtualizationTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "VirtualizationType" },
+            },
+        }),
+        InstanceRequirements = schema.new({
+            id = id.from(_N, "InstanceRequirementsWithMetadataRequest", "InstanceRequirements"),
+            type = "structure",
+            name = "InstanceRequirements",
+            target_id = id.from(_N, "InstanceRequirementsRequest"),
+            target = M.InstanceRequirementsRequest,
+        }),
+    },
+})
+
+M.GetCapacityManagerSupportabilityScoresInput = schema.new({
+    id = id.from(_N, "GetCapacityManagerSupportabilityScoresRequest"),
+    type = "structure",
+    members = {
+        MarketType = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresInput", "MarketType"),
+            type = "string",
+            name = "MarketType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CapacityAmount = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresInput", "CapacityAmount"),
+            type = "integer",
+            name = "CapacityAmount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CapacityUnit = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresInput", "CapacityUnit"),
+            type = "string",
+            name = "CapacityUnit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CapacityAvailabilityZoneIds = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresInput", "CapacityAvailabilityZoneIds"),
+            type = "list",
+            name = "CapacityAvailabilityZoneIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "CapacityAvailabilityZoneId" },
+            },
+        }),
+        InstanceTypes = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresInput", "InstanceTypes"),
+            type = "list",
+            name = "InstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "InstanceType" },
+            },
+        }),
+        InstanceRequirementsWithMetadata = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresInput", "InstanceRequirementsWithMetadata"),
+            type = "structure",
+            name = "InstanceRequirementsWithMetadata",
+            target_id = id.from(_N, "InstanceRequirementsWithMetadataRequest"),
+            target = M.InstanceRequirementsWithMetadataRequest,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CapacityManagerSupportabilityScore = schema.new({
+    id = id.from(_N, "CapacityManagerSupportabilityScore"),
+    type = "structure",
+    members = {
+        InstanceType = schema.new({
+            id = id.from(_N, "CapacityManagerSupportabilityScore", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceType" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceType" },
+            },
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "CapacityManagerSupportabilityScore", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZoneId" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZoneId" },
+            },
+        }),
+        Score = schema.new({
+            id = id.from(_N, "CapacityManagerSupportabilityScore", "Score"),
+            type = "string",
+            name = "Score",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "score" },
+                [traits.EC2_QUERY_NAME] = { name = "Score" },
+            },
+        }),
+    },
+})
+
+M.GetCapacityManagerSupportabilityScoresOutput = schema.new({
+    id = id.from(_N, "GetCapacityManagerSupportabilityScoresResult"),
+    type = "structure",
+    members = {
+        AggregateScore = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresOutput", "AggregateScore"),
+            type = "string",
+            name = "AggregateScore",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "aggregateScore" },
+                [traits.EC2_QUERY_NAME] = { name = "AggregateScore" },
+            },
+        }),
+        CapacityManagerSupportabilityScores = schema.new({
+            id = id.from(_N, "GetCapacityManagerSupportabilityScoresOutput", "CapacityManagerSupportabilityScores"),
+            type = "list",
+            name = "CapacityManagerSupportabilityScores",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.CapacityManagerSupportabilityScore, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "capacityManagerSupportabilityScoreSet" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityManagerSupportabilityScoreSet" },
+            },
+        }),
+    },
+})
+
 M.GetCapacityReservationUsageInput = schema.new({
     id = id.from(_N, "GetCapacityReservationUsageRequest"),
     type = "structure",
@@ -94334,40 +94557,6 @@ M.GetSnapshotBlockPublicAccessStateOutput = schema.new({
                 [traits.XML_NAME] = { name = "managedBy" },
                 [traits.EC2_QUERY_NAME] = { name = "ManagedBy" },
             },
-        }),
-    },
-})
-
-M.InstanceRequirementsWithMetadataRequest = schema.new({
-    id = id.from(_N, "InstanceRequirementsWithMetadataRequest"),
-    type = "structure",
-    members = {
-        ArchitectureTypes = schema.new({
-            id = id.from(_N, "InstanceRequirementsWithMetadataRequest", "ArchitectureTypes"),
-            type = "list",
-            name = "ArchitectureTypes",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "ArchitectureType" },
-            },
-        }),
-        VirtualizationTypes = schema.new({
-            id = id.from(_N, "InstanceRequirementsWithMetadataRequest", "VirtualizationTypes"),
-            type = "list",
-            name = "VirtualizationTypes",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
-            traits = {
-                [traits.XML_NAME] = { name = "VirtualizationType" },
-            },
-        }),
-        InstanceRequirements = schema.new({
-            id = id.from(_N, "InstanceRequirementsWithMetadataRequest", "InstanceRequirements"),
-            type = "structure",
-            name = "InstanceRequirements",
-            target_id = id.from(_N, "InstanceRequirementsRequest"),
-            target = M.InstanceRequirementsRequest,
         }),
     },
 })
@@ -118534,6 +118723,17 @@ M.GetCapacityManagerMonitoredTagKeys = schema.operation({
     id = id.from("com.amazonaws.ec2", "GetCapacityManagerMonitoredTagKeys"),
     input = M.GetCapacityManagerMonitoredTagKeysInput,
     output = M.GetCapacityManagerMonitoredTagKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCapacityManagerSupportabilityScores = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetCapacityManagerSupportabilityScores"),
+    input = M.GetCapacityManagerSupportabilityScoresInput,
+    output = M.GetCapacityManagerSupportabilityScoresOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

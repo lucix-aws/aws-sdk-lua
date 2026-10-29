@@ -176,6 +176,8 @@ M.IntegratedRepositoryList = schema.new({ type = "list", list_member = M.Integra
 
 M.TrustedCaCertificateList = schema.new({ type = "list", list_member = M.TrustedCaCertificate })
 
+M.ClientCertificateList = schema.new({ type = "list", list_member = M.ClientCertificate })
+
 M.RiskLevelFilterList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ConfidenceLevelFilterList = schema.new({ type = "list", list_member = prelude.String })
@@ -217,6 +219,8 @@ M.CodeRemediationTaskDetailsList = schema.new({ type = "list", list_member = M.C
 M.VerificationScriptEnvVarList = schema.new({ type = "list", list_member = M.VerificationScriptEnvVar })
 
 M.UriList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ClientCertificateOriginList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TriggerFilterGroups = schema.new({ type = "list", list_member = M.TriggerFilterGroup })
 
@@ -1481,6 +1485,41 @@ M.ArtifactSummary = schema.new({
     },
 })
 
+M.ClientCertificate = schema.new({
+    id = id.from(_N, "ClientCertificate"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ClientCertificate", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        secretArn = schema.new({
+            id = id.from(_N, "ClientCertificate", "secretArn"),
+            type = "string",
+            name = "secretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        origins = schema.new({
+            id = id.from(_N, "ClientCertificate", "origins"),
+            type = "list",
+            name = "origins",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.IntegratedDocument = schema.new({
     id = id.from(_N, "IntegratedDocument"),
     type = "structure",
@@ -1676,6 +1715,13 @@ M.Assets = schema.new({
             name = "trustedCaCertificates",
             target_id = prelude.Document.id,
             list_member = M.TrustedCaCertificate,
+        }),
+        clientCertificates = schema.new({
+            id = id.from(_N, "Assets", "clientCertificates"),
+            type = "list",
+            name = "clientCertificates",
+            target_id = prelude.Document.id,
+            list_member = M.ClientCertificate,
         }),
     },
 })
@@ -4295,6 +4341,13 @@ M.PentestJob = schema.new({
             name = "trustedCaCertificates",
             target_id = prelude.Document.id,
             list_member = M.TrustedCaCertificate,
+        }),
+        clientCertificates = schema.new({
+            id = id.from(_N, "PentestJob", "clientCertificates"),
+            type = "list",
+            name = "clientCertificates",
+            target_id = prelude.Document.id,
+            list_member = M.ClientCertificate,
         }),
         codeRemediationStrategy = schema.new({
             id = id.from(_N, "PentestJob", "codeRemediationStrategy"),

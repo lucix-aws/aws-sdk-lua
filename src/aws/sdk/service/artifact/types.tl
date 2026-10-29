@@ -137,7 +137,6 @@ local record M
 
     enum InquirySupportMode
         "AI_ONLY"
-        "FULL_SUPPORT"
     end
 
     record CreateComplianceInquiryInput
@@ -238,7 +237,7 @@ local record M
         createdAt: number
         -- Timestamp indicating when the resource was last modified.
         updatedAt: number
-        -- Support mode for this inquiry. AI_ONLY provides AI-generated responses. FULL_SUPPORT includes human expert review.
+        -- Support mode for this inquiry. AI_ONLY provides AI-generated responses.
         supportMode: string
     end
 

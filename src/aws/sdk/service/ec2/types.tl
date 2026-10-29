@@ -5172,6 +5172,411 @@ local record M
         "open"
     end
 
+    enum BareMetal
+        "included"
+        "required"
+        "excluded"
+    end
+
+    -- The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see
+    -- Amazon
+    -- EBS–optimized instances in the Amazon EC2 User Guide.
+    record BaselineEbsBandwidthMbpsRequest
+        -- The minimum baseline bandwidth, in Mbps. To specify no minimum limit, omit
+        -- this parameter.
+        Min: number
+        -- The maximum baseline bandwidth, in Mbps. To specify no maximum limit, omit
+        -- this parameter.
+        Max: number
+    end
+
+    -- Specify an instance family to use as the baseline reference for CPU performance. All
+    -- instance types that match your specified attributes will be compared against the CPU
+    -- performance of the referenced instance family, regardless of CPU manufacturer or
+    -- architecture.
+    -- Currently, only one instance family can be specified in the list.
+    record PerformanceFactorReferenceRequest
+        -- The instance family to use as a baseline reference.
+        -- Ensure that you specify the correct value for the instance family. The instance
+        -- family is everything before the period (.) in the instance type name. For
+        -- example, in the instance type c6i.large, the instance family is
+        -- c6i, not c6. For more information, see Amazon EC2
+        -- instance type naming conventions in Amazon EC2 Instance
+        -- Types.
+        -- The following instance families are not supported for performance
+        -- protection:
+        -- c1
+        -- g3 | g3s
+        -- hpc7g
+        -- m1 | m2
+        -- mac1 | mac2 | mac2-m1ultra |
+        -- mac2-m2 | mac2-m2pro
+        -- p3dn | p4d | p5
+        -- t1
+        -- u-12tb1 | u-18tb1 | u-24tb1 |
+        -- u-3tb1 | u-6tb1 | u-9tb1 |
+        -- u7i-12tb | u7in-16tb | u7in-24tb |
+        -- u7in-32tb
+        -- If you enable performance protection by specifying a supported instance family, the
+        -- returned instance types will exclude the above unsupported instance families.
+        -- If you specify an unsupported instance family as a value for baseline performance, the
+        -- API returns an empty response for GetInstanceTypesFromInstanceRequirements and an exception for CreateFleet, RequestSpotFleet, ModifyFleet, and ModifySpotFleetRequest.
+        InstanceFamily: string
+    end
+
+    -- The CPU performance to consider, using an instance family as the baseline reference.
+    record CpuPerformanceFactorRequest
+        -- Specify an instance family to use as the baseline reference for CPU performance. All
+        -- instance types that match your specified attributes will be compared against the CPU
+        -- performance of the referenced instance family, regardless of CPU manufacturer or
+        -- architecture differences.
+        -- Currently, only one instance family can be specified in the list.
+        References: {PerformanceFactorReferenceRequest}
+    end
+
+    -- The baseline performance to consider, using an instance family as a baseline reference.
+    -- The instance family establishes the lowest acceptable level of performance. Amazon EC2 uses this
+    -- baseline to guide instance type selection, but there is no guarantee that the selected
+    -- instance types will always exceed the baseline for every application.
+    -- Currently, this parameter only supports CPU performance as a baseline performance
+    -- factor. For example, specifying c6i would use the CPU performance of the
+    -- c6i family as the baseline reference.
+    record BaselinePerformanceFactorsRequest
+        -- The CPU performance to consider, using an instance family as the baseline reference.
+        Cpu: CpuPerformanceFactorRequest
+    end
+
+    enum BurstablePerformance
+        "included"
+        "required"
+        "excluded"
+    end
+
+    enum CpuManufacturer
+        "intel"
+        "amd"
+        "amazon-web-services"
+        "apple"
+    end
+
+    enum InstanceGeneration
+        "current"
+        "previous"
+    end
+
+    enum LocalStorage
+        "included"
+        "required"
+        "excluded"
+    end
+
+    enum LocalStorageType
+        "hdd"
+        "ssd"
+    end
+
+    -- The minimum and maximum amount of memory per vCPU, in GiB.
+    record MemoryGiBPerVCpuRequest
+        -- The minimum amount of memory per vCPU, in GiB. To specify no minimum limit, omit this
+        -- parameter.
+        Min: number
+        -- The maximum amount of memory per vCPU, in GiB. To specify no maximum limit, omit this
+        -- parameter.
+        Max: number
+    end
+
+    -- The minimum and maximum amount of memory, in MiB.
+    record MemoryMiBRequest
+        -- The minimum amount of memory, in MiB. To specify no minimum limit, specify
+        -- 0.
+        Min: number
+        -- The maximum amount of memory, in MiB. To specify no maximum limit, omit this
+        -- parameter.
+        Max: number
+    end
+
+    -- The minimum and maximum amount of network bandwidth, in gigabits per second (Gbps).
+    -- Setting the minimum bandwidth does not guarantee that your instance will achieve the
+    -- minimum bandwidth. Amazon EC2 will identify instance types that support the specified minimum
+    -- bandwidth, but the actual bandwidth of your instance might go below the specified minimum
+    -- at times. For more information, see Available instance bandwidth in the
+    -- Amazon EC2 User Guide.
+    record NetworkBandwidthGbpsRequest
+        -- The minimum amount of network bandwidth, in Gbps. To specify no minimum limit, omit this
+        -- parameter.
+        Min: number
+        -- The maximum amount of network bandwidth, in Gbps. To specify no maximum limit, omit this
+        -- parameter.
+        Max: number
+    end
+
+    -- The minimum and maximum number of network interfaces.
+    record NetworkInterfaceCountRequest
+        -- The minimum number of network interfaces. To specify no minimum limit, omit this
+        -- parameter.
+        Min: number
+        -- The maximum number of network interfaces. To specify no maximum limit, omit this
+        -- parameter.
+        Max: number
+    end
+
+    -- The minimum and maximum amount of total local storage, in GB.
+    record TotalLocalStorageGBRequest
+        -- The minimum amount of total local storage, in GB. To specify no minimum limit, omit this
+        -- parameter.
+        Min: number
+        -- The maximum amount of total local storage, in GB. To specify no maximum limit, omit this
+        -- parameter.
+        Max: number
+    end
+
+    -- The minimum and maximum number of vCPUs.
+    record VCpuCountRangeRequest
+        -- The minimum number of vCPUs. To specify no minimum limit, specify 0.
+        Min: number
+        -- The maximum number of vCPUs. To specify no maximum limit, omit this parameter.
+        Max: number
+    end
+
+    -- The attributes for the instance types. When you specify instance attributes, Amazon EC2 will
+    -- identify instance types with these attributes.
+    -- You must specify VCpuCount and MemoryMiB. All other attributes
+    -- are optional. Any unspecified optional attribute is set to its default.
+    -- When you specify multiple attributes, you get instance types that satisfy all of the
+    -- specified attributes. If you specify multiple values for an attribute, you get instance
+    -- types that satisfy any of the specified values.
+    -- To limit the list of instance types from which Amazon EC2 can identify matching instance types,
+    -- you can use one of the following parameters, but not both in the same request:
+    -- AllowedInstanceTypes - The instance types to include in the list. All
+    -- other instance types are ignored, even if they match your specified attributes.
+    -- ExcludedInstanceTypes - The instance types to exclude from the list,
+    -- even if they match your specified attributes.
+    -- If you specify InstanceRequirements, you can't specify
+    -- InstanceType.
+    -- Attribute-based instance type selection is only supported when using Auto Scaling
+    -- groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in
+    -- the launch instance
+    -- wizard, or with the RunInstances API or
+    -- AWS::EC2::Instance Amazon Web Services CloudFormation resource, you can't specify
+    -- InstanceRequirements.
+    -- For more information, see Specify attributes for instance type selection for EC2 Fleet or Spot Fleet and Spot
+    -- placement score in the Amazon EC2 User Guide.
+    record InstanceRequirementsRequest
+        -- The minimum and maximum number of vCPUs.
+        VCpuCount: VCpuCountRangeRequest
+        -- The minimum and maximum amount of memory, in MiB.
+        MemoryMiB: MemoryMiBRequest
+        -- The CPU manufacturers to include.
+        -- For instance types with Intel CPUs, specify intel.
+        -- For instance types with AMD CPUs, specify amd.
+        -- For instance types with Amazon Web Services CPUs, specify amazon-web-services.
+        -- For instance types with Apple CPUs, specify apple.
+        -- Don't confuse the CPU manufacturer with the CPU architecture. Instances will
+        -- be launched with a compatible CPU architecture based on the Amazon Machine Image (AMI) that you
+        -- specify in your launch template.
+        -- Default: Any manufacturer
+        CpuManufacturers: {string}
+        -- The minimum and maximum amount of memory per vCPU, in GiB.
+        -- Default: No minimum or maximum limits
+        MemoryGiBPerVCpu: MemoryGiBPerVCpuRequest
+        -- The instance types to exclude.
+        -- You can use strings with one or more wild cards, represented by
+        -- an asterisk (*), to exclude an instance family, type, size, or generation. The
+        -- following are examples: m5.8xlarge, c5*.*, m5a.*,
+        -- r*, *3*.
+        -- For example, if you specify c5*,Amazon EC2 will exclude the entire C5 instance
+        -- family, which includes all C5a and C5n instance types. If you specify
+        -- m5a.*, Amazon EC2 will exclude all the M5a instance types, but not the M5n
+        -- instance types.
+        -- If you specify ExcludedInstanceTypes, you can't specify AllowedInstanceTypes.
+        -- Default: No excluded instance types
+        ExcludedInstanceTypes: {string}
+        -- Indicates whether current or previous generation instance types are included. The
+        -- current generation instance types are recommended for use. Current generation instance types are
+        -- typically the latest two to three generations in each instance family. For more
+        -- information, see Instance types in the
+        -- Amazon EC2 User Guide.
+        -- For current generation instance types, specify current.
+        -- For previous generation instance types, specify previous.
+        -- Default: Current and previous generation instance types
+        InstanceGenerations: {string}
+        -- [Price protection] The price protection threshold for Spot Instances, as a percentage higher than
+        -- an identified Spot price. The identified Spot price is the Spot price of the lowest priced
+        -- current generation C, M, or R instance type with your specified attributes. If no current
+        -- generation C, M, or R instance type matches your attributes, then the identified Spot price
+        -- is from the lowest priced current generation instance types, and failing that, from the
+        -- lowest priced previous generation instance types that match your attributes. When Amazon EC2
+        -- selects instance types with your attributes, it will exclude instance types whose Spot
+        -- price exceeds your specified threshold.
+        -- The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
+        -- If you set TargetCapacityUnitType to vcpu or
+        -- memory-mib, the price protection threshold is applied based on the
+        -- per-vCPU or per-memory price instead of the per-instance price.
+        -- This parameter is not supported for GetSpotPlacementScores and GetInstanceTypesFromInstanceRequirements.
+        -- Only one of SpotMaxPricePercentageOverLowestPrice or
+        -- MaxSpotPriceAsPercentageOfOptimalOnDemandPrice can be specified. If you
+        -- don't specify either, Amazon EC2 will automatically apply optimal price protection to
+        -- consistently select from a wide range of instance types. To indicate no price protection
+        -- threshold for Spot Instances, meaning you want to consider all instance types that match your
+        -- attributes, include one of these parameters and specify a high value, such as
+        -- 999999.
+        -- Default: 100
+        SpotMaxPricePercentageOverLowestPrice: number
+        -- [Price protection] The price protection threshold for On-Demand Instances, as a percentage higher than
+        -- an identified On-Demand price. The identified On-Demand price is the price of the lowest
+        -- priced current generation C, M, or R instance type with your specified attributes. When
+        -- Amazon EC2 selects instance types with your attributes, it will exclude instance types whose
+        -- price exceeds your specified threshold.
+        -- The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
+        -- To indicate no price protection threshold, specify a high value, such as
+        -- 999999.
+        -- This parameter is not supported for GetSpotPlacementScores and GetInstanceTypesFromInstanceRequirements.
+        -- If you set TargetCapacityUnitType to vcpu or
+        -- memory-mib, the price protection threshold is applied based on the
+        -- per-vCPU or per-memory price instead of the per-instance price.
+        -- Default: 20
+        OnDemandMaxPricePercentageOverLowestPrice: number
+        -- Indicates whether bare metal instance types must be included, excluded, or required.
+        -- To include bare metal instance types, specify included.
+        -- To require only bare metal instance types, specify required.
+        -- To exclude bare metal instance types, specify excluded.
+        -- Default: excluded
+        BareMetal: string
+        -- Indicates whether burstable performance T instance types are included, excluded, or required. For more information, see
+        -- Burstable performance instances.
+        -- To include burstable performance instance types, specify included.
+        -- To require only burstable performance instance types, specify required.
+        -- To exclude burstable performance instance types, specify excluded.
+        -- Default: excluded
+        BurstablePerformance: string
+        -- Indicates whether instance types must support hibernation for On-Demand Instances.
+        -- This parameter is not supported for GetSpotPlacementScores.
+        -- Default: false
+        RequireHibernateSupport: boolean
+        -- The minimum and maximum number of network interfaces.
+        -- Default: No minimum or maximum limits
+        NetworkInterfaceCount: NetworkInterfaceCountRequest
+        -- Indicates whether instance types with instance store volumes are included, excluded, or required. For more information,
+        -- Amazon
+        -- EC2 instance store in the Amazon EC2 User Guide.
+        -- To include instance types with instance store volumes, specify
+        -- included.
+        -- To require only instance types with instance store volumes, specify
+        -- required.
+        -- To exclude instance types with instance store volumes, specify
+        -- excluded.
+        -- Default: included
+        LocalStorage: string
+        -- The type of local storage that is required.
+        -- For instance types with hard disk drive (HDD) storage, specify hdd.
+        -- For instance types with solid state drive (SSD) storage, specify
+        -- ssd.
+        -- Default: hdd and ssd
+        LocalStorageTypes: {string}
+        -- The minimum and maximum amount of total local storage, in GB.
+        -- Default: No minimum or maximum limits
+        TotalLocalStorageGB: TotalLocalStorageGBRequest
+        -- The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see
+        -- Amazon
+        -- EBS–optimized instances in the Amazon EC2 User Guide.
+        -- Default: No minimum or maximum limits
+        BaselineEbsBandwidthMbps: BaselineEbsBandwidthMbpsRequest
+        -- The accelerator types that must be on the instance type.
+        -- For instance types with FPGA accelerators, specify fpga.
+        -- For instance types with GPU accelerators, specify gpu.
+        -- For instance types with Inference accelerators, specify inference.
+        -- For instance types with Media accelerators, specify media.
+        -- Default: Any accelerator type
+        AcceleratorTypes: {string}
+        -- The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) on
+        -- an instance.
+        -- To exclude accelerator-enabled instance types, set Max to 0.
+        -- Default: No minimum or maximum limits
+        AcceleratorCount: AcceleratorCountRequest
+        -- Indicates whether instance types must have accelerators by specific manufacturers.
+        -- For instance types with Amazon Web Services devices, specify amazon-web-services.
+        -- For instance types with AMD devices, specify amd.
+        -- For instance types with Habana devices, specify habana.
+        -- For instance types with NVIDIA devices, specify nvidia.
+        -- For instance types with Xilinx devices, specify xilinx.
+        -- Default: Any manufacturer
+        AcceleratorManufacturers: {string}
+        -- The accelerators that must be on the instance type.
+        -- For instance types with NVIDIA A10G GPUs, specify a10g.
+        -- For instance types with NVIDIA A100 GPUs, specify a100.
+        -- For instance types with NVIDIA H100 GPUs, specify h100.
+        -- For instance types with Amazon Web Services Inferentia chips, specify inferentia.
+        -- For instance types with Amazon Web Services Inferentia2 chips, specify inferentia2.
+        -- For instance types with Habana Gaudi HL-205 GPUs, specify gaudi-hl-205.
+        -- For instance types with NVIDIA GRID K520 GPUs, specify k520.
+        -- For instance types with NVIDIA K80 GPUs, specify k80.
+        -- For instance types with NVIDIA L4 GPUs, specify l4.
+        -- For instance types with NVIDIA L40S GPUs, specify l40s.
+        -- For instance types with NVIDIA M60 GPUs, specify m60.
+        -- For instance types with AMD Radeon Pro V520 GPUs, specify radeon-pro-v520.
+        -- For instance types with Amazon Web Services Trainium chips, specify trainium.
+        -- For instance types with Amazon Web Services Trainium2 chips, specify trainium2.
+        -- For instance types with NVIDIA T4 GPUs, specify t4.
+        -- For instance types with NVIDIA T4G GPUs, specify t4g.
+        -- For instance types with Xilinx U30 cards, specify u30.
+        -- For instance types with Xilinx VU9P FPGAs, specify vu9p.
+        -- For instance types with NVIDIA V100 GPUs, specify v100.
+        -- Default: Any accelerator
+        AcceleratorNames: {string}
+        -- The minimum and maximum amount of total accelerator memory, in MiB.
+        -- Default: No minimum or maximum limits
+        AcceleratorTotalMemoryMiB: AcceleratorTotalMemoryMiBRequest
+        -- The minimum and maximum amount of baseline network bandwidth, in gigabits per second
+        -- (Gbps). For more information, see Amazon EC2 instance network bandwidth in the Amazon EC2 User Guide.
+        -- Default: No minimum or maximum limits
+        NetworkBandwidthGbps: NetworkBandwidthGbpsRequest
+        -- The instance types to apply your specified attributes against. All other instance types
+        -- are ignored, even if they match your specified attributes.
+        -- You can use strings with one or more wild cards, represented by
+        -- an asterisk (*), to allow an instance type, size, or generation. The
+        -- following are examples: m5.8xlarge, c5*.*, m5a.*,
+        -- r*, *3*.
+        -- For example, if you specify c5*,Amazon EC2 will allow the entire C5 instance
+        -- family, which includes all C5a and C5n instance types. If you specify
+        -- m5a.*, Amazon EC2 will allow all the M5a instance types, but not the M5n
+        -- instance types.
+        -- If you specify AllowedInstanceTypes, you can't specify ExcludedInstanceTypes.
+        -- Default: All instance types
+        AllowedInstanceTypes: {string}
+        -- [Price protection] The price protection threshold for Spot Instances, as a percentage of an
+        -- identified On-Demand price. The identified On-Demand price is the price of the lowest
+        -- priced current generation C, M, or R instance type with your specified attributes. If no
+        -- current generation C, M, or R instance type matches your attributes, then the identified
+        -- price is from the lowest priced current generation instance types, and failing that, from
+        -- the lowest priced previous generation instance types that match your attributes. When Amazon EC2
+        -- selects instance types with your attributes, it will exclude instance types whose price
+        -- exceeds your specified threshold.
+        -- The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
+        -- If you set TargetCapacityUnitType to vcpu or
+        -- memory-mib, the price protection threshold is based on the per vCPU or per
+        -- memory price instead of the per instance price.
+        -- Only one of SpotMaxPricePercentageOverLowestPrice or
+        -- MaxSpotPriceAsPercentageOfOptimalOnDemandPrice can be specified. If you
+        -- don't specify either, Amazon EC2 will automatically apply optimal price protection to
+        -- consistently select from a wide range of instance types. To indicate no price protection
+        -- threshold for Spot Instances, meaning you want to consider all instance types that match your
+        -- attributes, include one of these parameters and specify a high value, such as
+        -- 999999.
+        MaxSpotPriceAsPercentageOfOptimalOnDemandPrice: number
+        -- The baseline performance to consider, using an instance family as a baseline reference.
+        -- The instance family establishes the lowest acceptable level of performance. Amazon EC2 uses this
+        -- baseline to guide instance type selection, but there is no guarantee that the selected
+        -- instance types will always exceed the baseline for every application. Currently, this
+        -- parameter only supports CPU performance as a baseline performance factor. For more
+        -- information, see Performance protection in the Amazon EC2 User Guide.
+        BaselinePerformanceFactors: BaselinePerformanceFactorsRequest
+        -- Specifies whether instance types must support encrypting in-transit traffic between
+        -- instances. For more information, including the supported instance types, see Encryption in
+        -- transit in the Amazon EC2 User Guide.
+        -- Default: false
+        RequireEncryptionInTransit: boolean
+    end
+
     enum InstanceType
         "a1.medium"
         "a1.large"
@@ -6663,6 +7068,12 @@ local record M
         ClientToken: string
         -- Information about the instance types for which to reserve the capacity.
         InstanceTypeSpecifications: {ReservationFleetInstanceSpecification}
+        -- Reserved for internal use.
+        InstanceRequirements: InstanceRequirementsRequest
+        -- Reserved for internal use.
+        AvailabilityZone: string
+        -- Reserved for internal use.
+        AvailabilityZoneId: string
         -- Indicates the tenancy of the Capacity Reservation Fleet. All Capacity Reservations in
         -- the Fleet inherit this tenancy. The Capacity Reservation Fleet can have one of the
         -- following tenancy settings:
@@ -7821,411 +8232,6 @@ local record M
         Arn: string
         -- The name of the instance profile.
         Name: string
-    end
-
-    enum BareMetal
-        "included"
-        "required"
-        "excluded"
-    end
-
-    -- The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see
-    -- Amazon
-    -- EBS–optimized instances in the Amazon EC2 User Guide.
-    record BaselineEbsBandwidthMbpsRequest
-        -- The minimum baseline bandwidth, in Mbps. To specify no minimum limit, omit
-        -- this parameter.
-        Min: number
-        -- The maximum baseline bandwidth, in Mbps. To specify no maximum limit, omit
-        -- this parameter.
-        Max: number
-    end
-
-    -- Specify an instance family to use as the baseline reference for CPU performance. All
-    -- instance types that match your specified attributes will be compared against the CPU
-    -- performance of the referenced instance family, regardless of CPU manufacturer or
-    -- architecture.
-    -- Currently, only one instance family can be specified in the list.
-    record PerformanceFactorReferenceRequest
-        -- The instance family to use as a baseline reference.
-        -- Ensure that you specify the correct value for the instance family. The instance
-        -- family is everything before the period (.) in the instance type name. For
-        -- example, in the instance type c6i.large, the instance family is
-        -- c6i, not c6. For more information, see Amazon EC2
-        -- instance type naming conventions in Amazon EC2 Instance
-        -- Types.
-        -- The following instance families are not supported for performance
-        -- protection:
-        -- c1
-        -- g3 | g3s
-        -- hpc7g
-        -- m1 | m2
-        -- mac1 | mac2 | mac2-m1ultra |
-        -- mac2-m2 | mac2-m2pro
-        -- p3dn | p4d | p5
-        -- t1
-        -- u-12tb1 | u-18tb1 | u-24tb1 |
-        -- u-3tb1 | u-6tb1 | u-9tb1 |
-        -- u7i-12tb | u7in-16tb | u7in-24tb |
-        -- u7in-32tb
-        -- If you enable performance protection by specifying a supported instance family, the
-        -- returned instance types will exclude the above unsupported instance families.
-        -- If you specify an unsupported instance family as a value for baseline performance, the
-        -- API returns an empty response for GetInstanceTypesFromInstanceRequirements and an exception for CreateFleet, RequestSpotFleet, ModifyFleet, and ModifySpotFleetRequest.
-        InstanceFamily: string
-    end
-
-    -- The CPU performance to consider, using an instance family as the baseline reference.
-    record CpuPerformanceFactorRequest
-        -- Specify an instance family to use as the baseline reference for CPU performance. All
-        -- instance types that match your specified attributes will be compared against the CPU
-        -- performance of the referenced instance family, regardless of CPU manufacturer or
-        -- architecture differences.
-        -- Currently, only one instance family can be specified in the list.
-        References: {PerformanceFactorReferenceRequest}
-    end
-
-    -- The baseline performance to consider, using an instance family as a baseline reference.
-    -- The instance family establishes the lowest acceptable level of performance. Amazon EC2 uses this
-    -- baseline to guide instance type selection, but there is no guarantee that the selected
-    -- instance types will always exceed the baseline for every application.
-    -- Currently, this parameter only supports CPU performance as a baseline performance
-    -- factor. For example, specifying c6i would use the CPU performance of the
-    -- c6i family as the baseline reference.
-    record BaselinePerformanceFactorsRequest
-        -- The CPU performance to consider, using an instance family as the baseline reference.
-        Cpu: CpuPerformanceFactorRequest
-    end
-
-    enum BurstablePerformance
-        "included"
-        "required"
-        "excluded"
-    end
-
-    enum CpuManufacturer
-        "intel"
-        "amd"
-        "amazon-web-services"
-        "apple"
-    end
-
-    enum InstanceGeneration
-        "current"
-        "previous"
-    end
-
-    enum LocalStorage
-        "included"
-        "required"
-        "excluded"
-    end
-
-    enum LocalStorageType
-        "hdd"
-        "ssd"
-    end
-
-    -- The minimum and maximum amount of memory per vCPU, in GiB.
-    record MemoryGiBPerVCpuRequest
-        -- The minimum amount of memory per vCPU, in GiB. To specify no minimum limit, omit this
-        -- parameter.
-        Min: number
-        -- The maximum amount of memory per vCPU, in GiB. To specify no maximum limit, omit this
-        -- parameter.
-        Max: number
-    end
-
-    -- The minimum and maximum amount of memory, in MiB.
-    record MemoryMiBRequest
-        -- The minimum amount of memory, in MiB. To specify no minimum limit, specify
-        -- 0.
-        Min: number
-        -- The maximum amount of memory, in MiB. To specify no maximum limit, omit this
-        -- parameter.
-        Max: number
-    end
-
-    -- The minimum and maximum amount of network bandwidth, in gigabits per second (Gbps).
-    -- Setting the minimum bandwidth does not guarantee that your instance will achieve the
-    -- minimum bandwidth. Amazon EC2 will identify instance types that support the specified minimum
-    -- bandwidth, but the actual bandwidth of your instance might go below the specified minimum
-    -- at times. For more information, see Available instance bandwidth in the
-    -- Amazon EC2 User Guide.
-    record NetworkBandwidthGbpsRequest
-        -- The minimum amount of network bandwidth, in Gbps. To specify no minimum limit, omit this
-        -- parameter.
-        Min: number
-        -- The maximum amount of network bandwidth, in Gbps. To specify no maximum limit, omit this
-        -- parameter.
-        Max: number
-    end
-
-    -- The minimum and maximum number of network interfaces.
-    record NetworkInterfaceCountRequest
-        -- The minimum number of network interfaces. To specify no minimum limit, omit this
-        -- parameter.
-        Min: number
-        -- The maximum number of network interfaces. To specify no maximum limit, omit this
-        -- parameter.
-        Max: number
-    end
-
-    -- The minimum and maximum amount of total local storage, in GB.
-    record TotalLocalStorageGBRequest
-        -- The minimum amount of total local storage, in GB. To specify no minimum limit, omit this
-        -- parameter.
-        Min: number
-        -- The maximum amount of total local storage, in GB. To specify no maximum limit, omit this
-        -- parameter.
-        Max: number
-    end
-
-    -- The minimum and maximum number of vCPUs.
-    record VCpuCountRangeRequest
-        -- The minimum number of vCPUs. To specify no minimum limit, specify 0.
-        Min: number
-        -- The maximum number of vCPUs. To specify no maximum limit, omit this parameter.
-        Max: number
-    end
-
-    -- The attributes for the instance types. When you specify instance attributes, Amazon EC2 will
-    -- identify instance types with these attributes.
-    -- You must specify VCpuCount and MemoryMiB. All other attributes
-    -- are optional. Any unspecified optional attribute is set to its default.
-    -- When you specify multiple attributes, you get instance types that satisfy all of the
-    -- specified attributes. If you specify multiple values for an attribute, you get instance
-    -- types that satisfy any of the specified values.
-    -- To limit the list of instance types from which Amazon EC2 can identify matching instance types,
-    -- you can use one of the following parameters, but not both in the same request:
-    -- AllowedInstanceTypes - The instance types to include in the list. All
-    -- other instance types are ignored, even if they match your specified attributes.
-    -- ExcludedInstanceTypes - The instance types to exclude from the list,
-    -- even if they match your specified attributes.
-    -- If you specify InstanceRequirements, you can't specify
-    -- InstanceType.
-    -- Attribute-based instance type selection is only supported when using Auto Scaling
-    -- groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in
-    -- the launch instance
-    -- wizard, or with the RunInstances API or
-    -- AWS::EC2::Instance Amazon Web Services CloudFormation resource, you can't specify
-    -- InstanceRequirements.
-    -- For more information, see Specify attributes for instance type selection for EC2 Fleet or Spot Fleet and Spot
-    -- placement score in the Amazon EC2 User Guide.
-    record InstanceRequirementsRequest
-        -- The minimum and maximum number of vCPUs.
-        VCpuCount: VCpuCountRangeRequest
-        -- The minimum and maximum amount of memory, in MiB.
-        MemoryMiB: MemoryMiBRequest
-        -- The CPU manufacturers to include.
-        -- For instance types with Intel CPUs, specify intel.
-        -- For instance types with AMD CPUs, specify amd.
-        -- For instance types with Amazon Web Services CPUs, specify amazon-web-services.
-        -- For instance types with Apple CPUs, specify apple.
-        -- Don't confuse the CPU manufacturer with the CPU architecture. Instances will
-        -- be launched with a compatible CPU architecture based on the Amazon Machine Image (AMI) that you
-        -- specify in your launch template.
-        -- Default: Any manufacturer
-        CpuManufacturers: {string}
-        -- The minimum and maximum amount of memory per vCPU, in GiB.
-        -- Default: No minimum or maximum limits
-        MemoryGiBPerVCpu: MemoryGiBPerVCpuRequest
-        -- The instance types to exclude.
-        -- You can use strings with one or more wild cards, represented by
-        -- an asterisk (*), to exclude an instance family, type, size, or generation. The
-        -- following are examples: m5.8xlarge, c5*.*, m5a.*,
-        -- r*, *3*.
-        -- For example, if you specify c5*,Amazon EC2 will exclude the entire C5 instance
-        -- family, which includes all C5a and C5n instance types. If you specify
-        -- m5a.*, Amazon EC2 will exclude all the M5a instance types, but not the M5n
-        -- instance types.
-        -- If you specify ExcludedInstanceTypes, you can't specify AllowedInstanceTypes.
-        -- Default: No excluded instance types
-        ExcludedInstanceTypes: {string}
-        -- Indicates whether current or previous generation instance types are included. The
-        -- current generation instance types are recommended for use. Current generation instance types are
-        -- typically the latest two to three generations in each instance family. For more
-        -- information, see Instance types in the
-        -- Amazon EC2 User Guide.
-        -- For current generation instance types, specify current.
-        -- For previous generation instance types, specify previous.
-        -- Default: Current and previous generation instance types
-        InstanceGenerations: {string}
-        -- [Price protection] The price protection threshold for Spot Instances, as a percentage higher than
-        -- an identified Spot price. The identified Spot price is the Spot price of the lowest priced
-        -- current generation C, M, or R instance type with your specified attributes. If no current
-        -- generation C, M, or R instance type matches your attributes, then the identified Spot price
-        -- is from the lowest priced current generation instance types, and failing that, from the
-        -- lowest priced previous generation instance types that match your attributes. When Amazon EC2
-        -- selects instance types with your attributes, it will exclude instance types whose Spot
-        -- price exceeds your specified threshold.
-        -- The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
-        -- If you set TargetCapacityUnitType to vcpu or
-        -- memory-mib, the price protection threshold is applied based on the
-        -- per-vCPU or per-memory price instead of the per-instance price.
-        -- This parameter is not supported for GetSpotPlacementScores and GetInstanceTypesFromInstanceRequirements.
-        -- Only one of SpotMaxPricePercentageOverLowestPrice or
-        -- MaxSpotPriceAsPercentageOfOptimalOnDemandPrice can be specified. If you
-        -- don't specify either, Amazon EC2 will automatically apply optimal price protection to
-        -- consistently select from a wide range of instance types. To indicate no price protection
-        -- threshold for Spot Instances, meaning you want to consider all instance types that match your
-        -- attributes, include one of these parameters and specify a high value, such as
-        -- 999999.
-        -- Default: 100
-        SpotMaxPricePercentageOverLowestPrice: number
-        -- [Price protection] The price protection threshold for On-Demand Instances, as a percentage higher than
-        -- an identified On-Demand price. The identified On-Demand price is the price of the lowest
-        -- priced current generation C, M, or R instance type with your specified attributes. When
-        -- Amazon EC2 selects instance types with your attributes, it will exclude instance types whose
-        -- price exceeds your specified threshold.
-        -- The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
-        -- To indicate no price protection threshold, specify a high value, such as
-        -- 999999.
-        -- This parameter is not supported for GetSpotPlacementScores and GetInstanceTypesFromInstanceRequirements.
-        -- If you set TargetCapacityUnitType to vcpu or
-        -- memory-mib, the price protection threshold is applied based on the
-        -- per-vCPU or per-memory price instead of the per-instance price.
-        -- Default: 20
-        OnDemandMaxPricePercentageOverLowestPrice: number
-        -- Indicates whether bare metal instance types must be included, excluded, or required.
-        -- To include bare metal instance types, specify included.
-        -- To require only bare metal instance types, specify required.
-        -- To exclude bare metal instance types, specify excluded.
-        -- Default: excluded
-        BareMetal: string
-        -- Indicates whether burstable performance T instance types are included, excluded, or required. For more information, see
-        -- Burstable performance instances.
-        -- To include burstable performance instance types, specify included.
-        -- To require only burstable performance instance types, specify required.
-        -- To exclude burstable performance instance types, specify excluded.
-        -- Default: excluded
-        BurstablePerformance: string
-        -- Indicates whether instance types must support hibernation for On-Demand Instances.
-        -- This parameter is not supported for GetSpotPlacementScores.
-        -- Default: false
-        RequireHibernateSupport: boolean
-        -- The minimum and maximum number of network interfaces.
-        -- Default: No minimum or maximum limits
-        NetworkInterfaceCount: NetworkInterfaceCountRequest
-        -- Indicates whether instance types with instance store volumes are included, excluded, or required. For more information,
-        -- Amazon
-        -- EC2 instance store in the Amazon EC2 User Guide.
-        -- To include instance types with instance store volumes, specify
-        -- included.
-        -- To require only instance types with instance store volumes, specify
-        -- required.
-        -- To exclude instance types with instance store volumes, specify
-        -- excluded.
-        -- Default: included
-        LocalStorage: string
-        -- The type of local storage that is required.
-        -- For instance types with hard disk drive (HDD) storage, specify hdd.
-        -- For instance types with solid state drive (SSD) storage, specify
-        -- ssd.
-        -- Default: hdd and ssd
-        LocalStorageTypes: {string}
-        -- The minimum and maximum amount of total local storage, in GB.
-        -- Default: No minimum or maximum limits
-        TotalLocalStorageGB: TotalLocalStorageGBRequest
-        -- The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see
-        -- Amazon
-        -- EBS–optimized instances in the Amazon EC2 User Guide.
-        -- Default: No minimum or maximum limits
-        BaselineEbsBandwidthMbps: BaselineEbsBandwidthMbpsRequest
-        -- The accelerator types that must be on the instance type.
-        -- For instance types with FPGA accelerators, specify fpga.
-        -- For instance types with GPU accelerators, specify gpu.
-        -- For instance types with Inference accelerators, specify inference.
-        -- For instance types with Media accelerators, specify media.
-        -- Default: Any accelerator type
-        AcceleratorTypes: {string}
-        -- The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) on
-        -- an instance.
-        -- To exclude accelerator-enabled instance types, set Max to 0.
-        -- Default: No minimum or maximum limits
-        AcceleratorCount: AcceleratorCountRequest
-        -- Indicates whether instance types must have accelerators by specific manufacturers.
-        -- For instance types with Amazon Web Services devices, specify amazon-web-services.
-        -- For instance types with AMD devices, specify amd.
-        -- For instance types with Habana devices, specify habana.
-        -- For instance types with NVIDIA devices, specify nvidia.
-        -- For instance types with Xilinx devices, specify xilinx.
-        -- Default: Any manufacturer
-        AcceleratorManufacturers: {string}
-        -- The accelerators that must be on the instance type.
-        -- For instance types with NVIDIA A10G GPUs, specify a10g.
-        -- For instance types with NVIDIA A100 GPUs, specify a100.
-        -- For instance types with NVIDIA H100 GPUs, specify h100.
-        -- For instance types with Amazon Web Services Inferentia chips, specify inferentia.
-        -- For instance types with Amazon Web Services Inferentia2 chips, specify inferentia2.
-        -- For instance types with Habana Gaudi HL-205 GPUs, specify gaudi-hl-205.
-        -- For instance types with NVIDIA GRID K520 GPUs, specify k520.
-        -- For instance types with NVIDIA K80 GPUs, specify k80.
-        -- For instance types with NVIDIA L4 GPUs, specify l4.
-        -- For instance types with NVIDIA L40S GPUs, specify l40s.
-        -- For instance types with NVIDIA M60 GPUs, specify m60.
-        -- For instance types with AMD Radeon Pro V520 GPUs, specify radeon-pro-v520.
-        -- For instance types with Amazon Web Services Trainium chips, specify trainium.
-        -- For instance types with Amazon Web Services Trainium2 chips, specify trainium2.
-        -- For instance types with NVIDIA T4 GPUs, specify t4.
-        -- For instance types with NVIDIA T4G GPUs, specify t4g.
-        -- For instance types with Xilinx U30 cards, specify u30.
-        -- For instance types with Xilinx VU9P FPGAs, specify vu9p.
-        -- For instance types with NVIDIA V100 GPUs, specify v100.
-        -- Default: Any accelerator
-        AcceleratorNames: {string}
-        -- The minimum and maximum amount of total accelerator memory, in MiB.
-        -- Default: No minimum or maximum limits
-        AcceleratorTotalMemoryMiB: AcceleratorTotalMemoryMiBRequest
-        -- The minimum and maximum amount of baseline network bandwidth, in gigabits per second
-        -- (Gbps). For more information, see Amazon EC2 instance network bandwidth in the Amazon EC2 User Guide.
-        -- Default: No minimum or maximum limits
-        NetworkBandwidthGbps: NetworkBandwidthGbpsRequest
-        -- The instance types to apply your specified attributes against. All other instance types
-        -- are ignored, even if they match your specified attributes.
-        -- You can use strings with one or more wild cards, represented by
-        -- an asterisk (*), to allow an instance type, size, or generation. The
-        -- following are examples: m5.8xlarge, c5*.*, m5a.*,
-        -- r*, *3*.
-        -- For example, if you specify c5*,Amazon EC2 will allow the entire C5 instance
-        -- family, which includes all C5a and C5n instance types. If you specify
-        -- m5a.*, Amazon EC2 will allow all the M5a instance types, but not the M5n
-        -- instance types.
-        -- If you specify AllowedInstanceTypes, you can't specify ExcludedInstanceTypes.
-        -- Default: All instance types
-        AllowedInstanceTypes: {string}
-        -- [Price protection] The price protection threshold for Spot Instances, as a percentage of an
-        -- identified On-Demand price. The identified On-Demand price is the price of the lowest
-        -- priced current generation C, M, or R instance type with your specified attributes. If no
-        -- current generation C, M, or R instance type matches your attributes, then the identified
-        -- price is from the lowest priced current generation instance types, and failing that, from
-        -- the lowest priced previous generation instance types that match your attributes. When Amazon EC2
-        -- selects instance types with your attributes, it will exclude instance types whose price
-        -- exceeds your specified threshold.
-        -- The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
-        -- If you set TargetCapacityUnitType to vcpu or
-        -- memory-mib, the price protection threshold is based on the per vCPU or per
-        -- memory price instead of the per instance price.
-        -- Only one of SpotMaxPricePercentageOverLowestPrice or
-        -- MaxSpotPriceAsPercentageOfOptimalOnDemandPrice can be specified. If you
-        -- don't specify either, Amazon EC2 will automatically apply optimal price protection to
-        -- consistently select from a wide range of instance types. To indicate no price protection
-        -- threshold for Spot Instances, meaning you want to consider all instance types that match your
-        -- attributes, include one of these parameters and specify a high value, such as
-        -- 999999.
-        MaxSpotPriceAsPercentageOfOptimalOnDemandPrice: number
-        -- The baseline performance to consider, using an instance family as a baseline reference.
-        -- The instance family establishes the lowest acceptable level of performance. Amazon EC2 uses this
-        -- baseline to guide instance type selection, but there is no guarantee that the selected
-        -- instance types will always exceed the baseline for every application. Currently, this
-        -- parameter only supports CPU performance as a baseline performance factor. For more
-        -- information, see Performance protection in the Amazon EC2 User Guide.
-        BaselinePerformanceFactors: BaselinePerformanceFactorsRequest
-        -- Specifies whether instance types must support encrypting in-transit traffic between
-        -- instances. For more information, including the supported instance types, see Encryption in
-        -- transit in the Amazon EC2 User Guide.
-        -- Default: false
-        RequireEncryptionInTransit: boolean
     end
 
     enum FleetInstanceMetadataEndpointState
@@ -21370,6 +21376,12 @@ local record M
         AllocationStrategy: string
         -- Information about the instance types for which to reserve the capacity.
         InstanceTypeSpecifications: {FleetCapacityReservation}
+        -- Reserved for internal use.
+        InstanceRequirements: InstanceRequirementsRequest
+        -- Reserved for internal use.
+        AvailabilityZone: string
+        -- Reserved for internal use.
+        AvailabilityZoneId: string
         -- The tags assigned to the Capacity Reservation Fleet.
         Tags: {Tag}
     end
@@ -35548,6 +35560,16 @@ local record M
         "spot-total-count-vcpu"
         "spot-interruption-rate-inst"
         "spot-interruption-rate-vcpu"
+        "capacity-total-requested-vcpu"
+        "capacity-total-fulfilled-vcpu"
+        "spot-capacity-total-requested-vcpu"
+        "spot-capacity-total-fulfilled-vcpu"
+        "capacity-request-fulfillment-rate"
+        "avg-inst-az-count-per-requested-vcpu"
+        "inst-az-fulfillment-rate"
+        "spot-capacity-request-fulfillment-rate"
+        "spot-avg-inst-az-count-per-requested-vcpu"
+        "spot-inst-az-fulfillment-rate"
     end
 
     record GetCapacityManagerMetricDataInput
@@ -35727,6 +35749,77 @@ local record M
         CapacityManagerTagKeys: {CapacityManagerMonitoredTagKey}
         -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
         NextToken: string
+    end
+
+    enum CapacityUnit
+        "vcpus"
+        "instances"
+    end
+
+    -- The architecture type, virtualization type, and other attributes for the instance types.
+    -- When you specify instance attributes, Amazon EC2 will identify instance types with those
+    -- attributes.
+    -- If you specify InstanceRequirementsWithMetadataRequest, you can't specify
+    -- InstanceTypes.
+    record InstanceRequirementsWithMetadataRequest
+        -- The architecture type.
+        ArchitectureTypes: {string}
+        -- The virtualization type.
+        VirtualizationTypes: {string}
+        -- The attributes for the instance types. When you specify instance attributes, Amazon EC2 will
+        -- identify instance types with those attributes.
+        InstanceRequirements: InstanceRequirementsRequest
+    end
+
+    enum SupportabilityMarketType
+        "on-demand"
+        "spot"
+    end
+
+    record GetCapacityManagerSupportabilityScoresInput
+        -- The capacity market to score.
+        MarketType: string
+        -- The amount of capacity that you need, in the unit that you specify for CapacityUnit. Each score is relative to this amount.
+        CapacityAmount: number
+        -- The unit for CapacityAmount.
+        CapacityUnit: string
+        -- The IDs of the Availability Zones to score, such as use1-az1. You can specify Availability Zones in different Regions.
+        -- You can specify up to 10 Availability Zones.
+        CapacityAvailabilityZoneIds: {string}
+        -- The instance types to score. You can specify up to 50 instance types.
+        -- Specify either InstanceTypes or InstanceRequirementsWithMetadata, but not both.
+        InstanceTypes: {string}
+        -- The attributes that the instance types must have, such as vCPU and memory ranges. Capacity Manager resolves the attributes into matching instance types and scores each one.
+        -- Specify either InstanceTypes or InstanceRequirementsWithMetadata, but not both.
+        InstanceRequirementsWithMetadata: InstanceRequirementsWithMetadataRequest
+        -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response.
+        -- If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    enum SupportabilityScore
+        "high"
+        "medium"
+        "low"
+    end
+
+    -- The supportability score for a single instance type and Availability Zone combination.
+    record CapacityManagerSupportabilityScore
+        -- The instance type.
+        InstanceType: string
+        -- The ID of the Availability Zone.
+        AvailabilityZoneId: string
+        -- How well the combination can support the requested capacity right now. high means that the combination holds several times the requested amount.
+        -- medium means that it can cover the request with little to spare. low means that it holds less than the requested amount.
+        Score: string
+    end
+
+    record GetCapacityManagerSupportabilityScoresOutput
+        -- The score for all instance type and Availability Zone combinations in the request together.
+        -- A high aggregate score with lower individual scores means that no single combination can support the full request, but the combinations together can.
+        AggregateScore: string
+        -- The score for each instance type and Availability Zone combination in the request.
+        CapacityManagerSupportabilityScores: {CapacityManagerSupportabilityScore}
     end
 
     record GetCapacityReservationUsageInput
@@ -37878,21 +37971,6 @@ local record M
         -- declarative-policy - The state is managed by a declarative policy and
         -- can't be modified by the account.
         ManagedBy: string
-    end
-
-    -- The architecture type, virtualization type, and other attributes for the instance types.
-    -- When you specify instance attributes, Amazon EC2 will identify instance types with those
-    -- attributes.
-    -- If you specify InstanceRequirementsWithMetadataRequest, you can't specify
-    -- InstanceTypes.
-    record InstanceRequirementsWithMetadataRequest
-        -- The architecture type.
-        ArchitectureTypes: {string}
-        -- The virtualization type.
-        VirtualizationTypes: {string}
-        -- The attributes for the instance types. When you specify instance attributes, Amazon EC2 will
-        -- identify instance types with those attributes.
-        InstanceRequirements: InstanceRequirementsRequest
     end
 
     record GetSpotPlacementScoresInput

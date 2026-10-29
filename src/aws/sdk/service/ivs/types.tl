@@ -424,11 +424,11 @@ local record M
     record CreateFailoverSlateConfigurationInput
         -- Failover-slate-configuration name. The value does not need to be unique.
         name: string
-        -- Number of seconds of ingest interruption before the failover slate activates. Minimum: 3. Maximum: 5. Default: 3.
+        -- Number of seconds of ingest interruption before the failover slate activates. Default: 3.
         activationThresholdSeconds: number
-        -- Minimum number of seconds that the failover slate displays after activation. Minimum: 3. Maximum: 10. Default: 3.
+        -- Minimum number of seconds that the failover slate displays after activation. Default: 3.
         minSlateDisplaySeconds: number
-        -- Maximum number of seconds that the failover slate displays. Minimum: 60. Maximum: 180. Default: 60.
+        -- Maximum number of seconds that the failover slate displays. Default: 60.
         maxSlateDisplaySeconds: number
         -- Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
         tags: {string : string}
@@ -447,11 +447,11 @@ local record M
         arn: string
         -- Failover-slate-configuration name.
         name: string
-        -- Number of seconds of ingest interruption before the failover slate activates. Minimum: 3. Maximum: 5. Default: 3.
+        -- Number of seconds of ingest interruption before the failover slate activates. Default: 3.
         activationThresholdSeconds: number
-        -- Minimum number of seconds that the failover slate displays after activation. Minimum: 3. Maximum: 10. Default: 3.
+        -- Minimum number of seconds that the failover slate displays after activation. Default: 3.
         minSlateDisplaySeconds: number
-        -- Maximum number of seconds that the failover slate displays. Minimum: 60. Maximum: 180. Default: 60.
+        -- Maximum number of seconds that the failover slate displays. Default: 60.
         maxSlateDisplaySeconds: number
         -- Current state of the failover slate configuration.
         state: string
@@ -918,11 +918,17 @@ local record M
         channelArn: string
         -- Duration of the ad break, in seconds.
         durationSeconds: number
+        -- Caller-specified unique identifier for the ad break to insert into the playlist.
+        adBreakId: string
+        -- Target time at which the ad break starts.
+        targetStartAt: number
     end
 
     record InsertAdBreakOutput
         -- Unique identifier for the ad break that was inserted into the playlist.
         adBreakId: string
+        -- Target start time for the inserted ad break.
+        targetStartAt: number
     end
 
     record ListAdConfigurationsInput
@@ -1002,11 +1008,11 @@ local record M
         arn: string
         -- Failover-slate-configuration name.
         name: string
-        -- Number of seconds of ingest interruption before the failover slate activates. Minimum: 3. Maximum: 5. Default: 3.
+        -- Number of seconds of ingest interruption before the failover slate activates. Default: 3.
         activationThresholdSeconds: number
-        -- Minimum number of seconds that the failover slate displays after activation. Minimum: 3. Maximum: 10. Default: 3.
+        -- Minimum number of seconds that the failover slate displays after activation. Default: 3.
         minSlateDisplaySeconds: number
-        -- Maximum number of seconds that the failover slate displays. Minimum: 60. Maximum: 180. Default: 60.
+        -- Maximum number of seconds that the failover slate displays. Default: 60.
         maxSlateDisplaySeconds: number
         -- Current state of the failover slate configuration.
         state: string
@@ -1322,11 +1328,11 @@ local record M
         arn: string
         -- Failover-slate-configuration name. The value does not need to be unique.
         name: string
-        -- Number of seconds of ingest interruption before the failover slate activates. Minimum: 3. Maximum: 5. Default: 3.
+        -- Number of seconds of ingest interruption before the failover slate activates. Default: 3.
         activationThresholdSeconds: number
-        -- Minimum number of seconds that the failover slate displays after activation. Minimum: 3. Maximum: 10. Default: 3.
+        -- Minimum number of seconds that the failover slate displays after activation. Default: 3.
         minSlateDisplaySeconds: number
-        -- Maximum number of seconds that the failover slate displays. Minimum: 60. Maximum: 180. Default: 60.
+        -- Maximum number of seconds that the failover slate displays. Default: 60.
         maxSlateDisplaySeconds: number
     end
 

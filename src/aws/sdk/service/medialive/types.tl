@@ -2248,6 +2248,10 @@ local record M
         SourceIp: string
         -- This represents the customer's source URL where multicast stream is pulled from.
         Url: string
+        -- This represents the ip address of the device sending the secondary multicast stream.
+        SecondarySourceIp: string
+        -- This represents the customer's secondary source URL where the redundant multicast stream (SMPTE 2022-7) is pulled from.
+        SecondaryUrl: string
     end
 
     -- Settings for a Multicast input. Contains a list of multicast Urls and optional source ip addresses.
@@ -2784,6 +2788,10 @@ local record M
         SourceIp: string
         -- This represents the customer's source URL where multicast stream is pulled from.
         Url: string
+        -- This represents the ip address of the device sending the secondary multicast stream.
+        SecondarySourceIp: string
+        -- This represents the customer's secondary source URL where the redundant multicast stream (SMPTE 2022-7) is pulled from.
+        SecondaryUrl: string
     end
 
     -- Pair of multicast url and source ip address (optional) that make up a multicast source.
@@ -2792,6 +2800,10 @@ local record M
         SourceIp: string
         -- This represents the customer's source URL where multicast stream is pulled from.
         Url: string
+        -- This represents the ip address of the device sending the secondary multicast stream.
+        SecondarySourceIp: string
+        -- This represents the customer's secondary source URL where the redundant multicast stream (SMPTE 2022-7) is pulled from.
+        SecondaryUrl: string
     end
 
     enum MultiplexAlertState

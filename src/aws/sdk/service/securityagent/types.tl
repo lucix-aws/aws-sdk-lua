@@ -428,6 +428,16 @@ local record M
         artifactType: string
     end
 
+    -- A client certificate for mutual TLS (mTLS) authentication to target hosts.
+    record ClientCertificate
+        -- A customer-chosen name for this client certificate, used in error messages and console display.
+        name: string
+        -- The ARN of the Secrets Manager secret containing the certificate and private key.
+        secretArn: string
+        -- The origins (scheme://host[:port]) this certificate applies to. Paths are not supported. Each hostname can have at most one client certificate.
+        origins: {string}
+    end
+
     -- A reference to a document in a third-party provider, such as a Confluence page linked via an integration.
     record IntegratedDocument
         -- The identifier of the integration that provides access to the document.
@@ -498,6 +508,8 @@ local record M
         integratedRepositories: {IntegratedRepository}
         -- The trust anchors used to validate target endpoint TLS certificates. Provide these for endpoints served by a private or internal certificate authority (CA), an intermediate CA, or a self-signed certificate.
         trustedCaCertificates: {TrustedCaCertificate}
+        -- The client certificates for mutual TLS (mTLS) authentication to target hosts. Each certificate is stored in Secrets Manager and scoped to specific target origins.
+        clientCertificates: {ClientCertificate}
     end
 
     -- Connection details for an Azure DevOps integration.
@@ -1521,6 +1533,8 @@ local record M
         integratedRepositories: {IntegratedRepository}
         -- The trust anchors used to validate target endpoint TLS certificates during the pentest job.
         trustedCaCertificates: {TrustedCaCertificate}
+        -- The client certificates for mutual TLS (mTLS) authentication to target hosts during the pentest job.
+        clientCertificates: {ClientCertificate}
         -- The code remediation strategy for the pentest job.
         codeRemediationStrategy: string
         -- Strategy for cleaning up resources after pentest job completion.

@@ -4042,6 +4042,13 @@ local record M
         InvisibleFields: {InvisibleFieldInfo}
     end
 
+    -- The event hooks that are set on tasks created by using this template.
+    record TaskTemplateContactHooks
+        -- The identifier of the flow module that runs when an agent attempts to disconnect from a task created by referencing this template.
+        -- If no agent ever connects to the task, the flow module runs when the task is terminated.
+        WrapUpFlowId: string
+    end
+
     -- Describes a default field and its corresponding value.
     record TaskTemplateDefaultFieldValue
         -- Identifier of a field.
@@ -4102,6 +4109,8 @@ local record M
         ContactFlowId: string
         -- The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.
         SelfAssignFlowId: string
+        -- The event hooks that are set on tasks created by using this template.
+        ContactHooks: TaskTemplateContactHooks
         -- Constraints that are applicable to the fields listed.
         -- Although this parameter is marked as optional in the API model, the service requires it when calling CreateTaskTemplate or UpdateTaskTemplate.
         -- The RequiredFields array must contain at least one element, and the field of type NAME must be included in RequiredFields.
@@ -10454,6 +10463,8 @@ local record M
         ContactFlowId: string
         -- The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.
         SelfAssignFlowId: string
+        -- The event hooks that are set on tasks created by using this template.
+        ContactHooks: TaskTemplateContactHooks
         -- Constraints that are applicable to the fields listed.
         -- Although this parameter is marked as optional in the API model, the service requires it when calling CreateTaskTemplate or UpdateTaskTemplate.
         -- The RequiredFields array must contain at least one element, and the field of type NAME must be included in RequiredFields.
@@ -17020,6 +17031,8 @@ local record M
         ContactFlowId: string
         -- The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.
         SelfAssignFlowId: string
+        -- The event hooks that are set on tasks created by using this template.
+        ContactHooks: TaskTemplateContactHooks
         -- Constraints that are applicable to the fields listed.
         -- Although this parameter is marked as optional in the API model, the service requires it when calling CreateTaskTemplate or UpdateTaskTemplate.
         -- The RequiredFields array must contain at least one element, and the field of type NAME must be included in RequiredFields.
@@ -17051,6 +17064,8 @@ local record M
         ContactFlowId: string
         -- The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.
         SelfAssignFlowId: string
+        -- The event hooks that are set on tasks created by using this template.
+        ContactHooks: TaskTemplateContactHooks
         -- Constraints that are applicable to the fields listed.
         -- Although this parameter is marked as optional in the API model, the service requires it when calling CreateTaskTemplate or UpdateTaskTemplate.
         -- The RequiredFields array must contain at least one element, and the field of type NAME must be included in RequiredFields.

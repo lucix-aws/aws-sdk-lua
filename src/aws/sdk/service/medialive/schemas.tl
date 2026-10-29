@@ -5728,6 +5728,24 @@ M.MulticastSource = schema.new({
                 [traits.JSON_NAME] = { name = "url" },
             },
         }),
+        SecondarySourceIp = schema.new({
+            id = id.from(_N, "MulticastSource", "SecondarySourceIp"),
+            type = "string",
+            name = "SecondarySourceIp",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "secondarySourceIp" },
+            },
+        }),
+        SecondaryUrl = schema.new({
+            id = id.from(_N, "MulticastSource", "SecondaryUrl"),
+            type = "string",
+            name = "SecondaryUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "secondaryUrl" },
+            },
+        }),
     },
 })
 
@@ -7232,6 +7250,24 @@ M.MulticastSourceCreateRequest = schema.new({
                 [traits.JSON_NAME] = { name = "url" },
             },
         }),
+        SecondarySourceIp = schema.new({
+            id = id.from(_N, "MulticastSourceCreateRequest", "SecondarySourceIp"),
+            type = "string",
+            name = "SecondarySourceIp",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "secondarySourceIp" },
+            },
+        }),
+        SecondaryUrl = schema.new({
+            id = id.from(_N, "MulticastSourceCreateRequest", "SecondaryUrl"),
+            type = "string",
+            name = "SecondaryUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "secondaryUrl" },
+            },
+        }),
     },
 })
 
@@ -7256,6 +7292,24 @@ M.MulticastSourceUpdateRequest = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "url" },
+            },
+        }),
+        SecondarySourceIp = schema.new({
+            id = id.from(_N, "MulticastSourceUpdateRequest", "SecondarySourceIp"),
+            type = "string",
+            name = "SecondarySourceIp",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "secondarySourceIp" },
+            },
+        }),
+        SecondaryUrl = schema.new({
+            id = id.from(_N, "MulticastSourceUpdateRequest", "SecondaryUrl"),
+            type = "string",
+            name = "SecondaryUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "secondaryUrl" },
             },
         }),
     },

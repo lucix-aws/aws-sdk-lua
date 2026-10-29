@@ -24,6 +24,10 @@ M.GUIDList = schema.new({ type = "list", list_member = prelude.String })
 
 M.CancelledChangePropertyList = schema.new({ type = "list", list_member = M.CancelledChangeProperty })
 
+M.MetadataCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompareDomainConfigurationCategoryMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.CategoryDiffResult })
+
 M.DataSources = schema.new({ type = "list", list_member = M.DataSource })
 
 M.AppConfigs = schema.new({ type = "list", list_member = M.AppConfig })
@@ -37,6 +41,8 @@ M.AutoTuneList = schema.new({ type = "list", list_member = M.AutoTune })
 M.EnvironmentInfoList = schema.new({ type = "list", list_member = M.EnvironmentInfo })
 
 M.DomainNodesStatusList = schema.new({ type = "list", list_member = M.DomainNodesStatus })
+
+M.ReplicationPeerList = schema.new({ type = "list", list_member = M.ReplicationPeer })
 
 M.DomainNameList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -144,11 +150,17 @@ M.AvailabilityZoneList = schema.new({ type = "list", list_member = prelude.Strin
 
 M.SavedObjectIdentifierList = schema.new({ type = "list", list_member = M.SavedObjectIdentifier })
 
+M.DiffItemNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DivergentItemList = schema.new({ type = "list", list_member = M.DivergentItem })
+
 M.StorageTypeLimitList = schema.new({ type = "list", list_member = M.StorageTypeLimit })
 
 M.LimitValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.Issues = schema.new({ type = "list", list_member = prelude.String })
+
+M.DivergentFieldList = schema.new({ type = "list", list_member = M.DivergentField })
 
 M.AcceptInboundConnectionInput = schema.new({
     id = id.from(_N, "AcceptInboundConnectionRequest"),
@@ -758,6 +770,73 @@ M.AdditionalLimit = schema.new({
             name = "LimitValues",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+    },
+})
+
+M.AddReplicationPeerInput = schema.new({
+    id = id.from(_N, "AddReplicationPeerRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "AddReplicationPeerInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        PeerDomainArn = schema.new({
+            id = id.from(_N, "AddReplicationPeerInput", "PeerDomainArn"),
+            type = "string",
+            name = "PeerDomainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "AddReplicationPeerInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AddReplicationPeerOutput = schema.new({
+    id = id.from(_N, "AddReplicationPeerResponse"),
+    type = "structure",
+    members = {
+        DomainArn = schema.new({
+            id = id.from(_N, "AddReplicationPeerOutput", "DomainArn"),
+            type = "string",
+            name = "DomainArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AddReplicationPeerOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceAlreadyExistsException = schema.new({
+    id = id.from(_N, "ResourceAlreadyExistsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceAlreadyExistsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1980,6 +2059,209 @@ M.CancelServiceSoftwareUpdateOutput = schema.new({
             name = "ServiceSoftwareOptions",
             target_id = id.from(_N, "ServiceSoftwareOptions"),
             target = M.ServiceSoftwareOptions,
+        }),
+    },
+})
+
+M.CompareDomainConfigurationInput = schema.new({
+    id = id.from(_N, "CompareDomainConfigurationRequest"),
+    type = "structure",
+    members = {
+        SourceDomainArn = schema.new({
+            id = id.from(_N, "CompareDomainConfigurationInput", "SourceDomainArn"),
+            type = "string",
+            name = "SourceDomainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetDomainArn = schema.new({
+            id = id.from(_N, "CompareDomainConfigurationInput", "TargetDomainArn"),
+            type = "string",
+            name = "TargetDomainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "CompareDomainConfigurationInput", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DivergentField = schema.new({
+    id = id.from(_N, "DivergentField"),
+    type = "structure",
+    members = {
+        Path = schema.new({
+            id = id.from(_N, "DivergentField", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+        }),
+        SourceValue = schema.new({
+            id = id.from(_N, "DivergentField", "SourceValue"),
+            type = "string",
+            name = "SourceValue",
+            target_id = prelude.String.id,
+        }),
+        TargetValue = schema.new({
+            id = id.from(_N, "DivergentField", "TargetValue"),
+            type = "string",
+            name = "TargetValue",
+            target_id = prelude.String.id,
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "DivergentField", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DivergentItem = schema.new({
+    id = id.from(_N, "DivergentItem"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DivergentItem", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Fields = schema.new({
+            id = id.from(_N, "DivergentItem", "Fields"),
+            type = "list",
+            name = "Fields",
+            target_id = prelude.Document.id,
+            list_member = M.DivergentField,
+        }),
+    },
+})
+
+M.DiffItems = schema.new({
+    id = id.from(_N, "DiffItems"),
+    type = "structure",
+    members = {
+        SourceOnly = schema.new({
+            id = id.from(_N, "DiffItems", "SourceOnly"),
+            type = "list",
+            name = "SourceOnly",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TargetOnly = schema.new({
+            id = id.from(_N, "DiffItems", "TargetOnly"),
+            type = "list",
+            name = "TargetOnly",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Diverged = schema.new({
+            id = id.from(_N, "DiffItems", "Diverged"),
+            type = "list",
+            name = "Diverged",
+            target_id = prelude.Document.id,
+            list_member = M.DivergentItem,
+        }),
+    },
+})
+
+M.CategoryDiffResult = schema.new({
+    id = id.from(_N, "CategoryDiffResult"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "CategoryDiffResult", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        InSync = schema.new({
+            id = id.from(_N, "CategoryDiffResult", "InSync"),
+            type = "integer",
+            name = "InSync",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SourceOnly = schema.new({
+            id = id.from(_N, "CategoryDiffResult", "SourceOnly"),
+            type = "integer",
+            name = "SourceOnly",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        TargetOnly = schema.new({
+            id = id.from(_N, "CategoryDiffResult", "TargetOnly"),
+            type = "integer",
+            name = "TargetOnly",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Diverged = schema.new({
+            id = id.from(_N, "CategoryDiffResult", "Diverged"),
+            type = "integer",
+            name = "Diverged",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Items = schema.new({
+            id = id.from(_N, "CategoryDiffResult", "Items"),
+            type = "structure",
+            name = "Items",
+            target_id = id.from(_N, "DiffItems"),
+            target = M.DiffItems,
+        }),
+        Truncated = schema.new({
+            id = id.from(_N, "CategoryDiffResult", "Truncated"),
+            type = "boolean",
+            name = "Truncated",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CompareDomainConfigurationOutput = schema.new({
+    id = id.from(_N, "CompareDomainConfigurationResponse"),
+    type = "structure",
+    members = {
+        SourceDomainArn = schema.new({
+            id = id.from(_N, "CompareDomainConfigurationOutput", "SourceDomainArn"),
+            type = "string",
+            name = "SourceDomainArn",
+            target_id = prelude.String.id,
+        }),
+        TargetDomainArn = schema.new({
+            id = id.from(_N, "CompareDomainConfigurationOutput", "TargetDomainArn"),
+            type = "string",
+            name = "TargetDomainArn",
+            target_id = prelude.String.id,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "CompareDomainConfigurationOutput", "Categories"),
+            type = "map",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.CategoryDiffResult,
         }),
     },
 })
@@ -3502,22 +3784,6 @@ M.InvalidTypeException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InvalidTypeException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceAlreadyExistsException = schema.new({
-    id = id.from(_N, "ResourceAlreadyExistsException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ResourceAlreadyExistsException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -6003,6 +6269,80 @@ M.DescribeDomainNodesOutput = schema.new({
     },
 })
 
+M.DescribeDomainReplicationInput = schema.new({
+    id = id.from(_N, "DescribeDomainReplicationRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "DescribeDomainReplicationInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ReplicationPeer = schema.new({
+    id = id.from(_N, "ReplicationPeer"),
+    type = "structure",
+    members = {
+        PeerDomainArn = schema.new({
+            id = id.from(_N, "ReplicationPeer", "PeerDomainArn"),
+            type = "string",
+            name = "PeerDomainArn",
+            target_id = prelude.String.id,
+        }),
+        PeerRole = schema.new({
+            id = id.from(_N, "ReplicationPeer", "PeerRole"),
+            type = "string",
+            name = "PeerRole",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ReplicationPeer", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "ReplicationPeer", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeDomainReplicationOutput = schema.new({
+    id = id.from(_N, "DescribeDomainReplicationResponse"),
+    type = "structure",
+    members = {
+        DomainArn = schema.new({
+            id = id.from(_N, "DescribeDomainReplicationOutput", "DomainArn"),
+            type = "string",
+            name = "DomainArn",
+            target_id = prelude.String.id,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "DescribeDomainReplicationOutput", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+        Peers = schema.new({
+            id = id.from(_N, "DescribeDomainReplicationOutput", "Peers"),
+            type = "list",
+            name = "Peers",
+            target_id = prelude.Document.id,
+            list_member = M.ReplicationPeer,
+        }),
+    },
+})
+
 M.DescribeDomainsInput = schema.new({
     id = id.from(_N, "DescribeDomainsRequest"),
     type = "structure",
@@ -7131,6 +7471,60 @@ M.DissociatePackagesOutput = schema.new({
             name = "DomainPackageDetailsList",
             target_id = prelude.Document.id,
             list_member = M.DomainPackageDetails,
+        }),
+    },
+})
+
+M.FailoverReplicationInput = schema.new({
+    id = id.from(_N, "FailoverReplicationRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "FailoverReplicationInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        PeerDomainArn = schema.new({
+            id = id.from(_N, "FailoverReplicationInput", "PeerDomainArn"),
+            type = "string",
+            name = "PeerDomainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AllowDataLoss = schema.new({
+            id = id.from(_N, "FailoverReplicationInput", "AllowDataLoss"),
+            type = "boolean",
+            name = "AllowDataLoss",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailoverReplicationOutput = schema.new({
+    id = id.from(_N, "FailoverReplicationResponse"),
+    type = "structure",
+    members = {
+        DomainArn = schema.new({
+            id = id.from(_N, "FailoverReplicationOutput", "DomainArn"),
+            type = "string",
+            name = "DomainArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "FailoverReplicationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -9708,6 +10102,51 @@ M.RejectInboundConnectionOutput = schema.new({
     },
 })
 
+M.RemoveReplicationPeerInput = schema.new({
+    id = id.from(_N, "RemoveReplicationPeerRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "RemoveReplicationPeerInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        PeerDomainArn = schema.new({
+            id = id.from(_N, "RemoveReplicationPeerInput", "PeerDomainArn"),
+            type = "string",
+            name = "PeerDomainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemoveReplicationPeerOutput = schema.new({
+    id = id.from(_N, "RemoveReplicationPeerResponse"),
+    type = "structure",
+    members = {
+        DomainArn = schema.new({
+            id = id.from(_N, "RemoveReplicationPeerOutput", "DomainArn"),
+            type = "string",
+            name = "DomainArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "RemoveReplicationPeerOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RemoveTagsInput = schema.new({
     id = id.from(_N, "RemoveTagsRequest"),
     type = "structure",
@@ -10095,6 +10534,51 @@ M.StartServiceSoftwareUpdateOutput = schema.new({
             name = "ServiceSoftwareOptions",
             target_id = id.from(_N, "ServiceSoftwareOptions"),
             target = M.ServiceSoftwareOptions,
+        }),
+    },
+})
+
+M.SwitchoverReplicationInput = schema.new({
+    id = id.from(_N, "SwitchoverReplicationRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "SwitchoverReplicationInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        PeerDomainArn = schema.new({
+            id = id.from(_N, "SwitchoverReplicationInput", "PeerDomainArn"),
+            type = "string",
+            name = "PeerDomainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SwitchoverReplicationOutput = schema.new({
+    id = id.from(_N, "SwitchoverReplicationResponse"),
+    type = "structure",
+    members = {
+        DomainArn = schema.new({
+            id = id.from(_N, "SwitchoverReplicationOutput", "DomainArn"),
+            type = "string",
+            name = "DomainArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SwitchoverReplicationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -10990,6 +11474,18 @@ M.AddDirectQueryDataSource = schema.operation({
     },
 })
 
+M.AddReplicationPeer = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AddReplicationPeer"),
+    input = M.AddReplicationPeerInput,
+    output = M.AddReplicationPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/replication/addPeer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AddTags = schema.operation({
     id = id.from("com.amazonaws.opensearch", "AddTags"),
     input = M.AddTagsInput,
@@ -11068,6 +11564,18 @@ M.CancelServiceSoftwareUpdate = schema.operation({
     output = M.CancelServiceSoftwareUpdateOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/serviceSoftwareUpdate/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompareDomainConfiguration = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "CompareDomainConfiguration"),
+    input = M.CompareDomainConfigurationInput,
+    output = M.CompareDomainConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/compareDomainConfiguration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11350,6 +11858,18 @@ M.DescribeDomainNodes = schema.operation({
     },
 })
 
+M.DescribeDomainReplication = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDomainReplication"),
+    input = M.DescribeDomainReplicationInput,
+    output = M.DescribeDomainReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/domain/{DomainName}/replication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeDomains = schema.operation({
     id = id.from("com.amazonaws.opensearch", "DescribeDomains"),
     input = M.DescribeDomainsInput,
@@ -11500,6 +12020,18 @@ M.DissociatePackages = schema.operation({
     output = M.DissociatePackagesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/2021-01-01/packages/dissociateMultiple" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverReplication = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "FailoverReplication"),
+    input = M.FailoverReplicationInput,
+    output = M.FailoverReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/replication/failover" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11914,6 +12446,18 @@ M.RejectInboundConnection = schema.operation({
     },
 })
 
+M.RemoveReplicationPeer = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "RemoveReplicationPeer"),
+    input = M.RemoveReplicationPeerInput,
+    output = M.RemoveReplicationPeerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/replication/removePeer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.RemoveTags = schema.operation({
     id = id.from("com.amazonaws.opensearch", "RemoveTags"),
     input = M.RemoveTagsInput,
@@ -11980,6 +12524,18 @@ M.StartServiceSoftwareUpdate = schema.operation({
     output = M.StartServiceSoftwareUpdateOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/serviceSoftwareUpdate/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SwitchoverReplication = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "SwitchoverReplication"),
+    input = M.SwitchoverReplicationInput,
+    output = M.SwitchoverReplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/domain/{DomainName}/replication/switchover" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
