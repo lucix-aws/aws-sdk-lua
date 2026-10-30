@@ -76,6 +76,8 @@ M.DataProtections = schema.new({ type = "list", list_member = M.DataProtection }
 
 M.RequestBody = schema.new({ type = "map", map_key = prelude.String, map_value = M.RequestBodyAssociatedResourceTypeConfig })
 
+M.ChallengeJavascriptSdkInjection = schema.new({ type = "map", map_key = prelude.String, map_value = M.ChallengeJavascriptSdkInjectionConfig })
+
 M.ApplicationAttributes = schema.new({ type = "list", list_member = M.ApplicationAttribute })
 
 M.LogDestinationConfigs = schema.new({ type = "list", list_member = prelude.String })
@@ -2451,6 +2453,11 @@ M.WAFUnavailableEntityException = schema.new({
     },
 })
 
+M.ChallengeJavascriptSdkInjectionConfig = schema.new({
+    id = id.from(_N, "ChallengeJavascriptSdkInjectionConfig"),
+    type = "structure",
+})
+
 M.RequestBodyAssociatedResourceTypeConfig = schema.new({
     id = id.from(_N, "RequestBodyAssociatedResourceTypeConfig"),
     type = "structure",
@@ -2478,6 +2485,14 @@ M.AssociationConfig = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = M.RequestBodyAssociatedResourceTypeConfig,
+        }),
+        ChallengeJavascriptSdkInjection = schema.new({
+            id = id.from(_N, "AssociationConfig", "ChallengeJavascriptSdkInjection"),
+            type = "map",
+            name = "ChallengeJavascriptSdkInjection",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.ChallengeJavascriptSdkInjectionConfig,
         }),
     },
 })

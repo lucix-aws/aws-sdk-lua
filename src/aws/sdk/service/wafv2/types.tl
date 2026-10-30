@@ -2132,6 +2132,7 @@ local record M
         "PRICE_AMOUNT"
         "PAYMENT_NETWORK"
         "PRE_PARSE_TEXT_TRANSFORMATION"
+        "CHALLENGE_JAVASCRIPT_SDK_INJECTION_CONFIG"
     end
 
     -- The operation failed because WAF didn't recognize a parameter in the request. For
@@ -2180,6 +2181,12 @@ local record M
         Message: string
     end
 
+    -- Specifies whether the associated CloudFront distribution inserts the WAF challenge JavaScript SDK into the HTML responses that it returns. The structure is empty: including it turns insertion on, and removing it turns insertion off.
+    -- This is used in the ChallengeJavascriptSdkInjection map of the AssociationConfig of the web ACL. The map key identifies the resource type and must be CLOUDFRONT.
+    -- JSON specification: "CLOUDFRONT": {}
+    record ChallengeJavascriptSdkInjectionConfig
+    end
+
     enum SizeInspectionLimit
         "KB_16"
         "KB_32"
@@ -2206,6 +2213,7 @@ local record M
     -- customize this setting for CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting is 16 KB (16,384 bytes).
     -- You are charged additional fees when your protected resources forward body sizes that are larger than the default. For more information, see WAF Pricing.
     -- For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+    -- You can also use this to have your CloudFront distributions insert the WAF challenge JavaScript SDK into the HTML responses that they return. For more information, see the ChallengeJavascriptSdkInjection setting.
     record AssociationConfig
         -- Customizes the maximum size of the request body that your protected CloudFront, API Gateway, Amazon Cognito, App Runner, and Verified Access resources forward to WAF for inspection. The default size is 16 KB (16,384 bytes). You can change the setting for any of the available resource types.
         -- You are charged additional fees when your protected resources forward body sizes that are larger than the default. For more information, see WAF Pricing.
@@ -2215,6 +2223,16 @@ local record M
         -- }
         -- For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
         RequestBody: {string : RequestBodyAssociatedResourceTypeConfig}
+        -- Specifies the CloudFront distributions that insert the WAF challenge JavaScript SDK into the HTML responses that they return. When you enable this setting for a distribution, you do not add the SDK to your web pages yourself.
+        -- You can configure this setting only for CloudFront distributions, using the CLOUDFRONT map key. WAF rejects any other resource type, and the setting is not available for regional resources. To configure it, use the CloudFront scope.
+        -- Your web ACL must also contain at least one of the following qualifying managed rule groups. WAF Bot Control qualifies only at the TARGETED inspection level, not at COMMON:
+        -- The WAF Bot Control managed rule group AWSManagedRulesBotControlRuleSet, with the inspection level set to TARGETED.
+        -- The WAF Fraud Control account takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet.
+        -- The WAF Fraud Control account creation fraud prevention (ACFP) managed rule group AWSManagedRulesACFPRuleSet.
+        -- If you remove the last qualifying managed rule group from the web ACL, or lower the WAF Bot Control inspection level from TARGETED to COMMON, you must remove this setting in the same update. Otherwise, WAF rejects the update.
+        -- Example JSON: { "CLOUDFRONT": {} }
+        -- If you omit this setting, CloudFront does not insert the SDK. When you omit it from a web ACL that previously used it, cached HTML that already contains the SDK is still served until it expires, or until you invalidate the cache for that distribution. For more information, see Automatic SDK integration for CloudFront distributions in the WAF Developer Guide.
+        ChallengeJavascriptSdkInjection: {string : ChallengeJavascriptSdkInjectionConfig}
     end
 
     -- Used for CAPTCHA and challenge token settings. Determines
@@ -4984,6 +5002,7 @@ local record M
         -- customize this setting for CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting is 16 KB (16,384 bytes).
         -- You are charged additional fees when your protected resources forward body sizes that are larger than the default. For more information, see WAF Pricing.
         -- For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+        -- You can also use this to have your CloudFront distributions insert the WAF challenge JavaScript SDK into the HTML responses that they return. For more information, see the ChallengeJavascriptSdkInjection setting.
         AssociationConfig: AssociationConfig
         -- Specifies the type of DDoS protection to apply to web request data for a web ACL. For most scenarios, it is recommended to use the default protection level, ACTIVE_UNDER_DDOS.
         -- If a web ACL is associated with multiple Application Load Balancers, the changes you make to DDoS protection in that web ACL will apply to all associated Application Load Balancers.
@@ -5122,6 +5141,7 @@ local record M
         -- customize this setting for CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting is 16 KB (16,384 bytes).
         -- You are charged additional fees when your protected resources forward body sizes that are larger than the default. For more information, see WAF Pricing.
         -- For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+        -- You can also use this to have your CloudFront distributions insert the WAF challenge JavaScript SDK into the HTML responses that they return. For more information, see the ChallengeJavascriptSdkInjection setting.
         AssociationConfig: AssociationConfig
         -- Specifies the type of DDoS protection to apply to web request data for a web ACL. For most scenarios, it is recommended to use the default protection level, ACTIVE_UNDER_DDOS.
         -- If a web ACL is associated with multiple Application Load Balancers, the changes you make to DDoS protection in that web ACL will apply to all associated Application Load Balancers.
@@ -5222,6 +5242,7 @@ local record M
         -- customize this setting for CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting is 16 KB (16,384 bytes).
         -- You are charged additional fees when your protected resources forward body sizes that are larger than the default. For more information, see WAF Pricing.
         -- For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+        -- You can also use this to have your CloudFront distributions insert the WAF challenge JavaScript SDK into the HTML responses that they return. For more information, see the ChallengeJavascriptSdkInjection setting.
         AssociationConfig: AssociationConfig
         -- Indicates whether this web ACL was created by a customer account and then retrofitted by Firewall Manager. If true, then the web ACL is currently being
         -- managed by a Firewall Manager WAF policy, and only Firewall Manager can manage any Firewall Manager rule groups in the web ACL.

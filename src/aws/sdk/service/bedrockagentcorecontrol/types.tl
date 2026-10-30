@@ -483,6 +483,22 @@ local record M
         codeConfiguration: CodeConfiguration
     end
 
+    -- An inclusive range of ports. The value of from must be less than or equal to the value of to.
+    record PortRange
+        -- The first port in the inclusive range.
+        from: number
+        -- The last port in the inclusive range.
+        to: number
+    end
+
+    -- A port or port range that is reachable through the runtime's session URL. Specify exactly one of port or portRange.
+    record AllowedPort
+        -- A single port that is reachable through the runtime's session URL.
+        port: number
+        -- An inclusive range of ports that are reachable through the runtime's session URL.
+        portRange: PortRange
+    end
+
     -- A hosting environment whose workloads are allowed to invoke the target. At launch, the only supported hosting environment is AgentCore Gateway.
     record HostingEnvironment
         -- The Amazon Resource Name (ARN) of the hosting environment.
@@ -694,6 +710,10 @@ local record M
     record ProtocolConfiguration
         -- The server protocol for the agent runtime. This field specifies which protocol the agent runtime uses to communicate with clients.
         serverProtocol: string
+        -- The port on which the agent server listens. The port must be between 8000 and 12000, excluding the reserved port 8443. When this field is omitted, the default is 8080 for HTTP and AGUI, 8000 for MCP, and 9000 for A2A.
+        port: number
+        -- The path on which the agent server accepts requests. The path must begin with /. When this field is omitted, the default is /invocations for HTTP and AGUI, /mcp for MCP, and / for A2A.
+        path: string
     end
 
     -- Configuration for HTTP request headers that will be passed through to the runtime.
@@ -719,6 +739,7 @@ local record M
         authorizerConfiguration: AuthorizerConfiguration
         -- Configuration for HTTP request headers that will be passed through to the runtime.
         requestHeaderConfiguration: RequestHeaderConfiguration
+        -- The protocol configuration for the AgentCore Runtime, including the protocol, port, and path on which the agent server is available.
         protocolConfiguration: ProtocolConfiguration
         -- The life cycle configuration for the AgentCore Runtime.
         lifecycleConfiguration: LifecycleConfiguration
@@ -732,6 +753,8 @@ local record M
         tags: {string : string}
         -- The version of the runtime platform to use for the AgentCore Runtime.
         platformVersion: string
+        -- The additional ports on the AgentCore Runtime that are reachable through the runtime's session URL. Specify one to five non-overlapping entries, each containing either a single port or an inclusive port range. Ports must be between 8000 and 12000, excluding the reserved port 8443.
+        allowedPorts: {AllowedPort}
     end
 
     enum AgentRuntimeStatus
@@ -825,6 +848,7 @@ local record M
         workloadIdentityDetails: WorkloadIdentityDetails
         -- The artifact of the AgentCore Runtime.
         agentRuntimeArtifact: AgentRuntimeArtifact
+        -- The protocol configuration for the AgentCore Runtime, including the protocol, port, and path on which the agent server is available.
         protocolConfiguration: ProtocolConfiguration
         -- Environment variables set in the AgentCore Runtime environment.
         environmentVariables: {string : string}
@@ -840,6 +864,8 @@ local record M
         capacityProviderConfiguration: CapacityProviderConfiguration
         -- The version of the runtime platform used by the AgentCore Runtime.
         platformVersion: string
+        -- The additional ports on the AgentCore Runtime that are reachable through the runtime's session URL.
+        allowedPorts: {AllowedPort}
     end
 
     record ListAgentRuntimesInput
@@ -905,6 +931,7 @@ local record M
         authorizerConfiguration: AuthorizerConfiguration
         -- The updated configuration for HTTP request headers that will be passed through to the runtime.
         requestHeaderConfiguration: RequestHeaderConfiguration
+        -- The updated protocol configuration for the AgentCore Runtime, including the protocol, port, and path on which the agent server is available.
         protocolConfiguration: ProtocolConfiguration
         -- The updated life cycle configuration for the AgentCore Runtime.
         lifecycleConfiguration: LifecycleConfiguration
@@ -918,6 +945,8 @@ local record M
         capacityProviderConfiguration: CapacityProviderConfiguration
         -- The updated version of the runtime platform to use for the AgentCore Runtime.
         platformVersion: string
+        -- The updated additional ports on the AgentCore Runtime that are reachable through the runtime's session URL. Specify one to five non-overlapping entries, each containing either a single port or an inclusive port range. Ports must be between 8000 and 12000, excluding the reserved port 8443.
+        allowedPorts: {AllowedPort}
         -- A unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
     end

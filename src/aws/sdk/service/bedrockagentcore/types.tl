@@ -319,6 +319,8 @@ local record M
     record InvokeAgentRuntimeOutput
         -- The identifier of the runtime session.
         runtimeSessionId: string
+        -- The HTTPS endpoint that addresses this runtime session directly. This value is returned only when the agent runtime is configured with allowed ports and direct runtime access is available for the session. If this value is not present, use InvokeAgentRuntime to communicate with the session.
+        sessionEndpointUrl: string
         -- The identifier of the MCP session.
         mcpSessionId: string
         -- The version of the MCP protocol being used.

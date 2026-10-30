@@ -11922,6 +11922,12 @@ M.ProtectedJobS3OutputConfigurationInput = schema.new({
     id = id.from(_N, "ProtectedJobS3OutputConfigurationInput"),
     type = "structure",
     members = {
+        resultFormat = schema.new({
+            id = id.from(_N, "ProtectedJobS3OutputConfigurationInput", "resultFormat"),
+            type = "string",
+            name = "resultFormat",
+            target_id = prelude.String.id,
+        }),
         bucket = schema.new({
             id = id.from(_N, "ProtectedJobS3OutputConfigurationInput", "bucket"),
             type = "string",

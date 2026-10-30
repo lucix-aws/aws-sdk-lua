@@ -1114,6 +1114,15 @@ M.InvokeAgentRuntimeOutput = schema.new({
                 [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Runtime-Session-Id" },
             },
         }),
+        sessionEndpointUrl = schema.new({
+            id = id.from(_N, "InvokeAgentRuntimeOutput", "sessionEndpointUrl"),
+            type = "string",
+            name = "sessionEndpointUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Runtime-Session-Endpoint-Url" },
+            },
+        }),
         mcpSessionId = schema.new({
             id = id.from(_N, "InvokeAgentRuntimeOutput", "mcpSessionId"),
             type = "string",

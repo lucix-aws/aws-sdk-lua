@@ -4997,6 +4997,12 @@ local record M
     record GetInstanceInput
         -- The name of the instance.
         instanceName: string
+        -- Specifies whether to include the instance health status checks in the response of your
+        -- request.
+        -- When set to true, the response includes the instanceStatus and
+        -- systemStatus of the instance. When omitted or set to false, the
+        -- response doesn't include them.
+        includeHealthStatus: boolean
     end
 
     -- Describes the hardware for the instance.
@@ -5007,6 +5013,60 @@ local record M
         disks: {Disk}
         -- The amount of RAM in GB on the instance (1.0).
         ramSizeInGb: number
+    end
+
+    enum InstanceHealthStatusDetailName
+        "reachability"
+    end
+
+    enum InstanceHealthStatusDetailValue
+        "passed"
+        "failed"
+        "insufficient-data"
+        "initializing"
+    end
+
+    -- Describes the instance status.
+    record InstanceHealthStatusDetail
+        -- The type of instance status. The only possible value is
+        -- reachability.
+        name: string
+        -- The status.
+        -- The following values are possible:
+        -- passed - The check passed.
+        -- failed - The check failed.
+        -- initializing - The check is in progress.
+        -- insufficient-data - There isn't enough data yet to determine the
+        -- result.
+        status: string
+        -- The time when a status check failed. For an instance that was launched and impaired,
+        -- this is the time when the instance was launched.
+        impairedSince: number
+    end
+
+    enum InstanceHealthStatusValue
+        "ok"
+        "impaired"
+        "initializing"
+        "insufficient-data"
+        "not-applicable"
+    end
+
+    -- Describes the status of an Amazon Lightsail instance.
+    record InstanceHealthStatus
+        -- The status.
+        -- The following values are possible:
+        -- ok - All checks are passing. The instance is reachable.
+        -- impaired - One or more checks have failed.
+        -- initializing - The instance was recently started, and the checks are in
+        -- progress.
+        -- insufficient-data - There isn't enough data yet to determine the
+        -- result.
+        -- not-applicable - The check doesn't apply because the instance isn't
+        -- running.
+        status: string
+        -- The system instance health or instance health.
+        details: {InstanceHealthStatusDetail}
     end
 
     enum HttpEndpoint
@@ -5229,6 +5289,16 @@ local record M
         sshKeyName: string
         -- The metadata options for the Amazon Lightsail instance.
         metadataOptions: InstanceMetadataOptions
+        -- Reports impaired functionality that stems from issues internal to the instance, such as
+        -- impaired reachability.
+        -- This value is returned only when you set includeHealthStatus to
+        -- true in your request.
+        instanceStatus: InstanceHealthStatus
+        -- Reports impaired functionality that stems from issues related to the systems that
+        -- support an instance, such as hardware failures and network connectivity problems.
+        -- This value is returned only when you set includeHealthStatus to
+        -- true in your request.
+        systemStatus: InstanceHealthStatus
     end
 
     record GetInstanceOutput
@@ -5631,6 +5701,12 @@ local record M
         -- are paginated, the response will return a next page token that you can specify as the page
         -- token in a subsequent request.
         pageToken: string
+        -- Specifies whether to include the instance health status checks of each instance in the
+        -- response of your request.
+        -- When set to true, the response includes the instanceStatus and
+        -- systemStatus of each instance. When omitted or set to false, the
+        -- response doesn't include them.
+        includeHealthStatus: boolean
     end
 
     record GetInstancesOutput

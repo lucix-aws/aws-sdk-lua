@@ -1179,17 +1179,75 @@ local record M
         containerTags: {string}
     end
 
+    enum ImageScanningType
+        "TEST_INSTANCE_CVE"
+        "ON_DEMAND_AMI_CVE"
+    end
+
+    enum MaximumSeverityLabel
+        "INFORMATIONAL"
+        "LOW"
+        "MEDIUM"
+        "HIGH"
+    end
+
+    -- A condition that sets which findings from an on-demand AMI scan fail the
+    -- image. Image Builder checks the output AMI's findings against this condition during
+    -- the test phase.
+    record ScanResultCondition
+        -- The maximum severity allowed for findings on the output AMI.
+        -- A finding above this severity fails the image, unless
+        -- fixAvailable excludes it. Valid values are
+        -- INFORMATIONAL, LOW, MEDIUM,
+        -- and HIGH. A CRITICAL finding that counts
+        -- always fails the image.
+        maximumSeverityLabel: string
+        -- Specifies whether only findings that have a fix available count toward
+        -- maximumSeverityLabel. When false, Image Builder counts
+        -- every finding. The default is true.
+        fixAvailable: boolean
+    end
+
     -- Contains settings for Image Builder image resource and container image scans.
     record ImageScanningConfiguration
         -- Specifies whether Amazon Inspector scans for vulnerabilities when you create a new
-        -- image, and whether Image Builder saves the findings. Amazon Inspector must be enabled in the
-        -- account. Image tests must also be enabled. For AMI output, Amazon Inspector scans the
-        -- test instance. For container output, Amazon Inspector scans the container image that
+        -- image. You must also enable image tests. For AMI output,
+        -- imageScanningTypes sets whether Amazon Inspector scans the test instance or
+        -- the output AMI. For container output, Amazon Inspector scans the container image that
         -- Image Builder pushes to the Amazon ECR repository from your ecrConfiguration
         -- settings.
+        -- To use container image scans, you must activate Amazon Inspector for Amazon ECR
+        -- scanning in your account. The Image Builder ListImageScanFindings
+        -- operation returns the findings of these scans.
         imageScanningEnabled: boolean
         -- Contains Amazon ECR settings for vulnerability scans.
         ecrConfiguration: EcrConfiguration
+        -- The type of vulnerability scan that Image Builder runs for AMI output when
+        -- imageScanningEnabled is true. Specify a single
+        -- value. If you omit imageScanningTypes, Image Builder uses
+        -- TEST_INSTANCE_CVE. The scan types work as follows:
+        -- With TEST_INSTANCE_CVE, Amazon Inspector scans the test instance
+        -- during image tests. To use this scan, you must activate Amazon Inspector for Amazon EC2
+        -- scanning in your account. The Image Builder ListImageScanFindings
+        -- operation returns the findings.
+        -- With ON_DEMAND_AMI_CVE, Amazon Inspector starts an on-demand scan of
+        -- the output AMI during image tests. To use this scan, you must build from
+        -- an image recipe, but you do not need to activate Amazon Inspector in your
+        -- account. The Amazon EC2 GetImageFindings
+        -- operation returns the findings.
+        imageScanningTypes: {string}
+        -- The condition that the output AMI's scan results must meet for the image
+        -- to pass. You can set scanResultCondition only when
+        -- imageScanningTypes is ON_DEMAND_AMI_CVE. If you
+        -- omit it, Image Builder starts the scan but does not wait for it or use its results
+        -- to pass or fail the image.
+        -- When you set scanResultCondition, the test phase waits for
+        -- the scan to finish. Then Image Builder checks the findings against the condition.
+        -- By default, Image Builder counts only findings that have a fix available. To count
+        -- every finding, set fixAvailable to false. If a counted
+        -- finding exceeds maximumSeverityLabel, Image Builder fails the image in
+        -- the test phase and does not distribute the AMI.
+        scanResultCondition: ScanResultCondition
     end
 
     -- Configure image tests for your pipeline build. Tests run after building the image, to
@@ -1280,10 +1338,8 @@ local record M
         -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Settings for vulnerability scans that Amazon Inspector runs during image
-        -- creation. For AMI output, Amazon Inspector scans the test instance. For container
-        -- output, Amazon Inspector scans the container image that Image Builder pushes to the Amazon ECR
-        -- repository specified in ecrConfiguration.
+        -- The settings that determine whether and how Amazon Inspector scans the image
+        -- for vulnerabilities.
         imageScanningConfiguration: ImageScanningConfiguration
         -- The array of workflow configuration objects for the build. If you specify
         -- workflows, they replace the default workflows that Image Builder otherwise runs for
@@ -1429,8 +1485,8 @@ local record M
         -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Contains settings for vulnerability scans that Amazon Inspector runs against the test instance
-        -- during image creation.
+        -- The settings that determine whether and how Amazon Inspector scans the images that
+        -- this pipeline creates.
         imageScanningConfiguration: ImageScanningConfiguration
         -- The array of workflow configuration objects for builds that this pipeline
         -- starts. You must also specify executionRole when you provide
@@ -2574,10 +2630,8 @@ local record M
         imageSource: string
         -- Contains information about the current state of scans for this image.
         scanState: ImageScanState
-        -- Settings for the vulnerability scans that Amazon Inspector runs for this
-        -- image. For AMI output, Amazon Inspector scans the test instance during image creation.
-        -- For container output, Amazon Inspector scans the container image in its Amazon ECR
-        -- repository.
+        -- The settings that determine whether and how Amazon Inspector scans this
+        -- image.
         imageScanningConfiguration: ImageScanningConfiguration
         -- The time when deprecation occurs for an image resource. This can be a past or future date.
         deprecationTime: number
@@ -2662,8 +2716,8 @@ local record M
         dateNextRun: string
         -- The tags of this image pipeline.
         tags: {string : string}
-        -- Contains settings for vulnerability scans that Amazon Inspector runs against the test instance
-        -- during image creation.
+        -- The settings that determine whether and how Amazon Inspector scans the images that
+        -- the pipeline creates.
         imageScanningConfiguration: ImageScanningConfiguration
         -- The tags that Image Builder applies to the Image Builder image resource that this
         -- pipeline's scheduled executions create. These tags don't apply to the
@@ -4842,8 +4896,8 @@ local record M
         -- information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
         clientToken: string
-        -- Contains settings for vulnerability scans that Amazon Inspector runs against the test instance
-        -- during image creation.
+        -- The updated settings that determine whether and how Amazon Inspector scans the
+        -- images that this pipeline creates.
         imageScanningConfiguration: ImageScanningConfiguration
         -- The array of workflow configuration objects for builds that this pipeline
         -- starts. You must also specify executionRole when you provide

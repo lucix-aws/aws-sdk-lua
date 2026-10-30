@@ -78,6 +78,8 @@ M.WorkflowStepExecutionsList = schema.new({ type = "list", list_member = M.Workf
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ImageScanningTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.LifecyclePolicyResourceSelectionRecipes = schema.new({ type = "list", list_member = M.LifecyclePolicyResourceSelectionRecipe })
 
 M.ComponentParameterDetailList = schema.new({ type = "list", list_member = M.ComponentParameterDetail })
@@ -2338,6 +2340,28 @@ M.EcrConfiguration = schema.new({
     },
 })
 
+M.ScanResultCondition = schema.new({
+    id = id.from(_N, "ScanResultCondition"),
+    type = "structure",
+    members = {
+        maximumSeverityLabel = schema.new({
+            id = id.from(_N, "ScanResultCondition", "maximumSeverityLabel"),
+            type = "string",
+            name = "maximumSeverityLabel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fixAvailable = schema.new({
+            id = id.from(_N, "ScanResultCondition", "fixAvailable"),
+            type = "boolean",
+            name = "fixAvailable",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.ImageScanningConfiguration = schema.new({
     id = id.from(_N, "ImageScanningConfiguration"),
     type = "structure",
@@ -2354,6 +2378,20 @@ M.ImageScanningConfiguration = schema.new({
             name = "ecrConfiguration",
             target_id = id.from(_N, "EcrConfiguration"),
             target = M.EcrConfiguration,
+        }),
+        imageScanningTypes = schema.new({
+            id = id.from(_N, "ImageScanningConfiguration", "imageScanningTypes"),
+            type = "list",
+            name = "imageScanningTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        scanResultCondition = schema.new({
+            id = id.from(_N, "ImageScanningConfiguration", "scanResultCondition"),
+            type = "structure",
+            name = "scanResultCondition",
+            target_id = id.from(_N, "ScanResultCondition"),
+            target = M.ScanResultCondition,
         }),
     },
 })

@@ -188,6 +188,8 @@ M.CostEstimates = schema.new({ type = "list", list_member = M.CostEstimate })
 
 M.InstancePortInfoList = schema.new({ type = "list", list_member = M.InstancePortInfo })
 
+M.InstanceHealthStatusDetailList = schema.new({ type = "list", list_member = M.InstanceHealthStatusDetail })
+
 M.LoadBalancerTlsCertificateDomainValidationRecordList = schema.new({ type = "list", list_member = M.LoadBalancerTlsCertificateDomainValidationRecord })
 
 M.AvailabilityZoneList = schema.new({ type = "list", list_member = M.AvailabilityZone })
@@ -8210,6 +8212,12 @@ M.GetInstanceInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        includeHealthStatus = schema.new({
+            id = id.from(_N, "GetInstanceInput", "includeHealthStatus"),
+            type = "boolean",
+            name = "includeHealthStatus",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -8235,6 +8243,51 @@ M.InstanceHardware = schema.new({
             type = "float",
             name = "ramSizeInGb",
             target_id = prelude.Float.id,
+        }),
+    },
+})
+
+M.InstanceHealthStatusDetail = schema.new({
+    id = id.from(_N, "InstanceHealthStatusDetail"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "InstanceHealthStatusDetail", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "InstanceHealthStatusDetail", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        impairedSince = schema.new({
+            id = id.from(_N, "InstanceHealthStatusDetail", "impairedSince"),
+            type = "timestamp",
+            name = "impairedSince",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.InstanceHealthStatus = schema.new({
+    id = id.from(_N, "InstanceHealthStatus"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "InstanceHealthStatus", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        details = schema.new({
+            id = id.from(_N, "InstanceHealthStatus", "details"),
+            type = "list",
+            name = "details",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceHealthStatusDetail,
         }),
     },
 })
@@ -8548,6 +8601,20 @@ M.Instance = schema.new({
             name = "metadataOptions",
             target_id = id.from(_N, "InstanceMetadataOptions"),
             target = M.InstanceMetadataOptions,
+        }),
+        instanceStatus = schema.new({
+            id = id.from(_N, "Instance", "instanceStatus"),
+            type = "structure",
+            name = "instanceStatus",
+            target_id = id.from(_N, "InstanceHealthStatus"),
+            target = M.InstanceHealthStatus,
+        }),
+        systemStatus = schema.new({
+            id = id.from(_N, "Instance", "systemStatus"),
+            type = "structure",
+            name = "systemStatus",
+            target_id = id.from(_N, "InstanceHealthStatus"),
+            target = M.InstanceHealthStatus,
         }),
     },
 })
@@ -8934,6 +9001,12 @@ M.GetInstancesInput = schema.new({
             type = "string",
             name = "pageToken",
             target_id = prelude.String.id,
+        }),
+        includeHealthStatus = schema.new({
+            id = id.from(_N, "GetInstancesInput", "includeHealthStatus"),
+            type = "boolean",
+            name = "includeHealthStatus",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

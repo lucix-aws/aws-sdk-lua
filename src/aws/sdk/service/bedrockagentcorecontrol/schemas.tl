@@ -30,6 +30,8 @@ M.EnvironmentVariablesMap = schema.new({ type = "map", map_key = prelude.String,
 
 M.FilesystemConfigurations = schema.new({ type = "list", list_member = M.FilesystemConfiguration })
 
+M.AllowedPorts = schema.new({ type = "list", list_member = M.AllowedPort })
+
 M.ApiKeyCredentialProviders = schema.new({ type = "list", list_member = M.ApiKeyCredentialProviderItem })
 
 M.BrowserProfileSummaries = schema.new({ type = "list", list_member = M.BrowserProfileSummary })
@@ -1781,6 +1783,51 @@ M.AgentRuntimeArtifact = schema.new({
     },
 })
 
+M.PortRange = schema.new({
+    id = id.from(_N, "PortRange"),
+    type = "structure",
+    members = {
+        from = schema.new({
+            id = id.from(_N, "PortRange", "from"),
+            type = "integer",
+            name = "from",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        to = schema.new({
+            id = id.from(_N, "PortRange", "to"),
+            type = "integer",
+            name = "to",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AllowedPort = schema.new({
+    id = id.from(_N, "AllowedPort"),
+    type = "union",
+    members = {
+        port = schema.new({
+            id = id.from(_N, "AllowedPort", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        portRange = schema.new({
+            id = id.from(_N, "AllowedPort", "portRange"),
+            type = "structure",
+            name = "portRange",
+            target_id = id.from(_N, "PortRange"),
+            target = M.PortRange,
+        }),
+    },
+})
+
 M.HostingEnvironment = schema.new({
     id = id.from(_N, "HostingEnvironment"),
     type = "structure",
@@ -2332,6 +2379,18 @@ M.ProtocolConfiguration = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        port = schema.new({
+            id = id.from(_N, "ProtocolConfiguration", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        path = schema.new({
+            id = id.from(_N, "ProtocolConfiguration", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2466,6 +2525,13 @@ M.CreateAgentRuntimeInput = schema.new({
             type = "string",
             name = "platformVersion",
             target_id = prelude.String.id,
+        }),
+        allowedPorts = schema.new({
+            id = id.from(_N, "CreateAgentRuntimeInput", "allowedPorts"),
+            type = "list",
+            name = "allowedPorts",
+            target_id = prelude.Document.id,
+            list_member = M.AllowedPort,
         }),
     },
 })
@@ -2838,6 +2904,13 @@ M.GetAgentRuntimeOutput = schema.new({
             name = "platformVersion",
             target_id = prelude.String.id,
         }),
+        allowedPorts = schema.new({
+            id = id.from(_N, "GetAgentRuntimeOutput", "allowedPorts"),
+            type = "list",
+            name = "allowedPorts",
+            target_id = prelude.Document.id,
+            list_member = M.AllowedPort,
+        }),
     },
 })
 
@@ -3129,6 +3202,13 @@ M.UpdateAgentRuntimeInput = schema.new({
             type = "string",
             name = "platformVersion",
             target_id = prelude.String.id,
+        }),
+        allowedPorts = schema.new({
+            id = id.from(_N, "UpdateAgentRuntimeInput", "allowedPorts"),
+            type = "list",
+            name = "allowedPorts",
+            target_id = prelude.Document.id,
+            list_member = M.AllowedPort,
         }),
         clientToken = schema.new({
             id = id.from(_N, "UpdateAgentRuntimeInput", "clientToken"),

@@ -181,6 +181,7 @@ local record M
     enum AnalysisFormat
         "SQL"
         "PYSPARK_1_0"
+        "PYSPARK_2_0"
     end
 
     enum LogExportAnalysisType
@@ -3749,8 +3750,15 @@ local record M
         tags: {string : string}
     end
 
+    enum ResultFormat
+        "CSV"
+        "PARQUET"
+    end
+
     -- Contains input information for protected jobs with an S3 output type.
     record ProtectedJobS3OutputConfigurationInput
+        -- The file format of the protected job results. If you don't specify a format, results are written as CSV.
+        resultFormat: string
         -- The S3 bucket for job output.
         bucket: string
         -- The S3 prefix to unload the protected job results.
@@ -3769,11 +3777,6 @@ local record M
         outputConfiguration: MembershipProtectedJobOutputConfiguration
         -- The unique ARN for an IAM role that is used by Clean Rooms to write protected job results to the result location, given by the member who can receive results.
         roleArn: string
-    end
-
-    enum ResultFormat
-        "CSV"
-        "PARQUET"
     end
 
     -- Contains the configuration to write the query results to S3.
