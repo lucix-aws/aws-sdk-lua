@@ -13,6 +13,7 @@ local record M
         "FIELD_INDEX_POLICY"
         "TRANSFORMER_POLICY"
         "METRIC_EXTRACTION_POLICY"
+        "RETENTION_POLICY"
     end
 
     enum Scope
@@ -976,9 +977,62 @@ local record M
         policyName: string
         -- The type of policy to delete.
         policyType: string
+        -- Specifies whether to preview the impact of deleting the policy without deleting it. If
+        -- you specify true, CloudWatch Logs does not delete the policy and
+        -- returns the estimated impact in dryRunResult. The default is
+        -- false.
+        -- Specifying dryRun is valid only when you specify
+        -- RETENTION_POLICY for policyType. Only one dry run can be in
+        -- progress for an account at a time.
+        dryRun: boolean
+    end
+
+    -- Describes the estimated effect of an account-level retention policy change on one log
+    -- group.
+    record LogGroupImpact
+        -- The name of the log group.
+        logGroupName: string
+        -- The current effective retention period of the log group, in days. A value of
+        -- NEVER_EXPIRE indicates that log events in the log group never expire.
+        currentRetention: string
+        -- The effective retention period of the log group, in days, after the change. A value of
+        -- NEVER_EXPIRE indicates that log events in the log group would never
+        -- expire.
+        proposedRetention: string
+        -- The number of bytes stored in the log group.
+        storedBytes: number
+    end
+
+    -- Contains the estimated impact of creating, updating, or deleting an account-level
+    -- retention policy. The analysis compares the effective retention period of each log group,
+    -- which accounts for all account-level retention policies that apply to it, before and after
+    -- the change. Log groups in the Delivery class are not included.
+    record DryRunResult
+        -- The number of log groups in the scope of the policy that were analyzed. This value is
+        -- the sum of increasedRetentionLogGroupCount,
+        -- decreasedRetentionLogGroupCount, and
+        -- unchangedRetentionLogGroupCount, and does not include log groups that could not
+        -- be analyzed.
+        totalMatchedLogGroups: number
+        -- The number of log groups whose effective retention period would become longer.
+        increasedRetentionLogGroupCount: number
+        -- The number of log groups whose effective retention period would become shorter.
+        decreasedRetentionLogGroupCount: number
+        -- The number of log groups whose effective retention period would not change.
+        unchangedRetentionLogGroupCount: number
+        -- The number of log groups in the scope of the policy that could not be analyzed. These
+        -- log groups are not included in totalMatchedLogGroups.
+        failedAnalysisCount: number
+        -- Up to 20 log groups in the scope of the policy, sorted by stored bytes in descending
+        -- order. This list can include log groups whose effective retention period would not
+        -- change.
+        topLogGroupsImpacted: {LogGroupImpact}
     end
 
     record DeleteAccountPolicyOutput
+        -- The estimated impact of deleting the policy. This field is returned only when the request
+        -- specifies dryRun as true.
+        dryRunResult: DryRunResult
     end
 
     record DeleteDataProtectionPolicyInput
@@ -1789,6 +1843,12 @@ local record M
         -- Indicates whether bearer token authentication is enabled for this log group. When enabled,
         -- bearer token authentication is allowed on operations until it is explicitly disabled.
         bearerTokenAuthenticationEnabled: boolean
+        -- The name of the account-level retention policy that determines the retention period of
+        -- this log group. This field is returned only when an account-level retention policy applies to
+        -- the log group. When it is returned, retentionInDays shows the retention period
+        -- from that policy instead of the retention period set on the log group. If the policy specifies
+        -- that log events never expire, retentionInDays is not returned.
+        retentionPolicyName: string
     end
 
     record DescribeLogGroupsOutput
@@ -4078,11 +4138,22 @@ local record M
         -- information, see Log recursion
         -- prevention.
         selectionCriteria: string
+        -- Specifies whether to preview the impact of the policy without creating or updating it.
+        -- If you specify true, CloudWatch Logs validates the request,
+        -- does not save the policy, and returns the estimated impact in dryRunResult
+        -- instead of accountPolicy. The default is false.
+        -- Specifying dryRun is valid only when you specify
+        -- RETENTION_POLICY for policyType. Only one dry run can be in
+        -- progress for an account at a time.
+        dryRun: boolean
     end
 
     record PutAccountPolicyOutput
         -- The account policy that you created.
         accountPolicy: AccountPolicy
+        -- The estimated impact of the policy on log groups in the account. This field is returned
+        -- only when the request specifies dryRun as true.
+        dryRunResult: DryRunResult
     end
 
     record PutBearerTokenAuthenticationInput

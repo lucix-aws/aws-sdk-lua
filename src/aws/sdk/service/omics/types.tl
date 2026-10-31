@@ -1034,7 +1034,7 @@ local record M
         destinationImage: string
     end
 
-    -- If you are using the ECR pull through cache feature, the registry mapping maps between the ECR repository and the upstream registry where container images are pulled and synchronized.
+    -- Maps an upstream container registry to a repository prefix in your Amazon Elastic Container Registry (Amazon ECR) private registry. For registries that Amazon ECR pull through cache supports, you create a pull through cache rule that synchronizes the upstream repositories with your private repositories. You can also use some registries that pull through cache doesn't support. For these registries, specify credentialArn, and Amazon Web Services HealthOmics copies each image into a private Amazon ECR repository the first time a task needs it.
     record RegistryMapping
         -- The URI of the upstream registry.
         upstreamRegistryUrl: string
@@ -1050,7 +1050,7 @@ local record M
 
     -- Use a container registry map to specify mappings between the ECR private repository and one or more upstream registries. For more information, see Container images in the Amazon Web Services HealthOmics User Guide.
     record ContainerRegistryMap
-        -- Mapping that provides the ECR repository path where upstream container images are pulled and synchronized.
+        -- The mappings between upstream container registries and repository prefixes in your Amazon Elastic Container Registry (Amazon ECR) private registry. The list can include both pull through cache mappings and mappings for registries that Amazon Web Services HealthOmics copies images from.
         registryMappings: {RegistryMapping}
         -- Image mappings specify path mappings between the ECR private repository and their corresponding external repositories.
         imageMappings: {ImageMapping}
@@ -2295,6 +2295,11 @@ local record M
         runLogStream: string
     end
 
+    enum RunOutputUriPrefixMode
+        "SERVICE_DEFINED"
+        "NONE_WITH_OVERWRITE"
+    end
+
     enum RunStatus
         "PENDING"
         "STARTING"
@@ -2393,6 +2398,8 @@ local record M
         engineSettings: any
         -- Inline policy json for scoping down permissions via a session policy on the IAM role.
         sessionPolicy: string
+        -- The service returns the value that the StartRun request specified for outputUriPrefixMode. The service returns SERVICE_DEFINED if the request did not specify a value.
+        outputUriPrefixMode: string
     end
 
     record GetRunCacheInput
@@ -3843,6 +3850,8 @@ local record M
         sessionPolicy: string
         -- Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).
         engineSettings: any
+        -- You can control the path prefixes that the service adds beneath outputUri. If you don't specify a value, the service uses SERVICE_DEFINED, which adds a run-specific prefix.
+        outputUriPrefixMode: string
     end
 
     record StartRunOutput

@@ -3144,6 +3144,18 @@ local record M
         SourceName: string
         -- The source of the object template.
         SourceObject: string
+        -- The default maximum number of objects of this object type that can be stored per
+        -- profile. This default applies when you don't set MaxProfileObjectCount on an
+        -- object type created from this template. If this value isn't present, no default limit
+        -- applies.
+        DefaultMaxProfileObjectCount: number
+        -- The timestamp after which DefaultMaxProfileObjectCount takes effect. The
+        -- default limit applies only to domains created after this time.
+        DefaultMaxProfileObjectCountEffectiveAfter: number
+        -- Indicates whether the template is store-only. Objects of an object type created from a
+        -- store-only template are ingested and stored, but the object type can't be used by
+        -- calculated attributes or event triggers.
+        StoreOnly: boolean
         -- Indicates whether a profile should be created when data is received if one doesn’t exist
         -- for an object of this type. The default is FALSE. If the AllowProfileCreation
         -- flag is set to FALSE, then the service tries to fetch a standard profile and

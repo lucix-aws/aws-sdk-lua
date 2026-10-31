@@ -238,4 +238,22 @@ function M.items_describe_pending_maintenance_actions(client, input)
     })
 end
 
+--- Returns a page iterator for describeServerlessV2PlatformVersions.
+function M.pages_describe_serverless_v2_platform_versions(client, input)
+    return paginator.pages(client, "describeServerlessV2PlatformVersions", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "ServerlessV2PlatformVersions",
+    })
+end
+
+--- Returns an item iterator for describeServerlessV2PlatformVersions.
+function M.items_describe_serverless_v2_platform_versions(client, input)
+    return paginator.items(client, "describeServerlessV2PlatformVersions", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "ServerlessV2PlatformVersions",
+    })
+end
+
 return M

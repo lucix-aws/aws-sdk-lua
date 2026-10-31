@@ -211,6 +211,16 @@ local record M
         cloudWatchConfiguration: CloudWatchConfiguration
     end
 
+    -- The configuration for collecting broker, topic, and consumer-group metrics from an Amazon MSK cluster through a managed Kafka exporter. The cluster must be active, have IAM authentication enabled, and be in the same account and Region as the scraper. Provisioned clusters with Standard brokers are supported. MSK Serverless clusters are not supported. Use a VPC source that can connect to the cluster's IAM bootstrap brokers. The exporter authenticates with the scraper's service-linked role. Metrics can be sent to an Amazon Managed Service for Prometheus workspace or a CloudWatch dataset. You must have an Amazon MSK cluster policy that grants the scraper's service-linked role access to the cluster. Without this policy, the scraper collects no Kafka metrics. For the required actions and example policies, see Grant the scraper access to the cluster in the Amazon Managed Service for Prometheus User Guide.
+    record KafkaExporterConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon MSK cluster.
+        clusterArn: string
+        -- An anchored RE2 regular expression that selects the Kafka topics to monitor. The expression must start with ^ and end with $. If omitted, the default is ^.*$, which selects all topics.
+        topicFilter: string
+        -- An anchored RE2 regular expression that selects the Kafka consumer groups to monitor. The expression must start with ^ and end with $. If omitted, the default is ^.*$, which selects all consumer groups.
+        consumerGroupFilter: string
+    end
+
     -- The configuration for exporting metrics to an Amazon OpenSearch Service domain.
     record OpenSearchExporterConfiguration
         -- The Amazon Resource Name (ARN) of the Amazon OpenSearch Service domain.
@@ -221,6 +231,8 @@ local record M
     record ExporterConfiguration
         -- The configuration that the scraper uses to export metrics to an Amazon OpenSearch Service domain.
         openSearchConfiguration: OpenSearchExporterConfiguration
+        -- The configuration that the scraper uses to collect metrics from an Amazon MSK cluster through a managed Kafka exporter.
+        kafkaConfiguration: KafkaExporterConfiguration
     end
 
     -- Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.
@@ -279,7 +291,7 @@ local record M
         clientToken: string
         -- (Optional) The list of tag keys and values to associate with the scraper.
         tags: {string : string}
-        -- The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the scraper is created without an exporter configuration.
+        -- The exporter configurations for the scraper. You can configure at most one exporter, for either an Amazon OpenSearch Service domain or an Amazon MSK cluster. If you don't specify a value, the scraper is created without an exporter configuration.
         exporters: {ExporterConfiguration}
     end
 
@@ -361,7 +373,7 @@ local record M
         destination: Destination
         -- This structure displays information about the IAM roles used for cross-account scraping configuration.
         roleConfiguration: RoleConfiguration
-        -- The exporter configurations for the scraper, if configured. The list contains at most one configuration for an Amazon OpenSearch Service domain.
+        -- The exporter configurations for the scraper, if configured. The list contains at most one configuration, for either an Amazon OpenSearch Service domain or an Amazon MSK cluster.
         exporters: {ExporterConfiguration}
     end
 
@@ -407,7 +419,7 @@ local record M
         destination: Destination
         -- This structure displays information about the IAM roles used for cross-account scraping configuration.
         roleConfiguration: RoleConfiguration
-        -- The exporter configurations for the scraper, if configured. The list contains at most one configuration for an Amazon OpenSearch Service domain.
+        -- The exporter configurations for the scraper, if configured. The list contains at most one configuration, for either an Amazon OpenSearch Service domain or an Amazon MSK cluster.
         exporters: {ExporterConfiguration}
     end
 
@@ -521,7 +533,7 @@ local record M
         roleConfiguration: RoleConfiguration
         -- A unique identifier that you can provide to ensure the idempotency of the request. Case-sensitive.
         clientToken: string
-        -- The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the existing exporter configuration remains unchanged.
+        -- The exporter configurations for the scraper. You can configure at most one exporter, for either an Amazon OpenSearch Service domain or an Amazon MSK cluster. If you don't specify a value, the existing exporter configuration remains unchanged. Specify an empty list to remove the exporter.
         exporters: {ExporterConfiguration}
     end
 

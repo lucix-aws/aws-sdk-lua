@@ -620,6 +620,8 @@ M.AlarmList = schema.new({ type = "list", list_member = M.Alarm })
 
 M.InstancePoolList = schema.new({ type = "list", list_member = M.InstancePool })
 
+M.AcceleratorPartitionLayouts = schema.new({ type = "list", list_member = M.AcceleratorPartitionLayout })
+
 M.CsvContentTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.JsonContentTypes = schema.new({ type = "list", list_member = prelude.String })
@@ -752,6 +754,8 @@ M.FillingTransformationMap = schema.new({ type = "map", map_key = prelude.String
 
 M.VersionAliasesList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AcceleratorPartitionTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ParameterValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.CategoricalParameters = schema.new({ type = "list", list_member = M.CategoricalParameter })
@@ -846,6 +850,20 @@ M.ComputeQuotaResourceConfig = schema.new({
             name = "AcceleratorPartition",
             target_id = id.from(_N, "AcceleratorPartitionConfig"),
             target = M.AcceleratorPartitionConfig,
+        }),
+    },
+})
+
+M.AcceleratorPartitionLayout = schema.new({
+    id = id.from(_N, "AcceleratorPartitionLayout"),
+    type = "structure",
+    members = {
+        AcceleratorPartitionTypes = schema.new({
+            id = id.from(_N, "AcceleratorPartitionLayout", "AcceleratorPartitionTypes"),
+            type = "list",
+            name = "AcceleratorPartitionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -15341,6 +15359,13 @@ M.ProductionVariant = schema.new({
             target_id = id.from(_N, "ProductionVariantCapacityReservationConfig"),
             target = M.ProductionVariantCapacityReservationConfig,
         }),
+        AcceleratorPartitionLayouts = schema.new({
+            id = id.from(_N, "ProductionVariant", "AcceleratorPartitionLayouts"),
+            type = "list",
+            name = "AcceleratorPartitionLayouts",
+            target_id = prelude.Document.id,
+            list_member = M.AcceleratorPartitionLayout,
+        }),
     },
 })
 
@@ -17233,6 +17258,12 @@ M.InferenceComponentComputeResourceRequirements = schema.new({
             type = "integer",
             name = "MaxMemoryRequiredInMb",
             target_id = prelude.Integer.id,
+        }),
+        AcceleratorPartitionType = schema.new({
+            id = id.from(_N, "InferenceComponentComputeResourceRequirements", "AcceleratorPartitionType"),
+            type = "string",
+            name = "AcceleratorPartitionType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -29767,6 +29798,13 @@ M.PendingProductionVariantSummary = schema.new({
             target_id = id.from(_N, "ProductionVariantRoutingConfig"),
             target = M.ProductionVariantRoutingConfig,
         }),
+        AcceleratorPartitionLayouts = schema.new({
+            id = id.from(_N, "PendingProductionVariantSummary", "AcceleratorPartitionLayouts"),
+            type = "list",
+            name = "AcceleratorPartitionLayouts",
+            target_id = prelude.Document.id,
+            list_member = M.AcceleratorPartitionLayout,
+        }),
     },
 })
 
@@ -29973,6 +30011,13 @@ M.ProductionVariantSummary = schema.new({
             name = "CapacityReservationConfig",
             target_id = id.from(_N, "ProductionVariantCapacityReservationSummary"),
             target = M.ProductionVariantCapacityReservationSummary,
+        }),
+        AcceleratorPartitionLayouts = schema.new({
+            id = id.from(_N, "ProductionVariantSummary", "AcceleratorPartitionLayouts"),
+            type = "list",
+            name = "AcceleratorPartitionLayouts",
+            target_id = prelude.Document.id,
+            list_member = M.AcceleratorPartitionLayout,
         }),
     },
 })

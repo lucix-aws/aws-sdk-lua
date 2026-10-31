@@ -659,6 +659,8 @@ local record M
         StorageType: string
         -- The scaling configuration of an Amazon DocumentDB Serverless cluster.
         ServerlessV2ScalingConfiguration: ServerlessV2ScalingConfigurationInfo
+        -- The version of the Amazon DocumentDB Serverless platform used by the cluster.
+        ServerlessV2PlatformVersion: string
         -- The secret managed by Amazon DocumentDB in Amazon Web Services Secrets Manager for the master user password.
         MasterUserSecret: ClusterMasterUserSecret
         -- The network type of the cluster.
@@ -2127,6 +2129,66 @@ local record M
         -- includes only records beyond the marker, up to the value specified by
         -- MaxRecords.
         Marker: string
+    end
+
+    -- The input for the DescribeServerlessV2PlatformVersions operation.
+    record DescribeServerlessV2PlatformVersionsInput
+        -- A specific platform version to return details for.
+        -- Example: 3
+        ServerlessV2PlatformVersion: string
+        -- The database engine to return platform version details for.
+        Engine: string
+        -- This parameter isn't currently supported.
+        Filters: {Filter}
+        -- Specifies whether to return only the default platform versions for each engine. The default platform
+        -- version is the version used for new DB clusters.
+        DefaultOnly: boolean
+        -- Specifies whether to also include platform versions that are no longer in use.
+        -- If you don't specify a value, the response includes only active platform versions.
+        IncludeAll: boolean
+        -- The maximum number of records to include in the response. If more records exist than
+        -- the specified MaxRecords value, a pagination token (marker) is included
+        -- in the response so that the remaining results can be retrieved.
+        -- Default: 100
+        -- Constraints: Minimum 20, maximum 100.
+        MaxRecords: number
+        -- An optional pagination token provided by a previous request.
+        -- If this parameter is specified, the response includes
+        -- only records beyond the marker,
+        -- up to the value specified by MaxRecords.
+        Marker: string
+    end
+
+    -- Contains details about a specific Amazon DocumentDB Serverless platform version, including its version number, status, engine, and supported features.
+    record ServerlessV2PlatformVersionInfo
+        -- The version number of the serverless platform.
+        ServerlessV2PlatformVersion: string
+        -- The description of the serverless platform.
+        ServerlessV2PlatformVersionDescription: string
+        -- The name of the database engine.
+        Engine: string
+        -- Specifies any Amazon DocumentDB Serverless v2 properties or limits that differ between platform versions.
+        -- You can retrieve the platform version of an existing cluster and check whether it supports
+        -- specific features before you use them.
+        ServerlessV2FeaturesSupport: ServerlessV2FeaturesSupport
+        -- The status of the serverless platform. Valid statuses are the following:
+        -- enabled - The platform version is in use.
+        -- disabled - The platform version is not in use.
+        Status: string
+        -- Specifies whether this platform version is the default version for the engine. The default platform
+        -- version is the version used for new DB clusters.
+        IsDefault: boolean
+    end
+
+    -- Contains the result of a successful invocation of the DescribeServerlessV2PlatformVersions operation.
+    record DescribeServerlessV2PlatformVersionsOutput
+        -- An optional pagination token provided by a previous request.
+        -- If this parameter is specified, the response includes
+        -- only records beyond the marker,
+        -- up to the value specified by MaxRecords.
+        Marker: string
+        -- A list of ServerlessV2PlatformVersionInfo elements.
+        ServerlessV2PlatformVersions: {ServerlessV2PlatformVersionInfo}
     end
 
     -- Represents the input to FailoverDBCluster.

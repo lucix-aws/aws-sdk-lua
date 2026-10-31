@@ -3802,6 +3802,12 @@ M.SelfManagedKafkaEventSourceConfig = schema.new({
             target_id = id.from(_N, "KafkaSchemaRegistryConfig"),
             target = M.KafkaSchemaRegistryConfig,
         }),
+        ConsumptionMode = schema.new({
+            id = id.from(_N, "SelfManagedKafkaEventSourceConfig", "ConsumptionMode"),
+            type = "string",
+            name = "ConsumptionMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

@@ -614,6 +614,8 @@ M.MetricDataCollectionsV2 = schema.new({ type = "list", list_member = M.MetricDa
 
 M.ValueList = schema.new({ type = "list", list_member = prelude.String })
 
+M.CategoriesAttributeOrConditionList = schema.new({ type = "list", list_member = M.CategoriesAttributeAndCondition })
+
 M.ActionSummaries = schema.new({ type = "list", list_member = M.ActionSummary })
 
 M.CommonAttributeOrConditionList = schema.new({ type = "list", list_member = M.CommonAttributeAndCondition })
@@ -27424,6 +27426,62 @@ M.ListQuickConnectsOutput = schema.new({
     },
 })
 
+M.CategoriesAttributeAndCondition = schema.new({
+    id = id.from(_N, "CategoriesAttributeAndCondition"),
+    type = "structure",
+    members = {
+        TagConditions = schema.new({
+            id = id.from(_N, "CategoriesAttributeAndCondition", "TagConditions"),
+            type = "list",
+            name = "TagConditions",
+            target_id = prelude.Document.id,
+            list_member = M.TagCondition,
+        }),
+    },
+})
+
+M.CategoriesAttributeFilter = schema.new({
+    id = id.from(_N, "CategoriesAttributeFilter"),
+    type = "structure",
+    members = {
+        OrConditions = schema.new({
+            id = id.from(_N, "CategoriesAttributeFilter", "OrConditions"),
+            type = "list",
+            name = "OrConditions",
+            target_id = prelude.Document.id,
+            list_member = M.CategoriesAttributeAndCondition,
+        }),
+        AndCondition = schema.new({
+            id = id.from(_N, "CategoriesAttributeFilter", "AndCondition"),
+            type = "structure",
+            name = "AndCondition",
+            target_id = id.from(_N, "CategoriesAttributeAndCondition"),
+            target = M.CategoriesAttributeAndCondition,
+        }),
+        TagCondition = schema.new({
+            id = id.from(_N, "CategoriesAttributeFilter", "TagCondition"),
+            type = "structure",
+            name = "TagCondition",
+            target_id = id.from(_N, "TagCondition"),
+            target = M.TagCondition,
+        }),
+    },
+})
+
+M.RealTimeContactAnalysisSegmentsFilter = schema.new({
+    id = id.from(_N, "RealTimeContactAnalysisSegmentsFilter"),
+    type = "structure",
+    members = {
+        CategoriesAttributeFilter = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisSegmentsFilter", "CategoriesAttributeFilter"),
+            type = "structure",
+            name = "CategoriesAttributeFilter",
+            target_id = id.from(_N, "CategoriesAttributeFilter"),
+            target = M.CategoriesAttributeFilter,
+        }),
+    },
+})
+
 M.ListRealtimeContactAnalysisSegmentsV2Input = schema.new({
     id = id.from(_N, "ListRealtimeContactAnalysisSegmentsV2Request"),
     type = "structure",
@@ -27478,6 +27536,13 @@ M.ListRealtimeContactAnalysisSegmentsV2Input = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ListFilter = schema.new({
+            id = id.from(_N, "ListRealtimeContactAnalysisSegmentsV2Input", "ListFilter"),
+            type = "structure",
+            name = "ListFilter",
+            target_id = id.from(_N, "RealTimeContactAnalysisSegmentsFilter"),
+            target = M.RealTimeContactAnalysisSegmentsFilter,
         }),
     },
 })
@@ -27663,6 +27728,12 @@ M.RealTimeContactAnalysisCategoryDetails = schema.new({
     id = id.from(_N, "RealTimeContactAnalysisCategoryDetails"),
     type = "structure",
     members = {
+        RuleId = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisCategoryDetails", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+        }),
         PointsOfInterest = schema.new({
             id = id.from(_N, "RealTimeContactAnalysisCategoryDetails", "PointsOfInterest"),
             type = "list",

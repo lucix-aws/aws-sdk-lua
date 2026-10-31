@@ -164,6 +164,8 @@ M.RAGStopSequences = schema.new({ type = "list", list_member = prelude.String })
 
 M.AgenticRetrieveSourceRetrieverList = schema.new({ type = "list", list_member = M.AgenticRetrieveSourceRetriever })
 
+M.AgenticRetrieveCodeExecutionDocumentList = schema.new({ type = "list", list_member = M.AgenticRetrieveCodeExecutionDocument })
+
 M.FlowTraceNodeInputExecutionChain = schema.new({ type = "list", list_member = M.FlowTraceNodeInputExecutionChainItem })
 
 M.FlowTraceNodeOutputNextList = schema.new({ type = "list", list_member = M.FlowTraceNodeOutputNext })
@@ -1153,6 +1155,40 @@ M.AgenticRetrieveSourceRetriever = schema.new({
     },
 })
 
+M.AgenticRetrieveCodeExecutionDocument = schema.new({
+    id = id.from(_N, "AgenticRetrieveCodeExecutionDocument"),
+    type = "structure",
+    members = {
+        documentId = schema.new({
+            id = id.from(_N, "AgenticRetrieveCodeExecutionDocument", "documentId"),
+            type = "string",
+            name = "documentId",
+            target_id = prelude.String.id,
+        }),
+        sourceRetriever = schema.new({
+            id = id.from(_N, "AgenticRetrieveCodeExecutionDocument", "sourceRetriever"),
+            type = "structure",
+            name = "sourceRetriever",
+            target_id = id.from(_N, "AgenticRetrieveSourceRetriever"),
+            target = M.AgenticRetrieveSourceRetriever,
+        }),
+    },
+})
+
+M.AgenticRetrieveCodeExecutionDetails = schema.new({
+    id = id.from(_N, "AgenticRetrieveCodeExecutionDetails"),
+    type = "structure",
+    members = {
+        documents = schema.new({
+            id = id.from(_N, "AgenticRetrieveCodeExecutionDetails", "documents"),
+            type = "list",
+            name = "documents",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveCodeExecutionDocument,
+        }),
+    },
+})
+
 M.AgenticRetrieveFullDocExpansionDetails = schema.new({
     id = id.from(_N, "AgenticRetrieveFullDocExpansionDetails"),
     type = "structure",
@@ -1281,6 +1317,13 @@ M.AgenticRetrieveAction = schema.new({
             name = "memoryRetrieve",
             target_id = id.from(_N, "AgenticRetrieveMemoryRetrieveDetails"),
             target = M.AgenticRetrieveMemoryRetrieveDetails,
+        }),
+        codeExecution = schema.new({
+            id = id.from(_N, "AgenticRetrieveAction", "codeExecution"),
+            type = "structure",
+            name = "codeExecution",
+            target_id = id.from(_N, "AgenticRetrieveCodeExecutionDetails"),
+            target = M.AgenticRetrieveCodeExecutionDetails,
         }),
     },
 })

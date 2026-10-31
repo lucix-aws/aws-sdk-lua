@@ -54,6 +54,8 @@ M.OrderableDBInstanceOptionsList = schema.new({ type = "list", list_member = M.O
 
 M.PendingMaintenanceActions = schema.new({ type = "list", list_member = M.ResourcePendingMaintenanceActions })
 
+M.ServerlessV2PlatformVersionList = schema.new({ type = "list", list_member = M.ServerlessV2PlatformVersionInfo })
+
 M.AttributeValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.KeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -1418,6 +1420,12 @@ M.DBCluster = schema.new({
             name = "ServerlessV2ScalingConfiguration",
             target_id = id.from(_N, "ServerlessV2ScalingConfigurationInfo"),
             target = M.ServerlessV2ScalingConfigurationInfo,
+        }),
+        ServerlessV2PlatformVersion = schema.new({
+            id = id.from(_N, "DBCluster", "ServerlessV2PlatformVersion"),
+            type = "string",
+            name = "ServerlessV2PlatformVersion",
+            target_id = prelude.String.id,
         }),
         MasterUserSecret = schema.new({
             id = id.from(_N, "DBCluster", "MasterUserSecret"),
@@ -4631,6 +4639,120 @@ M.DescribePendingMaintenanceActionsOutput = schema.new({
     },
 })
 
+M.DescribeServerlessV2PlatformVersionsInput = schema.new({
+    id = id.from(_N, "DescribeServerlessV2PlatformVersionsMessage"),
+    type = "structure",
+    members = {
+        ServerlessV2PlatformVersion = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput", "ServerlessV2PlatformVersion"),
+            type = "string",
+            name = "ServerlessV2PlatformVersion",
+            target_id = prelude.String.id,
+        }),
+        Engine = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput", "Engine"),
+            type = "string",
+            name = "Engine",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+        }),
+        DefaultOnly = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput", "DefaultOnly"),
+            type = "boolean",
+            name = "DefaultOnly",
+            target_id = prelude.Boolean.id,
+        }),
+        IncludeAll = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput", "IncludeAll"),
+            type = "boolean",
+            name = "IncludeAll",
+            target_id = prelude.Boolean.id,
+        }),
+        MaxRecords = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput", "MaxRecords"),
+            type = "integer",
+            name = "MaxRecords",
+            target_id = prelude.Integer.id,
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServerlessV2PlatformVersionInfo = schema.new({
+    id = id.from(_N, "ServerlessV2PlatformVersionInfo"),
+    type = "structure",
+    members = {
+        ServerlessV2PlatformVersion = schema.new({
+            id = id.from(_N, "ServerlessV2PlatformVersionInfo", "ServerlessV2PlatformVersion"),
+            type = "string",
+            name = "ServerlessV2PlatformVersion",
+            target_id = prelude.String.id,
+        }),
+        ServerlessV2PlatformVersionDescription = schema.new({
+            id = id.from(_N, "ServerlessV2PlatformVersionInfo", "ServerlessV2PlatformVersionDescription"),
+            type = "string",
+            name = "ServerlessV2PlatformVersionDescription",
+            target_id = prelude.String.id,
+        }),
+        Engine = schema.new({
+            id = id.from(_N, "ServerlessV2PlatformVersionInfo", "Engine"),
+            type = "string",
+            name = "Engine",
+            target_id = prelude.String.id,
+        }),
+        ServerlessV2FeaturesSupport = schema.new({
+            id = id.from(_N, "ServerlessV2PlatformVersionInfo", "ServerlessV2FeaturesSupport"),
+            type = "structure",
+            name = "ServerlessV2FeaturesSupport",
+            target_id = id.from(_N, "ServerlessV2FeaturesSupport"),
+            target = M.ServerlessV2FeaturesSupport,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ServerlessV2PlatformVersionInfo", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        IsDefault = schema.new({
+            id = id.from(_N, "ServerlessV2PlatformVersionInfo", "IsDefault"),
+            type = "boolean",
+            name = "IsDefault",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DescribeServerlessV2PlatformVersionsOutput = schema.new({
+    id = id.from(_N, "ServerlessV2PlatformVersionsMessage"),
+    type = "structure",
+    members = {
+        Marker = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsOutput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+        }),
+        ServerlessV2PlatformVersions = schema.new({
+            id = id.from(_N, "DescribeServerlessV2PlatformVersionsOutput", "ServerlessV2PlatformVersions"),
+            type = "list",
+            name = "ServerlessV2PlatformVersions",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ServerlessV2PlatformVersionInfo, traits = { [traits.XML_NAME] = { name = "ServerlessV2PlatformVersionInfo" } } }),
+        }),
+    },
+})
+
 M.FailoverDBClusterInput = schema.new({
     id = id.from(_N, "FailoverDBClusterMessage"),
     type = "structure",
@@ -6326,6 +6448,17 @@ M.DescribePendingMaintenanceActions = schema.operation({
     id = id.from("com.amazonaws.docdb", "DescribePendingMaintenanceActions"),
     input = M.DescribePendingMaintenanceActionsInput,
     output = M.DescribePendingMaintenanceActionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeServerlessV2PlatformVersions = schema.operation({
+    id = id.from("com.amazonaws.docdb", "DescribeServerlessV2PlatformVersions"),
+    input = M.DescribeServerlessV2PlatformVersionsInput,
+    output = M.DescribeServerlessV2PlatformVersionsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

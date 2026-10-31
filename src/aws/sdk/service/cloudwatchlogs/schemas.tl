@@ -150,6 +150,8 @@ M.TagList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.LogGroupImpacts = schema.new({ type = "list", list_member = M.LogGroupImpact })
+
 M.ResourceArns = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResultRows = schema.new({ type = "list", list_member = M.ResultField })
@@ -2214,10 +2216,121 @@ M.DeleteAccountPolicyInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        dryRun = schema.new({
+            id = id.from(_N, "DeleteAccountPolicyInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
     },
 })
 
-M.DeleteAccountPolicyOutput = prelude.Unit
+M.LogGroupImpact = schema.new({
+    id = id.from(_N, "LogGroupImpact"),
+    type = "structure",
+    members = {
+        logGroupName = schema.new({
+            id = id.from(_N, "LogGroupImpact", "logGroupName"),
+            type = "string",
+            name = "logGroupName",
+            target_id = prelude.String.id,
+        }),
+        currentRetention = schema.new({
+            id = id.from(_N, "LogGroupImpact", "currentRetention"),
+            type = "string",
+            name = "currentRetention",
+            target_id = prelude.String.id,
+        }),
+        proposedRetention = schema.new({
+            id = id.from(_N, "LogGroupImpact", "proposedRetention"),
+            type = "string",
+            name = "proposedRetention",
+            target_id = prelude.String.id,
+        }),
+        storedBytes = schema.new({
+            id = id.from(_N, "LogGroupImpact", "storedBytes"),
+            type = "long",
+            name = "storedBytes",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.DryRunResult = schema.new({
+    id = id.from(_N, "DryRunResult"),
+    type = "structure",
+    members = {
+        totalMatchedLogGroups = schema.new({
+            id = id.from(_N, "DryRunResult", "totalMatchedLogGroups"),
+            type = "integer",
+            name = "totalMatchedLogGroups",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        increasedRetentionLogGroupCount = schema.new({
+            id = id.from(_N, "DryRunResult", "increasedRetentionLogGroupCount"),
+            type = "integer",
+            name = "increasedRetentionLogGroupCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        decreasedRetentionLogGroupCount = schema.new({
+            id = id.from(_N, "DryRunResult", "decreasedRetentionLogGroupCount"),
+            type = "integer",
+            name = "decreasedRetentionLogGroupCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        unchangedRetentionLogGroupCount = schema.new({
+            id = id.from(_N, "DryRunResult", "unchangedRetentionLogGroupCount"),
+            type = "integer",
+            name = "unchangedRetentionLogGroupCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        failedAnalysisCount = schema.new({
+            id = id.from(_N, "DryRunResult", "failedAnalysisCount"),
+            type = "integer",
+            name = "failedAnalysisCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        topLogGroupsImpacted = schema.new({
+            id = id.from(_N, "DryRunResult", "topLogGroupsImpacted"),
+            type = "list",
+            name = "topLogGroupsImpacted",
+            target_id = prelude.Document.id,
+            list_member = M.LogGroupImpact,
+        }),
+    },
+})
+
+M.DeleteAccountPolicyOutput = schema.new({
+    id = id.from(_N, "DeleteAccountPolicyResponse"),
+    type = "structure",
+    members = {
+        dryRunResult = schema.new({
+            id = id.from(_N, "DeleteAccountPolicyOutput", "dryRunResult"),
+            type = "structure",
+            name = "dryRunResult",
+            target_id = id.from(_N, "DryRunResult"),
+            target = M.DryRunResult,
+        }),
+    },
+})
 
 M.DeleteDataProtectionPolicyInput = schema.new({
     id = id.from(_N, "DeleteDataProtectionPolicyRequest"),
@@ -3839,6 +3952,12 @@ M.LogGroup = schema.new({
             type = "boolean",
             name = "bearerTokenAuthenticationEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        retentionPolicyName = schema.new({
+            id = id.from(_N, "LogGroup", "retentionPolicyName"),
+            type = "string",
+            name = "retentionPolicyName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8192,6 +8311,15 @@ M.PutAccountPolicyInput = schema.new({
             name = "selectionCriteria",
             target_id = prelude.String.id,
         }),
+        dryRun = schema.new({
+            id = id.from(_N, "PutAccountPolicyInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
     },
 })
 
@@ -8205,6 +8333,13 @@ M.PutAccountPolicyOutput = schema.new({
             name = "accountPolicy",
             target_id = id.from(_N, "AccountPolicy"),
             target = M.AccountPolicy,
+        }),
+        dryRunResult = schema.new({
+            id = id.from(_N, "PutAccountPolicyOutput", "dryRunResult"),
+            type = "structure",
+            name = "dryRunResult",
+            target_id = id.from(_N, "DryRunResult"),
+            target = M.DryRunResult,
         }),
     },
 })

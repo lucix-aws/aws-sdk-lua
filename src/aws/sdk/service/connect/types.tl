@@ -2505,7 +2505,10 @@ local record M
 
     -- Information about the automation option based on a rule category for a single select question.
     record SingleSelectQuestionRuleCategoryAutomation
-        -- The category name, as defined in Rules.
+        -- The category name, as defined in Rules. This is equivalent to a conversational analytics rule with the same
+        -- name: the automation option is applied based on whether that rule matched the contact. For more information about
+        -- creating rules, see Create rules in the Connect Customer
+        -- Administrator Guide.
         Category: string
         -- The condition to apply for the automation option. If the condition is PRESENT, then the option is
         -- applied when the contact data includes the category. Similarly, if the condition is NOT_PRESENT, then
@@ -3828,12 +3831,16 @@ local record M
 
     enum PreEvaluationFilterResourceType
         "CONTACT"
+        "CONTACT_EVALUATION"
     end
 
     -- A single pre-evaluation filter condition. Specifies a resource type, filter type, key, value, and operator
     -- to match against a resource attribute.
     record PreEvaluationFilter
-        -- The type of resource to filter on. Valid values: CONTACT.
+        -- The type of resource to filter on. Valid values:
+        -- CONTACT - Filter on attributes of the contact, such as tags assigned to the contact.
+        -- CONTACT_EVALUATION - Filter on attributes of the contact evaluation, such as tags assigned to the
+        -- contact evaluation, for rules triggered on the OnContactEvaluationSubmit event source.
         ResourceType: string
         -- The type of filter to apply. Valid values: TAG.
         FilterType: string
@@ -9473,6 +9480,11 @@ local record M
         -- ID, Evaluation Source, Form Version, Queue, Routing Profile
         -- UI name: Average evaluation
         -- score
+        -- AVG_EVALUATION_SCORE_BY_SUBMIT_TIME
+        -- Unit: Percent
+        -- Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Source, Form Version, Queue, Routing Profile
+        -- UI name: Average evaluation
+        -- score (Submit time)
         -- AVG_FIRST_RESPONSE_TIME_AGENT
         -- Unit: Seconds
         -- Valid groupings and filters: Agent, Agent Hierarchy, Channel, contact/segmentAttributes/connect:Subtype, Disconnect Reason,
@@ -10116,6 +10128,12 @@ local record M
         -- Routing Profile
         -- UI name: Evaluations
         -- performed
+        -- EVALUATIONS_PERFORMED_BY_SUBMIT_TIME
+        -- Unit: Count
+        -- Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Source, Form Version, Queue,
+        -- Routing Profile
+        -- UI name: Evaluations
+        -- performed (Submit time)
         -- FLOWS_OUTCOME
         -- Unit: Count
         -- Valid groupings and filters: Channel, contact/segmentAttributes/connect:Subtype, Flow type, Flows module resource ID, Flows
@@ -12183,6 +12201,40 @@ local record M
         NextToken: string
     end
 
+    -- A list of tag conditions that the filter evaluates together using AND logic. A category
+    -- segment matches only when the tags on its rule satisfy every tag condition in the list.
+    record CategoriesAttributeAndCondition
+        -- A list of tag conditions. All of the tag conditions must be met for the condition to
+        -- match.
+        TagConditions: {TagCondition}
+    end
+
+    -- A filter that matches category segments based on the tags assigned to the rules that create
+    -- the categories. Provide exactly one of OrConditions, AndCondition, or
+    -- TagCondition.
+    record CategoriesAttributeFilter
+        -- A list of conditions that the filter evaluates using OR logic. A category segment matches
+        -- when at least one of the conditions in the list is met.
+        OrConditions: {CategoriesAttributeAndCondition}
+        -- A condition that the filter evaluates using AND logic. A category segment matches only when
+        -- all of the tag conditions in the condition are met.
+        AndCondition: CategoriesAttributeAndCondition
+        -- A single tag condition that a category segment must match. The category's rule must have the
+        -- specified tag key and value.
+        TagCondition: TagCondition
+    end
+
+    -- A filter that restricts the segments returned by
+    -- ListRealtimeContactAnalysisSegmentsV2. It currently supports filtering category
+    -- segments by the tags on the rules that create them, which enforces tag-based access control on
+    -- the categories a caller can view.
+    record RealTimeContactAnalysisSegmentsFilter
+        -- A filter applied to category segments based on the tags of the rules that create the
+        -- matched categories. This filter applies only when SegmentTypes includes
+        -- Categories.
+        CategoriesAttributeFilter: CategoriesAttributeFilter
+    end
+
     enum RealTimeContactAnalysisOutputType
         "Raw"
         "Redacted"
@@ -12214,6 +12266,11 @@ local record M
         -- Each segment type has its own structure. Different channels may have different sets of supported segment
         -- types.
         SegmentTypes: {string}
+        -- A filter that restricts the segments returned by the API. When SegmentTypes includes
+        -- Categories, use CategoriesAttributeFilter to return only the category segments whose
+        -- rules have tags that match the filter. This enforces tag-based access control on the categories a caller can
+        -- view.
+        ListFilter: RealTimeContactAnalysisSegmentsFilter
     end
 
     enum RealTimeContactAnalysisSupportedChannel
@@ -12290,6 +12347,8 @@ local record M
 
     -- Provides information about the category rule that was matched.
     record RealTimeContactAnalysisCategoryDetails
+        -- The unique identifier of the rule that created the matched category.
+        RuleId: string
         -- List of PointOfInterest - objects describing a single match of a rule.
         PointsOfInterest: {RealTimeContactAnalysisPointOfInterest}
     end

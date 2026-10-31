@@ -38,6 +38,8 @@ M.InstanceModeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DbParameterGroupSummaryList = schema.new({ type = "list", list_member = M.DbParameterGroupSummary })
 
+M.NodeGroupList = schema.new({ type = "list", list_member = M.NodeGroup })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -154,6 +156,72 @@ M.ClusterConfiguration = schema.new({
             type = "boolean",
             name = "dedicatedCompactor",
             target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.NodeGroup = schema.new({
+    id = id.from(_N, "NodeGroup"),
+    type = "structure",
+    members = {
+        instanceModes = schema.new({
+            id = id.from(_N, "NodeGroup", "instanceModes"),
+            type = "list",
+            name = "instanceModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instanceType = schema.new({
+            id = id.from(_N, "NodeGroup", "instanceType"),
+            type = "string",
+            name = "instanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        count = schema.new({
+            id = id.from(_N, "NodeGroup", "count"),
+            type = "integer",
+            name = "count",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InfluxDBv3EnterpriseDeploymentConfiguration = schema.new({
+    id = id.from(_N, "InfluxDBv3EnterpriseDeploymentConfiguration"),
+    type = "structure",
+    members = {
+        nodeGroups = schema.new({
+            id = id.from(_N, "InfluxDBv3EnterpriseDeploymentConfiguration", "nodeGroups"),
+            type = "list",
+            name = "nodeGroups",
+            target_id = prelude.Document.id,
+            list_member = M.NodeGroup,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeploymentConfiguration = schema.new({
+    id = id.from(_N, "DeploymentConfiguration"),
+    type = "union",
+    members = {
+        InfluxDBv3Enterprise = schema.new({
+            id = id.from(_N, "DeploymentConfiguration", "InfluxDBv3Enterprise"),
+            type = "structure",
+            name = "InfluxDBv3Enterprise",
+            target_id = id.from(_N, "InfluxDBv3EnterpriseDeploymentConfiguration"),
+            target = M.InfluxDBv3EnterpriseDeploymentConfiguration,
         }),
     },
 })
@@ -310,6 +378,13 @@ M.CreateDbBackupOutput = schema.new({
             name = "clusterConfiguration",
             target_id = id.from(_N, "ClusterConfiguration"),
             target = M.ClusterConfiguration,
+        }),
+        deploymentConfiguration = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "deploymentConfiguration"),
+            type = "union",
+            name = "deploymentConfiguration",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
         }),
         dbParameterGroupId = schema.new({
             id = id.from(_N, "CreateDbBackupOutput", "dbParameterGroupId"),
@@ -629,6 +704,13 @@ M.DeleteDbBackupOutput = schema.new({
             target_id = id.from(_N, "ClusterConfiguration"),
             target = M.ClusterConfiguration,
         }),
+        deploymentConfiguration = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "deploymentConfiguration"),
+            type = "union",
+            name = "deploymentConfiguration",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
+        }),
         dbParameterGroupId = schema.new({
             id = id.from(_N, "DeleteDbBackupOutput", "dbParameterGroupId"),
             type = "string",
@@ -815,6 +897,13 @@ M.GetDbBackupOutput = schema.new({
             name = "clusterConfiguration",
             target_id = id.from(_N, "ClusterConfiguration"),
             target = M.ClusterConfiguration,
+        }),
+        deploymentConfiguration = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "deploymentConfiguration"),
+            type = "union",
+            name = "deploymentConfiguration",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
         }),
         dbParameterGroupId = schema.new({
             id = id.from(_N, "GetDbBackupOutput", "dbParameterGroupId"),
@@ -1275,9 +1364,6 @@ M.CreateDbClusterInput = schema.new({
             type = "string",
             name = "dbInstanceType",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         dbStorageType = schema.new({
             id = id.from(_N, "CreateDbClusterInput", "dbStorageType"),
@@ -1328,6 +1414,13 @@ M.CreateDbClusterInput = schema.new({
             type = "string",
             name = "deploymentType",
             target_id = prelude.String.id,
+        }),
+        deploymentConfiguration = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "deploymentConfiguration"),
+            type = "union",
+            name = "deploymentConfiguration",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
         }),
         failoverMode = schema.new({
             id = id.from(_N, "CreateDbClusterInput", "failoverMode"),
@@ -1665,6 +1758,13 @@ M.GetDbClusterOutput = schema.new({
             name = "clusterConfiguration",
             target_id = id.from(_N, "ClusterConfiguration"),
             target = M.ClusterConfiguration,
+        }),
+        deploymentConfiguration = schema.new({
+            id = id.from(_N, "GetDbClusterOutput", "deploymentConfiguration"),
+            type = "union",
+            name = "deploymentConfiguration",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
         }),
         dbBackupConfigurations = schema.new({
             id = id.from(_N, "GetDbClusterOutput", "dbBackupConfigurations"),
@@ -2037,6 +2137,13 @@ M.UpdateDbClusterInput = schema.new({
             type = "string",
             name = "dbInstanceType",
             target_id = prelude.String.id,
+        }),
+        deploymentConfiguration = schema.new({
+            id = id.from(_N, "UpdateDbClusterInput", "deploymentConfiguration"),
+            type = "union",
+            name = "deploymentConfiguration",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
         }),
         failoverMode = schema.new({
             id = id.from(_N, "UpdateDbClusterInput", "failoverMode"),
@@ -4245,7 +4352,7 @@ M.InfluxDBv3EnterpriseParameters = schema.new({
             name = "ingestQueryInstances",
             target_id = prelude.Integer.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 1 },
             },
         }),
         queryOnlyInstances = schema.new({
@@ -4254,7 +4361,7 @@ M.InfluxDBv3EnterpriseParameters = schema.new({
             name = "queryOnlyInstances",
             target_id = prelude.Integer.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
             },
         }),
         dedicatedCompactor = schema.new({
@@ -4263,7 +4370,7 @@ M.InfluxDBv3EnterpriseParameters = schema.new({
             name = "dedicatedCompactor",
             target_id = prelude.Boolean.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
             },
         }),
         compactionRowLimit = schema.new({

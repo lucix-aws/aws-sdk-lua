@@ -53,6 +53,7 @@ local record Client
     describeGlobalClusters: function(Client, types.DescribeGlobalClustersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGlobalClustersOutput>
     describeOrderableDBInstanceOptions: function(Client, types.DescribeOrderableDBInstanceOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOrderableDBInstanceOptionsOutput>
     describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribePendingMaintenanceActionsOutput>
+    describeServerlessV2PlatformVersions: function(Client, types.DescribeServerlessV2PlatformVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServerlessV2PlatformVersionsOutput>
     failoverDBCluster: function(Client, types.FailoverDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.FailoverDBClusterOutput>
     failoverGlobalCluster: function(Client, types.FailoverGlobalClusterInput, ? base_client.InvokeOptions): async.Operation<types.FailoverGlobalClusterOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -255,6 +256,10 @@ end
 
 function C:describePendingMaintenanceActions(input: types.DescribePendingMaintenanceActionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePendingMaintenanceActionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePendingMaintenanceActions as schema.OperationSchema, input, options) as async.Operation<types.DescribePendingMaintenanceActionsOutput>
+end
+
+function C:describeServerlessV2PlatformVersions(input: types.DescribeServerlessV2PlatformVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServerlessV2PlatformVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServerlessV2PlatformVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeServerlessV2PlatformVersionsOutput>
 end
 
 function C:failoverDBCluster(input: types.FailoverDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.FailoverDBClusterOutput>

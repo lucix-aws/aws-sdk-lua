@@ -7882,6 +7882,27 @@ M.GetProfileObjectTypeTemplateOutput = schema.new({
             name = "SourceObject",
             target_id = prelude.String.id,
         }),
+        DefaultMaxProfileObjectCount = schema.new({
+            id = id.from(_N, "GetProfileObjectTypeTemplateOutput", "DefaultMaxProfileObjectCount"),
+            type = "integer",
+            name = "DefaultMaxProfileObjectCount",
+            target_id = prelude.Integer.id,
+        }),
+        DefaultMaxProfileObjectCountEffectiveAfter = schema.new({
+            id = id.from(_N, "GetProfileObjectTypeTemplateOutput", "DefaultMaxProfileObjectCountEffectiveAfter"),
+            type = "timestamp",
+            name = "DefaultMaxProfileObjectCountEffectiveAfter",
+            target_id = prelude.Timestamp.id,
+        }),
+        StoreOnly = schema.new({
+            id = id.from(_N, "GetProfileObjectTypeTemplateOutput", "StoreOnly"),
+            type = "boolean",
+            name = "StoreOnly",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
         AllowProfileCreation = schema.new({
             id = id.from(_N, "GetProfileObjectTypeTemplateOutput", "AllowProfileCreation"),
             type = "boolean",

@@ -28,6 +28,7 @@ local record M
     end
 
     -- Configuration for node modes in the DbCluster.
+    -- Deprecated. Use deploymentConfiguration to define the cluster topology instead.
     record ClusterConfiguration
         -- The number of instances in the DbCluster which can both ingest and query.
         ingestQueryInstances: number
@@ -53,6 +54,42 @@ local record M
         "InfluxIOIncludedT1"
         "InfluxIOIncludedT2"
         "InfluxIOIncludedT3"
+    end
+
+    enum InstanceMode
+        "PRIMARY"
+        "STANDBY"
+        "REPLICA"
+        "INGEST"
+        "QUERY"
+        "COMPACT"
+        "PROCESS"
+    end
+
+    -- A group of one or more nodes in a Timestream for InfluxDB cluster that share the same instance modes and instance type. A cluster's compute topology is defined as a list of node groups.
+    record NodeGroup
+        -- The functions that the nodes in this group perform. Provide from 1 to 4 unique modes. Valid modes:
+        -- INGEST – Nodes in this mode ingest data. Across all node groups, INGEST nodes must total between 1 and 4.
+        -- QUERY – Nodes in this mode query data. Across all node groups, QUERY nodes must total between 0 and 14.
+        -- COMPACT – Nodes in this mode compact data. Exactly one node across all node groups must have this mode. If the cluster has more than three non-compaction nodes, place the COMPACT node in its own dedicated node group.
+        -- PROCESS – Nodes in this mode process data with the processing engine.
+        instanceModes: {string}
+        -- The Timestream for InfluxDB DB instance type to run InfluxDB on for the nodes in this group.
+        instanceType: string
+        -- The number of nodes in this group. Valid values are 1 to 13.
+        count: number
+    end
+
+    -- The compute topology for an InfluxDB 3 Enterprise cluster, expressed as a list of node groups.
+    record InfluxDBv3EnterpriseDeploymentConfiguration
+        -- The node groups that make up the cluster. Across all node groups, the cluster must include 1 to 4 nodes with the INGEST mode, 0 to 14 nodes with the QUERY mode, and exactly one node with the COMPACT mode.
+        nodeGroups: {NodeGroup}
+    end
+
+    -- Defines the compute topology of a Timestream for InfluxDB cluster as a set of node groups for a specific database engine. For InfluxDB 3 Enterprise, use the InfluxDBv3Enterprise member to allocate compute per function: ingest, query, compaction, and processing.
+    record DeploymentConfiguration
+        -- The deployment configuration for an InfluxDB 3 Enterprise cluster.
+        InfluxDBv3Enterprise: InfluxDBv3EnterpriseDeploymentConfiguration
     end
 
     enum ResourceDeploymentType
@@ -139,7 +176,10 @@ local record M
         -- The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.
         kmsKeyId: string
         -- The cluster configuration of the resource at the time of backup.
+        -- Deprecated. Use deploymentConfiguration to view the cluster topology instead.
         clusterConfiguration: ClusterConfiguration
+        -- The deployment configuration of the resource at the time of backup.
+        deploymentConfiguration: DeploymentConfiguration
         -- The identifier of the DB parameter group associated with the backup.
         dbParameterGroupId: string
         -- The DB instance type of the resource at the time of backup.
@@ -233,7 +273,10 @@ local record M
         -- The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.
         kmsKeyId: string
         -- The cluster configuration of the resource at the time of backup.
+        -- Deprecated. Use deploymentConfiguration to view the cluster topology instead.
         clusterConfiguration: ClusterConfiguration
+        -- The deployment configuration of the resource at the time of backup.
+        deploymentConfiguration: DeploymentConfiguration
         -- The identifier of the DB parameter group associated with the backup.
         dbParameterGroupId: string
         -- The DB instance type of the resource at the time of backup.
@@ -289,7 +332,10 @@ local record M
         -- The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.
         kmsKeyId: string
         -- The cluster configuration of the resource at the time of backup.
+        -- Deprecated. Use deploymentConfiguration to view the cluster topology instead.
         clusterConfiguration: ClusterConfiguration
+        -- The deployment configuration of the resource at the time of backup.
+        deploymentConfiguration: DeploymentConfiguration
         -- The identifier of the DB parameter group associated with the backup.
         dbParameterGroupId: string
         -- The DB instance type of the resource at the time of backup.
@@ -462,6 +508,7 @@ local record M
         -- The ID of the DB parameter group to assign to your DB cluster. DB parameter groups specify how the database is configured. For example, DB parameter groups can specify the limit for query concurrency.
         dbParameterGroupIdentifier: string
         -- The Timestream for InfluxDB DB instance type to run InfluxDB on.
+        -- Optional when you define the cluster topology with deploymentConfiguration, because the instance type is then specified per node group.
         dbInstanceType: string
         -- The Timestream for InfluxDB DB storage type to read and write InfluxDB data.
         -- You can choose between three different types of provisioned Influx IOPS Included storage according to your workload requirements:
@@ -481,6 +528,8 @@ local record M
         vpcSecurityGroupIds: {string}
         -- Specifies the type of cluster to create.
         deploymentType: string
+        -- The compute topology for the cluster, defined as a set of node groups. Use deploymentConfiguration to allocate compute per function: ingest, query, compaction, and processing. A deployment configuration becomes the source of truth for the cluster's topology. Timestream for InfluxDB then ignores any node-count parameters in the associated DB parameter group.
+        deploymentConfiguration: DeploymentConfiguration
         -- Specifies the behavior of failure recovery when the primary node of the cluster fails.
         failoverMode: string
         -- Configuration for sending InfluxDB engine logs to a specified S3 bucket.
@@ -597,7 +646,10 @@ local record M
         -- The configured failover mode for the DB cluster.
         failoverMode: string
         -- Configuration for node modes in the DbCluster.
+        -- Deprecated. Use deploymentConfiguration to view the cluster topology instead.
         clusterConfiguration: ClusterConfiguration
+        -- The current compute topology of the cluster, as a set of node groups. The returned topology reflects the cluster's actual provisioned nodes.
+        deploymentConfiguration: DeploymentConfiguration
         -- The backup configurations for the DB cluster.
         dbBackupConfigurations: {DbBackupConfigurationOutput}
         -- The Amazon Web Services KMS key ARN used for encryption of the DB cluster.
@@ -661,16 +713,6 @@ local record M
     enum DeploymentType
         "SINGLE_AZ"
         "WITH_MULTIAZ_STANDBY"
-    end
-
-    enum InstanceMode
-        "PRIMARY"
-        "STANDBY"
-        "REPLICA"
-        "INGEST"
-        "QUERY"
-        "COMPACT"
-        "PROCESS"
     end
 
     enum Status
@@ -750,7 +792,10 @@ local record M
         -- Update the DB cluster to use the specified port.
         port: number
         -- Update the DB cluster to use the specified DB instance Type.
+        -- You can't specify both dbInstanceType and deploymentConfiguration in the same request. When you use deploymentConfiguration, the instance type is specified per node group.
         dbInstanceType: string
+        -- The updated compute topology for the cluster, defined as a set of node groups. Use deploymentConfiguration to change the cluster's topology or scale its compute in a single call. You can't specify both deploymentConfiguration and dbInstanceType in the same request. When you provide a deployment configuration, Timestream for InfluxDB ignores any node-count parameters in the associated DB parameter group.
+        deploymentConfiguration: DeploymentConfiguration
         -- Update the DB cluster's failover behavior.
         failoverMode: string
         -- Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.
@@ -1566,10 +1611,13 @@ local record M
         -- The Amazon Resource Name (ARN) of the Secrets Manager secret that holds your repository access token.
         pluginRepositorySecretArn: string
         -- Specifies number of instances in the DbCluster which can both ingest and query.
+        -- Deprecated. Use deploymentConfiguration on CreateDbCluster or UpdateDbCluster to define the cluster topology instead. When you supply a deployment configuration, Timestream for InfluxDB ignores this parameter.
         ingestQueryInstances: number
         -- Specifies number of instances in the DbCluster which can only query.
+        -- Deprecated. Use deploymentConfiguration on CreateDbCluster or UpdateDbCluster to define the cluster topology instead. When you supply a deployment configuration, Timestream for InfluxDB ignores this parameter.
         queryOnlyInstances: number
         -- Specifies if the compactor instance should be a standalone instance or not.
+        -- Deprecated. Use deploymentConfiguration on CreateDbCluster or UpdateDbCluster to define the cluster topology instead. When you supply a deployment configuration, Timestream for InfluxDB ignores this parameter.
         dedicatedCompactor: boolean
         -- Specifies the soft limit for the number of rows per file that the compactor writes. The compactor may write more rows than this limit.
         -- Default: 1000000

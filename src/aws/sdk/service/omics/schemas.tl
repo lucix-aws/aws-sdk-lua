@@ -7126,6 +7126,12 @@ M.GetRunOutput = schema.new({
             name = "sessionPolicy",
             target_id = prelude.String.id,
         }),
+        outputUriPrefixMode = schema.new({
+            id = id.from(_N, "GetRunOutput", "outputUriPrefixMode"),
+            type = "string",
+            name = "outputUriPrefixMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -12036,6 +12042,12 @@ M.StartRunInput = schema.new({
             type = "document",
             name = "engineSettings",
             target_id = prelude.Document.id,
+        }),
+        outputUriPrefixMode = schema.new({
+            id = id.from(_N, "StartRunInput", "outputUriPrefixMode"),
+            type = "string",
+            name = "outputUriPrefixMode",
+            target_id = prelude.String.id,
         }),
     },
 })

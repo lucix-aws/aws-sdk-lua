@@ -397,6 +397,20 @@ local record M
         identifier: string
     end
 
+    -- A document that a code execution action reads.
+    record AgenticRetrieveCodeExecutionDocument
+        -- The identifier of the document.
+        documentId: string
+        -- The source retriever associated with the document.
+        sourceRetriever: AgenticRetrieveSourceRetriever
+    end
+
+    -- The details of code that the agent chose to run in an isolated sandbox. The record includes the documents that the code reads. The corresponding CodeExecution step reports the outcome.
+    record AgenticRetrieveCodeExecutionDetails
+        -- The documents that the code reads. This field is present when the code reads documents.
+        documents: {AgenticRetrieveCodeExecutionDocument}
+    end
+
     -- Details of a full document expansion action.
     record AgenticRetrieveFullDocExpansionDetails
         -- The identifier of the document to expand.
@@ -441,6 +455,8 @@ local record M
         fullDocumentExpansion: AgenticRetrieveFullDocExpansionDetails
         -- The details of a long-term memory retrieval that the agent chose to perform.
         memoryRetrieve: AgenticRetrieveMemoryRetrieveDetails
+        -- The details of code that the agent chose to run.
+        codeExecution: AgenticRetrieveCodeExecutionDetails
     end
 
     -- The retrieval instruction, identified by its ID and version, that was applied to the request.
@@ -772,6 +788,7 @@ local record M
         "SpeculativeRetrieval"
         "FullDocumentExpansion"
         "SessionHistoryLoad"
+        "CodeExecution"
     end
 
     -- Contains information about the user making the request. Use this to pass user identity information for access control filtering, so that retrieval results only include documents the user is authorized to access.

@@ -661,6 +661,34 @@ M.Destination = schema.new({
     },
 })
 
+M.KafkaExporterConfiguration = schema.new({
+    id = id.from(_N, "KafkaExporterConfiguration"),
+    type = "structure",
+    members = {
+        clusterArn = schema.new({
+            id = id.from(_N, "KafkaExporterConfiguration", "clusterArn"),
+            type = "string",
+            name = "clusterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        topicFilter = schema.new({
+            id = id.from(_N, "KafkaExporterConfiguration", "topicFilter"),
+            type = "string",
+            name = "topicFilter",
+            target_id = prelude.String.id,
+        }),
+        consumerGroupFilter = schema.new({
+            id = id.from(_N, "KafkaExporterConfiguration", "consumerGroupFilter"),
+            type = "string",
+            name = "consumerGroupFilter",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.OpenSearchExporterConfiguration = schema.new({
     id = id.from(_N, "OpenSearchExporterConfiguration"),
     type = "structure",
@@ -687,6 +715,13 @@ M.ExporterConfiguration = schema.new({
             name = "openSearchConfiguration",
             target_id = id.from(_N, "OpenSearchExporterConfiguration"),
             target = M.OpenSearchExporterConfiguration,
+        }),
+        kafkaConfiguration = schema.new({
+            id = id.from(_N, "ExporterConfiguration", "kafkaConfiguration"),
+            type = "structure",
+            name = "kafkaConfiguration",
+            target_id = id.from(_N, "KafkaExporterConfiguration"),
+            target = M.KafkaExporterConfiguration,
         }),
     },
 })
