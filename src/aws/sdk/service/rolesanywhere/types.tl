@@ -93,6 +93,14 @@ local record M
         profile: ProfileDetail
     end
 
+    -- The request has failed due to a temporary failure of the service.
+    record ServiceUnavailableException
+        -- The exception message.
+        message: string
+        -- The recommended number of seconds after which the client should retry the request.
+        retryAfterSeconds: number
+    end
+
     -- Validation exception error.
     record ValidationException
         message: string
@@ -148,6 +156,8 @@ local record M
         source: Source
         -- Specifies whether the trust anchor is enabled.
         enabled: boolean
+        -- Specifies whether the trust anchor checks certificate revocation status against CRL distribution points.
+        crlDpRevocationEnabled: boolean
         -- The tags to attach to the trust anchor.
         tags: {Tag}
         -- A list of notification settings to be associated to the trust anchor.
@@ -180,6 +190,8 @@ local record M
         source: Source
         -- Indicates whether the trust anchor is enabled.
         enabled: boolean
+        -- Specifies whether the trust anchor checks certificate revocation status against CRL distribution points.
+        crlDpRevocationEnabled: boolean
         -- The ISO-8601 timestamp when the trust anchor was created.
         createdAt: number
         -- The ISO-8601 timestamp when the trust anchor was last updated.
@@ -614,6 +626,8 @@ local record M
         name: string
         -- The trust anchor type and its related certificate data.
         source: Source
+        -- Specifies whether the trust anchor checks certificate revocation status against CRL distribution points.
+        crlDpRevocationEnabled: boolean
     end
 
     record UpdateTrustAnchorOutput

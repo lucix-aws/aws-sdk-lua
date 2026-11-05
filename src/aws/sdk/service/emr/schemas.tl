@@ -3134,6 +3134,26 @@ M.DescribeStepInput = schema.new({
     },
 })
 
+M.StepAdditionalInfo = schema.new({
+    id = id.from(_N, "StepAdditionalInfo"),
+    type = "structure",
+    members = {
+        ResourceManagerApplicationIds = schema.new({
+            id = id.from(_N, "StepAdditionalInfo", "ResourceManagerApplicationIds"),
+            type = "list",
+            name = "ResourceManagerApplicationIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ResourceManager = schema.new({
+            id = id.from(_N, "StepAdditionalInfo", "ResourceManager"),
+            type = "string",
+            name = "ResourceManager",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.HadoopStepConfig = schema.new({
     id = id.from(_N, "HadoopStepConfig"),
     type = "structure",
@@ -3324,6 +3344,13 @@ M.Step = schema.new({
             type = "string",
             name = "EncryptionKeyArn",
             target_id = prelude.String.id,
+        }),
+        AdditionalInfo = schema.new({
+            id = id.from(_N, "Step", "AdditionalInfo"),
+            type = "structure",
+            name = "AdditionalInfo",
+            target_id = id.from(_N, "StepAdditionalInfo"),
+            target = M.StepAdditionalInfo,
         }),
     },
 })
@@ -5008,6 +5035,13 @@ M.StepSummary = schema.new({
             type = "string",
             name = "EncryptionKeyArn",
             target_id = prelude.String.id,
+        }),
+        AdditionalInfo = schema.new({
+            id = id.from(_N, "StepSummary", "AdditionalInfo"),
+            type = "structure",
+            name = "AdditionalInfo",
+            target_id = id.from(_N, "StepAdditionalInfo"),
+            target = M.StepAdditionalInfo,
         }),
     },
 })

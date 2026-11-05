@@ -953,6 +953,12 @@ local record M
         "WINDOWS_SERVER_2025"
         "RHEL_8"
         "ROCKY_8"
+        "UBUNTU_24_04"
+        "RHEL_9"
+        "ROCKY_9"
+        "UBUNTU_26_04"
+        "RHEL_10"
+        "ROCKY_10"
     end
 
     enum Protocol
@@ -993,7 +999,7 @@ local record M
         -- The protocol. For more information, see
         -- Protocols for Amazon WorkSpaces.
         -- Only available for WorkSpaces created with PCoIP bundles.
-        -- The Protocols property is case sensitive. Ensure you use PCOIP or DCV (formerly WSP).
+        -- The Protocols property is case sensitive. Make sure you specify PCOIP or WSP. To use DCV, specify WSP.
         -- Unavailable for Windows 7 WorkSpaces and WorkSpaces using GPU-based bundles
         -- (Graphics, GraphicsPro, Graphics.g4dn, GraphicsPro.g4dn, Graphics.g6, and Graphics.g7).
         Protocols: {string}

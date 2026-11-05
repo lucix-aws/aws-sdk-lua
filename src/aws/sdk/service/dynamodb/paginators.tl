@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listBulkOperations.
+function M.pages_list_bulk_operations(client, input)
+    return paginator.pages(client, "listBulkOperations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BulkOperationsSummaryList",
+    })
+end
+
+--- Returns an item iterator for listBulkOperations.
+function M.items_list_bulk_operations(client, input)
+    return paginator.items(client, "listBulkOperations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BulkOperationsSummaryList",
+    })
+end
+
 --- Returns a page iterator for listContributorInsights.
 function M.pages_list_contributor_insights(client, input)
     return paginator.pages(client, "listContributorInsights", input, {

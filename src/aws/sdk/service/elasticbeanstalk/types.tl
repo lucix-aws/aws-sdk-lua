@@ -37,6 +37,11 @@ local record M
         "Unknown"
     end
 
+    enum AmiArchitecture
+        "x86_64"
+        "arm64"
+    end
+
     -- A lifecycle rule that deletes application versions after the specified number of
     -- days.
     record MaxAgeRule
@@ -690,6 +695,8 @@ local record M
         -- application version.
         -- If you specify Build, also specify the request's SourceBundle
         -- parameter, and don't specify Source.
+        -- To build the image when you create the application version instead of on first deployment,
+        -- also set Process to true.
         Build: ImageBuildConfiguration
     end
 
@@ -724,6 +731,10 @@ local record M
         -- to an environment.
         -- You must turn processing on for application versions that you create using CodeBuild or CodeCommit. For application versions built from a source bundle
         -- in Amazon S3, processing is optional.
+        -- For application versions with ImageConfiguration.Build, Process
+        -- determines when Elastic Beanstalk builds the container image. Set it to true to build the
+        -- image when you create the application version. If you don't, Elastic Beanstalk builds the image when you
+        -- first deploy the application version to an environment.
         -- The Process option validates Elastic Beanstalk configuration files. It doesn't validate your application's configuration files, like proxy server
         -- or Docker configuration.
         Process: boolean
@@ -1919,6 +1930,15 @@ local record M
         ImageId: string
     end
 
+    -- An AMI that Elastic Beanstalk uses by default for a platform version and processor
+    -- architecture.
+    record DefaultAmi
+        -- The processor architecture of the AMI.
+        Architecture: string
+        -- The ID of the AMI.
+        ImageId: string
+    end
+
     -- A framework supported by the platform.
     record PlatformFramework
         -- The name of the framework.
@@ -1967,8 +1987,16 @@ local record M
         ProgrammingLanguages: {PlatformProgrammingLanguage}
         -- The frameworks supported by the platform version.
         Frameworks: {PlatformFramework}
-        -- The custom AMIs supported by the platform version.
+        -- The AMIs of the platform version, by virtualization type. For Elastic Beanstalk managed platforms,
+        -- these are the default x86_64 AMIs; for custom platforms, the hvm
+        -- entry is the AMI built for the platform version. To find a managed platform's default AMIs
+        -- for every supported processor architecture, including arm64, use DefaultAmiList.
         CustomAmiList: {CustomAmi}
+        -- The AMIs that Elastic Beanstalk uses by default for the platform version, one for each supported
+        -- processor architecture. When an environment doesn't specify a custom AMI, Elastic Beanstalk chooses the
+        -- default AMI that matches the environment's architecture.
+        -- This list isn't returned for custom platforms.
+        DefaultAmiList: {DefaultAmi}
         -- The tiers supported by the platform version.
         SupportedTierList: {string}
         -- The additions supported by the platform version.

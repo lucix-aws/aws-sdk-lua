@@ -703,6 +703,13 @@ local record M
         DBParameterGroup: DBParameterGroup
     end
 
+    -- The tags to apply to resources when creating or modifying a DB instance or DB cluster, or when copying a DB instance snapshot. When you specify a tag, you must specify the resource type to tag, otherwise the request will fail.
+    record TagSpecification
+        -- The type of resource to tag on creation. Valid Values: auto-backup - The DB instance's automated backup. cluster-auto-backup - The DB cluster's automated backup. og - The copied option group. Valid only for CopyDBSnapshot.
+        ResourceType: string
+        Tags: {Tag}
+    end
+
     record CopyDBSnapshotInput
         -- The identifier for the source DB snapshot. If the source snapshot is in the same Amazon Web Services Region as the copy, specify a valid DB snapshot identifier. For example, you might specify rds:mysql-instance1-snapshot-20130805. If you are copying from a shared manual DB snapshot, this parameter must be the Amazon Resource Name (ARN) of the shared DB snapshot. If the source snapshot is in a different Amazon Web Services Region than the copy, specify a valid DB snapshot ARN. You can also specify an ARN of a snapshot that is in a different account and a different Amazon Web Services Region. For example, you might specify arn:aws:rds:us-west-2:123456789012:snapshot:mysql-instance1-snapshot-20130805. Constraints: Must specify a valid source snapshot in the "available" state. Example: rds:mydb-2012-04-02-00-01 Example: arn:aws:rds:us-west-2:123456789012:snapshot:mysql-instance1-snapshot-20130805
         SourceDBSnapshotIdentifier: string
@@ -721,10 +728,12 @@ local record M
         TargetCustomAvailabilityZone: string
         -- Configures the location where RDS will store copied snapshots. Valid Values: local (Dedicated Local Zone) outposts (Amazon Web Services Outposts) region (Amazon Web Services Region)
         SnapshotTarget: string
-        -- Specifies whether to copy the DB option group associated with the source DB snapshot to the target Amazon Web Services account and associate with the target DB snapshot. The associated option group can be copied only with cross-account snapshot copy calls.
+        -- Specifies whether to copy the DB option group associated with the source DB snapshot to the target Amazon Web Services account or Amazon Web Services Region and associate it with the target DB snapshot.
         CopyOptionGroup: boolean
         -- Specifies the name of the Availability Zone where RDS stores the DB snapshot. This value is valid only for snapshots that RDS stores on a Dedicated Local Zone.
         SnapshotAvailabilityZone: string
+        -- Tags to assign to the copied option group. By default, the copied option group isn't tagged. Valid Values: og - The copied option group. Constraints: Can only be specified when CopyOptionGroup is true
+        TagSpecifications: {TagSpecification}
     end
 
     -- Contains the processor features of a DB instance class. To specify the number of CPU cores, use the coreCount feature name for the Name parameter. To specify the number of threads per core, use the threadsPerCore feature name for the Name parameter. You can set the processor features of the DB instance class for a DB instance when you call one of the following actions: CreateDBInstance ModifyDBInstance RestoreDBInstanceFromDBSnapshot RestoreDBInstanceFromS3 RestoreDBInstanceToPointInTime You can view the valid processor values for a particular instance class by calling the DescribeOrderableDBInstanceOptions action and specifying the instance class for the DBInstanceClass parameter. In addition, you can use the following actions for DB instance class processor information: DescribeDBInstances DescribeDBSnapshots DescribeValidDBInstanceModifications If you call DescribeDBInstances, ProcessorFeature returns non-null values only if the following conditions are met: You are accessing an Oracle or SQL Server DB instance. Your Oracle or SQL Server DB instance class supports configuring the number of CPU cores and threads per core. The current number CPU cores and threads is set to a non-default value. For more information, see Configuring the processor for a DB instance class in RDS for Oracle, Optimizing your RDS for SQL Server CPU, and DB instance classes in the Amazon RDS User Guide.
@@ -934,6 +943,8 @@ local record M
         SourceAccountId: string
         -- Indicates when the option group was copied.
         CopyTimestamp: number
+        -- Specifies the Amazon Web Services Region for the option group from which this option group is copied.
+        SourceRegion: string
     end
 
     record CopyOptionGroupOutput
@@ -1370,13 +1381,6 @@ local record M
         MaxCapacity: number
         -- Specifies the number of seconds an Aurora Serverless v2 DB instance must be idle before Aurora attempts to automatically pause it. Specify a value between 300 seconds (five minutes) and 86,400 seconds (one day). The default is 300 seconds.
         SecondsUntilAutoPause: number
-    end
-
-    -- The tags to apply to resources when creating or modifying a DB instance or DB cluster. When you specify a tag, you must specify the resource type to tag, otherwise the request will fail.
-    record TagSpecification
-        -- The type of resource to tag on creation. Valid Values: auto-backup - The DB instance's automated backup. cluster-auto-backup - The DB cluster's automated backup.
-        ResourceType: string
-        Tags: {Tag}
     end
 
     record CreateDBClusterInput
@@ -5423,6 +5427,8 @@ local record M
         OptionGroupOptionVersions: {OptionVersion}
         -- Indicates whether the option can be copied across Amazon Web Services accounts.
         CopyableCrossAccount: boolean
+        -- Indicates whether the option can be copied across Amazon Web Services Regions.
+        CopyableCrossRegion: boolean
     end
 
     record DescribeOptionGroupOptionsOutput

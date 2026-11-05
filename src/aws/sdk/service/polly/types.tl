@@ -488,6 +488,15 @@ local record M
         message: string
     end
 
+    -- The resource ARN or a tag in the request isn't valid. Specify the ARN
+    -- of a supported resource in the Amazon Web Services account and Region of the request.
+    -- Tag keys can have a maximum length of 128 characters, and tag values can
+    -- have a maximum length of 256 characters. Correct the ARN or the tags, and
+    -- then try again.
+    record InvalidTagParameterException
+        message: string
+    end
+
     -- The language specified is not currently supported by Amazon Polly in this
     -- capacity.
     record LanguageNotSupportedException
@@ -547,6 +556,72 @@ local record M
         SynthesisTasks: {SynthesisTask}
     end
 
+    record ListTagsForResourceInput
+        -- The Amazon Resource Name (ARN) that identifies the resource for which
+        -- to list the tags. Currently, the only supported resource is an Amazon Polly
+        -- lexicon.
+        ResourceArn: string
+    end
+
+    record ListTagsForResourceOutput
+        -- The tags for the resource.
+        Tags: {string : string}
+    end
+
+    enum ResourceType
+        "lexicon"
+    end
+
+    -- Amazon Polly can't find the specified resource. Verify that the resource
+    -- exists in the Amazon Web Services account and Region of the request and that its ARN is
+    -- spelled correctly, and then try again.
+    record ResourceNotFoundException
+        message: string
+        -- The identifier of the resource that wasn't found.
+        resourceId: string
+        -- The type of the resource that wasn't found.
+        resourceType: string
+    end
+
+    -- Provides information about a specific throttling reason.
+    record ThrottlingReason
+        -- The reason code explaining why the request was throttled.
+        reason: string
+        -- The resource that caused the throttling.
+        resource: string
+    end
+
+    -- The request was denied because of request throttling.
+    record ThrottlingException
+        message: string
+        -- A list of reasons explaining why the request was throttled.
+        throttlingReasons: {ThrottlingReason}
+    end
+
+    -- Information about a field that failed validation.
+    record ValidationExceptionField
+        -- The name of the field that failed validation.
+        name: string
+        -- A message describing why the field failed validation.
+        message: string
+    end
+
+    enum ValidationExceptionReason
+        "unsupportedOperation"
+        "fieldValidationFailed"
+        "other"
+        "invalidInboundEvent"
+    end
+
+    -- The input fails to satisfy the constraints specified by the service.
+    record ValidationException
+        message: string
+        -- The reason the request failed validation.
+        reason: string
+        -- The fields that caused the validation error.
+        fields: {ValidationExceptionField}
+    end
+
     -- Speech marks are not supported for the OutputFormat
     -- selected. Speech marks are only available for content in json
     -- format.
@@ -567,15 +642,29 @@ local record M
     end
 
     record PutLexiconInput
-        -- Name of the lexicon. The name must follow the regular express
+        -- Name of the lexicon. The name must follow the regular expression
         -- format [0-9A-Za-z]{1,20}. That is, the name is a case-sensitive
         -- alphanumeric string up to 20 characters long.
         Name: string
         -- Content of the PLS lexicon as string data.
         Content: string
+        -- The metadata that you apply to the lexicon to help you categorize and
+        -- organize it. Each tag consists of a key and an optional value, both of
+        -- which you define. Tag keys can have a maximum character length of 128
+        -- characters, and tag values can have a maximum length of 256
+        -- characters. You can't replace the tags of an existing lexicon by
+        -- overwriting it with PutLexicon.
+        Tags: {string : string}
     end
 
     record PutLexiconOutput
+    end
+
+    -- The list of tags on the resource is over the limit. The maximum number
+    -- of tags that can be applied to a resource is 50. Remove unused tags or
+    -- reduce the number of tags in the request, and then try again.
+    record TooManyTagsException
+        message: string
     end
 
     -- The alphabet specified by the lexicon is not a supported alphabet.
@@ -657,45 +746,6 @@ local record M
     record StreamClosedEvent
         -- The total number of characters synthesized during the streaming session.
         RequestCharacters: number
-    end
-
-    -- Provides information about a specific throttling reason.
-    record ThrottlingReason
-        -- The reason code explaining why the request was throttled.
-        reason: string
-        -- The resource that caused the throttling.
-        resource: string
-    end
-
-    -- The request was denied because of request throttling.
-    record ThrottlingException
-        message: string
-        -- A list of reasons explaining why the request was throttled.
-        throttlingReasons: {ThrottlingReason}
-    end
-
-    -- Information about a field that failed validation.
-    record ValidationExceptionField
-        -- The name of the field that failed validation.
-        name: string
-        -- A message describing why the field failed validation.
-        message: string
-    end
-
-    enum ValidationExceptionReason
-        "unsupportedOperation"
-        "fieldValidationFailed"
-        "other"
-        "invalidInboundEvent"
-    end
-
-    -- The input fails to satisfy the constraints specified by the service.
-    record ValidationException
-        message: string
-        -- The reason the request failed validation.
-        reason: string
-        -- The fields that caused the validation error.
-        fields: {ValidationExceptionField}
     end
 
     -- Outbound event stream that contains synthesized audio data and stream status events.
@@ -874,6 +924,30 @@ local record M
         ContentType: string
         -- Number of characters synthesized.
         RequestCharacters: number
+    end
+
+    record TagResourceInput
+        -- The Amazon Resource Name (ARN) of the resource to which to add tags.
+        -- Currently, the only supported resource is an Amazon Polly lexicon.
+        ResourceArn: string
+        -- The tags to add to the resource, as key-value pairs. Tag keys can have
+        -- a maximum character length of 128 characters, and tag values can have a
+        -- maximum length of 256 characters.
+        Tags: {string : string}
+    end
+
+    record TagResourceOutput
+    end
+
+    record UntagResourceInput
+        -- The Amazon Resource Name (ARN) of the resource from which to remove
+        -- tags. Currently, the only supported resource is an Amazon Polly lexicon.
+        ResourceArn: string
+        -- The keys of the tags to be removed.
+        TagKeys: {string}
+    end
+
+    record UntagResourceOutput
     end
 
 end

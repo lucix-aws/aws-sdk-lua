@@ -24,10 +24,13 @@ local record Client
     getSpeechSynthesisTask: function(Client, types.GetSpeechSynthesisTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetSpeechSynthesisTaskOutput>
     listLexicons: function(Client, types.ListLexiconsInput, ? base_client.InvokeOptions): async.Operation<types.ListLexiconsOutput>
     listSpeechSynthesisTasks: function(Client, types.ListSpeechSynthesisTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListSpeechSynthesisTasksOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putLexicon: function(Client, types.PutLexiconInput, ? base_client.InvokeOptions): async.Operation<types.PutLexiconOutput>
     startSpeechSynthesisStream: function(Client, types.StartSpeechSynthesisStreamInput, ? base_client.InvokeOptions): async.Operation<types.StartSpeechSynthesisStreamOutput>
     startSpeechSynthesisTask: function(Client, types.StartSpeechSynthesisTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartSpeechSynthesisTaskOutput>
     synthesizeSpeech: function(Client, types.SynthesizeSpeechInput, ? base_client.InvokeOptions): async.Operation<types.SynthesizeSpeechOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
@@ -96,6 +99,10 @@ function C:listSpeechSynthesisTasks(input: types.ListSpeechSynthesisTasksInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSpeechSynthesisTasks as schema.OperationSchema, input, options) as async.Operation<types.ListSpeechSynthesisTasksOutput>
 end
 
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
+end
+
 function C:putLexicon(input: types.PutLexiconInput, options?: base_client.InvokeOptions): async.Operation<types.PutLexiconOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLexicon as schema.OperationSchema, input, options) as async.Operation<types.PutLexiconOutput>
 end
@@ -110,6 +117,14 @@ end
 
 function C:synthesizeSpeech(input: types.SynthesizeSpeechInput, options?: base_client.InvokeOptions): async.Operation<types.SynthesizeSpeechOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SynthesizeSpeech as schema.OperationSchema, input, options) as async.Operation<types.SynthesizeSpeechOutput>
+end
+
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
+end
+
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

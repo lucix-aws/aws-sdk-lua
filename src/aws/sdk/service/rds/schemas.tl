@@ -14,6 +14,8 @@ M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
+M.TagSpecificationList = schema.new({ type = "list", list_member = M.TagSpecification })
+
 M.TargetResourceConfigurationList = schema.new({ type = "list", list_member = M.TargetResourceConfiguration })
 
 M.SupportedCharacterSetsList = schema.new({ type = "list", list_member = M.CharacterSet })
@@ -33,8 +35,6 @@ M.CACertificateIdentifiersList = schema.new({ type = "list", list_member = prelu
 M.AvailabilityZones = schema.new({ type = "list", list_member = prelude.String })
 
 M.VpcSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
-
-M.TagSpecificationList = schema.new({ type = "list", list_member = M.TagSpecification })
 
 M.DBClusterAssociatedRoles = schema.new({ type = "list", list_member = M.DBClusterAssociatedRole })
 
@@ -2292,6 +2292,26 @@ M.CopyDBParameterGroupOutput = schema.new({
     },
 })
 
+M.TagSpecification = schema.new({
+    id = id.from(_N, "TagSpecification"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "TagSpecification", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagSpecification", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
+        }),
+    },
+})
+
 M.CopyDBSnapshotInput = schema.new({
     id = id.from(_N, "CopyDBSnapshotMessage"),
     type = "structure",
@@ -2368,6 +2388,13 @@ M.CopyDBSnapshotInput = schema.new({
             type = "string",
             name = "SnapshotAvailabilityZone",
             target_id = prelude.String.id,
+        }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "CopyDBSnapshotInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -2992,6 +3019,12 @@ M.OptionGroup = schema.new({
             type = "timestamp",
             name = "CopyTimestamp",
             target_id = prelude.Timestamp.id,
+        }),
+        SourceRegion = schema.new({
+            id = id.from(_N, "OptionGroup", "SourceRegion"),
+            type = "string",
+            name = "SourceRegion",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4270,26 +4303,6 @@ M.ServerlessV2ScalingConfiguration = schema.new({
             type = "integer",
             name = "SecondsUntilAutoPause",
             target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.TagSpecification = schema.new({
-    id = id.from(_N, "TagSpecification"),
-    type = "structure",
-    members = {
-        ResourceType = schema.new({
-            id = id.from(_N, "TagSpecification", "ResourceType"),
-            type = "string",
-            name = "ResourceType",
-            target_id = prelude.String.id,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "TagSpecification", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -15954,6 +15967,12 @@ M.OptionGroupOption = schema.new({
             id = id.from(_N, "OptionGroupOption", "CopyableCrossAccount"),
             type = "boolean",
             name = "CopyableCrossAccount",
+            target_id = prelude.Boolean.id,
+        }),
+        CopyableCrossRegion = schema.new({
+            id = id.from(_N, "OptionGroupOption", "CopyableCrossRegion"),
+            type = "boolean",
+            name = "CopyableCrossRegion",
             target_id = prelude.Boolean.id,
         }),
     },

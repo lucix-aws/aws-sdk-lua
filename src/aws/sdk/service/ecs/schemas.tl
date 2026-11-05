@@ -5795,6 +5795,22 @@ M.HostVolumeProperties = schema.new({
     },
 })
 
+M.LogDriverVolumeConfiguration = schema.new({
+    id = id.from(_N, "LogDriverVolumeConfiguration"),
+    type = "structure",
+    members = {
+        driver = schema.new({
+            id = id.from(_N, "LogDriverVolumeConfiguration", "driver"),
+            type = "string",
+            name = "driver",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DaemonVolume = schema.new({
     id = id.from(_N, "DaemonVolume"),
     type = "structure",
@@ -5811,6 +5827,13 @@ M.DaemonVolume = schema.new({
             name = "host",
             target_id = id.from(_N, "HostVolumeProperties"),
             target = M.HostVolumeProperties,
+        }),
+        logDriverVolumeConfiguration = schema.new({
+            id = id.from(_N, "DaemonVolume", "logDriverVolumeConfiguration"),
+            type = "structure",
+            name = "logDriverVolumeConfiguration",
+            target_id = id.from(_N, "LogDriverVolumeConfiguration"),
+            target = M.LogDriverVolumeConfiguration,
         }),
     },
 })

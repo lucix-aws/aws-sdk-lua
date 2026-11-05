@@ -787,6 +787,232 @@ local record M
         LastUpdateToPayPerRequestDateTime: number
     end
 
+    -- Contains the bulk put bytes used during a bulk operation.
+    record BulkOperationBytes
+        -- The number of bulk put bytes.
+        BulkPutBytes: number
+    end
+
+    enum BulkOperationStatus
+        "IN_PROGRESS"
+        "COMPLETED"
+        "COMPLETED_WITH_ERRORS"
+        "CANCELLING"
+        "CANCELLED"
+        "FAILED"
+    end
+
+    -- Contains the bulk put vector bytes used by a vector index during a bulk
+    -- operation.
+    record BulkOperationVectorBytes
+        -- The number of bulk put vector bytes used on the vector index.
+        BulkPutVectorBytes: number
+    end
+
+    -- Contains the bytes used during a bulk operation, including a breakdown for the table
+    -- and its indexes.
+    record BulkOperationUsage
+        -- The name or ARN of the table associated with the reported usage.
+        TableName: string
+        -- The total number of bulk put bytes used by the operation. This value excludes bulk put
+        -- vector bytes.
+        BulkPutBytes: number
+        -- The number of bulk put bytes for the table, excluding its indexes.
+        Table: BulkOperationBytes
+        -- The bulk put bytes used on each local secondary index affected by the operation, keyed
+        -- by index name.
+        LocalSecondaryIndexes: {string : BulkOperationBytes}
+        -- The bulk put bytes used on each global secondary index affected by the operation,
+        -- keyed by index name.
+        GlobalSecondaryIndexes: {string : BulkOperationBytes}
+        -- The bulk put vector bytes used on each vector index affected by the operation, keyed
+        -- by index name.
+        VectorIndexes: {string : BulkOperationVectorBytes}
+    end
+
+    enum InputCompressionType
+        "GZIP"
+        "ZSTD"
+        "NONE"
+    end
+
+    enum BulkOperationInputFormat
+        "DYNAMODB_JSON"
+        "ION"
+    end
+
+    -- Contains the Amazon S3 location and format settings for bulk operation input.
+    -- The S3Bucket and InputFormat fields are required.
+    record InputS3Configuration
+        -- The Amazon Web Services account ID of the input bucket owner. If you omit this value,
+        -- DynamoDB uses the Amazon Web Services account ID of the requester.
+        -- S3BucketOwner is required when the bucket is owned by another Amazon Web Services account.
+        S3BucketOwner: string
+        -- The name of the Amazon S3 bucket that contains the input objects.
+        S3Bucket: string
+        -- An optional key prefix that limits the input to matching objects in the Amazon S3 bucket.
+        S3KeyPrefix: string
+        -- The format of the input objects. DYNAMODB_JSON uses JSON Lines, with one
+        -- JSON record per line. ION uses a sequence of Ion structs.
+        InputFormat: string
+        -- The compression type of the input objects. Valid values are GZIP,
+        -- ZSTD, and NONE. If you don't specify a value, DynamoDB uses NONE.
+        InputCompressionType: string
+    end
+
+    enum OutputTypeEnum
+        "ERROR"
+        "CONDITION_CHECK_FAILURE"
+    end
+
+    enum S3SseAlgorithm
+        "AES256"
+        "KMS"
+    end
+
+    -- Contains the Amazon S3 location, encryption settings, and output types for a
+    -- bulk operation. The S3Bucket and OutputType fields are
+    -- required.
+    record OutputS3Configuration
+        -- The Amazon Web Services account ID of the output bucket owner. If you omit this value,
+        -- DynamoDB uses the Amazon Web Services account ID of the requester.
+        -- S3BucketOwner is required when the bucket is owned by another Amazon Web Services account.
+        S3BucketOwner: string
+        -- The name of the Amazon S3 bucket where DynamoDB writes output
+        -- records.
+        S3Bucket: string
+        -- An optional key prefix under which DynamoDB writes the output records.
+        S3KeyPrefix: string
+        -- The server-side encryption algorithm for the output objects. Valid values are
+        -- AES256 and KMS. If you don't specify a value, Amazon S3 applies the destination bucket's default encryption settings.
+        S3SseAlgorithm: string
+        -- The identifier of the KMS key that encrypts the output objects. Specify
+        -- this value when S3SseAlgorithm is KMS. Don't specify it when the
+        -- algorithm is AES256.
+        S3SseKmsKeyId: string
+        -- The following values describe the types of output that DynamoDB writes for
+        -- individual input items. Include one or both values.
+        -- ERROR
+        -- Reports input records or input objects that DynamoDB couldn't
+        -- process. This includes malformed input and item validation failures, such as
+        -- a missing or incorrectly typed primary key attribute or an item that exceeds
+        -- a DynamoDB limit.
+        -- CONDITION_CHECK_FAILURE
+        -- Reports the attempted item and, when present, the existing item for a
+        -- write whose condition expression evaluates to false.
+        OutputType: {string}
+    end
+
+    enum BulkOperationPerformanceTier
+        "STANDARD"
+        "ACCELERATED"
+    end
+
+    -- Contains identifying information for a table associated with a bulk operation.
+    record BulkOperationTableDetail
+        -- The name or ARN of the table associated with the bulk operation.
+        TableName: string
+        -- The unique identifier of the table associated with the bulk operation.
+        TableId: string
+    end
+
+    -- Contains detailed information about a bulk operation.
+    record BulkOperationDescription
+        -- The Amazon Resource Name (ARN) of the bulk operation.
+        BulkOperationArn: string
+        -- The current status of the bulk operation can be one of the following values:
+        -- IN_PROGRESS
+        -- DynamoDB is processing the input.
+        -- COMPLETED
+        -- The bulk operation finished without parsing or validation errors.
+        -- Condition-check failures do not cause the operation to complete with
+        -- errors.
+        -- COMPLETED_WITH_ERRORS
+        -- The bulk operation finished, but DynamoDB couldn't process at
+        -- least one input item because of a parsing or validation error. When you
+        -- enable ERROR output, DynamoDB writes the details to the
+        -- configured Amazon S3 output location.
+        -- CANCELLING
+        -- DynamoDB accepted a cancellation request and is stopping the
+        -- operation.
+        -- CANCELLED
+        -- DynamoDB stopped the operation after a cancellation
+        -- request.
+        -- FAILED
+        -- The bulk operation failed. DynamoDB might write some items
+        -- before the operation reaches this status. See FailureCode and FailureMessage for details.
+        BulkOperationStatus: string
+        -- A list containing identifying information for the table targeted by the bulk
+        -- operation.
+        TableDetails: {BulkOperationTableDetail}
+        -- The idempotency token associated with the start request.
+        ClientToken: string
+        -- The Amazon S3 input configuration associated with the bulk operation.
+        InputS3Configuration: InputS3Configuration
+        -- The Amazon S3 output configuration associated with the bulk operation.
+        OutputS3Configuration: OutputS3Configuration
+        -- The time when DynamoDB accepted the start request.
+        StartTime: number
+        -- The time when the operation reached a terminal status. DynamoDB omits this
+        -- value while the operation remains in progress.
+        EndTime: number
+        -- The number of input items that DynamoDB has processed. This count includes
+        -- successful writes, parsing or validation failures, and condition-check failures.
+        ProcessedItemCount: number
+        -- The number of bytes that DynamoDB has read from the Amazon S3 input
+        -- objects.
+        ProcessedInputBytes: number
+        -- The total size, in bytes, of the Amazon S3 input objects. DynamoDB
+        -- omits this value until the initial input-size calculation completes.
+        TotalInputBytes: number
+        -- Usage information for the table and its indexes.
+        BulkOperationUsage: {BulkOperationUsage}
+        -- The number of processed input items that failed because of parsing or validation
+        -- errors. This count is included in ProcessedItemCount. Condition-check
+        -- failures do not increase this count.
+        FailedItemCount: number
+        -- A code that identifies why the bulk operation failed or was cancelled. DynamoDB returns this value only when BulkOperationStatus is
+        -- FAILED or CANCELLED.
+        FailureCode: string
+        -- A message that describes why the bulk operation failed or was cancelled. DynamoDB returns this value only when BulkOperationStatus is
+        -- FAILED or CANCELLED.
+        FailureMessage: string
+        -- The maximum write request unit rate configured for the bulk operation.
+        MaxWriteRequestUnits: number
+        -- The performance tier selected for the bulk operation. Valid values are
+        -- STANDARD and ACCELERATED. If the start request omitted this
+        -- value, DynamoDB uses STANDARD.
+        PerformanceTier: string
+    end
+
+    -- Contains summary information about a bulk operation.
+    record BulkOperationSummary
+        -- The Amazon Resource Name (ARN) of the bulk operation.
+        BulkOperationArn: string
+        -- The current status of the bulk operation.
+        BulkOperationStatus: string
+        -- The time when DynamoDB accepted the start request.
+        StartTime: number
+        -- The time when the operation reached a terminal status. DynamoDB omits this
+        -- value while the operation remains in progress.
+        EndTime: number
+    end
+
+    record CancelBulkOperationInput
+        -- The Amazon Resource Name (ARN) of the bulk operation to cancel.
+        BulkOperationArn: string
+    end
+
+    record CancelBulkOperationOutput
+        -- The Amazon Resource Name (ARN) of the bulk operation for which DynamoDB
+        -- accepted the cancellation request.
+        BulkOperationArn: string
+        -- The status returned after DynamoDB accepts the cancellation request. This
+        -- value is CANCELLING. Use DescribeBulkOperation to determine when
+        -- the operation reaches CANCELLED.
+        BulkOperationStatus: string
+    end
+
     enum ComparisonOperator
         "EQ"
         "NE"
@@ -2155,6 +2381,16 @@ local record M
         BackupDescription: BackupDescription
     end
 
+    record DescribeBulkOperationInput
+        -- The Amazon Resource Name (ARN) of the bulk operation to describe.
+        BulkOperationArn: string
+    end
+
+    record DescribeBulkOperationOutput
+        -- Contains detailed information about the bulk operation.
+        BulkOperationDescription: BulkOperationDescription
+    end
+
     record DescribeContinuousBackupsInput
         -- Name of the table for which the customer wants to check the continuous backups and
         -- point in time recovery settings.
@@ -2279,11 +2515,6 @@ local record M
         ExportViewType: string
     end
 
-    enum S3SseAlgorithm
-        "AES256"
-        "KMS"
-    end
-
     -- The specified export was not found.
     record ExportNotFoundException
         message: string
@@ -2381,12 +2612,6 @@ local record M
         "CANCELLING"
         "CANCELLED"
         "FAILED"
-    end
-
-    enum InputCompressionType
-        "GZIP"
-        "ZSTD"
-        "NONE"
     end
 
     enum InputFormat
@@ -2862,6 +3087,26 @@ local record M
         LastEvaluatedBackupArn: string
     end
 
+    record ListBulkOperationsInput
+        -- The maximum number of bulk operation summaries to return in one page. If you don't
+        -- specify a value, DynamoDB uses 10.
+        MaxResults: number
+        -- An optional string that, if supplied, must be copied from the output of a previous
+        -- call to ListBulkOperations. When provided in this manner, the API fetches
+        -- the next page of results.
+        NextToken: string
+    end
+
+    record ListBulkOperationsOutput
+        -- A list of bulk operation summaries for the current Amazon Web Services account and
+        -- Amazon Web Services Region.
+        BulkOperationsSummaryList: {BulkOperationSummary}
+        -- If this value is returned, there are additional results to be displayed. To retrieve
+        -- them, call ListBulkOperations again, with NextToken set to this
+        -- value.
+        NextToken: string
+    end
+
     record ListContributorInsightsInput
         -- The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
         -- parameter.
@@ -3158,6 +3403,38 @@ local record M
     record RestoreTableToPointInTimeOutput
         -- Represents the properties of a table.
         TableDescription: TableDescription
+    end
+
+    record StartBulkPutItemsInput
+        -- A unique, case-sensitive identifier that ensures the bulk operation starts no more
+        -- than one time. During the 8 hours after the initial request, repeated requests that use
+        -- the same token and parameters return the same bulk operation. If a request reuses the
+        -- token with different parameters, DynamoDB returns an
+        -- IdempotentParameterMismatchException. If you omit the token, an Amazon Web Services SDK automatically generates one.
+        ClientToken: string
+        -- The Amazon S3 location, data format, and compression settings for the input
+        -- objects.
+        InputS3Configuration: InputS3Configuration
+        -- The Amazon S3 location, encryption settings, and output types for the bulk
+        -- operation.
+        OutputS3Configuration: OutputS3Configuration
+        -- The name or ARN of the existing DynamoDB table that receives the
+        -- items.
+        TableName: string
+        -- The maximum rate, in write request units per second, at which the bulk operation
+        -- attempts to write. The value must be at least 1,024. With this setting, you limit only
+        -- the bulk operation; the table's provisioned or on-demand capacity settings don't
+        -- change. The actual write rate can be lower.
+        MaxWriteRequestUnits: number
+        -- The performance tier for the bulk operation. Valid values are
+        -- STANDARD and ACCELERATED. If you don't specify a value,
+        -- the operation uses STANDARD.
+        PerformanceTier: string
+    end
+
+    record StartBulkPutItemsOutput
+        -- Contains detailed information about a bulk operation.
+        BulkOperationDescription: BulkOperationDescription
     end
 
     record TagResourceInput
@@ -4915,10 +5192,9 @@ local record M
         -- A condition expression used to filter the vector search results. The expression can
         -- reference attributes defined in the vector index search schema, including
         -- HASH and INLINE_FILTER key elements.
-        -- Only the equality operator (=) is supported for HASH
-        -- attributes. Comparison and range operators are supported for
-        -- INLINE_FILTER attributes. Only top-level attributes from the search
-        -- schema can be referenced.
+        -- The HASH and INLINE_FILTER attributes support only
+        -- the equality operator (=). You can reference only top-level attributes
+        -- from the search schema.
         SearchConditionExpression: string
         -- The number of most similar results to return.
         TopK: number

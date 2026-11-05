@@ -98,6 +98,8 @@ M.PlatformFrameworks = schema.new({ type = "list", list_member = M.PlatformFrame
 
 M.CustomAmiList = schema.new({ type = "list", list_member = M.CustomAmi })
 
+M.DefaultAmiList = schema.new({ type = "list", list_member = M.DefaultAmi })
+
 M.LoadBalancerListenersDescription = schema.new({ type = "list", list_member = M.Listener })
 
 M.ConfigurationOptionPossibleValues = schema.new({ type = "list", list_member = prelude.String })
@@ -3769,6 +3771,25 @@ M.CustomAmi = schema.new({
     },
 })
 
+M.DefaultAmi = schema.new({
+    id = id.from(_N, "DefaultAmi"),
+    type = "structure",
+    members = {
+        Architecture = schema.new({
+            id = id.from(_N, "DefaultAmi", "Architecture"),
+            type = "string",
+            name = "Architecture",
+            target_id = prelude.String.id,
+        }),
+        ImageId = schema.new({
+            id = id.from(_N, "DefaultAmi", "ImageId"),
+            type = "string",
+            name = "ImageId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PlatformFramework = schema.new({
     id = id.from(_N, "PlatformFramework"),
     type = "structure",
@@ -3909,6 +3930,13 @@ M.PlatformDescription = schema.new({
             name = "CustomAmiList",
             target_id = prelude.Document.id,
             list_member = M.CustomAmi,
+        }),
+        DefaultAmiList = schema.new({
+            id = id.from(_N, "PlatformDescription", "DefaultAmiList"),
+            type = "list",
+            name = "DefaultAmiList",
+            target_id = prelude.Document.id,
+            list_member = M.DefaultAmi,
         }),
         SupportedTierList = schema.new({
             id = id.from(_N, "PlatformDescription", "SupportedTierList"),

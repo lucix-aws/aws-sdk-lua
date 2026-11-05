@@ -35801,6 +35801,7 @@ local record M
         "high"
         "medium"
         "low"
+        "unsupported"
     end
 
     -- The supportability score for a single instance type and Availability Zone combination.

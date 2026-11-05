@@ -16,13 +16,17 @@ M.LexiconDescriptionList = schema.new({ type = "list", list_member = M.LexiconDe
 
 M.SynthesisTasks = schema.new({ type = "list", list_member = M.SynthesisTask })
 
-M.LexiconNameList = schema.new({ type = "list", list_member = prelude.String })
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ThrottlingReasonList = schema.new({ type = "list", list_member = M.ThrottlingReason })
 
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
 
+M.LexiconNameList = schema.new({ type = "list", list_member = prelude.String })
+
 M.SpeechMarkTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LanguageCodeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -633,6 +637,22 @@ M.InvalidSsmlException = schema.new({
     },
 })
 
+M.InvalidTagParameterException = schema.new({
+    id = id.from(_N, "InvalidTagParameterException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidTagParameterException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.LanguageNotSupportedException = schema.new({
     id = id.from(_N, "LanguageNotSupportedException"),
     type = "structure",
@@ -775,6 +795,178 @@ M.ListSpeechSynthesisTasksOutput = schema.new({
     },
 })
 
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "arn" },
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ThrottlingReason = schema.new({
+    id = id.from(_N, "ThrottlingReason"),
+    type = "structure",
+    members = {
+        reason = schema.new({
+            id = id.from(_N, "ThrottlingReason", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+        resource = schema.new({
+            id = id.from(_N, "ThrottlingReason", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "Throttling", httpResponseCode = 400 },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        throttlingReasons = schema.new({
+            id = id.from(_N, "ThrottlingException", "throttlingReasons"),
+            type = "list",
+            name = "throttlingReasons",
+            target_id = prelude.Document.id,
+            list_member = M.ThrottlingReason,
+        }),
+    },
+})
+
+M.ValidationExceptionField = schema.new({
+    id = id.from(_N, "ValidationExceptionField"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "ValidationException", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fields = schema.new({
+            id = id.from(_N, "ValidationException", "fields"),
+            type = "list",
+            name = "fields",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationExceptionField,
+        }),
+    },
+})
+
 M.MarksNotSupportedForFormatException = schema.new({
     id = id.from(_N, "MarksNotSupportedForFormatException"),
     type = "structure",
@@ -846,12 +1038,36 @@ M.PutLexiconInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        Tags = schema.new({
+            id = id.from(_N, "PutLexiconInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
     },
 })
 
 M.PutLexiconOutput = schema.new({
     id = id.from(_N, "PutLexiconOutput"),
     type = "structure",
+})
+
+M.TooManyTagsException = schema.new({
+    id = id.from(_N, "TooManyTagsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TooManyTagsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.UnsupportedPlsAlphabetException = schema.new({
@@ -1064,109 +1280,6 @@ M.StreamClosedEvent = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 0 },
             },
-        }),
-    },
-})
-
-M.ThrottlingReason = schema.new({
-    id = id.from(_N, "ThrottlingReason"),
-    type = "structure",
-    members = {
-        reason = schema.new({
-            id = id.from(_N, "ThrottlingReason", "reason"),
-            type = "string",
-            name = "reason",
-            target_id = prelude.String.id,
-        }),
-        resource = schema.new({
-            id = id.from(_N, "ThrottlingReason", "resource"),
-            type = "string",
-            name = "resource",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-        [traits.AWS_QUERY_ERROR] = { code = "Throttling", httpResponseCode = 400 },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ThrottlingException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-        throttlingReasons = schema.new({
-            id = id.from(_N, "ThrottlingException", "throttlingReasons"),
-            type = "list",
-            name = "throttlingReasons",
-            target_id = prelude.Document.id,
-            list_member = M.ThrottlingReason,
-        }),
-    },
-})
-
-M.ValidationExceptionField = schema.new({
-    id = id.from(_N, "ValidationExceptionField"),
-    type = "structure",
-    members = {
-        name = schema.new({
-            id = id.from(_N, "ValidationExceptionField", "name"),
-            type = "string",
-            name = "name",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        message = schema.new({
-            id = id.from(_N, "ValidationExceptionField", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ValidationException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        reason = schema.new({
-            id = id.from(_N, "ValidationException", "reason"),
-            type = "string",
-            name = "reason",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        fields = schema.new({
-            id = id.from(_N, "ValidationException", "fields"),
-            type = "list",
-            name = "fields",
-            target_id = prelude.Document.id,
-            list_member = M.ValidationExceptionField,
         }),
     },
 })
@@ -1493,6 +1606,69 @@ M.SynthesizeSpeechOutput = schema.new({
     },
 })
 
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -1590,6 +1766,18 @@ M.ListSpeechSynthesisTasks = schema.operation({
     },
 })
 
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.polly", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/listTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.PutLexicon = schema.operation({
     id = id.from("com.amazonaws.polly", "PutLexicon"),
     input = M.PutLexiconInput,
@@ -1633,6 +1821,30 @@ M.SynthesizeSpeech = schema.operation({
     output = M.SynthesizeSpeechOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/speech" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.polly", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/tagResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.polly", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/untagResource" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

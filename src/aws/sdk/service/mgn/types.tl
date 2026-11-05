@@ -1502,6 +1502,7 @@ local record M
         "LOGICAL_MODEL"
         "MODELIZE_IT"
         "AWS_DISCOVERY_COLLECTOR"
+        "MIGRATION_PLANNING_ARTIFACTS"
     end
 
     -- S3 configuration for source network data.
@@ -1558,6 +1559,8 @@ local record M
     end
 
     record CreateNetworkMigrationDefinitionInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
         -- The name of the network migration definition.
         name: string
         -- A description of the network migration definition.

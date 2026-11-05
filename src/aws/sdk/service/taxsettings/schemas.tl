@@ -36,6 +36,8 @@ M.Authorities = schema.new({ type = "list", list_member = M.Authority })
 
 M.MalaysiaServiceTaxCodesList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ColombiaResponsabilidadesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AddressRoleMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Jurisdiction })
 
 M.AccessDeniedException = schema.new({
@@ -288,6 +290,32 @@ M.ChileAdditionalInfo = schema.new({
             id = id.from(_N, "ChileAdditionalInfo", "businessActivity"),
             type = "string",
             name = "businessActivity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ColombiaAdditionalInfo = schema.new({
+    id = id.from(_N, "ColombiaAdditionalInfo"),
+    type = "structure",
+    members = {
+        responsibilityCodes = schema.new({
+            id = id.from(_N, "ColombiaAdditionalInfo", "responsibilityCodes"),
+            type = "list",
+            name = "responsibilityCodes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        taxpayerTypeCode = schema.new({
+            id = id.from(_N, "ColombiaAdditionalInfo", "taxpayerTypeCode"),
+            type = "string",
+            name = "taxpayerTypeCode",
+            target_id = prelude.String.id,
+        }),
+        issueDate = schema.new({
+            id = id.from(_N, "ColombiaAdditionalInfo", "issueDate"),
+            type = "string",
+            name = "issueDate",
             target_id = prelude.String.id,
         }),
     },
@@ -998,6 +1026,32 @@ M.AdditionalInfoResponse = schema.new({
             target_id = id.from(_N, "MexicoAdditionalInfo"),
             target = M.MexicoAdditionalInfo,
         }),
+        colombiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "colombiaAdditionalInfo"),
+            type = "structure",
+            name = "colombiaAdditionalInfo",
+            target_id = id.from(_N, "ColombiaAdditionalInfo"),
+            target = M.ColombiaAdditionalInfo,
+        }),
+    },
+})
+
+M.TaxRegistrationStatusReason = schema.new({
+    id = id.from(_N, "TaxRegistrationStatusReason"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "TaxRegistrationStatusReason", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "TaxRegistrationStatusReason", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1091,6 +1145,13 @@ M.TaxRegistrationWithJurisdiction = schema.new({
             name = "additionalTaxInformation",
             target_id = id.from(_N, "AdditionalInfoResponse"),
             target = M.AdditionalInfoResponse,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "statusReason"),
+            type = "structure",
+            name = "statusReason",
+            target_id = id.from(_N, "TaxRegistrationStatusReason"),
+            target = M.TaxRegistrationStatusReason,
         }),
         jurisdiction = schema.new({
             id = id.from(_N, "TaxRegistrationWithJurisdiction", "jurisdiction"),
@@ -2173,6 +2234,13 @@ M.TaxRegistration = schema.new({
             name = "additionalTaxInformation",
             target_id = id.from(_N, "AdditionalInfoResponse"),
             target = M.AdditionalInfoResponse,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "TaxRegistration", "statusReason"),
+            type = "structure",
+            name = "statusReason",
+            target_id = id.from(_N, "TaxRegistrationStatusReason"),
+            target = M.TaxRegistrationStatusReason,
         }),
         legalAddress = schema.new({
             id = id.from(_N, "TaxRegistration", "legalAddress"),

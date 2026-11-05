@@ -12,23 +12,17 @@ local record M
         message: string
     end
 
+    record CompleteTableMigrationInput
+        -- The Amazon Resource Name (ARN) of the migrated table to complete the migration of.
+        tableARN: string
+    end
+
+    record CompleteTableMigrationOutput
+    end
+
     -- The request failed because there is a conflict with a previous write. You can retry the request.
     record ConflictException
         message: string
-    end
-
-    record CreateNamespaceInput
-        -- The Amazon Resource Name (ARN) of the table bucket to create the namespace in.
-        tableBucketARN: string
-        -- A name for the namespace.
-        namespace: {string}
-    end
-
-    record CreateNamespaceOutput
-        -- The Amazon Resource Name (ARN) of the table bucket the namespace was created in.
-        tableBucketARN: string
-        -- The name of the namespace.
-        namespace: {string}
     end
 
     -- The caller isn't authorized to make the request.
@@ -49,6 +43,27 @@ local record M
     -- The limit on the number of requests per second was exceeded.
     record TooManyRequestsException
         message: string
+    end
+
+    enum CompressionCodec
+        "zstd"
+        "snappy"
+        "gzip"
+        "uncompressed"
+    end
+
+    record CreateNamespaceInput
+        -- The Amazon Resource Name (ARN) of the table bucket to create the namespace in.
+        tableBucketARN: string
+        -- A name for the namespace.
+        namespace: {string}
+    end
+
+    record CreateNamespaceOutput
+        -- The Amazon Resource Name (ARN) of the table bucket the namespace was created in.
+        tableBucketARN: string
+        -- The name of the namespace.
+        namespace: {string}
     end
 
     enum SSEAlgorithm
@@ -233,6 +248,75 @@ local record M
         arn: string
     end
 
+    enum DataFileFormat
+        "parquet"
+    end
+
+    enum IcebergCompactionStrategy
+        "auto"
+        "binpack"
+        "sort"
+        "z-order"
+    end
+
+    -- The compaction settings that a migration applies to the destination table.
+    record MigrationCompactionSettings
+        -- The target size, from 64 to 512 MB, of the data files that the migration writes, and of the files that compaction writes after you complete the migration. The default is 512.
+        targetFileSizeMB: number
+        -- The compaction strategy. The only valid value is binpack, which is the default.
+        strategy: string
+    end
+
+    -- The snapshot management settings that a migration applies to the destination table.
+    record MigrationSnapshotManagementSettings
+        -- The minimum number of snapshots to keep. The value must be 3 or more. The default is 3.
+        minSnapshotsToKeep: number
+        -- The maximum age, in hours, of a snapshot before it can be expired. The default is 120.
+        maxSnapshotAgeHours: number
+    end
+
+    -- The maintenance settings for the destination table. The migration applies them when it creates the table: snapshot management starts then, and compaction starts after you complete the migration. If you don't specify a setting, the migration uses its default: a target file size of 512 MB, the binpack compaction strategy, at least 3 snapshots, and a maximum snapshot age of 120 hours. Unreferenced file removal follows the table bucket's configuration after you complete the migration.
+    record MaintenanceSettings
+        -- The compaction settings.
+        icebergCompaction: MigrationCompactionSettings
+        -- The snapshot management settings.
+        icebergSnapshotManagement: MigrationSnapshotManagementSettings
+    end
+
+    enum IncompatibleValuesPolicy
+        "fail"
+        "setNull"
+    end
+
+    enum UnmatchedSourceFieldsPolicy
+        "fail"
+        "drop"
+    end
+
+    -- The policies for source data that doesn't fit the destination schema.
+    record MigrationPolicies
+        -- The migration policy for a source field that has no matching column in the destination schema. Valid values: fail - Fails the migration. This is the default. drop - Leaves source columns that the destination schema doesn't have out of the destination table, and doesn't migrate source objects outside the Amazon Web Services Glue table's partition locations. A destination schema that leaves out a partition column or a field of a struct column fails the migration under either value.
+        unmatchedSourceFieldsPolicy: string
+        -- The migration policy for a source value that the destination column's type can't hold. Valid values: fail - Fails the migration. This is the default. setNull - Writes null for a value that the destination column's type can't hold. If a column's type in a source object is incompatible with the destination column's type, the column is null for that whole object. A required column, or a type that migration doesn't support, fails the migration under either value.
+        incompatibleValuesPolicy: string
+    end
+
+    -- The maintenance settings and migration policies for the destination table.
+    record DataMigrationOverview
+        -- The maintenance settings for the destination table. The migration applies them when it creates the table: snapshot management starts then, and compaction starts after you complete the migration. If you don't specify a setting, the migration uses its default: a target file size of 512 MB, the binpack compaction strategy, at least 3 snapshots, and a maximum snapshot age of 120 hours. Unreferenced file removal follows the table bucket's configuration after you complete the migration.
+        maintenanceSettings: MaintenanceSettings
+        -- The policies for source data that doesn't fit the destination schema.
+        migrationPolicies: MigrationPolicies
+    end
+
+    -- The maintenance settings and migration policies for the destination table.
+    record DataMigrationSettings
+        -- The maintenance settings for the destination table. The migration applies them when it creates the table: snapshot management starts then, and compaction starts after you complete the migration. If you don't specify a setting, the migration uses its default: a target file size of 512 MB, the binpack compaction strategy, at least 3 snapshots, and a maximum snapshot age of 120 hours. Unreferenced file removal follows the table bucket's configuration after you complete the migration.
+        maintenanceSettings: MaintenanceSettings
+        -- The policies for source data that doesn't fit the destination schema.
+        migrationPolicies: MigrationPolicies
+    end
+
     record DeleteNamespaceInput
         -- The Amazon Resource Name (ARN) of the table bucket associated with the namespace.
         tableBucketARN: string
@@ -319,6 +403,47 @@ local record M
     end
 
     record DeleteTableReplicationOutput
+    end
+
+    -- The properties of the data files that a migration writes. The migration also sets the compression codec and dictionary encoding as the destination table's write properties, so they remain the table's defaults after you complete the migration.
+    record MigrationTableProperties
+        -- The file format of the data files. The only supported format is parquet, the default.
+        writeFormat: string
+        -- The Iceberg format version of the destination table. Valid values are 2 and 3. The default is 2.
+        icebergFormatVersion: number
+        -- The compression codec of the data files. The default is zstd.
+        compressionCodec: string
+        -- Specifies whether the data files use dictionary encoding. The default is true.
+        dictionaryEncoding: boolean
+    end
+
+    -- The table that a migration creates in a table bucket and migrates the source into.
+    record DestinationTable
+        -- The Amazon Resource Name (ARN) of the table bucket to create the table in.
+        tableBucketARN: string
+        -- The namespace to create the table in.
+        namespace: string
+        -- The name of the table to create.
+        name: string
+        -- The encryption configuration for the table. If you don't specify one, the table uses the default encryption configuration of its table bucket. If you specify an encryption configuration, the migration role must have the s3tables:PutTableEncryption permission. If you choose SSE-KMS, the migration role must have the kms:DescribeKey, kms:GenerateDataKey and kms:Decrypt permissions on the KMS key, and the S3 Tables maintenance principal must have access to it. For more information, see Permissions requirements for S3 Tables SSE-KMS encryption.
+        encryptionConfiguration: EncryptionConfiguration
+        -- The storage class configuration for the table. If you don't specify one, the table inherits the storage class configuration of its table bucket. If you specify a storage class configuration, the migration role must have the s3tables:PutTableStorageClass permission.
+        storageClassConfiguration: StorageClassConfiguration
+        -- The tags to add to the table. A tag is a key-value pair that you apply to your resources. For more information, see Tagging for cost allocation or attribute-based access control (ABAC). If you specify tags, the migration role must have the s3tables:TagResource permission.
+        tags: {string : string}
+        -- The properties of the destination table, such as its Iceberg format version and the format of its data files.
+        properties: MigrationTableProperties
+        -- The schema of the table to create. If you don't specify a schema, the migration infers it from the source table, with every column optional. A schema that you specify must include every partition column of the source table. It can leave out other columns only if unmatchedSourceFieldsPolicy is drop. A struct column must have the same fields as the source column. Column default values aren't supported. If you mark a column as required, every source object must have a value for it: an object with a null value in a required column fails to migrate. The destination table is partitioned in the same way as the source table. To specify fields in icebergSortOrder, you must specify a schema.
+        schema: IcebergSchemaV2
+        -- The sort order of the rows within each data file that the migration writes. A sort order can have up to five fields, each naming a column of the schema that you specify by its field ID, so to use a sort order you must specify a schema. StartTableMigration rejects a field that names no column of the schema, or whose transform doesn't fit the column's type.
+        icebergSortOrder: IcebergSortOrder
+    end
+
+    enum FindingCategory
+        "access"
+        "metadata"
+        "data"
+        "internal"
     end
 
     record GetNamespaceInput
@@ -574,13 +699,6 @@ local record M
         "icebergSnapshotManagement"
     end
 
-    enum IcebergCompactionStrategy
-        "auto"
-        "binpack"
-        "sort"
-        "z-order"
-    end
-
     -- Contains details about the compaction settings for an Iceberg table.
     record IcebergCompactionSettings
         -- The target file size for the table in MB.
@@ -675,6 +793,154 @@ local record M
         metadataLocation: string
         -- The warehouse location.
         warehouseLocation: string
+    end
+
+    record GetTableMigrationInput
+        -- The ID of the migration to get. Specify either migrationId or tableARN, not both.
+        migrationId: string
+        -- The Amazon Resource Name (ARN) of the destination table. Gets the table's most recent migration. Specify either tableARN or migrationId, not both.
+        tableARN: string
+    end
+
+    enum MigrationFailureCode
+        "rolePermissions"
+        "sourcePermissions"
+        "destinationPermissions"
+        "resourceNotFound"
+        "sourceNotSupported"
+        "objectMigrationReport"
+        "objectCompatibilityReport"
+        "tableCompatibilityReport"
+        "internalError"
+        "reportBucketNotSupported"
+    end
+
+    -- The reason that a migration failed: a code and, when there is one, the resource or reason it applies to. This value is returned only when the migration is in the failed state.
+    record MigrationFailureReason
+        -- The failure code. It names the cause or the report that lists the findings. Valid values: rolePermissions - S3 Tables couldn't assume the migration role, or the role doesn't have a permission that the migration needs. detail is the role ARN. sourcePermissions - The migration role couldn't read the Amazon Web Services Glue table or the source objects. detail names the table (database.table) or the source bucket. destinationPermissions - The migration role couldn't write to the table bucket or the report bucket. detail names the bucket. resourceNotFound - A resource that you specified doesn't exist, such as the Amazon Web Services Glue table or the source bucket. detail names it. sourceNotSupported - The source table can't be migrated, for example because it is empty, has too many objects, or has columns or partitions that can't be migrated. The table compatibility report lists the findings. tableCompatibilityReport - The migration couldn't create the destination table, for example because a table with that name already exists or the KMS key can't be used. For a sync, the destination table changed after the previous migration. The table compatibility report lists the finding. objectCompatibilityReport - Some source objects can't be migrated, for example because they are archived, or because they were overwritten after an earlier migration migrated them. The object compatibility report lists them. objectMigrationReport - Some source objects failed to migrate. The object migration report lists them and the cause for each. reportBucketNotSupported - The report bucket can't receive the migration's reports, for example because it is in a different Region than the table bucket. internalError - S3 Tables encountered an internal error. Retry the migration, and contact Amazon Web Services Support if the error persists.
+        code: string
+        -- The resource that the failure applies to, such as the role ARN, the Amazon Web Services Glue table (database.table) or a bucket. For sourceNotSupported, the reason that the source isn't supported, such as EMPTY_TABLE. This value isn't returned for the report codes or for internalError.
+        detail: string
+    end
+
+    -- A report of a migration: the prefix it is written under and, once it is written, its key, its checksum and, for the compatibility reports, the number of blocking findings in each category.
+    record ReportOverview
+        -- The key prefix that the report is written under.
+        prefix: string
+        -- The key of the report object in the bucket. For the object compatibility and object migration reports, this is the report's manifest; for the table compatibility report, it is the report itself. This value is returned after the migration writes the report. A migration doesn't always write every report. For example, a migration that fails during planning doesn't write the object migration report.
+        key: string
+        -- The Base64-encoded CRC64NVME checksum of the object that key names. For a report that has a manifest, the manifest lists the checksum of each report file. This value is returned after the migration writes the report.
+        checksumCRC64NVME: string
+        -- For the compatibility reports, the number of blocking findings in each category. The object compatibility report counts each blocked object once, under its most severe finding. Categories with no blocking findings are left out.
+        invalidFindings: {string : number}
+    end
+
+    -- Where a migration writes its reports, and the location of each report once it is written.
+    record MigrationOutputOverview
+        -- The general purpose bucket that the migration writes every report to.
+        bucket: string
+        -- The table compatibility report: the sample object that the schema is inferred from, the table-level findings, and one row for each destination column with its type change and how the migration policies apply to it. The migration writes it when planning finishes, before any data migrates. If planning fails, the report might not be written.
+        tableCompatibilityReport: ReportOverview
+        -- The object compatibility report: one row for each source object under the source table's location, with whether the migration includes the object and its most severe finding. The migration writes it when planning finishes. If planning fails, the report might not be written.
+        objectCompatibilityReport: ReportOverview
+        -- The object migration report: one row for each source object that the migration tried to migrate, with whether it migrated, how it was transformed, and why it failed. The migration writes it once, when the migration ends. It isn't written if planning fails or if a sync has nothing to migrate.
+        objectMigrationReport: ReportOverview
+    end
+
+    -- The number of source objects that migrated, failed or are pending. For a sync, the counts cover every object of the table after the sync, including objects that earlier migrations migrated. The counts are set when planning finishes and updated when the migration ends.
+    record MigrationStats
+        -- The number of source objects whose data the migration wrote to the destination table. Migrated data can be queried after the migration commits it. If the migration fails or is cancelled, some migrated objects might not be committed.
+        objectsMigrated: number
+        -- The number of source objects that didn't migrate, because they failed or because another object, such as an object in the same partition, failed. The object migration report lists the cause for each object.
+        objectsFailedMigration: number
+        -- The number of source objects that haven't migrated or failed yet. When a migration fails or is cancelled, these are the objects that it didn't migrate.
+        objectsPendingMigration: number
+    end
+
+    -- Statistics about the source and the partitions in a migration.
+    record PlanningStats
+        -- The number of source objects that the migration found under the source table's location, whether or not it migrates them. The object compatibility report has one row for each.
+        objectsScanned: number
+        -- The number of source objects in the migration. For a start, these are the data files in the Amazon Web Services Glue table's partitions, or under the table's location if the table isn't partitioned. For a sync, these are all the data files of the table after the sync, including files that earlier migrations migrated.
+        objectsPlanned: number
+        -- The number of partitions in the destination table after this migration, or 0 if the source table isn't partitioned. This value is returned when planning produces a valid plan.
+        partitionCount: number
+    end
+
+    -- An Amazon Web Services Glue Data Catalog table to migrate. The table must be an external Apache Hive table whose data is stored as Parquet in a general purpose bucket in the same account and Region as the table bucket. Views, transactional (ACID) tables, tables in an open table format such as Apache Iceberg, and tables registered with Amazon Web Services Lake Formation can't be migrated. If the table can't be migrated, the migration fails, and the table compatibility report lists the reason.
+    record GlueTableSource
+        -- The ID of the Data Catalog that contains the table. It must be your account ID.
+        catalogId: string
+        -- The name of the database that contains the table.
+        databaseName: string
+        -- The name of the table.
+        tableName: string
+    end
+
+    -- The source to migrate from. Set exactly one member, and set sourceType to match it.
+    record SourceConfiguration
+        -- An Amazon Web Services Glue Data Catalog table to migrate. The table must be an external Apache Hive table whose data is stored as Parquet in a general purpose bucket in the same account and Region as the table bucket. Views, transactional (ACID) tables, tables in an open table format such as Apache Iceberg, and tables registered with Amazon Web Services Lake Formation can't be migrated. If the table can't be migrated, the migration fails, and the table compatibility report lists the reason.
+        glueTable: GlueTableSource
+    end
+
+    enum MigrationSourceType
+        "glueTable"
+    end
+
+    enum MigrationState
+        "new"
+        "planning"
+        "pendingReview"
+        "queued"
+        "migrating"
+        "succeeded"
+        "failed"
+        "cancelling"
+        "cancelled"
+    end
+
+    enum MigrationType
+        "start"
+        "sync"
+    end
+
+    record GetTableMigrationOutput
+        -- The ID of the migration.
+        migrationId: string
+        -- The Amazon Resource Name (ARN) of the table bucket that contains the destination table.
+        tableBucketARN: string
+        -- The namespace of the destination table.
+        namespace: string
+        -- The Amazon Resource Name (ARN) of the destination table, once the migration creates it.
+        tableARN: string
+        -- The name of the destination table.
+        name: string
+        -- The state of the migration. Valid values: new - S3 Tables accepted the request. planning - The migration is checking the source table, its objects and the destination for compatibility, and writing the compatibility reports. pendingReview - Planning finished, and the migration waits for you to continue or cancel it with UpdateTableMigration. queued - The migration is waiting to start migrating data. migrating - The migration is running the plan from the planning state: it copies data and commits it to the destination table. A migration reaches this state only if hasValidPlan is true. succeeded - Every planned object migrated. failed - The migration failed. Check failureReason for the cause. cancelling - You cancelled the migration, and it is finishing the work in progress. cancelled - The migration is cancelled. A migration ends in the succeeded, failed or cancelled state. You can cancel it until it ends.
+        state: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the migration uses.
+        roleARN: string
+        -- A Boolean value that specifies whether the migration waits in the pendingReview state, so that you can review the compatibility reports before it migrates any data.
+        reviewMigrationPlan: boolean
+        -- A Boolean value that specifies whether planning produced a plan that the migration can run. If planning hasn't finished, this value isn't returned.
+        hasValidPlan: boolean
+        -- The date and time that the migration was created.
+        createdAt: number
+        -- The date and time that the migration's state last changed.
+        stateUpdatedAt: number
+        -- The reason that the migration failed. The code names the cause, such as a migration role that S3 Tables can't assume or an Amazon Web Services Glue table that doesn't exist, or the report that lists the findings. This value is returned only when the migration is in the failed state.
+        failureReason: MigrationFailureReason
+        -- Statistics about the source and the partitions in the migration. This value is returned after planning finishes.
+        planningStats: PlanningStats
+        -- The number of objects that migrated, failed or are pending. These counts are set when planning finishes and updated when the migration ends.
+        migrationStats: MigrationStats
+        -- The type of the migration's source.
+        sourceType: string
+        -- The source table of the migration.
+        source: SourceConfiguration
+        -- The maintenance settings and migration policies for the destination table.
+        dataMigration: DataMigrationOverview
+        -- The bucket and prefixes for the migration's reports, and the location of each report once it is written.
+        migrationOutput: MigrationOutputOverview
     end
 
     record GetTablePolicyInput
@@ -902,6 +1168,54 @@ local record M
         continuationToken: string
     end
 
+    record ListTableMigrationsInput
+        -- The Amazon Resource Name (ARN) of the table bucket to list migrations for.
+        tableBucketARN: string
+        -- The namespace to list migrations for. Requires tableBucketARN.
+        namespace: string
+        -- The name of the table to list migrations for. Requires tableBucketARN and namespace.
+        name: string
+        -- The Amazon Resource Name (ARN) of the table to list migrations for. The list includes the migrations into this table. To also list migrations into an earlier table of the same name, specify tableBucketARN, namespace and name instead. Specify either tableARN or tableBucketARN, not both.
+        tableARN: string
+        -- The state to filter the list by. For the valid values, see the state member of GetTableMigration.
+        state: string
+        -- The hasValidPlan value to filter the list by. Migrations that are still planning aren't listed, whichever value you specify.
+        hasValidPlan: boolean
+        -- The maximum number of migrations to return, from 1 to 1,000. If you don't specify a value, the default is 100.
+        maxResults: number
+        -- The nextToken from a previous response, to get the next page of results.
+        nextToken: string
+    end
+
+    -- A summary of a migration.
+    record MigrationSummary
+        -- The ID of the migration.
+        migrationId: string
+        -- The Amazon Resource Name (ARN) of the table bucket that contains the destination table.
+        tableBucketARN: string
+        -- The namespace of the destination table.
+        namespace: string
+        -- The Amazon Resource Name (ARN) of the destination table, once the migration creates it.
+        tableARN: string
+        -- The name of the destination table.
+        name: string
+        -- The state of the migration. Valid values: new - S3 Tables accepted the request. planning - The migration is checking the source table, its objects and the destination for compatibility, and writing the compatibility reports. pendingReview - Planning finished, and the migration waits for you to continue or cancel it with UpdateTableMigration. queued - The migration is waiting to start migrating data. migrating - The migration is running the plan from the planning state: it copies data and commits it to the destination table. A migration reaches this state only if hasValidPlan is true. succeeded - Every planned object migrated. failed - The migration failed. Check failureReason for the cause. cancelling - You cancelled the migration, and it is finishing the work in progress. cancelled - The migration is cancelled.
+        state: string
+        -- A Boolean value that specifies whether planning produced a plan that the migration can run. If planning hasn't finished, this value isn't returned.
+        hasValidPlan: boolean
+        -- The date and time that the migration was created.
+        createdAt: number
+        -- The date and time that the migration's state last changed.
+        stateUpdatedAt: number
+    end
+
+    record ListTableMigrationsOutput
+        -- The migrations, newest first.
+        migrations: {MigrationSummary}
+        -- A token to pass as nextToken to get the next page of results. If there are no more results, this value isn't returned.
+        nextToken: string
+    end
+
     record ListTablesInput
         -- The Amazon resource Name (ARN) of the table bucket.
         tableBucketARN: string
@@ -950,6 +1264,29 @@ local record M
     record ListTagsForResourceOutput
         -- The user-defined tags that are applied to the resource. For more information, see Tagging for cost allocation or attribute-based access control (ABAC).
         tags: {string : string}
+    end
+
+    -- The key prefix for each report. If you don't specify a prefix for a report, its keys start at the root of the bucket.
+    record MigrationReportPrefixes
+        -- The key prefix for the table compatibility report, up to 512 bytes. If not specified, the report's keys start at the root of the bucket.
+        tableCompatibilityReport: string
+        -- The key prefix for the object compatibility report, up to 512 bytes. If not specified, the report's keys start at the root of the bucket.
+        objectCompatibilityReport: string
+        -- The key prefix for the object migration report, up to 512 bytes. If not specified, the report's keys start at the root of the bucket.
+        objectMigrationReport: string
+    end
+
+    -- The bucket and prefixes that a migration writes its reports to. Every report goes to one bucket, each under its own prefix.
+    record MigrationOutputConfiguration
+        -- The general purpose bucket that the migration writes every report to.
+        bucket: string
+        -- The key prefix for each report.
+        prefixes: MigrationReportPrefixes
+    end
+
+    enum MigrationRequestedState
+        "queued"
+        "cancelled"
     end
 
     record PutTableBucketEncryptionInput
@@ -1088,6 +1425,48 @@ local record M
     record RenameTableOutput
     end
 
+    record StartTableMigrationInput
+        -- The Amazon Resource Name (ARN) of the IAM role that the migration uses to read the source table and its data and to write the destination table and the reports. The role must be in your account, and its trust policy must allow migration.s3tables.amazonaws.com to assume it. You can limit the trust policy to the destination table bucket with the aws:SourceArn and aws:SourceAccount condition keys.
+        roleARN: string
+        -- The table to create and migrate the source into.
+        destinationTable: DestinationTable
+        -- The type of the source. It must match the member that you set in source.
+        sourceType: string
+        -- The source table to migrate.
+        source: SourceConfiguration
+        -- The maintenance settings and migration policies for the destination table.
+        dataMigration: DataMigrationSettings
+        -- Specifies whether the migration waits in the pendingReview state, so that you can review the compatibility reports before it migrates any data. If true, the migration continues when you call UpdateTableMigration with requestedState set to queued. If you don't continue or cancel the migration within 30 days, the migration fails. The default is false.
+        reviewMigrationPlan: boolean
+        -- The bucket and prefixes that the migration writes its reports to. The bucket must be a general purpose bucket in your account and in the same Region as the table bucket, and the migration role must be able to write objects to it. Otherwise, the migration fails when it writes its first report.
+        migrationOutput: MigrationOutputConfiguration
+    end
+
+    record StartTableMigrationOutput
+        -- The ID of the migration.
+        migrationId: string
+        -- The state of the migration when the request is accepted, such as planning.
+        state: string
+    end
+
+    record SyncTableMigrationInput
+        -- The Amazon Resource Name (ARN) of the IAM role that the sync uses to read the source table and its data and to write the destination table and the reports. The role must be in your account, and its trust policy must allow migration.s3tables.amazonaws.com to assume it. You can limit the trust policy to the destination table bucket with the aws:SourceArn and aws:SourceAccount condition keys.
+        roleARN: string
+        -- The Amazon Resource Name (ARN) of the destination table to sync. The table must have a migration, and you must not have called CompleteTableMigration for it.
+        tableARN: string
+        -- Specifies whether the sync waits in the pendingReview state, so that you can review the compatibility reports before it migrates any data. If true, the migration continues when you call UpdateTableMigration with requestedState set to queued. If you don't continue or cancel the migration within 30 days, the migration fails. The default is false.
+        reviewMigrationPlan: boolean
+        -- The bucket and prefixes that the sync writes its reports to. The bucket must be a general purpose bucket in your account and in the same Region as the table bucket, and the migration role must be able to write objects to it. Otherwise, the migration fails when it writes its first report.
+        migrationOutput: MigrationOutputConfiguration
+    end
+
+    record SyncTableMigrationOutput
+        -- The migration ID of the sync.
+        migrationId: string
+        -- The state of the migration when the request is accepted, such as planning.
+        state: string
+    end
+
     record UpdateTableMetadataLocationInput
         -- The Amazon Resource Name (ARN) of the table bucket.
         tableBucketARN: string
@@ -1112,6 +1491,26 @@ local record M
         versionToken: string
         -- The metadata location of the table.
         metadataLocation: string
+    end
+
+    record UpdateTableMigrationInput
+        -- The Amazon Resource Name (ARN) of the destination table. Updates the table's most recent migration. Until the migration creates the destination table, specify migrationId. Specify either tableARN or migrationId, not both.
+        tableARN: string
+        -- The ID of the migration to update. Specify either migrationId or tableARN, not both.
+        migrationId: string
+        -- The state to move the migration to: queued to continue a migration in the pendingReview state, or cancelled to cancel a migration in the new, planning, pendingReview, queued or migrating state.
+        requestedState: string
+        -- A description of the update, up to 1,024 characters, with no control characters. GetTableMigration doesn't return it.
+        updateDescription: string
+    end
+
+    record UpdateTableMigrationOutput
+        -- The ID of the migration.
+        migrationId: string
+        -- The state of the migration after the update, such as queued, migrating or cancelling.
+        state: string
+        -- The Amazon Resource Name (ARN) of the destination table.
+        tableARN: string
     end
 
     record TagResourceInput

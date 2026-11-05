@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    completeTableMigration: function(Client, types.CompleteTableMigrationInput, ? base_client.InvokeOptions): async.Operation<types.CompleteTableMigrationOutput>
     createNamespace: function(Client, types.CreateNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
     createTable: function(Client, types.CreateTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
     createTableBucket: function(Client, types.CreateTableBucketInput, ? base_client.InvokeOptions): async.Operation<types.CreateTableBucketOutput>
@@ -43,6 +44,7 @@ local record Client
     getTableMaintenanceConfiguration: function(Client, types.GetTableMaintenanceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMaintenanceConfigurationOutput>
     getTableMaintenanceJobStatus: function(Client, types.GetTableMaintenanceJobStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMaintenanceJobStatusOutput>
     getTableMetadataLocation: function(Client, types.GetTableMetadataLocationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMetadataLocationOutput>
+    getTableMigration: function(Client, types.GetTableMigrationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMigrationOutput>
     getTablePolicy: function(Client, types.GetTablePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetTablePolicyOutput>
     getTableRecordExpirationConfiguration: function(Client, types.GetTableRecordExpirationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableRecordExpirationConfigurationOutput>
     getTableRecordExpirationJobStatus: function(Client, types.GetTableRecordExpirationJobStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTableRecordExpirationJobStatusOutput>
@@ -51,6 +53,7 @@ local record Client
     getTableStorageClass: function(Client, types.GetTableStorageClassInput, ? base_client.InvokeOptions): async.Operation<types.GetTableStorageClassOutput>
     listNamespaces: function(Client, types.ListNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
     listTableBuckets: function(Client, types.ListTableBucketsInput, ? base_client.InvokeOptions): async.Operation<types.ListTableBucketsOutput>
+    listTableMigrations: function(Client, types.ListTableMigrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTableMigrationsOutput>
     listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putTableBucketEncryption: function(Client, types.PutTableBucketEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketEncryptionOutput>
@@ -64,9 +67,12 @@ local record Client
     putTableRecordExpirationConfiguration: function(Client, types.PutTableRecordExpirationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableRecordExpirationConfigurationOutput>
     putTableReplication: function(Client, types.PutTableReplicationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableReplicationOutput>
     renameTable: function(Client, types.RenameTableInput, ? base_client.InvokeOptions): async.Operation<types.RenameTableOutput>
+    startTableMigration: function(Client, types.StartTableMigrationInput, ? base_client.InvokeOptions): async.Operation<types.StartTableMigrationOutput>
+    syncTableMigration: function(Client, types.SyncTableMigrationInput, ? base_client.InvokeOptions): async.Operation<types.SyncTableMigrationOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateTableMetadataLocation: function(Client, types.UpdateTableMetadataLocationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableMetadataLocationOutput>
+    updateTableMigration: function(Client, types.UpdateTableMigrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableMigrationOutput>
 end
 
 local record M
@@ -109,6 +115,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     sdk_defaults.resolve_identity_resolver(c)
     local self = setmetatable(base_client.new(c) as Client, Client_mt)
     return self
+end
+
+function C:completeTableMigration(input: types.CompleteTableMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteTableMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteTableMigration as schema.OperationSchema, input, options) as async.Operation<types.CompleteTableMigrationOutput>
 end
 
 function C:createNamespace(input: types.CreateNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
@@ -211,6 +221,10 @@ function C:getTableMetadataLocation(input: types.GetTableMetadataLocationInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableMetadataLocation as schema.OperationSchema, input, options) as async.Operation<types.GetTableMetadataLocationOutput>
 end
 
+function C:getTableMigration(input: types.GetTableMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableMigration as schema.OperationSchema, input, options) as async.Operation<types.GetTableMigrationOutput>
+end
+
 function C:getTablePolicy(input: types.GetTablePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetTablePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTablePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetTablePolicyOutput>
 end
@@ -241,6 +255,10 @@ end
 
 function C:listTableBuckets(input: types.ListTableBucketsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTableBucketsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTableBuckets as schema.OperationSchema, input, options) as async.Operation<types.ListTableBucketsOutput>
+end
+
+function C:listTableMigrations(input: types.ListTableMigrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTableMigrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTableMigrations as schema.OperationSchema, input, options) as async.Operation<types.ListTableMigrationsOutput>
 end
 
 function C:listTables(input: types.ListTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
@@ -295,6 +313,14 @@ function C:renameTable(input: types.RenameTableInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RenameTable as schema.OperationSchema, input, options) as async.Operation<types.RenameTableOutput>
 end
 
+function C:startTableMigration(input: types.StartTableMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.StartTableMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTableMigration as schema.OperationSchema, input, options) as async.Operation<types.StartTableMigrationOutput>
+end
+
+function C:syncTableMigration(input: types.SyncTableMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.SyncTableMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SyncTableMigration as schema.OperationSchema, input, options) as async.Operation<types.SyncTableMigrationOutput>
+end
+
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
@@ -305,6 +331,10 @@ end
 
 function C:updateTableMetadataLocation(input: types.UpdateTableMetadataLocationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableMetadataLocationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTableMetadataLocation as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableMetadataLocationOutput>
+end
+
+function C:updateTableMigration(input: types.UpdateTableMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTableMigration as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableMigrationOutput>
 end
 
 return M

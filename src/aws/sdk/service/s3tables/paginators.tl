@@ -40,6 +40,24 @@ function M.items_list_table_buckets(client, input)
     })
 end
 
+--- Returns a page iterator for listTableMigrations.
+function M.pages_list_table_migrations(client, input)
+    return paginator.pages(client, "listTableMigrations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "migrations",
+    })
+end
+
+--- Returns an item iterator for listTableMigrations.
+function M.items_list_table_migrations(client, input)
+    return paginator.items(client, "listTableMigrations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "migrations",
+    })
+end
+
 --- Returns a page iterator for listTables.
 function M.pages_list_tables(client, input)
     return paginator.pages(client, "listTables", input, {

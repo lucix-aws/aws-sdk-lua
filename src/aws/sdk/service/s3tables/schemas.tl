@@ -28,6 +28,8 @@ M.TableMaintenanceConfiguration = schema.new({ type = "map", map_key = prelude.S
 
 M.TableMaintenanceJobStatus = schema.new({ type = "map", map_key = prelude.String, map_value = M.TableMaintenanceJobStatusValue })
 
+M.MigrationSummaryList = schema.new({ type = "list", list_member = M.MigrationSummary })
+
 M.TableSummaryList = schema.new({ type = "list", list_member = M.TableSummary })
 
 M.TableBucketReplicationRules = schema.new({ type = "list", list_member = M.TableBucketReplicationRule })
@@ -36,17 +38,19 @@ M.TableReplicationRules = schema.new({ type = "list", list_member = M.TableRepli
 
 M.TableProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
-M.ReplicationDestinations = schema.new({ type = "list", list_member = M.ReplicationDestination })
-
-M.SchemaFieldList = schema.new({ type = "list", list_member = M.SchemaField })
+M.FindingCategoryCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
 
 M.SchemaV2FieldList = schema.new({ type = "list", list_member = M.SchemaV2Field })
 
 M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
 
-M.IcebergPartitionFieldList = schema.new({ type = "list", list_member = M.IcebergPartitionField })
-
 M.IcebergSortFieldList = schema.new({ type = "list", list_member = M.IcebergSortField })
+
+M.ReplicationDestinations = schema.new({ type = "list", list_member = M.ReplicationDestination })
+
+M.SchemaFieldList = schema.new({ type = "list", list_member = M.SchemaField })
+
+M.IcebergPartitionFieldList = schema.new({ type = "list", list_member = M.IcebergPartitionField })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -80,6 +84,25 @@ M.BadRequestException = schema.new({
     },
 })
 
+M.CompleteTableMigrationInput = schema.new({
+    id = id.from(_N, "CompleteTableMigrationRequest"),
+    type = "structure",
+    members = {
+        tableARN = schema.new({
+            id = id.from(_N, "CompleteTableMigrationInput", "tableARN"),
+            type = "string",
+            name = "tableARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tableARN" },
+            },
+        }),
+    },
+})
+
+M.CompleteTableMigrationOutput = prelude.Unit
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",
@@ -92,59 +115,6 @@ M.ConflictException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.CreateNamespaceInput = schema.new({
-    id = id.from(_N, "CreateNamespaceRequest"),
-    type = "structure",
-    members = {
-        tableBucketARN = schema.new({
-            id = id.from(_N, "CreateNamespaceInput", "tableBucketARN"),
-            type = "string",
-            name = "tableBucketARN",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        namespace = schema.new({
-            id = id.from(_N, "CreateNamespaceInput", "namespace"),
-            type = "list",
-            name = "namespace",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CreateNamespaceOutput = schema.new({
-    id = id.from(_N, "CreateNamespaceResponse"),
-    type = "structure",
-    members = {
-        tableBucketARN = schema.new({
-            id = id.from(_N, "CreateNamespaceOutput", "tableBucketARN"),
-            type = "string",
-            name = "tableBucketARN",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        namespace = schema.new({
-            id = id.from(_N, "CreateNamespaceOutput", "namespace"),
-            type = "list",
-            name = "namespace",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -209,6 +179,59 @@ M.TooManyRequestsException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateNamespaceInput = schema.new({
+    id = id.from(_N, "CreateNamespaceRequest"),
+    type = "structure",
+    members = {
+        tableBucketARN = schema.new({
+            id = id.from(_N, "CreateNamespaceInput", "tableBucketARN"),
+            type = "string",
+            name = "tableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "CreateNamespaceInput", "namespace"),
+            type = "list",
+            name = "namespace",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateNamespaceOutput = schema.new({
+    id = id.from(_N, "CreateNamespaceResponse"),
+    type = "structure",
+    members = {
+        tableBucketARN = schema.new({
+            id = id.from(_N, "CreateNamespaceOutput", "tableBucketARN"),
+            type = "string",
+            name = "tableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "CreateNamespaceOutput", "namespace"),
+            type = "list",
+            name = "namespace",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -754,6 +777,150 @@ M.CreateTableBucketOutput = schema.new({
     },
 })
 
+M.MigrationCompactionSettings = schema.new({
+    id = id.from(_N, "MigrationCompactionSettings"),
+    type = "structure",
+    members = {
+        targetFileSizeMB = schema.new({
+            id = id.from(_N, "MigrationCompactionSettings", "targetFileSizeMB"),
+            type = "integer",
+            name = "targetFileSizeMB",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 512 },
+            },
+        }),
+        strategy = schema.new({
+            id = id.from(_N, "MigrationCompactionSettings", "strategy"),
+            type = "string",
+            name = "strategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "binpack" },
+            },
+        }),
+    },
+})
+
+M.MigrationSnapshotManagementSettings = schema.new({
+    id = id.from(_N, "MigrationSnapshotManagementSettings"),
+    type = "structure",
+    members = {
+        minSnapshotsToKeep = schema.new({
+            id = id.from(_N, "MigrationSnapshotManagementSettings", "minSnapshotsToKeep"),
+            type = "integer",
+            name = "minSnapshotsToKeep",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 3 },
+            },
+        }),
+        maxSnapshotAgeHours = schema.new({
+            id = id.from(_N, "MigrationSnapshotManagementSettings", "maxSnapshotAgeHours"),
+            type = "integer",
+            name = "maxSnapshotAgeHours",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 120 },
+            },
+        }),
+    },
+})
+
+M.MaintenanceSettings = schema.new({
+    id = id.from(_N, "MaintenanceSettings"),
+    type = "structure",
+    members = {
+        icebergCompaction = schema.new({
+            id = id.from(_N, "MaintenanceSettings", "icebergCompaction"),
+            type = "structure",
+            name = "icebergCompaction",
+            target_id = id.from(_N, "MigrationCompactionSettings"),
+            target = M.MigrationCompactionSettings,
+        }),
+        icebergSnapshotManagement = schema.new({
+            id = id.from(_N, "MaintenanceSettings", "icebergSnapshotManagement"),
+            type = "structure",
+            name = "icebergSnapshotManagement",
+            target_id = id.from(_N, "MigrationSnapshotManagementSettings"),
+            target = M.MigrationSnapshotManagementSettings,
+        }),
+    },
+})
+
+M.MigrationPolicies = schema.new({
+    id = id.from(_N, "MigrationPolicies"),
+    type = "structure",
+    members = {
+        unmatchedSourceFieldsPolicy = schema.new({
+            id = id.from(_N, "MigrationPolicies", "unmatchedSourceFieldsPolicy"),
+            type = "string",
+            name = "unmatchedSourceFieldsPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "fail" },
+            },
+        }),
+        incompatibleValuesPolicy = schema.new({
+            id = id.from(_N, "MigrationPolicies", "incompatibleValuesPolicy"),
+            type = "string",
+            name = "incompatibleValuesPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "fail" },
+            },
+        }),
+    },
+})
+
+M.DataMigrationOverview = schema.new({
+    id = id.from(_N, "DataMigrationOverview"),
+    type = "structure",
+    members = {
+        maintenanceSettings = schema.new({
+            id = id.from(_N, "DataMigrationOverview", "maintenanceSettings"),
+            type = "structure",
+            name = "maintenanceSettings",
+            target_id = id.from(_N, "MaintenanceSettings"),
+            target = M.MaintenanceSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        migrationPolicies = schema.new({
+            id = id.from(_N, "DataMigrationOverview", "migrationPolicies"),
+            type = "structure",
+            name = "migrationPolicies",
+            target_id = id.from(_N, "MigrationPolicies"),
+            target = M.MigrationPolicies,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DataMigrationSettings = schema.new({
+    id = id.from(_N, "DataMigrationSettings"),
+    type = "structure",
+    members = {
+        maintenanceSettings = schema.new({
+            id = id.from(_N, "DataMigrationSettings", "maintenanceSettings"),
+            type = "structure",
+            name = "maintenanceSettings",
+            target_id = id.from(_N, "MaintenanceSettings"),
+            target = M.MaintenanceSettings,
+        }),
+        migrationPolicies = schema.new({
+            id = id.from(_N, "DataMigrationSettings", "migrationPolicies"),
+            type = "structure",
+            name = "migrationPolicies",
+            target_id = id.from(_N, "MigrationPolicies"),
+            target = M.MigrationPolicies,
+        }),
+    },
+})
+
 M.DeleteNamespaceInput = schema.new({
     id = id.from(_N, "DeleteNamespaceRequest"),
     type = "structure",
@@ -1002,6 +1169,126 @@ M.DeleteTableReplicationInput = schema.new({
 })
 
 M.DeleteTableReplicationOutput = prelude.Unit
+
+M.MigrationTableProperties = schema.new({
+    id = id.from(_N, "MigrationTableProperties"),
+    type = "structure",
+    members = {
+        writeFormat = schema.new({
+            id = id.from(_N, "MigrationTableProperties", "writeFormat"),
+            type = "string",
+            name = "writeFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "parquet" },
+            },
+        }),
+        icebergFormatVersion = schema.new({
+            id = id.from(_N, "MigrationTableProperties", "icebergFormatVersion"),
+            type = "integer",
+            name = "icebergFormatVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 2 },
+            },
+        }),
+        compressionCodec = schema.new({
+            id = id.from(_N, "MigrationTableProperties", "compressionCodec"),
+            type = "string",
+            name = "compressionCodec",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "zstd" },
+            },
+        }),
+        dictionaryEncoding = schema.new({
+            id = id.from(_N, "MigrationTableProperties", "dictionaryEncoding"),
+            type = "boolean",
+            name = "dictionaryEncoding",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+    },
+})
+
+M.DestinationTable = schema.new({
+    id = id.from(_N, "DestinationTable"),
+    type = "structure",
+    members = {
+        tableBucketARN = schema.new({
+            id = id.from(_N, "DestinationTable", "tableBucketARN"),
+            type = "string",
+            name = "tableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "DestinationTable", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "DestinationTable", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "DestinationTable", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
+        storageClassConfiguration = schema.new({
+            id = id.from(_N, "DestinationTable", "storageClassConfiguration"),
+            type = "structure",
+            name = "storageClassConfiguration",
+            target_id = id.from(_N, "StorageClassConfiguration"),
+            target = M.StorageClassConfiguration,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "DestinationTable", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        properties = schema.new({
+            id = id.from(_N, "DestinationTable", "properties"),
+            type = "structure",
+            name = "properties",
+            target_id = id.from(_N, "MigrationTableProperties"),
+            target = M.MigrationTableProperties,
+        }),
+        schema = schema.new({
+            id = id.from(_N, "DestinationTable", "schema"),
+            type = "structure",
+            name = "schema",
+            target_id = id.from(_N, "IcebergSchemaV2"),
+            target = M.IcebergSchemaV2,
+        }),
+        icebergSortOrder = schema.new({
+            id = id.from(_N, "DestinationTable", "icebergSortOrder"),
+            type = "structure",
+            name = "icebergSortOrder",
+            target_id = id.from(_N, "IcebergSortOrder"),
+            target = M.IcebergSortOrder,
+        }),
+    },
+})
 
 M.GetNamespaceInput = schema.new({
     id = id.from(_N, "GetNamespaceRequest"),
@@ -2084,6 +2371,401 @@ M.GetTableMetadataLocationOutput = schema.new({
     },
 })
 
+M.GetTableMigrationInput = schema.new({
+    id = id.from(_N, "GetTableMigrationRequest"),
+    type = "structure",
+    members = {
+        migrationId = schema.new({
+            id = id.from(_N, "GetTableMigrationInput", "migrationId"),
+            type = "string",
+            name = "migrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "migrationId" },
+            },
+        }),
+        tableARN = schema.new({
+            id = id.from(_N, "GetTableMigrationInput", "tableARN"),
+            type = "string",
+            name = "tableARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "tableARN" },
+            },
+        }),
+    },
+})
+
+M.MigrationFailureReason = schema.new({
+    id = id.from(_N, "MigrationFailureReason"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "MigrationFailureReason", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        detail = schema.new({
+            id = id.from(_N, "MigrationFailureReason", "detail"),
+            type = "string",
+            name = "detail",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReportOverview = schema.new({
+    id = id.from(_N, "ReportOverview"),
+    type = "structure",
+    members = {
+        prefix = schema.new({
+            id = id.from(_N, "ReportOverview", "prefix"),
+            type = "string",
+            name = "prefix",
+            target_id = prelude.String.id,
+        }),
+        key = schema.new({
+            id = id.from(_N, "ReportOverview", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        checksumCRC64NVME = schema.new({
+            id = id.from(_N, "ReportOverview", "checksumCRC64NVME"),
+            type = "string",
+            name = "checksumCRC64NVME",
+            target_id = prelude.String.id,
+        }),
+        invalidFindings = schema.new({
+            id = id.from(_N, "ReportOverview", "invalidFindings"),
+            type = "map",
+            name = "invalidFindings",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Long,
+        }),
+    },
+})
+
+M.MigrationOutputOverview = schema.new({
+    id = id.from(_N, "MigrationOutputOverview"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "MigrationOutputOverview", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableCompatibilityReport = schema.new({
+            id = id.from(_N, "MigrationOutputOverview", "tableCompatibilityReport"),
+            type = "structure",
+            name = "tableCompatibilityReport",
+            target_id = id.from(_N, "ReportOverview"),
+            target = M.ReportOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        objectCompatibilityReport = schema.new({
+            id = id.from(_N, "MigrationOutputOverview", "objectCompatibilityReport"),
+            type = "structure",
+            name = "objectCompatibilityReport",
+            target_id = id.from(_N, "ReportOverview"),
+            target = M.ReportOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        objectMigrationReport = schema.new({
+            id = id.from(_N, "MigrationOutputOverview", "objectMigrationReport"),
+            type = "structure",
+            name = "objectMigrationReport",
+            target_id = id.from(_N, "ReportOverview"),
+            target = M.ReportOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MigrationStats = schema.new({
+    id = id.from(_N, "MigrationStats"),
+    type = "structure",
+    members = {
+        objectsMigrated = schema.new({
+            id = id.from(_N, "MigrationStats", "objectsMigrated"),
+            type = "long",
+            name = "objectsMigrated",
+            target_id = prelude.Long.id,
+        }),
+        objectsFailedMigration = schema.new({
+            id = id.from(_N, "MigrationStats", "objectsFailedMigration"),
+            type = "long",
+            name = "objectsFailedMigration",
+            target_id = prelude.Long.id,
+        }),
+        objectsPendingMigration = schema.new({
+            id = id.from(_N, "MigrationStats", "objectsPendingMigration"),
+            type = "long",
+            name = "objectsPendingMigration",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.PlanningStats = schema.new({
+    id = id.from(_N, "PlanningStats"),
+    type = "structure",
+    members = {
+        objectsScanned = schema.new({
+            id = id.from(_N, "PlanningStats", "objectsScanned"),
+            type = "long",
+            name = "objectsScanned",
+            target_id = prelude.Long.id,
+        }),
+        objectsPlanned = schema.new({
+            id = id.from(_N, "PlanningStats", "objectsPlanned"),
+            type = "long",
+            name = "objectsPlanned",
+            target_id = prelude.Long.id,
+        }),
+        partitionCount = schema.new({
+            id = id.from(_N, "PlanningStats", "partitionCount"),
+            type = "long",
+            name = "partitionCount",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GlueTableSource = schema.new({
+    id = id.from(_N, "GlueTableSource"),
+    type = "structure",
+    members = {
+        catalogId = schema.new({
+            id = id.from(_N, "GlueTableSource", "catalogId"),
+            type = "string",
+            name = "catalogId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        databaseName = schema.new({
+            id = id.from(_N, "GlueTableSource", "databaseName"),
+            type = "string",
+            name = "databaseName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableName = schema.new({
+            id = id.from(_N, "GlueTableSource", "tableName"),
+            type = "string",
+            name = "tableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SourceConfiguration = schema.new({
+    id = id.from(_N, "SourceConfiguration"),
+    type = "union",
+    members = {
+        glueTable = schema.new({
+            id = id.from(_N, "SourceConfiguration", "glueTable"),
+            type = "structure",
+            name = "glueTable",
+            target_id = id.from(_N, "GlueTableSource"),
+            target = M.GlueTableSource,
+        }),
+    },
+})
+
+M.GetTableMigrationOutput = schema.new({
+    id = id.from(_N, "GetTableMigrationResponse"),
+    type = "structure",
+    members = {
+        migrationId = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "migrationId"),
+            type = "string",
+            name = "migrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableBucketARN = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "tableBucketARN"),
+            type = "string",
+            name = "tableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableARN = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "tableARN"),
+            type = "string",
+            name = "tableARN",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleARN = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "roleARN"),
+            type = "string",
+            name = "roleARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reviewMigrationPlan = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "reviewMigrationPlan"),
+            type = "boolean",
+            name = "reviewMigrationPlan",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hasValidPlan = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "hasValidPlan"),
+            type = "boolean",
+            name = "hasValidPlan",
+            target_id = prelude.Boolean.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        stateUpdatedAt = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "stateUpdatedAt"),
+            type = "timestamp",
+            name = "stateUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        failureReason = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "failureReason"),
+            type = "structure",
+            name = "failureReason",
+            target_id = id.from(_N, "MigrationFailureReason"),
+            target = M.MigrationFailureReason,
+        }),
+        planningStats = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "planningStats"),
+            type = "structure",
+            name = "planningStats",
+            target_id = id.from(_N, "PlanningStats"),
+            target = M.PlanningStats,
+        }),
+        migrationStats = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "migrationStats"),
+            type = "structure",
+            name = "migrationStats",
+            target_id = id.from(_N, "MigrationStats"),
+            target = M.MigrationStats,
+        }),
+        sourceType = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "sourceType"),
+            type = "string",
+            name = "sourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "SourceConfiguration"),
+            target = M.SourceConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dataMigration = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "dataMigration"),
+            type = "structure",
+            name = "dataMigration",
+            target_id = id.from(_N, "DataMigrationOverview"),
+            target = M.DataMigrationOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        migrationOutput = schema.new({
+            id = id.from(_N, "GetTableMigrationOutput", "migrationOutput"),
+            type = "structure",
+            name = "migrationOutput",
+            target_id = id.from(_N, "MigrationOutputOverview"),
+            target = M.MigrationOutputOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetTablePolicyInput = schema.new({
     id = id.from(_N, "GetTablePolicyRequest"),
     type = "structure",
@@ -2799,6 +3481,201 @@ M.ListTableBucketsOutput = schema.new({
     },
 })
 
+M.ListTableMigrationsInput = schema.new({
+    id = id.from(_N, "ListTableMigrationsRequest"),
+    type = "structure",
+    members = {
+        tableBucketARN = schema.new({
+            id = id.from(_N, "ListTableMigrationsInput", "tableBucketARN"),
+            type = "string",
+            name = "tableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "tableBucketARN" },
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "ListTableMigrationsInput", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "namespace" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "ListTableMigrationsInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "name" },
+            },
+        }),
+        tableARN = schema.new({
+            id = id.from(_N, "ListTableMigrationsInput", "tableARN"),
+            type = "string",
+            name = "tableARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "tableARN" },
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "ListTableMigrationsInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "state" },
+            },
+        }),
+        hasValidPlan = schema.new({
+            id = id.from(_N, "ListTableMigrationsInput", "hasValidPlan"),
+            type = "boolean",
+            name = "hasValidPlan",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "hasValidPlan" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTableMigrationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTableMigrationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.MigrationSummary = schema.new({
+    id = id.from(_N, "MigrationSummary"),
+    type = "structure",
+    members = {
+        migrationId = schema.new({
+            id = id.from(_N, "MigrationSummary", "migrationId"),
+            type = "string",
+            name = "migrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableBucketARN = schema.new({
+            id = id.from(_N, "MigrationSummary", "tableBucketARN"),
+            type = "string",
+            name = "tableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespace = schema.new({
+            id = id.from(_N, "MigrationSummary", "namespace"),
+            type = "string",
+            name = "namespace",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableARN = schema.new({
+            id = id.from(_N, "MigrationSummary", "tableARN"),
+            type = "string",
+            name = "tableARN",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "MigrationSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "MigrationSummary", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "MigrationSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hasValidPlan = schema.new({
+            id = id.from(_N, "MigrationSummary", "hasValidPlan"),
+            type = "boolean",
+            name = "hasValidPlan",
+            target_id = prelude.Boolean.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "MigrationSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        stateUpdatedAt = schema.new({
+            id = id.from(_N, "MigrationSummary", "stateUpdatedAt"),
+            type = "timestamp",
+            name = "stateUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ListTableMigrationsOutput = schema.new({
+    id = id.from(_N, "ListTableMigrationsResponse"),
+    type = "structure",
+    members = {
+        migrations = schema.new({
+            id = id.from(_N, "ListTableMigrationsOutput", "migrations"),
+            type = "list",
+            name = "migrations",
+            target_id = prelude.Document.id,
+            list_member = M.MigrationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTableMigrationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTablesInput = schema.new({
     id = id.from(_N, "ListTablesRequest"),
     type = "structure",
@@ -2985,6 +3862,54 @@ M.ListTagsForResourceOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+    },
+})
+
+M.MigrationReportPrefixes = schema.new({
+    id = id.from(_N, "MigrationReportPrefixes"),
+    type = "structure",
+    members = {
+        tableCompatibilityReport = schema.new({
+            id = id.from(_N, "MigrationReportPrefixes", "tableCompatibilityReport"),
+            type = "string",
+            name = "tableCompatibilityReport",
+            target_id = prelude.String.id,
+        }),
+        objectCompatibilityReport = schema.new({
+            id = id.from(_N, "MigrationReportPrefixes", "objectCompatibilityReport"),
+            type = "string",
+            name = "objectCompatibilityReport",
+            target_id = prelude.String.id,
+        }),
+        objectMigrationReport = schema.new({
+            id = id.from(_N, "MigrationReportPrefixes", "objectMigrationReport"),
+            type = "string",
+            name = "objectMigrationReport",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MigrationOutputConfiguration = schema.new({
+    id = id.from(_N, "MigrationOutputConfiguration"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "MigrationOutputConfiguration", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        prefixes = schema.new({
+            id = id.from(_N, "MigrationOutputConfiguration", "prefixes"),
+            type = "structure",
+            name = "prefixes",
+            target_id = id.from(_N, "MigrationReportPrefixes"),
+            target = M.MigrationReportPrefixes,
         }),
     },
 })
@@ -3448,6 +4373,171 @@ M.RenameTableInput = schema.new({
 
 M.RenameTableOutput = prelude.Unit
 
+M.StartTableMigrationInput = schema.new({
+    id = id.from(_N, "StartTableMigrationRequest"),
+    type = "structure",
+    members = {
+        roleARN = schema.new({
+            id = id.from(_N, "StartTableMigrationInput", "roleARN"),
+            type = "string",
+            name = "roleARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationTable = schema.new({
+            id = id.from(_N, "StartTableMigrationInput", "destinationTable"),
+            type = "structure",
+            name = "destinationTable",
+            target_id = id.from(_N, "DestinationTable"),
+            target = M.DestinationTable,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceType = schema.new({
+            id = id.from(_N, "StartTableMigrationInput", "sourceType"),
+            type = "string",
+            name = "sourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "StartTableMigrationInput", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "SourceConfiguration"),
+            target = M.SourceConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dataMigration = schema.new({
+            id = id.from(_N, "StartTableMigrationInput", "dataMigration"),
+            type = "structure",
+            name = "dataMigration",
+            target_id = id.from(_N, "DataMigrationSettings"),
+            target = M.DataMigrationSettings,
+        }),
+        reviewMigrationPlan = schema.new({
+            id = id.from(_N, "StartTableMigrationInput", "reviewMigrationPlan"),
+            type = "boolean",
+            name = "reviewMigrationPlan",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        migrationOutput = schema.new({
+            id = id.from(_N, "StartTableMigrationInput", "migrationOutput"),
+            type = "structure",
+            name = "migrationOutput",
+            target_id = id.from(_N, "MigrationOutputConfiguration"),
+            target = M.MigrationOutputConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartTableMigrationOutput = schema.new({
+    id = id.from(_N, "StartTableMigrationResponse"),
+    type = "structure",
+    members = {
+        migrationId = schema.new({
+            id = id.from(_N, "StartTableMigrationOutput", "migrationId"),
+            type = "string",
+            name = "migrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "StartTableMigrationOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SyncTableMigrationInput = schema.new({
+    id = id.from(_N, "SyncTableMigrationRequest"),
+    type = "structure",
+    members = {
+        roleARN = schema.new({
+            id = id.from(_N, "SyncTableMigrationInput", "roleARN"),
+            type = "string",
+            name = "roleARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableARN = schema.new({
+            id = id.from(_N, "SyncTableMigrationInput", "tableARN"),
+            type = "string",
+            name = "tableARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reviewMigrationPlan = schema.new({
+            id = id.from(_N, "SyncTableMigrationInput", "reviewMigrationPlan"),
+            type = "boolean",
+            name = "reviewMigrationPlan",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        migrationOutput = schema.new({
+            id = id.from(_N, "SyncTableMigrationInput", "migrationOutput"),
+            type = "structure",
+            name = "migrationOutput",
+            target_id = id.from(_N, "MigrationOutputConfiguration"),
+            target = M.MigrationOutputConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SyncTableMigrationOutput = schema.new({
+    id = id.from(_N, "SyncTableMigrationResponse"),
+    type = "structure",
+    members = {
+        migrationId = schema.new({
+            id = id.from(_N, "SyncTableMigrationOutput", "migrationId"),
+            type = "string",
+            name = "migrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "SyncTableMigrationOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateTableMetadataLocationInput = schema.new({
     id = id.from(_N, "UpdateTableMetadataLocationRequest"),
     type = "structure",
@@ -3556,6 +4646,77 @@ M.UpdateTableMetadataLocationOutput = schema.new({
     },
 })
 
+M.UpdateTableMigrationInput = schema.new({
+    id = id.from(_N, "UpdateTableMigrationRequest"),
+    type = "structure",
+    members = {
+        tableARN = schema.new({
+            id = id.from(_N, "UpdateTableMigrationInput", "tableARN"),
+            type = "string",
+            name = "tableARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "tableARN" },
+            },
+        }),
+        migrationId = schema.new({
+            id = id.from(_N, "UpdateTableMigrationInput", "migrationId"),
+            type = "string",
+            name = "migrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "migrationId" },
+            },
+        }),
+        requestedState = schema.new({
+            id = id.from(_N, "UpdateTableMigrationInput", "requestedState"),
+            type = "string",
+            name = "requestedState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateDescription = schema.new({
+            id = id.from(_N, "UpdateTableMigrationInput", "updateDescription"),
+            type = "string",
+            name = "updateDescription",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateTableMigrationOutput = schema.new({
+    id = id.from(_N, "UpdateTableMigrationResponse"),
+    type = "structure",
+    members = {
+        migrationId = schema.new({
+            id = id.from(_N, "UpdateTableMigrationOutput", "migrationId"),
+            type = "string",
+            name = "migrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "UpdateTableMigrationOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableARN = schema.new({
+            id = id.from(_N, "UpdateTableMigrationOutput", "tableARN"),
+            type = "string",
+            name = "tableARN",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
     type = "structure",
@@ -3641,6 +4802,18 @@ M.Service = schema.service({
     id = id.from("com.amazonaws.s3tables", "S3TableBuckets"),
     version = "2018-05-10",
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CompleteTableMigration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "CompleteTableMigration"),
+    input = M.CompleteTableMigrationInput,
+    output = M.CompleteTableMigrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/complete-table-migration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3947,6 +5120,18 @@ M.GetTableMetadataLocation = schema.operation({
     },
 })
 
+M.GetTableMigration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableMigration"),
+    input = M.GetTableMigrationInput,
+    output = M.GetTableMigrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/get-table-migration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetTablePolicy = schema.operation({
     id = id.from("com.amazonaws.s3tables", "GetTablePolicy"),
     input = M.GetTablePolicyInput,
@@ -4037,6 +5222,18 @@ M.ListTableBuckets = schema.operation({
     output = M.ListTableBucketsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/buckets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTableMigrations = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "ListTableMigrations"),
+    input = M.ListTableMigrationsInput,
+    output = M.ListTableMigrationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/list-table-migrations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -4199,6 +5396,30 @@ M.RenameTable = schema.operation({
     },
 })
 
+M.StartTableMigration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "StartTableMigration"),
+    input = M.StartTableMigrationInput,
+    output = M.StartTableMigrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/start-table-migration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SyncTableMigration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "SyncTableMigration"),
+    input = M.SyncTableMigrationInput,
+    output = M.SyncTableMigrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/sync-table-migration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.TagResource = schema.operation({
     id = id.from("com.amazonaws.s3tables", "TagResource"),
     input = M.TagResourceInput,
@@ -4229,6 +5450,18 @@ M.UpdateTableMetadataLocation = schema.operation({
     output = M.UpdateTableMetadataLocationOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/tables/{tableBucketARN}/{namespace}/{name}/metadata-location" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTableMigration = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "UpdateTableMigration"),
+    input = M.UpdateTableMigrationInput,
+    output = M.UpdateTableMigrationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-table-migration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -103,6 +103,16 @@ local record M
         businessActivity: string
     end
 
+    -- Contains additional tax information associated with your Tax Registration Number (TRN) in Colombia, derived from your Registro Único Tributario (RUT) document.
+    record ColombiaAdditionalInfo
+        -- The DIAN fiscal responsibility codes from Box 53 of the RUT document (for example, 48 for value-added tax (VAT) responsibility).
+        responsibilityCodes: {string}
+        -- The taxpayer category from Box 24 of the RUT document (1 for a legal entity, 2 for a natural person).
+        taxpayerTypeCode: string
+        -- The issue date of the RUT document from Box 61, in YYYY-MM-DD format.
+        issueDate: string
+    end
+
     -- Additional tax information to specify for a TRN in Egypt.
     record EgyptAdditionalInfo
         -- The unique identification number provided by the Egypt Tax Authority.
@@ -431,6 +441,8 @@ local record M
         germanyAdditionalInfo: GermanyAdditionalInfo
         -- Additional tax information associated with your Tax Registration Number (TRN) in Mexico.
         mexicoAdditionalInfo: MexicoAdditionalInfo
+        -- Additional tax information associated with your Tax Registration Number (TRN) in Colombia.
+        colombiaAdditionalInfo: ColombiaAdditionalInfo
     end
 
     enum TaxRegistrationType
@@ -443,6 +455,11 @@ local record M
         "NRIC"
         "PAN"
         "NIP"
+        "CUIT"
+        "CDI"
+        "RUT"
+        "NIE"
+        "CI"
     end
 
     enum Sector
@@ -456,6 +473,14 @@ local record M
         "Pending"
         "Deleted"
         "Rejected"
+    end
+
+    -- The reason that a tax registration was rejected.
+    record TaxRegistrationStatusReason
+        -- A code that identifies the rejection reason (for example, NIT_MISMATCH or ENCRYPTED_PDF). If the reason isn't recognized, the value is OTHER. New codes might be added in the future.
+        code: string
+        -- A description of the rejection reason in English.
+        message: string
     end
 
     -- The metadata for your tax document.
@@ -474,7 +499,7 @@ local record M
         registrationType: string
         -- The legal name associated with your TRN information.
         legalName: string
-        -- The status of your TRN. This can be either Verified, Pending, Deleted, or Rejected.
+        -- The status of your TRN. This can be either Verified, Pending, Deleted, or Rejected. If the status is Rejected, see statusReason for the reason.
         status: string
         -- The industry that describes your business. For business-to-business (B2B) customers, specify Business. For business-to-consumer (B2C) customers, specify Individual. For business-to-government (B2G), specify Government.Note that certain values may not applicable for the request country. Please refer to country specific information in API document.
         sector: string
@@ -484,6 +509,8 @@ local record M
         certifiedEmailId: string
         -- Additional tax information associated with your TRN.
         additionalTaxInformation: AdditionalInfoResponse
+        -- The reason that your TRN was rejected. This is returned only when status is Rejected.
+        statusReason: TaxRegistrationStatusReason
         -- The jurisdiction associated with your TRN information.
         jurisdiction: Jurisdiction
     end
@@ -838,7 +865,7 @@ local record M
         registrationType: string
         -- The legal name associated with your TRN registration.
         legalName: string
-        -- The status of your TRN. This can be either Verified, Pending, Deleted, or Rejected.
+        -- The status of your TRN. This can be either Verified, Pending, Deleted, or Rejected. If the status is Rejected, see statusReason for the reason.
         status: string
         -- The industry that describes your business. For business-to-business (B2B) customers, specify Business. For business-to-consumer (B2C) customers, specify Individual. For business-to-government (B2G), specify Government. Note that certain values may not applicable for the request country. Please refer to country specific information in API document.
         sector: string
@@ -848,6 +875,8 @@ local record M
         certifiedEmailId: string
         -- Additional tax information associated with your TRN.
         additionalTaxInformation: AdditionalInfoResponse
+        -- The reason that your TRN was rejected. This is returned only when status is Rejected.
+        statusReason: TaxRegistrationStatusReason
         -- The legal address associated with your TRN registration.
         legalAddress: Address
     end

@@ -274,6 +274,42 @@ function M.items_get_resources_v2(client, input)
     })
 end
 
+--- Returns a page iterator for getSoftwareResourcesV2.
+function M.pages_get_software_resources_v2(client, input)
+    return paginator.pages(client, "getSoftwareResourcesV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SoftwareResources",
+    })
+end
+
+--- Returns an item iterator for getSoftwareResourcesV2.
+function M.items_get_software_resources_v2(client, input)
+    return paginator.items(client, "getSoftwareResourcesV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SoftwareResources",
+    })
+end
+
+--- Returns a page iterator for getSoftwareV2.
+function M.pages_get_software_v2(client, input)
+    return paginator.pages(client, "getSoftwareV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Software",
+    })
+end
+
+--- Returns an item iterator for getSoftwareV2.
+function M.items_get_software_v2(client, input)
+    return paginator.items(client, "getSoftwareV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Software",
+    })
+end
+
 --- Returns a page iterator for listAggregatorsV2.
 function M.pages_list_aggregators_v2(client, input)
     return paginator.pages(client, "listAggregatorsV2", input, {

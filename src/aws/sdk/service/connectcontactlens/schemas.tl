@@ -12,6 +12,10 @@ local M: {string:any} = {}
 
 M.RealtimeContactAnalysisSegments = schema.new({ type = "list", list_member = M.RealtimeContactAnalysisSegment })
 
+M.CategoriesAttributeOrConditionList = schema.new({ type = "list", list_member = M.CategoriesAttributeAndCondition })
+
+M.TagAndConditionList = schema.new({ type = "list", list_member = M.TagCondition })
+
 M.IssuesDetected = schema.new({ type = "list", list_member = M.IssueDetected })
 
 M.MatchedCategories = schema.new({ type = "list", list_member = prelude.String })
@@ -73,6 +77,87 @@ M.InvalidRequestException = schema.new({
     },
 })
 
+M.TagCondition = schema.new({
+    id = id.from(_N, "TagCondition"),
+    type = "structure",
+    members = {
+        TagKey = schema.new({
+            id = id.from(_N, "TagCondition", "TagKey"),
+            type = "string",
+            name = "TagKey",
+            target_id = prelude.String.id,
+        }),
+        TagValue = schema.new({
+            id = id.from(_N, "TagCondition", "TagValue"),
+            type = "string",
+            name = "TagValue",
+            target_id = prelude.String.id,
+        }),
+        ComparisonType = schema.new({
+            id = id.from(_N, "TagCondition", "ComparisonType"),
+            type = "string",
+            name = "ComparisonType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CategoriesAttributeAndCondition = schema.new({
+    id = id.from(_N, "CategoriesAttributeAndCondition"),
+    type = "structure",
+    members = {
+        TagConditions = schema.new({
+            id = id.from(_N, "CategoriesAttributeAndCondition", "TagConditions"),
+            type = "list",
+            name = "TagConditions",
+            target_id = prelude.Document.id,
+            list_member = M.TagCondition,
+        }),
+    },
+})
+
+M.CategoriesAttributeFilter = schema.new({
+    id = id.from(_N, "CategoriesAttributeFilter"),
+    type = "structure",
+    members = {
+        OrConditions = schema.new({
+            id = id.from(_N, "CategoriesAttributeFilter", "OrConditions"),
+            type = "list",
+            name = "OrConditions",
+            target_id = prelude.Document.id,
+            list_member = M.CategoriesAttributeAndCondition,
+        }),
+        AndCondition = schema.new({
+            id = id.from(_N, "CategoriesAttributeFilter", "AndCondition"),
+            type = "structure",
+            name = "AndCondition",
+            target_id = id.from(_N, "CategoriesAttributeAndCondition"),
+            target = M.CategoriesAttributeAndCondition,
+        }),
+        TagCondition = schema.new({
+            id = id.from(_N, "CategoriesAttributeFilter", "TagCondition"),
+            type = "structure",
+            name = "TagCondition",
+            target_id = id.from(_N, "TagCondition"),
+            target = M.TagCondition,
+        }),
+    },
+})
+
+M.RealTimeContactAnalysisSegmentsFilter = schema.new({
+    id = id.from(_N, "RealTimeContactAnalysisSegmentsFilter"),
+    type = "structure",
+    members = {
+        CategoriesAttributeFilter = schema.new({
+            id = id.from(_N, "RealTimeContactAnalysisSegmentsFilter", "CategoriesAttributeFilter"),
+            type = "structure",
+            name = "CategoriesAttributeFilter",
+            target_id = id.from(_N, "CategoriesAttributeFilter"),
+            target = M.CategoriesAttributeFilter,
+        }),
+    },
+})
+
 M.ListRealtimeContactAnalysisSegmentsInput = schema.new({
     id = id.from(_N, "ListRealtimeContactAnalysisSegmentsRequest"),
     type = "structure",
@@ -106,6 +191,13 @@ M.ListRealtimeContactAnalysisSegmentsInput = schema.new({
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
+        }),
+        ListFilter = schema.new({
+            id = id.from(_N, "ListRealtimeContactAnalysisSegmentsInput", "ListFilter"),
+            type = "structure",
+            name = "ListFilter",
+            target_id = id.from(_N, "RealTimeContactAnalysisSegmentsFilter"),
+            target = M.RealTimeContactAnalysisSegmentsFilter,
         }),
     },
 })
@@ -148,6 +240,12 @@ M.CategoryDetails = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        RuleId = schema.new({
+            id = id.from(_N, "CategoryDetails", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
         }),
     },
 })

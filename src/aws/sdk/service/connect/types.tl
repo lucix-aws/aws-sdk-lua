@@ -5425,6 +5425,14 @@ local record M
         "AMD_NOT_APPLICABLE"
     end
 
+    -- Information about a case associated with a contact.
+    record CaseEntry
+        -- Unique identifier of the case in UUID format.
+        CaseId: string
+        -- A friendly number for the case. Reference numbers are not guaranteed to be unique.
+        CaseReferenceNumber: string
+    end
+
     enum ParticipantType
         "ALL"
         "MANAGER"
@@ -18923,6 +18931,8 @@ local record M
         ContactEvaluations: {string : ContactEvaluation}
         -- If this contact was created using a task template, this contains information about the task template.
         TaskTemplateInfo: TaskTemplateInfoV2
+        -- A list of cases associated with the contact. This field is populated when one or more cases have been linked to the contact.
+        Cases: {CaseEntry}
         -- A map of string key/value pairs that contain user-defined attributes which are lightly typed within the contact.
         -- This object is used only for task contacts.
         ContactDetails: ContactDetails

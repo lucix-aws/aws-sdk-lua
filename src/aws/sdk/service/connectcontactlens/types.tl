@@ -17,6 +17,57 @@ local record M
         Message: string
     end
 
+    enum TagComparisonType
+        "EQUALS"
+        "NOT_EQUALS"
+    end
+
+    -- A tag condition that consists of a tag key, a tag value, and a comparison
+    -- operator.
+    record TagCondition
+        -- The tag key in the tag condition.
+        TagKey: string
+        -- The tag value in the tag condition.
+        TagValue: string
+        -- The comparison operator for the tag condition. Valid values: EQUALS |
+        -- NOT_EQUALS.
+        ComparisonType: string
+    end
+
+    -- A list of tag conditions that the filter evaluates together using AND logic. A
+    -- category segment matches only when the tags on its rule satisfy every tag condition in
+    -- the list.
+    record CategoriesAttributeAndCondition
+        -- A list of tag conditions. All of the tag conditions must be met for the condition to
+        -- match.
+        TagConditions: {TagCondition}
+    end
+
+    -- A filter that matches category segments based on the tags assigned to the rules that
+    -- create the categories. Provide exactly one of OrConditions,
+    -- AndCondition, or TagCondition.
+    record CategoriesAttributeFilter
+        -- A list of conditions that the filter evaluates using OR logic. A category segment
+        -- matches when at least one of the conditions in the list is met.
+        OrConditions: {CategoriesAttributeAndCondition}
+        -- A condition that the filter evaluates using AND logic. A category segment matches only
+        -- when all of the tag conditions in the condition are met.
+        AndCondition: CategoriesAttributeAndCondition
+        -- A single tag condition that a category segment must match. The category's rule must
+        -- have the specified tag.
+        TagCondition: TagCondition
+    end
+
+    -- A filter that restricts the segments returned by
+    -- ListRealtimeContactAnalysisSegments. It supports filtering category
+    -- segments by the tags on the rules that create them, which enforces tag-based access
+    -- control on the categories a caller can view.
+    record RealTimeContactAnalysisSegmentsFilter
+        -- A filter applied to category segments based on the tags of the rules that create the
+        -- matched categories.
+        CategoriesAttributeFilter: CategoriesAttributeFilter
+    end
+
     record ListRealtimeContactAnalysisSegmentsInput
         -- The identifier of the Amazon Connect instance.
         InstanceId: string
@@ -27,6 +78,11 @@ local record M
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
         NextToken: string
+        -- A filter that limits the category segments returned by the operation. When provided,
+        -- use CategoriesAttributeFilter to return only the category segments whose
+        -- rules have tags that match the filter. This enforces tag-based access control on the
+        -- categories that the caller can view.
+        ListFilter: RealTimeContactAnalysisSegmentsFilter
     end
 
     -- The section of the contact audio where a match was detected.
@@ -41,6 +97,8 @@ local record M
     record CategoryDetails
         -- The section of audio where the category rule was detected.
         PointsOfInterest: {PointOfInterest}
+        -- The unique identifier of the rule that created the matched category.
+        RuleId: string
     end
 
     -- Provides the category rules that are used to automatically categorize contacts based

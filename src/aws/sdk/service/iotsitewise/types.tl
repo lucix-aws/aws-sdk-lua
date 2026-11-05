@@ -2375,6 +2375,9 @@ local record M
         destinationS3Uri: string
         -- The processing input source.
         input: ProcessingInput
+        -- An optional name for the export job. When omitted, one will be created based on type of job
+        -- and start time.
+        jobName: string
         -- The location where the error report will be written on failure.
         errorReportLocation: ExportErrorReportLocation
     end
@@ -3784,6 +3787,8 @@ local record M
         jobId: string
         -- The name of the workspace that contains the dataset export job.
         workspaceName: string
+        -- The name of the dataset export job.
+        jobName: string
         -- The current status of the dataset export job.
         status: string
         -- The timestamp when the job started processing.
@@ -5651,6 +5656,8 @@ local record M
     record ExportJobSummary
         -- The unique identifier for the dataset export job.
         jobId: string
+        -- The name of the dataset export job.
+        jobName: string
         -- The current status of the dataset export job.
         status: string
         -- The timestamp when the job started processing.

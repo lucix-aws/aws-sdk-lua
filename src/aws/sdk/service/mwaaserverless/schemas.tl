@@ -22,6 +22,8 @@ M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
 
+M.EnvironmentVariablesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.TaskInstanceSummaries = schema.new({ type = "list", list_member = M.TaskInstanceSummary })
 
 M.WorkflowSummaries = schema.new({ type = "list", list_member = M.WorkflowSummary })
@@ -744,6 +746,21 @@ M.EncryptionConfiguration = schema.new({
     },
 })
 
+M.Environment = schema.new({
+    id = id.from(_N, "Environment"),
+    type = "structure",
+    members = {
+        Variables = schema.new({
+            id = id.from(_N, "Environment", "Variables"),
+            type = "map",
+            name = "Variables",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.LoggingConfiguration = schema.new({
     id = id.from(_N, "LoggingConfiguration"),
     type = "structure",
@@ -861,6 +878,13 @@ M.CreateWorkflowInput = schema.new({
             name = "NetworkConfiguration",
             target_id = id.from(_N, "NetworkConfiguration"),
             target = M.NetworkConfiguration,
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "CreateWorkflowInput", "Environment"),
+            type = "structure",
+            name = "Environment",
+            target_id = id.from(_N, "Environment"),
+            target = M.Environment,
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateWorkflowInput", "Tags"),
@@ -1195,6 +1219,13 @@ M.GetWorkflowOutput = schema.new({
             target_id = id.from(_N, "NetworkConfiguration"),
             target = M.NetworkConfiguration,
         }),
+        Environment = schema.new({
+            id = id.from(_N, "GetWorkflowOutput", "Environment"),
+            type = "structure",
+            name = "Environment",
+            target_id = id.from(_N, "Environment"),
+            target = M.Environment,
+        }),
         TriggerMode = schema.new({
             id = id.from(_N, "GetWorkflowOutput", "TriggerMode"),
             type = "string",
@@ -1388,6 +1419,13 @@ M.UpdateWorkflowInput = schema.new({
             name = "NetworkConfiguration",
             target_id = id.from(_N, "NetworkConfiguration"),
             target = M.NetworkConfiguration,
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "UpdateWorkflowInput", "Environment"),
+            type = "structure",
+            name = "Environment",
+            target_id = id.from(_N, "Environment"),
+            target = M.Environment,
         }),
         TriggerMode = schema.new({
             id = id.from(_N, "UpdateWorkflowInput", "TriggerMode"),

@@ -4314,6 +4314,15 @@ M.CreateNetworkMigrationDefinitionInput = schema.new({
     id = id.from(_N, "CreateNetworkMigrationDefinitionRequest"),
     type = "structure",
     members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateNetworkMigrationDefinitionInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
         name = schema.new({
             id = id.from(_N, "CreateNetworkMigrationDefinitionInput", "name"),
             type = "string",

@@ -21,6 +21,7 @@ local record Client
     batchExecuteStatement: function(Client, types.BatchExecuteStatementInput, ? base_client.InvokeOptions): async.Operation<types.BatchExecuteStatementOutput>
     batchGetItem: function(Client, types.BatchGetItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetItemOutput>
     batchWriteItem: function(Client, types.BatchWriteItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchWriteItemOutput>
+    cancelBulkOperation: function(Client, types.CancelBulkOperationInput, ? base_client.InvokeOptions): async.Operation<types.CancelBulkOperationOutput>
     createBackup: function(Client, types.CreateBackupInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupOutput>
     createGlobalTable: function(Client, types.CreateGlobalTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlobalTableOutput>
     createTable: function(Client, types.CreateTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
@@ -29,6 +30,7 @@ local record Client
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     deleteTable: function(Client, types.DeleteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
     describeBackup: function(Client, types.DescribeBackupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBackupOutput>
+    describeBulkOperation: function(Client, types.DescribeBulkOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBulkOperationOutput>
     describeContinuousBackups: function(Client, types.DescribeContinuousBackupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContinuousBackupsOutput>
     describeContributorInsights: function(Client, types.DescribeContributorInsightsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContributorInsightsOutput>
     describeEndpoints: function(Client, types.DescribeEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
@@ -50,6 +52,7 @@ local record Client
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     importTable: function(Client, types.ImportTableInput, ? base_client.InvokeOptions): async.Operation<types.ImportTableOutput>
     listBackups: function(Client, types.ListBackupsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupsOutput>
+    listBulkOperations: function(Client, types.ListBulkOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListBulkOperationsOutput>
     listContributorInsights: function(Client, types.ListContributorInsightsInput, ? base_client.InvokeOptions): async.Operation<types.ListContributorInsightsOutput>
     listExports: function(Client, types.ListExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
     listGlobalTables: function(Client, types.ListGlobalTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListGlobalTablesOutput>
@@ -63,6 +66,7 @@ local record Client
     restoreTableToPointInTime: function(Client, types.RestoreTableToPointInTimeInput, ? base_client.InvokeOptions): async.Operation<types.RestoreTableToPointInTimeOutput>
     scan: function(Client, types.ScanInput, ? base_client.InvokeOptions): async.Operation<types.ScanOutput>
     searchVectors: function(Client, types.SearchVectorsInput, ? base_client.InvokeOptions): async.Operation<types.SearchVectorsOutput>
+    startBulkPutItems: function(Client, types.StartBulkPutItemsInput, ? base_client.InvokeOptions): async.Operation<types.StartBulkPutItemsOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     transactGetItems: function(Client, types.TransactGetItemsInput, ? base_client.InvokeOptions): async.Operation<types.TransactGetItemsOutput>
     transactWriteItems: function(Client, types.TransactWriteItemsInput, ? base_client.InvokeOptions): async.Operation<types.TransactWriteItemsOutput>
@@ -132,6 +136,10 @@ function C:batchWriteItem(input: types.BatchWriteItemInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchWriteItem as schema.OperationSchema, input, options) as async.Operation<types.BatchWriteItemOutput>
 end
 
+function C:cancelBulkOperation(input: types.CancelBulkOperationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelBulkOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelBulkOperation as schema.OperationSchema, input, options) as async.Operation<types.CancelBulkOperationOutput>
+end
+
 function C:createBackup(input: types.CreateBackupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBackupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBackup as schema.OperationSchema, input, options) as async.Operation<types.CreateBackupOutput>
 end
@@ -162,6 +170,10 @@ end
 
 function C:describeBackup(input: types.DescribeBackupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBackupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBackup as schema.OperationSchema, input, options) as async.Operation<types.DescribeBackupOutput>
+end
+
+function C:describeBulkOperation(input: types.DescribeBulkOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBulkOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBulkOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeBulkOperationOutput>
 end
 
 function C:describeContinuousBackups(input: types.DescribeContinuousBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContinuousBackupsOutput>
@@ -248,6 +260,10 @@ function C:listBackups(input: types.ListBackupsInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackups as schema.OperationSchema, input, options) as async.Operation<types.ListBackupsOutput>
 end
 
+function C:listBulkOperations(input: types.ListBulkOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBulkOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBulkOperations as schema.OperationSchema, input, options) as async.Operation<types.ListBulkOperationsOutput>
+end
+
 function C:listContributorInsights(input: types.ListContributorInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContributorInsightsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContributorInsights as schema.OperationSchema, input, options) as async.Operation<types.ListContributorInsightsOutput>
 end
@@ -298,6 +314,10 @@ end
 
 function C:searchVectors(input: types.SearchVectorsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchVectorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchVectors as schema.OperationSchema, input, options) as async.Operation<types.SearchVectorsOutput>
+end
+
+function C:startBulkPutItems(input: types.StartBulkPutItemsInput, options?: base_client.InvokeOptions): async.Operation<types.StartBulkPutItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBulkPutItems as schema.OperationSchema, input, options) as async.Operation<types.StartBulkPutItemsOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

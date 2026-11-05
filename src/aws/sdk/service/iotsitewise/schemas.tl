@@ -6028,6 +6028,12 @@ M.CreateDatasetExportJobInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        jobName = schema.new({
+            id = id.from(_N, "CreateDatasetExportJobInput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+        }),
         errorReportLocation = schema.new({
             id = id.from(_N, "CreateDatasetExportJobInput", "errorReportLocation"),
             type = "structure",
@@ -9878,6 +9884,12 @@ M.DescribeDatasetExportJobOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        jobName = schema.new({
+            id = id.from(_N, "DescribeDatasetExportJobOutput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
         }),
         status = schema.new({
             id = id.from(_N, "DescribeDatasetExportJobOutput", "status"),
@@ -15125,6 +15137,12 @@ M.ExportJobSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        jobName = schema.new({
+            id = id.from(_N, "ExportJobSummary", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
         }),
         status = schema.new({
             id = id.from(_N, "ExportJobSummary", "status"),

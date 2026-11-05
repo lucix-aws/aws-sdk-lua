@@ -124,6 +124,12 @@ M.ResourcesTrendsMetrics = schema.new({ type = "list", list_member = M.Resources
 
 M.Resources = schema.new({ type = "list", list_member = M.ResourceResult })
 
+M.SoftwareResourceResultList = schema.new({ type = "list", list_member = M.SoftwareResourceResult })
+
+M.SoftwareGroupByRules = schema.new({ type = "list", list_member = M.SoftwareGroupByRule })
+
+M.SoftwareList = schema.new({ type = "list", list_member = M.SoftwareResult })
+
 M.AggregatorV2List = schema.new({ type = "list", list_member = M.AggregatorV2 })
 
 M.AutomationRulesMetadataList = schema.new({ type = "list", list_member = M.AutomationRulesMetadata })
@@ -199,6 +205,8 @@ M.ResourcesCompositeFilterList = schema.new({ type = "list", list_member = M.Res
 M.CustomizableProperties = schema.new({ type = "list", list_member = prelude.String })
 
 M.ParameterDefinitions = schema.new({ type = "map", map_key = prelude.String, map_value = M.ParameterDefinition })
+
+M.SoftwareCompositeFilterList = schema.new({ type = "list", list_member = M.SoftwareCompositeFilter })
 
 M.StandardsInputParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -287,6 +295,8 @@ M.ResourcesDateFilterList = schema.new({ type = "list", list_member = M.Resource
 M.ResourcesNumberFilterList = schema.new({ type = "list", list_member = M.ResourcesNumberFilter })
 
 M.ResourcesMapFilterList = schema.new({ type = "list", list_member = M.ResourcesMapFilter })
+
+M.SoftwareStringFilterList = schema.new({ type = "list", list_member = M.SoftwareStringFilter })
 
 M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
 
@@ -33168,6 +33178,216 @@ M.GetSecurityControlDefinitionOutput = schema.new({
     },
 })
 
+M.SoftwareStringFilter = schema.new({
+    id = id.from(_N, "SoftwareStringFilter"),
+    type = "structure",
+    members = {
+        FieldName = schema.new({
+            id = id.from(_N, "SoftwareStringFilter", "FieldName"),
+            type = "string",
+            name = "FieldName",
+            target_id = prelude.String.id,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "SoftwareStringFilter", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "StringFilter"),
+            target = M.StringFilter,
+        }),
+    },
+})
+
+M.SoftwareScopes = schema.new({
+    id = id.from(_N, "SoftwareScopes"),
+    type = "structure",
+    members = {
+        AwsOrganizations = schema.new({
+            id = id.from(_N, "SoftwareScopes", "AwsOrganizations"),
+            type = "list",
+            name = "AwsOrganizations",
+            target_id = prelude.Document.id,
+            list_member = M.AwsOrganizationScope,
+        }),
+    },
+})
+
+M.SoftwareResourceResult = schema.new({
+    id = id.from(_N, "SoftwareResourceResult"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Region = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceProvider = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "ResourceProvider"),
+            type = "string",
+            name = "ResourceProvider",
+            target_id = prelude.String.id,
+        }),
+        ResourceOwnerOrgId = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "ResourceOwnerOrgId"),
+            type = "string",
+            name = "ResourceOwnerOrgId",
+            target_id = prelude.String.id,
+        }),
+        ResourceOwnerAccountId = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "ResourceOwnerAccountId"),
+            type = "string",
+            name = "ResourceOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+        ResourceCloudPartition = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "ResourceCloudPartition"),
+            type = "string",
+            name = "ResourceCloudPartition",
+            target_id = prelude.String.id,
+        }),
+        ResourceRegion = schema.new({
+            id = id.from(_N, "SoftwareResourceResult", "ResourceRegion"),
+            type = "string",
+            name = "ResourceRegion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetSoftwareResourcesV2Output = schema.new({
+    id = id.from(_N, "GetSoftwareResourcesV2Response"),
+    type = "structure",
+    members = {
+        SoftwareResources = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Output", "SoftwareResources"),
+            type = "list",
+            name = "SoftwareResources",
+            target_id = prelude.Document.id,
+            list_member = M.SoftwareResourceResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetSoftwareStatisticsV2Output = schema.new({
+    id = id.from(_N, "GetSoftwareStatisticsV2Response"),
+    type = "structure",
+    members = {
+        GroupByResults = schema.new({
+            id = id.from(_N, "GetSoftwareStatisticsV2Output", "GroupByResults"),
+            type = "list",
+            name = "GroupByResults",
+            target_id = prelude.Document.id,
+            list_member = M.GroupByResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SoftwareResult = schema.new({
+    id = id.from(_N, "SoftwareResult"),
+    type = "structure",
+    members = {
+        PackageName = schema.new({
+            id = id.from(_N, "SoftwareResult", "PackageName"),
+            type = "string",
+            name = "PackageName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PackageVersion = schema.new({
+            id = id.from(_N, "SoftwareResult", "PackageVersion"),
+            type = "string",
+            name = "PackageVersion",
+            target_id = prelude.String.id,
+        }),
+        PackageType = schema.new({
+            id = id.from(_N, "SoftwareResult", "PackageType"),
+            type = "string",
+            name = "PackageType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceCount = schema.new({
+            id = id.from(_N, "SoftwareResult", "ResourceCount"),
+            type = "integer",
+            name = "ResourceCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSoftwareV2Output = schema.new({
+    id = id.from(_N, "GetSoftwareV2Response"),
+    type = "structure",
+    members = {
+        Software = schema.new({
+            id = id.from(_N, "GetSoftwareV2Output", "Software"),
+            type = "list",
+            name = "Software",
+            target_id = prelude.Document.id,
+            list_member = M.SoftwareResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetSoftwareV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InviteMembersInput = schema.new({
     id = id.from(_N, "InviteMembersRequest"),
     type = "structure",
@@ -35314,6 +35534,33 @@ M.ResourcesTrendsCompositeFilter = schema.new({
     },
 })
 
+M.SoftwareCompositeFilter = schema.new({
+    id = id.from(_N, "SoftwareCompositeFilter"),
+    type = "structure",
+    members = {
+        StringFilters = schema.new({
+            id = id.from(_N, "SoftwareCompositeFilter", "StringFilters"),
+            type = "list",
+            name = "StringFilters",
+            target_id = prelude.Document.id,
+            list_member = M.SoftwareStringFilter,
+        }),
+        NestedCompositeFilters = schema.new({
+            id = id.from(_N, "SoftwareCompositeFilter", "NestedCompositeFilters"),
+            type = "list",
+            name = "NestedCompositeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.SoftwareCompositeFilter,
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "SoftwareCompositeFilter", "Operator"),
+            type = "string",
+            name = "Operator",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.FindingsTrendsFilters = schema.new({
     id = id.from(_N, "FindingsTrendsFilters"),
     type = "structure",
@@ -35387,6 +35634,26 @@ M.ResourcesTrendsFilters = schema.new({
         }),
         CompositeOperator = schema.new({
             id = id.from(_N, "ResourcesTrendsFilters", "CompositeOperator"),
+            type = "string",
+            name = "CompositeOperator",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SoftwareFilters = schema.new({
+    id = id.from(_N, "SoftwareFilters"),
+    type = "structure",
+    members = {
+        CompositeFilters = schema.new({
+            id = id.from(_N, "SoftwareFilters", "CompositeFilters"),
+            type = "list",
+            name = "CompositeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.SoftwareCompositeFilter,
+        }),
+        CompositeOperator = schema.new({
+            id = id.from(_N, "SoftwareFilters", "CompositeOperator"),
             type = "string",
             name = "CompositeOperator",
             target_id = prelude.String.id,
@@ -35608,6 +35875,110 @@ M.GetResourcesV2Input = schema.new({
     },
 })
 
+M.GetSoftwareResourcesV2Input = schema.new({
+    id = id.from(_N, "GetSoftwareResourcesV2Request"),
+    type = "structure",
+    members = {
+        PackageName = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Input", "PackageName"),
+            type = "string",
+            name = "PackageName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PackageType = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Input", "PackageType"),
+            type = "string",
+            name = "PackageType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PackageVersion = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Input", "PackageVersion"),
+            type = "string",
+            name = "PackageVersion",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Input", "Filters"),
+            type = "structure",
+            name = "Filters",
+            target_id = id.from(_N, "SoftwareFilters"),
+            target = M.SoftwareFilters,
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Input", "Scopes"),
+            type = "structure",
+            name = "Scopes",
+            target_id = id.from(_N, "SoftwareScopes"),
+            target = M.SoftwareScopes,
+        }),
+        SortCriteria = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Input", "SortCriteria"),
+            type = "list",
+            name = "SortCriteria",
+            target_id = prelude.Document.id,
+            list_member = M.SortCriterion,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetSoftwareResourcesV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.GetSoftwareV2Input = schema.new({
+    id = id.from(_N, "GetSoftwareV2Request"),
+    type = "structure",
+    members = {
+        Filters = schema.new({
+            id = id.from(_N, "GetSoftwareV2Input", "Filters"),
+            type = "structure",
+            name = "Filters",
+            target_id = id.from(_N, "SoftwareFilters"),
+            target = M.SoftwareFilters,
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "GetSoftwareV2Input", "Scopes"),
+            type = "structure",
+            name = "Scopes",
+            target_id = id.from(_N, "SoftwareScopes"),
+            target = M.SoftwareScopes,
+        }),
+        SortCriteria = schema.new({
+            id = id.from(_N, "GetSoftwareV2Input", "SortCriteria"),
+            type = "list",
+            name = "SortCriteria",
+            target_id = prelude.Document.id,
+            list_member = M.SortCriterion,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetSoftwareV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetSoftwareV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.GroupByRule = schema.new({
     id = id.from(_N, "GroupByRule"),
     type = "structure",
@@ -35650,6 +36021,29 @@ M.ResourceGroupByRule = schema.new({
             name = "Filters",
             target_id = id.from(_N, "ResourcesFilters"),
             target = M.ResourcesFilters,
+        }),
+    },
+})
+
+M.SoftwareGroupByRule = schema.new({
+    id = id.from(_N, "SoftwareGroupByRule"),
+    type = "structure",
+    members = {
+        GroupByField = schema.new({
+            id = id.from(_N, "SoftwareGroupByRule", "GroupByField"),
+            type = "string",
+            name = "GroupByField",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "SoftwareGroupByRule", "Filters"),
+            type = "structure",
+            name = "Filters",
+            target_id = id.from(_N, "SoftwareFilters"),
+            target = M.SoftwareFilters,
         }),
     },
 })
@@ -35831,6 +36225,42 @@ M.GetResourcesStatisticsV2Input = schema.new({
         }),
         MaxStatisticResults = schema.new({
             id = id.from(_N, "GetResourcesStatisticsV2Input", "MaxStatisticResults"),
+            type = "integer",
+            name = "MaxStatisticResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.GetSoftwareStatisticsV2Input = schema.new({
+    id = id.from(_N, "GetSoftwareStatisticsV2Request"),
+    type = "structure",
+    members = {
+        GroupByRules = schema.new({
+            id = id.from(_N, "GetSoftwareStatisticsV2Input", "GroupByRules"),
+            type = "list",
+            name = "GroupByRules",
+            target_id = prelude.Document.id,
+            list_member = M.SoftwareGroupByRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "GetSoftwareStatisticsV2Input", "Scopes"),
+            type = "structure",
+            name = "Scopes",
+            target_id = id.from(_N, "SoftwareScopes"),
+            target = M.SoftwareScopes,
+        }),
+        SortOrder = schema.new({
+            id = id.from(_N, "GetSoftwareStatisticsV2Input", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+        }),
+        MaxStatisticResults = schema.new({
+            id = id.from(_N, "GetSoftwareStatisticsV2Input", "MaxStatisticResults"),
             type = "integer",
             name = "MaxStatisticResults",
             target_id = prelude.Integer.id,
@@ -37154,6 +37584,42 @@ M.GetSecurityControlDefinition = schema.operation({
     output = M.GetSecurityControlDefinitionOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/securityControl/definition" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSoftwareResourcesV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetSoftwareResourcesV2"),
+    input = M.GetSoftwareResourcesV2Input,
+    output = M.GetSoftwareResourcesV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/softwarev2/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSoftwareStatisticsV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetSoftwareStatisticsV2"),
+    input = M.GetSoftwareStatisticsV2Input,
+    output = M.GetSoftwareStatisticsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/softwarev2/statistics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSoftwareV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetSoftwareV2"),
+    input = M.GetSoftwareV2Input,
+    output = M.GetSoftwareV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/softwarev2" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

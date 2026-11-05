@@ -4,6 +4,56 @@ local waiter = require("smithy.waiter")
 
 local M = {}
 
+--- Wait until BulkOperationCompleted.
+function M.wait_until_bulk_operation_completed(client, input, options)
+    return waiter.wait(client, "describeBulkOperation", input, {
+        min_delay = 20,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "BulkOperationDescription.BulkOperationStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "BulkOperationDescription.BulkOperationStatus",
+                        expected = "COMPLETED_WITH_ERRORS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "BulkOperationDescription.BulkOperationStatus",
+                        expected = "CANCELLED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "BulkOperationDescription.BulkOperationStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
 --- Wait until ContributorInsightsEnabled.
 function M.wait_until_contributor_insights_enabled(client, input, options)
     return waiter.wait(client, "describeContributorInsights", input, {

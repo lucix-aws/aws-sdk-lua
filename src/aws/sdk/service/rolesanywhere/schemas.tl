@@ -305,6 +305,31 @@ M.CreateProfileOutput = schema.new({
     },
 })
 
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.ValidationException = schema.new({
     id = id.from(_N, "ValidationException"),
     type = "structure",
@@ -426,6 +451,12 @@ M.CreateTrustAnchorInput = schema.new({
             name = "enabled",
             target_id = prelude.Boolean.id,
         }),
+        crlDpRevocationEnabled = schema.new({
+            id = id.from(_N, "CreateTrustAnchorInput", "crlDpRevocationEnabled"),
+            type = "boolean",
+            name = "crlDpRevocationEnabled",
+            target_id = prelude.Boolean.id,
+        }),
         tags = schema.new({
             id = id.from(_N, "CreateTrustAnchorInput", "tags"),
             type = "list",
@@ -519,6 +550,12 @@ M.TrustAnchorDetail = schema.new({
             id = id.from(_N, "TrustAnchorDetail", "enabled"),
             type = "boolean",
             name = "enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        crlDpRevocationEnabled = schema.new({
+            id = id.from(_N, "TrustAnchorDetail", "crlDpRevocationEnabled"),
+            type = "boolean",
+            name = "crlDpRevocationEnabled",
             target_id = prelude.Boolean.id,
         }),
         createdAt = schema.new({
@@ -1954,6 +1991,12 @@ M.UpdateTrustAnchorInput = schema.new({
             name = "source",
             target_id = id.from(_N, "Source"),
             target = M.Source,
+        }),
+        crlDpRevocationEnabled = schema.new({
+            id = id.from(_N, "UpdateTrustAnchorInput", "crlDpRevocationEnabled"),
+            type = "boolean",
+            name = "crlDpRevocationEnabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

@@ -282,13 +282,15 @@ local record M
 
     enum ReviewSourceId
         "AWS_MARKETPLACE"
+        "G2"
+        "PEERSPOT"
     end
 
     -- A review summary from a specific source, including the average rating and total review count.
     record ReviewSourceSummary
-        -- The name of the review source, such as AWS Marketplace.
+        -- The name of the review source. This field has one of the following values: AWS Marketplace G2 PeerSpot
         sourceName: string
-        -- The machine-readable identifier of the review source.
+        -- The machine-readable identifier of the review source. This field has one of the following values: AWS_MARKETPLACE – The reviews come from AWS Marketplace. G2 – The reviews come from G2. PEERSPOT – The reviews come from PeerSpot.
         sourceId: string
         -- The URL where the reviews can be accessed at the source.
         sourceUrl: string
@@ -300,7 +302,7 @@ local record M
 
     -- A summary of customer reviews available for a listing, aggregated by review source.
     record ReviewSummary
-        -- Review summaries from different sources, such as AWS Marketplace.
+        -- Review summaries from different sources, such as AWS Marketplace, G2, and PeerSpot.
         reviewSourceSummaries: {ReviewSourceSummary}
     end
 

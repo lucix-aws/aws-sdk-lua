@@ -72,6 +72,8 @@ M.AttributeNameList = schema.new({ type = "list", list_member = prelude.String }
 
 M.BackupSummaries = schema.new({ type = "list", list_member = M.BackupSummary })
 
+M.BulkOperationsSummaryList = schema.new({ type = "list", list_member = M.BulkOperationSummary })
+
 M.ContributorInsightsSummaries = schema.new({ type = "list", list_member = M.ContributorInsightsSummary })
 
 M.ExportSummaries = schema.new({ type = "list", list_member = M.ExportSummary })
@@ -140,7 +142,13 @@ M.ItemCollectionKeyAttributeMap = schema.new({ type = "map", map_key = prelude.S
 
 M.ItemCollectionSizeEstimateRange = schema.new({ type = "list", list_member = prelude.Double })
 
+M.BulkOperationTableDetails = schema.new({ type = "list", list_member = M.BulkOperationTableDetail })
+
+M.BulkOperationUsageMultiple = schema.new({ type = "list", list_member = M.BulkOperationUsage })
+
 M.ReplicaAutoScalingDescriptionList = schema.new({ type = "list", list_member = M.ReplicaAutoScalingDescription })
+
+M.OutputTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.KeyList = schema.new({ type = "list", list_member = M.Key })
 
@@ -175,6 +183,10 @@ M.ReplicaGlobalSecondaryIndexAutoScalingUpdateList = schema.new({ type = "list",
 M.ReplicaGlobalSecondaryIndexDescriptionList = schema.new({ type = "list", list_member = M.ReplicaGlobalSecondaryIndexDescription })
 
 M.NonKeyAttributeNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecondaryIndexesBulkBytesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.BulkOperationBytes })
+
+M.VectorIndexesBulkVectorBytesMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.BulkOperationVectorBytes })
 
 M.AutoScalingPolicyDescriptionList = schema.new({ type = "list", list_member = M.AutoScalingPolicyDescription })
 
@@ -1350,6 +1362,391 @@ M.BillingModeSummary = schema.new({
             type = "timestamp",
             name = "LastUpdateToPayPerRequestDateTime",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.BulkOperationBytes = schema.new({
+    id = id.from(_N, "BulkOperationBytes"),
+    type = "structure",
+    members = {
+        BulkPutBytes = schema.new({
+            id = id.from(_N, "BulkOperationBytes", "BulkPutBytes"),
+            type = "long",
+            name = "BulkPutBytes",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.BulkOperationVectorBytes = schema.new({
+    id = id.from(_N, "BulkOperationVectorBytes"),
+    type = "structure",
+    members = {
+        BulkPutVectorBytes = schema.new({
+            id = id.from(_N, "BulkOperationVectorBytes", "BulkPutVectorBytes"),
+            type = "long",
+            name = "BulkPutVectorBytes",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.BulkOperationUsage = schema.new({
+    id = id.from(_N, "BulkOperationUsage"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "BulkOperationUsage", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+        }),
+        BulkPutBytes = schema.new({
+            id = id.from(_N, "BulkOperationUsage", "BulkPutBytes"),
+            type = "long",
+            name = "BulkPutBytes",
+            target_id = prelude.Long.id,
+        }),
+        Table = schema.new({
+            id = id.from(_N, "BulkOperationUsage", "Table"),
+            type = "structure",
+            name = "Table",
+            target_id = id.from(_N, "BulkOperationBytes"),
+            target = M.BulkOperationBytes,
+        }),
+        LocalSecondaryIndexes = schema.new({
+            id = id.from(_N, "BulkOperationUsage", "LocalSecondaryIndexes"),
+            type = "map",
+            name = "LocalSecondaryIndexes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.BulkOperationBytes,
+        }),
+        GlobalSecondaryIndexes = schema.new({
+            id = id.from(_N, "BulkOperationUsage", "GlobalSecondaryIndexes"),
+            type = "map",
+            name = "GlobalSecondaryIndexes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.BulkOperationBytes,
+        }),
+        VectorIndexes = schema.new({
+            id = id.from(_N, "BulkOperationUsage", "VectorIndexes"),
+            type = "map",
+            name = "VectorIndexes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.BulkOperationVectorBytes,
+        }),
+    },
+})
+
+M.InputS3Configuration = schema.new({
+    id = id.from(_N, "InputS3Configuration"),
+    type = "structure",
+    members = {
+        S3BucketOwner = schema.new({
+            id = id.from(_N, "InputS3Configuration", "S3BucketOwner"),
+            type = "string",
+            name = "S3BucketOwner",
+            target_id = prelude.String.id,
+        }),
+        S3Bucket = schema.new({
+            id = id.from(_N, "InputS3Configuration", "S3Bucket"),
+            type = "string",
+            name = "S3Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3KeyPrefix = schema.new({
+            id = id.from(_N, "InputS3Configuration", "S3KeyPrefix"),
+            type = "string",
+            name = "S3KeyPrefix",
+            target_id = prelude.String.id,
+        }),
+        InputFormat = schema.new({
+            id = id.from(_N, "InputS3Configuration", "InputFormat"),
+            type = "string",
+            name = "InputFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InputCompressionType = schema.new({
+            id = id.from(_N, "InputS3Configuration", "InputCompressionType"),
+            type = "string",
+            name = "InputCompressionType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OutputS3Configuration = schema.new({
+    id = id.from(_N, "OutputS3Configuration"),
+    type = "structure",
+    members = {
+        S3BucketOwner = schema.new({
+            id = id.from(_N, "OutputS3Configuration", "S3BucketOwner"),
+            type = "string",
+            name = "S3BucketOwner",
+            target_id = prelude.String.id,
+        }),
+        S3Bucket = schema.new({
+            id = id.from(_N, "OutputS3Configuration", "S3Bucket"),
+            type = "string",
+            name = "S3Bucket",
+            target_id = prelude.String.id,
+        }),
+        S3KeyPrefix = schema.new({
+            id = id.from(_N, "OutputS3Configuration", "S3KeyPrefix"),
+            type = "string",
+            name = "S3KeyPrefix",
+            target_id = prelude.String.id,
+        }),
+        S3SseAlgorithm = schema.new({
+            id = id.from(_N, "OutputS3Configuration", "S3SseAlgorithm"),
+            type = "string",
+            name = "S3SseAlgorithm",
+            target_id = prelude.String.id,
+        }),
+        S3SseKmsKeyId = schema.new({
+            id = id.from(_N, "OutputS3Configuration", "S3SseKmsKeyId"),
+            type = "string",
+            name = "S3SseKmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        OutputType = schema.new({
+            id = id.from(_N, "OutputS3Configuration", "OutputType"),
+            type = "list",
+            name = "OutputType",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BulkOperationTableDetail = schema.new({
+    id = id.from(_N, "BulkOperationTableDetail"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "BulkOperationTableDetail", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+        }),
+        TableId = schema.new({
+            id = id.from(_N, "BulkOperationTableDetail", "TableId"),
+            type = "string",
+            name = "TableId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BulkOperationDescription = schema.new({
+    id = id.from(_N, "BulkOperationDescription"),
+    type = "structure",
+    members = {
+        BulkOperationArn = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "BulkOperationArn"),
+            type = "string",
+            name = "BulkOperationArn",
+            target_id = prelude.String.id,
+        }),
+        BulkOperationStatus = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "BulkOperationStatus"),
+            type = "string",
+            name = "BulkOperationStatus",
+            target_id = prelude.String.id,
+        }),
+        TableDetails = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "TableDetails"),
+            type = "list",
+            name = "TableDetails",
+            target_id = prelude.Document.id,
+            list_member = M.BulkOperationTableDetail,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+        }),
+        InputS3Configuration = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "InputS3Configuration"),
+            type = "structure",
+            name = "InputS3Configuration",
+            target_id = id.from(_N, "InputS3Configuration"),
+            target = M.InputS3Configuration,
+        }),
+        OutputS3Configuration = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "OutputS3Configuration"),
+            type = "structure",
+            name = "OutputS3Configuration",
+            target_id = id.from(_N, "OutputS3Configuration"),
+            target = M.OutputS3Configuration,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ProcessedItemCount = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "ProcessedItemCount"),
+            type = "long",
+            name = "ProcessedItemCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        ProcessedInputBytes = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "ProcessedInputBytes"),
+            type = "long",
+            name = "ProcessedInputBytes",
+            target_id = prelude.Long.id,
+        }),
+        TotalInputBytes = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "TotalInputBytes"),
+            type = "long",
+            name = "TotalInputBytes",
+            target_id = prelude.Long.id,
+        }),
+        BulkOperationUsage = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "BulkOperationUsage"),
+            type = "list",
+            name = "BulkOperationUsage",
+            target_id = prelude.Document.id,
+            list_member = M.BulkOperationUsage,
+        }),
+        FailedItemCount = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "FailedItemCount"),
+            type = "long",
+            name = "FailedItemCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        FailureCode = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "FailureCode"),
+            type = "string",
+            name = "FailureCode",
+            target_id = prelude.String.id,
+        }),
+        FailureMessage = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "FailureMessage"),
+            type = "string",
+            name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+        MaxWriteRequestUnits = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "MaxWriteRequestUnits"),
+            type = "long",
+            name = "MaxWriteRequestUnits",
+            target_id = prelude.Long.id,
+        }),
+        PerformanceTier = schema.new({
+            id = id.from(_N, "BulkOperationDescription", "PerformanceTier"),
+            type = "string",
+            name = "PerformanceTier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BulkOperationSummary = schema.new({
+    id = id.from(_N, "BulkOperationSummary"),
+    type = "structure",
+    members = {
+        BulkOperationArn = schema.new({
+            id = id.from(_N, "BulkOperationSummary", "BulkOperationArn"),
+            type = "string",
+            name = "BulkOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BulkOperationStatus = schema.new({
+            id = id.from(_N, "BulkOperationSummary", "BulkOperationStatus"),
+            type = "string",
+            name = "BulkOperationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "BulkOperationSummary", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "BulkOperationSummary", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CancelBulkOperationInput = schema.new({
+    id = id.from(_N, "CancelBulkOperationInput"),
+    type = "structure",
+    members = {
+        BulkOperationArn = schema.new({
+            id = id.from(_N, "CancelBulkOperationInput", "BulkOperationArn"),
+            type = "string",
+            name = "BulkOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CancelBulkOperationOutput = schema.new({
+    id = id.from(_N, "CancelBulkOperationOutput"),
+    type = "structure",
+    members = {
+        BulkOperationArn = schema.new({
+            id = id.from(_N, "CancelBulkOperationOutput", "BulkOperationArn"),
+            type = "string",
+            name = "BulkOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BulkOperationStatus = schema.new({
+            id = id.from(_N, "CancelBulkOperationOutput", "BulkOperationStatus"),
+            type = "string",
+            name = "BulkOperationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -3231,6 +3628,39 @@ M.DescribeBackupOutput = schema.new({
     },
 })
 
+M.DescribeBulkOperationInput = schema.new({
+    id = id.from(_N, "DescribeBulkOperationInput"),
+    type = "structure",
+    members = {
+        BulkOperationArn = schema.new({
+            id = id.from(_N, "DescribeBulkOperationInput", "BulkOperationArn"),
+            type = "string",
+            name = "BulkOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeBulkOperationOutput = schema.new({
+    id = id.from(_N, "DescribeBulkOperationOutput"),
+    type = "structure",
+    members = {
+        BulkOperationDescription = schema.new({
+            id = id.from(_N, "DescribeBulkOperationOutput", "BulkOperationDescription"),
+            type = "structure",
+            name = "BulkOperationDescription",
+            target_id = id.from(_N, "BulkOperationDescription"),
+            target = M.BulkOperationDescription,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DescribeContinuousBackupsInput = schema.new({
     id = id.from(_N, "DescribeContinuousBackupsInput"),
     type = "structure",
@@ -4701,6 +5131,45 @@ M.ListBackupsOutput = schema.new({
     },
 })
 
+M.ListBulkOperationsInput = schema.new({
+    id = id.from(_N, "ListBulkOperationsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListBulkOperationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBulkOperationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListBulkOperationsOutput = schema.new({
+    id = id.from(_N, "ListBulkOperationsOutput"),
+    type = "structure",
+    members = {
+        BulkOperationsSummaryList = schema.new({
+            id = id.from(_N, "ListBulkOperationsOutput", "BulkOperationsSummaryList"),
+            type = "list",
+            name = "BulkOperationsSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.BulkOperationSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBulkOperationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListContributorInsightsInput = schema.new({
     id = id.from(_N, "ListContributorInsightsInput"),
     type = "structure",
@@ -5337,6 +5806,80 @@ M.RestoreTableToPointInTimeOutput = schema.new({
             name = "TableDescription",
             target_id = id.from(_N, "TableDescription"),
             target = M.TableDescription,
+        }),
+    },
+})
+
+M.StartBulkPutItemsInput = schema.new({
+    id = id.from(_N, "StartBulkPutItemsInput"),
+    type = "structure",
+    members = {
+        ClientToken = schema.new({
+            id = id.from(_N, "StartBulkPutItemsInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        InputS3Configuration = schema.new({
+            id = id.from(_N, "StartBulkPutItemsInput", "InputS3Configuration"),
+            type = "structure",
+            name = "InputS3Configuration",
+            target_id = id.from(_N, "InputS3Configuration"),
+            target = M.InputS3Configuration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutputS3Configuration = schema.new({
+            id = id.from(_N, "StartBulkPutItemsInput", "OutputS3Configuration"),
+            type = "structure",
+            name = "OutputS3Configuration",
+            target_id = id.from(_N, "OutputS3Configuration"),
+            target = M.OutputS3Configuration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TableName = schema.new({
+            id = id.from(_N, "StartBulkPutItemsInput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxWriteRequestUnits = schema.new({
+            id = id.from(_N, "StartBulkPutItemsInput", "MaxWriteRequestUnits"),
+            type = "long",
+            name = "MaxWriteRequestUnits",
+            target_id = prelude.Long.id,
+        }),
+        PerformanceTier = schema.new({
+            id = id.from(_N, "StartBulkPutItemsInput", "PerformanceTier"),
+            type = "string",
+            name = "PerformanceTier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartBulkPutItemsOutput = schema.new({
+    id = id.from(_N, "StartBulkPutItemsOutput"),
+    type = "structure",
+    members = {
+        BulkOperationDescription = schema.new({
+            id = id.from(_N, "StartBulkPutItemsOutput", "BulkOperationDescription"),
+            type = "structure",
+            name = "BulkOperationDescription",
+            target_id = id.from(_N, "BulkOperationDescription"),
+            target = M.BulkOperationDescription,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -8860,6 +9403,20 @@ M.BatchWriteItem = schema.operation({
     },
 })
 
+M.CancelBulkOperation = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "CancelBulkOperation"),
+    input = M.CancelBulkOperationInput,
+    output = M.CancelBulkOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "BulkOperationArn",
+        },
+    },
+})
+
 M.CreateBackup = schema.operation({
     id = id.from("com.amazonaws.dynamodb", "CreateBackup"),
     input = M.CreateBackupInput,
@@ -8968,6 +9525,20 @@ M.DescribeBackup = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             ResourceArn = "BackupArn",
+        },
+    },
+})
+
+M.DescribeBulkOperation = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "DescribeBulkOperation"),
+    input = M.DescribeBulkOperationInput,
+    output = M.DescribeBulkOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "BulkOperationArn",
         },
     },
 })
@@ -9251,6 +9822,17 @@ M.ListBackups = schema.operation({
     },
 })
 
+M.ListBulkOperations = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "ListBulkOperations"),
+    input = M.ListBulkOperationsInput,
+    output = M.ListBulkOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListContributorInsights = schema.operation({
     id = id.from("com.amazonaws.dynamodb", "ListContributorInsights"),
     input = M.ListContributorInsightsInput,
@@ -9426,6 +10008,20 @@ M.SearchVectors = schema.operation({
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             IsSearchOperation = { value = true },
+        },
+    },
+})
+
+M.StartBulkPutItems = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "StartBulkPutItems"),
+    input = M.StartBulkPutItemsInput,
+    output = M.StartBulkPutItemsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
         },
     },
 })

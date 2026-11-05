@@ -14776,6 +14776,105 @@ local record M
         SecurityControlDefinition: SecurityControlDefinition
     end
 
+    enum SoftwareStringField
+        "AccountId"
+        "PackageName"
+        "PackageVersion"
+        "PackageType"
+        "Region"
+        "ResourceRegion"
+        "ResourceType"
+        "ResourceId"
+        "ResourceProvider"
+        "ResourceOwnerAccountId"
+        "ResourceOwnerOrgId"
+        "ResourceCloudPartition"
+    end
+
+    -- Enables filtering of software packages based on string field values.
+    record SoftwareStringFilter
+        -- The name of the field.
+        FieldName: string
+        -- The string value and comparison operator to filter on. Supported comparisons are EQUALS, NOT_EQUALS, PREFIX, and PREFIX_NOT_EQUALS.
+        Filter: StringFilter
+    end
+
+    -- Defines the data boundary for a software query. Scopes determine which organizational units or organizations to retrieve data from.
+    record SoftwareScopes
+        -- A list of Organizations scopes to include in the query results. Each entry in the list specifies an organization or organizational unit to include for the delegated administrator's account. If the list specifies multiple entries, the entries are combined using OR logic.
+        AwsOrganizations: {AwsOrganizationScope}
+    end
+
+    -- Provides information about a resource that contains a software package.
+    record SoftwareResourceResult
+        -- The Amazon Web Services account that recorded the resource data in Security Hub.
+        AccountId: string
+        -- The type of resource, for example AWS::EC2::Instance or AWS::Lambda::Function.
+        ResourceType: string
+        -- The Amazon Web Services Region that recorded the resource data in Security Hub.
+        Region: string
+        -- The unique identifier for a resource.
+        ResourceId: string
+        -- The cloud provider where the resource exists. Valid values are AWS and Azure.
+        ResourceProvider: string
+        -- The identifier of the cloud organization that owns the resource. For Amazon Web Services resources, this is the Organizations ID. For Azure resources, this is the Azure tenant ID.
+        ResourceOwnerOrgId: string
+        -- The identifier of the cloud account that owns the resource. For Amazon Web Services resources, this is the Amazon Web Services account ID. For Azure resources, this is the Azure subscription ID.
+        ResourceOwnerAccountId: string
+        -- The cloud partition where the resource exists. For Amazon Web Services, valid values include aws, aws-cn, and aws-us-gov. This field isn't returned for cloud providers that don't use partitions.
+        ResourceCloudPartition: string
+        -- The native cloud region where the resource is located. For Amazon Web Services, this is an Amazon Web Services Region (for example, us-east-1). For Azure resources, this is the Azure region (for example, westus2).
+        ResourceRegion: string
+    end
+
+    record GetSoftwareResourcesV2Output
+        -- An array of resources that contain the specified software package.
+        SoftwareResources: {SoftwareResourceResult}
+        -- The pagination token to use to request the next page of results.
+        -- Otherwise, this parameter is null.
+        NextToken: string
+    end
+
+    enum SoftwareGroupByField
+        "AccountId"
+        "PackageName"
+        "PackageVersion"
+        "PackageType"
+        "Region"
+        "ResourceRegion"
+        "ResourceType"
+        "ResourceId"
+        "ResourceProvider"
+        "ResourceOwnerAccountId"
+        "ResourceOwnerOrgId"
+        "ResourceCloudPartition"
+    end
+
+    record GetSoftwareStatisticsV2Output
+        -- The aggregated statistics about software based on the specified grouping rule.
+        GroupByResults: {GroupByResult}
+    end
+
+    -- Provides information about a software package installed on one or more of your resources.
+    record SoftwareResult
+        -- The name of the software package.
+        PackageName: string
+        -- The version of the software package.
+        PackageVersion: string
+        -- The type of the software package, for example operating-system, application, or library.
+        PackageType: string
+        -- The number of resources that contain this software package. To list these resources, call GetSoftwareResourcesV2.
+        ResourceCount: number
+    end
+
+    record GetSoftwareV2Output
+        -- An array of software packages returned by the operation.
+        Software: {SoftwareResult}
+        -- The pagination token to use to request the next page of results.
+        -- Otherwise, this parameter is null.
+        NextToken: string
+    end
+
     record InviteMembersInput
         -- The list of account IDs of the Amazon Web Services accounts to invite to Security Hub CSPM as members.
         AccountIds: {string}
@@ -15589,6 +15688,19 @@ local record M
         Operator: string
     end
 
+    -- Enables the creation of criteria for software packages in Security Hub.
+    record SoftwareCompositeFilter
+        -- Enables filtering based on string field values.
+        StringFilters: {SoftwareStringFilter}
+        -- Provides an additional level of filtering, creating a three-layer nested structure.
+        -- The first layer is a CompositeFilters array with a CompositeOperator (AND/OR).
+        -- The second layer is a CompositeFilter object that contains direct filters and NestedCompositeFilters.
+        -- The third layer is NestedCompositeFilters, which contains additional filter conditions.
+        NestedCompositeFilters: {SoftwareCompositeFilter}
+        -- The logical operator used to combine multiple filter conditions.
+        Operator: string
+    end
+
     -- The structure that defines filters to apply to findings trend data queries.
     record FindingsTrendsFilters
         -- A list of composite filters to apply to the findings trend data.
@@ -15618,6 +15730,14 @@ local record M
         -- A list of composite filters to apply to the resources trend data.
         CompositeFilters: {ResourcesTrendsCompositeFilter}
         -- The logical operator (AND, OR) to apply between multiple composite filters.
+        CompositeOperator: string
+    end
+
+    -- Enables filtering of software packages and the resources that contain them.
+    record SoftwareFilters
+        -- A collection of complex filtering conditions that can be applied to software packages.
+        CompositeFilters: {SoftwareCompositeFilter}
+        -- The logical operator used to combine multiple filter conditions in the structure.
         CompositeOperator: string
     end
 
@@ -15698,6 +15818,50 @@ local record M
         MaxResults: number
     end
 
+    record GetSoftwareResourcesV2Input
+        -- The name of the software package, for example openssl. This value must match the PackageName returned by GetSoftwareV2.
+        PackageName: string
+        -- The type of the software package, for example operating-system, application, or library. This value must match the PackageType returned by GetSoftwareV2.
+        PackageType: string
+        -- The version of the software package, for example 3.0.8. If you omit this value, the response includes resources that contain any version of the package.
+        PackageVersion: string
+        -- Filters the returned resources based on a set of criteria. You can nest composite filters up to three levels deep.
+        Filters: SoftwareFilters
+        -- Limits the results to resources from specific organizational units or from the delegated administrator's organization.
+        -- Only the delegated administrator account can use this parameter. Other accounts receive an AccessDeniedException.
+        -- This parameter is optional. If you omit it, the delegated administrator sees resources from all accounts across the entire organization. Other accounts see only their own resources.
+        -- You can specify up to 10 entries in Scopes.AwsOrganizations. If multiple entries are specified, the entries are combined using OR logic.
+        Scopes: SoftwareScopes
+        -- The resource attribute used to sort the list of returned resources, for example Region or ResourceType. You can specify one sort criterion.
+        SortCriteria: {SortCriterion}
+        -- The token required for pagination.
+        -- On your first call, set the value of this parameter to NULL.
+        -- For subsequent calls, to continue listing data, set the value of this parameter to the value returned in the previous response.
+        -- A token expires one hour after it's issued. If you change the request parameters between calls, the token is no longer valid and the request fails with a ValidationException.
+        NextToken: string
+        -- The maximum number of results to return. Valid values are 1–100. The default is 100.
+        MaxResults: number
+    end
+
+    record GetSoftwareV2Input
+        -- Filters software packages based on a set of criteria. You can nest composite filters up to three levels deep.
+        Filters: SoftwareFilters
+        -- Limits the results to software on resources from specific organizational units or from the delegated administrator's organization.
+        -- Only the delegated administrator account can use this parameter. Other accounts receive an AccessDeniedException.
+        -- This parameter is optional. If you omit it, the delegated administrator sees software from all accounts across the entire organization. Other accounts see only software on their own resources.
+        -- You can specify up to 10 entries in Scopes.AwsOrganizations. If multiple entries are specified, the entries are combined using OR logic.
+        Scopes: SoftwareScopes
+        -- The software attributes used to sort the list of returned software packages. You can't sort by ResourceCount.
+        SortCriteria: {SortCriterion}
+        -- The token required for pagination.
+        -- On your first call, set the value of this parameter to NULL.
+        -- For subsequent calls, to continue listing data, set the value of this parameter to the value returned in the previous response.
+        -- A token expires one hour after it's issued. If you change Filters or SortCriteria between calls, the token is no longer valid and the request fails with a ValidationException.
+        NextToken: string
+        -- The maximum number of results to return. Valid values are 1–100. The default is 100.
+        MaxResults: number
+    end
+
     -- Defines the how the finding attribute should be grouped.
     record GroupByRule
         -- The criteria used to select which security findings should be included in the grouping operation.
@@ -15712,6 +15876,14 @@ local record M
         GroupByField: string
         -- The criteria used to select resources and associated security findings.
         Filters: ResourcesFilters
+    end
+
+    -- Defines the configuration for organizing and categorizing software packages installed on your resources.
+    record SoftwareGroupByRule
+        -- Specifies the attribute that software statistics should be grouped by.
+        GroupByField: string
+        -- The criteria used to select the software packages included in the statistics. You can nest composite filters up to three levels deep.
+        Filters: SoftwareFilters
     end
 
     -- Specifies what data to export and how to format it. This is a union: you must specify exactly one member. Currently, the only supported member is Findings.
@@ -15774,6 +15946,20 @@ local record M
         -- Sorts aggregated statistics.
         SortOrder: string
         -- The maximum number of results to be returned.
+        MaxStatisticResults: number
+    end
+
+    record GetSoftwareStatisticsV2Input
+        -- How software statistics should be aggregated and organized in the response.
+        GroupByRules: {SoftwareGroupByRule}
+        -- Limits the results to software on resources from specific organizational units or from the delegated administrator's organization.
+        -- Only the delegated administrator account can use this parameter. Other accounts receive an AccessDeniedException.
+        -- This parameter is optional. If you omit it, the delegated administrator sees statistics from all accounts across the entire organization. Other accounts see only statistics for software on their own resources.
+        -- You can specify up to 10 entries in Scopes.AwsOrganizations. If multiple entries are specified, the entries are combined using OR logic.
+        Scopes: SoftwareScopes
+        -- Sorts aggregated statistics by count. The default is descending, which returns the values with the highest counts first.
+        SortOrder: string
+        -- The maximum number of grouping values to return. Valid values are 1–400. The default is 400.
         MaxStatisticResults: number
     end
 

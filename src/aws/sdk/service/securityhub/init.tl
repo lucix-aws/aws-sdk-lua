@@ -103,6 +103,9 @@ local record Client
     getResourcesTrendsV2: function(Client, types.GetResourcesTrendsV2Input, ? base_client.InvokeOptions): async.Operation<types.GetResourcesTrendsV2Output>
     getResourcesV2: function(Client, types.GetResourcesV2Input, ? base_client.InvokeOptions): async.Operation<types.GetResourcesV2Output>
     getSecurityControlDefinition: function(Client, types.GetSecurityControlDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityControlDefinitionOutput>
+    getSoftwareResourcesV2: function(Client, types.GetSoftwareResourcesV2Input, ? base_client.InvokeOptions): async.Operation<types.GetSoftwareResourcesV2Output>
+    getSoftwareStatisticsV2: function(Client, types.GetSoftwareStatisticsV2Input, ? base_client.InvokeOptions): async.Operation<types.GetSoftwareStatisticsV2Output>
+    getSoftwareV2: function(Client, types.GetSoftwareV2Input, ? base_client.InvokeOptions): async.Operation<types.GetSoftwareV2Output>
     inviteMembers: function(Client, types.InviteMembersInput, ? base_client.InvokeOptions): async.Operation<types.InviteMembersOutput>
     listAggregatorsV2: function(Client, types.ListAggregatorsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListAggregatorsV2Output>
     listAutomationRules: function(Client, types.ListAutomationRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomationRulesOutput>
@@ -523,6 +526,18 @@ end
 
 function C:getSecurityControlDefinition(input: types.GetSecurityControlDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSecurityControlDefinitionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSecurityControlDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetSecurityControlDefinitionOutput>
+end
+
+function C:getSoftwareResourcesV2(input: types.GetSoftwareResourcesV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetSoftwareResourcesV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSoftwareResourcesV2 as schema.OperationSchema, input, options) as async.Operation<types.GetSoftwareResourcesV2Output>
+end
+
+function C:getSoftwareStatisticsV2(input: types.GetSoftwareStatisticsV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetSoftwareStatisticsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSoftwareStatisticsV2 as schema.OperationSchema, input, options) as async.Operation<types.GetSoftwareStatisticsV2Output>
+end
+
+function C:getSoftwareV2(input: types.GetSoftwareV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetSoftwareV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSoftwareV2 as schema.OperationSchema, input, options) as async.Operation<types.GetSoftwareV2Output>
 end
 
 function C:inviteMembers(input: types.InviteMembersInput, options?: base_client.InvokeOptions): async.Operation<types.InviteMembersOutput>

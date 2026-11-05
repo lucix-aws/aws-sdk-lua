@@ -1742,6 +1742,14 @@ local record M
         StepId: string
     end
 
+    -- Additional information about a step's execution, available after the step has started running.
+    record StepAdditionalInfo
+        -- The YARN application IDs associated with the step.
+        ResourceManagerApplicationIds: {string}
+        -- The address of the YARN resource manager that processed the step.
+        ResourceManager: string
+    end
+
     -- A cluster step consisting of a JAR file whose main function will be executed. The main
     -- function submits a job for Hadoop to execute and waits for the job to finish or
     -- fail.
@@ -1858,6 +1866,8 @@ local record M
         -- The KMS key ARN to encrypt the logs published to the given Amazon S3
         -- destination.
         EncryptionKeyArn: string
+        -- Additional information about the step, including the YARN application IDs associated with the step and the resource manager that processed it.
+        AdditionalInfo: StepAdditionalInfo
     end
 
     -- This output contains the description of the cluster step.
@@ -2665,6 +2675,8 @@ local record M
         -- The KMS key ARN to encrypt the logs published to the given Amazon S3
         -- destination.
         EncryptionKeyArn: string
+        -- Additional information about the step, including the YARN application IDs associated with the step and the resource manager that processed it.
+        AdditionalInfo: StepAdditionalInfo
     end
 
     -- This output contains the list of steps returned in reverse order. This means that the

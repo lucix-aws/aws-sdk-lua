@@ -446,6 +446,8 @@ M.Recordings = schema.new({ type = "list", list_member = M.RecordingInfo })
 
 M.ContactEvaluations = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContactEvaluation })
 
+M.CaseEntries = schema.new({ type = "list", list_member = M.CaseEntry })
+
 M.NextContacts = schema.new({ type = "list", list_member = M.NextContactEntry })
 
 M.EvaluationAnswersOutputMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EvaluationAnswerOutput })
@@ -13832,6 +13834,25 @@ M.DescribeContactInput = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
             },
+        }),
+    },
+})
+
+M.CaseEntry = schema.new({
+    id = id.from(_N, "CaseEntry"),
+    type = "structure",
+    members = {
+        CaseId = schema.new({
+            id = id.from(_N, "CaseEntry", "CaseId"),
+            type = "string",
+            name = "CaseId",
+            target_id = prelude.String.id,
+        }),
+        CaseReferenceNumber = schema.new({
+            id = id.from(_N, "CaseEntry", "CaseReferenceNumber"),
+            type = "string",
+            name = "CaseReferenceNumber",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -45320,6 +45341,13 @@ M.Contact = schema.new({
             name = "TaskTemplateInfo",
             target_id = id.from(_N, "TaskTemplateInfoV2"),
             target = M.TaskTemplateInfoV2,
+        }),
+        Cases = schema.new({
+            id = id.from(_N, "Contact", "Cases"),
+            type = "list",
+            name = "Cases",
+            target_id = prelude.Document.id,
+            list_member = M.CaseEntry,
         }),
         ContactDetails = schema.new({
             id = id.from(_N, "Contact", "ContactDetails"),

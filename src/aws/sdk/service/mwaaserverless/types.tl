@@ -194,7 +194,7 @@ local record M
         Bucket: string
         -- The key of the code artifact within the Amazon S3 bucket.
         ObjectKey: string
-        -- The version ID of the object in Amazon S3. If not specified, the latest version is used.
+        -- Specifies the version ID of the object in Amazon S3. If you don't specify a version, we use the latest version.
         VersionId: string
     end
 
@@ -219,7 +219,7 @@ local record M
         Bucket: string
         -- The key (name) of the workflow definition file within the S3 bucket.
         ObjectKey: string
-        -- Optional. The version ID of the workflow definition file in Amazon S3. If not specified, the latest version is used.
+        -- Optional. The version ID of the workflow definition file in Amazon S3. If you don't specify a version, we use the latest version.
         VersionId: string
     end
 
@@ -237,6 +237,12 @@ local record M
     end
 
     type EngineVersion = number
+
+    -- Contains the environment variables that tasks in a workflow use during execution.
+    record Environment
+        -- A map of environment variable names to values. Your workflow tasks use these variables while they run. You can specify up to 50 environment variables. Each name must be between 1 and 128 characters, start with a letter, and contain only letters, numbers, and underscores. Each value can be up to 255 characters. Names that start with AWS_ or AIRFLOW__ are reserved. You can use the following Apache Airflow secrets backend settings, which are exceptions: AIRFLOW__WORKERS__SECRETS_BACKEND – The secrets backend class that workers use. AIRFLOW__WORKERS__SECRETS_BACKEND_KWARGS – The keyword arguments for the secrets backend, as a JSON string. AIRFLOW__WORKERS__SECRETS_BACKEND_KWARG__* – Names with this prefix, for additional secrets backend configuration. If you set EncryptionConfiguration to use a customer managed AWS KMS key, we encrypt the environment variables with that key. Otherwise, we store them with default encryption at rest.
+        Variables: {string : string}
+    end
 
     -- Configuration for workflow logging that specifies where you should store your workflow execution logs. Amazon Managed Workflows for Apache Airflow Serverless provides comprehensive logging capabilities that capture workflow execution details, task-level information, and system events. Logs are automatically exported to your specified CloudWatch log group using remote logging functionality, providing centralized observability across the distributed, multi-tenant execution environment. This enables effective debugging, monitoring, and compliance auditing of workflow executions.
     record LoggingConfiguration
@@ -273,6 +279,8 @@ local record M
         EngineVersion: number
         -- Network configuration for the workflow execution environment, including VPC security groups and subnets for secure network access. When specified, Amazon Managed Workflows for Apache Airflow Serverless deploys ECS worker tasks in your customer VPC to provide secure connectivity to your resources. If not specified, tasks run in the service's default worker VPC with network isolation from other customers. This configuration enables secure access to VPC-only resources like RDS databases or private endpoints.
         NetworkConfiguration: NetworkConfiguration
+        -- The environment variables to set for tasks in the workflow. If you don't specify this parameter, the workflow has no environment variables.
+        Environment: Environment
         -- A map of tags to assign to the workflow resource. Tags are key-value pairs that are used for resource organization and cost allocation.
         Tags: {string : string}
         -- The trigger mode for the workflow execution.
@@ -374,6 +382,8 @@ local record M
         RoleArn: string
         -- The network configuration for the workflow execution environment.
         NetworkConfiguration: NetworkConfiguration
+        -- The environment variables that tasks in the workflow use during execution.
+        Environment: Environment
         -- The trigger mode for the workflow execution.
         TriggerMode: string
         -- The workflow definition content.
@@ -431,6 +441,8 @@ local record M
         EngineVersion: number
         -- Updated network configuration for the workflow execution environment.
         NetworkConfiguration: NetworkConfiguration
+        -- The environment variables to set for tasks in the workflow. The variables that you specify replace all existing environment variables for the workflow. If you don't specify this parameter, the workflow has no environment variables. To keep existing environment variables, include them in the request.
+        Environment: Environment
         -- The trigger mode for the workflow execution.
         TriggerMode: string
     end
@@ -563,7 +575,7 @@ local record M
         ClientToken: string
         -- Optional parameters to override default workflow parameters for this specific run. These parameters are passed to the workflow during execution and can be used to customize behavior without modifying the workflow definition. Parameters are made available as environment variables to tasks and you can reference them within the YAML workflow definition using standard parameter substitution syntax.
         OverrideParameters: {string : any}
-        -- Optional. The specific version of the workflow to execute. If not specified, the latest version is used.
+        -- Optional. The specific version of the workflow to execute. If you don't specify a version, we use the latest version.
         WorkflowVersion: string
     end
 
