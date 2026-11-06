@@ -2236,6 +2236,13 @@ M.ManagedMicrovmImageVersion = schema.new({
             name = "status",
             target_id = prelude.String.id,
         }),
+        supportedCpuConfigurations = schema.new({
+            id = id.from(_N, "ManagedMicrovmImageVersion", "supportedCpuConfigurations"),
+            type = "list",
+            name = "supportedCpuConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CpuConfiguration,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "ManagedMicrovmImageVersion", "createdAt"),
             type = "timestamp",

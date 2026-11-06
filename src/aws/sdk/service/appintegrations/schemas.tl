@@ -1064,6 +1064,12 @@ M.GetApplicationOutput = schema.new({
             name = "LastModifiedTime",
             target_id = prelude.Timestamp.id,
         }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "GetApplicationOutput", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
         Tags = schema.new({
             id = id.from(_N, "GetApplicationOutput", "Tags"),
             type = "map",
@@ -1430,6 +1436,12 @@ M.ApplicationSummary = schema.new({
             type = "timestamp",
             name = "LastModifiedTime",
             target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "ApplicationSummary", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
         }),
         IsService = schema.new({
             id = id.from(_N, "ApplicationSummary", "IsService"),
@@ -1881,6 +1893,22 @@ M.ListTagsForResourceOutput = schema.new({
     },
 })
 
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
     type = "structure",
@@ -1945,22 +1973,6 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
-})
-
-M.ConflictException = schema.new({
-    id = id.from(_N, "ConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ConflictException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
 })
 
 M.UpdateApplicationInput = schema.new({

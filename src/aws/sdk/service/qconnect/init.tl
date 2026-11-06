@@ -88,6 +88,8 @@ local record Client
     notifyRecommendationsReceived: function(Client, types.NotifyRecommendationsReceivedInput, ? base_client.InvokeOptions): async.Operation<types.NotifyRecommendationsReceivedOutput>
     putFeedback: function(Client, types.PutFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.PutFeedbackOutput>
     queryAssistant: function(Client, types.QueryAssistantInput, ? base_client.InvokeOptions): async.Operation<types.QueryAssistantOutput>
+    registerAssistantReplicaKey: function(Client, types.RegisterAssistantReplicaKeyInput, ? base_client.InvokeOptions): async.Operation<types.RegisterAssistantReplicaKeyOutput>
+    registerKnowledgeBaseReplicaKey: function(Client, types.RegisterKnowledgeBaseReplicaKeyInput, ? base_client.InvokeOptions): async.Operation<types.RegisterKnowledgeBaseReplicaKeyOutput>
     removeAssistantAIAgent: function(Client, types.RemoveAssistantAIAgentInput, ? base_client.InvokeOptions): async.Operation<types.RemoveAssistantAIAgentOutput>
     removeKnowledgeBaseTemplateUri: function(Client, types.RemoveKnowledgeBaseTemplateUriInput, ? base_client.InvokeOptions): async.Operation<types.RemoveKnowledgeBaseTemplateUriOutput>
     renderMessageTemplate: function(Client, types.RenderMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.RenderMessageTemplateOutput>
@@ -434,6 +436,14 @@ end
 
 function C:queryAssistant(input: types.QueryAssistantInput, options?: base_client.InvokeOptions): async.Operation<types.QueryAssistantOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.QueryAssistant as schema.OperationSchema, input, options) as async.Operation<types.QueryAssistantOutput>
+end
+
+function C:registerAssistantReplicaKey(input: types.RegisterAssistantReplicaKeyInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterAssistantReplicaKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterAssistantReplicaKey as schema.OperationSchema, input, options) as async.Operation<types.RegisterAssistantReplicaKeyOutput>
+end
+
+function C:registerKnowledgeBaseReplicaKey(input: types.RegisterKnowledgeBaseReplicaKeyInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterKnowledgeBaseReplicaKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterKnowledgeBaseReplicaKey as schema.OperationSchema, input, options) as async.Operation<types.RegisterKnowledgeBaseReplicaKeyOutput>
 end
 
 function C:removeAssistantAIAgent(input: types.RemoveAssistantAIAgentInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveAssistantAIAgentOutput>

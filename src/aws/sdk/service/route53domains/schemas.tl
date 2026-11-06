@@ -1984,6 +1984,42 @@ M.ResendOperationAuthorizationInput = schema.new({
 
 M.ResendOperationAuthorizationOutput = prelude.Unit
 
+M.RestoreDomainInput = schema.new({
+    id = id.from(_N, "RestoreDomainRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "RestoreDomainInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Consent = schema.new({
+            id = id.from(_N, "RestoreDomainInput", "Consent"),
+            type = "structure",
+            name = "Consent",
+            target_id = id.from(_N, "Consent"),
+            target = M.Consent,
+        }),
+    },
+})
+
+M.RestoreDomainOutput = schema.new({
+    id = id.from(_N, "RestoreDomainResponse"),
+    type = "structure",
+    members = {
+        OperationId = schema.new({
+            id = id.from(_N, "RestoreDomainOutput", "OperationId"),
+            type = "string",
+            name = "OperationId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RetrieveDomainAuthCodeInput = schema.new({
     id = id.from(_N, "RetrieveDomainAuthCodeRequest"),
     type = "structure",
@@ -2741,6 +2777,17 @@ M.ResendOperationAuthorization = schema.operation({
     id = id.from("com.amazonaws.route53domains", "ResendOperationAuthorization"),
     input = M.ResendOperationAuthorizationInput,
     output = M.ResendOperationAuthorizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreDomain = schema.operation({
+    id = id.from("com.amazonaws.route53domains", "RestoreDomain"),
+    input = M.RestoreDomainInput,
+    output = M.RestoreDomainOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

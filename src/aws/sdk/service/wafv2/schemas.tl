@@ -72,6 +72,8 @@ M.VersionsToPublish = schema.new({ type = "map", map_key = prelude.String, map_v
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ConnectedAccountConfigs = schema.new({ type = "list", list_member = M.ConnectedAccountConfig })
+
 M.DataProtections = schema.new({ type = "list", list_member = M.DataProtection })
 
 M.RequestBody = schema.new({ type = "map", map_key = prelude.String, map_value = M.RequestBodyAssociatedResourceTypeConfig })
@@ -100,6 +102,8 @@ M.HTTPHeaders = schema.new({ type = "list", list_member = M.HTTPHeader })
 
 M.BotStatisticsList = schema.new({ type = "list", list_member = M.BotStatistics })
 
+M.ConnectedAccountPaymentNetworks = schema.new({ type = "list", list_member = M.ConnectedAccountChainConfig })
+
 M.CustomHTTPHeaders = schema.new({ type = "list", list_member = M.CustomHTTPHeader })
 
 M.AttributeValues = schema.new({ type = "list", list_member = prelude.String })
@@ -127,6 +131,8 @@ M.Prices = schema.new({ type = "list", list_member = M.Price })
 M.FieldToProtectKeys = schema.new({ type = "list", list_member = prelude.String })
 
 M.Conditions = schema.new({ type = "list", list_member = M.Condition })
+
+M.ConnectedAccountPrices = schema.new({ type = "list", list_member = M.ConnectedAccountPrice })
 
 M.JsonPointerPaths = schema.new({ type = "list", list_member = prelude.String })
 
@@ -3043,6 +3049,83 @@ M.CustomResponseBody = schema.new({
     },
 })
 
+M.ConnectedAccountPrice = schema.new({
+    id = id.from(_N, "ConnectedAccountPrice"),
+    type = "structure",
+    members = {
+        Amount = schema.new({
+            id = id.from(_N, "ConnectedAccountPrice", "Amount"),
+            type = "string",
+            name = "Amount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "ConnectedAccountPrice", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConnectedAccountChainConfig = schema.new({
+    id = id.from(_N, "ConnectedAccountChainConfig"),
+    type = "structure",
+    members = {
+        Chain = schema.new({
+            id = id.from(_N, "ConnectedAccountChainConfig", "Chain"),
+            type = "string",
+            name = "Chain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Prices = schema.new({
+            id = id.from(_N, "ConnectedAccountChainConfig", "Prices"),
+            type = "list",
+            name = "Prices",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectedAccountPrice,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConnectedAccountConfig = schema.new({
+    id = id.from(_N, "ConnectedAccountConfig"),
+    type = "structure",
+    members = {
+        ConnectedAccountArn = schema.new({
+            id = id.from(_N, "ConnectedAccountConfig", "ConnectedAccountArn"),
+            type = "string",
+            name = "ConnectedAccountArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PaymentNetworks = schema.new({
+            id = id.from(_N, "ConnectedAccountConfig", "PaymentNetworks"),
+            type = "list",
+            name = "PaymentNetworks",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectedAccountChainConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.Price = schema.new({
     id = id.from(_N, "Price"),
     type = "structure",
@@ -3130,6 +3213,13 @@ M.MonetizationConfig = schema.new({
             name = "CryptoConfig",
             target_id = id.from(_N, "CryptoConfig"),
             target = M.CryptoConfig,
+        }),
+        ConnectedAccountConfigs = schema.new({
+            id = id.from(_N, "MonetizationConfig", "ConnectedAccountConfigs"),
+            type = "list",
+            name = "ConnectedAccountConfigs",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectedAccountConfig,
         }),
         CurrencyMode = schema.new({
             id = id.from(_N, "MonetizationConfig", "CurrencyMode"),

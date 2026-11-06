@@ -46,6 +46,7 @@ local record M
     enum AzureBlobAuthenticationType
         "SAS"
         "NONE"
+        "OIDC"
     end
 
     -- The shared access signature (SAS) configuration that allows DataSync to
@@ -62,6 +63,28 @@ local record M
 
     enum AzureBlobType
         "BLOCK"
+    end
+
+    -- External identity parameters for Azure Blob Storage.
+    record AzureOidcConfig
+        -- Azure tenant ID string.
+        TenantId: string
+        -- Azure client ID string.
+        ClientId: string
+    end
+
+    -- Specifies federated identity parameters that allow DataSync to obtain an OpenID Connect token
+    -- for access to customer Azure Blob Storage. The token allows for temporary, short-term access to the
+    -- storage. DataSync automatically refreshes the token to assure uninterrupted access to the storage.
+    -- Federated identity parameters are an alternative to the SasConfiguration credentials
+    -- that are expected to be valid long-term (e.g. at least for the duration of DataSync task execution).
+    -- Do not specify federated identity and the SAS configuration for the same Azure Blob location.
+    record AzureFederatedIdentityConfig
+        -- Specifies the ARN for an Amazon Web Services role that allows DataSync to invoke STS GetWebIdentityToken API on behalf
+        -- of the customer account and to obtain Amazon Web Services STS JWT (web token).
+        AwsIamRole: string
+        -- External identity parameters for Azure Blob Storage.
+        AzureOidc: AzureOidcConfig
     end
 
     -- CancelTaskExecutionRequest
@@ -171,8 +194,8 @@ local record M
         -- Specifies the URL of the Azure Blob Storage container involved in your transfer.
         ContainerUrl: string
         -- Specifies the authentication method DataSync uses to access your Azure Blob
-        -- Storage. DataSync can access blob storage using a shared access signature
-        -- (SAS).
+        -- Storage. DataSync can access blob storage using a shared access signature (SAS) or
+        -- an OpenID Connect (OIDC) token.
         AuthenticationType: string
         -- Specifies the SAS configuration that allows DataSync to access your Azure Blob
         -- Storage.
@@ -181,6 +204,11 @@ local record M
         -- CustomSecretConfig, then DataSync stores the token using your
         -- Amazon Web Services account's secrets manager secret.
         SasConfiguration: AzureBlobSasConfiguration
+        -- Specifies the federated identity configuration that allows DataSync to access
+        -- your Azure Blob Storage using an OpenID Connect (OIDC) token instead of a shared access
+        -- signature (SAS). Provide either FederatedIdentity or
+        -- SasConfiguration, but not both.
+        FederatedIdentity: AzureFederatedIdentityConfig
         -- Specifies the type of blob that you want your objects or files to be when transferring
         -- them into Azure Blob Storage. Currently, DataSync only supports moving data into
         -- Azure Blob Storage as block blobs. For more information on blob types, see the Azure Blob Storage documentation.
@@ -758,6 +786,40 @@ local record M
         LocationArn: string
     end
 
+    -- External identity parameters for Google Cloud Storage.
+    record GoogleOidcConfig
+        -- Human-readable project name (e.g. "my-project").
+        ProjectName: string
+        -- Numeric project ID as a string (e.g. "123456789").
+        ProjectNumber: string
+        -- Human-readable pool name (e.g. "my-pool").
+        IdentityPoolName: string
+        -- Human-readable provider name (e.g. "my-oidc-provider").
+        IdentityProviderName: string
+    end
+
+    -- Specifies cloud-provider-specific external identity parameters used when exchanging the
+    -- Amazon Web Services web token for an OpenID Connect token at the object storage provider.
+    record ObjectStorageExternalIdentityConfig
+        -- External identity parameters for Google Cloud Storage.
+        GoogleOidc: GoogleOidcConfig
+    end
+
+    -- Specifies federated identity parameters that allow DataSync to obtain OpenID Connect token
+    -- for access to customer object storage. The token allows for temporary, short-term access to the
+    -- storage. DataSync automatically refreshes the token to assure uninterrupted access to the storage.
+    -- Federated identity parameters are an alternative to the AccessKey/SecretKey
+    -- credentials that are expected to be valid long-term (e.g. at least for the duration of DataSync task execution).
+    -- Do not specify federated identity and the key parameters for the same object storage location.
+    record ObjectStorageFederatedIdentityConfig
+        -- Specifies the ARN for an Amazon Web Services role that allows DataSync to invoke STS GetWebIdentityToken API on behalf
+        -- of the customer account and to obtain Amazon Web Services STS JWT (web token).
+        AwsIamRole: string
+        -- Specifies cloud-provider-specific external identity parameters used when exchanging the
+        -- Amazon Web Services web token for an OpenID Connect token at the object storage provider.
+        ExternalIdentity: ObjectStorageExternalIdentityConfig
+    end
+
     enum ObjectStorageServerProtocol
         "HTTPS"
         "HTTP"
@@ -789,6 +851,11 @@ local record M
         -- configuration details using CmkSecretConfig or CustomSecretConfig,
         -- then DataSync stores the token using your Amazon Web Services account's Secrets Manager secret.
         SecretKey: string
+        -- Specifies the federated identity configuration that allows DataSync to access
+        -- your object storage using an OpenID Connect (OIDC) token instead of a long-term access key and
+        -- secret key. Provide either FederatedIdentity or the
+        -- AccessKey/SecretKey credentials, but not both.
+        FederatedIdentity: ObjectStorageFederatedIdentityConfig
         -- (Optional) Specifies the Amazon Resource Names (ARNs) of the DataSync agents
         -- that can connect with your object storage system. If you are setting up an agentless
         -- cross-cloud transfer, you do not need to specify a value for this parameter.
@@ -1511,9 +1578,7 @@ local record M
         -- ENHANCED - Transfer virtually unlimited numbers of objects with higher
         -- performance than Basic mode. Enhanced mode tasks optimize the data transfer process by
         -- listing, preparing, transferring, and verifying data in parallel. Enhanced mode is
-        -- currently available for transfers between Amazon S3 locations, transfers between
-        -- Azure Blob and Amazon S3 without an agent, and transfers between other clouds and
-        -- Amazon S3 without an agent.
+        -- currently available for all transfers except those that use Amazon S3 on Outposts.
         -- To create an Enhanced mode task, the IAM role that you use to call
         -- the CreateTask operation must have the
         -- iam:CreateServiceLinkedRole permission.
@@ -1633,8 +1698,12 @@ local record M
         -- The URL of the Azure Blob Storage container involved in your transfer.
         LocationUri: string
         -- The authentication method DataSync uses to access your Azure Blob Storage.
-        -- DataSync can access blob storage using a shared access signature (SAS).
+        -- DataSync can access blob storage using a shared access signature (SAS) or an
+        -- OpenID Connect (OIDC) token.
         AuthenticationType: string
+        -- The federated identity configuration that DataSync uses to access your Azure
+        -- Blob Storage using an OpenID Connect (OIDC) token.
+        FederatedIdentity: AzureFederatedIdentityConfig
         -- The type of blob that you want your objects or files to be when transferring them into
         -- Azure Blob Storage. Currently, DataSync only supports moving data into Azure Blob
         -- Storage as block blobs. For more information on blob types, see the Azure Blob Storage documentation.
@@ -1883,6 +1952,9 @@ local record M
         -- The access key (for example, a user name) required to authenticate with the object storage
         -- system.
         AccessKey: string
+        -- The federated identity configuration that DataSync uses to access your object
+        -- storage using an OpenID Connect (OIDC) token.
+        FederatedIdentity: ObjectStorageFederatedIdentityConfig
         -- The port that your object storage server accepts inbound network traffic on (for example,
         -- port 443).
         ServerPort: number
@@ -2753,12 +2825,17 @@ local record M
         -- container (for example, /my/images).
         Subdirectory: string
         -- Specifies the authentication method DataSync uses to access your Azure Blob
-        -- Storage. DataSync can access blob storage using a shared access signature
-        -- (SAS).
+        -- Storage. DataSync can access blob storage using a shared access signature (SAS) or
+        -- an OpenID Connect (OIDC) token.
         AuthenticationType: string
         -- Specifies the SAS configuration that allows DataSync to access your Azure Blob
         -- Storage.
         SasConfiguration: AzureBlobSasConfiguration
+        -- Specifies the federated identity configuration that allows DataSync to access
+        -- your Azure Blob Storage using an OpenID Connect (OIDC) token instead of a shared access
+        -- signature (SAS). Provide either FederatedIdentity or
+        -- SasConfiguration, but not both.
+        FederatedIdentity: AzureFederatedIdentityConfig
         -- Specifies the type of blob that you want your objects or files to be when transferring
         -- them into Azure Blob Storage. Currently, DataSync only supports moving data into
         -- Azure Blob Storage as block blobs. For more information on blob types, see the Azure Blob Storage documentation.
@@ -3040,6 +3117,11 @@ local record M
         -- configuration details using CmkSecretConfig or CustomSecretConfig,
         -- then DataSync stores the token using your Amazon Web Services account's Secrets Manager secret.
         SecretKey: string
+        -- Specifies the federated identity configuration that allows DataSync to access
+        -- your object storage using an OpenID Connect (OIDC) token instead of a long-term access key and
+        -- secret key. Provide either FederatedIdentity or the
+        -- AccessKey/SecretKey credentials, but not both.
+        FederatedIdentity: ObjectStorageFederatedIdentityConfig
         -- (Optional) Specifies the Amazon Resource Names (ARNs) of the DataSync agents
         -- that can connect with your object storage system. If you are setting up an agentless
         -- cross-cloud transfer, you do not need to specify a value for this parameter.

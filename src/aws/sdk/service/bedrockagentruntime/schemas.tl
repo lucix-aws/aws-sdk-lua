@@ -6598,6 +6598,12 @@ M.GetDocumentContentInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        mediaId = schema.new({
+            id = id.from(_N, "GetDocumentContentInput", "mediaId"),
+            type = "string",
+            name = "mediaId",
+            target_id = prelude.String.id,
+        }),
         outputFormat = schema.new({
             id = id.from(_N, "GetDocumentContentInput", "outputFormat"),
             type = "string",

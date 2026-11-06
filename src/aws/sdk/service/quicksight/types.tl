@@ -13859,7 +13859,7 @@ local record M
 
     -- The client credentials for connecting to a Microsoft OneDrive data source using two-legged OAuth (2LO) certificate-based authentication. OneDrive connections access files stored in your OneDrive storage. The tenant ID and client ID are supplied through OneDriveParameters.
     record OneDriveClientCredentials
-        -- The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) key used to encrypt the OneDrive certificate credentials. This field is required.
+        -- The Amazon Resource Name (ARN) of the Key Management Service (KMS) key used to encrypt the OneDrive certificate credentials. This field is required.
         KmsKeyArn: string
         -- The thumbprint of the certificate used for two-legged OAuth (2LO) authentication to OneDrive. This field is required.
         CertThumbprint: string
@@ -13877,7 +13877,7 @@ local record M
 
     -- The client credentials for connecting to a Microsoft SharePoint data source using two-legged OAuth (2LO) certificate-based authentication. SharePoint connections access documents stored in SharePoint sites and libraries. The tenant ID and client ID are supplied through SharePointParameters.
     record SharePointClientCredentials
-        -- The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) key used to encrypt the SharePoint certificate credentials. This field is required.
+        -- The Amazon Resource Name (ARN) of the Key Management Service (KMS) key used to encrypt the SharePoint certificate credentials. This field is required.
         KmsKeyArn: string
         -- The thumbprint of the certificate used for two-legged OAuth (2LO) authentication to SharePoint. This field is required.
         CertThumbprint: string
@@ -18510,6 +18510,30 @@ local record M
         RequestId: string
         -- The Amazon Resource Name (ARN) for the refresh schedule.
         Arn: string
+    end
+
+    record DescribeResourcePermissionsInput
+        -- The ID of the Amazon Web Services account whose service role configuration you want to
+        -- describe.
+        AwsAccountId: string
+    end
+
+    enum ServiceRoleType
+        "QUICKSIGHT_MANAGED"
+        "CUSTOMER_MANAGED"
+    end
+
+    record DescribeResourcePermissionsOutput
+        -- The type of service role that Amazon Quick Sight uses for your account.
+        RoleType: string
+        -- The ARN of the customer-managed role that Amazon Quick Sight uses for your account. Amazon Quick Sight
+        -- returns this value only when RoleType is
+        -- CUSTOMER_MANAGED.
+        CustomerManagedRoleArn: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
     end
 
     record DescribeRoleCustomPermissionInput
@@ -23162,6 +23186,49 @@ local record M
         ScheduleId: string
         -- The Amazon Resource Name (ARN) for the refresh schedule.
         Arn: string
+    end
+
+    record UpdateResourcePermissionsInput
+        -- The ID of the Amazon Web Services account whose service role configuration you want to
+        -- update.
+        AwsAccountId: string
+        -- The type of service role that you want Amazon Quick Sight to use. The only supported value for this
+        -- operation is CUSTOMER_MANAGED. Requests that specify
+        -- QUICKSIGHT_MANAGED are rejected.
+        RoleType: string
+        -- The ARN of the customer-managed role that you want Amazon Quick Sight to use. To use this
+        -- operation, you must have the
+        -- iam:PassRole permission for the role.
+        -- Configure the role as follows:
+        -- The role must belong to the Amazon Web Services account specified by
+        -- AwsAccountId.
+        -- Configure the role trust policy to allow the Amazon Quick Sight service principal to call
+        -- sts:AssumeRole.
+        -- Attach a permissions policy that allows access to the resources that you want
+        -- Amazon Quick Sight to use.
+        -- To use features that rely on session tags, configure the role trust policy to
+        -- allow the Amazon Quick Sight service principal to call sts:TagSession.
+        -- If the role doesn't exist or its trust policy doesn't allow
+        -- sts:AssumeRole, the request returns an
+        -- AccessDeniedException.
+        -- When you call this operation, Amazon Quick Sight attempts to assume the role with session tags
+        -- and records whether the attempt succeeds. If you later add or remove
+        -- sts:TagSession from the trust policy, call this operation again with the
+        -- same role ARN to refresh the stored capability.
+        CustomerManagedRoleArn: string
+    end
+
+    record UpdateResourcePermissionsOutput
+        -- The type of service role that Amazon Quick Sight uses for your account after the update.
+        -- This value is CUSTOMER_MANAGED.
+        RoleType: string
+        -- The ARN of the customer-managed role that Amazon Quick Sight uses for your account after
+        -- the update.
+        CustomerManagedRoleArn: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
     end
 
     record UpdateRoleCustomPermissionInput

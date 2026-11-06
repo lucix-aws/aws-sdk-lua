@@ -48126,6 +48126,58 @@ M.DescribeRefreshScheduleOutput = schema.new({
     },
 })
 
+M.DescribeResourcePermissionsInput = schema.new({
+    id = id.from(_N, "DescribeResourcePermissionsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeResourcePermissionsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeResourcePermissionsOutput = schema.new({
+    id = id.from(_N, "DescribeResourcePermissionsResponse"),
+    type = "structure",
+    members = {
+        RoleType = schema.new({
+            id = id.from(_N, "DescribeResourcePermissionsOutput", "RoleType"),
+            type = "string",
+            name = "RoleType",
+            target_id = prelude.String.id,
+        }),
+        CustomerManagedRoleArn = schema.new({
+            id = id.from(_N, "DescribeResourcePermissionsOutput", "CustomerManagedRoleArn"),
+            type = "string",
+            name = "CustomerManagedRoleArn",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeResourcePermissionsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeResourcePermissionsOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.DescribeRoleCustomPermissionInput = schema.new({
     id = id.from(_N, "DescribeRoleCustomPermissionRequest"),
     type = "structure",
@@ -61790,6 +61842,76 @@ M.UpdateRefreshScheduleOutput = schema.new({
     },
 })
 
+M.UpdateResourcePermissionsInput = schema.new({
+    id = id.from(_N, "UpdateResourcePermissionsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateResourcePermissionsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoleType = schema.new({
+            id = id.from(_N, "UpdateResourcePermissionsInput", "RoleType"),
+            type = "string",
+            name = "RoleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CustomerManagedRoleArn = schema.new({
+            id = id.from(_N, "UpdateResourcePermissionsInput", "CustomerManagedRoleArn"),
+            type = "string",
+            name = "CustomerManagedRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateResourcePermissionsOutput = schema.new({
+    id = id.from(_N, "UpdateResourcePermissionsResponse"),
+    type = "structure",
+    members = {
+        RoleType = schema.new({
+            id = id.from(_N, "UpdateResourcePermissionsOutput", "RoleType"),
+            type = "string",
+            name = "RoleType",
+            target_id = prelude.String.id,
+        }),
+        CustomerManagedRoleArn = schema.new({
+            id = id.from(_N, "UpdateResourcePermissionsOutput", "CustomerManagedRoleArn"),
+            type = "string",
+            name = "CustomerManagedRoleArn",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateResourcePermissionsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateResourcePermissionsOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateRoleCustomPermissionInput = schema.new({
     id = id.from(_N, "UpdateRoleCustomPermissionRequest"),
     type = "structure",
@@ -66531,6 +66653,18 @@ M.DescribeRefreshSchedule = schema.operation({
     },
 })
 
+M.DescribeResourcePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeResourcePermissions"),
+    input = M.DescribeResourcePermissionsInput,
+    output = M.DescribeResourcePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/account-resource-permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeRoleCustomPermission = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DescribeRoleCustomPermission"),
     input = M.DescribeRoleCustomPermissionInput,
@@ -68253,6 +68387,18 @@ M.UpdateRefreshSchedule = schema.operation({
     output = M.UpdateRefreshScheduleOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/refresh-schedules" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateResourcePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateResourcePermissions"),
+    input = M.UpdateResourcePermissionsInput,
+    output = M.UpdateResourcePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/account-resource-permissions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

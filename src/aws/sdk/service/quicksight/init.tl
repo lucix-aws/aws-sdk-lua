@@ -152,6 +152,7 @@ local record Client
     describeQPersonalizationConfiguration: function(Client, types.DescribeQPersonalizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQPersonalizationConfigurationOutput>
     describeQuickSightQSearchConfiguration: function(Client, types.DescribeQuickSightQSearchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQuickSightQSearchConfigurationOutput>
     describeRefreshSchedule: function(Client, types.DescribeRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRefreshScheduleOutput>
+    describeResourcePermissions: function(Client, types.DescribeResourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourcePermissionsOutput>
     describeRoleCustomPermission: function(Client, types.DescribeRoleCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRoleCustomPermissionOutput>
     describeSelfUpgradeConfiguration: function(Client, types.DescribeSelfUpgradeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSelfUpgradeConfigurationOutput>
     describeSpace: function(Client, types.DescribeSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpaceOutput>
@@ -296,6 +297,7 @@ local record Client
     updateQPersonalizationConfiguration: function(Client, types.UpdateQPersonalizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQPersonalizationConfigurationOutput>
     updateQuickSightQSearchConfiguration: function(Client, types.UpdateQuickSightQSearchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQuickSightQSearchConfigurationOutput>
     updateRefreshSchedule: function(Client, types.UpdateRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRefreshScheduleOutput>
+    updateResourcePermissions: function(Client, types.UpdateResourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourcePermissionsOutput>
     updateRoleCustomPermission: function(Client, types.UpdateRoleCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRoleCustomPermissionOutput>
     updateSelfUpgrade: function(Client, types.UpdateSelfUpgradeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSelfUpgradeOutput>
     updateSelfUpgradeConfiguration: function(Client, types.UpdateSelfUpgradeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSelfUpgradeConfigurationOutput>
@@ -897,6 +899,10 @@ function C:describeRefreshSchedule(input: types.DescribeRefreshScheduleInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRefreshSchedule as schema.OperationSchema, input, options) as async.Operation<types.DescribeRefreshScheduleOutput>
 end
 
+function C:describeResourcePermissions(input: types.DescribeResourcePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourcePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourcePermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourcePermissionsOutput>
+end
+
 function C:describeRoleCustomPermission(input: types.DescribeRoleCustomPermissionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRoleCustomPermissionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRoleCustomPermission as schema.OperationSchema, input, options) as async.Operation<types.DescribeRoleCustomPermissionOutput>
 end
@@ -1471,6 +1477,10 @@ end
 
 function C:updateRefreshSchedule(input: types.UpdateRefreshScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRefreshScheduleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRefreshSchedule as schema.OperationSchema, input, options) as async.Operation<types.UpdateRefreshScheduleOutput>
+end
+
+function C:updateResourcePermissions(input: types.UpdateResourcePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourcePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourcePermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourcePermissionsOutput>
 end
 
 function C:updateRoleCustomPermission(input: types.UpdateRoleCustomPermissionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRoleCustomPermissionOutput>

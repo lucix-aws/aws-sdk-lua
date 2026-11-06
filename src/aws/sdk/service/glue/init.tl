@@ -169,6 +169,7 @@ local record Client
     getJobRun: function(Client, types.GetJobRunInput, ? base_client.InvokeOptions): async.Operation<types.GetJobRunOutput>
     getJobRuns: function(Client, types.GetJobRunsInput, ? base_client.InvokeOptions): async.Operation<types.GetJobRunsOutput>
     getJobs: function(Client, types.GetJobsInput, ? base_client.InvokeOptions): async.Operation<types.GetJobsOutput>
+    getJobUpgradeAnalysis: function(Client, types.GetJobUpgradeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.GetJobUpgradeAnalysisOutput>
     getMapping: function(Client, types.GetMappingInput, ? base_client.InvokeOptions): async.Operation<types.GetMappingOutput>
     getMaterializedViewRefreshTaskRun: function(Client, types.GetMaterializedViewRefreshTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.GetMaterializedViewRefreshTaskRunOutput>
     getMLTaskRun: function(Client, types.GetMLTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.GetMLTaskRunOutput>
@@ -277,6 +278,7 @@ local record Client
     startExportLabelsTaskRun: function(Client, types.StartExportLabelsTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.StartExportLabelsTaskRunOutput>
     startImportLabelsTaskRun: function(Client, types.StartImportLabelsTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.StartImportLabelsTaskRunOutput>
     startJobRun: function(Client, types.StartJobRunInput, ? base_client.InvokeOptions): async.Operation<types.StartJobRunOutput>
+    startJobUpgradeAnalysis: function(Client, types.StartJobUpgradeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartJobUpgradeAnalysisOutput>
     startMaterializedViewRefreshTaskRun: function(Client, types.StartMaterializedViewRefreshTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.StartMaterializedViewRefreshTaskRunOutput>
     startMLEvaluationTaskRun: function(Client, types.StartMLEvaluationTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.StartMLEvaluationTaskRunOutput>
     startMLLabelingSetGenerationTaskRun: function(Client, types.StartMLLabelingSetGenerationTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.StartMLLabelingSetGenerationTaskRunOutput>
@@ -286,6 +288,7 @@ local record Client
     stopColumnStatisticsTaskRunSchedule: function(Client, types.StopColumnStatisticsTaskRunScheduleInput, ? base_client.InvokeOptions): async.Operation<types.StopColumnStatisticsTaskRunScheduleOutput>
     stopCrawler: function(Client, types.StopCrawlerInput, ? base_client.InvokeOptions): async.Operation<types.StopCrawlerOutput>
     stopCrawlerSchedule: function(Client, types.StopCrawlerScheduleInput, ? base_client.InvokeOptions): async.Operation<types.StopCrawlerScheduleOutput>
+    stopJobUpgradeAnalysis: function(Client, types.StopJobUpgradeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StopJobUpgradeAnalysisOutput>
     stopMaterializedViewRefreshTaskRun: function(Client, types.StopMaterializedViewRefreshTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.StopMaterializedViewRefreshTaskRunOutput>
     stopSession: function(Client, types.StopSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopSessionOutput>
     stopTrigger: function(Client, types.StopTriggerInput, ? base_client.InvokeOptions): async.Operation<types.StopTriggerOutput>
@@ -972,6 +975,10 @@ function C:getJobs(input: types.GetJobsInput, options?: base_client.InvokeOption
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobs as schema.OperationSchema, input, options) as async.Operation<types.GetJobsOutput>
 end
 
+function C:getJobUpgradeAnalysis(input: types.GetJobUpgradeAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobUpgradeAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobUpgradeAnalysis as schema.OperationSchema, input, options) as async.Operation<types.GetJobUpgradeAnalysisOutput>
+end
+
 function C:getMapping(input: types.GetMappingInput, options?: base_client.InvokeOptions): async.Operation<types.GetMappingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMapping as schema.OperationSchema, input, options) as async.Operation<types.GetMappingOutput>
 end
@@ -1404,6 +1411,10 @@ function C:startJobRun(input: types.StartJobRunInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartJobRun as schema.OperationSchema, input, options) as async.Operation<types.StartJobRunOutput>
 end
 
+function C:startJobUpgradeAnalysis(input: types.StartJobUpgradeAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartJobUpgradeAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartJobUpgradeAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartJobUpgradeAnalysisOutput>
+end
+
 function C:startMaterializedViewRefreshTaskRun(input: types.StartMaterializedViewRefreshTaskRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartMaterializedViewRefreshTaskRunOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMaterializedViewRefreshTaskRun as schema.OperationSchema, input, options) as async.Operation<types.StartMaterializedViewRefreshTaskRunOutput>
 end
@@ -1438,6 +1449,10 @@ end
 
 function C:stopCrawlerSchedule(input: types.StopCrawlerScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.StopCrawlerScheduleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopCrawlerSchedule as schema.OperationSchema, input, options) as async.Operation<types.StopCrawlerScheduleOutput>
+end
+
+function C:stopJobUpgradeAnalysis(input: types.StopJobUpgradeAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StopJobUpgradeAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopJobUpgradeAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StopJobUpgradeAnalysisOutput>
 end
 
 function C:stopMaterializedViewRefreshTaskRun(input: types.StopMaterializedViewRefreshTaskRunInput, options?: base_client.InvokeOptions): async.Operation<types.StopMaterializedViewRefreshTaskRunOutput>

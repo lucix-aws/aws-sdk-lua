@@ -45,6 +45,7 @@ local record Client
     renewDomain: function(Client, types.RenewDomainInput, ? base_client.InvokeOptions): async.Operation<types.RenewDomainOutput>
     resendContactReachabilityEmail: function(Client, types.ResendContactReachabilityEmailInput, ? base_client.InvokeOptions): async.Operation<types.ResendContactReachabilityEmailOutput>
     resendOperationAuthorization: function(Client, types.ResendOperationAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.ResendOperationAuthorizationOutput>
+    restoreDomain: function(Client, types.RestoreDomainInput, ? base_client.InvokeOptions): async.Operation<types.RestoreDomainOutput>
     retrieveDomainAuthCode: function(Client, types.RetrieveDomainAuthCodeInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveDomainAuthCodeOutput>
     transferDomain: function(Client, types.TransferDomainInput, ? base_client.InvokeOptions): async.Operation<types.TransferDomainOutput>
     transferDomainToAnotherAwsAccount: function(Client, types.TransferDomainToAnotherAwsAccountInput, ? base_client.InvokeOptions): async.Operation<types.TransferDomainToAnotherAwsAccountOutput>
@@ -203,6 +204,10 @@ end
 
 function C:resendOperationAuthorization(input: types.ResendOperationAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.ResendOperationAuthorizationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResendOperationAuthorization as schema.OperationSchema, input, options) as async.Operation<types.ResendOperationAuthorizationOutput>
+end
+
+function C:restoreDomain(input: types.RestoreDomainInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreDomain as schema.OperationSchema, input, options) as async.Operation<types.RestoreDomainOutput>
 end
 
 function C:retrieveDomainAuthCode(input: types.RetrieveDomainAuthCodeInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveDomainAuthCodeOutput>

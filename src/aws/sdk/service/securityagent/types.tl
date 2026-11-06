@@ -2318,6 +2318,7 @@ local record M
 
     enum MembershipType
         "USER"
+        "GROUP"
     end
 
     -- Request structure for adding a single member to an agent space.
@@ -2328,7 +2329,7 @@ local record M
         agentSpaceId: string
         -- The unique identifier for the membership.
         membershipId: string
-        -- The type of member. Currently, only USER is supported.
+        -- The type of member. Use USER for an individual user or GROUP for an IAM Identity Center group. All members of a group have access to the agent space.
         memberType: string
         -- The configuration for the membership, such as the user role.
         config: MembershipConfig
@@ -2993,6 +2994,14 @@ local record M
         remediateCode: boolean
     end
 
+    -- Contains metadata about an IAM Identity Center group member, including the group display name and description.
+    record GroupMetadata
+        -- The display name of the group.
+        displayName: string
+        -- The description of the group.
+        description: string
+    end
+
     enum SecurityRequirementArtifactFormat
         "MD"
         "PDF"
@@ -3386,6 +3395,7 @@ local record M
 
     enum MembershipTypeFilter
         "USER"
+        "GROUP"
         "ALL"
     end
 
@@ -3415,6 +3425,8 @@ local record M
     record MemberMetadata
         -- The user metadata for the member.
         user: UserMetadata
+        -- The group metadata for the member.
+        group: GroupMetadata
     end
 
     -- Contains summary information about a membership.

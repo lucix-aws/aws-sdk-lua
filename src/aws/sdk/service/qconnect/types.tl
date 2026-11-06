@@ -457,6 +457,10 @@ local record M
         configuration: AIAgentConfiguration
         -- The time the AI Agent was last modified.
         modifiedTime: number
+        -- The timestamp when the AI Agent was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the AI Agent was last modified.
+        lastModifiedRegion: string
         -- The description of the AI Agent.
         description: string
         -- The visibility status of the AI Agent.
@@ -563,6 +567,10 @@ local record M
         aiAgentArn: string
         -- The time the AI Agent was last modified.
         modifiedTime: number
+        -- The timestamp when the AI Agent was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the AI Agent was last modified.
+        lastModifiedRegion: string
         -- The visibility status of the AI Agent.
         visibilityStatus: string
         -- The configuration for the AI Agent.
@@ -859,6 +867,10 @@ local record M
         status: string
         -- The time the AI Guardrail was last modified.
         modifiedTime: number
+        -- The timestamp when the AI Guardrail was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the AI Guardrail was last modified.
+        lastModifiedRegion: string
     end
 
     record CreateAIGuardrailOutput
@@ -943,6 +955,10 @@ local record M
         aiGuardrailArn: string
         -- The time the AI Guardrail was last modified.
         modifiedTime: number
+        -- The timestamp when the AI Guardrail was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the AI Guardrail was last modified.
+        lastModifiedRegion: string
         -- The visibility status of the AI Guardrail.
         visibilityStatus: string
         -- A description of the AI Guardrail.
@@ -1123,6 +1139,10 @@ local record M
         inferenceConfiguration: AIPromptInferenceConfiguration
         -- The time the AI Prompt was last modified.
         modifiedTime: number
+        -- The timestamp when the AI Prompt was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the AI Prompt was last modified.
+        lastModifiedRegion: string
         -- The description of the AI Prompt.
         description: string
         -- The visibility status of the AI Prompt.
@@ -1219,6 +1239,10 @@ local record M
         aiPromptArn: string
         -- The time the AI Prompt was last modified.
         modifiedTime: number
+        -- The timestamp when the AI Prompt was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the AI Prompt was last modified.
+        lastModifiedRegion: string
         -- The type of the prompt template for this AI Prompt.
         templateType: string
         -- The identifier of the model used for this AI Prompt. Model Ids supported are: anthropic.claude-3-haiku-20240307-v1:0.
@@ -1376,6 +1400,10 @@ local record M
         associationData: AssistantAssociationOutputData
         -- The tags used to organize, track, or control access for this resource.
         tags: {string : string}
+        -- The timestamp when the assistant association was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the assistant association was last modified.
+        lastModifiedRegion: string
     end
 
     record CreateAssistantAssociationOutput
@@ -1430,6 +1458,10 @@ local record M
         associationData: AssistantAssociationOutputData
         -- The tags used to organize, track, or control access for this resource.
         tags: {string : string}
+        -- The timestamp when the assistant association was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the assistant association was last modified.
+        lastModifiedRegion: string
     end
 
     record ListAssistantAssociationsOutput
@@ -1439,10 +1471,18 @@ local record M
         nextToken: string
     end
 
+    -- Contains information about the KMS key used to encrypt data in a replica Amazon Web Services Region, including its Amazon Resource Name (ARN).
+    record ReplicaKmsKey
+        -- The Amazon Resource Name (ARN) of the KMS key in the replica Region.
+        arn: string
+    end
+
     -- The configuration information for the customer managed key used for encryption.
     record ServerSideEncryptionConfiguration
         -- The customer managed key used for encryption. For more information about setting up a customer managed key for Amazon Q in Connect, see Enable Amazon Q in Connect for your instance. For information about valid ID values, see Key identifiers (KeyId).
         kmsKeyId: string
+        -- The list of KMS keys used to encrypt data for this resource's replicas in other Amazon Web Services Regions. Each entry corresponds to a Region where a replica is configured.
+        replicaKmsKeys: {ReplicaKmsKey}
     end
 
     enum AssistantType
@@ -1460,6 +1500,11 @@ local record M
         tags: {string : string}
         -- The configuration information for the customer managed key used for encryption. The customer managed key must have a policy that allows kms:CreateGrant, kms:DescribeKey, kms:Decrypt, and kms:GenerateDataKey* permissions to the IAM identity using the key to invoke Amazon Q in Connect. To use Amazon Q in Connect with chat, the key policy must also allow kms:Decrypt, kms:GenerateDataKey*, and kms:DescribeKey permissions to the connect.amazonaws.com service principal. For more information about setting up a customer managed key for Amazon Q in Connect, see Enable Amazon Q in Connect for your instance.
         serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration
+    end
+
+    enum AssistantGlobalResiliencyStatus
+        "ENABLED"
+        "DISABLED"
     end
 
     enum AssistantCapabilityType
@@ -1518,6 +1563,18 @@ local record M
         aiAgentConfiguration: {string : AIAgentConfigurationData}
         -- The list of orchestrator configurations for the assistant.
         orchestratorConfigurationList: {OrchestratorConfigurationEntry}
+        -- The timestamp when the assistant was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the assistant was last modified.
+        lastModifiedRegion: string
+        -- Whether Amazon Connect Global Resiliency replicates the Connect instance this assistant is
+        -- associated with, and so whether resources created under this assistant must satisfy the
+        -- replication group's model parity constraint. Answered from the ACGR side per request rather
+        -- than stored, so it reflects the customer's replication state now.
+        -- Absent means "not applicable or not known" - never read an absent field as DISABLED. It is
+        -- absent on the operations that return an assistant which is not yet associated with a Connect
+        -- instance, because replication cannot be established until it is.
+        assistantGlobalResiliencyStatus: string
     end
 
     record CreateAssistantOutput
@@ -1836,6 +1893,10 @@ local record M
         aiAgentConfiguration: {string : AIAgentConfigurationData}
         -- The list of orchestrator configurations for the assistant.
         orchestratorConfigurationList: {OrchestratorConfigurationEntry}
+        -- The timestamp when the assistant was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the assistant was last modified.
+        lastModifiedRegion: string
     end
 
     record ListAssistantsOutput
@@ -1869,6 +1930,11 @@ local record M
         "GLOBAL"
     end
 
+    enum GlobalResiliencyStatus
+        "SUPPORTED"
+        "UNSUPPORTED"
+    end
+
     -- The summary of a model available to an Amazon Q in Connect assistant.
     record ModelSummary
         -- The identifier of the model.
@@ -1887,6 +1953,10 @@ local record M
         legacyTimestamp: number
         -- The timestamp when the model will reach end of life and no longer be available for use.
         endOfLifeTimestamp: number
+        -- Whether this model is published in every Region of the caller's Amazon Connect Global
+        -- Resiliency replication group, and so can be referenced by an AI Prompt that replicates.
+        -- Present only for callers to which global resiliency applies.
+        globalResiliencyStatus: string
     end
 
     record ListModelsOutput
@@ -2059,6 +2129,19 @@ local record M
     -- The request reached the service more than 15 minutes after the date stamp on the request or more than 15 minutes after the request expiration date (such as for pre-signed URLs), or the date stamp on the request is more than 15 minutes in the future.
     record RequestTimeoutException
         message: string
+    end
+
+    record RegisterAssistantReplicaKeyInput
+        -- The identifier of the Amazon Q in Connect assistant.
+        assistantId: string
+        -- The replica Region KMS key to register for the assistant.
+        replicaKmsKey: ReplicaKmsKey
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs..
+        clientToken: string
+    end
+
+    record RegisterAssistantReplicaKeyOutput
+        assistant: AssistantData
     end
 
     record RemoveAssistantAIAgentInput
@@ -2371,9 +2454,16 @@ local record M
         chunkedResponseTerminated: boolean
     end
 
+    enum UnprocessableContentReason
+        "ORCHESTRATION_ERROR"
+        "AI_INFERENCE_MODEL_UNAVAILABLE"
+    end
+
     -- The server has a failure of processing the message
     record UnprocessableContentException
         message: string
+        -- The reason the content could not be processed.
+        reason: string
     end
 
     record GetSessionInput
@@ -2917,6 +3007,12 @@ local record M
         url: string
         -- The expiration time of the URL as an epoch timestamp.
         urlExpiry: number
+        -- The timestamp when the content was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the content was last modified.
+        lastModifiedRegion: string
+        -- The Base64-encoded SHA-256 hash of the content file. Amazon Connect Global Resiliency returns this field only for replicated content.
+        fileHash: string
     end
 
     record CreateContentOutput
@@ -2977,6 +3073,12 @@ local record M
         metadata: {string : string}
         -- The tags used to organize, track, or control access for this resource.
         tags: {string : string}
+        -- The timestamp when the content was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the content was last modified.
+        lastModifiedRegion: string
+        -- The Base64-encoded SHA-256 hash of the content file. Amazon Connect Global Resiliency returns this field only for replicated content.
+        fileHash: string
     end
 
     record GetContentSummaryOutput
@@ -3185,6 +3287,10 @@ local record M
         ingestionStatus: string
         -- List of failure reasons on ingestion per file.
         ingestionFailureReasons: {string}
+        -- The timestamp when the knowledge base was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the knowledge base was last modified.
+        lastModifiedRegion: string
     end
 
     record CreateKnowledgeBaseOutput
@@ -3807,6 +3913,8 @@ local record M
         createdTime: number
         -- The timestamp when the quick response data was last modified.
         lastModifiedTime: number
+        -- The Amazon Web Services Region where the quick response was last modified.
+        lastModifiedRegion: string
         -- The contents of the quick response.
         contents: QuickResponseContents
         -- The description of the quick response.
@@ -4071,6 +4179,10 @@ local record M
         description: string
         -- The tags used to organize, track, or control access for this resource.
         tags: {string : string}
+        -- The timestamp when the knowledge base was last modified.
+        lastModifiedTime: number
+        -- The Amazon Web Services Region where the knowledge base was last modified.
+        lastModifiedRegion: string
     end
 
     record ListKnowledgeBasesOutput
@@ -4253,6 +4365,8 @@ local record M
         createdTime: number
         -- The timestamp when the quick response summary was last modified.
         lastModifiedTime: number
+        -- The Amazon Web Services Region where the quick response was last modified.
+        lastModifiedRegion: string
         -- The description of the quick response.
         description: string
         -- The Amazon Resource Name (ARN) of the user who last updated the quick response data.
@@ -4306,6 +4420,19 @@ local record M
     record UpdateQuickResponseOutput
         -- The quick response.
         quickResponse: QuickResponseData
+    end
+
+    record RegisterKnowledgeBaseReplicaKeyInput
+        -- The identifier of the knowledge base.
+        knowledgeBaseId: string
+        -- The replica Region KMS key to register for the knowledge base.
+        replicaKmsKey: ReplicaKmsKey
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs..
+        clientToken: string
+    end
+
+    record RegisterKnowledgeBaseReplicaKeyOutput
+        knowledgeBase: KnowledgeBaseData
     end
 
     record RemoveKnowledgeBaseTemplateUriInput
@@ -4543,6 +4670,8 @@ local record M
         createdTime: number
         -- The timestamp when the quick response search result data was last modified.
         lastModifiedTime: number
+        -- The Amazon Web Services Region where the quick response was last modified.
+        lastModifiedRegion: string
         -- Whether the quick response is active.
         isActive: boolean
         -- The description of the quick response.

@@ -90,6 +90,8 @@ M.QuickResponseSummaryList = schema.new({ type = "list", list_member = M.QuickRe
 
 M.Channels = schema.new({ type = "list", list_member = prelude.String })
 
+M.ReplicaKmsKeyList = schema.new({ type = "list", list_member = M.ReplicaKmsKey })
+
 M.FilterList = schema.new({ type = "list", list_member = M.Filter })
 
 M.ContentAssociationSummaryList = schema.new({ type = "list", list_member = M.ContentAssociationSummary })
@@ -1405,6 +1407,18 @@ M.AIAgentData = schema.new({
             name = "modifiedTime",
             target_id = prelude.Timestamp.id,
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AIAgentData", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AIAgentData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
         description = schema.new({
             id = id.from(_N, "AIAgentData", "description"),
             type = "string",
@@ -1779,6 +1793,18 @@ M.AIAgentSummary = schema.new({
             type = "timestamp",
             name = "modifiedTime",
             target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AIAgentSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AIAgentSummary", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
         }),
         visibilityStatus = schema.new({
             id = id.from(_N, "AIAgentSummary", "visibilityStatus"),
@@ -2581,6 +2607,18 @@ M.AIGuardrailData = schema.new({
             name = "modifiedTime",
             target_id = prelude.Timestamp.id,
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AIGuardrailData", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AIGuardrailData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2870,6 +2908,18 @@ M.AIGuardrailSummary = schema.new({
             type = "timestamp",
             name = "modifiedTime",
             target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AIGuardrailSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AIGuardrailSummary", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
         }),
         visibilityStatus = schema.new({
             id = id.from(_N, "AIGuardrailSummary", "visibilityStatus"),
@@ -3428,6 +3478,18 @@ M.AIPromptData = schema.new({
             name = "modifiedTime",
             target_id = prelude.Timestamp.id,
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AIPromptData", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AIPromptData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
         description = schema.new({
             id = id.from(_N, "AIPromptData", "description"),
             type = "string",
@@ -3770,6 +3832,18 @@ M.AIPromptSummary = schema.new({
             type = "timestamp",
             name = "modifiedTime",
             target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AIPromptSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AIPromptSummary", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
         }),
         templateType = schema.new({
             id = id.from(_N, "AIPromptSummary", "templateType"),
@@ -4282,6 +4356,18 @@ M.AssistantAssociationData = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AssistantAssociationData", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AssistantAssociationData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4474,6 +4560,18 @@ M.AssistantAssociationSummary = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AssistantAssociationSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AssistantAssociationSummary", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4500,6 +4598,22 @@ M.ListAssistantAssociationsOutput = schema.new({
     },
 })
 
+M.ReplicaKmsKey = schema.new({
+    id = id.from(_N, "ReplicaKmsKey"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ReplicaKmsKey", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ServerSideEncryptionConfiguration = schema.new({
     id = id.from(_N, "ServerSideEncryptionConfiguration"),
     type = "structure",
@@ -4509,6 +4623,13 @@ M.ServerSideEncryptionConfiguration = schema.new({
             type = "string",
             name = "kmsKeyId",
             target_id = prelude.String.id,
+        }),
+        replicaKmsKeys = schema.new({
+            id = id.from(_N, "ServerSideEncryptionConfiguration", "replicaKmsKeys"),
+            type = "list",
+            name = "replicaKmsKeys",
+            target_id = prelude.Document.id,
+            list_member = M.ReplicaKmsKey,
         }),
     },
 })
@@ -4714,6 +4835,24 @@ M.AssistantData = schema.new({
             name = "orchestratorConfigurationList",
             target_id = prelude.Document.id,
             list_member = M.OrchestratorConfigurationEntry,
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AssistantData", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AssistantData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+        assistantGlobalResiliencyStatus = schema.new({
+            id = id.from(_N, "AssistantData", "assistantGlobalResiliencyStatus"),
+            type = "string",
+            name = "assistantGlobalResiliencyStatus",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5544,6 +5683,18 @@ M.AssistantSummary = schema.new({
             target_id = prelude.Document.id,
             list_member = M.OrchestratorConfigurationEntry,
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AssistantSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "AssistantSummary", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5681,6 +5832,12 @@ M.ModelSummary = schema.new({
             type = "timestamp",
             name = "endOfLifeTimestamp",
             target_id = prelude.Timestamp.id,
+        }),
+        globalResiliencyStatus = schema.new({
+            id = id.from(_N, "ModelSummary", "globalResiliencyStatus"),
+            type = "string",
+            name = "globalResiliencyStatus",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -6110,6 +6267,59 @@ M.RequestTimeoutException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegisterAssistantReplicaKeyInput = schema.new({
+    id = id.from(_N, "RegisterAssistantReplicaKeyRequest"),
+    type = "structure",
+    members = {
+        assistantId = schema.new({
+            id = id.from(_N, "RegisterAssistantReplicaKeyInput", "assistantId"),
+            type = "string",
+            name = "assistantId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        replicaKmsKey = schema.new({
+            id = id.from(_N, "RegisterAssistantReplicaKeyInput", "replicaKmsKey"),
+            type = "structure",
+            name = "replicaKmsKey",
+            target_id = id.from(_N, "ReplicaKmsKey"),
+            target = M.ReplicaKmsKey,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "RegisterAssistantReplicaKeyInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterAssistantReplicaKeyOutput = schema.new({
+    id = id.from(_N, "RegisterAssistantReplicaKeyResponse"),
+    type = "structure",
+    members = {
+        assistant = schema.new({
+            id = id.from(_N, "RegisterAssistantReplicaKeyOutput", "assistant"),
+            type = "structure",
+            name = "assistant",
+            target_id = id.from(_N, "AssistantData"),
+            target = M.AssistantData,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -7030,6 +7240,12 @@ M.UnprocessableContentException = schema.new({
             id = id.from(_N, "UnprocessableContentException", "message"),
             type = "string",
             name = "message",
+            target_id = prelude.String.id,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "UnprocessableContentException", "reason"),
+            type = "string",
+            name = "reason",
             target_id = prelude.String.id,
         }),
     },
@@ -8658,6 +8874,24 @@ M.ContentData = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "epoch-seconds" },
             },
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "ContentData", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "ContentData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+        fileHash = schema.new({
+            id = id.from(_N, "ContentData", "fileHash"),
+            type = "string",
+            name = "fileHash",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -8878,6 +9112,24 @@ M.ContentSummary = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "ContentSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "ContentSummary", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+        fileHash = schema.new({
+            id = id.from(_N, "ContentSummary", "fileHash"),
+            type = "string",
+            name = "fileHash",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -9413,6 +9665,18 @@ M.KnowledgeBaseData = schema.new({
             name = "ingestionFailureReasons",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "KnowledgeBaseData", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "KnowledgeBaseData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -11288,6 +11552,12 @@ M.QuickResponseData = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "epoch-seconds" },
             },
         }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "QuickResponseData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
         contents = schema.new({
             id = id.from(_N, "QuickResponseData", "contents"),
             type = "structure",
@@ -12165,6 +12435,18 @@ M.KnowledgeBaseSummary = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "KnowledgeBaseSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "KnowledgeBaseSummary", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -12847,6 +13129,12 @@ M.QuickResponseSummary = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "epoch-seconds" },
             },
         }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "QuickResponseSummary", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
         description = schema.new({
             id = id.from(_N, "QuickResponseSummary", "description"),
             type = "string",
@@ -13018,6 +13306,59 @@ M.UpdateQuickResponseOutput = schema.new({
             name = "quickResponse",
             target_id = id.from(_N, "QuickResponseData"),
             target = M.QuickResponseData,
+        }),
+    },
+})
+
+M.RegisterKnowledgeBaseReplicaKeyInput = schema.new({
+    id = id.from(_N, "RegisterKnowledgeBaseReplicaKeyRequest"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "RegisterKnowledgeBaseReplicaKeyInput", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        replicaKmsKey = schema.new({
+            id = id.from(_N, "RegisterKnowledgeBaseReplicaKeyInput", "replicaKmsKey"),
+            type = "structure",
+            name = "replicaKmsKey",
+            target_id = id.from(_N, "ReplicaKmsKey"),
+            target = M.ReplicaKmsKey,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "RegisterKnowledgeBaseReplicaKeyInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterKnowledgeBaseReplicaKeyOutput = schema.new({
+    id = id.from(_N, "RegisterKnowledgeBaseReplicaKeyResponse"),
+    type = "structure",
+    members = {
+        knowledgeBase = schema.new({
+            id = id.from(_N, "RegisterKnowledgeBaseReplicaKeyOutput", "knowledgeBase"),
+            type = "structure",
+            name = "knowledgeBase",
+            target_id = id.from(_N, "KnowledgeBaseData"),
+            target = M.KnowledgeBaseData,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -13741,6 +14082,12 @@ M.QuickResponseSearchResultData = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.TIMESTAMP_FORMAT] = { format = "epoch-seconds" },
             },
+        }),
+        lastModifiedRegion = schema.new({
+            id = id.from(_N, "QuickResponseSearchResultData", "lastModifiedRegion"),
+            type = "string",
+            name = "lastModifiedRegion",
+            target_id = prelude.String.id,
         }),
         isActive = schema.new({
             id = id.from(_N, "QuickResponseSearchResultData", "isActive"),
@@ -16029,6 +16376,30 @@ M.QueryAssistant = schema.operation({
     output = M.QueryAssistantOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/assistants/{assistantId}/query" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterAssistantReplicaKey = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "RegisterAssistantReplicaKey"),
+    input = M.RegisterAssistantReplicaKeyInput,
+    output = M.RegisterAssistantReplicaKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assistants/{assistantId}/replicaKey" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterKnowledgeBaseReplicaKey = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "RegisterKnowledgeBaseReplicaKey"),
+    input = M.RegisterKnowledgeBaseReplicaKeyInput,
+    output = M.RegisterKnowledgeBaseReplicaKeyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/knowledgeBases/{knowledgeBaseId}/replicaKey" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

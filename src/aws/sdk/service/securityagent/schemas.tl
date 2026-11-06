@@ -8780,6 +8780,25 @@ M.GitLabResourceCapabilities = schema.new({
     },
 })
 
+M.GroupMetadata = schema.new({
+    id = id.from(_N, "GroupMetadata"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "GroupMetadata", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "GroupMetadata", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SecurityRequirementArtifact = schema.new({
     id = id.from(_N, "SecurityRequirementArtifact"),
     type = "structure",
@@ -10029,6 +10048,13 @@ M.MemberMetadata = schema.new({
             name = "user",
             target_id = id.from(_N, "UserMetadata"),
             target = M.UserMetadata,
+        }),
+        group = schema.new({
+            id = id.from(_N, "MemberMetadata", "group"),
+            type = "structure",
+            name = "group",
+            target_id = id.from(_N, "GroupMetadata"),
+            target = M.GroupMetadata,
         }),
     },
 })

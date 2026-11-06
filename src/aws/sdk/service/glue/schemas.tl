@@ -1868,6 +1868,37 @@ M.AutoDataQuality = schema.new({
     },
 })
 
+M.AutoUpgradeMetadata = schema.new({
+    id = id.from(_N, "AutoUpgradeMetadata"),
+    type = "structure",
+    members = {
+        TargetVersion = schema.new({
+            id = id.from(_N, "AutoUpgradeMetadata", "TargetVersion"),
+            type = "string",
+            name = "TargetVersion",
+            target_id = prelude.String.id,
+        }),
+        SourceVersion = schema.new({
+            id = id.from(_N, "AutoUpgradeMetadata", "SourceVersion"),
+            type = "string",
+            name = "SourceVersion",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AutoUpgradeMetadata", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        AnalysisId = schema.new({
+            id = id.from(_N, "AutoUpgradeMetadata", "AnalysisId"),
+            type = "string",
+            name = "AnalysisId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Column = schema.new({
     id = id.from(_N, "Column"),
     type = "structure",
@@ -24167,6 +24198,104 @@ M.GetJobsInput = schema.new({
     },
 })
 
+M.GetJobUpgradeAnalysisInput = schema.new({
+    id = id.from(_N, "GetJobUpgradeAnalysisRequest"),
+    type = "structure",
+    members = {
+        analysisId = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisInput", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobName = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisInput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetJobUpgradeAnalysisOutput = schema.new({
+    id = id.from(_N, "GetJobUpgradeAnalysisResponse"),
+    type = "structure",
+    members = {
+        jobName = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisId = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceVersion = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "sourceVersion"),
+            type = "string",
+            name = "sourceVersion",
+            target_id = prelude.String.id,
+        }),
+        targetVersion = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "targetVersion"),
+            type = "string",
+            name = "targetVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisType = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "analysisType"),
+            type = "string",
+            name = "analysisType",
+            target_id = prelude.String.id,
+        }),
+        autoUpgradeEvaluationSummary = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "autoUpgradeEvaluationSummary"),
+            type = "string",
+            name = "autoUpgradeEvaluationSummary",
+            target_id = prelude.String.id,
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+        autoUpgradeEligibilitySummary = schema.new({
+            id = id.from(_N, "GetJobUpgradeAnalysisOutput", "autoUpgradeEligibilitySummary"),
+            type = "string",
+            name = "autoUpgradeEligibilitySummary",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Location = schema.new({
     id = id.from(_N, "Location"),
     type = "structure",
@@ -33858,6 +33987,53 @@ M.StartJobRunOutput = schema.new({
     },
 })
 
+M.StartJobUpgradeAnalysisInput = schema.new({
+    id = id.from(_N, "StartJobUpgradeAnalysisRequest"),
+    type = "structure",
+    members = {
+        jobName = schema.new({
+            id = id.from(_N, "StartJobUpgradeAnalysisInput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisId = schema.new({
+            id = id.from(_N, "StartJobUpgradeAnalysisInput", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+        }),
+        upgradeConsent = schema.new({
+            id = id.from(_N, "StartJobUpgradeAnalysisInput", "upgradeConsent"),
+            type = "string",
+            name = "upgradeConsent",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartJobUpgradeAnalysisOutput = schema.new({
+    id = id.from(_N, "StartJobUpgradeAnalysisResponse"),
+    type = "structure",
+    members = {
+        analysisId = schema.new({
+            id = id.from(_N, "StartJobUpgradeAnalysisOutput", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+        }),
+        jobName = schema.new({
+            id = id.from(_N, "StartJobUpgradeAnalysisOutput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.MaterializedViewRefreshTaskRunningException = schema.new({
     id = id.from(_N, "MaterializedViewRefreshTaskRunningException"),
     type = "structure",
@@ -34267,6 +34443,36 @@ M.StopCrawlerScheduleInput = schema.new({
 
 M.StopCrawlerScheduleOutput = schema.new({
     id = id.from(_N, "StopCrawlerScheduleResponse"),
+    type = "structure",
+})
+
+M.StopJobUpgradeAnalysisInput = schema.new({
+    id = id.from(_N, "StopJobUpgradeAnalysisRequest"),
+    type = "structure",
+    members = {
+        jobName = schema.new({
+            id = id.from(_N, "StopJobUpgradeAnalysisInput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisId = schema.new({
+            id = id.from(_N, "StopJobUpgradeAnalysisInput", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopJobUpgradeAnalysisOutput = schema.new({
+    id = id.from(_N, "StopJobUpgradeAnalysisResponse"),
     type = "structure",
 })
 
@@ -38203,6 +38409,13 @@ M.Job = schema.new({
             name = "ProfileName",
             target_id = prelude.String.id,
         }),
+        AutoUpgradeMetadata = schema.new({
+            id = id.from(_N, "Job", "AutoUpgradeMetadata"),
+            type = "structure",
+            name = "AutoUpgradeMetadata",
+            target_id = id.from(_N, "AutoUpgradeMetadata"),
+            target = M.AutoUpgradeMetadata,
+        }),
     },
 })
 
@@ -40191,6 +40404,17 @@ M.GetJobs = schema.operation({
     },
 })
 
+M.GetJobUpgradeAnalysis = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetJobUpgradeAnalysis"),
+    input = M.GetJobUpgradeAnalysisInput,
+    output = M.GetJobUpgradeAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetMapping = schema.operation({
     id = id.from("com.amazonaws.glue", "GetMapping"),
     input = M.GetMappingInput,
@@ -41390,6 +41614,17 @@ M.StartJobRun = schema.operation({
     },
 })
 
+M.StartJobUpgradeAnalysis = schema.operation({
+    id = id.from("com.amazonaws.glue", "StartJobUpgradeAnalysis"),
+    input = M.StartJobUpgradeAnalysisInput,
+    output = M.StartJobUpgradeAnalysisOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StartMaterializedViewRefreshTaskRun = schema.operation({
     id = id.from("com.amazonaws.glue", "StartMaterializedViewRefreshTaskRun"),
     input = M.StartMaterializedViewRefreshTaskRunInput,
@@ -41482,6 +41717,17 @@ M.StopCrawlerSchedule = schema.operation({
     id = id.from("com.amazonaws.glue", "StopCrawlerSchedule"),
     input = M.StopCrawlerScheduleInput,
     output = M.StopCrawlerScheduleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopJobUpgradeAnalysis = schema.operation({
+    id = id.from("com.amazonaws.glue", "StopJobUpgradeAnalysis"),
+    input = M.StopJobUpgradeAnalysisInput,
+    output = M.StopJobUpgradeAnalysisOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

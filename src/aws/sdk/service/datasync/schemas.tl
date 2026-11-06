@@ -109,6 +109,51 @@ M.AzureBlobSasConfiguration = schema.new({
     },
 })
 
+M.AzureOidcConfig = schema.new({
+    id = id.from(_N, "AzureOidcConfig"),
+    type = "structure",
+    members = {
+        TenantId = schema.new({
+            id = id.from(_N, "AzureOidcConfig", "TenantId"),
+            type = "string",
+            name = "TenantId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "AzureOidcConfig", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AzureFederatedIdentityConfig = schema.new({
+    id = id.from(_N, "AzureFederatedIdentityConfig"),
+    type = "structure",
+    members = {
+        AwsIamRole = schema.new({
+            id = id.from(_N, "AzureFederatedIdentityConfig", "AwsIamRole"),
+            type = "string",
+            name = "AwsIamRole",
+            target_id = prelude.String.id,
+        }),
+        AzureOidc = schema.new({
+            id = id.from(_N, "AzureFederatedIdentityConfig", "AzureOidc"),
+            type = "structure",
+            name = "AzureOidc",
+            target_id = id.from(_N, "AzureOidcConfig"),
+            target = M.AzureOidcConfig,
+        }),
+    },
+})
+
 M.CancelTaskExecutionInput = schema.new({
     id = id.from(_N, "CancelTaskExecutionRequest"),
     type = "structure",
@@ -330,6 +375,13 @@ M.CreateLocationAzureBlobInput = schema.new({
             name = "SasConfiguration",
             target_id = id.from(_N, "AzureBlobSasConfiguration"),
             target = M.AzureBlobSasConfiguration,
+        }),
+        FederatedIdentity = schema.new({
+            id = id.from(_N, "CreateLocationAzureBlobInput", "FederatedIdentity"),
+            type = "structure",
+            name = "FederatedIdentity",
+            target_id = id.from(_N, "AzureFederatedIdentityConfig"),
+            target = M.AzureFederatedIdentityConfig,
         }),
         BlobType = schema.new({
             id = id.from(_N, "CreateLocationAzureBlobInput", "BlobType"),
@@ -1133,6 +1185,83 @@ M.CreateLocationNfsOutput = schema.new({
     },
 })
 
+M.GoogleOidcConfig = schema.new({
+    id = id.from(_N, "GoogleOidcConfig"),
+    type = "structure",
+    members = {
+        ProjectName = schema.new({
+            id = id.from(_N, "GoogleOidcConfig", "ProjectName"),
+            type = "string",
+            name = "ProjectName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProjectNumber = schema.new({
+            id = id.from(_N, "GoogleOidcConfig", "ProjectNumber"),
+            type = "string",
+            name = "ProjectNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityPoolName = schema.new({
+            id = id.from(_N, "GoogleOidcConfig", "IdentityPoolName"),
+            type = "string",
+            name = "IdentityPoolName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityProviderName = schema.new({
+            id = id.from(_N, "GoogleOidcConfig", "IdentityProviderName"),
+            type = "string",
+            name = "IdentityProviderName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ObjectStorageExternalIdentityConfig = schema.new({
+    id = id.from(_N, "ObjectStorageExternalIdentityConfig"),
+    type = "structure",
+    members = {
+        GoogleOidc = schema.new({
+            id = id.from(_N, "ObjectStorageExternalIdentityConfig", "GoogleOidc"),
+            type = "structure",
+            name = "GoogleOidc",
+            target_id = id.from(_N, "GoogleOidcConfig"),
+            target = M.GoogleOidcConfig,
+        }),
+    },
+})
+
+M.ObjectStorageFederatedIdentityConfig = schema.new({
+    id = id.from(_N, "ObjectStorageFederatedIdentityConfig"),
+    type = "structure",
+    members = {
+        AwsIamRole = schema.new({
+            id = id.from(_N, "ObjectStorageFederatedIdentityConfig", "AwsIamRole"),
+            type = "string",
+            name = "AwsIamRole",
+            target_id = prelude.String.id,
+        }),
+        ExternalIdentity = schema.new({
+            id = id.from(_N, "ObjectStorageFederatedIdentityConfig", "ExternalIdentity"),
+            type = "structure",
+            name = "ExternalIdentity",
+            target_id = id.from(_N, "ObjectStorageExternalIdentityConfig"),
+            target = M.ObjectStorageExternalIdentityConfig,
+        }),
+    },
+})
+
 M.CreateLocationObjectStorageInput = schema.new({
     id = id.from(_N, "CreateLocationObjectStorageRequest"),
     type = "structure",
@@ -1184,6 +1313,13 @@ M.CreateLocationObjectStorageInput = schema.new({
             type = "string",
             name = "SecretKey",
             target_id = prelude.String.id,
+        }),
+        FederatedIdentity = schema.new({
+            id = id.from(_N, "CreateLocationObjectStorageInput", "FederatedIdentity"),
+            type = "structure",
+            name = "FederatedIdentity",
+            target_id = id.from(_N, "ObjectStorageFederatedIdentityConfig"),
+            target = M.ObjectStorageFederatedIdentityConfig,
         }),
         AgentArns = schema.new({
             id = id.from(_N, "CreateLocationObjectStorageInput", "AgentArns"),
@@ -2112,6 +2248,13 @@ M.DescribeLocationAzureBlobOutput = schema.new({
             name = "AuthenticationType",
             target_id = prelude.String.id,
         }),
+        FederatedIdentity = schema.new({
+            id = id.from(_N, "DescribeLocationAzureBlobOutput", "FederatedIdentity"),
+            type = "structure",
+            name = "FederatedIdentity",
+            target_id = id.from(_N, "AzureFederatedIdentityConfig"),
+            target = M.AzureFederatedIdentityConfig,
+        }),
         BlobType = schema.new({
             id = id.from(_N, "DescribeLocationAzureBlobOutput", "BlobType"),
             type = "string",
@@ -2689,6 +2832,13 @@ M.DescribeLocationObjectStorageOutput = schema.new({
             type = "string",
             name = "AccessKey",
             target_id = prelude.String.id,
+        }),
+        FederatedIdentity = schema.new({
+            id = id.from(_N, "DescribeLocationObjectStorageOutput", "FederatedIdentity"),
+            type = "structure",
+            name = "FederatedIdentity",
+            target_id = id.from(_N, "ObjectStorageFederatedIdentityConfig"),
+            target = M.ObjectStorageFederatedIdentityConfig,
         }),
         ServerPort = schema.new({
             id = id.from(_N, "DescribeLocationObjectStorageOutput", "ServerPort"),
@@ -4159,6 +4309,13 @@ M.UpdateLocationAzureBlobInput = schema.new({
             target_id = id.from(_N, "AzureBlobSasConfiguration"),
             target = M.AzureBlobSasConfiguration,
         }),
+        FederatedIdentity = schema.new({
+            id = id.from(_N, "UpdateLocationAzureBlobInput", "FederatedIdentity"),
+            type = "structure",
+            name = "FederatedIdentity",
+            target_id = id.from(_N, "AzureFederatedIdentityConfig"),
+            target = M.AzureFederatedIdentityConfig,
+        }),
         BlobType = schema.new({
             id = id.from(_N, "UpdateLocationAzureBlobInput", "BlobType"),
             type = "string",
@@ -4671,6 +4828,13 @@ M.UpdateLocationObjectStorageInput = schema.new({
             type = "string",
             name = "SecretKey",
             target_id = prelude.String.id,
+        }),
+        FederatedIdentity = schema.new({
+            id = id.from(_N, "UpdateLocationObjectStorageInput", "FederatedIdentity"),
+            type = "structure",
+            name = "FederatedIdentity",
+            target_id = id.from(_N, "ObjectStorageFederatedIdentityConfig"),
+            target = M.ObjectStorageFederatedIdentityConfig,
         }),
         AgentArns = schema.new({
             id = id.from(_N, "UpdateLocationObjectStorageInput", "AgentArns"),

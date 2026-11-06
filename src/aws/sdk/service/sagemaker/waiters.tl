@@ -111,7 +111,7 @@ function M.wait_until_image_deleted(client, input, options)
             {
                 state = "success",
                 matcher = {
-                    errorType = "ResourceNotFoundException",
+                    errorType = "ResourceNotFound",
                 },
             },
             {
@@ -215,7 +215,7 @@ function M.wait_until_image_version_deleted(client, input, options)
             {
                 state = "success",
                 matcher = {
-                    errorType = "ResourceNotFoundException",
+                    errorType = "ResourceNotFound",
                 },
             },
             {

@@ -9,6 +9,7 @@ local record M
 
     enum Architecture
         "ARM_64"
+        "X86_64"
     end
 
     enum BuildState
@@ -24,6 +25,7 @@ local record M
 
     enum Chipset
         "GRAVITON"
+        "INTEL"
     end
 
     -- Configuration for Amazon CloudWatch Logs logging.
@@ -200,7 +202,7 @@ local record M
         codeArtifact: CodeArtifact
         -- The logging configuration for build-time and runtime logs. Specify {"cloudWatch": {"logGroup": "..."}} to stream logs to a custom CloudWatch log group, or {"disabled": {}} to turn off logging.
         logging: Logging
-        -- The list of egress network connectors available to the MicroVM at runtime.
+        -- The list of egress network connectors available to the MicroVM at image build time.
         egressNetworkConnectors: {string}
         -- The list of supported CPU configurations for the MicroVM.
         cpuConfigurations: {CpuConfiguration}
@@ -256,7 +258,7 @@ local record M
         codeArtifact: CodeArtifact
         -- The logging configuration for build-time and runtime logs. Specify {"cloudWatch": {"logGroup": "..."}} to stream logs to a custom CloudWatch log group, or {"disabled": {}} to turn off logging.
         logging: Logging
-        -- The list of egress network connectors available to the MicroVM at runtime.
+        -- The list of egress network connectors available to the MicroVM at image build time.
         egressNetworkConnectors: {string}
         -- The list of supported CPU configurations for the MicroVM.
         cpuConfigurations: {CpuConfiguration}
@@ -387,7 +389,7 @@ local record M
         stateReason: string
         -- The list of ingress network connectors configured for the MicroVM.
         ingressNetworkConnectors: {string}
-        -- The list of egress network connectors configured for the MicroVM.
+        -- The list of egress network connectors available to the MicroVM at runtime.
         egressNetworkConnectors: {string}
     end
 
@@ -482,7 +484,7 @@ local record M
         codeArtifact: CodeArtifact
         -- The logging configuration for this version.
         logging: Logging
-        -- The list of egress network connectors available to the MicroVM at runtime.
+        -- The list of egress network connectors available to the MicroVM at image build time.
         egressNetworkConnectors: {string}
         -- The list of supported CPU configurations for the MicroVM.
         cpuConfigurations: {CpuConfiguration}
@@ -614,7 +616,7 @@ local record M
     record RunMicrovmInput
         -- The list of ingress network connectors to configure for the MicroVM.
         ingressNetworkConnectors: {string}
-        -- The list of egress network connectors to configure for the MicroVM.
+        -- The list of egress network connectors available to the MicroVM at runtime.
         egressNetworkConnectors: {string}
         -- The identifier (ARN or ID) of the MicroVM image to run.
         imageIdentifier: string
@@ -659,7 +661,7 @@ local record M
         stateReason: string
         -- The list of ingress network connectors configured for the MicroVM.
         ingressNetworkConnectors: {string}
-        -- The list of egress network connectors configured for the MicroVM.
+        -- The list of egress network connectors available to the MicroVM at runtime.
         egressNetworkConnectors: {string}
     end
 
@@ -691,6 +693,7 @@ local record M
     enum ManagedMicrovmImageVersionStatus
         "AVAILABLE"
         "DEPRECATED"
+        "RECALLED"
     end
 
     -- Contains version information for a managed MicroVM image.
@@ -701,6 +704,8 @@ local record M
         imageVersion: string
         -- The lifecycle status of the managed MicroVM image version. Valid values: AVAILABLE (the version is available for use) or DEPRECATED (the version is deprecated; do not use it for new MicroVM images).
         status: string
+        -- CPU configurations supported by this managed base image version.
+        supportedCpuConfigurations: {CpuConfiguration}
         -- The timestamp when the version was created.
         createdAt: number
         -- The timestamp when the version was last updated.
@@ -815,7 +820,7 @@ local record M
         codeArtifact: CodeArtifact
         -- The logging configuration for this version.
         logging: Logging
-        -- The list of egress network connectors available to the MicroVM at runtime.
+        -- The list of egress network connectors available to the MicroVM at image build time.
         egressNetworkConnectors: {string}
         -- The list of supported CPU configurations for the MicroVM.
         cpuConfigurations: {CpuConfiguration}
@@ -864,7 +869,7 @@ local record M
         codeArtifact: CodeArtifact
         -- The logging configuration for build-time and runtime logs. Specify {"cloudWatch": {"logGroup": "..."}} to stream logs to a custom CloudWatch log group, or {"disabled": {}} to turn off logging.
         logging: Logging
-        -- The list of egress network connectors available to the MicroVM at runtime.
+        -- The list of egress network connectors available to the MicroVM at image build time.
         egressNetworkConnectors: {string}
         -- The list of supported CPU configurations for the MicroVM.
         cpuConfigurations: {CpuConfiguration}
@@ -906,7 +911,7 @@ local record M
         codeArtifact: CodeArtifact
         -- The logging configuration for build-time and runtime logs. Specify {"cloudWatch": {"logGroup": "..."}} to stream logs to a custom CloudWatch log group, or {"disabled": {}} to turn off logging.
         logging: Logging
-        -- The list of egress network connectors available to the MicroVM at runtime.
+        -- The list of egress network connectors available to the MicroVM at image build time.
         egressNetworkConnectors: {string}
         -- The list of supported CPU configurations for the MicroVM.
         cpuConfigurations: {CpuConfiguration}
@@ -945,7 +950,7 @@ local record M
         codeArtifact: CodeArtifact
         -- The logging configuration for this version.
         logging: Logging
-        -- The list of egress network connectors available to the MicroVM at runtime.
+        -- The list of egress network connectors available to the MicroVM at image build time.
         egressNetworkConnectors: {string}
         -- The list of supported CPU configurations for the MicroVM.
         cpuConfigurations: {CpuConfiguration}

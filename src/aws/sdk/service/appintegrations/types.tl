@@ -374,6 +374,8 @@ local record M
         CreatedTime: number
         -- The last modified time of the Application.
         LastModifiedTime: number
+        -- The Amazon Web Services Region where the application was last modified.
+        LastModifiedRegion: string
         -- The tags used to organize, track, or control access for this resource. For example, { "tags": {"key1":"value1", "key2":"value2"} }.
         Tags: {string : string}
         -- The configuration of events or requests that the application has access to.
@@ -491,6 +493,8 @@ local record M
         CreatedTime: number
         -- The time when the application was last modified.
         LastModifiedTime: number
+        -- The Amazon Web Services Region where the application was last modified.
+        LastModifiedRegion: string
         -- Indicates whether the application is a service.
         IsService: boolean
         -- The type of application.
@@ -650,6 +654,11 @@ local record M
         tags: {string : string}
     end
 
+    -- The request conflicts with the current state of the resource. Verify the resource's current state and retry the request.
+    record ConflictException
+        Message: string
+    end
+
     record TagResourceInput
         -- The Amazon Resource Name (ARN) of the resource.
         resourceArn: string
@@ -668,11 +677,6 @@ local record M
     end
 
     record UntagResourceOutput
-    end
-
-    -- The request conflicts with the current state of the resource. Verify the application's current state and retry the request.
-    record ConflictException
-        Message: string
     end
 
     record UpdateApplicationInput

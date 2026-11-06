@@ -1305,6 +1305,16 @@ function M.pages_list_projects(client, input)
     return paginator.pages(client, "listProjects", input, {
         input_token = "NextToken",
         output_token = "NextToken",
+        items = "ProjectSummaryList",
+    })
+end
+
+--- Returns an item iterator for listProjects.
+function M.items_list_projects(client, input)
+    return paginator.items(client, "listProjects", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ProjectSummaryList",
     })
 end
 

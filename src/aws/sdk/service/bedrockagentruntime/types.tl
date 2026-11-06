@@ -2433,18 +2433,20 @@ local record M
         dataSourceId: string
         -- The unique identifier of the document to retrieve content for.
         documentId: string
-        -- The output format for the document content. RAW returns the original file. EXTRACTED returns parsed text as JSON. Defaults to RAW.
+        -- The unique identifier (in UUID format) of an image embedded in the specified document. Set this parameter to the _media_id value in the metadata of the corresponding Retrieve result. If you specify this parameter, the response contains a pre-signed URL for the image instead of the document, and you must omit outputFormat or set it to RAW.
+        mediaId: string
+        -- The output format for the content. You can specify one of the following values: RAW Returns the original document, or the selected image if you specify mediaId. EXTRACTED Returns parsed document text as JSON. If you omit this parameter, the default is RAW. You can't use EXTRACTED with mediaId.
         outputFormat: string
         -- Contains information about the user making the request. This is used for access control filtering to ensure that results only include documents the user is authorized to access.
         userContext: UserContext
     end
 
     record GetDocumentContentOutput
-        -- The MIME type of the document content. For RAW format, this is the original file type (for example, application/pdf). For EXTRACTED format, this is always application/json.
+        -- The MIME type of the returned content. For RAW format, this is the original file type (for example, application/pdf), or the image type (for example, image/png) if you specify mediaId. For EXTRACTED format, this is always application/json.
         mimeType: string
-        -- A pre-signed URL for downloading the document content. The URL expires after 5 minutes.
+        -- A pre-signed URL for downloading the document content, or the selected image if you specify mediaId. The URL expires after 5 minutes.
         presignedUrl: string
-        -- The size of the document content in bytes available at the pre-signed URL.
+        -- The size, in bytes, of the content available at the pre-signed URL.
         documentContentLength: number
     end
 

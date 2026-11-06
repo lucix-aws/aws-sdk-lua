@@ -164,7 +164,7 @@ local record M
 
     -- Configuration for a custom JWT authorizer that validates inbound bearer tokens against an OpenID Connect identity provider.
     record CustomJWTAuthorizerConfiguration
-        -- The OpenID Connect discovery URL used to retrieve the identity provider's metadata and signing keys.
+        -- The OpenID Connect discovery or OAuth 2.0 authorization server metadata URL used to retrieve the identity provider's metadata and signing keys.
         discoveryUrl: string
         -- The audience values accepted during JWT validation. A token is rejected if none of its audience claims match.
         allowedAudience: {string}

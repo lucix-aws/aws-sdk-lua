@@ -1738,6 +1738,26 @@ local record M
     record ResendOperationAuthorizationOutput
     end
 
+    -- A RestoreDomain request includes the name of the domain that you want to
+    -- restore and, optionally, the maximum price that you agree to pay.
+    record RestoreDomainInput
+        -- The name of the domain that you want to restore. The domain must have been registered
+        -- to the Amazon Web Services account that submits the request.
+        DomainName: string
+        -- Specifies the maximum price that you agree to pay to restore the domain name. This element is
+        -- required if the domain has registry premium pricing, and optional if the domain
+        -- is priced at the standard rate for its TLD. If you include it and the restoration
+        -- price is more than MaxPrice, the request fails.
+        Consent: Consent
+    end
+
+    -- The RestoreDomain response includes the following element.
+    record RestoreDomainOutput
+        -- Identifier for tracking the progress of the request. To query the operation status,
+        -- use GetOperationDetail.
+        OperationId: string
+    end
+
     -- A request for the authorization code for the specified domain. To transfer a domain to
     -- another registrar, you provide this value to the new registrar.
     record RetrieveDomainAuthCodeInput

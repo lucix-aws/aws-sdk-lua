@@ -198,6 +198,10 @@ local record M
         Inputs: {string}
     end
 
+    enum AnalysisType
+        "AUTO_UPGRADE"
+    end
+
     -- A failed annotation.
     record AnnotationError
         -- The Profile ID for the failed annotation.
@@ -527,6 +531,27 @@ local record M
         IsEnabled: boolean
         -- The evaluation context for the automatic data quality checks. This defines the scope and parameters for the data quality evaluation.
         EvaluationContext: string
+    end
+
+    enum AutoUpgradeStatus
+        "OBSERVING"
+        "UPGRADING"
+        "UPGRADE_SUCCEEDED"
+        "UPGRADE_FAILED"
+        "STOPPED"
+        "WAITING_FOR_CONSENT"
+    end
+
+    -- The auto-upgrade assessment information for a job configured with glueVersion=auto.
+    record AutoUpgradeMetadata
+        -- The target Glue runtime version the job is being upgraded to.
+        TargetVersion: string
+        -- The source Glue runtime version the job was running before auto-version was enabled.
+        SourceVersion: string
+        -- The current auto-upgrade lifecycle status (OBSERVING, UPGRADING, UPGRADE_SUCCEEDED, UPGRADE_FAILED, STOPPED, WAITING_FOR_CONSENT).
+        Status: string
+        -- The unique identifier of the auto-upgrade assessment analysis.
+        AnalysisId: string
     end
 
     -- A column in a Table.
@@ -9374,6 +9399,51 @@ local record M
         MaxResults: number
     end
 
+    record GetJobUpgradeAnalysisInput
+        -- The unique identifier of the upgrade analysis to retrieve.
+        analysisId: string
+        -- The name of the job associated with the analysis.
+        jobName: string
+    end
+
+    enum Status
+        "OBSERVING"
+        "WAITING_FOR_CONSENT"
+        "UPGRADING"
+        "SUCCEEDED"
+        "FAILED"
+        "TIMEOUT"
+        "STOPPED"
+    end
+
+    record GetJobUpgradeAnalysisOutput
+        -- The name of the job associated with this analysis.
+        jobName: string
+        -- The unique identifier of the upgrade analysis.
+        analysisId: string
+        -- The current status of the analysis.
+        status: string
+        -- The Glue version the job was running before the upgrade, for
+        -- example 4.0.
+        sourceVersion: string
+        -- The Glue version the job will be upgraded to, for example
+        -- 6.0.
+        targetVersion: string
+        -- The type of upgrade analysis. For auto-upgrade jobs, this value is
+        -- AUTO_UPGRADE.
+        analysisType: string
+        -- The Amazon S3 URI of the terminal-state evaluation summary, available
+        -- once the analysis reaches a terminal status (SUCCEEDED or
+        -- FAILED).
+        autoUpgradeEvaluationSummary: string
+        -- The reason the analysis did not complete.
+        errorMessage: string
+        -- The Amazon S3 URI of the consent report summarizing upgrade assessment
+        -- findings. Populated when the analysis reaches WAITING_FOR_CONSENT and
+        -- remains available in all subsequent states.
+        autoUpgradeEligibilitySummary: string
+    end
+
     -- The location of resources.
     record Location
         -- A JDBC location.
@@ -13097,6 +13167,28 @@ local record M
         JobRunId: string
     end
 
+    enum UpgradeConsent
+        "APPROVE"
+        "DECLINE"
+    end
+
+    record StartJobUpgradeAnalysisInput
+        -- The name of the job associated with the analysis to resume.
+        jobName: string
+        -- The unique identifier of the upgrade analysis. The analysis must be in
+        -- WAITING_FOR_CONSENT status.
+        analysisId: string
+        -- The customer's decision on whether to proceed with the upgrade.
+        upgradeConsent: string
+    end
+
+    record StartJobUpgradeAnalysisOutput
+        -- The unique identifier of the upgrade analysis.
+        analysisId: string
+        -- The name of the job associated with this analysis.
+        jobName: string
+    end
+
     -- Exception thrown when a task is already in running state.
     record MaterializedViewRefreshTaskRunningException
         -- A message describing the problem.
@@ -13239,6 +13331,16 @@ local record M
     end
 
     record StopCrawlerScheduleOutput
+    end
+
+    record StopJobUpgradeAnalysisInput
+        -- The name of the job associated with the analysis.
+        jobName: string
+        -- The unique identifier of the analysis to stop.
+        analysisId: string
+    end
+
+    record StopJobUpgradeAnalysisOutput
     end
 
     -- Exception thrown when stopping a task that is not in running state.
@@ -14790,6 +14892,8 @@ local record M
         MaintenanceWindow: string
         -- The name of an Glue usage profile associated with the job.
         ProfileName: string
+        -- The auto-upgrade assessment information for a job configured with glueVersion=auto. This field is null when the job is not configured to auto.
+        AutoUpgradeMetadata: AutoUpgradeMetadata
     end
 
     -- Specifies information used to update an existing job definition. The previous job
