@@ -16930,6 +16930,12 @@ M.ResourceUri = schema.new({
             name = "Uri",
             target_id = prelude.String.id,
         }),
+        LastModified = schema.new({
+            id = id.from(_N, "ResourceUri", "LastModified"),
+            type = "timestamp",
+            name = "LastModified",
+            target_id = prelude.Timestamp.id,
+        }),
     },
 })
 
@@ -16973,6 +16979,18 @@ M.UserDefinedFunctionInput = schema.new({
             name = "ResourceUris",
             target_id = prelude.Document.id,
             list_member = M.ResourceUri,
+        }),
+        ArtifactLocation = schema.new({
+            id = id.from(_N, "UserDefinedFunctionInput", "ArtifactLocation"),
+            type = "string",
+            name = "ArtifactLocation",
+            target_id = prelude.String.id,
+        }),
+        GovernanceMode = schema.new({
+            id = id.from(_N, "UserDefinedFunctionInput", "GovernanceMode"),
+            type = "string",
+            name = "GovernanceMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -28097,6 +28115,18 @@ M.UserDefinedFunction = schema.new({
             name = "ResourceUris",
             target_id = prelude.Document.id,
             list_member = M.ResourceUri,
+        }),
+        ArtifactLocation = schema.new({
+            id = id.from(_N, "UserDefinedFunction", "ArtifactLocation"),
+            type = "string",
+            name = "ArtifactLocation",
+            target_id = prelude.String.id,
+        }),
+        GovernanceMode = schema.new({
+            id = id.from(_N, "UserDefinedFunction", "GovernanceMode"),
+            type = "string",
+            name = "GovernanceMode",
+            target_id = prelude.String.id,
         }),
         CatalogId = schema.new({
             id = id.from(_N, "UserDefinedFunction", "CatalogId"),

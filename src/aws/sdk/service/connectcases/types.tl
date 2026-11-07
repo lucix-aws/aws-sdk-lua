@@ -7,9 +7,42 @@ local record M
         message: string
     end
 
-    -- The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request. See the accompanying error message for details.
-    record ConflictException
-        message: string
+    -- Identifies a case by its case ID or its reference ID. Specify only one member.
+    record CaseIdentifierUnion
+        -- The unique identifier of the case.
+        caseId: string
+        -- The reference ID of the case. Reference IDs are unique within a domain, and uniqueness isn't case sensitive.
+        referenceId: string
+    end
+
+    -- Identifies a case to associate the related item with in a BatchCreateRelatedItem request.
+    record BatchCreateRelatedItemIdentifier
+        -- The identifier of the case to associate the related item with. Specify either the case ID or the reference ID.
+        caseIdentifier: CaseIdentifierUnion
+    end
+
+    enum CommentBodyTextType
+        "Text/Plain"
+    end
+
+    -- Represents the content of a Comment to be returned to agents.
+    record CommentContent
+        -- Text in the body of a Comment on a case.
+        body: string
+        -- Type of the text in the box of a Comment on a case.
+        contentType: string
+    end
+
+    -- Represents the content of a ConnectCase related item.
+    record ConnectCaseInputContent
+        -- A unique identifier of the case.
+        caseId: string
+    end
+
+    -- An object that represents an Connect Customer contact object.
+    record Contact
+        -- A unique identifier of a contact in Connect Customer.
+        contactArn: string
     end
 
     -- An empty value. You cannot set EmptyFieldValue on a field that is required on a case template. This structure will never have any data members. It signifies an empty value on a case field.
@@ -38,33 +71,117 @@ local record M
         value: FieldValueUnion
     end
 
+    -- Represents the content of a Custom related item.
+    record CustomInputContent
+        -- List of field values for the Custom related item.
+        fields: {FieldValue}
+    end
+
+    -- An object that represents a content of an Connect Customer file object.
+    record FileContent
+        -- The Amazon Resource Name (ARN) of a File in Connect Customer.
+        fileArn: string
+    end
+
+    enum SlaType
+        "CaseField"
+    end
+
+    -- Represents the input configuration of an SLA being created.
+    record SlaInputConfiguration
+        -- Name of an SLA.
+        name: string
+        -- Unique identifier of a field.
+        fieldId: string
+        -- Represents a list of target field values for the fieldId specified in SlaInputConfiguration. The SLA is considered met if any one of these target field values matches the actual field value.
+        targetFieldValues: {FieldValueUnion}
+        -- Target duration in minutes within which an SLA should be completed.
+        targetSlaMinutes: number
+    end
+
+    -- Represents the content of an SLA.
+    record SlaInputContent
+        -- Represents an input SLA configuration.
+        slaInputConfiguration: SlaInputConfiguration
+    end
+
+    -- Represents the content of a related item to be created.
+    record RelatedItemInputContent
+        -- Object representing a contact in Connect Customer as an API request field.
+        contact: Contact
+        -- Represents the content of a comment to be returned to agents.
+        comment: CommentContent
+        -- A file of related items.
+        file: FileContent
+        -- Represents the content of an SLA to be created.
+        sla: SlaInputContent
+        -- Represents the Connect Customer case to be created as a related item.
+        connectCase: ConnectCaseInputContent
+        -- Represents the content of a Custom type related item.
+        custom: CustomInputContent
+    end
+
     -- Represents the entity that performed the action.
     record UserUnion
-        -- Represents the Amazon Connect ARN of the user.
+        -- Represents the Connect Customer ARN of the user.
         userArn: string
         -- Any provided entity.
         customEntity: string
     end
 
-    record CreateCaseInput
+    record BatchCreateRelatedItemInput
         -- The unique identifier of the Cases domain.
         domainId: string
-        -- A unique identifier of a template.
-        templateId: string
-        -- An array of objects with field ID (matching ListFields/DescribeField) and value union data.
-        fields: {FieldValue}
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs.
-        clientToken: string
+        -- The content of the related item to be created. The same content is applied to every case in the request. Only comment content is supported for batch creation.
+        content: RelatedItemInputContent
+        -- The list of cases to associate the related item with. All cases must belong to the same domain.
+        cases: {BatchCreateRelatedItemIdentifier}
+        -- The entity that created the related item.
         performedBy: UserUnion
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
-        tags: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs. If you retry a request with the same client token, the service returns the original response instead of processing the request again. If you reuse a client token with different request parameters, the request fails with a ConflictException.
+        clientToken: string
     end
 
-    record CreateCaseOutput
-        -- A unique identifier of the case.
+    -- The identifiers of a case that a batch operation returns.
+    record CaseIdentifier
+        -- The unique identifier of the case.
         caseId: string
-        -- The Amazon Resource Name (ARN) of the case.
-        caseArn: string
+        -- The reference number of the case. Reference numbers aren't guaranteed to be unique. BatchUpdateCase and BatchCreateRelatedItem don't return this value.
+        referenceNumber: string
+        -- The reference ID of the case. Cases created before reference IDs were available don't have one.
+        referenceId: string
+    end
+
+    -- Information about a related item that wasn't created.
+    record BatchCreateRelatedItemErrorEntry
+        -- The identifiers of the case that the related item wasn't created for.
+        caseIdentifier: CaseIdentifier
+        -- The error code. For possible values, see failedItems.
+        errorCode: string
+        -- A message that describes the error.
+        errorMessage: string
+    end
+
+    -- Information about a related item that was created.
+    record BatchCreateRelatedItemSuccessEntry
+        -- The identifiers of the case that the related item is associated with.
+        caseIdentifier: CaseIdentifier
+        -- The unique identifier of the related item.
+        relatedItemId: string
+        -- The Amazon Resource Name (ARN) of the related item.
+        relatedItemArn: string
+    end
+
+    record BatchCreateRelatedItemOutput
+        -- The list of related items that were successfully created and associated with their cases.
+        successfulItems: {BatchCreateRelatedItemSuccessEntry}
+        -- The list of related items that were not created. Each entry includes an error code and message. Possible error codes include: CASE_NOT_FOUND - No case exists with the specified case ID. VALIDATION_ERROR - The request contains invalid input. CONFLICT - Another operation is in progress on the case, such as a concurrent update or a merge of the case into another case. THROTTLED - The request rate exceeded the allowed limit. ACCESS_DENIED - The caller lacks permission to perform the operation. SERVICE_QUOTA_EXCEEDED - The request exceeded a service quota. DOMAIN_NOT_FOUND - The case domain was deleted while the request was being processed. INTERNAL_ERROR - An unexpected error occurred on the server.
+        failedItems: {BatchCreateRelatedItemErrorEntry}
+    end
+
+    -- The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request. See the accompanying error message for details.
+    record ConflictException
+        message: string
     end
 
     -- We couldn't process your request because of an issue with the server. Try again later.
@@ -83,6 +200,11 @@ local record M
         resourceType: string
     end
 
+    -- The service quota has been exceeded. For a list of service quotas, see Connect Customer Service Quotas in the Connect Customer Administrator Guide.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
     -- The rate has been exceeded for this API. Please try again after a few minutes.
     record ThrottlingException
         message: string
@@ -91,6 +213,91 @@ local record M
     -- The request isn't valid. Check the syntax and try again.
     record ValidationException
         message: string
+    end
+
+    -- Identifies a case to update in a BatchUpdateCase request.
+    record BatchUpdateCaseIdentifier
+        -- The identifier of the case to update. Specify either the case ID or the reference ID.
+        caseIdentifier: CaseIdentifierUnion
+    end
+
+    -- Identifies a field by its ID or by its name. Specify only one member. Identifying a field by name is supported only in BatchUpdateCase.
+    record FieldIdentifierUnion
+        -- The unique identifier of the field.
+        id: string
+        -- The name of the field.
+        name: string
+    end
+
+    -- A field and the value to set for it.
+    record FieldValueInput
+        -- The field to update, identified by field ID or field name.
+        fieldIdentifier: FieldIdentifierUnion
+        -- The value to set for the field.
+        value: FieldValueUnion
+    end
+
+    record BatchUpdateCaseInput
+        -- The unique identifier of the Cases domain.
+        domainId: string
+        -- The list of cases to update. All cases must belong to the same domain.
+        cases: {BatchUpdateCaseIdentifier}
+        -- An array of objects, each with a fieldIdentifier and a value. You can identify each field by its ID or by its name; identifying a field by name is supported only in BatchUpdateCase. The same field values are applied to every case in the request. This field must be present, but can be an empty list when you provide the top-level title, status, or customerId parameters. Do not include title, status, or customerId in this list; set those values only through their top-level parameters. Duplicating them in fields results in a validation error.
+        fields: {FieldValueInput}
+        -- The entity that performed the action.
+        performedBy: UserUnion
+        -- The title to apply to all cases in the request.
+        title: string
+        -- The status to apply to all cases in the request.
+        status: string
+        -- The ARN of the customer profile to associate with all cases in the request.
+        customerId: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs. If you retry a request with the same client token, the service returns the original response instead of processing the request again. If you reuse a client token with different request parameters, the request fails with a ConflictException.
+        clientToken: string
+    end
+
+    -- Information about a case that wasn't updated.
+    record BatchUpdateCaseErrorEntry
+        -- The identifiers of the case that wasn't updated.
+        caseIdentifier: CaseIdentifier
+        -- The error code. For possible values, see failedCases.
+        errorCode: string
+        -- A message that describes the error.
+        errorMessage: string
+    end
+
+    -- Information about a case that was updated.
+    record BatchUpdateCaseSuccessEntry
+        -- The identifiers of the updated case.
+        caseIdentifier: CaseIdentifier
+    end
+
+    record BatchUpdateCaseOutput
+        -- The list of cases that were successfully updated.
+        successfulCases: {BatchUpdateCaseSuccessEntry}
+        -- The list of cases that were not updated. Each entry includes an error code and message. Possible error codes include: CASE_NOT_FOUND - No case exists with the specified case ID. VALIDATION_ERROR - The request contains invalid input. CONFLICT - Another operation is in progress on the case, such as a concurrent update or a merge of the case into another case. THROTTLED - The request rate exceeded the allowed limit. ACCESS_DENIED - The caller lacks permission to perform the operation. SERVICE_QUOTA_EXCEEDED - The request exceeded a service quota. DOMAIN_NOT_FOUND - The case domain was deleted while the request was being processed. INTERNAL_ERROR - An unexpected error occurred on the server.
+        failedCases: {BatchUpdateCaseErrorEntry}
+    end
+
+    record CreateCaseInput
+        -- The unique identifier of the Cases domain.
+        domainId: string
+        -- A unique identifier of a template.
+        templateId: string
+        -- An array of objects with field ID (matching ListFields/DescribeField) and value union data.
+        fields: {FieldValue}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see Making retries safe with idempotent APIs.
+        clientToken: string
+        performedBy: UserUnion
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        tags: {string : string}
+    end
+
+    record CreateCaseOutput
+        -- A unique identifier of the case.
+        caseId: string
+        -- The Amazon Resource Name (ARN) of the case.
+        caseArn: string
     end
 
     record DeleteCaseInput
@@ -127,7 +334,7 @@ local record M
         templateId: string
         -- The token for the next set of results. This is null if there are no more results to return.
         nextToken: string
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
     end
 
@@ -213,7 +420,7 @@ local record M
     record ListCasesForContactInput
         -- The unique identifier of the Cases domain.
         domainId: string
-        -- A unique identifier of a contact in Amazon Connect.
+        -- A unique identifier of a contact in Connect Customer.
         contactArn: string
         -- The maximum number of results to return per page.
         maxResults: number
@@ -236,80 +443,6 @@ local record M
         nextToken: string
     end
 
-    enum CommentBodyTextType
-        "Text/Plain"
-    end
-
-    -- Represents the content of a Comment to be returned to agents.
-    record CommentContent
-        -- Text in the body of a Comment on a case.
-        body: string
-        -- Type of the text in the box of a Comment on a case.
-        contentType: string
-    end
-
-    -- Represents the content of a ConnectCase related item.
-    record ConnectCaseInputContent
-        -- A unique identifier of the case.
-        caseId: string
-    end
-
-    -- An object that represents an Amazon Connect contact object.
-    record Contact
-        -- A unique identifier of a contact in Amazon Connect.
-        contactArn: string
-    end
-
-    -- Represents the content of a Custom related item.
-    record CustomInputContent
-        -- List of field values for the Custom related item.
-        fields: {FieldValue}
-    end
-
-    -- An object that represents a content of an Amazon Connect file object.
-    record FileContent
-        -- The Amazon Resource Name (ARN) of a File in Amazon Connect.
-        fileArn: string
-    end
-
-    enum SlaType
-        "CaseField"
-    end
-
-    -- Represents the input configuration of an SLA being created.
-    record SlaInputConfiguration
-        -- Name of an SLA.
-        name: string
-        -- Unique identifier of a field.
-        fieldId: string
-        -- Represents a list of target field values for the fieldId specified in SlaInputConfiguration. The SLA is considered met if any one of these target field values matches the actual field value.
-        targetFieldValues: {FieldValueUnion}
-        -- Target duration in minutes within which an SLA should be completed.
-        targetSlaMinutes: number
-    end
-
-    -- Represents the content of an SLA.
-    record SlaInputContent
-        -- Represents an input SLA configuration.
-        slaInputConfiguration: SlaInputConfiguration
-    end
-
-    -- Represents the content of a related item to be created.
-    record RelatedItemInputContent
-        -- Object representing a contact in Amazon Connect as an API request field.
-        contact: Contact
-        -- Represents the content of a comment to be returned to agents.
-        comment: CommentContent
-        -- A file of related items.
-        file: FileContent
-        -- Represents the content of an SLA to be created.
-        sla: SlaInputContent
-        -- Represents the Amazon Connect case to be created as a related item.
-        connectCase: ConnectCaseInputContent
-        -- Represents the content of a Custom type related item.
-        custom: CustomInputContent
-    end
-
     record CreateRelatedItemInput
         -- The unique identifier of the Cases domain.
         domainId: string
@@ -326,11 +459,6 @@ local record M
         relatedItemId: string
         -- The Amazon Resource Name (ARN) of the related item.
         relatedItemArn: string
-    end
-
-    -- The service quota has been exceeded. For a list of service quotas, see Amazon Connect Service Quotas in the Amazon Connect Administrator Guide.
-    record ServiceQuotaExceededException
-        message: string
     end
 
     record DeleteRelatedItemInput
@@ -359,7 +487,7 @@ local record M
     record ContactFilter
         -- A list of channels to filter on for related items of type Contact.
         channel: {string}
-        -- A unique identifier of a contact in Amazon Connect.
+        -- A unique identifier of a contact in Connect Customer.
         contactArn: string
     end
 
@@ -406,9 +534,9 @@ local record M
         caseId: string
     end
 
-    -- An object that represents a content of an Amazon Connect contact object.
+    -- An object that represents a content of an Connect Customer contact object.
     record ContactContent
-        -- A unique identifier of a contact in Amazon Connect.
+        -- A unique identifier of a contact in Connect Customer.
         contactArn: string
         -- A list of channels to filter on for related items of type Contact.
         channel: string
@@ -454,7 +582,7 @@ local record M
         file: FileContent
         -- Represents the content of an SLA to be returned to agents.
         sla: SlaContent
-        -- Represents the Amazon Connect case to be created as a related item.
+        -- Represents the Connect Customer case to be created as a related item.
         connectCase: ConnectCaseContent
         -- Represents the content of a Custom type related item.
         custom: CustomContent
@@ -468,7 +596,7 @@ local record M
         associationTime: number
         -- Represents the content of a particular type of related item.
         content: RelatedItemContent
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
         -- Represents the creator of the related item.
         performedBy: UserUnion
@@ -523,7 +651,7 @@ local record M
         content: RelatedItemContent
         -- Time at which the related item was associated with the case.
         associationTime: number
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
         -- Represents the last user that updated the related item.
         lastUpdatedUser: UserUnion
@@ -554,7 +682,7 @@ local record M
     record Sort
         -- Unique identifier of a field.
         fieldId: string
-        -- A structured set of sort terms
+        -- Whether results should be sorted in ascending or descending order.
         sortOrder: string
     end
 
@@ -566,7 +694,7 @@ local record M
         templateId: string
         -- List of case field values.
         fields: {FieldValue}
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
     end
 
@@ -623,17 +751,17 @@ local record M
         parentChildFieldOptionsMappings: {ParentChildFieldOptionsMapping}
     end
 
-    -- Represents the left hand operand in the condition. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Represents the left hand operand in the condition. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record OperandOne
         -- The field ID that this operand should take the value of.
         fieldId: string
     end
 
-    -- Represents an empty operand value. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Represents an empty operand value. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record EmptyOperandValue
     end
 
-    -- Represents the right hand operand in the condition. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Represents the right hand operand in the condition. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record OperandTwo
         -- String value type.
         stringValue: string
@@ -645,7 +773,7 @@ local record M
         emptyValue: EmptyOperandValue
     end
 
-    -- Boolean operands for a condition. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Boolean operands for a condition. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record BooleanOperands
         -- Represents the left hand operand in the condition.
         operandOne: OperandOne
@@ -655,7 +783,7 @@ local record M
         result: boolean
     end
 
-    -- Error for batch describe case rules API failure. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Error for batch describe case rules API failure. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record CaseRuleError
         -- The case rule identifier that caused the error.
         id: string
@@ -697,7 +825,7 @@ local record M
         "FieldOptions"
     end
 
-    -- Summary information of this case rule. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Summary information of this case rule. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record CaseRuleSummary
         -- Unique identifier of a case rule.
         caseRuleId: string
@@ -803,7 +931,7 @@ local record M
         createdTime: number
         -- The status of the Cases domain.
         domainStatus: string
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
     end
 
@@ -864,7 +992,7 @@ local record M
         associationTime: number
         content: RelatedItemContent
         performedBy: UserUnion
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
     end
 
@@ -931,7 +1059,7 @@ local record M
         description: string
         -- Namespace of the field.
         namespace: string
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
         -- Denotes whether or not the resource has been deleted.
         deleted: boolean
@@ -1159,7 +1287,7 @@ local record M
         name: string
         -- Information about which fields will be present in the layout, the order of the fields, and read-only attribute of the field.
         content: LayoutContent
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
         -- Denotes whether or not the resource has been deleted.
         deleted: boolean
@@ -1215,14 +1343,14 @@ local record M
     end
 
     record ListTagsForResourceOutput
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
     end
 
     record TagResourceInput
         -- The Amazon Resource Name (ARN)
         arn: string
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
     end
 
@@ -1241,7 +1369,7 @@ local record M
         fieldId: string
     end
 
-    -- An association representing a case rule acting upon a field. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- An association representing a case rule acting upon a field. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record TemplateRule
         -- Unique identifier of a case rule.
         caseRuleId: string
@@ -1275,7 +1403,7 @@ local record M
         description: string
         -- Configuration of layouts associated to the template.
         layoutConfiguration: LayoutConfiguration
-        -- A list of fields that must contain a value for a case to be successfully created with this template.
+        -- A list of fields that must contain a value for a case to be successfully created with this template. To require a Customer Profile when creating cases, include customer_id in this list. If customer_id is omitted, the Customer Profile field is optional and can be added, changed, or removed after case creation.
         requiredFields: {RequiredField}
         -- The status of the template.
         status: string
@@ -1322,7 +1450,7 @@ local record M
         layoutConfiguration: LayoutConfiguration
         -- A list of fields that must contain a value for a case to be successfully created with this template.
         requiredFields: {RequiredField}
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
         -- The status of the template.
         status: string
@@ -1381,7 +1509,7 @@ local record M
         description: string
         -- Configuration of layouts associated to the template.
         layoutConfiguration: LayoutConfiguration
-        -- A list of fields that must contain a value for a case to be successfully created with this template.
+        -- A list of fields that must contain a value for a case to be successfully created with this template. To require a Customer Profile when creating cases, include customer_id in this list. If customer_id is omitted, the Customer Profile field is optional and can be added, changed, or removed after case creation.
         requiredFields: {RequiredField}
         -- The status of the template.
         status: string
@@ -1425,7 +1553,7 @@ local record M
         orAll: {CustomFieldsFilter}
     end
 
-    -- Boolean condition for a rule. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Boolean condition for a rule. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record BooleanCondition
         -- Tests that operandOne is equal to operandTwo.
         equalTo: BooleanOperands
@@ -1437,7 +1565,7 @@ local record M
         orAll: CompoundCondition
     end
 
-    -- A compound condition that combines multiple boolean conditions using logical operators. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- A compound condition that combines multiple boolean conditions using logical operators. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record CompoundCondition
         -- The list of conditions to combine using the logical operator. For API users: A case rule can have a maximum of 5 conditions, spread across a maximum of 2 levels of nesting.
         conditions: {BooleanCondition}
@@ -1457,7 +1585,7 @@ local record M
         conditions: {BooleanCondition}
     end
 
-    -- Required rule type, used to indicate whether a field is required. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Required rule type, used to indicate whether a field is required. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record RequiredCaseRule
         -- The value of the rule (that is, whether the field is required) should none of the conditions evaluate to true.
         defaultValue: boolean
@@ -1492,7 +1620,7 @@ local record M
         file: FileFilter
         -- Filter for related items of type SLA.
         sla: SlaFilter
-        -- Represents the Amazon Connect case to be created as a related item.
+        -- Represents the Connect Customer case to be created as a related item.
         connectCase: ConnectCaseFilter
         -- Represents the content of a Custom type related item.
         custom: CustomFilter
@@ -1524,7 +1652,7 @@ local record M
         filters: {RelatedItemTypeFilter}
     end
 
-    -- Represents what rule type should take place, under what conditions. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Represents what rule type should take place, under what conditions. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record CaseRuleDetails
         -- Required rule type, used to indicate whether a field is required.
         required: RequiredCaseRule
@@ -1545,7 +1673,7 @@ local record M
         rule: CaseRuleDetails
     end
 
-    -- Detailed case rule information. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
+    -- Detailed case rule information. In the Connect Customer admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record GetCaseRuleResponse
         -- Unique identifier of a case rule.
         caseRuleId: string
@@ -1563,7 +1691,7 @@ local record M
         createdTime: number
         -- Timestamp when the resource was created or last modified.
         lastModifiedTime: number
-        -- A map of of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
+        -- A map of key-value pairs that represent tags on a resource. Tags are used to organize, track, or control access for this resource.
         tags: {string : string}
     end
 

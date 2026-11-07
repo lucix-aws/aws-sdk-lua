@@ -67,6 +67,8 @@ local record M
         assumedRoleUser: AssumedRoleUser
         -- The Amazon Web Services Signature Version 4 type of temporary credentials.
         credentials: Credentials
+        -- The ARN of the workload identity provider for the returned credentials. Returned only for associations with workload identity enabled.
+        workloadIdentityProviderArn: string
     end
 
     -- The specified Kubernetes service account token is expired.

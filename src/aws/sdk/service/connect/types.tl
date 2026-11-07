@@ -20,6 +20,7 @@ local record M
         "UPDATE_CASE"
         "ASSIGN_SLA"
         "END_ASSOCIATED_TASKS"
+        "END_ASSOCIATED_EMAILS"
         "SUBMIT_AUTO_EVALUATION"
         "EXTRACT_INFORMATION"
         "SEND_IN_APP_NOTIFICATION"
@@ -3664,6 +3665,10 @@ local record M
         TemplateId: string
     end
 
+    -- End associated emails related to a case.
+    record EndAssociatedEmailsActionDefinition
+    end
+
     -- End associated tasks related to a case.
     record EndAssociatedTasksActionDefinition
     end
@@ -3806,6 +3811,9 @@ local record M
         -- Information about the end associated tasks action.
         -- Supported only for TriggerEventSource values: OnCaseUpdate.
         EndAssociatedTasksAction: EndAssociatedTasksActionDefinition
+        -- Information about the end associated emails action.
+        -- Supported only for TriggerEventSource values: OnCaseUpdate.
+        EndAssociatedEmailsAction: EndAssociatedEmailsActionDefinition
         -- Information about the submit automated evaluation action.
         SubmitAutoEvaluationAction: SubmitAutoEvaluationActionDefinition
         -- Information about the extract information action.

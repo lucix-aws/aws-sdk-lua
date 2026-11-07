@@ -243,6 +243,17 @@ local record M
         message: string
     end
 
+    -- Contains the name and values to assign to a template parameter when associating a permission template with a resource share.
+    record PermissionTemplateParameterInput
+        -- The name of the template parameter to assign a value to. This must match a parameter
+        -- name declared in the permission template.
+        name: string
+        -- The values to assign to the template parameter. For STRING type
+        -- parameters, provide a single value. For STRING_LIST type parameters,
+        -- provide one or more values.
+        values: {string}
+    end
+
     record AssociateResourceSharePermissionInput
         -- Specifies the Amazon Resource Name (ARN) of the resource share to which you want to add or replace
         -- permissions.
@@ -251,6 +262,10 @@ local record M
         -- To find the ARN for a permission, use either the ListPermissions operation or go to the Permissions library page in the RAM console and
         -- then choose the name of the permission. The ARN is displayed on the detail page.
         permissionArn: string
+        -- Specifies the template parameter values for the permission being associated. You must
+        -- provide values for all parameters declared in the permission template. This parameter is
+        -- required only if the specified permission has template parameters.
+        permissionTemplateParameters: {PermissionTemplateParameterInput}
         -- Specifies whether the specified permission should replace the existing permission
         -- associated with the resource share. Use true to replace the current permissions. Use
         -- false to add the permission to a resource share that currently doesn't
@@ -292,6 +307,22 @@ local record M
         -- value in the clientToken request parameter of that later call. All other
         -- parameters must also have the same values that you used in the first call.
         clientToken: string
+    end
+
+    enum PermissionTemplateParameterType
+        "STRING"
+        "STRING_LIST"
+    end
+
+    -- Describes a template parameter declaration for a customer managed permission. Each declaration defines a
+    -- named placeholder that can be used in the permission's policy template.
+    record PermissionTemplateParameterDeclaration
+        -- The name of the template parameter. This name is used as the placeholder in the
+        -- policy template using the syntax @{parameterName}.
+        name: string
+        -- A description of the template parameter that helps consumers understand what value to
+        -- provide.
+        description: string
     end
 
     -- A structure containing a tag. A tag is metadata that you can attach to your resources
@@ -343,6 +374,11 @@ local record M
         -- The Principal comes from the list of identities added to the resource
         -- share.
         policyTemplate: string
+        -- Specifies a list of template parameter declarations for this permission. Each
+        -- declaration defines a named placeholder that can be used in the policy template using
+        -- the syntax @{parameterName}. Template parameters can only appear in
+        -- Condition Key and Condition Value fields of the policy. When you associate this permission with a resource share, you must provide values for all declared parameters.
+        permissionTemplateParameters: {PermissionTemplateParameterDeclaration}
         -- Specifies a unique, case-sensitive identifier that you provide to
         -- ensure the idempotency of the request. This lets you safely retry the request without
         -- accidentally performing the same operation a second time. Passing the same value to a
@@ -366,9 +402,27 @@ local record M
         "STANDARD"
     end
 
+    -- Contains the declaration of a template parameter for a customer managed permission. When returned in the context of a permission association, it also includes the values assigned to that parameter.
+    record PermissionTemplateParameter
+        -- The name of the template parameter.
+        name: string
+        -- A description of the template parameter.
+        description: string
+        -- The values assigned to this template parameter in the context of a permission
+        -- association. This field is present only when the parameter has been assigned values
+        -- (for example, in the response from ListPermissionAssociations or
+        -- ListResourceSharePermissions).
+        values: {string}
+    end
+
     enum PermissionType
         "CUSTOMER_MANAGED"
         "AWS_MANAGED"
+    end
+
+    enum ResourceOwner
+        "SELF"
+        "OTHER-ACCOUNTS"
     end
 
     -- Information about an RAM permission.
@@ -422,8 +476,19 @@ local record M
         -- is still in progress. This value changes to STANDARD when
         -- complete.
         featureSet: string
+        -- The list of template parameters defined for this permission, including their names,
+        -- types, descriptions, and values. This field is present only if the permission is a
+        -- template with declared parameters. When returned in the context of a permission
+        -- association, the values are also included.
+        permissionTemplateParameters: {PermissionTemplateParameter}
         -- A list of the tag key value pairs currently attached to the permission.
         tags: {Tag}
+        -- The owner of the permission. This can be one of the following values:
+        -- SELF – The permission is owned by the current
+        -- account.
+        -- OTHER-ACCOUNTS – The permission is owned by another
+        -- account and shared with the current account.
+        resourceOwner: string
     end
 
     record CreatePermissionOutput
@@ -484,6 +549,11 @@ local record M
         -- The Principal comes from the list of identities added to the resource
         -- share.
         policyTemplate: string
+        -- Specifies a list of template parameter declarations for this version of the
+        -- permission. Each declaration defines a named placeholder that can be used in the policy
+        -- template. Because each version is independent, you can define the same or
+        -- a different set of template parameters for each version.
+        permissionTemplateParameters: {PermissionTemplateParameterDeclaration}
         -- Specifies a unique, case-sensitive identifier that you provide to
         -- ensure the idempotency of the request. This lets you safely retry the request without
         -- accidentally performing the same operation a second time. Passing the same value to a
@@ -503,6 +573,7 @@ local record M
         "UNATTACHABLE"
         "DELETING"
         "DELETED"
+        "DEPRECATED"
     end
 
     -- Information about a RAM managed permission.
@@ -522,6 +593,10 @@ local record M
         -- whether the specified actions are allowed or denied. The actions list the
         -- operations to which the principal is granted or denied access.
         permission: string
+        -- The list of template parameter declarations defined for this permission. Each
+        -- declaration includes the parameter name, type, and description. This field is present
+        -- only if the permission is a template with declared parameters.
+        permissionTemplateParameters: {PermissionTemplateParameterDeclaration}
         -- The date and time when the permission was created.
         creationTime: number
         -- The date and time when the permission was last updated.
@@ -564,12 +639,21 @@ local record M
         -- DELETING – This permission or version is in the process of
         -- being deleted.
         -- DELETED – This permission or version is deleted.
+        -- DEPRECATED – The permission owner deprecated this permission. It can't be associated with new resource shares, but existing
+        -- associations continue to function.
         status: string
         -- The tag key and value pairs attached to the resource share.
         tags: {Tag}
+        -- The owner of the permission. This can be one of the following values:
+        -- SELF – The permission is owned by the current
+        -- account.
+        -- OTHER-ACCOUNTS – The permission is owned by another
+        -- account and shared with the current account.
+        resourceOwner: string
     end
 
     record CreatePermissionVersionOutput
+        -- The details of the new permission version, including its Amazon Resource Name (ARN), version number, status, and policy document.
         permission: ResourceSharePermissionDetail
         -- The idempotency identifier associated with this request. If you
         -- want to repeat the same operation in an idempotent manner then you must include this
@@ -583,6 +667,15 @@ local record M
     -- Service Quotas console.
     record PermissionVersionsLimitExceededException
         message: string
+    end
+
+    -- Contains a permission ARN and its associated template parameter values. The CreateResourceShare operation uses this structure when associating permissions that have template parameters.
+    record PermissionArnAndTemplateParameters
+        -- The Amazon Resource Name (ARN) of the permission to associate with the resource share.
+        permissionArn: string
+        -- The list of template parameter values to assign for this permission. You must provide
+        -- values for all parameters declared in the permission template.
+        permissionTemplateParameters: {PermissionTemplateParameterInput}
     end
 
     -- The configuration of the resource share
@@ -641,6 +734,11 @@ local record M
         permissionArns: {string}
         -- Specifies source constraints (accounts, ARNs, organization IDs, or organization paths) that limit when service principals can access resources in this resource share. When a service principal attempts to access a shared resource, validation is performed to ensure the request originates from one of the specified sources. This helps prevent confused deputy attacks by applying constraints on where service principals can access resources from.
         sources: {string}
+        -- Specifies the template parameter values for each permission being associated that has
+        -- template parameters. Each entry maps a permission ARN to the parameter values to use
+        -- when rendering the permission template for this resource share. You must provide values for all
+        -- parameters declared in each permission template.
+        permissionTemplateParameters: {PermissionArnAndTemplateParameters}
         -- Specifies the configuration of this resource share.
         resourceShareConfiguration: ResourceShareConfiguration
     end
@@ -928,6 +1026,15 @@ local record M
         -- this parameter, the operation retrieves the default version.
         -- To see the list of available versions, use ListPermissionVersions.
         permissionVersion: number
+        -- Specifies the template parameter values to use when rendering the permission's policy
+        -- template. Each entry supplies a parameter name and its values. When you provide this
+        -- parameter, the response contains the rendered policy with the specified values
+        -- in place of the template parameter placeholders.
+        -- For STRING type parameters, provide a single value. For
+        -- STRING_LIST type parameters, provide one or more values.
+        -- You can specify this parameter only for permissions that declare template parameters.
+        -- You must provide values for all parameters declared in the permission template.
+        permissionTemplateParameters: {PermissionTemplateParameterInput}
     end
 
     record GetPermissionOutput
@@ -1072,11 +1179,6 @@ local record M
     -- valid.
     record InvalidMaxResultsException
         message: string
-    end
-
-    enum ResourceOwner
-        "SELF"
-        "OTHER-ACCOUNTS"
     end
 
     -- A tag key and optional list of possible values that you can use to filter results for
@@ -1262,6 +1364,17 @@ local record M
         -- When false (the default value), lists associations with resource shares that use
         -- any version of the specified managed permission.
         defaultVersion: boolean
+        -- Specifies that you want to list only those associations with resource shares owned by a specific
+        -- entity:
+        -- SELF – returns only associations with resource shares owned by the
+        -- calling account.
+        -- OTHER-ACCOUNTS – returns only associations with resource shares
+        -- owned by other Amazon Web Services accounts.
+        -- If you don't specify this parameter, the default is SELF.
+        resourceOwner: string
+        -- Specifies the Amazon Resource Name (ARN) of the resource share for which you want to retrieve permission
+        -- associations.
+        resourceShareArn: string
         -- Specifies that you want to receive the next page of results. Valid
         -- only if you received a NextToken response in the previous request. If you
         -- did, it indicates that more output is available. Set this parameter to the value
@@ -1300,6 +1413,8 @@ local record M
         -- DELETING – This permission or version is in the process of
         -- being deleted.
         -- DELETED – This permission or version is deleted.
+        -- DEPRECATED – The permission owner deprecated this permission. It can't be associated with new resource shares, but existing
+        -- associations continue to function.
         status: string
         -- Indicates what features are available for this resource share. This parameter can have one of
         -- the following values:
@@ -1325,6 +1440,9 @@ local record M
         lastUpdatedTime: number
         -- The Amazon Resource Name (ARN) of a resource share associated with this permission.
         resourceShareArn: string
+        -- The template parameter values provided when the permission was associated with this
+        -- resource share. If the permission has no declared template parameters, this member doesn't appear in the response.
+        permissionTemplateParameters: {PermissionTemplateParameter}
     end
 
     record ListPermissionAssociationsOutput
@@ -1351,6 +1469,12 @@ local record M
         -- ec2:subnet. You can use the ListResourceTypes
         -- operation to get the specific string required.
         resourceType: string
+        -- Specifies that you want to list only permissions owned by a specific entity:
+        -- SELF – returns only permissions owned by the calling
+        -- account.
+        -- OTHER-ACCOUNTS – returns only permissions shared with the
+        -- calling account by other accounts.
+        resourceOwner: string
         -- Specifies that you want to receive the next page of results. Valid
         -- only if you received a NextToken response in the previous request. If you
         -- did, it indicates that more output is available. Set this parameter to the value
@@ -1373,6 +1497,11 @@ local record M
         -- ALL – returns both Amazon Web Services managed permissions and customer managed permissions.
         -- If you don't specify this parameter, the default is All.
         permissionType: string
+        -- Specifies that you want to filter the results to include only permissions with the
+        -- specified status. For example, use ATTACHABLE to list only permissions that
+        -- can be associated with resource shares, or DEPRECATED to list only
+        -- deprecated permissions.
+        permissionStatus: string
     end
 
     record ListPermissionsOutput
@@ -1553,6 +1682,9 @@ local record M
         -- The version of the managed permission that this background task is associating with the resource shares. This
         -- is always the version that is currently the default for this managed permission.
         toPermissionVersion: string
+        -- The template parameter values to apply when replacing the permission. This field is
+        -- present only if the target permission is a template with declared parameters.
+        permissionTemplateParameters: {PermissionTemplateParameter}
         -- Specifies the current status of the background tasks for the specified ID. The output
         -- is one of the following strings:
         -- IN_PROGRESS
@@ -1799,6 +1931,7 @@ local record M
     end
 
     record PromotePermissionCreatedFromPolicyOutput
+        -- The details of the promoted customer managed permission, including its Amazon Resource Name (ARN), version, and status.
         permission: ResourceSharePermissionSummary
         -- The idempotency identifier associated with this request. If you
         -- want to repeat the same operation in an idempotent manner then you must include this
@@ -1863,6 +1996,11 @@ local record M
         -- The operation always associates the version that is currently the default for the
         -- specified managed permission.
         toPermissionArn: string
+        -- Specifies the template parameter values to apply when replacing the permission. You
+        -- must provide values for all parameters declared in the target permission template. This
+        -- parameter is required only if the target permission (toPermissionArn) has
+        -- template parameters.
+        permissionTemplateParameters: {PermissionTemplateParameterInput}
         -- Specifies a unique, case-sensitive identifier that you provide to
         -- ensure the idempotency of the request. This lets you safely retry the request without
         -- accidentally performing the same operation a second time. Passing the same value to a
@@ -1950,6 +2088,45 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    enum UpdatePermissionStatus
+        "ATTACHABLE"
+        "DEPRECATED"
+    end
+
+    record UpdatePermissionInput
+        -- Specifies the Amazon Resource Name (ARN) of the customer managed permission that you want to update.
+        permissionArn: string
+        -- Specifies the new status for the permission. This can be one of the following
+        -- values:
+        -- ATTACHABLE – Restores a previously deprecated permission
+        -- so it can be associated with resource shares again.
+        -- DEPRECATED – Deprecates the permission so it can no
+        -- longer be associated with new resource shares.
+        status: string
+        -- Specifies a unique, case-sensitive identifier that you provide to
+        -- ensure the idempotency of the request. This lets you safely retry the request without
+        -- accidentally performing the same operation a second time. Passing the same value to a
+        -- later call to an operation requires that you also pass the same value for all other
+        -- parameters. We recommend that you use a UUID type of
+        -- value..
+        -- If you don't provide this value, then Amazon Web Services generates a random one for
+        -- you.
+        -- If you retry the operation with the same ClientToken, but with
+        -- different parameters, the retry fails with an IdempotentParameterMismatch
+        -- error.
+        clientToken: string
+    end
+
+    record UpdatePermissionOutput
+        -- The idempotency identifier associated with this request. If you
+        -- want to repeat the same operation in an idempotent manner then you must include this
+        -- value in the clientToken request parameter of that later call. All other
+        -- parameters must also have the same values that you used in the first call.
+        clientToken: string
+        -- The updated status of the permission.
+        permissionStatus: string
     end
 
     record UpdateResourceShareInput

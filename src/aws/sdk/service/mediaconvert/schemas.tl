@@ -2609,6 +2609,16 @@ M.CaptionDescription = schema.new({
     id = id.from(_N, "CaptionDescription"),
     type = "structure",
     members = {
+        AudioSourceNames = schema.new({
+            id = id.from(_N, "CaptionDescription", "AudioSourceNames"),
+            type = "list",
+            name = "AudioSourceNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "audioSourceNames" },
+            },
+        }),
         CaptionSelectorName = schema.new({
             id = id.from(_N, "CaptionDescription", "CaptionSelectorName"),
             type = "string",
@@ -2653,6 +2663,15 @@ M.CaptionDescription = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "languageDescription" },
+            },
+        }),
+        Source = schema.new({
+            id = id.from(_N, "CaptionDescription", "Source"),
+            type = "string",
+            name = "Source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "source" },
             },
         }),
     },
@@ -5307,6 +5326,39 @@ M.ElementalInferenceConfiguration = schema.new({
             list_member = M.ElementalInferenceFeed,
             traits = {
                 [traits.JSON_NAME] = { name = "feeds" },
+            },
+        }),
+    },
+})
+
+M.ElementalInferenceFeedConfigurationSource = schema.new({
+    id = id.from(_N, "ElementalInferenceFeedConfigurationSource"),
+    type = "structure",
+    members = {
+        FeedArn = schema.new({
+            id = id.from(_N, "ElementalInferenceFeedConfigurationSource", "FeedArn"),
+            type = "string",
+            name = "FeedArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "feedArn" },
+            },
+        }),
+    },
+})
+
+M.ElementalInferenceSettings = schema.new({
+    id = id.from(_N, "ElementalInferenceSettings"),
+    type = "structure",
+    members = {
+        FeedConfigurationSource = schema.new({
+            id = id.from(_N, "ElementalInferenceSettings", "FeedConfigurationSource"),
+            type = "structure",
+            name = "FeedConfigurationSource",
+            target_id = id.from(_N, "ElementalInferenceFeedConfigurationSource"),
+            target = M.ElementalInferenceFeedConfigurationSource,
+            traits = {
+                [traits.JSON_NAME] = { name = "feedConfigurationSource" },
             },
         }),
     },
@@ -13368,6 +13420,16 @@ M.Job = schema.new({
                 [traits.JSON_NAME] = { name = "elementalInferenceConfiguration" },
             },
         }),
+        ElementalInferenceSettings = schema.new({
+            id = id.from(_N, "Job", "ElementalInferenceSettings"),
+            type = "structure",
+            name = "ElementalInferenceSettings",
+            target_id = id.from(_N, "ElementalInferenceSettings"),
+            target = M.ElementalInferenceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "elementalInferenceSettings" },
+            },
+        }),
         ErrorCode = schema.new({
             id = id.from(_N, "Job", "ErrorCode"),
             type = "integer",
@@ -13860,6 +13922,16 @@ M.JobTemplate = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        ElementalInferenceSettings = schema.new({
+            id = id.from(_N, "JobTemplate", "ElementalInferenceSettings"),
+            type = "structure",
+            name = "ElementalInferenceSettings",
+            target_id = id.from(_N, "ElementalInferenceSettings"),
+            target = M.ElementalInferenceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "elementalInferenceSettings" },
             },
         }),
         HopDestinations = schema.new({
@@ -15461,6 +15533,16 @@ M.CreateJobInput = schema.new({
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
         }),
+        ElementalInferenceSettings = schema.new({
+            id = id.from(_N, "CreateJobInput", "ElementalInferenceSettings"),
+            type = "structure",
+            name = "ElementalInferenceSettings",
+            target_id = id.from(_N, "ElementalInferenceSettings"),
+            target = M.ElementalInferenceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "elementalInferenceSettings" },
+            },
+        }),
         HopDestinations = schema.new({
             id = id.from(_N, "CreateJobInput", "HopDestinations"),
             type = "list",
@@ -15618,6 +15700,16 @@ M.CreateJobTemplateInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        ElementalInferenceSettings = schema.new({
+            id = id.from(_N, "CreateJobTemplateInput", "ElementalInferenceSettings"),
+            type = "structure",
+            name = "ElementalInferenceSettings",
+            target_id = id.from(_N, "ElementalInferenceSettings"),
+            target = M.ElementalInferenceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "elementalInferenceSettings" },
             },
         }),
         HopDestinations = schema.new({
@@ -17118,6 +17210,16 @@ M.UpdateJobTemplateInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        ElementalInferenceSettings = schema.new({
+            id = id.from(_N, "UpdateJobTemplateInput", "ElementalInferenceSettings"),
+            type = "structure",
+            name = "ElementalInferenceSettings",
+            target_id = id.from(_N, "ElementalInferenceSettings"),
+            target = M.ElementalInferenceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "elementalInferenceSettings" },
             },
         }),
         HopDestinations = schema.new({

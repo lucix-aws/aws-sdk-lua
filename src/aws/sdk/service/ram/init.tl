@@ -52,6 +52,7 @@ local record Client
     setDefaultPermissionVersion: function(Client, types.SetDefaultPermissionVersionInput, ? base_client.InvokeOptions): async.Operation<types.SetDefaultPermissionVersionOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updatePermission: function(Client, types.UpdatePermissionInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePermissionOutput>
     updateResourceShare: function(Client, types.UpdateResourceShareInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceShareOutput>
 end
 
@@ -231,6 +232,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updatePermission(input: types.UpdatePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePermission as schema.OperationSchema, input, options) as async.Operation<types.UpdatePermissionOutput>
 end
 
 function C:updateResourceShare(input: types.UpdateResourceShareInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceShareOutput>

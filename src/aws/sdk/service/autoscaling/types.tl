@@ -1784,11 +1784,14 @@ local record M
         AutoScalingGroupNames: {string}
         -- Specifies whether to include information about Amazon EC2 instances in the response. When set to true (default), the response includes instance details.
         IncludeInstances: boolean
+        -- Specifies whether to include managed Auto Scaling groups in the response. When set to true (default), the response includes managed Auto Scaling groups.
+        IncludeManagedResources: boolean
         -- The token for the next set of items to return. (You received this token from a
         -- previous call.)
         NextToken: string
         -- The maximum number of items to return with this call. The default value is
         -- 50 and the maximum value is 100.
+        -- A response can contain fewer items than the value specified by MaxRecords, even when more items are available. To retrieve the additional items, use the NextToken value in a subsequent call rather than relying on the number of items in the response.
         MaxRecords: number
         -- One or more filters to limit the results based on specific tags.
         Filters: {Filter}
@@ -2069,8 +2072,11 @@ local record M
         -- If you specify an ID that does not exist, it is ignored with no error.
         -- Array Members: Maximum number of 50 items.
         InstanceIds: {string}
+        -- Specifies whether to include managed Auto Scaling instances in the response. When set to true (default), the response includes managed Auto Scaling instances.
+        IncludeManagedResources: boolean
         -- The maximum number of items to return with this call. The default value is
         -- 50 and the maximum value is 50.
+        -- A response can contain fewer items than the value specified by MaxRecords, even when more items are available. To retrieve the additional items, use the NextToken value in a subsequent call rather than relying on the number of items in the response.
         MaxRecords: number
         -- The token for the next set of items to return. (You received this token from a
         -- previous call.)
@@ -2620,8 +2626,11 @@ local record M
         -- balancer.
         -- Added - All Auto Scaling instances are registered with the load
         -- balancer.
-        -- InService - At least one Auto Scaling instance passed an ELB
-        -- health check.
+        -- InService - At least one Auto Scaling instance passed an
+        -- ELB health check. Note that the load balancer enters this
+        -- state immediately if you attach it in the
+        -- CreateAutoScalingGroup
+        -- API call.
         -- Removing - The Auto Scaling instances are being deregistered from the
         -- load balancer. If connection draining is enabled, Elastic Load Balancing waits for in-flight
         -- requests to complete before deregistering the instances.
@@ -2660,8 +2669,11 @@ local record M
         -- group.
         -- Added - All Auto Scaling instances are registered with the target
         -- group.
-        -- InService - At least one Auto Scaling instance passed an ELB
-        -- health check.
+        -- InService - At least one Auto Scaling instance passed an
+        -- ELB health check. Note that the target group enters this
+        -- state immediately if you attach it in the
+        -- CreateAutoScalingGroup
+        -- API call.
         -- Removing - The Auto Scaling instances are being deregistered from the
         -- target group. If connection draining is enabled, Elastic Load Balancing waits for in-flight
         -- requests to complete before deregistering the instances.
@@ -2725,11 +2737,14 @@ local record M
     record DescribeNotificationConfigurationsInput
         -- The name of the Auto Scaling group.
         AutoScalingGroupNames: {string}
+        -- Specifies whether to include notification configurations for managed Auto Scaling groups in the response. When set to true (default), the response includes notification configurations for managed Auto Scaling groups.
+        IncludeManagedResources: boolean
         -- The token for the next set of items to return. (You received this token from a
         -- previous call.)
         NextToken: string
         -- The maximum number of items to return with this call. The default value is
         -- 50 and the maximum value is 100.
+        -- A response can contain fewer items than the value specified by MaxRecords, even when more items are available. To retrieve the additional items, use the NextToken value in a subsequent call rather than relying on the number of items in the response.
         MaxRecords: number
     end
 
@@ -2770,11 +2785,14 @@ local record M
         -- StepScaling, TargetTrackingScaling, and
         -- PredictiveScaling.
         PolicyTypes: {string}
+        -- Specifies whether to include scaling policies for managed Auto Scaling groups in the response. When set to true (default), the response includes scaling policies for managed Auto Scaling groups.
+        IncludeManagedResources: boolean
         -- The token for the next set of items to return. (You received this token from a
         -- previous call.)
         NextToken: string
         -- The maximum number of items to be returned with each call. The default value is
         -- 50 and the maximum value is 100.
+        -- A response can contain fewer items than the value specified by MaxRecords, even when more items are available. To retrieve the additional items, use the NextToken value in a subsequent call rather than relying on the number of items in the response.
         MaxRecords: number
     end
 
@@ -3374,8 +3392,11 @@ local record M
         AutoScalingGroupName: string
         -- Indicates whether to include scaling activity from deleted Auto Scaling groups.
         IncludeDeletedGroups: boolean
+        -- Specifies whether to include scaling activities for managed Auto Scaling groups in the response. When set to true (default), the response includes scaling activities for managed Auto Scaling groups.
+        IncludeManagedResources: boolean
         -- The maximum number of items to return with this call. The default value is
         -- 100 and the maximum value is 100.
+        -- A response can contain fewer items than the value specified by MaxRecords, even when more items are available. To retrieve the additional items, use the NextToken value in a subsequent call rather than relying on the number of items in the response.
         MaxRecords: number
         -- The token for the next set of items to return. (You received this token from a
         -- previous call.)
@@ -3448,11 +3469,14 @@ local record M
         -- The latest scheduled start time to return. If scheduled action names are provided,
         -- this property is ignored.
         EndTime: number
+        -- Specifies whether to include scheduled actions for managed Auto Scaling groups in the response. When set to true (default), the response includes scheduled actions for managed Auto Scaling groups.
+        IncludeManagedResources: boolean
         -- The token for the next set of items to return. (You received this token from a
         -- previous call.)
         NextToken: string
         -- The maximum number of items to return with this call. The default value is
         -- 50 and the maximum value is 100.
+        -- A response can contain fewer items than the value specified by MaxRecords, even when more items are available. To retrieve the additional items, use the NextToken value in a subsequent call rather than relying on the number of items in the response.
         MaxRecords: number
     end
 
@@ -3503,11 +3527,14 @@ local record M
         -- One or more filters to scope the tags to return. The maximum number of filters per
         -- filter type (for example, auto-scaling-group) is 1000.
         Filters: {Filter}
+        -- Specifies whether to include tags for managed Auto Scaling groups in the response. When set to true (default), the response includes tags for managed Auto Scaling groups.
+        IncludeManagedResources: boolean
         -- The token for the next set of items to return. (You received this token from a
         -- previous call.)
         NextToken: string
         -- The maximum number of items to return with this call. The default value is
         -- 50 and the maximum value is 100.
+        -- A response can contain fewer items than the value specified by MaxRecords, even when more items are available. To retrieve the additional items, use the NextToken value in a subsequent call rather than relying on the number of items in the response.
         MaxRecords: number
     end
 

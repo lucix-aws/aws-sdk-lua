@@ -54,6 +54,8 @@ M.PreparedStatementsList = schema.new({ type = "list", list_member = M.PreparedS
 
 M.SessionsList = schema.new({ type = "list", list_member = M.SessionSummary })
 
+M.SystemTableStatusList = schema.new({ type = "list", list_member = M.SystemTableStatus })
+
 M.TableMetadataList = schema.new({ type = "list", list_member = M.TableMetadata })
 
 M.WorkGroupsList = schema.new({ type = "list", list_member = M.WorkGroupSummary })
@@ -1332,6 +1334,75 @@ M.ResourceNotFoundException = schema.new({
     },
 })
 
+M.CreateSystemTableConfigurationInput = schema.new({
+    id = id.from(_N, "CreateSystemTableConfigurationInput"),
+    type = "structure",
+    members = {
+        ClientRequestToken = schema.new({
+            id = id.from(_N, "CreateSystemTableConfigurationInput", "ClientRequestToken"),
+            type = "string",
+            name = "ClientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        TableName = schema.new({
+            id = id.from(_N, "CreateSystemTableConfigurationInput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "CreateSystemTableConfigurationInput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateSystemTableConfigurationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateSystemTableConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateSystemTableConfigurationOutput"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "CreateSystemTableConfigurationOutput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "CreateSystemTableConfigurationOutput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "CreateSystemTableConfigurationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedAt = schema.new({
+            id = id.from(_N, "CreateSystemTableConfigurationOutput", "LastModifiedAt"),
+            type = "timestamp",
+            name = "LastModifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.CustomerContentEncryptionConfiguration = schema.new({
     id = id.from(_N, "CustomerContentEncryptionConfiguration"),
     type = "structure",
@@ -1553,6 +1624,31 @@ M.MonitoringConfiguration = schema.new({
     },
 })
 
+M.SystemTableStatus = schema.new({
+    id = id.from(_N, "SystemTableStatus"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "SystemTableStatus", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "SystemTableStatus", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.WorkGroupConfiguration = schema.new({
     id = id.from(_N, "WorkGroupConfiguration"),
     type = "structure",
@@ -1654,6 +1750,13 @@ M.WorkGroupConfiguration = schema.new({
             name = "QueryResultsS3AccessGrantsConfiguration",
             target_id = id.from(_N, "QueryResultsS3AccessGrantsConfiguration"),
             target = M.QueryResultsS3AccessGrantsConfiguration,
+        }),
+        SystemTableStatuses = schema.new({
+            id = id.from(_N, "WorkGroupConfiguration", "SystemTableStatuses"),
+            type = "list",
+            name = "SystemTableStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.SystemTableStatus,
         }),
     },
 })
@@ -1829,6 +1932,27 @@ M.DeletePreparedStatementInput = schema.new({
 
 M.DeletePreparedStatementOutput = schema.new({
     id = id.from(_N, "DeletePreparedStatementOutput"),
+    type = "structure",
+})
+
+M.DeleteSystemTableConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteSystemTableConfigurationInput"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "DeleteSystemTableConfigurationInput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSystemTableConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteSystemTableConfigurationOutput"),
     type = "structure",
 })
 
@@ -3205,6 +3329,53 @@ M.GetSessionStatusOutput = schema.new({
     },
 })
 
+M.GetSystemTableConfigurationInput = schema.new({
+    id = id.from(_N, "GetSystemTableConfigurationInput"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "GetSystemTableConfigurationInput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSystemTableConfigurationOutput = schema.new({
+    id = id.from(_N, "GetSystemTableConfigurationOutput"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "GetSystemTableConfigurationOutput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "GetSystemTableConfigurationOutput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetSystemTableConfigurationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedAt = schema.new({
+            id = id.from(_N, "GetSystemTableConfigurationOutput", "LastModifiedAt"),
+            type = "timestamp",
+            name = "LastModifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.GetTableMetadataInput = schema.new({
     id = id.from(_N, "GetTableMetadataInput"),
     type = "structure",
@@ -4338,6 +4509,48 @@ M.ListSessionsOutput = schema.new({
     },
 })
 
+M.ListSystemTableStatusesInput = schema.new({
+    id = id.from(_N, "ListSystemTableStatusesInput"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListSystemTableStatusesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSystemTableStatusesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListSystemTableStatusesOutput = schema.new({
+    id = id.from(_N, "ListSystemTableStatusesOutput"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListSystemTableStatusesOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.SystemTableStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSystemTableStatusesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTableMetadataInput = schema.new({
     id = id.from(_N, "ListTableMetadataInput"),
     type = "structure",
@@ -5225,6 +5438,59 @@ M.UpdatePreparedStatementOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateSystemTableConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateSystemTableConfigurationInput"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "UpdateSystemTableConfigurationInput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "UpdateSystemTableConfigurationInput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateSystemTableConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateSystemTableConfigurationOutput"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "UpdateSystemTableConfigurationOutput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "UpdateSystemTableConfigurationOutput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "UpdateSystemTableConfigurationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedAt = schema.new({
+            id = id.from(_N, "UpdateSystemTableConfigurationOutput", "LastModifiedAt"),
+            type = "timestamp",
+            name = "LastModifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.ManagedQueryResultsConfigurationUpdates = schema.new({
     id = id.from(_N, "ManagedQueryResultsConfigurationUpdates"),
     type = "structure",
@@ -5731,6 +5997,17 @@ M.CreatePresignedNotebookUrl = schema.operation({
     },
 })
 
+M.CreateSystemTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.athena", "CreateSystemTableConfiguration"),
+    input = M.CreateSystemTableConfigurationInput,
+    output = M.CreateSystemTableConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateWorkGroup = schema.operation({
     id = id.from("com.amazonaws.athena", "CreateWorkGroup"),
     input = M.CreateWorkGroupInput,
@@ -5790,6 +6067,17 @@ M.DeletePreparedStatement = schema.operation({
     id = id.from("com.amazonaws.athena", "DeletePreparedStatement"),
     input = M.DeletePreparedStatementInput,
     output = M.DeletePreparedStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSystemTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.athena", "DeleteSystemTableConfiguration"),
+    input = M.DeleteSystemTableConfigurationInput,
+    output = M.DeleteSystemTableConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -6006,6 +6294,17 @@ M.GetSessionStatus = schema.operation({
     },
 })
 
+M.GetSystemTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.athena", "GetSystemTableConfiguration"),
+    input = M.GetSystemTableConfigurationInput,
+    output = M.GetSystemTableConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetTableMetadata = schema.operation({
     id = id.from("com.amazonaws.athena", "GetTableMetadata"),
     input = M.GetTableMetadataInput,
@@ -6175,6 +6474,17 @@ M.ListSessions = schema.operation({
     id = id.from("com.amazonaws.athena", "ListSessions"),
     input = M.ListSessionsInput,
     output = M.ListSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSystemTableStatuses = schema.operation({
+    id = id.from("com.amazonaws.athena", "ListSystemTableStatuses"),
+    input = M.ListSystemTableStatusesInput,
+    output = M.ListSystemTableStatusesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -6373,6 +6683,17 @@ M.UpdatePreparedStatement = schema.operation({
     id = id.from("com.amazonaws.athena", "UpdatePreparedStatement"),
     input = M.UpdatePreparedStatementInput,
     output = M.UpdatePreparedStatementOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSystemTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.athena", "UpdateSystemTableConfiguration"),
+    input = M.UpdateSystemTableConfigurationInput,
+    output = M.UpdateSystemTableConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

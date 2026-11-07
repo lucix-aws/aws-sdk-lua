@@ -1471,8 +1471,15 @@ local record M
         WebvttDestinationSettings: WebvttDestinationSettings
     end
 
+    enum CaptionSource
+        "INPUT_CAPTION_SELECTOR"
+        "SMART_SUBTITLE"
+    end
+
     -- This object holds groups of settings related to captions for one output. For each output that has captions, include one instance of CaptionDescriptions.
     record CaptionDescription
+        -- Specifies the audio selector or audio selector group that MediaConvert uses to generate Smart subtitles. The audio selector you choose must exist in all inputs for the job. If MediaConvert can't detect speech in the audio, it can't generate subtitles. Required when source is SMART_SUBTITLE; not allowed otherwise.
+        AudioSourceNames: {string}
         -- Specifies which "Caption Selector":#inputs-caption_selector to use from each input when generating captions. The name should be of the format "Caption Selector ", which denotes that the Nth Caption Selector will be used from each input.
         CaptionSelectorName: string
         -- Specify the language for this captions output track. For most captions output formats, the encoder puts this language information in the output captions metadata. If your output captions format is DVB-Sub or Burn in, the encoder uses this language information when automatically selecting the font script for rendering the captions text. For all outputs, you can use an ISO 639-2 or ISO 639-3 code. For streaming outputs, you can also use any other code in the full RFC-5646 specification. Streaming outputs are those that are in one of the following output groups: CMAF, DASH ISO, Apple HLS, or Microsoft Smooth Streaming.
@@ -1483,6 +1490,8 @@ local record M
         LanguageCode: string
         -- Specify a label for this set of output captions. For example, "English", "Director commentary", or "track_2". For streaming outputs, MediaConvert passes this information into destination manifests for display on the end-viewer's player device. For outputs in other output groups, the service ignores this setting.
         LanguageDescription: string
+        -- Specify the source of the captions for this caption description. Choose Captions input source (INPUT_CAPTION_SELECTOR) to use a caption selector from your input. Choose Smart subtitling (SMART_SUBTITLE) to have MediaConvert and Elemental Inference generate subtitles automatically from an audio source that you specify.
+        Source: string
     end
 
     -- Caption Description for preset
@@ -1588,6 +1597,7 @@ local record M
 
     enum ElementalInferenceFeature
         "SMART_CROP"
+        "SMART_SUBTITLE"
     end
 
     enum ElementalInferenceFeedManagementState
@@ -1597,9 +1607,9 @@ local record M
         "DELETED"
     end
 
-    -- Elemental Inference Feed.
+    -- An AWS Elemental Inference Feed.
     record ElementalInferenceFeed
-        -- Feed ARN.
+        -- The ARN of an AWS Elemental Inference Feed.
         Arn: string
         -- Elemental Inference Feed management state.
         FeedManagementState: string
@@ -2480,8 +2490,20 @@ local record M
     record ElementalInferenceConfiguration
         -- A list of Elemental Inference features used in this job.
         Features: {string}
-        -- A list of Elemental Inference feeds used by this job.
+        -- A list of Elemental Inference feeds created during this job.
         Feeds: {ElementalInferenceFeed}
+    end
+
+    -- The source of your Elemental Inference Feed configuration.
+    record ElementalInferenceFeedConfigurationSource
+        -- The ARN of an Elemental Inference Feed.
+        FeedArn: string
+    end
+
+    -- The Elemental Inference settings used in this job.
+    record ElementalInferenceSettings
+        -- Optional. The source of your Elemental Inference Feed configuration. MediaConvert will reference this configuration source when you specify job settings which use Elemental Inference.
+        FeedConfigurationSource: ElementalInferenceFeedConfigurationSource
     end
 
     -- Provides messages from the service about jobs that you have already successfully submitted.
@@ -6367,6 +6389,8 @@ local record M
         CurrentPhase: string
         -- The Elemental Inference configuration used in this job.
         ElementalInferenceConfiguration: ElementalInferenceConfiguration
+        -- The Elemental Inference settings used in this job.
+        ElementalInferenceSettings: ElementalInferenceSettings
         -- Error code for the job
         ErrorCode: number
         -- Error message of Job
@@ -6495,6 +6519,8 @@ local record M
         CreatedAt: number
         -- An optional description you create for each job template.
         Description: string
+        -- The Elemental Inference settings used in this job.
+        ElementalInferenceSettings: ElementalInferenceSettings
         -- Optional list of hop destinations.
         HopDestinations: {HopDestination}
         -- The timestamp in epoch seconds when the Job template was last updated.
@@ -7060,6 +7086,8 @@ local record M
         BillingTagsSource: string
         -- Prevent duplicate jobs from being created and ensure idempotency for your requests. A client request token can be any string that includes up to 64 ASCII characters. If you reuse a client request token within one minute of a successful request, the API returns the job details of the original request instead. For more information see https://docs.aws.amazon.com/mediaconvert/latest/apireference/idempotency.html.
         ClientRequestToken: string
+        -- The Elemental Inference settings used in this job.
+        ElementalInferenceSettings: ElementalInferenceSettings
         -- Optional. Use queue hopping to avoid overly long waits in the backlog of the queue that you submit your job to. Specify an alternate queue and the maximum time that your job will wait in the initial queue before hopping. For more information about this feature, see the AWS Elemental MediaConvert User Guide.
         HopDestinations: {HopDestination}
         -- Use Job engine versions to run jobs for your production workflow on one version, while you test and validate the latest version. Job engine versions represent periodically grouped MediaConvert releases with new features, updates, improvements, and fixes. Job engine versions are in a YYYY-MM-DD format. Note that the Job engine version feature is not publicly available at this time. To request access, contact AWS support.
@@ -7096,6 +7124,8 @@ local record M
         Category: string
         -- Optional. A description of the job template you are creating.
         Description: string
+        -- The Elemental Inference settings used in this job.
+        ElementalInferenceSettings: ElementalInferenceSettings
         -- Optional. Use queue hopping to avoid overly long waits in the backlog of the queue that you submit your job to. Specify an alternate queue and the maximum time that your job will wait in the initial queue before hopping. For more information about this feature, see the AWS Elemental MediaConvert User Guide.
         HopDestinations: {HopDestination}
         -- The name of the job template you are creating.
@@ -7548,6 +7578,8 @@ local record M
         Category: string
         -- The new description for the job template, if you are changing it.
         Description: string
+        -- The Elemental Inference settings used in this job.
+        ElementalInferenceSettings: ElementalInferenceSettings
         -- Optional list of hop destinations.
         HopDestinations: {HopDestination}
         -- The name of the job template you are modifying

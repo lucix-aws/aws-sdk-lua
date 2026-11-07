@@ -2256,6 +2256,12 @@ local record M
         Message: string
     end
 
+    record DeregisterDefaultHostManagementConfigurationInput
+    end
+
+    record DeregisterDefaultHostManagementConfigurationOutput
+    end
+
     record DeregisterManagedInstanceInput
         -- The ID assigned to the managed node when you registered it using the activation process.
         InstanceId: string
@@ -6438,11 +6444,6 @@ local record M
         -- /Finance/Prod/IAD/WinServ2016/license33
         Path: string
         -- Retrieve all parameters within a hierarchy.
-        -- If a user has access to a path, then the user can access all levels of that path. For
-        -- example, if a user has permission to access path /a, then the user can also access
-        -- /a/b. Even if a user has explicitly been denied access in IAM for
-        -- parameter /a/b, they can still call the GetParametersByPath API operation
-        -- recursively for /a and view /a/b.
         Recursive: boolean
         -- Filters to limit the request results.
         -- The following Key values are supported for GetParametersByPath:
@@ -8740,6 +8741,46 @@ local record M
         Limit: number
         LimitType: string
         Message: string
+    end
+
+    enum DHMCPermissionModel
+        "SERVICE_MANAGED"
+        "SELF_MANAGED"
+    end
+
+    record RegisterDefaultHostManagementConfigurationInput
+        -- The permission model that determines how the IAM role for Default Host
+        -- Management Configuration is provided.
+        -- The permission model can be one of the following values:
+        -- SERVICE_MANAGED
+        -- Amazon Web Services Systems Manager creates and manages the role on your behalf.
+        -- SELF_MANAGED
+        -- You provide the role to register in RoleArn.
+        PermissionModel: string
+        -- The Amazon Resource Name (ARN) of the self-managed IAM role that you register
+        -- for Default Host Management Configuration. The requirement for this value depends on the
+        -- permission model:
+        -- If PermissionModel is SELF_MANAGED, this value is
+        -- required.
+        -- If PermissionModel is SERVICE_MANAGED, this value must not be
+        -- set.
+        RoleArn: string
+        -- Specifies whether to override the role that is currently registered for Default Host
+        -- Management Configuration. The default is false, which acts as a guardrail against
+        -- accidentally replacing an existing configuration. Set this to true to replace the
+        -- currently registered role.
+        Overwrite: boolean
+    end
+
+    record RegisterDefaultHostManagementConfigurationOutput
+        -- The Amazon Resource Name (ARN) of the IAM role registered for Default Host
+        -- Management Configuration. The value depends on the permission model:
+        -- SERVICE_MANAGED
+        -- The ARN of the role that Amazon Web Services Systems Manager created in the IAM reserved
+        -- path.
+        -- SELF_MANAGED
+        -- The RoleArn that you provided.
+        RoleArn: string
     end
 
     record RegisterDefaultPatchBaselineInput

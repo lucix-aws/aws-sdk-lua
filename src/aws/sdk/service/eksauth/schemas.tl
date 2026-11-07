@@ -241,6 +241,12 @@ M.AssumeRoleForPodIdentityOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        workloadIdentityProviderArn = schema.new({
+            id = id.from(_N, "AssumeRoleForPodIdentityOutput", "workloadIdentityProviderArn"),
+            type = "string",
+            name = "workloadIdentityProviderArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

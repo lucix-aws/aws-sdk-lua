@@ -4996,6 +4996,40 @@ M.AuthenticationConfigurationInput = schema.new({
     },
 })
 
+M.OAuth2PropertiesPatch = schema.new({
+    id = id.from(_N, "OAuth2PropertiesPatch"),
+    type = "structure",
+    members = {
+        oAuth2GrantType = schema.new({
+            id = id.from(_N, "OAuth2PropertiesPatch", "oAuth2GrantType"),
+            type = "string",
+            name = "oAuth2GrantType",
+            target_id = prelude.String.id,
+        }),
+        oAuth2ClientApplication = schema.new({
+            id = id.from(_N, "OAuth2PropertiesPatch", "oAuth2ClientApplication"),
+            type = "structure",
+            name = "oAuth2ClientApplication",
+            target_id = id.from(_N, "OAuth2ClientApplication"),
+            target = M.OAuth2ClientApplication,
+        }),
+        tokenUrl = schema.new({
+            id = id.from(_N, "OAuth2PropertiesPatch", "tokenUrl"),
+            type = "string",
+            name = "tokenUrl",
+            target_id = prelude.String.id,
+        }),
+        tokenUrlParametersMap = schema.new({
+            id = id.from(_N, "OAuth2PropertiesPatch", "tokenUrlParametersMap"),
+            type = "map",
+            name = "tokenUrlParametersMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.AuthenticationConfigurationPatch = schema.new({
     id = id.from(_N, "AuthenticationConfigurationPatch"),
     type = "structure",
@@ -5012,6 +5046,13 @@ M.AuthenticationConfigurationPatch = schema.new({
             name = "basicAuthenticationCredentials",
             target_id = id.from(_N, "BasicAuthenticationCredentials"),
             target = M.BasicAuthenticationCredentials,
+        }),
+        oAuth2Properties = schema.new({
+            id = id.from(_N, "AuthenticationConfigurationPatch", "oAuth2Properties"),
+            type = "structure",
+            name = "oAuth2Properties",
+            target_id = id.from(_N, "OAuth2PropertiesPatch"),
+            target = M.OAuth2PropertiesPatch,
         }),
     },
 })

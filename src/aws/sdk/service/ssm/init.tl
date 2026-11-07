@@ -45,6 +45,7 @@ local record Client
     deletePatchBaseline: function(Client, types.DeletePatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.DeletePatchBaselineOutput>
     deleteResourceDataSync: function(Client, types.DeleteResourceDataSyncInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceDataSyncOutput>
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deregisterDefaultHostManagementConfiguration: function(Client, types.DeregisterDefaultHostManagementConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterDefaultHostManagementConfigurationOutput>
     deregisterManagedInstance: function(Client, types.DeregisterManagedInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterManagedInstanceOutput>
     deregisterPatchBaselineForPatchGroup: function(Client, types.DeregisterPatchBaselineForPatchGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterPatchBaselineForPatchGroupOutput>
     deregisterTargetFromMaintenanceWindow: function(Client, types.DeregisterTargetFromMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTargetFromMaintenanceWindowOutput>
@@ -136,6 +137,7 @@ local record Client
     putInventory: function(Client, types.PutInventoryInput, ? base_client.InvokeOptions): async.Operation<types.PutInventoryOutput>
     putParameter: function(Client, types.PutParameterInput, ? base_client.InvokeOptions): async.Operation<types.PutParameterOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    registerDefaultHostManagementConfiguration: function(Client, types.RegisterDefaultHostManagementConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.RegisterDefaultHostManagementConfigurationOutput>
     registerDefaultPatchBaseline: function(Client, types.RegisterDefaultPatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.RegisterDefaultPatchBaselineOutput>
     registerPatchBaselineForPatchGroup: function(Client, types.RegisterPatchBaselineForPatchGroupInput, ? base_client.InvokeOptions): async.Operation<types.RegisterPatchBaselineForPatchGroupOutput>
     registerTargetWithMaintenanceWindow: function(Client, types.RegisterTargetWithMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTargetWithMaintenanceWindowOutput>
@@ -320,6 +322,10 @@ end
 
 function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+end
+
+function C:deregisterDefaultHostManagementConfiguration(input: types.DeregisterDefaultHostManagementConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterDefaultHostManagementConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterDefaultHostManagementConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeregisterDefaultHostManagementConfigurationOutput>
 end
 
 function C:deregisterManagedInstance(input: types.DeregisterManagedInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterManagedInstanceOutput>
@@ -684,6 +690,10 @@ end
 
 function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
+end
+
+function C:registerDefaultHostManagementConfiguration(input: types.RegisterDefaultHostManagementConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterDefaultHostManagementConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterDefaultHostManagementConfiguration as schema.OperationSchema, input, options) as async.Operation<types.RegisterDefaultHostManagementConfigurationOutput>
 end
 
 function C:registerDefaultPatchBaseline(input: types.RegisterDefaultPatchBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterDefaultPatchBaselineOutput>

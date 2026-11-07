@@ -3893,6 +3893,24 @@ local record M
         tags: {string : string}
     end
 
+    enum SearchableStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    enum FieldType
+        "STRING"
+        "STRING_LIST"
+    end
+
+    -- Contains the configuration of a single custom metadata field in a knowledge base, including its name, data type, and whether the field is searchable.
+    record MetadataConfiguration
+        -- The name of the custom metadata field.
+        name: string
+        -- Specifies whether the custom metadata field is searchable. Valid values: ENABLED – The field is searchable. DISABLED – The field is not searchable.
+        searchability: string
+    end
+
     enum KnowledgeBaseStatus
         "CREATING"
         "ACTIVE"
@@ -3927,6 +3945,8 @@ local record M
         updatedAt: number
         -- A list of reasons that the API operation on the knowledge base failed.
         failureReasons: {string}
+        -- The custom metadata field configurations of the knowledge base. Each configuration specifies whether its field is searchable (ENABLED or DISABLED). If the update fails, the knowledge base status becomes UPDATE_UNSUCCESSFUL, the field configurations revert to their previous values, and failureReasons describes the cause. You can retry the update from UPDATE_UNSUCCESSFUL.
+        metadataConfigurations: {MetadataConfiguration}
     end
 
     record CreateKnowledgeBaseOutput
@@ -4059,6 +4079,8 @@ local record M
         knowledgeBaseConfiguration: KnowledgeBaseConfiguration
         -- Specifies the configuration for the vector store used for the knowledge base. You must use the same configuration as when the knowledge base was created.
         storageConfiguration: StorageConfiguration
+        -- Specifies up to 30 custom metadata field configurations for a managed knowledge base. The list that you specify replaces the existing configurations. The update removes any configuration that you leave out, and its field is no longer searchable. An empty list removes all configurations. If you don't specify a list, the existing configurations don't change.
+        metadataConfigurations: {MetadataConfiguration}
     end
 
     record UpdateKnowledgeBaseOutput

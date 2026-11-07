@@ -9336,6 +9336,11 @@ M.CreateCaseActionDefinition = schema.new({
     },
 })
 
+M.EndAssociatedEmailsActionDefinition = schema.new({
+    id = id.from(_N, "EndAssociatedEmailsActionDefinition"),
+    type = "structure",
+})
+
 M.EndAssociatedTasksActionDefinition = schema.new({
     id = id.from(_N, "EndAssociatedTasksActionDefinition"),
     type = "structure",
@@ -9650,6 +9655,13 @@ M.RuleAction = schema.new({
             name = "EndAssociatedTasksAction",
             target_id = id.from(_N, "EndAssociatedTasksActionDefinition"),
             target = M.EndAssociatedTasksActionDefinition,
+        }),
+        EndAssociatedEmailsAction = schema.new({
+            id = id.from(_N, "RuleAction", "EndAssociatedEmailsAction"),
+            type = "structure",
+            name = "EndAssociatedEmailsAction",
+            target_id = id.from(_N, "EndAssociatedEmailsActionDefinition"),
+            target = M.EndAssociatedEmailsActionDefinition,
         }),
         SubmitAutoEvaluationAction = schema.new({
             id = id.from(_N, "RuleAction", "SubmitAutoEvaluationAction"),

@@ -18,9 +18,15 @@ M.SourceArnOrAccountList = schema.new({ type = "list", list_member = prelude.Str
 
 M.ResourceShareAssociationList = schema.new({ type = "list", list_member = M.ResourceShareAssociation })
 
+M.PermissionTemplateParameterInputList = schema.new({ type = "list", list_member = M.PermissionTemplateParameterInput })
+
+M.PermissionTemplateParameterDeclarationList = schema.new({ type = "list", list_member = M.PermissionTemplateParameterDeclaration })
+
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.PermissionArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionArnAndTemplateParametersList = schema.new({ type = "list", list_member = M.PermissionArnAndTemplateParameters })
 
 M.PolicyList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -51,6 +57,10 @@ M.ServiceNameAndResourceTypeList = schema.new({ type = "list", list_member = M.S
 M.AssociatedSourceList = schema.new({ type = "list", list_member = M.AssociatedSource })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PermissionTemplateParameterList = schema.new({ type = "list", list_member = M.PermissionTemplateParameter })
+
+M.PermissionTemplateParameterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -582,6 +592,26 @@ M.UnknownResourceException = schema.new({
     },
 })
 
+M.PermissionTemplateParameterInput = schema.new({
+    id = id.from(_N, "PermissionTemplateParameterInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "PermissionTemplateParameterInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        values = schema.new({
+            id = id.from(_N, "PermissionTemplateParameterInput", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+    },
+})
+
 M.AssociateResourceSharePermissionInput = schema.new({
     id = id.from(_N, "AssociateResourceSharePermissionRequest"),
     type = "structure",
@@ -603,6 +633,13 @@ M.AssociateResourceSharePermissionInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "AssociateResourceSharePermissionInput", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameterInput, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         replace = schema.new({
             id = id.from(_N, "AssociateResourceSharePermissionInput", "replace"),
@@ -639,6 +676,31 @@ M.AssociateResourceSharePermissionOutput = schema.new({
             id = id.from(_N, "AssociateResourceSharePermissionOutput", "clientToken"),
             type = "string",
             name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PermissionTemplateParameterDeclaration = schema.new({
+    id = id.from(_N, "PermissionTemplateParameterDeclaration"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "PermissionTemplateParameterDeclaration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "PermissionTemplateParameterDeclaration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "PermissionTemplateParameterDeclaration", "description"),
+            type = "string",
+            name = "description",
             target_id = prelude.String.id,
         }),
     },
@@ -694,6 +756,13 @@ M.CreatePermissionInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "CreatePermissionInput", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameterDeclaration, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
         clientToken = schema.new({
             id = id.from(_N, "CreatePermissionInput", "clientToken"),
             type = "string",
@@ -706,6 +775,38 @@ M.CreatePermissionInput = schema.new({
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+    },
+})
+
+M.PermissionTemplateParameter = schema.new({
+    id = id.from(_N, "PermissionTemplateParameter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "PermissionTemplateParameter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "PermissionTemplateParameter", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "PermissionTemplateParameter", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        values = schema.new({
+            id = id.from(_N, "PermissionTemplateParameter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -780,12 +881,25 @@ M.ResourceSharePermissionSummary = schema.new({
             name = "featureSet",
             target_id = prelude.String.id,
         }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "ResourceSharePermissionSummary", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameter, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
         tags = schema.new({
             id = id.from(_N, "ResourceSharePermissionSummary", "tags"),
             type = "list",
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        resourceOwner = schema.new({
+            id = id.from(_N, "ResourceSharePermissionSummary", "resourceOwner"),
+            type = "string",
+            name = "resourceOwner",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -912,6 +1026,13 @@ M.CreatePermissionVersionInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "CreatePermissionVersionInput", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameterDeclaration, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
         clientToken = schema.new({
             id = id.from(_N, "CreatePermissionVersionInput", "clientToken"),
             type = "string",
@@ -961,6 +1082,13 @@ M.ResourceSharePermissionDetail = schema.new({
             name = "permission",
             target_id = prelude.String.id,
         }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "ResourceSharePermissionDetail", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameterDeclaration, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
         creationTime = schema.new({
             id = id.from(_N, "ResourceSharePermissionDetail", "creationTime"),
             type = "timestamp",
@@ -1004,6 +1132,12 @@ M.ResourceSharePermissionDetail = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        resourceOwner = schema.new({
+            id = id.from(_N, "ResourceSharePermissionDetail", "resourceOwner"),
+            type = "string",
+            name = "resourceOwner",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1043,6 +1177,26 @@ M.PermissionVersionsLimitExceededException = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.PermissionArnAndTemplateParameters = schema.new({
+    id = id.from(_N, "PermissionArnAndTemplateParameters"),
+    type = "structure",
+    members = {
+        permissionArn = schema.new({
+            id = id.from(_N, "PermissionArnAndTemplateParameters", "permissionArn"),
+            type = "string",
+            name = "permissionArn",
+            target_id = prelude.String.id,
+        }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "PermissionArnAndTemplateParameters", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameterInput, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -1119,6 +1273,13 @@ M.CreateResourceShareInput = schema.new({
             name = "sources",
             target_id = prelude.Document.id,
             list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "CreateResourceShareInput", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionArnAndTemplateParameters, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         resourceShareConfiguration = schema.new({
             id = id.from(_N, "CreateResourceShareInput", "resourceShareConfiguration"),
@@ -1583,6 +1744,13 @@ M.GetPermissionInput = schema.new({
             type = "integer",
             name = "permissionVersion",
             target_id = prelude.Integer.id,
+        }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "GetPermissionInput", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameterInput, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -2123,6 +2291,18 @@ M.ListPermissionAssociationsInput = schema.new({
             name = "defaultVersion",
             target_id = prelude.Boolean.id,
         }),
+        resourceOwner = schema.new({
+            id = id.from(_N, "ListPermissionAssociationsInput", "resourceOwner"),
+            type = "string",
+            name = "resourceOwner",
+            target_id = prelude.String.id,
+        }),
+        resourceShareArn = schema.new({
+            id = id.from(_N, "ListPermissionAssociationsInput", "resourceShareArn"),
+            type = "string",
+            name = "resourceShareArn",
+            target_id = prelude.String.id,
+        }),
         nextToken = schema.new({
             id = id.from(_N, "ListPermissionAssociationsInput", "nextToken"),
             type = "string",
@@ -2190,6 +2370,13 @@ M.AssociatedPermission = schema.new({
             name = "resourceShareArn",
             target_id = prelude.String.id,
         }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "AssociatedPermission", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameter, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
     },
 })
 
@@ -2223,6 +2410,12 @@ M.ListPermissionsInput = schema.new({
             name = "resourceType",
             target_id = prelude.String.id,
         }),
+        resourceOwner = schema.new({
+            id = id.from(_N, "ListPermissionsInput", "resourceOwner"),
+            type = "string",
+            name = "resourceOwner",
+            target_id = prelude.String.id,
+        }),
         nextToken = schema.new({
             id = id.from(_N, "ListPermissionsInput", "nextToken"),
             type = "string",
@@ -2239,6 +2432,12 @@ M.ListPermissionsInput = schema.new({
             id = id.from(_N, "ListPermissionsInput", "permissionType"),
             type = "string",
             name = "permissionType",
+            target_id = prelude.String.id,
+        }),
+        permissionStatus = schema.new({
+            id = id.from(_N, "ListPermissionsInput", "permissionStatus"),
+            type = "string",
+            name = "permissionStatus",
             target_id = prelude.String.id,
         }),
     },
@@ -2488,6 +2687,13 @@ M.ReplacePermissionAssociationsWork = schema.new({
             type = "string",
             name = "toPermissionVersion",
             target_id = prelude.String.id,
+        }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "ReplacePermissionAssociationsWork", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         status = schema.new({
             id = id.from(_N, "ReplacePermissionAssociationsWork", "status"),
@@ -3041,6 +3247,13 @@ M.ReplacePermissionAssociationsInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        permissionTemplateParameters = schema.new({
+            id = id.from(_N, "ReplacePermissionAssociationsInput", "permissionTemplateParameters"),
+            type = "list",
+            name = "permissionTemplateParameters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PermissionTemplateParameterInput, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
         clientToken = schema.new({
             id = id.from(_N, "ReplacePermissionAssociationsInput", "clientToken"),
             type = "string",
@@ -3189,6 +3402,56 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
+})
+
+M.UpdatePermissionInput = schema.new({
+    id = id.from(_N, "UpdatePermissionRequest"),
+    type = "structure",
+    members = {
+        permissionArn = schema.new({
+            id = id.from(_N, "UpdatePermissionInput", "permissionArn"),
+            type = "string",
+            name = "permissionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdatePermissionInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdatePermissionInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdatePermissionOutput = schema.new({
+    id = id.from(_N, "UpdatePermissionResponse"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "UpdatePermissionOutput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+        permissionStatus = schema.new({
+            id = id.from(_N, "UpdatePermissionOutput", "permissionStatus"),
+            type = "string",
+            name = "permissionStatus",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.UpdateResourceShareInput = schema.new({
@@ -3672,6 +3935,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/untagresource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePermission = schema.operation({
+    id = id.from("com.amazonaws.ram", "UpdatePermission"),
+    input = M.UpdatePermissionInput,
+    output = M.UpdatePermissionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/updatepermission" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

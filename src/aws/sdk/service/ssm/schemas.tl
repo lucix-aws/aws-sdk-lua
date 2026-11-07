@@ -4621,6 +4621,16 @@ M.ResourcePolicyNotFoundException = schema.new({
     },
 })
 
+M.DeregisterDefaultHostManagementConfigurationInput = schema.new({
+    id = id.from(_N, "DeregisterDefaultHostManagementConfigurationRequest"),
+    type = "structure",
+})
+
+M.DeregisterDefaultHostManagementConfigurationOutput = schema.new({
+    id = id.from(_N, "DeregisterDefaultHostManagementConfigurationResult"),
+    type = "structure",
+})
+
 M.DeregisterManagedInstanceInput = schema.new({
     id = id.from(_N, "DeregisterManagedInstanceRequest"),
     type = "structure",
@@ -17268,6 +17278,50 @@ M.ResourcePolicyLimitExceededException = schema.new({
     },
 })
 
+M.RegisterDefaultHostManagementConfigurationInput = schema.new({
+    id = id.from(_N, "RegisterDefaultHostManagementConfigurationRequest"),
+    type = "structure",
+    members = {
+        PermissionModel = schema.new({
+            id = id.from(_N, "RegisterDefaultHostManagementConfigurationInput", "PermissionModel"),
+            type = "string",
+            name = "PermissionModel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "RegisterDefaultHostManagementConfigurationInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        Overwrite = schema.new({
+            id = id.from(_N, "RegisterDefaultHostManagementConfigurationInput", "Overwrite"),
+            type = "boolean",
+            name = "Overwrite",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.RegisterDefaultHostManagementConfigurationOutput = schema.new({
+    id = id.from(_N, "RegisterDefaultHostManagementConfigurationResult"),
+    type = "structure",
+    members = {
+        RoleArn = schema.new({
+            id = id.from(_N, "RegisterDefaultHostManagementConfigurationOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RegisterDefaultPatchBaselineInput = schema.new({
     id = id.from(_N, "RegisterDefaultPatchBaselineRequest"),
     type = "structure",
@@ -20877,6 +20931,17 @@ M.DeleteResourcePolicy = schema.operation({
     },
 })
 
+M.DeregisterDefaultHostManagementConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssm", "DeregisterDefaultHostManagementConfiguration"),
+    input = M.DeregisterDefaultHostManagementConfigurationInput,
+    output = M.DeregisterDefaultHostManagementConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeregisterManagedInstance = schema.operation({
     id = id.from("com.amazonaws.ssm", "DeregisterManagedInstance"),
     input = M.DeregisterManagedInstanceInput,
@@ -21871,6 +21936,17 @@ M.PutResourcePolicy = schema.operation({
     id = id.from("com.amazonaws.ssm", "PutResourcePolicy"),
     input = M.PutResourcePolicyInput,
     output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RegisterDefaultHostManagementConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ssm", "RegisterDefaultHostManagementConfiguration"),
+    input = M.RegisterDefaultHostManagementConfigurationInput,
+    output = M.RegisterDefaultHostManagementConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

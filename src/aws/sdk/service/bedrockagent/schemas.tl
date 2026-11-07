@@ -50,6 +50,8 @@ M.AgentKnowledgeBaseSummaries = schema.new({ type = "list", list_member = M.Agen
 
 M.KnowledgeBaseSummaries = schema.new({ type = "list", list_member = M.KnowledgeBaseSummary })
 
+M.MetadataConfigurations = schema.new({ type = "list", list_member = M.MetadataConfiguration })
+
 M.PromptSummaries = schema.new({ type = "list", list_member = M.PromptSummary })
 
 M.PromptVariantList = schema.new({ type = "list", list_member = M.PromptVariant })
@@ -11565,6 +11567,40 @@ M.CreateKnowledgeBaseInput = schema.new({
     },
 })
 
+M.MetadataConfiguration = schema.new({
+    id = id.from(_N, "MetadataConfiguration"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "MetadataConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "MetadataConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        searchability = schema.new({
+            id = id.from(_N, "MetadataConfiguration", "searchability"),
+            type = "string",
+            name = "searchability",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.KnowledgeBase = schema.new({
     id = id.from(_N, "KnowledgeBase"),
     type = "structure",
@@ -11669,6 +11705,13 @@ M.KnowledgeBase = schema.new({
             name = "failureReasons",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        metadataConfigurations = schema.new({
+            id = id.from(_N, "KnowledgeBase", "metadataConfigurations"),
+            type = "list",
+            name = "metadataConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.MetadataConfiguration,
         }),
     },
 })
@@ -12139,6 +12182,13 @@ M.UpdateKnowledgeBaseInput = schema.new({
             name = "storageConfiguration",
             target_id = id.from(_N, "StorageConfiguration"),
             target = M.StorageConfiguration,
+        }),
+        metadataConfigurations = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "metadataConfigurations"),
+            type = "list",
+            name = "metadataConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.MetadataConfiguration,
         }),
     },
 })

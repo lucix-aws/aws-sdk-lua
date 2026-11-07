@@ -28,12 +28,14 @@ local record Client
     createNotebook: function(Client, types.CreateNotebookInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotebookOutput>
     createPreparedStatement: function(Client, types.CreatePreparedStatementInput, ? base_client.InvokeOptions): async.Operation<types.CreatePreparedStatementOutput>
     createPresignedNotebookUrl: function(Client, types.CreatePresignedNotebookUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreatePresignedNotebookUrlOutput>
+    createSystemTableConfiguration: function(Client, types.CreateSystemTableConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateSystemTableConfigurationOutput>
     createWorkGroup: function(Client, types.CreateWorkGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkGroupOutput>
     deleteCapacityReservation: function(Client, types.DeleteCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityReservationOutput>
     deleteDataCatalog: function(Client, types.DeleteDataCatalogInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataCatalogOutput>
     deleteNamedQuery: function(Client, types.DeleteNamedQueryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNamedQueryOutput>
     deleteNotebook: function(Client, types.DeleteNotebookInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotebookOutput>
     deletePreparedStatement: function(Client, types.DeletePreparedStatementInput, ? base_client.InvokeOptions): async.Operation<types.DeletePreparedStatementOutput>
+    deleteSystemTableConfiguration: function(Client, types.DeleteSystemTableConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSystemTableConfigurationOutput>
     deleteWorkGroup: function(Client, types.DeleteWorkGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkGroupOutput>
     exportNotebook: function(Client, types.ExportNotebookInput, ? base_client.InvokeOptions): async.Operation<types.ExportNotebookOutput>
     getCalculationExecution: function(Client, types.GetCalculationExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetCalculationExecutionOutput>
@@ -53,6 +55,7 @@ local record Client
     getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
     getSessionEndpoint: function(Client, types.GetSessionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
     getSessionStatus: function(Client, types.GetSessionStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionStatusOutput>
+    getSystemTableConfiguration: function(Client, types.GetSystemTableConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetSystemTableConfigurationOutput>
     getTableMetadata: function(Client, types.GetTableMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMetadataOutput>
     getWorkGroup: function(Client, types.GetWorkGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkGroupOutput>
     importNotebook: function(Client, types.ImportNotebookInput, ? base_client.InvokeOptions): async.Operation<types.ImportNotebookOutput>
@@ -69,6 +72,7 @@ local record Client
     listPreparedStatements: function(Client, types.ListPreparedStatementsInput, ? base_client.InvokeOptions): async.Operation<types.ListPreparedStatementsOutput>
     listQueryExecutions: function(Client, types.ListQueryExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListQueryExecutionsOutput>
     listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    listSystemTableStatuses: function(Client, types.ListSystemTableStatusesInput, ? base_client.InvokeOptions): async.Operation<types.ListSystemTableStatusesOutput>
     listTableMetadata: function(Client, types.ListTableMetadataInput, ? base_client.InvokeOptions): async.Operation<types.ListTableMetadataOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listWorkGroups: function(Client, types.ListWorkGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkGroupsOutput>
@@ -87,6 +91,7 @@ local record Client
     updateNotebook: function(Client, types.UpdateNotebookInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotebookOutput>
     updateNotebookMetadata: function(Client, types.UpdateNotebookMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotebookMetadataOutput>
     updatePreparedStatement: function(Client, types.UpdatePreparedStatementInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePreparedStatementOutput>
+    updateSystemTableConfiguration: function(Client, types.UpdateSystemTableConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSystemTableConfigurationOutput>
     updateWorkGroup: function(Client, types.UpdateWorkGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkGroupOutput>
 end
 
@@ -172,6 +177,10 @@ function C:createPresignedNotebookUrl(input: types.CreatePresignedNotebookUrlInp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePresignedNotebookUrl as schema.OperationSchema, input, options) as async.Operation<types.CreatePresignedNotebookUrlOutput>
 end
 
+function C:createSystemTableConfiguration(input: types.CreateSystemTableConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSystemTableConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSystemTableConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateSystemTableConfigurationOutput>
+end
+
 function C:createWorkGroup(input: types.CreateWorkGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkGroupOutput>
 end
@@ -194,6 +203,10 @@ end
 
 function C:deletePreparedStatement(input: types.DeletePreparedStatementInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePreparedStatementOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePreparedStatement as schema.OperationSchema, input, options) as async.Operation<types.DeletePreparedStatementOutput>
+end
+
+function C:deleteSystemTableConfiguration(input: types.DeleteSystemTableConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSystemTableConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSystemTableConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteSystemTableConfigurationOutput>
 end
 
 function C:deleteWorkGroup(input: types.DeleteWorkGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkGroupOutput>
@@ -272,6 +285,10 @@ function C:getSessionStatus(input: types.GetSessionStatusInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSessionStatus as schema.OperationSchema, input, options) as async.Operation<types.GetSessionStatusOutput>
 end
 
+function C:getSystemTableConfiguration(input: types.GetSystemTableConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSystemTableConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSystemTableConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetSystemTableConfigurationOutput>
+end
+
 function C:getTableMetadata(input: types.GetTableMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableMetadataOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetTableMetadataOutput>
 end
@@ -334,6 +351,10 @@ end
 
 function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
+end
+
+function C:listSystemTableStatuses(input: types.ListSystemTableStatusesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSystemTableStatusesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSystemTableStatuses as schema.OperationSchema, input, options) as async.Operation<types.ListSystemTableStatusesOutput>
 end
 
 function C:listTableMetadata(input: types.ListTableMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.ListTableMetadataOutput>
@@ -406,6 +427,10 @@ end
 
 function C:updatePreparedStatement(input: types.UpdatePreparedStatementInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePreparedStatementOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePreparedStatement as schema.OperationSchema, input, options) as async.Operation<types.UpdatePreparedStatementOutput>
+end
+
+function C:updateSystemTableConfiguration(input: types.UpdateSystemTableConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSystemTableConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSystemTableConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateSystemTableConfigurationOutput>
 end
 
 function C:updateWorkGroup(input: types.UpdateWorkGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkGroupOutput>

@@ -18,9 +18,11 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCreateRelatedItem: function(Client, types.BatchCreateRelatedItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateRelatedItemOutput>
     batchGetCaseRule: function(Client, types.BatchGetCaseRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCaseRuleOutput>
     batchGetField: function(Client, types.BatchGetFieldInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetFieldOutput>
     batchPutFieldOptions: function(Client, types.BatchPutFieldOptionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutFieldOptionsOutput>
+    batchUpdateCase: function(Client, types.BatchUpdateCaseInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateCaseOutput>
     createCase: function(Client, types.CreateCaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateCaseOutput>
     createCaseRule: function(Client, types.CreateCaseRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateCaseRuleOutput>
     createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
@@ -105,6 +107,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:batchCreateRelatedItem(input: types.BatchCreateRelatedItemInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateRelatedItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateRelatedItem as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateRelatedItemOutput>
+end
+
 function C:batchGetCaseRule(input: types.BatchGetCaseRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCaseRuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCaseRule as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCaseRuleOutput>
 end
@@ -115,6 +121,10 @@ end
 
 function C:batchPutFieldOptions(input: types.BatchPutFieldOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchPutFieldOptionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutFieldOptions as schema.OperationSchema, input, options) as async.Operation<types.BatchPutFieldOptionsOutput>
+end
+
+function C:batchUpdateCase(input: types.BatchUpdateCaseInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateCaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateCase as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateCaseOutput>
 end
 
 function C:createCase(input: types.CreateCaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCaseOutput>

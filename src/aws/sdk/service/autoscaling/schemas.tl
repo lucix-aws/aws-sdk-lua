@@ -2553,6 +2553,12 @@ M.DescribeAutoScalingGroupsInput = schema.new({
             name = "IncludeInstances",
             target_id = prelude.Boolean.id,
         }),
+        IncludeManagedResources = schema.new({
+            id = id.from(_N, "DescribeAutoScalingGroupsInput", "IncludeManagedResources"),
+            type = "boolean",
+            name = "IncludeManagedResources",
+            target_id = prelude.Boolean.id,
+        }),
         NextToken = schema.new({
             id = id.from(_N, "DescribeAutoScalingGroupsInput", "NextToken"),
             type = "string",
@@ -3125,6 +3131,12 @@ M.DescribeAutoScalingInstancesInput = schema.new({
             name = "InstanceIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        IncludeManagedResources = schema.new({
+            id = id.from(_N, "DescribeAutoScalingInstancesInput", "IncludeManagedResources"),
+            type = "boolean",
+            name = "IncludeManagedResources",
+            target_id = prelude.Boolean.id,
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeAutoScalingInstancesInput", "MaxRecords"),
@@ -4113,6 +4125,12 @@ M.DescribeNotificationConfigurationsInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        IncludeManagedResources = schema.new({
+            id = id.from(_N, "DescribeNotificationConfigurationsInput", "IncludeManagedResources"),
+            type = "boolean",
+            name = "IncludeManagedResources",
+            target_id = prelude.Boolean.id,
+        }),
         NextToken = schema.new({
             id = id.from(_N, "DescribeNotificationConfigurationsInput", "NextToken"),
             type = "string",
@@ -4199,6 +4217,12 @@ M.DescribePoliciesInput = schema.new({
             name = "PolicyTypes",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        IncludeManagedResources = schema.new({
+            id = id.from(_N, "DescribePoliciesInput", "IncludeManagedResources"),
+            type = "boolean",
+            name = "IncludeManagedResources",
+            target_id = prelude.Boolean.id,
         }),
         NextToken = schema.new({
             id = id.from(_N, "DescribePoliciesInput", "NextToken"),
@@ -4933,6 +4957,12 @@ M.DescribeScalingActivitiesInput = schema.new({
             name = "IncludeDeletedGroups",
             target_id = prelude.Boolean.id,
         }),
+        IncludeManagedResources = schema.new({
+            id = id.from(_N, "DescribeScalingActivitiesInput", "IncludeManagedResources"),
+            type = "boolean",
+            name = "IncludeManagedResources",
+            target_id = prelude.Boolean.id,
+        }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeScalingActivitiesInput", "MaxRecords"),
             type = "integer",
@@ -5038,6 +5068,12 @@ M.DescribeScheduledActionsInput = schema.new({
             type = "timestamp",
             name = "EndTime",
             target_id = prelude.Timestamp.id,
+        }),
+        IncludeManagedResources = schema.new({
+            id = id.from(_N, "DescribeScheduledActionsInput", "IncludeManagedResources"),
+            type = "boolean",
+            name = "IncludeManagedResources",
+            target_id = prelude.Boolean.id,
         }),
         NextToken = schema.new({
             id = id.from(_N, "DescribeScheduledActionsInput", "NextToken"),
@@ -5157,6 +5193,12 @@ M.DescribeTagsInput = schema.new({
             name = "Filters",
             target_id = prelude.Document.id,
             list_member = M.Filter,
+        }),
+        IncludeManagedResources = schema.new({
+            id = id.from(_N, "DescribeTagsInput", "IncludeManagedResources"),
+            type = "boolean",
+            name = "IncludeManagedResources",
+            target_id = prelude.Boolean.id,
         }),
         NextToken = schema.new({
             id = id.from(_N, "DescribeTagsInput", "NextToken"),

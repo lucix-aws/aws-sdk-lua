@@ -22,6 +22,20 @@ M.FieldIdentifierList = schema.new({ type = "list", list_member = M.FieldIdentif
 
 M.AuditEventsList = schema.new({ type = "list", list_member = M.AuditEvent })
 
+M.BatchCreateRelatedItemIdentifierList = schema.new({ type = "list", list_member = M.BatchCreateRelatedItemIdentifier })
+
+M.BatchCreateRelatedItemSuccessEntryList = schema.new({ type = "list", list_member = M.BatchCreateRelatedItemSuccessEntry })
+
+M.BatchCreateRelatedItemErrorEntryList = schema.new({ type = "list", list_member = M.BatchCreateRelatedItemErrorEntry })
+
+M.BatchUpdateCaseIdentifierList = schema.new({ type = "list", list_member = M.BatchUpdateCaseIdentifier })
+
+M.FieldValueInputList = schema.new({ type = "list", list_member = M.FieldValueInput })
+
+M.BatchUpdateCaseSuccessEntryList = schema.new({ type = "list", list_member = M.BatchUpdateCaseSuccessEntry })
+
+M.BatchUpdateCaseErrorEntryList = schema.new({ type = "list", list_member = M.BatchUpdateCaseErrorEntry })
+
 M.CaseSummaryList = schema.new({ type = "list", list_member = M.CaseSummary })
 
 M.SortList = schema.new({ type = "list", list_member = M.Sort })
@@ -82,11 +96,11 @@ M.BooleanConditionList = schema.new({ type = "list", list_member = M.BooleanCond
 
 M.ParentChildFieldOptionsMappingList = schema.new({ type = "list", list_member = M.ParentChildFieldOptionsMapping })
 
+M.SlaFieldValueUnionList = schema.new({ type = "list", list_member = M.FieldValueUnion })
+
 M.ChannelList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SectionsList = schema.new({ type = "list", list_member = M.Section })
-
-M.SlaFieldValueUnionList = schema.new({ type = "list", list_member = M.FieldValueUnion })
 
 M.ParentChildFieldOptionValueList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -113,17 +127,91 @@ M.AccessDeniedException = schema.new({
     },
 })
 
-M.ConflictException = schema.new({
-    id = id.from(_N, "ConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
+M.CaseIdentifierUnion = schema.new({
+    id = id.from(_N, "CaseIdentifierUnion"),
+    type = "union",
     members = {
-        message = schema.new({
-            id = id.from(_N, "ConflictException", "message"),
+        caseId = schema.new({
+            id = id.from(_N, "CaseIdentifierUnion", "caseId"),
             type = "string",
-            name = "message",
+            name = "caseId",
+            target_id = prelude.String.id,
+        }),
+        referenceId = schema.new({
+            id = id.from(_N, "CaseIdentifierUnion", "referenceId"),
+            type = "string",
+            name = "referenceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchCreateRelatedItemIdentifier = schema.new({
+    id = id.from(_N, "BatchCreateRelatedItemIdentifier"),
+    type = "structure",
+    members = {
+        caseIdentifier = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemIdentifier", "caseIdentifier"),
+            type = "union",
+            name = "caseIdentifier",
+            target_id = id.from(_N, "CaseIdentifierUnion"),
+            target = M.CaseIdentifierUnion,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CommentContent = schema.new({
+    id = id.from(_N, "CommentContent"),
+    type = "structure",
+    members = {
+        body = schema.new({
+            id = id.from(_N, "CommentContent", "body"),
+            type = "string",
+            name = "body",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contentType = schema.new({
+            id = id.from(_N, "CommentContent", "contentType"),
+            type = "string",
+            name = "contentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConnectCaseInputContent = schema.new({
+    id = id.from(_N, "ConnectCaseInputContent"),
+    type = "structure",
+    members = {
+        caseId = schema.new({
+            id = id.from(_N, "ConnectCaseInputContent", "caseId"),
+            type = "string",
+            name = "caseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Contact = schema.new({
+    id = id.from(_N, "Contact"),
+    type = "structure",
+    members = {
+        contactArn = schema.new({
+            id = id.from(_N, "Contact", "contactArn"),
+            type = "string",
+            name = "contactArn",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -201,6 +289,149 @@ M.FieldValue = schema.new({
     },
 })
 
+M.CustomInputContent = schema.new({
+    id = id.from(_N, "CustomInputContent"),
+    type = "structure",
+    members = {
+        fields = schema.new({
+            id = id.from(_N, "CustomInputContent", "fields"),
+            type = "list",
+            name = "fields",
+            target_id = prelude.Document.id,
+            list_member = M.FieldValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FileContent = schema.new({
+    id = id.from(_N, "FileContent"),
+    type = "structure",
+    members = {
+        fileArn = schema.new({
+            id = id.from(_N, "FileContent", "fileArn"),
+            type = "string",
+            name = "fileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SlaInputConfiguration = schema.new({
+    id = id.from(_N, "SlaInputConfiguration"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SlaInputConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "SlaInputConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fieldId = schema.new({
+            id = id.from(_N, "SlaInputConfiguration", "fieldId"),
+            type = "string",
+            name = "fieldId",
+            target_id = prelude.String.id,
+        }),
+        targetFieldValues = schema.new({
+            id = id.from(_N, "SlaInputConfiguration", "targetFieldValues"),
+            type = "list",
+            name = "targetFieldValues",
+            target_id = prelude.Document.id,
+            list_member = M.FieldValueUnion,
+        }),
+        targetSlaMinutes = schema.new({
+            id = id.from(_N, "SlaInputConfiguration", "targetSlaMinutes"),
+            type = "long",
+            name = "targetSlaMinutes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SlaInputContent = schema.new({
+    id = id.from(_N, "SlaInputContent"),
+    type = "union",
+    members = {
+        slaInputConfiguration = schema.new({
+            id = id.from(_N, "SlaInputContent", "slaInputConfiguration"),
+            type = "structure",
+            name = "slaInputConfiguration",
+            target_id = id.from(_N, "SlaInputConfiguration"),
+            target = M.SlaInputConfiguration,
+        }),
+    },
+})
+
+M.RelatedItemInputContent = schema.new({
+    id = id.from(_N, "RelatedItemInputContent"),
+    type = "union",
+    members = {
+        contact = schema.new({
+            id = id.from(_N, "RelatedItemInputContent", "contact"),
+            type = "structure",
+            name = "contact",
+            target_id = id.from(_N, "Contact"),
+            target = M.Contact,
+        }),
+        comment = schema.new({
+            id = id.from(_N, "RelatedItemInputContent", "comment"),
+            type = "structure",
+            name = "comment",
+            target_id = id.from(_N, "CommentContent"),
+            target = M.CommentContent,
+        }),
+        file = schema.new({
+            id = id.from(_N, "RelatedItemInputContent", "file"),
+            type = "structure",
+            name = "file",
+            target_id = id.from(_N, "FileContent"),
+            target = M.FileContent,
+        }),
+        sla = schema.new({
+            id = id.from(_N, "RelatedItemInputContent", "sla"),
+            type = "union",
+            name = "sla",
+            target_id = id.from(_N, "SlaInputContent"),
+            target = M.SlaInputContent,
+        }),
+        connectCase = schema.new({
+            id = id.from(_N, "RelatedItemInputContent", "connectCase"),
+            type = "structure",
+            name = "connectCase",
+            target_id = id.from(_N, "ConnectCaseInputContent"),
+            target = M.ConnectCaseInputContent,
+        }),
+        custom = schema.new({
+            id = id.from(_N, "RelatedItemInputContent", "custom"),
+            type = "structure",
+            name = "custom",
+            target_id = id.from(_N, "CustomInputContent"),
+            target = M.CustomInputContent,
+        }),
+    },
+})
+
 M.UserUnion = schema.new({
     id = id.from(_N, "UserUnion"),
     type = "union",
@@ -216,6 +447,533 @@ M.UserUnion = schema.new({
             type = "string",
             name = "customEntity",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchCreateRelatedItemInput = schema.new({
+    id = id.from(_N, "BatchCreateRelatedItemRequest"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemInput", "content"),
+            type = "union",
+            name = "content",
+            target_id = id.from(_N, "RelatedItemInputContent"),
+            target = M.RelatedItemInputContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cases = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemInput", "cases"),
+            type = "list",
+            name = "cases",
+            target_id = prelude.Document.id,
+            list_member = M.BatchCreateRelatedItemIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        performedBy = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemInput", "performedBy"),
+            type = "union",
+            name = "performedBy",
+            target_id = id.from(_N, "UserUnion"),
+            target = M.UserUnion,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CaseIdentifier = schema.new({
+    id = id.from(_N, "CaseIdentifier"),
+    type = "structure",
+    members = {
+        caseId = schema.new({
+            id = id.from(_N, "CaseIdentifier", "caseId"),
+            type = "string",
+            name = "caseId",
+            target_id = prelude.String.id,
+        }),
+        referenceNumber = schema.new({
+            id = id.from(_N, "CaseIdentifier", "referenceNumber"),
+            type = "string",
+            name = "referenceNumber",
+            target_id = prelude.String.id,
+        }),
+        referenceId = schema.new({
+            id = id.from(_N, "CaseIdentifier", "referenceId"),
+            type = "string",
+            name = "referenceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchCreateRelatedItemErrorEntry = schema.new({
+    id = id.from(_N, "BatchCreateRelatedItemErrorEntry"),
+    type = "structure",
+    members = {
+        caseIdentifier = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemErrorEntry", "caseIdentifier"),
+            type = "structure",
+            name = "caseIdentifier",
+            target_id = id.from(_N, "CaseIdentifier"),
+            target = M.CaseIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemErrorEntry", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemErrorEntry", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchCreateRelatedItemSuccessEntry = schema.new({
+    id = id.from(_N, "BatchCreateRelatedItemSuccessEntry"),
+    type = "structure",
+    members = {
+        caseIdentifier = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemSuccessEntry", "caseIdentifier"),
+            type = "structure",
+            name = "caseIdentifier",
+            target_id = id.from(_N, "CaseIdentifier"),
+            target = M.CaseIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        relatedItemId = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemSuccessEntry", "relatedItemId"),
+            type = "string",
+            name = "relatedItemId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        relatedItemArn = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemSuccessEntry", "relatedItemArn"),
+            type = "string",
+            name = "relatedItemArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchCreateRelatedItemOutput = schema.new({
+    id = id.from(_N, "BatchCreateRelatedItemResponse"),
+    type = "structure",
+    members = {
+        successfulItems = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemOutput", "successfulItems"),
+            type = "list",
+            name = "successfulItems",
+            target_id = prelude.Document.id,
+            list_member = M.BatchCreateRelatedItemSuccessEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failedItems = schema.new({
+            id = id.from(_N, "BatchCreateRelatedItemOutput", "failedItems"),
+            type = "list",
+            name = "failedItems",
+            target_id = prelude.Document.id,
+            list_member = M.BatchCreateRelatedItemErrorEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "InternalServerException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Retry-After" },
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchUpdateCaseIdentifier = schema.new({
+    id = id.from(_N, "BatchUpdateCaseIdentifier"),
+    type = "structure",
+    members = {
+        caseIdentifier = schema.new({
+            id = id.from(_N, "BatchUpdateCaseIdentifier", "caseIdentifier"),
+            type = "union",
+            name = "caseIdentifier",
+            target_id = id.from(_N, "CaseIdentifierUnion"),
+            target = M.CaseIdentifierUnion,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FieldIdentifierUnion = schema.new({
+    id = id.from(_N, "FieldIdentifierUnion"),
+    type = "union",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "FieldIdentifierUnion", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "FieldIdentifierUnion", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FieldValueInput = schema.new({
+    id = id.from(_N, "FieldValueInput"),
+    type = "structure",
+    members = {
+        fieldIdentifier = schema.new({
+            id = id.from(_N, "FieldValueInput", "fieldIdentifier"),
+            type = "union",
+            name = "fieldIdentifier",
+            target_id = id.from(_N, "FieldIdentifierUnion"),
+            target = M.FieldIdentifierUnion,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "FieldValueInput", "value"),
+            type = "union",
+            name = "value",
+            target_id = id.from(_N, "FieldValueUnion"),
+            target = M.FieldValueUnion,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchUpdateCaseInput = schema.new({
+    id = id.from(_N, "BatchUpdateCaseRequest"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "BatchUpdateCaseInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cases = schema.new({
+            id = id.from(_N, "BatchUpdateCaseInput", "cases"),
+            type = "list",
+            name = "cases",
+            target_id = prelude.Document.id,
+            list_member = M.BatchUpdateCaseIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fields = schema.new({
+            id = id.from(_N, "BatchUpdateCaseInput", "fields"),
+            type = "list",
+            name = "fields",
+            target_id = prelude.Document.id,
+            list_member = M.FieldValueInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        performedBy = schema.new({
+            id = id.from(_N, "BatchUpdateCaseInput", "performedBy"),
+            type = "union",
+            name = "performedBy",
+            target_id = id.from(_N, "UserUnion"),
+            target = M.UserUnion,
+        }),
+        title = schema.new({
+            id = id.from(_N, "BatchUpdateCaseInput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "BatchUpdateCaseInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        customerId = schema.new({
+            id = id.from(_N, "BatchUpdateCaseInput", "customerId"),
+            type = "string",
+            name = "customerId",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "BatchUpdateCaseInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.BatchUpdateCaseErrorEntry = schema.new({
+    id = id.from(_N, "BatchUpdateCaseErrorEntry"),
+    type = "structure",
+    members = {
+        caseIdentifier = schema.new({
+            id = id.from(_N, "BatchUpdateCaseErrorEntry", "caseIdentifier"),
+            type = "structure",
+            name = "caseIdentifier",
+            target_id = id.from(_N, "CaseIdentifier"),
+            target = M.CaseIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "BatchUpdateCaseErrorEntry", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "BatchUpdateCaseErrorEntry", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchUpdateCaseSuccessEntry = schema.new({
+    id = id.from(_N, "BatchUpdateCaseSuccessEntry"),
+    type = "structure",
+    members = {
+        caseIdentifier = schema.new({
+            id = id.from(_N, "BatchUpdateCaseSuccessEntry", "caseIdentifier"),
+            type = "structure",
+            name = "caseIdentifier",
+            target_id = id.from(_N, "CaseIdentifier"),
+            target = M.CaseIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchUpdateCaseOutput = schema.new({
+    id = id.from(_N, "BatchUpdateCaseResponse"),
+    type = "structure",
+    members = {
+        successfulCases = schema.new({
+            id = id.from(_N, "BatchUpdateCaseOutput", "successfulCases"),
+            type = "list",
+            name = "successfulCases",
+            target_id = prelude.Document.id,
+            list_member = M.BatchUpdateCaseSuccessEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failedCases = schema.new({
+            id = id.from(_N, "BatchUpdateCaseOutput", "failedCases"),
+            type = "list",
+            name = "failedCases",
+            target_id = prelude.Document.id,
+            list_member = M.BatchUpdateCaseErrorEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -297,109 +1055,6 @@ M.CreateCaseOutput = schema.new({
             id = id.from(_N, "CreateCaseOutput", "caseArn"),
             type = "string",
             name = "caseArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.InternalServerException = schema.new({
-    id = id.from(_N, "InternalServerException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InternalServerException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        retryAfterSeconds = schema.new({
-            id = id.from(_N, "InternalServerException", "retryAfterSeconds"),
-            type = "integer",
-            name = "retryAfterSeconds",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.HTTP_HEADER] = { name = "Retry-After" },
-            },
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        resourceId = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "resourceId"),
-            type = "string",
-            name = "resourceId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        resourceType = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "resourceType"),
-            type = "string",
-            name = "resourceType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ThrottlingException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ValidationException", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -848,206 +1503,6 @@ M.ListCasesForContactOutput = schema.new({
     },
 })
 
-M.CommentContent = schema.new({
-    id = id.from(_N, "CommentContent"),
-    type = "structure",
-    members = {
-        body = schema.new({
-            id = id.from(_N, "CommentContent", "body"),
-            type = "string",
-            name = "body",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        contentType = schema.new({
-            id = id.from(_N, "CommentContent", "contentType"),
-            type = "string",
-            name = "contentType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ConnectCaseInputContent = schema.new({
-    id = id.from(_N, "ConnectCaseInputContent"),
-    type = "structure",
-    members = {
-        caseId = schema.new({
-            id = id.from(_N, "ConnectCaseInputContent", "caseId"),
-            type = "string",
-            name = "caseId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.Contact = schema.new({
-    id = id.from(_N, "Contact"),
-    type = "structure",
-    members = {
-        contactArn = schema.new({
-            id = id.from(_N, "Contact", "contactArn"),
-            type = "string",
-            name = "contactArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CustomInputContent = schema.new({
-    id = id.from(_N, "CustomInputContent"),
-    type = "structure",
-    members = {
-        fields = schema.new({
-            id = id.from(_N, "CustomInputContent", "fields"),
-            type = "list",
-            name = "fields",
-            target_id = prelude.Document.id,
-            list_member = M.FieldValue,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.FileContent = schema.new({
-    id = id.from(_N, "FileContent"),
-    type = "structure",
-    members = {
-        fileArn = schema.new({
-            id = id.from(_N, "FileContent", "fileArn"),
-            type = "string",
-            name = "fileArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.SlaInputConfiguration = schema.new({
-    id = id.from(_N, "SlaInputConfiguration"),
-    type = "structure",
-    members = {
-        name = schema.new({
-            id = id.from(_N, "SlaInputConfiguration", "name"),
-            type = "string",
-            name = "name",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        type = schema.new({
-            id = id.from(_N, "SlaInputConfiguration", "type"),
-            type = "string",
-            name = "type",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        fieldId = schema.new({
-            id = id.from(_N, "SlaInputConfiguration", "fieldId"),
-            type = "string",
-            name = "fieldId",
-            target_id = prelude.String.id,
-        }),
-        targetFieldValues = schema.new({
-            id = id.from(_N, "SlaInputConfiguration", "targetFieldValues"),
-            type = "list",
-            name = "targetFieldValues",
-            target_id = prelude.Document.id,
-            list_member = M.FieldValueUnion,
-        }),
-        targetSlaMinutes = schema.new({
-            id = id.from(_N, "SlaInputConfiguration", "targetSlaMinutes"),
-            type = "long",
-            name = "targetSlaMinutes",
-            target_id = prelude.Long.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.SlaInputContent = schema.new({
-    id = id.from(_N, "SlaInputContent"),
-    type = "union",
-    members = {
-        slaInputConfiguration = schema.new({
-            id = id.from(_N, "SlaInputContent", "slaInputConfiguration"),
-            type = "structure",
-            name = "slaInputConfiguration",
-            target_id = id.from(_N, "SlaInputConfiguration"),
-            target = M.SlaInputConfiguration,
-        }),
-    },
-})
-
-M.RelatedItemInputContent = schema.new({
-    id = id.from(_N, "RelatedItemInputContent"),
-    type = "union",
-    members = {
-        contact = schema.new({
-            id = id.from(_N, "RelatedItemInputContent", "contact"),
-            type = "structure",
-            name = "contact",
-            target_id = id.from(_N, "Contact"),
-            target = M.Contact,
-        }),
-        comment = schema.new({
-            id = id.from(_N, "RelatedItemInputContent", "comment"),
-            type = "structure",
-            name = "comment",
-            target_id = id.from(_N, "CommentContent"),
-            target = M.CommentContent,
-        }),
-        file = schema.new({
-            id = id.from(_N, "RelatedItemInputContent", "file"),
-            type = "structure",
-            name = "file",
-            target_id = id.from(_N, "FileContent"),
-            target = M.FileContent,
-        }),
-        sla = schema.new({
-            id = id.from(_N, "RelatedItemInputContent", "sla"),
-            type = "union",
-            name = "sla",
-            target_id = id.from(_N, "SlaInputContent"),
-            target = M.SlaInputContent,
-        }),
-        connectCase = schema.new({
-            id = id.from(_N, "RelatedItemInputContent", "connectCase"),
-            type = "structure",
-            name = "connectCase",
-            target_id = id.from(_N, "ConnectCaseInputContent"),
-            target = M.ConnectCaseInputContent,
-        }),
-        custom = schema.new({
-            id = id.from(_N, "RelatedItemInputContent", "custom"),
-            type = "structure",
-            name = "custom",
-            target_id = id.from(_N, "CustomInputContent"),
-            target = M.CustomInputContent,
-        }),
-    },
-})
-
 M.CreateRelatedItemInput = schema.new({
     id = id.from(_N, "CreateRelatedItemRequest"),
     type = "structure",
@@ -1118,25 +1573,6 @@ M.CreateRelatedItemOutput = schema.new({
             id = id.from(_N, "CreateRelatedItemOutput", "relatedItemArn"),
             type = "string",
             name = "relatedItemArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -5270,6 +5706,18 @@ M.Service = schema.service({
     },
 })
 
+M.BatchCreateRelatedItem = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "BatchCreateRelatedItem"),
+    input = M.BatchCreateRelatedItemInput,
+    output = M.BatchCreateRelatedItemOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cases:batchCreateRelatedItem" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BatchGetCaseRule = schema.operation({
     id = id.from("com.amazonaws.connectcases", "BatchGetCaseRule"),
     input = M.BatchGetCaseRuleInput,
@@ -5300,6 +5748,18 @@ M.BatchPutFieldOptions = schema.operation({
     output = M.BatchPutFieldOptionsOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/domains/{domainId}/fields/{fieldId}/options" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchUpdateCase = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "BatchUpdateCase"),
+    input = M.BatchUpdateCaseInput,
+    output = M.BatchUpdateCaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/cases:batchUpdateCase" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

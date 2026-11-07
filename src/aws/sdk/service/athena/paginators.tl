@@ -120,6 +120,24 @@ function M.pages_list_sessions(client, input)
     })
 end
 
+--- Returns a page iterator for listSystemTableStatuses.
+function M.pages_list_system_table_statuses(client, input)
+    return paginator.pages(client, "listSystemTableStatuses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listSystemTableStatuses.
+function M.items_list_system_table_statuses(client, input)
+    return paginator.items(client, "listSystemTableStatuses", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 --- Returns a page iterator for listTableMetadata.
 function M.pages_list_table_metadata(client, input)
     return paginator.pages(client, "listTableMetadata", input, {

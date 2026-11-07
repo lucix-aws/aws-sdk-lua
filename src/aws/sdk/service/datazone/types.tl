@@ -1605,12 +1605,26 @@ local record M
         customAuthenticationCredentials: {string : string}
     end
 
+    -- Contains the OAuth2 properties, such as the client application, grant type, and token URL, that you want to update for a connection.
+    record OAuth2PropertiesPatch
+        -- The OAuth2 grant type of the OAuth2 properties to update.
+        oAuth2GrantType: string
+        -- The OAuth2 client application of the OAuth2 properties to update.
+        oAuth2ClientApplication: OAuth2ClientApplication
+        -- The OAuth2 token URL of the OAuth2 properties to update.
+        tokenUrl: string
+        -- The OAuth2 token URL parameter map of the OAuth2 properties to update, for example the scope. If you specify an empty map, the existing parameters are kept.
+        tokenUrlParametersMap: {string : string}
+    end
+
     -- The authentication configuration patch of a connection.
     record AuthenticationConfigurationPatch
         -- The secret ARN of a connection.
         secretArn: string
         -- The basic authentication credentials of a connection.
         basicAuthenticationCredentials: BasicAuthenticationCredentials
+        -- The OAuth2 properties, such as the client application, grant type, and token URL, that you want to update for a connection. Only the properties that you specify are updated; the connection keeps its existing values for the properties that you omit.
+        oAuth2Properties: OAuth2PropertiesPatch
     end
 
     enum AuthType
