@@ -2814,6 +2814,79 @@ M.ChangeProgressStage = schema.new({
     },
 })
 
+M.ClonedBlueGreenScheduledAction = schema.new({
+    id = id.from(_N, "ClonedBlueGreenScheduledAction"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "ClonedBlueGreenScheduledAction", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+        }),
+        ScheduledTime = schema.new({
+            id = id.from(_N, "ClonedBlueGreenScheduledAction", "ScheduledTime"),
+            type = "timestamp",
+            name = "ScheduledTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.TrafficPercents = schema.new({
+    id = id.from(_N, "TrafficPercents"),
+    type = "structure",
+    members = {
+        PrimaryReadTrafficPercent = schema.new({
+            id = id.from(_N, "TrafficPercents", "PrimaryReadTrafficPercent"),
+            type = "integer",
+            name = "PrimaryReadTrafficPercent",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        CloneReadTrafficPercent = schema.new({
+            id = id.from(_N, "TrafficPercents", "CloneReadTrafficPercent"),
+            type = "integer",
+            name = "CloneReadTrafficPercent",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.ClonedBlueGreenUpgradeDetails = schema.new({
+    id = id.from(_N, "ClonedBlueGreenUpgradeDetails"),
+    type = "structure",
+    members = {
+        TrafficSplit = schema.new({
+            id = id.from(_N, "ClonedBlueGreenUpgradeDetails", "TrafficSplit"),
+            type = "structure",
+            name = "TrafficSplit",
+            target_id = id.from(_N, "TrafficPercents"),
+            target = M.TrafficPercents,
+        }),
+        ScheduledAction = schema.new({
+            id = id.from(_N, "ClonedBlueGreenUpgradeDetails", "ScheduledAction"),
+            type = "structure",
+            name = "ScheduledAction",
+            target_id = id.from(_N, "ClonedBlueGreenScheduledAction"),
+            target = M.ClonedBlueGreenScheduledAction,
+        }),
+        RetentionInHours = schema.new({
+            id = id.from(_N, "ClonedBlueGreenUpgradeDetails", "RetentionInHours"),
+            type = "integer",
+            name = "RetentionInHours",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.ChangeProgressStatusDetails = schema.new({
     id = id.from(_N, "ChangeProgressStatusDetails"),
     type = "structure",
@@ -2883,6 +2956,13 @@ M.ChangeProgressStatusDetails = schema.new({
             type = "string",
             name = "InitiatedBy",
             target_id = prelude.String.id,
+        }),
+        ClonedBlueGreenUpgradeDetails = schema.new({
+            id = id.from(_N, "ChangeProgressStatusDetails", "ClonedBlueGreenUpgradeDetails"),
+            type = "structure",
+            name = "ClonedBlueGreenUpgradeDetails",
+            target_id = id.from(_N, "ClonedBlueGreenUpgradeDetails"),
+            target = M.ClonedBlueGreenUpgradeDetails,
         }),
     },
 })
@@ -5297,6 +5377,212 @@ M.StartElasticsearchServiceSoftwareUpdateOutput = schema.new({
     },
 })
 
+M.CutoverRequestOptions = schema.new({
+    id = id.from(_N, "CutoverRequestOptions"),
+    type = "structure",
+    members = {
+        Target = schema.new({
+            id = id.from(_N, "CutoverRequestOptions", "Target"),
+            type = "string",
+            name = "Target",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RetentionOptions = schema.new({
+    id = id.from(_N, "RetentionOptions"),
+    type = "union",
+    members = {
+        RetentionInHours = schema.new({
+            id = id.from(_N, "RetentionOptions", "RetentionInHours"),
+            type = "integer",
+            name = "RetentionInHours",
+            target_id = prelude.Integer.id,
+        }),
+        RetentionAction = schema.new({
+            id = id.from(_N, "RetentionOptions", "RetentionAction"),
+            type = "string",
+            name = "RetentionAction",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TrafficSplitRequestOptions = schema.new({
+    id = id.from(_N, "TrafficSplitRequestOptions"),
+    type = "structure",
+    members = {
+        Strategy = schema.new({
+            id = id.from(_N, "TrafficSplitRequestOptions", "Strategy"),
+            type = "string",
+            name = "Strategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CloneReadTrafficPercent = schema.new({
+            id = id.from(_N, "TrafficSplitRequestOptions", "CloneReadTrafficPercent"),
+            type = "integer",
+            name = "CloneReadTrafficPercent",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.UpdateCloneInput = schema.new({
+    id = id.from(_N, "UpdateCloneRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "UpdateCloneInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TrafficSplitOptions = schema.new({
+            id = id.from(_N, "UpdateCloneInput", "TrafficSplitOptions"),
+            type = "structure",
+            name = "TrafficSplitOptions",
+            target_id = id.from(_N, "TrafficSplitRequestOptions"),
+            target = M.TrafficSplitRequestOptions,
+        }),
+        CutoverOptions = schema.new({
+            id = id.from(_N, "UpdateCloneInput", "CutoverOptions"),
+            type = "structure",
+            name = "CutoverOptions",
+            target_id = id.from(_N, "CutoverRequestOptions"),
+            target = M.CutoverRequestOptions,
+        }),
+        RetentionOptions = schema.new({
+            id = id.from(_N, "UpdateCloneInput", "RetentionOptions"),
+            type = "union",
+            name = "RetentionOptions",
+            target_id = id.from(_N, "RetentionOptions"),
+            target = M.RetentionOptions,
+        }),
+    },
+})
+
+M.CutoverOptions = schema.new({
+    id = id.from(_N, "CutoverOptions"),
+    type = "structure",
+    members = {
+        Target = schema.new({
+            id = id.from(_N, "CutoverOptions", "Target"),
+            type = "string",
+            name = "Target",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CutoverOptions", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TrafficSplitOptions = schema.new({
+    id = id.from(_N, "TrafficSplitOptions"),
+    type = "structure",
+    members = {
+        Current = schema.new({
+            id = id.from(_N, "TrafficSplitOptions", "Current"),
+            type = "structure",
+            name = "Current",
+            target_id = id.from(_N, "TrafficPercents"),
+            target = M.TrafficPercents,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Target = schema.new({
+            id = id.from(_N, "TrafficSplitOptions", "Target"),
+            type = "structure",
+            name = "Target",
+            target_id = id.from(_N, "TrafficPercents"),
+            target = M.TrafficPercents,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "TrafficSplitOptions", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCloneOutput = schema.new({
+    id = id.from(_N, "UpdateCloneResponse"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "UpdateCloneOutput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChangeId = schema.new({
+            id = id.from(_N, "UpdateCloneOutput", "ChangeId"),
+            type = "string",
+            name = "ChangeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CutoverOptions = schema.new({
+            id = id.from(_N, "UpdateCloneOutput", "CutoverOptions"),
+            type = "structure",
+            name = "CutoverOptions",
+            target_id = id.from(_N, "CutoverOptions"),
+            target = M.CutoverOptions,
+        }),
+        TrafficSplitOptions = schema.new({
+            id = id.from(_N, "UpdateCloneOutput", "TrafficSplitOptions"),
+            type = "structure",
+            name = "TrafficSplitOptions",
+            target_id = id.from(_N, "TrafficSplitOptions"),
+            target = M.TrafficSplitOptions,
+        }),
+        RetentionOptions = schema.new({
+            id = id.from(_N, "UpdateCloneOutput", "RetentionOptions"),
+            type = "union",
+            name = "RetentionOptions",
+            target_id = id.from(_N, "RetentionOptions"),
+            target = M.RetentionOptions,
+        }),
+    },
+})
+
 M.UpdateElasticsearchDomainConfigInput = schema.new({
     id = id.from(_N, "UpdateElasticsearchDomainConfigRequest"),
     type = "structure",
@@ -5576,6 +5862,43 @@ M.UpdateVpcEndpointOutput = schema.new({
     },
 })
 
+M.ClonedBlueGreenOptions = schema.new({
+    id = id.from(_N, "ClonedBlueGreenOptions"),
+    type = "structure",
+    members = {
+        RetentionOptions = schema.new({
+            id = id.from(_N, "ClonedBlueGreenOptions", "RetentionOptions"),
+            type = "union",
+            name = "RetentionOptions",
+            target_id = id.from(_N, "RetentionOptions"),
+            target = M.RetentionOptions,
+        }),
+    },
+})
+
+M.DeploymentStrategyOverrideOptions = schema.new({
+    id = id.from(_N, "DeploymentStrategyOverrideOptions"),
+    type = "structure",
+    members = {
+        DeploymentStrategy = schema.new({
+            id = id.from(_N, "DeploymentStrategyOverrideOptions", "DeploymentStrategy"),
+            type = "string",
+            name = "DeploymentStrategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClonedBlueGreenOptions = schema.new({
+            id = id.from(_N, "DeploymentStrategyOverrideOptions", "ClonedBlueGreenOptions"),
+            type = "structure",
+            name = "ClonedBlueGreenOptions",
+            target_id = id.from(_N, "ClonedBlueGreenOptions"),
+            target = M.ClonedBlueGreenOptions,
+        }),
+    },
+})
+
 M.UpgradeElasticsearchDomainInput = schema.new({
     id = id.from(_N, "UpgradeElasticsearchDomainRequest"),
     type = "structure",
@@ -5604,6 +5927,13 @@ M.UpgradeElasticsearchDomainInput = schema.new({
             name = "PerformCheckOnly",
             target_id = prelude.Boolean.id,
         }),
+        DeploymentStrategyOptions = schema.new({
+            id = id.from(_N, "UpgradeElasticsearchDomainInput", "DeploymentStrategyOptions"),
+            type = "structure",
+            name = "DeploymentStrategyOptions",
+            target_id = id.from(_N, "DeploymentStrategyOverrideOptions"),
+            target = M.DeploymentStrategyOverrideOptions,
+        }),
     },
 })
 
@@ -5628,6 +5958,13 @@ M.UpgradeElasticsearchDomainOutput = schema.new({
             type = "boolean",
             name = "PerformCheckOnly",
             target_id = prelude.Boolean.id,
+        }),
+        DeploymentStrategyOptions = schema.new({
+            id = id.from(_N, "UpgradeElasticsearchDomainOutput", "DeploymentStrategyOptions"),
+            type = "structure",
+            name = "DeploymentStrategyOptions",
+            target_id = id.from(_N, "DeploymentStrategyOverrideOptions"),
+            target = M.DeploymentStrategyOverrideOptions,
         }),
         ChangeProgressDetails = schema.new({
             id = id.from(_N, "UpgradeElasticsearchDomainOutput", "ChangeProgressDetails"),
@@ -6222,6 +6559,18 @@ M.StartElasticsearchServiceSoftwareUpdate = schema.operation({
     output = M.StartElasticsearchServiceSoftwareUpdateOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/serviceSoftwareUpdate/start" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateClone = schema.operation({
+    id = id.from("com.amazonaws.elasticsearchservice", "UpdateClone"),
+    input = M.UpdateCloneInput,
+    output = M.UpdateCloneOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2015-01-01/es/domain/{DomainName}/clone" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

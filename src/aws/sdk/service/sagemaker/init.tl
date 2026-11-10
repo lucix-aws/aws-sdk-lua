@@ -39,6 +39,7 @@ local record Client
     createAutoMLJob: function(Client, types.CreateAutoMLJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutoMLJobOutput>
     createAutoMLJobV2: function(Client, types.CreateAutoMLJobV2Input, ? base_client.InvokeOptions): async.Operation<types.CreateAutoMLJobV2Output>
     createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createClusterExtension: function(Client, types.CreateClusterExtensionInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterExtensionOutput>
     createClusterSchedulerConfig: function(Client, types.CreateClusterSchedulerConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterSchedulerConfigOutput>
     createCodeRepository: function(Client, types.CreateCodeRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeRepositoryOutput>
     createCompilationJob: function(Client, types.CreateCompilationJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateCompilationJobOutput>
@@ -111,6 +112,7 @@ local record Client
     deleteArtifact: function(Client, types.DeleteArtifactInput, ? base_client.InvokeOptions): async.Operation<types.DeleteArtifactOutput>
     deleteAssociation: function(Client, types.DeleteAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssociationOutput>
     deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteClusterExtension: function(Client, types.DeleteClusterExtensionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterExtensionOutput>
     deleteClusterSchedulerConfig: function(Client, types.DeleteClusterSchedulerConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterSchedulerConfigOutput>
     deleteCodeRepository: function(Client, types.DeleteCodeRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCodeRepositoryOutput>
     deleteCompilationJob: function(Client, types.DeleteCompilationJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCompilationJobOutput>
@@ -177,6 +179,7 @@ local record Client
     describeAutoMLJobV2: function(Client, types.DescribeAutoMLJobV2Input, ? base_client.InvokeOptions): async.Operation<types.DescribeAutoMLJobV2Output>
     describeCluster: function(Client, types.DescribeClusterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
     describeClusterEvent: function(Client, types.DescribeClusterEventInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterEventOutput>
+    describeClusterExtension: function(Client, types.DescribeClusterExtensionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterExtensionOutput>
     describeClusterNode: function(Client, types.DescribeClusterNodeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterNodeOutput>
     describeClusterSchedulerConfig: function(Client, types.DescribeClusterSchedulerConfigInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterSchedulerConfigOutput>
     describeCodeRepository: function(Client, types.DescribeCodeRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCodeRepositoryOutput>
@@ -267,6 +270,7 @@ local record Client
     listAutoMLJobs: function(Client, types.ListAutoMLJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAutoMLJobsOutput>
     listCandidatesForAutoMLJob: function(Client, types.ListCandidatesForAutoMLJobInput, ? base_client.InvokeOptions): async.Operation<types.ListCandidatesForAutoMLJobOutput>
     listClusterEvents: function(Client, types.ListClusterEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterEventsOutput>
+    listClusterExtensions: function(Client, types.ListClusterExtensionsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterExtensionsOutput>
     listClusterNodes: function(Client, types.ListClusterNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterNodesOutput>
     listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
     listClusterSchedulerConfigs: function(Client, types.ListClusterSchedulerConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterSchedulerConfigsOutput>
@@ -386,6 +390,7 @@ local record Client
     updateAppImageConfig: function(Client, types.UpdateAppImageConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppImageConfigOutput>
     updateArtifact: function(Client, types.UpdateArtifactInput, ? base_client.InvokeOptions): async.Operation<types.UpdateArtifactOutput>
     updateCluster: function(Client, types.UpdateClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    updateClusterExtension: function(Client, types.UpdateClusterExtensionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterExtensionOutput>
     updateClusterSchedulerConfig: function(Client, types.UpdateClusterSchedulerConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterSchedulerConfigOutput>
     updateClusterSoftware: function(Client, types.UpdateClusterSoftwareInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterSoftwareOutput>
     updateCodeRepository: function(Client, types.UpdateCodeRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCodeRepositoryOutput>
@@ -553,6 +558,10 @@ end
 
 function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
+end
+
+function C:createClusterExtension(input: types.CreateClusterExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterExtensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateClusterExtension as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterExtensionOutput>
 end
 
 function C:createClusterSchedulerConfig(input: types.CreateClusterSchedulerConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterSchedulerConfigOutput>
@@ -843,6 +852,10 @@ function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
+function C:deleteClusterExtension(input: types.DeleteClusterExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterExtensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClusterExtension as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterExtensionOutput>
+end
+
 function C:deleteClusterSchedulerConfig(input: types.DeleteClusterSchedulerConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterSchedulerConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClusterSchedulerConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterSchedulerConfigOutput>
 end
@@ -1105,6 +1118,10 @@ end
 
 function C:describeClusterEvent(input: types.DescribeClusterEventInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterEventOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterEvent as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterEventOutput>
+end
+
+function C:describeClusterExtension(input: types.DescribeClusterExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterExtensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterExtension as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterExtensionOutput>
 end
 
 function C:describeClusterNode(input: types.DescribeClusterNodeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterNodeOutput>
@@ -1465,6 +1482,10 @@ end
 
 function C:listClusterEvents(input: types.ListClusterEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterEventsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterEvents as schema.OperationSchema, input, options) as async.Operation<types.ListClusterEventsOutput>
+end
+
+function C:listClusterExtensions(input: types.ListClusterExtensionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterExtensionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterExtensions as schema.OperationSchema, input, options) as async.Operation<types.ListClusterExtensionsOutput>
 end
 
 function C:listClusterNodes(input: types.ListClusterNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterNodesOutput>
@@ -1941,6 +1962,10 @@ end
 
 function C:updateCluster(input: types.UpdateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterOutput>
+end
+
+function C:updateClusterExtension(input: types.UpdateClusterExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterExtensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateClusterExtension as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterExtensionOutput>
 end
 
 function C:updateClusterSchedulerConfig(input: types.UpdateClusterSchedulerConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterSchedulerConfigOutput>

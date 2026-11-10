@@ -185,6 +185,8 @@ local record M
         "i4i.metal"
         "i7i.metal-24xl"
         "i7i.metal-48xl"
+        "r7i.metal-24xl"
+        "r7i.metal-48xl"
     end
 
     -- An object that represents a host. You cannot use dedicatedHostId and placementGroupId together in the same HostInfoForCreateobject. This results in a ValidationException response.
@@ -193,7 +195,7 @@ local record M
         hostName: string
         -- The name of the SSH key that is used to access the host.
         keyName: string
-        -- The EC2 instance type that represents the host.
+        -- The EC2 instance type that represents the host. With VCF 5.2.x, you can use only the i4i.metal, i7i.metal-24xl, and i7i.metal-48xl instance types. All of these instance types are supported with vcfVersion set to SELF_DEPLOYED.
         instanceType: string
         -- The unique ID of the placement group where the host is placed.
         placementGroupId: string

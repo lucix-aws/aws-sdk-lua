@@ -112,6 +112,10 @@ M.ClassifierNameList = schema.new({ type = "list", list_member = prelude.String 
 
 M.ContextWords = schema.new({ type = "list", list_member = prelude.String })
 
+M.DataQualityEvaluationConfigTriggers = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataSourceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DataSource })
+
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.PublicKeysList = schema.new({ type = "list", list_member = prelude.String })
@@ -206,8 +210,6 @@ M.RulesetNames = schema.new({ type = "list", list_member = prelude.String })
 
 M.DataQualityResultIdList = schema.new({ type = "list", list_member = prelude.String })
 
-M.DataSourceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DataSource })
-
 M.ConnectionOptions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.SelectedFields = schema.new({ type = "list", list_member = prelude.String })
@@ -263,6 +265,8 @@ M.ConnectionTypeList = schema.new({ type = "list", list_member = M.ConnectionTyp
 M.CrawlsFilterList = schema.new({ type = "list", list_member = M.CrawlsFilter })
 
 M.CrawlerHistoryList = schema.new({ type = "list", list_member = M.CrawlerHistory })
+
+M.DataQualityEvaluationConfigList = schema.new({ type = "list", list_member = M.DataQualityEvaluationConfigListDetails })
 
 M.DataQualityResultDescriptionList = schema.new({ type = "list", list_member = M.DataQualityResultDescription })
 
@@ -3915,6 +3919,18 @@ M.DataQualityResult = schema.new({
             name = "ResultId",
             target_id = prelude.String.id,
         }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "DataQualityResult", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityEvaluationConfig = schema.new({
+            id = id.from(_N, "DataQualityResult", "DataQualityEvaluationConfig"),
+            type = "string",
+            name = "DataQualityEvaluationConfig",
+            target_id = prelude.String.id,
+        }),
         ProfileId = schema.new({
             id = id.from(_N, "DataQualityResult", "ProfileId"),
             type = "string",
@@ -4060,6 +4076,18 @@ M.DataQualityResultV2Item = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "DataQualityResultV2Item", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityEvaluationConfig = schema.new({
+            id = id.from(_N, "DataQualityResultV2Item", "DataQualityEvaluationConfig"),
+            type = "string",
+            name = "DataQualityEvaluationConfig",
+            target_id = prelude.String.id,
         }),
         DataSource = schema.new({
             id = id.from(_N, "DataQualityResultV2Item", "DataSource"),
@@ -13589,6 +13617,283 @@ M.CreateDatabaseOutput = schema.new({
     type = "structure",
 })
 
+M.DataQualityEvaluationConfigAdditionalRunOptions = schema.new({
+    id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions"),
+    type = "structure",
+    members = {
+        CloudWatchMetricsEnabled = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "CloudWatchMetricsEnabled"),
+            type = "boolean",
+            name = "CloudWatchMetricsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        ResultsS3Prefix = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "ResultsS3Prefix"),
+            type = "string",
+            name = "ResultsS3Prefix",
+            target_id = prelude.String.id,
+        }),
+        CompositeRuleEvaluationMethod = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "CompositeRuleEvaluationMethod"),
+            type = "string",
+            name = "CompositeRuleEvaluationMethod",
+            target_id = prelude.String.id,
+        }),
+        RowLevelResults = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "RowLevelResults"),
+            type = "structure",
+            name = "RowLevelResults",
+            target_id = id.from(_N, "RowLevelResultsOptions"),
+            target = M.RowLevelResultsOptions,
+        }),
+        ProfilingResults = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "ProfilingResults"),
+            type = "structure",
+            name = "ProfilingResults",
+            target_id = id.from(_N, "ProfilingResultsOptions"),
+            target = M.ProfilingResultsOptions,
+        }),
+        ObservationScope = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "ObservationScope"),
+            type = "string",
+            name = "ObservationScope",
+            target_id = prelude.String.id,
+        }),
+        ObservationMode = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "ObservationMode"),
+            type = "string",
+            name = "ObservationMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityRuleResults = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "DataQualityRuleResults"),
+            type = "structure",
+            name = "DataQualityRuleResults",
+            target_id = id.from(_N, "DataQualityRuleResultsOptions"),
+            target = M.DataQualityRuleResultsOptions,
+        }),
+        ObservationResults = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "ObservationResults"),
+            type = "structure",
+            name = "ObservationResults",
+            target_id = id.from(_N, "ObservationResultsOptions"),
+            target = M.ObservationResultsOptions,
+        }),
+        CustomLogGroupPrefix = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions", "CustomLogGroupPrefix"),
+            type = "string",
+            name = "CustomLogGroupPrefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataQualityEvaluationConfigGlueTables = schema.new({
+    id = id.from(_N, "DataQualityEvaluationConfigGlueTables"),
+    type = "structure",
+    members = {
+        CatalogId = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigGlueTables", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DatabaseName = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigGlueTables", "DatabaseName"),
+            type = "string",
+            name = "DatabaseName",
+            target_id = prelude.String.id,
+        }),
+        TableNamePattern = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigGlueTables", "TableNamePattern"),
+            type = "string",
+            name = "TableNamePattern",
+            target_id = prelude.String.id,
+        }),
+        PreProcessingQuery = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigGlueTables", "PreProcessingQuery"),
+            type = "string",
+            name = "PreProcessingQuery",
+            target_id = prelude.String.id,
+        }),
+        ConnectionName = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigGlueTables", "ConnectionName"),
+            type = "string",
+            name = "ConnectionName",
+            target_id = prelude.String.id,
+        }),
+        AdditionalOptions = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigGlueTables", "AdditionalOptions"),
+            type = "map",
+            name = "AdditionalOptions",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.DataQualityEvaluationConfigDataSource = schema.new({
+    id = id.from(_N, "DataQualityEvaluationConfigDataSource"),
+    type = "structure",
+    members = {
+        GlueTables = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigDataSource", "GlueTables"),
+            type = "structure",
+            name = "GlueTables",
+            target_id = id.from(_N, "DataQualityEvaluationConfigGlueTables"),
+            target = M.DataQualityEvaluationConfigGlueTables,
+        }),
+    },
+})
+
+M.CreateDataQualityEvaluationConfigInput = schema.new({
+    id = id.from(_N, "CreateDataQualityEvaluationConfigRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Level = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "Level"),
+            type = "string",
+            name = "Level",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DataSource = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "DataSource"),
+            type = "structure",
+            name = "DataSource",
+            target_id = id.from(_N, "DataQualityEvaluationConfigDataSource"),
+            target = M.DataQualityEvaluationConfigDataSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RulesetName = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "RulesetName"),
+            type = "string",
+            name = "RulesetName",
+            target_id = prelude.String.id,
+        }),
+        ManagedRulesetName = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "ManagedRulesetName"),
+            type = "string",
+            name = "ManagedRulesetName",
+            target_id = prelude.String.id,
+        }),
+        Triggers = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "Triggers"),
+            type = "list",
+            name = "Triggers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ScheduleExpression = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "ScheduleExpression"),
+            type = "string",
+            name = "ScheduleExpression",
+            target_id = prelude.String.id,
+        }),
+        StartAt = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "StartAt"),
+            type = "timestamp",
+            name = "StartAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndAt = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "EndAt"),
+            type = "timestamp",
+            name = "EndAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NumberOfWorkers = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "NumberOfWorkers"),
+            type = "integer",
+            name = "NumberOfWorkers",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+        AdditionalRunOptions = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "AdditionalRunOptions"),
+            type = "structure",
+            name = "AdditionalRunOptions",
+            target_id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions"),
+            target = M.DataQualityEvaluationConfigAdditionalRunOptions,
+        }),
+        AdditionalDataSources = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "AdditionalDataSources"),
+            type = "map",
+            name = "AdditionalDataSources",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.DataSource,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateDataQualityEvaluationConfigOutput = schema.new({
+    id = id.from(_N, "CreateDataQualityEvaluationConfigResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "CreateDataQualityEvaluationConfigOutput", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DataQualityTargetTable = schema.new({
     id = id.from(_N, "DataQualityTargetTable"),
     type = "structure",
@@ -17564,6 +17869,27 @@ M.DeleteDatabaseInput = schema.new({
 
 M.DeleteDatabaseOutput = schema.new({
     id = id.from(_N, "DeleteDatabaseResponse"),
+    type = "structure",
+})
+
+M.DeleteDataQualityEvaluationConfigInput = schema.new({
+    id = id.from(_N, "DeleteDataQualityEvaluationConfigRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DeleteDataQualityEvaluationConfigInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDataQualityEvaluationConfigOutput = schema.new({
+    id = id.from(_N, "DeleteDataQualityEvaluationConfigResponse"),
     type = "structure",
 })
 
@@ -22824,6 +23150,142 @@ M.GetDataflowGraphOutput = schema.new({
     },
 })
 
+M.GetDataQualityEvaluationConfigInput = schema.new({
+    id = id.from(_N, "GetDataQualityEvaluationConfigRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDataQualityEvaluationConfigOutput = schema.new({
+    id = id.from(_N, "GetDataQualityEvaluationConfigResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        CreatedOn = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "CreatedOn"),
+            type = "timestamp",
+            name = "CreatedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedOn = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "LastModifiedOn"),
+            type = "timestamp",
+            name = "LastModifiedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        Level = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "Level"),
+            type = "string",
+            name = "Level",
+            target_id = prelude.String.id,
+        }),
+        DataSource = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "DataSource"),
+            type = "structure",
+            name = "DataSource",
+            target_id = id.from(_N, "DataQualityEvaluationConfigDataSource"),
+            target = M.DataQualityEvaluationConfigDataSource,
+        }),
+        RulesetName = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "RulesetName"),
+            type = "string",
+            name = "RulesetName",
+            target_id = prelude.String.id,
+        }),
+        ManagedRulesetName = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "ManagedRulesetName"),
+            type = "string",
+            name = "ManagedRulesetName",
+            target_id = prelude.String.id,
+        }),
+        Triggers = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "Triggers"),
+            type = "list",
+            name = "Triggers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ScheduleExpression = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "ScheduleExpression"),
+            type = "string",
+            name = "ScheduleExpression",
+            target_id = prelude.String.id,
+        }),
+        StartAt = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "StartAt"),
+            type = "timestamp",
+            name = "StartAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndAt = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "EndAt"),
+            type = "timestamp",
+            name = "EndAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        PauseRuns = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "PauseRuns"),
+            type = "boolean",
+            name = "PauseRuns",
+            target_id = prelude.Boolean.id,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+        NumberOfWorkers = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "NumberOfWorkers"),
+            type = "integer",
+            name = "NumberOfWorkers",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+        AdditionalRunOptions = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "AdditionalRunOptions"),
+            type = "structure",
+            name = "AdditionalRunOptions",
+            target_id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions"),
+            target = M.DataQualityEvaluationConfigAdditionalRunOptions,
+        }),
+        AdditionalDataSources = schema.new({
+            id = id.from(_N, "GetDataQualityEvaluationConfigOutput", "AdditionalDataSources"),
+            type = "map",
+            name = "AdditionalDataSources",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.DataSource,
+        }),
+    },
+})
+
 M.GetDataQualityModelInput = schema.new({
     id = id.from(_N, "GetDataQualityModelRequest"),
     type = "structure",
@@ -22991,6 +23453,18 @@ M.GetDataQualityResultOutput = schema.new({
             name = "ResultId",
             target_id = prelude.String.id,
         }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "GetDataQualityResultOutput", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityEvaluationConfig = schema.new({
+            id = id.from(_N, "GetDataQualityResultOutput", "DataQualityEvaluationConfig"),
+            type = "string",
+            name = "DataQualityEvaluationConfig",
+            target_id = prelude.String.id,
+        }),
         ProfileId = schema.new({
             id = id.from(_N, "GetDataQualityResultOutput", "ProfileId"),
             type = "string",
@@ -23107,6 +23581,18 @@ M.GetDataQualityResultV2Output = schema.new({
             id = id.from(_N, "GetDataQualityResultV2Output", "ResultId"),
             type = "string",
             name = "ResultId",
+            target_id = prelude.String.id,
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "GetDataQualityResultV2Output", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityEvaluationConfig = schema.new({
+            id = id.from(_N, "GetDataQualityResultV2Output", "DataQualityEvaluationConfig"),
+            type = "string",
+            name = "DataQualityEvaluationConfig",
             target_id = prelude.String.id,
         }),
         DataSource = schema.new({
@@ -28913,6 +29399,155 @@ M.ListCustomEntityTypesOutput = schema.new({
     },
 })
 
+M.ListDataQualityEvaluationConfigsInput = schema.new({
+    id = id.from(_N, "ListDataQualityEvaluationConfigsRequest"),
+    type = "structure",
+    members = {
+        Level = schema.new({
+            id = id.from(_N, "ListDataQualityEvaluationConfigsInput", "Level"),
+            type = "string",
+            name = "Level",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDataQualityEvaluationConfigsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDataQualityEvaluationConfigsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataQualityEvaluationConfigListGlueTables = schema.new({
+    id = id.from(_N, "DataQualityEvaluationConfigListGlueTables"),
+    type = "structure",
+    members = {
+        CatalogId = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListGlueTables", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DatabaseName = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListGlueTables", "DatabaseName"),
+            type = "string",
+            name = "DatabaseName",
+            target_id = prelude.String.id,
+        }),
+        TableNamePattern = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListGlueTables", "TableNamePattern"),
+            type = "string",
+            name = "TableNamePattern",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataQualityEvaluationConfigListDataSource = schema.new({
+    id = id.from(_N, "DataQualityEvaluationConfigListDataSource"),
+    type = "structure",
+    members = {
+        GlueTables = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDataSource", "GlueTables"),
+            type = "structure",
+            name = "GlueTables",
+            target_id = id.from(_N, "DataQualityEvaluationConfigListGlueTables"),
+            target = M.DataQualityEvaluationConfigListGlueTables,
+        }),
+    },
+})
+
+M.DataQualityEvaluationConfigListDetails = schema.new({
+    id = id.from(_N, "DataQualityEvaluationConfigListDetails"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        CreatedOn = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "CreatedOn"),
+            type = "timestamp",
+            name = "CreatedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedOn = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "LastModifiedOn"),
+            type = "timestamp",
+            name = "LastModifiedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        Level = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "Level"),
+            type = "string",
+            name = "Level",
+            target_id = prelude.String.id,
+        }),
+        DataSource = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "DataSource"),
+            type = "structure",
+            name = "DataSource",
+            target_id = id.from(_N, "DataQualityEvaluationConfigListDataSource"),
+            target = M.DataQualityEvaluationConfigListDataSource,
+        }),
+        RulesetName = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "RulesetName"),
+            type = "string",
+            name = "RulesetName",
+            target_id = prelude.String.id,
+        }),
+        ManagedRulesetName = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "ManagedRulesetName"),
+            type = "string",
+            name = "ManagedRulesetName",
+            target_id = prelude.String.id,
+        }),
+        PauseRuns = schema.new({
+            id = id.from(_N, "DataQualityEvaluationConfigListDetails", "PauseRuns"),
+            type = "boolean",
+            name = "PauseRuns",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ListDataQualityEvaluationConfigsOutput = schema.new({
+    id = id.from(_N, "ListDataQualityEvaluationConfigsResponse"),
+    type = "structure",
+    members = {
+        DataQualityEvaluationConfigs = schema.new({
+            id = id.from(_N, "ListDataQualityEvaluationConfigsOutput", "DataQualityEvaluationConfigs"),
+            type = "list",
+            name = "DataQualityEvaluationConfigs",
+            target_id = prelude.Document.id,
+            list_member = M.DataQualityEvaluationConfigListDetails,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDataQualityEvaluationConfigsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DataQualityResultFilterCriteria = schema.new({
     id = id.from(_N, "DataQualityResultFilterCriteria"),
     type = "structure",
@@ -28947,6 +29582,18 @@ M.DataQualityResultFilterCriteria = schema.new({
             type = "timestamp",
             name = "StartedBefore",
             target_id = prelude.Timestamp.id,
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "DataQualityResultFilterCriteria", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityEvaluationConfig = schema.new({
+            id = id.from(_N, "DataQualityResultFilterCriteria", "DataQualityEvaluationConfig"),
+            type = "string",
+            name = "DataQualityEvaluationConfig",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -28985,6 +29632,18 @@ M.DataQualityResultDescription = schema.new({
             id = id.from(_N, "DataQualityResultDescription", "ResultId"),
             type = "string",
             name = "ResultId",
+            target_id = prelude.String.id,
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "DataQualityResultDescription", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityEvaluationConfig = schema.new({
+            id = id.from(_N, "DataQualityResultDescription", "DataQualityEvaluationConfig"),
+            type = "string",
+            name = "DataQualityEvaluationConfig",
             target_id = prelude.String.id,
         }),
         DataSource = schema.new({
@@ -29075,6 +29734,18 @@ M.DataQualityResultsV2FilterCriteria = schema.new({
             name = "EvaluationContext",
             target_id = prelude.String.id,
         }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "DataQualityResultsV2FilterCriteria", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityEvaluationConfig = schema.new({
+            id = id.from(_N, "DataQualityResultsV2FilterCriteria", "DataQualityEvaluationConfig"),
+            type = "string",
+            name = "DataQualityEvaluationConfig",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -29112,6 +29783,18 @@ M.DataQualityResultsV2Description = schema.new({
             id = id.from(_N, "DataQualityResultsV2Description", "ResultId"),
             type = "string",
             name = "ResultId",
+            target_id = prelude.String.id,
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "DataQualityResultsV2Description", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityEvaluationConfig = schema.new({
+            id = id.from(_N, "DataQualityResultsV2Description", "DataQualityEvaluationConfig"),
+            type = "string",
+            name = "DataQualityEvaluationConfig",
             target_id = prelude.String.id,
         }),
         DataSource = schema.new({
@@ -35581,6 +36264,225 @@ M.UpdateDatabaseOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateDataQualityEvaluationConfigInput = schema.new({
+    id = id.from(_N, "UpdateDataQualityEvaluationConfigRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DataSource = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "DataSource"),
+            type = "structure",
+            name = "DataSource",
+            target_id = id.from(_N, "DataQualityEvaluationConfigDataSource"),
+            target = M.DataQualityEvaluationConfigDataSource,
+        }),
+        RulesetName = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "RulesetName"),
+            type = "string",
+            name = "RulesetName",
+            target_id = prelude.String.id,
+        }),
+        ManagedRulesetName = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "ManagedRulesetName"),
+            type = "string",
+            name = "ManagedRulesetName",
+            target_id = prelude.String.id,
+        }),
+        Triggers = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "Triggers"),
+            type = "list",
+            name = "Triggers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ScheduleExpression = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "ScheduleExpression"),
+            type = "string",
+            name = "ScheduleExpression",
+            target_id = prelude.String.id,
+        }),
+        StartAt = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "StartAt"),
+            type = "timestamp",
+            name = "StartAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndAt = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "EndAt"),
+            type = "timestamp",
+            name = "EndAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        PauseRuns = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "PauseRuns"),
+            type = "boolean",
+            name = "PauseRuns",
+            target_id = prelude.Boolean.id,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+        NumberOfWorkers = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "NumberOfWorkers"),
+            type = "integer",
+            name = "NumberOfWorkers",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+        AdditionalRunOptions = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "AdditionalRunOptions"),
+            type = "structure",
+            name = "AdditionalRunOptions",
+            target_id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions"),
+            target = M.DataQualityEvaluationConfigAdditionalRunOptions,
+        }),
+        AdditionalDataSources = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigInput", "AdditionalDataSources"),
+            type = "map",
+            name = "AdditionalDataSources",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.DataSource,
+        }),
+    },
+})
+
+M.UpdateDataQualityEvaluationConfigOutput = schema.new({
+    id = id.from(_N, "UpdateDataQualityEvaluationConfigResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        EvaluationRunMode = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "EvaluationRunMode"),
+            type = "string",
+            name = "EvaluationRunMode",
+            target_id = prelude.String.id,
+        }),
+        CreatedOn = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "CreatedOn"),
+            type = "timestamp",
+            name = "CreatedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedOn = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "LastModifiedOn"),
+            type = "timestamp",
+            name = "LastModifiedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        Level = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "Level"),
+            type = "string",
+            name = "Level",
+            target_id = prelude.String.id,
+        }),
+        DataSource = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "DataSource"),
+            type = "structure",
+            name = "DataSource",
+            target_id = id.from(_N, "DataQualityEvaluationConfigDataSource"),
+            target = M.DataQualityEvaluationConfigDataSource,
+        }),
+        RulesetName = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "RulesetName"),
+            type = "string",
+            name = "RulesetName",
+            target_id = prelude.String.id,
+        }),
+        ManagedRulesetName = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "ManagedRulesetName"),
+            type = "string",
+            name = "ManagedRulesetName",
+            target_id = prelude.String.id,
+        }),
+        Triggers = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "Triggers"),
+            type = "list",
+            name = "Triggers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ScheduleExpression = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "ScheduleExpression"),
+            type = "string",
+            name = "ScheduleExpression",
+            target_id = prelude.String.id,
+        }),
+        StartAt = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "StartAt"),
+            type = "timestamp",
+            name = "StartAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndAt = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "EndAt"),
+            type = "timestamp",
+            name = "EndAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        PauseRuns = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "PauseRuns"),
+            type = "boolean",
+            name = "PauseRuns",
+            target_id = prelude.Boolean.id,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+        NumberOfWorkers = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "NumberOfWorkers"),
+            type = "integer",
+            name = "NumberOfWorkers",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+        AdditionalRunOptions = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "AdditionalRunOptions"),
+            type = "structure",
+            name = "AdditionalRunOptions",
+            target_id = id.from(_N, "DataQualityEvaluationConfigAdditionalRunOptions"),
+            target = M.DataQualityEvaluationConfigAdditionalRunOptions,
+        }),
+        AdditionalDataSources = schema.new({
+            id = id.from(_N, "UpdateDataQualityEvaluationConfigOutput", "AdditionalDataSources"),
+            type = "map",
+            name = "AdditionalDataSources",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.DataSource,
+        }),
+    },
+})
+
 M.UpdateDataQualityRulesetInput = schema.new({
     id = id.from(_N, "UpdateDataQualityRulesetRequest"),
     type = "structure",
@@ -39143,6 +40045,17 @@ M.CreateDatabase = schema.operation({
     },
 })
 
+M.CreateDataQualityEvaluationConfig = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateDataQualityEvaluationConfig"),
+    input = M.CreateDataQualityEvaluationConfigInput,
+    output = M.CreateDataQualityEvaluationConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateDataQualityRuleset = schema.operation({
     id = id.from("com.amazonaws.glue", "CreateDataQualityRuleset"),
     input = M.CreateDataQualityRulesetInput,
@@ -39548,6 +40461,17 @@ M.DeleteDatabase = schema.operation({
     id = id.from("com.amazonaws.glue", "DeleteDatabase"),
     input = M.DeleteDatabaseInput,
     output = M.DeleteDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDataQualityEvaluationConfig = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteDataQualityEvaluationConfig"),
+    input = M.DeleteDataQualityEvaluationConfigInput,
+    output = M.DeleteDataQualityEvaluationConfigOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -40193,6 +41117,17 @@ M.GetDataflowGraph = schema.operation({
     id = id.from("com.amazonaws.glue", "GetDataflowGraph"),
     input = M.GetDataflowGraphInput,
     output = M.GetDataflowGraphOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataQualityEvaluationConfig = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataQualityEvaluationConfig"),
+    input = M.GetDataQualityEvaluationConfigInput,
+    output = M.GetDataQualityEvaluationConfigOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -40989,6 +41924,17 @@ M.ListCustomEntityTypes = schema.operation({
     id = id.from("com.amazonaws.glue", "ListCustomEntityTypes"),
     input = M.ListCustomEntityTypesInput,
     output = M.ListCustomEntityTypesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataQualityEvaluationConfigs = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListDataQualityEvaluationConfigs"),
+    input = M.ListDataQualityEvaluationConfigsInput,
+    output = M.ListDataQualityEvaluationConfigsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -41957,6 +42903,17 @@ M.UpdateDatabase = schema.operation({
     id = id.from("com.amazonaws.glue", "UpdateDatabase"),
     input = M.UpdateDatabaseInput,
     output = M.UpdateDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDataQualityEvaluationConfig = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateDataQualityEvaluationConfig"),
+    input = M.UpdateDataQualityEvaluationConfigInput,
+    output = M.UpdateDataQualityEvaluationConfigOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

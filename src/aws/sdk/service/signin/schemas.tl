@@ -117,6 +117,162 @@ M.ConflictException = schema.new({
     },
 })
 
+M.CreateBearerTokenInput = schema.new({
+    id = id.from(_N, "CreateBearerTokenRequest"),
+    type = "structure",
+    members = {
+        grantType = schema.new({
+            id = id.from(_N, "CreateBearerTokenInput", "grantType"),
+            type = "string",
+            name = "grantType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "grant_type" },
+            },
+        }),
+        resource = schema.new({
+            id = id.from(_N, "CreateBearerTokenInput", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        durationSeconds = schema.new({
+            id = id.from(_N, "CreateBearerTokenInput", "durationSeconds"),
+            type = "integer",
+            name = "durationSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "duration" },
+            },
+        }),
+    },
+})
+
+M.CreateBearerTokenOutput = schema.new({
+    id = id.from(_N, "CreateBearerTokenResponse"),
+    type = "structure",
+    members = {
+        accessToken = schema.new({
+            id = id.from(_N, "CreateBearerTokenOutput", "accessToken"),
+            type = "string",
+            name = "accessToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "access_token" },
+            },
+        }),
+        tokenType = schema.new({
+            id = id.from(_N, "CreateBearerTokenOutput", "tokenType"),
+            type = "string",
+            name = "tokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "token_type" },
+            },
+        }),
+        expiresIn = schema.new({
+            id = id.from(_N, "CreateBearerTokenOutput", "expiresIn"),
+            type = "integer",
+            name = "expiresIn",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "expires_in" },
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "InternalServerException", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TooManyRequestsError = schema.new({
+    id = id.from(_N, "TooManyRequestsError"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "TooManyRequestsError", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "TooManyRequestsError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "ValidationException", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateOAuth2TokenRequestBody = schema.new({
     id = id.from(_N, "CreateOAuth2TokenRequestBody"),
     type = "structure",
@@ -265,90 +421,6 @@ M.CreateOAuth2TokenOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
-            },
-        }),
-    },
-})
-
-M.InternalServerException = schema.new({
-    id = id.from(_N, "InternalServerException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        error = schema.new({
-            id = id.from(_N, "InternalServerException", "error"),
-            type = "string",
-            name = "error",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        message = schema.new({
-            id = id.from(_N, "InternalServerException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.TooManyRequestsError = schema.new({
-    id = id.from(_N, "TooManyRequestsError"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        error = schema.new({
-            id = id.from(_N, "TooManyRequestsError", "error"),
-            type = "string",
-            name = "error",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        message = schema.new({
-            id = id.from(_N, "TooManyRequestsError", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        error = schema.new({
-            id = id.from(_N, "ValidationException", "error"),
-            type = "string",
-            name = "error",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        message = schema.new({
-            id = id.from(_N, "ValidationException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -1268,6 +1340,21 @@ M.Service = schema.service({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateBearerToken = schema.operation({
+    id = id.from("com.amazonaws.signin", "CreateBearerToken"),
+    input = M.CreateBearerTokenInput,
+    output = M.CreateBearerTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/token?x-amz-token-request-type=bearer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsOAuthEndpoint = { value = true },
         },
     },
 })

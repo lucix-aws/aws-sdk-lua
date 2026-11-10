@@ -3309,6 +3309,68 @@ local record M
         stream: function(): string, string
     end
 
+    -- The domains to include in or exclude from the results. A root domain also matches its subdomains. For example, example.com also matches docs.example.com.
+    record DomainFilter
+        -- The domains to return results from. Results from other domains are not returned.
+        include: {string}
+        -- The domains to never return results from.
+        exclude: {string}
+    end
+
+    -- A publication time range for the results. Both bounds are optional, and both are inclusive. If publishedAfter is later than publishedBefore, the request fails with a ValidationException.
+    record PublishedDateFilter
+        -- The earliest publication time of the results, inclusive.
+        publishedAfter: number
+        -- The latest publication time of the results, inclusive. A date without a time, such as one passed to the AWS CLI, means midnight UTC. To include a whole day, use the last second of that day, for example 2026-01-31T23:59:59Z.
+        publishedBefore: number
+    end
+
+    -- The filters to apply to a web search.
+    record WebSearchFilters
+        -- The domains to include in or exclude from the results.
+        domainFilter: DomainFilter
+        -- The publication time range of the results.
+        publishedDateFilter: PublishedDateFilter
+    end
+
+    -- Request for the InvokeWebSearch operation.
+    record InvokeWebSearchInput
+        -- The identifier of the web search tool to invoke. The Amazon Web Services-managed web search tool is web-search.v1.
+        webSearchId: string
+        -- The text to search for.
+        searchQuery: string
+        -- The maximum number of results to return. Defaults to 25.
+        maxResults: number
+        -- The filters to apply to the search results.
+        filters: WebSearchFilters
+    end
+
+    -- A web search result.
+    record WebSearchResult
+        -- The title of the page.
+        title: string
+        -- The URL of the page.
+        url: string
+        -- A text extract from the page.
+        text: string
+        -- The time the page was published. This field is absent when the publication time is not known.
+        publishedAt: number
+    end
+
+    -- Response for the InvokeWebSearch operation.
+    record InvokeWebSearchOutput
+        -- The search results, in ranked order.
+        results: {WebSearchResult}
+    end
+
+    -- The service can't handle the request right now. Retry the request. If the response includes retryAfterSeconds, wait that many seconds before you retry.
+    record ServiceUnavailableException
+        -- A message that describes the error.
+        message: string
+        -- The number of seconds to wait before you retry the request.
+        retryAfterSeconds: number
+    end
+
     enum RecordExpiryAction
         "REMOVE"
     end

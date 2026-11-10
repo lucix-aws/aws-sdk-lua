@@ -2844,6 +2844,11 @@ local record M
         MFADelete: string
     end
 
+    enum InstanceScope
+        "SELF"
+        "ALL"
+    end
+
     enum Privilege
         "Minimal"
         "Default"
@@ -2869,6 +2874,10 @@ local record M
         TargetType: string
         -- The context to identify the job or query associated with the credential request. This information will be displayed in CloudTrail log in your account.
         AuditContext: string
+        -- The scope of S3 Access Grants instances to search for a grant matching the requested S3 URI path.
+        -- SELF – Searches only the instance of the Amazon Web Services account ID in the request.
+        -- ALL – Searches the instance of the Amazon Web Services account ID in the request and all instances shared with the caller's account through Amazon Web Services Resource Access Manager (RAM).
+        InstanceScope: string
     end
 
     -- The Amazon Web Services Security Token Service temporary credential that S3 Access Grants vends to grantees and client applications.
@@ -2890,6 +2899,8 @@ local record M
         MatchedGrantTarget: string
         -- The user, group, or role that was granted access to the S3 location scope. For directory identities, this API also returns the grants of the IAM role used for the identity-aware request. For more information on identity-aware sessions, see Granting permissions to use identity-aware console sessions.
         Grantee: Grantee
+        -- The Amazon Resource Name (ARN) of the S3 Access Grants instance containing the grant that matched the requested S3 URI path.
+        MatchedInstanceArn: string
     end
 
     record GetJobTaggingInput
@@ -3441,10 +3452,14 @@ local record M
         MaxResults: number
         -- If this optional parameter is passed in the request, a filter is applied to the results. The results will include only the access grants for the caller's Identity Center application or for any other applications (ALL).
         AllowedByApplication: boolean
+        -- The scope of S3 Access Grants instances to list grants from.
+        -- SELF – Lists grants from the instance of the Amazon Web Services account ID in the request.
+        -- ALL – Lists grants from the instance of the Amazon Web Services account ID in the request and all instances shared with the caller's account through Amazon Web Services Resource Access Manager (RAM).
+        InstanceScope: string
     end
 
     -- Part of ListCallerAccessGrantsResult. Each entry includes the
-    -- permission level (READ, WRITE, or READWRITE) and the grant scope of the access grant. If the grant also includes an application ARN, the grantee can only access the S3 data through this application.
+    -- permission level (READ, WRITE, or READWRITE) and the grant scope of the access grant. Each entry also includes the ARN of the S3 Access Grants instance in which the grant was created. If the grant also includes an application ARN, the grantee can only access the S3 data through this application.
     record ListCallerAccessGrantsEntry
         -- The type of permission granted, which can be one of the following values:
         -- READ - Grants read-only access to the S3 data.
@@ -3455,6 +3470,8 @@ local record M
         GrantScope: string
         -- The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center application associated with your Identity Center instance. If the grant includes an application ARN, the grantee can only access the S3 data through this application.
         ApplicationArn: string
+        -- The Amazon Resource Name (ARN) of the S3 Access Grants instance in which the grant was created.
+        AccessGrantsInstanceArn: string
     end
 
     record ListCallerAccessGrantsOutput

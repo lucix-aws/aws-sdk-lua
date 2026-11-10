@@ -1307,6 +1307,11 @@ local record M
         DataQualityGlueTable: DataQualityGlueTable
     end
 
+    enum DataQualityEvaluationRunMode
+        "ON_DEMAND"
+        "EVALUATION_CONFIG"
+    end
+
     -- Describes the data quality metric value according to the analysis of historical data.
     record DataQualityMetricValues
         -- The actual value of the data quality metric.
@@ -1369,6 +1374,10 @@ local record M
     record DataQualityResult
         -- A unique result ID for the data quality result.
         ResultId: string
+        -- How the evaluation run that produced the result started: ON_DEMAND for a run started by StartDataQualityRulesetEvaluationRun, or EVALUATION_CONFIG for a run started by a data quality evaluation configuration. Not returned for results that no evaluation run produced, such as results from any ETL job.
+        EvaluationRunMode: string
+        -- The name of the data quality evaluation configuration that started the evaluation run, returned when EvaluationRunMode is EVALUATION_CONFIG.
+        DataQualityEvaluationConfig: string
         -- The Profile ID for the data quality result.
         ProfileId: string
         -- An aggregate data quality score. Represents the ratio of rules that passed to the total number of rules.
@@ -1415,6 +1424,10 @@ local record M
     record DataQualityResultV2Item
         -- A unique result ID for the data quality result.
         ResultId: string
+        -- How the evaluation run that produced the result started: ON_DEMAND for a run started by StartDataQualityRulesetEvaluationRun, or EVALUATION_CONFIG for a run started by a data quality evaluation configuration. Not returned for results that no evaluation run produced, such as results from any ETL job.
+        EvaluationRunMode: string
+        -- The name of the data quality evaluation configuration that started the evaluation run, returned when EvaluationRunMode is EVALUATION_CONFIG.
+        DataQualityEvaluationConfig: string
         -- The table associated with the data quality result, if any.
         DataSource: DataSource
         -- A map of platform-specific identifiers, such as cluster, application, workgroup, or project IDs, that identify where the data quality evaluation ran.
@@ -5296,6 +5309,126 @@ local record M
     record CreateDatabaseOutput
     end
 
+    -- Additional run options for each evaluation of a data quality evaluation configuration.
+    record DataQualityEvaluationConfigAdditionalRunOptions
+        -- Specifies whether to enable CloudWatch metrics.
+        CloudWatchMetricsEnabled: boolean
+        -- Prefix for Amazon S3 to store results.
+        ResultsS3Prefix: string
+        -- Set the evaluation method for composite rules in the ruleset to ROW/COLUMN
+        CompositeRuleEvaluationMethod: string
+        -- The configuration for writing row-level evaluation results to a Glue Data Catalog table.
+        RowLevelResults: RowLevelResultsOptions
+        -- The configuration for writing profiling results to a Glue Data Catalog table.
+        ProfilingResults: ProfilingResultsOptions
+        -- The scope of the observation for the evaluation run. Specifies whether anomaly detection is enabled or disabled.
+        ObservationScope: string
+        -- The observation mode for the evaluation run. Specifies how anomaly detection bounds are calculated.
+        ObservationMode: string
+        -- The configuration for writing rule results to a Glue Data Catalog table.
+        DataQualityRuleResults: DataQualityRuleResultsOptions
+        -- The configuration for writing observation results to a Glue Data Catalog table.
+        ObservationResults: ObservationResultsOptions
+        -- A custom prefix for the CloudWatch log group names. When specified, evaluation run logs are written to /error and /output instead of the default /aws-glue/data-quality/error and /aws-glue/data-quality/output log groups.
+        CustomLogGroupPrefix: string
+    end
+
+    -- Identifies the Glue Data Catalog tables that a data quality evaluation configuration applies to.
+    record DataQualityEvaluationConfigGlueTables
+        -- A unique identifier for the Glue Data Catalog.
+        CatalogId: string
+        -- A database name in the Glue Data Catalog.
+        DatabaseName: string
+        -- For the CATALOG and DATABASE levels, a glob pattern, such as orders_*, that selects tables. If you don't specify a pattern, every table at the level is in scope. For the TABLE level, the name of the table.
+        TableNamePattern: string
+        -- SQL Query of SparkSQL format that can be used to pre-process the data for the table in Glue Data Catalog,
+        -- before running the Data Quality Operation.
+        -- For the CATALOG and DATABASE levels, use the {{DATABASE_NAME}} and {{TABLE_NAME}} placeholders, which are filled in for each table.
+        PreProcessingQuery: string
+        -- The name of the connection to the Glue Data Catalog.
+        ConnectionName: string
+        -- Options for reading the table. The following keys are supported:
+        -- pushDownPredicate: to filter on partitions without having to list and read all the files in your dataset.
+        -- catalogPartitionPredicate: to use server-side partition pruning using partition indexes in the Glue Data Catalog.
+        AdditionalOptions: {string : string}
+    end
+
+    -- The data source that a data quality evaluation configuration applies to.
+    record DataQualityEvaluationConfigDataSource
+        -- The Glue Data Catalog tables that the configuration applies to.
+        GlueTables: DataQualityEvaluationConfigGlueTables
+    end
+
+    enum DataQualityEvaluationConfigLevel
+        "CATALOG"
+        "DATABASE"
+        "TABLE"
+    end
+
+    enum DataQualityEvaluationConfigManagedRuleset
+        "SIMPLE"
+        "ADVANCED"
+    end
+
+    enum DataQualityEvaluationConfigTrigger
+        "ONCE"
+        "SCHEDULE"
+        "METADATA_CHANGE"
+    end
+
+    record CreateDataQualityEvaluationConfigInput
+        -- A name for the data quality evaluation configuration. The name must be unique within your account.
+        Name: string
+        -- The Glue Data Catalog hierarchical level that the configuration applies to. Valid values are CATALOG, DATABASE, and TABLE.
+        Level: string
+        -- The catalog, database, or table that the configuration applies to, as specified by Level.
+        DataSource: DataQualityEvaluationConfigDataSource
+        -- The name of a Data Quality Definition Language (DQDL) ruleset, containing analyzers, rules, or both, to evaluate tables with. You create the ruleset using the CreateDataQualityRuleset API. Specify either RulesetName or ManagedRulesetName, not both.
+        RulesetName: string
+        -- A built-in ruleset that profiles each table, used when RulesetName is not set. The default is SIMPLE. Choose from the following built-in rulesets:
+        -- SIMPLE
+        -- Row count and column count, completeness, minimum, and maximum for every column, mean, sum, and standard deviation for numeric columns, and column length for string columns.
+        -- ADVANCED
+        -- Every statistic in SIMPLE, plus distribution, uniqueness, and distinct values count.
+        ManagedRulesetName: string
+        -- When the configuration evaluates tables. You can choose one or more triggers, and each table is evaluated at most once an hour. The default is ONCE. Choose from the following triggers:
+        -- ONCE
+        -- Evaluates each table one time, including when tables are added to a database or catalog.
+        -- SCHEDULE
+        -- Evaluates each table on the cron or rate expression in ScheduleExpression, between the optional StartAt and EndAt times.
+        -- METADATA_CHANGE
+        -- Evaluates a table whenever its Glue Data Catalog metadata changes, such as a schema change or an Apache Iceberg commit.
+        Triggers: {string}
+        -- A cron or rate expression, in UTC, for the SCHEDULE trigger, for example cron(0 6 * * ? *). The schedule can run at most once an hour.
+        ScheduleExpression: string
+        -- The time from which the schedule runs, inclusive.
+        StartAt: number
+        -- The time at which the schedule stops running, exclusive.
+        EndAt: number
+        -- The IAM role that evaluations assume. You can specify the role name or the role Amazon Resource Name (ARN).
+        -- The role must allow the glue.amazonaws.com service principal to assume it, and needs permissions to read the catalog (glue:GetCatalog, glue:GetDatabase, glue:GetTable, glue:SearchTables, and glue:GetPartitions), read and create rulesets (glue:GetDataQualityRuleset and glue:CreateDataQualityRuleset), start evaluations (glue:StartDataQualityRulesetEvaluationRun, glue:PublishDataQuality, and iam:PassRole on the role itself), read the tables' data in Amazon S3, and write logs to Amazon CloudWatch Logs. If a catalog-level or database-level configuration applies to an Amazon S3 Tables catalog, the role also needs s3tables:ListTableBuckets and s3tables:ListTables. If you use Lake Formation, the role needs the DESCRIBE permission on the tables.
+        Role: string
+        -- The number of G.1X workers to be used in the run. The default is 5.
+        NumberOfWorkers: number
+        -- The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours).
+        Timeout: number
+        -- Additional run options you can specify for an evaluation run.
+        AdditionalRunOptions: DataQualityEvaluationConfigAdditionalRunOptions
+        -- A map of reference strings to additional data sources you can specify for an evaluation run.
+        AdditionalDataSources: {string : DataSource}
+        -- A list of tags applied to the data quality evaluation configuration.
+        Tags: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the operation completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    record CreateDataQualityEvaluationConfigOutput
+        -- The name of the data quality evaluation configuration.
+        Name: string
+        -- The evaluation run mode of the configuration's results, which is EVALUATION_CONFIG.
+        EvaluationRunMode: string
+    end
+
     -- An object representing an Glue table.
     record DataQualityTargetTable
         -- The name of the Glue table.
@@ -6955,6 +7088,14 @@ local record M
     end
 
     record DeleteDatabaseOutput
+    end
+
+    record DeleteDataQualityEvaluationConfigInput
+        -- The name of the data quality evaluation configuration to delete.
+        Name: string
+    end
+
+    record DeleteDataQualityEvaluationConfigOutput
     end
 
     record DeleteDataQualityRulesetInput
@@ -8947,6 +9088,56 @@ local record M
         DagEdges: {CodeGenEdge}
     end
 
+    record GetDataQualityEvaluationConfigInput
+        -- The name of the data quality evaluation configuration.
+        Name: string
+    end
+
+    record GetDataQualityEvaluationConfigOutput
+        -- The name of the data quality evaluation configuration.
+        Name: string
+        -- The evaluation run mode of the configuration's results, which is EVALUATION_CONFIG.
+        EvaluationRunMode: string
+        -- The time when the configuration was created.
+        CreatedOn: number
+        -- The time when the configuration was last modified.
+        LastModifiedOn: number
+        -- The Glue Data Catalog hierarchical level that the configuration applies to.
+        Level: string
+        -- The catalog, database, or table that the configuration applies to.
+        DataSource: DataQualityEvaluationConfigDataSource
+        -- The name of the data quality ruleset that tables are evaluated with.
+        RulesetName: string
+        -- The built-in ruleset that tables are evaluated with.
+        ManagedRulesetName: string
+        -- When the configuration evaluates tables:
+        -- ONCE
+        -- Each table is evaluated one time, including when tables are added to a database or catalog.
+        -- SCHEDULE
+        -- Each table is evaluated on the cron or rate expression in ScheduleExpression.
+        -- METADATA_CHANGE
+        -- A table is evaluated whenever its Glue Data Catalog metadata changes.
+        Triggers: {string}
+        -- The cron or rate expression, in UTC, for the SCHEDULE trigger.
+        ScheduleExpression: string
+        -- The time from which the schedule runs, inclusive.
+        StartAt: number
+        -- The time at which the schedule stops running, exclusive.
+        EndAt: number
+        -- Specifies whether evaluations are paused.
+        PauseRuns: boolean
+        -- The Amazon Resource Name (ARN) of the IAM role that evaluation runs assume.
+        Role: string
+        -- The number of G.1X workers to be used in the run. The default is 5.
+        NumberOfWorkers: number
+        -- The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours).
+        Timeout: number
+        -- Additional run options you can specify for an evaluation run.
+        AdditionalRunOptions: DataQualityEvaluationConfigAdditionalRunOptions
+        -- A map of reference strings to additional data sources you can specify for an evaluation run.
+        AdditionalDataSources: {string : DataSource}
+    end
+
     record GetDataQualityModelInput
         -- The Statistic ID.
         StatisticId: string
@@ -9010,6 +9201,10 @@ local record M
     record GetDataQualityResultOutput
         -- A unique result ID for the data quality result.
         ResultId: string
+        -- How the evaluation run that produced the result started: ON_DEMAND for a run started by StartDataQualityRulesetEvaluationRun, or EVALUATION_CONFIG for a run started by a data quality evaluation configuration. Not returned for results that no evaluation run produced, such as results from any ETL job.
+        EvaluationRunMode: string
+        -- The name of the data quality evaluation configuration that started the evaluation run, returned when EvaluationRunMode is EVALUATION_CONFIG.
+        DataQualityEvaluationConfig: string
         -- The Profile ID for the data quality result.
         ProfileId: string
         -- An aggregate data quality score. Represents the ratio of rules that passed to the total number of rules.
@@ -9048,6 +9243,10 @@ local record M
     record GetDataQualityResultV2Output
         -- A unique result ID for the data quality result.
         ResultId: string
+        -- How the evaluation run that produced the result started: ON_DEMAND for a run started by StartDataQualityRulesetEvaluationRun, or EVALUATION_CONFIG for a run started by a data quality evaluation configuration. Not returned for results that no evaluation run produced, such as results from any ETL job.
+        EvaluationRunMode: string
+        -- The name of the data quality evaluation configuration that started the evaluation run, returned when EvaluationRunMode is EVALUATION_CONFIG.
+        DataQualityEvaluationConfig: string
         -- The table associated with the data quality result, if any.
         DataSource: DataSource
         -- The Profile ID for the data quality result.
@@ -11359,6 +11558,60 @@ local record M
         NextToken: string
     end
 
+    record ListDataQualityEvaluationConfigsInput
+        -- Lists only the configurations that apply to this level.
+        Level: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- A paginated token to offset the results. If you don't specify a token, the operation returns results starting from the beginning of the list.
+        NextToken: string
+    end
+
+    -- Identifies the Glue Data Catalog tables that a data quality evaluation configuration applies to.
+    record DataQualityEvaluationConfigListGlueTables
+        -- A unique identifier for the Glue Data Catalog.
+        CatalogId: string
+        -- A database name in the Glue Data Catalog.
+        DatabaseName: string
+        -- For the CATALOG and DATABASE levels, a glob pattern, such as orders_*, that selects tables. If you don't specify a pattern, every table at the level is in scope. For the TABLE level, the name of the table.
+        TableNamePattern: string
+    end
+
+    -- The data source that a data quality evaluation configuration applies to.
+    record DataQualityEvaluationConfigListDataSource
+        -- The Glue Data Catalog tables that the configuration applies to.
+        GlueTables: DataQualityEvaluationConfigListGlueTables
+    end
+
+    -- Describes a data quality evaluation configuration.
+    record DataQualityEvaluationConfigListDetails
+        -- The name of the data quality evaluation configuration.
+        Name: string
+        -- The evaluation run mode of the configuration's results, which is EVALUATION_CONFIG.
+        EvaluationRunMode: string
+        -- The time when the configuration was created.
+        CreatedOn: number
+        -- The time when the configuration was last modified.
+        LastModifiedOn: number
+        -- The Glue Data Catalog hierarchical level that the configuration applies to.
+        Level: string
+        -- The catalog, database, or table that the configuration applies to.
+        DataSource: DataQualityEvaluationConfigListDataSource
+        -- The name of the data quality ruleset that tables are evaluated with.
+        RulesetName: string
+        -- The built-in ruleset that tables are evaluated with.
+        ManagedRulesetName: string
+        -- Specifies whether evaluations are paused.
+        PauseRuns: boolean
+    end
+
+    record ListDataQualityEvaluationConfigsOutput
+        -- A list of DataQualityEvaluationConfigListDetails objects.
+        DataQualityEvaluationConfigs: {DataQualityEvaluationConfigListDetails}
+        -- A pagination token, if more results are available.
+        NextToken: string
+    end
+
     -- Criteria used to return data quality results.
     record DataQualityResultFilterCriteria
         -- Filter results by the specified data source. For example, retrieving all results for an Glue table.
@@ -11371,6 +11624,10 @@ local record M
         StartedAfter: number
         -- Filter results by runs that started before this time.
         StartedBefore: number
+        -- Filter results by how their evaluation run started: ON_DEMAND or EVALUATION_CONFIG. Results that no evaluation run produced match neither value.
+        EvaluationRunMode: string
+        -- Filter results by the evaluation configuration name which started the evaluation run.
+        DataQualityEvaluationConfig: string
     end
 
     record ListDataQualityResultsInput
@@ -11386,6 +11643,10 @@ local record M
     record DataQualityResultDescription
         -- The unique result ID for this data quality result.
         ResultId: string
+        -- How the evaluation run that produced the result started: ON_DEMAND for a run started by StartDataQualityRulesetEvaluationRun, or EVALUATION_CONFIG for a run started by a data quality evaluation configuration. Not returned for results that no evaluation run produced, such as results from any ETL job.
+        EvaluationRunMode: string
+        -- The name of the data quality evaluation configuration that started the evaluation run, returned when EvaluationRunMode is EVALUATION_CONFIG.
+        DataQualityEvaluationConfig: string
         -- The table name associated with the data quality result.
         DataSource: DataSource
         -- The job name associated with the data quality result.
@@ -11416,6 +11677,10 @@ local record M
         Dimensions: {string : string}
         -- The evaluation context to filter results by.
         EvaluationContext: string
+        -- Filter results by how their evaluation run started: ON_DEMAND or EVALUATION_CONFIG. Results that no evaluation run produced match neither value.
+        EvaluationRunMode: string
+        -- Filter results by the evaluation configuration name which started the evaluation run.
+        DataQualityEvaluationConfig: string
     end
 
     record ListDataQualityResultsV2Input
@@ -11431,6 +11696,10 @@ local record M
     record DataQualityResultsV2Description
         -- The unique result ID for this data quality result.
         ResultId: string
+        -- How the evaluation run that produced the result started: ON_DEMAND for a run started by StartDataQualityRulesetEvaluationRun, or EVALUATION_CONFIG for a run started by a data quality evaluation configuration. Not returned for results that no evaluation run produced, such as results from any ETL job.
+        EvaluationRunMode: string
+        -- The name of the data quality evaluation configuration that started the evaluation run, returned when EvaluationRunMode is EVALUATION_CONFIG.
+        DataQualityEvaluationConfig: string
         -- The table associated with the data quality result, if any.
         DataSource: DataSource
         -- The date and time when this data quality result was published.
@@ -13759,6 +14028,88 @@ local record M
     end
 
     record UpdateDatabaseOutput
+    end
+
+    record UpdateDataQualityEvaluationConfigInput
+        -- The name of the data quality evaluation configuration to update.
+        Name: string
+        -- The database or table that the configuration applies to. Replaces the current data source.
+        DataSource: DataQualityEvaluationConfigDataSource
+        -- The name of a Data Quality Definition Language (DQDL) ruleset, containing analyzers, rules, or both, to evaluate tables with. You create the ruleset using the CreateDataQualityRuleset API. Specify either RulesetName or ManagedRulesetName, not both.
+        RulesetName: string
+        -- A built-in ruleset, SIMPLE or ADVANCED, that profiles each table.
+        ManagedRulesetName: string
+        -- When the configuration evaluates tables. Replaces the current triggers. Choose from the following triggers:
+        -- ONCE
+        -- Evaluates each table one time, including when tables are added to a database or catalog.
+        -- SCHEDULE
+        -- Evaluates each table on the cron or rate expression in ScheduleExpression, between the optional StartAt and EndAt times.
+        -- METADATA_CHANGE
+        -- Evaluates a table whenever its Glue Data Catalog metadata changes, such as a schema change or an Apache Iceberg commit.
+        Triggers: {string}
+        -- A cron or rate expression, in UTC, for the SCHEDULE trigger, for example cron(0 6 * * ? *). The schedule can run at most once an hour.
+        ScheduleExpression: string
+        -- The time from which the schedule runs, inclusive.
+        StartAt: number
+        -- The time at which the schedule stops running, exclusive.
+        EndAt: number
+        -- Specifies whether to pause the configuration. While paused, the configuration evaluates nothing, including tables added to the catalog or database.
+        PauseRuns: boolean
+        -- The IAM role that evaluations assume. You can specify the role name or the role Amazon Resource Name (ARN). The role needs the trust policy and permissions described for CreateDataQualityEvaluationConfig.
+        Role: string
+        -- The number of G.1X workers to be used in the run. The default is 5.
+        NumberOfWorkers: number
+        -- The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours).
+        Timeout: number
+        -- Additional run options you can specify for an evaluation run.
+        AdditionalRunOptions: DataQualityEvaluationConfigAdditionalRunOptions
+        -- A map of reference strings to additional data sources you can specify for an evaluation run.
+        AdditionalDataSources: {string : DataSource}
+    end
+
+    record UpdateDataQualityEvaluationConfigOutput
+        -- The name of the data quality evaluation configuration.
+        Name: string
+        -- The evaluation run mode of the configuration's results, which is EVALUATION_CONFIG.
+        EvaluationRunMode: string
+        -- The time when the configuration was created.
+        CreatedOn: number
+        -- The time when the configuration was last modified.
+        LastModifiedOn: number
+        -- The Glue Data Catalog hierarchical level that the configuration applies to.
+        Level: string
+        -- The catalog, database, or table that the configuration applies to.
+        DataSource: DataQualityEvaluationConfigDataSource
+        -- The name of the data quality ruleset that tables are evaluated with.
+        RulesetName: string
+        -- The built-in ruleset that tables are evaluated with.
+        ManagedRulesetName: string
+        -- When the configuration evaluates tables:
+        -- ONCE
+        -- Each table is evaluated one time, including when tables are added to a database or catalog.
+        -- SCHEDULE
+        -- Each table is evaluated on the cron or rate expression in ScheduleExpression.
+        -- METADATA_CHANGE
+        -- A table is evaluated whenever its Glue Data Catalog metadata changes.
+        Triggers: {string}
+        -- The cron or rate expression, in UTC, for the SCHEDULE trigger.
+        ScheduleExpression: string
+        -- The time from which the schedule runs, inclusive.
+        StartAt: number
+        -- The time at which the schedule stops running, exclusive.
+        EndAt: number
+        -- Specifies whether evaluations are paused.
+        PauseRuns: boolean
+        -- The Amazon Resource Name (ARN) of the IAM role that evaluation runs assume.
+        Role: string
+        -- The number of G.1X workers to be used in the run. The default is 5.
+        NumberOfWorkers: number
+        -- The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours).
+        Timeout: number
+        -- Additional run options you can specify for an evaluation run.
+        AdditionalRunOptions: DataQualityEvaluationConfigAdditionalRunOptions
+        -- A map of reference strings to additional data sources you can specify for an evaluation run.
+        AdditionalDataSources: {string : DataSource}
     end
 
     record UpdateDataQualityRulesetInput

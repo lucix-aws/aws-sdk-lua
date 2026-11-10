@@ -2534,6 +2534,37 @@ local record M
         LastUpdated: number
     end
 
+    enum ClonedBlueGreenScheduledActionType
+        "AutomaticCutoverToPrimaryCluster"
+        "DeletePrimaryCluster"
+    end
+
+    -- An action that the service takes automatically at a scheduled time during a cloned blue/green upgrade.
+    record ClonedBlueGreenScheduledAction
+        -- The action that the service takes.
+        Action: string
+        -- The time at which the service takes the action.
+        ScheduledTime: number
+    end
+
+    -- The split of search traffic between the primary and cloned clusters.
+    record TrafficPercents
+        -- The percentage of search traffic sent to the primary cluster.
+        PrimaryReadTrafficPercent: number
+        -- The percentage of search traffic sent to the cloned cluster.
+        CloneReadTrafficPercent: number
+    end
+
+    -- The state of a cloned blue/green upgrade. Members that don't apply are omitted.
+    record ClonedBlueGreenUpgradeDetails
+        -- The current split of search traffic between the primary and cloned clusters.
+        TrafficSplit: TrafficPercents
+        -- The action that the service takes automatically if you don't act before the scheduled time.
+        ScheduledAction: ClonedBlueGreenScheduledAction
+        -- The retention period, in hours, for the cluster that you cut over from.
+        RetentionInHours: number
+    end
+
     enum OverallChangeStatus
         "PENDING"
         "PROCESSING"
@@ -2582,6 +2613,8 @@ local record M
         ConfigChangeStatus: string
         -- The IAM principal who initiated the configuration change.
         InitiatedBy: string
+        -- Details about a cloned blue/green upgrade, when the change is one.
+        ClonedBlueGreenUpgradeDetails: ClonedBlueGreenUpgradeDetails
         -- The validation failures that occurred as a result of the configuration change.
         ValidationFailures: {ValidationFailure}
         -- The list of advisory warning codes that were accepted for the configuration change.
@@ -4912,6 +4945,98 @@ local record M
         lastUpdatedAt: number
     end
 
+    enum CutoverTarget
+        "ClonedCluster"
+        "PrimaryCluster"
+    end
+
+    -- The cutover to perform for a cloned blue/green upgrade.
+    record CutoverRequestOptions
+        -- The cluster to cut over to. ClonedCluster makes the cloned cluster serve the domain. PrimaryCluster keeps the primary cluster and ends the upgrade.
+        Target: string
+    end
+
+    enum RetentionAction
+        "RollbackToPrimaryCluster"
+        "DeletePrimaryCluster"
+    end
+
+    -- Controls how long the cluster that you cut over from is kept after cutover completes. Specify exactly one of RetentionInHours or RetentionAction.
+    record RetentionOptions
+        -- The number of hours to keep the cluster that you cut over from. The retention period starts when cutover completes. The minimum is 1 hour. In an UpdateClone response after cutover completes, this value is the number of hours remaining in the retention period, rounded up.
+        RetentionInHours: number
+        -- Ends the retention period now. Valid only after cutover completes.
+        RetentionAction: string
+    end
+
+    enum TrafficStrategy
+        "ShiftReadTrafficPercent"
+    end
+
+    -- The traffic shift to perform for a cloned blue/green upgrade.
+    record TrafficSplitRequestOptions
+        -- The traffic shifting strategy. The only valid value is ShiftReadTrafficPercent.
+        Strategy: string
+        -- The percentage of search traffic, from 0 to 100, to send to the cloned cluster. The rest goes to the primary cluster.
+        CloneReadTrafficPercent: number
+    end
+
+    -- Container for the request parameters to the UpdateClone operation.
+    record UpdateCloneInput
+        -- The name of the domain that has a cloned blue/green upgrade in progress.
+        DomainName: string
+        -- Shifts a percentage of search traffic from the primary cluster to the cloned cluster.
+        TrafficSplitOptions: TrafficSplitRequestOptions
+        -- Cuts the domain over to the cloned cluster or back to the primary cluster.
+        CutoverOptions: CutoverRequestOptions
+        -- Changes the retention period, or ends it after cutover completes.
+        RetentionOptions: RetentionOptions
+    end
+
+    enum CutoverStatus
+        "InProgress"
+        "Completed"
+        "Failed"
+    end
+
+    -- The cutover target and status for a cloned blue/green upgrade.
+    record CutoverOptions
+        -- The cluster that the domain is cutting over to.
+        Target: string
+        -- The status of the cutover.
+        Status: string
+    end
+
+    enum TrafficSplitStatus
+        "InProgress"
+        "Completed"
+        "Failed"
+    end
+
+    -- The traffic split and status for a cloned blue/green upgrade.
+    record TrafficSplitOptions
+        -- The traffic split currently in effect.
+        Current: TrafficPercents
+        -- The requested traffic split.
+        Target: TrafficPercents
+        -- The status of the traffic shift.
+        Status: string
+    end
+
+    -- Container for the response returned by the UpdateClone operation.
+    record UpdateCloneOutput
+        -- The name of the domain.
+        DomainName: string
+        -- The unique identifier of the configuration change. Use it with DescribeDomainChangeProgress to track the change.
+        ChangeId: string
+        -- The requested cutover target and the status of the cutover.
+        CutoverOptions: CutoverOptions
+        -- The current and requested traffic split, and the status of the traffic shift.
+        TrafficSplitOptions: TrafficSplitOptions
+        -- The retention settings for the upgrade.
+        RetentionOptions: RetentionOptions
+    end
+
     -- Container for the parameters to the UpdateDataSource operation.
     record UpdateDataSourceInput
         -- The name of the domain.
@@ -5172,6 +5297,24 @@ local record M
         VpcEndpoint: VpcEndpoint
     end
 
+    -- Options for a cloned blue/green upgrade.
+    record ClonedBlueGreenOptions
+        -- How long to keep the cluster that you cut over from after cutover completes. When you start the upgrade, only RetentionInHours is accepted.
+        RetentionOptions: RetentionOptions
+    end
+
+    enum DeploymentStrategyOverride
+        "ClonedBlueGreen"
+    end
+
+    -- Overrides the deployment strategy for a single operation, such as a version upgrade.
+    record DeploymentStrategyOverrideOptions
+        -- The deployment strategy to use for this operation. The only valid value is ClonedBlueGreen, which creates a cloned cluster on the target version next to the primary cluster so that you can validate it and shift traffic to it before you cut over.
+        DeploymentStrategy: string
+        -- Options that apply when DeploymentStrategy is ClonedBlueGreen.
+        ClonedBlueGreenOptions: ClonedBlueGreenOptions
+    end
+
     -- Container for the request parameters to the UpgradeDomain
     -- operation.
     record UpgradeDomainInput
@@ -5188,6 +5331,8 @@ local record M
         -- version. Specifies whether the domain reports its version as 7.10 so that it continues
         -- to work with Elasticsearch OSS clients and plugins.
         AdvancedOptions: {string : string}
+        -- Overrides the deployment strategy for this upgrade. To run a cloned blue/green upgrade, set DeploymentStrategy to ClonedBlueGreen.
+        DeploymentStrategyOptions: DeploymentStrategyOverrideOptions
     end
 
     -- Container for the response returned by UpgradeDomain operation.
@@ -5202,6 +5347,8 @@ local record M
         PerformCheckOnly: boolean
         -- The advanced options configuration for the domain.
         AdvancedOptions: {string : string}
+        -- The deployment strategy override used for the upgrade.
+        DeploymentStrategyOptions: DeploymentStrategyOverrideOptions
         -- Container for information about a configuration change happening on a domain.
         ChangeProgressDetails: ChangeProgressDetails
     end

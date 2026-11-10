@@ -58,6 +58,7 @@ local record Client
     invokeBrowser: function(Client, types.InvokeBrowserInput, ? base_client.InvokeOptions): async.Operation<types.InvokeBrowserOutput>
     invokeCodeInterpreter: function(Client, types.InvokeCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.InvokeCodeInterpreterOutput>
     invokeHarness: function(Client, types.InvokeHarnessInput, ? base_client.InvokeOptions): async.Operation<types.InvokeHarnessOutput>
+    invokeWebSearch: function(Client, types.InvokeWebSearchInput, ? base_client.InvokeOptions): async.Operation<types.InvokeWebSearchOutput>
     listABTests: function(Client, types.ListABTestsInput, ? base_client.InvokeOptions): async.Operation<types.ListABTestsOutput>
     listActors: function(Client, types.ListActorsInput, ? base_client.InvokeOptions): async.Operation<types.ListActorsOutput>
     listBatchEvaluations: function(Client, types.ListBatchEvaluationsInput, ? base_client.InvokeOptions): async.Operation<types.ListBatchEvaluationsOutput>
@@ -287,6 +288,10 @@ end
 
 function C:invokeHarness(input: types.InvokeHarnessInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeHarnessOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeHarness as schema.OperationSchema, input, options) as async.Operation<types.InvokeHarnessOutput>
+end
+
+function C:invokeWebSearch(input: types.InvokeWebSearchInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeWebSearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeWebSearch as schema.OperationSchema, input, options) as async.Operation<types.InvokeWebSearchOutput>
 end
 
 function C:listABTests(input: types.ListABTestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListABTestsOutput>

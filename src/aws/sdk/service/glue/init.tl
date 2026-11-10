@@ -53,6 +53,7 @@ local record Client
     createCrawler: function(Client, types.CreateCrawlerInput, ? base_client.InvokeOptions): async.Operation<types.CreateCrawlerOutput>
     createCustomEntityType: function(Client, types.CreateCustomEntityTypeInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomEntityTypeOutput>
     createDatabase: function(Client, types.CreateDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatabaseOutput>
+    createDataQualityEvaluationConfig: function(Client, types.CreateDataQualityEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataQualityEvaluationConfigOutput>
     createDataQualityRuleset: function(Client, types.CreateDataQualityRulesetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataQualityRulesetOutput>
     createDevEndpoint: function(Client, types.CreateDevEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateDevEndpointOutput>
     createGlossary: function(Client, types.CreateGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlossaryOutput>
@@ -90,6 +91,7 @@ local record Client
     deleteCrawler: function(Client, types.DeleteCrawlerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCrawlerOutput>
     deleteCustomEntityType: function(Client, types.DeleteCustomEntityTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomEntityTypeOutput>
     deleteDatabase: function(Client, types.DeleteDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatabaseOutput>
+    deleteDataQualityEvaluationConfig: function(Client, types.DeleteDataQualityEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataQualityEvaluationConfigOutput>
     deleteDataQualityRuleset: function(Client, types.DeleteDataQualityRulesetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataQualityRulesetOutput>
     deleteDevEndpoint: function(Client, types.DeleteDevEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDevEndpointOutput>
     deleteFormType: function(Client, types.DeleteFormTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFormTypeOutput>
@@ -148,6 +150,7 @@ local record Client
     getDataCatalogEncryptionSettings: function(Client, types.GetDataCatalogEncryptionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetDataCatalogEncryptionSettingsOutput>
     getDataCatalogExportConfiguration: function(Client, types.GetDataCatalogExportConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetDataCatalogExportConfigurationOutput>
     getDataflowGraph: function(Client, types.GetDataflowGraphInput, ? base_client.InvokeOptions): async.Operation<types.GetDataflowGraphOutput>
+    getDataQualityEvaluationConfig: function(Client, types.GetDataQualityEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityEvaluationConfigOutput>
     getDataQualityModel: function(Client, types.GetDataQualityModelInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityModelOutput>
     getDataQualityModelResult: function(Client, types.GetDataQualityModelResultInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityModelResultOutput>
     getDataQualityResult: function(Client, types.GetDataQualityResultInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityResultOutput>
@@ -220,6 +223,7 @@ local record Client
     listCrawlers: function(Client, types.ListCrawlersInput, ? base_client.InvokeOptions): async.Operation<types.ListCrawlersOutput>
     listCrawls: function(Client, types.ListCrawlsInput, ? base_client.InvokeOptions): async.Operation<types.ListCrawlsOutput>
     listCustomEntityTypes: function(Client, types.ListCustomEntityTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomEntityTypesOutput>
+    listDataQualityEvaluationConfigs: function(Client, types.ListDataQualityEvaluationConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityEvaluationConfigsOutput>
     listDataQualityResults: function(Client, types.ListDataQualityResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityResultsOutput>
     listDataQualityResultsV2: function(Client, types.ListDataQualityResultsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityResultsV2Output>
     listDataQualityRuleRecommendationRuns: function(Client, types.ListDataQualityRuleRecommendationRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityRuleRecommendationRunsOutput>
@@ -307,6 +311,7 @@ local record Client
     updateCrawler: function(Client, types.UpdateCrawlerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCrawlerOutput>
     updateCrawlerSchedule: function(Client, types.UpdateCrawlerScheduleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCrawlerScheduleOutput>
     updateDatabase: function(Client, types.UpdateDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatabaseOutput>
+    updateDataQualityEvaluationConfig: function(Client, types.UpdateDataQualityEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataQualityEvaluationConfigOutput>
     updateDataQualityRuleset: function(Client, types.UpdateDataQualityRulesetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataQualityRulesetOutput>
     updateDevEndpoint: function(Client, types.UpdateDevEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDevEndpointOutput>
     updateGlossary: function(Client, types.UpdateGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlossaryOutput>
@@ -511,6 +516,10 @@ function C:createDatabase(input: types.CreateDatabaseInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDatabase as schema.OperationSchema, input, options) as async.Operation<types.CreateDatabaseOutput>
 end
 
+function C:createDataQualityEvaluationConfig(input: types.CreateDataQualityEvaluationConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataQualityEvaluationConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataQualityEvaluationConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateDataQualityEvaluationConfigOutput>
+end
+
 function C:createDataQualityRuleset(input: types.CreateDataQualityRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataQualityRulesetOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataQualityRuleset as schema.OperationSchema, input, options) as async.Operation<types.CreateDataQualityRulesetOutput>
 end
@@ -657,6 +666,10 @@ end
 
 function C:deleteDatabase(input: types.DeleteDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatabaseOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDatabase as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatabaseOutput>
+end
+
+function C:deleteDataQualityEvaluationConfig(input: types.DeleteDataQualityEvaluationConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataQualityEvaluationConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataQualityEvaluationConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataQualityEvaluationConfigOutput>
 end
 
 function C:deleteDataQualityRuleset(input: types.DeleteDataQualityRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataQualityRulesetOutput>
@@ -889,6 +902,10 @@ end
 
 function C:getDataflowGraph(input: types.GetDataflowGraphInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataflowGraphOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataflowGraph as schema.OperationSchema, input, options) as async.Operation<types.GetDataflowGraphOutput>
+end
+
+function C:getDataQualityEvaluationConfig(input: types.GetDataQualityEvaluationConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataQualityEvaluationConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataQualityEvaluationConfig as schema.OperationSchema, input, options) as async.Operation<types.GetDataQualityEvaluationConfigOutput>
 end
 
 function C:getDataQualityModel(input: types.GetDataQualityModelInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataQualityModelOutput>
@@ -1177,6 +1194,10 @@ end
 
 function C:listCustomEntityTypes(input: types.ListCustomEntityTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomEntityTypesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomEntityTypes as schema.OperationSchema, input, options) as async.Operation<types.ListCustomEntityTypesOutput>
+end
+
+function C:listDataQualityEvaluationConfigs(input: types.ListDataQualityEvaluationConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataQualityEvaluationConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataQualityEvaluationConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListDataQualityEvaluationConfigsOutput>
 end
 
 function C:listDataQualityResults(input: types.ListDataQualityResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataQualityResultsOutput>
@@ -1525,6 +1546,10 @@ end
 
 function C:updateDatabase(input: types.UpdateDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatabaseOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDatabase as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatabaseOutput>
+end
+
+function C:updateDataQualityEvaluationConfig(input: types.UpdateDataQualityEvaluationConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataQualityEvaluationConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataQualityEvaluationConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataQualityEvaluationConfigOutput>
 end
 
 function C:updateDataQualityRuleset(input: types.UpdateDataQualityRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataQualityRulesetOutput>

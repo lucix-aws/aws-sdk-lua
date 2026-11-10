@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createBearerToken: function(Client, types.CreateBearerTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateBearerTokenOutput>
     createOAuth2Token: function(Client, types.CreateOAuth2TokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenOutput>
     createOAuth2TokenWithIAM: function(Client, types.CreateOAuth2TokenWithIAMInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenWithIAMOutput>
     createOAuth2TokenWithTokenExchange: function(Client, types.CreateOAuth2TokenWithTokenExchangeInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenWithTokenExchangeOutput>
@@ -72,6 +73,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     sdk_defaults.resolve_identity_resolver(c)
     local self = setmetatable(base_client.new(c) as Client, Client_mt)
     return self
+end
+
+function C:createBearerToken(input: types.CreateBearerTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBearerTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBearerToken as schema.OperationSchema, input, options) as async.Operation<types.CreateBearerTokenOutput>
 end
 
 function C:createOAuth2Token(input: types.CreateOAuth2TokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenOutput>

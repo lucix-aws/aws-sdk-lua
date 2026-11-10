@@ -31,6 +31,8 @@ local record M
         "a10g"
         "h100"
         "t4g"
+        "l40s"
+        "l4"
     end
 
     -- The minimum and maximum total accelerator memory in mebibytes (MiB) for instance type selection. This is important for GPU workloads that require specific amounts of video memory.
@@ -358,6 +360,8 @@ local record M
         fipsEnabled: boolean
         -- Capacity reservation specifications. You can specify: Capacity reservation preference Reservation resource group to be used for targeted capacity reservations Amazon ECS will launch instances according to the specified criteria.
         capacityReservations: CapacityReservationRequest
+        -- Specifies whether instances that this capacity provider launches have Nitro Sandbox enabled. Enable this setting to run tasks that use the ISOLATED_SANDBOX or CONFIDENTIAL_SANDBOX isolation mode. When you enable this setting, the capacity provider must include at least one instance type that supports Nitro Sandbox. You can't enable this setting together with local storage (the useLocalStorage setting in localStorageConfiguration). The default value is false. For more information, see Isolated and confidential tasks in Amazon Elastic Container Service Developer Guide.
+        nitroEnclavesEnabled: boolean
     end
 
     enum PropagateMITags
@@ -1928,7 +1932,7 @@ local record M
         "s3"
     end
 
-    -- A list of files containing the environment variables to pass to a container. You can specify up to ten environment files. The file must have a .env file extension. Each line in an environment file should contain an environment variable in VARIABLE=VALUE format. Lines beginning with # are treated as comments and are ignored. If there are environment variables specified using the environment parameter in a container definition, they take precedence over the variables contained within an environment file. If multiple environment files are specified that contain the same variable, they're processed from the top down. We recommend that you use unique variable names. For more information, see Use a file to pass environment variables to a container in the Amazon Elastic Container Service Developer Guide. Environment variable files are objects in Amazon S3 and all Amazon S3 security considerations apply. You must use the following platforms for the Fargate launch type: Linux platform version 1.4.0 or later. Windows platform version 1.0.0 or later. Consider the following when using the Fargate launch type: The file is handled like a native Docker env-file. There is no support for shell escape handling. The container entry point interperts the VARIABLE values.
+    -- A list of files containing the environment variables to pass to a container. You can specify up to ten environment files. The file must have a .env file extension. Each line in an environment file should contain an environment variable in VARIABLE=VALUE format. Lines beginning with # are treated as comments and are ignored. If there are environment variables specified using the environment parameter in a container definition, they take precedence over the variables contained within an environment file. If multiple environment files are specified that contain the same variable, they're processed from the top down. We recommend that you use unique variable names. For more information, see Use a file to pass environment variables to a container in the Amazon Elastic Container Service Developer Guide. Environment variable files are objects in Amazon S3 and all Amazon S3 security considerations apply. You must use the following platforms for the Fargate launch type: Linux platform version 1.4.0 or later. Consider the following when using the Fargate launch type: The file is handled like a native Docker env-file. There is no support for shell escape handling. The container entry point interperts the VARIABLE values.
     record EnvironmentFile
         -- The Amazon Resource Name (ARN) of the Amazon S3 object containing the environment variable file.
         value: string
@@ -2546,7 +2550,7 @@ local record M
         credentialSpecs: {string}
     end
 
-    -- The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate. For more information, see Using data volumes in tasks in the Amazon ECS Developer Guide;. For tasks using the Fargate launch type, the task requires the following platforms: Linux platform version 1.4.0 or later. Windows platform version 1.0.0 or later.
+    -- The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate. For more information, see Using data volumes in tasks in the Amazon ECS Developer Guide;. For tasks using the Fargate launch type, the task requires the following platforms: Linux platform version 1.4.0 or later.
     record EphemeralStorage
         -- The total amount, in GiB, of ephemeral storage to set for the task. The minimum supported value is 21 GiB and the maximum supported value is 200 GiB.
         sizeInGiB: number
@@ -2630,6 +2634,20 @@ local record M
         "ACTIVE"
         "INACTIVE"
         "DELETE_IN_PROGRESS"
+    end
+
+    enum IsolationMode
+        "SHARED"
+        "ISOLATED_SANDBOX"
+        "CONFIDENTIAL_SANDBOX"
+    end
+
+    -- The trusted execution configuration for a task. This configuration controls the isolation mode and attestation policy. You set this configuration when you register a task definition. Trusted execution is supported only for Amazon ECS Managed Instances.
+    record TrustedExecutionConfiguration
+        -- The isolation mode for tasks that use this task definition. The isolation mode determines how a task is isolated from other tasks on the same Amazon EC2 instance. SHARED: The task shares the underlying Amazon EC2 instance with other tasks. This is the default isolation mode. ISOLATED_SANDBOX: The task runs in its own Nitro Sandbox, which is a lightweight virtual machine that is isolated by the Amazon Web Services Nitro System. Each task's sandbox is isolated from every other task's sandbox on the same Amazon EC2 instance, so one task can't access another task's memory or storage. For more information, see Isolated and confidential tasks in Amazon Elastic Container Service Developer Guide. CONFIDENTIAL_SANDBOX: The task runs in its own Nitro Sandbox, which is a lightweight virtual machine that is isolated by the Amazon Web Services Nitro System, with cryptographic attestation. The host can't access the sandbox's memory or storage, and only the approved workload can decrypt data that you encrypt with your Key Management Service key. For more information, see Isolated and confidential tasks in Amazon Elastic Container Service Developer Guide.
+        isolationMode: string
+        -- The base64-encoded attestation policy envelope for the task. The policy specifies which containers are allowed to run and the runtime configuration that is cryptographically attested. This parameter is required when isolationMode is CONFIDENTIAL_SANDBOX.
+        attestationPolicy: string
     end
 
     enum Scope
@@ -2785,6 +2803,8 @@ local record M
         ephemeralStorage: EphemeralStorage
         -- Enables fault injection and allows for fault injection requests to be accepted from the task's containers. The default value is false.
         enableFaultInjection: boolean
+        -- The trusted execution configuration for tasks that use this task definition, including the isolation mode and, if configured, an attestation policy. Trusted execution is supported only for Amazon ECS Managed Instances.
+        trustedExecutionConfiguration: TrustedExecutionConfiguration
     end
 
     record DeregisterTaskDefinitionOutput
@@ -5290,12 +5310,14 @@ local record M
         proxyConfiguration: ProxyConfiguration
         -- The Elastic Inference accelerators to use for the containers in the task.
         inferenceAccelerators: {InferenceAccelerator}
-        -- The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate. For more information, see Using data volumes in tasks in the Amazon ECS Developer Guide. For tasks using the Fargate launch type, the task requires the following platforms: Linux platform version 1.4.0 or later. Windows platform version 1.0.0 or later.
+        -- The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate. For more information, see Using data volumes in tasks in the Amazon ECS Developer Guide. For tasks using the Fargate launch type, the task requires the following platforms: Linux platform version 1.4.0 or later.
         ephemeralStorage: EphemeralStorage
         -- The operating system that your tasks definitions run on.
         runtimePlatform: RuntimePlatform
         -- Enables fault injection when you register your task definition and allows for fault injection requests to be accepted from the task's containers. The default value is false.
         enableFaultInjection: boolean
+        -- The trusted execution configuration for tasks that use this task definition, including the isolation mode and, if configured, an attestation policy. Trusted execution is supported only for Amazon ECS Managed Instances.
+        trustedExecutionConfiguration: TrustedExecutionConfiguration
     end
 
     record RegisterTaskDefinitionOutput
@@ -5443,7 +5465,7 @@ local record M
         memory: string
         -- The Amazon Resource Name (ARN) of the role that containers in this task can assume. All containers in this task are granted the permissions that are specified in this role. For more information, see IAM Role for Tasks in the Amazon Elastic Container Service Developer Guide.
         taskRoleArn: string
-        -- The ephemeral storage setting override for the task. This parameter is only supported for tasks hosted on Fargate that use the following platform versions: Linux platform version 1.4.0 or later. Windows platform version 1.0.0 or later.
+        -- The ephemeral storage setting override for the task. This parameter is only supported for tasks hosted on Fargate that use the following platform versions: Linux platform version 1.4.0 or later.
         ephemeralStorage: EphemeralStorage
     end
 
@@ -5455,6 +5477,18 @@ local record M
         "SpotInterruption"
         "TerminationNotice"
         "InfrastructureHealth"
+    end
+
+    enum AttestationPolicyStatus
+        "CONFIGURED"
+    end
+
+    -- A summary of the trusted execution configuration for a task. This is a read-only view of the isolation configuration that was set on the task definition. Use it to see a task's isolation configuration in the response to DescribeTasks, RunTask, or StopTask without calling DescribeTaskDefinition. This summary never includes the attestation policy itself. Trusted execution is supported only for Amazon ECS Managed Instances.
+    record TrustedExecutionSummary
+        -- The isolation mode that the task runs in. This value mirrors the isolationMode that was set in the task definition's TrustedExecutionConfiguration. SHARED: The task shares the underlying Amazon EC2 instance with other tasks. This is the default isolation mode. ISOLATED_SANDBOX: The task runs in its own Nitro Sandbox, which is a lightweight virtual machine that is isolated by the Amazon Web Services Nitro System. Each task's sandbox is isolated from every other task's sandbox on the same Amazon EC2 instance, so one task can't access another task's memory or storage. For more information, see Isolated and confidential tasks in Amazon Elastic Container Service Developer Guide. CONFIDENTIAL_SANDBOX: The task runs in its own Nitro Sandbox, which is a lightweight virtual machine that is isolated by the Amazon Web Services Nitro System, with cryptographic attestation. The host can't access the sandbox's memory or storage, and only the approved workload can decrypt data that you encrypt with your Key Management Service key. For more information, see Isolated and confidential tasks in Amazon Elastic Container Service Developer Guide.
+        isolationMode: string
+        -- The status of the attestation policy for the task. This value is present only for tasks that use the CONFIDENTIAL_SANDBOX isolation mode.
+        attestationPolicyStatus: string
     end
 
     -- Details on a task in a cluster.
@@ -5533,6 +5567,8 @@ local record M
         ephemeralStorage: EphemeralStorage
         -- The Fargate ephemeral storage settings for the task.
         fargateEphemeralStorage: TaskEphemeralStorage
+        -- A summary of the trusted execution configuration for the task, including the isolation mode. This is a read-only view of the configuration that was set on the task definition. Trusted execution is supported only for Amazon ECS Managed Instances.
+        trustedExecutionSummary: TrustedExecutionSummary
     end
 
     record DescribeTasksOutput

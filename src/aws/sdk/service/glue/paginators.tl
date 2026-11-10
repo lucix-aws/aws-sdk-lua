@@ -346,6 +346,24 @@ function M.pages_list_custom_entity_types(client, input)
     })
 end
 
+--- Returns a page iterator for listDataQualityEvaluationConfigs.
+function M.pages_list_data_quality_evaluation_configs(client, input)
+    return paginator.pages(client, "listDataQualityEvaluationConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataQualityEvaluationConfigs",
+    })
+end
+
+--- Returns an item iterator for listDataQualityEvaluationConfigs.
+function M.items_list_data_quality_evaluation_configs(client, input)
+    return paginator.items(client, "listDataQualityEvaluationConfigs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "DataQualityEvaluationConfigs",
+    })
+end
+
 --- Returns a page iterator for listDataQualityResults.
 function M.pages_list_data_quality_results(client, input)
     return paginator.pages(client, "listDataQualityResults", input, {

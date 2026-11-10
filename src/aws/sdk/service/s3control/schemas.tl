@@ -6116,6 +6116,15 @@ M.GetDataAccessInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "auditContext" },
             },
         }),
+        InstanceScope = schema.new({
+            id = id.from(_N, "GetDataAccessInput", "InstanceScope"),
+            type = "string",
+            name = "InstanceScope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "instanceScope" },
+            },
+        }),
     },
 })
 
@@ -6173,6 +6182,12 @@ M.GetDataAccessOutput = schema.new({
             name = "Grantee",
             target_id = id.from(_N, "Grantee"),
             target = M.Grantee,
+        }),
+        MatchedInstanceArn = schema.new({
+            id = id.from(_N, "GetDataAccessOutput", "MatchedInstanceArn"),
+            type = "string",
+            name = "MatchedInstanceArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -7585,6 +7600,15 @@ M.ListCallerAccessGrantsInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "allowedByApplication" },
             },
         }),
+        InstanceScope = schema.new({
+            id = id.from(_N, "ListCallerAccessGrantsInput", "InstanceScope"),
+            type = "string",
+            name = "InstanceScope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "instanceScope" },
+            },
+        }),
     },
 })
 
@@ -7608,6 +7632,12 @@ M.ListCallerAccessGrantsEntry = schema.new({
             id = id.from(_N, "ListCallerAccessGrantsEntry", "ApplicationArn"),
             type = "string",
             name = "ApplicationArn",
+            target_id = prelude.String.id,
+        }),
+        AccessGrantsInstanceArn = schema.new({
+            id = id.from(_N, "ListCallerAccessGrantsEntry", "AccessGrantsInstanceArn"),
+            type = "string",
+            name = "AccessGrantsInstanceArn",
             target_id = prelude.String.id,
         }),
     },

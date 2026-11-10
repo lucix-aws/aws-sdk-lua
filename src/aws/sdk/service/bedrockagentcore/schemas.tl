@@ -30,6 +30,8 @@ M.HarnessSkills = schema.new({ type = "list", list_member = M.HarnessSkill })
 
 M.HarnessAllowedTools = schema.new({ type = "list", list_member = prelude.String })
 
+M.WebSearchResultList = schema.new({ type = "list", list_member = M.WebSearchResult })
+
 M.BrowserExtensions = schema.new({ type = "list", list_member = M.BrowserExtension })
 
 M.BrowserEnterprisePolicies = schema.new({ type = "list", list_member = M.BrowserEnterprisePolicy })
@@ -135,6 +137,8 @@ M.EventMetadataFilterList = schema.new({ type = "list", list_member = M.EventMet
 M.ContentBlockList = schema.new({ type = "list", list_member = M.ContentBlock })
 
 M.HarnessContentBlocks = schema.new({ type = "list", list_member = M.HarnessContentBlock })
+
+M.DomainList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DomainPatterns = schema.new({ type = "list", list_member = prelude.String })
 
@@ -10236,6 +10240,191 @@ M.InvokeHarnessOutput = schema.new({
     },
 })
 
+M.DomainFilter = schema.new({
+    id = id.from(_N, "DomainFilter"),
+    type = "structure",
+    members = {
+        include = schema.new({
+            id = id.from(_N, "DomainFilter", "include"),
+            type = "list",
+            name = "include",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        exclude = schema.new({
+            id = id.from(_N, "DomainFilter", "exclude"),
+            type = "list",
+            name = "exclude",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.PublishedDateFilter = schema.new({
+    id = id.from(_N, "PublishedDateFilter"),
+    type = "structure",
+    members = {
+        publishedAfter = schema.new({
+            id = id.from(_N, "PublishedDateFilter", "publishedAfter"),
+            type = "timestamp",
+            name = "publishedAfter",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        publishedBefore = schema.new({
+            id = id.from(_N, "PublishedDateFilter", "publishedBefore"),
+            type = "timestamp",
+            name = "publishedBefore",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.WebSearchFilters = schema.new({
+    id = id.from(_N, "WebSearchFilters"),
+    type = "structure",
+    members = {
+        domainFilter = schema.new({
+            id = id.from(_N, "WebSearchFilters", "domainFilter"),
+            type = "structure",
+            name = "domainFilter",
+            target_id = id.from(_N, "DomainFilter"),
+            target = M.DomainFilter,
+        }),
+        publishedDateFilter = schema.new({
+            id = id.from(_N, "WebSearchFilters", "publishedDateFilter"),
+            type = "structure",
+            name = "publishedDateFilter",
+            target_id = id.from(_N, "PublishedDateFilter"),
+            target = M.PublishedDateFilter,
+        }),
+    },
+})
+
+M.InvokeWebSearchInput = schema.new({
+    id = id.from(_N, "InvokeWebSearchInput"),
+    type = "structure",
+    members = {
+        webSearchId = schema.new({
+            id = id.from(_N, "InvokeWebSearchInput", "webSearchId"),
+            type = "string",
+            name = "webSearchId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        searchQuery = schema.new({
+            id = id.from(_N, "InvokeWebSearchInput", "searchQuery"),
+            type = "string",
+            name = "searchQuery",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "InvokeWebSearchInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        filters = schema.new({
+            id = id.from(_N, "InvokeWebSearchInput", "filters"),
+            type = "structure",
+            name = "filters",
+            target_id = id.from(_N, "WebSearchFilters"),
+            target = M.WebSearchFilters,
+        }),
+    },
+})
+
+M.WebSearchResult = schema.new({
+    id = id.from(_N, "WebSearchResult"),
+    type = "structure",
+    members = {
+        title = schema.new({
+            id = id.from(_N, "WebSearchResult", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        url = schema.new({
+            id = id.from(_N, "WebSearchResult", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+        }),
+        text = schema.new({
+            id = id.from(_N, "WebSearchResult", "text"),
+            type = "string",
+            name = "text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        publishedAt = schema.new({
+            id = id.from(_N, "WebSearchResult", "publishedAt"),
+            type = "timestamp",
+            name = "publishedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.InvokeWebSearchOutput = schema.new({
+    id = id.from(_N, "InvokeWebSearchOutput"),
+    type = "structure",
+    members = {
+        results = schema.new({
+            id = id.from(_N, "InvokeWebSearchOutput", "results"),
+            type = "list",
+            name = "results",
+            target_id = prelude.Document.id,
+            list_member = M.WebSearchResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.RecordExpirySpecification = schema.new({
     id = id.from(_N, "RecordExpirySpecification"),
     type = "union",
@@ -14917,6 +15106,18 @@ M.InvokeHarness = schema.operation({
             { scheme_id = "aws.auth#sigv4" },
         },
         [traits.EVENT_STREAM] = M.InvokeHarnessStreamOutput,
+    },
+})
+
+M.InvokeWebSearch = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "InvokeWebSearch"),
+    input = M.InvokeWebSearchInput,
+    output = M.InvokeWebSearchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/web-search/{webSearchId}/invoke" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
     },
 })
 

@@ -51,6 +51,52 @@ local record M
         message: string
     end
 
+    -- Input structure for CreateBearerToken operation
+    record CreateBearerTokenInput
+        -- The grant type. Must be "client_credentials".
+        grantType: string
+        -- The AWS service the bearer token is for.
+        -- Example: "ecr.amazonaws.com".
+        resource: string
+        -- The requested token lifetime in seconds, from 300 (5 minutes) up to the maximum allowed for the service, currently 43200 (12 hours). If omitted, the token is valid for 12 hours.
+        durationSeconds: number
+    end
+
+    -- Output structure for CreateBearerToken operation
+    -- Contains the bearer token, its type, and its lifetime.
+    record CreateBearerTokenOutput
+        -- The bearer token. Present it to the AWS service named in the request.
+        accessToken: string
+        -- The token type. Always "Bearer".
+        tokenType: string
+        -- Token lifetime in seconds.
+        expiresIn: number
+    end
+
+    -- The request failed because of an internal server error.
+    record InternalServerException
+        -- Will be server_error.
+        error: string
+        -- The server error detail.
+        message: string
+    end
+
+    -- The request failed because you exceeded the request rate limit for this operation.
+    record TooManyRequestsError
+        -- Will be rate_exceeded.
+        error: string
+        -- Details about the rate limit.
+        message: string
+    end
+
+    -- The request failed because it contains a malformed, missing, or invalid parameter.
+    record ValidationException
+        -- The specific code depends on which validation failed.
+        error: string
+        -- The validation constraint that failed.
+        message: string
+    end
+
     -- The request body for creating an OAuth 2.0 token. Supports both the authorization code and
     -- refresh token flows, selected by the "grant_type" parameter.
     record CreateOAuth2TokenRequestBody
@@ -107,30 +153,6 @@ local record M
         -- Flattened token operation outputs.
         -- The specific response fields depend on the grant_type used in the request.
         tokenOutput: CreateOAuth2TokenResponseBody
-    end
-
-    -- The request failed because of an internal server error.
-    record InternalServerException
-        -- Will be server_error.
-        error: string
-        -- The server error detail.
-        message: string
-    end
-
-    -- The request failed because you exceeded the request rate limit for this operation.
-    record TooManyRequestsError
-        -- Will be rate_exceeded.
-        error: string
-        -- Details about the rate limit.
-        message: string
-    end
-
-    -- The request failed because it contains a malformed, missing, or invalid parameter.
-    record ValidationException
-        -- The specific code depends on which validation failed.
-        error: string
-        -- The validation constraint that failed.
-        message: string
     end
 
     -- Input structure for CreateOAuth2TokenWithIAM operation

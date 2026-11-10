@@ -2583,21 +2583,53 @@ local record M
         requests: {string : string}
     end
 
+    -- The Linux capabilities for the container. For more information, see Set capabilities for a container in the Kubernetes
+    -- documentation.
+    record EksContainerLinuxCapabilities
+        -- The Linux capabilities to add to the default capability set for the container. This
+        -- parameter contains up to 64 values. Specify capability names without the CAP_
+        -- prefix.
+        add: {string}
+        -- The Linux capabilities to remove from the default capability set for the container. This
+        -- parameter contains up to 64 values. Specify capability names without the CAP_
+        -- prefix.
+        drop: {string}
+    end
+
+    enum EksSeccompProfileType
+        "RuntimeDefault"
+        "Localhost"
+        "Unconfined"
+    end
+
+    -- The Linux seccomp profile for a pod or container. For more information, see Restrict a Container's
+    -- Syscalls with seccomp in the Kubernetes documentation.
+    record EksSeccompProfile
+        -- The path of the profile on the node, relative to the configured seccomp profile location.
+        -- You must specify this parameter when type is Localhost. Don't set this
+        -- parameter for any other type. You are responsible for ensuring that the profile exists on every
+        -- eligible worker node. For information about providing files to Amazon EKS nodes, see Use a launch template with
+        -- Batch on Amazon EKS in the Batch User Guide.
+        localhostProfile: string
+    end
+
     -- The security context for a job. For more information, see Configure a
     -- security context for a pod or container in the Kubernetes
     -- documentation.
     record EksContainerSecurityContext
         -- When this parameter is specified, the container is run as the specified user ID
         -- (uid). If this parameter isn't specified, the default is the user that's specified
-        -- in the image metadata. This parameter maps to RunAsUser and MustRanAs
-        -- policy in the Users
+        -- in the image metadata. The supported value range is 0 through
+        -- 2147483647. This parameter maps to RunAsUser and
+        -- MustRunAs policy in the Users
         -- and groups pod security policies in the Kubernetes
         -- documentation.
         runAsUser: number
         -- When this parameter is specified, the container is run as the specified group ID
         -- (gid). If this parameter isn't specified, the default is the group that's specified
-        -- in the image metadata. This parameter maps to RunAsGroup and MustRunAs
-        -- policy in the Users
+        -- in the image metadata. The supported value range is 0 through
+        -- 2147483647. This parameter maps to RunAsGroup and
+        -- MustRunAs policy in the Users
         -- and groups pod security policies in the Kubernetes
         -- documentation.
         runAsGroup: number
@@ -2621,6 +2653,15 @@ local record M
         -- and groups pod security policies in the Kubernetes
         -- documentation.
         runAsNonRoot: boolean
+        -- Adds or removes Linux capabilities from the container's default capability set.
+        -- With Linux capabilities, you can grant specific privileges without granting full root
+        -- permissions.
+        capabilities: EksContainerLinuxCapabilities
+        -- The seccomp profile for the container. A container-level seccomp profile overrides the
+        -- profile in the pod security context, which defines security settings that apply to all
+        -- containers in the pod unless a container overrides them. If this parameter isn't specified,
+        -- the container uses the pod security context's seccomp profile when one is specified.
+        seccompProfile: EksSeccompProfile
     end
 
     -- The volume mounts for a container for an Amazon EKS job. For more information about volumes and
@@ -2741,6 +2782,31 @@ local record M
         -- the compute environment's kubernetesNamespace. For multi-node parallel jobs,
         -- the same value must be provided across all the node ranges.
         namespace: string
+    end
+
+    -- The security context for the pod. The settings apply to all containers in the pod when
+    -- the container does not specify an overriding value. For more information, see Set the security context for a Pod in the Kubernetes
+    -- documentation.
+    record EksPodSecurityContext
+        -- The user ID that runs containers in the pod when a container does not specify its own
+        -- user ID. The supported value range is 0 through
+        -- 2147483647.
+        runAsUser: number
+        -- The primary group ID that runs containers in the pod when a container does not specify
+        -- its own group ID. The supported value range is 0 through
+        -- 2147483647.
+        runAsGroup: number
+        -- Specifies whether Kubernetes validates that containers in the pod don't run as the root user
+        -- unless a container specifies an overriding value.
+        runAsNonRoot: boolean
+        -- The default seccomp profile for containers in the pod. A container-level seccomp profile
+        -- overrides this value.
+        seccompProfile: EksSeccompProfile
+        -- A special supplemental group that is applied to all containers in the pod. Some volume
+        -- types allow Kubernetes to change the ownership and permissions of the volume contents to this group
+        -- when the volume is mounted. The supported value range is 0 through
+        -- 2147483647.
+        fsGroup: number
     end
 
     -- Specifies the configuration of a Kubernetes emptyDir volume. An
@@ -2868,6 +2934,9 @@ local record M
         -- same pod. For more information, see Share
         -- Process Namespace between Containers in a Pod.
         shareProcessNamespace: boolean
+        -- The security context to apply to the pod. The settings apply to all containers in the
+        -- pod unless an individual container specifies an overriding value.
+        securityContext: EksPodSecurityContext
     end
 
     -- An object that contains the properties for the Kubernetes resources of a job.
@@ -3012,8 +3081,9 @@ local record M
         -- nodeProperties is used in the job definition, it can't be used in addition to
         -- containerProperties, ecsProperties, or
         -- eksProperties.
-        -- If the job runs on Fargate resources, don't specify nodeProperties. Use
-        -- containerProperties instead.
+        -- If the job runs on Fargate resources, don't specify nodeProperties. We
+        -- recommend ecsProperties, which supports both single-container and multi-container
+        -- jobs. containerProperties is also supported for single-container jobs.
         nodeProperties: NodeProperties
         -- The tags that are applied to the job definition.
         tags: {string : string}
@@ -3653,6 +3723,9 @@ local record M
         -- same pod. For more information, see Share
         -- Process Namespace between Containers in a Pod.
         shareProcessNamespace: boolean
+        -- The security context applied to the pod. The settings apply to all containers in the
+        -- pod unless an individual container specifies an overriding value.
+        securityContext: EksPodSecurityContext
     end
 
     -- An object that contains the details for the Kubernetes resources of a job.
@@ -4719,13 +4792,18 @@ local record M
         -- either containerProperties or nodeProperties. This must not be
         -- specified for Amazon EKS-based job definitions.
         -- If the job runs on Fargate resources, then you must not specify
-        -- nodeProperties; use only containerProperties.
+        -- nodeProperties. We recommend ecsProperties, which supports both
+        -- single-container and multi-container jobs. containerProperties is also
+        -- supported for single-container jobs. For more information, see Multi-container jobs in the
+        -- Batch User Guide.
         containerProperties: ContainerProperties
         -- An object with properties specific to multi-node parallel jobs. If you specify node
         -- properties for a job, it becomes a multi-node parallel job. For more information, see Multi-node Parallel
         -- Jobs in the Batch User Guide.
         -- If the job runs on Fargate resources, then you must not specify
-        -- nodeProperties; use containerProperties instead.
+        -- nodeProperties. We recommend ecsProperties, which supports both
+        -- single-container and multi-container jobs. containerProperties is also
+        -- supported for single-container jobs.
         -- If the job runs on Amazon EKS resources, then you must not specify
         -- nodeProperties.
         nodeProperties: NodeProperties

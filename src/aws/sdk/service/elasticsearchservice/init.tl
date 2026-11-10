@@ -65,6 +65,7 @@ local record Client
     removeTags: function(Client, types.RemoveTagsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
     revokeVpcEndpointAccess: function(Client, types.RevokeVpcEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.RevokeVpcEndpointAccessOutput>
     startElasticsearchServiceSoftwareUpdate: function(Client, types.StartElasticsearchServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartElasticsearchServiceSoftwareUpdateOutput>
+    updateClone: function(Client, types.UpdateCloneInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloneOutput>
     updateElasticsearchDomainConfig: function(Client, types.UpdateElasticsearchDomainConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateElasticsearchDomainConfigOutput>
     updatePackage: function(Client, types.UpdatePackageInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePackageOutput>
     updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVpcEndpointOutput>
@@ -299,6 +300,10 @@ end
 
 function C:startElasticsearchServiceSoftwareUpdate(input: types.StartElasticsearchServiceSoftwareUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartElasticsearchServiceSoftwareUpdateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartElasticsearchServiceSoftwareUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartElasticsearchServiceSoftwareUpdateOutput>
+end
+
+function C:updateClone(input: types.UpdateCloneInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateClone as schema.OperationSchema, input, options) as async.Operation<types.UpdateCloneOutput>
 end
 
 function C:updateElasticsearchDomainConfig(input: types.UpdateElasticsearchDomainConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateElasticsearchDomainConfigOutput>

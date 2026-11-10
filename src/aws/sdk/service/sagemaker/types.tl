@@ -2028,6 +2028,14 @@ local record M
         ValidationProfiles: {AlgorithmValidationProfile}
     end
 
+    -- The aliases to add to and remove from a pipeline version. An alias can't appear in both lists. After the update, the version can have up to 10 aliases.
+    record AliasOperations
+        -- The aliases to add to the pipeline version. If you assigned an alias to another version of the same pipeline, you must remove it from that version before you add it here.
+        Add: {string}
+        -- The aliases to remove from the pipeline version.
+        Remove: {string}
+    end
+
     enum FeatureStatus
         "ENABLED"
         "DISABLED"
@@ -5950,6 +5958,26 @@ local record M
         ClusterArn: string
     end
 
+    record CreateClusterExtensionInput
+        -- The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster on which to install the extension. The cluster must use Slurm as the orchestrator and have NodeProvisioningMode set to Continuous.
+        ClusterArn: string
+        -- The name of the extension to install, for example sagemaker-observability.
+        ExtensionName: string
+        -- The version of the extension to install, in MAJOR.MINOR.PATCH format, for example 1.0.0. If you don't specify a version, SageMaker HyperPod installs the latest available version of the extension.
+        ExtensionVersion: string
+        -- The configuration settings for the extension, as a JSON object serialized as a string, for example {"metricsProvider":{"nodeMetrics":{"level":"ADVANCED"}}}. Each extension version defines which settings it accepts. SageMaker HyperPod validates the settings against that definition, and rejects the request if a setting is unknown or has an invalid value. Settings that you omit use the extension's default values. If you omit ConfigurationValues, all settings use their default values.
+        ConfigurationValues: string
+        -- Custom tags for managing the extension as an Amazon Web Services resource. You can add tags to your extension in the same way you add them in other Amazon Web Services services that support tagging. To learn more about tagging Amazon Web Services resources in general, see Tagging Amazon Web Services Resources User Guide. To use this operation to add tags when you create an extension, you must have the sagemaker:AddTags permission.
+        Tags: {Tag}
+        -- A unique, case-sensitive identifier that you provide so that the operation completes no more than one time. This token is valid for 8 hours. If you retry the request with the same client token and the same parameters within this time, the API returns the Amazon Resource Name (ARN) of the extension that the original request created, without creating a duplicate. If you use the same client token with different parameters, the request fails.
+        ClientToken: string
+    end
+
+    record CreateClusterExtensionOutput
+        -- The Amazon Resource Name (ARN) of the extension that you created. Use this ARN to describe, update, or delete the extension.
+        ExtensionArn: string
+    end
+
     enum FairShare
         "Enabled"
         "Disabled"
@@ -9732,6 +9760,8 @@ local record M
         Tags: {Tag}
         -- This is the configuration that controls the parallelism of the pipeline. If specified, it applies to all runs of this pipeline by default.
         ParallelismConfiguration: ParallelismConfiguration
+        -- The aliases to assign to the first version of the pipeline. You can use an alias instead of a pipeline version ID to start an execution, describe the pipeline, or list its executions. Each alias can contain 1-128 letters, numbers, periods (.), hyphens (-), and underscores (_), and can't consist of numbers only. An alias must be unique within the pipeline, and a version can have up to 10 aliases.
+        PipelineVersionAliases: {string}
     end
 
     record CreatePipelineOutput
@@ -10940,6 +10970,18 @@ local record M
         ClusterArn: string
     end
 
+    record DeleteClusterExtensionInput
+        -- The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster on which the extension is installed.
+        ClusterArn: string
+        -- The Amazon Resource Name (ARN) of the extension to delete.
+        ExtensionArn: string
+    end
+
+    record DeleteClusterExtensionOutput
+        -- The Amazon Resource Name (ARN) of the extension that is being deleted.
+        ExtensionArn: string
+    end
+
     record DeleteClusterSchedulerConfigInput
         -- ID of the cluster policy.
         ClusterSchedulerConfigId: string
@@ -11933,6 +11975,59 @@ local record M
     record DescribeClusterEventOutput
         -- Detailed information about the requested cluster event, including event metadata for various resource types such as Cluster, InstanceGroup, Instance, and their associated attributes.
         EventDetails: ClusterEventDetail
+    end
+
+    record DescribeClusterExtensionInput
+        -- The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster on which the extension is installed.
+        ClusterArn: string
+        -- The Amazon Resource Name (ARN) of the extension to describe. CreateClusterExtension returns this ARN, and ListClusterExtensions lists it. If you delete an extension and create it again, the new extension has a new ARN.
+        ExtensionArn: string
+    end
+
+    enum ExtensionStatus
+        "Creating"
+        "Active"
+        "CreateFailed"
+        "Updating"
+        "Deleting"
+        "DeleteFailed"
+        "Degraded"
+        "UpdateFailed"
+    end
+
+    -- Details of an extension installed on a SageMaker HyperPod cluster.
+    record ExtensionDetails
+        -- The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster on which the extension is installed.
+        ClusterArn: string
+        -- The Amazon Resource Name (ARN) of the extension.
+        ExtensionArn: string
+        -- The name of the extension.
+        ExtensionName: string
+        -- The version of the extension. While SageMaker HyperPod creates or updates the extension, some nodes might still run a different version. To see how many nodes run this version, see NodeSummary.
+        ExtensionVersion: string
+        -- The status of the extension can be one of the following values: Creating SageMaker HyperPod is installing the extension on the cluster's nodes. Active The extension runs its current version and configuration on all of the cluster's nodes. Updating SageMaker HyperPod is applying a configuration change or version update to the cluster's nodes. Degraded The extension runs its current version and configuration on some of the cluster's nodes but not all of them. Or, at least one node recently reported that the extension is unhealthy. CreateFailed SageMaker HyperPod couldn't install the extension on any of the cluster's nodes. UpdateFailed SageMaker HyperPod couldn't apply the update on any of the cluster's nodes. Deleting SageMaker HyperPod is removing the extension from the cluster's nodes. DeleteFailed SageMaker HyperPod couldn't remove the extension from any of the cluster's nodes.
+        Status: string
+        -- The configuration of the extension, as a JSON object serialized as a string. The configuration includes the default value of every setting that you didn't specify.
+        ConfigurationValues: string
+        -- The time when the extension was created.
+        CreationTime: number
+        -- The time when the extension was last updated.
+        LastModifiedTime: number
+    end
+
+    -- A summary of an extension's installation across the nodes of a SageMaker HyperPod cluster.
+    record ExtensionNodeSummary
+        -- The number of nodes in your cluster that the extension targets. SageMaker HyperPod targets every running node in your cluster, including nodes that you add after you create the extension.
+        TotalCount: number
+        -- The number of nodes that are running the extension's current version and configuration. While SageMaker HyperPod creates or updates the extension, ActiveCount is lower than TotalCount.
+        ActiveCount: number
+    end
+
+    record DescribeClusterExtensionOutput
+        -- The details of the extension.
+        ExtensionDetails: ExtensionDetails
+        -- A summary of how many nodes in your cluster the extension targets, and how many of them run the extension's current version and configuration.
+        NodeSummary: ExtensionNodeSummary
     end
 
     record DescribeClusterNodeInput
@@ -14447,8 +14542,10 @@ local record M
     record DescribePipelineInput
         -- The name or Amazon Resource Name (ARN) of the pipeline to describe.
         PipelineName: string
-        -- The ID of the pipeline version to describe.
+        -- The ID of the pipeline version to describe. You can't specify this with PipelineVersionAlias.
         PipelineVersionId: number
+        -- The alias of the pipeline version to describe. You can't specify this with PipelineVersionId. If no version of the pipeline has this alias, the request fails with a ResourceNotFound error. If you specify neither, SageMaker describes the latest version of the pipeline.
+        PipelineVersionAlias: string
     end
 
     enum PipelineStatus
@@ -14485,6 +14582,8 @@ local record M
         PipelineVersionDisplayName: string
         -- The description of the pipeline version.
         PipelineVersionDescription: string
+        -- The aliases assigned to the pipeline version.
+        PipelineVersionAliases: {string}
     end
 
     record DescribePipelineDefinitionForExecutionInput
@@ -14571,6 +14670,10 @@ local record M
         PipelineVersionId: number
         -- The MLflow configuration of the pipeline execution.
         MLflowConfig: MLflowConfiguration
+        -- The aliases currently assigned to the pipeline version that the execution ran.
+        PipelineVersionAliases: {string}
+        -- The Amazon Resource Name (ARN) of the IAM role that the execution uses. SageMaker returns this value only for executions of pipelines that AWS manages.
+        RoleArn: string
     end
 
     record DescribeProcessingJobInput
@@ -16067,6 +16170,20 @@ local record M
         TrainingPlanExtensions: {TrainingPlanExtension}
     end
 
+    -- A summary of an extension installed on a SageMaker HyperPod cluster.
+    record ExtensionSummary
+        -- The Amazon Resource Name (ARN) of the extension.
+        ExtensionArn: string
+        -- The name of the extension.
+        ExtensionName: string
+        -- The version of the extension.
+        ExtensionVersion: string
+        -- The status of the extension. For the meaning of each status, see ExtensionDetails.
+        Status: string
+        -- The time when the extension was created.
+        CreationTime: number
+    end
+
     -- The container for the metadata for Fail step.
     record FailStepMetadata
         -- A message that you define and then is processed and rendered by the Fail step when the error occurs.
@@ -16465,6 +16582,14 @@ local record M
         "HubContentName"
         "CreationTime"
         "HubContentStatus"
+    end
+
+    -- The hub and the hub content that a HubContent step imported.
+    record HubContentStepMetadata
+        -- The Amazon Resource Name (ARN) of the hub that the step imported the content into.
+        HubArn: string
+        -- The Amazon Resource Name (ARN) of the hub content that was imported by this step execution.
+        HubContentArn: string
     end
 
     -- Information about a hub.
@@ -17328,6 +17453,26 @@ local record M
         NextToken: string
         -- A list of event summaries matching the specified criteria.
         Events: {ClusterEventSummary}
+    end
+
+    record ListClusterExtensionsInput
+        -- The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster whose extensions you want to list.
+        ClusterArn: string
+        -- The maximum number of extensions to return in the response. If you don't specify a value, SageMaker HyperPod returns up to 100 extensions.
+        MaxResults: number
+        -- If the result of the previous ListClusterExtensions request was truncated, the response includes a NextToken. To retrieve the next set of extensions, use the token in the next request. When you use the CreationTimeAfter or CreationTimeBefore filters, a response can contain fewer extensions than MaxResults, or none, and still include a NextToken. Continue until the response doesn't include a NextToken.
+        NextToken: string
+        -- A filter that returns extensions created at or after the specified time. Timestamps are formatted according to the ISO 8601 standard.
+        CreationTimeAfter: number
+        -- A filter that returns extensions created at or before the specified time. The acceptable formats are the same as the timestamp formats for CreationTimeAfter.
+        CreationTimeBefore: number
+    end
+
+    record ListClusterExtensionsOutput
+        -- The list of extensions installed on the cluster.
+        Extensions: {ExtensionSummary}
+        -- The next token specified for listing extensions on a SageMaker HyperPod cluster.
+        NextToken: string
     end
 
     record ListClusterNodesInput
@@ -19311,6 +19456,8 @@ local record M
         NextToken: string
         -- The maximum number of pipeline executions to return in the response.
         MaxResults: number
+        -- The alias of a pipeline version. The response includes only the executions of the version that has this alias when you make the request. If no version of the pipeline has this alias, the request fails with a ResourceNotFound error.
+        PipelineVersionAlias: string
     end
 
     -- A pipeline execution summary.
@@ -19327,6 +19474,8 @@ local record M
         PipelineExecutionDisplayName: string
         -- A message generated by SageMaker Pipelines describing why the pipeline execution failed.
         PipelineExecutionFailureReason: string
+        -- The aliases currently assigned to the pipeline version that the execution ran.
+        PipelineVersionAliases: {string}
     end
 
     record ListPipelineExecutionsOutput
@@ -19463,6 +19612,8 @@ local record M
         Cleanup: CleanupStepMetadata
         -- The metadata for the ForEach step execution.
         ForEach: ForEachStepMetadata
+        -- The metadata for the HubContent step execution.
+        HubContent: HubContentStepMetadata
     end
 
     -- The ARN from an execution of the current pipeline.
@@ -19539,6 +19690,11 @@ local record M
         NextToken: string
     end
 
+    enum PipelineManagedBy
+        "AWS"
+        "CUSTOMER"
+    end
+
     enum SortPipelinesBy
         "Name"
         "CreationTime"
@@ -19559,6 +19715,8 @@ local record M
         NextToken: string
         -- The maximum number of pipelines to return in the response.
         MaxResults: number
+        -- Filters the pipelines by who manages them. Specify AWS to return pipelines that AWS manages, or CUSTOMER to return pipelines that you created. If you don't specify a value, the response includes both.
+        ManagedBy: string
     end
 
     -- A summary of a pipeline.
@@ -19617,6 +19775,8 @@ local record M
         PipelineVersionDisplayName: string
         -- The Amazon Resource Name (ARN) of the most recent pipeline execution created from this pipeline version.
         LastExecutionPipelineExecutionArn: string
+        -- The aliases assigned to the pipeline version.
+        PipelineVersionAliases: {string}
     end
 
     record ListPipelineVersionsOutput
@@ -20805,6 +20965,8 @@ local record M
         LastExecutedPipelineExecutionDisplayName: string
         -- The status of the most recent pipeline execution created from this pipeline version.
         LastExecutedPipelineExecutionStatus: string
+        -- The aliases assigned to the pipeline version.
+        PipelineVersionAliases: {string}
     end
 
     -- An Amazon SageMaker processing job that is used to analyze data and evaluate models. For more information, see Process Data and Evaluate Models.
@@ -21462,10 +21624,14 @@ local record M
         ParallelismConfiguration: ParallelismConfiguration
         -- The selective execution configuration applied to the pipeline run.
         SelectiveExecutionConfig: SelectiveExecutionConfig
-        -- The ID of the pipeline version to start execution from.
+        -- The ID of the pipeline version to start execution from. You can't specify this with PipelineVersionAlias.
         PipelineVersionId: number
         -- The MLflow experiment name of the pipeline execution.
         MlflowExperimentName: string
+        -- The alias of the pipeline version to start the execution from. You can't specify this with PipelineVersionId. If no version of the pipeline has this alias, the request fails with a ResourceNotFound error.
+        PipelineVersionAlias: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the execution uses. You must specify this parameter when you start an execution of a pipeline that AWS manages. You can't specify it for a pipeline that you create, because its executions use the pipeline's role.
+        RoleArn: string
     end
 
     record StartPipelineExecutionOutput
@@ -21748,6 +21914,24 @@ local record M
     record UpdateClusterOutput
         -- The Amazon Resource Name (ARN) of the updated SageMaker HyperPod cluster.
         ClusterArn: string
+    end
+
+    record UpdateClusterExtensionInput
+        -- The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster on which the extension is installed.
+        ClusterArn: string
+        -- The Amazon Resource Name (ARN) of the extension to update.
+        ExtensionArn: string
+        -- The version to update the extension to, in MAJOR.MINOR.PATCH format. The version must be later than the extension's current version. If you omit this parameter, the extension keeps its current version.
+        ExtensionVersion: string
+        -- The configuration changes to apply, as a JSON object serialized as a string. Settings that you include are changed, settings that you omit are unchanged, and a setting with the value null returns to its default value. The resulting configuration must be valid for the target extension version. If you omit ConfigurationValues, the configuration is unchanged.
+        ConfigurationValues: string
+        -- A unique, case-sensitive identifier that you provide so that the request is idempotent. If you send the same update more than once, SageMaker HyperPod applies it once and doesn't return an error.
+        ClientToken: string
+    end
+
+    record UpdateClusterExtensionOutput
+        -- The Amazon Resource Name (ARN) of the extension that is being updated. To track the update, call DescribeClusterExtension.
+        ExtensionArn: string
     end
 
     record UpdateClusterSchedulerConfigInput
@@ -22372,6 +22556,8 @@ local record M
         RoleArn: string
         -- If specified, it applies to all executions of this pipeline by default.
         ParallelismConfiguration: ParallelismConfiguration
+        -- The aliases to assign to the new pipeline version that this update creates. You can specify aliases only when the update changes the pipeline definition. To change the aliases of an existing version, use UpdatePipelineVersion. An alias must be unique within the pipeline. To move an alias from an existing version to the new version, first remove the alias from the existing version with UpdatePipelineVersion.
+        PipelineVersionAliases: {string}
     end
 
     record UpdatePipelineOutput
@@ -22406,6 +22592,8 @@ local record M
         PipelineVersionDisplayName: string
         -- The description of the pipeline version.
         PipelineVersionDescription: string
+        -- The aliases to add to or remove from the pipeline version.
+        PipelineVersionAliasOperations: AliasOperations
     end
 
     record UpdatePipelineVersionOutput

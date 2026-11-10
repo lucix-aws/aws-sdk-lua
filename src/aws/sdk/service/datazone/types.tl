@@ -1860,6 +1860,8 @@ local record M
         "ICEBERGRESTCATALOG"
         "SNOWFLAKEICEBERGRESTCATALOG"
         "DATABRICKSICEBERGRESTCATALOG"
+        "WORKDAYICEBERGRESTCATALOG"
+        "WORKDAYLDQ"
     end
 
     -- Physical connection requirements of a connection.
@@ -2669,6 +2671,8 @@ local record M
         "ICEBERGRESTCATALOG"
         "SNOWFLAKEICEBERGRESTCATALOG"
         "DATABRICKSICEBERGRESTCATALOG"
+        "WORKDAYICEBERGRESTCATALOG"
+        "WORKDAYLDQ"
     end
 
     -- The Amazon Web Services Glue connection.
@@ -3245,10 +3249,9 @@ local record M
         name: string
         -- A human-readable description of the designation and its intended use.
         description: string
-        -- The Cedar permit policy that defines what actions holders of this
-        -- designation are allowed to perform.
+        -- The Cedar permit policy that defines the actions holders of this designation are allowed to perform.
         policy: string
-        -- Whether deletion protection is enabled for this designation. Defaults to true when omitted.
+        -- Specifies whether deletion protection is enabled for this designation. Defaults to true when omitted. When enabled, DeleteDesignation is rejected until protection is disabled through UpdateDesignation.
         deletionProtection: boolean
     end
 
@@ -3268,14 +3271,11 @@ local record M
         name: string
         -- A human-readable description of the designation and its intended use.
         description: string
-        -- The classification of this designation. MANAGED designations are
-        -- system-defined and cannot be modified or deleted.
+        -- The classification of this designation. Valid values: MANAGED — System-defined designations that cannot be modified or deleted. USER_CREATED — Designations created through CreateDesignation.
         designationType: string
-        -- The Cedar permit policy that governs what actions holders of this
-        -- designation are allowed to perform.
+        -- The Cedar permit policy that governs the actions holders of this designation are allowed to perform.
         policy: string
-        -- Whether deletion protection is enabled for this designation. When true,
-        -- DeleteDesignation is rejected until protection is disabled via UpdateDesignation.
+        -- Specifies whether deletion protection is enabled for this designation. When true, DeleteDesignation is rejected until protection is disabled through UpdateDesignation.
         deletionProtection: boolean
         -- The identifier of the Amazon DataZone user who created the designation.
         createdBy: string
@@ -6271,14 +6271,11 @@ local record M
         name: string
         -- A human-readable description of the designation and its intended use.
         description: string
-        -- The classification of this designation. MANAGED designations are
-        -- system-defined and cannot be modified or deleted.
+        -- The classification of this designation. Valid values: MANAGED — System-defined designations that cannot be modified or deleted. USER_CREATED — Designations created through CreateDesignation.
         designationType: string
-        -- The Cedar permit policy that governs what actions holders of this
-        -- designation are allowed to perform.
+        -- The Cedar permit policy that governs the actions holders of this designation are allowed to perform.
         policy: string
-        -- Whether deletion protection is enabled for this designation. When true,
-        -- DeleteDesignation is rejected until protection is disabled via UpdateDesignation.
+        -- Specifies whether deletion protection is enabled for this designation. When true, DeleteDesignation is rejected until protection is disabled through UpdateDesignation.
         deletionProtection: boolean
         -- The identifier of the Amazon DataZone user who created the designation.
         createdBy: string
@@ -7258,7 +7255,7 @@ local record M
         maxResults: number
     end
 
-    -- Summary representation of a designation returned by list operations.
+    -- The summary representation of a designation returned by ListDesignations. The summary omits the Cedar permit policy. Call GetDesignation to retrieve the full designation record including the policy.
     record DesignationSummary
         -- The identifier of the Amazon DataZone domain that contains the designation.
         domainId: string
@@ -7268,9 +7265,9 @@ local record M
         name: string
         -- A human-readable description of the designation and its intended use.
         description: string
-        -- The classification of this designation.
+        -- The classification of this designation. Valid values: MANAGED — System-defined designation. USER_CREATED — User-created designation.
         designationType: string
-        -- Whether deletion protection is enabled for this designation.
+        -- Specifies whether deletion protection is enabled for this designation. When true, DeleteDesignation is rejected until protection is disabled through UpdateDesignation.
         deletionProtection: boolean
         -- The identifier of the Amazon DataZone user who created the designation.
         createdBy: string
@@ -9981,9 +9978,9 @@ local record M
         name: string
         -- The updated human-readable description of the designation and its intended use.
         description: string
-        -- The updated Cedar permit policy.
+        -- The updated Cedar permit policy. Omit to keep the existing policy.
         policy: string
-        -- Whether deletion protection is enabled for this designation. Omit to keep the existing value.
+        -- Specifies whether deletion protection is enabled for this designation. Omit to keep the existing value.
         deletionProtection: boolean
     end
 
@@ -9998,14 +9995,11 @@ local record M
         name: string
         -- A human-readable description of the designation and its intended use.
         description: string
-        -- The classification of this designation. MANAGED designations are
-        -- system-defined and cannot be modified or deleted.
+        -- The classification of this designation. Valid values: MANAGED — System-defined designations that cannot be modified or deleted. USER_CREATED — Designations created through CreateDesignation.
         designationType: string
-        -- The Cedar permit policy that governs what actions holders of this
-        -- designation are allowed to perform.
+        -- The Cedar permit policy that governs the actions holders of this designation are allowed to perform.
         policy: string
-        -- Whether deletion protection is enabled for this designation. When true,
-        -- DeleteDesignation is rejected until protection is disabled via UpdateDesignation.
+        -- Specifies whether deletion protection is enabled for this designation. When true, DeleteDesignation is rejected until protection is disabled through UpdateDesignation.
         deletionProtection: boolean
         -- The identifier of the Amazon DataZone user who created the designation.
         createdBy: string

@@ -182,6 +182,8 @@ M.TaskContainerDependencyList = schema.new({ type = "list", list_member = M.Task
 
 M.ListAttemptTaskContainerDetails = schema.new({ type = "list", list_member = M.AttemptTaskContainerDetails })
 
+M.EksContainerLinuxCapabilityList = schema.new({ type = "list", list_member = prelude.String })
+
 M.FirelensConfigurationOptionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ArrayProperties = schema.new({
@@ -3311,6 +3313,49 @@ M.EksContainerResourceRequirements = schema.new({
     },
 })
 
+M.EksContainerLinuxCapabilities = schema.new({
+    id = id.from(_N, "EksContainerLinuxCapabilities"),
+    type = "structure",
+    members = {
+        add = schema.new({
+            id = id.from(_N, "EksContainerLinuxCapabilities", "add"),
+            type = "list",
+            name = "add",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        drop = schema.new({
+            id = id.from(_N, "EksContainerLinuxCapabilities", "drop"),
+            type = "list",
+            name = "drop",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.EksSeccompProfile = schema.new({
+    id = id.from(_N, "EksSeccompProfile"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "EksSeccompProfile", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        localhostProfile = schema.new({
+            id = id.from(_N, "EksSeccompProfile", "localhostProfile"),
+            type = "string",
+            name = "localhostProfile",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EksContainerSecurityContext = schema.new({
     id = id.from(_N, "EksContainerSecurityContext"),
     type = "structure",
@@ -3350,6 +3395,20 @@ M.EksContainerSecurityContext = schema.new({
             type = "boolean",
             name = "runAsNonRoot",
             target_id = prelude.Boolean.id,
+        }),
+        capabilities = schema.new({
+            id = id.from(_N, "EksContainerSecurityContext", "capabilities"),
+            type = "structure",
+            name = "capabilities",
+            target_id = id.from(_N, "EksContainerLinuxCapabilities"),
+            target = M.EksContainerLinuxCapabilities,
+        }),
+        seccompProfile = schema.new({
+            id = id.from(_N, "EksContainerSecurityContext", "seccompProfile"),
+            type = "structure",
+            name = "seccompProfile",
+            target_id = id.from(_N, "EksSeccompProfile"),
+            target = M.EksSeccompProfile,
         }),
     },
 })
@@ -3496,6 +3555,44 @@ M.EksMetadata = schema.new({
             type = "string",
             name = "namespace",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EksPodSecurityContext = schema.new({
+    id = id.from(_N, "EksPodSecurityContext"),
+    type = "structure",
+    members = {
+        runAsUser = schema.new({
+            id = id.from(_N, "EksPodSecurityContext", "runAsUser"),
+            type = "long",
+            name = "runAsUser",
+            target_id = prelude.Long.id,
+        }),
+        runAsGroup = schema.new({
+            id = id.from(_N, "EksPodSecurityContext", "runAsGroup"),
+            type = "long",
+            name = "runAsGroup",
+            target_id = prelude.Long.id,
+        }),
+        runAsNonRoot = schema.new({
+            id = id.from(_N, "EksPodSecurityContext", "runAsNonRoot"),
+            type = "boolean",
+            name = "runAsNonRoot",
+            target_id = prelude.Boolean.id,
+        }),
+        seccompProfile = schema.new({
+            id = id.from(_N, "EksPodSecurityContext", "seccompProfile"),
+            type = "structure",
+            name = "seccompProfile",
+            target_id = id.from(_N, "EksSeccompProfile"),
+            target = M.EksSeccompProfile,
+        }),
+        fsGroup = schema.new({
+            id = id.from(_N, "EksPodSecurityContext", "fsGroup"),
+            type = "long",
+            name = "fsGroup",
+            target_id = prelude.Long.id,
         }),
     },
 })
@@ -3682,6 +3779,13 @@ M.EksPodProperties = schema.new({
             type = "boolean",
             name = "shareProcessNamespace",
             target_id = prelude.Boolean.id,
+        }),
+        securityContext = schema.new({
+            id = id.from(_N, "EksPodProperties", "securityContext"),
+            type = "structure",
+            name = "securityContext",
+            target_id = id.from(_N, "EksPodSecurityContext"),
+            target = M.EksPodSecurityContext,
         }),
     },
 })
@@ -4909,6 +5013,13 @@ M.EksPodPropertiesDetail = schema.new({
             type = "boolean",
             name = "shareProcessNamespace",
             target_id = prelude.Boolean.id,
+        }),
+        securityContext = schema.new({
+            id = id.from(_N, "EksPodPropertiesDetail", "securityContext"),
+            type = "structure",
+            name = "securityContext",
+            target_id = id.from(_N, "EksPodSecurityContext"),
+            target = M.EksPodSecurityContext,
         }),
     },
 })

@@ -111,6 +111,7 @@ local record Client
     startServiceSoftwareUpdate: function(Client, types.StartServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartServiceSoftwareUpdateOutput>
     switchoverReplication: function(Client, types.SwitchoverReplicationInput, ? base_client.InvokeOptions): async.Operation<types.SwitchoverReplicationOutput>
     updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateClone: function(Client, types.UpdateCloneInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloneOutput>
     updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
     updateDirectQueryDataSource: function(Client, types.UpdateDirectQueryDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectQueryDataSourceOutput>
     updateDomainConfig: function(Client, types.UpdateDomainConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainConfigOutput>
@@ -534,6 +535,10 @@ end
 
 function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
+end
+
+function C:updateClone(input: types.UpdateCloneInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateClone as schema.OperationSchema, input, options) as async.Operation<types.UpdateCloneOutput>
 end
 
 function C:updateDataSource(input: types.UpdateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>

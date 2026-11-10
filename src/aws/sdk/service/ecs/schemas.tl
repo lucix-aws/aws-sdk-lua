@@ -988,6 +988,12 @@ M.InstanceLaunchTemplate = schema.new({
             target_id = id.from(_N, "CapacityReservationRequest"),
             target = M.CapacityReservationRequest,
         }),
+        nitroEnclavesEnabled = schema.new({
+            id = id.from(_N, "InstanceLaunchTemplate", "nitroEnclavesEnabled"),
+            type = "boolean",
+            name = "nitroEnclavesEnabled",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -6836,6 +6842,28 @@ M.RuntimePlatform = schema.new({
     },
 })
 
+M.TrustedExecutionConfiguration = schema.new({
+    id = id.from(_N, "TrustedExecutionConfiguration"),
+    type = "structure",
+    members = {
+        isolationMode = schema.new({
+            id = id.from(_N, "TrustedExecutionConfiguration", "isolationMode"),
+            type = "string",
+            name = "isolationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attestationPolicy = schema.new({
+            id = id.from(_N, "TrustedExecutionConfiguration", "attestationPolicy"),
+            type = "string",
+            name = "attestationPolicy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DockerVolumeConfiguration = schema.new({
     id = id.from(_N, "DockerVolumeConfiguration"),
     type = "structure",
@@ -7257,6 +7285,13 @@ M.TaskDefinition = schema.new({
             type = "boolean",
             name = "enableFaultInjection",
             target_id = prelude.Boolean.id,
+        }),
+        trustedExecutionConfiguration = schema.new({
+            id = id.from(_N, "TaskDefinition", "trustedExecutionConfiguration"),
+            type = "structure",
+            name = "trustedExecutionConfiguration",
+            target_id = id.from(_N, "TrustedExecutionConfiguration"),
+            target = M.TrustedExecutionConfiguration,
         }),
     },
 })
@@ -14010,6 +14045,13 @@ M.RegisterTaskDefinitionInput = schema.new({
             name = "enableFaultInjection",
             target_id = prelude.Boolean.id,
         }),
+        trustedExecutionConfiguration = schema.new({
+            id = id.from(_N, "RegisterTaskDefinitionInput", "trustedExecutionConfiguration"),
+            type = "structure",
+            name = "trustedExecutionConfiguration",
+            target_id = id.from(_N, "TrustedExecutionConfiguration"),
+            target = M.TrustedExecutionConfiguration,
+        }),
     },
 })
 
@@ -14399,6 +14441,28 @@ M.TaskOverride = schema.new({
     },
 })
 
+M.TrustedExecutionSummary = schema.new({
+    id = id.from(_N, "TrustedExecutionSummary"),
+    type = "structure",
+    members = {
+        isolationMode = schema.new({
+            id = id.from(_N, "TrustedExecutionSummary", "isolationMode"),
+            type = "string",
+            name = "isolationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attestationPolicyStatus = schema.new({
+            id = id.from(_N, "TrustedExecutionSummary", "attestationPolicyStatus"),
+            type = "string",
+            name = "attestationPolicyStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Task = schema.new({
     id = id.from(_N, "Task"),
     type = "structure",
@@ -14638,6 +14702,13 @@ M.Task = schema.new({
             name = "fargateEphemeralStorage",
             target_id = id.from(_N, "TaskEphemeralStorage"),
             target = M.TaskEphemeralStorage,
+        }),
+        trustedExecutionSummary = schema.new({
+            id = id.from(_N, "Task", "trustedExecutionSummary"),
+            type = "structure",
+            name = "trustedExecutionSummary",
+            target_id = id.from(_N, "TrustedExecutionSummary"),
+            target = M.TrustedExecutionSummary,
         }),
     },
 })
