@@ -32,6 +32,8 @@ M.VirtualObjectList = schema.new({ type = "list", list_member = M.VirtualObject 
 
 M.PrincipalResourcePermissionsList = schema.new({ type = "list", list_member = M.PrincipalResourcePermissions })
 
+M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ColumnLFTagsList = schema.new({ type = "list", list_member = M.ColumnLFTag })
 
 M.PartitionedTableObjectsList = schema.new({ type = "list", list_member = M.PartitionObjects })
@@ -141,6 +143,28 @@ M.LFTagPair = schema.new({
             name = "TagValues",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnyResource = schema.new({
+    id = id.from(_N, "AnyResource"),
+    type = "structure",
+    members = {
+        CatalogId = schema.new({
+            id = id.from(_N, "AnyResource", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "AnyResource", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -475,10 +499,57 @@ M.TableWithColumnsResource = schema.new({
     },
 })
 
+M.UserDefinedFunctionWildcard = schema.new({
+    id = id.from(_N, "UserDefinedFunctionWildcard"),
+    type = "structure",
+})
+
+M.UserDefinedFunctionResource = schema.new({
+    id = id.from(_N, "UserDefinedFunctionResource"),
+    type = "structure",
+    members = {
+        CatalogId = schema.new({
+            id = id.from(_N, "UserDefinedFunctionResource", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+        }),
+        DatabaseName = schema.new({
+            id = id.from(_N, "UserDefinedFunctionResource", "DatabaseName"),
+            type = "string",
+            name = "DatabaseName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UserDefinedFunctionResource", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        UserDefinedFunctionWildcard = schema.new({
+            id = id.from(_N, "UserDefinedFunctionResource", "UserDefinedFunctionWildcard"),
+            type = "structure",
+            name = "UserDefinedFunctionWildcard",
+            target_id = id.from(_N, "UserDefinedFunctionWildcard"),
+            target = M.UserDefinedFunctionWildcard,
+        }),
+    },
+})
+
 M.Resource = schema.new({
     id = id.from(_N, "Resource"),
     type = "structure",
     members = {
+        AnyResource = schema.new({
+            id = id.from(_N, "Resource", "AnyResource"),
+            type = "structure",
+            name = "AnyResource",
+            target_id = id.from(_N, "AnyResource"),
+            target = M.AnyResource,
+        }),
         Catalog = schema.new({
             id = id.from(_N, "Resource", "Catalog"),
             type = "structure",
@@ -548,6 +619,13 @@ M.Resource = schema.new({
             name = "RLSPolicy",
             target_id = id.from(_N, "RLSPolicyResource"),
             target = M.RLSPolicyResource,
+        }),
+        UserDefinedFunction = schema.new({
+            id = id.from(_N, "Resource", "UserDefinedFunction"),
+            type = "structure",
+            name = "UserDefinedFunction",
+            target_id = id.from(_N, "UserDefinedFunctionResource"),
+            target = M.UserDefinedFunctionResource,
         }),
     },
 })
@@ -2509,6 +2587,48 @@ M.GetEffectivePermissionsForPathOutput = schema.new({
     },
 })
 
+M.GetGlueFunctionSessionContextInput = schema.new({
+    id = id.from(_N, "GetGlueFunctionSessionContextRequest"),
+    type = "structure",
+    members = {
+        UserDefinedFunctionArns = schema.new({
+            id = id.from(_N, "GetGlueFunctionSessionContextInput", "UserDefinedFunctionArns"),
+            type = "list",
+            name = "UserDefinedFunctionArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DurationSeconds = schema.new({
+            id = id.from(_N, "GetGlueFunctionSessionContextInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.GetGlueFunctionSessionContextOutput = schema.new({
+    id = id.from(_N, "GetGlueFunctionSessionContextResponse"),
+    type = "structure",
+    members = {
+        SessionContextId = schema.new({
+            id = id.from(_N, "GetGlueFunctionSessionContextOutput", "SessionContextId"),
+            type = "string",
+            name = "SessionContextId",
+            target_id = prelude.String.id,
+        }),
+        Expiration = schema.new({
+            id = id.from(_N, "GetGlueFunctionSessionContextOutput", "Expiration"),
+            type = "timestamp",
+            name = "Expiration",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.GetLFTagInput = schema.new({
     id = id.from(_N, "GetLFTagRequest"),
     type = "structure",
@@ -3208,6 +3328,60 @@ M.GetTemporaryDataLocationCredentialsOutput = schema.new({
             type = "string",
             name = "CredentialsScope",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetTemporaryGlueFunctionCredentialsInput = schema.new({
+    id = id.from(_N, "GetTemporaryGlueFunctionCredentialsRequest"),
+    type = "structure",
+    members = {
+        UserDefinedFunctionArn = schema.new({
+            id = id.from(_N, "GetTemporaryGlueFunctionCredentialsInput", "UserDefinedFunctionArn"),
+            type = "string",
+            name = "UserDefinedFunctionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AuditContext = schema.new({
+            id = id.from(_N, "GetTemporaryGlueFunctionCredentialsInput", "AuditContext"),
+            type = "structure",
+            name = "AuditContext",
+            target_id = id.from(_N, "AuditContext"),
+            target = M.AuditContext,
+        }),
+    },
+})
+
+M.GetTemporaryGlueFunctionCredentialsOutput = schema.new({
+    id = id.from(_N, "GetTemporaryGlueFunctionCredentialsResponse"),
+    type = "structure",
+    members = {
+        AccessKeyId = schema.new({
+            id = id.from(_N, "GetTemporaryGlueFunctionCredentialsOutput", "AccessKeyId"),
+            type = "string",
+            name = "AccessKeyId",
+            target_id = prelude.String.id,
+        }),
+        SecretAccessKey = schema.new({
+            id = id.from(_N, "GetTemporaryGlueFunctionCredentialsOutput", "SecretAccessKey"),
+            type = "string",
+            name = "SecretAccessKey",
+            target_id = prelude.String.id,
+        }),
+        SessionToken = schema.new({
+            id = id.from(_N, "GetTemporaryGlueFunctionCredentialsOutput", "SessionToken"),
+            type = "string",
+            name = "SessionToken",
+            target_id = prelude.String.id,
+        }),
+        Expiration = schema.new({
+            id = id.from(_N, "GetTemporaryGlueFunctionCredentialsOutput", "Expiration"),
+            type = "timestamp",
+            name = "Expiration",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -5647,6 +5821,18 @@ M.GetEffectivePermissionsForPath = schema.operation({
     },
 })
 
+M.GetGlueFunctionSessionContext = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetGlueFunctionSessionContext"),
+    input = M.GetGlueFunctionSessionContextInput,
+    output = M.GetGlueFunctionSessionContextOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetGlueFunctionSessionContext" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetLFTag = schema.operation({
     id = id.from("com.amazonaws.lakeformation", "GetLFTag"),
     input = M.GetLFTagInput,
@@ -5737,6 +5923,18 @@ M.GetTemporaryDataLocationCredentials = schema.operation({
     output = M.GetTemporaryDataLocationCredentialsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/GetTemporaryDataLocationCredentials" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTemporaryGlueFunctionCredentials = schema.operation({
+    id = id.from("com.amazonaws.lakeformation", "GetTemporaryGlueFunctionCredentials"),
+    input = M.GetTemporaryGlueFunctionCredentialsInput,
+    output = M.GetTemporaryGlueFunctionCredentialsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetTemporaryGlueFunctionCredentials" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -140,6 +140,8 @@ M.ContainerFleetRemoveAttributeList = schema.new({ type = "list", list_member = 
 
 M.ContainerGroupDefinitionRemoveAttributeList = schema.new({ type = "list", list_member = prelude.String })
 
+M.LogDeliveryDestinationList = schema.new({ type = "list", list_member = M.LogDeliveryDestination })
+
 M.FilterInstanceStatuses = schema.new({ type = "list", list_member = prelude.String })
 
 M.ContainerFleetLocationAttributesList = schema.new({ type = "list", list_member = M.ContainerFleetLocationAttributes })
@@ -3397,6 +3399,45 @@ M.FilterConfiguration = schema.new({
     },
 })
 
+M.LogDeliveryDestination = schema.new({
+    id = id.from(_N, "LogDeliveryDestination"),
+    type = "structure",
+    members = {
+        LogDestination = schema.new({
+            id = id.from(_N, "LogDeliveryDestination", "LogDestination"),
+            type = "string",
+            name = "LogDestination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationArn = schema.new({
+            id = id.from(_N, "LogDeliveryDestination", "DestinationArn"),
+            type = "string",
+            name = "DestinationArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GameSessionQueueLogConfiguration = schema.new({
+    id = id.from(_N, "GameSessionQueueLogConfiguration"),
+    type = "structure",
+    members = {
+        DeliveryDestinations = schema.new({
+            id = id.from(_N, "GameSessionQueueLogConfiguration", "DeliveryDestinations"),
+            type = "list",
+            name = "DeliveryDestinations",
+            target_id = prelude.Document.id,
+            list_member = M.LogDeliveryDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PlayerLatencyPolicy = schema.new({
     id = id.from(_N, "PlayerLatencyPolicy"),
     type = "structure",
@@ -3503,6 +3544,13 @@ M.CreateGameSessionQueueInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        LogConfiguration = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "LogConfiguration"),
+            type = "structure",
+            name = "LogConfiguration",
+            target_id = id.from(_N, "GameSessionQueueLogConfiguration"),
+            target = M.GameSessionQueueLogConfiguration,
+        }),
     },
 })
 
@@ -3567,6 +3615,13 @@ M.GameSessionQueue = schema.new({
             type = "string",
             name = "NotificationTarget",
             target_id = prelude.String.id,
+        }),
+        LogConfiguration = schema.new({
+            id = id.from(_N, "GameSessionQueue", "LogConfiguration"),
+            type = "structure",
+            name = "LogConfiguration",
+            target_id = id.from(_N, "GameSessionQueueLogConfiguration"),
+            target = M.GameSessionQueueLogConfiguration,
         }),
     },
 })
@@ -10037,6 +10092,20 @@ M.UpdateGameSessionQueueInput = schema.new({
             type = "string",
             name = "NotificationTarget",
             target_id = prelude.String.id,
+        }),
+        AddLogDeliveryDestinations = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "AddLogDeliveryDestinations"),
+            type = "list",
+            name = "AddLogDeliveryDestinations",
+            target_id = prelude.Document.id,
+            list_member = M.LogDeliveryDestination,
+        }),
+        RemoveLogDeliveryDestinations = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "RemoveLogDeliveryDestinations"),
+            type = "list",
+            name = "RemoveLogDeliveryDestinations",
+            target_id = prelude.Document.id,
+            list_member = M.LogDeliveryDestination,
         }),
     },
 })

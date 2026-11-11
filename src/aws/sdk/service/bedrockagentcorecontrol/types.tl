@@ -668,6 +668,38 @@ local record M
         capacityProviderVolume: CapacityProviderVolumeConfiguration
     end
 
+    -- A lifecycle hook action that sends an HTTP POST request to the agent's container. The path and port can't conflict with a path that your agent already serves for AgentCore Runtime, such as the protocol's invocation path or the health check path.
+    record HttpPostLifecycleHookAction
+        -- The path in the agent's container that AgentCore Runtime sends the POST request to.
+        path: string
+        -- The port in the agent's container that AgentCore Runtime sends the POST request to. If you don't specify a port, the default is the runtime's server port: the port in the protocol configuration if one is set, otherwise the protocol's default port.
+        port: number
+    end
+
+    -- The action that a lifecycle hook runs. Specify exactly one member. Currently, httpPost is the only supported action.
+    record LifecycleHookAction
+        -- Sends an HTTP POST request to your agent's container on the specified port and path to run the hook. The hook succeeds if your container returns a 2xx response. The hook fails if your container returns any other response or doesn't respond before the hook times out.
+        httpPost: HttpPostLifecycleHookAction
+    end
+
+    -- A lifecycle hook, which defines the action that AgentCore Runtime runs at a point in the runtime's lifecycle.
+    record LifecycleHook
+        -- The action that AgentCore Runtime runs for the hook. Specify exactly one action.
+        action: LifecycleHookAction
+    end
+
+    -- The lifecycle hooks that run when you create or update the AgentCore Runtime, before any sessions are created.
+    record BuildLifecycleHooks
+        -- The hook that warms up your agent before any sessions are created. Use this hook to load the resources that your sessions need, such as models, libraries, or caches. Your hook must complete within 120 seconds.
+        warmup: LifecycleHook
+    end
+
+    -- The lifecycle hooks that AgentCore Runtime runs at fixed points in the runtime's lifecycle.
+    record RuntimeHooksConfiguration
+        -- The hooks that run when you create or update the AgentCore Runtime, before any sessions are created.
+        build: BuildLifecycleHooks
+    end
+
     -- LifecycleConfiguration lets you manage the lifecycle of runtime sessions and resources in AgentCore Runtime. This configuration helps optimize resource utilization by automatically cleaning up idle sessions and preventing long-running instances from consuming resources indefinitely.
     record LifecycleConfiguration
         -- Timeout in seconds for idle runtime sessions. When a session remains idle for this duration, it will be automatically terminated. Default: 900 seconds (15 minutes).
@@ -722,6 +754,12 @@ local record M
         requestHeaderAllowlist: {string}
     end
 
+    -- The resource configuration for an AgentCore Runtime.
+    record ResourceConfiguration
+        -- The minimum amount of memory, in mebibytes, to allocate to the AgentCore Runtime.
+        minimumMemoryInMiB: number
+    end
+
     record CreateAgentRuntimeInput
         -- The name of the AgentCore Runtime.
         agentRuntimeName: string
@@ -743,6 +781,8 @@ local record M
         protocolConfiguration: ProtocolConfiguration
         -- The life cycle configuration for the AgentCore Runtime.
         lifecycleConfiguration: LifecycleConfiguration
+        -- The lifecycle hooks configuration for the AgentCore Runtime. Use lifecycle hooks to run actions in the agent's container at fixed points in the runtime's lifecycle, such as warming up the agent before sessions are created.
+        hooksConfiguration: RuntimeHooksConfiguration
         -- Environment variables to set in the AgentCore Runtime environment.
         environmentVariables: {string : string}
         -- The filesystem configurations to mount into the AgentCore Runtime. Use filesystem configurations to provide persistent storage to your AgentCore Runtime sessions.
@@ -755,6 +795,8 @@ local record M
         platformVersion: string
         -- The additional ports on the AgentCore Runtime that are reachable through the runtime's session URL. Specify one to five non-overlapping entries, each containing either a single port or an inclusive port range. Ports must be between 8000 and 12000, excluding the reserved port 8443.
         allowedPorts: {AllowedPort}
+        -- The resource configurations for the AgentCore Runtime, such as the minimum amount of memory to allocate to the runtime. You can specify at most one resource configuration.
+        resourceConfigurations: {ResourceConfiguration}
     end
 
     enum AgentRuntimeStatus
@@ -840,6 +882,8 @@ local record M
         status: string
         -- The life cycle configuration for the AgentCore Runtime.
         lifecycleConfiguration: LifecycleConfiguration
+        -- The lifecycle hooks configuration for the AgentCore Runtime.
+        hooksConfiguration: RuntimeHooksConfiguration
         -- The reason for failure if the AgentCore Runtime is in a failed state.
         failureReason: string
         -- The description of the AgentCore Runtime.
@@ -866,6 +910,8 @@ local record M
         platformVersion: string
         -- The additional ports on the AgentCore Runtime that are reachable through the runtime's session URL.
         allowedPorts: {AllowedPort}
+        -- The resource configurations for the AgentCore Runtime.
+        resourceConfigurations: {ResourceConfiguration}
     end
 
     record ListAgentRuntimesInput
@@ -935,6 +981,8 @@ local record M
         protocolConfiguration: ProtocolConfiguration
         -- The updated life cycle configuration for the AgentCore Runtime.
         lifecycleConfiguration: LifecycleConfiguration
+        -- The updated lifecycle hooks configuration for the AgentCore Runtime.
+        hooksConfiguration: RuntimeHooksConfiguration
         -- The updated configuration for microVM Metadata Service (MMDS) settings for the AgentCore Runtime.
         metadataConfiguration: RuntimeMetadataConfiguration
         -- Updated environment variables to set in the AgentCore Runtime environment.
@@ -947,6 +995,8 @@ local record M
         platformVersion: string
         -- The updated additional ports on the AgentCore Runtime that are reachable through the runtime's session URL. Specify one to five non-overlapping entries, each containing either a single port or an inclusive port range. Ports must be between 8000 and 12000, excluding the reserved port 8443.
         allowedPorts: {AllowedPort}
+        -- The updated resource configurations for the AgentCore Runtime. You can specify at most one resource configuration.
+        resourceConfigurations: {ResourceConfiguration}
         -- A unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
     end
@@ -3227,6 +3277,14 @@ local record M
         "AUTHENTICATE_ONLY"
     end
 
+    -- The public domain names for a gateway that clients reach through your own proxy or custom domain. When you configure a domain override, the gateway advertises these domains instead of the inbound Host header in the URLs that it returns for OAuth discovery, such as the protected resource metadata and the WWW-Authenticate challenge.
+    record DomainOverride
+        -- The default public domain name for the gateway. The gateway advertises this domain when a request doesn't select a specific domain.
+        defaultDomain: string
+        -- Additional public domain names for the gateway, up to 10. Don't repeat the default domain or list a domain more than once. A request can select one of these domains, or the default domain, with the x-amzn-bedrock-agentcore-gateway-domain header. The gateway rejects a request that selects a domain that isn't configured.
+        alternateDomains: {string}
+    end
+
     enum ExceptionLevel
         "DEBUG"
     end
@@ -3364,6 +3422,8 @@ local record M
         exceptionLevel: string
         -- A map of key-value pairs to associate with the gateway as metadata tags.
         tags: {string : string}
+        -- The public domain names that the gateway advertises in its OAuth discovery URLs instead of the inbound Host header. Specify this when clients reach the gateway through your own proxy or custom domain.
+        domainOverride: DomainOverride
     end
 
     -- The Lambda configuration for custom transformations. This structure defines the Lambda function that the gateway invokes to transform data.
@@ -3443,6 +3503,8 @@ local record M
         webAclArn: string
         -- The Amazon Web Services WAF configuration for the gateway.
         wafConfiguration: WafConfiguration
+        -- The public domain names that the gateway advertises in its OAuth discovery URLs instead of the inbound Host header.
+        domainOverride: DomainOverride
     end
 
     record DeleteGatewayInput
@@ -3508,6 +3570,8 @@ local record M
         webAclArn: string
         -- The Amazon Web Services WAF configuration for the gateway.
         wafConfiguration: WafConfiguration
+        -- The public domain names that the gateway advertises in its OAuth discovery URLs instead of the inbound Host header.
+        domainOverride: DomainOverride
     end
 
     record ListGatewaysInput
@@ -3572,6 +3636,8 @@ local record M
         exceptionLevel: string
         -- The updated Amazon Web Services WAF configuration for the gateway.
         wafConfiguration: WafConfiguration
+        -- The updated public domain names that the gateway advertises in its OAuth discovery URLs instead of the inbound Host header. Specify this when clients reach the gateway through your own proxy or custom domain.
+        domainOverride: DomainOverride
     end
 
     record UpdateGatewayOutput
@@ -3618,6 +3684,8 @@ local record M
         webAclArn: string
         -- The Amazon Web Services WAF configuration for the gateway.
         wafConfiguration: WafConfiguration
+        -- The public domain names that the gateway advertises in its OAuth discovery URLs instead of the inbound Host header.
+        domainOverride: DomainOverride
     end
 
     enum MatchOperator
@@ -5641,7 +5709,7 @@ local record M
         encryptionKeyArn: string
         -- The Amazon Resource Name (ARN) of the IAM role that provides permissions for the memory to access Amazon Web Services services.
         memoryExecutionRoleArn: string
-        -- The duration after which memory events expire. Specified as an ISO 8601 duration.
+        -- The number of days after which memory events expire, between 7 and 3650 days.
         eventExpiryDuration: number
         -- The memory strategies to use for this memory. Strategies define how information is extracted, processed, and consolidated.
         memoryStrategies: {MemoryStrategyInput}
@@ -6129,7 +6197,7 @@ local record M
         memoryId: string
         -- The updated description of the AgentCore Memory resource.
         description: string
-        -- The number of days after which memory events will expire, between 7 and 365 days.
+        -- The number of days after which memory events expire, between 7 and 3650 days.
         eventExpiryDuration: number
         -- The ARN of the IAM role that provides permissions for the AgentCore Memory resource.
         memoryExecutionRoleArn: string

@@ -51,6 +51,7 @@ local record Client
     getOmniDashboard: function(Client, types.GetOmniDashboardInput, ? base_client.InvokeOptions): async.Operation<types.GetOmniDashboardOutput>
     getSpace: function(Client, types.GetSpaceInput, ? base_client.InvokeOptions): async.Operation<types.GetSpaceOutput>
     getSpaceCredentialsForOrganization: function(Client, types.GetSpaceCredentialsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.GetSpaceCredentialsForOrganizationOutput>
+    getSpaceDataAccess: function(Client, types.GetSpaceDataAccessInput, ? base_client.InvokeOptions): async.Operation<types.GetSpaceDataAccessOutput>
     getTelemetryQueryResults: function(Client, types.GetTelemetryQueryResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryQueryResultsOutput>
     getView: function(Client, types.GetViewInput, ? base_client.InvokeOptions): async.Operation<types.GetViewOutput>
     listAccessGrants: function(Client, types.ListAccessGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessGrantsOutput>
@@ -253,6 +254,10 @@ end
 
 function C:getSpaceCredentialsForOrganization(input: types.GetSpaceCredentialsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSpaceCredentialsForOrganizationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSpaceCredentialsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.GetSpaceCredentialsForOrganizationOutput>
+end
+
+function C:getSpaceDataAccess(input: types.GetSpaceDataAccessInput, options?: base_client.InvokeOptions): async.Operation<types.GetSpaceDataAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSpaceDataAccess as schema.OperationSchema, input, options) as async.Operation<types.GetSpaceDataAccessOutput>
 end
 
 function C:getTelemetryQueryResults(input: types.GetTelemetryQueryResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTelemetryQueryResultsOutput>

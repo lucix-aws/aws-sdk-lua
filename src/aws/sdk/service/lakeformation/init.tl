@@ -48,6 +48,7 @@ local record Client
     getDataLakePrincipal: function(Client, types.GetDataLakePrincipalInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakePrincipalOutput>
     getDataLakeSettings: function(Client, types.GetDataLakeSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakeSettingsOutput>
     getEffectivePermissionsForPath: function(Client, types.GetEffectivePermissionsForPathInput, ? base_client.InvokeOptions): async.Operation<types.GetEffectivePermissionsForPathOutput>
+    getGlueFunctionSessionContext: function(Client, types.GetGlueFunctionSessionContextInput, ? base_client.InvokeOptions): async.Operation<types.GetGlueFunctionSessionContextOutput>
     getLFTag: function(Client, types.GetLFTagInput, ? base_client.InvokeOptions): async.Operation<types.GetLFTagOutput>
     getLFTagExpression: function(Client, types.GetLFTagExpressionInput, ? base_client.InvokeOptions): async.Operation<types.GetLFTagExpressionOutput>
     getQueryState: function(Client, types.GetQueryStateInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStateOutput>
@@ -56,6 +57,7 @@ local record Client
     getRLSPolicy: function(Client, types.GetRLSPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetRLSPolicyOutput>
     getTableObjects: function(Client, types.GetTableObjectsInput, ? base_client.InvokeOptions): async.Operation<types.GetTableObjectsOutput>
     getTemporaryDataLocationCredentials: function(Client, types.GetTemporaryDataLocationCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
+    getTemporaryGlueFunctionCredentials: function(Client, types.GetTemporaryGlueFunctionCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryGlueFunctionCredentialsOutput>
     getTemporaryGluePartitionCredentials: function(Client, types.GetTemporaryGluePartitionCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>
     getTemporaryGlueTableCredentials: function(Client, types.GetTemporaryGlueTableCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryGlueTableCredentialsOutput>
     getWorkUnitResults: function(Client, types.GetWorkUnitResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkUnitResultsOutput>
@@ -251,6 +253,10 @@ function C:getEffectivePermissionsForPath(input: types.GetEffectivePermissionsFo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEffectivePermissionsForPath as schema.OperationSchema, input, options) as async.Operation<types.GetEffectivePermissionsForPathOutput>
 end
 
+function C:getGlueFunctionSessionContext(input: types.GetGlueFunctionSessionContextInput, options?: base_client.InvokeOptions): async.Operation<types.GetGlueFunctionSessionContextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGlueFunctionSessionContext as schema.OperationSchema, input, options) as async.Operation<types.GetGlueFunctionSessionContextOutput>
+end
+
 function C:getLFTag(input: types.GetLFTagInput, options?: base_client.InvokeOptions): async.Operation<types.GetLFTagOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLFTag as schema.OperationSchema, input, options) as async.Operation<types.GetLFTagOutput>
 end
@@ -281,6 +287,10 @@ end
 
 function C:getTemporaryDataLocationCredentials(input: types.GetTemporaryDataLocationCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemporaryDataLocationCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
+end
+
+function C:getTemporaryGlueFunctionCredentials(input: types.GetTemporaryGlueFunctionCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemporaryGlueFunctionCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemporaryGlueFunctionCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetTemporaryGlueFunctionCredentialsOutput>
 end
 
 function C:getTemporaryGluePartitionCredentials(input: types.GetTemporaryGluePartitionCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>

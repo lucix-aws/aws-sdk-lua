@@ -22,6 +22,10 @@ M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = p
 
 M.NodeList = schema.new({ type = "list", list_member = M.Node })
 
+M.DataAccessTargetList = schema.new({ type = "list", list_member = M.DataAccessTarget })
+
+M.DataAccessAuditContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.RowList = schema.new({ type = "list", list_member = M.Row })
 
 M.AccessGrantSummaryList = schema.new({ type = "list", list_member = M.AccessGrantSummary })
@@ -83,6 +87,8 @@ M.OperationDetails = schema.new({ type = "map", map_key = prelude.String, map_va
 M.SignalSet = schema.new({ type = "list", list_member = prelude.String })
 
 M.EdgeList = schema.new({ type = "list", list_member = M.Edge })
+
+M.DataAccessActionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NotificationTargetMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -4505,6 +4511,99 @@ M.GetSpaceCredentialsForOrganizationOutput = schema.new({
     },
 })
 
+M.DataAccessTarget = schema.new({
+    id = id.from(_N, "DataAccessTarget"),
+    type = "structure",
+    members = {
+        actions = schema.new({
+            id = id.from(_N, "DataAccessTarget", "actions"),
+            type = "list",
+            name = "actions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSpaceDataAccessInput = schema.new({
+    id = id.from(_N, "GetSpaceDataAccessInput"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "GetSpaceDataAccessInput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetScopes = schema.new({
+            id = id.from(_N, "GetSpaceDataAccessInput", "targetScopes"),
+            type = "list",
+            name = "targetScopes",
+            target_id = prelude.Document.id,
+            list_member = M.DataAccessTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        durationSeconds = schema.new({
+            id = id.from(_N, "GetSpaceDataAccessInput", "durationSeconds"),
+            type = "integer",
+            name = "durationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        auditContext = schema.new({
+            id = id.from(_N, "GetSpaceDataAccessInput", "auditContext"),
+            type = "map",
+            name = "auditContext",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetSpaceDataAccessOutput = schema.new({
+    id = id.from(_N, "GetSpaceDataAccessOutput"),
+    type = "structure",
+    members = {
+        credentials = schema.new({
+            id = id.from(_N, "GetSpaceDataAccessOutput", "credentials"),
+            type = "structure",
+            name = "credentials",
+            target_id = id.from(_N, "AwsCredentials"),
+            target = M.AwsCredentials,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PolicyTooLargeException = schema.new({
+    id = id.from(_N, "PolicyTooLargeException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "PolicyTooLargeException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetTelemetryQueryResultsInput = schema.new({
     id = id.from(_N, "GetTelemetryQueryResultsRequest"),
     type = "structure",
@@ -6952,6 +7051,17 @@ M.GetSpaceCredentialsForOrganization = schema.operation({
     id = id.from("com.amazonaws.cloudwatchomni", "GetSpaceCredentialsForOrganization"),
     input = M.GetSpaceCredentialsForOrganizationInput,
     output = M.GetSpaceCredentialsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSpaceDataAccess = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchomni", "GetSpaceDataAccess"),
+    input = M.GetSpaceDataAccessInput,
+    output = M.GetSpaceDataAccessOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

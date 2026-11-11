@@ -1159,6 +1159,15 @@ local record M
     record UntagResourceOutput
     end
 
+    -- The request conflicted with a concurrent modification of the same resource and did not take effect.
+    record RetryableConflictException
+        message: string
+        -- The identifier of the resource involved in the concurrent modification.
+        resourceId: string
+        -- The type of the resource involved in the concurrent modification.
+        resourceType: string
+    end
+
     -- The client token was already used with different request parameters. A client token must map to the same parameters for every request. To retry this operation, provide a new client token.
     record ConflictException
         message: string

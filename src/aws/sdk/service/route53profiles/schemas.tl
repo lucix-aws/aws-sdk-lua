@@ -101,6 +101,12 @@ M.AssociateProfileInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Tag,
         }),
+        Priority = schema.new({
+            id = id.from(_N, "AssociateProfileInput", "Priority"),
+            type = "integer",
+            name = "Priority",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -161,6 +167,12 @@ M.ProfileAssociation = schema.new({
             type = "timestamp",
             name = "ModificationTime",
             target_id = prelude.Timestamp.id,
+        }),
+        Priority = schema.new({
+            id = id.from(_N, "ProfileAssociation", "Priority"),
+            type = "integer",
+            name = "Priority",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -883,6 +895,15 @@ M.ListProfileResourceAssociationsInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "resourceType" },
             },
         }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListProfileResourceAssociationsInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "resourceArn" },
+            },
+        }),
         MaxResults = schema.new({
             id = id.from(_N, "ListProfileResourceAssociationsInput", "MaxResults"),
             type = "integer",
@@ -1099,6 +1120,52 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
+})
+
+M.UpdateProfileAssociationInput = schema.new({
+    id = id.from(_N, "UpdateProfileAssociationRequest"),
+    type = "structure",
+    members = {
+        ProfileAssociationId = schema.new({
+            id = id.from(_N, "UpdateProfileAssociationInput", "ProfileAssociationId"),
+            type = "string",
+            name = "ProfileAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateProfileAssociationInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Priority = schema.new({
+            id = id.from(_N, "UpdateProfileAssociationInput", "Priority"),
+            type = "integer",
+            name = "Priority",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.UpdateProfileAssociationOutput = schema.new({
+    id = id.from(_N, "UpdateProfileAssociationResponse"),
+    type = "structure",
+    members = {
+        ProfileAssociation = schema.new({
+            id = id.from(_N, "UpdateProfileAssociationOutput", "ProfileAssociation"),
+            type = "structure",
+            name = "ProfileAssociation",
+            target_id = id.from(_N, "ProfileAssociation"),
+            target = M.ProfileAssociation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.UpdateProfileResourceAssociationInput = schema.new({
@@ -1343,6 +1410,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/tags/{ResourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfileAssociation = schema.operation({
+    id = id.from("com.amazonaws.route53profiles", "UpdateProfileAssociation"),
+    input = M.UpdateProfileAssociationInput,
+    output = M.UpdateProfileAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/profileassociation/{ProfileAssociationId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

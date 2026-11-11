@@ -80,6 +80,7 @@ local record M
         "CUSTOMER_ARTIFACT"
         "CUSTOMER_ARTIFACT_LOG"
         "TESTSPEC_OUTPUT"
+        "DEVICE_CONNECT_COMMAND_LOG"
     end
 
     -- Represents the output of a test. Examples of artifacts include logs and
@@ -517,7 +518,7 @@ local record M
         -- The name-value string pairs that specify additional settings for the remote access
         -- session.
         -- appium:version: The major version of the Appium server to use for
-        -- the session (for example, 2 or 3). The service may reject the selected version
+        -- the session (for example, 2 or 3). The service might reject the selected version
         -- if it is not available for the selected device.
         parameters: {string : string}
     end
@@ -1126,6 +1127,7 @@ local record M
 
     enum InsightsType
         "TEST_REPORT"
+        "NONE"
     end
 
     -- Represents a latitude and longitude pair, expressed in geographic coordinate system degrees (for
@@ -1184,10 +1186,12 @@ local record M
         environmentVariables: {EnvironmentVariable}
         -- An IAM role to be assumed by the test host for the run.
         executionRoleArn: string
-        -- The types of insights to generate for a run. Specify one or more values to opt in to
-        -- insights generation when scheduling a run.
-        -- Insights are currently supported for custom mode runs with Instrumentation, Appium Java TestNG,
-        -- and XCTest UI test types.
+        -- The types of insights to generate for a run. If you do not specify a value, the default is
+        -- TEST_REPORT for runs that support insights.
+        -- Specify NONE if you do not want the service to generate insights for the run.
+        -- You cannot combine NONE with any other value.
+        -- Insights are supported for custom mode runs of all test types except Appium Ruby and
+        -- Appium Web Ruby.
         insightsTypes: {string}
     end
 
@@ -1787,6 +1791,9 @@ local record M
         skipAppResign: boolean
         -- The ARN of the YAML-formatted test specification for the run.
         testSpecArn: string
+        -- The ARN of the test package the run was scheduled with. This field is not returned for
+        -- test types that do not use a test package, such as BUILTIN_FUZZ.
+        testPackageArn: string
         -- The results of a device filter used to select the devices for a test run.
         deviceSelectionResult: DeviceSelectionResult
         -- The VPC security groups and subnets that are attached to a project.

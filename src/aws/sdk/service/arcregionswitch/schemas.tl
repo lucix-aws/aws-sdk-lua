@@ -3028,6 +3028,37 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.RetryableConflictException = schema.new({
+    id = id.from(_N, "RetryableConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "RetryableConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "RetryableConflictException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "RetryableConflictException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",

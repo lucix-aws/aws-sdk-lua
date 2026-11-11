@@ -18,6 +18,19 @@ local record M
         TagValues: {string}
     end
 
+    enum AnyResourceSupportedTypes
+        "TABLE"
+    end
+
+    -- Represents all resources of the specified type in a Data Catalog, including resources that are created after
+    -- the grant.
+    record AnyResource
+        -- The ID of the Data Catalog. By default, it's your account ID.
+        CatalogId: string
+        -- The type of resource that the grant covers. The only supported value is TABLE.
+        ResourceType: string
+    end
+
     -- A structure for the catalog object.
     record CatalogResource
         -- An identifier for the catalog resource.
@@ -145,8 +158,35 @@ local record M
         ColumnWildcard: ColumnWildcard
     end
 
+    -- A wildcard object representing every user-defined function in a database.
+    record UserDefinedFunctionWildcard
+    end
+
+    -- Identifies a user-defined function, or all user-defined functions in a database, as a resource that you can
+    -- grant permissions on. You can grant permissions only on functions whose GovernanceMode is
+    -- LAKE_FORMATION.
+    record UserDefinedFunctionResource
+        -- The ID of the Data Catalog. By default, it's your account ID.
+        CatalogId: string
+        -- The name of the database that contains the function.
+        DatabaseName: string
+        -- The name of the function.
+        -- Exactly one of UserDefinedFunctionResource$Name or
+        -- UserDefinedFunctionResource$UserDefinedFunctionWildcard is required.
+        Name: string
+        -- A wildcard object representing every user-defined function in the database, including functions created
+        -- after the grant.
+        -- Exactly one of UserDefinedFunctionResource$Name or
+        -- UserDefinedFunctionResource$UserDefinedFunctionWildcard is required.
+        UserDefinedFunctionWildcard: UserDefinedFunctionWildcard
+    end
+
     -- A structure for the resource.
     record Resource
+        -- All resources of the specified type in a Data Catalog. When you grant or revoke permissions on this
+        -- resource, the principal must be a user-defined function whose GovernanceMode is
+        -- LAKE_FORMATION, and the Data Catalog must be in your account.
+        AnyResource: AnyResource
         -- The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your Lake Formation environment.
         Catalog: CatalogResource
         -- The database for the resource. Unique to the Data Catalog. A database is a set of associated table definitions organized into a logical group. You can Grant and Revoke database permissions to a principal.
@@ -167,6 +207,15 @@ local record M
         LFTagExpression: LFTagExpressionResource
         -- A row-level security policy resource. Specify this when granting or revoking permissions on a row-level security policy.
         RLSPolicy: RLSPolicyResource
+        -- The user-defined function that you want to grant or revoke permissions on. The function's
+        -- GovernanceMode must be LAKE_FORMATION. You can grant the following permissions:
+        -- EXECUTE – Use the function in a job, and get credentials to download its
+        -- artifacts.
+        -- DESCRIBE – View the function's definition.
+        -- ALTER – Update the function.
+        -- DROP – Delete the function.
+        -- ALL – All of the preceding permissions.
+        UserDefinedFunction: UserDefinedFunctionResource
     end
 
     record AddLFTagsToResourceInput
@@ -337,6 +386,7 @@ local record M
         "CREATE_LF_TAG_EXPRESSION"
         "CREATE_CATALOG"
         "SUPER_USER"
+        "EXECUTE"
     end
 
     -- A permission to a resource granted by batch operation to the principal.
@@ -920,6 +970,22 @@ local record M
         NextToken: string
     end
 
+    record GetGlueFunctionSessionContextInput
+        -- The ARNs of one or more user-defined functions to include in the session context, each in the format
+        -- arn:aws:glue:region:account-id:userDefinedFunction/database-name/function-name
+        -- .
+        UserDefinedFunctionArns: {string}
+        -- The number of seconds the session context is valid. The default is 86,400 (24 hours).
+        DurationSeconds: number
+    end
+
+    record GetGlueFunctionSessionContextOutput
+        -- The ID of the session context.
+        SessionContextId: string
+        -- The date and time when the session context expires.
+        Expiration: number
+    end
+
     record GetLFTagInput
         -- The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your Lake Formation environment.
         CatalogId: string
@@ -1181,6 +1247,27 @@ local record M
         CredentialsScope: string
     end
 
+    record GetTemporaryGlueFunctionCredentialsInput
+        -- The ARN of the user-defined function whose artifacts you want to download, in the format
+        -- arn:aws:glue:region:account-id:userDefinedFunction/database-name/function-name
+        -- .
+        UserDefinedFunctionArn: string
+        -- Context for the request, such as the column names and query ID, that Lake Formation uses for
+        -- auditing.
+        AuditContext: AuditContext
+    end
+
+    record GetTemporaryGlueFunctionCredentialsOutput
+        -- The access key ID for the temporary credentials.
+        AccessKeyId: string
+        -- The secret key for the temporary credentials.
+        SecretAccessKey: string
+        -- The session token for the temporary credentials.
+        SessionToken: string
+        -- The date and time when the temporary credentials expire.
+        Expiration: number
+    end
+
     -- Contains a list of values defining partitions.
     record PartitionValueList
         -- The list of partition values.
@@ -1437,6 +1524,7 @@ local record M
     end
 
     enum DataLakeResourceType
+        "ANY_RESOURCE"
         "CATALOG"
         "DATABASE"
         "TABLE"
@@ -1446,6 +1534,7 @@ local record M
         "LF_TAG_POLICY_DATABASE"
         "LF_TAG_POLICY_TABLE"
         "LF_NAMED_TAG_EXPRESSION"
+        "USER_DEFINED_FUNCTION"
     end
 
     record ListPermissionsInput

@@ -3468,6 +3468,12 @@ M.Run = schema.new({
             name = "testSpecArn",
             target_id = prelude.String.id,
         }),
+        testPackageArn = schema.new({
+            id = id.from(_N, "Run", "testPackageArn"),
+            type = "string",
+            name = "testPackageArn",
+            target_id = prelude.String.id,
+        }),
         deviceSelectionResult = schema.new({
             id = id.from(_N, "Run", "deviceSelectionResult"),
             type = "structure",

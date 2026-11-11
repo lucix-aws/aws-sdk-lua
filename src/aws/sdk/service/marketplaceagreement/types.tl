@@ -374,7 +374,7 @@ local record M
     record FreeTrialPricingTerm
         -- The unique identifier for the terms.
         id: string
-        -- Duration of the free trial period (5–31 days).
+        -- Duration of the free trial period. The allowed duration depends on the product type. For SaaS products, the free trial lasts 7 to 90 days.
         duration: string
         -- Entitlements granted to the acceptor of a free trial as part of an agreement execution.
         grants: {GrantItem}
@@ -787,6 +787,8 @@ local record M
         endTimeBehaviorType: string
         -- The reason why the agreement doesn't renew at its end date. The field is null when the agreement renews. More than one reason can apply to the same agreement. When that happens, the operation returns only one reason code, and PROPOSER_RENEW_OPTED_OUT takes precedence over all others. The EnableAutoRenew field reflects only the acceptor's preference, and doesn't reflect the other reasons an agreement might not renew. Reason codes include: PROPOSER_RENEW_OPTED_OUT – The proposer opted out of renewing the agreement. ACCEPTOR_RENEW_OPTED_OUT – The acceptor opted out of renewing the agreement. NO_RENEWAL_TERM – The accepted terms of the agreement don't include a renewal term, which is required for an agreement to renew. RENEWAL_LIMIT_EXHAUSTED – The agreement reached the maximum number of renewals allowed by its renewal term.
         endTimeBehaviorReasonCode: string
+        -- The date and time when the free trial of the agreement ends. This field is present only when the agreement includes a free trial. For an agreement that includes both a free trial and usage-based pricing, the agreement converts to paid usage at this time.
+        freeTrialEndTime: number
     end
 
     enum BillingAdjustmentReasonCode
@@ -1085,6 +1087,12 @@ local record M
         agreementValue: string
     end
 
+    -- Contains details about the free trial of an agreement, including when the free trial ends.
+    record FreeTrialSummary
+        -- The date and time when the free trial ends. For an agreement that includes both a free trial and usage-based pricing, the agreement converts to paid usage at this time.
+        trialEndTime: number
+    end
+
     record DescribeAgreementOutput
         -- The unique identifier of the agreement.
         agreementId: string
@@ -1110,6 +1118,8 @@ local record M
         initialAgreementId: string
         -- The behavior of the agreement when it reaches its end date. For example, whether the agreement renews, and if it doesn't, the reason why. This field is present for every active agreement that has an end date. It is not present for an agreement that has no end date, because such an agreement never reaches an end time. Pay-as-you-go agreements are the most common example. It is also not present for an agreement that is no longer active.
         endTimeBehavior: EndTimeBehavior
+        -- The free trial details of the agreement. This field is present only when the agreement includes a free trial.
+        freeTrialSummary: FreeTrialSummary
     end
 
     record GetAgreementCancellationRequestInput

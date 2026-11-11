@@ -37,11 +37,11 @@ local record M
         resourceType: string
     end
 
-    -- An Amazon EC2 launch template PCS uses to launch compute nodes.
+    -- An Amazon EC2 launch template PCS uses to launch compute nodes. The structure contains the launch template ID and version.
     record CustomLaunchTemplate
-        -- The ID of the EC2 launch template to use to provision instances. Example: lt-xxxx
+        -- The ID of the EC2 launch template to use to provision instances. Specify this value together with version. Example: lt-xxxx
         id: string
-        -- The version of the EC2 launch template to use to provision instances.
+        -- The version of the EC2 launch template to use to provision instances. Specify this value together with id.
         version: string
     end
 
@@ -49,6 +49,11 @@ local record M
     record InstanceConfig
         -- The EC2 instance type that PCS can provision in the compute node group. Example: t2.xlarge
         instanceType: string
+    end
+
+    enum LaunchTemplateMode
+        "CUSTOM"
+        "MANAGED"
     end
 
     enum ScriptCachingPolicy
@@ -153,16 +158,23 @@ local record M
     end
 
     record CreateComputeNodeGroupInput
+        -- The ID of the Amazon Machine Image (AMI) that PCS uses to launch compute nodes (Amazon EC2 instances). This value overrides the AMI ID in the custom launch template. If you don't provide this value, PCS uses the AMI ID specified in the custom launch template. You must provide this value if launchTemplateMode is MANAGED.
+        amiId: string
+        -- The IDs of the EC2 security groups to configure directly on the compute node group. The security groups must be in the same VPC as the cluster. PCS uses these security groups instead of the security groups in the custom launch template. You can't specify this value if the custom launch template defines network interfaces. If you don't provide this value, PCS uses the security groups in the custom launch template. You must provide this value if launchTemplateMode is MANAGED. For more information, see Configuring instance settings for compute node groups in PCS in the PCS User Guide.
+        securityGroupIds: {string}
+        -- The name of the EC2 key pair to configure directly on the compute node group. The key pair must exist in your account and Amazon Web Services Region. PCS uses this key pair instead of the key pair in the custom launch template. If you don't provide this value, PCS uses the key pair in the custom launch template, if one is specified. You must have permission for ec2:DescribeKeyPairs. If you delete the key pair later, future instance launches can fail. For more information, see Configuring instance settings for compute node groups in PCS in the PCS User Guide.
+        sshKeyName: string
         -- The name or ID of the cluster to create a compute node group in.
         clusterIdentifier: string
         -- A name to identify the cluster. Example: MyCluster
         computeNodeGroupName: string
-        -- The ID of the Amazon Machine Image (AMI) that PCS uses to launch compute nodes (Amazon EC2 instances). If you don't provide this value, PCS uses the AMI ID specified in the custom launch template.
-        amiId: string
         -- The list of subnet IDs where the compute node group launches instances. Subnets must be in the same VPC as the cluster.
         subnetIds: {string}
         -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, Interruptible Capacity Reservations, On-Demand Capacity Reservations, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. For more information about PCS support for interruptible capacity reservations, see Using I-ODCRs with PCS in the PCS User Guide. Choose On-Demand if you plan to use an On-Demand Capacity Reservation (ODCR). For more information, see Using ODCRs with PCS. If you don't provide this option, it defaults to On-Demand.
         purchaseOption: string
+        -- Specifies whether the compute node group uses a custom launch template or a launch template that PCS manages. The default value is CUSTOM. If the value is CUSTOM, provide customLaunchTemplate. If the value is MANAGED, omit customLaunchTemplate and provide amiId and securityGroupIds.
+        launchTemplateMode: string
+        -- The custom Amazon EC2 launch template to associate with the compute node group. Specify the launch template id and version when launchTemplateMode is CUSTOM. Don't specify this value when launchTemplateMode is MANAGED.
         customLaunchTemplate: CustomLaunchTemplate
         -- The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have the pcs:RegisterComputeNodeGroupInstance permission and the role name must start with AWSPCS or must have the path /aws-pcs/. For more information, see IAM instance profiles for PCS in the PCS User Guide.
         iamInstanceProfileArn: string
@@ -175,7 +187,7 @@ local record M
         slurmConfiguration: ComputeNodeGroupSlurmConfigurationRequest
         -- The lifecycle actions to run on compute nodes in the compute node group. Use lifecycle actions to run custom scripts at defined stages of a compute node's lifecycle, such as when a compute node finishes bootstrapping or becomes ready to accept jobs.
         nodeLifecycleActions: NodeLifecycleActionsRequest
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
         -- 1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string.
         tags: {string : string}
@@ -231,6 +243,12 @@ local record M
 
     -- A compute node group associated with a cluster.
     record ComputeNodeGroup
+        -- The ID of the Amazon Machine Image (AMI) that PCS uses to launch instances. If not present, PCS uses the AMI ID specified in the custom launch template.
+        amiId: string
+        -- The IDs of the EC2 security groups configured directly on the compute node group. PCS uses these security groups instead of the security groups in the custom launch template. This value isn't present if security groups aren't configured directly on the compute node group. In that case, PCS uses the security groups in the custom launch template.
+        securityGroupIds: {string}
+        -- The name of the EC2 key pair configured directly on the compute node group. PCS uses this key pair instead of the key pair in the custom launch template. This value isn't present if a key pair isn't configured directly on the compute node group. In that case, PCS uses the key pair in the custom launch template, if one is specified.
+        sshKeyName: string
         -- The name that identifies the compute node group.
         name: string
         -- The generated unique ID of the compute node group.
@@ -245,12 +263,13 @@ local record M
         modifiedAt: number
         -- The provisioning status of the compute node group. The provisioning status doesn't indicate the overall health of the compute node group. The resource enters the SUSPENDING and SUSPENDED states when the scheduler is beyond end of life and we have suspended the cluster. When in these states, you can't use the cluster. The cluster controller is down and all compute instances are terminated. The resources still count toward your service quotas. You can delete a resource if its status is SUSPENDED. For more information, see Frequently asked questions about Slurm versions in PCS in the PCS User Guide.
         status: string
-        -- The ID of the Amazon Machine Image (AMI) that PCS uses to launch instances. If not provided, PCS uses the AMI ID specified in the custom launch template.
-        amiId: string
         -- The list of subnet IDs where instances are provisioned by the compute node group. The subnets must be in the same VPC as the cluster.
         subnetIds: {string}
         -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, Interruptible Capacity Reservations, On-Demand Capacity Reservations, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. For more information about PCS support for interruptible capacity reservations, see Using I-ODCRs with PCS in the PCS User Guide. Choose On-Demand if you plan to use an On-Demand Capacity Reservation (ODCR). For more information, see Using ODCRs with PCS. If you don't provide this option, it defaults to On-Demand.
         purchaseOption: string
+        -- Indicates whether the compute node group uses a custom launch template or a launch template that PCS manages. The default value is CUSTOM. Valid values: CUSTOM – The compute node group uses the launch template in customLaunchTemplate. MANAGED – PCS creates and manages the launch template.
+        launchTemplateMode: string
+        -- The custom Amazon EC2 launch template associated with the compute node group. This value is present when launchTemplateMode is CUSTOM and isn't present when launchTemplateMode is MANAGED.
         customLaunchTemplate: CustomLaunchTemplate
         -- The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have the pcs:RegisterComputeNodeGroupInstance permission and the role name must start with AWSPCS or must have the path /aws-pcs/. For more information, see IAM instance profiles for PCS in the PCS User Guide.
         iamInstanceProfileArn: string
@@ -332,7 +351,7 @@ local record M
         clusterIdentifier: string
         -- The name or ID of the compute node group to delete.
         computeNodeGroupIdentifier: string
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
     end
 
@@ -403,14 +422,21 @@ local record M
     end
 
     record UpdateComputeNodeGroupInput
+        -- The ID of the Amazon Machine Image (AMI) that PCS uses to launch instances. This value overrides the AMI ID in the custom launch template. Specify an empty string ("") to remove the AMI ID from the compute node group and use the AMI ID specified in the custom launch template. Omit this value to leave the current setting unchanged.
+        amiId: string
+        -- The IDs of the EC2 security groups to configure directly on the compute node group. The security groups must be in the same VPC as the cluster. PCS uses these security groups instead of the security groups in the custom launch template. You can't specify this value if the custom launch template defines network interfaces. Specify an empty list ([]) to remove the security groups from the compute node group and use the security groups in the custom launch template. Omit this value to leave the current setting unchanged.
+        securityGroupIds: {string}
+        -- The name of the EC2 key pair to configure directly on the compute node group. The key pair must exist in your account and Amazon Web Services Region. PCS uses this key pair instead of the key pair in the custom launch template. Specify an empty string ("") to remove the key pair from the compute node group and use the key pair in the custom launch template. Omit this value to leave the current setting unchanged. You must have permission for ec2:DescribeKeyPairs to specify a key pair. If you delete the key pair later, future instance launches can fail.
+        sshKeyName: string
         -- The name or ID of the cluster of the compute node group.
         clusterIdentifier: string
         -- The name or ID of the compute node group.
         computeNodeGroupIdentifier: string
-        -- The ID of the Amazon Machine Image (AMI) that PCS uses to launch instances. If not provided, PCS uses the AMI ID specified in the custom launch template.
-        amiId: string
         -- The list of subnet IDs where the compute node group provisions instances. The subnets must be in the same VPC as the cluster.
         subnetIds: {string}
+        -- Specifies whether the compute node group uses a custom launch template or a launch template that PCS manages. Omit this value to keep the current mode. Valid values: CUSTOM – Use a custom launch template. To switch from MANAGED, also provide customLaunchTemplate. If the compute node group already uses CUSTOM and you omit customLaunchTemplate, the existing launch template is unchanged. MANAGED – Use a launch template created and managed by PCS. Omit customLaunchTemplate. Switching to this mode removes the custom launch template association but doesn't delete the launch template. When switching to MANAGED, the compute node group must have amiId and securityGroupIds configured. You can set these values in the same request.
+        launchTemplateMode: string
+        -- The custom Amazon EC2 launch template to associate with the compute node group. To set or change the custom launch template, specify id and version. If you provide this value and omit launchTemplateMode, the compute node group must already use CUSTOM mode. To switch from MANAGED to CUSTOM, specify launchTemplateMode as CUSTOM and provide this value. If the compute node group already uses CUSTOM, omit this value while also omitting launchTemplateMode, or while specifying CUSTOM, to keep the existing custom launch template. For more information, see Migrating a compute node group from a custom launch template in the PCS User Guide.
         customLaunchTemplate: CustomLaunchTemplate
         -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, Interruptible Capacity Reservations, On-Demand Capacity Reservations, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. For more information about PCS support for interruptible capacity reservations, see Using I-ODCRs with PCS in the PCS User Guide. Choose On-Demand if you plan to use an On-Demand Capacity Reservation (ODCR). For more information, see Using ODCRs with PCS. If you don't provide this option, it defaults to On-Demand.
         purchaseOption: string
@@ -423,7 +449,7 @@ local record M
         slurmConfiguration: UpdateComputeNodeGroupSlurmConfigurationRequest
         -- The lifecycle actions to run on compute nodes in the compute node group. Use lifecycle actions to run custom scripts at defined stages of a compute node's lifecycle, such as when a compute node finishes bootstrapping or becomes ready to accept jobs.
         nodeLifecycleActions: UpdateNodeLifecycleActionsRequest
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
     end
 
@@ -516,7 +542,7 @@ local record M
         networking: NetworkingRequest
         -- Additional options related to the Slurm scheduler.
         slurmConfiguration: ClusterSlurmConfigurationRequest
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
         -- 1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string.
         tags: {string : string}
@@ -651,7 +677,7 @@ local record M
     record DeleteClusterInput
         -- The name or ID of the cluster to delete.
         clusterIdentifier: string
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
     end
 
@@ -719,7 +745,7 @@ local record M
         computeNodeGroupConfigurations: {ComputeNodeGroupConfiguration}
         -- Additional options related to the Slurm scheduler.
         slurmConfiguration: QueueSlurmConfigurationRequest
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
         -- 1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string.
         tags: {string : string}
@@ -777,7 +803,7 @@ local record M
         clusterIdentifier: string
         -- The name or ID of the queue to delete.
         queueIdentifier: string
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
     end
 
@@ -844,7 +870,7 @@ local record M
         computeNodeGroupConfigurations: {ComputeNodeGroupConfiguration}
         -- Additional options related to the Slurm scheduler.
         slurmConfiguration: UpdateQueueSlurmConfigurationRequest
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
     end
 
@@ -917,7 +943,7 @@ local record M
     record UpdateClusterInput
         -- The name or ID of the cluster to update.
         clusterIdentifier: string
-        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate one for you.
         clientToken: string
         -- Additional options related to the Slurm scheduler.
         slurmConfiguration: UpdateClusterSlurmConfigurationRequest

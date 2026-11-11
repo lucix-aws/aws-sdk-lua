@@ -3203,6 +3203,40 @@ local record M
         AllowedLocations: {string}
     end
 
+    enum LogDeliveryDestinationType
+        "CLOUDWATCH"
+        "S3"
+        "FIREHOSE"
+    end
+
+    -- A single destination that receives game session placement insight logs for a game
+    -- session queue.
+    -- Amazon CloudWatch Logs vended log charges apply to each destination. Amazon S3 and Amazon Data Firehose
+    -- destinations also incur their own service charges. For more information, see Amazon CloudWatch Pricing.
+    record LogDeliveryDestination
+        -- The type of Amazon Web Services resource that receives the game session placement insight logs.
+        -- This value is required. Valid values are:
+        -- CLOUDWATCH -- an Amazon CloudWatch Logs log group.
+        -- S3 -- an Amazon S3 bucket.
+        -- FIREHOSE -- an Amazon Data Firehose delivery stream.
+        LogDestination: string
+        -- The Amazon Resource Name (ARN) of the resource that receives the game session
+        -- placement insight logs. This resource must match the type that you specify in
+        -- LogDestination. This value is required for FIREHOSE
+        -- destinations. For CLOUDWATCH and S3, you can omit this value;
+        -- Amazon GameLift Servers then creates a destination resource of the specified type on your behalf.
+        DestinationArn: string
+    end
+
+    -- A configuration that delivers game session placement insight logs to one or more
+    -- destinations of your choice.
+    record GameSessionQueueLogConfiguration
+        -- The destinations that receive game session placement insight logs for the
+        -- queue. You can specify up to 3 destinations. Each destination must have a unique
+        -- ARN.
+        DeliveryDestinations: {LogDeliveryDestination}
+    end
+
     -- Sets a latency cap for individual players when placing a game session. With a latency
     -- policy in force, a game session cannot be placed in a fleet location where a player
     -- reports latency higher than the cap. Latency policies are used only with placement
@@ -3281,7 +3315,7 @@ local record M
         -- not set, game sessions can be placed in any queue location.
         FilterConfiguration: FilterConfiguration
         -- Custom settings to use when prioritizing destinations and locations for game session placements. This
-        -- configuration replaces the FleetIQ default prioritization process. Priority types that are not explicitly
+        -- configuration replaces the default prioritization process. Priority types that are not explicitly
         -- named will be automatically applied at the end of the prioritization process.
         PriorityConfiguration: PriorityConfiguration
         -- Information to be added to all events that are related to this game session
@@ -3296,6 +3330,12 @@ local record M
         -- management, access management and cost allocation. For more information, see Tagging Amazon Web Services
         -- Resources in the Amazon Web Services General Reference.
         Tags: {Tag}
+        -- An optional configuration that delivers game session placement insight logs to one
+        -- or more destinations of your choice. Use these logs to diagnose why a game session
+        -- placement is FULFILLED, CANCELLED, TIMED_OUT, or
+        -- FAILED, which locations were evaluated, and the latency and cost factors
+        -- that influenced each decision.
+        LogConfiguration: GameSessionQueueLogConfiguration
     end
 
     -- Configuration for a game session placement mechanism that processes requests for new
@@ -3322,7 +3362,7 @@ local record M
         -- not set, game sessions can be placed in any queue location.
         FilterConfiguration: FilterConfiguration
         -- Custom settings to use when prioritizing destinations and locations for game session placements. This
-        -- configuration replaces the FleetIQ default prioritization process. Priority types that are not explicitly
+        -- configuration replaces the default prioritization process. Priority types that are not explicitly
         -- named will be automatically applied at the end of the prioritization process.
         PriorityConfiguration: PriorityConfiguration
         -- Information that is added to all events that are related to this game session
@@ -3332,6 +3372,12 @@ local record M
         -- Setting up
         -- notifications for game session placement.
         NotificationTarget: string
+        -- An optional configuration that delivers game session placement insight logs to one
+        -- or more destinations of your choice. Use these logs to diagnose why a game session
+        -- placement is FULFILLED, CANCELLED, TIMED_OUT, or
+        -- FAILED, which locations were evaluated, and the latency and cost factors
+        -- that influenced each decision.
+        LogConfiguration: GameSessionQueueLogConfiguration
     end
 
     record CreateGameSessionQueueOutput
@@ -4029,21 +4075,40 @@ local record M
         "IGNORE_PROTECTION"
     end
 
-    -- Set of rules for processing a deployment for a container fleet update.
+    -- Set of rules for processing a deployment for a container fleet update. For how
+    -- Amazon GameLift Servers validates and rolls out a deployment, see Container fleet deployments.
     record DeploymentConfiguration
         -- Determines how fleet deployment activity affects active game sessions on the fleet.
-        -- With protection, a deployment honors game session protection, and delays actions that
-        -- would interrupt a protected active game session until the game session ends. Without
-        -- protection, deployment activity can shut down all running tasks, including active game
-        -- sessions, regardless of game session protection.
+        -- A protected game session can't be terminated while it's active; a fleet sets the default
+        -- protection for its new game sessions with NewGameSessionProtectionPolicy.
+        -- WITH_PROTECTION -- The deployment honors game session protection,
+        -- and delays actions that would interrupt a protected active game session until the
+        -- game session ends.
+        -- IGNORE_PROTECTION -- The deployment replaces containers
+        -- regardless of game session activity, including active game sessions. This option
+        -- is useful during development and testing.
+        -- This setting also affects how long deployment validation can take. When the fleet's
+        -- NewGameSessionProtectionPolicy is FullProtection and the
+        -- deployment uses WITH_PROTECTION, validation waits for protected game
+        -- sessions to end.
+        -- Default value: WITH_PROTECTION
         ProtectionStrategy: string
-        -- Sets a minimum level of healthy tasks to maintain during deployment activity.
+        -- Sets the minimum percentage of the fleet's game server container groups to keep
+        -- healthy during deployment activity. A low value favors deployment speed; a high value
+        -- favors game server availability. For example, if the fleet runs 20 game server container
+        -- groups and this value is 75, Amazon GameLift Servers keeps at least 15 of them healthy, so it replaces no
+        -- more than 5 at a time.
+        -- Default value: 75
         MinimumHealthyPercentage: number
-        -- Determines what actions to take if a deployment fails. If the fleet is multi-location,
-        -- this strategy applies across all fleet locations. With a rollback strategy, updated
-        -- fleet instances are rolled back to the last successful deployment. Alternatively, you
-        -- can maintain a few impaired containers for the purpose of debugging, while all other
-        -- tasks return to the last successful deployment.
+        -- Determines what actions to take if a deployment fails validation. If the fleet is
+        -- multi-location, this strategy applies across all fleet locations.
+        -- ROLLBACK -- Returns all of the fleet's containers to the last
+        -- successful deployment.
+        -- MAINTAIN -- Keeps the containers that failed validation in place
+        -- so that you can inspect them, and returns all other containers to the last
+        -- successful deployment. Use this option when you're deploying a container image
+        -- that you want to be able to debug on failure.
+        -- Default value: MAINTAIN
         ImpairmentStrategy: string
     end
 
@@ -4409,16 +4474,26 @@ local record M
         -- to roll back to if deployment fails. Amazon GameLift Servers sets this property to the container group definition
         -- version that the fleet used when it was last active.
         RollbackPerInstanceBinaryArn: string
-        -- The status of fleet deployment activity in the location.
-        -- IN_PROGRESS -- The deployment is in progress.
-        -- IMPAIRED -- The deployment failed and the fleet has some impaired
-        -- containers.
-        -- COMPLETE -- The deployment has completed successfully.
+        -- The status of the fleet deployment. For per-location status, see
+        -- LocationalDeployment.
+        -- PENDING -- Amazon GameLift Servers has accepted the deployment and hasn't started
+        -- it yet.
+        -- IN_PROGRESS -- The deployment is in progress. This status covers
+        -- validation as well as the replacement of the fleet's containers.
+        -- IMPAIRED -- The deployment failed validation, and the fleet kept
+        -- the containers that failed validation so that you can inspect them. A deployment
+        -- reaches this status when its impairment strategy is MAINTAIN.
+        -- COMPLETE -- The deployment has completed successfully in every
+        -- fleet location.
         -- ROLLBACK_IN_PROGRESS -- The deployment failed and rollback has
-        -- been initiated.
-        -- ROLLBACK_IN_COMPLETE -- The deployment failed and rollback has
-        -- been completed.
-        -- CANCELLED -- The deployment was cancelled.
+        -- been initiated. A deployment reaches this status when its impairment strategy is
+        -- ROLLBACK.
+        -- ROLLBACK_COMPLETE -- The deployment failed and rollback has been
+        -- completed. The fleet is running the configuration from the last successful
+        -- deployment.
+        -- CANCELLED -- The deployment was cancelled because a new deployment
+        -- started for the same fleet.
+        -- For how to debug an impaired deployment or cancel one, see Container fleet deployments.
         DeploymentStatus: string
         -- Instructions for how to deploy updates to a container fleet and what actions to take
         -- if the deployment fails.
@@ -4431,15 +4506,23 @@ local record M
     -- all fleet locations.
     record LocationalDeployment
         -- The status of fleet deployment activity in the location.
-        -- IN_PROGRESS -- The deployment is in progress.
-        -- IMPAIRED -- The deployment failed and the fleet has some impaired
+        -- IN_PROGRESS -- The deployment is in progress in the location. This
+        -- status covers validation as well as the replacement of the location's
         -- containers.
-        -- COMPLETE -- The deployment has completed successfully.
+        -- IMPAIRED -- The deployment failed validation in the location, and
+        -- the location kept the containers that failed validation so that you can inspect
+        -- them. A location reaches this status when the deployment's impairment strategy is
+        -- MAINTAIN.
+        -- COMPLETE -- The deployment has completed successfully in the
+        -- location.
         -- ROLLBACK_IN_PROGRESS -- The deployment failed and rollback has
-        -- been initiated.
-        -- ROLLBACK_IN_COMPLETE -- The deployment failed and rollback has
-        -- been completed.
-        -- CANCELLED -- The deployment was cancelled.
+        -- been initiated in the location. A location reaches this status when the
+        -- deployment's impairment strategy is ROLLBACK.
+        -- ROLLBACK_COMPLETE -- The deployment failed and rollback has been
+        -- completed in the location. The location is running the configuration from the
+        -- last successful deployment.
+        -- CANCELLED -- The deployment was cancelled because a new deployment
+        -- started for the same fleet.
         DeploymentStatus: string
     end
 
@@ -6999,7 +7082,7 @@ local record M
         -- not set, game sessions can be placed in any queue location. To remove an existing filter configuration, pass in an empty set.
         FilterConfiguration: FilterConfiguration
         -- Custom settings to use when prioritizing destinations and locations for game session placements. This
-        -- configuration replaces the FleetIQ default prioritization process. Priority types that are not explicitly
+        -- configuration replaces the default prioritization process. Priority types that are not explicitly
         -- named will be automatically applied at the end of the prioritization process. To remove an existing priority configuration, pass in an empty set.
         PriorityConfiguration: PriorityConfiguration
         -- Information to be added to all events that are related to this game session
@@ -7009,6 +7092,12 @@ local record M
         -- Setting up
         -- notifications for game session placement.
         NotificationTarget: string
+        -- Log delivery destinations to add to the queue's log configuration
+        -- (LogConfiguration).
+        AddLogDeliveryDestinations: {LogDeliveryDestination}
+        -- Log delivery destinations to remove from the queue's log configuration
+        -- (LogConfiguration).
+        RemoveLogDeliveryDestinations: {LogDeliveryDestination}
     end
 
     record UpdateGameSessionQueueOutput

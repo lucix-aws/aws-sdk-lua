@@ -42,6 +42,8 @@ M.ContainerAssociations = schema.new({ type = "list", list_member = M.ContainerA
 
 M.FirewallPolicies = schema.new({ type = "list", list_member = M.FirewallPolicyMetadata })
 
+M.FirewallPoliciesV2 = schema.new({ type = "list", list_member = M.FirewallPolicyV2Metadata })
+
 M.VpcIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.Firewalls = schema.new({ type = "list", list_member = M.FirewallMetadata })
@@ -92,6 +94,10 @@ M.StatefulActions = schema.new({ type = "list", list_member = prelude.String })
 
 M.FirewallPolicyErrors = schema.new({ type = "list", list_member = M.FirewallPolicyError })
 
+M.FirewallRuleGroupEntries = schema.new({ type = "list", list_member = M.FirewallRuleGroupEntry })
+
+M.IpsRuleGroupEntries = schema.new({ type = "list", list_member = M.IpsRuleGroupEntry })
+
 M.ProxyRuleList = schema.new({ type = "list", list_member = M.ProxyRule })
 
 M.CreateProxyRuleList = schema.new({ type = "list", list_member = M.CreateProxyRule })
@@ -121,6 +127,8 @@ M.PortSets = schema.new({ type = "map", map_key = prelude.String, map_value = M.
 M.IPSetReferenceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IPSetReference })
 
 M.StatefulRules = schema.new({ type = "list", list_member = M.StatefulRule })
+
+M.FirewallRules = schema.new({ type = "list", list_member = M.FirewallRule })
 
 M.ProtocolStrings = schema.new({ type = "list", list_member = prelude.String })
 
@@ -2440,6 +2448,680 @@ M.CreateFirewallPolicyOutput = schema.new({
     },
 })
 
+M.IPSetReference = schema.new({
+    id = id.from(_N, "IPSetReference"),
+    type = "structure",
+    members = {
+        ReferenceArn = schema.new({
+            id = id.from(_N, "IPSetReference", "ReferenceArn"),
+            type = "string",
+            name = "ReferenceArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReferenceSets = schema.new({
+    id = id.from(_N, "ReferenceSets"),
+    type = "structure",
+    members = {
+        IPSetReferences = schema.new({
+            id = id.from(_N, "ReferenceSets", "IPSetReferences"),
+            type = "map",
+            name = "IPSetReferences",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.IPSetReference,
+        }),
+    },
+})
+
+M.RuleMetadata = schema.new({
+    id = id.from(_N, "RuleMetadata"),
+    type = "structure",
+    members = {
+        RuleEnabled = schema.new({
+            id = id.from(_N, "RuleMetadata", "RuleEnabled"),
+            type = "boolean",
+            name = "RuleEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        RuleDescription = schema.new({
+            id = id.from(_N, "RuleMetadata", "RuleDescription"),
+            type = "string",
+            name = "RuleDescription",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RuleOption = schema.new({
+    id = id.from(_N, "RuleOption"),
+    type = "structure",
+    members = {
+        Keyword = schema.new({
+            id = id.from(_N, "RuleOption", "Keyword"),
+            type = "string",
+            name = "Keyword",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Settings = schema.new({
+            id = id.from(_N, "RuleOption", "Settings"),
+            type = "list",
+            name = "Settings",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.FirewallRule = schema.new({
+    id = id.from(_N, "FirewallRule"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "FirewallRule", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ActionScope = schema.new({
+            id = id.from(_N, "FirewallRule", "ActionScope"),
+            type = "string",
+            name = "ActionScope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Hook = schema.new({
+            id = id.from(_N, "FirewallRule", "Hook"),
+            type = "string",
+            name = "Hook",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "FirewallRule", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceIPs = schema.new({
+            id = id.from(_N, "FirewallRule", "SourceIPs"),
+            type = "string",
+            name = "SourceIPs",
+            target_id = prelude.String.id,
+        }),
+        DestIPs = schema.new({
+            id = id.from(_N, "FirewallRule", "DestIPs"),
+            type = "string",
+            name = "DestIPs",
+            target_id = prelude.String.id,
+        }),
+        SourcePorts = schema.new({
+            id = id.from(_N, "FirewallRule", "SourcePorts"),
+            type = "string",
+            name = "SourcePorts",
+            target_id = prelude.String.id,
+        }),
+        DestPorts = schema.new({
+            id = id.from(_N, "FirewallRule", "DestPorts"),
+            type = "string",
+            name = "DestPorts",
+            target_id = prelude.String.id,
+        }),
+        RuleOptions = schema.new({
+            id = id.from(_N, "FirewallRule", "RuleOptions"),
+            type = "list",
+            name = "RuleOptions",
+            target_id = prelude.Document.id,
+            list_member = M.RuleOption,
+        }),
+        AcceptPriorHooks = schema.new({
+            id = id.from(_N, "FirewallRule", "AcceptPriorHooks"),
+            type = "boolean",
+            name = "AcceptPriorHooks",
+            target_id = prelude.Boolean.id,
+        }),
+        AlertEnabled = schema.new({
+            id = id.from(_N, "FirewallRule", "AlertEnabled"),
+            type = "boolean",
+            name = "AlertEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        BypassIPSEnabled = schema.new({
+            id = id.from(_N, "FirewallRule", "BypassIPSEnabled"),
+            type = "boolean",
+            name = "BypassIPSEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        RuleMetadata = schema.new({
+            id = id.from(_N, "FirewallRule", "RuleMetadata"),
+            type = "structure",
+            name = "RuleMetadata",
+            target_id = id.from(_N, "RuleMetadata"),
+            target = M.RuleMetadata,
+        }),
+    },
+})
+
+M.RulesSourceList = schema.new({
+    id = id.from(_N, "RulesSourceList"),
+    type = "structure",
+    members = {
+        Targets = schema.new({
+            id = id.from(_N, "RulesSourceList", "Targets"),
+            type = "list",
+            name = "Targets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetTypes = schema.new({
+            id = id.from(_N, "RulesSourceList", "TargetTypes"),
+            type = "list",
+            name = "TargetTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GeneratedRulesType = schema.new({
+            id = id.from(_N, "RulesSourceList", "GeneratedRulesType"),
+            type = "string",
+            name = "GeneratedRulesType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FirewallRulesSource = schema.new({
+    id = id.from(_N, "FirewallRulesSource"),
+    type = "structure",
+    members = {
+        RulesString = schema.new({
+            id = id.from(_N, "FirewallRulesSource", "RulesString"),
+            type = "string",
+            name = "RulesString",
+            target_id = prelude.String.id,
+        }),
+        FirewallRules = schema.new({
+            id = id.from(_N, "FirewallRulesSource", "FirewallRules"),
+            type = "list",
+            name = "FirewallRules",
+            target_id = prelude.Document.id,
+            list_member = M.FirewallRule,
+        }),
+        RulesSourceList = schema.new({
+            id = id.from(_N, "FirewallRulesSource", "RulesSourceList"),
+            type = "structure",
+            name = "RulesSourceList",
+            target_id = id.from(_N, "RulesSourceList"),
+            target = M.RulesSourceList,
+        }),
+    },
+})
+
+M.PortSet = schema.new({
+    id = id.from(_N, "PortSet"),
+    type = "structure",
+    members = {
+        Definition = schema.new({
+            id = id.from(_N, "PortSet", "Definition"),
+            type = "list",
+            name = "Definition",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RuleVariables = schema.new({
+    id = id.from(_N, "RuleVariables"),
+    type = "structure",
+    members = {
+        IPSets = schema.new({
+            id = id.from(_N, "RuleVariables", "IPSets"),
+            type = "map",
+            name = "IPSets",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.IPSet,
+        }),
+        PortSets = schema.new({
+            id = id.from(_N, "RuleVariables", "PortSets"),
+            type = "map",
+            name = "PortSets",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.PortSet,
+        }),
+    },
+})
+
+M.FirewallRuleGroup = schema.new({
+    id = id.from(_N, "FirewallRuleGroup"),
+    type = "structure",
+    members = {
+        RulesSource = schema.new({
+            id = id.from(_N, "FirewallRuleGroup", "RulesSource"),
+            type = "structure",
+            name = "RulesSource",
+            target_id = id.from(_N, "FirewallRulesSource"),
+            target = M.FirewallRulesSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleVariables = schema.new({
+            id = id.from(_N, "FirewallRuleGroup", "RuleVariables"),
+            type = "structure",
+            name = "RuleVariables",
+            target_id = id.from(_N, "RuleVariables"),
+            target = M.RuleVariables,
+        }),
+        ReferenceSets = schema.new({
+            id = id.from(_N, "FirewallRuleGroup", "ReferenceSets"),
+            type = "structure",
+            name = "ReferenceSets",
+            target_id = id.from(_N, "ReferenceSets"),
+            target = M.ReferenceSets,
+        }),
+    },
+})
+
+M.FirewallRuleGroupEntry = schema.new({
+    id = id.from(_N, "FirewallRuleGroupEntry"),
+    type = "structure",
+    members = {
+        Priority = schema.new({
+            id = id.from(_N, "FirewallRuleGroupEntry", "Priority"),
+            type = "integer",
+            name = "Priority",
+            target_id = prelude.Integer.id,
+        }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "FirewallRuleGroupEntry", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+        }),
+        InlineRuleGroup = schema.new({
+            id = id.from(_N, "FirewallRuleGroupEntry", "InlineRuleGroup"),
+            type = "structure",
+            name = "InlineRuleGroup",
+            target_id = id.from(_N, "FirewallRuleGroup"),
+            target = M.FirewallRuleGroup,
+        }),
+    },
+})
+
+M.IpsRulesSource = schema.new({
+    id = id.from(_N, "IpsRulesSource"),
+    type = "structure",
+    members = {
+        RulesString = schema.new({
+            id = id.from(_N, "IpsRulesSource", "RulesString"),
+            type = "string",
+            name = "RulesString",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IpsRuleGroup = schema.new({
+    id = id.from(_N, "IpsRuleGroup"),
+    type = "structure",
+    members = {
+        RulesSource = schema.new({
+            id = id.from(_N, "IpsRuleGroup", "RulesSource"),
+            type = "structure",
+            name = "RulesSource",
+            target_id = id.from(_N, "IpsRulesSource"),
+            target = M.IpsRulesSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleVariables = schema.new({
+            id = id.from(_N, "IpsRuleGroup", "RuleVariables"),
+            type = "structure",
+            name = "RuleVariables",
+            target_id = id.from(_N, "RuleVariables"),
+            target = M.RuleVariables,
+        }),
+        ReferenceSets = schema.new({
+            id = id.from(_N, "IpsRuleGroup", "ReferenceSets"),
+            type = "structure",
+            name = "ReferenceSets",
+            target_id = id.from(_N, "ReferenceSets"),
+            target = M.ReferenceSets,
+        }),
+    },
+})
+
+M.IpsRuleGroupOverride = schema.new({
+    id = id.from(_N, "IpsRuleGroupOverride"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "IpsRuleGroupOverride", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IpsRuleGroupEntry = schema.new({
+    id = id.from(_N, "IpsRuleGroupEntry"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "IpsRuleGroupEntry", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+        }),
+        InlineRuleGroup = schema.new({
+            id = id.from(_N, "IpsRuleGroupEntry", "InlineRuleGroup"),
+            type = "structure",
+            name = "InlineRuleGroup",
+            target_id = id.from(_N, "IpsRuleGroup"),
+            target = M.IpsRuleGroup,
+        }),
+        Override = schema.new({
+            id = id.from(_N, "IpsRuleGroupEntry", "Override"),
+            type = "structure",
+            name = "Override",
+            target_id = id.from(_N, "IpsRuleGroupOverride"),
+            target = M.IpsRuleGroupOverride,
+        }),
+    },
+})
+
+M.StatefulEngineOptionsV2 = schema.new({
+    id = id.from(_N, "StatefulEngineOptionsV2"),
+    type = "structure",
+    members = {
+        StreamExceptionPolicy = schema.new({
+            id = id.from(_N, "StatefulEngineOptionsV2", "StreamExceptionPolicy"),
+            type = "string",
+            name = "StreamExceptionPolicy",
+            target_id = prelude.String.id,
+        }),
+        FlowTimeouts = schema.new({
+            id = id.from(_N, "StatefulEngineOptionsV2", "FlowTimeouts"),
+            type = "structure",
+            name = "FlowTimeouts",
+            target_id = id.from(_N, "FlowTimeouts"),
+            target = M.FlowTimeouts,
+        }),
+    },
+})
+
+M.FirewallPolicyV2 = schema.new({
+    id = id.from(_N, "FirewallPolicyV2"),
+    type = "structure",
+    members = {
+        FirewallRuleGroupEntries = schema.new({
+            id = id.from(_N, "FirewallPolicyV2", "FirewallRuleGroupEntries"),
+            type = "list",
+            name = "FirewallRuleGroupEntries",
+            target_id = prelude.Document.id,
+            list_member = M.FirewallRuleGroupEntry,
+        }),
+        IpsRuleGroupEntries = schema.new({
+            id = id.from(_N, "FirewallPolicyV2", "IpsRuleGroupEntries"),
+            type = "list",
+            name = "IpsRuleGroupEntries",
+            target_id = prelude.Document.id,
+            list_member = M.IpsRuleGroupEntry,
+        }),
+        PolicyMode = schema.new({
+            id = id.from(_N, "FirewallPolicyV2", "PolicyMode"),
+            type = "string",
+            name = "PolicyMode",
+            target_id = prelude.String.id,
+        }),
+        FirewallDefaultAction = schema.new({
+            id = id.from(_N, "FirewallPolicyV2", "FirewallDefaultAction"),
+            type = "string",
+            name = "FirewallDefaultAction",
+            target_id = prelude.String.id,
+        }),
+        StatefulEngineOptions = schema.new({
+            id = id.from(_N, "FirewallPolicyV2", "StatefulEngineOptions"),
+            type = "structure",
+            name = "StatefulEngineOptions",
+            target_id = id.from(_N, "StatefulEngineOptionsV2"),
+            target = M.StatefulEngineOptionsV2,
+        }),
+        TLSInspectionConfigurationArn = schema.new({
+            id = id.from(_N, "FirewallPolicyV2", "TLSInspectionConfigurationArn"),
+            type = "string",
+            name = "TLSInspectionConfigurationArn",
+            target_id = prelude.String.id,
+        }),
+        PolicyVariables = schema.new({
+            id = id.from(_N, "FirewallPolicyV2", "PolicyVariables"),
+            type = "structure",
+            name = "PolicyVariables",
+            target_id = id.from(_N, "PolicyVariables"),
+            target = M.PolicyVariables,
+        }),
+        Route53ResolvedIPValidation = schema.new({
+            id = id.from(_N, "FirewallPolicyV2", "Route53ResolvedIPValidation"),
+            type = "structure",
+            name = "Route53ResolvedIPValidation",
+            target_id = id.from(_N, "Route53ResolvedIPValidation"),
+            target = M.Route53ResolvedIPValidation,
+        }),
+    },
+})
+
+M.CreateFirewallPolicyV2Input = schema.new({
+    id = id.from(_N, "CreateFirewallPolicyV2Request"),
+    type = "structure",
+    members = {
+        FirewallPolicyV2Name = schema.new({
+            id = id.from(_N, "CreateFirewallPolicyV2Input", "FirewallPolicyV2Name"),
+            type = "string",
+            name = "FirewallPolicyV2Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FirewallPolicyV2 = schema.new({
+            id = id.from(_N, "CreateFirewallPolicyV2Input", "FirewallPolicyV2"),
+            type = "structure",
+            name = "FirewallPolicyV2",
+            target_id = id.from(_N, "FirewallPolicyV2"),
+            target = M.FirewallPolicyV2,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateFirewallPolicyV2Input", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateFirewallPolicyV2Input", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "CreateFirewallPolicyV2Input", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "CreateFirewallPolicyV2Input", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
+    },
+})
+
+M.FirewallPolicyV2Response = schema.new({
+    id = id.from(_N, "FirewallPolicyV2Response"),
+    type = "structure",
+    members = {
+        FirewallPolicyV2Name = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "FirewallPolicyV2Name"),
+            type = "string",
+            name = "FirewallPolicyV2Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FirewallPolicyV2Arn = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "FirewallPolicyV2Arn"),
+            type = "string",
+            name = "FirewallPolicyV2Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FirewallPolicyV2Id = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "FirewallPolicyV2Id"),
+            type = "string",
+            name = "FirewallPolicyV2Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        FirewallPolicyV2Status = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "FirewallPolicyV2Status"),
+            type = "string",
+            name = "FirewallPolicyV2Status",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ConsumedFirewallRuleCapacity = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "ConsumedFirewallRuleCapacity"),
+            type = "integer",
+            name = "ConsumedFirewallRuleCapacity",
+            target_id = prelude.Integer.id,
+        }),
+        ConsumedIpsRuleCapacity = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "ConsumedIpsRuleCapacity"),
+            type = "integer",
+            name = "ConsumedIpsRuleCapacity",
+            target_id = prelude.Integer.id,
+        }),
+        ConsumedIpsDomainCapacity = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "ConsumedIpsDomainCapacity"),
+            type = "integer",
+            name = "ConsumedIpsDomainCapacity",
+            target_id = prelude.Integer.id,
+        }),
+        NumberOfAssociations = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "NumberOfAssociations"),
+            type = "integer",
+            name = "NumberOfAssociations",
+            target_id = prelude.Integer.id,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.FirewallPolicyError,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Response", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateFirewallPolicyV2Output = schema.new({
+    id = id.from(_N, "CreateFirewallPolicyV2Response"),
+    type = "structure",
+    members = {
+        UpdateToken = schema.new({
+            id = id.from(_N, "CreateFirewallPolicyV2Output", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FirewallPolicyV2Response = schema.new({
+            id = id.from(_N, "CreateFirewallPolicyV2Output", "FirewallPolicyV2Response"),
+            type = "structure",
+            name = "FirewallPolicyV2Response",
+            target_id = id.from(_N, "FirewallPolicyV2Response"),
+            target = M.FirewallPolicyV2Response,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListenerPropertyRequest = schema.new({
     id = id.from(_N, "ListenerPropertyRequest"),
     type = "structure",
@@ -3081,70 +3763,6 @@ M.CreateProxyRulesOutput = schema.new({
     },
 })
 
-M.IPSetReference = schema.new({
-    id = id.from(_N, "IPSetReference"),
-    type = "structure",
-    members = {
-        ReferenceArn = schema.new({
-            id = id.from(_N, "IPSetReference", "ReferenceArn"),
-            type = "string",
-            name = "ReferenceArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ReferenceSets = schema.new({
-    id = id.from(_N, "ReferenceSets"),
-    type = "structure",
-    members = {
-        IPSetReferences = schema.new({
-            id = id.from(_N, "ReferenceSets", "IPSetReferences"),
-            type = "map",
-            name = "IPSetReferences",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = M.IPSetReference,
-        }),
-    },
-})
-
-M.RulesSourceList = schema.new({
-    id = id.from(_N, "RulesSourceList"),
-    type = "structure",
-    members = {
-        Targets = schema.new({
-            id = id.from(_N, "RulesSourceList", "Targets"),
-            type = "list",
-            name = "Targets",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        TargetTypes = schema.new({
-            id = id.from(_N, "RulesSourceList", "TargetTypes"),
-            type = "list",
-            name = "TargetTypes",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        GeneratedRulesType = schema.new({
-            id = id.from(_N, "RulesSourceList", "GeneratedRulesType"),
-            type = "string",
-            name = "GeneratedRulesType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.Header = schema.new({
     id = id.from(_N, "Header"),
     type = "structure",
@@ -3202,29 +3820,6 @@ M.Header = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-    },
-})
-
-M.RuleOption = schema.new({
-    id = id.from(_N, "RuleOption"),
-    type = "structure",
-    members = {
-        Keyword = schema.new({
-            id = id.from(_N, "RuleOption", "Keyword"),
-            type = "string",
-            name = "Keyword",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Settings = schema.new({
-            id = id.from(_N, "RuleOption", "Settings"),
-            type = "list",
-            name = "Settings",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
         }),
     },
 })
@@ -3476,43 +4071,6 @@ M.RulesSource = schema.new({
     },
 })
 
-M.PortSet = schema.new({
-    id = id.from(_N, "PortSet"),
-    type = "structure",
-    members = {
-        Definition = schema.new({
-            id = id.from(_N, "PortSet", "Definition"),
-            type = "list",
-            name = "Definition",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-    },
-})
-
-M.RuleVariables = schema.new({
-    id = id.from(_N, "RuleVariables"),
-    type = "structure",
-    members = {
-        IPSets = schema.new({
-            id = id.from(_N, "RuleVariables", "IPSets"),
-            type = "map",
-            name = "IPSets",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = M.IPSet,
-        }),
-        PortSets = schema.new({
-            id = id.from(_N, "RuleVariables", "PortSets"),
-            type = "map",
-            name = "PortSets",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = M.PortSet,
-        }),
-    },
-})
-
 M.StatefulRuleOptions = schema.new({
     id = id.from(_N, "StatefulRuleOptions"),
     type = "structure",
@@ -3616,6 +4174,20 @@ M.CreateRuleGroupInput = schema.new({
             name = "RuleGroup",
             target_id = id.from(_N, "RuleGroup"),
             target = M.RuleGroup,
+        }),
+        FirewallRuleGroup = schema.new({
+            id = id.from(_N, "CreateRuleGroupInput", "FirewallRuleGroup"),
+            type = "structure",
+            name = "FirewallRuleGroup",
+            target_id = id.from(_N, "FirewallRuleGroup"),
+            target = M.FirewallRuleGroup,
+        }),
+        IpsRuleGroup = schema.new({
+            id = id.from(_N, "CreateRuleGroupInput", "IpsRuleGroup"),
+            type = "structure",
+            name = "IpsRuleGroup",
+            target_id = id.from(_N, "IpsRuleGroup"),
+            target = M.IpsRuleGroup,
         }),
         Rules = schema.new({
             id = id.from(_N, "CreateRuleGroupInput", "Rules"),
@@ -4376,6 +4948,42 @@ M.DeleteFirewallPolicyOutput = schema.new({
     },
 })
 
+M.DeleteFirewallPolicyV2Input = schema.new({
+    id = id.from(_N, "DeleteFirewallPolicyV2Request"),
+    type = "structure",
+    members = {
+        FirewallPolicyV2Arn = schema.new({
+            id = id.from(_N, "DeleteFirewallPolicyV2Input", "FirewallPolicyV2Arn"),
+            type = "string",
+            name = "FirewallPolicyV2Arn",
+            target_id = prelude.String.id,
+        }),
+        FirewallPolicyV2Name = schema.new({
+            id = id.from(_N, "DeleteFirewallPolicyV2Input", "FirewallPolicyV2Name"),
+            type = "string",
+            name = "FirewallPolicyV2Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteFirewallPolicyV2Output = schema.new({
+    id = id.from(_N, "DeleteFirewallPolicyV2Response"),
+    type = "structure",
+    members = {
+        FirewallPolicyV2Response = schema.new({
+            id = id.from(_N, "DeleteFirewallPolicyV2Output", "FirewallPolicyV2Response"),
+            type = "structure",
+            name = "FirewallPolicyV2Response",
+            target_id = id.from(_N, "FirewallPolicyV2Response"),
+            target = M.FirewallPolicyV2Response,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteNetworkFirewallTransitGatewayAttachmentInput = schema.new({
     id = id.from(_N, "DeleteNetworkFirewallTransitGatewayAttachmentRequest"),
     type = "structure",
@@ -4981,6 +5589,64 @@ M.DescribeFirewallPolicyOutput = schema.new({
             name = "FirewallPolicy",
             target_id = id.from(_N, "FirewallPolicy"),
             target = M.FirewallPolicy,
+        }),
+    },
+})
+
+M.DescribeFirewallPolicyV2Input = schema.new({
+    id = id.from(_N, "DescribeFirewallPolicyV2Request"),
+    type = "structure",
+    members = {
+        FirewallPolicyV2Arn = schema.new({
+            id = id.from(_N, "DescribeFirewallPolicyV2Input", "FirewallPolicyV2Arn"),
+            type = "string",
+            name = "FirewallPolicyV2Arn",
+            target_id = prelude.String.id,
+        }),
+        FirewallPolicyV2Name = schema.new({
+            id = id.from(_N, "DescribeFirewallPolicyV2Input", "FirewallPolicyV2Name"),
+            type = "string",
+            name = "FirewallPolicyV2Name",
+            target_id = prelude.String.id,
+        }),
+        RuleOutputFormat = schema.new({
+            id = id.from(_N, "DescribeFirewallPolicyV2Input", "RuleOutputFormat"),
+            type = "string",
+            name = "RuleOutputFormat",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFirewallPolicyV2Output = schema.new({
+    id = id.from(_N, "DescribeFirewallPolicyV2Response"),
+    type = "structure",
+    members = {
+        UpdateToken = schema.new({
+            id = id.from(_N, "DescribeFirewallPolicyV2Output", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FirewallPolicyV2Response = schema.new({
+            id = id.from(_N, "DescribeFirewallPolicyV2Output", "FirewallPolicyV2Response"),
+            type = "structure",
+            name = "FirewallPolicyV2Response",
+            target_id = id.from(_N, "FirewallPolicyV2Response"),
+            target = M.FirewallPolicyV2Response,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FirewallPolicyV2 = schema.new({
+            id = id.from(_N, "DescribeFirewallPolicyV2Output", "FirewallPolicyV2"),
+            type = "structure",
+            name = "FirewallPolicyV2",
+            target_id = id.from(_N, "FirewallPolicyV2"),
+            target = M.FirewallPolicyV2,
         }),
     },
 })
@@ -5603,6 +6269,12 @@ M.DescribeRuleGroupInput = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        RuleOutputFormat = schema.new({
+            id = id.from(_N, "DescribeRuleGroupInput", "RuleOutputFormat"),
+            type = "string",
+            name = "RuleOutputFormat",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5625,6 +6297,20 @@ M.DescribeRuleGroupOutput = schema.new({
             name = "RuleGroup",
             target_id = id.from(_N, "RuleGroup"),
             target = M.RuleGroup,
+        }),
+        FirewallRuleGroup = schema.new({
+            id = id.from(_N, "DescribeRuleGroupOutput", "FirewallRuleGroup"),
+            type = "structure",
+            name = "FirewallRuleGroup",
+            target_id = id.from(_N, "FirewallRuleGroup"),
+            target = M.FirewallRuleGroup,
+        }),
+        IpsRuleGroup = schema.new({
+            id = id.from(_N, "DescribeRuleGroupOutput", "IpsRuleGroup"),
+            type = "structure",
+            name = "IpsRuleGroup",
+            target_id = id.from(_N, "IpsRuleGroup"),
+            target = M.IpsRuleGroup,
         }),
         RuleGroupResponse = schema.new({
             id = id.from(_N, "DescribeRuleGroupOutput", "RuleGroupResponse"),
@@ -6160,6 +6846,25 @@ M.FirewallPolicyMetadata = schema.new({
     },
 })
 
+M.FirewallPolicyV2Metadata = schema.new({
+    id = id.from(_N, "FirewallPolicyV2Metadata"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Metadata", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "FirewallPolicyV2Metadata", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Flow = schema.new({
     id = id.from(_N, "Flow"),
     type = "structure",
@@ -6466,6 +7171,48 @@ M.ListFirewallPoliciesOutput = schema.new({
             name = "FirewallPolicies",
             target_id = prelude.Document.id,
             list_member = M.FirewallPolicyMetadata,
+        }),
+    },
+})
+
+M.ListFirewallPoliciesV2Input = schema.new({
+    id = id.from(_N, "ListFirewallPoliciesV2Request"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListFirewallPoliciesV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListFirewallPoliciesV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListFirewallPoliciesV2Output = schema.new({
+    id = id.from(_N, "ListFirewallPoliciesV2Response"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListFirewallPoliciesV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        FirewallPoliciesV2 = schema.new({
+            id = id.from(_N, "ListFirewallPoliciesV2Output", "FirewallPoliciesV2"),
+            type = "list",
+            name = "FirewallPoliciesV2",
+            target_id = prelude.Document.id,
+            list_member = M.FirewallPolicyV2Metadata,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -8126,6 +8873,92 @@ M.UpdateFirewallPolicyChangeProtectionOutput = schema.new({
     },
 })
 
+M.UpdateFirewallPolicyV2Input = schema.new({
+    id = id.from(_N, "UpdateFirewallPolicyV2Request"),
+    type = "structure",
+    members = {
+        UpdateToken = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Input", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FirewallPolicyV2Arn = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Input", "FirewallPolicyV2Arn"),
+            type = "string",
+            name = "FirewallPolicyV2Arn",
+            target_id = prelude.String.id,
+        }),
+        FirewallPolicyV2Name = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Input", "FirewallPolicyV2Name"),
+            type = "string",
+            name = "FirewallPolicyV2Name",
+            target_id = prelude.String.id,
+        }),
+        FirewallPolicyV2 = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Input", "FirewallPolicyV2"),
+            type = "structure",
+            name = "FirewallPolicyV2",
+            target_id = id.from(_N, "FirewallPolicyV2"),
+            target = M.FirewallPolicyV2,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Input", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Input", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Input", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
+    },
+})
+
+M.UpdateFirewallPolicyV2Output = schema.new({
+    id = id.from(_N, "UpdateFirewallPolicyV2Response"),
+    type = "structure",
+    members = {
+        UpdateToken = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Output", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FirewallPolicyV2Response = schema.new({
+            id = id.from(_N, "UpdateFirewallPolicyV2Output", "FirewallPolicyV2Response"),
+            type = "structure",
+            name = "FirewallPolicyV2Response",
+            target_id = id.from(_N, "FirewallPolicyV2Response"),
+            target = M.FirewallPolicyV2Response,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateLoggingConfigurationInput = schema.new({
     id = id.from(_N, "UpdateLoggingConfigurationRequest"),
     type = "structure",
@@ -8712,6 +9545,20 @@ M.UpdateRuleGroupInput = schema.new({
             target_id = id.from(_N, "RuleGroup"),
             target = M.RuleGroup,
         }),
+        FirewallRuleGroup = schema.new({
+            id = id.from(_N, "UpdateRuleGroupInput", "FirewallRuleGroup"),
+            type = "structure",
+            name = "FirewallRuleGroup",
+            target_id = id.from(_N, "FirewallRuleGroup"),
+            target = M.FirewallRuleGroup,
+        }),
+        IpsRuleGroup = schema.new({
+            id = id.from(_N, "UpdateRuleGroupInput", "IpsRuleGroup"),
+            type = "structure",
+            name = "IpsRuleGroup",
+            target_id = id.from(_N, "IpsRuleGroup"),
+            target = M.IpsRuleGroup,
+        }),
         Rules = schema.new({
             id = id.from(_N, "UpdateRuleGroupInput", "Rules"),
             type = "string",
@@ -9057,6 +9904,17 @@ M.CreateFirewallPolicy = schema.operation({
     },
 })
 
+M.CreateFirewallPolicyV2 = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateFirewallPolicyV2"),
+    input = M.CreateFirewallPolicyV2Input,
+    output = M.CreateFirewallPolicyV2Output,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateProxy = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "CreateProxy"),
     input = M.CreateProxyInput,
@@ -9160,6 +10018,17 @@ M.DeleteFirewallPolicy = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "DeleteFirewallPolicy"),
     input = M.DeleteFirewallPolicyInput,
     output = M.DeleteFirewallPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFirewallPolicyV2 = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteFirewallPolicyV2"),
+    input = M.DeleteFirewallPolicyV2Input,
+    output = M.DeleteFirewallPolicyV2Output,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -9303,6 +10172,17 @@ M.DescribeFirewallPolicy = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "DescribeFirewallPolicy"),
     input = M.DescribeFirewallPolicyInput,
     output = M.DescribeFirewallPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeFirewallPolicyV2 = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeFirewallPolicyV2"),
+    input = M.DescribeFirewallPolicyV2Input,
+    output = M.DescribeFirewallPolicyV2Output,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -9512,6 +10392,17 @@ M.ListFirewallPolicies = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "ListFirewallPolicies"),
     input = M.ListFirewallPoliciesInput,
     output = M.ListFirewallPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFirewallPoliciesV2 = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListFirewallPoliciesV2"),
+    input = M.ListFirewallPoliciesV2Input,
+    output = M.ListFirewallPoliciesV2Output,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -9787,6 +10678,17 @@ M.UpdateFirewallPolicyChangeProtection = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "UpdateFirewallPolicyChangeProtection"),
     input = M.UpdateFirewallPolicyChangeProtectionInput,
     output = M.UpdateFirewallPolicyChangeProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFirewallPolicyV2 = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateFirewallPolicyV2"),
+    input = M.UpdateFirewallPolicyV2Input,
+    output = M.UpdateFirewallPolicyV2Output,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

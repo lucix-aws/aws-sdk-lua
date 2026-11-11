@@ -698,6 +698,8 @@ M.SlaFieldValueUnionList = schema.new({ type = "list", list_member = M.FieldValu
 
 M.PotentialAudioQualityIssues = schema.new({ type = "list", list_member = prelude.String })
 
+M.LanguageLocales = schema.new({ type = "list", list_member = prelude.String })
+
 M.MetricFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RealTimeContactAnalysisCharacterIntervals = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisCharacterInterval })
@@ -719,6 +721,12 @@ M.EvaluationFormMultiSelectQuestionOptionList = schema.new({ type = "list", list
 M.EvaluationFormItemEnablementConditionOperandList = schema.new({ type = "list", list_member = M.EvaluationFormItemEnablementConditionOperand })
 
 M.PrimaryValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactLensAnalyticsModeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactLensRedactionEntitiesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactLensSummaryModeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RealTimeContactAnalysisPointsOfInterest = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisPointOfInterest })
 
@@ -14077,6 +14085,190 @@ M.ContactEvaluation = schema.new({
             type = "string",
             name = "ExportLocation",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContactLensChannelConfiguration = schema.new({
+    id = id.from(_N, "ContactLensChannelConfiguration"),
+    type = "structure",
+    members = {
+        AnalyticsModes = schema.new({
+            id = id.from(_N, "ContactLensChannelConfiguration", "AnalyticsModes"),
+            type = "list",
+            name = "AnalyticsModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ContactLensRedactionConfiguration = schema.new({
+    id = id.from(_N, "ContactLensRedactionConfiguration"),
+    type = "structure",
+    members = {
+        Behavior = schema.new({
+            id = id.from(_N, "ContactLensRedactionConfiguration", "Behavior"),
+            type = "string",
+            name = "Behavior",
+            target_id = prelude.String.id,
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "ContactLensRedactionConfiguration", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+        Entities = schema.new({
+            id = id.from(_N, "ContactLensRedactionConfiguration", "Entities"),
+            type = "list",
+            name = "Entities",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MaskMode = schema.new({
+            id = id.from(_N, "ContactLensRedactionConfiguration", "MaskMode"),
+            type = "string",
+            name = "MaskMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContactLensSentimentConfiguration = schema.new({
+    id = id.from(_N, "ContactLensSentimentConfiguration"),
+    type = "structure",
+    members = {
+        Behavior = schema.new({
+            id = id.from(_N, "ContactLensSentimentConfiguration", "Behavior"),
+            type = "string",
+            name = "Behavior",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContactLensSummaryConfiguration = schema.new({
+    id = id.from(_N, "ContactLensSummaryConfiguration"),
+    type = "structure",
+    members = {
+        SummaryModes = schema.new({
+            id = id.from(_N, "ContactLensSummaryConfiguration", "SummaryModes"),
+            type = "list",
+            name = "SummaryModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ConversationalAnalyticsConfiguration = schema.new({
+    id = id.from(_N, "ConversationalAnalyticsConfiguration"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "ConversationalAnalyticsConfiguration", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        LanguageLocale = schema.new({
+            id = id.from(_N, "ConversationalAnalyticsConfiguration", "LanguageLocale"),
+            type = "string",
+            name = "LanguageLocale",
+            target_id = prelude.String.id,
+        }),
+        LanguageLocales = schema.new({
+            id = id.from(_N, "ConversationalAnalyticsConfiguration", "LanguageLocales"),
+            type = "list",
+            name = "LanguageLocales",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ChannelConfiguration = schema.new({
+            id = id.from(_N, "ConversationalAnalyticsConfiguration", "ChannelConfiguration"),
+            type = "structure",
+            name = "ChannelConfiguration",
+            target_id = id.from(_N, "ContactLensChannelConfiguration"),
+            target = M.ContactLensChannelConfiguration,
+        }),
+        RedactionConfiguration = schema.new({
+            id = id.from(_N, "ConversationalAnalyticsConfiguration", "RedactionConfiguration"),
+            type = "structure",
+            name = "RedactionConfiguration",
+            target_id = id.from(_N, "ContactLensRedactionConfiguration"),
+            target = M.ContactLensRedactionConfiguration,
+        }),
+        SummaryConfiguration = schema.new({
+            id = id.from(_N, "ConversationalAnalyticsConfiguration", "SummaryConfiguration"),
+            type = "structure",
+            name = "SummaryConfiguration",
+            target_id = id.from(_N, "ContactLensSummaryConfiguration"),
+            target = M.ContactLensSummaryConfiguration,
+        }),
+        SentimentConfiguration = schema.new({
+            id = id.from(_N, "ConversationalAnalyticsConfiguration", "SentimentConfiguration"),
+            type = "structure",
+            name = "SentimentConfiguration",
+            target_id = id.from(_N, "ContactLensSentimentConfiguration"),
+            target = M.ContactLensSentimentConfiguration,
+        }),
+    },
+})
+
+M.ContactAnalysisReferenceState = schema.new({
+    id = id.from(_N, "ContactAnalysisReferenceState"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ContactAnalysisReferenceState", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "ContactAnalysisReferenceState", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConversationalAnalytics = schema.new({
+    id = id.from(_N, "ConversationalAnalytics"),
+    type = "structure",
+    members = {
+        Configuration = schema.new({
+            id = id.from(_N, "ConversationalAnalytics", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "ConversationalAnalyticsConfiguration"),
+            target = M.ConversationalAnalyticsConfiguration,
+        }),
+        ContactAnalysisReferenceState = schema.new({
+            id = id.from(_N, "ConversationalAnalytics", "ContactAnalysisReferenceState"),
+            type = "structure",
+            name = "ContactAnalysisReferenceState",
+            target_id = id.from(_N, "ContactAnalysisReferenceState"),
+            target = M.ContactAnalysisReferenceState,
+        }),
+    },
+})
+
+M.ContactLens = schema.new({
+    id = id.from(_N, "ContactLens"),
+    type = "structure",
+    members = {
+        ConversationalAnalytics = schema.new({
+            id = id.from(_N, "ContactLens", "ConversationalAnalytics"),
+            type = "structure",
+            name = "ConversationalAnalytics",
+            target_id = id.from(_N, "ConversationalAnalytics"),
+            target = M.ConversationalAnalytics,
         }),
     },
 })
@@ -45396,6 +45588,13 @@ M.Contact = schema.new({
             name = "GlobalResiliencyMetadata",
             target_id = id.from(_N, "GlobalResiliencyMetadata"),
             target = M.GlobalResiliencyMetadata,
+        }),
+        ContactLens = schema.new({
+            id = id.from(_N, "Contact", "ContactLens"),
+            type = "structure",
+            name = "ContactLens",
+            target_id = id.from(_N, "ContactLens"),
+            target = M.ContactLens,
         }),
     },
 })

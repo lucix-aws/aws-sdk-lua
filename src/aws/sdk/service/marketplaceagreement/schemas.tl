@@ -1811,6 +1811,12 @@ M.AgreementViewSummary = schema.new({
             name = "endTimeBehaviorReasonCode",
             target_id = prelude.String.id,
         }),
+        freeTrialEndTime = schema.new({
+            id = id.from(_N, "AgreementViewSummary", "freeTrialEndTime"),
+            type = "timestamp",
+            name = "freeTrialEndTime",
+            target_id = prelude.Timestamp.id,
+        }),
     },
 })
 
@@ -2623,6 +2629,19 @@ M.EstimatedCharges = schema.new({
     },
 })
 
+M.FreeTrialSummary = schema.new({
+    id = id.from(_N, "FreeTrialSummary"),
+    type = "structure",
+    members = {
+        trialEndTime = schema.new({
+            id = id.from(_N, "FreeTrialSummary", "trialEndTime"),
+            type = "timestamp",
+            name = "trialEndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.DescribeAgreementOutput = schema.new({
     id = id.from(_N, "DescribeAgreementOutput"),
     type = "structure",
@@ -2703,6 +2722,13 @@ M.DescribeAgreementOutput = schema.new({
             name = "endTimeBehavior",
             target_id = id.from(_N, "EndTimeBehavior"),
             target = M.EndTimeBehavior,
+        }),
+        freeTrialSummary = schema.new({
+            id = id.from(_N, "DescribeAgreementOutput", "freeTrialSummary"),
+            type = "structure",
+            name = "freeTrialSummary",
+            target_id = id.from(_N, "FreeTrialSummary"),
+            target = M.FreeTrialSummary,
         }),
     },
 })

@@ -1706,6 +1706,122 @@ M.GetTableBucketEncryptionOutput = schema.new({
     },
 })
 
+M.GetTableBucketLoggingInput = schema.new({
+    id = id.from(_N, "GetTableBucketLoggingRequest"),
+    type = "structure",
+    members = {
+        tableBucketARN = schema.new({
+            id = id.from(_N, "GetTableBucketLoggingInput", "tableBucketARN"),
+            type = "string",
+            name = "tableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.PartitionedPrefix = schema.new({
+    id = id.from(_N, "PartitionedPrefix"),
+    type = "structure",
+    members = {
+        partitionDateSource = schema.new({
+            id = id.from(_N, "PartitionedPrefix", "partitionDateSource"),
+            type = "string",
+            name = "partitionDateSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TargetObjectKeyFormat = schema.new({
+    id = id.from(_N, "TargetObjectKeyFormat"),
+    type = "structure",
+    members = {
+        partitionedPrefix = schema.new({
+            id = id.from(_N, "TargetObjectKeyFormat", "partitionedPrefix"),
+            type = "structure",
+            name = "partitionedPrefix",
+            target_id = id.from(_N, "PartitionedPrefix"),
+            target = M.PartitionedPrefix,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LoggingEnabled = schema.new({
+    id = id.from(_N, "LoggingEnabled"),
+    type = "structure",
+    members = {
+        targetBucket = schema.new({
+            id = id.from(_N, "LoggingEnabled", "targetBucket"),
+            type = "string",
+            name = "targetBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetPrefix = schema.new({
+            id = id.from(_N, "LoggingEnabled", "targetPrefix"),
+            type = "string",
+            name = "targetPrefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetObjectKeyFormat = schema.new({
+            id = id.from(_N, "LoggingEnabled", "targetObjectKeyFormat"),
+            type = "structure",
+            name = "targetObjectKeyFormat",
+            target_id = id.from(_N, "TargetObjectKeyFormat"),
+            target = M.TargetObjectKeyFormat,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TableBucketLoggingStatus = schema.new({
+    id = id.from(_N, "TableBucketLoggingStatus"),
+    type = "structure",
+    members = {
+        loggingEnabled = schema.new({
+            id = id.from(_N, "TableBucketLoggingStatus", "loggingEnabled"),
+            type = "structure",
+            name = "loggingEnabled",
+            target_id = id.from(_N, "LoggingEnabled"),
+            target = M.LoggingEnabled,
+        }),
+    },
+})
+
+M.GetTableBucketLoggingOutput = schema.new({
+    id = id.from(_N, "GetTableBucketLoggingResponse"),
+    type = "structure",
+    members = {
+        tableBucketLoggingStatus = schema.new({
+            id = id.from(_N, "GetTableBucketLoggingOutput", "tableBucketLoggingStatus"),
+            type = "structure",
+            name = "tableBucketLoggingStatus",
+            target_id = id.from(_N, "TableBucketLoggingStatus"),
+            target = M.TableBucketLoggingStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetTableBucketMaintenanceConfigurationInput = schema.new({
     id = id.from(_N, "GetTableBucketMaintenanceConfigurationRequest"),
     type = "structure",
@@ -3943,6 +4059,35 @@ M.PutTableBucketEncryptionInput = schema.new({
 
 M.PutTableBucketEncryptionOutput = prelude.Unit
 
+M.PutTableBucketLoggingInput = schema.new({
+    id = id.from(_N, "PutTableBucketLoggingRequest"),
+    type = "structure",
+    members = {
+        tableBucketARN = schema.new({
+            id = id.from(_N, "PutTableBucketLoggingInput", "tableBucketARN"),
+            type = "string",
+            name = "tableBucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tableBucketLoggingStatus = schema.new({
+            id = id.from(_N, "PutTableBucketLoggingInput", "tableBucketLoggingStatus"),
+            type = "structure",
+            name = "tableBucketLoggingStatus",
+            target_id = id.from(_N, "TableBucketLoggingStatus"),
+            target = M.TableBucketLoggingStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutTableBucketLoggingOutput = prelude.Unit
+
 M.PutTableBucketMaintenanceConfigurationInput = schema.new({
     id = id.from(_N, "PutTableBucketMaintenanceConfigurationRequest"),
     type = "structure",
@@ -5012,6 +5157,18 @@ M.GetTableBucketEncryption = schema.operation({
     },
 })
 
+M.GetTableBucketLogging = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "GetTableBucketLogging"),
+    input = M.GetTableBucketLoggingInput,
+    output = M.GetTableBucketLoggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/buckets/{tableBucketARN}/logging" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetTableBucketMaintenanceConfiguration = schema.operation({
     id = id.from("com.amazonaws.s3tables", "GetTableBucketMaintenanceConfiguration"),
     input = M.GetTableBucketMaintenanceConfigurationInput,
@@ -5270,6 +5427,18 @@ M.PutTableBucketEncryption = schema.operation({
     output = M.PutTableBucketEncryptionOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/buckets/{tableBucketARN}/encryption" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTableBucketLogging = schema.operation({
+    id = id.from("com.amazonaws.s3tables", "PutTableBucketLogging"),
+    input = M.PutTableBucketLoggingInput,
+    output = M.PutTableBucketLoggingOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/buckets/{tableBucketARN}/logging" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

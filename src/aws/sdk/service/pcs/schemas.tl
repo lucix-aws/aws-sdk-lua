@@ -22,9 +22,13 @@ M.Endpoints = schema.new({ type = "list", list_member = M.Endpoint })
 
 M.ClusterList = schema.new({ type = "list", list_member = M.ClusterSummary })
 
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.InstanceList = schema.new({ type = "list", list_member = M.InstanceConfig })
+
+M.SecurityGroupIdListOrEmpty = schema.new({ type = "list", list_member = prelude.String })
 
 M.ComputeNodeGroupList = schema.new({ type = "list", list_member = M.ComputeNodeGroupSummary })
 
@@ -33,8 +37,6 @@ M.ComputeNodeGroupConfigurationList = schema.new({ type = "list", list_member = 
 M.QueueList = schema.new({ type = "list", list_member = M.QueueSummary })
 
 M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
-
-M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SlurmCustomSettings = schema.new({ type = "list", list_member = M.SlurmCustomSetting })
 
@@ -412,6 +414,25 @@ M.CreateComputeNodeGroupInput = schema.new({
     id = id.from(_N, "CreateComputeNodeGroupRequest"),
     type = "structure",
     members = {
+        amiId = schema.new({
+            id = id.from(_N, "CreateComputeNodeGroupInput", "amiId"),
+            type = "string",
+            name = "amiId",
+            target_id = prelude.String.id,
+        }),
+        securityGroupIds = schema.new({
+            id = id.from(_N, "CreateComputeNodeGroupInput", "securityGroupIds"),
+            type = "list",
+            name = "securityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        sshKeyName = schema.new({
+            id = id.from(_N, "CreateComputeNodeGroupInput", "sshKeyName"),
+            type = "string",
+            name = "sshKeyName",
+            target_id = prelude.String.id,
+        }),
         clusterIdentifier = schema.new({
             id = id.from(_N, "CreateComputeNodeGroupInput", "clusterIdentifier"),
             type = "string",
@@ -430,12 +451,6 @@ M.CreateComputeNodeGroupInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        amiId = schema.new({
-            id = id.from(_N, "CreateComputeNodeGroupInput", "amiId"),
-            type = "string",
-            name = "amiId",
-            target_id = prelude.String.id,
-        }),
         subnetIds = schema.new({
             id = id.from(_N, "CreateComputeNodeGroupInput", "subnetIds"),
             type = "list",
@@ -452,15 +467,21 @@ M.CreateComputeNodeGroupInput = schema.new({
             name = "purchaseOption",
             target_id = prelude.String.id,
         }),
+        launchTemplateMode = schema.new({
+            id = id.from(_N, "CreateComputeNodeGroupInput", "launchTemplateMode"),
+            type = "string",
+            name = "launchTemplateMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "CUSTOM" },
+            },
+        }),
         customLaunchTemplate = schema.new({
             id = id.from(_N, "CreateComputeNodeGroupInput", "customLaunchTemplate"),
             type = "structure",
             name = "customLaunchTemplate",
             target_id = id.from(_N, "CustomLaunchTemplate"),
             target = M.CustomLaunchTemplate,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         iamInstanceProfileArn = schema.new({
             id = id.from(_N, "CreateComputeNodeGroupInput", "iamInstanceProfileArn"),
@@ -635,6 +656,25 @@ M.ComputeNodeGroup = schema.new({
     id = id.from(_N, "ComputeNodeGroup"),
     type = "structure",
     members = {
+        amiId = schema.new({
+            id = id.from(_N, "ComputeNodeGroup", "amiId"),
+            type = "string",
+            name = "amiId",
+            target_id = prelude.String.id,
+        }),
+        securityGroupIds = schema.new({
+            id = id.from(_N, "ComputeNodeGroup", "securityGroupIds"),
+            type = "list",
+            name = "securityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        sshKeyName = schema.new({
+            id = id.from(_N, "ComputeNodeGroup", "sshKeyName"),
+            type = "string",
+            name = "sshKeyName",
+            target_id = prelude.String.id,
+        }),
         name = schema.new({
             id = id.from(_N, "ComputeNodeGroup", "name"),
             type = "string",
@@ -700,12 +740,6 @@ M.ComputeNodeGroup = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        amiId = schema.new({
-            id = id.from(_N, "ComputeNodeGroup", "amiId"),
-            type = "string",
-            name = "amiId",
-            target_id = prelude.String.id,
-        }),
         subnetIds = schema.new({
             id = id.from(_N, "ComputeNodeGroup", "subnetIds"),
             type = "list",
@@ -722,15 +756,21 @@ M.ComputeNodeGroup = schema.new({
             name = "purchaseOption",
             target_id = prelude.String.id,
         }),
+        launchTemplateMode = schema.new({
+            id = id.from(_N, "ComputeNodeGroup", "launchTemplateMode"),
+            type = "string",
+            name = "launchTemplateMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "CUSTOM" },
+            },
+        }),
         customLaunchTemplate = schema.new({
             id = id.from(_N, "ComputeNodeGroup", "customLaunchTemplate"),
             type = "structure",
             name = "customLaunchTemplate",
             target_id = id.from(_N, "CustomLaunchTemplate"),
             target = M.CustomLaunchTemplate,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         iamInstanceProfileArn = schema.new({
             id = id.from(_N, "ComputeNodeGroup", "iamInstanceProfileArn"),
@@ -1257,6 +1297,25 @@ M.UpdateComputeNodeGroupInput = schema.new({
     id = id.from(_N, "UpdateComputeNodeGroupRequest"),
     type = "structure",
     members = {
+        amiId = schema.new({
+            id = id.from(_N, "UpdateComputeNodeGroupInput", "amiId"),
+            type = "string",
+            name = "amiId",
+            target_id = prelude.String.id,
+        }),
+        securityGroupIds = schema.new({
+            id = id.from(_N, "UpdateComputeNodeGroupInput", "securityGroupIds"),
+            type = "list",
+            name = "securityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        sshKeyName = schema.new({
+            id = id.from(_N, "UpdateComputeNodeGroupInput", "sshKeyName"),
+            type = "string",
+            name = "sshKeyName",
+            target_id = prelude.String.id,
+        }),
         clusterIdentifier = schema.new({
             id = id.from(_N, "UpdateComputeNodeGroupInput", "clusterIdentifier"),
             type = "string",
@@ -1275,18 +1334,18 @@ M.UpdateComputeNodeGroupInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        amiId = schema.new({
-            id = id.from(_N, "UpdateComputeNodeGroupInput", "amiId"),
-            type = "string",
-            name = "amiId",
-            target_id = prelude.String.id,
-        }),
         subnetIds = schema.new({
             id = id.from(_N, "UpdateComputeNodeGroupInput", "subnetIds"),
             type = "list",
             name = "subnetIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        launchTemplateMode = schema.new({
+            id = id.from(_N, "UpdateComputeNodeGroupInput", "launchTemplateMode"),
+            type = "string",
+            name = "launchTemplateMode",
+            target_id = prelude.String.id,
         }),
         customLaunchTemplate = schema.new({
             id = id.from(_N, "UpdateComputeNodeGroupInput", "customLaunchTemplate"),

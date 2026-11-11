@@ -5537,6 +5537,100 @@ local record M
         ExportLocation: string
     end
 
+    -- The per-channel conversational analytics configuration for a contact.
+    record ContactLensChannelConfiguration
+        -- The conversational analytics modes enabled for the channel. Valid values:
+        -- RealTime – Real-time analysis is enabled during the contact. Voice channel only.
+        -- PostContact – Post-contact analysis is enabled after the contact ends. Voice channel only.
+        -- ContactLens – Conversational analytics is enabled for the contact. Chat channel only.
+        AnalyticsModes: {string}
+    end
+
+    -- The redaction configuration for conversational analytics transcripts.
+    record ContactLensRedactionConfiguration
+        -- Specifies whether redaction is enabled for sensitive data, such as personal information, in the conversational analytics
+        -- output. Valid values:
+        -- Enable – Redaction is applied according to the other values in this object.
+        -- Disable – Redaction is not applied, and all other values in this object are ignored.
+        Behavior: string
+        -- The redaction policy that determines which versions of the transcript are stored. Valid values:
+        -- None – No redaction is applied.
+        -- RedactedOnly – Only the redacted transcript is stored.
+        -- RedactedAndOriginal – Both the redacted and the original transcript are stored.
+        Policy: string
+        -- The entity types to redact from the transcript (for example, NAME, EMAIL,
+        -- ADDRESS).
+        Entities: {string}
+        -- How sensitive information is masked in the transcript. Valid values:
+        -- PII – All redacted entities are replaced with the [PII] string.
+        -- EntityType – All redacted entities are replaced with the label of the entity. For example, when
+        -- the EMAIL entity is configured for redaction, emails in the transcript are replaced with the
+        -- [EMAIL] string.
+        MaskMode: string
+    end
+
+    -- The conversational analytics sentiment analysis configuration for a contact.
+    record ContactLensSentimentConfiguration
+        -- Specifies whether sentiment analysis is enabled for the contact. The default value is Disable. Valid
+        -- values:
+        -- Enable – Sentiment analysis is performed on the contact.
+        -- Disable – Sentiment analysis is not performed on the contact.
+        Behavior: string
+    end
+
+    -- The conversational analytics summary configuration for a contact.
+    record ContactLensSummaryConfiguration
+        -- The conversational analytics summary modes enabled for the contact. Valid values: PostContact |
+        -- AutomatedInteraction | ContactChain.
+        SummaryModes: {string}
+    end
+
+    -- The conversational analytics configuration settings for a contact.
+    record ConversationalAnalyticsConfiguration
+        -- Specifies whether conversational analytics is enabled for the contact.
+        Enabled: boolean
+        -- The language locale that conversational analytics uses to analyze the contact (for example, en-US).
+        LanguageLocale: string
+        -- The language locales that conversational analytics uses to analyze the contact (for example, en-US and es-ES).
+        LanguageLocales: {string}
+        -- The per-channel conversational analytics settings for the contact.
+        ChannelConfiguration: ContactLensChannelConfiguration
+        -- The redaction configuration for the contact transcript.
+        RedactionConfiguration: ContactLensRedactionConfiguration
+        -- The summary configuration for the contact.
+        SummaryConfiguration: ContactLensSummaryConfiguration
+        -- The sentiment analysis configuration for the contact.
+        SentimentConfiguration: ContactLensSentimentConfiguration
+    end
+
+    -- The current processing state of conversational analytics for a contact, including the analysis status and, when
+    -- applicable, the reason for that status.
+    record ContactAnalysisReferenceState
+        -- The status of conversational analytics processing for the contact. Valid values:
+        -- REQUESTED – Analysis has been requested for the contact and has not finished.
+        -- COMPLETED – Analysis finished successfully.
+        -- FAILED – Analysis did not finish successfully. See StatusReason for the cause.
+        Status: string
+        -- The reason for the current analysis status. This value is populated only when the status is
+        -- FAILED.
+        StatusReason: string
+    end
+
+    -- Contains the conversational analytics configuration and state for a contact.
+    record ConversationalAnalytics
+        -- The conversational analytics settings that apply to the contact.
+        Configuration: ConversationalAnalyticsConfiguration
+        -- The current state of conversational analytics processing for the contact.
+        ContactAnalysisReferenceState: ContactAnalysisReferenceState
+    end
+
+    -- Information about the conversational analytics configuration applied to the contact. This field is present only for contacts
+    -- where conversational analytics is enabled in the contact flow.
+    record ContactLens
+        -- The conversational analytics configuration applied to the contact.
+        ConversationalAnalytics: ConversationalAnalytics
+    end
+
     -- Information about the Customer on the contact.
     record Customer
         -- Information regarding Customer’s device.
@@ -16195,7 +16289,8 @@ local record M
     record UpdateAuthenticationProfileOutput
     end
 
-    -- Additional recipients for UpdateContact, allowing an empty list to clear CC recipients.
+    -- The additional recipients of an outbound email that you can update. An empty list of
+    -- CcEmailAddresses clears the existing CC recipients.
     record NullableAdditionalRecipients
         -- The additional CC email address recipients. You can specify up to 50 addresses. Provide an empty list to clear
         -- the existing CC recipients.
@@ -18952,6 +19047,9 @@ local record M
         NextContacts: {NextContactEntry}
         -- Information about the global resiliency configuration for the contact, including traffic distribution details.
         GlobalResiliencyMetadata: GlobalResiliencyMetadata
+        -- Information about the conversational analytics configuration applied to the contact. This field is present only for contacts
+        -- where conversational analytics is enabled in the contact flow.
+        ContactLens: ContactLens
     end
 
     -- Information of returned contact.

@@ -33,6 +33,7 @@ local record Client
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateProfileAssociation: function(Client, types.UpdateProfileAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfileAssociationOutput>
     updateProfileResourceAssociation: function(Client, types.UpdateProfileResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfileResourceAssociationOutput>
 end
 
@@ -136,6 +137,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateProfileAssociation(input: types.UpdateProfileAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfileAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProfileAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateProfileAssociationOutput>
 end
 
 function C:updateProfileResourceAssociation(input: types.UpdateProfileResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfileResourceAssociationOutput>

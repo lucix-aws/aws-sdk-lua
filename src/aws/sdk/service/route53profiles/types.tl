@@ -24,6 +24,8 @@ local record M
         Name: string
         -- A list of the tag keys and values that you want to identify the Profile association.
         Tags: {Tag}
+        -- The priority of the Profile association. Route 53 VPC Resolver evaluates the Profile associations for a VPC in priority order, starting with the lowest value. When the VPC already has a Profile association, you must specify a priority that no other Profile association for the VPC uses. If you omit the priority for the first association with a VPC, the association gets priority 100.
+        Priority: number
     end
 
     enum ProfileStatus
@@ -55,10 +57,12 @@ local record M
         CreationTime: number
         -- The date and time that the Profile association was modified, in Unix time format and Coordinated Universal Time (UTC).
         ModificationTime: number
+        -- The priority of the Profile association. Route 53 VPC Resolver evaluates the Profile associations for a VPC in priority order, starting with the lowest value. Associations created without a priority have priority 100.
+        Priority: number
     end
 
     record AssociateProfileOutput
-        -- The association that you just created. The association has an ID that you can use to identify it in other requests, like update and delete.
+        -- The association that you just created. The association has an ID that you can use to identify it in other requests, such as update and delete.
         ProfileAssociation: ProfileAssociation
     end
 
@@ -108,12 +112,11 @@ local record M
     record AssociateResourceToProfileInput
         -- ID of the Profile.
         ProfileId: string
-        -- Amazon resource number, ARN, of the DNS resource.
+        -- Amazon resource number, ARN, of the resource to associate. Either a private hosted zone, DNS Firewall rule group, Resolver rule, or an interface VPC endpoint.
         ResourceArn: string
         -- Name for the resource association.
         Name: string
-        -- If you are adding a DNS Firewall rule group, include also a priority. The priority indicates the processing order for the rule groups, starting with the priority assinged the lowest value.
-        -- The allowed values for priority are between 100 and 9900.
+        -- If you are adding a DNS Firewall rule group, include also a priority. The priority indicates the processing order for the rule groups, starting with the priority assinged the lowest value. The allowed values for priority are between 100 and 9900.
         ResourceProperties: string
     end
 
@@ -129,7 +132,7 @@ local record M
         ProfileId: string
         -- The Amazon Resource Name (ARN) of the resource association.
         ResourceArn: string
-        -- Resource type, such as a private hosted zone, or DNS Firewall rule group.
+        -- Resource type, such as a private hosted zone, interface VPC endpoint, Resolver query log configuration, or DNS Firewall rule group.
         ResourceType: string
         -- If the DNS resource is a DNS Firewall rule group, this indicates the priority.
         ResourceProperties: string
@@ -156,9 +159,7 @@ local record M
     record CreateProfileInput
         -- A name for the Profile.
         Name: string
-        -- ClientToken is an idempotency token that ensures a call to CreateProfile completes only once. You choose the value to pass.
-        -- For example, an issue might prevent you from getting a response from CreateProfile.
-        -- In this case, safely retry your call to CreateProfile by using the same CreateProfile parameter value.
+        -- ClientToken is an idempotency token that ensures a call to CreateProfile completes only once. You choose the value to pass. For example, an issue might prevent you from getting a response from CreateProfile. In this case, safely retry your call to CreateProfile by using the same CreateProfile parameter value.
         ClientToken: string
         -- A list of the tag keys and values that you want to associate with the Route 53 Profile.
         Tags: {Tag}
@@ -273,22 +274,16 @@ local record M
         ResourceId: string
         -- ID of the Profile.
         ProfileId: string
-        -- The maximum number of objects that you want to return for this request. If more objects are available, in the response,
-        -- a NextToken value, which you can use in a subsequent call to get the next batch of objects, is provided.
-        -- If you don't specify a value for MaxResults, up to 100 objects are returned.
+        -- The maximum number of objects that you want to return for this request. If more objects are available, in the response, a NextToken value, which you can use in a subsequent call to get the next batch of objects, is provided. If you don't specify a value for MaxResults, up to 100 objects are returned.
         MaxResults: number
-        -- For the first call to this list request, omit this value.
-        -- When you request a list of objects, at most the number of objects specified by MaxResults is returned.
-        -- If more objects are available for retrieval, a NextToken value is returned in the response.
-        -- To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.
+        -- For the first call to this list request, omit this value. When you request a list of objects, at most the number of objects specified by MaxResults is returned. If more objects are available for retrieval, a NextToken value is returned in the response. To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.
         NextToken: string
     end
 
     record ListProfileAssociationsOutput
         -- A complex type that containts settings information about the profile's VPC associations.
         ProfileAssociations: {ProfileAssociation}
-        -- If more than MaxResults profile associations match the specified criteria, you can submit another
-        -- ListProfileAssociations request to get the next group of results. In the next request, specify the value of NextToken from the previous response.
+        -- If more than MaxResults profile associations match the specified criteria, you can submit another ListProfileAssociations request to get the next group of results. In the next request, specify the value of NextToken from the previous response.
         NextToken: string
     end
 
@@ -297,34 +292,25 @@ local record M
         ProfileId: string
         -- ID of a resource if you want information on only one type.
         ResourceType: string
-        -- The maximum number of objects that you want to return for this request. If more objects are available, in the response,
-        -- a NextToken value, which you can use in a subsequent call to get the next batch of objects, is provided.
-        -- If you don't specify a value for MaxResults, up to 100 objects are returned.
+        -- The Amazon Resource Name (ARN) of a resource. If you specify this parameter, only the association with that resource is returned.
+        ResourceArn: string
+        -- The maximum number of objects that you want to return for this request. If more objects are available, in the response, a NextToken value, which you can use in a subsequent call to get the next batch of objects, is provided. If you don't specify a value for MaxResults, up to 100 objects are returned.
         MaxResults: number
-        -- For the first call to this list request, omit this value.
-        -- When you request a list of objects, at most the number of objects specified by MaxResults is returned.
-        -- If more objects are available for retrieval, a NextToken value is returned in the response.
-        -- To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.
+        -- For the first call to this list request, omit this value. When you request a list of objects, at most the number of objects specified by MaxResults is returned. If more objects are available for retrieval, a NextToken value is returned in the response. To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.
         NextToken: string
     end
 
     record ListProfileResourceAssociationsOutput
         -- Information about the profile resource association that you specified in a GetProfileResourceAssociation request.
         ProfileResourceAssociations: {ProfileResourceAssociation}
-        -- If more than MaxResults resource associations match the specified criteria, you can submit another
-        -- ListProfileResourceAssociations request to get the next group of results. In the next request, specify the value of NextToken from the previous response.
+        -- If more than MaxResults resource associations match the specified criteria, you can submit another ListProfileResourceAssociations request to get the next group of results. In the next request, specify the value of NextToken from the previous response.
         NextToken: string
     end
 
     record ListProfilesInput
-        -- The maximum number of objects that you want to return for this request. If more objects are available, in the response,
-        -- a NextToken value, which you can use in a subsequent call to get the next batch of objects, is provided.
-        -- If you don't specify a value for MaxResults, up to 100 objects are returned.
+        -- The maximum number of objects that you want to return for this request. If more objects are available, in the response, a NextToken value, which you can use in a subsequent call to get the next batch of objects, is provided. If you don't specify a value for MaxResults, up to 100 objects are returned.
         MaxResults: number
-        -- For the first call to this list request, omit this value.
-        -- When you request a list of objects, at most the number of objects specified by MaxResults is returned.
-        -- If more objects are available for retrieval, a NextToken value is returned in the response.
-        -- To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.
+        -- For the first call to this list request, omit this value. When you request a list of objects, at most the number of objects specified by MaxResults is returned. If more objects are available for retrieval, a NextToken value is returned in the response. To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.
         NextToken: string
     end
 
@@ -343,8 +329,7 @@ local record M
     record ListProfilesOutput
         -- Summary information about the Profiles.
         ProfileSummaries: {ProfileSummary}
-        -- If more than MaxResults resource associations match the specified criteria, you can submit another
-        -- ListProfiles request to get the next group of results. In the next request, specify the value of NextToken from the previous response.
+        -- If more than MaxResults resource associations match the specified criteria, you can submit another ListProfiles request to get the next group of results. In the next request, specify the value of NextToken from the previous response.
         NextToken: string
     end
 
@@ -378,13 +363,26 @@ local record M
     record UntagResourceOutput
     end
 
+    record UpdateProfileAssociationInput
+        -- The ID of the Profile association to update.
+        ProfileAssociationId: string
+        -- The name of the Profile association.
+        Name: string
+        -- The new priority of the Profile association. Route 53 VPC Resolver evaluates the Profile associations for a VPC in priority order, starting with the lowest value. The priority must be unique among the Profile associations for the VPC.
+        Priority: number
+    end
+
+    record UpdateProfileAssociationOutput
+        -- Information about the UpdateProfileAssociation request, including a status message.
+        ProfileAssociation: ProfileAssociation
+    end
+
     record UpdateProfileResourceAssociationInput
         -- ID of the resource association.
         ProfileResourceAssociationId: string
         -- Name of the resource association.
         Name: string
-        -- If you are adding a DNS Firewall rule group, include also a priority. The priority indicates the processing order for the rule groups, starting with the priority assinged the lowest value.
-        -- The allowed values for priority are between 100 and 9900.
+        -- If you are adding a DNS Firewall rule group, include also a priority. The priority indicates the processing order for the rule groups, starting with the priority assinged the lowest value. The allowed values for priority are between 100 and 9900.
         ResourceProperties: string
     end
 

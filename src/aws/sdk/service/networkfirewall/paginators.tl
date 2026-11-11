@@ -76,6 +76,24 @@ function M.items_list_firewall_policies(client, input)
     })
 end
 
+--- Returns a page iterator for listFirewallPoliciesV2.
+function M.pages_list_firewall_policies_v2(client, input)
+    return paginator.pages(client, "listFirewallPoliciesV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallPoliciesV2",
+    })
+end
+
+--- Returns an item iterator for listFirewallPoliciesV2.
+function M.items_list_firewall_policies_v2(client, input)
+    return paginator.items(client, "listFirewallPoliciesV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallPoliciesV2",
+    })
+end
+
 --- Returns a page iterator for listFirewalls.
 function M.pages_list_firewalls(client, input)
     return paginator.pages(client, "listFirewalls", input, {

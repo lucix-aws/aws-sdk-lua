@@ -91,6 +91,13 @@ local record M
         PublishMetricAction: PublishMetricAction
     end
 
+    enum ActionScope
+        "FLOW"
+        "TX"
+        "HOOK"
+        "PACKET"
+    end
+
     -- A single IP address specification. This is used in the MatchAttributes source and destination specifications.
     record Address
         -- Specify an IP address or a block of IP addresses in Classless Inter-Domain Routing (CIDR) notation. Network Firewall supports all address ranges for IPv4 and IPv6.
@@ -657,7 +664,7 @@ local record M
         ListenerProperties: {ListenerProperty}
     end
 
-    -- The VPC and subnets for a proxy mode firewall endpoint. This is used in CreateFirewall when NoSourcePreservation is TRUE, to specify where Network Firewall creates the firewall endpoint.
+    -- Contains the VPC and subnets for a proxy mode firewall endpoint. You use it in CreateFirewall when NoSourcePreservation is TRUE, to specify where Network Firewall creates the firewall endpoint.
     -- This differs from VpcEndpointAssociation, which defines additional secondary endpoints for a firewall in other VPCs.
     record VpcEndpoint
         -- The unique identifier of the VPC where Network Firewall creates the proxy mode firewall endpoint.
@@ -957,6 +964,7 @@ local record M
     -- domains, also configure stateful rule groups that use the
     -- AWS_ROUTE_53_RESOLVED_DOMAIN target type or the
     -- aws_route_53_resolved_domain rule keyword.
+    -- Enabling or disabling resolved IP validation, or changing DNSFirewallRuleGroupId, may require a restart of the stateful engine in order to apply the change. When this occurs, existing connections will be treated according to your stream exception policy configuration. Changes to Action, DNSExpiryExceptionPolicy, SourceIPRanges, and BypassDestinationValidationIPRanges don't require a restart.
     record Route53ResolvedIPValidation
         -- The action that Network Firewall takes for a connection whose destination IP address fails
         -- resolved IP validation. A destination IP address fails validation when the Route 53 Resolver
@@ -979,7 +987,9 @@ local record M
         -- Changing this value swaps the managed rule group association. Network Firewall processes
         -- the swap asynchronously. Each policy can have only one managed Route 53 Resolver DNS
         -- Firewall association. While a swap is in progress, Network Firewall rejects further changes to this setting. Wait
-        -- until the swap completes, then retry.
+        -- until the swap completes, then retry. The change may also require a restart of the stateful
+        -- engine. When this occurs, existing connections will be treated according to your stream
+        -- exception policy configuration.
         DNSFirewallRuleGroupId: string
         -- The action that Network Firewall takes when the DNS resolution recorded for a destination IP
         -- address has expired from the resolved IP cache. This applies when Network Firewall still sees
@@ -1188,8 +1198,8 @@ local record M
         EnableTLSSessionHolding: boolean
         -- The settings that enable resolved IP validation for the policy. Resolved IP validation
         -- verifies that a connection's destination IP address is one that the Amazon Route 53 Resolver
-        -- returned in a DNS response for a domain. The response must come from a VPC that's associated
-        -- with the Route 53 Resolver DNS Firewall rule group that you specify. This checks how the
+        -- returned in a DNS response for a domain. A VPC that's associated with the Route 53 Resolver
+        -- DNS Firewall rule group that you specify must send the response. This checks how the
         -- destination IP address was obtained, instead of relying only on the domain that the client
         -- asserts in its TLS Server Name Indication (SNI) or HTTP Host header. For more
         -- information, see Route53ResolvedIPValidation.
@@ -1297,6 +1307,560 @@ local record M
         UpdateToken: string
         -- The high-level properties of a firewall policy. This, along with the FirewallPolicy, define the policy. You can retrieve all objects for a firewall policy by calling DescribeFirewallPolicy.
         FirewallPolicyResponse: FirewallPolicyResponse
+    end
+
+    enum PolicyDefaultAction
+        "DROP"
+        "ACCEPT"
+        "REJECT"
+        "ALERT"
+    end
+
+    -- Configures one or more IP set references for a Suricata-compatible rule group. This is used in CreateRuleGroup or UpdateRuleGroup. An IP set reference is a rule variable that references resources that you create and manage in another Amazon Web Services service, such as an Amazon VPC prefix list. Network Firewall IP set references enable you to dynamically update the contents of your rules. When you create, update, or delete the resource you are referencing in your rule, Network Firewall automatically updates the rule's content with the changes. For more information about IP set references in Network Firewall, see Using IP set references in the Network Firewall Developer Guide.
+    -- Network Firewall currently supports Amazon VPC prefix lists and resource groups in IP set references.
+    record IPSetReference
+        -- The Amazon Resource Name (ARN) of the resource that you are referencing in your rule group.
+        ReferenceArn: string
+    end
+
+    -- Contains a set of IP set references.
+    record ReferenceSets
+        -- The list of IP set references.
+        IPSetReferences: {string : IPSetReference}
+    end
+
+    enum FirewallRuleAction
+        "ACCEPT"
+        "DROP"
+        "REJECT"
+        "REJECT_DST"
+        "REJECT_BOTH"
+    end
+
+    enum HookKey
+        "TCP_ALL"
+        "TCP_FLOW_START"
+        "TCP_PRE_FLOW"
+        "TCP_PRE_STREAM"
+        "SCTP_ALL"
+        "SCTP_FLOW_START"
+        "SCTP_PRE_FLOW"
+        "SCTP_PRE_STREAM"
+        "IPV6_ALL"
+        "IPV6_FLOW_START"
+        "IPV6_PRE_FLOW"
+        "IPV6_PRE_STREAM"
+        "ICMPV6_ALL"
+        "ICMPV6_FLOW_START"
+        "ICMPV6_PRE_FLOW"
+        "ICMPV6_PRE_STREAM"
+        "UDP_ALL"
+        "UDP_FLOW_START"
+        "UDP_PRE_FLOW"
+        "UDP_PRE_STREAM"
+        "ICMP_ALL"
+        "ICMP_FLOW_START"
+        "ICMP_PRE_FLOW"
+        "ICMP_PRE_STREAM"
+        "ICMPV4_ALL"
+        "ICMPV4_FLOW_START"
+        "ICMPV4_PRE_FLOW"
+        "ICMPV4_PRE_STREAM"
+        "IP_ALL"
+        "IP_FLOW_START"
+        "IP_PRE_FLOW"
+        "IP_PRE_STREAM"
+        "IPV4_ALL"
+        "IPV4_FLOW_START"
+        "IPV4_PRE_FLOW"
+        "IPV4_PRE_STREAM"
+        "TLS_CLIENT_STARTED"
+        "TLS_CLIENT_HELLO"
+        "TLS_CLIENT_CERT"
+        "TLS_CLIENT_DATA"
+        "TLS_CLIENT_FINISHED"
+        "TLS_SERVER_STARTED"
+        "TLS_SERVER_HELLO"
+        "TLS_SERVER_CERT"
+        "TLS_SERVER_DATA"
+        "TLS_SERVER_FINISHED"
+        "HTTP1_REQUEST_STARTED"
+        "HTTP1_REQUEST_LINE"
+        "HTTP1_REQUEST_HEADERS"
+        "HTTP1_REQUEST_BODY"
+        "HTTP1_REQUEST_TRAILER"
+        "HTTP1_REQUEST_COMPLETE"
+        "HTTP1_RESPONSE_STARTED"
+        "HTTP1_RESPONSE_LINE"
+        "HTTP1_RESPONSE_HEADERS"
+        "HTTP1_RESPONSE_BODY"
+        "HTTP1_RESPONSE_TRAILER"
+        "HTTP1_RESPONSE_COMPLETE"
+        "HTTP2_STREAM_REQUEST_STARTED"
+        "HTTP2_STREAM_REQUEST_HEADERS"
+        "HTTP2_STREAM_REQUEST_DATA"
+        "HTTP2_STREAM_REQUEST_CLOSED"
+        "HTTP2_STREAM_REQUEST_COMPLETE"
+        "HTTP2_STREAM_RESPONSE_STARTED"
+        "HTTP2_STREAM_RESPONSE_HEADERS"
+        "HTTP2_STREAM_RESPONSE_DATA"
+        "HTTP2_STREAM_RESPONSE_CLOSED"
+        "HTTP2_STREAM_RESPONSE_COMPLETE"
+        "HTTP2_GLOBAL_REQUEST_STARTED"
+        "HTTP2_GLOBAL_REQUEST_COMPLETE"
+        "HTTP2_GLOBAL_RESPONSE_STARTED"
+        "HTTP2_GLOBAL_RESPONSE_COMPLETE"
+        "DOH2_STREAM_REQUEST_STARTED"
+        "DOH2_STREAM_REQUEST_HEADERS"
+        "DOH2_STREAM_REQUEST_DATA"
+        "DOH2_STREAM_REQUEST_CLOSED"
+        "DOH2_STREAM_REQUEST_COMPLETE"
+        "DOH2_STREAM_RESPONSE_STARTED"
+        "DOH2_STREAM_RESPONSE_HEADERS"
+        "DOH2_STREAM_RESPONSE_DATA"
+        "DOH2_STREAM_RESPONSE_CLOSED"
+        "DOH2_STREAM_RESPONSE_COMPLETE"
+        "DOH2_GLOBAL_REQUEST_STARTED"
+        "DOH2_GLOBAL_REQUEST_COMPLETE"
+        "DOH2_GLOBAL_RESPONSE_STARTED"
+        "DOH2_GLOBAL_RESPONSE_COMPLETE"
+        "DNS_REQUEST_STARTED"
+        "DNS_REQUEST_COMPLETE"
+        "DNS_RESPONSE_STARTED"
+        "DNS_RESPONSE_COMPLETE"
+        "SMTP_REQUEST_STARTED"
+        "SMTP_REQUEST_DATA"
+        "SMTP_REQUEST_COMPLETE"
+        "SMTP_RESPONSE_STARTED"
+        "SMTP_RESPONSE_DATA"
+        "SMTP_RESPONSE_COMPLETE"
+        "FTP_REQUEST_STARTED"
+        "FTP_REQUEST_COMPLETE"
+        "FTP_RESPONSE_STARTED"
+        "FTP_RESPONSE_COMPLETE"
+        "FTP_DATA_REQUEST_STARTED"
+        "FTP_DATA_REQUEST_COMPLETE"
+        "FTP_DATA_RESPONSE_STARTED"
+        "FTP_DATA_RESPONSE_COMPLETE"
+        "SMB_REQUEST_STARTED"
+        "SMB_REQUEST_COMPLETE"
+        "SMB_RESPONSE_STARTED"
+        "SMB_RESPONSE_COMPLETE"
+        "DCERPC_REQUEST_STARTED"
+        "DCERPC_REQUEST_COMPLETE"
+        "DCERPC_RESPONSE_STARTED"
+        "DCERPC_RESPONSE_COMPLETE"
+        "NFS_REQUEST_STARTED"
+        "NFS_REQUEST_COMPLETE"
+        "NFS_RESPONSE_STARTED"
+        "NFS_RESPONSE_COMPLETE"
+        "KRB5_REQUEST_STARTED"
+        "KRB5_REQUEST_COMPLETE"
+        "KRB5_RESPONSE_STARTED"
+        "KRB5_RESPONSE_COMPLETE"
+        "IKE_REQUEST_STARTED"
+        "IKE_REQUEST_COMPLETE"
+        "IKE_RESPONSE_STARTED"
+        "IKE_RESPONSE_COMPLETE"
+        "TFTP_REQUEST_STARTED"
+        "TFTP_REQUEST_COMPLETE"
+        "TFTP_RESPONSE_STARTED"
+        "TFTP_RESPONSE_COMPLETE"
+        "DHCP_REQUEST_STARTED"
+        "DHCP_REQUEST_COMPLETE"
+        "DHCP_RESPONSE_STARTED"
+        "DHCP_RESPONSE_COMPLETE"
+        "QUIC_REQUEST_STARTED"
+        "QUIC_REQUEST_COMPLETE"
+        "QUIC_RESPONSE_STARTED"
+        "QUIC_RESPONSE_COMPLETE"
+        "RDP_REQUEST_STARTED"
+        "RDP_REQUEST_COMPLETE"
+        "RDP_RESPONSE_STARTED"
+        "RDP_RESPONSE_COMPLETE"
+        "RFB_REQUEST_STARTED"
+        "RFB_REQUEST_COMPLETE"
+        "RFB_RESPONSE_STARTED"
+        "RFB_RESPONSE_COMPLETE"
+        "MQTT_REQUEST_STARTED"
+        "MQTT_REQUEST_COMPLETE"
+        "MQTT_RESPONSE_STARTED"
+        "MQTT_RESPONSE_COMPLETE"
+        "PGSQL_REQUEST_STARTED"
+        "PGSQL_REQUEST_COMPLETE"
+        "PGSQL_RESPONSE_STARTED"
+        "PGSQL_RESPONSE_COMPLETE"
+        "SNMP_REQUEST_STARTED"
+        "SNMP_REQUEST_COMPLETE"
+        "SNMP_RESPONSE_STARTED"
+        "SNMP_RESPONSE_COMPLETE"
+        "NTP_REQUEST_STARTED"
+        "NTP_REQUEST_COMPLETE"
+        "NTP_RESPONSE_STARTED"
+        "NTP_RESPONSE_COMPLETE"
+        "TELNET_REQUEST_STARTED"
+        "TELNET_REQUEST_COMPLETE"
+        "TELNET_RESPONSE_STARTED"
+        "TELNET_RESPONSE_COMPLETE"
+        "WEBSOCKET_REQUEST_STARTED"
+        "WEBSOCKET_REQUEST_COMPLETE"
+        "WEBSOCKET_RESPONSE_STARTED"
+        "WEBSOCKET_RESPONSE_COMPLETE"
+        "LDAP_REQUEST_STARTED"
+        "LDAP_REQUEST_COMPLETE"
+        "LDAP_RESPONSE_STARTED"
+        "LDAP_RESPONSE_COMPLETE"
+        "POP3_REQUEST_STARTED"
+        "POP3_REQUEST_COMPLETE"
+        "POP3_RESPONSE_STARTED"
+        "POP3_RESPONSE_COMPLETE"
+        "MDNS_REQUEST_STARTED"
+        "MDNS_REQUEST_COMPLETE"
+        "MDNS_RESPONSE_STARTED"
+        "MDNS_RESPONSE_COMPLETE"
+        "BITTORRENT_DHT_REQUEST_STARTED"
+        "BITTORRENT_DHT_REQUEST_COMPLETE"
+        "BITTORRENT_DHT_RESPONSE_STARTED"
+        "BITTORRENT_DHT_RESPONSE_COMPLETE"
+        "DNP3_REQUEST_STARTED"
+        "DNP3_REQUEST_COMPLETE"
+        "DNP3_RESPONSE_STARTED"
+        "DNP3_RESPONSE_COMPLETE"
+        "SSH_REQUEST_IN_PROGRESS"
+        "SSH_REQUEST_BANNER_WAIT_EOL"
+        "SSH_REQUEST_BANNER_DONE"
+        "SSH_REQUEST_FINISHED"
+        "SSH_RESPONSE_IN_PROGRESS"
+        "SSH_RESPONSE_BANNER_WAIT_EOL"
+        "SSH_RESPONSE_BANNER_DONE"
+        "SSH_RESPONSE_FINISHED"
+    end
+
+    enum FirewallRuleProtocol
+        "IP"
+        "TCP"
+        "UDP"
+        "ICMP"
+        "HTTP"
+        "FTP"
+        "TLS"
+        "SMB"
+        "DNS"
+        "DCERPC"
+        "SSH"
+        "SMTP"
+        "MSN"
+        "KRB5"
+        "IKEV2"
+        "TFTP"
+        "NTP"
+        "DHCP"
+        "HTTP2"
+        "QUIC"
+        "ICMPV4"
+        "ICMPV6"
+        "SCTP"
+        "IPV4"
+        "IPV6"
+        "DOH2"
+        "FTP_DATA"
+        "NFS"
+        "RDP"
+        "RFB"
+        "MQTT"
+        "PGSQL"
+        "SNMP"
+        "TELNET"
+        "WEBSOCKET"
+        "LDAP"
+        "POP3"
+        "MDNS"
+        "BITTORRENT_DHT"
+        "DNP3"
+    end
+
+    -- Metadata for a single firewall engine rule. Use it to disable a rule without removing it and to attach a description. When you describe a rule group in RULES_STRING format, Network Firewall renders a disabled rule and its description as # comment lines above the rule.
+    record RuleMetadata
+        -- Specifies whether the rule is active. The default is TRUE. When you set this to FALSE, Network Firewall keeps the rule in the rule group but doesn't evaluate it against traffic and doesn't count it toward the rule group's consumed capacity.
+        RuleEnabled: boolean
+        -- A description of the rule, up to 512 characters. The description can span multiple lines. A description line can't itself look like a firewall rule; to disable a rule, set RuleEnabled to FALSE instead.
+        RuleDescription: string
+    end
+
+    -- Additional settings for a stateful rule. This is part of the StatefulRule configuration.
+    record RuleOption
+        -- The keyword for the Suricata compatible rule option. You must include a sid (signature ID), and can optionally include other keywords. For information about Suricata compatible keywords, see Rule options in the Suricata documentation.
+        Keyword: string
+        -- The settings of the Suricata compatible rule option. Rule options have zero or more setting values, and the number of possible and required settings depends on the Keyword. For more information about the settings for specific options, see Rule options.
+        Settings: {string}
+    end
+
+    -- A single structured firewall engine rule, for use in a firewall engine rule group or as an embedded rule in a Next Generation policy. A firewall rule accepts, drops, or rejects traffic at a connection-state hook. For more information about authoring firewall engine rules, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide.
+    record FirewallRule
+        -- The action that the firewall engine takes on traffic that matches the rule. The firewall engine supports the following actions:
+        -- ACCEPT - Allow the traffic.
+        -- DROP - Block the traffic and discontinue inspection.
+        -- REJECT - Block the traffic and send a TCP reset packet back to the client.
+        -- REJECT_DST - Block the traffic and send a TCP reset packet to the destination.
+        -- REJECT_BOTH - Block the traffic and send a TCP reset packet to both the client and the destination.
+        -- You combine the action with an action scope, for example accept:flow. To send accepted traffic straight to its destination and skip the IPS engine, pair an accept action with the BypassIPSEnabled setting. For more information, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide.
+        Action: string
+        -- The scope that controls how much of the matched traffic the action applies to. The valid scopes depend on the action: ACCEPT supports all four scopes, and DROP, REJECT, REJECT_DST, and REJECT_BOTH support only PACKET and FLOW.
+        -- PACKET - The current packet only.
+        -- HOOK - The current hook only. The firewall engine evaluates the connection again at the next hook.
+        -- TX - The current transaction. The firewall engine continues to evaluate later transactions on the connection.
+        -- FLOW - The entire connection. For an accept action, the connection skips the firewall engine's remaining hooks and advances to the IPS engine.
+        -- In a Suricata-compatible rule string, you write the scope in lowercase, for example accept:flow.
+        ActionScope: string
+        -- The connection-state hook at which the firewall engine evaluates the rule. The hook encodes both the protocol and the connection state, for example a TCP hook or a TLS client_hello hook. For the hooks that the firewall engine supports and how they map to the connection lifecycle, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide and the Suricata firewall mode documentation.
+        Hook: string
+        -- The protocol of the rule's hook. The protocol is derived from the hook and must match the hook's protocol prefix. Network Firewall rejects a rule whose protocol doesn't match its hook.
+        Protocol: string
+        -- The source IP addresses and address ranges to inspect for, in CIDR notation. A firewall rule always compiles to a forward-direction rule, so you express inbound compared to outbound traffic through the source and destination addresses.
+        SourceIPs: string
+        -- The destination IP addresses and address ranges to inspect for, in CIDR notation. A firewall rule always compiles to a forward-direction rule, so you express inbound compared to outbound traffic through the source and destination addresses.
+        DestIPs: string
+        -- The source ports to inspect for.
+        SourcePorts: string
+        -- The destination ports to inspect for.
+        DestPorts: string
+        -- Additional options for the rule. These are the Suricata RuleOptions settings, such as the signature ID (sid) and match keywords.
+        RuleOptions: {RuleOption}
+        -- Whether Network Firewall automatically accepts the earlier application-layer hooks that a connection must pass to reach this rule's hook. Because the firewall engine is drop by default, accepting prior hooks lets you author a single rule for the hook you care about, instead of also authoring a rule for each earlier hook. This setting accepts the earlier application-layer hooks only; it doesn't accept the TCP layer. For more information, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide.
+        AcceptPriorHooks: boolean
+        -- Specifies whether the rule also generates an alert log for the traffic that it matches. Turning on alerting adds a secondary alert action to the rule, so that Network Firewall logs the match in addition to taking the rule's primary action.
+        AlertEnabled: boolean
+        -- Specifies whether an accepted connection bypasses the IPS engine. By default, traffic that the firewall engine accepts advances to the IPS engine for threat inspection. When you turn on this setting for an accept rule, the accepted traffic goes straight to its destination without IPS inspection. You can set the bypass only on accept rules, and it uses the same scope as the rule's accept action; only the flow and packet scopes support a bypass. For more information, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide.
+        BypassIPSEnabled: boolean
+        -- Optional metadata for the rule: whether the rule is enabled and a description. Metadata doesn't change how the rule matches or acts on traffic.
+        RuleMetadata: RuleMetadata
+    end
+
+    enum GeneratedRulesType
+        "ALLOWLIST"
+        "DENYLIST"
+        "REJECTLIST"
+        "ALERTLIST"
+    end
+
+    enum TargetType
+        "TLS_SNI"
+        "HTTP_HOST"
+        "AWS_ROUTE_53_RESOLVED_DOMAIN"
+    end
+
+    -- Stateful inspection criteria for a domain list rule group.
+    -- For HTTPS traffic, domain filtering is SNI-based. It uses the server name indicator extension of the TLS handshake.
+    -- By default, Network Firewall domain list inspection only includes traffic coming from the VPC where you deploy the firewall. To inspect traffic from IP addresses outside of the deployment VPC, you set the HOME_NET rule variable to include the CIDR range of the deployment VPC plus the other CIDR ranges. For more information, see RuleVariables in this guide and
+    -- Stateful domain list rule groups in Network Firewall in the Network Firewall Developer Guide.
+    record RulesSourceList
+        -- The domains that you want to inspect for in your traffic flows. Valid domain specifications are the following:
+        -- Explicit names. For example, abc.example.com matches only the domain abc.example.com.
+        -- Names that use a domain wildcard, which you indicate with an initial '.'. For example,.example.com matches example.com and matches all subdomains of example.com, such as abc.example.com and www.example.com.
+        Targets: {string}
+        -- The types of matching to perform against the domains in Targets. You can specify any combination of the following:
+        -- AWS_ROUTE_53_RESOLVED_DOMAIN – Match the domain against the domain that the Amazon Route 53 Resolver resolved the connection's destination IP address for.
+        -- HTTP_HOST – Match the domain against the Host header of HTTP traffic.
+        -- TLS_SNI – Match the domain against the Server Name Indication (SNI) of HTTPS traffic.
+        -- AWS_ROUTE_53_RESOLVED_DOMAIN matches on how the destination IP address was resolved, rather than on the domain that the client asserts in its TLS SNI or HTTP Host header. This target type takes effect when you configure resolved IP validation on the firewall policy. For more information, see Route53ResolvedIPValidation.
+        -- Whether you include AWS_ROUTE_53_RESOLVED_DOMAIN changes what the generated rules match, together with GeneratedRulesType:
+        -- Combining AWS_ROUTE_53_RESOLVED_DOMAIN with TLS_SNI or HTTP_HOST in an ALLOWLIST requires both conditions to match. The SNI or Host header must match the domain, and the Route 53 Resolver must have resolved the destination IP address for that domain. Network Firewall allows traffic only in that case. Traffic that matches one condition, such as a spoofed Host header sent to an unresolved IP address, is not allowed.
+        -- In a DENYLIST, or when AWS_ROUTE_53_RESOLVED_DOMAIN is the only target type, Network Firewall evaluates each condition independently: a match on either the domain (SNI or Host) or the resolved destination IP address triggers the rule.
+        -- When you don't include AWS_ROUTE_53_RESOLVED_DOMAIN, the generated rules match only on the SNI or Host header, without checking how the destination IP address was resolved.
+        -- An ALLOWLIST whose only target type is AWS_ROUTE_53_RESOLVED_DOMAIN is additive: it allows matching traffic but doesn't generate a default rule that drops non-matching traffic. Only the TLS_SNI and HTTP_HOST target types generate that default drop. To allow only the resolved domains and drop all other traffic, include a protocol target type as well.
+        TargetTypes: {string}
+        -- Whether you want to apply allow, reject, alert, or drop behavior to the domains in your target list.
+        -- When logging is enabled and you choose Alert, traffic that matches the domain specifications
+        -- generates an alert in the firewall's logs. Then, traffic either passes, is rejected, or drops based on other rules in the firewall policy.
+        GeneratedRulesType: string
+    end
+
+    -- The source of the rules for a firewall engine rule group. You provide the rules as a single Suricata-compatible rule string, as a list of structured firewall rules, or as a list of domain names to generate rules from.
+    record FirewallRulesSource
+        -- Firewall engine rules, provided as a single Suricata-compatible rule string in firewall mode. Use this to provide rules that you've already written in the Suricata firewall-mode format. For the rule format, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide.
+        RulesString: string
+        -- An array of individual firewall engine rules, provided as structured rules rather than as a rule string.
+        FirewallRules: {FirewallRule}
+        -- Stateful inspection criteria for a domain list, specified as the list of domain names that Network Firewall generates firewall engine rules from.
+        RulesSourceList: RulesSourceList
+    end
+
+    -- A set of port ranges for use in the rules in a rule group.
+    record PortSet
+        -- The set of port ranges.
+        Definition: {string}
+    end
+
+    -- Settings that are available for use in the rules in the RuleGroup
+    -- where this is defined. See CreateRuleGroup or UpdateRuleGroup for usage.
+    record RuleVariables
+        -- A list of IP addresses and address ranges, in CIDR notation.
+        IPSets: {string : IPSet}
+        -- A list of port ranges.
+        PortSets: {string : PortSet}
+    end
+
+    -- The object that defines a firewall engine rule group, for use in a Next Generation policy. A firewall engine rule group provides access-control rules that the firewall engine evaluates at connection-state hooks. You provide the rules as a Suricata-compatible rule string, as structured firewall rules, or generated from a list of domain names. For more information, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide.
+    record FirewallRuleGroup
+        -- The stateful inspection criteria for the firewall engine rule group.
+        RulesSource: FirewallRulesSource
+        -- Settings that are available for use in the rules in the firewall engine rule group, such as IP set and port variables that the rules reference.
+        RuleVariables: RuleVariables
+        -- The list of a rule group's reference sets. Firewall engine rule groups don't support IP set references (reference sets); this setting applies to IPS engine rule groups. To use CIDR ranges in firewall engine rules, use rule variables instead.
+        ReferenceSets: ReferenceSets
+    end
+
+    -- A single entry in the firewall section of a Next Generation policy. An entry either references an existing firewall engine rule group by ARN or embeds a rule group directly in the policy, and it carries the priority that sets the rule group's evaluation order within the firewall section.
+    record FirewallRuleGroupEntry
+        -- The priority of the rule group entry within the firewall section. Network Firewall evaluates the firewall section's entries in order of increasing priority value. Each entry in the firewall section must have a unique priority.
+        Priority: number
+        -- The Amazon Resource Name (ARN) of an existing firewall engine rule group to reference in this entry. Provide either ResourceArn to reference an existing rule group or InlineRuleGroup to embed a rule group in the policy.
+        ResourceArn: string
+        -- A firewall engine rule group defined directly in the policy, instead of referenced by ARN. Provide either InlineRuleGroup to embed a rule group or ResourceArn to reference an existing rule group. An embedded rule group can't use a domain list rules source; to filter on a domain list, reference a standalone rule group by ARN instead.
+        InlineRuleGroup: FirewallRuleGroup
+    end
+
+    -- The source of the rules for an IPS engine rule group.
+    record IpsRulesSource
+        -- IPS engine rules, provided as a single Suricata-compatible rule string. For the rule format, see Rules Format on the Suricata website.
+        RulesString: string
+    end
+
+    -- The object that defines an IPS engine rule group, for use in a Next Generation policy. An IPS engine rule group provides threat-detection rules that the IPS engine evaluates in the context of the traffic flow. You provide the rules as a Suricata-compatible rule string. For more information, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide.
+    record IpsRuleGroup
+        -- The stateful inspection criteria for the IPS engine rule group.
+        RulesSource: IpsRulesSource
+        -- Settings that are available for use in the rules in the IPS engine rule group.
+        RuleVariables: RuleVariables
+        -- The list of a rule group's reference sets.
+        ReferenceSets: ReferenceSets
+    end
+
+    -- The setting that allows the policy owner to change the behavior of an IPS engine rule group within a Next Generation policy.
+    record IpsRuleGroupOverride
+        -- The action that changes the rule group from DROP to ALERT. This only applies to managed rule groups.
+        Action: string
+    end
+
+    -- A single entry in the IPS section of a Next Generation policy. An entry either references an existing IPS engine rule group by ARN or embeds a rule group directly in the policy. IPS section entries don't use a priority.
+    record IpsRuleGroupEntry
+        -- The Amazon Resource Name (ARN) of an existing IPS engine rule group to reference in this entry. Provide either ResourceArn to reference an existing rule group or InlineRuleGroup to embed a rule group in the policy.
+        ResourceArn: string
+        -- An IPS engine rule group defined directly in the policy, instead of referenced by ARN. Provide either InlineRuleGroup to embed a rule group or ResourceArn to reference an existing rule group.
+        InlineRuleGroup: IpsRuleGroup
+        -- The setting that allows the policy owner to change the behavior of the IPS engine rule group within this policy, such as changing a managed rule group's action from DROP to ALERT.
+        Override: IpsRuleGroupOverride
+    end
+
+    enum PolicyMode
+        "ENFORCE"
+        "MONITOR"
+    end
+
+    enum StreamExceptionPolicyV2
+        "DROP"
+        "REJECT"
+    end
+
+    -- Configuration settings for the handling of stateful traffic in a Next Generation policy.
+    record StatefulEngineOptionsV2
+        -- How Network Firewall handles traffic on a network connection that breaks midstream. A Next Generation policy supports DROP and REJECT. For more information, see Stream exception policy options in your firewall policy in the Network Firewall Developer Guide.
+        StreamExceptionPolicy: string
+        -- The amount of time that can pass without any traffic sent through the firewall before the firewall determines that the connection is idle.
+        FlowTimeouts: FlowTimeouts
+    end
+
+    -- The object that defines a Next Generation policy. This, along with the FirewallPolicyV2Response, define the policy.
+    -- A Next Generation policy defines how the firewall engine and IPS engine inspect and control your VPC network traffic. You define the policy as a firewall section and an IPS section, each a collection of rule groups, along with policy-wide settings such as the policy mode and default actions. For more information, see Next Generation policies in the Network Firewall Developer Guide.
+    record FirewallPolicyV2
+        -- The firewall section of the policy—the rule groups that the firewall engine evaluates. Each entry references an existing firewall engine rule group or embeds a rule group directly in the policy, and each entry has a unique priority that sets its evaluation order within the section.
+        FirewallRuleGroupEntries: {FirewallRuleGroupEntry}
+        -- The IPS section of the policy—the rule groups that the IPS engine evaluates. Each entry references an existing IPS engine rule group or embeds a rule group directly in the policy. IPS section entries don't use a priority.
+        IpsRuleGroupEntries: {IpsRuleGroupEntry}
+        -- Indicates whether the policy's engines enforce their verdicts or only report them. In ENFORCE mode, the firewall engine and IPS engine apply their verdicts to traffic. In MONITOR mode, the engines evaluate traffic and generate logs and metrics, but don't block traffic, so you can observe how a policy would behave before you enforce it. For more information, see Next Generation policies in the Network Firewall Developer Guide.
+        PolicyMode: string
+        -- The action that the firewall engine takes on traffic that doesn't match any firewall engine rule at a hook. The firewall engine is drop by default. You can set the default action to one of the following:
+        -- DROP - Block the traffic.
+        -- ACCEPT - Allow the traffic.
+        -- REJECT - Block the traffic and send a TCP reset packet back to the client.
+        -- ALERT - Allow the traffic and generate an alert log for the traffic that reaches the default action at every hook. This is distinct from setting the policy mode to MONITOR.
+        -- For more information, see Next Generation policies in the Network Firewall Developer Guide.
+        FirewallDefaultAction: string
+        -- Additional options governing how the engines handle stateful traffic, such as the stream exception policy and flow timeouts.
+        StatefulEngineOptions: StatefulEngineOptionsV2
+        -- The Amazon Resource Name (ARN) of the TLS inspection configuration to use to decrypt traffic for inspection. Next Generation policies support session holding only. For more information, see Inspecting SSL/TLS traffic with TLS inspection configurations in the Network Firewall Developer Guide.
+        TLSInspectionConfigurationArn: string
+        -- Contains variables that you can use to override default Suricata settings in your Next Generation policy.
+        PolicyVariables: PolicyVariables
+        -- The settings that enable resolved IP validation for the Next Generation policy.
+        -- Resolved IP validation verifies that a connection's destination IP address is one that the
+        -- Amazon Route 53 Resolver returned in a DNS response for a domain. A VPC that's associated with
+        -- the Route 53 Resolver DNS Firewall rule group that you specify must send the response.
+        -- This checks how the destination IP address was obtained, instead of relying only on the
+        -- domain that the client asserts in its TLS Server Name Indication (SNI) or HTTP
+        -- Host header. For more information, see
+        -- Route53ResolvedIPValidation.
+        Route53ResolvedIPValidation: Route53ResolvedIPValidation
+    end
+
+    record CreateFirewallPolicyV2Input
+        -- The descriptive name of the Next Generation policy. You can't change the name of a firewall policy after you create it.
+        FirewallPolicyV2Name: string
+        -- The rule groups and other settings that define the Next Generation policy.
+        FirewallPolicyV2: FirewallPolicyV2
+        -- A description of the firewall policy.
+        Description: string
+        -- The key:value pairs to associate with the resource.
+        Tags: {Tag}
+        -- Indicates whether you want Network Firewall to just check the validity of the request, rather than run the request.
+        -- If set to TRUE, Network Firewall checks whether the request can run successfully,
+        -- but doesn't actually make the requested changes. The call returns the value that the request would return if you ran it with
+        -- dry run set to FALSE, but doesn't make additions or changes to your resources. This option allows you to make sure that you have
+        -- the required permissions to run the request and that your request parameters are valid.
+        -- If set to FALSE, Network Firewall makes the requested changes to your resources.
+        DryRun: boolean
+        -- A complex type that contains settings for encryption of your firewall policy resources.
+        EncryptionConfiguration: EncryptionConfiguration
+    end
+
+    -- The high-level properties of a Next Generation policy. This includes the policy's identity, status, consumed capacity, and association count. Network Firewall returns this object in response to the Next Generation policy operations. To retrieve the policy's rule groups and settings, use the FirewallPolicyV2 object.
+    record FirewallPolicyV2Response
+        -- The descriptive name of the Next Generation policy. You can't change the name of a firewall policy after you create it.
+        FirewallPolicyV2Name: string
+        -- The Amazon Resource Name (ARN) of the Next Generation policy.
+        FirewallPolicyV2Arn: string
+        -- The unique identifier of the Next Generation policy. Network Firewall assigns this identifier when you create the policy.
+        FirewallPolicyV2Id: string
+        -- A description of the Next Generation policy.
+        Description: string
+        -- The current status of the Next Generation policy. A policy must be in the ACTIVE state before you can use it in a firewall.
+        FirewallPolicyV2Status: string
+        -- Additional information about the current status of the Next Generation policy.
+        StatusMessage: string
+        -- The key-value tag pairs that are associated with the Next Generation policy.
+        Tags: {Tag}
+        -- The number of firewall engine rule capacity units that the policy's firewall section currently consumes.
+        ConsumedFirewallRuleCapacity: number
+        -- The number of IPS engine rule capacity units that the policy's IPS section currently consumes.
+        ConsumedIpsRuleCapacity: number
+        -- The number of IPS domain list capacity units that the policy's IPS section currently consumes.
+        ConsumedIpsDomainCapacity: number
+        -- The number of firewalls that are associated with the Next Generation policy.
+        NumberOfAssociations: number
+        -- A complex type that contains the Amazon Web Services KMS encryption configuration settings for your Next Generation policy.
+        EncryptionConfiguration: EncryptionConfiguration
+        -- Any configuration errors that apply to the Next Generation policy. Network Firewall detects these errors asynchronously, after you create or update the policy, so an error can appear after the request that caused it has already succeeded. Each entry describes the problem and how to resolve it, and Network Firewall clears it automatically after you resolve the problem.
+        Errors: {FirewallPolicyError}
+        -- The last time that the Next Generation policy was changed.
+        LastModifiedTime: number
+    end
+
+    record CreateFirewallPolicyV2Output
+        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the firewall policy. The token marks the state of the policy resource at the time of the request.
+        -- To make changes to the policy, you provide the token in your request. Network Firewall uses the token to ensure that the policy hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the firewall policy again to get a current copy of it with current token. Reapply your changes as needed, then try the operation again using the new token.
+        UpdateToken: string
+        -- The high-level properties of the Next Generation policy. This, along with the FirewallPolicyV2, define the policy. You can retrieve all objects for a Next Generation policy by calling DescribeFirewallPolicyV2.
+        FirewallPolicyV2Response: FirewallPolicyV2Response
     end
 
     -- This data type is used specifically for the CreateProxy and
@@ -1554,58 +2118,6 @@ local record M
         UpdateToken: string
     end
 
-    -- Configures one or more IP set references for a Suricata-compatible rule group. This is used in CreateRuleGroup or UpdateRuleGroup. An IP set reference is a rule variable that references resources that you create and manage in another Amazon Web Services service, such as an Amazon VPC prefix list. Network Firewall IP set references enable you to dynamically update the contents of your rules. When you create, update, or delete the resource you are referencing in your rule, Network Firewall automatically updates the rule's content with the changes. For more information about IP set references in Network Firewall, see Using IP set references in the Network Firewall Developer Guide.
-    -- Network Firewall currently supports Amazon VPC prefix lists and resource groups in IP set references.
-    record IPSetReference
-        -- The Amazon Resource Name (ARN) of the resource that you are referencing in your rule group.
-        ReferenceArn: string
-    end
-
-    -- Contains a set of IP set references.
-    record ReferenceSets
-        -- The list of IP set references.
-        IPSetReferences: {string : IPSetReference}
-    end
-
-    enum GeneratedRulesType
-        "ALLOWLIST"
-        "DENYLIST"
-        "REJECTLIST"
-        "ALERTLIST"
-    end
-
-    enum TargetType
-        "TLS_SNI"
-        "HTTP_HOST"
-        "AWS_ROUTE_53_RESOLVED_DOMAIN"
-    end
-
-    -- Stateful inspection criteria for a domain list rule group.
-    -- For HTTPS traffic, domain filtering is SNI-based. It uses the server name indicator extension of the TLS handshake.
-    -- By default, Network Firewall domain list inspection only includes traffic coming from the VPC where you deploy the firewall. To inspect traffic from IP addresses outside of the deployment VPC, you set the HOME_NET rule variable to include the CIDR range of the deployment VPC plus the other CIDR ranges. For more information, see RuleVariables in this guide and
-    -- Stateful domain list rule groups in Network Firewall in the Network Firewall Developer Guide.
-    record RulesSourceList
-        -- The domains that you want to inspect for in your traffic flows. Valid domain specifications are the following:
-        -- Explicit names. For example, abc.example.com matches only the domain abc.example.com.
-        -- Names that use a domain wildcard, which you indicate with an initial '.'. For example,.example.com matches example.com and matches all subdomains of example.com, such as abc.example.com and www.example.com.
-        Targets: {string}
-        -- The types of matching to perform against the domains in Targets. You can specify any combination of the following:
-        -- AWS_ROUTE_53_RESOLVED_DOMAIN – Match the domain against the domain that the Amazon Route 53 Resolver resolved the connection's destination IP address for.
-        -- HTTP_HOST – Match the domain against the Host header of HTTP traffic.
-        -- TLS_SNI – Match the domain against the Server Name Indication (SNI) of HTTPS traffic.
-        -- AWS_ROUTE_53_RESOLVED_DOMAIN matches on how the destination IP address was resolved, rather than on the domain that the client asserts in its TLS SNI or HTTP Host header. This target type takes effect when you configure resolved IP validation on the firewall policy. For more information, see Route53ResolvedIPValidation.
-        -- Whether you include AWS_ROUTE_53_RESOLVED_DOMAIN changes what the generated rules match, together with GeneratedRulesType:
-        -- Combining AWS_ROUTE_53_RESOLVED_DOMAIN with TLS_SNI or HTTP_HOST in an ALLOWLIST requires both conditions to match. The SNI or Host header must match the domain, and the Route 53 Resolver must have resolved the destination IP address for that domain. Network Firewall allows traffic only in that case. Traffic that matches one condition, such as a spoofed Host header sent to an unresolved IP address, is not allowed.
-        -- In a DENYLIST, or when AWS_ROUTE_53_RESOLVED_DOMAIN is the only target type, Network Firewall evaluates each condition independently: a match on either the domain (SNI or Host) or the resolved destination IP address triggers the rule.
-        -- When you don't include AWS_ROUTE_53_RESOLVED_DOMAIN, the generated rules match only on the SNI or Host header, without checking how the destination IP address was resolved.
-        -- An ALLOWLIST whose only target type is AWS_ROUTE_53_RESOLVED_DOMAIN is additive: it allows matching traffic but doesn't generate a default rule that drops non-matching traffic. Only the TLS_SNI and HTTP_HOST target types generate that default drop. To allow only the resolved domains and drop all other traffic, include a protocol target type as well.
-        TargetTypes: {string}
-        -- Whether you want to apply allow, reject, alert, or drop behavior to the domains in your target list.
-        -- When logging is enabled and you choose Alert, traffic that matches the domain specifications
-        -- generates an alert in the firewall's logs. Then, traffic either passes, is rejected, or drops based on other rules in the firewall policy.
-        GeneratedRulesType: string
-    end
-
     enum StatefulAction
         "PASS"
         "DROP"
@@ -1685,18 +2197,10 @@ local record M
         DestinationPort: string
     end
 
-    -- Additional settings for a stateful rule. This is part of the StatefulRule configuration.
-    record RuleOption
-        -- The keyword for the Suricata compatible rule option. You must include a sid (signature ID), and can optionally include other keywords. For information about Suricata compatible keywords, see Rule options in the Suricata documentation.
-        Keyword: string
-        -- The settings of the Suricata compatible rule option. Rule options have zero or more setting values, and the number of possible and required settings depends on the Keyword. For more information about the settings for specific options, see Rule options.
-        Settings: {string}
-    end
-
     -- A single Suricata rules specification, for use in a stateful rule group.
     -- Use this option to specify a simple Suricata rule with protocol, source and destination, ports, direction, and rule options.
     -- For information about the Suricata Rules format, see
-    -- Rules Format.
+    -- Rules Format on the Suricata website.
     record StatefulRule
         -- Defines what Network Firewall should do with the packets in a traffic flow when the flow
         -- matches the stateful rule criteria. For all actions, Network Firewall performs the specified
@@ -1863,25 +2367,10 @@ local record M
         -- An array of individual stateful rules inspection criteria to be used together in a stateful rule group.
         -- Use this option to specify simple Suricata rules with protocol, source and destination, ports, direction, and rule options.
         -- For information about the Suricata Rules format, see
-        -- Rules Format.
+        -- Rules Format on the Suricata website.
         StatefulRules: {StatefulRule}
         -- Stateless inspection criteria to be used in a stateless rule group.
         StatelessRulesAndCustomActions: StatelessRulesAndCustomActions
-    end
-
-    -- A set of port ranges for use in the rules in a rule group.
-    record PortSet
-        -- The set of port ranges.
-        Definition: {string}
-    end
-
-    -- Settings that are available for use in the rules in the RuleGroup
-    -- where this is defined. See CreateRuleGroup or UpdateRuleGroup for usage.
-    record RuleVariables
-        -- A list of IP addresses and address ranges, in CIDR notation.
-        IPSets: {string : IPSet}
-        -- A list of port ranges.
-        PortSets: {string : PortSet}
     end
 
     -- Additional options governing how Network Firewall handles the rule group. You can only use these for stateful rule groups.
@@ -1938,6 +2427,8 @@ local record M
         "STATELESS"
         "STATEFUL"
         "STATEFUL_DOMAIN"
+        "FIREWALL"
+        "IPS"
     end
 
     record CreateRuleGroupInput
@@ -1946,14 +2437,21 @@ local record M
         -- An object that defines the rule group rules.
         -- You must provide either this rule group setting or a Rules setting, but not both.
         RuleGroup: RuleGroup
+        -- An object that defines the rules in a firewall engine rule group, for use in a Next Generation policy.
+        FirewallRuleGroup: FirewallRuleGroup
+        -- An object that defines the rules in an IPS engine rule group, for use in a Next Generation policy.
+        IpsRuleGroup: IpsRuleGroup
         -- A string containing stateful rule group rules specifications in Suricata flat format, with one rule
         -- per line. Use this to import your existing Suricata compatible rule groups.
         -- You must provide either this rules setting or a populated RuleGroup setting, but not both.
         -- You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call
         -- response returns a RuleGroup object that Network Firewall has populated from your string.
         Rules: string
-        -- Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains
-        -- stateless rules. If it is stateful, it contains stateful rules.
+        -- Indicates the type of the rule group. Valid values are:
+        -- STATELESS - Stateless rules, for use in a Classic Network Firewall policy.
+        -- STATEFUL - Stateful rules, for use in a Classic Network Firewall policy.
+        -- FIREWALL - Firewall engine rules, for use in a Next Generation policy.
+        -- IPS - IPS engine rules, for use in a Next Generation policy.
         Type: string
         -- A description of the rule group.
         Description: string
@@ -2019,8 +2517,11 @@ local record M
         RuleGroupId: string
         -- A description of the rule group.
         Description: string
-        -- Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains
-        -- stateless rules. If it is stateful, it contains stateful rules.
+        -- Indicates the type of the rule group. Valid values are:
+        -- STATELESS - Stateless rules, for use in a Classic Network Firewall policy.
+        -- STATEFUL - Stateful rules, for use in a Classic Network Firewall policy.
+        -- FIREWALL - Firewall engine rules, for use in a Next Generation policy.
+        -- IPS - IPS engine rules, for use in a Next Generation policy.
         Type: string
         -- The maximum operating resources that this rule group can use. Rule group capacity is fixed at creation.
         -- When you update a rule group, you are limited to this capacity. When you reference a rule group
@@ -2275,6 +2776,20 @@ local record M
         FirewallPolicyResponse: FirewallPolicyResponse
     end
 
+    record DeleteFirewallPolicyV2Input
+        -- The Amazon Resource Name (ARN) of the Next Generation policy.
+        -- You must specify the ARN or the name, and you can specify both.
+        FirewallPolicyV2Arn: string
+        -- The descriptive name of the Next Generation policy. You can't change the name of a firewall policy after you create it.
+        -- You must specify the ARN or the name, and you can specify both.
+        FirewallPolicyV2Name: string
+    end
+
+    record DeleteFirewallPolicyV2Output
+        -- The high-level properties of the Next Generation policy that you asked to delete.
+        FirewallPolicyV2Response: FirewallPolicyV2Response
+    end
+
     record DeleteNetworkFirewallTransitGatewayAttachmentInput
         -- Required. The unique identifier of the transit gateway attachment to delete.
         TransitGatewayAttachmentId: string
@@ -2385,8 +2900,11 @@ local record M
         -- The Amazon Resource Name (ARN) of the rule group.
         -- You must specify the ARN or the name, and you can specify both.
         RuleGroupArn: string
-        -- Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains
-        -- stateless rules. If it is stateful, it contains stateful rules.
+        -- Indicates the type of the rule group. Valid values are:
+        -- STATELESS - Stateless rules, for use in a Classic Network Firewall policy.
+        -- STATEFUL - Stateful rules, for use in a Classic Network Firewall policy.
+        -- FIREWALL - Firewall engine rules, for use in a Next Generation policy.
+        -- IPS - IPS engine rules, for use in a Next Generation policy.
         -- This setting is required for requests that do not include the RuleGroupARN.
         Type: string
     end
@@ -2525,6 +3043,32 @@ local record M
         FirewallPolicyResponse: FirewallPolicyResponse
         -- The policy for the specified firewall policy.
         FirewallPolicy: FirewallPolicy
+    end
+
+    enum RuleOutputFormat
+        "FIREWALL_RULES"
+        "RULES_STRING"
+    end
+
+    record DescribeFirewallPolicyV2Input
+        -- The Amazon Resource Name (ARN) of the Next Generation policy.
+        -- You must specify the ARN or the name, and you can specify both.
+        FirewallPolicyV2Arn: string
+        -- The descriptive name of the Next Generation policy. You can't change the name of a firewall policy after you create it.
+        -- You must specify the ARN or the name, and you can specify both.
+        FirewallPolicyV2Name: string
+        -- The format in which to return the rules of any firewall engine rule groups that are embedded in the policy. Specify FIREWALL_RULES for structured FirewallRule objects or RULES_STRING for a Suricata-compatible firewall-mode rule string. If you don't specify a format, Network Firewall returns each embedded rule group in the format you provided it in. Referenced rule groups aren't affected.
+        RuleOutputFormat: string
+    end
+
+    record DescribeFirewallPolicyV2Output
+        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the firewall policy. The token marks the state of the policy resource at the time of the request.
+        -- To make changes to the policy, you provide the token in your request. Network Firewall uses the token to ensure that the policy hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the firewall policy again to get a current copy of it with current token. Reapply your changes as needed, then try the operation again using the new token.
+        UpdateToken: string
+        -- The high-level properties of the Next Generation policy. This, along with the FirewallPolicyV2, define the policy.
+        FirewallPolicyV2Response: FirewallPolicyV2Response
+        -- The rule groups and other settings that define the specified Next Generation policy.
+        FirewallPolicyV2: FirewallPolicyV2
     end
 
     record DescribeFlowOperationInput
@@ -2809,12 +3353,20 @@ local record M
         -- The Amazon Resource Name (ARN) of the rule group.
         -- You must specify the ARN or the name, and you can specify both.
         RuleGroupArn: string
-        -- Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains
-        -- stateless rules. If it is stateful, it contains stateful rules.
+        -- Indicates the type of the rule group. Valid values are:
+        -- STATELESS - Stateless rules, for use in a Classic Network Firewall policy.
+        -- STATEFUL - Stateful rules, for use in a Classic Network Firewall policy.
+        -- FIREWALL - Firewall engine rules, for use in a Next Generation policy.
+        -- IPS - IPS engine rules, for use in a Next Generation policy.
         -- This setting is required for requests that do not include the RuleGroupARN.
         Type: string
         -- Indicates whether you want Network Firewall to analyze the stateless rules in the rule group for rule behavior such as asymmetric routing. If set to TRUE, Network Firewall runs the analysis.
         AnalyzeRuleGroup: boolean
+        -- For a firewall engine rule group, the format in which to return the rules. Specify one of the following values:
+        -- FIREWALL_RULES - Returns the rules as structured FirewallRule objects.
+        -- RULES_STRING - Returns the rules as a Suricata-compatible firewall-mode rule string.
+        -- If you don't specify a format, Network Firewall returns the rules in the format you provided them in. This setting applies only to FIREWALL and IPS rule groups; IPS engine rule groups support only RULES_STRING.
+        RuleOutputFormat: string
     end
 
     record DescribeRuleGroupOutput
@@ -2828,6 +3380,10 @@ local record M
         -- To use a rule group, you include it by reference in an Network Firewall firewall policy, then you use the policy in a firewall. You can reference a rule group from
         -- more than one firewall policy, and you can use a firewall policy in more than one firewall.
         RuleGroup: RuleGroup
+        -- The object that defines the rules in a firewall engine rule group, for use in a Next Generation policy.
+        FirewallRuleGroup: FirewallRuleGroup
+        -- The object that defines the rules in an IPS engine rule group, for use in a Next Generation policy.
+        IpsRuleGroup: IpsRuleGroup
         -- The high-level properties of a rule group. This, along with the RuleGroup, define the rule group. You can retrieve all objects for a rule group by calling DescribeRuleGroup.
         RuleGroupResponse: RuleGroupResponse
     end
@@ -2839,8 +3395,11 @@ local record M
         -- The descriptive name of the rule group. You can't change the name of a rule group after you create it.
         -- You must specify the ARN or the name, and you can specify both.
         RuleGroupArn: string
-        -- Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains
-        -- stateless rules. If it is stateful, it contains stateful rules.
+        -- Indicates the type of the rule group. Valid values are:
+        -- STATELESS - Stateless rules, for use in a Classic Network Firewall policy.
+        -- STATEFUL - Stateful rules, for use in a Classic Network Firewall policy.
+        -- FIREWALL - Firewall engine rules, for use in a Next Generation policy.
+        -- IPS - IPS engine rules, for use in a Next Generation policy.
         -- This setting is required for requests that do not include the RuleGroupARN.
         Type: string
     end
@@ -2854,8 +3413,11 @@ local record M
         RuleGroupName: string
         -- Returns the metadata objects for the specified rule group.
         Description: string
-        -- Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains
-        -- stateless rules. If it is stateful, it contains stateful rules.
+        -- Indicates the type of the rule group. Valid values are:
+        -- STATELESS - Stateless rules, for use in a Classic Network Firewall policy.
+        -- STATEFUL - Stateful rules, for use in a Classic Network Firewall policy.
+        -- FIREWALL - Firewall engine rules, for use in a Next Generation policy.
+        -- IPS - IPS engine rules, for use in a Next Generation policy.
         -- This setting is required for requests that do not include the RuleGroupARN.
         Type: string
         -- The maximum operating resources that this rule group can use. Rule group capacity is fixed at creation.
@@ -3059,6 +3621,14 @@ local record M
         Arn: string
     end
 
+    -- High-level information about a Next Generation policy, returned in a list of policies. To retrieve the policy's full properties, rule groups, and settings, use the Next Generation policy describe operation.
+    record FirewallPolicyV2Metadata
+        -- The descriptive name of the Next Generation policy. You can't change the name of a firewall policy after you create it.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the Next Generation policy.
+        Arn: string
+    end
+
     -- Any number of arrays, where each array is a single flow identified in the scope of the operation.
     -- If multiple flows were in the scope of the operation, multiple Flows arrays are returned.
     record Flow
@@ -3202,6 +3772,26 @@ local record M
         -- The metadata for the firewall policies. Depending on your setting for max results and
         -- the number of firewall policies that you have, this might not be the full list.
         FirewallPolicies: {FirewallPolicyMetadata}
+    end
+
+    record ListFirewallPoliciesV2Input
+        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
+        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
+        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
+        NextToken: string
+        -- The maximum number of objects that you want Network Firewall to return for this request. If more
+        -- objects are available, in the response, Network Firewall provides a
+        -- NextToken value that you can use in a subsequent call to get the next batch of objects.
+        MaxResults: number
+    end
+
+    record ListFirewallPoliciesV2Output
+        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
+        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
+        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
+        NextToken: string
+        -- The metadata for the Next Generation policies. Depending on your setting for max results and the number of firewall policies that you have, this might not be the full list.
+        FirewallPoliciesV2: {FirewallPolicyV2Metadata}
     end
 
     record ListFirewallsInput
@@ -3970,6 +4560,39 @@ local record M
         FirewallPolicyChangeProtection: boolean
     end
 
+    record UpdateFirewallPolicyV2Input
+        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the firewall policy. The token marks the state of the policy resource at the time of the request.
+        -- To make changes to the policy, you provide the token in your request. Network Firewall uses the token to ensure that the policy hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the firewall policy again to get a current copy of it with current token. Reapply your changes as needed, then try the operation again using the new token.
+        UpdateToken: string
+        -- The Amazon Resource Name (ARN) of the Next Generation policy.
+        -- You must specify the ARN or the name, and you can specify both.
+        FirewallPolicyV2Arn: string
+        -- The descriptive name of the Next Generation policy. You can't change the name of a firewall policy after you create it.
+        -- You must specify the ARN or the name, and you can specify both.
+        FirewallPolicyV2Name: string
+        -- The updated rule groups and other settings that define the Next Generation policy.
+        FirewallPolicyV2: FirewallPolicyV2
+        -- A description of the firewall policy.
+        Description: string
+        -- Indicates whether you want Network Firewall to just check the validity of the request, rather than run the request.
+        -- If set to TRUE, Network Firewall checks whether the request can run successfully,
+        -- but doesn't actually make the requested changes. The call returns the value that the request would return if you ran it with
+        -- dry run set to FALSE, but doesn't make additions or changes to your resources. This option allows you to make sure that you have
+        -- the required permissions to run the request and that your request parameters are valid.
+        -- If set to FALSE, Network Firewall makes the requested changes to your resources.
+        DryRun: boolean
+        -- A complex type that contains settings for encryption of your firewall policy resources.
+        EncryptionConfiguration: EncryptionConfiguration
+    end
+
+    record UpdateFirewallPolicyV2Output
+        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the firewall policy. The token marks the state of the policy resource at the time of the request.
+        -- To make changes to the policy, you provide the token in your request. Network Firewall uses the token to ensure that the policy hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the firewall policy again to get a current copy of it with current token. Reapply your changes as needed, then try the operation again using the new token.
+        UpdateToken: string
+        -- The high-level properties of the Next Generation policy. This, along with the FirewallPolicyV2, define the policy. You can retrieve all objects for a Next Generation policy by calling DescribeFirewallPolicyV2.
+        FirewallPolicyV2Response: FirewallPolicyV2Response
+    end
+
     record UpdateLoggingConfigurationInput
         -- The Amazon Resource Name (ARN) of the firewall.
         -- You must specify the ARN or the name, and you can specify both.
@@ -4205,14 +4828,21 @@ local record M
         -- An object that defines the rule group rules.
         -- You must provide either this rule group setting or a Rules setting, but not both.
         RuleGroup: RuleGroup
+        -- An object that defines the rules in a firewall engine rule group, for use in a Next Generation policy.
+        FirewallRuleGroup: FirewallRuleGroup
+        -- An object that defines the rules in an IPS engine rule group, for use in a Next Generation policy.
+        IpsRuleGroup: IpsRuleGroup
         -- A string containing stateful rule group rules specifications in Suricata flat format, with one rule
         -- per line. Use this to import your existing Suricata compatible rule groups.
         -- You must provide either this rules setting or a populated RuleGroup setting, but not both.
         -- You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call
         -- response returns a RuleGroup object that Network Firewall has populated from your string.
         Rules: string
-        -- Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains
-        -- stateless rules. If it is stateful, it contains stateful rules.
+        -- Indicates the type of the rule group. Valid values are:
+        -- STATELESS - Stateless rules, for use in a Classic Network Firewall policy.
+        -- STATEFUL - Stateful rules, for use in a Classic Network Firewall policy.
+        -- FIREWALL - Firewall engine rules, for use in a Next Generation policy.
+        -- IPS - IPS engine rules, for use in a Next Generation policy.
         -- This setting is required for requests that do not include the RuleGroupARN.
         Type: string
         -- A description of the rule group.

@@ -32,6 +32,8 @@ M.FilesystemConfigurations = schema.new({ type = "list", list_member = M.Filesys
 
 M.AllowedPorts = schema.new({ type = "list", list_member = M.AllowedPort })
 
+M.ResourceConfigurations = schema.new({ type = "list", list_member = M.ResourceConfiguration })
+
 M.ApiKeyCredentialProviders = schema.new({ type = "list", list_member = M.ApiKeyCredentialProviderItem })
 
 M.BrowserProfileSummaries = schema.new({ type = "list", list_member = M.BrowserProfileSummary })
@@ -167,6 +169,8 @@ M.PaymentConnectorSummaries = schema.new({ type = "list", list_member = M.Paymen
 M.CredentialsProviderConfigurations = schema.new({ type = "list", list_member = M.CredentialsProviderConfiguration })
 
 M.RequestHeaderAllowlist = schema.new({ type = "list", list_member = prelude.String })
+
+M.PublicDomainNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AllowedRequestHeaders = schema.new({ type = "list", list_member = prelude.String })
 
@@ -2291,6 +2295,87 @@ M.FilesystemConfiguration = schema.new({
     },
 })
 
+M.HttpPostLifecycleHookAction = schema.new({
+    id = id.from(_N, "HttpPostLifecycleHookAction"),
+    type = "structure",
+    members = {
+        path = schema.new({
+            id = id.from(_N, "HttpPostLifecycleHookAction", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        port = schema.new({
+            id = id.from(_N, "HttpPostLifecycleHookAction", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.LifecycleHookAction = schema.new({
+    id = id.from(_N, "LifecycleHookAction"),
+    type = "union",
+    members = {
+        httpPost = schema.new({
+            id = id.from(_N, "LifecycleHookAction", "httpPost"),
+            type = "structure",
+            name = "httpPost",
+            target_id = id.from(_N, "HttpPostLifecycleHookAction"),
+            target = M.HttpPostLifecycleHookAction,
+        }),
+    },
+})
+
+M.LifecycleHook = schema.new({
+    id = id.from(_N, "LifecycleHook"),
+    type = "structure",
+    members = {
+        action = schema.new({
+            id = id.from(_N, "LifecycleHook", "action"),
+            type = "union",
+            name = "action",
+            target_id = id.from(_N, "LifecycleHookAction"),
+            target = M.LifecycleHookAction,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BuildLifecycleHooks = schema.new({
+    id = id.from(_N, "BuildLifecycleHooks"),
+    type = "structure",
+    members = {
+        warmup = schema.new({
+            id = id.from(_N, "BuildLifecycleHooks", "warmup"),
+            type = "structure",
+            name = "warmup",
+            target_id = id.from(_N, "LifecycleHook"),
+            target = M.LifecycleHook,
+        }),
+    },
+})
+
+M.RuntimeHooksConfiguration = schema.new({
+    id = id.from(_N, "RuntimeHooksConfiguration"),
+    type = "structure",
+    members = {
+        build = schema.new({
+            id = id.from(_N, "RuntimeHooksConfiguration", "build"),
+            type = "structure",
+            name = "build",
+            target_id = id.from(_N, "BuildLifecycleHooks"),
+            target = M.BuildLifecycleHooks,
+        }),
+    },
+})
+
 M.LifecycleConfiguration = schema.new({
     id = id.from(_N, "LifecycleConfiguration"),
     type = "structure",
@@ -2408,6 +2493,22 @@ M.RequestHeaderConfiguration = schema.new({
     },
 })
 
+M.ResourceConfiguration = schema.new({
+    id = id.from(_N, "ResourceConfiguration"),
+    type = "structure",
+    members = {
+        minimumMemoryInMiB = schema.new({
+            id = id.from(_N, "ResourceConfiguration", "minimumMemoryInMiB"),
+            type = "integer",
+            name = "minimumMemoryInMiB",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateAgentRuntimeInput = schema.new({
     id = id.from(_N, "CreateAgentRuntimeRequest"),
     type = "structure",
@@ -2490,6 +2591,13 @@ M.CreateAgentRuntimeInput = schema.new({
             target_id = id.from(_N, "LifecycleConfiguration"),
             target = M.LifecycleConfiguration,
         }),
+        hooksConfiguration = schema.new({
+            id = id.from(_N, "CreateAgentRuntimeInput", "hooksConfiguration"),
+            type = "structure",
+            name = "hooksConfiguration",
+            target_id = id.from(_N, "RuntimeHooksConfiguration"),
+            target = M.RuntimeHooksConfiguration,
+        }),
         environmentVariables = schema.new({
             id = id.from(_N, "CreateAgentRuntimeInput", "environmentVariables"),
             type = "map",
@@ -2532,6 +2640,13 @@ M.CreateAgentRuntimeInput = schema.new({
             name = "allowedPorts",
             target_id = prelude.Document.id,
             list_member = M.AllowedPort,
+        }),
+        resourceConfigurations = schema.new({
+            id = id.from(_N, "CreateAgentRuntimeInput", "resourceConfigurations"),
+            type = "list",
+            name = "resourceConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceConfiguration,
         }),
     },
 })
@@ -2822,6 +2937,13 @@ M.GetAgentRuntimeOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        hooksConfiguration = schema.new({
+            id = id.from(_N, "GetAgentRuntimeOutput", "hooksConfiguration"),
+            type = "structure",
+            name = "hooksConfiguration",
+            target_id = id.from(_N, "RuntimeHooksConfiguration"),
+            target = M.RuntimeHooksConfiguration,
+        }),
         failureReason = schema.new({
             id = id.from(_N, "GetAgentRuntimeOutput", "failureReason"),
             type = "string",
@@ -2910,6 +3032,13 @@ M.GetAgentRuntimeOutput = schema.new({
             name = "allowedPorts",
             target_id = prelude.Document.id,
             list_member = M.AllowedPort,
+        }),
+        resourceConfigurations = schema.new({
+            id = id.from(_N, "GetAgentRuntimeOutput", "resourceConfigurations"),
+            type = "list",
+            name = "resourceConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceConfiguration,
         }),
     },
 })
@@ -3168,6 +3297,13 @@ M.UpdateAgentRuntimeInput = schema.new({
             target_id = id.from(_N, "LifecycleConfiguration"),
             target = M.LifecycleConfiguration,
         }),
+        hooksConfiguration = schema.new({
+            id = id.from(_N, "UpdateAgentRuntimeInput", "hooksConfiguration"),
+            type = "structure",
+            name = "hooksConfiguration",
+            target_id = id.from(_N, "RuntimeHooksConfiguration"),
+            target = M.RuntimeHooksConfiguration,
+        }),
         metadataConfiguration = schema.new({
             id = id.from(_N, "UpdateAgentRuntimeInput", "metadataConfiguration"),
             type = "structure",
@@ -3209,6 +3345,13 @@ M.UpdateAgentRuntimeInput = schema.new({
             name = "allowedPorts",
             target_id = prelude.Document.id,
             list_member = M.AllowedPort,
+        }),
+        resourceConfigurations = schema.new({
+            id = id.from(_N, "UpdateAgentRuntimeInput", "resourceConfigurations"),
+            type = "list",
+            name = "resourceConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceConfiguration,
         }),
         clientToken = schema.new({
             id = id.from(_N, "UpdateAgentRuntimeInput", "clientToken"),
@@ -10731,6 +10874,30 @@ M.UpdateGatewayRateLimitOutput = schema.new({
     },
 })
 
+M.DomainOverride = schema.new({
+    id = id.from(_N, "DomainOverride"),
+    type = "structure",
+    members = {
+        defaultDomain = schema.new({
+            id = id.from(_N, "DomainOverride", "defaultDomain"),
+            type = "string",
+            name = "defaultDomain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "default" },
+            },
+        }),
+        alternateDomains = schema.new({
+            id = id.from(_N, "DomainOverride", "alternateDomains"),
+            type = "list",
+            name = "alternateDomains",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.InterceptorPayloadExclusionSelector = schema.new({
     id = id.from(_N, "InterceptorPayloadExclusionSelector"),
     type = "union",
@@ -11062,6 +11229,13 @@ M.CreateGatewayInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        domainOverride = schema.new({
+            id = id.from(_N, "CreateGatewayInput", "domainOverride"),
+            type = "structure",
+            name = "domainOverride",
+            target_id = id.from(_N, "DomainOverride"),
+            target = M.DomainOverride,
+        }),
     },
 })
 
@@ -11280,6 +11454,13 @@ M.CreateGatewayOutput = schema.new({
             name = "wafConfiguration",
             target_id = id.from(_N, "WafConfiguration"),
             target = M.WafConfiguration,
+        }),
+        domainOverride = schema.new({
+            id = id.from(_N, "CreateGatewayOutput", "domainOverride"),
+            type = "structure",
+            name = "domainOverride",
+            target_id = id.from(_N, "DomainOverride"),
+            target = M.DomainOverride,
         }),
     },
 })
@@ -11526,6 +11707,13 @@ M.GetGatewayOutput = schema.new({
             target_id = id.from(_N, "WafConfiguration"),
             target = M.WafConfiguration,
         }),
+        domainOverride = schema.new({
+            id = id.from(_N, "GetGatewayOutput", "domainOverride"),
+            type = "structure",
+            name = "domainOverride",
+            target_id = id.from(_N, "DomainOverride"),
+            target = M.DomainOverride,
+        }),
     },
 })
 
@@ -11771,6 +11959,13 @@ M.UpdateGatewayInput = schema.new({
             target_id = id.from(_N, "WafConfiguration"),
             target = M.WafConfiguration,
         }),
+        domainOverride = schema.new({
+            id = id.from(_N, "UpdateGatewayInput", "domainOverride"),
+            type = "structure",
+            name = "domainOverride",
+            target_id = id.from(_N, "DomainOverride"),
+            target = M.DomainOverride,
+        }),
     },
 })
 
@@ -11949,6 +12144,13 @@ M.UpdateGatewayOutput = schema.new({
             name = "wafConfiguration",
             target_id = id.from(_N, "WafConfiguration"),
             target = M.WafConfiguration,
+        }),
+        domainOverride = schema.new({
+            id = id.from(_N, "UpdateGatewayOutput", "domainOverride"),
+            type = "structure",
+            name = "domainOverride",
+            target_id = id.from(_N, "DomainOverride"),
+            target = M.DomainOverride,
         }),
     },
 })

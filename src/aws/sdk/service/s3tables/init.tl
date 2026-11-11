@@ -35,6 +35,7 @@ local record Client
     getTable: function(Client, types.GetTableInput, ? base_client.InvokeOptions): async.Operation<types.GetTableOutput>
     getTableBucket: function(Client, types.GetTableBucketInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketOutput>
     getTableBucketEncryption: function(Client, types.GetTableBucketEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketEncryptionOutput>
+    getTableBucketLogging: function(Client, types.GetTableBucketLoggingInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketLoggingOutput>
     getTableBucketMaintenanceConfiguration: function(Client, types.GetTableBucketMaintenanceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
     getTableBucketMetricsConfiguration: function(Client, types.GetTableBucketMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketMetricsConfigurationOutput>
     getTableBucketPolicy: function(Client, types.GetTableBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketPolicyOutput>
@@ -57,6 +58,7 @@ local record Client
     listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putTableBucketEncryption: function(Client, types.PutTableBucketEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketEncryptionOutput>
+    putTableBucketLogging: function(Client, types.PutTableBucketLoggingInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketLoggingOutput>
     putTableBucketMaintenanceConfiguration: function(Client, types.PutTableBucketMaintenanceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketMaintenanceConfigurationOutput>
     putTableBucketMetricsConfiguration: function(Client, types.PutTableBucketMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketMetricsConfigurationOutput>
     putTableBucketPolicy: function(Client, types.PutTableBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketPolicyOutput>
@@ -185,6 +187,10 @@ function C:getTableBucketEncryption(input: types.GetTableBucketEncryptionInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketEncryption as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketEncryptionOutput>
 end
 
+function C:getTableBucketLogging(input: types.GetTableBucketLoggingInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketLoggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketLogging as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketLoggingOutput>
+end
+
 function C:getTableBucketMaintenanceConfiguration(input: types.GetTableBucketMaintenanceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketMaintenanceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
 end
@@ -271,6 +277,10 @@ end
 
 function C:putTableBucketEncryption(input: types.PutTableBucketEncryptionInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketEncryptionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableBucketEncryption as schema.OperationSchema, input, options) as async.Operation<types.PutTableBucketEncryptionOutput>
+end
+
+function C:putTableBucketLogging(input: types.PutTableBucketLoggingInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketLoggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableBucketLogging as schema.OperationSchema, input, options) as async.Operation<types.PutTableBucketLoggingOutput>
 end
 
 function C:putTableBucketMaintenanceConfiguration(input: types.PutTableBucketMaintenanceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketMaintenanceConfigurationOutput>

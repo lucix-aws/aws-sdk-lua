@@ -1721,6 +1721,37 @@ local record M
         credentials: AwsCredentials
     end
 
+    -- One requested scope: an explicit list of actions for one service. All actions in an
+    -- entry share one service prefix. The same service may appear in more than one entry.
+    record DataAccessTarget
+        -- The actions of one service, each with its service prefix, for example "logs:StartQuery".
+        actions: {string}
+    end
+
+    record GetSpaceDataAccessInput
+        -- The unique ID of the space to return credentials for.
+        spaceId: string
+        -- The actions to include in the credentials, grouped by service.
+        targetScopes: {DataAccessTarget}
+        -- The lifetime of the credentials, in seconds. Defaults to 3600.
+        durationSeconds: number
+        -- Caller-supplied key-value pairs that are recorded for auditing. They do not
+        -- affect authorization or the permissions of the credentials.
+        auditContext: {string : string}
+    end
+
+    record GetSpaceDataAccessOutput
+        -- The temporary AWS credentials for the space.
+        credentials: AwsCredentials
+    end
+
+    -- The requested actions produce a credential that exceeds the maximum size. Request fewer
+    -- actions.
+    record PolicyTooLargeException
+        -- A description of the error.
+        message: string
+    end
+
     record GetTelemetryQueryResultsInput
         -- The unique ID of the query.
         queryId: string
