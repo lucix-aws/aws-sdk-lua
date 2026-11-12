@@ -53,8 +53,14 @@ M.UsageAllocation = schema.new({
             name = "AllocatedUsageQuantity",
             target_id = prelude.Integer.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
             },
+        }),
+        AllocatedUsageQuantityAsDecimal = schema.new({
+            id = id.from(_N, "UsageAllocation", "AllocatedUsageQuantityAsDecimal"),
+            type = "string",
+            name = "AllocatedUsageQuantityAsDecimal",
+            target_id = prelude.String.id,
         }),
         Tags = schema.new({
             id = id.from(_N, "UsageAllocation", "Tags"),
@@ -102,6 +108,12 @@ M.UsageRecord = schema.new({
             type = "integer",
             name = "Quantity",
             target_id = prelude.Integer.id,
+        }),
+        QuantityAsDecimal = schema.new({
+            id = id.from(_N, "UsageRecord", "QuantityAsDecimal"),
+            type = "string",
+            name = "QuantityAsDecimal",
+            target_id = prelude.String.id,
         }),
         UsageAllocations = schema.new({
             id = id.from(_N, "UsageRecord", "UsageAllocations"),
@@ -458,6 +470,12 @@ M.MeterUsageInput = schema.new({
             type = "integer",
             name = "UsageQuantity",
             target_id = prelude.Integer.id,
+        }),
+        UsageQuantityAsDecimal = schema.new({
+            id = id.from(_N, "MeterUsageInput", "UsageQuantityAsDecimal"),
+            type = "string",
+            name = "UsageQuantityAsDecimal",
+            target_id = prelude.String.id,
         }),
         DryRun = schema.new({
             id = id.from(_N, "MeterUsageInput", "DryRun"),

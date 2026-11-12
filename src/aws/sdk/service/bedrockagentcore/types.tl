@@ -3031,12 +3031,30 @@ local record M
         inputSchema: any
     end
 
+    -- An IAM credential provider for authenticating requests. This structure contains the configuration for authenticating with a target endpoint using IAM credentials and SigV4 signing.
+    record IamCredentialProvider
+        -- The name of the Amazon Web Services service used for SigV4 signing. This value identifies the service to authenticate with when sending requests to the target endpoint.
+        service: string
+        -- The Amazon Web Services Region used for SigV4 signing. If not specified, defaults to the Region of the resource that makes the request.
+        region: string
+    end
+
+    -- Authentication method for calling a remote MCP server.
+    record HarnessRemoteMcpOutboundAuth
+        -- Sign requests to the remote MCP server with Signature Version 4 (SigV4) using the harness execution role. If you don't specify a Region, the harness Region is used.
+        awsIam: IamCredentialProvider
+        -- No authentication.
+        none: Unit
+    end
+
     -- Configuration for connecting to a remote MCP server.
     record HarnessRemoteMcpConfig
         -- URL of the MCP endpoint.
         url: string
         -- Custom headers to include when connecting to the remote MCP server.
         headers: {string : string}
+        -- How the harness authenticates to this MCP server. Defaults to no authentication.
+        outboundAuth: HarnessRemoteMcpOutboundAuth
     end
 
     -- Configuration union for different tool types.

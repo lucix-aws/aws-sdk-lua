@@ -2305,6 +2305,10 @@ local record M
         -- The name of the filter. Filter names are case-sensitive.
         name: string
         -- The filter values. Filter values are case-sensitive.
+        -- The name filter can use a wildcard: web* matches names that
+        -- begin with web, and *web* matches names that contain
+        -- web. The wildcard isn't supported in other positions or in other
+        -- filters.
         values: {string}
     end
 
@@ -3386,7 +3390,9 @@ local record M
         -- don't specify an ARN, Image Builder returns build versions for the components
         -- that your account owns.
         componentVersionArn: string
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3437,7 +3443,9 @@ local record M
         -- one entry per component version. You can't combine this option with the
         -- version filter.
         byName: boolean
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3469,7 +3477,9 @@ local record M
         -- parentImage
         -- platform
         filters: {Filter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3490,7 +3500,9 @@ local record M
     record ListDistributionConfigurationsInput
         -- You can filter on name to streamline results.
         filters: {Filter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3522,7 +3534,9 @@ local record M
         -- type
         -- version
         filters: {Filter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3588,7 +3602,9 @@ local record M
         -- The Amazon Resource Name (ARN) of the image build version whose packages you want to list. The
         -- value must be a full build version ARN.
         imageBuildVersionArn: string
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3626,7 +3642,9 @@ local record M
         -- name
         -- version
         filters: {Filter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3653,7 +3671,9 @@ local record M
         -- name
         -- status
         filters: {Filter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3681,7 +3701,9 @@ local record M
         -- parentImage
         -- platform
         filters: {Filter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3734,7 +3756,9 @@ local record M
         -- entry per image version. You can't combine this option with the
         -- version filter.
         byName: boolean
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -3910,7 +3934,9 @@ local record M
         -- level.
         -- If you don't request a filter, then all findings in your account are listed.
         filters: {ImageScanFindingsFilter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4050,7 +4076,9 @@ local record M
     record ListInfrastructureConfigurationsInput
         -- You can filter on name to streamline results.
         filters: {Filter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4107,7 +4135,9 @@ local record M
         -- you specify in parentResourceId wasn't part of this
         -- lifecycle execution, the response contains an empty list.
         parentResourceId: string
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4198,7 +4228,9 @@ local record M
     end
 
     record ListLifecycleExecutionsInput
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4225,7 +4257,9 @@ local record M
         -- resourceType, and status. Filter names are
         -- matched exactly as shown.
         filters: {Filter}
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4285,7 +4319,9 @@ local record M
     end
 
     record ListWaitingWorkflowStepsInput
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4331,7 +4367,9 @@ local record M
         -- versions of the workflow. If you don't specify an ARN, the response lists build
         -- versions for all of the workflows in your account.
         workflowVersionArn: string
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4371,7 +4409,9 @@ local record M
     end
 
     record ListWorkflowExecutionsInput
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4452,7 +4492,9 @@ local record M
         -- entry per workflow version. You can't combine this option with the
         -- version filter.
         byName: boolean
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.
@@ -4485,7 +4527,9 @@ local record M
     end
 
     record ListWorkflowStepExecutionsInput
-        -- The maximum number of items to return in a single request.
+        -- The maximum number of items to return in a single request. If you don't specify
+        -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
+        -- A page can contain fewer items than the maximum, with a nextToken to continue paging.
         maxResults: number
         -- A token to specify where to start paginating. Use the nextToken value
         -- from a previously truncated response.

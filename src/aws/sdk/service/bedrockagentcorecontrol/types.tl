@@ -513,6 +513,28 @@ local record M
         workloadIdentities: {string}
     end
 
+    -- A reference to a PEM-encoded private CA certificate stored as an Amazon S3 object.
+    record S3CertificateConfiguration
+        -- The URI of the Amazon S3 object that contains the PEM-encoded certificate.
+        uri: string
+        -- The account ID of the Amazon S3 bucket owner. This ID is used for cross-account access to the bucket.
+        bucketOwnerAccountId: string
+    end
+
+    -- A reference to a PEM-encoded private CA certificate stored in an Amazon Web Services Secrets Manager secret.
+    record SecretsManagerCertificateConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the PEM-encoded certificate.
+        secretArn: string
+    end
+
+    -- A reference to a private certificate authority (CA) certificate that AgentCore uses to verify TLS connections to an endpoint, such as a gateway target or an identity provider, that presents a certificate issued by a private CA that is not trusted by default. Specify exactly one certificate source. The configuration is a reference only and never contains the certificate content.
+    record CertificateConfiguration
+        -- The Amazon S3 location of the PEM-encoded private CA certificate.
+        s3: S3CertificateConfiguration
+        -- The Amazon Web Services Secrets Manager location of the PEM-encoded private CA certificate.
+        secretsManager: SecretsManagerCertificateConfiguration
+    end
+
     enum ClaimMatchOperatorType
         "EQUALS"
         "CONTAINS"
@@ -610,6 +632,8 @@ local record M
         privateEndpoint: PrivateEndpoint
         -- The private endpoint overrides for the custom JWT authorizer configuration.
         privateEndpointOverrides: {PrivateEndpointOverride}
+        -- The private certificate authority (CA) configurations for the identity provider. Use this to have AgentCore Identity trust a private CA when establishing TLS connections to identity provider endpoints. You can specify only one certificate authority configuration in this list. Provide the certificate by reference to an Amazon S3 object or an Amazon Web Services Secrets Manager secret. You can use this only together with privateEndpoint.
+        certificateConfigurations: {CertificateConfiguration}
         -- The configuration that restricts which workloads in the request's identity chain are allowed to invoke the target, identified by their hosting environments and workload identities. At launch, this is supported only for AgentCore Runtime targets, and the allowed workloads are AgentCore Gateways.
         allowedWorkloadConfiguration: AllowedWorkloadConfiguration
     end
@@ -3923,28 +3947,6 @@ local record M
         updatedAt: number
     end
 
-    -- A reference to a PEM-encoded private CA certificate stored as an Amazon S3 object.
-    record S3CertificateConfiguration
-        -- The URI of the Amazon S3 object that contains the PEM-encoded certificate.
-        uri: string
-        -- The account ID of the Amazon S3 bucket owner. This ID is used for cross-account access to the bucket.
-        bucketOwnerAccountId: string
-    end
-
-    -- A reference to a PEM-encoded private CA certificate stored in an Amazon Web Services Secrets Manager secret.
-    record SecretsManagerCertificateConfiguration
-        -- The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the PEM-encoded certificate.
-        secretArn: string
-    end
-
-    -- A reference to a private certificate authority (CA) certificate that the gateway uses to verify TLS connections to the target endpoint. Use this when the target presents a certificate issued by a private CA that is not trusted by default. Specify exactly one certificate source. The configuration is a reference only and never contains the certificate content.
-    record CertificateConfiguration
-        -- The Amazon S3 location of the PEM-encoded private CA certificate.
-        s3: S3CertificateConfiguration
-        -- The Amazon Web Services Secrets Manager location of the PEM-encoded private CA certificate.
-        secretsManager: SecretsManagerCertificateConfiguration
-    end
-
     enum ApiKeyCredentialLocation
         "HEADER"
         "QUERY_PARAMETER"
@@ -4584,6 +4586,7 @@ local record M
 
     -- The AgentCore Runtime environment request configuration.
     record HarnessAgentCoreRuntimeEnvironmentRequest
+        -- The lifecycle configuration for the harness's runtime environment. For a harness, idleRuntimeSessionTimeout and maxLifetime each accept a value between 60 and 28800 seconds (8 hours), and idleRuntimeSessionTimeout must be less than or equal to maxLifetime. Values above 28800 seconds are rejected with a ValidationException.
         lifecycleConfiguration: LifecycleConfiguration
         networkConfiguration: NetworkConfiguration
         -- The filesystem configurations for the runtime environment.
@@ -4921,12 +4924,22 @@ local record M
         inputSchema: any
     end
 
+    -- Authentication method for calling a remote MCP server.
+    record HarnessRemoteMcpOutboundAuth
+        -- Sign requests to the remote MCP server with Signature Version 4 (SigV4) using the harness execution role. If you don't specify a Region, the harness Region is used.
+        awsIam: IamCredentialProvider
+        -- No authentication.
+        none: Unit
+    end
+
     -- Configuration for connecting to a remote MCP server.
     record HarnessRemoteMcpConfig
         -- URL of the MCP endpoint.
         url: string
         -- Custom headers to include when connecting to the remote MCP server.
         headers: {string : string}
+        -- How the harness authenticates to this MCP server. Defaults to no authentication.
+        outboundAuth: HarnessRemoteMcpOutboundAuth
     end
 
     -- Configuration union for different tool types.
@@ -5045,6 +5058,7 @@ local record M
         agentRuntimeName: string
         -- The ID of the underlying AgentCore Runtime.
         agentRuntimeId: string
+        -- The lifecycle configuration for the harness's runtime environment. For a harness, idleRuntimeSessionTimeout and maxLifetime each accept a value between 60 and 28800 seconds (8 hours), and idleRuntimeSessionTimeout must be less than or equal to maxLifetime.
         lifecycleConfiguration: LifecycleConfiguration
         networkConfiguration: NetworkConfiguration
         -- The filesystem configurations for the runtime environment.
@@ -6370,6 +6384,8 @@ local record M
         privateEndpoint: PrivateEndpoint
         -- The private endpoint overrides for the custom OAuth2 provider configuration.
         privateEndpointOverrides: {PrivateEndpointOverride}
+        -- The private certificate authority (CA) configurations for the identity provider. Use this to have AgentCore Identity trust a private CA when establishing TLS connections to identity provider endpoints. You can specify only one certificate authority configuration in this list. Provide the certificate by reference to an Amazon S3 object or an Amazon Web Services Secrets Manager secret. You can use this only together with privateEndpoint.
+        certificateConfigurations: {CertificateConfiguration}
     end
 
     -- Input configuration for a GitHub OAuth2 provider.
@@ -6518,6 +6534,8 @@ local record M
         privateEndpoint: PrivateEndpoint
         -- The private endpoint overrides for the custom OAuth2 provider configuration.
         privateEndpointOverrides: {PrivateEndpointOverride}
+        -- The private certificate authority (CA) configurations for the identity provider. Use this to have AgentCore Identity trust a private CA when establishing TLS connections to identity provider endpoints. You can specify only one certificate authority configuration in this list. Provide the certificate by reference to an Amazon S3 object or an Amazon Web Services Secrets Manager secret. You can use this only together with privateEndpoint.
+        certificateConfigurations: {CertificateConfiguration}
         -- The configuration for private_key_jwt client authentication used by this OAuth2 credential provider.
         privateKeyJwtConfig: PrivateKeyJwtConfig
     end

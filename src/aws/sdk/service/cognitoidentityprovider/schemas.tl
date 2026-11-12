@@ -38,6 +38,8 @@ M.GroupListType = schema.new({ type = "list", list_member = M.GroupType })
 
 M.AuthEventsType = schema.new({ type = "list", list_member = M.AuthEventType })
 
+M.SessionsListType = schema.new({ type = "list", list_member = M.SessionDescriptionType })
+
 M.ChallengeResponsesType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ProviderDetailsType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -2543,6 +2545,144 @@ M.UserPoolAddOnNotEnabledException = schema.new({
     },
 })
 
+M.AdminListUserSessionsInput = schema.new({
+    id = id.from(_N, "AdminListUserSessionsRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "AdminListUserSessionsInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Username = schema.new({
+            id = id.from(_N, "AdminListUserSessionsInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "AdminListUserSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SessionLocationType = schema.new({
+    id = id.from(_N, "SessionLocationType"),
+    type = "structure",
+    members = {
+        City = schema.new({
+            id = id.from(_N, "SessionLocationType", "City"),
+            type = "string",
+            name = "City",
+            target_id = prelude.String.id,
+        }),
+        Country = schema.new({
+            id = id.from(_N, "SessionLocationType", "Country"),
+            type = "string",
+            name = "Country",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SessionDescriptionType = schema.new({
+    id = id.from(_N, "SessionDescriptionType"),
+    type = "structure",
+    members = {
+        SessionId = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+        SessionType = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "SessionType"),
+            type = "string",
+            name = "SessionType",
+            target_id = prelude.String.id,
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+        }),
+        CreateDate = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "CreateDate"),
+            type = "timestamp",
+            name = "CreateDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastActiveDate = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "LastActiveDate"),
+            type = "timestamp",
+            name = "LastActiveDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        DeviceType = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "DeviceType"),
+            type = "string",
+            name = "DeviceType",
+            target_id = prelude.String.id,
+        }),
+        LastIPAddress = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "LastIPAddress"),
+            type = "string",
+            name = "LastIPAddress",
+            target_id = prelude.String.id,
+        }),
+        LastLocation = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "LastLocation"),
+            type = "structure",
+            name = "LastLocation",
+            target_id = id.from(_N, "SessionLocationType"),
+            target = M.SessionLocationType,
+        }),
+        OriginSessionId = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "OriginSessionId"),
+            type = "string",
+            name = "OriginSessionId",
+            target_id = prelude.String.id,
+        }),
+        IsCurrentSession = schema.new({
+            id = id.from(_N, "SessionDescriptionType", "IsCurrentSession"),
+            type = "boolean",
+            name = "IsCurrentSession",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AdminListUserSessionsOutput = schema.new({
+    id = id.from(_N, "AdminListUserSessionsResponse"),
+    type = "structure",
+    members = {
+        Sessions = schema.new({
+            id = id.from(_N, "AdminListUserSessionsOutput", "Sessions"),
+            type = "list",
+            name = "Sessions",
+            target_id = prelude.Document.id,
+            list_member = M.SessionDescriptionType,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "AdminListUserSessionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AdminRemoveUserFromGroupInput = schema.new({
     id = id.from(_N, "AdminRemoveUserFromGroupRequest"),
     type = "structure",
@@ -2790,6 +2930,51 @@ M.SoftwareTokenMFANotFoundException = schema.new({
             target_id = prelude.String.id,
         }),
     },
+})
+
+M.AdminRevokeUserSessionInput = schema.new({
+    id = id.from(_N, "AdminRevokeUserSessionRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "AdminRevokeUserSessionInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Username = schema.new({
+            id = id.from(_N, "AdminRevokeUserSessionInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "AdminRevokeUserSessionInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RevokeAssociatedSessions = schema.new({
+            id = id.from(_N, "AdminRevokeUserSessionInput", "RevokeAssociatedSessions"),
+            type = "string",
+            name = "RevokeAssociatedSessions",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AdminRevokeUserSessionOutput = schema.new({
+    id = id.from(_N, "AdminRevokeUserSessionResponse"),
+    type = "structure",
 })
 
 M.EmailMfaSettingsType = schema.new({
@@ -8304,6 +8489,73 @@ M.GetUserAuthFactorsOutput = schema.new({
     },
 })
 
+M.GetUserPoolClientSessionConfigurationInput = schema.new({
+    id = id.from(_N, "GetUserPoolClientSessionConfigurationRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "GetUserPoolClientSessionConfigurationInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "GetUserPoolClientSessionConfigurationInput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ClientSSOSessionConfigType = schema.new({
+    id = id.from(_N, "ClientSSOSessionConfigType"),
+    type = "structure",
+    members = {
+        MaxValidityMinutes = schema.new({
+            id = id.from(_N, "ClientSSOSessionConfigType", "MaxValidityMinutes"),
+            type = "integer",
+            name = "MaxValidityMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetUserPoolClientSessionConfigurationOutput = schema.new({
+    id = id.from(_N, "GetUserPoolClientSessionConfigurationResponse"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "GetUserPoolClientSessionConfigurationOutput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "GetUserPoolClientSessionConfigurationOutput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+        }),
+        SSOSession = schema.new({
+            id = id.from(_N, "GetUserPoolClientSessionConfigurationOutput", "SSOSession"),
+            type = "structure",
+            name = "SSOSession",
+            target_id = id.from(_N, "ClientSSOSessionConfigType"),
+            target = M.ClientSSOSessionConfigType,
+        }),
+    },
+})
+
 M.GetUserPoolMfaConfigInput = schema.new({
     id = id.from(_N, "GetUserPoolMfaConfigRequest"),
     type = "structure",
@@ -8437,6 +8689,64 @@ M.GetUserPoolMfaConfigOutput = schema.new({
             name = "WebAuthnConfiguration",
             target_id = id.from(_N, "WebAuthnConfigurationType"),
             target = M.WebAuthnConfigurationType,
+        }),
+    },
+})
+
+M.GetUserPoolSessionConfigurationInput = schema.new({
+    id = id.from(_N, "GetUserPoolSessionConfigurationRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "GetUserPoolSessionConfigurationInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UserPoolTokenSessionConfigType = schema.new({
+    id = id.from(_N, "UserPoolTokenSessionConfigType"),
+    type = "structure",
+    members = {
+        MaxPerUser = schema.new({
+            id = id.from(_N, "UserPoolTokenSessionConfigType", "MaxPerUser"),
+            type = "integer",
+            name = "MaxPerUser",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetUserPoolSessionConfigurationOutput = schema.new({
+    id = id.from(_N, "GetUserPoolSessionConfigurationResponse"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "GetUserPoolSessionConfigurationOutput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+        }),
+        UserSessionTracking = schema.new({
+            id = id.from(_N, "GetUserPoolSessionConfigurationOutput", "UserSessionTracking"),
+            type = "string",
+            name = "UserSessionTracking",
+            target_id = prelude.String.id,
+        }),
+        TokenSession = schema.new({
+            id = id.from(_N, "GetUserPoolSessionConfigurationOutput", "TokenSession"),
+            type = "structure",
+            name = "TokenSession",
+            target_id = id.from(_N, "UserPoolTokenSessionConfigType"),
+            target = M.UserPoolTokenSessionConfigType,
         }),
     },
 })
@@ -9298,6 +9608,48 @@ M.ListUsersOutput = schema.new({
     },
 })
 
+M.ListUserSessionsInput = schema.new({
+    id = id.from(_N, "ListUserSessionsRequest"),
+    type = "structure",
+    members = {
+        AccessToken = schema.new({
+            id = id.from(_N, "ListUserSessionsInput", "AccessToken"),
+            type = "string",
+            name = "AccessToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListUserSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListUserSessionsOutput = schema.new({
+    id = id.from(_N, "ListUserSessionsResponse"),
+    type = "structure",
+    members = {
+        Sessions = schema.new({
+            id = id.from(_N, "ListUserSessionsOutput", "Sessions"),
+            type = "list",
+            name = "Sessions",
+            target_id = prelude.Document.id,
+            list_member = M.SessionDescriptionType,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListUserSessionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListUsersInGroupInput = schema.new({
     id = id.from(_N, "ListUsersInGroupRequest"),
     type = "structure",
@@ -9662,6 +10014,12 @@ M.RevokeTokenInput = schema.new({
             name = "ClientSecret",
             target_id = prelude.String.id,
         }),
+        RevokeAssociatedSessions = schema.new({
+            id = id.from(_N, "RevokeTokenInput", "RevokeAssociatedSessions"),
+            type = "string",
+            name = "RevokeAssociatedSessions",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -9700,6 +10058,42 @@ M.UnsupportedTokenTypeException = schema.new({
             target_id = prelude.String.id,
         }),
     },
+})
+
+M.RevokeUserSessionInput = schema.new({
+    id = id.from(_N, "RevokeUserSessionRequest"),
+    type = "structure",
+    members = {
+        AccessToken = schema.new({
+            id = id.from(_N, "RevokeUserSessionInput", "AccessToken"),
+            type = "string",
+            name = "AccessToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "RevokeUserSessionInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RevokeAssociatedSessions = schema.new({
+            id = id.from(_N, "RevokeUserSessionInput", "RevokeAssociatedSessions"),
+            type = "string",
+            name = "RevokeAssociatedSessions",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RevokeUserSessionOutput = schema.new({
+    id = id.from(_N, "RevokeUserSessionResponse"),
+    type = "structure",
 })
 
 M.SetLogDeliveryConfigurationInput = schema.new({
@@ -9902,6 +10296,67 @@ M.SetUserMFAPreferenceOutput = schema.new({
     type = "structure",
 })
 
+M.SetUserPoolClientSessionConfigurationInput = schema.new({
+    id = id.from(_N, "SetUserPoolClientSessionConfigurationRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "SetUserPoolClientSessionConfigurationInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "SetUserPoolClientSessionConfigurationInput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SSOSession = schema.new({
+            id = id.from(_N, "SetUserPoolClientSessionConfigurationInput", "SSOSession"),
+            type = "structure",
+            name = "SSOSession",
+            target_id = id.from(_N, "ClientSSOSessionConfigType"),
+            target = M.ClientSSOSessionConfigType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SetUserPoolClientSessionConfigurationOutput = schema.new({
+    id = id.from(_N, "SetUserPoolClientSessionConfigurationResponse"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "SetUserPoolClientSessionConfigurationOutput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "SetUserPoolClientSessionConfigurationOutput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+        }),
+        SSOSession = schema.new({
+            id = id.from(_N, "SetUserPoolClientSessionConfigurationOutput", "SSOSession"),
+            type = "structure",
+            name = "SSOSession",
+            target_id = id.from(_N, "ClientSSOSessionConfigType"),
+            target = M.ClientSSOSessionConfigType,
+        }),
+    },
+})
+
 M.SetUserPoolMfaConfigInput = schema.new({
     id = id.from(_N, "SetUserPoolMfaConfigRequest"),
     type = "structure",
@@ -9989,6 +10444,67 @@ M.SetUserPoolMfaConfigOutput = schema.new({
             name = "WebAuthnConfiguration",
             target_id = id.from(_N, "WebAuthnConfigurationType"),
             target = M.WebAuthnConfigurationType,
+        }),
+    },
+})
+
+M.SetUserPoolSessionConfigurationInput = schema.new({
+    id = id.from(_N, "SetUserPoolSessionConfigurationRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "SetUserPoolSessionConfigurationInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UserSessionTracking = schema.new({
+            id = id.from(_N, "SetUserPoolSessionConfigurationInput", "UserSessionTracking"),
+            type = "string",
+            name = "UserSessionTracking",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TokenSession = schema.new({
+            id = id.from(_N, "SetUserPoolSessionConfigurationInput", "TokenSession"),
+            type = "structure",
+            name = "TokenSession",
+            target_id = id.from(_N, "UserPoolTokenSessionConfigType"),
+            target = M.UserPoolTokenSessionConfigType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SetUserPoolSessionConfigurationOutput = schema.new({
+    id = id.from(_N, "SetUserPoolSessionConfigurationResponse"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "SetUserPoolSessionConfigurationOutput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+        }),
+        UserSessionTracking = schema.new({
+            id = id.from(_N, "SetUserPoolSessionConfigurationOutput", "UserSessionTracking"),
+            type = "string",
+            name = "UserSessionTracking",
+            target_id = prelude.String.id,
+        }),
+        TokenSession = schema.new({
+            id = id.from(_N, "SetUserPoolSessionConfigurationOutput", "TokenSession"),
+            type = "structure",
+            name = "TokenSession",
+            target_id = id.from(_N, "UserPoolTokenSessionConfigType"),
+            target = M.UserPoolTokenSessionConfigType,
         }),
     },
 })
@@ -11664,6 +12180,17 @@ M.AdminListUserAuthEvents = schema.operation({
     },
 })
 
+M.AdminListUserSessions = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminListUserSessions"),
+    input = M.AdminListUserSessionsInput,
+    output = M.AdminListUserSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AdminRemoveUserFromGroup = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "AdminRemoveUserFromGroup"),
     input = M.AdminRemoveUserFromGroupInput,
@@ -11690,6 +12217,17 @@ M.AdminRespondToAuthChallenge = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "AdminRespondToAuthChallenge"),
     input = M.AdminRespondToAuthChallengeInput,
     output = M.AdminRespondToAuthChallengeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminRevokeUserSession = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminRevokeUserSession"),
+    input = M.AdminRevokeUserSessionInput,
+    output = M.AdminRevokeUserSessionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -12379,10 +12917,32 @@ M.GetUserAuthFactors = schema.operation({
     },
 })
 
+M.GetUserPoolClientSessionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetUserPoolClientSessionConfiguration"),
+    input = M.GetUserPoolClientSessionConfigurationInput,
+    output = M.GetUserPoolClientSessionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetUserPoolMfaConfig = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "GetUserPoolMfaConfig"),
     input = M.GetUserPoolMfaConfigInput,
     output = M.GetUserPoolMfaConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetUserPoolSessionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetUserPoolSessionConfiguration"),
+    input = M.GetUserPoolSessionConfigurationInput,
+    output = M.GetUserPoolSessionConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -12544,6 +13104,17 @@ M.ListUsers = schema.operation({
     },
 })
 
+M.ListUserSessions = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListUserSessions"),
+    input = M.ListUserSessionsInput,
+    output = M.ListUserSessionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
 M.ListUsersInGroup = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "ListUsersInGroup"),
     input = M.ListUsersInGroupInput,
@@ -12599,6 +13170,17 @@ M.RevokeToken = schema.operation({
     },
 })
 
+M.RevokeUserSession = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "RevokeUserSession"),
+    input = M.RevokeUserSessionInput,
+    output = M.RevokeUserSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "smithy.api#noAuth" },
+        },
+    },
+})
+
 M.SetLogDeliveryConfiguration = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "SetLogDeliveryConfiguration"),
     input = M.SetLogDeliveryConfigurationInput,
@@ -12643,10 +13225,32 @@ M.SetUserMFAPreference = schema.operation({
     },
 })
 
+M.SetUserPoolClientSessionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SetUserPoolClientSessionConfiguration"),
+    input = M.SetUserPoolClientSessionConfigurationInput,
+    output = M.SetUserPoolClientSessionConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.SetUserPoolMfaConfig = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "SetUserPoolMfaConfig"),
     input = M.SetUserPoolMfaConfigInput,
     output = M.SetUserPoolMfaConfigOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetUserPoolSessionConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "SetUserPoolSessionConfiguration"),
+    input = M.SetUserPoolSessionConfigurationInput,
+    output = M.SetUserPoolSessionConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

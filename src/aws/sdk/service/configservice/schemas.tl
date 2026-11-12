@@ -2769,6 +2769,37 @@ M.ConformancePackTemplateValidationException = schema.new({
     },
 })
 
+M.GcpConnectorConfiguration = schema.new({
+    id = id.from(_N, "GcpConnectorConfiguration"),
+    type = "structure",
+    members = {
+        gcpOrganizationId = schema.new({
+            id = id.from(_N, "GcpConnectorConfiguration", "gcpOrganizationId"),
+            type = "string",
+            name = "gcpOrganizationId",
+            target_id = prelude.String.id,
+        }),
+        serviceAccountEmail = schema.new({
+            id = id.from(_N, "GcpConnectorConfiguration", "serviceAccountEmail"),
+            type = "string",
+            name = "serviceAccountEmail",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        workloadIdentityPoolProvider = schema.new({
+            id = id.from(_N, "GcpConnectorConfiguration", "workloadIdentityPoolProvider"),
+            type = "string",
+            name = "workloadIdentityPoolProvider",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ConnectorConfiguration = schema.new({
     id = id.from(_N, "ConnectorConfiguration"),
     type = "structure",
@@ -2779,6 +2810,13 @@ M.ConnectorConfiguration = schema.new({
             name = "azure",
             target_id = id.from(_N, "AzureConnectorConfiguration"),
             target = M.AzureConnectorConfiguration,
+        }),
+        gcp = schema.new({
+            id = id.from(_N, "ConnectorConfiguration", "gcp"),
+            type = "structure",
+            name = "gcp",
+            target_id = id.from(_N, "GcpConnectorConfiguration"),
+            target = M.GcpConnectorConfiguration,
         }),
     },
 })
@@ -2883,9 +2921,18 @@ M.ConnectorSummary = schema.new({
             type = "string",
             name = "tenantIdentifier",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        gcpOrganizationId = schema.new({
+            id = id.from(_N, "ConnectorSummary", "gcpOrganizationId"),
+            type = "string",
+            name = "gcpOrganizationId",
+            target_id = prelude.String.id,
+        }),
+        serviceAccountEmail = schema.new({
+            id = id.from(_N, "ConnectorSummary", "serviceAccountEmail"),
+            type = "string",
+            name = "serviceAccountEmail",
+            target_id = prelude.String.id,
         }),
         createdTime = schema.new({
             id = id.from(_N, "ConnectorSummary", "createdTime"),

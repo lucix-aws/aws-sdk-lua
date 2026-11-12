@@ -54,7 +54,7 @@ local record M
         OperationId: string
     end
 
-    -- Exception thrown as a result of concurrent modifications to an application. This error can
+    -- Exception thrown as a result of concurrent modifications to an application or snapshot. This error can
     -- be the result of attempting to modify an application without using the current application
     -- ID.
     record ConcurrentModificationException
@@ -76,12 +76,12 @@ local record M
         Message: string
     end
 
-    -- The application is not available for this operation.
+    -- The application or snapshot is not available for this operation.
     record ResourceInUseException
         Message: string
     end
 
-    -- Specified application can't be found.
+    -- The specified application, snapshot, or snapshot operation can't be found.
     record ResourceNotFoundException
         Message: string
     end
@@ -758,10 +758,18 @@ local record M
         KeyType: string
     end
 
+    enum SnapshotMode
+        "APPLICATION_SNAPSHOTS_LEGACY"
+        "ENHANCED_SNAPSHOTS"
+    end
+
     -- Describes whether snapshots are enabled for a Managed Service for Apache Flink application.
     record ApplicationSnapshotConfiguration
         -- Describes whether snapshots are enabled for a Managed Service for Apache Flink application.
         SnapshotsEnabled: boolean
+        -- Specifies the snapshot mode for a Managed Service for Apache Flink application. To use enhanced snapshots, specify ENHANCED_SNAPSHOTS. If you don't specify this parameter, the application uses APPLICATION_SNAPSHOTS_LEGACY. For more information, see Enhanced Snapshots.
+        -- To use ENHANCED_SNAPSHOTS, the application must use Apache Flink version 1.20 or later.
+        SnapshotMode: string
     end
 
     -- Describes the system rollback configuration for a Managed Service for Apache Flink application.
@@ -1007,6 +1015,8 @@ local record M
     record ApplicationSnapshotConfigurationDescription
         -- Describes whether snapshots are enabled for a Managed Service for Apache Flink application.
         SnapshotsEnabled: boolean
+        -- Describes the snapshot mode of a Managed Service for Apache Flink application.
+        SnapshotMode: string
     end
 
     -- Describes the system rollback configuration for a Managed Service for Apache Flink application.
@@ -1115,6 +1125,8 @@ local record M
         -- The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the
         -- ApplicationRestoreType.
         SnapshotName: string
+        -- The identifier of an existing enhanced snapshot of application state to use to restart an application. The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the ApplicationRestoreType and SnapshotMode is ENHANCED_SNAPSHOTS.
+        SnapshotArn: string
     end
 
     -- Describes the starting parameters for a Managed Service for Apache Flink application.
@@ -1241,6 +1253,10 @@ local record M
     record ApplicationSnapshotConfigurationUpdate
         -- Describes updates to whether snapshots are enabled for an application.
         SnapshotsEnabledUpdate: boolean
+        -- Describes updates to the snapshot mode of a Managed Service for Apache Flink application. You can update the snapshot mode from APPLICATION_SNAPSHOTS_LEGACY to ENHANCED_SNAPSHOTS. You can't use UpdateApplication to change the snapshot mode back to APPLICATION_SNAPSHOTS_LEGACY.
+        -- To return to APPLICATION_SNAPSHOTS_LEGACY, use RollbackApplication. After you update an application that uses ENHANCED_SNAPSHOTS, you can't roll it back to APPLICATION_SNAPSHOTS_LEGACY.
+        -- To use ENHANCED_SNAPSHOTS, the application must use Apache Flink version 1.20 or later.
+        SnapshotModeUpdate: string
     end
 
     -- Describes the system rollback configuration for a Managed Service for Apache Flink application.
@@ -1663,6 +1679,12 @@ local record M
         ApplicationMaintenanceWindowStartTimeUpdate: string
     end
 
+    -- Describes the application operation that initiated a snapshot operation. To get information about the application operation, use DescribeApplicationOperation.
+    record ApplicationOperationDescription
+        ApplicationOperationId: string
+        ApplicationName: string
+    end
+
     enum OperationStatus
         "IN_PROGRESS"
         "CANCELLED"
@@ -1839,6 +1861,41 @@ local record M
     record CreateApplicationSnapshotOutput
     end
 
+    record CreateSnapshotInput
+        ApplicationName: string
+        -- The name of the enhanced snapshot. The name must be unique among the snapshots in your account and Region. You can't reuse the name of an existing snapshot, including a snapshot in the FAILED status, until you delete that snapshot. Names that begin with SYSTEMSNAPSHOT are reserved.
+        SnapshotName: string
+        -- A summary description of the snapshot.
+        SnapshotDescription: string
+        -- A list of one or more tags to assign to the snapshot. A tag is a key-value pair that identifies a snapshot. For more information, see Using Tagging.
+        Tags: {Tag}
+    end
+
+    enum SnapshotOperationStatus
+        "IN_PROGRESS"
+        "SUCCESSFUL"
+        "FAILED"
+        "CANCELLED"
+    end
+
+    enum SnapshotStatus
+        "CREATING"
+        "READY"
+        "DELETING"
+        "FAILED"
+    end
+
+    record CreateSnapshotOutput
+        -- The ARN of the enhanced snapshot.
+        SnapshotArn: string
+        -- The status of the snapshot. When Managed Service for Apache Flink accepts the request, the status is CREATING.
+        SnapshotStatus: string
+        -- The ID of the snapshot operation. You can use this value with DescribeSnapshotOperation to track the progress of the operation.
+        SnapshotOperationId: string
+        -- The status of the snapshot operation.
+        SnapshotOperationStatus: string
+    end
+
     record DeleteApplicationInput
         -- The name of the application to delete.
         ApplicationName: string
@@ -1987,6 +2044,24 @@ local record M
         OperationId: string
     end
 
+    record DeleteSnapshotInput
+        -- The name of the enhanced snapshot to delete.
+        SnapshotName: string
+        -- The creation timestamp of the enhanced snapshot to delete. Use the DescribeSnapshot operation to get this value.
+        SnapshotCreationTimestamp: number
+    end
+
+    record DeleteSnapshotOutput
+        -- The ARN of the enhanced snapshot.
+        SnapshotArn: string
+        -- The status of the snapshot. When Managed Service for Apache Flink accepts the request, the status is DELETING. If a snapshot operation, such as an export, uses the snapshot, the status stays DELETING until that operation finishes and Managed Service for Apache Flink deletes the snapshot.
+        SnapshotStatus: string
+        -- The ID of the snapshot operation. You can use this value with DescribeSnapshotOperation to track the progress of the operation.
+        SnapshotOperationId: string
+        -- The status of the snapshot operation.
+        SnapshotOperationStatus: string
+    end
+
     record DescribeApplicationInput
         -- The name of the application.
         ApplicationName: string
@@ -2019,13 +2094,6 @@ local record M
         SnapshotName: string
     end
 
-    enum SnapshotStatus
-        "CREATING"
-        "READY"
-        "DELETING"
-        "FAILED"
-    end
-
     -- Provides details about a snapshot of application state.
     record SnapshotDetails
         -- The identifier for the application snapshot.
@@ -2056,6 +2124,184 @@ local record M
 
     record DescribeApplicationVersionOutput
         ApplicationVersionDetail: ApplicationDetail
+    end
+
+    record DescribeSnapshotInput
+        -- The name of the enhanced snapshot. You can retrieve this value using ListSnapshots.
+        SnapshotName: string
+    end
+
+    -- Specifies the encryption configuration of snapshot data.
+    record SnapshotEncryptionConfiguration
+        -- The KMS key used for encryption. KeyId is used only when KeyType is CUSTOMER_MANAGED_KEY.
+        KeyId: string
+        -- Specifies the type of key used for encryption.
+        KeyType: string
+    end
+
+    enum SnapshotFormat
+        "CANONICAL"
+    end
+
+    enum SnapshotInitiator
+        "USER"
+        "SYSTEM"
+    end
+
+    enum SnapshotInitiatorOperation
+        "CreateSnapshot"
+        "ImportSnapshot"
+        "SystemCreateSnapshot"
+    end
+
+    -- Specifies an Amazon S3 bucket and key prefix.
+    record S3PrefixLocation
+        -- The ARN of the Amazon S3 bucket.
+        BucketARN: string
+        -- The key prefix in the Amazon S3 bucket.
+        KeyPrefix: string
+    end
+
+    -- Describes the application that an enhanced snapshot was created from.
+    record SourceApplicationDescription
+        ApplicationName: string
+        -- The timestamp that indicates when the source application was created.
+        ApplicationCreationTimestamp: number
+        -- The version ID of the source application when the snapshot was created.
+        ApplicationVersionId: number
+    end
+
+    -- Describes the source of an enhanced snapshot. For a snapshot that was created from an application, SourceApplicationDescription is present. For an imported snapshot, S3PrefixLocation is present.
+    record SnapshotSourceDescription
+        -- The Amazon S3 location that the snapshot was imported from. This field is present only if SnapshotInitiatorOperation is ImportSnapshot.
+        S3PrefixLocation: S3PrefixLocation
+        -- Describes the application that the snapshot was created from. This field is not present for imported snapshots.
+        SourceApplicationDescription: SourceApplicationDescription
+    end
+
+    -- Provides details about an enhanced snapshot.
+    record SnapshotInfoDetails
+        -- The name of the enhanced snapshot.
+        SnapshotName: string
+        -- The ARN of the enhanced snapshot.
+        SnapshotArn: string
+        -- The summary description of the snapshot.
+        SnapshotDescription: string
+        -- The status of the enhanced snapshot.
+        SnapshotStatus: string
+        -- The timestamp that indicates when the snapshot was created.
+        SnapshotCreationTimestamp: number
+        -- The Flink runtime of the application that the snapshot was created from. This field is not present for imported snapshots.
+        RuntimeEnvironment: string
+        -- The size of the snapshot, in bytes. The value is 0 until the snapshot status is READY.
+        SnapshotSizeInBytes: number
+        -- Describes the encryption settings of data at rest for the snapshot.
+        SnapshotEncryptionConfigurationDescription: SnapshotEncryptionConfiguration
+        -- Indicates who initiated the snapshot. USER indicates a snapshot that you created or imported. SYSTEM indicates a snapshot that Managed Service for Apache Flink created.
+        SnapshotInitiator: string
+        -- The operation that created the snapshot.
+        SnapshotInitiatorOperation: string
+        -- Describes the source of the snapshot.
+        SnapshotSourceDescription: SnapshotSourceDescription
+        -- The format of the snapshot.
+        SnapshotFormat: string
+    end
+
+    record DescribeSnapshotOutput
+        -- An object containing information about the enhanced snapshot.
+        SnapshotInfoDetails: SnapshotInfoDetails
+    end
+
+    record DescribeSnapshotOperationInput
+        -- The name of the enhanced snapshot.
+        SnapshotName: string
+        -- The ID of the snapshot operation. You can retrieve this value using ListSnapshotOperations.
+        SnapshotOperationId: string
+    end
+
+    -- Describes the encryption configuration of snapshot data for a snapshot operation.
+    record EncryptionConfigurationDescription
+        -- The KMS key used for encryption.
+        KeyId: string
+        -- Specifies the type of key used for encryption.
+        KeyType: string
+    end
+
+    enum StorageLocationType
+        "S3"
+    end
+
+    -- Describes an Amazon S3 bucket and key prefix for a snapshot operation.
+    record SnapshotOperationS3PrefixLocation
+        -- The ARN of the Amazon S3 bucket.
+        BucketARN: string
+        -- The key prefix in the Amazon S3 bucket that you specified in the request.
+        KeyPrefix: string
+        -- The full key prefix that the exported snapshot data was written to. This value includes the unique prefix that Managed Service for Apache Flink appends to KeyPrefix. This field is present only after an ExportSnapshot operation completes successfully.
+        ExportedPrefix: string
+    end
+
+    -- Describes the location of snapshot data for a snapshot operation.
+    record SnapshotOperationLocationDescription
+        -- The type of the location. The only supported value is S3.
+        LocationType: string
+        -- Describes the Amazon S3 bucket and key prefix of the location.
+        S3PrefixLocation: SnapshotOperationS3PrefixLocation
+    end
+
+    enum SnapshotOperation
+        "CreateSnapshot"
+        "DeleteSnapshot"
+        "ImportSnapshot"
+        "ExportSnapshot"
+        "SystemCreateSnapshot"
+    end
+
+    -- A description of the error that caused a snapshot operation to fail.
+    record SnapshotErrorInfo
+        -- The error code that identifies the cause of the failure.
+        ErrorCode: string
+        -- An error message that is returned when an operation fails.
+        ErrorString: string
+    end
+
+    -- Provides a description of the snapshot operation failure.
+    record SnapshotOperationFailureDetails
+        -- A description of the error that caused the snapshot operation to fail.
+        ErrorInfo: SnapshotErrorInfo
+    end
+
+    -- A description of a snapshot operation that provides information about the operation that was performed on an enhanced snapshot.
+    record SnapshotOperationInfoDetails
+        -- The ID of the snapshot operation.
+        SnapshotOperationId: string
+        -- The type of operation that was performed on the snapshot.
+        SnapshotOperation: string
+        -- The status of the snapshot operation.
+        SnapshotOperationStatus: string
+        -- The ARN of the enhanced snapshot.
+        SnapshotArn: string
+        -- Describes the encryption configuration of the source data. This field is present only for ImportSnapshot operation.
+        SourceEncryptionConfigurationDescription: EncryptionConfigurationDescription
+        -- Describes the encryption configuration of the destination data. This field is present only for ImportSnapshot and ExportSnapshot operations.
+        DestinationEncryptionConfigurationDescription: EncryptionConfigurationDescription
+        -- Describes the location that the snapshot data was read from. This field is present only for ImportSnapshot operations.
+        SnapshotSourceLocationDescription: SnapshotOperationLocationDescription
+        -- Describes the location that the snapshot data was written to. This field is present only for ExportSnapshot operations, after the operation completes.
+        SnapshotDestinationLocationDescription: SnapshotOperationLocationDescription
+        -- Describes the application operation that initiated the snapshot operation. This field is present only for SystemCreateSnapshot operations.
+        ApplicationOperationDescription: ApplicationOperationDescription
+        -- The timestamp that indicates when the operation was created.
+        StartTime: number
+        -- The timestamp that indicates when the operation finished. This field is present only after the operation completes.
+        EndTime: number
+        -- Provides a description of the operation failure. This field is present only if SnapshotOperationStatus is FAILED.
+        SnapshotOperationFailureDetails: SnapshotOperationFailureDetails
+    end
+
+    record DescribeSnapshotOperationOutput
+        -- An object containing information about the snapshot operation.
+        SnapshotOperationInfoDetails: SnapshotOperationInfoDetails
     end
 
     -- For a SQL-based Kinesis Data Analytics application, provides a description of an
@@ -2118,6 +2364,70 @@ local record M
         RawInputRecords: {string}
         -- Stream data that was modified by the processor specified in the InputProcessingConfiguration parameter.
         ProcessedInputRecords: {string}
+    end
+
+    -- Describes the destination of the exported snapshot data.
+    record ExportDestinationConfiguration
+        -- The type of the destination location. The only supported value is S3.
+        DestinationType: string
+        -- The ARN of the IAM role that Managed Service for Apache Flink assumes to write the snapshot data to the destination location. For information about the permissions that this role requires, see Import and export.
+        ExportRoleArn: string
+        -- The encryption configuration of the exported snapshot data. If you don't specify this parameter, Managed Service for Apache Flink uses a key of type AWS_OWNED_KEY. If you specify a KMS key, you must specify the key ARN.
+        DestinationEncryptionConfiguration: SnapshotEncryptionConfiguration
+        -- The Amazon S3 bucket and key prefix to export the snapshot data to. Managed Service for Apache Flink writes the data under a unique prefix that it appends to the key prefix that you specify. After the export completes, use DescribeSnapshotOperation to get the full prefix. The bucket must be owned by your account and must be in the same Region as the request.
+        DestinationS3PrefixLocation: S3PrefixLocation
+    end
+
+    record ExportSnapshotInput
+        -- The name of the enhanced snapshot to export.
+        SnapshotName: string
+        -- Describes the location, IAM role, and encryption configuration of the export destination.
+        ExportDestinationConfiguration: ExportDestinationConfiguration
+    end
+
+    record ExportSnapshotOutput
+        -- The ID of the snapshot operation. You can use this value with DescribeSnapshotOperation to track the progress of the export.
+        SnapshotOperationId: string
+        -- The status of the snapshot operation.
+        SnapshotOperationStatus: string
+    end
+
+    -- Describes the source of the savepoint data to import.
+    record ImportSourceConfiguration
+        -- The type of the source location. The only supported value is S3.
+        SourceType: string
+        -- The ARN of the IAM role that Managed Service for Apache Flink assumes to read the savepoint data from the source location. For information about the permissions that this role requires, see Import and export.
+        ImportRoleArn: string
+        -- The encryption configuration of the savepoint data at the source location. If you don't specify this parameter, Managed Service for Apache Flink uses a key of type AWS_OWNED_KEY. If you specify a KMS key, you must specify the key ARN.
+        SourceEncryptionConfiguration: SnapshotEncryptionConfiguration
+        -- The Amazon S3 bucket and key prefix that contain the savepoint data to import. The bucket must be owned by your account and must be in the same Region as the request.
+        SourceS3PrefixLocation: S3PrefixLocation
+    end
+
+    record ImportSnapshotInput
+        -- The name of the enhanced snapshot. The name must be unique among the snapshots in your account and Region. You can't reuse the name of an existing snapshot, including a snapshot in the FAILED status, until you delete that snapshot. Names that begin with SYSTEMSNAPSHOT are reserved.
+        SnapshotName: string
+        -- Describes the location, IAM role, and encryption configuration of the savepoint data to import.
+        ImportSourceConfiguration: ImportSourceConfiguration
+        -- The encryption configuration of the imported snapshot. If you don't specify this parameter, the snapshot is encrypted using a key of type AWS_OWNED_KEY. If you specify a KMS key, you must specify the key ARN.
+        DestinationEncryptionConfiguration: SnapshotEncryptionConfiguration
+        -- A summary description of the snapshot.
+        SnapshotDescription: string
+        -- The format of the snapshot being imported.
+        SnapshotFormat: string
+        -- A list of one or more tags to assign to the snapshot. A tag is a key-value pair that identifies a snapshot. For more information, see Using Tagging.
+        Tags: {Tag}
+    end
+
+    record ImportSnapshotOutput
+        -- The ARN of the enhanced snapshot.
+        SnapshotArn: string
+        -- The status of the snapshot. When Managed Service for Apache Flink accepts the request, the status is CREATING.
+        SnapshotStatus: string
+        -- The ID of the snapshot operation. You can use this value with DescribeSnapshotOperation to track the progress of the import.
+        SnapshotOperationId: string
+        -- The status of the snapshot operation.
+        SnapshotOperationStatus: string
     end
 
     -- A request for a list of operations performed on an application.
@@ -2190,6 +2500,76 @@ local record M
         -- The pagination token for the next set of results, or null if there are no additional results.
         -- To retrieve the next set of items, pass this token into a subsequent invocation of this operation. For more information about pagination, see
         -- Using the Amazon Command Line Interface's Pagination Options.
+        NextToken: string
+    end
+
+    record ListSnapshotOperationsInput
+        -- The name of the enhanced snapshot.
+        SnapshotName: string
+        -- Use this parameter to list only the operations of the specified type.
+        SnapshotOperation: string
+        -- Use this parameter to list only the operations with the specified status.
+        SnapshotOperationStatus: string
+        -- The maximum number of snapshot operations to list.
+        Limit: number
+        NextToken: string
+    end
+
+    -- Provides summary information about an operation that was performed on an enhanced snapshot.
+    record SnapshotOperationInfo
+        -- The ID of the snapshot operation.
+        SnapshotOperationId: string
+        -- The type of operation that was performed on the snapshot.
+        SnapshotOperation: string
+        -- The status of the snapshot operation.
+        SnapshotOperationStatus: string
+        -- The timestamp that indicates when the operation was created.
+        StartTime: number
+        -- The timestamp that indicates when the operation finished. This field is present only after the operation completes.
+        EndTime: number
+    end
+
+    record ListSnapshotOperationsOutput
+        -- A list of SnapshotOperationInfo objects.
+        SnapshotOperationInfoList: {SnapshotOperationInfo}
+        NextToken: string
+    end
+
+    record ListSnapshotsInput
+        SourceApplicationName: string
+        -- Use this parameter to list only the snapshots with the specified initiator.
+        SnapshotInitiator: string
+        -- Use this parameter to list only the snapshots that were created by the specified operation.
+        SnapshotInitiatorOperation: string
+        -- Use this parameter to list only the snapshots with the specified status.
+        SnapshotStatus: string
+        -- The maximum number of snapshots to list.
+        Limit: number
+        NextToken: string
+    end
+
+    -- Provides summary information about an enhanced snapshot.
+    record SnapshotInfo
+        -- The name of the enhanced snapshot.
+        SnapshotName: string
+        -- The ARN of the enhanced snapshot.
+        SnapshotArn: string
+        -- The status of the enhanced snapshot.
+        SnapshotStatus: string
+        -- The timestamp that indicates when the snapshot was created.
+        SnapshotCreationTimestamp: number
+        -- Indicates who initiated the snapshot. USER indicates a snapshot that you created or imported. SYSTEM indicates a snapshot that Managed Service for Apache Flink created.
+        SnapshotInitiator: string
+        -- The operation that created the snapshot.
+        SnapshotInitiatorOperation: string
+        SourceApplicationName: string
+        -- The format of the snapshot.
+        SnapshotFormat: string
+    end
+
+    record ListSnapshotsOutput
+        -- A list of SnapshotInfo objects.
+        SnapshotInfoList: {SnapshotInfo}
         NextToken: string
     end
 

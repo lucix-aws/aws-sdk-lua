@@ -1869,6 +1869,65 @@ M.AllowedWorkloadConfiguration = schema.new({
     },
 })
 
+M.S3CertificateConfiguration = schema.new({
+    id = id.from(_N, "S3CertificateConfiguration"),
+    type = "structure",
+    members = {
+        uri = schema.new({
+            id = id.from(_N, "S3CertificateConfiguration", "uri"),
+            type = "string",
+            name = "uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        bucketOwnerAccountId = schema.new({
+            id = id.from(_N, "S3CertificateConfiguration", "bucketOwnerAccountId"),
+            type = "string",
+            name = "bucketOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SecretsManagerCertificateConfiguration = schema.new({
+    id = id.from(_N, "SecretsManagerCertificateConfiguration"),
+    type = "structure",
+    members = {
+        secretArn = schema.new({
+            id = id.from(_N, "SecretsManagerCertificateConfiguration", "secretArn"),
+            type = "string",
+            name = "secretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CertificateConfiguration = schema.new({
+    id = id.from(_N, "CertificateConfiguration"),
+    type = "union",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "CertificateConfiguration", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "S3CertificateConfiguration"),
+            target = M.S3CertificateConfiguration,
+        }),
+        secretsManager = schema.new({
+            id = id.from(_N, "CertificateConfiguration", "secretsManager"),
+            type = "structure",
+            name = "secretsManager",
+            target_id = id.from(_N, "SecretsManagerCertificateConfiguration"),
+            target = M.SecretsManagerCertificateConfiguration,
+        }),
+    },
+})
+
 M.ClaimMatchValueType = schema.new({
     id = id.from(_N, "ClaimMatchValueType"),
     type = "union",
@@ -2128,6 +2187,13 @@ M.CustomJWTAuthorizerConfiguration = schema.new({
             name = "privateEndpointOverrides",
             target_id = prelude.Document.id,
             list_member = M.PrivateEndpointOverride,
+        }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
         }),
         allowedWorkloadConfiguration = schema.new({
             id = id.from(_N, "CustomJWTAuthorizerConfiguration", "allowedWorkloadConfiguration"),
@@ -12930,65 +12996,6 @@ M.UpdateGatewayRuleOutput = schema.new({
     },
 })
 
-M.S3CertificateConfiguration = schema.new({
-    id = id.from(_N, "S3CertificateConfiguration"),
-    type = "structure",
-    members = {
-        uri = schema.new({
-            id = id.from(_N, "S3CertificateConfiguration", "uri"),
-            type = "string",
-            name = "uri",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        bucketOwnerAccountId = schema.new({
-            id = id.from(_N, "S3CertificateConfiguration", "bucketOwnerAccountId"),
-            type = "string",
-            name = "bucketOwnerAccountId",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.SecretsManagerCertificateConfiguration = schema.new({
-    id = id.from(_N, "SecretsManagerCertificateConfiguration"),
-    type = "structure",
-    members = {
-        secretArn = schema.new({
-            id = id.from(_N, "SecretsManagerCertificateConfiguration", "secretArn"),
-            type = "string",
-            name = "secretArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CertificateConfiguration = schema.new({
-    id = id.from(_N, "CertificateConfiguration"),
-    type = "union",
-    members = {
-        s3 = schema.new({
-            id = id.from(_N, "CertificateConfiguration", "s3"),
-            type = "structure",
-            name = "s3",
-            target_id = id.from(_N, "S3CertificateConfiguration"),
-            target = M.S3CertificateConfiguration,
-        }),
-        secretsManager = schema.new({
-            id = id.from(_N, "CertificateConfiguration", "secretsManager"),
-            type = "structure",
-            name = "secretsManager",
-            target_id = id.from(_N, "SecretsManagerCertificateConfiguration"),
-            target = M.SecretsManagerCertificateConfiguration,
-        }),
-    },
-})
-
 M.GatewayApiKeyCredentialProvider = schema.new({
     id = id.from(_N, "GatewayApiKeyCredentialProvider"),
     type = "structure",
@@ -15605,6 +15612,27 @@ M.HarnessInlineFunctionConfig = schema.new({
     },
 })
 
+M.HarnessRemoteMcpOutboundAuth = schema.new({
+    id = id.from(_N, "HarnessRemoteMcpOutboundAuth"),
+    type = "union",
+    members = {
+        awsIam = schema.new({
+            id = id.from(_N, "HarnessRemoteMcpOutboundAuth", "awsIam"),
+            type = "structure",
+            name = "awsIam",
+            target_id = id.from(_N, "IamCredentialProvider"),
+            target = M.IamCredentialProvider,
+        }),
+        none = schema.new({
+            id = id.from(_N, "HarnessRemoteMcpOutboundAuth", "none"),
+            type = "structure",
+            name = "none",
+            target_id = id.from(_N, "Unit"),
+            target = M.Unit,
+        }),
+    },
+})
+
 M.HarnessRemoteMcpConfig = schema.new({
     id = id.from(_N, "HarnessRemoteMcpConfig"),
     type = "structure",
@@ -15625,6 +15653,13 @@ M.HarnessRemoteMcpConfig = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        outboundAuth = schema.new({
+            id = id.from(_N, "HarnessRemoteMcpConfig", "outboundAuth"),
+            type = "union",
+            name = "outboundAuth",
+            target_id = id.from(_N, "HarnessRemoteMcpOutboundAuth"),
+            target = M.HarnessRemoteMcpOutboundAuth,
         }),
     },
 })
@@ -19782,6 +19817,13 @@ M.CustomOauth2ProviderConfigInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.PrivateEndpointOverride,
         }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigInput", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
+        }),
     },
 })
 
@@ -20257,6 +20299,13 @@ M.CustomOauth2ProviderConfigOutput = schema.new({
             name = "privateEndpointOverrides",
             target_id = prelude.Document.id,
             list_member = M.PrivateEndpointOverride,
+        }),
+        certificateConfigurations = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigOutput", "certificateConfigurations"),
+            type = "list",
+            name = "certificateConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateConfiguration,
         }),
         privateKeyJwtConfig = schema.new({
             id = id.from(_N, "CustomOauth2ProviderConfigOutput", "privateKeyJwtConfig"),

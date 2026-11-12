@@ -22,6 +22,10 @@ M.FieldIdentifierList = schema.new({ type = "list", list_member = M.FieldIdentif
 
 M.AuditEventsList = schema.new({ type = "list", list_member = M.AuditEvent })
 
+M.CaseIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FieldsConfigurationList = schema.new({ type = "list", list_member = M.FieldsConfiguration })
+
 M.BatchCreateRelatedItemIdentifierList = schema.new({ type = "list", list_member = M.BatchCreateRelatedItemIdentifier })
 
 M.BatchCreateRelatedItemSuccessEntryList = schema.new({ type = "list", list_member = M.BatchCreateRelatedItemSuccessEntry })
@@ -1307,6 +1311,40 @@ M.AuditEventField = schema.new({
     },
 })
 
+M.AuditMergeMetadata = schema.new({
+    id = id.from(_N, "AuditMergeMetadata"),
+    type = "structure",
+    members = {
+        mergeEventId = schema.new({
+            id = id.from(_N, "AuditMergeMetadata", "mergeEventId"),
+            type = "string",
+            name = "mergeEventId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        primaryCaseId = schema.new({
+            id = id.from(_N, "AuditMergeMetadata", "primaryCaseId"),
+            type = "string",
+            name = "primaryCaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        secondaryCaseId = schema.new({
+            id = id.from(_N, "AuditMergeMetadata", "secondaryCaseId"),
+            type = "string",
+            name = "secondaryCaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AuditEventPerformedBy = schema.new({
     id = id.from(_N, "AuditEventPerformedBy"),
     type = "structure",
@@ -1388,6 +1426,13 @@ M.AuditEvent = schema.new({
             target_id = id.from(_N, "AuditEventPerformedBy"),
             target = M.AuditEventPerformedBy,
         }),
+        mergeMetadata = schema.new({
+            id = id.from(_N, "AuditEvent", "mergeMetadata"),
+            type = "structure",
+            name = "mergeMetadata",
+            target_id = id.from(_N, "AuditMergeMetadata"),
+            target = M.AuditMergeMetadata,
+        }),
     },
 })
 
@@ -1410,6 +1455,62 @@ M.GetCaseAuditEventsOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.GetMergeCasesStatusInput = schema.new({
+    id = id.from(_N, "GetMergeCasesStatusRequest"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "GetMergeCasesStatusInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        caseId = schema.new({
+            id = id.from(_N, "GetMergeCasesStatusInput", "caseId"),
+            type = "string",
+            name = "caseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetMergeCasesStatusOutput = schema.new({
+    id = id.from(_N, "GetMergeCasesStatusResponse"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "GetMergeCasesStatusOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        primaryCaseId = schema.new({
+            id = id.from(_N, "GetMergeCasesStatusOutput", "primaryCaseId"),
+            type = "string",
+            name = "primaryCaseId",
+            target_id = prelude.String.id,
+        }),
+        secondaryCaseIds = schema.new({
+            id = id.from(_N, "GetMergeCasesStatusOutput", "secondaryCaseIds"),
+            type = "list",
+            name = "secondaryCaseIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -2361,6 +2462,126 @@ M.SearchCasesOutput = schema.new({
             },
         }),
     },
+})
+
+M.FieldsConfiguration = schema.new({
+    id = id.from(_N, "FieldsConfiguration"),
+    type = "structure",
+    members = {
+        fieldIds = schema.new({
+            id = id.from(_N, "FieldsConfiguration", "fieldIds"),
+            type = "list",
+            name = "fieldIds",
+            target_id = prelude.Document.id,
+            list_member = M.FieldIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceCaseId = schema.new({
+            id = id.from(_N, "FieldsConfiguration", "sourceCaseId"),
+            type = "string",
+            name = "sourceCaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RelatedItemsConfiguration = schema.new({
+    id = id.from(_N, "RelatedItemsConfiguration"),
+    type = "structure",
+    members = {
+        comment = schema.new({
+            id = id.from(_N, "RelatedItemsConfiguration", "comment"),
+            type = "boolean",
+            name = "comment",
+            target_id = prelude.Boolean.id,
+        }),
+        connectCase = schema.new({
+            id = id.from(_N, "RelatedItemsConfiguration", "connectCase"),
+            type = "boolean",
+            name = "connectCase",
+            target_id = prelude.Boolean.id,
+        }),
+        contact = schema.new({
+            id = id.from(_N, "RelatedItemsConfiguration", "contact"),
+            type = "boolean",
+            name = "contact",
+            target_id = prelude.Boolean.id,
+        }),
+        custom = schema.new({
+            id = id.from(_N, "RelatedItemsConfiguration", "custom"),
+            type = "boolean",
+            name = "custom",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.StartMergeCasesInput = schema.new({
+    id = id.from(_N, "StartMergeCasesRequest"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "StartMergeCasesInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        caseId = schema.new({
+            id = id.from(_N, "StartMergeCasesInput", "caseId"),
+            type = "string",
+            name = "caseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        secondaryCaseIds = schema.new({
+            id = id.from(_N, "StartMergeCasesInput", "secondaryCaseIds"),
+            type = "list",
+            name = "secondaryCaseIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fieldsConfiguration = schema.new({
+            id = id.from(_N, "StartMergeCasesInput", "fieldsConfiguration"),
+            type = "list",
+            name = "fieldsConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.FieldsConfiguration,
+        }),
+        relatedItemsConfiguration = schema.new({
+            id = id.from(_N, "StartMergeCasesInput", "relatedItemsConfiguration"),
+            type = "structure",
+            name = "relatedItemsConfiguration",
+            target_id = id.from(_N, "RelatedItemsConfiguration"),
+            target = M.RelatedItemsConfiguration,
+        }),
+        performedBy = schema.new({
+            id = id.from(_N, "StartMergeCasesInput", "performedBy"),
+            type = "union",
+            name = "performedBy",
+            target_id = id.from(_N, "UserUnion"),
+            target = M.UserUnion,
+        }),
+    },
+})
+
+M.StartMergeCasesOutput = schema.new({
+    id = id.from(_N, "StartMergeCasesResponse"),
+    type = "structure",
 })
 
 M.UpdateCaseInput = schema.new({
@@ -5994,6 +6215,18 @@ M.GetLayout = schema.operation({
     },
 })
 
+M.GetMergeCasesStatus = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "GetMergeCasesStatus"),
+    input = M.GetMergeCasesStatusInput,
+    output = M.GetMergeCasesStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases/{caseId}/merge-status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetTemplate = schema.operation({
     id = id.from("com.amazonaws.connectcases", "GetTemplate"),
     input = M.GetTemplateInput,
@@ -6144,6 +6377,18 @@ M.SearchRelatedItems = schema.operation({
     output = M.SearchRelatedItemsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases/{caseId}/related-items-search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartMergeCases = schema.operation({
+    id = id.from("com.amazonaws.connectcases", "StartMergeCases"),
+    input = M.StartMergeCasesInput,
+    output = M.StartMergeCasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/domains/{domainId}/cases/{caseId}/merge" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

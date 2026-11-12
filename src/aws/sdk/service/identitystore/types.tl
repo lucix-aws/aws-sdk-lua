@@ -477,7 +477,7 @@ local record M
     record NetworkConfigurationDetails
         -- Specifies whether the identity store can be accessed only through a virtual private cloud (VPC) endpoint. When set to true, requests must originate from a VPC endpoint.
         VpceAccessRequired: boolean
-        -- A list of virtual private cloud (VPC) IDs that are allowed to access the identity store API operations. A request is denied unless it originates from a VPC in this list, or from an IP address in ApiAllowSourceIps if one is configured. If this field is empty, access isn't restricted to specific VPCs, but the VPC endpoint requirement from VpceAccessRequired still applies.
+        -- A list of virtual private cloud (VPC) ARNs that are allowed to access the identity store API operations. A request is denied unless it originates from a VPC in this list, or from an IP address in ApiAllowSourceIps if one is configured. If this field is empty, access isn't restricted to specific VPCs, but the VPC endpoint requirement from VpceAccessRequired still applies.
         ApiRestrictSourceVpcs: {string}
         -- A list of IP address CIDR ranges that are allowed to access the identity store API operations. A request from an IP address in this list bypasses the identity store's other API network controls: it's permitted even if it doesn't come through a VPC endpoint required by VpceAccessRequired, and even if it doesn't originate from a VPC in ApiRestrictSourceVpcs. If this field is empty, no such IP address exception applies.
         ApiAllowSourceIps: {string}
@@ -520,7 +520,7 @@ local record M
     record NetworkConfiguration
         -- Specifies whether the identity store can be accessed only through a virtual private cloud (VPC) endpoint. When set to true, requests must originate from a VPC endpoint. This value must be set to either true or false when you provide NetworkConfiguration in a request.
         VpceAccessRequired: boolean
-        -- A list of virtual private cloud (VPC) IDs that are allowed to access the identity store API operations. A request is denied unless it originates from a VPC in this list, or from an IP address in ApiAllowSourceIps if you specified one. If you don't specify a value, access isn't restricted to specific VPCs, but the VPC endpoint requirement set by VpceAccessRequired still applies.
+        -- A list of virtual private cloud (VPC) ARNs that are allowed to access the identity store API operations. A request is denied unless it originates from a VPC in this list, or from an IP address in ApiAllowSourceIps if you specified one. If you don't specify a value, access isn't restricted to specific VPCs, but the VPC endpoint requirement set by VpceAccessRequired still applies.
         ApiRestrictSourceVpcs: {string}
         -- A list of IP address CIDR ranges that are allowed to access the identity store API operations. A request from an IP address in this list bypasses the identity store's other API network controls: it's permitted even if it doesn't come through a VPC endpoint required by VpceAccessRequired, and even if it doesn't originate from a VPC in ApiRestrictSourceVpcs. If you don't specify a value, no such IP address exception applies.
         ApiAllowSourceIps: {string}

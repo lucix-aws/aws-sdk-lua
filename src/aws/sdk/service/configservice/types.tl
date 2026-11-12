@@ -1106,9 +1106,13 @@ local record M
 
     -- Specifies the scope of resources to record from a third-party cloud service provider.
     record ScopeConfiguration
-        -- The type of scope for the third-party cloud resources. Valid values include tenant and subscription.
+        -- The type of scope for the third-party cloud resources. Valid values include:
+        -- tenant – Applies to all resources in an Azure tenant
+        -- subscription – Applies to resources in the Azure subscriptions you specify
+        -- organization – Applies to all resources in a Google Cloud organization
+        -- project – Applies to resources in the Google Cloud projects you specify
         scopeType: string
-        -- The list of specific scope values for the third-party cloud resources. For example, a list of Azure subscriptions or management groups.
+        -- The list of specific scope values for the third-party cloud resources. For example, a list of Azure subscription IDs, or a list of Google Cloud project IDs. Don't specify scopeValues when scopeType is tenant or organization.
         scopeValues: {string}
         -- Specifies whether to record resources from all supported regions for the third-party cloud service provider.
         allRegions: boolean
@@ -1987,6 +1991,7 @@ local record M
 
     enum Provider
         "AZURE"
+        "GCP"
     end
 
     -- A summary of a configuration recorder, including the arn, name, servicePrincipal, recordingScope, and provider.
@@ -1999,7 +2004,9 @@ local record M
         servicePrincipal: string
         -- Indicates whether the ConfigurationItems in scope for the configuration recorder are recorded for free (INTERNAL) or if you are charged a service fee for recording (PAID).
         recordingScope: string
-        -- For service-linked configuration recorders that record resources from a third-party cloud service provider, indicates the cloud service provider. Currently, AZURE is supported.
+        -- For service-linked configuration recorders that record resources from a third-party cloud service provider, indicates the cloud service provider. Valid values:
+        -- AZURE – The recorder records resources from Microsoft Azure
+        -- GCP – The recorder records resources from Google Cloud
         provider: string
     end
 
@@ -2162,10 +2169,24 @@ local record M
         message: string
     end
 
+    -- The configuration details for connecting to Google Cloud.
+    record GcpConnectorConfiguration
+        -- The ID of the Google Cloud organization that contains the connector's management project, which is the project of the service account in serviceAccountEmail.
+        -- Required if the management project belongs to an organization. A connector needs an organization ID to record an entire organization or more than one project. Omit it only if the management project doesn't belong to an organization. In that case, the connector can record only the management project.
+        gcpOrganizationId: string
+        -- The email address of the Google Cloud service account that Config uses to access your Google Cloud resources. The format is SERVICE_ACCOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com.
+        -- The project that contains this service account is the connector's management project. If the connector has no gcpOrganizationId, it can record only the management project.
+        serviceAccountEmail: string
+        -- The full resource name of the Google Cloud workload identity pool provider that trusts Config. The format is projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/providers/PROVIDER_ID.
+        workloadIdentityPoolProvider: string
+    end
+
     -- The provider-specific configuration for connecting to the third-party cloud service provider. You must specify exactly one provider configuration.
     record ConnectorConfiguration
         -- The configuration for an Azure connector.
         azure: AzureConnectorConfiguration
+        -- The configuration for a Google Cloud connector.
+        gcp: GcpConnectorConfiguration
     end
 
     -- The details of the connector, including the connector configuration and connector ARN.
@@ -2188,7 +2209,9 @@ local record M
     record ConnectorFilter
         -- The name of the filter. Currently, only provider is supported.
         filterName: string
-        -- The value of the filter. For provider, valid values include: AZURE.
+        -- The value of the filter. For provider, valid values include:
+        -- AZURE – The connector is for Microsoft Azure
+        -- GCP – The connector is for Google Cloud
         filterValues: {string}
     end
 
@@ -2198,10 +2221,16 @@ local record M
         arn: string
         -- The name of the connector.
         name: string
-        -- The third-party cloud service provider. Currently, AZURE is supported.
+        -- The third-party cloud service provider. Valid values:
+        -- AZURE – The connector is for Microsoft Azure
+        -- GCP – The connector is for Google Cloud
         provider: string
-        -- The Azure tenant identifier for the connector.
+        -- The Azure tenant identifier for the connector. Returned only for Azure connectors.
         tenantIdentifier: string
+        -- The Google Cloud organization ID for the connector. Returned only for Google Cloud connectors.
+        gcpOrganizationId: string
+        -- The email address of the Google Cloud service account for the connector. Returned only for Google Cloud connectors.
+        serviceAccountEmail: string
         -- The date and time that the connector was created.
         createdTime: number
     end

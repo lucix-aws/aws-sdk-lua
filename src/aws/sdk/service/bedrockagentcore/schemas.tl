@@ -9463,6 +9463,49 @@ M.HarnessInlineFunctionConfig = schema.new({
     },
 })
 
+M.IamCredentialProvider = schema.new({
+    id = id.from(_N, "IamCredentialProvider"),
+    type = "structure",
+    members = {
+        service = schema.new({
+            id = id.from(_N, "IamCredentialProvider", "service"),
+            type = "string",
+            name = "service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "IamCredentialProvider", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HarnessRemoteMcpOutboundAuth = schema.new({
+    id = id.from(_N, "HarnessRemoteMcpOutboundAuth"),
+    type = "union",
+    members = {
+        awsIam = schema.new({
+            id = id.from(_N, "HarnessRemoteMcpOutboundAuth", "awsIam"),
+            type = "structure",
+            name = "awsIam",
+            target_id = id.from(_N, "IamCredentialProvider"),
+            target = M.IamCredentialProvider,
+        }),
+        none = schema.new({
+            id = id.from(_N, "HarnessRemoteMcpOutboundAuth", "none"),
+            type = "structure",
+            name = "none",
+            target_id = id.from(_N, "Unit"),
+            target = M.Unit,
+        }),
+    },
+})
+
 M.HarnessRemoteMcpConfig = schema.new({
     id = id.from(_N, "HarnessRemoteMcpConfig"),
     type = "structure",
@@ -9483,6 +9526,13 @@ M.HarnessRemoteMcpConfig = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        outboundAuth = schema.new({
+            id = id.from(_N, "HarnessRemoteMcpConfig", "outboundAuth"),
+            type = "union",
+            name = "outboundAuth",
+            target_id = id.from(_N, "HarnessRemoteMcpOutboundAuth"),
+            target = M.HarnessRemoteMcpOutboundAuth,
         }),
     },
 })

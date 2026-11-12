@@ -372,6 +372,16 @@ local record M
         newValue: AuditEventFieldValueUnion
     end
 
+    -- Information about the merge that produced an audit event.
+    record AuditMergeMetadata
+        -- The unique identifier of the merge. All audit events produced by the same merge, on both cases, have the same value. Use it to group the changes that a merge made.
+        mergeEventId: string
+        -- The unique identifier of the primary case of the merge.
+        primaryCaseId: string
+        -- The unique identifier of the secondary case of the merge.
+        secondaryCaseId: string
+    end
+
     -- Information of the user which performed the audit.
     record AuditEventPerformedBy
         user: UserUnion
@@ -394,6 +404,7 @@ local record M
         "RelatedItem.Created"
         "RelatedItem.Deleted"
         "RelatedItem.Updated"
+        "Case.Merged"
     end
 
     -- Represents the content of a particular audit event.
@@ -408,6 +419,8 @@ local record M
         fields: {AuditEventField}
         -- Information of the user which performed the audit.
         performedBy: AuditEventPerformedBy
+        -- Information about the merge that produced this audit event. Present only on audit events produced by a merge. For more information, see StartMergeCases.
+        mergeMetadata: AuditMergeMetadata
     end
 
     record GetCaseAuditEventsOutput
@@ -415,6 +428,27 @@ local record M
         nextToken: string
         -- A list of case audits where each represents a particular edit of the case.
         auditEvents: {AuditEvent}
+    end
+
+    record GetMergeCasesStatusInput
+        -- The unique identifier of the Cases domain.
+        domainId: string
+        -- The unique identifier of the case. This can be the primary case or the secondary case of a merge.
+        caseId: string
+    end
+
+    enum MergeStatus
+        "IN_PROGRESS"
+        "COMPLETED"
+    end
+
+    record GetMergeCasesStatusOutput
+        -- The merge status of the case.
+        status: string
+        -- The unique identifier of the primary case of the merge.
+        primaryCaseId: string
+        -- The unique identifiers of the secondary cases of the merge.
+        secondaryCaseIds: {string}
     end
 
     record ListCasesForContactInput
@@ -705,6 +739,44 @@ local record M
         cases: {SearchCasesResponseItem}
         -- The total number of cases that matched the search criteria.
         totalCount: number
+    end
+
+    -- Specifies the fields whose values to take from the secondary case when you merge cases.
+    record FieldsConfiguration
+        -- The fields whose values to take from the source case. Each field must exist on the source case and must be a field that can be merged. Don't list the same field more than once.
+        fieldIds: {FieldIdentifier}
+        -- The unique identifier of the case to take the field values from. This must be the secondary case.
+        sourceCaseId: string
+    end
+
+    -- Specifies which types of related items to move from the secondary case to the primary case when you merge cases. Moved related items keep their related item ID, creator, association time, and tags.
+    record RelatedItemsConfiguration
+        -- Whether to move Comment related items to the primary case.
+        comment: boolean
+        -- Whether to move Case related items to the primary case. If the primary case already links to the same case, the secondary case's link is removed instead of moved.
+        connectCase: boolean
+        -- Whether to move Contact related items to the primary case. If the same contact is related to both cases, the primary case keeps its related item and gets any tag keys that only the secondary case's related item has.
+        contact: boolean
+        -- Whether to move Custom related items to the primary case.
+        custom: boolean
+    end
+
+    record StartMergeCasesInput
+        -- The unique identifier of the Cases domain.
+        domainId: string
+        -- The unique identifier of the primary case. The primary case remains active and receives the merged field values and related items. The cases can use different templates, and the primary case keeps its template.
+        caseId: string
+        -- The unique identifier of the secondary case to merge into the primary case. The secondary case is closed when the merge finishes. Specify exactly one case ID.
+        secondaryCaseIds: {string}
+        -- The fields whose values to take from the secondary case. You can only merge custom fields and the following system fields: assigned_queue, assigned_user, summary, and case_reason. If you select any other system field, the request fails with a ValidationException. For each field that can be merged, the merge works as follows: If you select the field, the primary case gets the secondary case's value. If the secondary case's value is empty, the primary case's value is cleared. If you don't select the field and the primary case has a value for it, the primary case keeps its value. If you don't select the field and the primary case doesn't have the field, or its value is empty, the primary case gets the secondary case's value. This applies even when the field isn't on the primary case's template. Field values are read from both cases when the merge runs, so changes that you make to the primary case after you start the merge are taken into account. Specify at most one entry, and set its sourceCaseId to the secondary case ID.
+        fieldsConfiguration: {FieldsConfiguration}
+        -- The types of related items to move from the secondary case to the primary case. Related items of a type that you don't select, or set to false, stay on the closed secondary case. If you omit this parameter, no related items are moved. File, SLA, and work plan related items are never moved. They stay on the secondary case.
+        relatedItemsConfiguration: RelatedItemsConfiguration
+        -- The user who performed the merge. If you provide userArn, you must also have DescribeUser permission on the ARN of that user.
+        performedBy: UserUnion
+    end
+
+    record StartMergeCasesOutput
     end
 
     record UpdateCaseInput

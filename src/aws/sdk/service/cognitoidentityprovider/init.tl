@@ -38,9 +38,11 @@ local record Client
     adminListDevices: function(Client, types.AdminListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.AdminListDevicesOutput>
     adminListGroupsForUser: function(Client, types.AdminListGroupsForUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminListGroupsForUserOutput>
     adminListUserAuthEvents: function(Client, types.AdminListUserAuthEventsInput, ? base_client.InvokeOptions): async.Operation<types.AdminListUserAuthEventsOutput>
+    adminListUserSessions: function(Client, types.AdminListUserSessionsInput, ? base_client.InvokeOptions): async.Operation<types.AdminListUserSessionsOutput>
     adminRemoveUserFromGroup: function(Client, types.AdminRemoveUserFromGroupInput, ? base_client.InvokeOptions): async.Operation<types.AdminRemoveUserFromGroupOutput>
     adminResetUserPassword: function(Client, types.AdminResetUserPasswordInput, ? base_client.InvokeOptions): async.Operation<types.AdminResetUserPasswordOutput>
     adminRespondToAuthChallenge: function(Client, types.AdminRespondToAuthChallengeInput, ? base_client.InvokeOptions): async.Operation<types.AdminRespondToAuthChallengeOutput>
+    adminRevokeUserSession: function(Client, types.AdminRevokeUserSessionInput, ? base_client.InvokeOptions): async.Operation<types.AdminRevokeUserSessionOutput>
     adminSetUserMFAPreference: function(Client, types.AdminSetUserMFAPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.AdminSetUserMFAPreferenceOutput>
     adminSetUserPassword: function(Client, types.AdminSetUserPasswordInput, ? base_client.InvokeOptions): async.Operation<types.AdminSetUserPasswordOutput>
     adminSetUserSettings: function(Client, types.AdminSetUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.AdminSetUserSettingsOutput>
@@ -103,7 +105,9 @@ local record Client
     getUser: function(Client, types.GetUserInput, ? base_client.InvokeOptions): async.Operation<types.GetUserOutput>
     getUserAttributeVerificationCode: function(Client, types.GetUserAttributeVerificationCodeInput, ? base_client.InvokeOptions): async.Operation<types.GetUserAttributeVerificationCodeOutput>
     getUserAuthFactors: function(Client, types.GetUserAuthFactorsInput, ? base_client.InvokeOptions): async.Operation<types.GetUserAuthFactorsOutput>
+    getUserPoolClientSessionConfiguration: function(Client, types.GetUserPoolClientSessionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetUserPoolClientSessionConfigurationOutput>
     getUserPoolMfaConfig: function(Client, types.GetUserPoolMfaConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetUserPoolMfaConfigOutput>
+    getUserPoolSessionConfiguration: function(Client, types.GetUserPoolSessionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetUserPoolSessionConfigurationOutput>
     globalSignOut: function(Client, types.GlobalSignOutInput, ? base_client.InvokeOptions): async.Operation<types.GlobalSignOutOutput>
     initiateAuth: function(Client, types.InitiateAuthInput, ? base_client.InvokeOptions): async.Operation<types.InitiateAuthOutput>
     listDevices: function(Client, types.ListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
@@ -118,16 +122,20 @@ local record Client
     listUserPoolReplicas: function(Client, types.ListUserPoolReplicasInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolReplicasOutput>
     listUserPools: function(Client, types.ListUserPoolsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolsOutput>
     listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    listUserSessions: function(Client, types.ListUserSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserSessionsOutput>
     listUsersInGroup: function(Client, types.ListUsersInGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersInGroupOutput>
     listWebAuthnCredentials: function(Client, types.ListWebAuthnCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebAuthnCredentialsOutput>
     resendConfirmationCode: function(Client, types.ResendConfirmationCodeInput, ? base_client.InvokeOptions): async.Operation<types.ResendConfirmationCodeOutput>
     respondToAuthChallenge: function(Client, types.RespondToAuthChallengeInput, ? base_client.InvokeOptions): async.Operation<types.RespondToAuthChallengeOutput>
     revokeToken: function(Client, types.RevokeTokenInput, ? base_client.InvokeOptions): async.Operation<types.RevokeTokenOutput>
+    revokeUserSession: function(Client, types.RevokeUserSessionInput, ? base_client.InvokeOptions): async.Operation<types.RevokeUserSessionOutput>
     setLogDeliveryConfiguration: function(Client, types.SetLogDeliveryConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetLogDeliveryConfigurationOutput>
     setRiskConfiguration: function(Client, types.SetRiskConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetRiskConfigurationOutput>
     setUICustomization: function(Client, types.SetUICustomizationInput, ? base_client.InvokeOptions): async.Operation<types.SetUICustomizationOutput>
     setUserMFAPreference: function(Client, types.SetUserMFAPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.SetUserMFAPreferenceOutput>
+    setUserPoolClientSessionConfiguration: function(Client, types.SetUserPoolClientSessionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetUserPoolClientSessionConfigurationOutput>
     setUserPoolMfaConfig: function(Client, types.SetUserPoolMfaConfigInput, ? base_client.InvokeOptions): async.Operation<types.SetUserPoolMfaConfigOutput>
+    setUserPoolSessionConfiguration: function(Client, types.SetUserPoolSessionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetUserPoolSessionConfigurationOutput>
     setUserSettings: function(Client, types.SetUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.SetUserSettingsOutput>
     signUp: function(Client, types.SignUpInput, ? base_client.InvokeOptions): async.Operation<types.SignUpOutput>
     startUserImportJob: function(Client, types.StartUserImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartUserImportJobOutput>
@@ -274,6 +282,10 @@ function C:adminListUserAuthEvents(input: types.AdminListUserAuthEventsInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminListUserAuthEvents as schema.OperationSchema, input, options) as async.Operation<types.AdminListUserAuthEventsOutput>
 end
 
+function C:adminListUserSessions(input: types.AdminListUserSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.AdminListUserSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminListUserSessions as schema.OperationSchema, input, options) as async.Operation<types.AdminListUserSessionsOutput>
+end
+
 function C:adminRemoveUserFromGroup(input: types.AdminRemoveUserFromGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AdminRemoveUserFromGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminRemoveUserFromGroup as schema.OperationSchema, input, options) as async.Operation<types.AdminRemoveUserFromGroupOutput>
 end
@@ -284,6 +296,10 @@ end
 
 function C:adminRespondToAuthChallenge(input: types.AdminRespondToAuthChallengeInput, options?: base_client.InvokeOptions): async.Operation<types.AdminRespondToAuthChallengeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminRespondToAuthChallenge as schema.OperationSchema, input, options) as async.Operation<types.AdminRespondToAuthChallengeOutput>
+end
+
+function C:adminRevokeUserSession(input: types.AdminRevokeUserSessionInput, options?: base_client.InvokeOptions): async.Operation<types.AdminRevokeUserSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminRevokeUserSession as schema.OperationSchema, input, options) as async.Operation<types.AdminRevokeUserSessionOutput>
 end
 
 function C:adminSetUserMFAPreference(input: types.AdminSetUserMFAPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.AdminSetUserMFAPreferenceOutput>
@@ -534,8 +550,16 @@ function C:getUserAuthFactors(input: types.GetUserAuthFactorsInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserAuthFactors as schema.OperationSchema, input, options) as async.Operation<types.GetUserAuthFactorsOutput>
 end
 
+function C:getUserPoolClientSessionConfiguration(input: types.GetUserPoolClientSessionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserPoolClientSessionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserPoolClientSessionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetUserPoolClientSessionConfigurationOutput>
+end
+
 function C:getUserPoolMfaConfig(input: types.GetUserPoolMfaConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserPoolMfaConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserPoolMfaConfig as schema.OperationSchema, input, options) as async.Operation<types.GetUserPoolMfaConfigOutput>
+end
+
+function C:getUserPoolSessionConfiguration(input: types.GetUserPoolSessionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserPoolSessionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserPoolSessionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetUserPoolSessionConfigurationOutput>
 end
 
 function C:globalSignOut(input: types.GlobalSignOutInput, options?: base_client.InvokeOptions): async.Operation<types.GlobalSignOutOutput>
@@ -594,6 +618,10 @@ function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
+function C:listUserSessions(input: types.ListUserSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserSessions as schema.OperationSchema, input, options) as async.Operation<types.ListUserSessionsOutput>
+end
+
 function C:listUsersInGroup(input: types.ListUsersInGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersInGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsersInGroup as schema.OperationSchema, input, options) as async.Operation<types.ListUsersInGroupOutput>
 end
@@ -614,6 +642,10 @@ function C:revokeToken(input: types.RevokeTokenInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeToken as schema.OperationSchema, input, options) as async.Operation<types.RevokeTokenOutput>
 end
 
+function C:revokeUserSession(input: types.RevokeUserSessionInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeUserSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeUserSession as schema.OperationSchema, input, options) as async.Operation<types.RevokeUserSessionOutput>
+end
+
 function C:setLogDeliveryConfiguration(input: types.SetLogDeliveryConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.SetLogDeliveryConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetLogDeliveryConfiguration as schema.OperationSchema, input, options) as async.Operation<types.SetLogDeliveryConfigurationOutput>
 end
@@ -630,8 +662,16 @@ function C:setUserMFAPreference(input: types.SetUserMFAPreferenceInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetUserMFAPreference as schema.OperationSchema, input, options) as async.Operation<types.SetUserMFAPreferenceOutput>
 end
 
+function C:setUserPoolClientSessionConfiguration(input: types.SetUserPoolClientSessionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.SetUserPoolClientSessionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetUserPoolClientSessionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.SetUserPoolClientSessionConfigurationOutput>
+end
+
 function C:setUserPoolMfaConfig(input: types.SetUserPoolMfaConfigInput, options?: base_client.InvokeOptions): async.Operation<types.SetUserPoolMfaConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetUserPoolMfaConfig as schema.OperationSchema, input, options) as async.Operation<types.SetUserPoolMfaConfigOutput>
+end
+
+function C:setUserPoolSessionConfiguration(input: types.SetUserPoolSessionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.SetUserPoolSessionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetUserPoolSessionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.SetUserPoolSessionConfigurationOutput>
 end
 
 function C:setUserSettings(input: types.SetUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.SetUserSettingsOutput>

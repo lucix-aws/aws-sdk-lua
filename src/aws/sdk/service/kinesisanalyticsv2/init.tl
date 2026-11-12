@@ -27,6 +27,7 @@ local record Client
     createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
     createApplicationPresignedUrl: function(Client, types.CreateApplicationPresignedUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationPresignedUrlOutput>
     createApplicationSnapshot: function(Client, types.CreateApplicationSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationSnapshotOutput>
+    createSnapshot: function(Client, types.CreateSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
     deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOperationOutput>
     deleteApplicationCloudWatchLoggingOption: function(Client, types.DeleteApplicationCloudWatchLoggingOptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
     deleteApplicationInputProcessingConfiguration: function(Client, types.DeleteApplicationInputProcessingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
@@ -34,15 +35,22 @@ local record Client
     deleteApplicationReferenceDataSource: function(Client, types.DeleteApplicationReferenceDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationReferenceDataSourceOutput>
     deleteApplicationSnapshot: function(Client, types.DeleteApplicationSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationSnapshotOutput>
     deleteApplicationVpcConfiguration: function(Client, types.DeleteApplicationVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationVpcConfigurationOutput>
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSnapshotOutput>
     describeApplication: function(Client, types.DescribeApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
     describeApplicationOperation: function(Client, types.DescribeApplicationOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationOperationOutput>
     describeApplicationSnapshot: function(Client, types.DescribeApplicationSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationSnapshotOutput>
     describeApplicationVersion: function(Client, types.DescribeApplicationVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationVersionOutput>
+    describeSnapshot: function(Client, types.DescribeSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSnapshotOutput>
+    describeSnapshotOperation: function(Client, types.DescribeSnapshotOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSnapshotOperationOutput>
     discoverInputSchema: function(Client, types.DiscoverInputSchemaInput, ? base_client.InvokeOptions): async.Operation<types.DiscoverInputSchemaOutput>
+    exportSnapshot: function(Client, types.ExportSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.ExportSnapshotOutput>
+    importSnapshot: function(Client, types.ImportSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.ImportSnapshotOutput>
     listApplicationOperations: function(Client, types.ListApplicationOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationOperationsOutput>
     listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
     listApplicationSnapshots: function(Client, types.ListApplicationSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationSnapshotsOutput>
     listApplicationVersions: function(Client, types.ListApplicationVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationVersionsOutput>
+    listSnapshotOperations: function(Client, types.ListSnapshotOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSnapshotOperationsOutput>
+    listSnapshots: function(Client, types.ListSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.ListSnapshotsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     rollbackApplication: function(Client, types.RollbackApplicationInput, ? base_client.InvokeOptions): async.Operation<types.RollbackApplicationOutput>
     startApplication: function(Client, types.StartApplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartApplicationOutput>
@@ -131,6 +139,10 @@ function C:createApplicationSnapshot(input: types.CreateApplicationSnapshotInput
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplicationSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationSnapshotOutput>
 end
 
+function C:createSnapshot(input: types.CreateSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotOutput>
+end
+
 function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOperationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOperationOutput>
 end
@@ -159,6 +171,10 @@ function C:deleteApplicationVpcConfiguration(input: types.DeleteApplicationVpcCo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationVpcConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationVpcConfigurationOutput>
 end
 
+function C:deleteSnapshot(input: types.DeleteSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteSnapshotOutput>
+end
+
 function C:describeApplication(input: types.DescribeApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationOutput>
 end
@@ -175,8 +191,24 @@ function C:describeApplicationVersion(input: types.DescribeApplicationVersionInp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationVersionOutput>
 end
 
+function C:describeSnapshot(input: types.DescribeSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DescribeSnapshotOutput>
+end
+
+function C:describeSnapshotOperation(input: types.DescribeSnapshotOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSnapshotOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSnapshotOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeSnapshotOperationOutput>
+end
+
 function C:discoverInputSchema(input: types.DiscoverInputSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.DiscoverInputSchemaOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DiscoverInputSchema as schema.OperationSchema, input, options) as async.Operation<types.DiscoverInputSchemaOutput>
+end
+
+function C:exportSnapshot(input: types.ExportSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.ExportSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportSnapshot as schema.OperationSchema, input, options) as async.Operation<types.ExportSnapshotOutput>
+end
+
+function C:importSnapshot(input: types.ImportSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.ImportSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportSnapshot as schema.OperationSchema, input, options) as async.Operation<types.ImportSnapshotOutput>
 end
 
 function C:listApplicationOperations(input: types.ListApplicationOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationOperationsOutput>
@@ -193,6 +225,14 @@ end
 
 function C:listApplicationVersions(input: types.ListApplicationVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationVersionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationVersions as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationVersionsOutput>
+end
+
+function C:listSnapshotOperations(input: types.ListSnapshotOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSnapshotOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSnapshotOperations as schema.OperationSchema, input, options) as async.Operation<types.ListSnapshotOperationsOutput>
+end
+
+function C:listSnapshots(input: types.ListSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSnapshots as schema.OperationSchema, input, options) as async.Operation<types.ListSnapshotsOutput>
 end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>

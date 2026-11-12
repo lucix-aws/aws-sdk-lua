@@ -42,6 +42,7 @@ local record Client
     getCaseEventConfiguration: function(Client, types.GetCaseEventConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetCaseEventConfigurationOutput>
     getDomain: function(Client, types.GetDomainInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
     getLayout: function(Client, types.GetLayoutInput, ? base_client.InvokeOptions): async.Operation<types.GetLayoutOutput>
+    getMergeCasesStatus: function(Client, types.GetMergeCasesStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetMergeCasesStatusOutput>
     getTemplate: function(Client, types.GetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
     listCaseRules: function(Client, types.ListCaseRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListCaseRulesOutput>
     listCasesForContact: function(Client, types.ListCasesForContactInput, ? base_client.InvokeOptions): async.Operation<types.ListCasesForContactOutput>
@@ -55,6 +56,7 @@ local record Client
     searchAllRelatedItems: function(Client, types.SearchAllRelatedItemsInput, ? base_client.InvokeOptions): async.Operation<types.SearchAllRelatedItemsOutput>
     searchCases: function(Client, types.SearchCasesInput, ? base_client.InvokeOptions): async.Operation<types.SearchCasesOutput>
     searchRelatedItems: function(Client, types.SearchRelatedItemsInput, ? base_client.InvokeOptions): async.Operation<types.SearchRelatedItemsOutput>
+    startMergeCases: function(Client, types.StartMergeCasesInput, ? base_client.InvokeOptions): async.Operation<types.StartMergeCasesOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateCase: function(Client, types.UpdateCaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCaseOutput>
@@ -203,6 +205,10 @@ function C:getLayout(input: types.GetLayoutInput, options?: base_client.InvokeOp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLayout as schema.OperationSchema, input, options) as async.Operation<types.GetLayoutOutput>
 end
 
+function C:getMergeCasesStatus(input: types.GetMergeCasesStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetMergeCasesStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMergeCasesStatus as schema.OperationSchema, input, options) as async.Operation<types.GetMergeCasesStatusOutput>
+end
+
 function C:getTemplate(input: types.GetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateOutput>
 end
@@ -253,6 +259,10 @@ end
 
 function C:searchRelatedItems(input: types.SearchRelatedItemsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchRelatedItemsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchRelatedItems as schema.OperationSchema, input, options) as async.Operation<types.SearchRelatedItemsOutput>
+end
+
+function C:startMergeCases(input: types.StartMergeCasesInput, options?: base_client.InvokeOptions): async.Operation<types.StartMergeCasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMergeCases as schema.OperationSchema, input, options) as async.Operation<types.StartMergeCasesOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

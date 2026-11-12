@@ -9442,6 +9442,9 @@ local record M
         "TransitGateway"
         "TransitGatewayAttachment"
         "RegionalNatGateway"
+        "CoreNetwork"
+        "CoreNetworkEdge"
+        "CoreNetworkAttachment"
     end
 
     enum TaggableResourceType
@@ -9491,8 +9494,8 @@ local record M
         -- The type of resource to monitor.
         ResourceType: string
         -- The type of traffic to monitor (accepted traffic, rejected traffic, or all traffic).
-        -- This parameter is not supported for transit gateway resource types. It is required for
-        -- the other resource types.
+        -- This parameter is not supported for transit gateway or Cloud WAN resource types. It is
+        -- required for the other resource types.
         TrafficType: string
         -- The type of destination for the flow log data.
         -- Default: cloud-watch-logs
@@ -9511,15 +9514,17 @@ local record M
         -- they should appear. If you omit this parameter, the flow log is created using the
         -- default format. If you specify this parameter, you must include at least one
         -- field. For more information about the available fields, see Flow log records
-        -- in the Amazon VPC User Guide or Transit Gateway Flow Log
-        -- records in the Amazon Web Services Transit Gateway Guide.
+        -- in the Amazon VPC User Guide, Transit Gateway Flow Log
+        -- records in the Amazon Web Services Transit Gateway Guide,
+        -- or Cloud WAN Flow Log
+        -- records in the Amazon Web Services Cloud WAN User Guide.
         -- Specify the fields using the ${field-id} format, separated by spaces.
         LogFormat: string
         -- The tags to apply to the flow logs.
         TagSpecifications: {TagSpecification}
         -- The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record.
         -- The possible values are 60 seconds (1 minute) or 600 seconds (10 minutes).
-        -- This parameter must be 60 seconds for transit gateway resource types.
+        -- This parameter must be 60 seconds for transit gateway and Cloud WAN resource types.
         -- When a network interface is attached to a Nitro-based
         -- instance, the aggregation interval is always 60 seconds or less, regardless
         -- of the value that you specify.

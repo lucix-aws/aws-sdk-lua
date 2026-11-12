@@ -76,4 +76,40 @@ function M.items_list_applications(client, input)
     })
 end
 
+--- Returns a page iterator for listSnapshotOperations.
+function M.pages_list_snapshot_operations(client, input)
+    return paginator.pages(client, "listSnapshotOperations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SnapshotOperationInfoList",
+    })
+end
+
+--- Returns an item iterator for listSnapshotOperations.
+function M.items_list_snapshot_operations(client, input)
+    return paginator.items(client, "listSnapshotOperations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SnapshotOperationInfoList",
+    })
+end
+
+--- Returns a page iterator for listSnapshots.
+function M.pages_list_snapshots(client, input)
+    return paginator.pages(client, "listSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SnapshotInfoList",
+    })
+end
+
+--- Returns an item iterator for listSnapshots.
+function M.items_list_snapshots(client, input)
+    return paginator.items(client, "listSnapshots", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SnapshotInfoList",
+    })
+end
+
 return M

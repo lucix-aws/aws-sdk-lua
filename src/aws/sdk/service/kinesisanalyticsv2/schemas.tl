@@ -36,6 +36,10 @@ M.SnapshotSummaries = schema.new({ type = "list", list_member = M.SnapshotDetail
 
 M.ApplicationVersionSummaries = schema.new({ type = "list", list_member = M.ApplicationVersionSummary })
 
+M.SnapshotOperationInfoList = schema.new({ type = "list", list_member = M.SnapshotOperationInfo })
+
+M.SnapshotInfoList = schema.new({ type = "list", list_member = M.SnapshotInfo })
+
 M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
 
 M.CloudWatchLoggingOptionUpdates = schema.new({ type = "list", list_member = M.CloudWatchLoggingOptionUpdate })
@@ -1768,6 +1772,12 @@ M.ApplicationSnapshotConfiguration = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        SnapshotMode = schema.new({
+            id = id.from(_N, "ApplicationSnapshotConfiguration", "SnapshotMode"),
+            type = "string",
+            name = "SnapshotMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2275,6 +2285,12 @@ M.ApplicationSnapshotConfigurationDescription = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        SnapshotMode = schema.new({
+            id = id.from(_N, "ApplicationSnapshotConfigurationDescription", "SnapshotMode"),
+            type = "string",
+            name = "SnapshotMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2452,6 +2468,12 @@ M.ApplicationRestoreConfiguration = schema.new({
             id = id.from(_N, "ApplicationRestoreConfiguration", "SnapshotName"),
             type = "string",
             name = "SnapshotName",
+            target_id = prelude.String.id,
+        }),
+        SnapshotArn = schema.new({
+            id = id.from(_N, "ApplicationRestoreConfiguration", "SnapshotArn"),
+            type = "string",
+            name = "SnapshotArn",
             target_id = prelude.String.id,
         }),
     },
@@ -2780,6 +2802,12 @@ M.ApplicationSnapshotConfigurationUpdate = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        SnapshotModeUpdate = schema.new({
+            id = id.from(_N, "ApplicationSnapshotConfigurationUpdate", "SnapshotModeUpdate"),
+            type = "string",
+            name = "SnapshotModeUpdate",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3669,6 +3697,25 @@ M.ApplicationMaintenanceConfigurationUpdate = schema.new({
     },
 })
 
+M.ApplicationOperationDescription = schema.new({
+    id = id.from(_N, "ApplicationOperationDescription"),
+    type = "structure",
+    members = {
+        ApplicationOperationId = schema.new({
+            id = id.from(_N, "ApplicationOperationDescription", "ApplicationOperationId"),
+            type = "string",
+            name = "ApplicationOperationId",
+            target_id = prelude.String.id,
+        }),
+        ApplicationName = schema.new({
+            id = id.from(_N, "ApplicationOperationDescription", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ApplicationOperationInfo = schema.new({
     id = id.from(_N, "ApplicationOperationInfo"),
     type = "structure",
@@ -4154,6 +4201,87 @@ M.CreateApplicationSnapshotOutput = schema.new({
     type = "structure",
 })
 
+M.CreateSnapshotInput = schema.new({
+    id = id.from(_N, "CreateSnapshotRequest"),
+    type = "structure",
+    members = {
+        ApplicationName = schema.new({
+            id = id.from(_N, "CreateSnapshotInput", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotName = schema.new({
+            id = id.from(_N, "CreateSnapshotInput", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotDescription = schema.new({
+            id = id.from(_N, "CreateSnapshotInput", "SnapshotDescription"),
+            type = "string",
+            name = "SnapshotDescription",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateSnapshotInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateSnapshotOutput = schema.new({
+    id = id.from(_N, "CreateSnapshotResponse"),
+    type = "structure",
+    members = {
+        SnapshotArn = schema.new({
+            id = id.from(_N, "CreateSnapshotOutput", "SnapshotArn"),
+            type = "string",
+            name = "SnapshotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotStatus = schema.new({
+            id = id.from(_N, "CreateSnapshotOutput", "SnapshotStatus"),
+            type = "string",
+            name = "SnapshotStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationId = schema.new({
+            id = id.from(_N, "CreateSnapshotOutput", "SnapshotOperationId"),
+            type = "string",
+            name = "SnapshotOperationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationStatus = schema.new({
+            id = id.from(_N, "CreateSnapshotOutput", "SnapshotOperationStatus"),
+            type = "string",
+            name = "SnapshotOperationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteApplicationInput = schema.new({
     id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
@@ -4513,6 +4641,74 @@ M.DeleteApplicationVpcConfigurationOutput = schema.new({
     },
 })
 
+M.DeleteSnapshotInput = schema.new({
+    id = id.from(_N, "DeleteSnapshotRequest"),
+    type = "structure",
+    members = {
+        SnapshotName = schema.new({
+            id = id.from(_N, "DeleteSnapshotInput", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotCreationTimestamp = schema.new({
+            id = id.from(_N, "DeleteSnapshotInput", "SnapshotCreationTimestamp"),
+            type = "timestamp",
+            name = "SnapshotCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSnapshotOutput = schema.new({
+    id = id.from(_N, "DeleteSnapshotResponse"),
+    type = "structure",
+    members = {
+        SnapshotArn = schema.new({
+            id = id.from(_N, "DeleteSnapshotOutput", "SnapshotArn"),
+            type = "string",
+            name = "SnapshotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotStatus = schema.new({
+            id = id.from(_N, "DeleteSnapshotOutput", "SnapshotStatus"),
+            type = "string",
+            name = "SnapshotStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationId = schema.new({
+            id = id.from(_N, "DeleteSnapshotOutput", "SnapshotOperationId"),
+            type = "string",
+            name = "SnapshotOperationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationStatus = schema.new({
+            id = id.from(_N, "DeleteSnapshotOutput", "SnapshotOperationStatus"),
+            type = "string",
+            name = "SnapshotOperationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DescribeApplicationInput = schema.new({
     id = id.from(_N, "DescribeApplicationRequest"),
     type = "structure",
@@ -4725,6 +4921,500 @@ M.DescribeApplicationVersionOutput = schema.new({
     },
 })
 
+M.DescribeSnapshotInput = schema.new({
+    id = id.from(_N, "DescribeSnapshotRequest"),
+    type = "structure",
+    members = {
+        SnapshotName = schema.new({
+            id = id.from(_N, "DescribeSnapshotInput", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SnapshotEncryptionConfiguration = schema.new({
+    id = id.from(_N, "SnapshotEncryptionConfiguration"),
+    type = "structure",
+    members = {
+        KeyId = schema.new({
+            id = id.from(_N, "SnapshotEncryptionConfiguration", "KeyId"),
+            type = "string",
+            name = "KeyId",
+            target_id = prelude.String.id,
+        }),
+        KeyType = schema.new({
+            id = id.from(_N, "SnapshotEncryptionConfiguration", "KeyType"),
+            type = "string",
+            name = "KeyType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3PrefixLocation = schema.new({
+    id = id.from(_N, "S3PrefixLocation"),
+    type = "structure",
+    members = {
+        BucketARN = schema.new({
+            id = id.from(_N, "S3PrefixLocation", "BucketARN"),
+            type = "string",
+            name = "BucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyPrefix = schema.new({
+            id = id.from(_N, "S3PrefixLocation", "KeyPrefix"),
+            type = "string",
+            name = "KeyPrefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SourceApplicationDescription = schema.new({
+    id = id.from(_N, "SourceApplicationDescription"),
+    type = "structure",
+    members = {
+        ApplicationName = schema.new({
+            id = id.from(_N, "SourceApplicationDescription", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationCreationTimestamp = schema.new({
+            id = id.from(_N, "SourceApplicationDescription", "ApplicationCreationTimestamp"),
+            type = "timestamp",
+            name = "ApplicationCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationVersionId = schema.new({
+            id = id.from(_N, "SourceApplicationDescription", "ApplicationVersionId"),
+            type = "long",
+            name = "ApplicationVersionId",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SnapshotSourceDescription = schema.new({
+    id = id.from(_N, "SnapshotSourceDescription"),
+    type = "structure",
+    members = {
+        S3PrefixLocation = schema.new({
+            id = id.from(_N, "SnapshotSourceDescription", "S3PrefixLocation"),
+            type = "structure",
+            name = "S3PrefixLocation",
+            target_id = id.from(_N, "S3PrefixLocation"),
+            target = M.S3PrefixLocation,
+        }),
+        SourceApplicationDescription = schema.new({
+            id = id.from(_N, "SnapshotSourceDescription", "SourceApplicationDescription"),
+            type = "structure",
+            name = "SourceApplicationDescription",
+            target_id = id.from(_N, "SourceApplicationDescription"),
+            target = M.SourceApplicationDescription,
+        }),
+    },
+})
+
+M.SnapshotInfoDetails = schema.new({
+    id = id.from(_N, "SnapshotInfoDetails"),
+    type = "structure",
+    members = {
+        SnapshotName = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotArn = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotArn"),
+            type = "string",
+            name = "SnapshotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotDescription = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotDescription"),
+            type = "string",
+            name = "SnapshotDescription",
+            target_id = prelude.String.id,
+        }),
+        SnapshotStatus = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotStatus"),
+            type = "string",
+            name = "SnapshotStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotCreationTimestamp = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotCreationTimestamp"),
+            type = "timestamp",
+            name = "SnapshotCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeEnvironment = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "RuntimeEnvironment"),
+            type = "string",
+            name = "RuntimeEnvironment",
+            target_id = prelude.String.id,
+        }),
+        SnapshotSizeInBytes = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotSizeInBytes"),
+            type = "long",
+            name = "SnapshotSizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SnapshotEncryptionConfigurationDescription = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotEncryptionConfigurationDescription"),
+            type = "structure",
+            name = "SnapshotEncryptionConfigurationDescription",
+            target_id = id.from(_N, "SnapshotEncryptionConfiguration"),
+            target = M.SnapshotEncryptionConfiguration,
+        }),
+        SnapshotInitiator = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotInitiator"),
+            type = "string",
+            name = "SnapshotInitiator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotInitiatorOperation = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotInitiatorOperation"),
+            type = "string",
+            name = "SnapshotInitiatorOperation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotSourceDescription = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotSourceDescription"),
+            type = "structure",
+            name = "SnapshotSourceDescription",
+            target_id = id.from(_N, "SnapshotSourceDescription"),
+            target = M.SnapshotSourceDescription,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotFormat = schema.new({
+            id = id.from(_N, "SnapshotInfoDetails", "SnapshotFormat"),
+            type = "string",
+            name = "SnapshotFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeSnapshotOutput = schema.new({
+    id = id.from(_N, "DescribeSnapshotResponse"),
+    type = "structure",
+    members = {
+        SnapshotInfoDetails = schema.new({
+            id = id.from(_N, "DescribeSnapshotOutput", "SnapshotInfoDetails"),
+            type = "structure",
+            name = "SnapshotInfoDetails",
+            target_id = id.from(_N, "SnapshotInfoDetails"),
+            target = M.SnapshotInfoDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeSnapshotOperationInput = schema.new({
+    id = id.from(_N, "DescribeSnapshotOperationRequest"),
+    type = "structure",
+    members = {
+        SnapshotName = schema.new({
+            id = id.from(_N, "DescribeSnapshotOperationInput", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationId = schema.new({
+            id = id.from(_N, "DescribeSnapshotOperationInput", "SnapshotOperationId"),
+            type = "string",
+            name = "SnapshotOperationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EncryptionConfigurationDescription = schema.new({
+    id = id.from(_N, "EncryptionConfigurationDescription"),
+    type = "structure",
+    members = {
+        KeyId = schema.new({
+            id = id.from(_N, "EncryptionConfigurationDescription", "KeyId"),
+            type = "string",
+            name = "KeyId",
+            target_id = prelude.String.id,
+        }),
+        KeyType = schema.new({
+            id = id.from(_N, "EncryptionConfigurationDescription", "KeyType"),
+            type = "string",
+            name = "KeyType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SnapshotOperationS3PrefixLocation = schema.new({
+    id = id.from(_N, "SnapshotOperationS3PrefixLocation"),
+    type = "structure",
+    members = {
+        BucketARN = schema.new({
+            id = id.from(_N, "SnapshotOperationS3PrefixLocation", "BucketARN"),
+            type = "string",
+            name = "BucketARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyPrefix = schema.new({
+            id = id.from(_N, "SnapshotOperationS3PrefixLocation", "KeyPrefix"),
+            type = "string",
+            name = "KeyPrefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExportedPrefix = schema.new({
+            id = id.from(_N, "SnapshotOperationS3PrefixLocation", "ExportedPrefix"),
+            type = "string",
+            name = "ExportedPrefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SnapshotOperationLocationDescription = schema.new({
+    id = id.from(_N, "SnapshotOperationLocationDescription"),
+    type = "structure",
+    members = {
+        LocationType = schema.new({
+            id = id.from(_N, "SnapshotOperationLocationDescription", "LocationType"),
+            type = "string",
+            name = "LocationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3PrefixLocation = schema.new({
+            id = id.from(_N, "SnapshotOperationLocationDescription", "S3PrefixLocation"),
+            type = "structure",
+            name = "S3PrefixLocation",
+            target_id = id.from(_N, "SnapshotOperationS3PrefixLocation"),
+            target = M.SnapshotOperationS3PrefixLocation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SnapshotErrorInfo = schema.new({
+    id = id.from(_N, "SnapshotErrorInfo"),
+    type = "structure",
+    members = {
+        ErrorCode = schema.new({
+            id = id.from(_N, "SnapshotErrorInfo", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+        ErrorString = schema.new({
+            id = id.from(_N, "SnapshotErrorInfo", "ErrorString"),
+            type = "string",
+            name = "ErrorString",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SnapshotOperationFailureDetails = schema.new({
+    id = id.from(_N, "SnapshotOperationFailureDetails"),
+    type = "structure",
+    members = {
+        ErrorInfo = schema.new({
+            id = id.from(_N, "SnapshotOperationFailureDetails", "ErrorInfo"),
+            type = "structure",
+            name = "ErrorInfo",
+            target_id = id.from(_N, "SnapshotErrorInfo"),
+            target = M.SnapshotErrorInfo,
+        }),
+    },
+})
+
+M.SnapshotOperationInfoDetails = schema.new({
+    id = id.from(_N, "SnapshotOperationInfoDetails"),
+    type = "structure",
+    members = {
+        SnapshotOperationId = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "SnapshotOperationId"),
+            type = "string",
+            name = "SnapshotOperationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperation = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "SnapshotOperation"),
+            type = "string",
+            name = "SnapshotOperation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationStatus = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "SnapshotOperationStatus"),
+            type = "string",
+            name = "SnapshotOperationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotArn = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "SnapshotArn"),
+            type = "string",
+            name = "SnapshotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceEncryptionConfigurationDescription = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "SourceEncryptionConfigurationDescription"),
+            type = "structure",
+            name = "SourceEncryptionConfigurationDescription",
+            target_id = id.from(_N, "EncryptionConfigurationDescription"),
+            target = M.EncryptionConfigurationDescription,
+        }),
+        DestinationEncryptionConfigurationDescription = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "DestinationEncryptionConfigurationDescription"),
+            type = "structure",
+            name = "DestinationEncryptionConfigurationDescription",
+            target_id = id.from(_N, "EncryptionConfigurationDescription"),
+            target = M.EncryptionConfigurationDescription,
+        }),
+        SnapshotSourceLocationDescription = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "SnapshotSourceLocationDescription"),
+            type = "structure",
+            name = "SnapshotSourceLocationDescription",
+            target_id = id.from(_N, "SnapshotOperationLocationDescription"),
+            target = M.SnapshotOperationLocationDescription,
+        }),
+        SnapshotDestinationLocationDescription = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "SnapshotDestinationLocationDescription"),
+            type = "structure",
+            name = "SnapshotDestinationLocationDescription",
+            target_id = id.from(_N, "SnapshotOperationLocationDescription"),
+            target = M.SnapshotOperationLocationDescription,
+        }),
+        ApplicationOperationDescription = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "ApplicationOperationDescription"),
+            type = "structure",
+            name = "ApplicationOperationDescription",
+            target_id = id.from(_N, "ApplicationOperationDescription"),
+            target = M.ApplicationOperationDescription,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        SnapshotOperationFailureDetails = schema.new({
+            id = id.from(_N, "SnapshotOperationInfoDetails", "SnapshotOperationFailureDetails"),
+            type = "structure",
+            name = "SnapshotOperationFailureDetails",
+            target_id = id.from(_N, "SnapshotOperationFailureDetails"),
+            target = M.SnapshotOperationFailureDetails,
+        }),
+    },
+})
+
+M.DescribeSnapshotOperationOutput = schema.new({
+    id = id.from(_N, "DescribeSnapshotOperationResponse"),
+    type = "structure",
+    members = {
+        SnapshotOperationInfoDetails = schema.new({
+            id = id.from(_N, "DescribeSnapshotOperationOutput", "SnapshotOperationInfoDetails"),
+            type = "structure",
+            name = "SnapshotOperationInfoDetails",
+            target_id = id.from(_N, "SnapshotOperationInfoDetails"),
+            target = M.SnapshotOperationInfoDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.S3Configuration = schema.new({
     id = id.from(_N, "S3Configuration"),
     type = "structure",
@@ -4886,6 +5576,236 @@ M.UnableToDetectSchemaException = schema.new({
             name = "ProcessedInputRecords",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+    },
+})
+
+M.ExportDestinationConfiguration = schema.new({
+    id = id.from(_N, "ExportDestinationConfiguration"),
+    type = "structure",
+    members = {
+        DestinationType = schema.new({
+            id = id.from(_N, "ExportDestinationConfiguration", "DestinationType"),
+            type = "string",
+            name = "DestinationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExportRoleArn = schema.new({
+            id = id.from(_N, "ExportDestinationConfiguration", "ExportRoleArn"),
+            type = "string",
+            name = "ExportRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationEncryptionConfiguration = schema.new({
+            id = id.from(_N, "ExportDestinationConfiguration", "DestinationEncryptionConfiguration"),
+            type = "structure",
+            name = "DestinationEncryptionConfiguration",
+            target_id = id.from(_N, "SnapshotEncryptionConfiguration"),
+            target = M.SnapshotEncryptionConfiguration,
+        }),
+        DestinationS3PrefixLocation = schema.new({
+            id = id.from(_N, "ExportDestinationConfiguration", "DestinationS3PrefixLocation"),
+            type = "structure",
+            name = "DestinationS3PrefixLocation",
+            target_id = id.from(_N, "S3PrefixLocation"),
+            target = M.S3PrefixLocation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExportSnapshotInput = schema.new({
+    id = id.from(_N, "ExportSnapshotRequest"),
+    type = "structure",
+    members = {
+        SnapshotName = schema.new({
+            id = id.from(_N, "ExportSnapshotInput", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExportDestinationConfiguration = schema.new({
+            id = id.from(_N, "ExportSnapshotInput", "ExportDestinationConfiguration"),
+            type = "structure",
+            name = "ExportDestinationConfiguration",
+            target_id = id.from(_N, "ExportDestinationConfiguration"),
+            target = M.ExportDestinationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExportSnapshotOutput = schema.new({
+    id = id.from(_N, "ExportSnapshotResponse"),
+    type = "structure",
+    members = {
+        SnapshotOperationId = schema.new({
+            id = id.from(_N, "ExportSnapshotOutput", "SnapshotOperationId"),
+            type = "string",
+            name = "SnapshotOperationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationStatus = schema.new({
+            id = id.from(_N, "ExportSnapshotOutput", "SnapshotOperationStatus"),
+            type = "string",
+            name = "SnapshotOperationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportSourceConfiguration = schema.new({
+    id = id.from(_N, "ImportSourceConfiguration"),
+    type = "structure",
+    members = {
+        SourceType = schema.new({
+            id = id.from(_N, "ImportSourceConfiguration", "SourceType"),
+            type = "string",
+            name = "SourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ImportRoleArn = schema.new({
+            id = id.from(_N, "ImportSourceConfiguration", "ImportRoleArn"),
+            type = "string",
+            name = "ImportRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceEncryptionConfiguration = schema.new({
+            id = id.from(_N, "ImportSourceConfiguration", "SourceEncryptionConfiguration"),
+            type = "structure",
+            name = "SourceEncryptionConfiguration",
+            target_id = id.from(_N, "SnapshotEncryptionConfiguration"),
+            target = M.SnapshotEncryptionConfiguration,
+        }),
+        SourceS3PrefixLocation = schema.new({
+            id = id.from(_N, "ImportSourceConfiguration", "SourceS3PrefixLocation"),
+            type = "structure",
+            name = "SourceS3PrefixLocation",
+            target_id = id.from(_N, "S3PrefixLocation"),
+            target = M.S3PrefixLocation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportSnapshotInput = schema.new({
+    id = id.from(_N, "ImportSnapshotRequest"),
+    type = "structure",
+    members = {
+        SnapshotName = schema.new({
+            id = id.from(_N, "ImportSnapshotInput", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ImportSourceConfiguration = schema.new({
+            id = id.from(_N, "ImportSnapshotInput", "ImportSourceConfiguration"),
+            type = "structure",
+            name = "ImportSourceConfiguration",
+            target_id = id.from(_N, "ImportSourceConfiguration"),
+            target = M.ImportSourceConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationEncryptionConfiguration = schema.new({
+            id = id.from(_N, "ImportSnapshotInput", "DestinationEncryptionConfiguration"),
+            type = "structure",
+            name = "DestinationEncryptionConfiguration",
+            target_id = id.from(_N, "SnapshotEncryptionConfiguration"),
+            target = M.SnapshotEncryptionConfiguration,
+        }),
+        SnapshotDescription = schema.new({
+            id = id.from(_N, "ImportSnapshotInput", "SnapshotDescription"),
+            type = "string",
+            name = "SnapshotDescription",
+            target_id = prelude.String.id,
+        }),
+        SnapshotFormat = schema.new({
+            id = id.from(_N, "ImportSnapshotInput", "SnapshotFormat"),
+            type = "string",
+            name = "SnapshotFormat",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "ImportSnapshotInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.ImportSnapshotOutput = schema.new({
+    id = id.from(_N, "ImportSnapshotResponse"),
+    type = "structure",
+    members = {
+        SnapshotArn = schema.new({
+            id = id.from(_N, "ImportSnapshotOutput", "SnapshotArn"),
+            type = "string",
+            name = "SnapshotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotStatus = schema.new({
+            id = id.from(_N, "ImportSnapshotOutput", "SnapshotStatus"),
+            type = "string",
+            name = "SnapshotStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationId = schema.new({
+            id = id.from(_N, "ImportSnapshotOutput", "SnapshotOperationId"),
+            type = "string",
+            name = "SnapshotOperationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationStatus = schema.new({
+            id = id.from(_N, "ImportSnapshotOutput", "SnapshotOperationStatus"),
+            type = "string",
+            name = "SnapshotOperationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -5081,6 +6001,257 @@ M.ListApplicationVersionsOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListApplicationVersionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSnapshotOperationsInput = schema.new({
+    id = id.from(_N, "ListSnapshotOperationsRequest"),
+    type = "structure",
+    members = {
+        SnapshotName = schema.new({
+            id = id.from(_N, "ListSnapshotOperationsInput", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperation = schema.new({
+            id = id.from(_N, "ListSnapshotOperationsInput", "SnapshotOperation"),
+            type = "string",
+            name = "SnapshotOperation",
+            target_id = prelude.String.id,
+        }),
+        SnapshotOperationStatus = schema.new({
+            id = id.from(_N, "ListSnapshotOperationsInput", "SnapshotOperationStatus"),
+            type = "string",
+            name = "SnapshotOperationStatus",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListSnapshotOperationsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSnapshotOperationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SnapshotOperationInfo = schema.new({
+    id = id.from(_N, "SnapshotOperationInfo"),
+    type = "structure",
+    members = {
+        SnapshotOperationId = schema.new({
+            id = id.from(_N, "SnapshotOperationInfo", "SnapshotOperationId"),
+            type = "string",
+            name = "SnapshotOperationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperation = schema.new({
+            id = id.from(_N, "SnapshotOperationInfo", "SnapshotOperation"),
+            type = "string",
+            name = "SnapshotOperation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOperationStatus = schema.new({
+            id = id.from(_N, "SnapshotOperationInfo", "SnapshotOperationStatus"),
+            type = "string",
+            name = "SnapshotOperationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "SnapshotOperationInfo", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "SnapshotOperationInfo", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListSnapshotOperationsOutput = schema.new({
+    id = id.from(_N, "ListSnapshotOperationsResponse"),
+    type = "structure",
+    members = {
+        SnapshotOperationInfoList = schema.new({
+            id = id.from(_N, "ListSnapshotOperationsOutput", "SnapshotOperationInfoList"),
+            type = "list",
+            name = "SnapshotOperationInfoList",
+            target_id = prelude.Document.id,
+            list_member = M.SnapshotOperationInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSnapshotOperationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSnapshotsInput = schema.new({
+    id = id.from(_N, "ListSnapshotsRequest"),
+    type = "structure",
+    members = {
+        SourceApplicationName = schema.new({
+            id = id.from(_N, "ListSnapshotsInput", "SourceApplicationName"),
+            type = "string",
+            name = "SourceApplicationName",
+            target_id = prelude.String.id,
+        }),
+        SnapshotInitiator = schema.new({
+            id = id.from(_N, "ListSnapshotsInput", "SnapshotInitiator"),
+            type = "string",
+            name = "SnapshotInitiator",
+            target_id = prelude.String.id,
+        }),
+        SnapshotInitiatorOperation = schema.new({
+            id = id.from(_N, "ListSnapshotsInput", "SnapshotInitiatorOperation"),
+            type = "string",
+            name = "SnapshotInitiatorOperation",
+            target_id = prelude.String.id,
+        }),
+        SnapshotStatus = schema.new({
+            id = id.from(_N, "ListSnapshotsInput", "SnapshotStatus"),
+            type = "string",
+            name = "SnapshotStatus",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListSnapshotsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSnapshotsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SnapshotInfo = schema.new({
+    id = id.from(_N, "SnapshotInfo"),
+    type = "structure",
+    members = {
+        SnapshotName = schema.new({
+            id = id.from(_N, "SnapshotInfo", "SnapshotName"),
+            type = "string",
+            name = "SnapshotName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotArn = schema.new({
+            id = id.from(_N, "SnapshotInfo", "SnapshotArn"),
+            type = "string",
+            name = "SnapshotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotStatus = schema.new({
+            id = id.from(_N, "SnapshotInfo", "SnapshotStatus"),
+            type = "string",
+            name = "SnapshotStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotCreationTimestamp = schema.new({
+            id = id.from(_N, "SnapshotInfo", "SnapshotCreationTimestamp"),
+            type = "timestamp",
+            name = "SnapshotCreationTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotInitiator = schema.new({
+            id = id.from(_N, "SnapshotInfo", "SnapshotInitiator"),
+            type = "string",
+            name = "SnapshotInitiator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotInitiatorOperation = schema.new({
+            id = id.from(_N, "SnapshotInfo", "SnapshotInitiatorOperation"),
+            type = "string",
+            name = "SnapshotInitiatorOperation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceApplicationName = schema.new({
+            id = id.from(_N, "SnapshotInfo", "SourceApplicationName"),
+            type = "string",
+            name = "SourceApplicationName",
+            target_id = prelude.String.id,
+        }),
+        SnapshotFormat = schema.new({
+            id = id.from(_N, "SnapshotInfo", "SnapshotFormat"),
+            type = "string",
+            name = "SnapshotFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListSnapshotsOutput = schema.new({
+    id = id.from(_N, "ListSnapshotsResponse"),
+    type = "structure",
+    members = {
+        SnapshotInfoList = schema.new({
+            id = id.from(_N, "ListSnapshotsOutput", "SnapshotInfoList"),
+            type = "list",
+            name = "SnapshotInfoList",
+            target_id = prelude.Document.id,
+            list_member = M.SnapshotInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSnapshotsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -5628,6 +6799,17 @@ M.CreateApplicationSnapshot = schema.operation({
     },
 })
 
+M.CreateSnapshot = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "CreateSnapshot"),
+    input = M.CreateSnapshotInput,
+    output = M.CreateSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteApplication = schema.operation({
     id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteApplication"),
     input = M.DeleteApplicationInput,
@@ -5705,6 +6887,17 @@ M.DeleteApplicationVpcConfiguration = schema.operation({
     },
 })
 
+M.DeleteSnapshot = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DeleteSnapshot"),
+    input = M.DeleteSnapshotInput,
+    output = M.DeleteSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeApplication = schema.operation({
     id = id.from("com.amazonaws.kinesisanalyticsv2", "DescribeApplication"),
     input = M.DescribeApplicationInput,
@@ -5749,10 +6942,54 @@ M.DescribeApplicationVersion = schema.operation({
     },
 })
 
+M.DescribeSnapshot = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DescribeSnapshot"),
+    input = M.DescribeSnapshotInput,
+    output = M.DescribeSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSnapshotOperation = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "DescribeSnapshotOperation"),
+    input = M.DescribeSnapshotOperationInput,
+    output = M.DescribeSnapshotOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DiscoverInputSchema = schema.operation({
     id = id.from("com.amazonaws.kinesisanalyticsv2", "DiscoverInputSchema"),
     input = M.DiscoverInputSchemaInput,
     output = M.DiscoverInputSchemaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportSnapshot = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ExportSnapshot"),
+    input = M.ExportSnapshotInput,
+    output = M.ExportSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ImportSnapshot = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ImportSnapshot"),
+    input = M.ImportSnapshotInput,
+    output = M.ImportSnapshotOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -5797,6 +7034,28 @@ M.ListApplicationVersions = schema.operation({
     id = id.from("com.amazonaws.kinesisanalyticsv2", "ListApplicationVersions"),
     input = M.ListApplicationVersionsInput,
     output = M.ListApplicationVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSnapshotOperations = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ListSnapshotOperations"),
+    input = M.ListSnapshotOperationsInput,
+    output = M.ListSnapshotOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSnapshots = schema.operation({
+    id = id.from("com.amazonaws.kinesisanalyticsv2", "ListSnapshots"),
+    input = M.ListSnapshotsInput,
+    output = M.ListSnapshotsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

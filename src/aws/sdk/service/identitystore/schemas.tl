@@ -42,7 +42,7 @@ M.Roles = schema.new({ type = "list", list_member = M.Role })
 
 M.Extensions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
 
-M.VpcIdList = schema.new({ type = "list", list_member = prelude.String })
+M.VpcArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.IpCidrList = schema.new({ type = "list", list_member = prelude.String })
 

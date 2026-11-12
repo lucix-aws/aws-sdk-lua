@@ -92,11 +92,47 @@ function M.pages_list_principals_for_portfolio(client, input)
     })
 end
 
+--- Returns a page iterator for listProvisionedProductPlans.
+function M.pages_list_provisioned_product_plans(client, input)
+    return paginator.pages(client, "listProvisionedProductPlans", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+        items = "ProvisionedProductPlans",
+    })
+end
+
+--- Returns an item iterator for listProvisionedProductPlans.
+function M.items_list_provisioned_product_plans(client, input)
+    return paginator.items(client, "listProvisionedProductPlans", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+        items = "ProvisionedProductPlans",
+    })
+end
+
 --- Returns a page iterator for listProvisioningArtifactsForServiceAction.
 function M.pages_list_provisioning_artifacts_for_service_action(client, input)
     return paginator.pages(client, "listProvisioningArtifactsForServiceAction", input, {
         input_token = "PageToken",
         output_token = "NextPageToken",
+    })
+end
+
+--- Returns a page iterator for listRecordHistory.
+function M.pages_list_record_history(client, input)
+    return paginator.pages(client, "listRecordHistory", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+        items = "RecordDetails",
+    })
+end
+
+--- Returns an item iterator for listRecordHistory.
+function M.items_list_record_history(client, input)
+    return paginator.items(client, "listRecordHistory", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+        items = "RecordDetails",
     })
 end
 
@@ -124,11 +160,47 @@ function M.pages_list_service_actions_for_provisioning_artifact(client, input)
     })
 end
 
+--- Returns a page iterator for listStackInstancesForProvisionedProduct.
+function M.pages_list_stack_instances_for_provisioned_product(client, input)
+    return paginator.pages(client, "listStackInstancesForProvisionedProduct", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+        items = "StackInstances",
+    })
+end
+
+--- Returns an item iterator for listStackInstancesForProvisionedProduct.
+function M.items_list_stack_instances_for_provisioned_product(client, input)
+    return paginator.items(client, "listStackInstancesForProvisionedProduct", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+        items = "StackInstances",
+    })
+end
+
 --- Returns a page iterator for listTagOptions.
 function M.pages_list_tag_options(client, input)
     return paginator.pages(client, "listTagOptions", input, {
         input_token = "PageToken",
         output_token = "PageToken",
+    })
+end
+
+--- Returns a page iterator for scanProvisionedProducts.
+function M.pages_scan_provisioned_products(client, input)
+    return paginator.pages(client, "scanProvisionedProducts", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+        items = "ProvisionedProducts",
+    })
+end
+
+--- Returns an item iterator for scanProvisionedProducts.
+function M.items_scan_provisioned_products(client, input)
+    return paginator.items(client, "scanProvisionedProducts", input, {
+        input_token = "PageToken",
+        output_token = "NextPageToken",
+        items = "ProvisionedProducts",
     })
 end
 

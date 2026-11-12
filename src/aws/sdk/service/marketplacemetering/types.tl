@@ -17,8 +17,18 @@ local record M
     -- Each UsageAllocation indicates the usage quantity for a specific set of
     -- tags.
     record UsageAllocation
-        -- The total quantity allocated to this bucket of usage.
+        -- The total quantity allocated to this bucket of usage, as a whole number.
+        -- Use AllocatedUsageQuantityAsDecimal instead. Each allocation must specify
+        -- exactly one of AllocatedUsageQuantity or
+        -- AllocatedUsageQuantityAsDecimal.
         AllocatedUsageQuantity: number
+        -- The total quantity allocated to this bucket of usage, as a decimal string. Use this
+        -- when the usage quantity of the request or usage record is specified as a decimal
+        -- (UsageQuantityAsDecimal or QuantityAsDecimal).
+        -- A non-negative decimal number, for example 17.42.
+        -- Each allocation must specify exactly one of AllocatedUsageQuantity or
+        -- AllocatedUsageQuantityAsDecimal.
+        AllocatedUsageQuantityAsDecimal: string
         -- The set of tags that define the bucket of usage. For the bucket of items with no tags,
         -- this parameter can be left out.
         Tags: {Tag}
@@ -43,12 +53,32 @@ local record M
         -- During the process of registering a product on Amazon Web Services Marketplace, dimensions are specified.
         -- These represent different units of value in your application.
         Dimension: string
-        -- The quantity of usage consumed by the customer for the given dimension and time.
-        -- Defaults to 0 if not specified.
+        -- The quantity of usage consumed by the customer for the given dimension and time, as a
+        -- whole number. Defaults to 0 if neither Quantity nor
+        -- QuantityAsDecimal is specified.
+        -- Use QuantityAsDecimal instead. You can't specify both
+        -- Quantity and QuantityAsDecimal in a usage record.
         Quantity: number
+        -- The quantity of usage consumed by the customer for the given dimension and time, as a
+        -- decimal string. Use this instead of Quantity to report fractional
+        -- usage.
+        -- A non-negative decimal number, for example 17.42.
+        -- You can't specify both Quantity and QuantityAsDecimal in a
+        -- usage record. If you provide UsageAllocations, each allocation must use
+        -- AllocatedUsageQuantityAsDecimal. If any usage record fails these checks,
+        -- the entire BatchMeterUsage request fails and no records are
+        -- processed.
+        -- Quantities are compared by value when checking for duplicate records, so
+        -- 17, 17.0, and 17.00 are the same quantity,
+        -- whether you send it in Quantity or QuantityAsDecimal.
+        QuantityAsDecimal: string
         -- The set of UsageAllocations to submit. The sum of all
-        -- UsageAllocation quantities must equal the Quantity of the
-        -- UsageRecord.
+        -- UsageAllocation quantities must equal the quantity of the
+        -- UsageRecord (Quantity or QuantityAsDecimal).
+        -- Allocations must use the same type of quantity as the usage record:
+        -- AllocatedUsageQuantity with Quantity, or
+        -- AllocatedUsageQuantityAsDecimal with
+        -- QuantityAsDecimal.
         UsageAllocations: {UsageAllocation}
         -- The CustomerAWSAccountId parameter specifies the AWS account ID of the buyer.
         -- If you have an existing integration and need the CustomerAWSAccountId that corresponds to a CustomerIdentifier, contact AWS Marketplace Seller Operations to obtain the mapping. Do not request the CustomerAWSAccountId directly from buyers. We cannot verify that a buyer-provided account ID is authentic, which can result in incorrect metering or billing.
@@ -154,7 +184,9 @@ local record M
         message: string
     end
 
-    -- Sum of allocated usage quantities is not equal to the usage quantity.
+    -- Sum of allocated usage quantities is not equal to the usage quantity, or the
+    -- allocations don't use the same type of quantity (whole number or decimal) as the usage
+    -- quantity.
     record InvalidUsageAllocationsException
         message: string
     end
@@ -187,7 +219,9 @@ local record M
 
     -- A metering record has already been emitted by the same EC2 instance, ECS task, or EKS
     -- pod for the given {usageDimension, timestamp} with a different
-    -- usageQuantity.
+    -- usageQuantity. Quantities are compared by value, so a whole-number and a
+    -- decimal quantity with the same value (for example, 17 and
+    -- 17.00) are not different.
     record DuplicateRequestException
         message: string
     end
@@ -215,18 +249,35 @@ local record M
         -- It will be one of the fcp dimension name provided during the publishing of the
         -- product.
         UsageDimension: string
-        -- Consumption value for the hour. Defaults to 0 if not specified.
+        -- The consumption value for the hour, as a whole number. Defaults to 0 if neither
+        -- UsageQuantity nor UsageQuantityAsDecimal is specified.
+        -- Use UsageQuantityAsDecimal instead. You can't specify both
+        -- UsageQuantity and UsageQuantityAsDecimal.
         UsageQuantity: number
+        -- The consumption value for the hour, as a decimal string. Use this instead of
+        -- UsageQuantity to report fractional usage.
+        -- A non-negative decimal number, for example 17.42.
+        -- You can't specify both UsageQuantity and
+        -- UsageQuantityAsDecimal. If you provide UsageAllocations,
+        -- each allocation must use AllocatedUsageQuantityAsDecimal.
+        -- Quantities are compared by value when checking for duplicate or retried requests, so
+        -- 17, 17.0, and 17.00 are the same quantity,
+        -- whether you send it in UsageQuantity or
+        -- UsageQuantityAsDecimal.
+        UsageQuantityAsDecimal: string
         -- Checks whether you have the permissions required for the action, but does not make the
         -- request. If you have the permissions, the request returns DryRunOperation;
         -- otherwise, it returns UnauthorizedException. Defaults to false
         -- if not specified.
         DryRun: boolean
         -- The set of UsageAllocations to submit.
-        -- The sum of all UsageAllocation quantities must equal the
-        -- UsageQuantity of the MeterUsage request, and each
-        -- UsageAllocation must have a unique set of tags (include no
-        -- tags).
+        -- The sum of all UsageAllocation quantities must equal the usage quantity
+        -- of the MeterUsage request (UsageQuantity or
+        -- UsageQuantityAsDecimal), and each UsageAllocation must have a
+        -- unique set of tags (include no tags). Allocations must use the same type of quantity as
+        -- the request: AllocatedUsageQuantity with UsageQuantity, or
+        -- AllocatedUsageQuantityAsDecimal with
+        -- UsageQuantityAsDecimal.
         UsageAllocations: {UsageAllocation}
         -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency
         -- of the request. This lets you safely retry the request without accidentally performing the
