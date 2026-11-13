@@ -1925,6 +1925,24 @@ M.GetStreamSessionOutput = schema.new({
             target_id = id.from(_N, "DisplayConfiguration"),
             target = M.DisplayConfiguration,
         }),
+        ApplicationStartedAt = schema.new({
+            id = id.from(_N, "GetStreamSessionOutput", "ApplicationStartedAt"),
+            type = "timestamp",
+            name = "ApplicationStartedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        StreamingStartedAt = schema.new({
+            id = id.from(_N, "GetStreamSessionOutput", "StreamingStartedAt"),
+            type = "timestamp",
+            name = "StreamingStartedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        StreamingEndedAt = schema.new({
+            id = id.from(_N, "GetStreamSessionOutput", "StreamingEndedAt"),
+            type = "timestamp",
+            name = "StreamingEndedAt",
+            target_id = prelude.Timestamp.id,
+        }),
     },
 })
 
@@ -2896,6 +2914,24 @@ M.StartStreamSessionOutput = schema.new({
             name = "DisplayConfiguration",
             target_id = id.from(_N, "DisplayConfiguration"),
             target = M.DisplayConfiguration,
+        }),
+        ApplicationStartedAt = schema.new({
+            id = id.from(_N, "StartStreamSessionOutput", "ApplicationStartedAt"),
+            type = "timestamp",
+            name = "ApplicationStartedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        StreamingStartedAt = schema.new({
+            id = id.from(_N, "StartStreamSessionOutput", "StreamingStartedAt"),
+            type = "timestamp",
+            name = "StreamingStartedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        StreamingEndedAt = schema.new({
+            id = id.from(_N, "StartStreamSessionOutput", "StreamingEndedAt"),
+            type = "timestamp",
+            name = "StreamingEndedAt",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })

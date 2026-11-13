@@ -132,6 +132,7 @@ local record Client
     createLocalGatewayVirtualInterfaceGroup: function(Client, types.CreateLocalGatewayVirtualInterfaceGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayVirtualInterfaceGroupOutput>
     createMacSystemIntegrityProtectionModificationTask: function(Client, types.CreateMacSystemIntegrityProtectionModificationTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateMacSystemIntegrityProtectionModificationTaskOutput>
     createManagedPrefixList: function(Client, types.CreateManagedPrefixListInput, ? base_client.InvokeOptions): async.Operation<types.CreateManagedPrefixListOutput>
+    createMetricCategory: function(Client, types.CreateMetricCategoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateMetricCategoryOutput>
     createNatGateway: function(Client, types.CreateNatGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateNatGatewayOutput>
     createNetworkAcl: function(Client, types.CreateNetworkAclInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkAclOutput>
     createNetworkAclEntry: function(Client, types.CreateNetworkAclEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkAclEntryOutput>
@@ -231,6 +232,7 @@ local record Client
     deleteLocalGatewayVirtualInterface: function(Client, types.DeleteLocalGatewayVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayVirtualInterfaceOutput>
     deleteLocalGatewayVirtualInterfaceGroup: function(Client, types.DeleteLocalGatewayVirtualInterfaceGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayVirtualInterfaceGroupOutput>
     deleteManagedPrefixList: function(Client, types.DeleteManagedPrefixListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteManagedPrefixListOutput>
+    deleteMetricCategory: function(Client, types.DeleteMetricCategoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMetricCategoryOutput>
     deleteNatGateway: function(Client, types.DeleteNatGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNatGatewayOutput>
     deleteNetworkAcl: function(Client, types.DeleteNetworkAclInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclOutput>
     deleteNetworkAclEntry: function(Client, types.DeleteNetworkAclEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclEntryOutput>
@@ -401,6 +403,7 @@ local record Client
     describeMacHosts: function(Client, types.DescribeMacHostsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMacHostsOutput>
     describeMacModificationTasks: function(Client, types.DescribeMacModificationTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMacModificationTasksOutput>
     describeManagedPrefixLists: function(Client, types.DescribeManagedPrefixListsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeManagedPrefixListsOutput>
+    describeMetricCategories: function(Client, types.DescribeMetricCategoriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMetricCategoriesOutput>
     describeMovingAddresses: function(Client, types.DescribeMovingAddressesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMovingAddressesOutput>
     describeNatGateways: function(Client, types.DescribeNatGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNatGatewaysOutput>
     describeNetworkAcls: function(Client, types.DescribeNetworkAclsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkAclsOutput>
@@ -703,6 +706,7 @@ local record Client
     modifyLocalGatewayRoute: function(Client, types.ModifyLocalGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.ModifyLocalGatewayRouteOutput>
     modifyManagedPrefixList: function(Client, types.ModifyManagedPrefixListInput, ? base_client.InvokeOptions): async.Operation<types.ModifyManagedPrefixListOutput>
     modifyManagedResourceVisibility: function(Client, types.ModifyManagedResourceVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.ModifyManagedResourceVisibilityOutput>
+    modifyMetricCategory: function(Client, types.ModifyMetricCategoryInput, ? base_client.InvokeOptions): async.Operation<types.ModifyMetricCategoryOutput>
     modifyNetworkInterfaceAttribute: function(Client, types.ModifyNetworkInterfaceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyNetworkInterfaceAttributeOutput>
     modifyPrivateDnsNameOptions: function(Client, types.ModifyPrivateDnsNameOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyPrivateDnsNameOptionsOutput>
     modifyPublicIpDnsNameOptions: function(Client, types.ModifyPublicIpDnsNameOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyPublicIpDnsNameOptionsOutput>
@@ -1329,6 +1333,10 @@ function C:createManagedPrefixList(input: types.CreateManagedPrefixListInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateManagedPrefixList as schema.OperationSchema, input, options) as async.Operation<types.CreateManagedPrefixListOutput>
 end
 
+function C:createMetricCategory(input: types.CreateMetricCategoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMetricCategoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMetricCategory as schema.OperationSchema, input, options) as async.Operation<types.CreateMetricCategoryOutput>
+end
+
 function C:createNatGateway(input: types.CreateNatGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNatGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNatGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateNatGatewayOutput>
 end
@@ -1723,6 +1731,10 @@ end
 
 function C:deleteManagedPrefixList(input: types.DeleteManagedPrefixListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteManagedPrefixListOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteManagedPrefixList as schema.OperationSchema, input, options) as async.Operation<types.DeleteManagedPrefixListOutput>
+end
+
+function C:deleteMetricCategory(input: types.DeleteMetricCategoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMetricCategoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMetricCategory as schema.OperationSchema, input, options) as async.Operation<types.DeleteMetricCategoryOutput>
 end
 
 function C:deleteNatGateway(input: types.DeleteNatGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNatGatewayOutput>
@@ -2403,6 +2415,10 @@ end
 
 function C:describeManagedPrefixLists(input: types.DescribeManagedPrefixListsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeManagedPrefixListsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeManagedPrefixLists as schema.OperationSchema, input, options) as async.Operation<types.DescribeManagedPrefixListsOutput>
+end
+
+function C:describeMetricCategories(input: types.DescribeMetricCategoriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMetricCategoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMetricCategories as schema.OperationSchema, input, options) as async.Operation<types.DescribeMetricCategoriesOutput>
 end
 
 function C:describeMovingAddresses(input: types.DescribeMovingAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMovingAddressesOutput>
@@ -3611,6 +3627,10 @@ end
 
 function C:modifyManagedResourceVisibility(input: types.ModifyManagedResourceVisibilityInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyManagedResourceVisibilityOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyManagedResourceVisibility as schema.OperationSchema, input, options) as async.Operation<types.ModifyManagedResourceVisibilityOutput>
+end
+
+function C:modifyMetricCategory(input: types.ModifyMetricCategoryInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyMetricCategoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyMetricCategory as schema.OperationSchema, input, options) as async.Operation<types.ModifyMetricCategoryOutput>
 end
 
 function C:modifyNetworkInterfaceAttribute(input: types.ModifyNetworkInterfaceAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyNetworkInterfaceAttributeOutput>

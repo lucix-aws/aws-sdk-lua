@@ -369,6 +369,23 @@ local record M
         "CONCURRENT_EXECUTOR"
         "SEQUENTIAL_EXECUTOR"
         "VAST_REQUEST"
+        "HLS_TAG_PROCESSOR"
+    end
+
+    enum HlsTagName
+        "EXT-X-DATERANGE"
+    end
+
+    -- The configuration for an HLS_TAG_PROCESSOR function. Specifies the HLS tags that trigger evaluation, an optional run condition, and output expressions. Each evaluation must update, remove, or pass through the matching tag and can also write player session parameters or temporary values. For more information, see HLS_TAG_PROCESSOR in the MediaTailor User Guide.
+    record HlsTagProcessorConfiguration
+        -- The expression language used to evaluate expressions in the function configuration. The only supported value is JSONATA.
+        Runtime: string
+        -- A map of output bindings that MediaTailor evaluates for each HLS tag that matches TagFilter and, when specified, passes RunCondition. The required tag binding must return exactly one tag action: $updateTag, $removeTag, or $passthroughTag. Optional player_params.<name> bindings write strings, numbers, or booleans that persist for the player session. Optional temp.<name> bindings hold any JSON value for the current invocation and are not persisted. For more information about expression syntax, see JSONata expression reference in the MediaTailor User Guide.
+        Output: {string : string}
+        -- A list of HLS tag names that trigger function evaluation. Specify ["EXT-X-DATERANGE"].
+        TagFilter: {string}
+        -- JSONata expression that must evaluate to true for the processor to run.
+        RunCondition: string
     end
 
     -- The configuration for an HTTP_REQUEST function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions for the request. For more information, see HTTP_REQUEST in the MediaTailor User Guide.
@@ -443,6 +460,8 @@ local record M
         SequentialExecutorConfiguration: SequentialExecutorConfiguration
         -- The configuration for a VAST_REQUEST function.
         VastRequestConfiguration: VastRequestConfiguration
+        -- The configuration for an HLS_TAG_PROCESSOR function.
+        HlsTagProcessorConfiguration: HlsTagProcessorConfiguration
         -- The tags assigned to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
         Tags: {string : string}
         -- The Amazon Resource Name (ARN) of the function.
@@ -648,6 +667,7 @@ local record M
         "PRE_ADS_REQUEST"
         "POST_ADS_RESPONSE"
         "PRE_MANIFEST_INSERTION"
+        "POST_ORIGIN_RESPONSE"
     end
 
     -- The configuration for HLS content.
@@ -733,11 +753,15 @@ local record M
         "ERROR_BUMPER_END_INTERPOLATION"
         "PRE_SESSION_INIT_HOOK_ERROR"
         "PRE_SESSION_INIT_FUNCTION_ERROR"
+        "POST_ORIGIN_RESPONSE_HOOK_ERROR"
+        "POST_ORIGIN_RESPONSE_FUNCTION_ERROR"
     end
 
     enum ManifestServicePublishOptInEventType
         "PRE_SESSION_INIT_HOOK_SUMMARY"
         "PRE_SESSION_INIT_FUNCTION_COMPLETED"
+        "POST_ORIGIN_RESPONSE_HOOK_SUMMARY"
+        "POST_ORIGIN_RESPONSE_FUNCTION_COMPLETED"
     end
 
     -- Settings for customizing what events are included in logs for interactions with the origin server. For more information about manifest service logs, including descriptions of the event types, see MediaTailor manifest logs description and event types in Elemental MediaTailor User Guide.
@@ -841,7 +865,7 @@ local record M
         AdDecisionServerConfiguration: AdDecisionServerConfiguration
         -- Configuration for Yield Optimization, which fills unsold ad inventory in ad breaks with programmatic ads from Amazon Publisher Services (APS).
         YieldOptimizationConfiguration: YieldOptimizationConfiguration
-        -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION, PRE_ADS_REQUEST, POST_ADS_RESPONSE, and PRE_MANIFEST_INSERTION. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
+        -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION, POST_ORIGIN_RESPONSE, PRE_ADS_REQUEST, POST_ADS_RESPONSE, and PRE_MANIFEST_INSERTION. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
         FunctionMapping: {string : string}
         -- The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.
         AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
@@ -1853,6 +1877,8 @@ local record M
         SequentialExecutorConfiguration: SequentialExecutorConfiguration
         -- The configuration for a VAST_REQUEST function.
         VastRequestConfiguration: VastRequestConfiguration
+        -- The configuration for an HLS_TAG_PROCESSOR function.
+        HlsTagProcessorConfiguration: HlsTagProcessorConfiguration
         -- The tags assigned to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
         Tags: {string : string}
         -- The Amazon Resource Name (ARN) of the function.
@@ -1877,7 +1903,7 @@ local record M
     record PutFunctionInput
         -- The identifier of the function. The identifier must be unique within your account.
         FunctionId: string
-        -- The type of the function, which determines what the function can do at runtime. Valid values: CUSTOM_OUTPUT – Evaluates expressions and produces output bindings with no external calls. HTTP_REQUEST – Makes an HTTP call to an external service and evaluates output expressions that can reference the response. AWS_SERVICE_REQUEST – Makes an authenticated request to a supported AWS service API and evaluates output expressions that can reference the response. VAST_REQUEST – Calls a VAST endpoint, parses the response as VAST, and makes the parsed ads available to output expressions. SEQUENTIAL_EXECUTOR – Runs a sequence of child functions in order, passing data between steps through temporary data. CONCURRENT_EXECUTOR – Runs a set of child functions in parallel, up to a maximum concurrency, and combines their output when all functions complete. For more information, see Function types and composition in the MediaTailor User Guide.
+        -- The type of the function, which determines what the function can do at runtime. Valid values: CUSTOM_OUTPUT – Evaluates expressions and produces output bindings with no external calls. HTTP_REQUEST – Makes an HTTP call to an external service and evaluates output expressions that can reference the response. AWS_SERVICE_REQUEST – Makes an authenticated request to a supported AWS service API and evaluates output expressions that can reference the response. HLS_TAG_PROCESSOR – Reads and changes HLS tags in the origin manifest at the POST_ORIGIN_RESPONSE lifecycle hook. VAST_REQUEST – Calls a VAST endpoint, parses the response as VAST, and makes the parsed ads available to output expressions. SEQUENTIAL_EXECUTOR – Runs a sequence of child functions in order, passing data between steps through temporary data. CONCURRENT_EXECUTOR – Runs a set of child functions in parallel, up to a maximum concurrency, and combines their output when all functions complete. For more information, see Function types and composition in the MediaTailor User Guide.
         FunctionType: string
         -- A description of the function.
         Description: string
@@ -1893,6 +1919,8 @@ local record M
         SequentialExecutorConfiguration: SequentialExecutorConfiguration
         -- The configuration for a VAST_REQUEST function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions. Required when FunctionType is VAST_REQUEST.
         VastRequestConfiguration: VastRequestConfiguration
+        -- The configuration for an HLS_TAG_PROCESSOR function. Specifies the runtime, tag filter, optional run condition, and output expressions. Required when FunctionType is HLS_TAG_PROCESSOR.
+        HlsTagProcessorConfiguration: HlsTagProcessorConfiguration
         -- The tags to assign to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
         Tags: {string : string}
     end
@@ -1917,6 +1945,8 @@ local record M
         SequentialExecutorConfiguration: SequentialExecutorConfiguration
         -- The configuration for a VAST_REQUEST function.
         VastRequestConfiguration: VastRequestConfiguration
+        -- The configuration for an HLS_TAG_PROCESSOR function.
+        HlsTagProcessorConfiguration: HlsTagProcessorConfiguration
         -- The tags assigned to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
         Tags: {string : string}
         -- The Amazon Resource Name (ARN) of the function.
@@ -1979,7 +2009,7 @@ local record M
         AdDecisionServerConfiguration: AdDecisionServerConfiguration
         -- Configuration for Yield Optimization, which fills unsold ad inventory in ad breaks with programmatic ads from Amazon Publisher Services (APS).
         YieldOptimizationConfiguration: YieldOptimizationConfiguration
-        -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION, PRE_ADS_REQUEST, POST_ADS_RESPONSE, and PRE_MANIFEST_INSERTION. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
+        -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION, POST_ORIGIN_RESPONSE, PRE_ADS_REQUEST, POST_ADS_RESPONSE, and PRE_MANIFEST_INSERTION. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
         FunctionMapping: {string : string}
         -- The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.
         AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
@@ -2192,7 +2222,7 @@ local record M
         AdDecisionServerConfiguration: AdDecisionServerConfiguration
         -- Configuration for Yield Optimization, which fills unsold ad inventory in ad breaks with programmatic ads from Amazon Publisher Services (APS).
         YieldOptimizationConfiguration: YieldOptimizationConfiguration
-        -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION, PRE_ADS_REQUEST, POST_ADS_RESPONSE, and PRE_MANIFEST_INSERTION. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
+        -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION, POST_ORIGIN_RESPONSE, PRE_ADS_REQUEST, POST_ADS_RESPONSE, and PRE_MANIFEST_INSERTION. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
         FunctionMapping: {string : string}
         -- The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.
         AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
@@ -2253,7 +2283,7 @@ local record M
         AdDecisionServerConfiguration: AdDecisionServerConfiguration
         -- Configuration for Yield Optimization, which fills unsold ad inventory in ad breaks with programmatic ads from Amazon Publisher Services (APS).
         YieldOptimizationConfiguration: YieldOptimizationConfiguration
-        -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION, PRE_ADS_REQUEST, POST_ADS_RESPONSE, and PRE_MANIFEST_INSERTION. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
+        -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION, POST_ORIGIN_RESPONSE, PRE_ADS_REQUEST, POST_ADS_RESPONSE, and PRE_MANIFEST_INSERTION. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
         FunctionMapping: {string : string}
         -- The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.
         AdsPersonalizationTimeouts: AdsPersonalizationTimeouts

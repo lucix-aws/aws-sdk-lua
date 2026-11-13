@@ -28,7 +28,11 @@ M.ExternalSecretRotationMetadataType = schema.new({ type = "list", list_member =
 
 M.SecretVersionsToStagesMapType = schema.new({ type = "map", map_key = prelude.String, map_value = M.SecretVersionStagesType })
 
+M.CrossAccountReplicaListType = schema.new({ type = "list", list_member = M.CrossAccountReplicaEntry })
+
 M.SecretVersionStagesType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourcePolicySummaryListType = schema.new({ type = "list", list_member = M.ResourcePolicySummary })
 
 M.SecretListType = schema.new({ type = "list", list_member = M.SecretListEntry })
 
@@ -81,6 +85,148 @@ M.APIErrorType = schema.new({
         }),
         Message = schema.new({
             id = id.from(_N, "APIErrorType", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateCrossAccountReplicaInput = schema.new({
+    id = id.from(_N, "AssociateCrossAccountReplicaRequest"),
+    type = "structure",
+    members = {
+        SecretId = schema.new({
+            id = id.from(_N, "AssociateCrossAccountReplicaInput", "SecretId"),
+            type = "string",
+            name = "SecretId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CrossAccountReplicaARN = schema.new({
+            id = id.from(_N, "AssociateCrossAccountReplicaInput", "CrossAccountReplicaARN"),
+            type = "string",
+            name = "CrossAccountReplicaARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReplicaRestriction = schema.new({
+            id = id.from(_N, "AssociateCrossAccountReplicaInput", "ReplicaRestriction"),
+            type = "string",
+            name = "ReplicaRestriction",
+            target_id = prelude.String.id,
+        }),
+        ReplicationRoleARN = schema.new({
+            id = id.from(_N, "AssociateCrossAccountReplicaInput", "ReplicationRoleARN"),
+            type = "string",
+            name = "ReplicationRoleARN",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateCrossAccountReplicaOutput = schema.new({
+    id = id.from(_N, "AssociateCrossAccountReplicaResponse"),
+    type = "structure",
+    members = {
+        ARN = schema.new({
+            id = id.from(_N, "AssociateCrossAccountReplicaOutput", "ARN"),
+            type = "string",
+            name = "ARN",
+            target_id = prelude.String.id,
+        }),
+        CrossAccountReplicaARN = schema.new({
+            id = id.from(_N, "AssociateCrossAccountReplicaOutput", "CrossAccountReplicaARN"),
+            type = "string",
+            name = "CrossAccountReplicaARN",
+            target_id = prelude.String.id,
+        }),
+        ReplicationStatus = schema.new({
+            id = id.from(_N, "AssociateCrossAccountReplicaOutput", "ReplicationStatus"),
+            type = "string",
+            name = "ReplicationStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServiceError = schema.new({
+    id = id.from(_N, "InternalServiceError"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServiceError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidParameterException = schema.new({
+    id = id.from(_N, "InvalidParameterException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidParameterException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidRequestException = schema.new({
+    id = id.from(_N, "InvalidRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidRequestException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "LimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
@@ -234,22 +380,6 @@ M.DecryptionFailure = schema.new({
     },
 })
 
-M.InternalServiceError = schema.new({
-    id = id.from(_N, "InternalServiceError"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "InternalServiceError", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.InvalidNextTokenException = schema.new({
     id = id.from(_N, "InvalidNextTokenException"),
     type = "structure",
@@ -259,54 +389,6 @@ M.InvalidNextTokenException = schema.new({
     members = {
         Message = schema.new({
             id = id.from(_N, "InvalidNextTokenException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidParameterException = schema.new({
-    id = id.from(_N, "InvalidParameterException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "InvalidParameterException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidRequestException = schema.new({
-    id = id.from(_N, "InvalidRequestException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "InvalidRequestException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Message"),
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
@@ -449,6 +531,12 @@ M.CreateSecretInput = schema.new({
             name = "Type",
             target_id = prelude.String.id,
         }),
+        CrossAccountPrimaryARN = schema.new({
+            id = id.from(_N, "CreateSecretInput", "CrossAccountPrimaryARN"),
+            type = "string",
+            name = "CrossAccountPrimaryARN",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -537,22 +625,6 @@ M.EncryptionFailure = schema.new({
     },
 })
 
-M.LimitExceededException = schema.new({
-    id = id.from(_N, "LimitExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "LimitExceededException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.MalformedPolicyDocumentException = schema.new({
     id = id.from(_N, "MalformedPolicyDocumentException"),
     type = "structure",
@@ -601,6 +673,62 @@ M.ResourceExistsException = schema.new({
     },
 })
 
+M.CrossAccountPrimaryType = schema.new({
+    id = id.from(_N, "CrossAccountPrimaryType"),
+    type = "structure",
+    members = {
+        PrimarySecretARN = schema.new({
+            id = id.from(_N, "CrossAccountPrimaryType", "PrimarySecretARN"),
+            type = "string",
+            name = "PrimarySecretARN",
+            target_id = prelude.String.id,
+        }),
+        ReplicationStatus = schema.new({
+            id = id.from(_N, "CrossAccountPrimaryType", "ReplicationStatus"),
+            type = "string",
+            name = "ReplicationStatus",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "CrossAccountPrimaryType", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CrossAccountReplicaEntry = schema.new({
+    id = id.from(_N, "CrossAccountReplicaEntry"),
+    type = "structure",
+    members = {
+        ReplicaSecretARN = schema.new({
+            id = id.from(_N, "CrossAccountReplicaEntry", "ReplicaSecretARN"),
+            type = "string",
+            name = "ReplicaSecretARN",
+            target_id = prelude.String.id,
+        }),
+        ReplicationRoleARN = schema.new({
+            id = id.from(_N, "CrossAccountReplicaEntry", "ReplicationRoleARN"),
+            type = "string",
+            name = "ReplicationRoleARN",
+            target_id = prelude.String.id,
+        }),
+        ReplicationStatus = schema.new({
+            id = id.from(_N, "CrossAccountReplicaEntry", "ReplicationStatus"),
+            type = "string",
+            name = "ReplicationStatus",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "CrossAccountReplicaEntry", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteResourcePolicyInput = schema.new({
     id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
@@ -613,6 +741,12 @@ M.DeleteResourcePolicyInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        PolicyName = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -631,6 +765,12 @@ M.DeleteResourcePolicyOutput = schema.new({
             id = id.from(_N, "DeleteResourcePolicyOutput", "Name"),
             type = "string",
             name = "Name",
+            target_id = prelude.String.id,
+        }),
+        PolicyName = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyOutput", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
             target_id = prelude.String.id,
         }),
     },
@@ -894,6 +1034,64 @@ M.DescribeSecretOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ReplicationStatusType,
         }),
+        CrossAccountPrimary = schema.new({
+            id = id.from(_N, "DescribeSecretOutput", "CrossAccountPrimary"),
+            type = "structure",
+            name = "CrossAccountPrimary",
+            target_id = id.from(_N, "CrossAccountPrimaryType"),
+            target = M.CrossAccountPrimaryType,
+        }),
+        CrossAccountReplicas = schema.new({
+            id = id.from(_N, "DescribeSecretOutput", "CrossAccountReplicas"),
+            type = "list",
+            name = "CrossAccountReplicas",
+            target_id = prelude.Document.id,
+            list_member = M.CrossAccountReplicaEntry,
+        }),
+    },
+})
+
+M.DisassociateCrossAccountReplicaInput = schema.new({
+    id = id.from(_N, "DisassociateCrossAccountReplicaRequest"),
+    type = "structure",
+    members = {
+        SecretId = schema.new({
+            id = id.from(_N, "DisassociateCrossAccountReplicaInput", "SecretId"),
+            type = "string",
+            name = "SecretId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CrossAccountReplicaARN = schema.new({
+            id = id.from(_N, "DisassociateCrossAccountReplicaInput", "CrossAccountReplicaARN"),
+            type = "string",
+            name = "CrossAccountReplicaARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateCrossAccountReplicaOutput = schema.new({
+    id = id.from(_N, "DisassociateCrossAccountReplicaResponse"),
+    type = "structure",
+    members = {
+        ARN = schema.new({
+            id = id.from(_N, "DisassociateCrossAccountReplicaOutput", "ARN"),
+            type = "string",
+            name = "ARN",
+            target_id = prelude.String.id,
+        }),
+        CrossAccountReplicaARN = schema.new({
+            id = id.from(_N, "DisassociateCrossAccountReplicaOutput", "CrossAccountReplicaARN"),
+            type = "string",
+            name = "CrossAccountReplicaARN",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -996,6 +1194,12 @@ M.GetResourcePolicyInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        PolicyName = schema.new({
+            id = id.from(_N, "GetResourcePolicyInput", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1019,6 +1223,12 @@ M.GetResourcePolicyOutput = schema.new({
             id = id.from(_N, "GetResourcePolicyOutput", "ResourcePolicy"),
             type = "string",
             name = "ResourcePolicy",
+            target_id = prelude.String.id,
+        }),
+        PolicyName = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
             target_id = prelude.String.id,
         }),
     },
@@ -1098,6 +1308,70 @@ M.GetSecretValueOutput = schema.new({
             type = "timestamp",
             name = "CreatedDate",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListResourcePoliciesInput = schema.new({
+    id = id.from(_N, "ListResourcePoliciesRequest"),
+    type = "structure",
+    members = {
+        SecretId = schema.new({
+            id = id.from(_N, "ListResourcePoliciesInput", "SecretId"),
+            type = "string",
+            name = "SecretId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListResourcePoliciesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourcePoliciesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourcePolicySummary = schema.new({
+    id = id.from(_N, "ResourcePolicySummary"),
+    type = "structure",
+    members = {
+        PolicyName = schema.new({
+            id = id.from(_N, "ResourcePolicySummary", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResourcePoliciesOutput = schema.new({
+    id = id.from(_N, "ListResourcePoliciesResponse"),
+    type = "structure",
+    members = {
+        ResourcePolicies = schema.new({
+            id = id.from(_N, "ListResourcePoliciesOutput", "ResourcePolicies"),
+            type = "list",
+            name = "ResourcePolicies",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePolicySummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourcePoliciesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1450,6 +1724,12 @@ M.PutResourcePolicyInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        PolicyName = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
+            target_id = prelude.String.id,
+        }),
         BlockPublicPolicy = schema.new({
             id = id.from(_N, "PutResourcePolicyInput", "BlockPublicPolicy"),
             type = "boolean",
@@ -1476,6 +1756,12 @@ M.PutResourcePolicyOutput = schema.new({
             id = id.from(_N, "PutResourcePolicyOutput", "Name"),
             type = "string",
             name = "Name",
+            target_id = prelude.String.id,
+        }),
+        PolicyName = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
             target_id = prelude.String.id,
         }),
     },
@@ -2094,6 +2380,17 @@ M.Service = schema.service({
     },
 })
 
+M.AssociateCrossAccountReplica = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "AssociateCrossAccountReplica"),
+    input = M.AssociateCrossAccountReplicaInput,
+    output = M.AssociateCrossAccountReplicaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BatchGetSecretValue = schema.operation({
     id = id.from("com.amazonaws.secretsmanager", "BatchGetSecretValue"),
     input = M.BatchGetSecretValueInput,
@@ -2160,6 +2457,17 @@ M.DescribeSecret = schema.operation({
     },
 })
 
+M.DisassociateCrossAccountReplica = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "DisassociateCrossAccountReplica"),
+    input = M.DisassociateCrossAccountReplicaInput,
+    output = M.DisassociateCrossAccountReplicaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetRandomPassword = schema.operation({
     id = id.from("com.amazonaws.secretsmanager", "GetRandomPassword"),
     input = M.GetRandomPasswordInput,
@@ -2186,6 +2494,17 @@ M.GetSecretValue = schema.operation({
     id = id.from("com.amazonaws.secretsmanager", "GetSecretValue"),
     input = M.GetSecretValueInput,
     output = M.GetSecretValueOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourcePolicies = schema.operation({
+    id = id.from("com.amazonaws.secretsmanager", "ListResourcePolicies"),
+    input = M.ListResourcePoliciesInput,
+    output = M.ListResourcePoliciesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

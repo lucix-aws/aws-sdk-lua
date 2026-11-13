@@ -3845,6 +3845,18 @@ M.MetricMetadata = schema.new({
             target_id = id.from(_N, "MetricSemantics"),
             target = M.MetricSemantics,
         }),
+        aggregationTemporality = schema.new({
+            id = id.from(_N, "MetricMetadata", "aggregationTemporality"),
+            type = "string",
+            name = "aggregationTemporality",
+            target_id = prelude.String.id,
+        }),
+        monotonicity = schema.new({
+            id = id.from(_N, "MetricMetadata", "monotonicity"),
+            type = "string",
+            name = "monotonicity",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

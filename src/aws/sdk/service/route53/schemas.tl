@@ -18,6 +18,12 @@ M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ResourceRecordSetProtectionConfigBatch = schema.new({ type = "list", list_member = M.ResourceRecordSetProtectionConfig })
+
+M.ProtectionErrors = schema.new({ type = "list", list_member = M.ProtectionError })
+
+M.ResourceRecordSetProtectionKeyBatch = schema.new({ type = "list", list_member = M.ResourceRecordSetProtectionKey })
+
 M.CheckerIpRanges = schema.new({ type = "list", list_member = prelude.String })
 
 M.KeySigningKeys = schema.new({ type = "list", list_member = M.KeySigningKey })
@@ -41,6 +47,8 @@ M.HostedZones = schema.new({ type = "list", list_member = M.HostedZone })
 M.HostedZoneSummaries = schema.new({ type = "list", list_member = M.HostedZoneSummary })
 
 M.QueryLoggingConfigs = schema.new({ type = "list", list_member = M.QueryLoggingConfig })
+
+M.ResourceRecordSetProtections = schema.new({ type = "list", list_member = M.ResourceRecordSetProtection })
 
 M.ResourceRecordSets = schema.new({ type = "list", list_member = M.ResourceRecordSet })
 
@@ -2318,6 +2326,166 @@ M.QueryLoggingConfigAlreadyExists = schema.new({
     },
 })
 
+M.ResourceRecordSetProtectionConfig = schema.new({
+    id = id.from(_N, "ResourceRecordSetProtectionConfig"),
+    type = "structure",
+    members = {
+        RecordName = schema.new({
+            id = id.from(_N, "ResourceRecordSetProtectionConfig", "RecordName"),
+            type = "string",
+            name = "RecordName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordType = schema.new({
+            id = id.from(_N, "ResourceRecordSetProtectionConfig", "RecordType"),
+            type = "string",
+            name = "RecordType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Comment = schema.new({
+            id = id.from(_N, "ResourceRecordSetProtectionConfig", "Comment"),
+            type = "string",
+            name = "Comment",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateResourceRecordSetProtectionsInput = schema.new({
+    id = id.from(_N, "CreateResourceRecordSetProtectionsRequest"),
+    type = "structure",
+    members = {
+        HostedZoneId = schema.new({
+            id = id.from(_N, "CreateResourceRecordSetProtectionsInput", "HostedZoneId"),
+            type = "string",
+            name = "HostedZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Protections = schema.new({
+            id = id.from(_N, "CreateResourceRecordSetProtectionsInput", "Protections"),
+            type = "list",
+            name = "Protections",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ResourceRecordSetProtectionConfig, traits = { [traits.XML_NAME] = { name = "ResourceRecordSetProtectionConfig" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateResourceRecordSetProtectionsOutput = schema.new({
+    id = id.from(_N, "CreateResourceRecordSetProtectionsResponse"),
+    type = "structure",
+})
+
+M.ProtectionError = schema.new({
+    id = id.from(_N, "ProtectionError"),
+    type = "structure",
+    members = {
+        RecordName = schema.new({
+            id = id.from(_N, "ProtectionError", "RecordName"),
+            type = "string",
+            name = "RecordName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordType = schema.new({
+            id = id.from(_N, "ProtectionError", "RecordType"),
+            type = "string",
+            name = "RecordType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "ProtectionError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ProtectionError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InvalidResourceRecordSetProtectionBatch = schema.new({
+    id = id.from(_N, "InvalidResourceRecordSetProtectionBatch"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "InvalidResourceRecordSetProtectionBatch", httpResponseCode = 400 },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidResourceRecordSetProtectionBatch", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "InvalidResourceRecordSetProtectionBatch", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ProtectionError, traits = { [traits.XML_NAME] = { name = "ProtectionError" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProtectionAlreadyExists = schema.new({
+    id = id.from(_N, "ProtectionAlreadyExists"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+        [traits.AWS_QUERY_ERROR] = { code = "ProtectionAlreadyExists", httpResponseCode = 409 },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ProtectionAlreadyExists", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "ProtectionAlreadyExists", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ProtectionError, traits = { [traits.XML_NAME] = { name = "ProtectionError" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateReusableDelegationSetInput = schema.new({
     id = id.from(_N, "CreateReusableDelegationSetRequest"),
     type = "structure",
@@ -3220,6 +3388,63 @@ M.NoSuchQueryLoggingConfig = schema.new({
             target_id = prelude.String.id,
         }),
     },
+})
+
+M.ResourceRecordSetProtectionKey = schema.new({
+    id = id.from(_N, "ResourceRecordSetProtectionKey"),
+    type = "structure",
+    members = {
+        RecordName = schema.new({
+            id = id.from(_N, "ResourceRecordSetProtectionKey", "RecordName"),
+            type = "string",
+            name = "RecordName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordType = schema.new({
+            id = id.from(_N, "ResourceRecordSetProtectionKey", "RecordType"),
+            type = "string",
+            name = "RecordType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResourceRecordSetProtectionsInput = schema.new({
+    id = id.from(_N, "DeleteResourceRecordSetProtectionsRequest"),
+    type = "structure",
+    members = {
+        HostedZoneId = schema.new({
+            id = id.from(_N, "DeleteResourceRecordSetProtectionsInput", "HostedZoneId"),
+            type = "string",
+            name = "HostedZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Protections = schema.new({
+            id = id.from(_N, "DeleteResourceRecordSetProtectionsInput", "Protections"),
+            type = "list",
+            name = "Protections",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ResourceRecordSetProtectionKey, traits = { [traits.XML_NAME] = { name = "ResourceRecordSetProtectionKey" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResourceRecordSetProtectionsOutput = schema.new({
+    id = id.from(_N, "DeleteResourceRecordSetProtectionsResponse"),
+    type = "structure",
 })
 
 M.DelegationSetInUse = schema.new({
@@ -5283,6 +5508,113 @@ M.ListQueryLoggingConfigsOutput = schema.new({
     },
 })
 
+M.ListResourceRecordSetProtectionsInput = schema.new({
+    id = id.from(_N, "ListResourceRecordSetProtectionsRequest"),
+    type = "structure",
+    members = {
+        HostedZoneId = schema.new({
+            id = id.from(_N, "ListResourceRecordSetProtectionsInput", "HostedZoneId"),
+            type = "string",
+            name = "HostedZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        StartRecordName = schema.new({
+            id = id.from(_N, "ListResourceRecordSetProtectionsInput", "StartRecordName"),
+            type = "string",
+            name = "StartRecordName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "name" },
+            },
+        }),
+        StartRecordType = schema.new({
+            id = id.from(_N, "ListResourceRecordSetProtectionsInput", "StartRecordType"),
+            type = "string",
+            name = "StartRecordType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "type" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListResourceRecordSetProtectionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxresults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourceRecordSetProtectionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nexttoken" },
+            },
+        }),
+    },
+})
+
+M.ResourceRecordSetProtection = schema.new({
+    id = id.from(_N, "ResourceRecordSetProtection"),
+    type = "structure",
+    members = {
+        RecordName = schema.new({
+            id = id.from(_N, "ResourceRecordSetProtection", "RecordName"),
+            type = "string",
+            name = "RecordName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordType = schema.new({
+            id = id.from(_N, "ResourceRecordSetProtection", "RecordType"),
+            type = "string",
+            name = "RecordType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Comment = schema.new({
+            id = id.from(_N, "ResourceRecordSetProtection", "Comment"),
+            type = "string",
+            name = "Comment",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResourceRecordSetProtectionsOutput = schema.new({
+    id = id.from(_N, "ListResourceRecordSetProtectionsResponse"),
+    type = "structure",
+    members = {
+        ResourceRecordSetProtections = schema.new({
+            id = id.from(_N, "ListResourceRecordSetProtectionsOutput", "ResourceRecordSetProtections"),
+            type = "list",
+            name = "ResourceRecordSetProtections",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ResourceRecordSetProtection, traits = { [traits.XML_NAME] = { name = "ResourceRecordSetProtection" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourceRecordSetProtectionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListResourceRecordSetsInput = schema.new({
     id = id.from(_N, "ListResourceRecordSetsRequest"),
     type = "structure",
@@ -6774,6 +7106,18 @@ M.CreateQueryLoggingConfig = schema.operation({
     },
 })
 
+M.CreateResourceRecordSetProtections = schema.operation({
+    id = id.from("com.amazonaws.route53", "CreateResourceRecordSetProtections"),
+    input = M.CreateResourceRecordSetProtectionsInput,
+    output = M.CreateResourceRecordSetProtectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/rrsetprotection" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateReusableDelegationSet = schema.operation({
     id = id.from("com.amazonaws.route53", "CreateReusableDelegationSet"),
     input = M.CreateReusableDelegationSetInput,
@@ -6900,6 +7244,18 @@ M.DeleteQueryLoggingConfig = schema.operation({
     output = M.DeleteQueryLoggingConfigOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/2013-04-01/queryloggingconfig/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteResourceRecordSetProtections = schema.operation({
+    id = id.from("com.amazonaws.route53", "DeleteResourceRecordSetProtections"),
+    input = M.DeleteResourceRecordSetProtectionsInput,
+    output = M.DeleteResourceRecordSetProtectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2013-04-01/hostedzone/{HostedZoneId}/rrsetprotection/delete" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7308,6 +7664,18 @@ M.ListQueryLoggingConfigs = schema.operation({
     output = M.ListQueryLoggingConfigsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2013-04-01/queryloggingconfig" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourceRecordSetProtections = schema.operation({
+    id = id.from("com.amazonaws.route53", "ListResourceRecordSetProtections"),
+    input = M.ListResourceRecordSetProtectionsInput,
+    output = M.ListResourceRecordSetProtectionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2013-04-01/hostedzone/{HostedZoneId}/rrsetprotection" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -143,11 +143,11 @@ local record M
         resourceType: string
     end
 
-    record AssociateVirtualMachinesToExadbVmClusterInput
-        -- The unique identifier of the Exascale VM cluster to add virtual machines to.
-        exadbVmClusterId: string
-        -- The desired number of nodes in the Exascale VM cluster after the association.
-        desiredNodeCount: number
+    record AssociateVirtualMachinesToCloudVmClusterInput
+        -- The unique identifier of the VM cluster to add virtual machines to.
+        cloudVmClusterId: string
+        -- The list of database server IDs for the virtual machines to add to the VM cluster.
+        dbServers: {string}
     end
 
     enum ResourceStatus
@@ -158,6 +158,24 @@ local record M
         "TERMINATING"
         "UPDATING"
         "MAINTENANCE_IN_PROGRESS"
+    end
+
+    record AssociateVirtualMachinesToCloudVmClusterOutput
+        -- The user-friendly name for the VM cluster.
+        displayName: string
+        -- The current status of the VM cluster.
+        status: string
+        -- Additional information about the current status of the VM cluster, if applicable.
+        statusReason: string
+        -- The unique identifier of the VM cluster.
+        cloudVmClusterId: string
+    end
+
+    record AssociateVirtualMachinesToExadbVmClusterInput
+        -- The unique identifier of the Exascale VM cluster to add virtual machines to.
+        exadbVmClusterId: string
+        -- The desired number of nodes in the Exascale VM cluster after the association.
+        desiredNodeCount: number
     end
 
     record AssociateVirtualMachinesToExadbVmClusterOutput
@@ -1932,6 +1950,8 @@ local record M
         nodeCount: number
         -- The number of Autonomous CDBs that can't be provisioned because of resource constraints.
         nonProvisionableAutonomousContainerDatabases: number
+        -- The minimum value to which you can scale down the number of CPU cores.
+        ocpusLowestScaledValue: number
         -- The number of Autonomous CDBs that can be provisioned in the Autonomous VM cluster.
         provisionableAutonomousContainerDatabases: number
         -- The number of Autonomous CDBs currently provisioned in the Autonomous VM cluster.
@@ -2040,6 +2060,8 @@ local record M
         nodeCount: number
         -- The number of Autonomous CDBs that can't be provisioned because of resource constraints.
         nonProvisionableAutonomousContainerDatabases: number
+        -- The minimum value to which you can scale down the number of CPU cores.
+        ocpusLowestScaledValue: number
         -- The number of Autonomous CDBs that you can provision in the Autonomous VM cluster.
         provisionableAutonomousContainerDatabases: number
         -- The number of Autonomous Container Databases currently provisioned in the Autonomous VM cluster.
@@ -2166,6 +2188,36 @@ local record M
         nextToken: string
         -- The list of Autonomous VM clusters in the specified Cloud Exadata Infrastructure.
         cloudAutonomousVmClusters: {CloudAutonomousVmClusterSummary}
+    end
+
+    record UpdateCloudAutonomousVmClusterInput
+        -- The unique identifier of the Autonomous VM cluster to update.
+        cloudAutonomousVmClusterId: string
+        -- The data storage size to allocate for Autonomous Databases in the Autonomous VM cluster, in terabytes (TB).
+        autonomousDataStorageSizeInTBs: number
+        -- The number of CPU cores to enable per node in the Autonomous VM cluster. If you don't specify a value, the existing number of CPU cores per node is retained.
+        cpuCoreCountPerNode: number
+        -- A user-provided description of the Autonomous VM cluster.
+        description: string
+        -- A new user-friendly name for the Autonomous VM cluster.
+        displayName: string
+        -- The Oracle license model to apply to the Autonomous VM cluster.
+        licenseModel: string
+        -- The scheduling details for the maintenance window. Patching and system updates take place during the maintenance window.
+        maintenanceWindow: MaintenanceWindow
+        -- The total number of Autonomous Container Databases that can be created in the Autonomous VM cluster.
+        totalContainerDatabases: number
+    end
+
+    record UpdateCloudAutonomousVmClusterOutput
+        -- The user-friendly name of the updated Autonomous VM cluster.
+        displayName: string
+        -- The current status of the Autonomous VM cluster.
+        status: string
+        -- Additional information about the current status of the Autonomous VM cluster, if applicable.
+        statusReason: string
+        -- The unique identifier of the updated Autonomous VM cluster.
+        cloudAutonomousVmClusterId: string
     end
 
     -- Resource details of an Autonomous VM cluster.
@@ -2589,7 +2641,14 @@ local record M
     record UpdateCloudExadataInfrastructureInput
         -- The unique identifier of the Exadata infrastructure to update.
         cloudExadataInfrastructureId: string
+        -- A new user-friendly name for the Exadata infrastructure.
+        displayName: string
+        -- The number of database servers for the Exadata infrastructure.
+        computeCount: number
+        -- The maintenance window configuration for the Exadata Cloud infrastructure. This allows you to define when maintenance operations such as patching and updates can be performed on the infrastructure.
         maintenanceWindow: MaintenanceWindow
+        -- The number of storage servers to activate for the Exadata infrastructure.
+        storageCount: number
     end
 
     record UpdateCloudExadataInfrastructureOutput
@@ -2598,6 +2657,22 @@ local record M
         -- The current status of the Exadata infrastructure after the update operation.
         status: string
         -- Additional information about the status of the Exadata infrastructure after the update operation.
+        statusReason: string
+        -- The unique identifier of the updated Exadata infrastructure.
+        cloudExadataInfrastructureId: string
+    end
+
+    record UpdateCloudExadataInfrastructureStorageCapacityInput
+        -- The unique identifier or Amazon Resource Name (ARN) of the Exadata infrastructure to update.
+        cloudExadataInfrastructureId: string
+    end
+
+    record UpdateCloudExadataInfrastructureStorageCapacityOutput
+        -- The user-friendly name of the updated Exadata infrastructure.
+        displayName: string
+        -- The current status of the Exadata infrastructure.
+        status: string
+        -- Additional information about the current status of the Exadata infrastructure, if applicable.
         statusReason: string
         -- The unique identifier of the updated Exadata infrastructure.
         cloudExadataInfrastructureId: string
@@ -2968,6 +3043,24 @@ local record M
     record DeleteCloudVmClusterOutput
     end
 
+    record DisassociateVirtualMachinesFromCloudVmClusterInput
+        -- The unique identifier of the VM cluster to remove virtual machines from.
+        cloudVmClusterId: string
+        -- The list of database server IDs for the virtual machines to remove from the VM cluster.
+        dbServers: {string}
+    end
+
+    record DisassociateVirtualMachinesFromCloudVmClusterOutput
+        -- The user-friendly name for the VM cluster.
+        displayName: string
+        -- The current status of the VM cluster.
+        status: string
+        -- Additional information about the current status of the VM cluster, if applicable.
+        statusReason: string
+        -- The unique identifier of the VM cluster.
+        cloudVmClusterId: string
+    end
+
     record GetCloudVmClusterInput
         -- The unique identifier of the VM cluster.
         cloudVmClusterId: string
@@ -2992,6 +3085,40 @@ local record M
         nextToken: string
         -- The list of VM clusters along with their properties.
         cloudVmClusters: {CloudVmClusterSummary}
+    end
+
+    record UpdateCloudVmClusterInput
+        -- The unique identifier of the VM cluster to update.
+        cloudVmClusterId: string
+        -- The number of CPU cores to enable on the VM cluster. If you don't specify a value, the existing number of CPU cores is retained.
+        cpuCoreCount: number
+        -- The set of preferences for the diagnostic collection options for the VM cluster.
+        dataCollectionOptions: DataCollectionOptions
+        -- The size of the data disk group, in terabytes (TB), to allocate for the VM cluster.
+        dataStorageSizeInTBs: number
+        -- The amount of local node storage, in gigabytes (GB), to allocate for the VM cluster.
+        dbNodeStorageSizeInGBs: number
+        -- A new user-friendly name for the VM cluster.
+        displayName: string
+        -- The public key portion of one or more key pairs used for SSH access to the VM cluster.
+        sshPublicKeys: {string}
+        -- The Oracle license model to apply to the VM cluster.
+        licenseModel: string
+        -- The amount of memory, in gigabytes (GB), to allocate for the VM cluster.
+        memorySizeInGBs: number
+        -- The amount of local node storage, in gigabytes (GB), to allocate to the VM cluster.
+        storageSizeInGBs: number
+    end
+
+    record UpdateCloudVmClusterOutput
+        -- The user-friendly name of the updated VM cluster.
+        displayName: string
+        -- The current status of the VM cluster.
+        status: string
+        -- Additional information about the current status of the VM cluster, if applicable.
+        statusReason: string
+        -- The unique identifier of the updated VM cluster.
+        cloudVmClusterId: string
     end
 
     enum ShapeAttribute

@@ -88,6 +88,133 @@ local record M
         Name: string
     end
 
+    enum InvestigationResourceType
+        "EC2_INSTANCE"
+        "EBS_VOLUME"
+        "S3_BUCKET"
+        "IAM_ROLE"
+        "IAM_USER"
+        "IAM_ACCESS_KEY"
+        "LAMBDA_FUNCTION"
+        "EKS_CLUSTER"
+        "ECS_CLUSTER"
+        "KUBERNETES_WORKLOAD"
+        "RDS_INSTANCE"
+        "RDS_DB_USER"
+        "EC2_SECURITY_GROUP"
+    end
+
+    -- Contains the number of findings associated with a resource.
+    record AccountAffectedResource
+        -- The identifier of the resource.
+        Identifier: string
+        -- The type of the resource. Possible values are EC2_INSTANCE, EBS_VOLUME, S3_BUCKET, IAM_ROLE, IAM_USER, IAM_ACCESS_KEY, LAMBDA_FUNCTION, EKS_CLUSTER, ECS_CLUSTER, KUBERNETES_WORKLOAD, RDS_INSTANCE, RDS_DB_USER, and EC2_SECURITY_GROUP.
+        Type: string
+        -- The number of findings associated with the resource.
+        FindingCount: number
+    end
+
+    -- Contains the number of findings in a time window.
+    record TimeWindowGroup
+        -- The timestamp at which the time window starts.
+        StartTime: number
+        -- The timestamp at which the time window ends.
+        EndTime: number
+        -- The number of findings in the time window.
+        FindingCount: number
+    end
+
+    -- Contains the number of findings at each severity level.
+    record SeverityBreakdown
+        -- The number of findings that have Critical severity.
+        Critical: number
+        -- The number of findings that have High severity.
+        High: number
+        -- The number of findings that have Medium severity.
+        Medium: number
+        -- The number of findings that have Low severity.
+        Low: number
+        -- The number of findings that have Info severity.
+        Info: number
+    end
+
+    -- Contains the number of findings of a finding type.
+    record FindingTypeCount
+        -- The finding type.
+        FindingType: string
+        -- The number of findings of this type.
+        Count: number
+    end
+
+    -- Contains a summary of findings.
+    record FindingsSummary
+        -- The total number of findings.
+        TotalFindings: number
+        -- The number of findings at each severity level.
+        SeverityBreakdown: SeverityBreakdown
+        -- The finding types that have the most findings, with counts.
+        TopFindingTypes: {FindingTypeCount}
+        -- The number of findings in each time window.
+        ByTimeWindow: {TimeWindowGroup}
+    end
+
+    enum AttackPhaseName
+        "Reconnaissance"
+        "Resource Development"
+        "Initial Access"
+        "Execution"
+        "Persistence"
+        "Privilege Escalation"
+        "Defense Evasion"
+        "Credential Access"
+        "Discovery"
+        "Lateral Movement"
+        "Collection"
+        "Command and Control"
+        "Exfiltration"
+        "Impact"
+    end
+
+    -- Contains a reference to a MITRE ATT&CK tactic or technique.
+    record ThreatReference
+        -- The name of the tactic or technique.
+        Name: string
+        -- The MITRE ATT&CK identifier of the tactic or technique, such as TA0002 or T1059.004.
+        Uid: string
+    end
+
+    -- Contains information about the findings associated with a MITRE ATT&CK technique.
+    record TechniqueCoverage
+        -- The technique.
+        Technique: ThreatReference
+        -- The number of findings associated with the technique.
+        FindingCount: number
+        -- The finding types associated with the technique.
+        FindingTypes: {string}
+    end
+
+    -- Contains information about the findings associated with a MITRE ATT&CK tactic.
+    record TacticCoverage
+        -- The name of the tactic. Possible values are Reconnaissance, Resource Development, Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Command and Control, Exfiltration, and Impact.
+        Phase: string
+        -- The number of findings associated with the tactic.
+        FindingCount: number
+        -- The finding types associated with the tactic.
+        FindingTypes: {string}
+        -- The MITRE ATT&CK techniques within the tactic that are associated with findings.
+        Techniques: {TechniqueCoverage}
+    end
+
+    -- Contains an analysis of the findings in an Amazon Web Services account.
+    record AccountAnalysis
+        -- A summary of the findings in the account.
+        FindingsSummary: FindingsSummary
+        -- The findings in the account, mapped to MITRE ATT&CK tactics and techniques.
+        TacticCoverage: {TacticCoverage}
+        -- The resources in the account that are associated with findings.
+        AffectedResources: {AccountAffectedResource}
+    end
+
     -- Contains information about the account.
     record AccountDetail
         -- The member account ID.
@@ -181,6 +308,50 @@ local record M
         BlockPublicAccess: BlockPublicAccess
     end
 
+    enum RiskLevel
+        "Info"
+        "Low"
+        "Medium"
+        "High"
+        "Critical"
+    end
+
+    -- Contains information about the position of a member account in a ranking.
+    record MemberAccountRanking
+        -- The position of the account in the ranking.
+        Rank: number
+        -- The Amazon Web Services account ID of the member account.
+        AccountId: string
+        -- The number of findings in the account.
+        FindingCount: number
+        -- The assessed risk level of the account. Possible values are Info, Low, Medium, High, and Critical.
+        RiskLevel: string
+        -- The reason for the assessed risk level.
+        RiskRationale: string
+    end
+
+    -- Contains overview information about an account, including its findings and, for an organization, its member accounts.
+    record AccountOverview
+        -- The Amazon Web Services account ID.
+        AccountId: string
+        -- The status of the account.
+        AccountStatus: string
+        -- The ID of the detector of the account.
+        DetectorId: string
+        -- The Amazon Web Services Region of the detector.
+        Region: string
+        -- The account ID of the GuardDuty delegated administrator account.
+        DelegatedAdminAccountId: string
+        -- The total number of member accounts.
+        TotalMemberAccounts: number
+        -- The total number of findings.
+        TotalFindings: number
+        -- The number of accounts that have findings.
+        AffectedAccountCount: number
+        -- A ranking of member accounts.
+        AccountRankings: {MemberAccountRanking}
+    end
+
     -- Represents a list of map of accounts with the number of findings associated with each account.
     record AccountStatistics
         -- The ID of the Amazon Web Services account.
@@ -189,6 +360,14 @@ local record M
         LastGeneratedAt: number
         -- The total number of findings associated with an account.
         TotalFindings: number
+    end
+
+    -- Contains the number of findings in an Amazon Web Services account.
+    record AccountSummary
+        -- The ID of the Amazon Web Services account.
+        AccountId: string
+        -- The number of findings in the account.
+        FindingCount: number
     end
 
     -- Contains information about the domain.
@@ -459,6 +638,12 @@ local record M
         RdsLoginAttemptAction: RdsLoginAttemptAction
     end
 
+    enum ActionPriority
+        "IMMEDIATE"
+        "SHORT_TERM"
+        "STRATEGIC"
+    end
+
     -- Contains information about an API call that was observed as part of an activity.
     record ApiCall
         -- The name of the API operation that was invoked.
@@ -481,6 +666,14 @@ local record M
         Type: string
         -- Contains information about the API call that was observed, when the activity type is API_CALL.
         Api: ApiCall
+    end
+
+    -- Contains the time range during which activity was observed.
+    record ActivityWindow
+        -- The timestamp at which the activity was first observed.
+        FirstSeenAt: number
+        -- The timestamp at which the activity was last observed.
+        LastSeenAt: number
     end
 
     -- Contains information about a process involved in a GuardDuty finding, including process identification, execution details, and file information.
@@ -577,10 +770,220 @@ local record M
         InvitedAt: string
     end
 
+    -- Contains information about a resource that an action applies to.
+    record AffectedResource
+        -- The identifier of the resource.
+        Identifier: string
+        -- The type of the resource. Possible values are EC2_INSTANCE, EBS_VOLUME, S3_BUCKET, IAM_ROLE, IAM_USER, IAM_ACCESS_KEY, LAMBDA_FUNCTION, EKS_CLUSTER, ECS_CLUSTER, KUBERNETES_WORKLOAD, RDS_INSTANCE, RDS_DB_USER, and EC2_SECURITY_GROUP.
+        Type: string
+        -- The Amazon Resource Name (ARN) of the resource.
+        Arn: string
+    end
+
     -- Information about the installed GuardDuty security agent.
     record AgentDetails
         -- Version of the installed GuardDuty security agent.
         Version: string
+    end
+
+    -- Contains information about how a finding type compares with normal behavior.
+    record FindingTypeClassification
+        -- The finding type.
+        FindingType: string
+        -- The classification of the finding type.
+        Classification: string
+        -- The number of findings of this type.
+        Count: number
+        -- The percentage of findings that are of this type, from 0 to 100.
+        Percentage: number
+        -- A description of the classification.
+        Description: string
+    end
+
+    -- Contains a comparison of findings against the normal behavior of an account.
+    record Baseline
+        -- The total number of findings.
+        TotalFindings: number
+        -- The finding types that are consistent with normal behavior.
+        BaselineFindings: {FindingTypeClassification}
+        -- The finding types that deviate from normal behavior.
+        AnomalousFindings: {FindingTypeClassification}
+    end
+
+    enum TimeGranularity
+        "DAY"
+        "WEEK"
+        "MONTH"
+    end
+
+    -- Contains information about the number of findings over time.
+    record Trend
+        -- The length of each time window in the trend. Possible values are DAY, WEEK, and MONTH.
+        Granularity: string
+        -- The timestamp at which the period of the trend starts.
+        StartedAt: number
+        -- The timestamp at which the period of the trend ends.
+        EndedAt: number
+        -- The total number of findings in the period.
+        TotalFindings: number
+        -- The number of findings in each time window.
+        ByTimeWindow: {TimeWindowGroup}
+    end
+
+    -- Contains an analysis of the findings in an account. Either Trend or Baseline is set, depending on the AnalysisType of the record.
+    record InvestigationAccountAnalysis
+        -- The trend of findings over time. Set when AnalysisType is TREND.
+        Trend: Trend
+        -- A comparison of findings against normal behavior. Set when AnalysisType is BASELINE.
+        Baseline: Baseline
+    end
+
+    enum AnalysisType
+        "REPUTATION"
+        "THREAT_ASSESSMENT"
+        "RDS_THREAT_ASSESSMENT"
+        "KUBERNETES_POLICY_VIOLATION"
+        "S3_EXPOSURE"
+        "S3_ACTOR_CONTEXT"
+        "S3_PEN_TEST"
+        "PROCESS_LINEAGE"
+        "TREND"
+        "BASELINE"
+    end
+
+    enum InvestigationIndicatorType
+        "IP"
+        "DOMAIN"
+        "FILE"
+    end
+
+    -- Contains a threat indicator, such as an IP address, a domain, or a file hash.
+    record InvestigationIndicator
+        -- The value of the indicator.
+        Value: string
+        -- The type of the indicator. Possible values are IP, DOMAIN, and FILE.
+        Type: string
+    end
+
+    -- Contains an assessment of a Kubernetes policy violation.
+    record KubernetesPolicyViolation
+        -- The type of the violation.
+        ViolationType: string
+        -- The Kubernetes resource that the violation affects.
+        AffectedResource: string
+        -- The Kubernetes subject, such as a user, a group, or a service account, that the violation involves.
+        Subject: string
+        -- The access that the violation grants.
+        GrantedAccess: string
+        -- How the misconfiguration exposes the resource.
+        ExposureVector: string
+        -- The potential impact of the misconfiguration.
+        MisconfigurationImpact: string
+    end
+
+    -- Contains a reference to a GuardDuty finding.
+    record FindingReference
+        -- The type of the finding.
+        FindingType: string
+        -- The ID of the finding.
+        Uid: string
+    end
+
+    -- Contains information about a process in a process lineage. ParentUuid links each process to its parent process.
+    record Process
+        -- The unique identifier of the process.
+        Uuid: string
+        -- The name of the process.
+        Name: string
+        -- The path of the process executable.
+        Path: string
+        -- The unique identifier of the parent process. Not set for the root process.
+        ParentUuid: string
+        -- The findings associated with this process.
+        Findings: {FindingReference}
+    end
+
+    -- Contains an analysis of Amazon S3 activity or exposure. The members that can be set depend on AnalysisType: S3_EXPOSURE (FindingSubtype, EffectivePermission, BlockPublicAccessSettings, and Exposure), S3_ACTOR_CONTEXT (UserAgent, UserAgentClassification, SourceIp, IpReputation, and ActorAssessment), and S3_PEN_TEST (UserAgent, S3ApiActivity, SourceContext, and AuthorizationAssessment).
+    record S3Analysis
+        -- The subtype of the finding.
+        FindingSubtype: string
+        -- The effective permission of the Amazon S3 resource.
+        EffectivePermission: string
+        -- A description of the Amazon S3 Block Public Access settings.
+        BlockPublicAccessSettings: string
+        -- An assessment of the exposure of the Amazon S3 resource.
+        Exposure: string
+        -- The user agent of the caller.
+        UserAgent: string
+        -- The classification of the user agent.
+        UserAgentClassification: string
+        -- The source address of the activity, or a description of the source.
+        SourceIp: string
+        -- The reputation of the source IP address.
+        IpReputation: string
+        -- An assessment of the identity that performed the activity.
+        ActorAssessment: string
+        -- A description of the Amazon S3 API activity.
+        S3ApiActivity: string
+        -- Context about the source of the activity.
+        SourceContext: string
+        -- An assessment of whether the activity was authorized.
+        AuthorizationAssessment: string
+    end
+
+    -- Contains reputation information about a threat indicator.
+    record Reputation
+        -- The reputation of the indicator at the time of the finding.
+        FindingTimeDisposition: string
+        -- The current reputation of the indicator.
+        CurrentDisposition: string
+        -- A comparison of the reputation at the time of the finding with the current reputation.
+        ReputationComparison: string
+    end
+
+    enum ThreatConfidence
+        "VERY_HIGH"
+        "HIGH"
+        "MEDIUM"
+        "LOW"
+    end
+
+    -- Contains a threat assessment. The members that are set depend on the AnalysisType of the record.
+    record InvestigationThreatAssessment
+        -- Reputation information about a threat indicator. Set when AnalysisType is REPUTATION.
+        Reputation: Reputation
+        -- The confidence in the threat assessment. Possible values are VERY_HIGH, HIGH, MEDIUM, and LOW.
+        ThreatConfidence: string
+        -- The classification of the threat.
+        Classification: string
+        -- The assessment of the threat.
+        Assessment: string
+        -- Context about how the identity involved in the activity authenticated.
+        AuthenticationContext: string
+        -- An assessment of Amazon RDS control plane activity that is related to the threat.
+        RdsControlPlaneActivity: string
+        -- An assessment of the activity from the IP address in the account.
+        IpAccountActivity: string
+        -- An assessment of whether credentials were compromised.
+        CredentialCompromise: string
+    end
+
+    -- Contains an assessment that GuardDuty derived from the data during an investigation, such as a threat assessment, a comparison against normal behavior, or a process lineage. The record contains at most one of the payload members, the one that corresponds to AnalysisType. Indicators can accompany any analysis type.
+    record AnalysisRecord
+        -- The kind of analysis. The value identifies the payload member that can be set: REPUTATION, THREAT_ASSESSMENT, and RDS_THREAT_ASSESSMENT (ThreatAssessment); KUBERNETES_POLICY_VIOLATION (KubernetesPolicyViolation); S3_EXPOSURE, S3_ACTOR_CONTEXT, and S3_PEN_TEST (S3Analysis); PROCESS_LINEAGE (Processes); and TREND and BASELINE (AccountAnalysis).
+        AnalysisType: string
+        -- A threat assessment. Set when AnalysisType is REPUTATION, THREAT_ASSESSMENT, or RDS_THREAT_ASSESSMENT.
+        ThreatAssessment: InvestigationThreatAssessment
+        -- An assessment of a Kubernetes policy violation. Set when AnalysisType is KUBERNETES_POLICY_VIOLATION.
+        KubernetesPolicyViolation: KubernetesPolicyViolation
+        -- An analysis of Amazon S3 activity or exposure. Set when AnalysisType is S3_EXPOSURE, S3_ACTOR_CONTEXT, or S3_PEN_TEST.
+        S3Analysis: S3Analysis
+        -- The processes in a process lineage. Set when AnalysisType is PROCESS_LINEAGE.
+        Processes: {Process}
+        -- An analysis of the findings in an account over time. Set when AnalysisType is TREND or BASELINE.
+        AccountAnalysis: InvestigationAccountAnalysis
+        -- The threat indicators associated with the analysis, such as an IP address, a domain, or a file hash.
+        Indicators: {InvestigationIndicator}
     end
 
     -- Contains information about the observed behavior.
@@ -627,6 +1030,18 @@ local record M
         Profiles: {string : {string : {AnomalyObject}}}
         -- Information about the behavior of the anomalies.
         Unusual: AnomalyUnusual
+    end
+
+    -- Contains the number and percentage of archived and unarchived findings.
+    record ArchiveDistribution
+        -- The number of archived findings.
+        ArchivedCount: number
+        -- The number of unarchived findings.
+        UnarchivedCount: number
+        -- The percentage of findings that are archived, from 0 to 100.
+        ArchivedPercentage: number
+        -- The percentage of findings that are unarchived, from 0 to 100.
+        UnarchivedPercentage: number
     end
 
     record ArchiveFindingsInput
@@ -680,6 +1095,28 @@ local record M
         UpdatedAt: number
         -- The timestamp when the association expires.
         ExpiresAt: number
+    end
+
+    -- Contains a MITRE ATT&CK tactic and technique observed during an attack, with the findings that are associated with them.
+    record Attack
+        -- The MITRE ATT&CK tactic.
+        Tactic: ThreatReference
+        -- The MITRE ATT&CK technique.
+        Technique: ThreatReference
+        -- The findings associated with the tactic and technique.
+        Findings: {FindingReference}
+        -- The version of the attack framework that the tactic and technique classification uses.
+        Version: string
+    end
+
+    -- Contains information about one phase of an attack.
+    record AttackPhase
+        -- The MITRE ATT&CK tactic of the phase. Possible values are Reconnaissance, Resource Development, Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Command and Control, Exfiltration, and Impact.
+        Phase: string
+        -- A description of the activity in this phase.
+        Description: string
+        -- The MITRE ATT&CK tactics and techniques observed in this phase, with the findings that are associated with them.
+        Attacks: {Attack}
     end
 
     enum AutoEnableMembers
@@ -941,6 +1378,46 @@ local record M
         EndTime: number
     end
 
+    enum CorrelationReason
+        "HIGH_SEVERITY"
+        "SAME_RESOURCE"
+        "SAME_BEHAVIOR"
+    end
+
+    -- Contains information about a behavior that related findings share.
+    record SharedBehavior
+        -- The JSON path of the finding attribute that matched.
+        Path: string
+        -- The value that matched.
+        Value: string
+    end
+
+    -- Contains information about a resource that related findings share.
+    record SharedResource
+        -- The type of the resource. This value isn't limited to the resource types of InvestigationResource.
+        ResourceType: string
+        -- The identifier of the resource.
+        Identifier: string
+    end
+
+    -- Contains information about a group of correlated findings that have the same finding type.
+    record CorrelatedFinding
+        -- The finding type of the group.
+        FindingType: string
+        -- The number of correlated findings of this type. This value can be greater than the number of IDs in FindingIds.
+        Count: number
+        -- The highest severity score among the findings in the group, from 0 to 10.
+        SeverityMax: number
+        -- The reasons why GuardDuty correlated the findings. Possible values are HIGH_SEVERITY, SAME_RESOURCE, and SAME_BEHAVIOR. A value can appear more than once.
+        CorrelationReasons: {string}
+        -- A sample of the IDs of the findings in the group.
+        FindingIds: {string}
+        -- The resources that the findings in the group share with the investigated activity.
+        SharedResources: {SharedResource}
+        -- The behaviors that the findings in the group share with the investigated activity.
+        SharedBehaviors: {SharedBehavior}
+    end
+
     enum CoverageStatus
         "HEALTHY"
         "UNHEALTHY"
@@ -950,6 +1427,54 @@ local record M
         "EKS"
         "ECS"
         "EC2"
+    end
+
+    enum Disposition
+        "Isolated"
+        "Blocked"
+        "Deleted"
+        "Access Revoked"
+        "Logged"
+    end
+
+    -- Contains an action that you can take to respond to a threat.
+    record CountermeasureAction
+        -- A short title for the action.
+        Title: string
+        -- A description of the action.
+        Description: string
+        -- The priority of the action. Possible values are IMMEDIATE, SHORT_TERM, and STRATEGIC.
+        Priority: string
+        -- The defensive technique that the action applies.
+        DefenseTechnique: string
+        -- The MITRE ATT&CK technique IDs that the action mitigates, such as T1059.004.
+        Mitigates: {string}
+        -- CLI commands that you can run to carry out the action.
+        CliCommands: {string}
+        -- The numeric identifier of the action's disposition.
+        DispositionId: number
+        -- The outcome of the action. Possible values are Isolated, Blocked, Deleted, Access Revoked, and Logged.
+        Disposition: string
+        -- The resources that the action applies to.
+        AffectedResources: {AffectedResource}
+    end
+
+    enum DefenseTactic
+        "Isolate"
+        "Evict"
+        "Restore"
+        "Harden"
+        "Detect"
+    end
+
+    -- Contains the actions that you can take for one defensive tactic.
+    record Countermeasure
+        -- The defensive tactic. Possible values are Isolate, Evict, Restore, Harden, and Detect.
+        DefenseTactic: string
+        -- The actions for the defensive tactic.
+        Actions: {CountermeasureAction}
+        -- A description of the countermeasure.
+        Description: string
     end
 
     enum ManagementType
@@ -2558,6 +3083,42 @@ local record M
         Sequence: Sequence
     end
 
+    enum InvestigationDetectorFeature
+        "CLOUD_TRAIL"
+        "DNS_LOGS"
+        "FLOW_LOGS"
+        "S3_DATA_EVENTS"
+        "EKS_AUDIT_LOGS"
+        "EBS_MALWARE_PROTECTION"
+        "RDS_LOGIN_EVENTS"
+        "EKS_RUNTIME_MONITORING"
+        "EKS_ADDON_MANAGEMENT"
+        "LAMBDA_NETWORK_LOGS"
+        "RUNTIME_MONITORING"
+        "ECS_FARGATE_AGENT_MANAGEMENT"
+        "EC2_AGENT_MANAGEMENT"
+    end
+
+    -- Contains information about the status of a protection plan.
+    record ProtectionPlan
+        -- The name of the protection plan. Possible values are CLOUD_TRAIL, DNS_LOGS, FLOW_LOGS, S3_DATA_EVENTS, EKS_AUDIT_LOGS, EBS_MALWARE_PROTECTION, RDS_LOGIN_EVENTS, EKS_RUNTIME_MONITORING, EKS_ADDON_MANAGEMENT, LAMBDA_NETWORK_LOGS, RUNTIME_MONITORING, ECS_FARGATE_AGENT_MANAGEMENT, and EC2_AGENT_MANAGEMENT.
+        Name: string
+        -- The status of the protection plan. Possible values are ENABLED and DISABLED.
+        Status: string
+    end
+
+    -- Contains information about your detection coverage, such as the status of protection plans and foundational data sources.
+    record DetectionCoverage
+        -- The protection plans and their status.
+        ProtectionPlans: {ProtectionPlan}
+        -- The foundational data sources, such as CLOUD_TRAIL, DNS_LOGS, and FLOW_LOGS.
+        FoundationalDataSources: {string}
+        -- A description of the gaps in detection coverage. A record doesn't include both CoverageGaps and KeyObservation.
+        CoverageGaps: string
+        -- A key observation about detection coverage.
+        KeyObservation: string
+    end
+
     enum DetectionRuleConfigurationStatus
         "ACTIVE"
         "PROCESSING"
@@ -2764,6 +3325,66 @@ local record M
     record DisassociateMembersOutput
         -- A list of objects that contain the unprocessed account and a result string that explains why it was unprocessed.
         UnprocessedAccounts: {UnprocessedAccount}
+    end
+
+    enum DistributionDimension
+        "SEVERITY"
+        "TYPE"
+        "RESOURCE"
+        "ATTACK_VECTOR"
+        "ARCHIVE"
+    end
+
+    -- Contains the number and percentage of findings of a finding type.
+    record TypeDistribution
+        -- The finding type.
+        FindingType: string
+        -- The number of findings of this type.
+        Count: number
+        -- The percentage of findings that are of this type, from 0 to 100.
+        Percentage: number
+        -- The most common severity among findings of this type.
+        DominantSeverity: string
+    end
+
+    -- Contains the number of findings for a resource.
+    record ResourceDistribution
+        -- The display name of the resource type, such as Instance.
+        ResourceType: string
+        -- The identifier of the resource.
+        Identifier: string
+        -- The number of findings for the resource.
+        Count: number
+    end
+
+    -- Contains a breakdown of findings along a dimension, such as severity or finding type.
+    record Distribution
+        -- The dimension of the breakdown. The value identifies the breakdown that the record describes: SEVERITY (SeverityBreakdown), TYPE (FindingTypes or TopFindingTypes), RESOURCE (Resources), ATTACK_VECTOR (AttackVectors), and ARCHIVE (Archive).
+        Dimension: string
+        -- The total number of findings in the breakdown.
+        TotalFindings: number
+        -- The number of findings at each severity level.
+        SeverityBreakdown: SeverityBreakdown
+        -- The findings broken down by finding type, with counts and percentages.
+        FindingTypes: {TypeDistribution}
+        -- The finding types that have the most findings, with counts.
+        TopFindingTypes: {FindingTypeCount}
+        -- The findings broken down by affected resource.
+        Resources: {ResourceDistribution}
+        -- The findings broken down by MITRE ATT&CK tactic.
+        AttackVectors: {TacticCoverage}
+        -- The number and percentage of archived and unarchived findings.
+        Archive: ArchiveDistribution
+    end
+
+    -- Contains DNS details about network activity.
+    record DnsContext
+        -- The suffix of the domain that was queried.
+        DomainSuffix: string
+        -- Other domains that were queried.
+        OtherDomains: string
+        -- The DNS resolution history for the domain.
+        ResolverHistory: string
     end
 
     -- Contains information about an EBS snapshot that was scanned for malware.
@@ -2973,6 +3594,18 @@ local record M
     record EnableOrganizationAdminAccountOutput
     end
 
+    -- Contains additional context about activity, such as geolocation and threat intelligence information. Not every member is set.
+    record Enrichment
+        -- The name of the country associated with the activity.
+        CountryName: string
+        -- The name of the organization that owns the autonomous system number (ASN).
+        AsnOrg: string
+        -- The name of the threat list that contains the indicator.
+        ThreatListName: string
+        -- The name of the threat.
+        ThreatName: string
+    end
+
     -- An instance of a threat intelligence detail that constitutes evidence for the finding.
     record ThreatIntelligenceDetail
         -- The name of the threat intelligence list that triggered the finding.
@@ -2992,6 +3625,119 @@ local record M
     enum Feedback
         "USEFUL"
         "NOT_USEFUL"
+    end
+
+    enum FetchCriterionCondition
+        "EQUALS"
+        "NOT_EQUALS"
+        "GREATER_THAN"
+        "GREATER_THAN_OR_EQUAL"
+        "LESS_THAN"
+        "LESS_THAN_OR_EQUAL"
+    end
+
+    -- Contains a filter condition that GuardDuty applied when it retrieved data.
+    record FetchCriterion
+        -- The name of the field that the condition applies to.
+        Field: string
+        -- The comparison operator of the condition. Possible values are EQUALS, NOT_EQUALS, GREATER_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN, and LESS_THAN_OR_EQUAL.
+        Condition: string
+        -- The values that the field is compared against. Numeric and Boolean values are represented as strings.
+        Values: {string}
+    end
+
+    -- Contains information about the configuration of a detector feature. Each member is optional.
+    record InvestigationDetectorFeatureConfiguration
+        -- The name of the feature. Possible values are CLOUD_TRAIL, DNS_LOGS, FLOW_LOGS, S3_DATA_EVENTS, EKS_AUDIT_LOGS, EBS_MALWARE_PROTECTION, RDS_LOGIN_EVENTS, EKS_RUNTIME_MONITORING, EKS_ADDON_MANAGEMENT, LAMBDA_NETWORK_LOGS, RUNTIME_MONITORING, ECS_FARGATE_AGENT_MANAGEMENT, and EC2_AGENT_MANAGEMENT.
+        Name: string
+        -- The status of the feature. Possible values are ENABLED and DISABLED.
+        Status: string
+        -- The timestamp at which the feature configuration was last updated.
+        UpdatedAt: number
+    end
+
+    -- Contains the time range of the data that GuardDuty requested. The range is defined by a start time and a duration.
+    record FetchTimeWindow
+        -- The timestamp at which the time range starts.
+        StartedAt: number
+        -- The length of the time range, in minutes. Valid values are 1 to 120.
+        DurationInMinutes: number
+    end
+
+    -- Contains the parameters of a request that GuardDuty made to retrieve data during an investigation. The members that are set depend on the FetchType of the record.
+    record FetchQuery
+        -- The filter criteria that GuardDuty applied to the request.
+        Criteria: {FetchCriterion}
+        -- The time range of the data that GuardDuty requested.
+        TimeWindow: FetchTimeWindow
+        -- The maximum number of rows that GuardDuty requested. Valid values are 1 to 1,000.
+        RowLimit: number
+        -- The Amazon Web Services account ID that the request was made for.
+        AccountId: string
+        -- The threat indicator that GuardDuty looked up, such as an IP address, a domain, or a file hash.
+        Indicator: string
+        -- The type of the threat indicator. Possible values are IP, DOMAIN, and FILE.
+        IndicatorType: string
+        -- The finding type whose documentation GuardDuty retrieved.
+        FindingType: string
+        -- The ID of the finding that GuardDuty retrieved.
+        FindingId: string
+    end
+
+    enum FetchType
+        "FINDINGS"
+        "DETECTOR"
+        "REPUTATION"
+        "FINDING_TYPE_DOCUMENTATION"
+        "CLOUD_TRAIL_RAW_EVENTS"
+        "RUNTIME_SIGNALS"
+        "MEMBER_ACCOUNTS"
+    end
+
+    -- Contains information about a finding type from the GuardDuty documentation.
+    record FindingTypeDocumentation
+        -- A short description of the finding type.
+        Description: string
+        -- The severity of the finding type, as stated in the documentation.
+        Severity: string
+        -- The label that the documentation uses for the GuardDuty capability associated with the finding type. This value isn't a detector feature name.
+        Feature: string
+        -- The full description of the finding type.
+        FullDescription: string
+        -- The recommended steps to remediate the finding type.
+        Remediation: string
+        -- Links to more information about the finding type.
+        LearnMoreLinks: {string}
+    end
+
+    enum FetchVerdict
+        "THREAT"
+        "BENIGN"
+        "NEUTRAL"
+    end
+
+    -- Contains the data that GuardDuty received in response to a request during an investigation. The members that are set depend on the FetchType of the record.
+    record FetchResult
+        -- The identifiers of the items that were returned, such as finding IDs, event IDs, signal IDs, or account IDs, depending on FetchType. The list contains at most 50 identifiers; TotalCount can be larger.
+        ItemIds: {string}
+        -- The total number of items that were returned. This value can be greater than the number of identifiers in ItemIds.
+        TotalCount: number
+        -- The configuration of the detector features that GuardDuty retrieved.
+        Features: {InvestigationDetectorFeatureConfiguration}
+        -- The reputation verdict for the threat indicator. Possible values are THREAT, BENIGN, and NEUTRAL. If the lookup returned more than one result, the verdict describes the first result.
+        Verdict: string
+        -- The documentation for the finding type that GuardDuty retrieved.
+        Documentation: FindingTypeDocumentation
+    end
+
+    -- Contains information about data that GuardDuty retrieved during an investigation, including what GuardDuty requested and what it received.
+    record FetchRecord
+        -- The kind of data that GuardDuty retrieved. The value determines which members of Query and Result can be set. Possible values: FINDINGS – GuardDuty findings. DETECTOR – The configuration of a GuardDuty detector. REPUTATION – Reputation information about a threat indicator, such as an IP address, a domain, or a file hash. FINDING_TYPE_DOCUMENTATION – The documentation for a finding type. CLOUD_TRAIL_RAW_EVENTS – Amazon Web Services CloudTrail events. RUNTIME_SIGNALS – Runtime signals. MEMBER_ACCOUNTS – A list of member accounts.
+        FetchType: string
+        -- The request that GuardDuty made. Not every record includes a query.
+        Query: FetchQuery
+        -- The data that GuardDuty received in response to the request. Not every record includes a result.
+        Result: FetchResult
     end
 
     -- Contains information about the elastic network interface of the EC2 instance.
@@ -3580,6 +4326,22 @@ local record M
         CustomDetectionRuleName: string
     end
 
+    -- Contains details about a GuardDuty finding.
+    record FindingDetail
+        -- The ID of the finding.
+        FindingId: string
+        -- The type of the finding.
+        FindingType: string
+        -- The severity of the finding.
+        Severity: string
+        -- The ID of the Amazon Web Services account in which the finding was generated.
+        AccountId: string
+        -- The Amazon Web Services Region in which the finding was generated.
+        Region: string
+        -- The time range of the activity that the finding describes.
+        ActivityWindow: ActivityWindow
+    end
+
     -- Information about each finding type associated with the groupedByFindingType statistics.
     record FindingTypeStatistics
         -- Name of the finding type.
@@ -3838,11 +4600,18 @@ local record M
         NextToken: string
     end
 
+    enum SummaryFormat
+        "STRING"
+        "STRUCTURED"
+    end
+
     record GetInvestigationInput
         -- The unique ID of the GuardDuty detector associated with the investigation. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API.
         DetectorId: string
         -- The unique identifier of the investigation to retrieve.
         InvestigationId: string
+        -- The format in which to return the investigation summary. Possible values: STRING – (Default) Returns the summary as text in Summary. STRUCTURED – Returns a typed summary in SummaryData. GuardDuty returns a summary only when the investigation status is COMPLETED.
+        SummaryFormat: string
     end
 
     -- Contains information about the product that produced an investigation.
@@ -3861,18 +4630,120 @@ local record M
         Product: Product
     end
 
-    enum RiskLevel
-        "Info"
-        "Low"
-        "Medium"
-        "High"
-        "Critical"
+    enum InvestigationType
+        "FINDING"
+        "ACCOUNT"
+        "ORGANIZATION"
+    end
+
+    -- Contains the start and end of a time window.
+    record QueryTimeWindow
+        -- The timestamp at which the time window starts.
+        StartTime: number
+        -- The timestamp at which the time window ends.
+        EndTime: number
+    end
+
+    -- Contains information about what an investigation analyzed. Only the identifier that matches InvestigationType is set.
+    record InvestigationScope
+        -- The type of investigation. Possible values: FINDING – An investigation of a specific GuardDuty finding. ACCOUNT – An investigation of the threat posture of an Amazon Web Services account. ORGANIZATION – An investigation of your organization's threat posture.
+        InvestigationType: string
+        -- The ID of the finding that the investigation analyzed. Set only when InvestigationType is FINDING.
+        FindingId: string
+        -- The ID of the Amazon Web Services account that the investigation analyzed. Set only when InvestigationType is ACCOUNT.
+        AccountId: string
+        -- The ID of the administrator account of the organization that the investigation analyzed. Set only when InvestigationType is ORGANIZATION.
+        AdminAccountId: string
+        -- The time window over which the investigation queried data, set only when InvestigationType is ACCOUNT or ORGANIZATION.
+        QueryTimeWindow: QueryTimeWindow
     end
 
     enum InvestigationStatus
         "RUNNING"
         "COMPLETED"
         "FAILED"
+    end
+
+    -- Contains the key observations of an investigation.
+    record KeyObservations
+        -- A short title for the key observations.
+        Title: string
+        -- A narrative explanation of the key observations.
+        Narrative: string
+        -- The individual key observations.
+        Observations: {string}
+    end
+
+    -- Contains a summary of findings across an organization.
+    record OrganizationFindingsSummary
+        -- The total number of findings across the organization.
+        TotalFindings: number
+        -- The number of findings at each severity level across the organization.
+        SeverityBreakdown: SeverityBreakdown
+        -- The finding types that have the most findings, with counts.
+        TopFindingTypes: {FindingTypeCount}
+        -- The number of findings in each time window.
+        ByTimeWindow: {TimeWindowGroup}
+        -- The total number of accounts in the organization.
+        TotalAccountCount: number
+        -- The number of accounts that have findings.
+        AffectedAccountCount: number
+    end
+
+    -- Contains an analysis of the findings across an organization.
+    record OrganizationAnalysis
+        -- A summary of the findings across the organization.
+        FindingsSummary: OrganizationFindingsSummary
+        -- The accounts in the organization that have findings, with the number of findings in each.
+        AccountBreakdown: {AccountSummary}
+    end
+
+    enum RecommendationCategory
+        "ENABLE_PROTECTION"
+        "FURTHER_INVESTIGATION"
+        "SUPPRESSION_RULE"
+        "HARDENING"
+        "MONITORING"
+    end
+
+    -- Contains a recommended action.
+    record Recommendation
+        -- A short title for the recommendation.
+        Title: string
+        -- The reason for the recommendation.
+        Rationale: string
+        -- The category of the recommendation. Possible values are ENABLE_PROTECTION, FURTHER_INVESTIGATION, SUPPRESSION_RULE, HARDENING, and MONITORING.
+        Category: string
+        -- The priority of the recommendation. Possible values are IMMEDIATE, SHORT_TERM, and STRATEGIC.
+        Priority: string
+        -- CLI commands that you can run to carry out the recommendation.
+        CliCommands: {string}
+    end
+
+    -- Contains an assessment of the threat that a FINDING investigation identified.
+    record ThreatAssessment
+        -- The phases of the attack, in terms of MITRE ATT&CK tactics.
+        AttackProgression: {AttackPhase}
+        -- A description of the likely threat actor.
+        ThreatActorProfile: string
+    end
+
+    -- Contains the structured summary of a GuardDuty investigation. The fields that are present depend on the investigation type.
+    record InvestigationSummaryData
+        -- For a FINDING investigation, the type of the finding that the investigation analyzed.
+        FindingType: string
+        -- For a FINDING investigation, an assessment of the threat, including how the attack progressed.
+        ThreatAssessment: ThreatAssessment
+        -- For a FINDING investigation, actions that you can take to respond to the threat, grouped by defensive tactic.
+        Countermeasures: {Countermeasure}
+        -- For an ACCOUNT investigation, an analysis of the findings in the investigated account.
+        AccountAnalysis: AccountAnalysis
+        -- For an ORGANIZATION investigation, an analysis of the findings across the organization.
+        OrganizationAnalysis: OrganizationAnalysis
+        -- The key observations of the investigation.
+        KeyObservations: KeyObservations
+        -- For an ACCOUNT or ORGANIZATION investigation, the recommended actions.
+        Recommendations: {Recommendation}
     end
 
     -- Contains the details and results of a GuardDuty investigation.
@@ -3895,8 +4766,12 @@ local record M
         Risk: string
         -- The confidence level of the investigation's assessment. Possible values are Unknown, Low, Medium, and High.
         Confidence: string
-        -- A structured summary of the investigation findings, including affected resources, threat assessment, and recommended remediation steps.
+        -- A summary of the investigation results as text, up to 262,144 characters. Returned only when the investigation status is COMPLETED. When you set SummaryFormat to STRUCTURED, the summary is returned in SummaryData instead, unless it isn't available in a structured form, in which case it's returned in this field.
         Summary: string
+        -- A structured summary of the investigation results. GuardDuty returns this field only when you set SummaryFormat to STRUCTURED, the investigation status is COMPLETED, and the summary is available in a structured form. When this field is returned, Summary isn't returned.
+        SummaryData: InvestigationSummaryData
+        -- Information about what the investigation analyzed, including the investigation type, the finding, account, or organization that was analyzed, and, for ACCOUNT and ORGANIZATION investigations, the time window over which the investigation queried data. Returned only when the investigation status is COMPLETED.
+        Scope: InvestigationScope
         -- The timestamp at which the investigation started.
         StartTime: number
         -- The timestamp at which the investigation completed.
@@ -4765,6 +5640,581 @@ local record M
         NextToken: string
     end
 
+    enum RecordType
+        "OBSERVATION"
+        "ANALYSIS"
+        "UPDATE"
+        "FETCH"
+        "METADATA"
+    end
+
+    record ListInvestigationRecordsInput
+        -- The unique ID of the GuardDuty detector associated with the investigation. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API.
+        DetectorId: string
+        -- The unique identifier of the investigation whose records you want to list.
+        InvestigationId: string
+        -- The types of records to return. Possible values are UPDATE, FETCH, OBSERVATION, ANALYSIS, and METADATA. If you don't specify this parameter, GuardDuty returns records of all types.
+        RecordTypes: {string}
+        -- The maximum number of records to return in a single response. Valid values are 1 to 50. The default value is 20. A response can contain fewer records than this value, or no records, and still include a NextToken.
+        MaxResults: number
+        -- You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data. Use the same InvestigationId and RecordTypes values that you used in the previous request. If you specify this parameter for an investigation whose status isn't COMPLETED, the operation returns a BadRequestException. A NextToken expires 24 hours after it's returned.
+        NextToken: string
+    end
+
+    -- Contains operational details about an investigation, such as how long it took.
+    record MetadataRecord
+        -- The total time that the investigation took, in milliseconds.
+        TotalTimeMilliseconds: number
+    end
+
+    -- Contains details about anomalous Kubernetes behavior.
+    record KubernetesAnomaly
+        -- A description of the unusual behavior.
+        UnusualBehavior: string
+        -- A description of the normal behavior that the activity was compared against.
+        BaselineContext: string
+        -- The anomaly score of the behavior.
+        AnomalyScore: string
+        -- The period over which the normal behavior was established.
+        TrainingPeriod: string
+    end
+
+    -- Contains details about a Kubernetes API call.
+    record KubernetesApiCall
+        -- The name of the cluster.
+        ClusterName: string
+        -- The Kubernetes user name of the caller.
+        Username: string
+        -- The Kubernetes groups of the caller.
+        UserGroups: string
+        -- The ID of the caller.
+        UserId: string
+        -- The Kubernetes API verb, such as get or create.
+        Verb: string
+        -- The type of the Kubernetes resource.
+        ResourceType: string
+        -- The name of the Kubernetes resource.
+        ResourceName: string
+        -- The Kubernetes namespace of the resource.
+        Namespace: string
+        -- The URI of the request.
+        RequestUri: string
+        -- The status code of the API call.
+        StatusCode: number
+        -- The source IP addresses of the API call.
+        SourceIps: string
+        -- The user agent of the caller.
+        UserAgent: string
+        -- The number of matching API calls.
+        EventCount: number
+    end
+
+    -- Contains details about a Kubernetes workload.
+    record InvestigationKubernetesWorkload
+        -- The type of the workload.
+        WorkloadType: string
+        -- The name of the workload.
+        WorkloadName: string
+        -- The containers in the workload.
+        Containers: string
+        -- The volumes of the workload.
+        Volumes: string
+        -- The security context of the workload.
+        SecurityContext: string
+    end
+
+    -- Contains details about Kubernetes activity. A record contains either ApiCall and Enrichment, or Anomaly and Workload.
+    record KubernetesActivity
+        -- Details about a Kubernetes API call.
+        ApiCall: KubernetesApiCall
+        -- Details about anomalous Kubernetes behavior.
+        Anomaly: KubernetesAnomaly
+        -- The Kubernetes workload that is associated with the anomaly.
+        Workload: InvestigationKubernetesWorkload
+        -- Additional context about the API call, such as geolocation information.
+        Enrichment: Enrichment
+    end
+
+    -- Contains information about a threat that a malware scan detected.
+    record MalwareThreat
+        -- The name of the threat.
+        Name: string
+        -- The severity of the threat.
+        Severity: string
+        -- The number of files that the threat infected.
+        InfectedFileCount: number
+        -- Examples of files that the threat infected.
+        SampleFiles: string
+    end
+
+    -- Contains details about a malware scan.
+    record InvestigationMalwareScan
+        -- The ID of the scan.
+        ScanId: string
+        -- The type of the scan. Possible values are BACKUP_INITIATED, ON_DEMAND, and GUARDDUTY_INITIATED.
+        ScanType: string
+        -- The category of the scan. Possible values are FULL_SCAN and INCREMENTAL_SCAN.
+        ScanCategory: string
+        -- The ID of the finding that initiated the scan.
+        TriggerFindingId: string
+        -- The scan engines that the scan used.
+        EngineSources: string
+        -- The timestamp at which the scan started.
+        ScanStartedAt: number
+        -- The timestamp at which the scan completed.
+        ScanCompletedAt: number
+        -- The number of files that the scan scanned.
+        FilesScanned: number
+        -- The amount of data that the scan scanned, in GB.
+        GigabytesScanned: number
+        -- The number of volumes that the scan scanned.
+        VolumesScanned: number
+        -- The number of infected files.
+        InfectedFileCount: number
+        -- The type of the scanned resource.
+        ResourceType: string
+        -- The identifier of the scanned resource.
+        ResourceIdentifier: string
+        -- The highest severity among the threats that the scan detected.
+        HighestSeverity: string
+        -- The name of the threat that has the highest severity.
+        HighestSeverityThreatName: string
+        -- The number of unique threats that the scan detected.
+        UniqueThreatCount: number
+        -- The total number of infected items.
+        TotalInfectedItems: number
+        -- The threats that the scan detected.
+        Threats: {MalwareThreat}
+    end
+
+    -- Contains information about how network activity deviates from normal behavior.
+    record NetworkAnomaly
+        -- The amount of data that is typical for the normal behavior.
+        BaselineBytes: string
+        -- How much the activity deviates from normal behavior.
+        Deviation: string
+        -- The number of days of activity that the normal behavior is based on.
+        ProfileAgeDays: number
+        -- The remote service that the activity involved.
+        RemoteService: string
+        -- The Region of the remote endpoint.
+        RemoteRegion: string
+        -- The duration of the activity.
+        Duration: string
+        -- The ratio of connection attempts that were reset.
+        ResetRatio: string
+        -- The number of target hosts.
+        TargetHostCount: number
+    end
+
+    -- Contains counts that describe network activity, such as the number of requests or connection attempts.
+    record NetworkCounts
+        -- The number of requests.
+        RequestCount: number
+        -- The total number of connection attempts.
+        TotalAttempts: number
+        -- The number of connection attempts that were suspicious.
+        SuspiciousAttempts: number
+        -- The number of connection attempts that were reset.
+        ResetAttempts: number
+    end
+
+    -- Contains information about the ports that network activity involved. A port value can be a single port, a range such as 51000-51010, or a comma-separated list such as 443,8080.
+    record NetworkPorts
+        -- The port on the target of the activity.
+        TargetPort: string
+        -- The port on the remote host.
+        RemotePort: string
+        -- The port of the DNS resolver.
+        ResolverPort: string
+        -- The ports that the activity involved.
+        Ports: string
+        -- The ports that the activity used.
+        PortsUsed: string
+        -- The number of ports that the activity involved.
+        PortCount: number
+    end
+
+    -- Contains the amount of data that network activity transferred.
+    record NetworkTraffic
+        -- The number of bytes sent.
+        BytesSent: number
+        -- The number of bytes received.
+        BytesReceived: number
+    end
+
+    -- Contains details about network activity.
+    record NetworkActivity
+        -- The network protocol of the activity.
+        Protocol: string
+        -- The direction of the network connection, such as inbound or outbound.
+        Direction: string
+        -- The method that the network activity used.
+        Method: string
+        -- Indicates whether the network connection was blocked.
+        Blocked: string
+        -- The platform on which the network activity was observed.
+        Platform: string
+        -- The ports that the network activity involved.
+        Ports: NetworkPorts
+        -- The amount of data that the network activity transferred.
+        Traffic: NetworkTraffic
+        -- Details about how the network activity deviates from normal behavior.
+        Anomaly: NetworkAnomaly
+        -- DNS details about the network activity.
+        Dns: DnsContext
+        -- Counts that describe the network activity, such as the number of requests or connection attempts.
+        Counts: NetworkCounts
+        -- Additional context about the network activity, such as geolocation and threat intelligence information.
+        Enrichment: Enrichment
+    end
+
+    enum ObservationType
+        "FINDING_DETAIL"
+        "RESOURCE"
+        "NETWORK_ACTIVITY"
+        "RDS_LOGIN_ACTIVITY"
+        "S3_ACTIVITY"
+        "KUBERNETES_ACTIVITY"
+        "MALWARE_SCAN"
+        "RELATED_FINDINGS"
+        "DETECTION_COVERAGE"
+        "ACCOUNT_OVERVIEW"
+        "RECOMMENDATION"
+        "RUNTIME_SIGNALS"
+        "DISTRIBUTION"
+        "REPRESENTATIVE_RESOURCE"
+    end
+
+    -- Contains details about login activity on an Amazon RDS database.
+    record RdsLoginActivity
+        -- The outcome of the login attempts.
+        Outcome: string
+        -- The rate of the login attempts.
+        Rate: string
+        -- An explanation of how the login activity deviates from normal behavior.
+        AnomalyContext: string
+        -- The number of login attempts.
+        LoginCount: number
+        -- The time range of the login activity.
+        ActivityWindow: ActivityWindow
+        -- Additional context about the login activity, such as geolocation information.
+        Enrichment: Enrichment
+    end
+
+    -- Contains information about a finding type that GuardDuty observed.
+    record ObservedFindingType
+        -- The finding type.
+        FindingType: string
+        -- The number of findings of this type.
+        Count: number
+        -- The highest severity score among the findings of this type, from 0 to 10.
+        SeverityMax: number
+        -- The resources that the findings of this type share with the investigated activity.
+        SharedResources: {SharedResource}
+    end
+
+    -- Contains information about findings that are related to the investigated activity.
+    record RelatedFindings
+        -- The findings that GuardDuty correlated with the investigated activity, grouped by finding type.
+        Correlated: {CorrelatedFinding}
+        -- Other finding types that GuardDuty observed, with counts. These entries don't include finding IDs.
+        Observed: {ObservedFindingType}
+    end
+
+    -- Contains a representative finding for an affected resource. GuardDuty selects one finding for each affected resource, based on severity.
+    record RepresentativeFinding
+        -- The type of the affected resource.
+        ResourceType: string
+        -- The identifier of the affected resource.
+        Identifier: string
+        -- The ID of the representative finding.
+        FindingId: string
+        -- The number of findings for the resource.
+        FindingCount: number
+        -- The assessed risk level of the resource. Possible values are Info, Low, Medium, High, and Critical.
+        RiskLevel: string
+        -- The reason for the assessed risk level.
+        RiskRationale: string
+    end
+
+    -- Contains details about an Amazon EC2 instance.
+    record InvestigationEc2Instance
+        -- The ID of the instance.
+        InstanceId: string
+        -- The instance type.
+        InstanceType: string
+        -- The state of the instance.
+        InstanceState: string
+        -- The Availability Zone of the instance.
+        AvailabilityZone: string
+        -- The private IP address of the instance.
+        PrivateIpAddress: string
+        -- The public IP address of the instance.
+        PublicIp: string
+        -- The ID of the VPC in which the instance runs.
+        VpcId: string
+        -- The ID of the subnet in which the instance runs.
+        SubnetId: string
+        -- The ID of the Amazon Machine Image (AMI) that was used to launch the instance.
+        ImageId: string
+        -- The timestamp at which the instance was launched.
+        LaunchedAt: number
+    end
+
+    -- Contains details about an Amazon ECS cluster.
+    record InvestigationEcsCluster
+        -- The name of the cluster.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the cluster.
+        Arn: string
+        -- The status of the cluster.
+        Status: string
+    end
+
+    -- Contains details about an Amazon EKS cluster.
+    record InvestigationEksCluster
+        -- The name of the cluster.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the cluster.
+        Arn: string
+        -- The status of the cluster.
+        Status: string
+        -- The ID of the VPC that is associated with the cluster.
+        VpcId: string
+    end
+
+    -- Contains details about an Lambda function.
+    record LambdaFunction
+        -- The name of the function.
+        FunctionName: string
+        -- The Amazon Resource Name (ARN) of the function.
+        FunctionArn: string
+        -- The version of the function.
+        FunctionVersion: string
+        -- The execution role of the function.
+        Role: string
+        -- The description of the function.
+        Description: string
+        -- The revision ID of the function version.
+        RevisionId: string
+        -- The timestamp at which the function was last updated.
+        UpdatedAt: number
+        -- A summary of the VPC configuration of the function, as a single string.
+        VpcConfigurationSummary: string
+    end
+
+    -- Contains details about an Amazon RDS database instance.
+    record RdsDbInstance
+        -- The identifier of the database instance.
+        DbInstanceIdentifier: string
+        -- The identifier of the database cluster that contains the instance.
+        DbClusterIdentifier: string
+        -- The Amazon Resource Name (ARN) of the database instance.
+        DbInstanceArn: string
+        -- The unique resource ID of the database instance.
+        DbiResourceId: string
+        -- The database engine of the instance.
+        Engine: string
+        -- The version of the database engine.
+        EngineVersion: string
+    end
+
+    -- Contains details about the user that logged in to an Amazon RDS database instance.
+    record RdsDbUser
+        -- The user name that was used to log in.
+        User: string
+        -- The name of the application that was used to log in.
+        Application: string
+        -- The name of the database that the user logged in to.
+        Database: string
+        -- The authentication method that the user used.
+        AuthMethod: string
+        -- The version of Secure Sockets Layer (SSL) that the connection used.
+        Ssl: string
+    end
+
+    -- Contains details that are specific to the type of a resource. The member that is set matches the ResourceType of the resource, except that RdsDbInstance and RdsDbUser can be set together.
+    record InvestigationResourceData
+        -- Details about an Amazon EC2 instance.
+        Ec2Instance: InvestigationEc2Instance
+        -- Details about an Lambda function.
+        LambdaFunction: LambdaFunction
+        -- Details about an Amazon RDS database instance.
+        RdsDbInstance: RdsDbInstance
+        -- Details about the user that logged in to an Amazon RDS database instance.
+        RdsDbUser: RdsDbUser
+        -- Details about an Amazon EKS cluster.
+        EksCluster: InvestigationEksCluster
+        -- Details about an Amazon ECS cluster.
+        EcsCluster: InvestigationEcsCluster
+    end
+
+    -- Contains information about an Amazon Web Services resource that is relevant to an investigation.
+    record InvestigationResource
+        -- The unique identifier of the resource. This is the Amazon Resource Name (ARN) of the resource when it's available. Otherwise, it's the name or ID of the resource.
+        Uid: string
+        -- The name of the resource.
+        Name: string
+        -- The type of the resource. Possible values are EC2_INSTANCE, EBS_VOLUME, S3_BUCKET, IAM_ROLE, IAM_USER, IAM_ACCESS_KEY, LAMBDA_FUNCTION, EKS_CLUSTER, ECS_CLUSTER, KUBERNETES_WORKLOAD, RDS_INSTANCE, RDS_DB_USER, and EC2_SECURITY_GROUP.
+        ResourceType: string
+        -- Details that are specific to the type of the resource.
+        Data: InvestigationResourceData
+    end
+
+    -- Contains information about a group of runtime signals that have the same finding type.
+    record SignalGroup
+        -- The finding type of the group.
+        FindingType: string
+        -- The severity score of the signals in the group, from 0 to 10.
+        Severity: number
+        -- The number of signals in the group.
+        Count: number
+    end
+
+    -- Contains a summary of runtime signals.
+    record RuntimeSignals
+        -- The runtime signals, grouped by finding type.
+        SignalGroups: {SignalGroup}
+        -- A key observation about the runtime signals.
+        KeyObservation: string
+    end
+
+    -- Contains information about the identity that performed an activity.
+    record InvestigationActor
+        -- The access key ID that the identity used.
+        AccessKeyId: string
+        -- The ID of the principal.
+        PrincipalId: string
+        -- The name of the user.
+        UserName: string
+        -- The type of the identity, such as IAMUser, AssumedRole, or Root.
+        UserType: string
+        -- The user agent that the identity used.
+        UserAgent: string
+    end
+
+    -- Contains details about Amazon S3 activity.
+    record S3Activity
+        -- The Amazon S3 API operation that was called.
+        Api: string
+        -- The name of the affected bucket, or account-wide if the activity isn't limited to one bucket.
+        AffectedBucket: string
+        -- Other Amazon S3 activity that is related to the observation.
+        OtherS3Activity: string
+        -- Related activity on Amazon Web Services services other than Amazon S3.
+        NonS3Activity: string
+        -- An assessment of the session in which the activity occurred.
+        SessionAssessment: string
+        -- The number of events.
+        EventCount: number
+        -- The identity that performed the activity.
+        Actor: InvestigationActor
+        -- The source address of the activity, or a description of the source.
+        SourceIp: string
+        -- Additional context about the activity, such as geolocation information.
+        Enrichment: Enrichment
+        -- The time range of the activity.
+        ActivityWindow: ActivityWindow
+    end
+
+    -- Contains a fact that GuardDuty noted about your environment during an investigation, such as the affected resource, the activity on that resource, or your detection coverage. The record contains at most one of the payload members, the one that matches ObservationType. Indicators can accompany any observation type.
+    record ObservationRecord
+        -- The kind of observation. The value identifies the payload member that can be set: FINDING_DETAIL (FindingDetail), RESOURCE (Resource), NETWORK_ACTIVITY (NetworkActivity), RDS_LOGIN_ACTIVITY (RdsLoginActivity), S3_ACTIVITY (S3Activity), KUBERNETES_ACTIVITY (KubernetesActivity), MALWARE_SCAN (MalwareScan), RELATED_FINDINGS (RelatedFindings), DETECTION_COVERAGE (DetectionCoverage), ACCOUNT_OVERVIEW (AccountOverview), RECOMMENDATION (Recommendations), RUNTIME_SIGNALS (RuntimeSignals), DISTRIBUTION (Distribution), and REPRESENTATIVE_RESOURCE (RepresentativeResources).
+        ObservationType: string
+        -- Details about a GuardDuty finding. Set when ObservationType is FINDING_DETAIL.
+        FindingDetail: FindingDetail
+        -- Details about an affected resource. Set when ObservationType is RESOURCE.
+        Resource: InvestigationResource
+        -- Details about network activity. Set when ObservationType is NETWORK_ACTIVITY.
+        NetworkActivity: NetworkActivity
+        -- Details about login activity on an Amazon RDS database. Set when ObservationType is RDS_LOGIN_ACTIVITY.
+        RdsLoginActivity: RdsLoginActivity
+        -- Details about Amazon S3 activity. Set when ObservationType is S3_ACTIVITY.
+        S3Activity: S3Activity
+        -- Details about Kubernetes activity. Set when ObservationType is KUBERNETES_ACTIVITY.
+        KubernetesActivity: KubernetesActivity
+        -- Details about a malware scan. Set when ObservationType is MALWARE_SCAN.
+        MalwareScan: InvestigationMalwareScan
+        -- Details about findings that are related to the investigated activity. Set when ObservationType is RELATED_FINDINGS.
+        RelatedFindings: RelatedFindings
+        -- Details about your detection coverage. Set when ObservationType is DETECTION_COVERAGE.
+        DetectionCoverage: DetectionCoverage
+        -- Overview information about an account. Set when ObservationType is ACCOUNT_OVERVIEW.
+        AccountOverview: AccountOverview
+        -- Recommended actions. Set when ObservationType is RECOMMENDATION.
+        Recommendations: {Recommendation}
+        -- A summary of runtime signals. Set when ObservationType is RUNTIME_SIGNALS.
+        RuntimeSignals: RuntimeSignals
+        -- A breakdown of findings along one dimension. Set when ObservationType is DISTRIBUTION.
+        Distribution: Distribution
+        -- Representative findings for the affected resources, one finding for each resource. Set when ObservationType is REPRESENTATIVE_RESOURCE.
+        RepresentativeResources: {RepresentativeFinding}
+        -- The threat indicators associated with the observation, such as an IP address, a domain, or a file hash.
+        Indicators: {InvestigationIndicator}
+    end
+
+    -- Contains the structured details for an investigation record. Only the member that matches the record type is set.
+    record SupportingData
+        -- Details about data that GuardDuty retrieved. Set for FETCH records.
+        Fetch: FetchRecord
+        -- Details about an assessment that GuardDuty derived from the data. Set for ANALYSIS records.
+        Analysis: AnalysisRecord
+        -- Details about a fact that GuardDuty noted about your environment. Set for OBSERVATION records.
+        Observation: ObservationRecord
+        -- Operational details about the investigation. Set for METADATA records.
+        Metadata: MetadataRecord
+    end
+
+    -- Contains information about one step in the reasoning that GuardDuty followed during an investigation.
+    record InvestigationRecord
+        -- The unique identifier of the record.
+        RecordId: string
+        -- The type of the record. Possible values: UPDATE – A progress milestone, such as the request that started the investigation or a response from GuardDuty. FETCH – Data that GuardDuty retrieved for the investigation, such as a finding, a detector configuration, or a list of your member accounts. The record includes what GuardDuty requested and what it received. OBSERVATION – A fact that GuardDuty noted about your environment, such as the affected resource, the activity on that resource, or your detection coverage. ANALYSIS – An assessment that GuardDuty derived from the data, such as a threat assessment, a comparison against normal behavior, or a process lineage. METADATA – Operational details about the investigation itself, such as how long the investigation took.
+        Type: string
+        -- A short title that describes the step.
+        Title: string
+        -- A plain-text explanation of the step. A narrative can span several paragraphs. Not every record includes a narrative.
+        Narrative: string
+        -- The timestamp at which GuardDuty created the record.
+        CreatedAt: number
+        -- The structured details for the step. The member that is set matches the record type. UPDATE records never include supporting data, and records of other types don't always include it.
+        SupportingData: SupportingData
+    end
+
+    record ListInvestigationRecordsOutput
+        -- The unique identifier of the investigation.
+        InvestigationId: string
+        -- The current status of the investigation. Possible values are RUNNING, COMPLETED, and FAILED. Records are returned only when the status is COMPLETED. If the status is RUNNING or FAILED, the response contains an empty list of records and no NextToken.
+        Status: string
+        -- The records for the investigation, in the order that GuardDuty created them, oldest first. This list can contain fewer records than MaxResults, or no records, even when more records are available. To check for more records, use NextToken.
+        Records: {InvestigationRecord}
+        -- The pagination parameter to be used on the next list operation to retrieve more items. If this value is absent, there are no more records to retrieve.
+        NextToken: string
+    end
+
+    enum InvestigationFilterCriterionKey
+        "STATUS"
+        "RISK_LEVEL"
+        "CONFIDENCE"
+        "FINDING_ID"
+        "INVESTIGATION_TYPE"
+    end
+
+    -- Contains the values that an investigation attribute must match. Specify Equals, NotEquals, or both, each with at least one value. If you specify both, an investigation must match both conditions.
+    record InvestigationFilterCondition
+        -- The values to match. An investigation matches if its attribute value equals any of the specified values.
+        Equals: {string}
+        -- The values to exclude. An investigation matches only if its attribute value doesn't equal any of the specified values. An investigation that has no value for the attribute also matches.
+        NotEquals: {string}
+    end
+
+    -- Contains the criteria used to filter investigations.
+    record InvestigationFilterCriteria
+        -- A map of investigation attributes to the conditions that they must match. When you specify more than one attribute, an investigation must match the conditions for every attribute. Valid attributes and values: STATUS – RUNNING, COMPLETED, and FAILED. RISK_LEVEL – Info, Low, Medium, High, and Critical. CONFIDENCE – Unknown, Low, Medium, and High. FINDING_ID – A finding ID, which is 32 lowercase hexadecimal characters. INVESTIGATION_TYPE – FINDING, ACCOUNT, and ORGANIZATION. Values are case sensitive. GuardDuty sets the risk level, confidence, and investigation type of an investigation only when the investigation completes.
+        Criterion: {string : InvestigationFilterCondition}
+    end
+
     enum InvestigationSortField
         "START_TIME"
         "END_TIME"
@@ -4784,6 +6234,8 @@ local record M
     record ListInvestigationsInput
         -- The unique ID of the GuardDuty detector whose investigations you want to list. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API.
         DetectorId: string
+        -- The criteria used to filter investigations. GuardDuty returns only the investigations that match all of the specified criteria.
+        FilterCriteria: InvestigationFilterCriteria
         -- Represents the criteria used for sorting investigations.
         SortCriteria: InvestigationSortCriteria
         -- You can use this parameter to indicate the maximum number of items you want in the response. The default value is 50.
@@ -4806,8 +6258,14 @@ local record M
         Confidence: string
         -- A short title summarizing the investigation.
         Title: string
+        -- The type of investigation. Possible values are FINDING, ACCOUNT, and ORGANIZATION. GuardDuty sets this field when the investigation completes.
+        InvestigationType: string
+        -- For a FINDING investigation, the ID of the finding that the investigation analyzed. GuardDuty sets this field when the investigation completes.
+        FindingId: string
         -- The Amazon Web Services account ID associated with the investigation.
         AccountId: string
+        -- For an ORGANIZATION investigation, the ID of the administrator account of the organization that the investigation analyzed. GuardDuty sets this field when the investigation completes.
+        AdminAccountId: string
         -- The timestamp at which the investigation started.
         StartTime: number
         -- The timestamp at which the investigation completed.

@@ -144,6 +144,8 @@ M.DestinationEndpointTypeList = schema.new({ type = "list", list_member = prelud
 
 M.__listOfNdiMediaStreamInfo = schema.new({ type = "list", list_member = M.NdiMediaStreamInfo })
 
+M.RtmpMediaStreamInfoList = schema.new({ type = "list", list_member = M.RtmpMediaStreamInfo })
+
 M.__listOfDestinationConfigurationRequest = schema.new({ type = "list", list_member = M.DestinationConfigurationRequest })
 
 M.__listOfInputConfigurationRequest = schema.new({ type = "list", list_member = M.InputConfigurationRequest })
@@ -163,6 +165,8 @@ M.NetworkInterfaceRuleList = schema.new({ type = "list", list_member = M.PublicR
 M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RouterOutputTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PidMapRules = schema.new({ type = "list", list_member = M.PidMapRule })
 
 M.SourceEndpointTypeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -908,6 +912,92 @@ M.FlowTransitEncryption = schema.new({
     },
 })
 
+M.PublicTlsEncryptionConfiguration = schema.new({
+    id = id.from(_N, "PublicTlsEncryptionConfiguration"),
+    type = "structure",
+})
+
+M.TlsEncryptionConfiguration = schema.new({
+    id = id.from(_N, "TlsEncryptionConfiguration"),
+    type = "union",
+    members = {
+        Public = schema.new({
+            id = id.from(_N, "TlsEncryptionConfiguration", "Public"),
+            type = "structure",
+            name = "Public",
+            target_id = id.from(_N, "PublicTlsEncryptionConfiguration"),
+            target = M.PublicTlsEncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "public" },
+            },
+        }),
+    },
+})
+
+M.TlsEncryption = schema.new({
+    id = id.from(_N, "TlsEncryption"),
+    type = "structure",
+    members = {
+        EncryptionType = schema.new({
+            id = id.from(_N, "TlsEncryption", "EncryptionType"),
+            type = "string",
+            name = "EncryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionType" },
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "TlsEncryption", "EncryptionConfiguration"),
+            type = "union",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "TlsEncryptionConfiguration"),
+            target = M.TlsEncryptionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "encryptionConfiguration" },
+            },
+        }),
+    },
+})
+
+M.RtmpPushOutputSettings = schema.new({
+    id = id.from(_N, "RtmpPushOutputSettings"),
+    type = "structure",
+    members = {
+        ApplicationName = schema.new({
+            id = id.from(_N, "RtmpPushOutputSettings", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "applicationName" },
+            },
+        }),
+        StreamName = schema.new({
+            id = id.from(_N, "RtmpPushOutputSettings", "StreamName"),
+            type = "string",
+            name = "StreamName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "streamName" },
+            },
+        }),
+        TlsEncryption = schema.new({
+            id = id.from(_N, "RtmpPushOutputSettings", "TlsEncryption"),
+            type = "structure",
+            name = "TlsEncryption",
+            target_id = id.from(_N, "TlsEncryption"),
+            target = M.TlsEncryption,
+            traits = {
+                [traits.JSON_NAME] = { name = "tlsEncryption" },
+            },
+        }),
+    },
+})
+
 M.AddOutputRequest = schema.new({
     id = id.from(_N, "AddOutputRequest"),
     type = "structure",
@@ -1124,6 +1214,16 @@ M.AddOutputRequest = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "ndiAudioReferenceLevel" },
+            },
+        }),
+        RtmpPushSettings = schema.new({
+            id = id.from(_N, "AddOutputRequest", "RtmpPushSettings"),
+            type = "structure",
+            name = "RtmpPushSettings",
+            target_id = id.from(_N, "RtmpPushOutputSettings"),
+            target = M.RtmpPushOutputSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPushSettings" },
             },
         }),
     },
@@ -2757,6 +2857,43 @@ M.NdiSourceSettings = schema.new({
     },
 })
 
+M.RtmpPushSourceSettings = schema.new({
+    id = id.from(_N, "RtmpPushSourceSettings"),
+    type = "structure",
+    members = {
+        ApplicationName = schema.new({
+            id = id.from(_N, "RtmpPushSourceSettings", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "applicationName" },
+            },
+        }),
+        StreamName = schema.new({
+            id = id.from(_N, "RtmpPushSourceSettings", "StreamName"),
+            type = "string",
+            name = "StreamName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "streamName" },
+            },
+        }),
+        NamingType = schema.new({
+            id = id.from(_N, "RtmpPushSourceSettings", "NamingType"),
+            type = "string",
+            name = "NamingType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "namingType" },
+            },
+        }),
+    },
+})
+
 M.Transport = schema.new({
     id = id.from(_N, "Transport"),
     type = "structure",
@@ -2924,6 +3061,26 @@ M.Transport = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "ndiAudioReferenceLevel" },
+            },
+        }),
+        RtmpPushSourceSettings = schema.new({
+            id = id.from(_N, "Transport", "RtmpPushSourceSettings"),
+            type = "structure",
+            name = "RtmpPushSourceSettings",
+            target_id = id.from(_N, "RtmpPushSourceSettings"),
+            target = M.RtmpPushSourceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPushSourceSettings" },
+            },
+        }),
+        RtmpPushOutputSettings = schema.new({
+            id = id.from(_N, "Transport", "RtmpPushOutputSettings"),
+            type = "structure",
+            name = "RtmpPushOutputSettings",
+            target_id = id.from(_N, "RtmpPushOutputSettings"),
+            target = M.RtmpPushOutputSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPushOutputSettings" },
             },
         }),
     },
@@ -3289,6 +3446,83 @@ M.SetGatewayBridgeSourceRequest = schema.new({
     },
 })
 
+M.AutomaticRtmpPushNamingConfiguration = schema.new({
+    id = id.from(_N, "AutomaticRtmpPushNamingConfiguration"),
+    type = "structure",
+})
+
+M.ManualRtmpPushNamingConfiguration = schema.new({
+    id = id.from(_N, "ManualRtmpPushNamingConfiguration"),
+    type = "structure",
+    members = {
+        ApplicationName = schema.new({
+            id = id.from(_N, "ManualRtmpPushNamingConfiguration", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "applicationName" },
+            },
+        }),
+        StreamName = schema.new({
+            id = id.from(_N, "ManualRtmpPushNamingConfiguration", "StreamName"),
+            type = "string",
+            name = "StreamName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "streamName" },
+            },
+        }),
+    },
+})
+
+M.RtmpPushNamingConfiguration = schema.new({
+    id = id.from(_N, "RtmpPushNamingConfiguration"),
+    type = "union",
+    members = {
+        Manual = schema.new({
+            id = id.from(_N, "RtmpPushNamingConfiguration", "Manual"),
+            type = "structure",
+            name = "Manual",
+            target_id = id.from(_N, "ManualRtmpPushNamingConfiguration"),
+            target = M.ManualRtmpPushNamingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "manual" },
+            },
+        }),
+        Automatic = schema.new({
+            id = id.from(_N, "RtmpPushNamingConfiguration", "Automatic"),
+            type = "structure",
+            name = "Automatic",
+            target_id = id.from(_N, "AutomaticRtmpPushNamingConfiguration"),
+            target = M.AutomaticRtmpPushNamingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "automatic" },
+            },
+        }),
+    },
+})
+
+M.SetRtmpPushSourceSettings = schema.new({
+    id = id.from(_N, "SetRtmpPushSourceSettings"),
+    type = "structure",
+    members = {
+        NamingConfiguration = schema.new({
+            id = id.from(_N, "SetRtmpPushSourceSettings", "NamingConfiguration"),
+            type = "union",
+            name = "NamingConfiguration",
+            target_id = id.from(_N, "RtmpPushNamingConfiguration"),
+            target = M.RtmpPushNamingConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "namingConfiguration" },
+            },
+        }),
+    },
+})
+
 M.SetSourceRequest = schema.new({
     id = id.from(_N, "SetSourceRequest"),
     type = "structure",
@@ -3505,6 +3739,16 @@ M.SetSourceRequest = schema.new({
             target = M.FlowTransitEncryption,
             traits = {
                 [traits.JSON_NAME] = { name = "routerIntegrationTransitDecryption" },
+            },
+        }),
+        RtmpPushSettings = schema.new({
+            id = id.from(_N, "SetSourceRequest", "RtmpPushSettings"),
+            type = "structure",
+            name = "RtmpPushSettings",
+            target_id = id.from(_N, "SetRtmpPushSourceSettings"),
+            target = M.SetRtmpPushSourceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPushSettings" },
             },
         }),
     },
@@ -3801,6 +4045,15 @@ M.TransportStream = schema.new({
                 [traits.JSON_NAME] = { name = "sampleSize" },
             },
         }),
+        ScanMode = schema.new({
+            id = id.from(_N, "TransportStream", "ScanMode"),
+            type = "string",
+            name = "ScanMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "scanMode" },
+            },
+        }),
         StreamType = schema.new({
             id = id.from(_N, "TransportStream", "StreamType"),
             type = "string",
@@ -3809,6 +4062,15 @@ M.TransportStream = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "streamType" },
+            },
+        }),
+        Language = schema.new({
+            id = id.from(_N, "TransportStream", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "language" },
             },
         }),
     },
@@ -4643,6 +4905,33 @@ M.AddMaintenance = schema.new({
 M.AutomaticEndpointEncryptionConfiguration = schema.new({
     id = id.from(_N, "AutomaticEndpointEncryptionConfiguration"),
     type = "structure",
+})
+
+M.AutoPidMapConfiguration = schema.new({
+    id = id.from(_N, "AutoPidMapConfiguration"),
+    type = "structure",
+    members = {
+        StartPid = schema.new({
+            id = id.from(_N, "AutoPidMapConfiguration", "StartPid"),
+            type = "integer",
+            name = "StartPid",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "startPid" },
+            },
+        }),
+        PidsPerProgram = schema.new({
+            id = id.from(_N, "AutoPidMapConfiguration", "PidsPerProgram"),
+            type = "integer",
+            name = "PidsPerProgram",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "pidsPerProgram" },
+            },
+        }),
+    },
 })
 
 M.BatchGetDestinationEndpointInput = schema.new({
@@ -5865,6 +6154,43 @@ M.RistRouterInputConfiguration = schema.new({
     },
 })
 
+M.RtmpPushRouterInputConfiguration = schema.new({
+    id = id.from(_N, "RtmpPushRouterInputConfiguration"),
+    type = "structure",
+    members = {
+        Port = schema.new({
+            id = id.from(_N, "RtmpPushRouterInputConfiguration", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "port" },
+            },
+        }),
+        NamingType = schema.new({
+            id = id.from(_N, "RtmpPushRouterInputConfiguration", "NamingType"),
+            type = "string",
+            name = "NamingType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "namingType" },
+            },
+        }),
+        NamingConfiguration = schema.new({
+            id = id.from(_N, "RtmpPushRouterInputConfiguration", "NamingConfiguration"),
+            type = "union",
+            name = "NamingConfiguration",
+            target_id = id.from(_N, "RtmpPushNamingConfiguration"),
+            target = M.RtmpPushNamingConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "namingConfiguration" },
+            },
+        }),
+    },
+})
+
 M.RtpRouterInputConfiguration = schema.new({
     id = id.from(_N, "RtpRouterInputConfiguration"),
     type = "structure",
@@ -6024,6 +6350,16 @@ M.FailoverRouterInputProtocolConfiguration = schema.new({
             target = M.SrtListenerRouterInputConfiguration,
             traits = {
                 [traits.JSON_NAME] = { name = "srtListener" },
+            },
+        }),
+        RtmpPush = schema.new({
+            id = id.from(_N, "FailoverRouterInputProtocolConfiguration", "RtmpPush"),
+            type = "structure",
+            name = "RtmpPush",
+            target_id = id.from(_N, "RtmpPushRouterInputConfiguration"),
+            target = M.RtmpPushRouterInputConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPush" },
             },
         }),
         SrtCaller = schema.new({
@@ -6255,6 +6591,26 @@ M.MergeRouterInputProtocolConfiguration = schema.new({
                 [traits.JSON_NAME] = { name = "rist" },
             },
         }),
+        SrtListener = schema.new({
+            id = id.from(_N, "MergeRouterInputProtocolConfiguration", "SrtListener"),
+            type = "structure",
+            name = "SrtListener",
+            target_id = id.from(_N, "SrtListenerRouterInputConfiguration"),
+            target = M.SrtListenerRouterInputConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "srtListener" },
+            },
+        }),
+        SrtCaller = schema.new({
+            id = id.from(_N, "MergeRouterInputProtocolConfiguration", "SrtCaller"),
+            type = "structure",
+            name = "SrtCaller",
+            target_id = id.from(_N, "SrtCallerRouterInputConfiguration"),
+            target = M.SrtCallerRouterInputConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "srtCaller" },
+            },
+        }),
     },
 })
 
@@ -6318,6 +6674,16 @@ M.RouterInputProtocolConfiguration = schema.new({
             target = M.SrtListenerRouterInputConfiguration,
             traits = {
                 [traits.JSON_NAME] = { name = "srtListener" },
+            },
+        }),
+        RtmpPush = schema.new({
+            id = id.from(_N, "RouterInputProtocolConfiguration", "RtmpPush"),
+            type = "structure",
+            name = "RtmpPush",
+            target_id = id.from(_N, "RtmpPushRouterInputConfiguration"),
+            target = M.RtmpPushRouterInputConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPush" },
             },
         }),
         SrtCaller = schema.new({
@@ -6703,6 +7069,33 @@ M.DestinationEndpointRouterInputStreamDetails = schema.new({
     type = "structure",
 })
 
+M.RtmpPushStreamDetails = schema.new({
+    id = id.from(_N, "RtmpPushStreamDetails"),
+    type = "structure",
+    members = {
+        ApplicationName = schema.new({
+            id = id.from(_N, "RtmpPushStreamDetails", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "applicationName" },
+            },
+        }),
+        StreamName = schema.new({
+            id = id.from(_N, "RtmpPushStreamDetails", "StreamName"),
+            type = "string",
+            name = "StreamName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "streamName" },
+            },
+        }),
+    },
+})
+
 M.FailoverRouterInputIndexedStreamDetails = schema.new({
     id = id.from(_N, "FailoverRouterInputIndexedStreamDetails"),
     type = "structure",
@@ -6724,6 +7117,16 @@ M.FailoverRouterInputIndexedStreamDetails = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "sourceIpAddress" },
+            },
+        }),
+        RtmpPush = schema.new({
+            id = id.from(_N, "FailoverRouterInputIndexedStreamDetails", "RtmpPush"),
+            type = "structure",
+            name = "RtmpPush",
+            target_id = id.from(_N, "RtmpPushStreamDetails"),
+            target = M.RtmpPushStreamDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPush" },
             },
         }),
     },
@@ -6834,6 +7237,16 @@ M.StandardRouterInputStreamDetails = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "sourceIpAddress" },
+            },
+        }),
+        RtmpPush = schema.new({
+            id = id.from(_N, "StandardRouterInputStreamDetails", "RtmpPush"),
+            type = "structure",
+            name = "RtmpPush",
+            target_id = id.from(_N, "RtmpPushStreamDetails"),
+            target = M.RtmpPushStreamDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPush" },
             },
         }),
     },
@@ -7770,55 +8183,6 @@ M.RistRouterOutputConfiguration = schema.new({
     },
 })
 
-M.PublicTlsEncryptionConfiguration = schema.new({
-    id = id.from(_N, "PublicTlsEncryptionConfiguration"),
-    type = "structure",
-})
-
-M.TlsEncryptionConfiguration = schema.new({
-    id = id.from(_N, "TlsEncryptionConfiguration"),
-    type = "union",
-    members = {
-        Public = schema.new({
-            id = id.from(_N, "TlsEncryptionConfiguration", "Public"),
-            type = "structure",
-            name = "Public",
-            target_id = id.from(_N, "PublicTlsEncryptionConfiguration"),
-            target = M.PublicTlsEncryptionConfiguration,
-            traits = {
-                [traits.JSON_NAME] = { name = "public" },
-            },
-        }),
-    },
-})
-
-M.TlsEncryption = schema.new({
-    id = id.from(_N, "TlsEncryption"),
-    type = "structure",
-    members = {
-        EncryptionType = schema.new({
-            id = id.from(_N, "TlsEncryption", "EncryptionType"),
-            type = "string",
-            name = "EncryptionType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.JSON_NAME] = { name = "encryptionType" },
-            },
-        }),
-        EncryptionConfiguration = schema.new({
-            id = id.from(_N, "TlsEncryption", "EncryptionConfiguration"),
-            type = "union",
-            name = "EncryptionConfiguration",
-            target_id = id.from(_N, "TlsEncryptionConfiguration"),
-            target = M.TlsEncryptionConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.JSON_NAME] = { name = "encryptionConfiguration" },
-            },
-        }),
-    },
-})
-
 M.RtmpPushRouterOutputConfiguration = schema.new({
     id = id.from(_N, "RtmpPushRouterOutputConfiguration"),
     type = "structure",
@@ -8164,6 +8528,54 @@ M.RouterOutputConfiguration = schema.new({
     },
 })
 
+M.ImmediateFabricSwitchingConfiguration = schema.new({
+    id = id.from(_N, "ImmediateFabricSwitchingConfiguration"),
+    type = "structure",
+})
+
+M.KeyFrameFabricSwitchingConfiguration = schema.new({
+    id = id.from(_N, "KeyFrameFabricSwitchingConfiguration"),
+    type = "structure",
+    members = {
+        KeyFrameWaitMilliseconds = schema.new({
+            id = id.from(_N, "KeyFrameFabricSwitchingConfiguration", "KeyFrameWaitMilliseconds"),
+            type = "long",
+            name = "KeyFrameWaitMilliseconds",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "keyFrameWaitMilliseconds" },
+            },
+        }),
+    },
+})
+
+M.FabricSwitchingConfiguration = schema.new({
+    id = id.from(_N, "FabricSwitchingConfiguration"),
+    type = "union",
+    members = {
+        Immediate = schema.new({
+            id = id.from(_N, "FabricSwitchingConfiguration", "Immediate"),
+            type = "structure",
+            name = "Immediate",
+            target_id = id.from(_N, "ImmediateFabricSwitchingConfiguration"),
+            target = M.ImmediateFabricSwitchingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "immediate" },
+            },
+        }),
+        KeyFrame = schema.new({
+            id = id.from(_N, "FabricSwitchingConfiguration", "KeyFrame"),
+            type = "structure",
+            name = "KeyFrame",
+            target_id = id.from(_N, "KeyFrameFabricSwitchingConfiguration"),
+            target = M.KeyFrameFabricSwitchingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "keyFrame" },
+            },
+        }),
+    },
+})
+
 M.FabricConfiguration = schema.new({
     id = id.from(_N, "FabricConfiguration"),
     type = "structure",
@@ -8176,6 +8588,25 @@ M.FabricConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "recoveryLatencyMode" },
+            },
+        }),
+        SwitchingMode = schema.new({
+            id = id.from(_N, "FabricConfiguration", "SwitchingMode"),
+            type = "string",
+            name = "SwitchingMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "switchingMode" },
+            },
+        }),
+        SwitchingConfiguration = schema.new({
+            id = id.from(_N, "FabricConfiguration", "SwitchingConfiguration"),
+            type = "union",
+            name = "SwitchingConfiguration",
+            target_id = id.from(_N, "FabricSwitchingConfiguration"),
+            target = M.FabricSwitchingConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "switchingConfiguration" },
             },
         }),
     },
@@ -8203,6 +8634,237 @@ M.RouterOutputMessage = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.Passthrough = schema.new({
+    id = id.from(_N, "Passthrough"),
+    type = "structure",
+})
+
+M.ProgramClockReferencePidConfiguration = schema.new({
+    id = id.from(_N, "ProgramClockReferencePidConfiguration"),
+    type = "union",
+    members = {
+        Passthrough = schema.new({
+            id = id.from(_N, "ProgramClockReferencePidConfiguration", "Passthrough"),
+            type = "structure",
+            name = "Passthrough",
+            target_id = id.from(_N, "Passthrough"),
+            target = M.Passthrough,
+            traits = {
+                [traits.JSON_NAME] = { name = "passthrough" },
+            },
+        }),
+        Set = schema.new({
+            id = id.from(_N, "ProgramClockReferencePidConfiguration", "Set"),
+            type = "integer",
+            name = "Set",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "set" },
+            },
+        }),
+    },
+})
+
+M.ProgramMapTablePidConfiguration = schema.new({
+    id = id.from(_N, "ProgramMapTablePidConfiguration"),
+    type = "union",
+    members = {
+        Passthrough = schema.new({
+            id = id.from(_N, "ProgramMapTablePidConfiguration", "Passthrough"),
+            type = "structure",
+            name = "Passthrough",
+            target_id = id.from(_N, "Passthrough"),
+            target = M.Passthrough,
+            traits = {
+                [traits.JSON_NAME] = { name = "passthrough" },
+            },
+        }),
+        Set = schema.new({
+            id = id.from(_N, "ProgramMapTablePidConfiguration", "Set"),
+            type = "integer",
+            name = "Set",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "set" },
+            },
+        }),
+    },
+})
+
+M.ProgramNumberConfiguration = schema.new({
+    id = id.from(_N, "ProgramNumberConfiguration"),
+    type = "union",
+    members = {
+        Passthrough = schema.new({
+            id = id.from(_N, "ProgramNumberConfiguration", "Passthrough"),
+            type = "structure",
+            name = "Passthrough",
+            target_id = id.from(_N, "Passthrough"),
+            target = M.Passthrough,
+            traits = {
+                [traits.JSON_NAME] = { name = "passthrough" },
+            },
+        }),
+        Set = schema.new({
+            id = id.from(_N, "ProgramNumberConfiguration", "Set"),
+            type = "integer",
+            name = "Set",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "set" },
+            },
+        }),
+    },
+})
+
+M.PidMapRule = schema.new({
+    id = id.from(_N, "PidMapRule"),
+    type = "structure",
+    members = {
+        MatchExpression = schema.new({
+            id = id.from(_N, "PidMapRule", "MatchExpression"),
+            type = "string",
+            name = "MatchExpression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "matchExpression" },
+            },
+        }),
+        Action = schema.new({
+            id = id.from(_N, "PidMapRule", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "action" },
+            },
+        }),
+    },
+})
+
+M.TransportStreamIdConfiguration = schema.new({
+    id = id.from(_N, "TransportStreamIdConfiguration"),
+    type = "union",
+    members = {
+        Passthrough = schema.new({
+            id = id.from(_N, "TransportStreamIdConfiguration", "Passthrough"),
+            type = "structure",
+            name = "Passthrough",
+            target_id = id.from(_N, "Passthrough"),
+            target = M.Passthrough,
+            traits = {
+                [traits.JSON_NAME] = { name = "passthrough" },
+            },
+        }),
+        Set = schema.new({
+            id = id.from(_N, "TransportStreamIdConfiguration", "Set"),
+            type = "integer",
+            name = "Set",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "set" },
+            },
+        }),
+    },
+})
+
+M.SingleProgramTransportStreamPidMapConfiguration = schema.new({
+    id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration"),
+    type = "structure",
+    members = {
+        Rules = schema.new({
+            id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration", "Rules"),
+            type = "list",
+            name = "Rules",
+            target_id = prelude.Document.id,
+            list_member = M.PidMapRule,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "rules" },
+            },
+        }),
+        DefaultAction = schema.new({
+            id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration", "DefaultAction"),
+            type = "string",
+            name = "DefaultAction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "defaultAction" },
+            },
+        }),
+        TransportStreamId = schema.new({
+            id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration", "TransportStreamId"),
+            type = "union",
+            name = "TransportStreamId",
+            target_id = id.from(_N, "TransportStreamIdConfiguration"),
+            target = M.TransportStreamIdConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "transportStreamId" },
+            },
+        }),
+        ProgramNumber = schema.new({
+            id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration", "ProgramNumber"),
+            type = "union",
+            name = "ProgramNumber",
+            target_id = id.from(_N, "ProgramNumberConfiguration"),
+            target = M.ProgramNumberConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "programNumber" },
+            },
+        }),
+        ProgramMapTablePid = schema.new({
+            id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration", "ProgramMapTablePid"),
+            type = "union",
+            name = "ProgramMapTablePid",
+            target_id = id.from(_N, "ProgramMapTablePidConfiguration"),
+            target = M.ProgramMapTablePidConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "programMapTablePid" },
+            },
+        }),
+        ProgramClockReferencePid = schema.new({
+            id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration", "ProgramClockReferencePid"),
+            type = "union",
+            name = "ProgramClockReferencePid",
+            target_id = id.from(_N, "ProgramClockReferencePidConfiguration"),
+            target = M.ProgramClockReferencePidConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "programClockReferencePid" },
+            },
+        }),
+        Auto = schema.new({
+            id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration", "Auto"),
+            type = "structure",
+            name = "Auto",
+            target_id = id.from(_N, "AutoPidMapConfiguration"),
+            target = M.AutoPidMapConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "auto" },
+            },
+        }),
+    },
+})
+
+M.RouterOutputProcessors = schema.new({
+    id = id.from(_N, "RouterOutputProcessors"),
+    type = "structure",
+    members = {
+        SingleProgramTransportStreamPidMap = schema.new({
+            id = id.from(_N, "RouterOutputProcessors", "SingleProgramTransportStreamPidMap"),
+            type = "structure",
+            name = "SingleProgramTransportStreamPidMap",
+            target_id = id.from(_N, "SingleProgramTransportStreamPidMapConfiguration"),
+            target = M.SingleProgramTransportStreamPidMapConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "singleProgramTransportStreamPidMap" },
             },
         }),
     },
@@ -8534,6 +9196,16 @@ M.RouterOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "fabricConfiguration" },
+            },
+        }),
+        Processors = schema.new({
+            id = id.from(_N, "RouterOutput", "Processors"),
+            type = "structure",
+            name = "Processors",
+            target_id = id.from(_N, "RouterOutputProcessors"),
+            target = M.RouterOutputProcessors,
+            traits = {
+                [traits.JSON_NAME] = { name = "processors" },
             },
         }),
         AssociatedSourceEndpointArns = schema.new({
@@ -11633,6 +12305,16 @@ M.CreateRouterOutputInput = schema.new({
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
         }),
+        Processors = schema.new({
+            id = id.from(_N, "CreateRouterOutputInput", "Processors"),
+            type = "structure",
+            name = "Processors",
+            target_id = id.from(_N, "RouterOutputProcessors"),
+            target = M.RouterOutputProcessors,
+            traits = {
+                [traits.JSON_NAME] = { name = "processors" },
+            },
+        }),
     },
 })
 
@@ -12197,6 +12879,171 @@ M.NdiSourceMetadataInfo = schema.new({
     },
 })
 
+M.RtmpMediaStreamInfo = schema.new({
+    id = id.from(_N, "RtmpMediaStreamInfo"),
+    type = "structure",
+    members = {
+        StreamId = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "StreamId"),
+            type = "integer",
+            name = "StreamId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "streamId" },
+            },
+        }),
+        StreamType = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "StreamType"),
+            type = "string",
+            name = "StreamType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "streamType" },
+            },
+        }),
+        Codec = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "Codec"),
+            type = "string",
+            name = "Codec",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "codec" },
+            },
+        }),
+        FrameRate = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "FrameRate"),
+            type = "string",
+            name = "FrameRate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "frameRate" },
+            },
+        }),
+        FrameResolution = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "FrameResolution"),
+            type = "structure",
+            name = "FrameResolution",
+            target_id = id.from(_N, "FrameResolution"),
+            target = M.FrameResolution,
+            traits = {
+                [traits.JSON_NAME] = { name = "frameResolution" },
+            },
+        }),
+        ScanMode = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "ScanMode"),
+            type = "string",
+            name = "ScanMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "scanMode" },
+            },
+        }),
+        Color = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "Color"),
+            type = "structure",
+            name = "Color",
+            target_id = id.from(_N, "ColorInformation"),
+            target = M.ColorInformation,
+            traits = {
+                [traits.JSON_NAME] = { name = "color" },
+            },
+        }),
+        Channels = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "Channels"),
+            type = "integer",
+            name = "Channels",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "channels" },
+            },
+        }),
+        SampleRate = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "SampleRate"),
+            type = "integer",
+            name = "SampleRate",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sampleRate" },
+            },
+        }),
+        SampleSize = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "SampleSize"),
+            type = "integer",
+            name = "SampleSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sampleSize" },
+            },
+        }),
+        Language = schema.new({
+            id = id.from(_N, "RtmpMediaStreamInfo", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "language" },
+            },
+        }),
+    },
+})
+
+M.RtmpMediaInfo = schema.new({
+    id = id.from(_N, "RtmpMediaInfo"),
+    type = "structure",
+    members = {
+        Streams = schema.new({
+            id = id.from(_N, "RtmpMediaInfo", "Streams"),
+            type = "list",
+            name = "Streams",
+            target_id = prelude.Document.id,
+            list_member = M.RtmpMediaStreamInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "streams" },
+            },
+        }),
+    },
+})
+
+M.RtmpSourceMetadataInfo = schema.new({
+    id = id.from(_N, "RtmpSourceMetadataInfo"),
+    type = "structure",
+    members = {
+        ApplicationName = schema.new({
+            id = id.from(_N, "RtmpSourceMetadataInfo", "ApplicationName"),
+            type = "string",
+            name = "ApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "applicationName" },
+            },
+        }),
+        StreamName = schema.new({
+            id = id.from(_N, "RtmpSourceMetadataInfo", "StreamName"),
+            type = "string",
+            name = "StreamName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "streamName" },
+            },
+        }),
+        MediaInfo = schema.new({
+            id = id.from(_N, "RtmpSourceMetadataInfo", "MediaInfo"),
+            type = "structure",
+            name = "MediaInfo",
+            target_id = id.from(_N, "RtmpMediaInfo"),
+            target = M.RtmpMediaInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "mediaInfo" },
+            },
+        }),
+    },
+})
+
 M.TransportMediaInfo = schema.new({
     id = id.from(_N, "TransportMediaInfo"),
     type = "structure",
@@ -12275,6 +13122,16 @@ M.DescribeFlowSourceMetadataOutput = schema.new({
             target = M.NdiSourceMetadataInfo,
             traits = {
                 [traits.JSON_NAME] = { name = "ndiInfo" },
+            },
+        }),
+        RtmpInfo = schema.new({
+            id = id.from(_N, "DescribeFlowSourceMetadataOutput", "RtmpInfo"),
+            type = "structure",
+            name = "RtmpInfo",
+            target_id = id.from(_N, "RtmpSourceMetadataInfo"),
+            target = M.RtmpSourceMetadataInfo,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpInfo" },
             },
         }),
     },
@@ -14245,6 +15102,16 @@ M.UpdateFlowOutputInput = schema.new({
                 [traits.JSON_NAME] = { name = "ndiAudioReferenceLevel" },
             },
         }),
+        RtmpPushSettings = schema.new({
+            id = id.from(_N, "UpdateFlowOutputInput", "RtmpPushSettings"),
+            type = "structure",
+            name = "RtmpPushSettings",
+            target_id = id.from(_N, "RtmpPushOutputSettings"),
+            target = M.RtmpPushOutputSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPushSettings" },
+            },
+        }),
     },
 })
 
@@ -14518,6 +15385,16 @@ M.UpdateFlowSourceInput = schema.new({
                 [traits.JSON_NAME] = { name = "routerIntegrationTransitDecryption" },
             },
         }),
+        RtmpPushSettings = schema.new({
+            id = id.from(_N, "UpdateFlowSourceInput", "RtmpPushSettings"),
+            type = "structure",
+            name = "RtmpPushSettings",
+            target_id = id.from(_N, "SetRtmpPushSourceSettings"),
+            target = M.SetRtmpPushSourceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpPushSettings" },
+            },
+        }),
     },
 })
 
@@ -14773,6 +15650,16 @@ M.RouterInputMetadata = schema.new({
             target = M.TransportMediaInfo,
             traits = {
                 [traits.JSON_NAME] = { name = "transportStreamMediaInfo" },
+            },
+        }),
+        RtmpInfo = schema.new({
+            id = id.from(_N, "RouterInputMetadata", "RtmpInfo"),
+            type = "structure",
+            name = "RtmpInfo",
+            target_id = id.from(_N, "RtmpSourceMetadataInfo"),
+            target = M.RtmpSourceMetadataInfo,
+            traits = {
+                [traits.JSON_NAME] = { name = "rtmpInfo" },
             },
         }),
     },
@@ -17111,6 +17998,16 @@ M.UpdateRouterOutputInput = schema.new({
             target = M.FabricConfiguration,
             traits = {
                 [traits.JSON_NAME] = { name = "fabricConfiguration" },
+            },
+        }),
+        Processors = schema.new({
+            id = id.from(_N, "UpdateRouterOutputInput", "Processors"),
+            type = "structure",
+            name = "Processors",
+            target_id = id.from(_N, "RouterOutputProcessors"),
+            target = M.RouterOutputProcessors,
+            traits = {
+                [traits.JSON_NAME] = { name = "processors" },
             },
         }),
     },

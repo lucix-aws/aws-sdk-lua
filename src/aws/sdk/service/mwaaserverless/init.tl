@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAirflowUiUrl: function(Client, types.CreateAirflowUiUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreateAirflowUiUrlOutput>
     createWorkflow: function(Client, types.CreateWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
     deleteWorkflow: function(Client, types.DeleteWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
     getTaskInstance: function(Client, types.GetTaskInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetTaskInstanceOutput>
@@ -75,6 +76,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     sdk_defaults.resolve_identity_resolver(c)
     local self = setmetatable(base_client.new(c) as Client, Client_mt)
     return self
+end
+
+function C:createAirflowUiUrl(input: types.CreateAirflowUiUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAirflowUiUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAirflowUiUrl as schema.OperationSchema, input, options) as async.Operation<types.CreateAirflowUiUrlOutput>
 end
 
 function C:createWorkflow(input: types.CreateWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>

@@ -28,6 +28,7 @@ local record Client
     createHostedZone: function(Client, types.CreateHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.CreateHostedZoneOutput>
     createKeySigningKey: function(Client, types.CreateKeySigningKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeySigningKeyOutput>
     createQueryLoggingConfig: function(Client, types.CreateQueryLoggingConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateQueryLoggingConfigOutput>
+    createResourceRecordSetProtections: function(Client, types.CreateResourceRecordSetProtectionsInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceRecordSetProtectionsOutput>
     createReusableDelegationSet: function(Client, types.CreateReusableDelegationSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateReusableDelegationSetOutput>
     createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyOutput>
     createTrafficPolicyInstance: function(Client, types.CreateTrafficPolicyInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyInstanceOutput>
@@ -39,6 +40,7 @@ local record Client
     deleteHostedZone: function(Client, types.DeleteHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHostedZoneOutput>
     deleteKeySigningKey: function(Client, types.DeleteKeySigningKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeySigningKeyOutput>
     deleteQueryLoggingConfig: function(Client, types.DeleteQueryLoggingConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueryLoggingConfigOutput>
+    deleteResourceRecordSetProtections: function(Client, types.DeleteResourceRecordSetProtectionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceRecordSetProtectionsOutput>
     deleteReusableDelegationSet: function(Client, types.DeleteReusableDelegationSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReusableDelegationSetOutput>
     deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficPolicyOutput>
     deleteTrafficPolicyInstance: function(Client, types.DeleteTrafficPolicyInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficPolicyInstanceOutput>
@@ -73,6 +75,7 @@ local record Client
     listHostedZonesByName: function(Client, types.ListHostedZonesByNameInput, ? base_client.InvokeOptions): async.Operation<types.ListHostedZonesByNameOutput>
     listHostedZonesByVPC: function(Client, types.ListHostedZonesByVPCInput, ? base_client.InvokeOptions): async.Operation<types.ListHostedZonesByVPCOutput>
     listQueryLoggingConfigs: function(Client, types.ListQueryLoggingConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListQueryLoggingConfigsOutput>
+    listResourceRecordSetProtections: function(Client, types.ListResourceRecordSetProtectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceRecordSetProtectionsOutput>
     listResourceRecordSets: function(Client, types.ListResourceRecordSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceRecordSetsOutput>
     listReusableDelegationSets: function(Client, types.ListReusableDelegationSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListReusableDelegationSetsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -173,6 +176,10 @@ function C:createQueryLoggingConfig(input: types.CreateQueryLoggingConfigInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQueryLoggingConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateQueryLoggingConfigOutput>
 end
 
+function C:createResourceRecordSetProtections(input: types.CreateResourceRecordSetProtectionsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceRecordSetProtectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceRecordSetProtections as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceRecordSetProtectionsOutput>
+end
+
 function C:createReusableDelegationSet(input: types.CreateReusableDelegationSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReusableDelegationSetOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReusableDelegationSet as schema.OperationSchema, input, options) as async.Operation<types.CreateReusableDelegationSetOutput>
 end
@@ -215,6 +222,10 @@ end
 
 function C:deleteQueryLoggingConfig(input: types.DeleteQueryLoggingConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQueryLoggingConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQueryLoggingConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteQueryLoggingConfigOutput>
+end
+
+function C:deleteResourceRecordSetProtections(input: types.DeleteResourceRecordSetProtectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceRecordSetProtectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceRecordSetProtections as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceRecordSetProtectionsOutput>
 end
 
 function C:deleteReusableDelegationSet(input: types.DeleteReusableDelegationSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReusableDelegationSetOutput>
@@ -351,6 +362,10 @@ end
 
 function C:listQueryLoggingConfigs(input: types.ListQueryLoggingConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueryLoggingConfigsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueryLoggingConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListQueryLoggingConfigsOutput>
+end
+
+function C:listResourceRecordSetProtections(input: types.ListResourceRecordSetProtectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceRecordSetProtectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceRecordSetProtections as schema.OperationSchema, input, options) as async.Operation<types.ListResourceRecordSetProtectionsOutput>
 end
 
 function C:listResourceRecordSets(input: types.ListResourceRecordSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceRecordSetsOutput>

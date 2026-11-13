@@ -320,8 +320,7 @@ local record M
     end
 
     -- The scheduler configuration for a virtual cluster on Amazon EMR on EKS. It controls how
-    -- many job runs can run concurrently and how many can wait in the queue. When not set, no
-    -- concurrency or queue limits are applied.
+    -- many job runs can run concurrently and how many can wait in the queue. If you omit this configuration, the service applies a default limit of 1,000 concurrent job runs and does not limit queue depth.
     record SchedulerConfiguration
         -- The maximum number of job runs that can be in the PENDING or
         -- SUBMITTED state at any time for the virtual cluster. When the queue is full,
@@ -329,8 +328,7 @@ local record M
         -- this field, the service applies no queue-depth limit.
         maxInQueueJobRuns: number
         -- The maximum number of job runs that can be in the RUNNING state at any time
-        -- for the virtual cluster. As running slots free up, queued job runs start automatically. If
-        -- you omit this field, the service applies no concurrency limit.
+        -- for the virtual cluster. As running slots free up, queued job runs start automatically. If you omit this field, the service applies a default limit of 1,000 concurrent job runs to the virtual cluster.
         maxConcurrentJobRuns: number
     end
 
@@ -348,7 +346,8 @@ local record M
         -- Indicates whether the virtual cluster has session support enabled.
         sessionEnabled: boolean
         -- The scheduler configuration (concurrency and queue limits) to apply to the virtual
-        -- cluster at creation time. When omitted, no limits are applied.
+        -- cluster at creation time. If you omit this field, the service applies a default limit of
+        -- 1,000 concurrent job runs and does not limit queue depth.
         schedulerConfiguration: SchedulerConfiguration
     end
 
@@ -744,7 +743,9 @@ local record M
         -- The ID of the virtual cluster to update.
         id: string
         -- The scheduler configuration to apply to the virtual cluster. The new configuration fully
-        -- replaces the existing one. If you omit a field, the corresponding limit is removed.
+        -- replaces the existing one. If you omit maxInQueueJobRuns, the service removes
+        -- the queue-depth limit. If you omit maxConcurrentJobRuns, the service applies
+        -- the default limit of 1,000 concurrent job runs.
         schedulerConfiguration: SchedulerConfiguration
         -- A unique, case-sensitive identifier that you provide to ensure that the operation
         -- completes no more than one time. If this token matches a previous request, the service

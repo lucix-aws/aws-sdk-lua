@@ -12,6 +12,24 @@ function M.pages_batch_get_secret_value(client, input)
     })
 end
 
+--- Returns a page iterator for listResourcePolicies.
+function M.pages_list_resource_policies(client, input)
+    return paginator.pages(client, "listResourcePolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourcePolicies",
+    })
+end
+
+--- Returns an item iterator for listResourcePolicies.
+function M.items_list_resource_policies(client, input)
+    return paginator.items(client, "listResourcePolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourcePolicies",
+    })
+end
+
 --- Returns a page iterator for listSecretVersionIds.
 function M.pages_list_secret_version_ids(client, input)
     return paginator.pages(client, "listSecretVersionIds", input, {

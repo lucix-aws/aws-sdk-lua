@@ -196,6 +196,7 @@ local record M
         "capacity-reservation-cancellation-quote"
         "application-status-check"
         "capacity-reservation-modification-quote"
+        "metric-category"
     end
 
     -- Describes a tag.
@@ -1260,6 +1261,10 @@ local record M
         VpcLattice: string
         -- The exclusion configuration for Elastic File System service.
         ElasticFileSystem: string
+        -- The exclusion configuration for AWS Global Accelerator.
+        GlobalAccelerator: string
+        -- The exclusion configuration for Amazon API Gateway V2.
+        ApiGatewayV2: string
     end
 
     enum ManagedBy
@@ -7822,6 +7827,10 @@ local record M
         VpcLattice: VpcEncryptionControlExclusion
         -- The exclusion configuration for Elastic File System traffic.
         ElasticFileSystem: VpcEncryptionControlExclusion
+        -- The exclusion configuration for AWS Global Accelerator traffic.
+        GlobalAccelerator: VpcEncryptionControlExclusion
+        -- The exclusion configuration for Amazon API Gateway V2 traffic.
+        ApiGatewayV2: VpcEncryptionControlExclusion
     end
 
     enum VpcEncryptionControlState
@@ -9494,8 +9503,8 @@ local record M
         -- The type of resource to monitor.
         ResourceType: string
         -- The type of traffic to monitor (accepted traffic, rejected traffic, or all traffic).
-        -- This parameter is not supported for transit gateway or Cloud WAN resource types. It is
-        -- required for the other resource types.
+        -- This parameter is not supported for transit gateway resource types. It is required for
+        -- the other resource types.
         TrafficType: string
         -- The type of destination for the flow log data.
         -- Default: cloud-watch-logs
@@ -9514,17 +9523,15 @@ local record M
         -- they should appear. If you omit this parameter, the flow log is created using the
         -- default format. If you specify this parameter, you must include at least one
         -- field. For more information about the available fields, see Flow log records
-        -- in the Amazon VPC User Guide, Transit Gateway Flow Log
-        -- records in the Amazon Web Services Transit Gateway Guide,
-        -- or Cloud WAN Flow Log
-        -- records in the Amazon Web Services Cloud WAN User Guide.
+        -- in the Amazon VPC User Guide or Transit Gateway Flow Log
+        -- records in the Amazon Web Services Transit Gateway Guide.
         -- Specify the fields using the ${field-id} format, separated by spaces.
         LogFormat: string
         -- The tags to apply to the flow logs.
         TagSpecifications: {TagSpecification}
         -- The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record.
         -- The possible values are 60 seconds (1 minute) or 600 seconds (10 minutes).
-        -- This parameter must be 60 seconds for transit gateway and Cloud WAN resource types.
+        -- This parameter must be 60 seconds for transit gateway resource types.
         -- When a network interface is attached to a Nitro-based
         -- instance, the aggregation interval is always 60 seconds or less, regardless
         -- of the value that you specify.
@@ -9838,7 +9845,8 @@ local record M
     -- resource type is a launch template.
     record ImageUsageResourceTypeRequest
         -- The resource type.
-        -- Valid values: ec2:Instance | ec2:LaunchTemplate
+        -- Valid values: ec2:Instance | ec2:LaunchTemplate |
+        -- imagebuilder:ImageRecipe | imagebuilder:ContainerRecipe
         ResourceType: string
         -- The options that affect the scope of the report. Valid only when ResourceType
         -- is ec2:LaunchTemplate.
@@ -11526,6 +11534,9 @@ local record M
         -- Specify true to enable detailed monitoring. Otherwise, basic monitoring
         -- is enabled.
         Enabled: boolean
+        -- The IDs of the metric categories to associate with the instance. To specify metric
+        -- categories, you must also enable detailed monitoring.
+        MetricCategoryIds: {string}
     end
 
     -- A security group connection tracking specification request that enables you to set the
@@ -12310,6 +12321,8 @@ local record M
         -- Indicates whether detailed monitoring is enabled. Otherwise, basic monitoring is
         -- enabled.
         Enabled: boolean
+        -- The IDs of the metric categories to associate with the instance.
+        MetricCategoryIds: {string}
     end
 
     -- A security group connection tracking specification that enables you to set the idle
@@ -13142,6 +13155,39 @@ local record M
     record CreateManagedPrefixListOutput
         -- Information about the prefix list.
         PrefixList: ManagedPrefixList
+    end
+
+    record CreateMetricCategoryInput
+        -- The names of the metrics to include in the metric category.
+        -- Specify each metric by its Amazon CloudWatch metric name or its OpenTelemetry metric name. The two
+        -- names for a measurement are separate entries, and you can include both.
+        -- In Regions where Amazon CloudWatch OpenTelemetry metrics aren't available, you can't specify
+        -- OpenTelemetry metric names.
+        Metrics: {string}
+        -- The tags to apply to the metric category during creation.
+        TagSpecifications: {TagSpecification}
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensure Idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes a metric category. A metric category is a set of additional metrics that
+    -- you can associate with an instance that has detailed monitoring enabled.
+    record MetricCategory
+        -- The ID of the metric category.
+        MetricCategoryId: string
+        -- The names of the metrics in the metric category.
+        Metrics: {string}
+        -- Any tags assigned to the metric category.
+        Tags: {Tag}
+    end
+
+    record CreateMetricCategoryOutput
+        -- Information about the metric category.
+        MetricCategory: MetricCategory
     end
 
     enum AvailabilityMode
@@ -17097,6 +17143,10 @@ local record M
         VpcLatticeExclusion: string
         -- Specifies whether to exclude Elastic File System traffic from encryption enforcement.
         ElasticFileSystemExclusion: string
+        -- Specifies whether to exclude AWS Global Accelerator traffic from encryption enforcement.
+        GlobalAcceleratorExclusion: string
+        -- Specifies whether to exclude Amazon API Gateway V2 traffic from encryption enforcement.
+        ApiGatewayV2Exclusion: string
     end
 
     record CreateVpcInput
@@ -19016,6 +19066,20 @@ local record M
     record DeleteManagedPrefixListOutput
         -- Information about the prefix list.
         PrefixList: ManagedPrefixList
+    end
+
+    record DeleteMetricCategoryInput
+        -- The ID of the metric category.
+        MetricCategoryId: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DeleteMetricCategoryOutput
+        -- The ID of the metric category that was deleted.
+        MetricCategoryId: string
     end
 
     record DeleteNatGatewayInput
@@ -24478,7 +24542,8 @@ local record M
         -- 2025-11-29T11:04:43.305Z. You can use a wildcard (*), for
         -- example, 2025-11-29T*, which matches an entire day.
         -- resource-type - The resource type (ec2:Instance |
-        -- ec2:LaunchTemplate).
+        -- ec2:LaunchTemplate | imagebuilder:ImageRecipe |
+        -- imagebuilder:ContainerRecipe).
         Filters: {Filter}
         -- Checks whether you have the required permissions for the action, without actually making the request,
         -- and provides an error response. If you have the required permissions, the error response is
@@ -24493,8 +24558,8 @@ local record M
     -- A single entry in an image usage report, detailing how an image is being used by a
     -- specific Amazon Web Services account and resource type.
     record ImageUsageReportEntry
-        -- The type of resource (ec2:Instance or
-        -- ec2:LaunchTemplate).
+        -- The type of resource (ec2:Instance | ec2:LaunchTemplate |
+        -- imagebuilder:ImageRecipe | imagebuilder:ContainerRecipe).
         ResourceType: string
         -- The ID of the report.
         ReportId: string
@@ -24557,7 +24622,8 @@ local record M
     -- resource type is a launch template.
     record ImageUsageResourceType
         -- The resource type.
-        -- Valid values: ec2:Instance | ec2:LaunchTemplate
+        -- Valid values: ec2:Instance | ec2:LaunchTemplate |
+        -- imagebuilder:ImageRecipe | imagebuilder:ContainerRecipe
         ResourceType: string
         -- The options that affect the scope of the report. Valid only when ResourceType
         -- is ec2:LaunchTemplate.
@@ -25675,6 +25741,8 @@ local record M
 
     -- Describes the monitoring of an instance.
     record Monitoring
+        -- The IDs of the metric categories that are associated with the instance.
+        MetricCategoryIds: {string}
         -- Indicates whether detailed monitoring is enabled. Otherwise, basic monitoring is
         -- enabled.
         State: string
@@ -28160,6 +28228,33 @@ local record M
         NextToken: string
         -- Information about the prefix lists.
         PrefixLists: {ManagedPrefixList}
+    end
+
+    record DescribeMetricCategoriesInput
+        -- The IDs of the metric categories. If you specify IDs,
+        -- you can't specify MaxResults or NextToken.
+        MetricCategoryIds: {string}
+        -- The filters.
+        -- metric-name - The name of a metric in the metric
+        -- category.
+        Filters: {Filter}
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information,
+        -- see Pagination.
+        -- Valid range: 5 - 100.
+        MaxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        NextToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DescribeMetricCategoriesOutput
+        -- Information about the metric categories.
+        MetricCategories: {MetricCategory}
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        NextToken: string
     end
 
     record DescribeMovingAddressesInput
@@ -31163,6 +31258,9 @@ local record M
 
     -- Describes the monitoring of an instance.
     record RunInstancesMonitoringEnabled
+        -- The IDs of the metric categories to associate with the instance. To specify metric
+        -- categories, you must also enable detailed monitoring.
+        MetricCategoryIds: {string}
         -- Indicates whether detailed monitoring is enabled. Otherwise, basic monitoring is
         -- enabled.
         Enabled: boolean
@@ -39216,6 +39314,10 @@ local record M
         VpcLattice: string
         -- Specifies whether to exclude Elastic File System service from account-level encryption enforcement.
         ElasticFileSystem: string
+        -- Specifies whether to exclude AWS Global Accelerator from account-level encryption enforcement.
+        GlobalAccelerator: string
+        -- Specifies whether to exclude Amazon API Gateway V2 from account-level encryption enforcement.
+        ApiGatewayV2: string
     end
 
     record ModifyAccountVpcEncryptionControlOutput
@@ -40738,6 +40840,27 @@ local record M
         Visibility: ManagedResourceVisibilitySettings
     end
 
+    record ModifyMetricCategoryInput
+        -- The ID of the metric category.
+        MetricCategoryId: string
+        -- The names of the metrics for the metric category. These metrics replace the existing
+        -- metrics, and must differ from the current set.
+        -- Specify each metric by its Amazon CloudWatch metric name or its OpenTelemetry metric name. The two
+        -- names for a measurement are separate entries, and you can include both.
+        -- In Regions where Amazon CloudWatch OpenTelemetry metrics aren't available, you can't specify
+        -- OpenTelemetry metric names.
+        Metrics: {string}
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ModifyMetricCategoryOutput
+        -- Information about the metric category.
+        MetricCategory: MetricCategory
+    end
+
     -- Describes an attachment change.
     record NetworkInterfaceAttachmentChanges
         -- The default number of the ENA queues.
@@ -41861,6 +41984,10 @@ local record M
         VpcLatticeExclusion: string
         -- Specifies whether to exclude Elastic File System traffic from encryption enforcement.
         ElasticFileSystemExclusion: string
+        -- Specifies whether to exclude AWS Global Accelerator traffic from encryption enforcement.
+        GlobalAcceleratorExclusion: string
+        -- Specifies whether to exclude Amazon API Gateway V2 traffic from encryption enforcement.
+        ApiGatewayV2Exclusion: string
     end
 
     record ModifyVpcEncryptionControlOutput
@@ -42291,6 +42418,10 @@ local record M
     record MonitorInstancesInput
         -- The IDs of the instances.
         InstanceIds: {string}
+        -- The IDs of the metric categories to associate with the instances. The specified
+        -- metric categories are added to any metric categories that are already associated with
+        -- the instances.
+        MetricCategoryIds: {string}
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
         -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
@@ -44945,6 +45076,11 @@ local record M
     record UnmonitorInstancesInput
         -- The IDs of the instances.
         InstanceIds: {string}
+        -- The IDs of the metric categories to remove from the instances. If you specify
+        -- metric categories, only those metric categories are removed and detailed monitoring
+        -- remains enabled. If you don't specify metric categories, detailed monitoring and all
+        -- metric categories are turned off.
+        MetricCategoryIds: {string}
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
         -- DryRunOperation. Otherwise, it is UnauthorizedOperation.

@@ -68,6 +68,8 @@ M.__listOfAudienceMedia = schema.new({ type = "list", list_member = M.AudienceMe
 
 M.__listOfFunctionsRef = schema.new({ type = "list", list_member = M.FunctionRef })
 
+M.TagFilterList = schema.new({ type = "list", list_member = prelude.String })
+
 M.__listOfAvailMatchingCriteria = schema.new({ type = "list", list_member = M.AvailMatchingCriteria })
 
 M.__listOfScheduleAdBreak = schema.new({ type = "list", list_member = M.ScheduleAdBreak })
@@ -919,6 +921,46 @@ M.CustomOutputConfiguration = schema.new({
     },
 })
 
+M.HlsTagProcessorConfiguration = schema.new({
+    id = id.from(_N, "HlsTagProcessorConfiguration"),
+    type = "structure",
+    members = {
+        Runtime = schema.new({
+            id = id.from(_N, "HlsTagProcessorConfiguration", "Runtime"),
+            type = "string",
+            name = "Runtime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Output = schema.new({
+            id = id.from(_N, "HlsTagProcessorConfiguration", "Output"),
+            type = "map",
+            name = "Output",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        TagFilter = schema.new({
+            id = id.from(_N, "HlsTagProcessorConfiguration", "TagFilter"),
+            type = "list",
+            name = "TagFilter",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RunCondition = schema.new({
+            id = id.from(_N, "HlsTagProcessorConfiguration", "RunCondition"),
+            type = "string",
+            name = "RunCondition",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.HttpRequestConfiguration = schema.new({
     id = id.from(_N, "HttpRequestConfiguration"),
     type = "structure",
@@ -1175,6 +1217,13 @@ M.Function = schema.new({
             name = "VastRequestConfiguration",
             target_id = id.from(_N, "VastRequestConfiguration"),
             target = M.VastRequestConfiguration,
+        }),
+        HlsTagProcessorConfiguration = schema.new({
+            id = id.from(_N, "Function", "HlsTagProcessorConfiguration"),
+            type = "structure",
+            name = "HlsTagProcessorConfiguration",
+            target_id = id.from(_N, "HlsTagProcessorConfiguration"),
+            target = M.HlsTagProcessorConfiguration,
         }),
         Tags = schema.new({
             id = id.from(_N, "Function", "Tags"),
@@ -5253,6 +5302,13 @@ M.GetFunctionOutput = schema.new({
             target_id = id.from(_N, "VastRequestConfiguration"),
             target = M.VastRequestConfiguration,
         }),
+        HlsTagProcessorConfiguration = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "HlsTagProcessorConfiguration"),
+            type = "structure",
+            name = "HlsTagProcessorConfiguration",
+            target_id = id.from(_N, "HlsTagProcessorConfiguration"),
+            target = M.HlsTagProcessorConfiguration,
+        }),
         Tags = schema.new({
             id = id.from(_N, "GetFunctionOutput", "Tags"),
             type = "map",
@@ -5389,6 +5445,13 @@ M.PutFunctionInput = schema.new({
             target_id = id.from(_N, "VastRequestConfiguration"),
             target = M.VastRequestConfiguration,
         }),
+        HlsTagProcessorConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionInput", "HlsTagProcessorConfiguration"),
+            type = "structure",
+            name = "HlsTagProcessorConfiguration",
+            target_id = id.from(_N, "HlsTagProcessorConfiguration"),
+            target = M.HlsTagProcessorConfiguration,
+        }),
         Tags = schema.new({
             id = id.from(_N, "PutFunctionInput", "Tags"),
             type = "map",
@@ -5472,6 +5535,13 @@ M.PutFunctionOutput = schema.new({
             name = "VastRequestConfiguration",
             target_id = id.from(_N, "VastRequestConfiguration"),
             target = M.VastRequestConfiguration,
+        }),
+        HlsTagProcessorConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "HlsTagProcessorConfiguration"),
+            type = "structure",
+            name = "HlsTagProcessorConfiguration",
+            target_id = id.from(_N, "HlsTagProcessorConfiguration"),
+            target = M.HlsTagProcessorConfiguration,
         }),
         Tags = schema.new({
             id = id.from(_N, "PutFunctionOutput", "Tags"),

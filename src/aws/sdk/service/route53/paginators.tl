@@ -112,4 +112,22 @@ function M.items_list_query_logging_configs(client, input)
     })
 end
 
+--- Returns a page iterator for listResourceRecordSetProtections.
+function M.pages_list_resource_record_set_protections(client, input)
+    return paginator.pages(client, "listResourceRecordSetProtections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceRecordSetProtections",
+    })
+end
+
+--- Returns an item iterator for listResourceRecordSetProtections.
+function M.items_list_resource_record_set_protections(client, input)
+    return paginator.items(client, "listResourceRecordSetProtections", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceRecordSetProtections",
+    })
+end
+
 return M

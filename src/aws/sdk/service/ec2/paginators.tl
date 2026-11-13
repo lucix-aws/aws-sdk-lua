@@ -1264,6 +1264,24 @@ function M.items_describe_managed_prefix_lists(client, input)
     })
 end
 
+--- Returns a page iterator for describeMetricCategories.
+function M.pages_describe_metric_categories(client, input)
+    return paginator.pages(client, "describeMetricCategories", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MetricCategories",
+    })
+end
+
+--- Returns an item iterator for describeMetricCategories.
+function M.items_describe_metric_categories(client, input)
+    return paginator.items(client, "describeMetricCategories", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MetricCategories",
+    })
+end
+
 --- Returns a page iterator for describeMovingAddresses.
 function M.pages_describe_moving_addresses(client, input)
     return paginator.pages(client, "describeMovingAddresses", input, {

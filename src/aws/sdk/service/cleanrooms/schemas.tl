@@ -12654,6 +12654,19 @@ M.ProtectedJobComputeConfiguration = schema.new({
     },
 })
 
+M.RetryInfo = schema.new({
+    id = id.from(_N, "RetryInfo"),
+    type = "structure",
+    members = {
+        retryable = schema.new({
+            id = id.from(_N, "RetryInfo", "retryable"),
+            type = "boolean",
+            name = "retryable",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.ProtectedJobError = schema.new({
     id = id.from(_N, "ProtectedJobError"),
     type = "structure",
@@ -12675,6 +12688,13 @@ M.ProtectedJobError = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        retry = schema.new({
+            id = id.from(_N, "ProtectedJobError", "retry"),
+            type = "structure",
+            name = "retry",
+            target_id = id.from(_N, "RetryInfo"),
+            target = M.RetryInfo,
         }),
     },
 })
@@ -13127,6 +13147,13 @@ M.ProtectedQueryError = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        retry = schema.new({
+            id = id.from(_N, "ProtectedQueryError", "retry"),
+            type = "structure",
+            name = "retry",
+            target_id = id.from(_N, "RetryInfo"),
+            target = M.RetryInfo,
         }),
     },
 })

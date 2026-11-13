@@ -16,7 +16,7 @@ local record M
         Ipv4CidrBlocks: {string}
     end
 
-    -- Configuration settings that define a stream group's stream capacity for a location. When configuring a location for the first time, you must specify a numeric value for at least one of the two capacity types. To update the capacity for an existing stream group, call UpdateStreamGroup. To add a new location and specify its capacity, call AddStreamGroupLocations.
+    -- Configuration settings that define a stream group's stream capacity for a location. When configuring a location for the first time, you must specify a numeric value for at least one of the two capacity types. To update the capacity for an existing stream group, call UpdateStreamGroup. To add a new location and specify its capacity, call AddStreamGroupLocations. When you modify capacity for an existing location, always specify AlwaysOnCapacity, MaximumCapacity, and TargetIdleCapacity in the same request. If you omit one or more of these values, the service applies internal defaults for the missing values. These defaults might not match what you intend.
     record LocationConfiguration
         -- A location's name. For example, us-east-1. For a complete list of locations that Amazon GameLift Streams supports, refer to Regions, quotas, and limitations in the Amazon GameLift Streams Developer Guide.
         LocationName: string
@@ -711,6 +711,12 @@ local record M
         RoleArn: string
         -- The configuration for the stream session's virtual monitor.
         DisplayConfiguration: DisplayConfiguration
+        -- A timestamp that indicates when the application launched for this stream session. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        ApplicationStartedAt: number
+        -- A timestamp that indicates when streaming started for this stream session, which is when a client connected to the stream session. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        StreamingStartedAt: number
+        -- A timestamp that indicates when streaming ended for this stream session. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        StreamingEndedAt: number
     end
 
     record GetStreamUrlInput
@@ -1026,6 +1032,12 @@ local record M
         RoleArn: string
         -- The configuration for the stream session's virtual monitor.
         DisplayConfiguration: DisplayConfiguration
+        -- A timestamp that indicates when the application launched for this stream session. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        ApplicationStartedAt: number
+        -- A timestamp that indicates when streaming started for this stream session, which is when a client connected to the stream session. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        StreamingStartedAt: number
+        -- A timestamp that indicates when streaming ended for this stream session. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        StreamingEndedAt: number
     end
 
     record GetStreamGroupInput

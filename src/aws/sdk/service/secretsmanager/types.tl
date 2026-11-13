@@ -26,6 +26,93 @@ local record M
         Message: string
     end
 
+    enum ReplicaRestrictionType
+        "SameOrg"
+        "NoRestriction"
+    end
+
+    record AssociateCrossAccountReplicaInput
+        -- The ARN or name of the primary secret in your account to replicate.
+        -- For an ARN, we recommend that you specify a complete ARN rather
+        -- than a partial ARN. See Finding a secret from a partial ARN.
+        SecretId: string
+        -- The ARN of the replica secret in the other Amazon Web Services account. The replica secret must be
+        -- in the same Region and partition as the primary secret. Additionally, the replica account owner
+        -- must have created the replica secret as a cross-account replica of the primary secret.
+        -- For more information see CreateSecret.
+        CrossAccountReplicaARN: string
+        -- Whether the replica account must belong to the same Amazon Web Services organization as the primary
+        -- account:
+        -- SameOrg, which requires the replica account to be in the same
+        -- organization as the primary account. This is the default.
+        -- NoRestriction, which allows the replica account to be in any
+        -- organization.
+        ReplicaRestriction: string
+        -- The ARN of an IAM role in the primary account that Secrets Manager assumes to perform
+        -- replication. If you don't include this field, Secrets Manager replicates using the credentials
+        -- of caller who updates the primary secret. For more information, see
+        -- Cross-account replication permissions.
+        ReplicationRoleARN: string
+    end
+
+    enum StatusType
+        "InSync"
+        "Failed"
+        "InProgress"
+        "Pending"
+        "Detached"
+    end
+
+    record AssociateCrossAccountReplicaOutput
+        -- The ARN of the primary secret.
+        ARN: string
+        -- The ARN of the replica secret in the other account.
+        CrossAccountReplicaARN: string
+        -- The status of replication to the replica secret. Possible values:
+        -- InSync, which indicates that replication to the replica completed
+        -- successfully and the replica is up to date.
+        -- Failed, which indicates that replication to the replica did not
+        -- succeed.
+        -- InProgress, which indicates that Secrets Manager is replicating to the
+        -- replica.
+        -- Pending, which indicates that replication has not yet started.
+        -- Detached, which indicates that primary secret is no longer linked to
+        -- the replica secret.
+        ReplicationStatus: string
+    end
+
+    -- An error occurred on the server side.
+    record InternalServiceError
+        Message: string
+    end
+
+    -- The parameter name or value is invalid.
+    record InvalidParameterException
+        Message: string
+    end
+
+    -- A parameter value is not valid for the current state of the
+    -- resource.
+    -- Possible causes:
+    -- The secret is scheduled for deletion.
+    -- You tried to enable rotation on a secret that doesn't already have a Lambda function
+    -- ARN configured and you didn't include such an ARN as a parameter in this call.
+    -- The secret is managed by another service, and you must use that service to update it.
+    -- For more information, see Secrets managed by other Amazon Web Services services.
+    record InvalidRequestException
+        Message: string
+    end
+
+    -- The request failed because it would exceed one of the Secrets Manager quotas.
+    record LimitExceededException
+        Message: string
+    end
+
+    -- Secrets Manager can't find the resource that you asked for.
+    record ResourceNotFoundException
+        Message: string
+    end
+
     enum FilterNameStringType
         "description"
         "name"
@@ -119,35 +206,8 @@ local record M
         Message: string
     end
 
-    -- An error occurred on the server side.
-    record InternalServiceError
-        Message: string
-    end
-
     -- The NextToken value is invalid.
     record InvalidNextTokenException
-        Message: string
-    end
-
-    -- The parameter name or value is invalid.
-    record InvalidParameterException
-        Message: string
-    end
-
-    -- A parameter value is not valid for the current state of the
-    -- resource.
-    -- Possible causes:
-    -- The secret is scheduled for deletion.
-    -- You tried to enable rotation on a secret that doesn't already have a Lambda function
-    -- ARN configured and you didn't include such an ARN as a parameter in this call.
-    -- The secret is managed by another service, and you must use that service to update it.
-    -- For more information, see Secrets managed by other Amazon Web Services services.
-    record InvalidRequestException
-        Message: string
-    end
-
-    -- Secrets Manager can't find the resource that you asked for.
-    record ResourceNotFoundException
         Message: string
     end
 
@@ -264,12 +324,13 @@ local record M
         -- The exact string that identifies the partner that holds the external secret. For more
         -- information, see Using Secrets Manager managed external secrets.
         Type: string
-    end
-
-    enum StatusType
-        "InSync"
-        "Failed"
-        "InProgress"
+        -- The ARN of a primary secret in another Amazon Web Services account. Include this field to create a
+        -- cross-account replica secret that receives replicated data from that primary secret. The
+        -- primary secret must be in the same Amazon Web Services Region and partition as the replica, and you must
+        -- specify a customer managed KMS key in KmsKeyId. You can't include
+        -- SecretString, SecretBinary, Description,
+        -- AddReplicaRegions, or Type.
+        CrossAccountPrimaryARN: string
     end
 
     -- A replication object consisting of a RegionReplicationStatus object and
@@ -315,11 +376,6 @@ local record M
         Message: string
     end
 
-    -- The request failed because it would exceed one of the Secrets Manager quotas.
-    record LimitExceededException
-        Message: string
-    end
-
     -- The resource policy has syntax errors.
     record MalformedPolicyDocumentException
         Message: string
@@ -335,11 +391,53 @@ local record M
         Message: string
     end
 
+    -- Contains information about the primary secret that a cross-account replica secret
+    -- replicates from, including its ARN and replication status. This information is only
+    -- available for cross-account replica secrets.
+    record CrossAccountPrimaryType
+        -- The ARN of the primary secret replicating into this replica secret.
+        PrimarySecretARN: string
+        -- The status of replication from the primary secret to this replica. The status can be:
+        -- InSync: Replication to the replica secret is complete.
+        -- Failed: Replication to the replica secret was unable to be completed.
+        -- InProgress: Replication to the replica secret has started but is not complete.
+        -- Pending: Replication has not yet started for the replica secret.
+        -- Detached: Replication to the replica secret was stopped by the primary.
+        ReplicationStatus: string
+        -- A message that describes the replication status, if Secrets Manager has more information to
+        -- provide.
+        StatusMessage: string
+    end
+
+    -- Information about a cross-account replica secret. This information is only
+    -- available for cross-account primary secrets.
+    record CrossAccountReplicaEntry
+        -- The ARN of the replica secret.
+        ReplicaSecretARN: string
+        -- The ARN of the IAM role that Secrets Manager assumes to replicate to this replica, if one was
+        -- specified when the replica was associated.
+        ReplicationRoleARN: string
+        -- The status of replication from this primary secret. The status can be:
+        -- InSync: Replication from the primary secret is complete.
+        -- Failed: Replication from the primary secret was unable to be completed.
+        -- InProgress: Replication from the primary secret has started but is not complete.
+        -- Detached: Replication from the primary secret was stopped by the replica.
+        ReplicationStatus: string
+        -- A message that describes the replication status, if Secrets Manager has more information to
+        -- provide.
+        StatusMessage: string
+    end
+
     record DeleteResourcePolicyInput
         -- The ARN or name of the secret to delete the attached resource-based policy for.
         -- For an ARN, we recommend that you specify a complete ARN rather
         -- than a partial ARN. See Finding a secret from a partial ARN.
         SecretId: string
+        -- The name of the resource policy to delete. If you don't specify this field, Secrets Manager uses
+        -- default. You can only delete the default policy; if you
+        -- specify any other name, the operation returns an
+        -- InvalidParameterException.
+        PolicyName: string
     end
 
     record DeleteResourcePolicyOutput
@@ -347,6 +445,9 @@ local record M
         ARN: string
         -- The name of the secret that the resource-based policy was deleted for.
         Name: string
+        -- The name of the deleted resource policy. If you didn't specify PolicyName in the
+        -- request, this is default.
+        PolicyName: string
     end
 
     record DeleteSecretInput
@@ -544,6 +645,31 @@ local record M
         -- creating the replica.
         -- InSync, which indicates that the replica was created.
         ReplicationStatus: {ReplicationStatusType}
+        -- Information about the primary secret in the other Amazon Web Services account that this
+        -- cross-account replica secret replicates from, including the primary secret ARN and the
+        -- replication status. This field is omitted if the secret is not a cross-account
+        -- replica.
+        CrossAccountPrimary: CrossAccountPrimaryType
+        -- A list of this secret's cross-account replica secrets and their replication status, if
+        -- this secret is the primary for cross-account replication. This field is omitted if the
+        -- secret has no cross-account replicas.
+        CrossAccountReplicas: {CrossAccountReplicaEntry}
+    end
+
+    record DisassociateCrossAccountReplicaInput
+        -- The ARN or name of the primary secret in your account.
+        -- For an ARN, we recommend that you specify a complete ARN rather
+        -- than a partial ARN. See Finding a secret from a partial ARN.
+        SecretId: string
+        -- The ARN of the cross-account replica secret to unlink from the primary secret.
+        CrossAccountReplicaARN: string
+    end
+
+    record DisassociateCrossAccountReplicaOutput
+        -- The ARN of the primary secret.
+        ARN: string
+        -- The ARN of the replica secret that was unlinked from the primary secret.
+        CrossAccountReplicaARN: string
     end
 
     record GetRandomPasswordInput
@@ -586,6 +712,11 @@ local record M
         -- For an ARN, we recommend that you specify a complete ARN rather
         -- than a partial ARN. See Finding a secret from a partial ARN.
         SecretId: string
+        -- The name of the resource policy to retrieve. If you don't specify this field, Secrets Manager
+        -- uses default. If you specify a name other than default and no
+        -- policy with that name exists, the operation returns a
+        -- ResourceNotFoundException.
+        PolicyName: string
     end
 
     record GetResourcePolicyOutput
@@ -597,6 +728,9 @@ local record M
         -- For more information about permissions policies, see Authentication and access
         -- control for Secrets Manager.
         ResourcePolicy: string
+        -- The name of the resource policy. If you didn't specify PolicyName in the
+        -- request, this is default.
+        PolicyName: string
     end
 
     record GetSecretValueInput
@@ -651,6 +785,41 @@ local record M
         -- which version in VersionId or VersionStage, then Secrets Manager uses
         -- the AWSCURRENT version.
         CreatedDate: number
+    end
+
+    record ListResourcePoliciesInput
+        -- The ARN or name of the secret.
+        -- For an ARN, we recommend that you specify a complete ARN rather
+        -- than a partial ARN. See Finding a secret from a partial ARN.
+        SecretId: string
+        -- The number of results to include in the response. If you don't specify this value,
+        -- the service returns up to 100 results.
+        -- If there are more results available, in the response, Secrets Manager includes
+        -- NextToken. To get the next results, call
+        -- ListResourcePolicies again with the value from
+        -- NextToken.
+        MaxResults: number
+        -- A token that indicates where the output should continue from, if a previous call did
+        -- not show all results. To get the next results, call
+        -- ListResourcePolicies again with this value.
+        NextToken: string
+    end
+
+    -- A structure that contains details about a resource policy attached to a secret. It does
+    -- not contain the contents of the resource policy. To view the contents of the policy, use
+    -- GetResourcePolicy .
+    record ResourcePolicySummary
+        -- The name of the resource policy.
+        PolicyName: string
+    end
+
+    record ListResourcePoliciesOutput
+        -- A list of the resource policies attached to the secret.
+        ResourcePolicies: {ResourcePolicySummary}
+        -- Secrets Manager includes this value if there's more output available than what is included in
+        -- the current response. To get the next results, call
+        -- ListResourcePolicies again with this value.
+        NextToken: string
     end
 
     enum SortByType
@@ -833,6 +1002,11 @@ local record M
         -- A JSON-formatted string for an Amazon Web Services resource-based policy. For example policies, see
         -- Permissions policy examples.
         ResourcePolicy: string
+        -- The name of the resource policy to attach. If you don't specify this field, Secrets Manager uses
+        -- default. You can only attach the default policy; if you
+        -- specify any other name, the operation returns an
+        -- InvalidParameterException.
+        PolicyName: string
         -- Specifies whether to block resource-based policies that allow broad access to the
         -- secret, for example those that use a wildcard for the principal. By default, public
         -- policies aren't blocked.
@@ -855,6 +1029,9 @@ local record M
         ARN: string
         -- The name of the secret.
         Name: string
+        -- The name of the resource policy. If you didn't specify PolicyName in the
+        -- request, this is default.
+        PolicyName: string
     end
 
     record PutSecretValueInput
@@ -1038,14 +1215,17 @@ local record M
     end
 
     record StopReplicationToReplicaInput
-        -- The name of the secret or the replica ARN. The replica ARN is the same as the original
-        -- primary secret ARN expect the Region is changed to the replica Region.
+        -- The ARN or name of the replica secret.
+        -- For a cross-region replica, the replica ARN is the same as the original primary secret
+        -- ARN except that the Region is changed to the replica Region. For a cross-account
+        -- replica, this is the ARN or name of the replica secret in your account.
         SecretId: string
     end
 
     record StopReplicationToReplicaOutput
-        -- The ARN of the promoted secret. The ARN is the same as the original primary secret
-        -- except the Region is changed.
+        -- The ARN of the promoted secret. For a cross-region replica, this ARN is the same as the
+        -- original primary secret's ARN except that the Region is changed. For a cross-account
+        -- replica, this is the ARN of the promoted secret in your account.
         ARN: string
     end
 

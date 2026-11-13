@@ -6824,6 +6824,12 @@ M.CreatePentestInput = schema.new({
             name = "codeRemediationStrategy",
             target_id = prelude.String.id,
         }),
+        cleanUpStrategy = schema.new({
+            id = id.from(_N, "CreatePentestInput", "cleanUpStrategy"),
+            type = "string",
+            name = "cleanUpStrategy",
+            target_id = prelude.String.id,
+        }),
         disableManagedSkills = schema.new({
             id = id.from(_N, "CreatePentestInput", "disableManagedSkills"),
             type = "list",
@@ -12627,6 +12633,12 @@ M.UpdatePentestInput = schema.new({
             id = id.from(_N, "UpdatePentestInput", "codeRemediationStrategy"),
             type = "string",
             name = "codeRemediationStrategy",
+            target_id = prelude.String.id,
+        }),
+        cleanUpStrategy = schema.new({
+            id = id.from(_N, "UpdatePentestInput", "cleanUpStrategy"),
+            type = "string",
+            name = "cleanUpStrategy",
             target_id = prelude.String.id,
         }),
         disableManagedSkills = schema.new({

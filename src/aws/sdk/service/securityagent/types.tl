@@ -2359,6 +2359,8 @@ local record M
         networkTrafficConfig: NetworkTrafficConfig
         -- The code remediation strategy for the pentest. Valid values are AUTOMATIC and DISABLED.
         codeRemediationStrategy: string
+        -- The strategy for cleaning up resources after pentest job completion. Valid values are BEST_EFFORT_DELETE and RETAIN_ALL.
+        cleanUpStrategy: string
         -- A list of managed skills to disable for this pentest. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
         disableManagedSkills: {string}
         -- The maximum number of billable task hours allowed for jobs started from this pentest. Must be a positive number. If not set, jobs run to completion with no budget cap.
@@ -4249,6 +4251,8 @@ local record M
         networkTrafficConfig: NetworkTrafficConfig
         -- The updated code remediation strategy for the pentest.
         codeRemediationStrategy: string
+        -- The updated strategy for cleaning up resources after pentest job completion.
+        cleanUpStrategy: string
         -- The updated list of managed skills to disable for this pentest. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
         disableManagedSkills: {string}
         -- The updated maximum number of billable task hours allowed for jobs started from this pentest.

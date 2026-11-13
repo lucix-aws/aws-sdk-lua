@@ -1228,6 +1228,10 @@ local record M
 
     -- This exception contains a list of messages that might contain one or more error
     -- messages. Each error message indicates one error in the change batch.
+    -- Route 53 also returns this error when the change batch creates, updates, or deletes a
+    -- resource record set whose name and type have a resource record set protection. To make
+    -- the change, first delete the protection by using
+    -- DeleteResourceRecordSetProtections.
     record InvalidChangeBatch
         messages: {string}
         message: string
@@ -2163,6 +2167,57 @@ local record M
         message: string
     end
 
+    -- A protection to create for the resource record sets in a hosted zone that have the specified name and type.
+    record ResourceRecordSetProtectionConfig
+        -- The name of the resource record sets to protect, for example, www.example.com. The name must be the name of the hosted zone or a subdomain of it.
+        RecordName: string
+        -- The DNS record type of the resource record sets to protect. You can't protect records of type DNAME or of the DNSSEC record types that Route 53 manages.
+        RecordType: string
+        -- An optional comment about the protection, for example, the reason that the resource record sets are protected. The comment can be up to 256 characters long. If you don't specify a comment, the protection doesn't have a comment. When Route 53 rejects a ChangeResourceRecordSets request because of this protection, the error message includes the comment, so don't include sensitive information.
+        Comment: string
+    end
+
+    record CreateResourceRecordSetProtectionsInput
+        -- The ID of the hosted zone that contains the resource record sets that you want to protect.
+        HostedZoneId: string
+        -- The protections to create. Each entry specifies a resource record set name and type, and an optional comment. The list must contain at least one entry and can contain up to 100 entries. Each name and type can appear only once in the list.
+        Protections: {ResourceRecordSetProtectionConfig}
+    end
+
+    record CreateResourceRecordSetProtectionsOutput
+    end
+
+    -- Describes one entry in a CreateResourceRecordSetProtections or DeleteResourceRecordSetProtections request that Route 53 couldn't process.
+    record ProtectionError
+        -- The name in the failing entry.
+        RecordName: string
+        -- The record type in the failing entry.
+        RecordType: string
+        -- The reason that the entry failed. Valid values include the following:
+        -- InvalidInput means that the entry isn't valid. For example, the name isn't a valid DNS name, the name isn't in the hosted zone, the record type can't be protected, or the same name and type appear more than once in the request.
+        -- ProtectionAlreadyExists means that a protection already exists for the name and type.
+        -- ProtectionNotFound means that no protection exists for the name and type.
+        Code: string
+        -- A message that explains why Route 53 couldn't process the entry.
+        Message: string
+    end
+
+    -- One or more entries in the request couldn't be processed, so Route 53 didn't create or delete any of the protections in the request. The Errors element lists the failing entries and the reason that each one failed.
+    record InvalidResourceRecordSetProtectionBatch
+        -- A message that explains why Route 53 couldn't process the CreateResourceRecordSetProtections or DeleteResourceRecordSetProtections request.
+        Message: string
+        -- The entries that failed, with the reason that each one failed.
+        Errors: {ProtectionError}
+    end
+
+    -- A protection already exists for every name and type in the request, so Route 53 didn't create any protections. The Errors element lists each entry.
+    record ProtectionAlreadyExists
+        -- A message that explains that a protection already exists for every name and type in the CreateResourceRecordSetProtections request.
+        Message: string
+        -- The entries that already have a protection.
+        Errors: {ProtectionError}
+    end
+
     record CreateReusableDelegationSetInput
         -- A unique string that identifies the request, and that allows you to retry failed
         -- CreateReusableDelegationSet requests without the risk of executing the
@@ -2510,6 +2565,24 @@ local record M
     -- There is no DNS query logging configuration with the specified ID.
     record NoSuchQueryLoggingConfig
         message: string
+    end
+
+    -- The name and type that identify a resource record set protection.
+    record ResourceRecordSetProtectionKey
+        -- The name of the protected resource record sets.
+        RecordName: string
+        -- The DNS record type of the protected resource record sets.
+        RecordType: string
+    end
+
+    record DeleteResourceRecordSetProtectionsInput
+        -- The ID of the hosted zone that contains the protections that you want to delete.
+        HostedZoneId: string
+        -- The name and type of each protection to delete. The list must contain at least one entry and can contain up to 100 entries. Each name and type can appear only once in the list.
+        Protections: {ResourceRecordSetProtectionKey}
+    end
+
+    record DeleteResourceRecordSetProtectionsOutput
     end
 
     -- The specified delegation contains associated hosted zones which must be deleted before
@@ -3540,6 +3613,38 @@ local record M
         -- configurations by submitting another ListQueryLoggingConfigs request. Get the value of NextToken
         -- that Amazon Route 53 returned in the previous response and include it in
         -- NextToken in the next request.
+        NextToken: string
+    end
+
+    record ListResourceRecordSetProtectionsInput
+        -- The ID of the hosted zone that contains the protections that you want to list.
+        HostedZoneId: string
+        -- The first resource record set name that you want Route 53 to list protections for. If you don't specify a value, the list starts with the first protection in the hosted zone.
+        -- If you specify NextToken, Route 53 ignores StartRecordName.
+        StartRecordName: string
+        -- The first resource record set type, within the name specified by StartRecordName, that you want Route 53 to list protections for. If you specify StartRecordType, you must also specify StartRecordName.
+        -- If you specify NextToken, Route 53 ignores StartRecordType.
+        StartRecordType: string
+        -- The maximum number of protections that you want Route 53 to return in this response. If you don't specify a value, or if you specify a value greater than 300, Route 53 returns up to 300 protections.
+        MaxResults: number
+        -- If the response to a previous ListResourceRecordSetProtections request included a NextToken element, specify that value here to get the next page of results.
+        NextToken: string
+    end
+
+    -- A protection for the resource record sets in a hosted zone that have the specified name and type. While the protection exists, Route 53 rejects ChangeResourceRecordSets requests that create, update, or delete those resource record sets.
+    record ResourceRecordSetProtection
+        -- The name of the protected resource record sets.
+        RecordName: string
+        -- The DNS record type of the protected resource record sets.
+        RecordType: string
+        -- The comment that was specified when the protection was created, if any.
+        Comment: string
+    end
+
+    record ListResourceRecordSetProtectionsOutput
+        -- The protections in the hosted zone. The list is empty if the hosted zone has no protections.
+        ResourceRecordSetProtections: {ResourceRecordSetProtection}
+        -- If there are more protections to list, a token that you can specify in the NextToken parameter of another request to get the next page of results. If there are no more protections to list, the response doesn't include NextToken.
         NextToken: string
     end
 

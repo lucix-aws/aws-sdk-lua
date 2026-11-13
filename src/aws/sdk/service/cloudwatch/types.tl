@@ -844,6 +844,14 @@ local record M
         Failures: {PartialFailure}
     end
 
+    record DeleteMetricDataQueryDefinitionInput
+        -- The ID of the metric data query definition to delete.
+        Id: string
+    end
+
+    record DeleteMetricDataQueryDefinitionOutput
+    end
+
     record DeleteMetricStreamInput
         -- The name of the metric stream to delete.
         Name: string
@@ -1996,6 +2004,38 @@ local record M
         Messages: {MessageData}
     end
 
+    record GetMetricDataQueryDefinitionInput
+        -- The ID of the metric data query definition to retrieve.
+        Id: string
+    end
+
+    enum QueryType
+        "PROMQL"
+        "SQL"
+        "METRIC_MATH"
+    end
+
+    record GetMetricDataQueryDefinitionOutput
+        -- The ID of the metric data query definition.
+        Id: string
+        -- The Amazon Resource Name (ARN) of the metric data query definition.
+        Arn: string
+        -- The path of the metric data query definition.
+        Path: string
+        -- The query expression.
+        Expression: string
+        -- The language of the expression. Valid values are the following:
+        -- PROMQL – A PromQL query.
+        -- SQL – A CloudWatch Metrics Insights query.
+        -- METRIC_MATH – A metric math expression.
+        Type: string
+        -- The date and time when you created the metric data query definition.
+        CreatedAt: number
+        -- The date and time when you last updated the metric data query
+        -- definition.
+        UpdatedAt: number
+    end
+
     record GetMetricStatisticsInput
         -- The namespace of the metric, with or without spaces.
         Namespace: string
@@ -2353,6 +2393,40 @@ local record M
         ManagedRules: {ManagedRuleDescription}
         -- Include this value to get the next set of rules if the value was returned by the
         -- previous operation.
+        NextToken: string
+    end
+
+    record ListMetricDataQueryDefinitionsInput
+        -- The maximum number of metric data query definitions to return in one call. The
+        -- default is 100.
+        MaxResults: number
+        -- The token returned by a previous call to indicate where to continue retrieving
+        -- results.
+        NextToken: string
+    end
+
+    -- Summary information about a metric data query definition. To get the expression,
+    -- call GetMetricDataQueryDefinition.
+    record MetricDataQueryDefinitionSummary
+        -- The ID of the metric data query definition.
+        Id: string
+        -- The path of the metric data query definition.
+        Path: string
+        -- The language of the expression. Valid values are the following:
+        -- PROMQL – A PromQL query.
+        -- SQL – A CloudWatch Metrics Insights query.
+        -- METRIC_MATH – A metric math expression.
+        Type: string
+        -- The date and time when you last updated the metric data query
+        -- definition.
+        UpdatedAt: number
+    end
+
+    record ListMetricDataQueryDefinitionsOutput
+        -- A list of metric data query definition summaries.
+        Items: {MetricDataQueryDefinitionSummary}
+        -- The token to use when requesting the next set of results. If this field is absent,
+        -- there are no more results to retrieve.
         NextToken: string
     end
 
@@ -3196,6 +3270,53 @@ local record M
     end
 
     record PutMetricDataOutput
+    end
+
+    record PutMetricDataQueryDefinitionInput
+        -- The ID of the metric data query definition to update. Omit this parameter to
+        -- create a definition. CloudWatch then generates the ID and returns it in the
+        -- response.
+        Id: string
+        -- The name of the metric data query definition. Use slashes (/) to
+        -- organize definitions into folders, for example team/web/latency. The path
+        -- must meet the following requirements:
+        -- It must be unique in your account and Region.
+        -- It can't start or end with a slash.
+        -- It can't contain an empty folder name (//).
+        -- It can be at most 1,015 bytes when encoded as UTF-8.
+        Path: string
+        -- The query expression, in the language that Type specifies.
+        -- CloudWatch doesn't validate or run the expression when you save it.
+        Expression: string
+        -- The language of the expression. Valid values are the following:
+        -- PROMQL – A PromQL query.
+        -- SQL – A CloudWatch Metrics Insights query.
+        -- METRIC_MATH – A metric math expression.
+        Type: string
+        -- A list of key-value pairs to associate with the metric data query definition. You
+        -- can use tags to categorize definitions and to control access to them. Tags are applied
+        -- only when the request creates a definition, that is, when you omit Id. To
+        -- change the tags of an existing definition, use TagResource and
+        -- UntagResource.
+        Tags: {Tag}
+    end
+
+    record PutMetricDataQueryDefinitionOutput
+        -- The ID of the metric data query definition.
+        Id: string
+        -- The Amazon Resource Name (ARN) of the metric data query definition.
+        Arn: string
+        -- The path of the metric data query definition.
+        Path: string
+        -- The query expression.
+        Expression: string
+        -- The language of the expression.
+        Type: string
+        -- The date and time when you created the metric data query definition.
+        CreatedAt: number
+        -- The date and time when you last updated the metric data query
+        -- definition.
+        UpdatedAt: number
     end
 
     record PutMetricStreamInput

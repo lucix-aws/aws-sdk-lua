@@ -126,6 +126,8 @@ M.AsnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AddPrefixListEntries = schema.new({ type = "list", list_member = M.AddPrefixListEntry })
 
+M.MetricCategoryMetricNameList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AvailabilityZoneAddresses = schema.new({ type = "list", list_member = M.AvailabilityZoneAddress })
 
 M.AccessScopePathListRequest = schema.new({ type = "list", list_member = M.AccessScopePathRequest })
@@ -501,6 +503,10 @@ M.MacModificationTaskIdList = schema.new({ type = "list", list_member = prelude.
 M.MacModificationTaskList = schema.new({ type = "list", list_member = M.MacModificationTask })
 
 M.ManagedPrefixListSet = schema.new({ type = "list", list_member = M.ManagedPrefixList })
+
+M.MetricCategoryIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetricCategoryList = schema.new({ type = "list", list_member = M.MetricCategory })
 
 M.MovingAddressStatusSet = schema.new({ type = "list", list_member = M.MovingAddressStatus })
 
@@ -5442,6 +5448,26 @@ M.AccountVpcEncryptionControlExclusions = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "elasticFileSystem" },
                 [traits.EC2_QUERY_NAME] = { name = "ElasticFileSystem" },
+            },
+        }),
+        GlobalAccelerator = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "GlobalAccelerator"),
+            type = "string",
+            name = "GlobalAccelerator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "globalAccelerator" },
+                [traits.EC2_QUERY_NAME] = { name = "GlobalAccelerator" },
+            },
+        }),
+        ApiGatewayV2 = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "ApiGatewayV2"),
+            type = "string",
+            name = "ApiGatewayV2",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "apiGatewayV2" },
+                [traits.EC2_QUERY_NAME] = { name = "ApiGatewayV2" },
             },
         }),
     },
@@ -17889,6 +17915,28 @@ M.VpcEncryptionControlExclusions = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "ElasticFileSystem" },
             },
         }),
+        GlobalAccelerator = schema.new({
+            id = id.from(_N, "VpcEncryptionControlExclusions", "GlobalAccelerator"),
+            type = "structure",
+            name = "GlobalAccelerator",
+            target_id = id.from(_N, "VpcEncryptionControlExclusion"),
+            target = M.VpcEncryptionControlExclusion,
+            traits = {
+                [traits.XML_NAME] = { name = "globalAccelerator" },
+                [traits.EC2_QUERY_NAME] = { name = "GlobalAccelerator" },
+            },
+        }),
+        ApiGatewayV2 = schema.new({
+            id = id.from(_N, "VpcEncryptionControlExclusions", "ApiGatewayV2"),
+            type = "structure",
+            name = "ApiGatewayV2",
+            target_id = id.from(_N, "VpcEncryptionControlExclusion"),
+            target = M.VpcEncryptionControlExclusion,
+            traits = {
+                [traits.XML_NAME] = { name = "apiGatewayV2" },
+                [traits.EC2_QUERY_NAME] = { name = "ApiGatewayV2" },
+            },
+        }),
     },
 })
 
@@ -24998,6 +25046,16 @@ M.LaunchTemplatesMonitoringRequest = schema.new({
             name = "Enabled",
             target_id = prelude.Boolean.id,
         }),
+        MetricCategoryIds = schema.new({
+            id = id.from(_N, "LaunchTemplatesMonitoringRequest", "MetricCategoryIds"),
+            type = "list",
+            name = "MetricCategoryIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "MetricCategoryId" },
+            },
+        }),
     },
 })
 
@@ -26621,6 +26679,17 @@ M.LaunchTemplatesMonitoring = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "enabled" },
                 [traits.EC2_QUERY_NAME] = { name = "Enabled" },
+            },
+        }),
+        MetricCategoryIds = schema.new({
+            id = id.from(_N, "LaunchTemplatesMonitoring", "MetricCategoryIds"),
+            type = "list",
+            name = "MetricCategoryIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "metricCategoryIdSet" },
+                [traits.EC2_QUERY_NAME] = { name = "MetricCategoryIdSet" },
             },
         }),
     },
@@ -29200,6 +29269,106 @@ M.CreateManagedPrefixListOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "prefixList" },
                 [traits.EC2_QUERY_NAME] = { name = "PrefixList" },
+            },
+        }),
+    },
+})
+
+M.CreateMetricCategoryInput = schema.new({
+    id = id.from(_N, "CreateMetricCategoryRequest"),
+    type = "structure",
+    members = {
+        Metrics = schema.new({
+            id = id.from(_N, "CreateMetricCategoryInput", "Metrics"),
+            type = "list",
+            name = "Metrics",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "Metric" },
+            },
+        }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "CreateMetricCategoryInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagSpecification" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateMetricCategoryInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "CreateMetricCategoryInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.MetricCategory = schema.new({
+    id = id.from(_N, "MetricCategory"),
+    type = "structure",
+    members = {
+        MetricCategoryId = schema.new({
+            id = id.from(_N, "MetricCategory", "MetricCategoryId"),
+            type = "string",
+            name = "MetricCategoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "metricCategoryId" },
+                [traits.EC2_QUERY_NAME] = { name = "MetricCategoryId" },
+            },
+        }),
+        Metrics = schema.new({
+            id = id.from(_N, "MetricCategory", "Metrics"),
+            type = "list",
+            name = "Metrics",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "metricSet" },
+                [traits.EC2_QUERY_NAME] = { name = "MetricSet" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "MetricCategory", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
+            },
+        }),
+    },
+})
+
+M.CreateMetricCategoryOutput = schema.new({
+    id = id.from(_N, "CreateMetricCategoryResult"),
+    type = "structure",
+    members = {
+        MetricCategory = schema.new({
+            id = id.from(_N, "CreateMetricCategoryOutput", "MetricCategory"),
+            type = "structure",
+            name = "MetricCategory",
+            target_id = id.from(_N, "MetricCategory"),
+            target = M.MetricCategory,
+            traits = {
+                [traits.XML_NAME] = { name = "metricCategory" },
+                [traits.EC2_QUERY_NAME] = { name = "MetricCategory" },
             },
         }),
     },
@@ -40560,6 +40729,18 @@ M.VpcEncryptionControlConfiguration = schema.new({
             name = "ElasticFileSystemExclusion",
             target_id = prelude.String.id,
         }),
+        GlobalAcceleratorExclusion = schema.new({
+            id = id.from(_N, "VpcEncryptionControlConfiguration", "GlobalAcceleratorExclusion"),
+            type = "string",
+            name = "GlobalAcceleratorExclusion",
+            target_id = prelude.String.id,
+        }),
+        ApiGatewayV2Exclusion = schema.new({
+            id = id.from(_N, "VpcEncryptionControlConfiguration", "ApiGatewayV2Exclusion"),
+            type = "string",
+            name = "ApiGatewayV2Exclusion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -45692,6 +45873,45 @@ M.DeleteManagedPrefixListOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "prefixList" },
                 [traits.EC2_QUERY_NAME] = { name = "PrefixList" },
+            },
+        }),
+    },
+})
+
+M.DeleteMetricCategoryInput = schema.new({
+    id = id.from(_N, "DeleteMetricCategoryRequest"),
+    type = "structure",
+    members = {
+        MetricCategoryId = schema.new({
+            id = id.from(_N, "DeleteMetricCategoryInput", "MetricCategoryId"),
+            type = "string",
+            name = "MetricCategoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DeleteMetricCategoryInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DeleteMetricCategoryOutput = schema.new({
+    id = id.from(_N, "DeleteMetricCategoryResult"),
+    type = "structure",
+    members = {
+        MetricCategoryId = schema.new({
+            id = id.from(_N, "DeleteMetricCategoryOutput", "MetricCategoryId"),
+            type = "string",
+            name = "MetricCategoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "metricCategoryId" },
+                [traits.EC2_QUERY_NAME] = { name = "MetricCategoryId" },
             },
         }),
     },
@@ -62032,6 +62252,17 @@ M.Monitoring = schema.new({
     id = id.from(_N, "Monitoring"),
     type = "structure",
     members = {
+        MetricCategoryIds = schema.new({
+            id = id.from(_N, "Monitoring", "MetricCategoryIds"),
+            type = "list",
+            name = "MetricCategoryIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "metricCategoryIdSet" },
+                [traits.EC2_QUERY_NAME] = { name = "MetricCategoryIdSet" },
+            },
+        }),
         State = schema.new({
             id = id.from(_N, "Monitoring", "State"),
             type = "string",
@@ -68653,6 +68884,79 @@ M.DescribeManagedPrefixListsOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "prefixListSet" },
                 [traits.EC2_QUERY_NAME] = { name = "PrefixListSet" },
+            },
+        }),
+    },
+})
+
+M.DescribeMetricCategoriesInput = schema.new({
+    id = id.from(_N, "DescribeMetricCategoriesRequest"),
+    type = "structure",
+    members = {
+        MetricCategoryIds = schema.new({
+            id = id.from(_N, "DescribeMetricCategoriesInput", "MetricCategoryIds"),
+            type = "list",
+            name = "MetricCategoryIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "MetricCategoryId" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeMetricCategoriesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeMetricCategoriesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeMetricCategoriesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeMetricCategoriesInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DescribeMetricCategoriesOutput = schema.new({
+    id = id.from(_N, "DescribeMetricCategoriesResult"),
+    type = "structure",
+    members = {
+        MetricCategories = schema.new({
+            id = id.from(_N, "DescribeMetricCategoriesOutput", "MetricCategories"),
+            type = "list",
+            name = "MetricCategories",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.MetricCategory, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "metricCategorySet" },
+                [traits.EC2_QUERY_NAME] = { name = "MetricCategorySet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeMetricCategoriesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
             },
         }),
     },
@@ -75826,6 +76130,16 @@ M.RunInstancesMonitoringEnabled = schema.new({
     id = id.from(_N, "RunInstancesMonitoringEnabled"),
     type = "structure",
     members = {
+        MetricCategoryIds = schema.new({
+            id = id.from(_N, "RunInstancesMonitoringEnabled", "MetricCategoryIds"),
+            type = "list",
+            name = "MetricCategoryIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "MetricCategoryId" },
+            },
+        }),
         Enabled = schema.new({
             id = id.from(_N, "RunInstancesMonitoringEnabled", "Enabled"),
             type = "boolean",
@@ -98001,6 +98315,18 @@ M.ModifyAccountVpcEncryptionControlInput = schema.new({
             name = "ElasticFileSystem",
             target_id = prelude.String.id,
         }),
+        GlobalAccelerator = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "GlobalAccelerator"),
+            type = "string",
+            name = "GlobalAccelerator",
+            target_id = prelude.String.id,
+        }),
+        ApiGatewayV2 = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "ApiGatewayV2"),
+            type = "string",
+            name = "ApiGatewayV2",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -101421,6 +101747,57 @@ M.ModifyManagedResourceVisibilityOutput = schema.new({
     },
 })
 
+M.ModifyMetricCategoryInput = schema.new({
+    id = id.from(_N, "ModifyMetricCategoryRequest"),
+    type = "structure",
+    members = {
+        MetricCategoryId = schema.new({
+            id = id.from(_N, "ModifyMetricCategoryInput", "MetricCategoryId"),
+            type = "string",
+            name = "MetricCategoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Metrics = schema.new({
+            id = id.from(_N, "ModifyMetricCategoryInput", "Metrics"),
+            type = "list",
+            name = "Metrics",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "Metric" },
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyMetricCategoryInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ModifyMetricCategoryOutput = schema.new({
+    id = id.from(_N, "ModifyMetricCategoryResult"),
+    type = "structure",
+    members = {
+        MetricCategory = schema.new({
+            id = id.from(_N, "ModifyMetricCategoryOutput", "MetricCategory"),
+            type = "structure",
+            name = "MetricCategory",
+            target_id = id.from(_N, "MetricCategory"),
+            target = M.MetricCategory,
+            traits = {
+                [traits.XML_NAME] = { name = "metricCategory" },
+                [traits.EC2_QUERY_NAME] = { name = "MetricCategory" },
+            },
+        }),
+    },
+})
+
 M.NetworkInterfaceAttachmentChanges = schema.new({
     id = id.from(_N, "NetworkInterfaceAttachmentChanges"),
     type = "structure",
@@ -104212,6 +104589,18 @@ M.ModifyVpcEncryptionControlInput = schema.new({
             name = "ElasticFileSystemExclusion",
             target_id = prelude.String.id,
         }),
+        GlobalAcceleratorExclusion = schema.new({
+            id = id.from(_N, "ModifyVpcEncryptionControlInput", "GlobalAcceleratorExclusion"),
+            type = "string",
+            name = "GlobalAcceleratorExclusion",
+            target_id = prelude.String.id,
+        }),
+        ApiGatewayV2Exclusion = schema.new({
+            id = id.from(_N, "ModifyVpcEncryptionControlInput", "ApiGatewayV2Exclusion"),
+            type = "string",
+            name = "ApiGatewayV2Exclusion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -105340,6 +105729,16 @@ M.MonitorInstancesInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.XML_NAME] = { name = "InstanceId" },
+            },
+        }),
+        MetricCategoryIds = schema.new({
+            id = id.from(_N, "MonitorInstancesInput", "MetricCategoryIds"),
+            type = "list",
+            name = "MetricCategoryIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "MetricCategoryId" },
             },
         }),
         DryRun = schema.new({
@@ -112066,6 +112465,16 @@ M.UnmonitorInstancesInput = schema.new({
                 [traits.XML_NAME] = { name = "InstanceId" },
             },
         }),
+        MetricCategoryIds = schema.new({
+            id = id.from(_N, "UnmonitorInstancesInput", "MetricCategoryIds"),
+            type = "list",
+            name = "MetricCategoryIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "MetricCategoryId" },
+            },
+        }),
         DryRun = schema.new({
             id = id.from(_N, "UnmonitorInstancesInput", "DryRun"),
             type = "boolean",
@@ -113813,6 +114222,17 @@ M.CreateManagedPrefixList = schema.operation({
     },
 })
 
+M.CreateMetricCategory = schema.operation({
+    id = id.from("com.amazonaws.ec2", "CreateMetricCategory"),
+    input = M.CreateMetricCategoryInput,
+    output = M.CreateMetricCategoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateNatGateway = schema.operation({
     id = id.from("com.amazonaws.ec2", "CreateNatGateway"),
     input = M.CreateNatGatewayInput,
@@ -114895,6 +115315,17 @@ M.DeleteManagedPrefixList = schema.operation({
     id = id.from("com.amazonaws.ec2", "DeleteManagedPrefixList"),
     input = M.DeleteManagedPrefixListInput,
     output = M.DeleteManagedPrefixListOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteMetricCategory = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DeleteMetricCategory"),
+    input = M.DeleteMetricCategoryInput,
+    output = M.DeleteMetricCategoryOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -116765,6 +117196,17 @@ M.DescribeManagedPrefixLists = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeManagedPrefixLists"),
     input = M.DescribeManagedPrefixListsInput,
     output = M.DescribeManagedPrefixListsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetricCategories = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeMetricCategories"),
+    input = M.DescribeMetricCategoriesInput,
+    output = M.DescribeMetricCategoriesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -120087,6 +120529,17 @@ M.ModifyManagedResourceVisibility = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyManagedResourceVisibility"),
     input = M.ModifyManagedResourceVisibilityInput,
     output = M.ModifyManagedResourceVisibilityOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyMetricCategory = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyMetricCategory"),
+    input = M.ModifyMetricCategoryInput,
+    output = M.ModifyMetricCategoryOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

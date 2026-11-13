@@ -4158,6 +4158,11 @@ local record M
         AvailabilityZones: {string}
     end
 
+    enum MediaPackageV2CaptionLanguageSetting
+        "AUTO"
+        "NONE"
+    end
+
     -- A/B Watermarker settings for MediaPackage V2 output groups.
     record MediaPackageV2AbWatermarkerIrdetoSettings
         -- The "B" pipeline renditions for the additional destinations.
@@ -4210,6 +4215,10 @@ local record M
         AdditionalDestinations: {MediaPackageAdditionalDestinations}
         -- Specifies the type of watermarking technology to use.
         WatermarkingSettings: MediaPackageV2WatermarkingSettings
+        -- Applies only to 608 Embedded output captions. Controls the CLOSED-CAPTIONS signaling that MediaPackage v2 writes into the HLS manifest it delivers.
+        -- auto: The default. If captionLanguageMappings is non-empty, the HLS manifest includes a CLOSED-CAPTIONS line for each mapped caption channel. If captionLanguageMappings is empty, the HLS manifest omits any CLOSED-CAPTIONS line.
+        -- none: The HLS manifest carries CLOSED-CAPTIONS=NONE on each EXT-X-STREAM-INF tag, which signals to players that the stream has no closed captions, so they stop offering a CC track. The API rejects none combined with a non-empty captionLanguageMappings.
+        CaptionLanguageSetting: string
     end
 
     -- Media Package Group Settings

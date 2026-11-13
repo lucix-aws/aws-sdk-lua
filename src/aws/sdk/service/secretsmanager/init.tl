@@ -18,15 +18,18 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateCrossAccountReplica: function(Client, types.AssociateCrossAccountReplicaInput, ? base_client.InvokeOptions): async.Operation<types.AssociateCrossAccountReplicaOutput>
     batchGetSecretValue: function(Client, types.BatchGetSecretValueInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetSecretValueOutput>
     cancelRotateSecret: function(Client, types.CancelRotateSecretInput, ? base_client.InvokeOptions): async.Operation<types.CancelRotateSecretOutput>
     createSecret: function(Client, types.CreateSecretInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecretOutput>
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     deleteSecret: function(Client, types.DeleteSecretInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecretOutput>
     describeSecret: function(Client, types.DescribeSecretInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecretOutput>
+    disassociateCrossAccountReplica: function(Client, types.DisassociateCrossAccountReplicaInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateCrossAccountReplicaOutput>
     getRandomPassword: function(Client, types.GetRandomPasswordInput, ? base_client.InvokeOptions): async.Operation<types.GetRandomPasswordOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     getSecretValue: function(Client, types.GetSecretValueInput, ? base_client.InvokeOptions): async.Operation<types.GetSecretValueOutput>
+    listResourcePolicies: function(Client, types.ListResourcePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcePoliciesOutput>
     listSecrets: function(Client, types.ListSecretsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecretsOutput>
     listSecretVersionIds: function(Client, types.ListSecretVersionIdsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecretVersionIdsOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
@@ -85,6 +88,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:associateCrossAccountReplica(input: types.AssociateCrossAccountReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateCrossAccountReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateCrossAccountReplica as schema.OperationSchema, input, options) as async.Operation<types.AssociateCrossAccountReplicaOutput>
+end
+
 function C:batchGetSecretValue(input: types.BatchGetSecretValueInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetSecretValueOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetSecretValue as schema.OperationSchema, input, options) as async.Operation<types.BatchGetSecretValueOutput>
 end
@@ -109,6 +116,10 @@ function C:describeSecret(input: types.DescribeSecretInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecret as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecretOutput>
 end
 
+function C:disassociateCrossAccountReplica(input: types.DisassociateCrossAccountReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateCrossAccountReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateCrossAccountReplica as schema.OperationSchema, input, options) as async.Operation<types.DisassociateCrossAccountReplicaOutput>
+end
+
 function C:getRandomPassword(input: types.GetRandomPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.GetRandomPasswordOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRandomPassword as schema.OperationSchema, input, options) as async.Operation<types.GetRandomPasswordOutput>
 end
@@ -119,6 +130,10 @@ end
 
 function C:getSecretValue(input: types.GetSecretValueInput, options?: base_client.InvokeOptions): async.Operation<types.GetSecretValueOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSecretValue as schema.OperationSchema, input, options) as async.Operation<types.GetSecretValueOutput>
+end
+
+function C:listResourcePolicies(input: types.ListResourcePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcePoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourcePolicies as schema.OperationSchema, input, options) as async.Operation<types.ListResourcePoliciesOutput>
 end
 
 function C:listSecrets(input: types.ListSecretsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecretsOutput>

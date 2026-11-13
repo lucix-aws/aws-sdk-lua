@@ -31206,6 +31206,20 @@ M.DescribeHubOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        CreatedBy = schema.new({
+            id = id.from(_N, "DescribeHubOutput", "CreatedBy"),
+            type = "structure",
+            name = "CreatedBy",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+        }),
+        LastModifiedBy = schema.new({
+            id = id.from(_N, "DescribeHubOutput", "LastModifiedBy"),
+            type = "structure",
+            name = "LastModifiedBy",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+        }),
     },
 })
 
@@ -31423,6 +31437,20 @@ M.DescribeHubContentOutput = schema.new({
             type = "timestamp",
             name = "LastModifiedTime",
             target_id = prelude.Timestamp.id,
+        }),
+        CreatedBy = schema.new({
+            id = id.from(_N, "DescribeHubContentOutput", "CreatedBy"),
+            type = "structure",
+            name = "CreatedBy",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+        }),
+        LastModifiedBy = schema.new({
+            id = id.from(_N, "DescribeHubContentOutput", "LastModifiedBy"),
+            type = "structure",
+            name = "LastModifiedBy",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
         }),
     },
 })
@@ -41340,6 +41368,20 @@ M.HubContent = schema.new({
             type = "timestamp",
             name = "LastModifiedTime",
             target_id = prelude.Timestamp.id,
+        }),
+        CreatedBy = schema.new({
+            id = id.from(_N, "HubContent", "CreatedBy"),
+            type = "structure",
+            name = "CreatedBy",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+        }),
+        LastModifiedBy = schema.new({
+            id = id.from(_N, "HubContent", "LastModifiedBy"),
+            type = "structure",
+            name = "LastModifiedBy",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
         }),
         Tags = schema.new({
             id = id.from(_N, "HubContent", "Tags"),

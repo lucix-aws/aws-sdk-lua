@@ -4002,12 +4002,20 @@ local record M
         worker: ProtectedJobWorkerComputeConfiguration
     end
 
-    -- The protected job error.
+    -- Contains information about whether running a failed protected query or protected job again might succeed.
+    record RetryInfo
+        -- Specifies whether running the same request again might succeed. true means that the failure was transient. false means that running the same request again is not expected to succeed.
+        retryable: boolean
+    end
+
+    -- Details of the error that caused the protected job to fail.
     record ProtectedJobError
-        -- The message for the protected job error.
+        -- A description of why the protected job failed.
         message: string
-        -- The error code for the protected job.
+        -- A code that identifies the category of the failure. Valid values are: MALFORMED_SCRIPT – The job script or its execution environment is not valid (code, imports, entry point, virtual environment, or dependencies). RESOURCE_NOT_FOUND – A referenced resource doesn't exist. INVALID_RESOURCE – A referenced resource exists, but you can't use it because its configuration, state, or data is not valid. RESOURCE_ACCESS_DENIED – A required permission is missing for a data source or resource. INSUFFICIENT_COMPUTE – The job exceeded the available compute (memory, disk, or time). TRANSIENT_ERROR – A temporary condition caused the failure, such as throttling or a network interruption. INTERNAL_ERROR – Clean Rooms encountered an unexpected error. If the error persists, contact AWS Support. UNKNOWN_ERROR – The failure couldn't be classified. For more information about error codes, see https://docs.aws.amazon.com/clean-rooms/latest/userguide/error-codes.html in the Clean Rooms User Guide.
         code: string
+        -- Contains information about whether running the same protected job again might succeed.
+        retry: RetryInfo
     end
 
     -- The parameters for the protected job.
@@ -4161,12 +4169,14 @@ local record M
         sensitivityParameters: {DifferentialPrivacySensitivityParameters}
     end
 
-    -- Details of errors thrown by the protected query.
+    -- Details of the error that caused the protected query to fail.
     record ProtectedQueryError
-        -- A description of why the query failed.
+        -- A description of why the protected query failed.
         message: string
-        -- An error code for the error.
+        -- A code that identifies the category of the failure. Valid values are: MALFORMED_QUERY – The query is not valid (syntax, semantics, columns, or an unsupported operation). RESOURCE_NOT_FOUND – A referenced resource doesn't exist. INVALID_RESOURCE – A referenced resource exists, but you can't use it because its configuration, state, or data is not valid. RESOURCE_ACCESS_DENIED – A required permission is missing for a data source or resource. INSUFFICIENT_COMPUTE – The query exceeded the available compute (memory, disk, or time). TRANSIENT_ERROR – A temporary condition caused the failure, such as throttling or a network interruption. INTERNAL_ERROR – Clean Rooms encountered an unexpected error. If the error persists, contact AWS Support. UNKNOWN_ERROR – The failure couldn't be classified. For more information about error codes, see https://docs.aws.amazon.com/clean-rooms/latest/userguide/error-codes.html in the Clean Rooms User Guide.
         code: string
+        -- Contains information about whether running the same protected query again might succeed.
+        retry: RetryInfo
     end
 
     -- Details about the member who received the query result.

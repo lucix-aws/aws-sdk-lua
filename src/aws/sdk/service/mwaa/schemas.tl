@@ -14,6 +14,8 @@ M.AirflowConfigurationOptions = schema.new({ type = "map", map_key = prelude.Str
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.TeamMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.TeamConfig })
+
 M.EnvironmentList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MetricData = schema.new({ type = "list", list_member = M.MetricDatum })
@@ -23,6 +25,8 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 M.SubnetList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityGroupList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TeamNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.Dimensions = schema.new({ type = "list", list_member = M.Dimension })
 
@@ -89,6 +93,25 @@ M.ResourceNotFoundException = schema.new({
             id = id.from(_N, "ResourceNotFoundException", "message"),
             type = "string",
             name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IdentityCenterConfiguration = schema.new({
+    id = id.from(_N, "IdentityCenterConfiguration"),
+    type = "structure",
+    members = {
+        StartUrl = schema.new({
+            id = id.from(_N, "IdentityCenterConfiguration", "StartUrl"),
+            type = "string",
+            name = "StartUrl",
+            target_id = prelude.String.id,
+        }),
+        IdentityStoreId = schema.new({
+            id = id.from(_N, "IdentityCenterConfiguration", "IdentityStoreId"),
+            type = "string",
+            name = "IdentityStoreId",
             target_id = prelude.String.id,
         }),
     },
@@ -178,6 +201,31 @@ M.NetworkConfiguration = schema.new({
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+    },
+})
+
+M.TeamConfig = schema.new({
+    id = id.from(_N, "TeamConfig"),
+    type = "structure",
+    members = {
+        SourceBucketArn = schema.new({
+            id = id.from(_N, "TeamConfig", "SourceBucketArn"),
+            type = "string",
+            name = "SourceBucketArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DagS3Path = schema.new({
+            id = id.from(_N, "TeamConfig", "DagS3Path"),
+            type = "string",
+            name = "DagS3Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -357,6 +405,21 @@ M.CreateEnvironmentInput = schema.new({
             type = "integer",
             name = "MaxWebservers",
             target_id = prelude.Integer.id,
+        }),
+        IdentityCenterConfiguration = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "IdentityCenterConfiguration"),
+            type = "structure",
+            name = "IdentityCenterConfiguration",
+            target_id = id.from(_N, "IdentityCenterConfiguration"),
+            target = M.IdentityCenterConfiguration,
+        }),
+        Teams = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "Teams"),
+            type = "map",
+            name = "Teams",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.TeamConfig,
         }),
     },
 })
@@ -848,6 +911,21 @@ M.Environment = schema.new({
             name = "MaxWebservers",
             target_id = prelude.Integer.id,
         }),
+        IdentityCenterConfiguration = schema.new({
+            id = id.from(_N, "Environment", "IdentityCenterConfiguration"),
+            type = "structure",
+            name = "IdentityCenterConfiguration",
+            target_id = id.from(_N, "IdentityCenterConfiguration"),
+            target = M.IdentityCenterConfiguration,
+        }),
+        Teams = schema.new({
+            id = id.from(_N, "Environment", "Teams"),
+            type = "map",
+            name = "Teams",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.TeamConfig,
+        }),
     },
 })
 
@@ -1277,6 +1355,28 @@ M.UpdateNetworkConfigurationInput = schema.new({
     },
 })
 
+M.UpdateTeamsInput = schema.new({
+    id = id.from(_N, "UpdateTeamsInput"),
+    type = "structure",
+    members = {
+        AddOrUpdate = schema.new({
+            id = id.from(_N, "UpdateTeamsInput", "AddOrUpdate"),
+            type = "map",
+            name = "AddOrUpdate",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.TeamConfig,
+        }),
+        Remove = schema.new({
+            id = id.from(_N, "UpdateTeamsInput", "Remove"),
+            type = "list",
+            name = "Remove",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.UpdateEnvironmentInput = schema.new({
     id = id.from(_N, "UpdateEnvironmentInput"),
     type = "structure",
@@ -1426,6 +1526,20 @@ M.UpdateEnvironmentInput = schema.new({
             type = "string",
             name = "WeeklyMaintenanceWindowStart",
             target_id = prelude.String.id,
+        }),
+        IdentityCenterConfiguration = schema.new({
+            id = id.from(_N, "UpdateEnvironmentInput", "IdentityCenterConfiguration"),
+            type = "structure",
+            name = "IdentityCenterConfiguration",
+            target_id = id.from(_N, "IdentityCenterConfiguration"),
+            target = M.IdentityCenterConfiguration,
+        }),
+        Teams = schema.new({
+            id = id.from(_N, "UpdateEnvironmentInput", "Teams"),
+            type = "structure",
+            name = "Teams",
+            target_id = id.from(_N, "UpdateTeamsInput"),
+            target = M.UpdateTeamsInput,
         }),
     },
 })

@@ -1433,6 +1433,16 @@ local record M
         attributes: {string : string}
     end
 
+    enum MetricAggregationTemporality
+        "delta"
+        "cumulative"
+    end
+
+    enum MetricMonotonicity
+        "monotonic"
+        "non_monotonic"
+    end
+
     -- The meaning and unit of a single metric.
     record MetricSemantics
         -- Human-readable description of what the metric measures.
@@ -1441,7 +1451,7 @@ local record M
         unit: string
     end
 
-    -- A single metric observed on a context graph node.
+    -- A single metric observed on a context graph node or edge.
     record MetricMetadata
         -- The metric name as emitted, such as "Duration".
         name: string
@@ -1455,15 +1465,22 @@ local record M
         -- Per-metric qualifying attributes used to query this metric's telemetry. Keys are the
         -- metric store's own label names, not bare OTel attribute names: service identity arrives
         -- as "@resource.service.name" and "@resource.service.namespace", and the instrumentation
-        -- scope as "@instrumentation.@name", while span-derived metrics label the service as a
-        -- bare "service.name". Cloud provider, account and region are not repeated per metric —
-        -- read those from the node. Values are RAW, deliberately NOT the node's normalized or
+        -- scope as "@instrumentation.@name". Span-derived metrics can additionally carry the service
+        -- as a bare data point "service.name" label. Cloud provider, account and region are not
+        -- repeated per metric — read those from the node. Values are RAW, deliberately NOT the node's
         -- merged identity, so a selector built from them matches the emitted series. A merged node
         -- can carry different values per metric, which is why these live here rather than on the
         -- node.
         attributes: {string : string}
         -- What the metric means and the unit it is reported in.
         semantics: MetricSemantics
+        -- Aggregation temporality for the selected metric stream represented by this metadata entry.
+        -- Present when known, including cumulative for OTel Summary metrics. Absent for Gauge metrics
+        -- or when the information is unavailable.
+        aggregationTemporality: string
+        -- Whether the selected Sum metric stream represented by this metadata entry is a non-negative
+        -- accumulation. Absent for metrics other than Sum or when the information is unavailable.
+        monotonicity: string
     end
 
     -- Semantic description of the service a context graph node represents.

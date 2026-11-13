@@ -128,6 +128,8 @@ M.setupHistoryList = schema.new({ type = "list", list_member = M.SetupHistory })
 
 M.StaticIpList = schema.new({ type = "list", list_member = M.StaticIp })
 
+M.SubdomainList = schema.new({ type = "list", list_member = M.Subdomain })
+
 M.NotificationTriggerList = schema.new({ type = "list", list_member = prelude.String })
 
 M.PortInfoList = schema.new({ type = "list", list_member = M.PortInfo })
@@ -2216,6 +2218,53 @@ M.CertificateSummary = schema.new({
     },
 })
 
+M.CheckSubdomainAvailabilityInput = schema.new({
+    id = id.from(_N, "CheckSubdomainAvailabilityRequest"),
+    type = "structure",
+    members = {
+        subdomainName = schema.new({
+            id = id.from(_N, "CheckSubdomainAvailabilityInput", "subdomainName"),
+            type = "string",
+            name = "subdomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reserve = schema.new({
+            id = id.from(_N, "CheckSubdomainAvailabilityInput", "reserve"),
+            type = "boolean",
+            name = "reserve",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CheckSubdomainAvailabilityOutput = schema.new({
+    id = id.from(_N, "CheckSubdomainAvailabilityResult"),
+    type = "structure",
+    members = {
+        available = schema.new({
+            id = id.from(_N, "CheckSubdomainAvailabilityOutput", "available"),
+            type = "boolean",
+            name = "available",
+            target_id = prelude.Boolean.id,
+        }),
+        reservationExpiresAt = schema.new({
+            id = id.from(_N, "CheckSubdomainAvailabilityOutput", "reservationExpiresAt"),
+            type = "timestamp",
+            name = "reservationExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        subdomainName = schema.new({
+            id = id.from(_N, "CheckSubdomainAvailabilityOutput", "subdomainName"),
+            type = "string",
+            name = "subdomainName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PortInfo = schema.new({
     id = id.from(_N, "PortInfo"),
     type = "structure",
@@ -4087,6 +4136,12 @@ M.CreateDistributionInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.WafRule,
         }),
+        subdomainName = schema.new({
+            id = id.from(_N, "CreateDistributionInput", "subdomainName"),
+            type = "string",
+            name = "subdomainName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4135,6 +4190,43 @@ M.Origin = schema.new({
             type = "boolean",
             name = "isPrivateOriginAccessEnabled",
             target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.LightsailDistributionSubdomain = schema.new({
+    id = id.from(_N, "LightsailDistributionSubdomain"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "LightsailDistributionSubdomain", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "LightsailDistributionSubdomain", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "LightsailDistributionSubdomain", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+        }),
+        errorDetails = schema.new({
+            id = id.from(_N, "LightsailDistributionSubdomain", "errorDetails"),
+            type = "string",
+            name = "errorDetails",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4315,6 +4407,13 @@ M.LightsailDistribution = schema.new({
             name = "waf",
             target_id = id.from(_N, "WafConfig"),
             target = M.WafConfig,
+        }),
+        subdomain = schema.new({
+            id = id.from(_N, "LightsailDistribution", "subdomain"),
+            type = "structure",
+            name = "subdomain",
+            target_id = id.from(_N, "LightsailDistributionSubdomain"),
+            target = M.LightsailDistributionSubdomain,
         }),
     },
 })
@@ -5283,6 +5382,54 @@ M.CreateRelationalDatabaseSnapshotOutput = schema.new({
     },
 })
 
+M.CreateSubdomainInput = schema.new({
+    id = id.from(_N, "CreateSubdomainRequest"),
+    type = "structure",
+    members = {
+        subdomainName = schema.new({
+            id = id.from(_N, "CreateSubdomainInput", "subdomainName"),
+            type = "string",
+            name = "subdomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateSubdomainInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.SubdomainAttachableResource = schema.new({
+    id = id.from(_N, "SubdomainAttachableResource"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "SubdomainAttachableResource", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "SubdomainAttachableResource", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        attachedAt = schema.new({
+            id = id.from(_N, "SubdomainAttachableResource", "attachedAt"),
+            type = "timestamp",
+            name = "attachedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.DeleteAlarmInput = schema.new({
     id = id.from(_N, "DeleteAlarmRequest"),
     type = "structure",
@@ -5980,6 +6127,22 @@ M.DeleteRelationalDatabaseSnapshotOutput = schema.new({
             name = "operations",
             target_id = prelude.Document.id,
             list_member = M.Operation,
+        }),
+    },
+})
+
+M.DeleteSubdomainInput = schema.new({
+    id = id.from(_N, "DeleteSubdomainRequest"),
+    type = "structure",
+    members = {
+        subdomainName = schema.new({
+            id = id.from(_N, "DeleteSubdomainInput", "subdomainName"),
+            type = "string",
+            name = "subdomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -11656,6 +11819,25 @@ M.GetStaticIpsOutput = schema.new({
     },
 })
 
+M.GetSubdomainsInput = schema.new({
+    id = id.from(_N, "GetSubdomainsRequest"),
+    type = "structure",
+    members = {
+        subdomainName = schema.new({
+            id = id.from(_N, "GetSubdomainsInput", "subdomainName"),
+            type = "string",
+            name = "subdomainName",
+            target_id = prelude.String.id,
+        }),
+        pageToken = schema.new({
+            id = id.from(_N, "GetSubdomainsInput", "pageToken"),
+            type = "string",
+            name = "pageToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ImportKeyPairInput = schema.new({
     id = id.from(_N, "ImportKeyPairRequest"),
     type = "structure",
@@ -13251,6 +13433,204 @@ M.UpdateRelationalDatabaseParametersOutput = schema.new({
     },
 })
 
+M.UpdateSubdomainAssociationInput = schema.new({
+    id = id.from(_N, "UpdateSubdomainAssociationRequest"),
+    type = "structure",
+    members = {
+        subdomainName = schema.new({
+            id = id.from(_N, "UpdateSubdomainAssociationInput", "subdomainName"),
+            type = "string",
+            name = "subdomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "UpdateSubdomainAssociationInput", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetResourceArn = schema.new({
+            id = id.from(_N, "UpdateSubdomainAssociationInput", "targetResourceArn"),
+            type = "string",
+            name = "targetResourceArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Subdomain = schema.new({
+    id = id.from(_N, "Subdomain"),
+    type = "structure",
+    members = {
+        subdomainName = schema.new({
+            id = id.from(_N, "Subdomain", "subdomainName"),
+            type = "string",
+            name = "subdomainName",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "Subdomain", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        fqdn = schema.new({
+            id = id.from(_N, "Subdomain", "fqdn"),
+            type = "string",
+            name = "fqdn",
+            target_id = prelude.String.id,
+        }),
+        depth = schema.new({
+            id = id.from(_N, "Subdomain", "depth"),
+            type = "integer",
+            name = "depth",
+            target_id = prelude.Integer.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "Subdomain", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        attachedResource = schema.new({
+            id = id.from(_N, "Subdomain", "attachedResource"),
+            type = "structure",
+            name = "attachedResource",
+            target_id = id.from(_N, "SubdomainAttachableResource"),
+            target = M.SubdomainAttachableResource,
+        }),
+        attachingResource = schema.new({
+            id = id.from(_N, "Subdomain", "attachingResource"),
+            type = "structure",
+            name = "attachingResource",
+            target_id = id.from(_N, "SubdomainAttachableResource"),
+            target = M.SubdomainAttachableResource,
+        }),
+        location = schema.new({
+            id = id.from(_N, "Subdomain", "location"),
+            type = "structure",
+            name = "location",
+            target_id = id.from(_N, "ResourceLocation"),
+            target = M.ResourceLocation,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Subdomain", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        parentFqdn = schema.new({
+            id = id.from(_N, "Subdomain", "parentFqdn"),
+            type = "string",
+            name = "parentFqdn",
+            target_id = prelude.String.id,
+        }),
+        children = schema.new({
+            id = id.from(_N, "Subdomain", "children"),
+            type = "list",
+            name = "children",
+            target_id = prelude.Document.id,
+            list_member = M.Subdomain,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "Subdomain", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateSubdomainOutput = schema.new({
+    id = id.from(_N, "CreateSubdomainResult"),
+    type = "structure",
+    members = {
+        subdomain = schema.new({
+            id = id.from(_N, "CreateSubdomainOutput", "subdomain"),
+            type = "structure",
+            name = "subdomain",
+            target_id = id.from(_N, "Subdomain"),
+            target = M.Subdomain,
+        }),
+        operation = schema.new({
+            id = id.from(_N, "CreateSubdomainOutput", "operation"),
+            type = "structure",
+            name = "operation",
+            target_id = id.from(_N, "Operation"),
+            target = M.Operation,
+        }),
+    },
+})
+
+M.DeleteSubdomainOutput = schema.new({
+    id = id.from(_N, "DeleteSubdomainResult"),
+    type = "structure",
+    members = {
+        subdomain = schema.new({
+            id = id.from(_N, "DeleteSubdomainOutput", "subdomain"),
+            type = "structure",
+            name = "subdomain",
+            target_id = id.from(_N, "Subdomain"),
+            target = M.Subdomain,
+        }),
+        operation = schema.new({
+            id = id.from(_N, "DeleteSubdomainOutput", "operation"),
+            type = "structure",
+            name = "operation",
+            target_id = id.from(_N, "Operation"),
+            target = M.Operation,
+        }),
+    },
+})
+
+M.GetSubdomainsOutput = schema.new({
+    id = id.from(_N, "GetSubdomainsResult"),
+    type = "structure",
+    members = {
+        subdomains = schema.new({
+            id = id.from(_N, "GetSubdomainsOutput", "subdomains"),
+            type = "list",
+            name = "subdomains",
+            target_id = prelude.Document.id,
+            list_member = M.Subdomain,
+        }),
+        nextPageToken = schema.new({
+            id = id.from(_N, "GetSubdomainsOutput", "nextPageToken"),
+            type = "string",
+            name = "nextPageToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateSubdomainAssociationOutput = schema.new({
+    id = id.from(_N, "UpdateSubdomainAssociationResult"),
+    type = "structure",
+    members = {
+        subdomain = schema.new({
+            id = id.from(_N, "UpdateSubdomainAssociationOutput", "subdomain"),
+            type = "structure",
+            name = "subdomain",
+            target_id = id.from(_N, "Subdomain"),
+            target = M.Subdomain,
+        }),
+        operation = schema.new({
+            id = id.from(_N, "UpdateSubdomainAssociationOutput", "operation"),
+            type = "structure",
+            name = "operation",
+            target_id = id.from(_N, "Operation"),
+            target = M.Operation,
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -13342,6 +13722,18 @@ M.AttachStaticIp = schema.operation({
     output = M.AttachStaticIpOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/AttachStaticIp" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CheckSubdomainAvailability = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CheckSubdomainAvailability"),
+    input = M.CheckSubdomainAvailabilityInput,
+    output = M.CheckSubdomainAvailabilityOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CheckSubdomainAvailability" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -13660,6 +14052,18 @@ M.CreateRelationalDatabaseSnapshot = schema.operation({
     },
 })
 
+M.CreateSubdomain = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "CreateSubdomain"),
+    input = M.CreateSubdomainInput,
+    output = M.CreateSubdomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/CreateSubdomain" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteAlarm = schema.operation({
     id = id.from("com.amazonaws.lightsail", "DeleteAlarm"),
     input = M.DeleteAlarmInput,
@@ -13906,6 +14310,18 @@ M.DeleteRelationalDatabaseSnapshot = schema.operation({
     output = M.DeleteRelationalDatabaseSnapshotOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteRelationalDatabaseSnapshot" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSubdomain = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "DeleteSubdomain"),
+    input = M.DeleteSubdomainInput,
+    output = M.DeleteSubdomainOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/DeleteSubdomain" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -14800,6 +15216,18 @@ M.GetStaticIps = schema.operation({
     },
 })
 
+M.GetSubdomains = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "GetSubdomains"),
+    input = M.GetSubdomainsInput,
+    output = M.GetSubdomainsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/GetSubdomains" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ImportKeyPair = schema.operation({
     id = id.from("com.amazonaws.lightsail", "ImportKeyPair"),
     input = M.ImportKeyPairInput,
@@ -15214,6 +15642,18 @@ M.UpdateRelationalDatabaseParameters = schema.operation({
     output = M.UpdateRelationalDatabaseParametersOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateRelationalDatabaseParameters" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSubdomainAssociation = schema.operation({
+    id = id.from("com.amazonaws.lightsail", "UpdateSubdomainAssociation"),
+    input = M.UpdateSubdomainAssociationInput,
+    output = M.UpdateSubdomainAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ls/api/2016-11-28/UpdateSubdomainAssociation" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

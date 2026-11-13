@@ -57,6 +57,113 @@ M.AccessDeniedException = schema.new({
     },
 })
 
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ConflictException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ConflictException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAirflowUiUrlInput = schema.new({
+    id = id.from(_N, "CreateAirflowUiUrlRequest"),
+    type = "structure",
+    members = {
+        ExpiresInSeconds = schema.new({
+            id = id.from(_N, "CreateAirflowUiUrlInput", "ExpiresInSeconds"),
+            type = "integer",
+            name = "ExpiresInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        SessionDurationInSeconds = schema.new({
+            id = id.from(_N, "CreateAirflowUiUrlInput", "SessionDurationInSeconds"),
+            type = "integer",
+            name = "SessionDurationInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CreateAirflowUiUrlOutput = schema.new({
+    id = id.from(_N, "CreateAirflowUiUrlResponse"),
+    type = "structure",
+    members = {
+        AuthorizedUrl = schema.new({
+            id = id.from(_N, "CreateAirflowUiUrlOutput", "AuthorizedUrl"),
+            type = "string",
+            name = "AuthorizedUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "CreateAirflowUiUrlOutput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UrlExpiresAt = schema.new({
+            id = id.from(_N, "CreateAirflowUiUrlOutput", "UrlExpiresAt"),
+            type = "timestamp",
+            name = "UrlExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionExpiresAt = schema.new({
+            id = id.from(_N, "CreateAirflowUiUrlOutput", "SessionExpiresAt"),
+            type = "timestamp",
+            name = "SessionExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.InternalServerException = schema.new({
     id = id.from(_N, "InternalServerException"),
     type = "structure",
@@ -85,38 +192,6 @@ M.InternalServerException = schema.new({
     },
 })
 
-M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceRequest"),
-    type = "structure",
-    members = {
-        ResourceArn = schema.new({
-            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
-            type = "string",
-            name = "ResourceArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-    },
-})
-
-M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceResponse"),
-    type = "structure",
-    members = {
-        Tags = schema.new({
-            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
-            type = "map",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-        }),
-    },
-})
-
 M.OperationTimeoutException = schema.new({
     id = id.from(_N, "OperationTimeoutException"),
     type = "structure",
@@ -129,43 +204,6 @@ M.OperationTimeoutException = schema.new({
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ResourceId = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "ResourceId"),
-            type = "string",
-            name = "ResourceId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ResourceType = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "ResourceType"),
-            type = "string",
-            name = "ResourceType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -272,6 +310,75 @@ M.ValidationException = schema.new({
             name = "FieldList",
             target_id = prelude.Document.id,
             list_member = M.ValidationExceptionField,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceRequest"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceResponse"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -652,43 +759,6 @@ M.Code = schema.new({
             name = "S3Location",
             target_id = id.from(_N, "S3Location"),
             target = M.S3Location,
-        }),
-    },
-})
-
-M.ConflictException = schema.new({
-    id = id.from(_N, "ConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ConflictException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ResourceId = schema.new({
-            id = id.from(_N, "ConflictException", "ResourceId"),
-            type = "string",
-            name = "ResourceId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ResourceType = schema.new({
-            id = id.from(_N, "ConflictException", "ResourceType"),
-            type = "string",
-            name = "ResourceType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -2052,6 +2122,18 @@ M.Service = schema.service({
     id = id.from("com.amazonaws.mwaaserverless", "AmazonMWAAServerless"),
     version = "2024-07-26",
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAirflowUiUrl = schema.operation({
+    id = id.from("com.amazonaws.mwaaserverless", "CreateAirflowUiUrl"),
+    input = M.CreateAirflowUiUrlInput,
+    output = M.CreateAirflowUiUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/airflow-ui-url" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

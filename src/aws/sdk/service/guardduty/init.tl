@@ -87,6 +87,7 @@ local record Client
     listDetectors: function(Client, types.ListDetectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListDetectorsOutput>
     listFilters: function(Client, types.ListFiltersInput, ? base_client.InvokeOptions): async.Operation<types.ListFiltersOutput>
     listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    listInvestigationRecords: function(Client, types.ListInvestigationRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvestigationRecordsOutput>
     listInvestigations: function(Client, types.ListInvestigationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvestigationsOutput>
     listInvitations: function(Client, types.ListInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>
     listIPSets: function(Client, types.ListIPSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListIPSetsOutput>
@@ -438,6 +439,10 @@ end
 
 function C:listFindings(input: types.ListFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindings as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsOutput>
+end
+
+function C:listInvestigationRecords(input: types.ListInvestigationRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvestigationRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvestigationRecords as schema.OperationSchema, input, options) as async.Operation<types.ListInvestigationRecordsOutput>
 end
 
 function C:listInvestigations(input: types.ListInvestigationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvestigationsOutput>

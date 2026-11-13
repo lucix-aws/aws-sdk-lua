@@ -76,6 +76,8 @@ M.DashboardEntries = schema.new({ type = "list", list_member = M.DashboardEntry 
 
 M.ManagedRuleDescriptions = schema.new({ type = "list", list_member = M.ManagedRuleDescription })
 
+M.MetricDataQueryDefinitionSummaries = schema.new({ type = "list", list_member = M.MetricDataQueryDefinitionSummary })
+
 M.DimensionFilters = schema.new({ type = "list", list_member = M.DimensionFilter })
 
 M.Metrics = schema.new({ type = "list", list_member = M.Metric })
@@ -1489,6 +1491,27 @@ M.DeleteInsightRulesOutput = schema.new({
             list_member = M.PartialFailure,
         }),
     },
+})
+
+M.DeleteMetricDataQueryDefinitionInput = schema.new({
+    id = id.from(_N, "DeleteMetricDataQueryDefinitionInput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "DeleteMetricDataQueryDefinitionInput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMetricDataQueryDefinitionOutput = schema.new({
+    id = id.from(_N, "DeleteMetricDataQueryDefinitionOutput"),
+    type = "structure",
 })
 
 M.DeleteMetricStreamInput = schema.new({
@@ -3527,6 +3550,92 @@ M.GetMetricDataOutput = schema.new({
     },
 })
 
+M.GetMetricDataQueryDefinitionInput = schema.new({
+    id = id.from(_N, "GetMetricDataQueryDefinitionInput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetMetricDataQueryDefinitionInput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetMetricDataQueryDefinitionOutput = schema.new({
+    id = id.from(_N, "GetMetricDataQueryDefinitionOutput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetMetricDataQueryDefinitionOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetMetricDataQueryDefinitionOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Path = schema.new({
+            id = id.from(_N, "GetMetricDataQueryDefinitionOutput", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Expression = schema.new({
+            id = id.from(_N, "GetMetricDataQueryDefinitionOutput", "Expression"),
+            type = "string",
+            name = "Expression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "GetMetricDataQueryDefinitionOutput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetMetricDataQueryDefinitionOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetMetricDataQueryDefinitionOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetMetricStatisticsInput = schema.new({
     id = id.from(_N, "GetMetricStatisticsInput"),
     type = "structure",
@@ -4117,6 +4226,88 @@ M.ListManagedInsightRulesOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListManagedInsightRulesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListMetricDataQueryDefinitionsInput = schema.new({
+    id = id.from(_N, "ListMetricDataQueryDefinitionsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListMetricDataQueryDefinitionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListMetricDataQueryDefinitionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MetricDataQueryDefinitionSummary = schema.new({
+    id = id.from(_N, "MetricDataQueryDefinitionSummary"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "MetricDataQueryDefinitionSummary", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Path = schema.new({
+            id = id.from(_N, "MetricDataQueryDefinitionSummary", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "MetricDataQueryDefinitionSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "MetricDataQueryDefinitionSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListMetricDataQueryDefinitionsOutput = schema.new({
+    id = id.from(_N, "ListMetricDataQueryDefinitionsOutput"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListMetricDataQueryDefinitionsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.MetricDataQueryDefinitionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListMetricDataQueryDefinitionsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -5077,6 +5268,123 @@ M.PutMetricDataInput = schema.new({
 
 M.PutMetricDataOutput = prelude.Unit
 
+M.PutMetricDataQueryDefinitionInput = schema.new({
+    id = id.from(_N, "PutMetricDataQueryDefinitionInput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionInput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Path = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionInput", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Expression = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionInput", "Expression"),
+            type = "string",
+            name = "Expression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionInput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.PutMetricDataQueryDefinitionOutput = schema.new({
+    id = id.from(_N, "PutMetricDataQueryDefinitionOutput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Path = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionOutput", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Expression = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionOutput", "Expression"),
+            type = "string",
+            name = "Expression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionOutput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "PutMetricDataQueryDefinitionOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PutMetricStreamInput = schema.new({
     id = id.from(_N, "PutMetricStreamInput"),
     type = "structure",
@@ -5609,6 +5917,17 @@ M.DeleteInsightRules = schema.operation({
     },
 })
 
+M.DeleteMetricDataQueryDefinition = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DeleteMetricDataQueryDefinition"),
+    input = M.DeleteMetricDataQueryDefinitionInput,
+    output = M.DeleteMetricDataQueryDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteMetricStream = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "DeleteMetricStream"),
     input = M.DeleteMetricStreamInput,
@@ -5807,6 +6126,17 @@ M.GetMetricData = schema.operation({
     },
 })
 
+M.GetMetricDataQueryDefinition = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetMetricDataQueryDefinition"),
+    input = M.GetMetricDataQueryDefinitionInput,
+    output = M.GetMetricDataQueryDefinitionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetMetricStatistics = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "GetMetricStatistics"),
     input = M.GetMetricStatisticsInput,
@@ -5888,6 +6218,17 @@ M.ListManagedInsightRules = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "ListManagedInsightRules"),
     input = M.ListManagedInsightRulesInput,
     output = M.ListManagedInsightRulesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListMetricDataQueryDefinitions = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "ListMetricDataQueryDefinitions"),
+    input = M.ListMetricDataQueryDefinitionsInput,
+    output = M.ListMetricDataQueryDefinitionsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -6020,6 +6361,17 @@ M.PutMetricData = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "PutMetricData"),
     input = M.PutMetricDataInput,
     output = M.PutMetricDataOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutMetricDataQueryDefinition = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutMetricDataQueryDefinition"),
+    input = M.PutMetricDataQueryDefinitionInput,
+    output = M.PutMetricDataQueryDefinitionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

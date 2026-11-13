@@ -108,6 +108,24 @@ function M.pages_list_managed_insight_rules(client, input)
     })
 end
 
+--- Returns a page iterator for listMetricDataQueryDefinitions.
+function M.pages_list_metric_data_query_definitions(client, input)
+    return paginator.pages(client, "listMetricDataQueryDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listMetricDataQueryDefinitions.
+function M.items_list_metric_data_query_definitions(client, input)
+    return paginator.items(client, "listMetricDataQueryDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 --- Returns a page iterator for listMetricStreams.
 function M.pages_list_metric_streams(client, input)
     return paginator.pages(client, "listMetricStreams", input, {

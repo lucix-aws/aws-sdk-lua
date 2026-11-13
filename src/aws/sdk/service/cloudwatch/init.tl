@@ -25,6 +25,7 @@ local record Client
     deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnomalyDetectorOutput>
     deleteDashboards: function(Client, types.DeleteDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDashboardsOutput>
     deleteInsightRules: function(Client, types.DeleteInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInsightRulesOutput>
+    deleteMetricDataQueryDefinition: function(Client, types.DeleteMetricDataQueryDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMetricDataQueryDefinitionOutput>
     deleteMetricStream: function(Client, types.DeleteMetricStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMetricStreamOutput>
     deleteResourceMetricsConfiguration: function(Client, types.DeleteResourceMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceMetricsConfigurationOutput>
     describeAlarmContributors: function(Client, types.DescribeAlarmContributorsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmContributorsOutput>
@@ -43,6 +44,7 @@ local record Client
     getDataset: function(Client, types.GetDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
     getInsightRuleReport: function(Client, types.GetInsightRuleReportInput, ? base_client.InvokeOptions): async.Operation<types.GetInsightRuleReportOutput>
     getMetricData: function(Client, types.GetMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricDataOutput>
+    getMetricDataQueryDefinition: function(Client, types.GetMetricDataQueryDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricDataQueryDefinitionOutput>
     getMetricStatistics: function(Client, types.GetMetricStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricStatisticsOutput>
     getMetricStream: function(Client, types.GetMetricStreamInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricStreamOutput>
     getMetricWidgetImage: function(Client, types.GetMetricWidgetImageInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricWidgetImageOutput>
@@ -51,6 +53,7 @@ local record Client
     listAlarmMuteRules: function(Client, types.ListAlarmMuteRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListAlarmMuteRulesOutput>
     listDashboards: function(Client, types.ListDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
     listManagedInsightRules: function(Client, types.ListManagedInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedInsightRulesOutput>
+    listMetricDataQueryDefinitions: function(Client, types.ListMetricDataQueryDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListMetricDataQueryDefinitionsOutput>
     listMetrics: function(Client, types.ListMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListMetricsOutput>
     listMetricStreams: function(Client, types.ListMetricStreamsInput, ? base_client.InvokeOptions): async.Operation<types.ListMetricStreamsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -63,6 +66,7 @@ local record Client
     putManagedInsightRules: function(Client, types.PutManagedInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.PutManagedInsightRulesOutput>
     putMetricAlarm: function(Client, types.PutMetricAlarmInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricAlarmOutput>
     putMetricData: function(Client, types.PutMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricDataOutput>
+    putMetricDataQueryDefinition: function(Client, types.PutMetricDataQueryDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricDataQueryDefinitionOutput>
     putMetricStream: function(Client, types.PutMetricStreamInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricStreamOutput>
     setAlarmState: function(Client, types.SetAlarmStateInput, ? base_client.InvokeOptions): async.Operation<types.SetAlarmStateOutput>
     startMetricStreams: function(Client, types.StartMetricStreamsInput, ? base_client.InvokeOptions): async.Operation<types.StartMetricStreamsOutput>
@@ -145,6 +149,10 @@ function C:deleteInsightRules(input: types.DeleteInsightRulesInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInsightRules as schema.OperationSchema, input, options) as async.Operation<types.DeleteInsightRulesOutput>
 end
 
+function C:deleteMetricDataQueryDefinition(input: types.DeleteMetricDataQueryDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMetricDataQueryDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMetricDataQueryDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteMetricDataQueryDefinitionOutput>
+end
+
 function C:deleteMetricStream(input: types.DeleteMetricStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMetricStreamOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMetricStream as schema.OperationSchema, input, options) as async.Operation<types.DeleteMetricStreamOutput>
 end
@@ -217,6 +225,10 @@ function C:getMetricData(input: types.GetMetricDataInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetMetricDataOutput>
 end
 
+function C:getMetricDataQueryDefinition(input: types.GetMetricDataQueryDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricDataQueryDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricDataQueryDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetMetricDataQueryDefinitionOutput>
+end
+
 function C:getMetricStatistics(input: types.GetMetricStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricStatisticsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetMetricStatisticsOutput>
 end
@@ -247,6 +259,10 @@ end
 
 function C:listManagedInsightRules(input: types.ListManagedInsightRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedInsightRulesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedInsightRules as schema.OperationSchema, input, options) as async.Operation<types.ListManagedInsightRulesOutput>
+end
+
+function C:listMetricDataQueryDefinitions(input: types.ListMetricDataQueryDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMetricDataQueryDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMetricDataQueryDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListMetricDataQueryDefinitionsOutput>
 end
 
 function C:listMetrics(input: types.ListMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMetricsOutput>
@@ -295,6 +311,10 @@ end
 
 function C:putMetricData(input: types.PutMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.PutMetricDataOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMetricData as schema.OperationSchema, input, options) as async.Operation<types.PutMetricDataOutput>
+end
+
+function C:putMetricDataQueryDefinition(input: types.PutMetricDataQueryDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.PutMetricDataQueryDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMetricDataQueryDefinition as schema.OperationSchema, input, options) as async.Operation<types.PutMetricDataQueryDefinitionOutput>
 end
 
 function C:putMetricStream(input: types.PutMetricStreamInput, options?: base_client.InvokeOptions): async.Operation<types.PutMetricStreamOutput>

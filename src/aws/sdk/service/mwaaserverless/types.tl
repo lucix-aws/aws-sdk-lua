@@ -7,6 +7,33 @@ local record M
         Message: string
     end
 
+    -- You cannot create a resource that already exists, or the resource is in a state that prevents the requested operation.
+    record ConflictException
+        Message: string
+        -- The unique identifier of the resource.
+        ResourceId: string
+        -- The type of the resource.
+        ResourceType: string
+    end
+
+    record CreateAirflowUiUrlInput
+        -- Specifies the number of seconds that the launch URL stays valid. This value limits only the time to open the URL, not the length of the UI session. The default is 300.
+        ExpiresInSeconds: number
+        -- Specifies the number of seconds that the UI session lasts, starting from when you call this operation. The default is 43200 (12 hours).
+        SessionDurationInSeconds: number
+    end
+
+    record CreateAirflowUiUrlOutput
+        -- The launch URL that opens the Airflow UI. Open it in a browser before UrlExpiresAt. The UI session uses the permissions of the identity that called this operation.
+        AuthorizedUrl: string
+        -- The URL starts a UI session that has this identifier.
+        SessionId: string
+        -- The launch URL stops being valid at this time. The value is in ISO 8601 date-time format.
+        UrlExpiresAt: number
+        -- The UI session ends at this time. The value is in ISO 8601 date-time format. After this time, create a new URL to open the UI again.
+        SessionExpiresAt: number
+    end
+
     -- An unexpected server-side error occurred during request processing.
     record InternalServerException
         Message: string
@@ -14,28 +41,9 @@ local record M
         RetryAfterSeconds: number
     end
 
-    record ListTagsForResourceInput
-        -- The Amazon Resource Name (ARN) of the resource for which to list tags.
-        ResourceArn: string
-    end
-
-    record ListTagsForResourceOutput
-        -- A map of tags that are associated with the resource, where each tag consists of a key-value pair.
-        Tags: {string : string}
-    end
-
     -- The operation timed out.
     record OperationTimeoutException
         Message: string
-    end
-
-    -- The specified resource was not found. You can only access or modify a resource that already exists.
-    record ResourceNotFoundException
-        Message: string
-        -- The unique identifier of the resource.
-        ResourceId: string
-        -- The type of the resource.
-        ResourceType: string
     end
 
     -- The request was denied because too many requests were made in a short period, exceeding the service rate limits. Amazon Managed Workflows for Apache Airflow Serverless implements throttling controls to ensure fair resource allocation across all customers in the multi-tenant environment. This helps maintain service stability and performance. If you encounter throttling, implement exponential backoff and retry logic in your applications, or consider distributing your API calls over a longer time period.
@@ -71,6 +79,25 @@ local record M
         Reason: string
         -- The fields that failed validation.
         FieldList: {ValidationExceptionField}
+    end
+
+    record ListTagsForResourceInput
+        -- The Amazon Resource Name (ARN) of the resource for which to list tags.
+        ResourceArn: string
+    end
+
+    record ListTagsForResourceOutput
+        -- A map of tags that are associated with the resource, where each tag consists of a key-value pair.
+        Tags: {string : string}
+    end
+
+    -- The specified resource was not found. You can only access or modify a resource that already exists.
+    record ResourceNotFoundException
+        Message: string
+        -- The unique identifier of the resource.
+        ResourceId: string
+        -- The type of the resource.
+        ResourceType: string
     end
 
     record TagResourceInput
@@ -204,15 +231,6 @@ local record M
         S3Location: S3Location
     end
 
-    -- You cannot create a resource that already exists, or the resource is in a state that prevents the requested operation.
-    record ConflictException
-        Message: string
-        -- The unique identifier of the resource.
-        ResourceId: string
-        -- The type of the resource.
-        ResourceType: string
-    end
-
     -- Specifies the Amazon S3 location of a workflow definition file. This structure contains the bucket name, object key, and optional version ID for the workflow definition. Amazon Managed Workflows for Apache Airflow Serverless takes a snapshot of the definition file at the time of workflow creation or update, ensuring that the workflow behavior remains consistent even if the source file is modified. The definition must be a valid YAML file that uses supported Amazon Web Services operators and Amazon Managed Workflows for Apache Airflow Serverless syntax.
     record DefinitionS3Location
         -- The name of the Amazon S3 bucket that contains the workflow definition file.
@@ -343,9 +361,9 @@ local record M
         WorkflowVersion: string
     end
 
-    -- The configuration to use to schedule automated workflow execution using cron expressions. Amazon Managed Workflows for Apache Airflow Serverless integrates with EventBridge Scheduler to provide cost-effective, timezone-aware scheduling capabilities. The service supports both time-based and event-based scheduling (event-based scheduling available post-GA). When a workflow definition includes scheduling information, Amazon Managed Workflows for Apache Airflow Serverless automatically configures the appropriate triggers and ensures only one version of a workflow has an active schedule at any time.
+    -- Contains the configuration used to schedule automated workflow execution. Only one version of a workflow can have an active schedule at any time.
     record ScheduleConfiguration
-        -- A cron expression that defines when the workflow is automatically executed. Uses standard cron syntax.
+        -- The schedule expression that determines when the workflow runs, as specified in the schedule parameter of the workflow's YAML definition. You can specify one of the following types of schedule expressions: Apache Airflow cron expression – Five fields, such as 0 12 1 * *. Apache Airflow schedule preset – @hourly, @daily, @weekly, @monthly, @yearly, or @annually. EventBridge Scheduler rate expression – For example, rate(5 minutes). Supported units are minutes, hours, and days. EventBridge Scheduler cron expression – Six fields, such as cron(0 12 * * ? *). In a cron expression, specify either a day-of-month or a day-of-week, not both.
         CronExpression: string
     end
 
@@ -376,7 +394,7 @@ local record M
         Code: Code
         -- The time at which the code artifacts were copied for this workflow, in ISO 8601 date-time format.
         CodeSnapshottedAt: number
-        -- The schedule configuration for the workflow, including cron expressions for automated execution. Amazon Managed Workflows for Apache Airflow Serverless uses EventBridge Scheduler for cost-effective, timezone-aware scheduling. When a workflow includes schedule information in its YAML definition, the service automatically configures the appropriate triggers for automated execution. Only one version of a workflow can have an active schedule at any given time.
+        -- The schedule configuration for the workflow. Only one version of a workflow can have an active schedule at any given time.
         ScheduleConfiguration: ScheduleConfiguration
         -- The Amazon Resource Name (ARN) of the IAM role used for workflow execution.
         RoleArn: string

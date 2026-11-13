@@ -24,6 +24,7 @@ local record Client
     attachInstancesToLoadBalancer: function(Client, types.AttachInstancesToLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.AttachInstancesToLoadBalancerOutput>
     attachLoadBalancerTlsCertificate: function(Client, types.AttachLoadBalancerTlsCertificateInput, ? base_client.InvokeOptions): async.Operation<types.AttachLoadBalancerTlsCertificateOutput>
     attachStaticIp: function(Client, types.AttachStaticIpInput, ? base_client.InvokeOptions): async.Operation<types.AttachStaticIpOutput>
+    checkSubdomainAvailability: function(Client, types.CheckSubdomainAvailabilityInput, ? base_client.InvokeOptions): async.Operation<types.CheckSubdomainAvailabilityOutput>
     closeInstancePublicPorts: function(Client, types.CloseInstancePublicPortsInput, ? base_client.InvokeOptions): async.Operation<types.CloseInstancePublicPortsOutput>
     copySnapshot: function(Client, types.CopySnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CopySnapshotOutput>
     createBucket: function(Client, types.CreateBucketInput, ? base_client.InvokeOptions): async.Operation<types.CreateBucketOutput>
@@ -50,6 +51,7 @@ local record Client
     createRelationalDatabase: function(Client, types.CreateRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseOutput>
     createRelationalDatabaseFromSnapshot: function(Client, types.CreateRelationalDatabaseFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseFromSnapshotOutput>
     createRelationalDatabaseSnapshot: function(Client, types.CreateRelationalDatabaseSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseSnapshotOutput>
+    createSubdomain: function(Client, types.CreateSubdomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubdomainOutput>
     deleteAlarm: function(Client, types.DeleteAlarmInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmOutput>
     deleteAutoSnapshot: function(Client, types.DeleteAutoSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutoSnapshotOutput>
     deleteBucket: function(Client, types.DeleteBucketInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketOutput>
@@ -71,6 +73,7 @@ local record Client
     deleteLoadBalancerTlsCertificate: function(Client, types.DeleteLoadBalancerTlsCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerTlsCertificateOutput>
     deleteRelationalDatabase: function(Client, types.DeleteRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRelationalDatabaseOutput>
     deleteRelationalDatabaseSnapshot: function(Client, types.DeleteRelationalDatabaseSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
+    deleteSubdomain: function(Client, types.DeleteSubdomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSubdomainOutput>
     detachCertificateFromDistribution: function(Client, types.DetachCertificateFromDistributionInput, ? base_client.InvokeOptions): async.Operation<types.DetachCertificateFromDistributionOutput>
     detachDisk: function(Client, types.DetachDiskInput, ? base_client.InvokeOptions): async.Operation<types.DetachDiskOutput>
     detachInstancesFromLoadBalancer: function(Client, types.DetachInstancesFromLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.DetachInstancesFromLoadBalancerOutput>
@@ -145,6 +148,7 @@ local record Client
     getSetupHistory: function(Client, types.GetSetupHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetSetupHistoryOutput>
     getStaticIp: function(Client, types.GetStaticIpInput, ? base_client.InvokeOptions): async.Operation<types.GetStaticIpOutput>
     getStaticIps: function(Client, types.GetStaticIpsInput, ? base_client.InvokeOptions): async.Operation<types.GetStaticIpsOutput>
+    getSubdomains: function(Client, types.GetSubdomainsInput, ? base_client.InvokeOptions): async.Operation<types.GetSubdomainsOutput>
     importKeyPair: function(Client, types.ImportKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.ImportKeyPairOutput>
     isVpcPeered: function(Client, types.IsVpcPeeredInput, ? base_client.InvokeOptions): async.Operation<types.IsVpcPeeredOutput>
     openInstancePublicPorts: function(Client, types.OpenInstancePublicPortsInput, ? base_client.InvokeOptions): async.Operation<types.OpenInstancePublicPortsOutput>
@@ -180,6 +184,7 @@ local record Client
     updateLoadBalancerAttribute: function(Client, types.UpdateLoadBalancerAttributeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLoadBalancerAttributeOutput>
     updateRelationalDatabase: function(Client, types.UpdateRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRelationalDatabaseOutput>
     updateRelationalDatabaseParameters: function(Client, types.UpdateRelationalDatabaseParametersInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRelationalDatabaseParametersOutput>
+    updateSubdomainAssociation: function(Client, types.UpdateSubdomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSubdomainAssociationOutput>
 end
 
 local record M
@@ -246,6 +251,10 @@ end
 
 function C:attachStaticIp(input: types.AttachStaticIpInput, options?: base_client.InvokeOptions): async.Operation<types.AttachStaticIpOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachStaticIp as schema.OperationSchema, input, options) as async.Operation<types.AttachStaticIpOutput>
+end
+
+function C:checkSubdomainAvailability(input: types.CheckSubdomainAvailabilityInput, options?: base_client.InvokeOptions): async.Operation<types.CheckSubdomainAvailabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckSubdomainAvailability as schema.OperationSchema, input, options) as async.Operation<types.CheckSubdomainAvailabilityOutput>
 end
 
 function C:closeInstancePublicPorts(input: types.CloseInstancePublicPortsInput, options?: base_client.InvokeOptions): async.Operation<types.CloseInstancePublicPortsOutput>
@@ -352,6 +361,10 @@ function C:createRelationalDatabaseSnapshot(input: types.CreateRelationalDatabas
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRelationalDatabaseSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateRelationalDatabaseSnapshotOutput>
 end
 
+function C:createSubdomain(input: types.CreateSubdomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubdomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubdomain as schema.OperationSchema, input, options) as async.Operation<types.CreateSubdomainOutput>
+end
+
 function C:deleteAlarm(input: types.DeleteAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAlarmOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlarm as schema.OperationSchema, input, options) as async.Operation<types.DeleteAlarmOutput>
 end
@@ -434,6 +447,10 @@ end
 
 function C:deleteRelationalDatabaseSnapshot(input: types.DeleteRelationalDatabaseSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRelationalDatabaseSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
+end
+
+function C:deleteSubdomain(input: types.DeleteSubdomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSubdomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSubdomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteSubdomainOutput>
 end
 
 function C:detachCertificateFromDistribution(input: types.DetachCertificateFromDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.DetachCertificateFromDistributionOutput>
@@ -732,6 +749,10 @@ function C:getStaticIps(input: types.GetStaticIpsInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStaticIps as schema.OperationSchema, input, options) as async.Operation<types.GetStaticIpsOutput>
 end
 
+function C:getSubdomains(input: types.GetSubdomainsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSubdomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubdomains as schema.OperationSchema, input, options) as async.Operation<types.GetSubdomainsOutput>
+end
+
 function C:importKeyPair(input: types.ImportKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.ImportKeyPairOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportKeyPair as schema.OperationSchema, input, options) as async.Operation<types.ImportKeyPairOutput>
 end
@@ -870,6 +891,10 @@ end
 
 function C:updateRelationalDatabaseParameters(input: types.UpdateRelationalDatabaseParametersInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRelationalDatabaseParametersOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRelationalDatabaseParameters as schema.OperationSchema, input, options) as async.Operation<types.UpdateRelationalDatabaseParametersOutput>
+end
+
+function C:updateSubdomainAssociation(input: types.UpdateSubdomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSubdomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSubdomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateSubdomainAssociationOutput>
 end
 
 return M

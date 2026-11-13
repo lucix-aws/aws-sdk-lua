@@ -15,6 +15,7 @@ local record M
         "fujitsu-qos"
         "udp"
         "ndi-speed-hq"
+        "rtmp-push"
     end
 
     -- Add a network output to an existing bridge.
@@ -299,6 +300,38 @@ local record M
         EncryptionKeyConfiguration: FlowTransitEncryptionKeyConfiguration
     end
 
+    -- The TLS encryption configuration for destinations that present a certificate from a publicly trusted certificate authority. This type does not require any additional settings.
+    record PublicTlsEncryptionConfiguration
+    end
+
+    -- The configuration settings for TLS encryption.
+    record TlsEncryptionConfiguration
+        -- The TLS encryption configuration that validates the destination by using a publicly trusted certificate authority.
+        Public: PublicTlsEncryptionConfiguration
+    end
+
+    enum TlsEncryptionType
+        "PUBLIC"
+    end
+
+    -- The Transport Layer Security (TLS) encryption settings used to establish a secure connection to a destination.
+    record TlsEncryption
+        -- The type of TLS encryption to use for the connection.
+        EncryptionType: string
+        -- The configuration settings for the specified TLS encryption type.
+        EncryptionConfiguration: TlsEncryptionConfiguration
+    end
+
+    -- The settings for an output that pushes a stream to a destination using the RTMP (Real-Time Messaging Protocol) protocol, or RTMPS (RTMP over TLS) when TLS encryption is specified. These settings include the application and stream names, and optional TLS encryption configuration.
+    record RtmpPushOutputSettings
+        -- The name of the RTMP application on the destination server. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://destinationAddress/applicationName/streamName.
+        ApplicationName: string
+        -- The name of the RTMP stream that the output publishes to the destination application. The stream name forms the final segment of the RTMP URL path.
+        StreamName: string
+        -- The TLS encryption settings for the output. When you specify these settings, the output uses RTMPS (RTMP over TLS) to establish a secure, encrypted connection to the destination server.
+        TlsEncryption: TlsEncryption
+    end
+
     -- A request to add an output to a flow.
     record AddOutputRequest
         -- The range of IP addresses that should be allowed to initiate output requests to this flow. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.
@@ -346,6 +379,8 @@ local record M
         NdiOutputTimecodeSource: string
         -- The audio reference level of the NDI receiver, in decibels relative to full scale (dBFS). Common values are -20 (NDI and SMPTE) and -18 (EBU). If you don't specify this field, MediaConnect uses -20.
         NdiAudioReferenceLevel: number
+        -- The settings for an output that pushes a stream to a destination using the RTMP (Real-Time Messaging Protocol) protocol, or RTMPS (RTMP over TLS) when TLS encryption is specified.
+        RtmpPushSettings: RtmpPushOutputSettings
     end
 
     -- Configures settings for the SilentAudio metric.
@@ -900,6 +935,21 @@ local record M
         AudioReferenceLevel: number
     end
 
+    enum RtmpPushNamingType
+        "MANUAL"
+        "AUTOMATIC"
+    end
+
+    -- The settings for the RTMP (Real-Time Messaging Protocol) source.
+    record RtmpPushSourceSettings
+        -- The name of the RTMP application. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://ingestAddress/applicationName/streamName.
+        ApplicationName: string
+        -- The name of the RTMP stream. The stream name forms the final segment of the RTMP URL path.
+        StreamName: string
+        -- The naming type that the source uses. With AUTOMATIC naming, MediaConnect generates the application and stream names.
+        NamingType: string
+    end
+
     -- Attributes related to the transport stream that are used in a source or output.
     record Transport
         -- The range of IP addresses that should be allowed to initiate output requests to this flow. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16
@@ -938,6 +988,10 @@ local record M
         NdiOutputTimecodeSource: string
         -- The audio reference level of the NDI receiver, in decibels relative to full scale (dBFS). Common values are -20 (NDI and SMPTE) and -18 (EBU). For NDI outputs, this field is always present and defaults to -20.
         NdiAudioReferenceLevel: number
+        -- The settings for the RTMP (Real-Time Messaging Protocol) source.
+        RtmpPushSourceSettings: RtmpPushSourceSettings
+        -- The settings for an output that pushes a stream to a destination using the RTMP (Real-Time Messaging Protocol) protocol, or RTMPS (RTMP over TLS) when TLS encryption is specified.
+        RtmpPushOutputSettings: RtmpPushOutputSettings
     end
 
     -- The settings for an output.
@@ -1029,6 +1083,32 @@ local record M
         VpcInterfaceAttachment: VpcInterfaceAttachment
     end
 
+    -- The automatic RTMP naming configuration, where MediaConnect generates the application and stream names. This type does not require any additional settings.
+    record AutomaticRtmpPushNamingConfiguration
+    end
+
+    -- The manual RTMP naming configuration, where you specify the application and stream names.
+    record ManualRtmpPushNamingConfiguration
+        -- The name of the RTMP application. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://ingestAddress/applicationName/streamName.
+        ApplicationName: string
+        -- The name of the RTMP stream. The stream name forms the final segment of the RTMP URL path.
+        StreamName: string
+    end
+
+    -- The configuration settings for the RTMP (Real-Time Messaging Protocol) application and stream names.
+    record RtmpPushNamingConfiguration
+        -- The naming configuration where you specify the application and stream names.
+        Manual: ManualRtmpPushNamingConfiguration
+        -- The naming configuration where MediaConnect generates the application and stream names.
+        Automatic: AutomaticRtmpPushNamingConfiguration
+    end
+
+    -- The settings for the RTMP (Real-Time Messaging Protocol) source.
+    record SetRtmpPushSourceSettings
+        -- The configuration settings for the application and stream names.
+        NamingConfiguration: RtmpPushNamingConfiguration
+    end
+
     -- The settings for the source of the flow.
     record SetSourceRequest
         -- The type of encryption that is used on the content ingested from this source. Allowable encryption types: static-key.
@@ -1077,6 +1157,8 @@ local record M
         RouterIntegrationState: string
         -- The decryption configuration for the flow source when router integration is enabled. Specifies how the source content should be decrypted when router integration is used.
         RouterIntegrationTransitDecryption: FlowTransitEncryption
+        -- The settings for the RTMP (Real-Time Messaging Protocol) source.
+        RtmpPushSettings: SetRtmpPushSourceSettings
     end
 
     -- The source configuration for cloud flows receiving a stream from a bridge.
@@ -1147,8 +1229,12 @@ local record M
         SampleRate: number
         -- The sample bit size used by the audio stream.
         SampleSize: number
+        -- The scan mode used by the video stream.
+        ScanMode: string
         -- The Stream Type as it is reported in the Program Map Table.
         StreamType: string
+        -- The language of the elementary stream.
+        Language: string
     end
 
     -- The metadata of a single transport stream program.
@@ -1374,6 +1460,14 @@ local record M
 
     -- The configuration for automatic endpoint encryption. In this mode, MediaConnect determines the encryption key when the endpoint connects. This type does not require any additional settings.
     record AutomaticEndpointEncryptionConfiguration
+    end
+
+    -- The configuration settings for automatic Packet ID (PID) assignment. These settings apply to any PID mapping rule that uses the auto action, including the default action.
+    record AutoPidMapConfiguration
+        -- The first PID in the range for automatic PID assignment.
+        StartPid: number
+        -- The number of PIDs in the range for automatic PID assignment.
+        PidsPerProgram: number
     end
 
     record BatchGetDestinationEndpointInput
@@ -1779,6 +1873,16 @@ local record M
         RecoveryLatencyMilliseconds: number
     end
 
+    -- The configuration settings for a router input using the RTMP (Real-Time Messaging Protocol) protocol.
+    record RtmpPushRouterInputConfiguration
+        -- The port number for the RTMP protocol. The only valid value is 1935.
+        Port: number
+        -- The naming type. If you specify it, it must match the naming configuration.
+        NamingType: string
+        -- The configuration settings for the application and stream names.
+        NamingConfiguration: RtmpPushNamingConfiguration
+    end
+
     -- The configuration settings for a Router Input using the RTP (Real-Time Transport Protocol) protocol, including the port and forward error correction state.
     record RtpRouterInputConfiguration
         -- The port number used for the RTP protocol in the router input configuration.
@@ -1821,6 +1925,8 @@ local record M
     record FailoverRouterInputProtocolConfiguration
         Rist: RistRouterInputConfiguration
         SrtListener: SrtListenerRouterInputConfiguration
+        -- The configuration settings for a failover router input that uses the RTMP protocol.
+        RtmpPush: RtmpPushRouterInputConfiguration
         SrtCaller: SrtCallerRouterInputConfiguration
         Rtp: RtpRouterInputConfiguration
     end
@@ -1891,6 +1997,8 @@ local record M
     record MergeRouterInputProtocolConfiguration
         Rtp: RtpRouterInputConfiguration
         Rist: RistRouterInputConfiguration
+        SrtListener: SrtListenerRouterInputConfiguration
+        SrtCaller: SrtCallerRouterInputConfiguration
     end
 
     -- Configuration settings for a merge router input that combines two input sources.
@@ -1908,12 +2016,15 @@ local record M
         "RIST"
         "SRT_CALLER"
         "SRT_LISTENER"
+        "RTMP_PUSH"
     end
 
     -- The protocol configuration settings for a router input.
     record RouterInputProtocolConfiguration
         Rist: RistRouterInputConfiguration
         SrtListener: SrtListenerRouterInputConfiguration
+        -- The configuration settings for a router input that uses the RTMP protocol.
+        RtmpPush: RtmpPushRouterInputConfiguration
         SrtCaller: SrtCallerRouterInputConfiguration
         Rtp: RtpRouterInputConfiguration
     end
@@ -2060,12 +2171,22 @@ local record M
     record DestinationEndpointRouterInputStreamDetails
     end
 
+    -- Configuration details for an RTMP (Real-Time Messaging Protocol) router input stream, including the application and stream names.
+    record RtmpPushStreamDetails
+        -- The name of the RTMP application.
+        ApplicationName: string
+        -- The name of the RTMP stream.
+        StreamName: string
+    end
+
     -- Configuration details for an indexed stream in a failover router input setup.
     record FailoverRouterInputIndexedStreamDetails
         -- The index number (0 or 1) assigned to this source in the failover configuration.
         SourceIndex: number
         -- The IP address of the source for this indexed stream.
         SourceIpAddress: string
+        -- The RTMP stream details for this indexed stream, including the application and stream names.
+        RtmpPush: RtmpPushStreamDetails
     end
 
     -- Configuration details for a failover router input that can automatically switch between two sources.
@@ -2104,6 +2225,8 @@ local record M
     record StandardRouterInputStreamDetails
         -- The source IP address for the standard router input stream.
         SourceIpAddress: string
+        -- The RTMP stream details for the standard router input stream, including the application and stream names.
+        RtmpPush: RtmpPushStreamDetails
     end
 
     -- Configuration details for the router input stream.
@@ -2360,28 +2483,6 @@ local record M
         DestinationPort: number
     end
 
-    -- The TLS encryption configuration for destinations that present a certificate from a publicly trusted certificate authority. This type does not require any additional settings.
-    record PublicTlsEncryptionConfiguration
-    end
-
-    -- The configuration settings for TLS encryption.
-    record TlsEncryptionConfiguration
-        -- The TLS encryption configuration that validates the destination by using a publicly trusted certificate authority.
-        Public: PublicTlsEncryptionConfiguration
-    end
-
-    enum TlsEncryptionType
-        "PUBLIC"
-    end
-
-    -- The Transport Layer Security (TLS) encryption settings used to establish a secure connection to a destination.
-    record TlsEncryption
-        -- The type of TLS encryption to use for the connection.
-        EncryptionType: string
-        -- The configuration settings for the specified TLS encryption type.
-        EncryptionConfiguration: TlsEncryptionConfiguration
-    end
-
     -- The configuration settings for a router output that pushes a stream to a destination using the RTMP (Real-Time Messaging Protocol) protocol, or RTMPS (RTMP over TLS) when TLS encryption is specified. These settings include the destination address and port, the application and stream names, and optional TLS encryption configuration.
     record RtmpPushRouterOutputConfiguration
         -- The IP address or hostname of the destination RTMP server that the router output pushes the stream to. Provide only the server address; specify the application and stream names separately.
@@ -2469,10 +2570,37 @@ local record M
         "LOW_LATENCY"
     end
 
+    -- The switching configuration where the router output switches to the new router input immediately. This type does not require any additional settings.
+    record ImmediateFabricSwitchingConfiguration
+    end
+
+    -- The switching configuration where the router output waits for a key frame on the new router input before it switches.
+    record KeyFrameFabricSwitchingConfiguration
+        -- The maximum time, in milliseconds, that the router output waits for a key frame on the new input before it switches. Set this value to at least the GOP (Group of Pictures) duration of your content, which your upstream encoder determines. If the wait time is shorter than the GOP duration, MediaConnect makes a best effort to switch without a key frame. The default is 3000.
+        KeyFrameWaitMilliseconds: number
+    end
+
+    -- The configuration settings for switching between router inputs.
+    record FabricSwitchingConfiguration
+        -- The switching configuration where the router output switches to the new router input immediately.
+        Immediate: ImmediateFabricSwitchingConfiguration
+        -- The switching configuration where the router output waits for a key frame on the new router input before it switches.
+        KeyFrame: KeyFrameFabricSwitchingConfiguration
+    end
+
+    enum FabricSwitchingMode
+        "IMMEDIATE"
+        "KEY_FRAME"
+    end
+
     -- The fabric configuration settings for the router output.
     record FabricConfiguration
         -- The recovery latency mode for the router fabric connection. Valid values include the following: BALANCED (default) – Optimizes for stream quality. LOW_LATENCY – Reduces latency at the potential cost of stream quality under adverse network conditions.
         RecoveryLatencyMode: string
+        -- The switching mode that the router output uses when it switches to a new router input. Valid values include the following: IMMEDIATE (default) – Switches to the new router input immediately. KEY_FRAME – Waits for a key frame on the new router input before it switches. If you specify it, it must match the switching configuration.
+        SwitchingMode: string
+        -- The configuration settings for the switching mode.
+        SwitchingConfiguration: FabricSwitchingConfiguration
     end
 
     -- A message associated with a router output.
@@ -2488,6 +2616,74 @@ local record M
         "MEDIACONNECT_FLOW"
         "MEDIALIVE_INPUT"
         "SOURCE_ENDPOINT"
+    end
+
+    -- The configuration that passes through the value from the source. This type does not require any additional settings.
+    record Passthrough
+    end
+
+    -- The configuration settings for the Program Clock Reference (PCR) Packet ID (PID).
+    record ProgramClockReferencePidConfiguration
+        -- The PCR PID configuration that passes through the PCR PID from the source.
+        Passthrough: Passthrough
+        -- The PCR PID to use for the router output. MediaConnect applies this value only when the PCR is carried on its own PID. If the PCR is carried on an elementary stream, this value has no effect. If you also set the PMT PID, the two values must be different.
+        Set: number
+    end
+
+    -- The configuration settings for the Program Map Table (PMT) Packet ID (PID).
+    record ProgramMapTablePidConfiguration
+        -- The PMT PID configuration that passes through the PMT PID from the source.
+        Passthrough: Passthrough
+        -- The PMT PID to use for the router output. If you also set the PCR PID, the two values must be different.
+        Set: number
+    end
+
+    -- The configuration settings for the program number.
+    record ProgramNumberConfiguration
+        -- The program number configuration that passes through the program number from the source.
+        Passthrough: Passthrough
+        -- The program number to use for the router output.
+        Set: number
+    end
+
+    -- A rule that selects elementary streams and specifies the action to apply to them.
+    record PidMapRule
+        -- An expression that selects the elementary streams that this rule applies to.
+        MatchExpression: string
+        -- The action to apply to the elementary streams that match this rule.
+        Action: string
+    end
+
+    -- The configuration settings for the transport stream ID (TSID).
+    record TransportStreamIdConfiguration
+        -- The TSID configuration that passes through the TSID from the source.
+        Passthrough: Passthrough
+        -- The TSID to use for the router output.
+        Set: number
+    end
+
+    -- The configuration settings for remapping the identification numbers of elementary streams and program identifiers of a single-program transport stream.
+    record SingleProgramTransportStreamPidMapConfiguration
+        -- The ordered list of up to 32 rules that determine the action for each elementary stream. MediaConnect applies the first rule that matches.
+        Rules: {PidMapRule}
+        -- The action to apply to an elementary stream that doesn't match any rule.
+        DefaultAction: string
+        -- The transport stream ID (TSID) settings for the router output. By default, the router output passes through the TSID from the source.
+        TransportStreamId: TransportStreamIdConfiguration
+        -- The program number settings for the router output. By default, the router output passes through the program number from the source.
+        ProgramNumber: ProgramNumberConfiguration
+        -- The Program Map Table (PMT) PID settings for the router output. By default, the router output passes through the PMT PID from the source.
+        ProgramMapTablePid: ProgramMapTablePidConfiguration
+        -- The Program Clock Reference (PCR) PID settings for the router output. By default, the router output passes through the PCR PID from the source.
+        ProgramClockReferencePid: ProgramClockReferencePidConfiguration
+        -- The settings for automatic Packet ID (PID) assignment. The default start PID is 512, with 32 PIDs per program.
+        Auto: AutoPidMapConfiguration
+    end
+
+    -- The processor settings for a router output.
+    record RouterOutputProcessors
+        -- The configuration settings for remapping the identification numbers of elementary streams and program identifiers of a single-program transport stream.
+        SingleProgramTransportStreamPidMap: SingleProgramTransportStreamPidMapConfiguration
     end
 
     enum RouterOutputRoutedState
@@ -2592,6 +2788,8 @@ local record M
         MaintenanceSchedule: MaintenanceSchedule
         -- The fabric configuration settings for the router output.
         FabricConfiguration: FabricConfiguration
+        -- The processor settings for the router output.
+        Processors: RouterOutputProcessors
         -- The Amazon Resource Names (ARNs) of one or more source endpoints that are associated with this router output.
         AssociatedSourceEndpointArns: {string}
     end
@@ -3434,6 +3632,8 @@ local record M
         FabricConfiguration: FabricConfiguration
         -- A unique identifier for the request to ensure idempotency.
         ClientToken: string
+        -- The processor settings for the router output.
+        Processors: RouterOutputProcessors
     end
 
     record CreateRouterOutputOutput
@@ -3589,6 +3789,55 @@ local record M
         Messages: {MessageDetail}
     end
 
+    enum SourceMediaStreamType
+        "VIDEO"
+        "AUDIO"
+        "DATA"
+        "UNKNOWN"
+    end
+
+    -- Information about a single audio or video stream that is part of an RTMP source. This includes details about the stream type, codec, resolution, frame rate, audio channels, and sample rate.
+    record RtmpMediaStreamInfo
+        -- A unique identifier for the stream.
+        StreamId: number
+        -- The type of stream (for example, VIDEO or AUDIO).
+        StreamType: string
+        -- The codec used for the stream.
+        Codec: string
+        -- The number of video frames displayed per second. Used when the streamType is VIDEO.
+        FrameRate: string
+        -- The width and height dimensions of the video frame in pixels. Used when the streamType is VIDEO.
+        FrameResolution: FrameResolution
+        -- The method used to display video frames. Used when the streamType is VIDEO.
+        ScanMode: string
+        -- The color signaling of the video stream. Used when the streamType is VIDEO.
+        Color: ColorInformation
+        -- The number of audio channels in the stream. Used when the streamType is AUDIO.
+        Channels: number
+        -- The number of audio samples captured per second. Used when the streamType is AUDIO.
+        SampleRate: number
+        -- The sample bit size used by the audio stream. Used when the streamType is AUDIO.
+        SampleSize: number
+        -- The language of the audio stream. Used when the streamType is AUDIO.
+        Language: string
+    end
+
+    -- Metadata about the audio and video media that is part of the RTMP source content. This includes details about the individual streams.
+    record RtmpMediaInfo
+        -- A list of the individual audio and video streams that make up the RTMP source. This includes details about each stream's codec, resolution, frame rate, audio channels, and other parameters.
+        Streams: {RtmpMediaStreamInfo}
+    end
+
+    -- Information about the RTMP (Real-Time Messaging Protocol) source. This includes the application name, the stream name, and metadata about the audio and video streams.
+    record RtmpSourceMetadataInfo
+        -- The name of the RTMP application.
+        ApplicationName: string
+        -- The name of the RTMP stream.
+        StreamName: string
+        -- Information about the audio and video streams that are part of the RTMP source.
+        MediaInfo: RtmpMediaInfo
+    end
+
     -- The metadata of the transport stream in the current flow's source.
     record TransportMediaInfo
         -- The list of transport stream programs in the current flow's source.
@@ -3608,6 +3857,8 @@ local record M
         TransportMediaInfo: TransportMediaInfo
         -- The NDI® specific information about the flow's source. This includes the current active NDI sender, a list of all discovered NDI senders, the associated media streams for the active NDI sender, and any relevant status messages.
         NdiInfo: NdiSourceMetadataInfo
+        -- The RTMP (Real-Time Messaging Protocol) specific information about the flow's source. This includes the application name, the stream name, and the associated audio and video streams.
+        RtmpInfo: RtmpSourceMetadataInfo
     end
 
     record DescribeFlowSourceThumbnailInput
@@ -4101,6 +4352,8 @@ local record M
         NdiOutputTimecodeSource: string
         -- The audio reference level of the NDI receiver, in decibels relative to full scale (dBFS). Common values are -20 (NDI and SMPTE) and -18 (EBU). If you don't specify this field, MediaConnect leaves the value unchanged.
         NdiAudioReferenceLevel: number
+        -- The settings for an output that pushes a stream to a destination using the RTMP (Real-Time Messaging Protocol) protocol, or RTMPS (RTMP over TLS) when TLS encryption is specified.
+        RtmpPushSettings: RtmpPushOutputSettings
     end
 
     record UpdateFlowOutputOutput
@@ -4165,6 +4418,8 @@ local record M
         RouterIntegrationState: string
         -- The encryption configuration for the flow source when router integration is enabled.
         RouterIntegrationTransitDecryption: FlowTransitEncryption
+        -- The settings for the RTMP (Real-Time Messaging Protocol) source.
+        RtmpPushSettings: SetRtmpPushSourceSettings
     end
 
     record UpdateFlowSourceOutput
@@ -4236,6 +4491,8 @@ local record M
     -- Metadata information associated with the router input, including stream details and connection state.
     record RouterInputMetadata
         TransportStreamMediaInfo: TransportMediaInfo
+        -- The RTMP (Real-Time Messaging Protocol) specific information about the router input's source. This includes the application name, the stream name, and the associated audio and video streams.
+        RtmpInfo: RtmpSourceMetadataInfo
     end
 
     -- Detailed metadata information about a router input source.
@@ -4810,6 +5067,8 @@ local record M
         MaintenanceConfiguration: MaintenanceConfiguration
         -- The updated fabric configuration settings for the router output. You cannot update the fabric configuration while the output has an active route. You must unroute the output before updating the fabric configuration.
         FabricConfiguration: FabricConfiguration
+        -- The updated processor settings for the router output. When you update the processors, include every setting that you want to keep. MediaConnect resets the settings that you don't specify to their defaults.
+        Processors: RouterOutputProcessors
     end
 
     record UpdateRouterOutputOutput

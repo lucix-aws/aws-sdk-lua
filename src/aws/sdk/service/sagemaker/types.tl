@@ -2487,7 +2487,7 @@ local record M
         UserProfileName: string
         -- The domain associated with the user.
         DomainId: string
-        -- The IAM Identity details associated with the user. These details are associated with model package groups, model packages, and project entities only.
+        -- The IAM Identity details associated with the user. These details are associated with model package groups, model packages, project entities, hubs, and hub content only.
         IamIdentity: IamIdentity
     end
 
@@ -12930,6 +12930,10 @@ local record M
         CreationTime: number
         -- The date and time that the hub was last modified.
         LastModifiedTime: number
+        -- Information about the user who created the hub.
+        CreatedBy: UserContext
+        -- Information about the user who last modified the hub.
+        LastModifiedBy: UserContext
     end
 
     record DescribeHubContentInput
@@ -13008,6 +13012,10 @@ local record M
         CreationTime: number
         -- The last modified time of the hub content.
         LastModifiedTime: number
+        -- Information about the user who created the hub content.
+        CreatedBy: UserContext
+        -- Information about the user who last modified the hub content.
+        LastModifiedBy: UserContext
     end
 
     record DescribeHumanTaskUiInput
@@ -14672,7 +14680,7 @@ local record M
         MLflowConfig: MLflowConfiguration
         -- The aliases currently assigned to the pipeline version that the execution ran.
         PipelineVersionAliases: {string}
-        -- The Amazon Resource Name (ARN) of the IAM role that the execution uses. SageMaker returns this value only for executions of pipelines that AWS manages.
+        -- The Amazon Resource Name (ARN) of the IAM role that the execution uses. SageMaker returns this value only for executions of pipelines that Amazon Web Services manages.
         RoleArn: string
     end
 
@@ -16544,6 +16552,10 @@ local record M
         CreationTime: number
         -- The last modified time of the hub content.
         LastModifiedTime: number
+        -- Information about the user who created the hub content.
+        CreatedBy: UserContext
+        -- Information about the user who last modified the hub content.
+        LastModifiedBy: UserContext
         -- Any tags associated with the hub content.
         Tags: {Tag}
     end
@@ -19715,7 +19727,7 @@ local record M
         NextToken: string
         -- The maximum number of pipelines to return in the response.
         MaxResults: number
-        -- Filters the pipelines by who manages them. Specify AWS to return pipelines that AWS manages, or CUSTOMER to return pipelines that you created. If you don't specify a value, the response includes both.
+        -- Filters the pipelines by who manages them. Specify AWS to return pipelines that Amazon Web Services manages, or CUSTOMER to return pipelines that you created. If you don't specify a value, the response includes both.
         ManagedBy: string
     end
 
@@ -21630,7 +21642,7 @@ local record M
         MlflowExperimentName: string
         -- The alias of the pipeline version to start the execution from. You can't specify this with PipelineVersionId. If no version of the pipeline has this alias, the request fails with a ResourceNotFound error.
         PipelineVersionAlias: string
-        -- The Amazon Resource Name (ARN) of the IAM role that the execution uses. You must specify this parameter when you start an execution of a pipeline that AWS manages. You can't specify it for a pipeline that you create, because its executions use the pipeline's role.
+        -- The Amazon Resource Name (ARN) of the IAM role that the execution uses. You must specify this parameter when you start an execution of a pipeline that Amazon Web Services manages. You can't specify it for a pipeline that you create, because its executions use the pipeline's role.
         RoleArn: string
     end
 

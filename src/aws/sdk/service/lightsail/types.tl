@@ -381,6 +381,7 @@ local record M
         "Distribution"
         "Certificate"
         "Bucket"
+        "Subdomain"
     end
 
     -- Describes resource being monitored by an alarm.
@@ -633,6 +634,9 @@ local record M
         "StopGUISession"
         "SetupInstanceHttps"
         "GetProfile"
+        "CreateSubdomain"
+        "UpdateSubdomainAssociation"
+        "DeleteSubdomain"
     end
 
     enum OperationStatus
@@ -1547,6 +1551,37 @@ local record M
         -- The tag keys and optional values for the resource. For more information about tags in
         -- Lightsail, see the Amazon Lightsail Developer Guide.
         tags: {Tag}
+    end
+
+    record CheckSubdomainAvailabilityInput
+        -- The subdomain to check (for example, mysite or
+        -- blog.mysite).
+        -- A subdomain can contain one or two labels separated by a period
+        -- (.). Each label must start and end with a lowercase letter or a number, and can
+        -- contain only lowercase letters, numbers, and hyphens (-). The name can be up to
+        -- 39 characters long, including periods. Labels that start with xn-- aren't
+        -- supported, and some names are reserved.
+        -- Specify only the subdomain. A web address, such as
+        -- mysite.amazonlightsail.com, isn't accepted.
+        subdomainName: string
+        -- Specifies whether to reserve the subdomain for your account if it's available. A
+        -- reservation holds the subdomain for 15 minutes so that other accounts can't create it.
+        -- Checking the subdomain again doesn't extend the reservation.
+        -- For a nested subdomain, such as blog.mysite, the top-level subdomain
+        -- (mysite) is reserved.
+        -- You can have up to 5 active reservations at a time.
+        reserve: boolean
+    end
+
+    record CheckSubdomainAvailabilityOutput
+        -- A Boolean value that indicates whether the subdomain is available to create.
+        available: boolean
+        -- The timestamp when the reservation of the subdomain expires.
+        -- The expiry is returned only when your account holds an active reservation for the
+        -- subdomain.
+        reservationExpiresAt: number
+        -- The subdomain that was checked.
+        subdomainName: string
     end
 
     enum NetworkProtocol
@@ -2872,6 +2907,14 @@ local record M
         -- AWSManagedRulesATPRuleSet, AWSManagedRulesACFPRuleSet, and
         -- AWSManagedRulesBotControlRuleSet rule groups.
         wafRules: {WafRule}
+        -- The Lightsail subdomain to create and associate with the distribution (for example,
+        -- mysite, for the web address mysite.amazonlightsail.com).
+        -- After the distribution is deployed, Lightsail creates the subdomain and associates it
+        -- with the distribution. If Lightsail can't create or associate the subdomain, it still creates
+        -- the distribution, but the CreateDistribution operation fails and the
+        -- state of the distribution's subdomain is Error. To
+        -- check the status, use the subdomain parameter of the distribution.
+        subdomainName: string
     end
 
     -- Describes the origin resource of an Amazon Lightsail content delivery network (CDN)
@@ -2904,6 +2947,36 @@ local record M
         -- private. It also applies when you set getObject to public
         -- but set individual objects to private.
         isPrivateOriginAccessEnabled: boolean
+    end
+
+    enum LightsailDistributionSubdomainStateEnum
+        "Creating"
+        "Attaching"
+        "Attached"
+        "Error"
+    end
+
+    -- Describes the Lightsail subdomain of a distribution. The distribution is reachable at
+    -- the subdomain's web address, which is the subdomain followed by
+    -- amazonlightsail.com.
+    record LightsailDistributionSubdomain
+        -- The subdomain (for example, mysite), not its web address.
+        name: string
+        -- The state of the subdomain for the distribution.
+        -- The following states are possible:
+        -- Creating – The subdomain is being created.
+        -- Attaching – The subdomain is being associated with the
+        -- distribution.
+        -- Attached – The subdomain is associated with the distribution.
+        -- Error – The subdomain couldn't be created or associated with the
+        -- distribution. For more information, see the errorCode and
+        -- errorDetails parameters.
+        state: string
+        -- The error code that describes why the subdomain is in the Error state.
+        errorCode: string
+        -- The details of the error that caused the subdomain to be in the Error
+        -- state.
+        errorDetails: string
     end
 
     -- Describes the Web Application Firewall (WAF) configuration of a Lightsail
@@ -2978,13 +3051,22 @@ local record M
         -- The object (for example, index.html) that the distribution returns when a
         -- viewer requests the root URL of the distribution (/) instead of a specific
         -- object.
+        -- This value is returned only when you specify distributionName in your
+        -- GetDistributions request. It isn't included in the response when you list all of
+        -- your distributions.
         defaultRootObject: string
         -- An array of objects that describe the custom error responses configured for the
         -- distribution.
+        -- This value is returned only when you specify distributionName in your
+        -- GetDistributions request. It isn't included in the response when you list all of
+        -- your distributions.
         customErrorResponses: {DistributionCustomErrorResponse}
         -- An object that describes the Web Application Firewall (WAF) configuration of the
         -- distribution.
         waf: WafConfig
+        -- An object that describes the Lightsail subdomain that's associated with the
+        -- distribution, or is being associated with it.
+        subdomain: LightsailDistributionSubdomain
     end
 
     record CreateDistributionOutput
@@ -3543,6 +3625,46 @@ local record M
         operations: {Operation}
     end
 
+    record CreateSubdomainInput
+        -- The subdomain to create (for example, mysite or
+        -- blog.mysite).
+        -- A subdomain can contain one or two labels separated by a period
+        -- (.). Each label must start and end with a lowercase letter or a number, and can
+        -- contain only lowercase letters, numbers, and hyphens (-). The name can be up to
+        -- 39 characters long, including periods. Labels that start with xn-- aren't
+        -- supported, and some names are reserved.
+        -- Specify only the subdomain. A web address, such as
+        -- mysite.amazonlightsail.com, isn't accepted.
+        -- To create a nested subdomain, you must own the top-level subdomain or be able to create
+        -- it.
+        subdomainName: string
+        -- The tag keys and optional values to add to the subdomain during create.
+        -- Use the TagResource action to tag a resource after it's created.
+        tags: {Tag}
+    end
+
+    -- Describes a Lightsail resource that a subdomain is associated with, or is being
+    -- associated with.
+    record SubdomainAttachableResource
+        -- The Amazon Resource Name (ARN) of the resource.
+        arn: string
+        -- The name of the resource.
+        name: string
+        -- The timestamp when the subdomain was associated with the resource.
+        attachedAt: number
+    end
+
+    enum SubdomainState
+        "CREATING"
+        "CREATE_FAILED"
+        "UNATTACHED"
+        "ATTACHING"
+        "ATTACHED"
+        "DETACHING"
+        "TRANSFERRING"
+        "IMPLICIT"
+    end
+
     record DeleteAlarmInput
         -- The name of the alarm to delete.
         alarmName: string
@@ -3835,6 +3957,12 @@ local record M
         -- An array of objects that describe the result of the action, such as the status of the
         -- request, the timestamp of the request, and the resources affected by the request.
         operations: {Operation}
+    end
+
+    record DeleteSubdomainInput
+        -- The subdomain to delete (for example, mysite or
+        -- blog.mysite), not its web address.
+        subdomainName: string
     end
 
     record DetachCertificateFromDistributionInput
@@ -7370,6 +7498,20 @@ local record M
         nextPageToken: string
     end
 
+    record GetSubdomainsInput
+        -- The subdomain for which to return information (for example, mysite or
+        -- blog.mysite), not its web address.
+        -- When omitted, the response includes all of your subdomains.
+        -- You can't specify this parameter together with the pageToken
+        -- parameter.
+        subdomainName: string
+        -- The token to advance to the next page of results from your request.
+        -- To get a page token, perform an initial GetSubdomains request. If your results
+        -- are paginated, the response will return a next page token that you can specify as the page
+        -- token in a subsequent request.
+        pageToken: string
+    end
+
     record ImportKeyPairInput
         -- The name of the key pair for which you want to import the public key.
         keyPairName: string
@@ -8222,6 +8364,141 @@ local record M
         -- An array of objects that describe the result of the action, such as the status of the
         -- request, the timestamp of the request, and the resources affected by the request.
         operations: {Operation}
+    end
+
+    enum SubdomainAssociationAction
+        "ASSOCIATE"
+        "DISASSOCIATE"
+        "TRANSFER"
+    end
+
+    record UpdateSubdomainAssociationInput
+        -- The subdomain to update (for example, mysite or
+        -- blog.mysite), not its web address.
+        subdomainName: string
+        -- The association change to make.
+        -- The following actions are possible:
+        -- ASSOCIATE – Associates the subdomain with the resource that you specify in
+        -- the targetResourceArn parameter. The subdomain must be in the
+        -- UNATTACHED state.
+        -- DISASSOCIATE – Disassociates the subdomain from its current resource. The
+        -- subdomain must be in the ATTACHED state.
+        -- TRANSFER – Moves the subdomain from its current resource to the resource
+        -- that you specify in the targetResourceArn parameter. The subdomain must be in
+        -- the ATTACHED state. You can transfer each subdomain only once in a 24-hour
+        -- period.
+        action: string
+        -- The Amazon Resource Name (ARN) of the resource to associate the subdomain with. The
+        -- resource must be in your account.
+        -- This parameter is required when the action is ASSOCIATE or
+        -- TRANSFER. It's ignored when the action is
+        -- DISASSOCIATE.
+        targetResourceArn: string
+    end
+
+    -- Describes a Lightsail subdomain. A subdomain is the name that you choose, such as
+    -- mysite or blog.mysite. Its web address is the subdomain followed
+    -- by amazonlightsail.com, such as blog.mysite.amazonlightsail.com. You
+    -- can associate a subdomain with a Lightsail resource to make the resource reachable at the
+    -- web address.
+    record Subdomain
+        -- The subdomain (for example, mysite or blog.mysite). To get the
+        -- web address, use the fqdn parameter.
+        subdomainName: string
+        -- The Amazon Resource Name (ARN) of the subdomain.
+        -- If you create a subdomain with a depth of 2, such as blog.mysite, without
+        -- first creating the subdomain with a depth of 1 (mysite), Lightsail holds
+        -- mysite for your account in the IMPLICIT state. It doesn't have an
+        -- ARN until you create a subdomain with that name.
+        arn: string
+        -- The web address of the subdomain, which is the subdomain followed by
+        -- amazonlightsail.com (for example,
+        -- blog.mysite.amazonlightsail.com).
+        fqdn: string
+        -- The number of labels in the subdomain. A top-level subdomain, such as
+        -- mysite, has a depth of 1. A nested subdomain, such as
+        -- blog.mysite, has a depth of 2.
+        depth: number
+        -- The state of the subdomain.
+        -- The following states are possible:
+        -- CREATING – The subdomain is being created.
+        -- CREATE_FAILED – The subdomain couldn't be created. Delete the subdomain,
+        -- and then create it again if the name is still available.
+        -- UNATTACHED – The subdomain is ready, and isn't associated with a
+        -- resource.
+        -- ATTACHING – The subdomain is being associated with a resource.
+        -- ATTACHED – The subdomain is associated with a resource, and routes traffic
+        -- to it.
+        -- DETACHING – The subdomain is being disassociated from a resource.
+        -- TRANSFERRING – The subdomain is being moved from one resource to another
+        -- resource.
+        -- IMPLICIT – The subdomain is the parent of one or more nested subdomains
+        -- that you created, but you didn't create the parent subdomain itself. You can't associate
+        -- or delete a subdomain in this state. To use it, create it with the
+        -- CreateSubdomain action.
+        state: string
+        -- An object that describes the resource that the subdomain is associated with.
+        -- When the subdomain is in the TRANSFERRING state, this is the resource that
+        -- the subdomain is being moved from.
+        attachedResource: SubdomainAttachableResource
+        -- An object that describes the resource that the subdomain is being associated with.
+        -- This parameter is returned only when the subdomain is in the ATTACHING or
+        -- TRANSFERRING state.
+        attachingResource: SubdomainAttachableResource
+        -- An object that describes the location of the subdomain, such as the AWS Region.
+        location: ResourceLocation
+        -- The timestamp when the subdomain was created.
+        createdAt: number
+        -- The web address of the parent subdomain (for example,
+        -- mysite.amazonlightsail.com for blog.mysite).
+        -- This parameter isn't returned for a subdomain with a depth of 1.
+        parentFqdn: string
+        -- An array of objects that describe the nested subdomains of the subdomain.
+        -- This parameter is returned only by the GetSubdomains action when you don't
+        -- specify a subdomain.
+        children: {Subdomain}
+        -- The tag keys and optional values for the subdomain. For more information about tags in
+        -- Lightsail, see the Lightsail Developer
+        -- Guide.
+        -- This parameter is returned only by the GetSubdomains action when you specify a
+        -- subdomain.
+        tags: {Tag}
+    end
+
+    record CreateSubdomainOutput
+        -- An object that describes the subdomain that was created.
+        subdomain: Subdomain
+        -- An object that describes the result of the action, such as the status of the request, the
+        -- timestamp of the request, and the resources affected by the request.
+        operation: Operation
+    end
+
+    record DeleteSubdomainOutput
+        -- An object that describes the top-level subdomain in the IMPLICIT state.
+        -- This parameter is returned only when you delete a top-level subdomain that has nested
+        -- subdomains.
+        subdomain: Subdomain
+        -- An object that describes the result of the action, such as the status of the request, the
+        -- timestamp of the request, and the resources affected by the request.
+        operation: Operation
+    end
+
+    record GetSubdomainsOutput
+        -- An array of objects that describe your subdomains.
+        subdomains: {Subdomain}
+        -- The token to advance to the next page of results from your request.
+        -- A next page token is not returned if there are no more results to display.
+        -- To get the next page of results, perform another GetSubdomains request and
+        -- specify the next page token using the pageToken parameter.
+        nextPageToken: string
+    end
+
+    record UpdateSubdomainAssociationOutput
+        -- An object that describes the subdomain that was updated.
+        subdomain: Subdomain
+        -- An object that describes the result of the action, such as the status of the request, the
+        -- timestamp of the request, and the resources affected by the request.
+        operation: Operation
     end
 
 end

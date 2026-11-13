@@ -26515,6 +26515,18 @@ M.IntegrationAssociationSummary = schema.new({
             name = "SourceType",
             target_id = prelude.String.id,
         }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "IntegrationAssociationSummary", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "IntegrationAssociationSummary", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

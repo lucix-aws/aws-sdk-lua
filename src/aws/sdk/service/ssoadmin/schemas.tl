@@ -56,6 +56,12 @@ M.AccessControlAttributeList = schema.new({ type = "list", list_member = M.Acces
 
 M.ResourceServerScopes = schema.new({ type = "map", map_key = prelude.String, map_value = M.ResourceServerScopeDetails })
 
+M.VpcArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IpCidrList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationArnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.RedirectUris = schema.new({ type = "list", list_member = prelude.String })
 
 M.AuthorizedTokenIssuers = schema.new({ type = "list", list_member = M.AuthorizedTokenIssuer })
@@ -2647,6 +2653,43 @@ M.EncryptionConfigurationDetails = schema.new({
     },
 })
 
+M.NetworkConfigurationInfo = schema.new({
+    id = id.from(_N, "NetworkConfigurationInfo"),
+    type = "structure",
+    members = {
+        VpceAccessRequired = schema.new({
+            id = id.from(_N, "NetworkConfigurationInfo", "VpceAccessRequired"),
+            type = "boolean",
+            name = "VpceAccessRequired",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RestrictSourceVpcs = schema.new({
+            id = id.from(_N, "NetworkConfigurationInfo", "RestrictSourceVpcs"),
+            type = "list",
+            name = "RestrictSourceVpcs",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AllowSourceIps = schema.new({
+            id = id.from(_N, "NetworkConfigurationInfo", "AllowSourceIps"),
+            type = "list",
+            name = "AllowSourceIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludeApplicationArns = schema.new({
+            id = id.from(_N, "NetworkConfigurationInfo", "ExcludeApplicationArns"),
+            type = "list",
+            name = "ExcludeApplicationArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.RegionMetadata = schema.new({
     id = id.from(_N, "RegionMetadata"),
     type = "structure",
@@ -2752,6 +2795,13 @@ M.DescribeInstanceOutput = schema.new({
             name = "EncryptionConfigurationDetails",
             target_id = id.from(_N, "EncryptionConfigurationDetails"),
             target = M.EncryptionConfigurationDetails,
+        }),
+        NetworkConfigurationDetails = schema.new({
+            id = id.from(_N, "DescribeInstanceOutput", "NetworkConfigurationDetails"),
+            type = "structure",
+            name = "NetworkConfigurationDetails",
+            target_id = id.from(_N, "NetworkConfigurationInfo"),
+            target = M.NetworkConfigurationInfo,
         }),
         PermissionSetsEnabled = schema.new({
             id = id.from(_N, "DescribeInstanceOutput", "PermissionSetsEnabled"),
@@ -4889,6 +4939,13 @@ M.UpdateInstanceInput = schema.new({
             type = "boolean",
             name = "PermissionSetsEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        NetworkConfiguration = schema.new({
+            id = id.from(_N, "UpdateInstanceInput", "NetworkConfiguration"),
+            type = "structure",
+            name = "NetworkConfiguration",
+            target_id = id.from(_N, "NetworkConfigurationInfo"),
+            target = M.NetworkConfigurationInfo,
         }),
     },
 })
